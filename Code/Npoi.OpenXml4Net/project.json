@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "Npoi.Common": "1.0.0-*",
+    "Npoi": "1.0.0-*",
+    "System.Xml.XPath": "4.0.1"
+  },
+
+  "frameworks": {
+    "net46": {},
+    "netstandard1.6": {
+      "imports": "dnxcore50",
+      "dependencies": {
+        "System.Xml.XPath.XDocument": "4.0.1"
+      }
+    }
+  }
+}
