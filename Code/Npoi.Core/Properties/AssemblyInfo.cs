@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Npoi.Ooxml")]
+[assembly: AssemblyProduct("Npoi")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -16,6 +16,5 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a2173a8b-1b9d-496d-b049-9010b0c49b23")]
-[assembly: InternalsVisibleTo("Npoi.TestCases")]
-[assembly: InternalsVisibleTo("Npoi.Ooxml.TestCases")]
+[assembly: Guid("d2db927c-aad0-4278-9198-2817d4d67509")]
+[assembly: InternalsVisibleTo("Npoi.Core.TestCases")]
