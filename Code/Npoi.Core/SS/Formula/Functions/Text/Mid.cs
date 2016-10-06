@@ -15,10 +15,10 @@
  * limitations Under the License.
  */
 
-namespace NPOI.SS.Formula.Functions
+namespace Npoi.Core.SS.Formula.Functions
 {
     using System;
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Eval;
 
     /// <summary>
     /// An implementation of the MID function

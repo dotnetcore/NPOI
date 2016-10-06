@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Xml.Serialization;
-namespace NPOI.OpenXmlFormats.Dml
+namespace Npoi.Core.OpenXmlFormats.Dml
 {
     
     

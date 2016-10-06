@@ -14,16 +14,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-namespace NPOI.SS.Converter
+namespace Npoi.Core.SS.Converter
 {
     using System;
     using System.Text;
     using System.IO;
 
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
-    using NPOI.HSSF.Util;
-    using NPOI.SS.Util;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.SS.Util;
 
     public class ExcelToHtmlUtils
     {
@@ -160,7 +160,7 @@ namespace NPOI.SS.Converter
             }
             return borderWidth;
         }
-        public static string GetColor(NPOI.XSSF.UserModel.XSSFColor color)
+        public static string GetColor(Npoi.Core.XSSF.UserModel.XSSFColor color)
         {
             StringBuilder stringBuilder = new StringBuilder(7);
             stringBuilder.Append('#');

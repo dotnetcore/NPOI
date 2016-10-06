@@ -22,8 +22,8 @@ namespace TestCases.HSSF.Util
 
     using NUnit.Framework;
 
-    using NPOI.SS.Util;
-    using NPOI.SS;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.SS;
 
 
     [TestFixture]

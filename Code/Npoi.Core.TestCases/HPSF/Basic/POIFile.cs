@@ -20,7 +20,7 @@
 namespace TestCases.HPSF.Basic
 {
     using System;
-    using NPOI.POIFS.FileSystem;
+    using Npoi.Core.POIFS.FileSystem;
 
 
     /**

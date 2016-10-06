@@ -18,14 +18,14 @@
 namespace TestCases.HSSF.Record
 {
     using System;
-    using NPOI.HSSF.Record;
-    using NPOI.SS.Formula;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS.Formula;
     using System.IO;
     using System.Collections;
 
     using NUnit.Framework;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.HSSF.UserModel;
 
     /**
      * Tests the serialization and deserialization of the FormulaRecord
@@ -76,7 +76,7 @@ namespace TestCases.HSSF.Record
             FormulaRecord record = new FormulaRecord(TestcaseRecordInputStream.Create(FormulaRecord.sid,  formulaByte));
             Assert.AreEqual(0, record.Row, "Row");
             Assert.AreEqual(0, record.Column, "Column");
-            Assert.AreEqual(record.CachedResultType,NPOI.SS.UserModel.CellType.Error);
+            Assert.AreEqual(record.CachedResultType,Npoi.Core.SS.UserModel.CellType.Error);
 
             byte[] output = record.Serialize();
             Assert.AreEqual(33, output.Length, "Output size"); //includes sid+recordlength

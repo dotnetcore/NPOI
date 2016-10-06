@@ -15,7 +15,7 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.UserModel.Charts
+namespace Npoi.Core.SS.UserModel.Charts
 {
     /// <summary>
     /// A base for all chart data types.

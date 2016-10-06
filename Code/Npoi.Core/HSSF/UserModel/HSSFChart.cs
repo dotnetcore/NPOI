@@ -15,15 +15,15 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.Chart;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Chart;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.Util;
 
 
     public enum HSSFChartType : int

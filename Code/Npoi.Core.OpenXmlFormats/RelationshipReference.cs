@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace NPOI.OpenXmlFormats
+namespace Npoi.Core.OpenXmlFormats
 {
     [XmlType(Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/relationships")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/relationships", IsNullable = true)]

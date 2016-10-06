@@ -15,13 +15,13 @@
 * limitations Under the License.
 */
 
-namespace NPOI.HSSF.Record.Aggregates
+namespace Npoi.Core.HSSF.Record.Aggregates
 {
 
     using System;
     using System.Collections;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Model;
     using System.Globalization;
 
 

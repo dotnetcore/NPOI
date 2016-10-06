@@ -16,8 +16,8 @@
 ==================================================================== */
 
 using System.Collections.Generic;
-using NPOI.SS.Util;
-namespace NPOI.SS.UserModel.Charts
+using Npoi.Core.SS.Util;
+namespace Npoi.Core.SS.UserModel.Charts
 {
 
 

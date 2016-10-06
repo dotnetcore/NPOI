@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using NPOI.OpenXml4Net.OPC.Internal.Marshallers;
-using NPOI.OpenXml4Net.Exceptions;
-using NPOI.Util;
+using Npoi.Core.OpenXml4Net.OPC.Internal.Marshallers;
+using Npoi.Core.OpenXml4Net.Exceptions;
+using Npoi.Core.Util;
 
-namespace NPOI.OpenXml4Net.OPC.Internal
+namespace Npoi.Core.OpenXml4Net.OPC.Internal
 {
     public class MemoryPackagePart : PackagePart
     {

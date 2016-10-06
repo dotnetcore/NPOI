@@ -18,20 +18,20 @@
 using System.Xml;
 using System.Xml.Linq;
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
-    using NPOI.SS.UserModel;
-    using NPOI.OpenXmlFormats.Dml.Chart;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.OpenXmlFormats.Dml.Chart;
     using System.Collections.Generic;
-    using NPOI.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXml4Net.OPC;
     using System;
-    using NPOI.OpenXmlFormats;
+    using Npoi.Core.OpenXmlFormats;
     using System.IO;
     using System.Text;
-    using NPOI.SS.UserModel.Charts;
-    using NPOI.XSSF.UserModel.Charts;
+    using Npoi.Core.SS.UserModel.Charts;
+    using Npoi.Core.XSSF.UserModel.Charts;
     using System.Xml.Serialization;
-    using NPOI.OpenXmlFormats.Dml;
+    using Npoi.Core.OpenXmlFormats.Dml;
 
     /**
      * Represents a SpreadsheetML Chart

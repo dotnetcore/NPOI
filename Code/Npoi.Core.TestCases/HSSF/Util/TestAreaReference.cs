@@ -19,19 +19,19 @@ namespace TestCases.HSSF.Util
 {
     using System;
     using System.IO;
-    using NPOI.HSSF.Util;
-    //using NPOI.HSSF.Model;
-    using NPOI.SS.Formula;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.Util;
+    //using Npoi.Core.HSSF.Model;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
 
     using NUnit.Framework;
 
     using TestCases.HSSF;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
-    using NPOI.HSSF.Model;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.SS.Formula.PTG;
 
     [TestFixture]
     public class TestAreaReference
@@ -218,12 +218,12 @@ namespace TestCases.HSSF.Util
             Assert.AreEqual(refB, ptgC.ToFormulaString(eb));
             Assert.AreEqual(",", ptgD.ToFormulaString());
 
-            Assert.AreEqual(ref1, NPOI.HSSF.Model.HSSFFormulaParser.ToFormulaString(wb, nr.NameDefinition));
+            Assert.AreEqual(ref1, Npoi.Core.HSSF.Model.HSSFFormulaParser.ToFormulaString(wb, nr.NameDefinition));
 
             // Check the high level definition
             int idx = wb.GetNameIndex("test");
             Assert.AreEqual(0, idx);
-            NPOI.SS.UserModel.IName aNamedCell = wb.GetNameAt(idx);
+            Npoi.Core.SS.UserModel.IName aNamedCell = wb.GetNameAt(idx);
 
             // Should have 2 references
             Assert.AreEqual(ref1, aNamedCell.RefersToFormula);
@@ -245,7 +245,7 @@ namespace TestCases.HSSF.Util
 
         private static void ConfirmResolveCellRef(HSSFWorkbook wb, CellReference cref)
         {
-            NPOI.SS.UserModel.ISheet s = wb.GetSheet(cref.SheetName);
+            Npoi.Core.SS.UserModel.ISheet s = wb.GetSheet(cref.SheetName);
             IRow r = s.GetRow(cref.Row);
             ICell c = r.GetCell((int)cref.Col);
             Assert.IsNotNull(c);

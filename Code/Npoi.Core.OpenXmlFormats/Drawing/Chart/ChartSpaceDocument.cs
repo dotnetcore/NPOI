@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
-using NPOI.OpenXmlFormats.Dml.Chart;
+using Npoi.Core.OpenXmlFormats.Dml.Chart;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace NPOI.OpenXmlFormats.Dml
+namespace Npoi.Core.OpenXmlFormats.Dml
 {
     public class ChartSpaceDocument
     {

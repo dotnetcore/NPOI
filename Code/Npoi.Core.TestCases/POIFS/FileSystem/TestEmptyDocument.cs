@@ -31,12 +31,12 @@ using System.IO;
 
 using NUnit.Framework;
 
-using NPOI.POIFS.FileSystem;
-using NPOI.Util;
+using Npoi.Core.POIFS.FileSystem;
+using Npoi.Core.Util;
 
-using NPOI.POIFS.Storage;
-using NPOI.POIFS.Properties;
-using NPOI.POIFS.EventFileSystem;
+using Npoi.Core.POIFS.Storage;
+using Npoi.Core.POIFS.Properties;
+using Npoi.Core.POIFS.EventFileSystem;
 
 
 namespace TestCases.POIFS.FileSystem
@@ -154,11 +154,11 @@ namespace TestCases.POIFS.FileSystem
             DocumentEntry entry = (DocumentEntry)fs.Root.GetEntry("Empty");
             Assert.AreEqual(0, entry.Size, "Expected zero size");
             byte[] actualReadbackData;
-            actualReadbackData = NPOI.Util.IOUtils.ToByteArray(new DocumentInputStream(entry));
+            actualReadbackData = Npoi.Core.Util.IOUtils.ToByteArray(new DocumentInputStream(entry));
             Assert.AreEqual(0, actualReadbackData.Length, "Expected zero read from stream");
 
             entry = (DocumentEntry)fs.Root.GetEntry("NotEmpty");
-            actualReadbackData = NPOI.Util.IOUtils.ToByteArray(new DocumentInputStream(entry));
+            actualReadbackData = Npoi.Core.Util.IOUtils.ToByteArray(new DocumentInputStream(entry));
             Assert.AreEqual(TestData.Length, entry.Size, "Expected size was wrong");
             Assert.IsTrue(
                     Arrays.Equals(TestData,actualReadbackData), "Expected different data Read from stream");

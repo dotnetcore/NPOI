@@ -16,7 +16,7 @@
 ==================================================================== */
 using NUnit.Framework;
 using System;
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
     [TestFixture]
     public class TestIdentifierManager

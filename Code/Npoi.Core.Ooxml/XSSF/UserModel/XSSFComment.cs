@@ -16,14 +16,14 @@
 ==================================================================== */
 
 using System;
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.OpenXmlFormats.Vml;
-using NPOI.SS.UserModel;
-using NPOI.SS.Util;
-using NPOI.XSSF.Model;
-using NPOI.Util;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.OpenXmlFormats.Vml;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.Util;
+using Npoi.Core.XSSF.Model;
+using Npoi.Core.Util;
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
 
     public class XSSFComment : IComment

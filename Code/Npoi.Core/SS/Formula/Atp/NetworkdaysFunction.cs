@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.SS.Formula.Functions;
-using NPOI.SS.Formula.Eval;
+using Npoi.Core.SS.Formula.Functions;
+using Npoi.Core.SS.Formula.Eval;
 
-namespace NPOI.SS.Formula.Atp
+namespace Npoi.Core.SS.Formula.Atp
 {
     /**
      * Implementation of Excel 'Analysis ToolPak' function NETWORKDAYS()<br/>

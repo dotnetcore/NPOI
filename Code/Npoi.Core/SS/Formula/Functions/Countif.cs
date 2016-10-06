@@ -16,13 +16,13 @@
 */
 
 
-namespace NPOI.SS.Formula.Functions
+namespace Npoi.Core.SS.Formula.Functions
 {
     using System;
     using System.Text;
     using System.Text.RegularExpressions;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.UserModel;
     using System.Globalization;
 
     /**

@@ -15,14 +15,14 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula.PTG
+namespace Npoi.Core.SS.Formula.PTG
 {
     using System;
-    using NPOI.Util;
+    using Npoi.Core.Util;
     
-    using NPOI.SS.Formula;
+    using Npoi.Core.SS.Formula;
 
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
 
     /**
      * Title:        Deleted Area 3D Ptg - 3D referecnce (Sheet + Area)

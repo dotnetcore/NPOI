@@ -27,8 +27,8 @@ namespace TestCases.DDF
     using System.IO;
 
     using NUnit.Framework;
-    using NPOI.DDF;
-    using NPOI.Util;
+    using Npoi.Core.DDF;
+    using Npoi.Core.Util;
 
     /**
      * Test Read/Serialize of escher blip records

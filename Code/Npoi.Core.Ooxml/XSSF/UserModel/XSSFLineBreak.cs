@@ -17,9 +17,9 @@
  * ====================================================================
  */
 
-using NPOI.OpenXmlFormats.Dml;
+using Npoi.Core.OpenXmlFormats.Dml;
 using System;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
 
     public class XSSFLineBreak : XSSFTextRun

@@ -14,13 +14,13 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-namespace NPOI.SS.Format
+namespace Npoi.Core.SS.Format
 {
     using System;
     using System.Text.RegularExpressions;
     using System.Text;
     using System.Collections.Generic;
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.Util;
     using System.Collections;
 
 
@@ -76,7 +76,7 @@ namespace NPOI.SS.Format
                 if (value == null)
                     return;
                 //if (value is Number) {
-                if (NPOI.Util.Number.IsNumber(value))
+                if (Npoi.Core.Util.Number.IsNumber(value))
                 {
                     double num;
                     double.TryParse(value.ToString(), out num);

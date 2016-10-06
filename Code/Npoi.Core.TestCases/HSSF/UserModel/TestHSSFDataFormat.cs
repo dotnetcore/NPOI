@@ -20,8 +20,8 @@ namespace TestCases.HSSF.UserModel
 
     using TestCases.HSSF;
     using TestCases.SS.UserModel;
-    using NPOI.SS.UserModel;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     using System;
 
     /**

@@ -17,8 +17,8 @@
 ==================================================================== */
 
 
-using NPOI.Util;
-namespace NPOI.POIFS.Common
+using Npoi.Core.Util;
+namespace Npoi.Core.POIFS.Common
 {
 
     /**

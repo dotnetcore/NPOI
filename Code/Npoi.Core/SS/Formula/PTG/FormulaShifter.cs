@@ -17,12 +17,12 @@
 
 
 
-namespace NPOI.SS.Formula
+namespace Npoi.Core.SS.Formula
 {
 
     using System;
     using System.Text;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.SS.Formula.PTG;
     /**
      * @author Josh Micich
      */
@@ -52,7 +52,7 @@ namespace NPOI.SS.Formula
          /**
           * Create an instance for Shifting row.
           *
-          * For example, this will be called on {@link NPOI.HSSF.UserModel.HSSFSheet#ShiftRows(int, int, int)} }
+          * For example, this will be called on {@link Npoi.Core.HSSF.UserModel.HSSFSheet#ShiftRows(int, int, int)} }
           */
          private FormulaShifter(int externSheetIndex, String sheetName, int firstMovedIndex, int lastMovedIndex, int amountToMove)
          {

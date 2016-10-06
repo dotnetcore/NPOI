@@ -14,11 +14,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using NPOI.XSSF.UserModel;
-using NPOI.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.XSSF.UserModel;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using NUnit.Framework;
 using System.Xml;
-namespace NPOI.XSSF.Model
+namespace Npoi.Core.XSSF.Model
 {
 
     /**

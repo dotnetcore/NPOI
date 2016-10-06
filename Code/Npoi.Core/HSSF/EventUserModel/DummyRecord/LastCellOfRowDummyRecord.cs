@@ -15,7 +15,7 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.EventUserModel.DummyRecord
+namespace Npoi.Core.HSSF.EventUserModel.DummyRecord
 {
     /**
      * A dummy record to indicate that we've now had the last

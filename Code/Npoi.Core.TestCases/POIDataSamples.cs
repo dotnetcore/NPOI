@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using NPOI.HSSF.UserModel;
+using Npoi.Core.HSSF.UserModel;
 
 namespace TestCases
 {

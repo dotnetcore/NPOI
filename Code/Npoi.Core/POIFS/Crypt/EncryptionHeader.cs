@@ -23,11 +23,11 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
-using NPOI;
-using NPOI.POIFS.FileSystem;
+using Npoi.Core;
+using Npoi.Core.POIFS.FileSystem;
 
 
-namespace NPOI.POIFS.Crypt
+namespace Npoi.Core.POIFS.Crypt
 {
     public class EncryptionHeader
     {

@@ -19,7 +19,7 @@ namespace TestCases.Util
 {
     using System;
     using System.IO;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
 
     using NUnit.Framework;

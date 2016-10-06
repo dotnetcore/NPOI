@@ -15,14 +15,14 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula
+namespace Npoi.Core.SS.Formula
 {
 
     using System;
     using System.Collections;
 
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.PTG;
 
     /**
      * Common logic for rendering formulas.<br/>

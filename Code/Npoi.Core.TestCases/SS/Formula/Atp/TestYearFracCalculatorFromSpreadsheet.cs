@@ -23,10 +23,10 @@ namespace TestCases.SS.Formula.Atp
     using System.Collections;
     using System.IO;
     using NUnit.Framework;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula.Atp;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula.Atp;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.UserModel;
     using TestCases.HSSF;
 
 

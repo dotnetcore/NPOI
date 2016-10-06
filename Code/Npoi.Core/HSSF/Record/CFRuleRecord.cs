@@ -15,20 +15,20 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
     using System;
     using System.Text;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.Record;
-    using NPOI.Util;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula;
-    using NPOI.HSSF.Record.CF;
-    using FR=NPOI.SS.Formula;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.Util;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.HSSF.Record.CF;
+    using FR=Npoi.Core.SS.Formula;
 
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.UserModel;
 
     //public enum ComparisonOperator : byte
     //{

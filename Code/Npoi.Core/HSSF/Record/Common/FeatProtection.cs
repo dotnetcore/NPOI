@@ -15,12 +15,12 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Record.Common
+namespace Npoi.Core.HSSF.Record.Common
 {
     using System;
 
-    using NPOI.HSSF.Record;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.Util;
     using System.Text;
 
     /**

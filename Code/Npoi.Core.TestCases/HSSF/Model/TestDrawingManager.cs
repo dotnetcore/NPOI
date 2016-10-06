@@ -17,8 +17,8 @@
 namespace TestCases.HSSF.Model
 {
     using System;
-    using NPOI.DDF;
-    using NPOI.HSSF.Model;
+    using Npoi.Core.DDF;
+    using Npoi.Core.HSSF.Model;
 
     using NUnit.Framework;
 

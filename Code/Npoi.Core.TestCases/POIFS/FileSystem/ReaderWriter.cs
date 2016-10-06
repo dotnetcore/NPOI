@@ -21,8 +21,8 @@ using System.Collections;
 using System.IO;
 
 
-using NPOI.POIFS.EventFileSystem;
-using NPOI.POIFS.FileSystem;
+using Npoi.Core.POIFS.EventFileSystem;
+using Npoi.Core.POIFS.FileSystem;
 
 /**
  * Test (Proof of concept) program that employs the

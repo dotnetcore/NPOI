@@ -17,14 +17,14 @@
 ==================================================================== */
 
 
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     using System;
     using System.Collections;
     using System.Text;
-    using NPOI.HSSF.Record.Cont;
+    using Npoi.Core.HSSF.Record.Cont;
     using System.Collections.Generic;
 
     /**

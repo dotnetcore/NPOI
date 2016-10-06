@@ -28,10 +28,10 @@
 using System.IO;
 using System.Collections.Generic;
 
-using NPOI.POIFS.Properties;
-using NPOI.POIFS.Common;
+using Npoi.Core.POIFS.Properties;
+using Npoi.Core.POIFS.Common;
 
-namespace NPOI.POIFS.Storage
+namespace Npoi.Core.POIFS.Storage
 {
     /// <summary>
     /// A block of Property instances

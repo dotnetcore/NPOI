@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NPOI
+namespace Npoi.Core
 {
     public class POIXMLException:Exception
     {

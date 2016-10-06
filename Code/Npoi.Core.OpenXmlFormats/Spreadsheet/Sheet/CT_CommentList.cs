@@ -7,7 +7,7 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.OpenXmlFormats.Spreadsheet
+namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
     using System;
     using System.Collections.Generic;

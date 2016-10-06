@@ -18,11 +18,11 @@
 namespace TestCases.HSSF.Model
 {
     using System;
-    using NPOI.HSSF.Model;
-    using NPOI.SS.Formula;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.SS.Formula;
     using NUnit.Framework;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula.PTG;
 
     /**
      * Tests <c>FormulaParser</c> specifically with respect to IF() functions

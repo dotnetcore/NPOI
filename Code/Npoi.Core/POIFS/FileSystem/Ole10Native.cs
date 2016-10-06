@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.POIFS.FileSystem
+namespace Npoi.Core.POIFS.FileSystem
 {
     using System;
     using System.IO;
-    using NPOI.Util;
+    using Npoi.Core.Util;
     using System.Text;
 
     /**

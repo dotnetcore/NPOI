@@ -7,9 +7,9 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.OpenXmlFormats
+namespace Npoi.Core.OpenXmlFormats
 {
-    using NPOI.OpenXml4Net.Util;
+    using Npoi.Core.OpenXml4Net.Util;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;

@@ -17,14 +17,14 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.XSSF.Model
+namespace Npoi.Core.XSSF.Model
 {
 
     using System.Xml;
-    using NPOI.OpenXml4Net.OPC;
-    using NPOI.XSSF.UserModel;
-    using NPOI.OpenXmlFormats.Spreadsheet;
-    using NPOI.OpenXmlFormats.Dml;
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.XSSF.UserModel;
+    using Npoi.Core.OpenXmlFormats.Spreadsheet;
+    using Npoi.Core.OpenXmlFormats.Dml;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -75,7 +75,7 @@ namespace NPOI.XSSF.Model
             // i.e. these keys are NOT the same as the order in which theme colors appear
             // in theme1.xml. They are keys to a mapped color.
             CT_ColorScheme colorScheme = theme.GetTheme().themeElements.clrScheme;
-            NPOI.OpenXmlFormats.Dml.CT_Color ctColor = null;
+            Npoi.Core.OpenXmlFormats.Dml.CT_Color ctColor = null;
 
             switch (idx)
             {

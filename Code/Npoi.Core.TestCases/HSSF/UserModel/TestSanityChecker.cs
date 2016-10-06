@@ -19,10 +19,10 @@ namespace TestCases.HSSF.UserModel
 {
     using System;
     using System.Collections;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     using NUnit.Framework;
     using System.Threading;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Record;
 
     /**
      * A Test case for a Test utility class.<br/>
@@ -122,7 +122,7 @@ namespace TestCases.HSSF.UserModel
             try
             {
                 SanityChecker c = new SanityChecker();
-                IList recs1 = NPOI.Util.Arrays.AsList(recs);
+                IList recs1 = Npoi.Core.Util.Arrays.AsList(recs);
                 c.CheckRecordOrder(recs1, check);
             }
             catch (AssertionException)

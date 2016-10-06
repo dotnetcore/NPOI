@@ -17,7 +17,7 @@
 
 using System;
 using NUnit.Framework;
-using NPOI.SS.Formula.Function;
+using Npoi.Core.SS.Formula.Function;
 namespace TestCases.SS.Formula.Function
 {
     /**

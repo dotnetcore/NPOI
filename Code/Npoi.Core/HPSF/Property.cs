@@ -27,12 +27,12 @@
 
 using System.Reflection;
 
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     using System;
     using System.Text;
     using System.Collections;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /// <summary>
     /// A property in a {@link Section} of a {@link PropertySet}.

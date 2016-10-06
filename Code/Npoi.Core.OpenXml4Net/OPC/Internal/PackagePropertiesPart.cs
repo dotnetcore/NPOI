@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using NPOI.OpenXml4Net.Exceptions;
-using NPOI.OpenXml4Net.OPC;
-using NPOI.SS.Util;
+using Npoi.Core.OpenXml4Net.Exceptions;
+using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.SS.Util;
 using System.Globalization;
 
-namespace NPOI.OpenXml4Net.OPC.Internal
+namespace Npoi.Core.OpenXml4Net.OPC.Internal
 {
 /**
  * Represents the core properties part of a package.

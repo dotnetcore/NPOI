@@ -16,14 +16,14 @@
 ==================================================================== */
 
 
-namespace NPOI.HSSF.Model
+namespace Npoi.Core.HSSF.Model
 {
     using System;
 
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.UserModel;
-    using NPOI.DDF;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.DDF;
+    using Npoi.Core.Util;
 
     [Obsolete]
     public class PolygonShape: AbstractShape

@@ -19,8 +19,8 @@ namespace TestCases.HSSF.UserModel
 {
     using System;
     using System.IO;
-    using NPOI.HSSF.UserModel;
-    using NPOI.POIFS.FileSystem;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.POIFS.FileSystem;
     using TestCases.HSSF;
     using NUnit.Framework;
 

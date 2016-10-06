@@ -17,7 +17,7 @@
  * ====================================================================
  */
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * Text Capitalization that is to be applied to the text Run. This is a render-only

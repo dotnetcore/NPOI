@@ -25,11 +25,11 @@
  * 
  * ==============================================================*/
 
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     using System;
     using System.IO;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /// <summary>
     /// Class for writing little-endian data and more.

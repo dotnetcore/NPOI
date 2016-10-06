@@ -17,13 +17,13 @@
 
 namespace TestCases.SS.Formula.Function
 {
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
     using System;
     using TestCases.HSSF;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
     using NUnit.Framework;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * Tests Reading from a sample spreadsheet some built-in functions that were not properly

@@ -15,7 +15,7 @@
    limitations under the License.
 ==================================================================== */
 using System;
-namespace NPOI.DDF
+namespace Npoi.Core.DDF
 {
 
     /**

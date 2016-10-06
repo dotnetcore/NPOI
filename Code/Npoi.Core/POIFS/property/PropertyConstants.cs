@@ -25,7 +25,7 @@
  * 
  * ==============================================================*/
 
-namespace NPOI.POIFS.Properties
+namespace Npoi.Core.POIFS.Properties
 {
     /// <summary>
     /// Constants used by Properties namespace

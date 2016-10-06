@@ -15,7 +15,7 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.XWPF.Model
+namespace Npoi.Core.XWPF.Model
 {
     using System;
 
@@ -23,8 +23,8 @@ namespace NPOI.XWPF.Model
 
     using NUnit.Framework;
 
-    using NPOI.XWPF;
-    using NPOI.XWPF.UserModel;
+    using Npoi.Core.XWPF;
+    using Npoi.Core.XWPF.UserModel;
 
     /**
      * Tests for the various XWPF decorators

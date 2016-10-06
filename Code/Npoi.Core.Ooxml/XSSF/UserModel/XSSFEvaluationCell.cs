@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.SS.Formula;
-using NPOI.XSSF.UserModel;
+using Npoi.Core.SS.Formula;
+using Npoi.Core.XSSF.UserModel;
 using System;
-using NPOI.SS.UserModel;
-namespace NPOI.XSSF.UserModel
+using Npoi.Core.SS.UserModel;
+namespace Npoi.Core.XSSF.UserModel
 {
 
     /**

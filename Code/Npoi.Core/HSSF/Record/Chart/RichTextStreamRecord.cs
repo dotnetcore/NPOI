@@ -15,7 +15,7 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Record.Chart
+namespace Npoi.Core.HSSF.Record.Chart
 {
     /// <summary>
     /// The RichTextStream record specifies additional text properties for the text in 
@@ -43,7 +43,7 @@ namespace NPOI.HSSF.Record.Chart
                 return base.DataSize;
             }
         }
-        public override void Serialize(NPOI.Util.ILittleEndianOutput out1)
+        public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             base.Serialize(out1);
         }

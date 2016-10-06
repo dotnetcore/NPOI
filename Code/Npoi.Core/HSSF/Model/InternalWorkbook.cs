@@ -16,20 +16,20 @@
 ==================================================================== */
 
 
-using NPOI.HPSF;
+using Npoi.Core.HPSF;
 
-namespace NPOI.HSSF.Model
+namespace Npoi.Core.HSSF.Model
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using NPOI.DDF;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Util;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.Formula.Udf;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.DDF;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.Formula.Udf;
+    using Npoi.Core.SS.UserModel;
     using System.Security;
 
 

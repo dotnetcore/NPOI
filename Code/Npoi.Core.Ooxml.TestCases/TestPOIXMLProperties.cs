@@ -15,16 +15,16 @@
   limitations under the License.
 ==================================================================== */
 
-namespace NPOI
+namespace Npoi.Core
 {
 
     using System;
     using NUnit.Framework;
-    using NPOI.XSSF.UserModel;
-    using NPOI.OpenXmlFormats;
-    using NPOI.XSSF;
-    using NPOI.XWPF.UserModel;
-    using NPOI.XWPF;
+    using Npoi.Core.XSSF.UserModel;
+    using Npoi.Core.OpenXmlFormats;
+    using Npoi.Core.XSSF;
+    using Npoi.Core.XWPF.UserModel;
+    using Npoi.Core.XWPF;
 
     /**
      * Test Setting extended and custom OOXML properties

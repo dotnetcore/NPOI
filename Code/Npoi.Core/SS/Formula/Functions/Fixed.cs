@@ -15,9 +15,9 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula.Functions
+namespace Npoi.Core.SS.Formula.Functions
 {
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Eval;
     using System;
 
     public class Fixed : Function1Arg, Function2Arg, Function3Arg

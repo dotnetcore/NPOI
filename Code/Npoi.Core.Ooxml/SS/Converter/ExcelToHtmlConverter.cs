@@ -17,22 +17,22 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.SS.Converter
+namespace Npoi.Core.SS.Converter
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
     using System.Xml;
-    using NPOI.SS.Util;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.Util;
-    using NPOI.HSSF.Util;
-    using NPOI.SS;
-    using NPOI.HSSF.UserModel;
-    using NPOI.HPSF;
-    using NPOI.XSSF.UserModel;
-    using NPOI.XSSF.Model;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.Util;
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.SS;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.HPSF;
+    using Npoi.Core.XSSF.UserModel;
+    using Npoi.Core.XSSF.Model;
 
     public class ExcelToHtmlConverter
     {
@@ -228,7 +228,7 @@ namespace NPOI.SS.Converter
 
         protected void ProcessDocumentInformation(IWorkbook workbook)
         {
-            if (workbook is NPOI.HSSF.UserModel.HSSFWorkbook)
+            if (workbook is Npoi.Core.HSSF.UserModel.HSSFWorkbook)
             {
                 SummaryInformation summaryInformation = ((HSSFWorkbook)workbook).SummaryInformation;
                 if (summaryInformation != null)
@@ -246,9 +246,9 @@ namespace NPOI.SS.Converter
                         htmlDocumentFacade.AddDescription(summaryInformation.Comments);
                 }
             }
-            else if(workbook is NPOI.XSSF.UserModel.XSSFWorkbook)
+            else if(workbook is Npoi.Core.XSSF.UserModel.XSSFWorkbook)
             {
-                POIXMLProperties props=((NPOI.XSSF.UserModel.XSSFWorkbook)workbook).GetProperties();
+                POIXMLProperties props=((Npoi.Core.XSSF.UserModel.XSSFWorkbook)workbook).GetProperties();
                 if (!string.IsNullOrEmpty(props.CoreProperties.Title))
                 {
                     htmlDocumentFacade.Title = props.CoreProperties.Title;

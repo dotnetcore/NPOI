@@ -23,7 +23,7 @@ namespace TestCases.SS.Formula.Functions
 
     using System;
     using NUnit.Framework;
-    using NPOI.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.Functions;
 
 
     /**

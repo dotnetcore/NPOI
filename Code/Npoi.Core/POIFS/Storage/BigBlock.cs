@@ -26,8 +26,8 @@
  * ==============================================================*/
 
 using System.IO;
-using NPOI.POIFS.Common;
-namespace NPOI.POIFS.Storage
+using Npoi.Core.POIFS.Common;
+namespace Npoi.Core.POIFS.Storage
 {
     /// <summary>
     /// Abstract base class of all POIFS block storage classes. All

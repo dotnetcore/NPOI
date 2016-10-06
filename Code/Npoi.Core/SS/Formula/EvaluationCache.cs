@@ -15,12 +15,12 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula
+namespace Npoi.Core.SS.Formula
 {
 
     using System;
 
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Eval;
     
 
     /**
@@ -56,7 +56,7 @@ namespace NPOI.SS.Formula
             Loc loc = new Loc(bookIndex, sheetIndex, cell.RowIndex, cell.ColumnIndex);
             PlainValueCellCacheEntry pcce = _plainCellCache.Get(loc);
 
-            if (cell.CellType == NPOI.SS.UserModel.CellType.Formula)
+            if (cell.CellType == Npoi.Core.SS.UserModel.CellType.Formula)
             {
                 if (fcce == null)
                 {
@@ -253,7 +253,7 @@ namespace NPOI.SS.Formula
         public void NotifyDeleteCell(int bookIndex, int sheetIndex, IEvaluationCell cell)
         {
 
-            if (cell.CellType == NPOI.SS.UserModel.CellType.Formula)
+            if (cell.CellType == Npoi.Core.SS.UserModel.CellType.Formula)
             {
                 FormulaCellCacheEntry fcce = _formulaCellCache.Remove(cell);
                 if (fcce == null)

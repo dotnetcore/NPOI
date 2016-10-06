@@ -19,13 +19,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using NPOI.HSSF.UserModel;
-using NPOI.HSSF.Model;
-using NPOI.DDF;
-using NPOI.HSSF.Record;
-using NPOI.SS.UserModel;
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.HSSF.Model;
+using Npoi.Core.DDF;
+using Npoi.Core.HSSF.Record;
+using Npoi.Core.SS.UserModel;
 using TestCases.HSSF.UserModel;
-using NPOI.Util;
+using Npoi.Core.Util;
 
 namespace TestCases.HSSF.Model
 {

@@ -15,12 +15,12 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     using System;
 
     using NUnit.Framework;
-    using NPOI.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
 
     [TestFixture]
     public class TestXWPFTableRow

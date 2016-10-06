@@ -20,12 +20,12 @@
 namespace TestCases.HSSF.Record
 {
     using System;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Record;
     using NUnit.Framework;
-    using NPOI.HSSF.Record.Cont;
+    using Npoi.Core.HSSF.Record.Cont;
     using System.Text;
     using System.IO;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * Tests that records size calculates correctly.

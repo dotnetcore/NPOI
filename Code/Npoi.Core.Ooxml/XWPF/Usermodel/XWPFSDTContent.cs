@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 using System;
-using NPOI.OpenXmlFormats.Wordprocessing;
+using Npoi.Core.OpenXmlFormats.Wordprocessing;
 using System.Text;
 using System.Collections.Generic;
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     /**
      * Experimental class to offer rudimentary Read-only Processing of 

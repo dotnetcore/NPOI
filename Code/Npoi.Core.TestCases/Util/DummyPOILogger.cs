@@ -28,7 +28,7 @@
 
 using System;
 using System.Collections;
-using NPOI.Util;
+using Npoi.Core.Util;
 
 namespace TestCases.Util
 {

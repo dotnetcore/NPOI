@@ -15,16 +15,16 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.SS.Util;
+using Npoi.Core.SS.Util;
 
 namespace TestCases.SS.Formula.Functions
 {
 
-    using NPOI.HSSF;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Formula.Functions;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Functions;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
     using NUnit.Framework;
     using System;
     using TestCases.HSSF;
@@ -274,7 +274,7 @@ namespace TestCases.SS.Formula.Functions
         }
 
         /**
-         * the criteria arg is mostly handled by {@link OperandResolver#getSingleValue(NPOI.SS.Formula.Eval.ValueEval, int, int)}}
+         * the criteria arg is mostly handled by {@link OperandResolver#getSingleValue(Npoi.Core.SS.Formula.Eval.ValueEval, int, int)}}
          */
         [Test]
         public void TestCountifAreaCriteria()

@@ -15,18 +15,18 @@
    limitations Under the License.
 ==================================================================== */
 
-using NPOI.HPSF;
+using Npoi.Core.HPSF;
 
-namespace NPOI.HSSF.Model
+namespace Npoi.Core.HSSF.Model
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.Aggregates;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Util;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Aggregates;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
 
     /// <summary>
     /// Low level model implementation of a Sheet (one workbook Contains many sheets)
@@ -1098,8 +1098,8 @@ namespace NPOI.HSSF.Model
         /// <summary>
         /// Creates the DefaultRowHeight Record and Sets its options to 0 and rowheight to 0xff
         /// </summary>
-        /// <see cref="NPOI.HSSF.Record.DefaultRowHeightRecord"/>
-        /// <see cref="NPOI.HSSF.Record.Record"/>
+        /// <see cref="Npoi.Core.HSSF.Record.DefaultRowHeightRecord"/>
+        /// <see cref="Npoi.Core.HSSF.Record.Record"/>
         /// <returns>record containing a DefaultRowHeightRecord</returns>
         protected DefaultRowHeightRecord CreateDefaultRowHeight()
         {
@@ -1797,7 +1797,7 @@ namespace NPOI.HSSF.Model
          * @see #PANE_UPPER_LEFT
          * @see #PANE_UPPER_RIGHT
          */
-        public void CreateSplitPane(int xSplitPos, int ySplitPos, int topRow, int leftmostColumn, NPOI.SS.UserModel.PanePosition activePane)
+        public void CreateSplitPane(int xSplitPos, int ySplitPos, int topRow, int leftmostColumn, Npoi.Core.SS.UserModel.PanePosition activePane)
         {
             int paneLoc = FindFirstRecordLocBySid(PaneRecord.sid);
             if (paneLoc != -1)
@@ -1816,7 +1816,7 @@ namespace NPOI.HSSF.Model
             windowTwo.FreezePanesNoSplit = (false);
 
             SelectionRecord sel = (SelectionRecord)FindFirstRecordBySid(SelectionRecord.sid);
-            sel.Pane = (byte)NPOI.SS.UserModel.PanePosition.LowerRight;
+            sel.Pane = (byte)Npoi.Core.SS.UserModel.PanePosition.LowerRight;
 
         }
 
@@ -1832,7 +1832,7 @@ namespace NPOI.HSSF.Model
                 if (rec == null)
                     return null;
 
-                return new NPOI.SS.Util.PaneInformation(rec.X, rec.Y, rec.TopRow,
+                return new Npoi.Core.SS.Util.PaneInformation(rec.X, rec.Y, rec.TopRow,
                                            rec.LeftColumn, (byte)rec.ActivePane, windowTwo.FreezePanes);
             }
         }

@@ -18,10 +18,10 @@
  * Created on May 15, 2005
  *
  */
-namespace NPOI.SS.Formula.Functions
+namespace Npoi.Core.SS.Formula.Functions
 {
     using System;
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Eval;
 
     public class Trunc : Var1or2ArgFunction
     {

@@ -23,13 +23,13 @@
  * Created on October 28, 2001, 5:44 PM
  */
 
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
     using System;
     using System.Text;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.Util;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.Util;
 
 
     /**
@@ -164,15 +164,15 @@ namespace NPOI.HSSF.Record
             sb.Append('[').Append(FormatValue).Append(']');
             return sb.ToString();
         }
-        public NPOI.SS.UserModel.CellType GetValueType()
+        public Npoi.Core.SS.UserModel.CellType GetValueType()
         {
             int typeCode = GetTypeCode();
             switch (typeCode)
             {
-                case STRING: return NPOI.SS.UserModel.CellType.String;
-                case BOOLEAN: return NPOI.SS.UserModel.CellType.Boolean;
-                case ERROR_CODE: return NPOI.SS.UserModel.CellType.Error;
-                case EMPTY: return NPOI.SS.UserModel.CellType.String; // is this correct?
+                case STRING: return Npoi.Core.SS.UserModel.CellType.String;
+                case BOOLEAN: return Npoi.Core.SS.UserModel.CellType.Boolean;
+                case ERROR_CODE: return Npoi.Core.SS.UserModel.CellType.Error;
+                case EMPTY: return Npoi.Core.SS.UserModel.CellType.String; // is this correct?
             }
             throw new InvalidOperationException("Unexpected type id (" + typeCode + ")");
         }
@@ -216,7 +216,7 @@ namespace NPOI.HSSF.Record
         private BitField sharedFormula = BitFieldFactory.GetInstance(0x0008);
         private int field_6_zero;
         [NonSerialized]
-        private NPOI.SS.Formula.Formula field_8_parsed_expr;
+        private Npoi.Core.SS.Formula.Formula field_8_parsed_expr;
 
         /**
         * Since the NaN support seems sketchy (different constants) we'll store and spit it out directly
@@ -236,7 +236,7 @@ namespace NPOI.HSSF.Record
 
         public FormulaRecord()
         {
-            field_8_parsed_expr = NPOI.SS.Formula.Formula.Create(Ptg.EMPTY_PTG_ARRAY);
+            field_8_parsed_expr = Npoi.Core.SS.Formula.Formula.Create(Ptg.EMPTY_PTG_ARRAY);
         }
 
         /**
@@ -260,7 +260,7 @@ namespace NPOI.HSSF.Record
                 field_6_zero = in1.ReadInt();
                 int field_7_expression_len = in1.ReadShort();
 
-                field_8_parsed_expr = NPOI.SS.Formula.Formula.Read(field_7_expression_len, in1,in1.Available());
+                field_8_parsed_expr = Npoi.Core.SS.Formula.Formula.Read(field_7_expression_len, in1,in1.Available());
         }
         /**
  * @return <c>true</c> if this {@link FormulaRecord} is followed by a
@@ -280,7 +280,7 @@ namespace NPOI.HSSF.Record
         }
         public void SetParsedExpression(Ptg[] ptgs)
         {
-            field_8_parsed_expr = NPOI.SS.Formula.Formula.Create(ptgs);
+            field_8_parsed_expr = Npoi.Core.SS.Formula.Formula.Create(ptgs);
         }
         public void SetSharedFormula(bool flag)
         {
@@ -355,9 +355,9 @@ namespace NPOI.HSSF.Record
         public Ptg[] ParsedExpression
         {
             get { return (Ptg[])field_8_parsed_expr.Tokens; }
-            set { field_8_parsed_expr = NPOI.SS.Formula.Formula.Create(value); }
+            set { field_8_parsed_expr = Npoi.Core.SS.Formula.Formula.Create(value); }
         }
-        public NPOI.SS.Formula.Formula Formula
+        public Npoi.Core.SS.Formula.Formula Formula
         {
             get
             {
@@ -417,15 +417,15 @@ namespace NPOI.HSSF.Record
             }
         }
 
-        public NPOI.SS.UserModel.CellType CachedResultType
+        public Npoi.Core.SS.UserModel.CellType CachedResultType
         {
             get
             {
                 if (specialCachedValue == null)
                 {
-                    return NPOI.SS.UserModel.CellType.Numeric;
+                    return Npoi.Core.SS.UserModel.CellType.Numeric;
                 }
-                return (NPOI.SS.UserModel.CellType)specialCachedValue.GetValueType();
+                return (Npoi.Core.SS.UserModel.CellType)specialCachedValue.GetValueType();
             }
         }
 

@@ -32,9 +32,9 @@ using System.IO;
 
 using NUnit.Framework;
 
-using NPOI.POIFS.Common;
-using NPOI.POIFS.Storage;
-using NPOI.POIFS.Properties;
+using Npoi.Core.POIFS.Common;
+using Npoi.Core.POIFS.Storage;
+using Npoi.Core.POIFS.Properties;
 using TestCases.POIFS.Storage;
 
 namespace TestCases.POIFS.Properties

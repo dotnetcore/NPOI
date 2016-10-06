@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula.Udf
+namespace Npoi.Core.SS.Formula.Udf
 {
     using System;
     using System.Collections.Generic;
-    using NPOI.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.Functions;
     /**
      * A UDFFinder that can retrieve functions both by name and by fake index.
      *

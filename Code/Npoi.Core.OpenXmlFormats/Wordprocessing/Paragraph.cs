@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
-using NPOI.OpenXmlFormats.Shared;
+using Npoi.Core.OpenXmlFormats.Shared;
 using System.IO;
-using NPOI.OpenXml4Net.Util;
+using Npoi.Core.OpenXml4Net.Util;
 using System.Collections;
 using System.Xml.Linq;
 
-namespace NPOI.OpenXmlFormats.Wordprocessing
+namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]

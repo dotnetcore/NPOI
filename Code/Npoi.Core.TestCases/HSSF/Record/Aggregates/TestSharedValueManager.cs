@@ -18,10 +18,10 @@
 using System;
 using System.Reflection;
 using NUnit.Framework;
-using NPOI.HSSF.Record;
-using NPOI.HSSF.Record.Aggregates;
-using NPOI.HSSF.UserModel;
-using NPOI.Util;
+using Npoi.Core.HSSF.Record;
+using Npoi.Core.HSSF.Record.Aggregates;
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.Util;
 using TestCases.HSSF.UserModel;
 namespace TestCases.HSSF.Record.Aggregates
 {
@@ -65,7 +65,7 @@ namespace TestCases.HSSF.Record.Aggregates
         [Test]
         public void TestPartiallyOverlappingRanges()
         {
-            NPOI.HSSF.Record.Record[] records;
+            Npoi.Core.HSSF.Record.Record[] records;
 
             int attempt = 1;
             do
@@ -102,7 +102,7 @@ namespace TestCases.HSSF.Record.Aggregates
         [Test]
         public void TestCompletelyOverlappedRanges()
         {
-            NPOI.HSSF.Record.Record[] records;
+            Npoi.Core.HSSF.Record.Record[] records;
 
             int attempt = 1;
             do

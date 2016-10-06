@@ -18,10 +18,10 @@
 namespace TestCases.HSSF.UserModel
 {
     using System;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     using TestCases.HSSF;
     using NUnit.Framework;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
 
     /**
      * @author Josh Micich
@@ -34,7 +34,7 @@ namespace TestCases.HSSF.UserModel
         {
 
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sheet = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet();
 
             IDrawing patr = sheet.CreateDrawingPatriarch();
 
@@ -49,7 +49,7 @@ namespace TestCases.HSSF.UserModel
         {
 
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sheet = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet();
 
             // 1. Create drawing patriarch
             IDrawing patr = sheet.CreateDrawingPatriarch();

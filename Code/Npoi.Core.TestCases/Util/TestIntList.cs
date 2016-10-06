@@ -20,7 +20,7 @@ namespace TestCases.Util
     using System;
 
     using NUnit.Framework;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * Class to Test IntList

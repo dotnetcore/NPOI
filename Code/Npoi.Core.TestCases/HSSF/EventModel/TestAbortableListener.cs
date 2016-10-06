@@ -19,10 +19,10 @@ namespace TestCases.HSSF.EventModel
 {
     using System.IO;
     using NUnit.Framework;
-    using NPOI.HSSF.EventUserModel;
-    using NPOI.HSSF.Record;
-    using NPOI.POIFS.FileSystem;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.EventUserModel;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.Util;
     using TestCases.HSSF;
 
     /**

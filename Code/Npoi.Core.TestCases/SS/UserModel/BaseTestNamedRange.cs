@@ -21,11 +21,11 @@ namespace TestCases.SS.UserModel
 
     using System;
     using NUnit.Framework;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
 
     /**
-     * Tests of implementations of {@link NPOI.ss.usermodel.Name}.
+     * Tests of implementations of {@link Npoi.Core.ss.usermodel.Name}.
      *
      * @author Yegor Kozlov
      */

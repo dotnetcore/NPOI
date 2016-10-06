@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula.Udf
+namespace Npoi.Core.SS.Formula.Udf
 {
     using System;
-    using NPOI.SS.Formula.Atp;
-    using NPOI.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.Atp;
+    using Npoi.Core.SS.Formula.Functions;
 
     /**
      * Common interface for "Add-in" libraries and user defined function libraries.

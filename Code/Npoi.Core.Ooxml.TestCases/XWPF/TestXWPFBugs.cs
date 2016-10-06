@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-namespace NPOI.XWPF
+namespace Npoi.Core.XWPF
 {
     using System;
 
@@ -23,9 +23,9 @@ namespace NPOI.XWPF
 
     using NUnit.Framework;
 
-    using NPOI.HSSF.Record.Crypto;
-    using NPOI.POIFS.FileSystem;
-    using NPOI.XWPF.UserModel;
+    using Npoi.Core.HSSF.Record.Crypto;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.XWPF.UserModel;
     using TestCases;
     using System.IO;
 

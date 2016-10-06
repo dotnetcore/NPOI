@@ -15,9 +15,9 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula.PTG
+namespace Npoi.Core.SS.Formula.PTG
 {
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * RefNPtg

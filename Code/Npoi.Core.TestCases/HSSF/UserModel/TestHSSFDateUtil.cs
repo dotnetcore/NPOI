@@ -21,11 +21,11 @@ namespace TestCases.HSSF.UserModel
     using System;
 
     using TestCases.HSSF;
-    using NPOI.HSSF.Model;
+    using Npoi.Core.HSSF.Model;
     using NUnit.Framework;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
 
     /**
      * Class TestHSSFDateUtil
@@ -362,12 +362,12 @@ namespace TestCases.HSSF.UserModel
         {
 
             HSSFWorkbook workbook = HSSFTestDataSamples.OpenSampleWorkbook("DateFormats.xls");
-            NPOI.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
             InternalWorkbook wb = workbook.Workbook;
 
             IRow row;
             ICell cell;
-            NPOI.SS.UserModel.ICellStyle style;
+            Npoi.Core.SS.UserModel.ICellStyle style;
 
             double aug_10_2007 = 39304.0;
 

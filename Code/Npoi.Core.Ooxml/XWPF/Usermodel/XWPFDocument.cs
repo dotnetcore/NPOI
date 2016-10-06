@@ -17,16 +17,16 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     using System;
     using System.IO;
-    using NPOI.Util;
+    using Npoi.Core.Util;
     using System.Collections.Generic;
-    using NPOI.OpenXml4Net.OPC;
-    using NPOI.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
     using System.Xml;
-    using NPOI.XWPF.Model;
+    using Npoi.Core.XWPF.Model;
     using System.Xml.Serialization;
     using System.Diagnostics;
 
@@ -306,7 +306,7 @@ namespace NPOI.XWPF.UserModel
 
         /**
          * returns an Iterator with paragraphs and tables
-         * @see NPOI.XWPF.UserModel.IBody#getBodyElements()
+         * @see Npoi.Core.XWPF.UserModel.IBody#getBodyElements()
          */
         public IList<IBodyElement> BodyElements
         {
@@ -320,7 +320,7 @@ namespace NPOI.XWPF.UserModel
             return bodyElements.GetEnumerator();
         }
         /**
-         * @see NPOI.XWPF.UserModel.IBody#getParagraphs()
+         * @see Npoi.Core.XWPF.UserModel.IBody#getParagraphs()
          */
         public IList<XWPFParagraph> Paragraphs
         {
@@ -331,7 +331,7 @@ namespace NPOI.XWPF.UserModel
         }
 
         /**
-         * @see NPOI.XWPF.UserModel.IBody#getTables()
+         * @see Npoi.Core.XWPF.UserModel.IBody#getTables()
          */
         public IList<XWPFTable> Tables
         {
@@ -342,7 +342,7 @@ namespace NPOI.XWPF.UserModel
         }
 
         /**
-         * @see NPOI.XWPF.UserModel.IBody#getTableArray(int)
+         * @see Npoi.Core.XWPF.UserModel.IBody#getTableArray(int)
          */
         public XWPFTable GetTableArray(int pos)
         {
@@ -1457,7 +1457,7 @@ namespace NPOI.XWPF.UserModel
         /**
          * Get a table by its CTTbl-Object
          * @param ctTbl
-         * @see NPOI.XWPF.UserModel.IBody#getTable(org.Openxmlformats.schemas.wordProcessingml.x2006.main.CTTbl)
+         * @see Npoi.Core.XWPF.UserModel.IBody#getTable(org.Openxmlformats.schemas.wordProcessingml.x2006.main.CTTbl)
          * @return a table by its CTTbl-Object or null
          */
         public XWPFTable GetTable(CT_Tbl ctTbl)
@@ -1485,7 +1485,7 @@ namespace NPOI.XWPF.UserModel
 
         /**
          * Returns the paragraph that of position pos
-         * @see NPOI.XWPF.UserModel.IBody#getParagraphArray(int)
+         * @see Npoi.Core.XWPF.UserModel.IBody#getParagraphArray(int)
          */
         public XWPFParagraph GetParagraphArray(int pos)
         {
@@ -1500,7 +1500,7 @@ namespace NPOI.XWPF.UserModel
          * returns the Part, to which the body belongs, which you need for Adding relationship to other parts
          * Actually it is needed of the class XWPFTableCell. Because you have to know to which part the tableCell
          * belongs.
-         * @see NPOI.XWPF.UserModel.IBody#getPart()
+         * @see Npoi.Core.XWPF.UserModel.IBody#getPart()
          */
         public POIXMLDocumentPart Part
         {
@@ -1515,7 +1515,7 @@ namespace NPOI.XWPF.UserModel
          * Get the PartType of the body, for example
          * DOCUMENT, HEADER, FOOTER,	FOOTNOTE,
          *
-         * @see NPOI.XWPF.UserModel.IBody#getPartType()
+         * @see Npoi.Core.XWPF.UserModel.IBody#getPartType()
          */
         public BodyType PartType
         {

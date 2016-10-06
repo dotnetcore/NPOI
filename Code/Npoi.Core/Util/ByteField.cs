@@ -29,7 +29,7 @@ using System;
 using System.IO;
 using System.Globalization;
 
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
     /// <summary>
     /// representation of a byte (8-bit) field at a fixed location within a

@@ -25,7 +25,7 @@
  * 
  * ==============================================================*/
 
-namespace NPOI.POIFS.Properties
+namespace Npoi.Core.POIFS.Properties
 {
     /// <summary>
     /// This interface defines methods for finding and setting sibling

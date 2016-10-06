@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
 
-namespace NPOI.OpenXml4Net.OPC.Internal.Marshallers
+namespace Npoi.Core.OpenXml4Net.OPC.Internal.Marshallers
 {
 /**
  * Package core properties marshaller specialized for zipped package.

@@ -15,7 +15,7 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
     using System;
     using System.Collections;
@@ -27,7 +27,7 @@ namespace NPOI.HSSF.UserModel
     /// <summary>
     /// Common class for HSSFHeader and HSSFFooter
     /// </summary>
-    public abstract class HeaderFooter:NPOI.SS.UserModel.IHeaderFooter
+    public abstract class HeaderFooter:Npoi.Core.SS.UserModel.IHeaderFooter
     {
         protected bool stripFields = false;
 

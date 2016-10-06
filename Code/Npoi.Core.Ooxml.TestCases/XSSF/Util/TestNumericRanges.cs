@@ -16,7 +16,7 @@
 ==================================================================== */
 
 using NUnit.Framework;
-namespace NPOI.XSSF.Util
+namespace Npoi.Core.XSSF.Util
 {
 
     [TestFixture]

@@ -18,14 +18,14 @@
 using System.Xml;
 using System.Collections.Generic;
 using System.IO;
-using NPOI.OpenXmlFormats;
-using NPOI.OpenXml4Net.OPC;
-using NPOI.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.OpenXmlFormats;
+using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using System;
 using System.Xml.Linq;
-using NPOI.XSSF.UserModel;
-using NPOI.Util;
-namespace NPOI.XSSF.Model
+using Npoi.Core.XSSF.UserModel;
+using Npoi.Core.Util;
+namespace Npoi.Core.XSSF.Model
 {
 
 
@@ -111,11 +111,11 @@ namespace NPOI.XSSF.Model
          * @param schemaId the schema ID
          * @return CTSchema by it's ID
          */
-        public NPOI.OpenXmlFormats.Spreadsheet.CT_Schema GetCTSchemaById(String schemaId)
+        public Npoi.Core.OpenXmlFormats.Spreadsheet.CT_Schema GetCTSchemaById(String schemaId)
         {
-            NPOI.OpenXmlFormats.Spreadsheet.CT_Schema xmlSchema = null;
+            Npoi.Core.OpenXmlFormats.Spreadsheet.CT_Schema xmlSchema = null;
 
-            foreach (NPOI.OpenXmlFormats.Spreadsheet.CT_Schema schema in mapInfo.Schema)
+            foreach (Npoi.Core.OpenXmlFormats.Spreadsheet.CT_Schema schema in mapInfo.Schema)
             {
                 if (schema.ID.Equals(schemaId))
                 {

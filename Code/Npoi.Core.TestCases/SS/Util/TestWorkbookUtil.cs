@@ -18,11 +18,11 @@
 namespace TestCases.SS.Util
 {
 
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.Util;
     using NUnit.Framework;
     using System;
     using System.Text;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * Tests WorkbookUtil.

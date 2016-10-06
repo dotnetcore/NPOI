@@ -15,16 +15,16 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.XWPF.Extractor
+namespace Npoi.Core.XWPF.Extractor
 {
     using System;
 
 
 
     using NUnit.Framework;
-    using NPOI.XWPF;
-    using NPOI.XWPF.UserModel;
-    using NPOI.XWPF.Extractor;
+    using Npoi.Core.XWPF;
+    using Npoi.Core.XWPF.UserModel;
+    using Npoi.Core.XWPF.Extractor;
 
     [TestFixture]
     public class TestExternalEntities

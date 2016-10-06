@@ -18,9 +18,9 @@
 namespace TestCases.HSSF.UserModel
 {
     using System;
-    using NPOI.DDF;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.DDF;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.UserModel;
     using NUnit.Framework;
     /**
      * Various Tests for HSSFClientAnchor.
@@ -94,7 +94,7 @@ namespace TestCases.HSSF.UserModel
         public void TestAnchorHeightInPoints()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sheet = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet();
 
             HSSFClientAnchor[] anchor = {
             new HSSFClientAnchor( 0 , 0,    0 , 0 ,(short)0, 1,(short)1, 3),

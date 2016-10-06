@@ -14,10 +14,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     using System;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
     using NUnit.Framework;
     using System.Drawing;
 

@@ -17,22 +17,22 @@
 
 using System.Collections.Generic;
 using System;
-using NPOI.XSSF.Util;
+using Npoi.Core.XSSF.Util;
 using System.IO;
-using NPOI.OpenXml4Net.OPC;
+using Npoi.Core.OpenXml4Net.OPC;
 using System.Text.RegularExpressions;
-using NPOI.OpenXmlFormats.Vml;
+using Npoi.Core.OpenXmlFormats.Vml;
 using System.Xml.Serialization;
 using System.Xml;
 using System.Collections;
-using NPOI.OpenXmlFormats.Vml.Office;
-using NPOI.OpenXmlFormats.Vml.Spreadsheet;
+using Npoi.Core.OpenXmlFormats.Vml.Office;
+using Npoi.Core.OpenXmlFormats.Vml.Spreadsheet;
 using System.Text;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
 
 
@@ -234,7 +234,7 @@ namespace NPOI.XSSF.UserModel
 			shapetype.path2 = ("m,l,21600r21600,l21600,xe");
 			shapetype.AddNewStroke().joinstyle = (ST_StrokeJoinStyle.miter);
 			CT_Path path = shapetype.AddNewPath();
-			path.gradientshapeok = NPOI.OpenXmlFormats.Vml.ST_TrueFalse.t;
+			path.gradientshapeok = Npoi.Core.OpenXmlFormats.Vml.ST_TrueFalse.t;
 			path.connecttype = (ST_ConnectType.rect);
 			_items.Add(shapetype);
 		}
@@ -250,9 +250,9 @@ namespace NPOI.XSSF.UserModel
 			shape.insetmode = (ST_InsetMode.auto);
 			shape.AddNewFill().color = ("#ffffe1");
 			CT_Shadow shadow = shape.AddNewShadow();
-			shadow.on = NPOI.OpenXmlFormats.Vml.ST_TrueFalse.t;
+			shadow.on = Npoi.Core.OpenXmlFormats.Vml.ST_TrueFalse.t;
 			shadow.color = "black";
-			shadow.obscured = NPOI.OpenXmlFormats.Vml.ST_TrueFalse.t;
+			shadow.obscured = Npoi.Core.OpenXmlFormats.Vml.ST_TrueFalse.t;
 			shape.AddNewPath().connecttype = (ST_ConnectType.none);
 			shape.AddNewTextbox().style = ("mso-direction-alt:auto");
 			CT_ClientData cldata = shape.AddNewClientData();

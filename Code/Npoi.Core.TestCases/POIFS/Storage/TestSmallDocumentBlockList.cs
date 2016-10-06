@@ -31,10 +31,10 @@ using System.IO;
 using System.Collections;
 
 using NUnit.Framework;
-using NPOI.POIFS.Storage;
-using NPOI.Util;
-using NPOI.POIFS.FileSystem;
-using NPOI.POIFS.Common;
+using Npoi.Core.POIFS.Storage;
+using Npoi.Core.Util;
+using Npoi.Core.POIFS.FileSystem;
+using Npoi.Core.POIFS.Common;
 
 namespace TestCases.POIFS.Storage
 {

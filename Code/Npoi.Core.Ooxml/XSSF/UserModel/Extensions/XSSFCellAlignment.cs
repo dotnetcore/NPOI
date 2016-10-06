@@ -14,10 +14,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.SS.UserModel;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
 using System;
-namespace NPOI.XSSF.UserModel.Extensions
+namespace Npoi.Core.XSSF.UserModel.Extensions
 {
 
     /**

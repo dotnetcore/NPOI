@@ -1,7 +1,7 @@
 ﻿using System.IO;
 
-using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.SS.UserModel;
 using NUnit.Framework;
 
 namespace TestCases.HSSF.UserModel

@@ -16,7 +16,7 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.POIFS.EventFileSystem
+namespace Npoi.Core.POIFS.EventFileSystem
 {
 
     /**

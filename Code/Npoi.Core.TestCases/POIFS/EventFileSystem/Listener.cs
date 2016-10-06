@@ -18,7 +18,7 @@
         
 
 using System;
-using NPOI.POIFS.EventFileSystem;
+using Npoi.Core.POIFS.EventFileSystem;
 namespace TestCases.POIFS.EventFileSystem
 {
     /**

@@ -15,16 +15,16 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula
+namespace Npoi.Core.SS.Formula
 {
 
     using System;
     using System.Collections;
     using System.Reflection;
 
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Formula.Functions;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.PTG;
 
     /**
      * This class Creates <c>OperationEval</c> instances To help evaluate <c>OperationPtg</c>
@@ -68,7 +68,7 @@ namespace NPOI.SS.Formula
         }
 
         private static void Add(Hashtable m, OperationPtg ptgKey,
-            NPOI.SS.Formula.Functions.Function instance)
+            Npoi.Core.SS.Formula.Functions.Function instance)
         {
             // make sure ptg has single private constructor because map lookups assume singleton keys
             ConstructorInfo[] cc = ptgKey.GetType().GetTypeInfo().GetConstructors();
@@ -92,7 +92,7 @@ namespace NPOI.SS.Formula
             {
                 throw new ArgumentException("ptg must not be null");
             }
-            NPOI.SS.Formula.Functions.Function result = _instancesByPtgClass[ptg] as NPOI.SS.Formula.Functions.Function;
+            Npoi.Core.SS.Formula.Functions.Function result = _instancesByPtgClass[ptg] as Npoi.Core.SS.Formula.Functions.Function;
 
             if (result != null)
             {
@@ -105,9 +105,9 @@ namespace NPOI.SS.Formula
                 int functionIndex = fptg.FunctionIndex;
                 switch (functionIndex)
                 {
-                    case NPOI.SS.Formula.Function.FunctionMetadataRegistry.FUNCTION_INDEX_INDIRECT:
+                    case Npoi.Core.SS.Formula.Function.FunctionMetadataRegistry.FUNCTION_INDEX_INDIRECT:
                         return Indirect.instance.Evaluate(args, ec);
-                    case NPOI.SS.Formula.Function.FunctionMetadataRegistry.FUNCTION_INDEX_EXTERNAL:
+                    case Npoi.Core.SS.Formula.Function.FunctionMetadataRegistry.FUNCTION_INDEX_EXTERNAL:
                         return UserDefinedFunction.instance.Evaluate(args, ec);
                 }
 

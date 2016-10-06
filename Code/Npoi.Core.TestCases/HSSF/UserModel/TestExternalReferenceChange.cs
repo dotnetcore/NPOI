@@ -19,8 +19,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.SS.UserModel;
 
 namespace TestCases.HSSF.UserModel
 {

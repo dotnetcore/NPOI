@@ -16,10 +16,10 @@
 ==================================================================== */
 
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
-    using NPOI.DDF;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.DDF;
+    using Npoi.Core.HSSF.Record;
     using System;
     using System.Collections;
     using System.Collections.Generic;

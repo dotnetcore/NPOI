@@ -17,14 +17,14 @@
 
 using System.Reflection;
 
-namespace NPOI.SS.Formula.Function
+namespace Npoi.Core.SS.Formula.Function
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.IO;
     using System.Text.RegularExpressions;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.SS.Formula.PTG;
     using System.Globalization;
 
     /**

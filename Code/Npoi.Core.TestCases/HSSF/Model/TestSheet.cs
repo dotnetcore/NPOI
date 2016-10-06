@@ -21,17 +21,17 @@ namespace TestCases.HSSF.Model
     using System.Collections;
     using System.IO;
     using NUnit.Framework;
-    using NPOI.HSSF.Record.Aggregates;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.EventModel;
-    using NPOI.HSSF.Model;
-    using NPOI.SS.Util;
+    using Npoi.Core.HSSF.Record.Aggregates;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.EventModel;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.SS.Util;
     using TestCases.HSSF.UserModel;
     using System.Collections.Generic;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula;
-    using NPOI.Util;
-    using NPOI.DDF;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.Util;
+    using Npoi.Core.DDF;
 
     /**
      * Unit Test for the Sheet class.
@@ -610,7 +610,7 @@ namespace TestCases.HSSF.Model
             HSSFSheet sheet = (HSSFSheet)workbook.CreateSheet("Vorschauliste");
             HSSFRow row = (HSSFRow)sheet.CreateRow(0);
 
-            sheet.SetMargin(NPOI.SS.UserModel.MarginType.LeftMargin, 0.3);
+            sheet.SetMargin(Npoi.Core.SS.UserModel.MarginType.LeftMargin, 0.3);
             try
             {
                 row.CreateCell(0);
@@ -734,7 +734,7 @@ namespace TestCases.HSSF.Model
                 EOFRecord.instance,
         };
 
-            InternalSheet sheet = CreateSheet(NPOI.Util.Arrays.AsList(recs));
+            InternalSheet sheet = CreateSheet(Npoi.Core.Util.Arrays.AsList(recs));
 
             InternalSheet sheet2;
             try

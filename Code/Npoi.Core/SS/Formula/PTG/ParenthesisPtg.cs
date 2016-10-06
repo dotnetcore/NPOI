@@ -16,10 +16,10 @@
 ==================================================================== */
 
 
-namespace NPOI.SS.Formula.PTG
+namespace Npoi.Core.SS.Formula.PTG
 {
     using System;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * While formula tokens are stored in RPN order and thus do not need parenthesis for 

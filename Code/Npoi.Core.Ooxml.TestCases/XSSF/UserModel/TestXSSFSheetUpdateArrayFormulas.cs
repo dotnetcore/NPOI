@@ -17,11 +17,11 @@
 
 using NUnit.Framework;
 using System;
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.SS.UserModel;
-using NPOI.SS.Util;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.Util;
 using TestCases.SS.UserModel;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * Test array formulas in XSSF

@@ -15,15 +15,15 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.SS.Formula;
-using NPOI.XSSF.UserModel;
+using Npoi.Core.SS.Formula;
+using Npoi.Core.XSSF.UserModel;
 using System;
-using NPOI.SS.UserModel;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.Formula.Eval;
-using NPOI.SS.Formula.Udf;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.SS.Formula.Eval;
+using Npoi.Core.SS.Formula.Udf;
 using System.Collections.Generic;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
 
     /**
@@ -53,7 +53,7 @@ namespace NPOI.XSSF.UserModel
          * @param stabilityClassifier used to optimise caching performance. Pass <code>null</code>
          * for the (conservative) assumption that any cell may have its defInition Changed After
          * Evaluation begins.
-         * @deprecated (Sep 2009) (reduce overloading) use {@link #Create(XSSFWorkbook, NPOI.ss.formula.IStabilityClassifier, NPOI.ss.formula.udf.UDFFinder)}
+         * @deprecated (Sep 2009) (reduce overloading) use {@link #Create(XSSFWorkbook, Npoi.Core.ss.formula.IStabilityClassifier, Npoi.Core.ss.formula.udf.UDFFinder)}
          */
 
         public XSSFFormulaEvaluator(XSSFWorkbook workbook, IStabilityClassifier stabilityClassifier)
@@ -150,7 +150,7 @@ namespace NPOI.XSSF.UserModel
          * </pre>
          * Be aware that your cell will hold both the formula,
          *  and the result. If you want the cell Replaced with
-         *  the result of the formula, use {@link #Evaluate(NPOI.ss.usermodel.Cell)} }
+         *  the result of the formula, use {@link #Evaluate(Npoi.Core.ss.usermodel.Cell)} }
          * @param cell The cell to Evaluate
          * @return The type of the formula result (the cell's type remains as HSSFCell.CELL_TYPE_FORMULA however)
          */
@@ -179,7 +179,7 @@ namespace NPOI.XSSF.UserModel
          * </pre>
          * Be aware that your cell value will be Changed to hold the
          *  result of the formula. If you simply want the formula
-         *  value computed for you, use {@link #EvaluateFormulaCell(NPOI.ss.usermodel.Cell)} }
+         *  value computed for you, use {@link #EvaluateFormulaCell(Npoi.Core.ss.usermodel.Cell)} }
          * @param cell
          */
         public ICell EvaluateInCell(ICell cell)

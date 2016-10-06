@@ -21,9 +21,9 @@ namespace TestCases.HSSF.Model
 {
 
     using NUnit.Framework;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.UserModel;
-    using NPOI.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.HSSF.Model;
 
     /**
      *

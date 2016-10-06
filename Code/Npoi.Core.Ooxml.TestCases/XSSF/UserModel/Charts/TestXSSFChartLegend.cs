@@ -17,9 +17,9 @@
 
 using System;
 using NUnit.Framework;
-using NPOI.SS.UserModel;
-using NPOI.SS.UserModel.Charts;
-namespace NPOI.XSSF.UserModel.Charts
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.UserModel.Charts;
+namespace Npoi.Core.XSSF.UserModel.Charts
 {
     [TestFixture]
     public class TestXSSFChartLegend

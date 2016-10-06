@@ -17,10 +17,10 @@
 
 namespace TestCases.HSSF.UserModel
 {
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.UserModel;
-    using NPOI.DDF;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.DDF;
+    using Npoi.Core.HSSF.Record;
 
     /**
      * Helper class for HSSF Tests that aren't within the

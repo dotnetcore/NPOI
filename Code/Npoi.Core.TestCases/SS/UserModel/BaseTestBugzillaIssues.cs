@@ -21,13 +21,13 @@ namespace TestCases.SS.UserModel
 
     using NUnit.Framework;
 
-    using NPOI.HSSF.Util;
-    using NPOI.SS;
-    using NPOI.SS.Util;
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.SS;
+    using Npoi.Core.SS.Util;
     using System.Text;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
     using System.Collections.Generic;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
 
     /**
      * A base class for bugzilla issues that can be described in terms of common ss interfaces.
@@ -339,7 +339,7 @@ namespace TestCases.SS.UserModel
                     cell.CellFormula = (/*setter*/fmla);
                     Assert.Fail("Expected FormulaParseException");
                 }
-                catch (NPOI.SS.Formula.FormulaParseException e)
+                catch (Npoi.Core.SS.Formula.FormulaParseException e)
                 {
                     Assert.IsTrue(e.Message.StartsWith("Too many arguments to function '" + name + "'"));
                 }

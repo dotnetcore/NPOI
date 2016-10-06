@@ -2,7 +2,7 @@
 using System.Text;
 using System.IO;
 
-namespace NPOI.OpenXml4Net.OPC
+namespace Npoi.Core.OpenXml4Net.OPC
 {
     /**
      * Storage class for configuration storage parameters.

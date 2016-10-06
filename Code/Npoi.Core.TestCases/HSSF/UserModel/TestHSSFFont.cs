@@ -16,10 +16,10 @@
 */
 namespace TestCases.HSSF.UserModel
 {
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     using NUnit.Framework;
 
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
     using TestCases.SS.UserModel;
 
     /**

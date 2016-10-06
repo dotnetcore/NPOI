@@ -15,10 +15,10 @@
    limitations under the License.
    ==================================================================== */
 using System;
-using NPOI.SS.UserModel;
-using NPOI.Util;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.Util;
 
-namespace NPOI.SS.Util
+namespace Npoi.Core.SS.Util
 {
 
     /**

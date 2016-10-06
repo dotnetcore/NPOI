@@ -14,10 +14,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.UserModel;
 using System;
-using NPOI.XSSF.Model;
-namespace NPOI.XSSF.UserModel
+using Npoi.Core.XSSF.Model;
+namespace Npoi.Core.XSSF.UserModel
 {
 
     /**

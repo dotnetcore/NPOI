@@ -17,14 +17,14 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.XSSF.Model
+namespace Npoi.Core.XSSF.Model
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Xml;
-    using NPOI.OpenXml4Net.OPC;
-    using NPOI.XSSF.UserModel;
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.XSSF.UserModel;
     using OpenXmlFormats.Spreadsheet;
 
     public class CommentsTable : POIXMLDocumentPart

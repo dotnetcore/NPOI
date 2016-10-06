@@ -29,7 +29,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace NPOI.Util.Collections
+namespace Npoi.Core.Util.Collections
 {
     /// <summary>
     /// This class comes from Java

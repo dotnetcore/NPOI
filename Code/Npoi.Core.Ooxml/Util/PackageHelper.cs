@@ -15,12 +15,12 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.OpenXml4Net.OPC;
-using NPOI.OpenXml4Net.Exceptions;
+using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.OpenXml4Net.Exceptions;
 using System;
 using System.IO;
-using NPOI.Util;
-namespace NPOI.Util
+using Npoi.Core.Util;
+namespace Npoi.Core.Util
 {
 
     /**

@@ -1,4 +1,4 @@
-﻿namespace NPOI.Util
+﻿namespace Npoi.Core.Util
 {
     public static class Operator
     {

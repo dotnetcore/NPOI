@@ -18,7 +18,7 @@
 namespace TestCases.SS.Formula.PTG
 {
     using System;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     using TestCases.HSSF;
 
     /**

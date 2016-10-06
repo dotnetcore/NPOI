@@ -6,7 +6,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace NPOI.OpenXmlFormats.Wordprocessing
+namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
     public class HdrDocument
     {

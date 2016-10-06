@@ -25,10 +25,10 @@
  * 
  * ==============================================================*/
 
-using NPOI.POIFS.Common;
-using NPOI.POIFS.Storage;
+using Npoi.Core.POIFS.Common;
+using Npoi.Core.POIFS.Storage;
 
-namespace NPOI.POIFS.Properties
+namespace Npoi.Core.POIFS.Properties
 {
     public class RootProperty:DirectoryProperty
     {

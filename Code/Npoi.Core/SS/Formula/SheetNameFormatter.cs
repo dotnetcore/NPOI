@@ -16,12 +16,12 @@
 ==================================================================== */
 
 
-namespace NPOI.SS.Formula
+namespace Npoi.Core.SS.Formula
 {
     using System;
     using System.Text;
     using System.Text.RegularExpressions;
-    using NPOI.Util;
+    using Npoi.Core.Util;
     using System.Globalization;
 
     /**
@@ -216,7 +216,7 @@ namespace NPOI.SS.Formula
          */
         public static bool CellReferenceIsWithinRange(String lettersPrefix, String numbersSuffix)
         {
-            return NPOI.SS.Util.CellReference.CellReferenceIsWithinRange(lettersPrefix, numbersSuffix, NPOI.SS.SpreadsheetVersion.EXCEL97);
+            return Npoi.Core.SS.Util.CellReference.CellReferenceIsWithinRange(lettersPrefix, numbersSuffix, Npoi.Core.SS.SpreadsheetVersion.EXCEL97);
         }
 
         /**

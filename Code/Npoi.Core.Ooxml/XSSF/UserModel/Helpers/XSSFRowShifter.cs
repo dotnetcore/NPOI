@@ -16,13 +16,13 @@
 ==================================================================== */
 
 using System.Collections.Generic;
-using NPOI.SS.Util;
-using NPOI.SS.Formula.PTG;
-using NPOI.SS.Formula;
+using Npoi.Core.SS.Util;
+using Npoi.Core.SS.Formula.PTG;
+using Npoi.Core.SS.Formula;
 using System;
-using NPOI.SS.UserModel;
-using NPOI.OpenXmlFormats.Spreadsheet;
-namespace NPOI.XSSF.UserModel.Helpers
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+namespace Npoi.Core.XSSF.UserModel.Helpers
 {
     /**
      * @author Yegor Kozlov
@@ -47,7 +47,7 @@ namespace NPOI.XSSF.UserModel.Helpers
         public List<CellRangeAddress> ShiftMerged(int startRow, int endRow, int n)
         {
             List<CellRangeAddress> ShiftedRegions = new List<CellRangeAddress>();
-            NPOI.Util.Collections.HashSet<int> removedIndices = new NPOI.Util.Collections.HashSet<int>();
+            Npoi.Core.Util.Collections.HashSet<int> removedIndices = new Npoi.Core.Util.Collections.HashSet<int>();
             //move merged regions completely if they fall within the new region boundaries when they are Shifted
             int size = sheet.NumMergedRegions;
             for (int i = 0; i < size; i++) 

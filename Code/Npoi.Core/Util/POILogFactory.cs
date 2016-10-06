@@ -29,7 +29,7 @@
 using System;
 using System.Collections;
 
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
     public class POILogFactory
     {

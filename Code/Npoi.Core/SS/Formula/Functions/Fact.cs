@@ -18,7 +18,7 @@
  * Created on May 22, 2005
  *
  */
-namespace NPOI.SS.Formula.Functions
+namespace Npoi.Core.SS.Formula.Functions
 {
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;

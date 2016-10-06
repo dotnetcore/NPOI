@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using NPOI.OpenXml4Net.OPC.Internal;
-using NPOI.OpenXml4Net.Exceptions;
+using Npoi.Core.OpenXml4Net.OPC.Internal;
+using Npoi.Core.OpenXml4Net.Exceptions;
 
 
-namespace NPOI.OpenXml4Net.OPC
+namespace Npoi.Core.OpenXml4Net.OPC
 {
     /**
      * Provides a base class for parts stored in a Package.

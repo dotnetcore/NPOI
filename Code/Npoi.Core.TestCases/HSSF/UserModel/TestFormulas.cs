@@ -21,14 +21,14 @@ namespace TestCases.HSSF.UserModel
     using System.IO;
 
     using TestCases.HSSF;
-    using NPOI.SS.Util;
-    using NPOI.Util;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
+    using Npoi.Core.HSSF.UserModel;
     using NUnit.Framework;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.HSSF.Model;
-    using NPOI.SS.Formula;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.SS.Formula;
     /**
      * @author Andrew C. Oliver (acoliver at apache dot org)
      * @author Avik Sengupta
@@ -53,7 +53,7 @@ namespace TestCases.HSSF.UserModel
         {
 
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
             IRow r = null;
             ICell c = null;
 
@@ -178,7 +178,7 @@ namespace TestCases.HSSF.UserModel
         private static void floatTest(String operator1)
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
             IRow r = null;
             ICell c = null;
 
@@ -215,7 +215,7 @@ namespace TestCases.HSSF.UserModel
         private static void floatVerify(String operator1, HSSFWorkbook wb)
         {
 
-            NPOI.SS.UserModel.ISheet s = wb.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet s = wb.GetSheetAt(0);
 
             // don't know how to Check correct result .. for the moment, we just verify that the file can be read.
 
@@ -259,7 +259,7 @@ namespace TestCases.HSSF.UserModel
         private static void OperationRefTest(String operator1)
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
             IRow r = null;
             ICell c = null;
 
@@ -336,7 +336,7 @@ namespace TestCases.HSSF.UserModel
         private static void OperationalRefVerify(String operator1, HSSFWorkbook wb)
         {
 
-            NPOI.SS.UserModel.ISheet s = wb.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet s = wb.GetSheetAt(0);
             IRow r = null;
             ICell c = null;
 
@@ -410,7 +410,7 @@ namespace TestCases.HSSF.UserModel
         private static void OrderTest(String formula)
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
             IRow r = null;
             ICell c = null;
 
@@ -437,7 +437,7 @@ namespace TestCases.HSSF.UserModel
         private static void BinomialOperator(String operator1)
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
             IRow r = null;
             ICell c = null;
 
@@ -476,7 +476,7 @@ namespace TestCases.HSSF.UserModel
          */
         private static void BinomialVerify(String operator1, HSSFWorkbook wb)
         {
-            NPOI.SS.UserModel.ISheet s = wb.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet s = wb.GetSheetAt(0);
             IRow r = null;
             ICell c = null;
 
@@ -518,7 +518,7 @@ namespace TestCases.HSSF.UserModel
         {
 
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
             IRow r = null;
             ICell c = null;
 
@@ -545,7 +545,7 @@ namespace TestCases.HSSF.UserModel
         {
 
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
             IRow r = null;
             ICell c = null;
 
@@ -573,7 +573,7 @@ namespace TestCases.HSSF.UserModel
         {
 
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
             IRow r = null;
             ICell c = null;
 
@@ -605,7 +605,7 @@ namespace TestCases.HSSF.UserModel
         public void TestAbsRefs()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
             IRow r;
             ICell c;
 
@@ -639,7 +639,7 @@ namespace TestCases.HSSF.UserModel
         public void TestSheetFunctions()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet("A");
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet("A");
             IRow r = null;
             ICell c = null;
             r = s.CreateRow(0);
@@ -668,7 +668,7 @@ namespace TestCases.HSSF.UserModel
 
             FileStream out1 = new FileStream(tmpfile, FileMode.Create);
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
             IRow r = null;
             ICell c = null;
 
@@ -705,7 +705,7 @@ namespace TestCases.HSSF.UserModel
         public void TestStringFormulas()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet("A");
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet("A");
             IRow r = null;
             ICell c = null;
             r = s.CreateRow(0);
@@ -726,7 +726,7 @@ namespace TestCases.HSSF.UserModel
         {
 
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet("A");
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet("A");
             IRow r = null;
             ICell c = null;
             r = s.CreateRow(0);
@@ -742,20 +742,20 @@ namespace TestCases.HSSF.UserModel
         public void TestDateFormulas()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet("TestSheet1");
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet("TestSheet1");
             IRow r = null;
             ICell c = null;
 
             r = s.CreateRow(0);
             c = r.CreateCell(0);
 
-            NPOI.SS.UserModel.ICellStyle cellStyle = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cellStyle = wb.CreateCellStyle();
             cellStyle.DataFormat = (HSSFDataFormat.GetBuiltinFormat("m/d/yy h:mm"));
             c.SetCellValue(new DateTime());
             c.CellStyle = (cellStyle);
 
             // Assert.AreEqual("Checking hour = " + hour, date.GetTime().GetTime(),
-            //              NPOI.SS.UserModel.DateUtil.GetJavaDate(excelDate).GetTime());
+            //              Npoi.Core.SS.UserModel.DateUtil.GetJavaDate(excelDate).GetTime());
 
             for (int k = 1; k < 100; k++)
             {
@@ -772,7 +772,7 @@ namespace TestCases.HSSF.UserModel
         public void TestIfFormulas()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet("TestSheet1");
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet("TestSheet1");
             IRow r = null;
             ICell c = null;
             r = s.CreateRow(0);
@@ -838,7 +838,7 @@ namespace TestCases.HSSF.UserModel
 
             HSSFWorkbook wb = OpenSample("sumifformula.xls");
 
-            NPOI.SS.UserModel.ISheet s = wb.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet s = wb.GetSheetAt(0);
             IRow r = s.GetRow(0);
             ICell c = r.GetCell(2);
             Assert.AreEqual(function, c.CellFormula);
@@ -878,7 +878,7 @@ namespace TestCases.HSSF.UserModel
         {
             HSSFWorkbook w = OpenSample("SquareMacro.xls");
 
-            NPOI.SS.UserModel.ISheet s0 = w.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet s0 = w.GetSheetAt(0);
             IRow[] r = { s0.GetRow(0), s0.GetRow(1) };
 
             ICell a1 = r[0].GetCell(0);
@@ -928,8 +928,8 @@ namespace TestCases.HSSF.UserModel
             HSSFWorkbook sb = new HSSFWorkbook();
             try
             {
-                NPOI.SS.UserModel.ISheet s1 = sb.CreateSheet("Sheet a.1");
-                NPOI.SS.UserModel.ISheet s2 = sb.CreateSheet("Sheet.A");
+                Npoi.Core.SS.UserModel.ISheet s1 = sb.CreateSheet("Sheet a.1");
+                Npoi.Core.SS.UserModel.ISheet s2 = sb.CreateSheet("Sheet.A");
                 s2.CreateRow(1).CreateCell(2).CellFormula = ("'Sheet a.1'!A1");
                 s1.CreateRow(1).CreateCell(2).CellFormula = ("'Sheet.A'!A1");
                 string tmpfile = TempFile.GetTempFilePath("TestComplexSheetRefs", ".xls");

@@ -15,16 +15,16 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     using System;
     using System.Collections.Generic;
     using NUnit.Framework;
-    using NPOI.OpenXml4Net.OPC;
-    using NPOI.Util;
-    using NPOI.XSSF.UserModel;
-    using NPOI.XWPF;
-    using NPOI.XWPF.Model;
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.Util;
+    using Npoi.Core.XSSF.UserModel;
+    using Npoi.Core.XWPF;
+    using Npoi.Core.XWPF.Model;
     using System.Xml;
 
     [TestFixture]

@@ -17,7 +17,7 @@
 
 using System;
 using System.Text;
-namespace NPOI.SS.Util
+namespace Npoi.Core.SS.Util
 {
 
 

@@ -18,10 +18,10 @@
 
 //using System;
 //using NUnit.Framework;
-//using NPOI.SS.UserModel;
-//using NPOI.SS.UserModel.Charts;
-//using NPOI.SS.Util;
-//namespace NPOI.XSSF.UserModel.Charts
+//using Npoi.Core.SS.UserModel;
+//using Npoi.Core.SS.UserModel.Charts;
+//using Npoi.Core.SS.Util;
+//namespace Npoi.Core.XSSF.UserModel.Charts
 //{
 //    [TestFixture]
 //    public class TestXSSFNumberCache

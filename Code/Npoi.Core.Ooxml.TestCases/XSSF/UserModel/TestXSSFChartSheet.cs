@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.UserModel;
 using NUnit.Framework;
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     [TestFixture]
     public class TestXSSFChartSheet

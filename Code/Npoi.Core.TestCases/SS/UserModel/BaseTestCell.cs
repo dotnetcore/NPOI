@@ -21,16 +21,16 @@ namespace TestCases.SS.UserModel
 
     using NUnit.Framework;
     using TestCases.SS;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
-    using NPOI.HSSF.Util;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.HSSF.UserModel;
     using System.Text;
-    using NPOI.SS;
+    using Npoi.Core.SS;
 
     /**
      * Common superclass for testing implementatiosn of
-     *  {@link NPOI.SS.usermodel.Cell}
+     *  {@link Npoi.Core.SS.usermodel.Cell}
      */
     public class BaseTestCell
     {

@@ -22,13 +22,13 @@ namespace TestCases.SS.Formula.Eval
 
     using System;
     using NUnit.Framework;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
 
     /**
      * Test for unary plus operator Evaluator.
@@ -169,7 +169,7 @@ namespace TestCases.SS.Formula.Eval
             }
             catch (ArgumentException e)
             {
-                if (e.Message.Equals("Unexpected ref arg class (NPOI.SS.Formula.LazyAreaEval)"))
+                if (e.Message.Equals("Unexpected ref arg class (Npoi.Core.SS.Formula.LazyAreaEval)"))
                 {
                     throw new AssertionException("Identified bug 46948");
                 }

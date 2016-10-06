@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using ICSharpCode.SharpZipLib.Zip.Compression;
 
-namespace NPOI.OpenXml4Net.OPC
+namespace Npoi.Core.OpenXml4Net.OPC
 {
     public enum CompressionOption : int
     {

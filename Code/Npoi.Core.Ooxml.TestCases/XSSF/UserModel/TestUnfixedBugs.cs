@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using TestCases.HSSF;
-using NPOI.SS.UserModel;
-using NPOI.Util;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.Util;
 using System.IO;
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.HSSF.UserModel;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.HSSF.UserModel;
 using System.Globalization;
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     [TestFixture]
     public class TestUnfixedBugs

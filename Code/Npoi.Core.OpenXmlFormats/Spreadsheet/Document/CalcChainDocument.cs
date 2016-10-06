@@ -1,4 +1,4 @@
-﻿using NPOI.OpenXml4Net.Util;
+﻿using Npoi.Core.OpenXml4Net.Util;
 using System;
 using System.IO;
 using System.Xml;
@@ -6,7 +6,7 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml.XPath;
 
-namespace NPOI.OpenXmlFormats.Spreadsheet
+namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
     public class CalcChainDocument
     {

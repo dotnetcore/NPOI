@@ -16,7 +16,7 @@
 //   limitations under the License.
 //==================================================================== */
 
-//namespace NPOI.XSSF.Model
+//namespace Npoi.Core.XSSF.Model
 //{
 //    using System;
 
@@ -25,14 +25,14 @@
 
 
 //using org.apache.Commons.codec.binary;
-//using NPOI.SS.UserModel;
-//using NPOI.SS.UserModel;
-//using NPOI.XSSF;
-//using NPOI.XSSF.UserModel;
-//using NPOI.XSSF.UserModel;
-//using NPOI.XSSF.UserModel;
-//using NPOI.XSSF.UserModel;
-//using NPOI.XSSF.UserModel;
+//using Npoi.Core.SS.UserModel;
+//using Npoi.Core.SS.UserModel;
+//using Npoi.Core.XSSF;
+//using Npoi.Core.XSSF.UserModel;
+//using Npoi.Core.XSSF.UserModel;
+//using Npoi.Core.XSSF.UserModel;
+//using Npoi.Core.XSSF.UserModel;
+//using Npoi.Core.XSSF.UserModel;
 //using org.junit;
 
 //    [TestFixture]

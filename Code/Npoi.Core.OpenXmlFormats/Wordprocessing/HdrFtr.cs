@@ -3,14 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
-using NPOI.OpenXmlFormats.Shared;
+using Npoi.Core.OpenXmlFormats.Shared;
 using System.Xml.Schema;
 using System.IO;
-using NPOI.OpenXml4Net.Util;
+using Npoi.Core.OpenXml4Net.Util;
 using System.Collections;
 using System.Xml.Linq;
 
-namespace NPOI.OpenXmlFormats.Wordprocessing
+namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
 
     [Serializable]

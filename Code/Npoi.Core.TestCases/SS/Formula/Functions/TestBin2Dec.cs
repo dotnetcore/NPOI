@@ -18,11 +18,11 @@
 namespace TestCases.SS.Formula.Functions
 {
     using System;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
     using NUnit.Framework;
-    using NPOI.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.Functions;
 
     /**
      * Tests for {@link Bin2Dec}

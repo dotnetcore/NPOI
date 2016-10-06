@@ -31,9 +31,9 @@ using System.IO;
 
 using NUnit.Framework;
 
-using NPOI.POIFS.Storage;
-using NPOI.POIFS.Common;
-using NPOI.Util;
+using Npoi.Core.POIFS.Storage;
+using Npoi.Core.POIFS.Common;
+using Npoi.Core.Util;
 
 namespace TestCases.POIFS.Storage
 {

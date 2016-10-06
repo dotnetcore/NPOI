@@ -15,7 +15,7 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
     /// <summary>
     /// The ContinueFrt12 record specifies a continuation of the data in a preceding Future Record 
@@ -42,7 +42,7 @@ namespace NPOI.HSSF.Record
                 return base.DataSize;
             }
         }
-        public override void Serialize(NPOI.Util.ILittleEndianOutput out1)
+        public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             base.Serialize(out1);
         }

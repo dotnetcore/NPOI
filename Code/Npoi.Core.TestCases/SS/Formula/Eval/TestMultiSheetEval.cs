@@ -20,10 +20,10 @@ namespace TestCases.SS.Formula.Eval
     using System;
     using System.Collections.ObjectModel;
     using System.IO;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.UserModel;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.Util;
     using NUnit.Framework;
     using TestCases.HSSF;
     using TestCases.SS.Formula.Functions;

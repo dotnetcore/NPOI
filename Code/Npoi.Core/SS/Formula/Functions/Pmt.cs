@@ -14,7 +14,7 @@
 * See the License for the specific language governing permissions and
 * limitations Under the License.
 */
-namespace NPOI.SS.Formula.Functions
+namespace Npoi.Core.SS.Formula.Functions
 {
     /**
      * Implementation for the PMT() Excel function.<p/>

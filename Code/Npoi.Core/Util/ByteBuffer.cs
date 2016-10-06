@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
     public class ByteBuffer
     {

@@ -22,11 +22,11 @@ namespace TestCases.HSSF.Record.Chart
 {
     using System;
     using System.Collections;
-    using NPOI.HSSF.Record;
-    using NPOI.SS.Formula;
-    using NPOI.HSSF.Record.Chart;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.HSSF.Record.Chart;
     using NUnit.Framework;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.SS.Formula.PTG;
 
     /**
      * Tests the serialization and deserialization of the LinkedDataRecord

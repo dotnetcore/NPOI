@@ -19,20 +19,20 @@ namespace TestCases.SS.Formula.Functions
 {
     using System;
     using System.Text;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.UserModel;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.Util;
     using NUnit.Framework;
     using TestCases.HSSF;
-    using NPOI.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.Functions;
 
     /**
-     * Tests for {@link NPOI.SS.Formula.Functions.Mirr}
+     * Tests for {@link Npoi.Core.SS.Formula.Functions.Mirr}
      *
      * @author Carlos Delgado (carlos dot del dot est at gmail dot com)
      * @author Cédric Walter (cedric dot walter at gmail dot com)
-     * @see {@link NPOI.SS.Formula.Functions.TestIrr}
+     * @see {@link Npoi.Core.SS.Formula.Functions.TestIrr}
      */
     [TestFixture]
     public class TestMirr

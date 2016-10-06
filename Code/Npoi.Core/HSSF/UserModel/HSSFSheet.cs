@@ -15,22 +15,22 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using NPOI.DDF;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.Aggregates;
-    using NPOI.HSSF.Record.AutoFilter;
-    using NPOI.HSSF.Util;
-    using NPOI.SS;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
+    using Npoi.Core.DDF;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Aggregates;
+    using Npoi.Core.HSSF.Record.AutoFilter;
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.SS;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
     using System.Globalization;
 
 
@@ -47,7 +47,7 @@ namespace NPOI.HSSF.UserModel
     /// @author  Yegor Kozlov (yegor at apache.org) (Autosizing columns)
     /// </remarks>
     [Serializable]
-    public class HSSFSheet : NPOI.SS.UserModel.ISheet
+    public class HSSFSheet : Npoi.Core.SS.UserModel.ISheet
     {
         /**
          * width of 1px in columns with default width in units of 1/256 of a character width
@@ -71,7 +71,7 @@ namespace NPOI.HSSF.UserModel
          */
 
         private InternalSheet _sheet;
-        private Dictionary<int, NPOI.SS.UserModel.IRow> rows;
+        private Dictionary<int, Npoi.Core.SS.UserModel.IRow> rows;
         public InternalWorkbook book;
         protected HSSFWorkbook _workbook;
         private int firstrow;
@@ -83,11 +83,11 @@ namespace NPOI.HSSF.UserModel
         /// scratch. You should not be calling this from application code (its protected anyhow).
         /// </summary>
         /// <param name="workbook">The HSSF Workbook object associated with the _sheet.</param>
-        /// <see cref="NPOI.HSSF.UserModel.HSSFWorkbook.CreateSheet()"/>
+        /// <see cref="Npoi.Core.HSSF.UserModel.HSSFWorkbook.CreateSheet()"/>
         public HSSFSheet(HSSFWorkbook workbook)
         {
             _sheet = InternalSheet.CreateSheet();
-            rows = new Dictionary<int, NPOI.SS.UserModel.IRow>();
+            rows = new Dictionary<int, Npoi.Core.SS.UserModel.IRow>();
             this._workbook = workbook;
             this.book = workbook.Workbook;
         }
@@ -98,11 +98,11 @@ namespace NPOI.HSSF.UserModel
         /// </summary>
         /// <param name="workbook">The HSSF Workbook object associated with the _sheet.</param>
         /// <param name="sheet">lowlevel Sheet object this _sheet will represent</param>
-        /// <see cref="NPOI.HSSF.UserModel.HSSFWorkbook(NPOI.POIFS.FileSystem.DirectoryNode, bool)"/>
+        /// <see cref="Npoi.Core.HSSF.UserModel.HSSFWorkbook(Npoi.Core.POIFS.FileSystem.DirectoryNode, bool)"/>
         public HSSFSheet(HSSFWorkbook workbook, InternalSheet sheet)
         {
             this._sheet = sheet;
-            rows = new Dictionary<int, NPOI.SS.UserModel.IRow>();
+            rows = new Dictionary<int, Npoi.Core.SS.UserModel.IRow>();
             this._workbook = workbook;
             this.book = _workbook.Workbook;
             SetPropertiesFromSheet(_sheet);
@@ -252,7 +252,7 @@ namespace NPOI.HSSF.UserModel
         /// <returns></returns>
         /// @see org.apache.poi.hssf.usermodel.HSSFRow
         /// @see #RemoveRow(HSSFRow)
-        public NPOI.SS.UserModel.IRow CreateRow(int rownum)
+        public Npoi.Core.SS.UserModel.IRow CreateRow(int rownum)
         {
             HSSFRow row = new HSSFRow(_workbook, this, rownum);
             // new rows inherit default height from the sheet
@@ -344,7 +344,7 @@ namespace NPOI.HSSF.UserModel
             }
 
             int rownum = lastrow - 1;
-            NPOI.SS.UserModel.IRow r = GetRow(rownum);
+            Npoi.Core.SS.UserModel.IRow r = GetRow(rownum);
 
             while (r == null && rownum > 0)
             {
@@ -363,7 +363,7 @@ namespace NPOI.HSSF.UserModel
         private int FindFirstRow(int firstrow)
         {
             int rownum = firstrow + 1;
-            NPOI.SS.UserModel.IRow r = GetRow(rownum);
+            Npoi.Core.SS.UserModel.IRow r = GetRow(rownum);
 
             while (r == null && rownum <= LastRowNum)
             {
@@ -408,7 +408,7 @@ namespace NPOI.HSSF.UserModel
         /// </summary>
         /// <param name="column">The column.</param>
         /// <returns></returns>
-        public NPOI.SS.UserModel.ICellStyle GetColumnStyle(int column)
+        public Npoi.Core.SS.UserModel.ICellStyle GetColumnStyle(int column)
         {
             short styleIndex = _sheet.GetXFIndexForColAt((short)column);
 
@@ -428,7 +428,7 @@ namespace NPOI.HSSF.UserModel
         /// </summary>
         /// <param name="rowIndex">Index of the row to get.</param>
         /// <returns>the row number or null if its not defined on the _sheet</returns>
-        public NPOI.SS.UserModel.IRow GetRow(int rowIndex)
+        public Npoi.Core.SS.UserModel.IRow GetRow(int rowIndex)
         {
             if (!rows.ContainsKey(rowIndex))
                 return null;
@@ -635,7 +635,7 @@ namespace NPOI.HSSF.UserModel
         /// <param name="region">The region (rowfrom/colfrom-rowto/colto) to merge.</param>
         /// <returns>index of this region</returns>
         [Obsolete]
-        public int AddMergedRegion(NPOI.SS.Util.Region region)
+        public int AddMergedRegion(Npoi.Core.SS.Util.Region region)
         {
             return _sheet.AddMergedRegion(region.RowFrom,
                     region.ColumnFrom,
@@ -647,7 +647,7 @@ namespace NPOI.HSSF.UserModel
         /// </summary>
         /// <param name="region">region (rowfrom/colfrom-rowto/colto) to merge</param>
         /// <returns>index of this region</returns>
-        public int AddMergedRegion(NPOI.SS.Util.CellRangeAddress region)
+        public int AddMergedRegion(Npoi.Core.SS.Util.CellRangeAddress region)
         {
             region.Validate(SpreadsheetVersion.EXCEL97);
             // throw IllegalStateException if the argument CellRangeAddress intersects with
@@ -766,11 +766,11 @@ namespace NPOI.HSSF.UserModel
         ///// </summary>
         ///// <param name="index">of the region to fetch</param>
         ///// <returns>the merged region (simple eh?)</returns>
-        //public NPOI.SS.Util.Region GetMergedRegionAt(int index)
+        //public Npoi.Core.SS.Util.Region GetMergedRegionAt(int index)
         //{
-        //    NPOI.SS.Util.CellRangeAddress cra = GetMergedRegion(index);
+        //    Npoi.Core.SS.Util.CellRangeAddress cra = GetMergedRegion(index);
 
-        //    return new NPOI.SS.Util.Region(cra.FirstRow, (short)cra.FirstColumn,
+        //    return new Npoi.Core.SS.Util.Region(cra.FirstRow, (short)cra.FirstColumn,
         //            cra.LastRow, (short)cra.LastColumn);
         //}
 
@@ -780,7 +780,7 @@ namespace NPOI.HSSF.UserModel
         /// <returns>
         /// an iterator of the PHYSICAL rows.  Meaning the 3rd element may not
         /// be the third row if say for instance the second row is undefined.
-        /// Call <see cref="NPOI.SS.UserModel.IRow.RowNum"/> on each row 
+        /// Call <see cref="Npoi.Core.SS.UserModel.IRow.RowNum"/> on each row 
         /// if you care which one it is.
         /// </returns>
         public IEnumerator GetRowEnumerator()
@@ -794,7 +794,7 @@ namespace NPOI.HSSF.UserModel
         /// <returns>
         /// an iterator of the PHYSICAL rows.  Meaning the 3rd element may not
         /// be the third row if say for instance the second row is undefined.
-        /// Call <see cref="NPOI.SS.UserModel.IRow.RowNum"/> on each row 
+        /// Call <see cref="Npoi.Core.SS.UserModel.IRow.RowNum"/> on each row 
         /// if you care which one it is.
         /// </returns>
         public IEnumerator GetEnumerator()
@@ -1021,7 +1021,7 @@ namespace NPOI.HSSF.UserModel
         /// Gets the print setup object.
         /// </summary>
         /// <value>The user model for the print setup object.</value>
-        public NPOI.SS.UserModel.IPrintSetup PrintSetup
+        public Npoi.Core.SS.UserModel.IPrintSetup PrintSetup
         {
             get { return new HSSFPrintSetup(this._sheet.PageSettings.PrintSetup); }
         }
@@ -1030,7 +1030,7 @@ namespace NPOI.HSSF.UserModel
         /// Gets the user model for the document header.
         /// </summary>
         /// <value>The Document header.</value>
-        public NPOI.SS.UserModel.IHeader Header
+        public Npoi.Core.SS.UserModel.IHeader Header
         {
             get { return new HSSFHeader(this._sheet.PageSettings); }
         }
@@ -1039,7 +1039,7 @@ namespace NPOI.HSSF.UserModel
         /// Gets the user model for the document footer.
         /// </summary>
         /// <value>The Document footer.</value>
-        public NPOI.SS.UserModel.IFooter Footer
+        public Npoi.Core.SS.UserModel.IFooter Footer
         {
             get { return new HSSFFooter(this._sheet.PageSettings); }
         }
@@ -1176,7 +1176,7 @@ namespace NPOI.HSSF.UserModel
         /// <param name="region">The region.</param>
         /// <param name="borderType">Type of the border.</param>
         /// <param name="color">The color.</param>
-        public void SetEnclosedBorderOfRegion(CellRangeAddress region, NPOI.SS.UserModel.BorderStyle borderType, short color)
+        public void SetEnclosedBorderOfRegion(CellRangeAddress region, Npoi.Core.SS.UserModel.BorderStyle borderType, short color)
         {
             HSSFRegionUtil.SetRightBorderColor(color, region, this, _workbook);
             HSSFRegionUtil.SetBorderRight(borderType, region, this, _workbook);
@@ -1193,7 +1193,7 @@ namespace NPOI.HSSF.UserModel
         /// <param name="region">The region.</param>
         /// <param name="borderType">Type of the border.</param>
         /// <param name="color">The color.</param>
-        public void SetBorderRightOfRegion(CellRangeAddress region, NPOI.SS.UserModel.BorderStyle borderType, short color)
+        public void SetBorderRightOfRegion(CellRangeAddress region, Npoi.Core.SS.UserModel.BorderStyle borderType, short color)
         {
             HSSFRegionUtil.SetRightBorderColor(color, region, this, _workbook);
             HSSFRegionUtil.SetBorderRight(borderType, region, this, _workbook);
@@ -1205,7 +1205,7 @@ namespace NPOI.HSSF.UserModel
         /// <param name="region">The region.</param>
         /// <param name="borderType">Type of the border.</param>
         /// <param name="color">The color.</param>
-        public void SetBorderLeftOfRegion(CellRangeAddress region, NPOI.SS.UserModel.BorderStyle borderType, short color)
+        public void SetBorderLeftOfRegion(CellRangeAddress region, Npoi.Core.SS.UserModel.BorderStyle borderType, short color)
         {
             HSSFRegionUtil.SetLeftBorderColor(color, region, this, _workbook);
             HSSFRegionUtil.SetBorderLeft(borderType, region, this, _workbook);
@@ -1217,7 +1217,7 @@ namespace NPOI.HSSF.UserModel
         /// <param name="region">The region.</param>
         /// <param name="borderType">Type of the border.</param>
         /// <param name="color">The color.</param>
-        public void SetBorderTopOfRegion(CellRangeAddress region, NPOI.SS.UserModel.BorderStyle borderType, short color)
+        public void SetBorderTopOfRegion(CellRangeAddress region, Npoi.Core.SS.UserModel.BorderStyle borderType, short color)
         {
             HSSFRegionUtil.SetTopBorderColor(color, region, this, _workbook);
             HSSFRegionUtil.SetBorderTop(borderType, region, this, _workbook);
@@ -1229,7 +1229,7 @@ namespace NPOI.HSSF.UserModel
         /// <param name="region">The region.</param>
         /// <param name="borderType">Type of the border.</param>
         /// <param name="color">The color.</param>
-        public void SetBorderBottomOfRegion(CellRangeAddress region, NPOI.SS.UserModel.BorderStyle borderType, short color)
+        public void SetBorderBottomOfRegion(CellRangeAddress region, Npoi.Core.SS.UserModel.BorderStyle borderType, short color)
         {
             HSSFRegionUtil.SetBottomBorderColor(color, region, this, _workbook);
             HSSFRegionUtil.SetBorderBottom(borderType, region, this, _workbook);
@@ -1308,7 +1308,7 @@ namespace NPOI.HSSF.UserModel
             //move merged regions completely if they fall within the new region boundaries when they are Shifted
             for (int i = 0; i < this.NumMergedRegions; i++)
             {
-                NPOI.SS.Util.CellRangeAddress merged = this.GetMergedRegion(i);
+                Npoi.Core.SS.Util.CellRangeAddress merged = this.GetMergedRegion(i);
 
                 bool inStart = (merged.FirstRow >= startRow || merged.LastRow >= startRow);
                 bool inEnd = (merged.FirstRow <= endRow || merged.LastRow <= endRow);
@@ -1337,14 +1337,14 @@ namespace NPOI.HSSF.UserModel
             IEnumerator iterator = ShiftedRegions.GetEnumerator();
             while (iterator.MoveNext())
             {
-                NPOI.SS.Util.CellRangeAddress region = (NPOI.SS.Util.CellRangeAddress)iterator.Current;
+                Npoi.Core.SS.Util.CellRangeAddress region = (Npoi.Core.SS.Util.CellRangeAddress)iterator.Current;
 
                 this.AddMergedRegion(region);
             }
 
         }
         [Obsolete]
-        private static bool ContainsCell(NPOI.SS.Util.CellRangeAddress cr, int rowIx, int colIx)
+        private static bool ContainsCell(Npoi.Core.SS.Util.CellRangeAddress cr, int rowIx, int colIx)
         {
             if (cr.FirstRow <= rowIx && cr.LastRow >= rowIx
                     && cr.FirstColumn <= colIx && cr.LastColumn >= colIx)
@@ -1479,7 +1479,7 @@ namespace NPOI.HSSF.UserModel
                     row2Replace.CreateCellFromRecord(cellRecord);
                     _sheet.AddValueRecord(rowNum + n, cellRecord);
 
-                    NPOI.SS.UserModel.IHyperlink link = cell.Hyperlink;
+                    Npoi.Core.SS.UserModel.IHyperlink link = cell.Hyperlink;
                     if (link != null)
                     {
                         link.FirstRow = (link.FirstRow + n);
@@ -1636,10 +1636,10 @@ namespace NPOI.HSSF.UserModel
         /// <param name="leftmostColumn">Left column visible in right pane.</param>
         /// <param name="topRow">Top row visible in bottom pane.</param>
         /// <param name="activePane">Active pane.  One of: PANE_LOWER_RIGHT,PANE_UPPER_RIGHT, PANE_LOWER_LEFT, PANE_UPPER_LEFT</param>
-        public void CreateSplitPane(int xSplitPos, int ySplitPos, int leftmostColumn, int topRow, NPOI.SS.UserModel.PanePosition activePane)
+        public void CreateSplitPane(int xSplitPos, int ySplitPos, int leftmostColumn, int topRow, Npoi.Core.SS.UserModel.PanePosition activePane)
         //this would have the same parameter sequence as the internal method and matches the content of the description above,
         // if this signature changed do it in ISheet, too.
-        // public void CreateSplitPane(int xSplitPos, int ySplitPos, int topRow, int leftmostColumn, NPOI.SS.UserModel.PanePosition activePane)
+        // public void CreateSplitPane(int xSplitPos, int ySplitPos, int topRow, int leftmostColumn, Npoi.Core.SS.UserModel.PanePosition activePane)
         {
             Sheet.CreateSplitPane(xSplitPos, ySplitPos, topRow, leftmostColumn, activePane);
         }
@@ -1648,7 +1648,7 @@ namespace NPOI.HSSF.UserModel
         /// Returns the information regarding the currently configured pane (split or freeze).
         /// </summary>
         /// <value>null if no pane configured, or the pane information.</value>
-        public NPOI.SS.Util.PaneInformation PaneInformation
+        public Npoi.Core.SS.Util.PaneInformation PaneInformation
         {
             get
             {
@@ -1694,7 +1694,7 @@ namespace NPOI.HSSF.UserModel
         /// </summary>
         /// <param name="margin">which margin to get.</param>
         /// <returns>the size of the margin</returns>
-        public double GetMargin(NPOI.SS.UserModel.MarginType margin)
+        public double GetMargin(Npoi.Core.SS.UserModel.MarginType margin)
         {
             switch (margin)
             {
@@ -1712,7 +1712,7 @@ namespace NPOI.HSSF.UserModel
         /// </summary>
         /// <param name="margin">which margin to get.</param>
         /// <param name="size">the size of the margin</param>
-        public void SetMargin(NPOI.SS.UserModel.MarginType margin, double size)
+        public void SetMargin(Npoi.Core.SS.UserModel.MarginType margin, double size)
         {
             switch (margin)
             {
@@ -2146,7 +2146,7 @@ namespace NPOI.HSSF.UserModel
         /// </summary>
         /// <param name="column">the column index</param>
         /// <param name="style">the style to set</param>
-        public void SetDefaultColumnStyle(int column, NPOI.SS.UserModel.ICellStyle style)
+        public void SetDefaultColumnStyle(int column, Npoi.Core.SS.UserModel.ICellStyle style)
         {
             _sheet.SetDefaultColumnStyle(column, style.Index);
         }
@@ -2273,7 +2273,7 @@ namespace NPOI.HSSF.UserModel
         /// <summary>
         /// Provide a reference to the parent workbook.
         /// </summary>
-        public NPOI.SS.UserModel.IWorkbook Workbook
+        public Npoi.Core.SS.UserModel.IWorkbook Workbook
         {
             get
             {
@@ -2288,7 +2288,7 @@ namespace NPOI.HSSF.UserModel
         {
             get
             {
-                NPOI.SS.UserModel.IWorkbook wb = Workbook;
+                Npoi.Core.SS.UserModel.IWorkbook wb = Workbook;
                 int idx = wb.GetSheetIndex(this);
                 return wb.GetSheetName(idx);
             }

@@ -21,8 +21,8 @@ namespace TestCases.HSSF.UserModel
 {
     using System;
     using System.IO;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.UserModel;
     using NUnit.Framework;
     /**
      * Tests HSSFWorkbook method setSheetOrder()
@@ -101,7 +101,7 @@ namespace TestCases.HSSF.UserModel
             // Now get the index by the sheet, not the name
             for (int i = 0; i < 10; i++)
             {
-                NPOI.SS.UserModel.ISheet s = wbr.GetSheetAt(i);
+                Npoi.Core.SS.UserModel.ISheet s = wbr.GetSheetAt(i);
                 Assert.AreEqual(i, wbr.GetSheetIndex(s));
             }
         }

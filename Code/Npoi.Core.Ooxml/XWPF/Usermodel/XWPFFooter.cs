@@ -17,11 +17,11 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
 	using System;
-	using NPOI.OpenXmlFormats.Wordprocessing;
-	using NPOI.OpenXml4Net.OPC;
+	using Npoi.Core.OpenXmlFormats.Wordprocessing;
+	using Npoi.Core.OpenXml4Net.OPC;
 	using System.IO;
 	using System.Xml;
 	using System.Xml.Serialization;
@@ -146,7 +146,7 @@ namespace NPOI.XWPF.UserModel
 
 		/**
          * Get the PartType of the body
-         * @see NPOI.XWPF.UserModel.IBody#getPartType()
+         * @see Npoi.Core.XWPF.UserModel.IBody#getPartType()
          */
 		public override BodyType PartType
 		{

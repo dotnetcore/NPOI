@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI
+namespace Npoi.Core
 {
     using System;
-    using NPOI.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXml4Net.OPC;
 
     public abstract class POIXMLTextExtractor : POITextExtractor
     {

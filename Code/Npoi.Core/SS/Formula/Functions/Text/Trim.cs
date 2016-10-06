@@ -14,10 +14,10 @@
 * See the License for the specific language governing permissions and
 * limitations Under the License.
 */
-namespace NPOI.SS.Formula.Functions
+namespace Npoi.Core.SS.Formula.Functions
 {
     using System;
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Eval;
 
     /**
      * An implementation of the TRIM function:

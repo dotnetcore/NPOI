@@ -19,12 +19,12 @@ namespace TestCases.HSSF.UserModel
 {
     using System;
 
-    using NPOI.HSSF;
-    using NPOI.SS.Formula;
+    using Npoi.Core.HSSF;
+    using Npoi.Core.SS.Formula;
     using TestCases.SS.Formula;
     using TestCases.HSSF;
     using NUnit.Framework;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
 
     /**
      * Tests Setting and Evaluating user-defined functions in HSSF

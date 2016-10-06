@@ -27,7 +27,7 @@
 
 using System;
 
-namespace NPOI.POIFS.FileSystem
+namespace Npoi.Core.POIFS.FileSystem
 {
     /// <summary>
     /// This interface provides access to an object managed by a Filesystem

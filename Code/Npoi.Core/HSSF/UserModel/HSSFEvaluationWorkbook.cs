@@ -15,19 +15,19 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
     using System;
-    //using NPOI.HSSF.Model;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.Aggregates;
-    using NPOI.SS;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.Formula.Udf;
-    using NPOI.SS.UserModel;
-using NPOI.Util;
-    using NPOI.SS.Util;
+    //using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Aggregates;
+    using Npoi.Core.SS;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.Formula.Udf;
+    using Npoi.Core.SS.UserModel;
+using Npoi.Core.Util;
+    using Npoi.Core.SS.Util;
    
     /**
      * Internal POI use only
@@ -38,9 +38,9 @@ using NPOI.Util;
     {
         private static POILogger logger = POILogFactory.GetLogger(typeof(HSSFEvaluationWorkbook));
         private HSSFWorkbook _uBook;
-        private NPOI.HSSF.Model.InternalWorkbook _iBook;
+        private Npoi.Core.HSSF.Model.InternalWorkbook _iBook;
 
-        public static HSSFEvaluationWorkbook Create(NPOI.SS.UserModel.IWorkbook book)
+        public static HSSFEvaluationWorkbook Create(Npoi.Core.SS.UserModel.IWorkbook book)
         {
             if (book == null)
             {

@@ -16,13 +16,13 @@
 ==================================================================== */
 
 using TestCases.SS.UserModel;
-using NPOI.SS.UserModel;
-using NPOI.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using NUnit.Framework;
 using System;
-using NPOI.Util;
+using Npoi.Core.Util;
 using System.Text;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     [TestFixture]
     public class TestXSSFFont : BaseTestFont

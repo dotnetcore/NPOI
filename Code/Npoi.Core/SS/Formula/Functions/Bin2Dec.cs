@@ -15,14 +15,14 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.SS.Formula.Eval;
+using Npoi.Core.SS.Formula.Eval;
 using System;
-using NPOI.SS.Util;
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.Util;
+using Npoi.Core.SS.UserModel;
 using System.Globalization;
-using NPOI.Util;
+using Npoi.Core.Util;
 using System.Collections.Generic;
-namespace NPOI.SS.Formula.Functions
+namespace Npoi.Core.SS.Formula.Functions
 {
 
     /**

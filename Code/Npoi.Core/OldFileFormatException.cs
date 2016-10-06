@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NPOI
+namespace Npoi.Core
 {
     [Serializable]
     public class OldFileFormatException : UnsupportedFileFormatException

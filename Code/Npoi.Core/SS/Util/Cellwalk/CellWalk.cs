@@ -15,11 +15,11 @@
    limitations under the License.
    ==================================================================== */
 
-namespace NPOI.SS.Util.CellWalk
+namespace Npoi.Core.SS.Util.CellWalk
 {
 
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
 
     /**
      * Traverse cell range.

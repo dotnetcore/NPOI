@@ -25,12 +25,12 @@
  * 
  * ==============================================================*/
 
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     using System.IO;
-    using NPOI.HPSF.Wellknown;
+    using Npoi.Core.HPSF.Wellknown;
     using System;
-using NPOI.POIFS.FileSystem;
+using Npoi.Core.POIFS.FileSystem;
 
     /// <summary>
     /// Factory class To Create instances of {@link SummaryInformation},

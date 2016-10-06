@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace NPOI.POIFS.Crypt
+namespace Npoi.Core.POIFS.Crypt
 {
     public class Base64  //Convert Jave Base64 Leon
     {

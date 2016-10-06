@@ -16,10 +16,10 @@
 */
 
 
-namespace NPOI.SS.Formula.Functions
+namespace Npoi.Core.SS.Formula.Functions
 {
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula;
 
     /**
      * Implementation for Excel ROWS function.

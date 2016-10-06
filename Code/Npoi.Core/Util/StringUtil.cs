@@ -32,7 +32,7 @@ using System.Collections.Generic;
 
 
 
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
     /// <summary>
     /// Title: String Utility Description: Collection of string handling utilities

@@ -18,12 +18,12 @@
 namespace TestCases.SS.Formula.Functions
 {
     using System;
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Eval;
     using NUnit.Framework;
-    using NPOI.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.Functions;
 
     /**
-     * Tests for {@link NPOI.SS.Formula.Functions.Oct2Dec}
+     * Tests for {@link Npoi.Core.SS.Formula.Functions.Oct2Dec}
      *
      * @author cedric dot walter @ gmail dot com
      */

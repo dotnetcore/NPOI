@@ -14,16 +14,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-namespace NPOI
+namespace Npoi.Core
 {
-    using NPOI.HPSF;
-    using NPOI.HPSF.Extractor;
+    using Npoi.Core.HPSF;
+    using Npoi.Core.HPSF.Extractor;
 
     /// <summary>
     /// Common Parent for OLE2 based Text Extractors
     /// of POI Documents, such as .doc, .xls
     /// You will typically find the implementation of
-    /// a given format's text extractor under NPOI.Format.Extractor
+    /// a given format's text extractor under Npoi.Core.Format.Extractor
     /// </summary>
     /// <remarks>
     /// @see org.apache.poi.hssf.extractor.ExcelExtractor

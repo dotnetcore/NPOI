@@ -15,11 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.CF;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.CF;
+    using Npoi.Core.SS.UserModel;
 
     /**
      * High level representation for Border Formatting component

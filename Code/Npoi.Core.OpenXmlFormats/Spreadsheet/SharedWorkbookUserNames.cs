@@ -12,7 +12,7 @@ using System.Xml.Schema;
 using System.ComponentModel;
 using System.Collections.Generic;
 
-namespace NPOI.OpenXmlFormats.Spreadsheet
+namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
 
     public class CT_Users

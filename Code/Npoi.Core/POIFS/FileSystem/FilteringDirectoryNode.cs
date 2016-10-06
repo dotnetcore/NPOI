@@ -15,12 +15,12 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.Util.Collections;
+using Npoi.Core.Util.Collections;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace NPOI.POIFS.FileSystem
+namespace Npoi.Core.POIFS.FileSystem
 {
     /// <summary>
     /// A DirectoryEntry filter, which exposes another  DirectoryEntry less certain parts.

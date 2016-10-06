@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace NPOI.SS.Util
+namespace Npoi.Core.SS.Util
 {
-    using NPOI.Util;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.Util;
+    using Npoi.Core.HSSF.Record;
 
     public class CellRangeAddress8Bit : CellRangeAddressBase
     {

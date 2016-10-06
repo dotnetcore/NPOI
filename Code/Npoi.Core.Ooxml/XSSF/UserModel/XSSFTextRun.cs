@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 using System;
-using NPOI.OpenXmlFormats.Dml;
+using Npoi.Core.OpenXmlFormats.Dml;
 using System.Drawing;
-using NPOI.Util;
-namespace NPOI.XSSF.UserModel
+using Npoi.Core.Util;
+namespace Npoi.Core.XSSF.UserModel
 {
 
     /**

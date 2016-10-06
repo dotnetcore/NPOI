@@ -21,9 +21,9 @@ namespace TestCases.HSSF.Record.Common
     using System.IO;
     using System.Text;
     using NUnit.Framework;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.Cont;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Cont;
+    using Npoi.Core.Util;
 
     /**
      * Tests that {@link UnicodeString} record size calculates correctly.  The record size

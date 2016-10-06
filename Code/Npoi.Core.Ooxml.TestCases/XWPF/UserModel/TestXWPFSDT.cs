@@ -18,7 +18,7 @@
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     [TestFixture]
     public class TestXWPFSDT

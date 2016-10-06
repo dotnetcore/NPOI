@@ -33,9 +33,9 @@ using System.IO;
 
 using NUnit.Framework;
 
-using NPOI.POIFS.FileSystem;
-using NPOI.POIFS.Properties;
-using NPOI.POIFS.Storage;
+using Npoi.Core.POIFS.FileSystem;
+using Npoi.Core.POIFS.Properties;
+using Npoi.Core.POIFS.Storage;
 /**
  * Class to Test DirectoryNode functionality
  *

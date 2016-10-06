@@ -1,8 +1,8 @@
 ﻿using System;
-using NPOI.SS.Formula.Eval;
-using NPOI.SS.Formula.Functions;
+using Npoi.Core.SS.Formula.Eval;
+using Npoi.Core.SS.Formula.Functions;
 
-namespace NPOI.SS.Formula
+namespace Npoi.Core.SS.Formula
 {
     public class UserDefinedFunction : FreeRefFunction
     {

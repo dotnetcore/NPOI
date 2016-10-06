@@ -17,7 +17,7 @@
 namespace TestCases.HSSF.UserModel
 {
     using System;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     using System.IO;
     using System.Collections;
 

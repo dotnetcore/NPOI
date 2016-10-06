@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
-using NPOI.OpenXmlFormats.Shared;
+using Npoi.Core.OpenXmlFormats.Shared;
 using System.IO;
-using NPOI.OpenXml4Net.Util;
+using Npoi.Core.OpenXml4Net.Util;
 using System.Collections;
 using System.Xml.Linq;
-using NPOI;
-using NPOI.OpenXmlFormats.Dml.WordProcessing;
+using Npoi.Core;
+using Npoi.Core.OpenXmlFormats.Dml.WordProcessing;
 
-namespace NPOI.OpenXmlFormats.Wordprocessing
+namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
 
 
@@ -2264,7 +2264,7 @@ namespace NPOI.OpenXmlFormats.Wordprocessing
         [XmlElement("oMath", typeof(CT_OMath), Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/math", Order = 0)]
         [XmlElement("oMathPara", typeof(CT_OMathPara), Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/math", Order = 0)]
         [XmlElement("phant", typeof(CT_Phant), Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/math", Order = 0)]
-        [XmlElement("r", typeof(NPOI.OpenXmlFormats.Shared.CT_R), Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/math", Order = 0)]
+        [XmlElement("r", typeof(Npoi.Core.OpenXmlFormats.Shared.CT_R), Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/math", Order = 0)]
         [XmlElement("rad", typeof(CT_Rad), Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/math", Order = 0)]
         [XmlElement("sPre", typeof(CT_SPre), Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/math", Order = 0)]
         [XmlElement("sSub", typeof(CT_SSub), Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/math", Order = 0)]

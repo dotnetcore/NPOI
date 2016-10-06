@@ -15,16 +15,16 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.DDF;
+using Npoi.Core.DDF;
 
-namespace NPOI.SS.Util
+namespace Npoi.Core.SS.Util
 {
     using System;
     using System.Drawing;
     using System.IO;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.Util;
 
     /**
      * @author Yegor Kozlov
@@ -58,8 +58,8 @@ namespace NPOI.SS.Util
         // * Return the dimension of this image
         // *
         // * @param is the stream Containing the image data
-        // * @param type type of the picture: {@link NPOI.SS.UserModel.Workbook#PICTURE_TYPE_JPEG},
-        // * {@link NPOI.SS.UserModel.Workbook#PICTURE_TYPE_PNG} or {@link NPOI.SS.UserModel.Workbook#PICTURE_TYPE_DIB}
+        // * @param type type of the picture: {@link Npoi.Core.SS.UserModel.Workbook#PICTURE_TYPE_JPEG},
+        // * {@link Npoi.Core.SS.UserModel.Workbook#PICTURE_TYPE_PNG} or {@link Npoi.Core.SS.UserModel.Workbook#PICTURE_TYPE_DIB}
         // *
         // * @return image dimension in pixels
         // */

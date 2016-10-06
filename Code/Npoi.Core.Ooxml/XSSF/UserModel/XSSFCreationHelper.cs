@@ -14,10 +14,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using NPOI.SS.UserModel;
-using NPOI.XSSF.UserModel;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.XSSF.UserModel;
 using System;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     public class XSSFCreationHelper : ICreationHelper
     {
@@ -63,7 +63,7 @@ namespace NPOI.XSSF.UserModel
          * a sheet
          *
          * @return a XSSFClientAnchor instance
-         * @see NPOI.ss.usermodel.Drawing
+         * @see Npoi.Core.ss.usermodel.Drawing
          */
         public IClientAnchor CreateClientAnchor()
         {

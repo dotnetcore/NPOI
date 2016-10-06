@@ -17,13 +17,13 @@
 ==================================================================== */
 
 
-namespace NPOI.HSSF.Record.Chart
+namespace Npoi.Core.HSSF.Record.Chart
 {
 
     using System.Text;
     using System;
 
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /// <summary>
     /// specifies the text elements that are formatted using the position and appearance information 

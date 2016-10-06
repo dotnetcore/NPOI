@@ -1,11 +1,11 @@
-﻿using NPOI.OpenXml4Net.Util;
+﻿using Npoi.Core.OpenXml4Net.Util;
 using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
-namespace NPOI.OpenXmlFormats.Spreadsheet
+namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
     public class SstDocument
     {

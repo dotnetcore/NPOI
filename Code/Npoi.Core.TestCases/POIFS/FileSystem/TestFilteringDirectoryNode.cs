@@ -20,8 +20,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NPOI.POIFS.FileSystem;
-using NPOI.Util;
+using Npoi.Core.POIFS.FileSystem;
+using Npoi.Core.Util;
 using NUnit.Framework;
 using System.IO;
 

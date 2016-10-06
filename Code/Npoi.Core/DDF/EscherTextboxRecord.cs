@@ -17,7 +17,7 @@
 ==================================================================== */
 
 
-namespace NPOI.DDF
+namespace Npoi.Core.DDF
 {
     using System;
     using System.Text;

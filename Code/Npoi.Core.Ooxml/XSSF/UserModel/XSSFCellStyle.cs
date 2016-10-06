@@ -15,13 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using System;
 using System.Xml;
-using NPOI.SS.UserModel;
-using NPOI.XSSF.UserModel.Extensions;
-using NPOI.XSSF.Model;
-namespace NPOI.XSSF.UserModel
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.XSSF.UserModel.Extensions;
+using Npoi.Core.XSSF.Model;
+namespace Npoi.Core.XSSF.UserModel
 {
 
 
@@ -30,9 +30,9 @@ namespace NPOI.XSSF.UserModel
      * High level representation of the the possible formatting information for the contents of the cells on a sheet in a
      * SpreadsheetML document.
      *
-     * @see NPOI.xssf.usermodel.XSSFWorkbook#CreateCellStyle()
-     * @see NPOI.xssf.usermodel.XSSFWorkbook#getCellStyleAt(short)
-     * @see NPOI.xssf.usermodel.XSSFCell#setCellStyle(NPOI.ss.usermodel.CellStyle)
+     * @see Npoi.Core.xssf.usermodel.XSSFWorkbook#CreateCellStyle()
+     * @see Npoi.Core.xssf.usermodel.XSSFWorkbook#getCellStyleAt(short)
+     * @see Npoi.Core.xssf.usermodel.XSSFCell#setCellStyle(Npoi.Core.ss.usermodel.CellStyle)
      */
     public class XSSFCellStyle : ICellStyle
     {
@@ -358,8 +358,8 @@ namespace NPOI.XSSF.UserModel
         /**
          * Get the color to use for the bottom border
          * Color is optional. When missing, IndexedColors.Automatic is implied.
-         * @return the index of the color defInition, default value is {@link NPOI.ss.usermodel.IndexedColors#AUTOMATIC}
-         * @see NPOI.ss.usermodel.IndexedColors
+         * @return the index of the color defInition, default value is {@link Npoi.Core.ss.usermodel.IndexedColors#AUTOMATIC}
+         * @see Npoi.Core.ss.usermodel.IndexedColors
          */
         public short BottomBorderColor
         {
@@ -458,7 +458,7 @@ namespace NPOI.XSSF.UserModel
          * Note - many cells are actually Filled with a foreground
          *  Fill, not a background fill - see {@link #getFillForegroundColor()}
          * </p>
-         * @see NPOI.xssf.usermodel.XSSFColor#getRgb()
+         * @see Npoi.Core.xssf.usermodel.XSSFColor#getRgb()
          * @return XSSFColor - fill color or <code>null</code> if not Set
          */
         public IColor FillBackgroundColorColor
@@ -513,7 +513,7 @@ namespace NPOI.XSSF.UserModel
          *  background color ({@link #getFillBackgroundColor()})
          * </p>
          * @see IndexedColors
-         * @return fill color, default value is {@link NPOI.ss.usermodel.IndexedColors#AUTOMATIC}
+         * @return fill color, default value is {@link Npoi.Core.ss.usermodel.IndexedColors#AUTOMATIC}
          */
         public short FillForegroundColor
         {
@@ -628,7 +628,7 @@ namespace NPOI.XSSF.UserModel
          * Gets the index of the font for this style
          *
          * @return short - font index
-         * @see NPOI.xssf.usermodel.XSSFWorkbook#getFontAt(short)
+         * @see Npoi.Core.xssf.usermodel.XSSFWorkbook#getFontAt(short)
          */
         public short FontIndex
         {
@@ -703,8 +703,8 @@ namespace NPOI.XSSF.UserModel
         /**
          * Get the color to use for the left border
          *
-         * @return the index of the color defInition, default value is {@link NPOI.ss.usermodel.IndexedColors#BLACK}
-         * @see NPOI.ss.usermodel.IndexedColors
+         * @return the index of the color defInition, default value is {@link Npoi.Core.ss.usermodel.IndexedColors#BLACK}
+         * @see Npoi.Core.ss.usermodel.IndexedColors
          */
         public short LeftBorderColor
         {
@@ -736,7 +736,7 @@ namespace NPOI.XSSF.UserModel
          * Get the color to use for the left border
          *
          * @return the index of the color defInition or <code>null</code> if not Set
-         * @see NPOI.ss.usermodel.IndexedColors
+         * @see Npoi.Core.ss.usermodel.IndexedColors
          */
         public XSSFColor LeftBorderXSSFColor
         {
@@ -833,8 +833,8 @@ namespace NPOI.XSSF.UserModel
         /**
          * Get the color to use for the top border
          *
-         * @return the index of the color defInition, default value is {@link NPOI.ss.usermodel.IndexedColors#BLACK}
-         * @see NPOI.ss.usermodel.IndexedColors
+         * @return the index of the color defInition, default value is {@link Npoi.Core.ss.usermodel.IndexedColors#BLACK}
+         * @see Npoi.Core.ss.usermodel.IndexedColors
          */
         public short TopBorderColor
         {
@@ -981,7 +981,7 @@ namespace NPOI.XSSF.UserModel
          * <br/>
         * <i>Note: Ensure Foreground color is Set prior to background color.</i>
         * @param color the color to use
-        * @see #setFillBackgroundColor(NPOI.xssf.usermodel.XSSFColor) )
+        * @see #setFillBackgroundColor(Npoi.Core.xssf.usermodel.XSSFColor) )
         */
         public void SetFillForegroundColor(XSSFColor color)
         {
@@ -1055,8 +1055,8 @@ namespace NPOI.XSSF.UserModel
          * Set the font for this style
          *
          * @param font  a font object Created or retreived from the XSSFWorkbook object
-         * @see NPOI.xssf.usermodel.XSSFWorkbook#CreateFont()
-         * @see NPOI.xssf.usermodel.XSSFWorkbook#getFontAt(short)
+         * @see Npoi.Core.xssf.usermodel.XSSFWorkbook#CreateFont()
+         * @see Npoi.Core.xssf.usermodel.XSSFWorkbook#getFontAt(short)
          */
         public void SetFont(IFont font)
         {
@@ -1153,11 +1153,11 @@ namespace NPOI.XSSF.UserModel
          * Set the type of vertical alignment for the cell
          *
          * @param align - align the type of alignment
-         * @see NPOI.ss.usermodel.CellStyle#VERTICAL_TOP
-         * @see NPOI.ss.usermodel.CellStyle#VERTICAL_CENTER
-         * @see NPOI.ss.usermodel.CellStyle#VERTICAL_BOTTOM
-         * @see NPOI.ss.usermodel.CellStyle#VERTICAL_JUSTIFY
-         * @see NPOI.ss.usermodel.VerticalAlignment
+         * @see Npoi.Core.ss.usermodel.CellStyle#VERTICAL_TOP
+         * @see Npoi.Core.ss.usermodel.CellStyle#VERTICAL_CENTER
+         * @see Npoi.Core.ss.usermodel.CellStyle#VERTICAL_BOTTOM
+         * @see Npoi.Core.ss.usermodel.CellStyle#VERTICAL_JUSTIFY
+         * @see Npoi.Core.ss.usermodel.VerticalAlignment
          */
         public void SetVerticalAlignment(short align)
         {

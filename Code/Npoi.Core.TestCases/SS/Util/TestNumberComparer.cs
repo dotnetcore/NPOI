@@ -18,9 +18,9 @@
 using TestCases.SS.Util;
 using NUnit.Framework;
 using System;
-using NPOI.SS.Util;
+using Npoi.Core.SS.Util;
 using System.Text;
-using NPOI.Util;
+using Npoi.Core.Util;
 namespace TestCases.SS.Util
 {
     /**

@@ -15,7 +15,7 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.UserModel
+namespace Npoi.Core.SS.UserModel
 {
     using System;
 
@@ -153,7 +153,7 @@ namespace NPOI.SS.UserModel
          * @return color to use
          * @see #COLOR_NORMAL
          * @see #COLOR_RED
-         * @see NPOI.HSSF.usermodel.HSSFPalette#GetColor(short)
+         * @see Npoi.Core.HSSF.usermodel.HSSFPalette#GetColor(short)
          */
         short Color { get; set; }
 

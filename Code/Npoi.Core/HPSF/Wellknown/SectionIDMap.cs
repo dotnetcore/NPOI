@@ -25,7 +25,7 @@
  * 
  * ==============================================================*/
 
-namespace NPOI.HPSF.Wellknown
+namespace Npoi.Core.HPSF.Wellknown
 {
     using System;
     using System.Text;

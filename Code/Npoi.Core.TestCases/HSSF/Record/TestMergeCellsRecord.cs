@@ -20,12 +20,12 @@ namespace TestCases.HSSF.Record
 {
 
     using System;
-    using NPOI.HSSF.Record;
-    using NPOI.SS.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS.Util;
     using NUnit.Framework;
-    using NPOI.HSSF.Record.Aggregates;
+    using Npoi.Core.HSSF.Record.Aggregates;
     using System.Collections;
-    using NPOI.HSSF.Model;
+    using Npoi.Core.HSSF.Model;
 
     /**
      * Make sure the merge cells record behaves

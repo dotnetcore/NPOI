@@ -18,12 +18,12 @@
 namespace TestCases.HSSF.Extractor
 {
     using System;
-    using NPOI.HSSF;
+    using Npoi.Core.HSSF;
     using TestCases;
     using NUnit.Framework;
     using System.IO;
     using TestCases.HSSF;
-    using NPOI.HSSF.Extractor;
+    using Npoi.Core.HSSF.Extractor;
 
     /**
      * Unit tests for the Excel 5/95 and Excel 4 (and older) text 

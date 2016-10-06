@@ -14,11 +14,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-namespace NPOI.SS.UserModel
+namespace Npoi.Core.SS.UserModel
 {
     using System;
     /// <summary>
-    /// Common interface for NPOI.SS.UserModel.Header and NPOI.SS.UserModel.Footer
+    /// Common interface for Npoi.Core.SS.UserModel.Header and Npoi.Core.SS.UserModel.Footer
     /// </summary>
     public interface IHeaderFooter
     {

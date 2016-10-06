@@ -17,11 +17,11 @@
 
 using System;
 using System.Collections.Generic;
-using NPOI.SS.Formula;
-using NPOI.SS.Formula.Atp;
-using NPOI.SS.Formula.Eval;
-using NPOI.SS.UserModel;
-using NPOI.SS.Util;
+using Npoi.Core.SS.Formula;
+using Npoi.Core.SS.Formula.Atp;
+using Npoi.Core.SS.Formula.Eval;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.Util;
 using NUnit.Framework;
 using System.Globalization;
 namespace TestCases.SS.Formula.Atp

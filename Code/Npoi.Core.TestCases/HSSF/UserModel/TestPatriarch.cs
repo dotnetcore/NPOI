@@ -18,10 +18,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NPOI.HSSF.UserModel;
+using Npoi.Core.HSSF.UserModel;
 using NUnit.Framework;
-using NPOI.HSSF.Record;
-using NPOI.DDF;
+using Npoi.Core.HSSF.Record;
+using Npoi.Core.DDF;
 
 namespace TestCases.HSSF.UserModel
 {

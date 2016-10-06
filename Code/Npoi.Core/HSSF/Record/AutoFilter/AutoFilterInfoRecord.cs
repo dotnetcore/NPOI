@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace NPOI.HSSF.Record.AutoFilter
+namespace Npoi.Core.HSSF.Record.AutoFilter
 {
     public class AutoFilterInfoRecord:StandardRecord
     {
@@ -43,7 +43,7 @@ namespace NPOI.HSSF.Record.AutoFilter
             buffer.Append("[/AUTOFILTERINFO]\n");
             return buffer.ToString();
         }
-        public override void Serialize(NPOI.Util.ILittleEndianOutput out1)
+        public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             out1.WriteShort(field_1_cEntries);
         }

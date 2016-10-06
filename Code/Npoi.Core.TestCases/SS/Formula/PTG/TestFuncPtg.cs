@@ -19,7 +19,7 @@ namespace TestCases.SS.Formula.PTG
 {
 
     using NUnit.Framework;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.SS.Formula.PTG;
     using TestCases.HSSF.Record;
 
     /**

@@ -15,10 +15,10 @@
    limitations Under the License.
 ==================================================================== */
 
-//using NPOI.HSSF.Record.Drawing;
-//using NPOI.SS.UserModel.Drawing;
+//using Npoi.Core.HSSF.Record.Drawing;
+//using Npoi.Core.SS.UserModel.Drawing;
 
-namespace NPOI.HSSF.Record.Chart
+namespace Npoi.Core.HSSF.Record.Chart
 {
     /// <summary>
     /// specifies the properties of a fill pattern for parts of a chart.
@@ -50,7 +50,7 @@ namespace NPOI.HSSF.Record.Chart
             }
         }
 
-        public override void Serialize(NPOI.Util.ILittleEndianOutput out1)
+        public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             base.Serialize(out1);
             //fillOption.Serialize(out1);

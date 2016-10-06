@@ -18,8 +18,8 @@
 namespace TestCases.SS.Formula
 {
 
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula;
 
     /**
      * Allows Tests to execute {@link WorkbookEvaluator}s and track the internal workings.

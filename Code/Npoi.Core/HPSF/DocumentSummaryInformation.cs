@@ -25,12 +25,12 @@
  * 
  * ==============================================================*/
 
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     using System;
     using System.Collections;
-    using NPOI.HPSF.Wellknown;
-    using NPOI.Util;
+    using Npoi.Core.HPSF.Wellknown;
+    using Npoi.Core.Util;
 
     /// <summary>
     /// Convenience class representing a DocumentSummary Information stream in a

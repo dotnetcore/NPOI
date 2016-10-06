@@ -27,9 +27,9 @@
 
 using System;
 
-using NPOI.POIFS.FileSystem;
+using Npoi.Core.POIFS.FileSystem;
 
-namespace NPOI.POIFS.EventFileSystem
+namespace Npoi.Core.POIFS.EventFileSystem
 {
     /// <summary>
     /// EventArgs for POIFSReader

@@ -18,9 +18,9 @@
 using TestCases.SS.UserModel;
 using System;
 using NUnit.Framework;
-using NPOI.SS.UserModel;
-using NPOI.OpenXml4Net.OPC;
-namespace NPOI.XSSF.UserModel
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.OpenXml4Net.OPC;
+namespace Npoi.Core.XSSF.UserModel
 {
     [TestFixture]
     public class TestXSSFHyperlink : BaseTestHyperlink
@@ -36,8 +36,8 @@ namespace NPOI.XSSF.UserModel
         {
             // Use system out logger
             Environment.SetEnvironmentVariable(
-                    "NPOI.util.POILogger",
-                    "NPOI.util.SystemOutLogger"
+                    "Npoi.Core.util.POILogger",
+                    "Npoi.Core.util.SystemOutLogger"
             );
         }
         [Test]

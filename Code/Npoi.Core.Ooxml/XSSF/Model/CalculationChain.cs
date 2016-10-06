@@ -18,12 +18,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using NPOI.OpenXml4Net.OPC;
-using NPOI.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace NPOI.XSSF.Model
+namespace Npoi.Core.XSSF.Model
 {
 
     /**

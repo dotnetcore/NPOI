@@ -28,7 +28,7 @@
 using System;
 
 
-namespace NPOI.POIFS.FileSystem
+namespace Npoi.Core.POIFS.FileSystem
 {
     /// <summary>
     /// This exception is thrown when we try to open a file that's actually

@@ -14,11 +14,11 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
-namespace NPOI.HSSF.EventUserModel
+namespace Npoi.Core.HSSF.EventUserModel
 {
     using System.Collections;
-    using NPOI.HSSF.Record;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.Util;
 
 
     /// <summary>

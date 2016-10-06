@@ -48,7 +48,7 @@ using System;
  * http://www.lowagie.com/iText/
  */
 
-namespace NPOI.Util.Collections
+namespace Npoi.Core.Util.Collections
 {
 
     // a replacement for the StringTokenizer java class

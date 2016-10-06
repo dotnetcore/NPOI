@@ -25,7 +25,7 @@
  * 
  * ==============================================================*/
 
-namespace NPOI.POIFS.Storage
+namespace Npoi.Core.POIFS.Storage
 {
 
     /// <summary>

@@ -17,7 +17,7 @@
 
 using System;
 
-namespace NPOI.HSSF.Util
+namespace Npoi.Core.HSSF.Util
 {
 
     /**

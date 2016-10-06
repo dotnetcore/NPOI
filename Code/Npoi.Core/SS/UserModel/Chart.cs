@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using NPOI.SS.UserModel.Charts;
+using Npoi.Core.SS.UserModel.Charts;
 
-namespace NPOI.SS.UserModel
+namespace Npoi.Core.SS.UserModel
 {
     /**
      * High level representation of a chart.

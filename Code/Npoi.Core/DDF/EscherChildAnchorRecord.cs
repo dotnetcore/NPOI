@@ -16,11 +16,11 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.DDF
+namespace Npoi.Core.DDF
 {
     using System;
     using System.Text;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /// <summary>
     /// The escher child achor record is used to specify the position of a shape under an

@@ -15,7 +15,7 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.XSSF.Util
+namespace Npoi.Core.XSSF.Util
 {
 
     public class NumericRanges

@@ -19,14 +19,14 @@ namespace TestCases.HSSF.Model
 {
     using System;
     using NUnit.Framework;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Formula.Functions;
-    using NPOI.SS.Formula.Udf;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.Udf;
     using TestCases.HSSF.UserModel;
-    using NPOI.HSSF.Model;
+    using Npoi.Core.HSSF.Model;
 
     /**
      * Unit test for the Workbook class.

@@ -15,14 +15,14 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI
+namespace Npoi.Core
 {
 
     using System.Text;
-    using NPOI.OpenXml4Net.OPC.Internal;
+    using Npoi.Core.OpenXml4Net.OPC.Internal;
     using System;
     using System.Collections.Generic;
-    using NPOI.OpenXmlFormats;
+    using Npoi.Core.OpenXmlFormats;
 
     /**
      * A {@link POITextExtractor} for returning the textual

@@ -5,10 +5,10 @@ using System.Text;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
-using NPOI;
-using NPOI.OpenXml4Net.Util;
+using Npoi.Core;
+using Npoi.Core.OpenXml4Net.Util;
 
-namespace NPOI.OpenXmlFormats.Wordprocessing
+namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
 	[XmlInclude(typeof(CT_Picture))]
 	[XmlInclude(typeof(CT_Object))]

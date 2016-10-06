@@ -16,11 +16,11 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.DDF
+namespace Npoi.Core.DDF
 {
     using System;
     using System.Text;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /// <summary>
     /// This record simply holds the number of shapes in the drawing group and the

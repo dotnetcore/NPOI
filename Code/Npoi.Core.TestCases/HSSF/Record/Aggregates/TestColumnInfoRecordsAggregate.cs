@@ -19,9 +19,9 @@ namespace TestCases.HSSF.Record.Aggregates
 {
     using System;
     using System.Collections;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Record;
     using NUnit.Framework;
-    using NPOI.HSSF.Record.Aggregates;
+    using Npoi.Core.HSSF.Record.Aggregates;
 
     /**
      * @author Glen Stampoultzis

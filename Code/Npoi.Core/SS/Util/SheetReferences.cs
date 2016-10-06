@@ -20,7 +20,7 @@ using System;
 using System.Collections;
 
 
-namespace NPOI.SS.Util
+namespace Npoi.Core.SS.Util
 {
 
 /**

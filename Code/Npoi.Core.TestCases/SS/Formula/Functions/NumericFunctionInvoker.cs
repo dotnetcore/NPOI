@@ -19,8 +19,8 @@ namespace TestCases.SS.Formula.Functions
 {
     using System;
     using NUnit.Framework;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Functions;
 
     /**
      * Test helper class for invoking functions with numeric results.

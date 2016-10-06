@@ -19,12 +19,12 @@ namespace TestCases.SS.Formula.Eval.Forked
 {
     using System;
     using NUnit.Framework;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.UserModel;
     using TestCases.SS.Formula.Eval.Forked;
-    using NPOI.SS.Formula.Eval.Forked;
+    using Npoi.Core.SS.Formula.Eval.Forked;
 
     /**
      * @author Josh Micich

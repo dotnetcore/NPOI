@@ -17,11 +17,11 @@
 
 using System.Text;
 
-namespace NPOI.DDF
+namespace Npoi.Core.DDF
 {
     using System;
     using System.IO;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /// <summary>
     /// @author Glen Stampoultzis

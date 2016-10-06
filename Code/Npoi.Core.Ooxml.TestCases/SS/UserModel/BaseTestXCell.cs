@@ -20,7 +20,7 @@ namespace TestCases.SS.UserModel
     using System;
     using NUnit.Framework;
     using TestCases.SS;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
 
     /**
      * Class for combined testing of XML-specific functionality of 

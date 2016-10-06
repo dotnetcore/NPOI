@@ -30,7 +30,7 @@ using System.Text;
 using System.IO;
 using System.Collections;
 
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
     public class HexRead
     {

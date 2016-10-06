@@ -14,13 +14,13 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 //==================================================================== */
-//using NPOI.OpenXml4Net.OPC;
+//using Npoi.Core.OpenXml4Net.OPC;
 //using System;
-//using NPOI.SS.UserModel;
-//using NPOI.XSSF.Model;
+//using Npoi.Core.SS.UserModel;
+//using Npoi.Core.XSSF.Model;
 //using System.IO;
 //using System.Text;
-//namespace NPOI.XSSF.Extractor
+//namespace Npoi.Core.XSSF.Extractor
 //{
 
 
@@ -85,7 +85,7 @@
 //         * Returns the core document properties
 //         */
 
-//        public NPOI.POIXMLProperties.CoreProperties GetCoreProperties()
+//        public Npoi.Core.POIXMLProperties.CoreProperties GetCoreProperties()
 //        {
 //            return properties.GetCoreProperties();
 //        }
@@ -93,7 +93,7 @@
 //         * Returns the extended document properties
 //         */
 
-//        public NPOI.POIXMLProperties.ExtendedProperties GetExtendedProperties()
+//        public Npoi.Core.POIXMLProperties.ExtendedProperties GetExtendedProperties()
 //        {
 //            return properties.GetExtendedProperties();
 //        }
@@ -101,7 +101,7 @@
 //         * Returns the custom document properties
 //         */
 
-//        public NPOI.POIXMLProperties.CustomProperties GetCustomProperties()
+//        public Npoi.Core.POIXMLProperties.CustomProperties GetCustomProperties()
 //        {
 //            return properties.GetCustomProperties();
 //        }

@@ -24,10 +24,10 @@ namespace TestCases.SS.Format
 	// TODO: Port
 	//using System.Windows.Forms;
     using NUnit.Framework;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Format;
-    using NPOI.SS.UserModel;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Format;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.Util;
     using TestCases.SS;
     using System.Diagnostics;
 

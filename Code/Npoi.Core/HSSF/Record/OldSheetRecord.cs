@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
     using System;
     using System.Text;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * Title:        Bound Sheet Record (aka BundleSheet) (0x0085) for BIFF 5<br/>

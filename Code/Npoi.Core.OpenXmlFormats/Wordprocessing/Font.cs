@@ -1,13 +1,13 @@
-﻿using NPOI.OpenXml4Net.Util;
+﻿using Npoi.Core.OpenXml4Net.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using NPOI.SS.Formula.Functions;
+using Npoi.Core.SS.Formula.Functions;
 
-namespace NPOI.OpenXmlFormats.Wordprocessing
+namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
 
 	[Serializable]

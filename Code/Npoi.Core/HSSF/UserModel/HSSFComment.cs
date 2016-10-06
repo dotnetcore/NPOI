@@ -14,12 +14,12 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
     using System;
-    using NPOI.DDF;
-    using NPOI.HSSF.Record;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.DDF;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS.UserModel;
 
 
     /// <summary>

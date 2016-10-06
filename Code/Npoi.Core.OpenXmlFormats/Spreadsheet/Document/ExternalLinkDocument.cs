@@ -5,7 +5,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace NPOI.OpenXmlFormats.Spreadsheet.Document
+namespace Npoi.Core.OpenXmlFormats.Spreadsheet.Document
 {
     public class ExternalLinkDocument
     {

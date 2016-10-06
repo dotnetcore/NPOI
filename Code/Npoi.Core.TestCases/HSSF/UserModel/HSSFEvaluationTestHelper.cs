@@ -18,8 +18,8 @@
 namespace TestCases.HSSF.UserModel
 {
     using System;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula;
 
     /**
      * Raises visibility of some internal functionality for Test purposes 
@@ -29,7 +29,7 @@ namespace TestCases.HSSF.UserModel
     public class HSSFEvaluationTestHelper
     {
 
-        public static IEvaluationCell WrapCell(NPOI.SS.UserModel.ICell cell)
+        public static IEvaluationCell WrapCell(Npoi.Core.SS.UserModel.ICell cell)
         {
             return new HSSFEvaluationCell(cell);
         }

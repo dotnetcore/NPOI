@@ -7,19 +7,19 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.OpenXmlFormats.Spreadsheet
+namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Xml.Serialization;
-    using NPOI.OpenXmlFormats.Dml;
+    using Npoi.Core.OpenXmlFormats.Dml;
     using System.ComponentModel;
     using System.Xml.Schema;
     using System.Diagnostics;
     using System.Xml;
-    using NPOI.OpenXml4Net.Util;
-    using NPOI.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXml4Net.Util;
+    using Npoi.Core.OpenXml4Net.OPC;
 
     public enum ST_SmartTagShow
     {

@@ -18,11 +18,11 @@
 namespace TestCases.HSSF.Model
 {
     using System;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.PivotTable;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.PivotTable;
+    using Npoi.Core.Util;
     using NUnit.Framework;
-    using NPOI.HSSF.Model;
+    using Npoi.Core.HSSF.Model;
 
     /**
      * Tests for {@link RowBlocksReader}

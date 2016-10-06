@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NPOI.SS.UserModel.Charts
+namespace Npoi.Core.SS.UserModel.Charts
 {
     public enum AxisTickMark
     {

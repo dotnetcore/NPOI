@@ -15,7 +15,7 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Util
+namespace Npoi.Core.HSSF.Util
 {
     using System;
     using System.Collections.Generic;

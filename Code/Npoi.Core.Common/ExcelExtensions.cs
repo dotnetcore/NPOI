@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace NPOI
+namespace Npoi.Core
 {
 	public static class ExcelExtensions
 	{

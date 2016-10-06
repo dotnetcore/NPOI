@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using NPOI.OpenXml4Net.OPC.Internal;
-using NPOI.OpenXml4Net.OPC.Internal.Marshallers;
-using NPOI.OpenXml4Net.Exceptions;
-using Util=NPOI.OpenXml4Net.Util;
-using NPOI.OpenXml4Net.Util;
+using Npoi.Core.OpenXml4Net.OPC.Internal;
+using Npoi.Core.OpenXml4Net.OPC.Internal.Marshallers;
+using Npoi.Core.OpenXml4Net.Exceptions;
+using Util=Npoi.Core.OpenXml4Net.Util;
+using Npoi.Core.OpenXml4Net.Util;
 using ICSharpCode.SharpZipLib.Zip;
-using NPOI.Util;
+using Npoi.Core.Util;
 
-namespace NPOI.OpenXml4Net.OPC
+namespace Npoi.Core.OpenXml4Net.OPC
 {
     /**
      * Physical zip package.
@@ -325,7 +325,7 @@ namespace NPOI.OpenXml4Net.OPC
                     string tempfilePath=GenerateTempFileName(FileHelper
                                     .GetDirectory(this.originalPackagePath));
 
-                    FileInfo fi=NPOI.Util.TempFile.CreateTempFile(
+                    FileInfo fi=Npoi.Core.Util.TempFile.CreateTempFile(
                             tempfilePath, ".tmp");
 
                     // Save the final package to a temporary file

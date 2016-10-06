@@ -16,14 +16,14 @@
 ==================================================================== */
 namespace TestCases.SS.Formula.Atp
 {
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
     using NUnit.Framework;
-    using NPOI.HSSF.Model;
+    using Npoi.Core.HSSF.Model;
     using System;
     using TestCases.HSSF;
-    using NPOI.SS.Util;
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.SS.Formula.Eval;
 
     /**
      * Testcase for 'Analysis Toolpak' function RANDBETWEEN()

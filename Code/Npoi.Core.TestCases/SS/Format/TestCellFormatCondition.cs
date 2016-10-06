@@ -19,7 +19,7 @@ namespace TestCases.SS.Format
     using System;
 
     using NUnit.Framework;
-    using NPOI.SS.Format;
+    using Npoi.Core.SS.Format;
 
     [TestFixture]
     public class TestCellFormatCondition

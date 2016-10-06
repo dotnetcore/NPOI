@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula.Eval
+namespace Npoi.Core.SS.Formula.Eval
 {
     using System;
 
-    using NPOI.XSSF;
+    using Npoi.Core.XSSF;
     using NUnit.Framework;
     using TestCases.SS.Formula.Eval;
 

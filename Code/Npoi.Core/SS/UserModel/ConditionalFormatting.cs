@@ -17,9 +17,9 @@
  * ====================================================================
  */
 
-namespace NPOI.SS.UserModel
+namespace Npoi.Core.SS.UserModel
 {
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.Util;
 
     /**
      * The ConditionalFormatting class encapsulates all Settings of Conditional Formatting.
@@ -43,7 +43,7 @@ namespace NPOI.SS.UserModel
      *  </LI>
      *  </UL>
      *
-     * Use {@link NPOI.HSSF.UserModel.Sheet#getSheetConditionalFormatting()} to Get access to an instance of this class.
+     * Use {@link Npoi.Core.HSSF.UserModel.Sheet#getSheetConditionalFormatting()} to Get access to an instance of this class.
      * 
      * To create a new Conditional Formatting Set use the following approach:
      *

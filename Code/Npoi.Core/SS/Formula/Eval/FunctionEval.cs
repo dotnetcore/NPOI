@@ -19,13 +19,13 @@
  *
  */
 
-using NPOI.SS.Formula.Atp;
+using Npoi.Core.SS.Formula.Atp;
 
-namespace NPOI.SS.Formula.Eval
+namespace Npoi.Core.SS.Formula.Eval
 {
     using System;
-    using NPOI.SS.Formula.Functions;
-    using NPOI.SS.Formula.Function;
+    using Npoi.Core.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.Function;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
 

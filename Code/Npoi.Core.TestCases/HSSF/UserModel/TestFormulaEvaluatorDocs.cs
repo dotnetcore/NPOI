@@ -19,9 +19,9 @@ namespace TestCases.HSSF.UserModel
 {
     using System;
     using System.Collections;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     using NUnit.Framework;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
 
     /**
      * Tests to show that our documentation at
@@ -39,8 +39,8 @@ namespace TestCases.HSSF.UserModel
         public void TestEvaluateAll()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s1 = wb.CreateSheet();
-            NPOI.SS.UserModel.ISheet s2 = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s1 = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s2 = wb.CreateSheet();
             wb.SetSheetName(0, "S1");
             wb.SetSheetName(1, "S2");
 
@@ -74,7 +74,7 @@ namespace TestCases.HSSF.UserModel
             // uses EvaluateFormulaCell()
             for (int sheetNum = 0; sheetNum < wb.NumberOfSheets; sheetNum++)
             {
-                NPOI.SS.UserModel.ISheet sheet = wb.GetSheetAt(sheetNum);
+                Npoi.Core.SS.UserModel.ISheet sheet = wb.GetSheetAt(sheetNum);
                 HSSFFormulaEvaluator evaluator = new HSSFFormulaEvaluator(wb);
 
                 for (IEnumerator rit = sheet.GetRowEnumerator(); rit.MoveNext(); )
@@ -84,12 +84,12 @@ namespace TestCases.HSSF.UserModel
                     for (IEnumerator cit = r.GetEnumerator(); cit.MoveNext(); )
                     {
                         ICell c = (ICell)cit.Current;
-                        if (c.CellType == NPOI.SS.UserModel.CellType.Formula)
+                        if (c.CellType == Npoi.Core.SS.UserModel.CellType.Formula)
                         {
                             evaluator.EvaluateFormulaCell(c);
 
                             // For Testing - all should be numeric
-                            Assert.AreEqual(NPOI.SS.UserModel.CellType.Numeric, evaluator.EvaluateFormulaCell(c));
+                            Assert.AreEqual(Npoi.Core.SS.UserModel.CellType.Numeric, evaluator.EvaluateFormulaCell(c));
                         }
                     }
                 }
@@ -98,22 +98,22 @@ namespace TestCases.HSSF.UserModel
             // Check now as expected
             Assert.AreEqual(55.7, wb.GetSheetAt(0).GetRow(0).GetCell(2).NumericCellValue, 0);
             Assert.AreEqual("SUM(A1:B1)", wb.GetSheetAt(0).GetRow(0).GetCell(2).CellFormula);
-            Assert.AreEqual(NPOI.SS.UserModel.CellType.Formula, wb.GetSheetAt(0).GetRow(0).GetCell(2).CellType);
+            Assert.AreEqual(Npoi.Core.SS.UserModel.CellType.Formula, wb.GetSheetAt(0).GetRow(0).GetCell(2).CellType);
 
             Assert.AreEqual(-4.6, wb.GetSheetAt(0).GetRow(1).GetCell(2).NumericCellValue, 0);
             Assert.AreEqual("SUM(A2:B2)", wb.GetSheetAt(0).GetRow(1).GetCell(2).CellFormula);
-            Assert.AreEqual(NPOI.SS.UserModel.CellType.Formula, wb.GetSheetAt(0).GetRow(1).GetCell(2).CellType);
+            Assert.AreEqual(Npoi.Core.SS.UserModel.CellType.Formula, wb.GetSheetAt(0).GetRow(1).GetCell(2).CellType);
 
             Assert.AreEqual(22.3, wb.GetSheetAt(1).GetRow(0).GetCell(0).NumericCellValue, 0);
             Assert.AreEqual("'S1'!A1", wb.GetSheetAt(1).GetRow(0).GetCell(0).CellFormula);
-            Assert.AreEqual(NPOI.SS.UserModel.CellType.Formula, wb.GetSheetAt(1).GetRow(0).GetCell(0).CellType);
+            Assert.AreEqual(Npoi.Core.SS.UserModel.CellType.Formula, wb.GetSheetAt(1).GetRow(0).GetCell(0).CellType);
 
 
             // Now do the alternate call, which zaps the formulas
             // uses EvaluateInCell()
             for (int sheetNum = 0; sheetNum < wb.NumberOfSheets; sheetNum++)
             {
-                NPOI.SS.UserModel.ISheet sheet = wb.GetSheetAt(sheetNum);
+                Npoi.Core.SS.UserModel.ISheet sheet = wb.GetSheetAt(sheetNum);
                 HSSFFormulaEvaluator evaluator = new HSSFFormulaEvaluator(wb);
 
                 for (IEnumerator rit = sheet.GetRowEnumerator(); rit.MoveNext(); )
@@ -123,7 +123,7 @@ namespace TestCases.HSSF.UserModel
                     for (IEnumerator cit = r.GetEnumerator(); cit.MoveNext(); )
                     {
                         ICell c = (ICell)cit.Current;
-                        if (c.CellType == NPOI.SS.UserModel.CellType.Formula)
+                        if (c.CellType == Npoi.Core.SS.UserModel.CellType.Formula)
                         {
                             evaluator.EvaluateInCell(c);
                         }
@@ -132,13 +132,13 @@ namespace TestCases.HSSF.UserModel
             }
 
             Assert.AreEqual(55.7, wb.GetSheetAt(0).GetRow(0).GetCell(2).NumericCellValue, 0);
-            Assert.AreEqual(NPOI.SS.UserModel.CellType.Numeric, wb.GetSheetAt(0).GetRow(0).GetCell(2).CellType);
+            Assert.AreEqual(Npoi.Core.SS.UserModel.CellType.Numeric, wb.GetSheetAt(0).GetRow(0).GetCell(2).CellType);
 
             Assert.AreEqual(-4.6, wb.GetSheetAt(0).GetRow(1).GetCell(2).NumericCellValue, 0);
-            Assert.AreEqual(NPOI.SS.UserModel.CellType.Numeric, wb.GetSheetAt(0).GetRow(1).GetCell(2).CellType);
+            Assert.AreEqual(Npoi.Core.SS.UserModel.CellType.Numeric, wb.GetSheetAt(0).GetRow(1).GetCell(2).CellType);
 
             Assert.AreEqual(22.3, wb.GetSheetAt(1).GetRow(0).GetCell(0).NumericCellValue, 0);
-            Assert.AreEqual(NPOI.SS.UserModel.CellType.Numeric, wb.GetSheetAt(1).GetRow(0).GetCell(0).CellType);
+            Assert.AreEqual(Npoi.Core.SS.UserModel.CellType.Numeric, wb.GetSheetAt(1).GetRow(0).GetCell(0).CellType);
         }
     }
 }

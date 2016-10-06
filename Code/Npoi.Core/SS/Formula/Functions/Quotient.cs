@@ -1,6 +1,6 @@
-﻿using NPOI.SS.Formula.Functions;
-using NPOI.SS.Formula.Eval;
-namespace NPOI.SS.Formula.Functions
+﻿using Npoi.Core.SS.Formula.Functions;
+using Npoi.Core.SS.Formula.Eval;
+namespace Npoi.Core.SS.Formula.Functions
 {
     /**
      * <p>Implementation for Excel QUOTIENT () function.</p>

@@ -15,12 +15,12 @@
 //   limitations under the License.
 //==================================================================== */
 
-//using NPOI.SS.Util;
-//using NPOI.SS.Util.CellWalk;
-//using NPOI.SS.UserModel;
+//using Npoi.Core.SS.Util;
+//using Npoi.Core.SS.Util.CellWalk;
+//using Npoi.Core.SS.UserModel;
 //using System;
-//using NPOI.OpenXmlFormats.Dml.Chart;
-//namespace NPOI.XSSF.UserModel.Charts
+//using Npoi.Core.OpenXmlFormats.Dml.Chart;
+//namespace Npoi.Core.XSSF.UserModel.Charts
 //{
 
 //    /**

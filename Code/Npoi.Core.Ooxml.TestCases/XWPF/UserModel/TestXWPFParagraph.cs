@@ -15,15 +15,15 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     using System;
     using NUnit.Framework;
 
-    using NPOI.XWPF;
+    using Npoi.Core.XWPF;
     using System.Collections.Generic;
-    using NPOI.OpenXmlFormats.Wordprocessing;
-    using NPOI.Util;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.Util;
 
     /**
      * Tests for XWPF Paragraphs
@@ -348,15 +348,15 @@ namespace NPOI.XWPF.UserModel
             r = p.Runs[4];
             XWPFPicture pict = r.GetEmbeddedPictures()[0];
             //CT_Picture picture = pict.GetCTPicture();
-            NPOI.OpenXmlFormats.Dml.Picture.CT_Picture picture = pict.GetCTPicture();
+            Npoi.Core.OpenXmlFormats.Dml.Picture.CT_Picture picture = pict.GetCTPicture();
             //Assert.Fail("picture.blipFill.blip.embed is missing from wordprocessing CT_Picture.");
             Assert.AreEqual("rId8", picture.blipFill.blip.embed);
 
             // Ensure that the ooxml compiler Finds everything we need
             r.GetCTR().GetDrawingArray(0);
             r.GetCTR().GetDrawingArray(0).GetInlineArray(0);
-            NPOI.OpenXmlFormats.Dml.CT_GraphicalObject go = r.GetCTR().GetDrawingArray(0).GetInlineArray(0).graphic;
-            NPOI.OpenXmlFormats.Dml.CT_GraphicalObjectData god = r.GetCTR().GetDrawingArray(0).GetInlineArray(0).graphic.graphicData;
+            Npoi.Core.OpenXmlFormats.Dml.CT_GraphicalObject go = r.GetCTR().GetDrawingArray(0).GetInlineArray(0).graphic;
+            Npoi.Core.OpenXmlFormats.Dml.CT_GraphicalObjectData god = r.GetCTR().GetDrawingArray(0).GetInlineArray(0).graphic.graphicData;
             //PicDocument pd = new PicDocumentImpl(null);
             //assertTrue(pd.isNil());
         }

@@ -18,13 +18,13 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.XSSF.Model
+namespace Npoi.Core.XSSF.Model
 {
     using System.Collections.Generic;
     using OpenXmlFormats.Spreadsheet;
     using System;
     using System.IO;
-    using NPOI.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXml4Net.OPC;
     using System.Xml;
     using System.Security;
     using System.Text.RegularExpressions;

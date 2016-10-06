@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.UserModel;
 using NUnit.Framework;
 using System.Drawing;
-using NPOI.Util;
-using NPOI.SS.Util;
+using Npoi.Core.Util;
+using Npoi.Core.SS.Util;
 using System.IO;
 using TestCases.HSSF;
 namespace TestCases.SS.UserModel

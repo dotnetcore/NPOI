@@ -28,7 +28,7 @@
 using System;
 using System.Collections;
 
-namespace NPOI.POIFS.Dev
+namespace Npoi.Core.POIFS.Dev
 {
     /// <summary>
     /// Interface for a drill-down viewable object. Such an object has

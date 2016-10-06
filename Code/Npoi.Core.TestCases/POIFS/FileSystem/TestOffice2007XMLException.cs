@@ -31,9 +31,9 @@ namespace TestCases.POIFS.FileSystem
     using System.Text;
     using System.IO;
     using TestCases.HSSF;
-    using NPOI.POIFS.FileSystem;
+    using Npoi.Core.POIFS.FileSystem;
     using NUnit.Framework;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
 
     /**

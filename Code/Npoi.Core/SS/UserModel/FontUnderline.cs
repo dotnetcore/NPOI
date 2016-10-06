@@ -15,7 +15,7 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.UserModel
+namespace Npoi.Core.SS.UserModel
 {
     /**
      * the different types of possible underline formatting

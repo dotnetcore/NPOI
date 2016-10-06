@@ -1,7 +1,7 @@
 ﻿// TODO: Port
 //using System.IO;
 //using NUnit.Framework;
-//using NPOI.OpenXmlFormats.Dml;
+//using Npoi.Core.OpenXmlFormats.Dml;
 
 //namespace ooxml.Testcases
 //{
@@ -67,11 +67,11 @@
 ////        [Test]
 ////        public void SerializeVmlDrawingDocumentTest()
 ////        {
-////            var drawing = new NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing();
+////            var drawing = new Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing();
 
 ////            using (StringWriter stream = new StringWriter())
 ////            {
-////                NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing_Accessor.serializer.Serialize(stream, drawing, NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing_Accessor.namespaces);
+////                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing_Accessor.serializer.Serialize(stream, drawing, Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing_Accessor.namespaces);
 ////                string expected = @"<xml xmlns:v=""urn:schemas-microsoft-com:vml""
 //// xmlns:o=""urn:schemas-microsoft-com:office:office""
 //// xmlns:x=""urn:schemas-microsoft-com:office:excel"">
@@ -199,7 +199,7 @@
 //   <x:Visible/>
 //  </x:ClientData>
 // </v:shape></xml>";
-//            //NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing result;
+//            //Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing result;
 //            ////{
 //            ////    StringReader stream = new StringReader(input);
 //            ////    result = (CT_Drawing)CommentsDocument_Accessor.serializer.Deserialize(stream); // instantiate source code to enable debugging the serialization code
@@ -207,7 +207,7 @@
 //            //{
 //            //    using (StringReader stream = new StringReader(input))
 //            //    {
-//            //        result = (NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing)NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing_Accessor.serializer.Deserialize(stream);
+//            //        result = (Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing)Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing_Accessor.serializer.Deserialize(stream);
 //            //    }
 //            //}
 //            //Assert.IsNotNull(result.TwoCellAnchors);
@@ -269,7 +269,7 @@
 //      <xdr:clientData />
 //   </xdr:twoCellAnchor>
 //</xdr:wsDr>";
-//            NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing result;
+//            Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing result;
 //            //{
 //            //    StringReader stream = new StringReader(input);
 //            //    result = (CT_Drawing)CommentsDocument_Accessor.serializer.Deserialize(stream); // instantiate source code to enable debugging the serialization code
@@ -277,7 +277,7 @@
 //            {
 //                using (StringReader stream = new StringReader(input))
 //                {
-//                    result = (NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing)NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing_Accessor.serializer.Deserialize(stream);
+//                    result = (Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing)Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing_Accessor.serializer.Deserialize(stream);
 //                }
 //            }
 //            Assert.IsNotNull(result.TwoCellAnchors);

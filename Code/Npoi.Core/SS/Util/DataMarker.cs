@@ -18,8 +18,8 @@
  */
 
 using System;
-using NPOI.SS.UserModel;
-namespace NPOI.SS.Util
+using Npoi.Core.SS.UserModel;
+namespace Npoi.Core.SS.Util
 {
     /// <summary>
     /// Represents data marker used in charts.

@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Record.PivotTable
+namespace Npoi.Core.HSSF.Record.PivotTable
 {
     using System.Text;
-    using NPOI.HSSF.Record;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.Util;
 
 
 

@@ -17,17 +17,17 @@
 
 using System.Drawing;
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
     using System;
     using System.Text;
     using System.IO;
-    using NPOI.DDF;
-    using NPOI.Util;
-    using NPOI.SS.UserModel;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.Record;
-    using NPOI.SS.Util;
+    using Npoi.Core.DDF;
+    using Npoi.Core.Util;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS.Util;
 
 
     /// <summary>

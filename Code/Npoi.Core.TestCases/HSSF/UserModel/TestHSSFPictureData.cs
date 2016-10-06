@@ -20,13 +20,13 @@ namespace TestCases.HSSF.UserModel
 
     using System;
     using System.Collections;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     using NUnit.Framework;
     using System.IO;
     using TestCases.HSSF;
     using System.Drawing;
     //using System.Drawing.Imaging;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
     using System.Collections.Generic;
 
 

@@ -25,7 +25,7 @@
  * 
  * ==============================================================*/
 
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     using System;
 

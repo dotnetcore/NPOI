@@ -19,12 +19,12 @@ namespace TestCases.HSSF.UserModel
 {
     using System;
     using System.IO;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     using NUnit.Framework;
 
     using TestCases.HSSF;
-    using NPOI.HPSF;
-    using NPOI.POIFS.FileSystem;
+    using Npoi.Core.HPSF;
+    using Npoi.Core.POIFS.FileSystem;
 
     /**
      * Old-style setting of POIFS properties doesn't work with POI 3.0.2

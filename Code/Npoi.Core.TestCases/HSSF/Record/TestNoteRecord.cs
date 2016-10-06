@@ -19,9 +19,9 @@ namespace TestCases.HSSF.Record
 {
 
     using System;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Record;
     using NUnit.Framework;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * Tests the serialization and deserialization of the NoteRecord
@@ -91,7 +91,7 @@ namespace TestCases.HSSF.Record
             //finally check that the Serialized data is1 the same
             byte[] src = record.Serialize();
             byte[] cln = cloned.Serialize();
-            Assert.IsTrue(NPOI.Util.Arrays.Equals(src, cln));
+            Assert.IsTrue(Npoi.Core.Util.Arrays.Equals(src, cln));
         }
         [Test]
         public void TestUnicodeAuthor()

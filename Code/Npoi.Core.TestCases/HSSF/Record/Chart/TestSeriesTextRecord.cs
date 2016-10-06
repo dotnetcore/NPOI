@@ -21,10 +21,10 @@
 namespace TestCases.HSSF.Record.Chart
 {
     using System;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.Chart;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Chart;
     using NUnit.Framework;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * Tests the serialization and deserialization of the SeriesTextRecord

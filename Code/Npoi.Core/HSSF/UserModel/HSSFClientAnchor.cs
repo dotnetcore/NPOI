@@ -16,10 +16,10 @@
 ==================================================================== */
 
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
-    using NPOI.DDF;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.DDF;
+    using Npoi.Core.SS.UserModel;
     using System;
 
 
@@ -94,7 +94,7 @@ namespace NPOI.HSSF.UserModel
         /// </summary>
         /// <param name="sheet">the sheet the anchor will be attached to</param>
         /// <returns>the shape height.</returns>     
-        public float GetAnchorHeightInPoints(NPOI.SS.UserModel.ISheet sheet)
+        public float GetAnchorHeightInPoints(Npoi.Core.SS.UserModel.ISheet sheet)
         {
             int y1 = Dy1;
             int y2 = Dy2;
@@ -125,9 +125,9 @@ namespace NPOI.HSSF.UserModel
         /// <param name="sheet">The sheet.</param>
         /// <param name="rowNum">The row num.</param>
         /// <returns></returns>
-        private float GetRowHeightInPoints(NPOI.SS.UserModel.ISheet sheet, int rowNum)
+        private float GetRowHeightInPoints(Npoi.Core.SS.UserModel.ISheet sheet, int rowNum)
         {
-            NPOI.SS.UserModel.IRow row = sheet.GetRow(rowNum);
+            Npoi.Core.SS.UserModel.IRow row = sheet.GetRow(rowNum);
             if (row == null)
                 return sheet.DefaultRowHeightInPoints;
             else

@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Xml.Serialization;
 
-namespace NPOI.OpenXmlFormats
+namespace Npoi.Core.OpenXmlFormats
 {
     [Serializable]
     [DebuggerStepThrough]

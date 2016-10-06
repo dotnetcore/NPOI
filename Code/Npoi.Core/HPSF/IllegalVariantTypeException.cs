@@ -25,10 +25,10 @@
  * 
  * ==============================================================*/
 
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     using System;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /// <summary>
     /// This exception is thrown if HPSF encounters a variant type that is illegal

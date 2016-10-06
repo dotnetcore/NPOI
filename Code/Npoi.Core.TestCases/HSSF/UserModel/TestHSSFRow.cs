@@ -18,14 +18,14 @@
 namespace TestCases.HSSF.UserModel
 {
     using System;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     using NUnit.Framework;
 
     using TestCases.HSSF;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
     using TestCases.SS.UserModel;
-    using NPOI.SS;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.SS;
+    using Npoi.Core.HSSF.Record;
 
     /**
      * Test Row is okay.
@@ -44,7 +44,7 @@ namespace TestCases.HSSF.UserModel
         public void TestMoveCell()
         {
             HSSFWorkbook workbook = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sheet = workbook.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook.CreateSheet();
             IRow row = sheet.CreateRow(0);
             IRow rowB = sheet.CreateRow(1);
 
@@ -111,7 +111,7 @@ namespace TestCases.HSSF.UserModel
         public new void TestLastCellNumIsCorrectAfterAddCell_bug43901()
         {
             HSSFWorkbook book = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sheet = book.CreateSheet("Test");
+            Npoi.Core.SS.UserModel.ISheet sheet = book.CreateSheet("Test");
             IRow row = sheet.CreateRow(0);
 
             // New row has last col -1

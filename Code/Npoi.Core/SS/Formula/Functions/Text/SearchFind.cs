@@ -1,7 +1,7 @@
 ﻿using System;
-using NPOI.SS.Formula.Eval;
+using Npoi.Core.SS.Formula.Eval;
 
-namespace NPOI.SS.Formula.Functions
+namespace Npoi.Core.SS.Formula.Functions
 {
     public class SearchFind : Var2or3ArgFunction
     {

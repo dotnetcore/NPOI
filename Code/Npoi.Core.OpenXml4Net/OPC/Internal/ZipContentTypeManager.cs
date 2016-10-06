@@ -5,8 +5,8 @@ using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 using ICSharpCode.SharpZipLib.Zip;
-using NPOI.Util;
-namespace NPOI.OpenXml4Net.OPC.Internal
+using Npoi.Core.Util;
+namespace Npoi.Core.OpenXml4Net.OPC.Internal
 {
 /**
  * Zip implementation of the ContentTypeManager.

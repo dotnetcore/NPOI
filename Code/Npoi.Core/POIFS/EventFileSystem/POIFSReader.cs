@@ -25,16 +25,16 @@
  * 
  * ==============================================================*/
 
-namespace NPOI.POIFS.EventFileSystem
+namespace Npoi.Core.POIFS.EventFileSystem
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.IO;
 
-    using NPOI.POIFS.FileSystem;
-    using NPOI.POIFS.Properties;
-    using NPOI.POIFS.Storage;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.POIFS.Properties;
+    using Npoi.Core.POIFS.Storage;
 
     /// <summary>
     /// An event-driven Reader for POIFS file systems. Users of this class

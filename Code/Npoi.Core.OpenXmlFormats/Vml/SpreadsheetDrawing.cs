@@ -6,9 +6,9 @@ using System.ComponentModel;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
-using NPOI.OpenXml4Net.Util;
+using Npoi.Core.OpenXml4Net.Util;
 
-namespace NPOI.OpenXmlFormats.Vml.Spreadsheet
+namespace Npoi.Core.OpenXmlFormats.Vml.Spreadsheet
 {
 
     [Serializable]
@@ -123,13 +123,13 @@ namespace NPOI.OpenXmlFormats.Vml.Spreadsheet
                 if (childNode.Name.LocalName == "Anchor")
                     ctObj.anchor = childNode.Value;
                 else if (childNode.Name.LocalName == "AutoFill")
-                    ctObj.autoFill = NPOI.OpenXmlFormats.Util.XmlHelper.ReadTrueFalseBlank(childNode.Value);
+                    ctObj.autoFill = Npoi.Core.OpenXmlFormats.Util.XmlHelper.ReadTrueFalseBlank(childNode.Value);
                 else if (childNode.Name.LocalName == "Visible")
-                    ctObj.visible =NPOI.OpenXmlFormats.Util.XmlHelper.ReadTrueFalseBlank(childNode.Value);
+                    ctObj.visible =Npoi.Core.OpenXmlFormats.Util.XmlHelper.ReadTrueFalseBlank(childNode.Value);
                 else if (childNode.Name.LocalName == "MoveWithCells")
-                    ctObj.moveWithCells =NPOI.OpenXmlFormats.Util.XmlHelper.ReadTrueFalseBlank(childNode.Value);
+                    ctObj.moveWithCells =Npoi.Core.OpenXmlFormats.Util.XmlHelper.ReadTrueFalseBlank(childNode.Value);
                 else if (childNode.Name.LocalName == "SizeWithCells")
-                    ctObj.sizeWithCells =NPOI.OpenXmlFormats.Util.XmlHelper.ReadTrueFalseBlank(childNode.Value);
+                    ctObj.sizeWithCells =Npoi.Core.OpenXmlFormats.Util.XmlHelper.ReadTrueFalseBlank(childNode.Value);
                 else if (childNode.Name.LocalName == "Column")
                     ctObj.column.Add(Int32.Parse(childNode.Value));
                 else if (childNode.Name.LocalName == "Row")

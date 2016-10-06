@@ -26,10 +26,10 @@
  * ==============================================================*/
 
 using System.IO;
-using NPOI.POIFS.Common;
+using Npoi.Core.POIFS.Common;
 using System.Collections.Generic;
 
-namespace NPOI.POIFS.Storage
+namespace Npoi.Core.POIFS.Storage
 {
     /// <summary>
     /// A list of RawDataBlocks instances, and methods to manage the list

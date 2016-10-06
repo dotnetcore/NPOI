@@ -20,8 +20,8 @@ namespace TestCases.HSSF.Record
     using System;
     using System.Collections;
     using NUnit.Framework;
-    using NPOI.HSSF.Record;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.Util;
 
     /**
      * Tests the serialization and deserialization of the ObjRecord class works correctly.
@@ -73,7 +73,7 @@ namespace TestCases.HSSF.Record
             Assert.AreEqual(26, recordBytes.Length - 4);
             byte[] subData = new byte[recdata.Length];
             System.Array.Copy(recordBytes, 4, subData, 0, subData.Length);
-            Assert.IsTrue(NPOI.Util.Arrays.Equals(recdata, subData));
+            Assert.IsTrue(Npoi.Core.Util.Arrays.Equals(recdata, subData));
         }
         [Test]
         public void TestConstruct()

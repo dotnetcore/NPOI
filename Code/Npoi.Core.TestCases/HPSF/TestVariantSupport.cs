@@ -16,9 +16,9 @@
 ==================================================================== */
 
 using System;
-using NPOI.HPSF;
-using NPOI.HPSF.Wellknown;
-using NPOI.Util;
+using Npoi.Core.HPSF;
+using Npoi.Core.HPSF.Wellknown;
+using Npoi.Core.Util;
 using NUnit.Framework;
 
 namespace TestCases.HPSF

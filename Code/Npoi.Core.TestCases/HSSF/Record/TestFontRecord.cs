@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
-using NPOI.HSSF.Record;
-using NPOI.Util;
-using NPOI.SS.UserModel;
+using Npoi.Core.HSSF.Record;
+using Npoi.Core.Util;
+using Npoi.Core.SS.UserModel;
 
 namespace TestCases.HSSF.Record
 {

@@ -17,7 +17,7 @@
 
 using System;
 
-namespace NPOI.SS.Util
+namespace Npoi.Core.SS.Util
 {
 
     /**

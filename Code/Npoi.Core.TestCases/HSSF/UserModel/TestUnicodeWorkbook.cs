@@ -18,9 +18,9 @@ namespace TestCases.HSSF.UserModel
 {
     using System;
     using System.IO;
-    using NPOI.HSSF.UserModel;
-    using NPOI.Util;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.Util;
+    using Npoi.Core.SS.UserModel;
     using NUnit.Framework;
 
     [TestFixture]
@@ -46,7 +46,7 @@ namespace TestCases.HSSF.UserModel
         //    short fmt = df.GetFormat(formatStr);
 
         //    //Create a unicode sheet name (euro symbol)
-        //    NPOI.SS.UserModel.Sheet s = wb.CreateSheet("\u20ac");
+        //    Npoi.Core.SS.UserModel.Sheet s = wb.CreateSheet("\u20ac");
 
         //    //Set a unicode header (you guessed it the euro symbol)
         //    HSSFHeader h = s.Header;
@@ -73,7 +73,7 @@ namespace TestCases.HSSF.UserModel
         //    c3.CellFormula = (formulaString);
 
 
-        //    string path = NPOI.Util.TempFile.GetTempFilePath("unicode", "Test.xls");
+        //    string path = Npoi.Core.Util.TempFile.GetTempFilePath("unicode", "Test.xls");
         //    FileStream tempFile = File.Create(path);
         //    wb.Write(tempFile);
         //    wb = null;
@@ -125,7 +125,7 @@ namespace TestCases.HSSF.UserModel
             HSSFWorkbook wb = new HSSFWorkbook();
 
             //Create a unicode sheet name (euro symbol)
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet("Test");
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet("Test");
 
             IRow r = s.CreateRow(0);
             ICell c = r.CreateCell(1);
@@ -134,7 +134,7 @@ namespace TestCases.HSSF.UserModel
             //Confirm that the sring will be compressed
             Assert.AreEqual(((HSSFRichTextString)c.RichStringCellValue).UnicodeString.OptionFlags, 0);
 
-            string path = NPOI.Util.TempFile.GetTempFilePath("umlat", "Test.xls");
+            string path = Npoi.Core.Util.TempFile.GetTempFilePath("umlat", "Test.xls");
             FileStream tempFile = File.Create(path);
 
             wb.Write(tempFile);

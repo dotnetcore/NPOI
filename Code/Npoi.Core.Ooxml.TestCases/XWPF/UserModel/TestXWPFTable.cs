@@ -14,13 +14,13 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     using System;
     using NUnit.Framework;
 
-    using NPOI.XWPF;
-    using NPOI.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.XWPF;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
     using System.Collections.Generic;
 
 
@@ -189,7 +189,7 @@ namespace NPOI.XWPF.UserModel
             CT_Tbl ctTable = new CT_Tbl();
             XWPFTable table = new XWPFTable(ctTable, doc);
             // Set inside horizontal border
-            table.SetInsideHBorder(NPOI.XWPF.UserModel.XWPFTable.XWPFBorderType.SINGLE, 4, 0, "FF0000");
+            table.SetInsideHBorder(Npoi.Core.XWPF.UserModel.XWPFTable.XWPFBorderType.SINGLE, 4, 0, "FF0000");
             // Get inside horizontal border components
             int s = table.InsideHBorderSize;
             Assert.AreEqual(4, s);
@@ -197,8 +197,8 @@ namespace NPOI.XWPF.UserModel
             Assert.AreEqual(0, sp);
             String clr = table.InsideHBorderColor;
             Assert.AreEqual("FF0000", clr);
-            NPOI.XWPF.UserModel.XWPFTable.XWPFBorderType bt = table.InsideHBorderType;
-            Assert.AreEqual(NPOI.XWPF.UserModel.XWPFTable.XWPFBorderType.SINGLE, bt);
+            Npoi.Core.XWPF.UserModel.XWPFTable.XWPFBorderType bt = table.InsideHBorderType;
+            Assert.AreEqual(Npoi.Core.XWPF.UserModel.XWPFTable.XWPFBorderType.SINGLE, bt);
         }
         [Test]
         public void TestSetGetVBorders()
@@ -208,10 +208,10 @@ namespace NPOI.XWPF.UserModel
             CT_Tbl ctTable = new CT_Tbl();
             XWPFTable table = new XWPFTable(ctTable, doc);
             // Set inside vertical border
-            table.SetInsideVBorder(NPOI.XWPF.UserModel.XWPFTable.XWPFBorderType.DOUBLE, 4, 0, "00FF00");
+            table.SetInsideVBorder(Npoi.Core.XWPF.UserModel.XWPFTable.XWPFBorderType.DOUBLE, 4, 0, "00FF00");
             // Get inside vertical border components
-            NPOI.XWPF.UserModel.XWPFTable.XWPFBorderType bt = table.InsideVBorderType;
-            Assert.AreEqual(NPOI.XWPF.UserModel.XWPFTable.XWPFBorderType.DOUBLE, bt);
+            Npoi.Core.XWPF.UserModel.XWPFTable.XWPFBorderType bt = table.InsideVBorderType;
+            Assert.AreEqual(Npoi.Core.XWPF.UserModel.XWPFTable.XWPFBorderType.DOUBLE, bt);
             int sz = table.InsideVBorderSize;
             Assert.AreEqual(4, sz);
             int sp = table.InsideVBorderSpace;

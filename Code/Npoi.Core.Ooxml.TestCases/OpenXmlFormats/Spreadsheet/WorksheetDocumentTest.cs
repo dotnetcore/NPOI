@@ -1,9 +1,9 @@
 ﻿// TODO: Port
 //using System.IO;
 //using NUnit.Framework;
-//using NPOI.OpenXmlFormats.Spreadsheet;
-//using NPOI.XSSF.UserModel;
-//using NPOI.SS.UserModel;
+//using Npoi.Core.OpenXmlFormats.Spreadsheet;
+//using Npoi.Core.XSSF.UserModel;
+//using Npoi.Core.SS.UserModel;
 
 //namespace ooxml.Testcases
 //{

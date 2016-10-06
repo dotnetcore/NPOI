@@ -15,14 +15,14 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.XWPF
+namespace Npoi.Core.XWPF
 {
     using System;
 
 
 
     using NUnit.Framework;
-    using NPOI.XWPF.UserModel;
+    using Npoi.Core.XWPF.UserModel;
 
     /**
      * Tests if the {@link CoreProperties#getKeywords()} method. This test has been

@@ -20,8 +20,8 @@ namespace TestCases.HPSF.Basic
     using System;
     using System.IO;
     using NUnit.Framework;
-    using NPOI.HPSF;
-    using NPOI.Util;
+    using Npoi.Core.HPSF;
+    using Npoi.Core.Util;
 
     /**
      * Test case for OLE2 files with empty properties. An empty property's type

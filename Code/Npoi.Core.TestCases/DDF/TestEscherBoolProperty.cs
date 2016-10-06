@@ -22,8 +22,8 @@ namespace TestCases.DDF
     using System;
 
     using NUnit.Framework;
-    using NPOI.DDF;
-    using NPOI.Util;
+    using Npoi.Core.DDF;
+    using Npoi.Core.Util;
     [TestFixture]
     public class TestEscherBoolProperty
     {

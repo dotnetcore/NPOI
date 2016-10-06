@@ -20,10 +20,10 @@ namespace TestCases.HSSF.Record
     using System;
     using System.IO;
     using System.Collections;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Record;
     using NUnit.Framework;
-    using NPOI.Util;
-    using NPOI.POIFS.FileSystem;
+    using Npoi.Core.Util;
+    using Npoi.Core.POIFS.FileSystem;
     using System.Collections.Generic;
 
     /**

@@ -15,12 +15,12 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula
+namespace Npoi.Core.SS.Formula
 {
 
     using System;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.Formula.Function;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.Formula.Function;
     /**
      * Represents a syntactic element from a formula by encapsulating the corresponding <c>Ptg</c>
      * Token.  Each <c>ParseNode</c> may have child <c>ParseNode</c>s in the case when the wrapped

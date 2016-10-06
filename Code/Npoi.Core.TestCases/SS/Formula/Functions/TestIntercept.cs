@@ -23,10 +23,10 @@ namespace TestCases.SS.Formula.Functions
     using NUnit.Framework;
     using System;
     using TestCases.HSSF;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Formula.Functions;
 
     /**
      * Test for Excel function INTERCEPT()

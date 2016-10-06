@@ -18,10 +18,10 @@
 using System;
 using System.Text.RegularExpressions;
 using System.Text;
-using NPOI.SS.Util;
+using Npoi.Core.SS.Util;
 using System.Globalization;
 
-namespace NPOI.SS.Format
+namespace Npoi.Core.SS.Format
 {
     /**
      * Formats a date value.
@@ -181,7 +181,7 @@ namespace NPOI.SS.Format
             if (value == null)
                 value = 0.0;
             //if (value is Number) {
-            if (NPOI.Util.Number.IsNumber(value))
+            if (Npoi.Core.Util.Number.IsNumber(value))
             {
                 double v;
                 double.TryParse(value.ToString(), out v);

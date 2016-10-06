@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 using System.Collections.Generic;
-using NPOI.Util;
+using Npoi.Core.Util;
 using System;
 using System.Text;
-namespace NPOI.DDF
+namespace Npoi.Core.DDF
 {
 
     /**

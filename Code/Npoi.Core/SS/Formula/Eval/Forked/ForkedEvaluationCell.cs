@@ -16,10 +16,10 @@
 ==================================================================== */
 
 using System;
-using NPOI.SS.Formula;
-using NPOI.SS.Formula.Eval;
-using NPOI.SS.UserModel;
-namespace NPOI.SS.Formula.Eval.Forked
+using Npoi.Core.SS.Formula;
+using Npoi.Core.SS.Formula.Eval;
+using Npoi.Core.SS.UserModel;
+namespace Npoi.Core.SS.Formula.Eval.Forked
 {
 
     /**

@@ -5,7 +5,7 @@ using System.IO;
 using System.Collections;
 using ICSharpCode.SharpZipLib.Zip;
 
-namespace NPOI.OpenXml4Net.Util
+namespace Npoi.Core.OpenXml4Net.Util
 {
 /**
  * Provides a way to get at all the ZipEntries

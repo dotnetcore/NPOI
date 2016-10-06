@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     public class VersionedStream
     {

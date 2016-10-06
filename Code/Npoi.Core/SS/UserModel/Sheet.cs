@@ -15,13 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.UserModel
+namespace Npoi.Core.SS.UserModel
 {
 
     using System;
     using System.Collections.Generic;
 
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.Util;
     using System.Collections;
 
     /// <summary>
@@ -215,7 +215,7 @@ namespace NPOI.SS.UserModel
         /// </summary>
         /// <param name="region">(rowfrom/colfrom-rowto/colto) to merge.</param>
         /// <returns>index of this region</returns>
-        int AddMergedRegion(NPOI.SS.Util.CellRangeAddress region);
+        int AddMergedRegion(Npoi.Core.SS.Util.CellRangeAddress region);
 
         /// <summary>
         /// Determine whether printed output for this sheet will be horizontally centered.
@@ -242,7 +242,7 @@ namespace NPOI.SS.UserModel
         /// Returns the merged region at the specified index
         /// </summary>
         /// <param name="index">The index.</param>      
-        NPOI.SS.Util.CellRangeAddress GetMergedRegion(int index);
+        Npoi.Core.SS.Util.CellRangeAddress GetMergedRegion(int index);
 
         /// <summary>
         /// Gets the row enumerator.
@@ -250,7 +250,7 @@ namespace NPOI.SS.UserModel
         /// <returns>
         /// an iterator of the PHYSICAL rows.  Meaning the 3rd element may not
         /// be the third row if say for instance the second row is undefined.
-        /// Call <see cref="NPOI.SS.UserModel.IRow.RowNum"/> on each row 
+        /// Call <see cref="Npoi.Core.SS.UserModel.IRow.RowNum"/> on each row 
         /// if you care which one it is.
         /// </returns>
         IEnumerator GetRowEnumerator();

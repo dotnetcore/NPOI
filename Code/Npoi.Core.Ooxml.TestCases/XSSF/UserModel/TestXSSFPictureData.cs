@@ -18,11 +18,11 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using System;
-using NPOI.Util;
-using NPOI.SS.UserModel;
+using Npoi.Core.Util;
+using Npoi.Core.SS.UserModel;
 using System.Collections;
 using System.Text;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * @author Yegor Kozlov

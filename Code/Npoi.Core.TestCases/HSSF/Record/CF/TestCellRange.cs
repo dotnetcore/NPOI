@@ -19,10 +19,10 @@ namespace TestCases.HSSF.Record.CF
 {
     using System;
     using NUnit.Framework;
-    using NPOI.HSSF.Record.CF;
-    using NPOI.HSSF.Util;
-    using NPOI.SS.Util;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record.CF;
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
 
     /**
      * Tests CellRange operations.

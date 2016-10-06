@@ -32,9 +32,9 @@ using System.IO;
 
 using NUnit.Framework;
 
-using NPOI.POIFS.Common;
-using NPOI.POIFS.Storage;
-using NPOI.POIFS.Properties;
+using Npoi.Core.POIFS.Common;
+using Npoi.Core.POIFS.Storage;
+using Npoi.Core.POIFS.Properties;
 using System.Collections.Generic;
 using TestCases.POIFS.Storage;
 
@@ -449,12 +449,12 @@ namespace TestCases.POIFS.Properties
 
             Assert.AreEqual(30 * 64, table.Root.Size);
             int count = 0;
-            NPOI.POIFS.Properties.Property child = null;
-            IEnumerator<NPOI.POIFS.Properties.Property> iter = table.Root.Children;
+            Npoi.Core.POIFS.Properties.Property child = null;
+            IEnumerator<Npoi.Core.POIFS.Properties.Property> iter = table.Root.Children;
 
             while (iter.MoveNext())
             {
-                child = (NPOI.POIFS.Properties.Property)iter.Current;
+                child = (Npoi.Core.POIFS.Properties.Property)iter.Current;
                 ++count;
             }
             if (child == null)

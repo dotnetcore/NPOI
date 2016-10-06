@@ -1,4 +1,4 @@
-﻿namespace NPOI.SS.UserModel
+﻿namespace Npoi.Core.SS.UserModel
 {
     public interface IColor
     {

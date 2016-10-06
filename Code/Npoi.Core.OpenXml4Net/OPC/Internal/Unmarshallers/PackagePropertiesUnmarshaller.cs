@@ -7,11 +7,11 @@ using System.Collections;
 using System.Linq;
 using System.Xml.Linq;
 using System.Xml.XPath;
-using NPOI.OpenXml4Net.Exceptions;
+using Npoi.Core.OpenXml4Net.Exceptions;
 using ICSharpCode.SharpZipLib.Zip;
-using NPOI;
-using NPOI.Util;
-namespace NPOI.OpenXml4Net.OPC.Internal.Unmarshallers
+using Npoi.Core;
+using Npoi.Core.Util;
+namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
 {
 	/**
      * Package properties unmarshaller.

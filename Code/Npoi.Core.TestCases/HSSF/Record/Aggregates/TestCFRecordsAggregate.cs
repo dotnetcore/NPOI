@@ -23,12 +23,12 @@ namespace TestCases.HSSF.Record.Aggregates
 
     using NUnit.Framework;
 
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.Aggregates;
-    using NPOI.HSSF.UserModel;
-    using NPOI.HSSF.Util;
-    using NPOI.SS.Util;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Aggregates;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.SS.UserModel;
 
     /**
      * Tests the serialization and deserialization of the CFRecordsAggregate
@@ -120,7 +120,7 @@ namespace TestCases.HSSF.Record.Aggregates
             byte[] serializedRecord = new byte[agg.RecordSize];
             agg.Serialize(0, serializedRecord);
 
-            int nRules = NPOI.Util.LittleEndian.GetUShort(serializedRecord, 4);
+            int nRules = Npoi.Core.Util.LittleEndian.GetUShort(serializedRecord, 4);
             if (nRules == 0)
             {
                 throw new AssertionException("Identified bug 45682 b");

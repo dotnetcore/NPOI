@@ -15,8 +15,8 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.SS.UserModel.Charts;
-namespace NPOI.XSSF.UserModel.Charts
+using Npoi.Core.SS.UserModel.Charts;
+namespace Npoi.Core.XSSF.UserModel.Charts
 {
 
     /**

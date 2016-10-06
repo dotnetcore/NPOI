@@ -15,9 +15,9 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
     using System.Globalization;
 
     /**
@@ -27,8 +27,8 @@ namespace NPOI.HSSF.UserModel
      * include currency, SSN, percentages, decimals, dates, phone numbers, zip
      * codes, etc.
      * 
-     * Internally, formats will be implemented using subclasses of <see cref="NPOI.SS.Util.FormatBase"/>
-     * such as <see cref="NPOI.SS.Util.DecimalFormat"/> and <see cref="NPOI.SS.Util.SimpleDateFormat"/>. Therefore the
+     * Internally, formats will be implemented using subclasses of <see cref="Npoi.Core.SS.Util.FormatBase"/>
+     * such as <see cref="Npoi.Core.SS.Util.DecimalFormat"/> and <see cref="Npoi.Core.SS.Util.SimpleDateFormat"/>. Therefore the
      * formats used by this class must obey the same pattern rules as these Format
      * subclasses. This means that only legal number pattern characters ("0", "#",
      * ".", "," etc.) may appear in number formats. Other characters can be

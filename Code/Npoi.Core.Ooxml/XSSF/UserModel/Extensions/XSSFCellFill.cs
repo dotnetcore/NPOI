@@ -14,9 +14,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.OpenXmlFormats;
-namespace NPOI.XSSF.UserModel.Extensions
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.OpenXmlFormats;
+namespace Npoi.Core.XSSF.UserModel.Extensions
 {
 
     /**

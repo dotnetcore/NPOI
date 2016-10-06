@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-using NPOI.OpenXml4Net.Exceptions;
+using Npoi.Core.OpenXml4Net.Exceptions;
 using System.Collections;
 
-namespace NPOI.OpenXml4Net.OPC.Internal
+namespace Npoi.Core.OpenXml4Net.OPC.Internal
 {
     /**
      * Represents a immutable MIME ContentType value (RFC 2616 &#167;3.7)

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace NPOI.SS.Formula.Functions
+namespace Npoi.Core.SS.Formula.Functions
 {
 
 

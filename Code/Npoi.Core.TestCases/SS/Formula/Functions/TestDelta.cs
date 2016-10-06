@@ -15,14 +15,14 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.SS.Formula.Eval;
-using NPOI.SS.Formula.Functions;
+using Npoi.Core.SS.Formula.Eval;
+using Npoi.Core.SS.Formula.Functions;
 using System;
 using NUnit.Framework;
 namespace TestCases.SS.Formula.Functions
 {
     /**
-     * Tests for {@link NPOI.ss.formula.functions.Delta}
+     * Tests for {@link Npoi.Core.ss.formula.functions.Delta}
      *
      * @author cedric dot walter @ gmail dot com
      */

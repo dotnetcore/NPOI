@@ -21,7 +21,7 @@ namespace TestCases.HSSF.Record
 
     using NUnit.Framework;
     using TestCases.HSSF.Record;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Record;
     /**
      */
     [TestFixture]

@@ -14,10 +14,10 @@
 * See the License for the specific language governing permissions and
 * limitations Under the License.
 */
-namespace NPOI.SS.Formula.Functions
+namespace Npoi.Core.SS.Formula.Functions
 {
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.UserModel;
 
     /**
      * @author Pavel Krupets (pkrupets at palmtreebusiness dot com)

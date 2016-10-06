@@ -17,10 +17,10 @@
 ==================================================================== */
 
 
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
 
-    using NPOI.Util;
+    using Npoi.Core.Util;
     using System;
     using System.Text;
 

@@ -20,9 +20,9 @@
 using System;
 using System.Collections;
 
-using NPOI.POIFS.FileSystem;
+using Npoi.Core.POIFS.FileSystem;
 
-namespace NPOI.POIFS.EventFileSystem
+namespace Npoi.Core.POIFS.EventFileSystem
 {
     /**
      * A registry for POIFSReaderListeners and the DocumentDescriptors of

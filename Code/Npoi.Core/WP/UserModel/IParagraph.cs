@@ -15,7 +15,7 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.WP.UserModel
+namespace Npoi.Core.WP.UserModel
 {
     using System;
 

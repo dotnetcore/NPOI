@@ -15,12 +15,12 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.XSSF.Model
+namespace Npoi.Core.XSSF.Model
 {
     using System;
 
-    using NPOI.SS.UserModel;
-    using NPOI.XSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.XSSF.UserModel;
     using NUnit.Framework;
 
 

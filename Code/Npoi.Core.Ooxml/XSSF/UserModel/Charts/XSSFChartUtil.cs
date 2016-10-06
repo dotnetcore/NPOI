@@ -18,10 +18,10 @@
  */
 
 using System;
-using NPOI.OpenXmlFormats.Dml.Chart;
-using NPOI.SS.UserModel.Charts;
+using Npoi.Core.OpenXmlFormats.Dml.Chart;
+using Npoi.Core.SS.UserModel.Charts;
 
-namespace NPOI.XSSF.UserModel.Charts
+namespace Npoi.Core.XSSF.UserModel.Charts
 {
     /**
      * Package private class with utility methods.

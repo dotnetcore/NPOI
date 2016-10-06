@@ -18,15 +18,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NPOI.HSSF.Record;
-using NPOI.HSSF.UserModel;
+using Npoi.Core.HSSF.Record;
+using Npoi.Core.HSSF.UserModel;
 using System.IO;
-using NPOI.Util;
+using Npoi.Core.Util;
 using NUnit.Framework;
 using TestCases.HSSF.UserModel;
-using NPOI.HSSF.Model;
-using NPOI.DDF;
-using NPOI.HSSF.Record.Aggregates;
+using Npoi.Core.HSSF.Model;
+using Npoi.Core.DDF;
+using Npoi.Core.HSSF.Record.Aggregates;
 
 namespace TestCases.HSSF.Model
 {
@@ -102,7 +102,7 @@ namespace TestCases.HSSF.Model
                 MemoryStream out1 = new MemoryStream();
                 foreach (RecordBase rb in aggRecords)
                 {
-                    NPOI.HSSF.Record.Record r = (NPOI.HSSF.Record.Record)rb;
+                    Npoi.Core.HSSF.Record.Record r = (Npoi.Core.HSSF.Record.Record)rb;
                     try
                     {
                         byte[] data = r.Serialize();
@@ -268,7 +268,7 @@ namespace TestCases.HSSF.Model
             MemoryStream out1 = new MemoryStream();
             foreach (RecordBase rb in records)
             {
-                NPOI.HSSF.Record.Record r = (NPOI.HSSF.Record.Record)rb;
+                Npoi.Core.HSSF.Record.Record r = (Npoi.Core.HSSF.Record.Record)rb;
                 try
                 {
                     byte[] data = r.Serialize();
@@ -381,7 +381,7 @@ namespace TestCases.HSSF.Model
 
             foreach (RecordBase rb in dgRecords)
             {
-                NPOI.HSSF.Record.Record r = (NPOI.HSSF.Record.Record)rb;
+                Npoi.Core.HSSF.Record.Record r = (Npoi.Core.HSSF.Record.Record)rb;
                 short sid = r.Sid;
                 // we expect that Drawing block consists of either
                 // DrawingRecord or ContinueRecord or ObjRecord or TextObjectRecord
@@ -442,7 +442,7 @@ namespace TestCases.HSSF.Model
             List<RecordBase> dgRecords = records.GetRange(19, 26-19);
             foreach (RecordBase rb in dgRecords)
             {
-                NPOI.HSSF.Record.Record r = (NPOI.HSSF.Record.Record)rb;
+                Npoi.Core.HSSF.Record.Record r = (Npoi.Core.HSSF.Record.Record)rb;
                 short sid = r.Sid;
                 // we expect that Drawing block consists of either
                 // DrawingRecord or ContinueRecord or ObjRecord or TextObjectRecord
@@ -498,10 +498,10 @@ namespace TestCases.HSSF.Model
                 RecordBase r2 = records2[(i)];
                 Assert.IsTrue(r1.GetType() == r2.GetType());
                 Assert.AreEqual(r1.RecordSize, r2.RecordSize);
-                if (r1 is NPOI.HSSF.Record.Record)
+                if (r1 is Npoi.Core.HSSF.Record.Record)
                 {
-                    Assert.AreEqual(((NPOI.HSSF.Record.Record)r1).Sid, ((NPOI.HSSF.Record.Record)r2).Sid);
-                    Assert.IsTrue(Arrays.Equals(((NPOI.HSSF.Record.Record)r1).Serialize(), ((NPOI.HSSF.Record.Record)r2).Serialize()));
+                    Assert.AreEqual(((Npoi.Core.HSSF.Record.Record)r1).Sid, ((Npoi.Core.HSSF.Record.Record)r2).Sid);
+                    Assert.IsTrue(Arrays.Equals(((Npoi.Core.HSSF.Record.Record)r1).Serialize(), ((Npoi.Core.HSSF.Record.Record)r2).Serialize()));
                 }
             }
         }
@@ -525,7 +525,7 @@ namespace TestCases.HSSF.Model
             List<RecordBase> dgRecords = records.GetRange(19, 39 - 19);
             foreach (RecordBase rb in dgRecords)
             {
-                NPOI.HSSF.Record.Record r = (NPOI.HSSF.Record.Record)rb;
+                Npoi.Core.HSSF.Record.Record r = (Npoi.Core.HSSF.Record.Record)rb;
                 short sid = r.Sid;
                 // we expect that Drawing block consists of either
                 // DrawingRecord or ContinueRecord or ObjRecord or TextObjectRecord
@@ -582,7 +582,7 @@ namespace TestCases.HSSF.Model
             List<RecordBase> dgRecords = records.GetRange(22, 300 - 22);
             foreach (RecordBase rb in dgRecords)
             {
-                NPOI.HSSF.Record.Record r = (NPOI.HSSF.Record.Record)rb;
+                Npoi.Core.HSSF.Record.Record r = (Npoi.Core.HSSF.Record.Record)rb;
                 short sid = r.Sid;
                 // we expect that Drawing block consists of either
                 // DrawingRecord or ContinueRecord or ObjRecord or TextObjectRecord
@@ -1283,7 +1283,7 @@ namespace TestCases.HSSF.Model
                             "     ";
 
             byte[] dgBytes = HexRead.ReadFromString(data);
-            IList<NPOI.HSSF.Record.Record> dgRecords = RecordFactory.CreateRecords(new MemoryStream(dgBytes));
+            IList<Npoi.Core.HSSF.Record.Record> dgRecords = RecordFactory.CreateRecords(new MemoryStream(dgBytes));
             Assert.AreEqual(20, dgRecords.Count);
 
             short[] expectedSids = {
@@ -2243,7 +2243,7 @@ namespace TestCases.HSSF.Model
 
 
             byte[] dgBytes = HexRead.ReadFromString(data);
-            IList<NPOI.HSSF.Record.Record> dgRecords = RecordFactory.CreateRecords(new MemoryStream(dgBytes));
+            IList<Npoi.Core.HSSF.Record.Record> dgRecords = RecordFactory.CreateRecords(new MemoryStream(dgBytes));
             Assert.AreEqual(14, dgRecords.Count);
 
             short[] expectedSids = {

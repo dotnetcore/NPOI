@@ -16,19 +16,19 @@
 ==================================================================== */
 
 using System;
-using NPOI.XSSF.UserModel;
+using Npoi.Core.XSSF.UserModel;
 using System.Xml;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using NPOI.XSSF.UserModel.Helpers;
+using Npoi.Core.XSSF.UserModel.Helpers;
 using System.Text.RegularExpressions;
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.SS.UserModel;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
 using System.Text;
 using System.Xml.Linq;
 
-namespace NPOI.XSSF.Extractor
+namespace Npoi.Core.XSSF.Extractor
 {
 
     /**

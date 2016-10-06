@@ -15,7 +15,7 @@
 //   limitations under the License.
 //==================================================================== */
 
-//namespace NPOI.xssf.extractor;
+//namespace Npoi.Core.xssf.extractor;
 
 
 
@@ -31,14 +31,14 @@
 //using javax.xml.xpath.XPathExpressionException;
 //using javax.xml.xpath.XPathFactory;
 
-//using NPOI.util.POILogFactory;
-//using NPOI.util.POILogger;
-//using NPOI.xssf.usermodel.XSSFTable;
-//using NPOI.xssf.usermodel.XSSFCell;
-//using NPOI.xssf.usermodel.XSSFMap;
-//using NPOI.xssf.usermodel.XSSFRow;
-//using NPOI.xssf.usermodel.helpers.XSSFSingleXmlCell;
-//using NPOI.xssf.usermodel.helpers.XSSFXmlColumnPr;
+//using Npoi.Core.util.POILogFactory;
+//using Npoi.Core.util.POILogger;
+//using Npoi.Core.xssf.usermodel.XSSFTable;
+//using Npoi.Core.xssf.usermodel.XSSFCell;
+//using Npoi.Core.xssf.usermodel.XSSFMap;
+//using Npoi.Core.xssf.usermodel.XSSFRow;
+//using Npoi.Core.xssf.usermodel.helpers.XSSFSingleXmlCell;
+//using Npoi.Core.xssf.usermodel.helpers.XSSFXmlColumnPr;
 //using org.w3c.dom.Document;
 //using org.w3c.dom.Element;
 //using org.w3c.dom.NamedNodeMap;

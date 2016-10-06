@@ -1,7 +1,7 @@
 ﻿// TODO: Port
 //using System.IO;
 //using NUnit.Framework;
-//using NPOI.OpenXmlFormats.Spreadsheet;
+//using Npoi.Core.OpenXmlFormats.Spreadsheet;
 
 //namespace ooxml.Testcases
 //{

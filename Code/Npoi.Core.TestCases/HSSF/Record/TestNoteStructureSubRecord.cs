@@ -17,7 +17,7 @@
 namespace TestCases.HSSF.Record
 {
     using System;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Record;
 
     using NUnit.Framework;
 
@@ -72,7 +72,7 @@ namespace TestCases.HSSF.Record
             byte[] cln = cloned.Serialize();
 
             Assert.AreEqual(record.DataSize, cloned.DataSize);
-            Assert.IsTrue(NPOI.Util.Arrays.Equals(src, cln));
+            Assert.IsTrue(Npoi.Core.Util.Arrays.Equals(src, cln));
         }
     }
 }

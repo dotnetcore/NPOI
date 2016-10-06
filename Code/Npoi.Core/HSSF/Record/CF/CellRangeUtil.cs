@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Record.CF
+namespace Npoi.Core.HSSF.Record.CF
 {
     using System;
     using System.Collections;
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.Util;
     using System.Collections.Generic;
 
     /**
@@ -98,7 +98,7 @@ namespace NPOI.HSSF.Record.CF
             {
                 return cellRanges;
             }
-            //ArrayList temp = MergeCellRanges(NPOI.Util.Arrays.AsList(cellRanges));
+            //ArrayList temp = MergeCellRanges(Npoi.Core.Util.Arrays.AsList(cellRanges));
             List<CellRangeAddress> lst = new List<CellRangeAddress>(cellRanges);
             List<CellRangeAddress> temp = MergeCellRanges(lst);
             return temp.ToArray();

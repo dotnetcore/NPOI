@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     using System;
-    using NPOI.OpenXml4Net.OPC;
-    using NPOI.Util;
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.Util;
     using System.IO;
 
     /// <summary>
@@ -136,12 +136,12 @@ namespace NPOI.XWPF.UserModel
          * Return an integer constant that specifies type of this picture
          * 
          * @return an integer constant that specifies type of this picture
-         * @see NPOI.XWPF.UserModel.PictureTypeEMF
-         * @see NPOI.XWPF.UserModel.PictureTypeWMF
-         * @see NPOI.XWPF.UserModel.PictureTypePICT
-         * @see NPOI.XWPF.UserModel.PictureTypeJPEG
-         * @see NPOI.XWPF.UserModel.PictureTypePNG
-         * @see NPOI.XWPF.UserModel.PictureTypeDIB
+         * @see Npoi.Core.XWPF.UserModel.PictureTypeEMF
+         * @see Npoi.Core.XWPF.UserModel.PictureTypeWMF
+         * @see Npoi.Core.XWPF.UserModel.PictureTypePICT
+         * @see Npoi.Core.XWPF.UserModel.PictureTypeJPEG
+         * @see Npoi.Core.XWPF.UserModel.PictureTypePNG
+         * @see Npoi.Core.XWPF.UserModel.PictureTypeDIB
          */
         public int GetPictureType()
         {

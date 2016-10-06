@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.DDF
+namespace Npoi.Core.DDF
 {
     using System;
-    using NPOI.Util;
+    using Npoi.Core.Util;
     using System.Diagnostics;
     public class SysIndexSource
     {
@@ -312,7 +312,7 @@ namespace NPOI.DDF
         /**
          * @return index of the scheme color or -1 if {@link #hasSchemeIndexFlag()} is {@code false}
          * 
-         * @see NPOI.HSLF.Record.ColorSchemeAtom#getColor(int)
+         * @see Npoi.Core.HSLF.Record.ColorSchemeAtom#getColor(int)
          */
         public int GetSchemeIndex()
         {

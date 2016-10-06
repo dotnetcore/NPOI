@@ -20,15 +20,15 @@ namespace TestCases.HSSF.Record
     using System;
     using NUnit.Framework;
     using NUnit.Framework.Constraints;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.CF;
-    using NPOI.SS.Formula;
-    using NPOI.HSSF.UserModel;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.Util;
-    using NPOI.Util;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.CF;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.Util;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Formula.PTG;
 
     /**
      * Tests the serialization and deserialization of the TestCFRuleRecord

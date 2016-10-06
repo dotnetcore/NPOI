@@ -18,13 +18,13 @@
 /*
  * HSSF Chart Title Format Record Type
  */
-namespace NPOI.HSSF.Record.Chart
+namespace Npoi.Core.HSSF.Record.Chart
 {
 
     using System;
     using System.Collections;
     using System.Text;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
 
     /*

@@ -15,13 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula
+namespace Npoi.Core.SS.Formula
 {
 
     using System;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.Util;
 
     /**
      * Abstracts a workbook for the purpose of formula parsing.<br/>

@@ -15,17 +15,17 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.OpenXml4Net.OPC;
+using Npoi.Core.OpenXml4Net.OPC;
 using System;
-using NPOI.XSSF.UserModel;
+using Npoi.Core.XSSF.UserModel;
 using System.IO;
-using NPOI.SS.UserModel;
-using NPOI.HSSF.UserModel;
-using NPOI.Util;
-using NPOI.HSSF;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.Util;
+using Npoi.Core.HSSF;
 using TestCases.HSSF;
 using System.Diagnostics;
-namespace NPOI.XSSF
+namespace Npoi.Core.XSSF
 {
 
     /**

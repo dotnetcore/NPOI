@@ -21,10 +21,10 @@ namespace TestCases.HSSF.Record.Pivot
 
     using NUnit.Framework;
 
-    using NPOI.HSSF.Record;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.Util;
     using TestCases.HSSF.Record;
-    using NPOI.HSSF.Record.PivotTable;
+    using Npoi.Core.HSSF.Record.PivotTable;
 
     /**
      * Tests for {@link ViewFieldsRecord}

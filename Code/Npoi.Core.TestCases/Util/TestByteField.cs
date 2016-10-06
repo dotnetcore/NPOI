@@ -30,7 +30,7 @@ using System.Collections.Generic;
 
 using NUnit.Framework;
 using System.IO;
-using NPOI.Util;
+using Npoi.Core.Util;
 
 namespace TestCases.Util
 {

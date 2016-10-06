@@ -17,14 +17,14 @@
 ==================================================================== */
 
 
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
     using System;
-    using NPOI.HSSF.Record;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.Util;
     using System.Text;
 
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.SS.Formula.PTG;
 
     /**
      * Not implemented yet. May commit it anyway just so people can see

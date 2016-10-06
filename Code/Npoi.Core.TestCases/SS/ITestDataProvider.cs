@@ -1,6 +1,6 @@
 ﻿using System;
-using NPOI.SS.UserModel;
-using NPOI.SS;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS;
 
 namespace TestCases.SS
 {

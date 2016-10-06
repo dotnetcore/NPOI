@@ -4,10 +4,10 @@ using System.Text;
 using System.Xml;
 using System.Xml.XPath;
 
-using NPOI.OpenXml4Net.Exceptions;
-using NPOI.Util;
+using Npoi.Core.OpenXml4Net.Exceptions;
+using Npoi.Core.Util;
 
-namespace NPOI.OpenXml4Net.OPC
+namespace Npoi.Core.OpenXml4Net.OPC
 {
     /**
      * Represents a collection of PackageRelationship elements that are owned by a

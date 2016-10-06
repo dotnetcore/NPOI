@@ -16,10 +16,10 @@
 ==================================================================== */
 
 using System;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
-using NPOI.SS.UserModel.Charts;
-using NPOI.SS.Util;
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.UserModel.Charts;
+using Npoi.Core.SS.Util;
 using NUnit.Framework;
 
 namespace TestCases.SS.UserModel.Charts

@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace NPOI.OpenXmlFormats.Spreadsheet
+namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
     public class ChartsheetDocument
     {

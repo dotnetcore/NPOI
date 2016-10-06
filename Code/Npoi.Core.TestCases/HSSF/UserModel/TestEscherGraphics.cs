@@ -21,8 +21,8 @@ namespace TestCases.HSSF.UserModel
     using System.IO;
     using System.Drawing;
 
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
 
 
     using NUnit.Framework;
@@ -51,7 +51,7 @@ namespace TestCases.HSSF.UserModel
             TestCases.CultureShim.SetCurrentCulture("en-US");
             workbook = new HSSFWorkbook();
 
-            NPOI.SS.UserModel.ISheet sheet = workbook.CreateSheet("Test");
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook.CreateSheet("Test");
             patriarch = (HSSFPatriarch)sheet.CreateDrawingPatriarch();
             escherGroupA = patriarch.CreateGroup(new HSSFClientAnchor(0, 0, 1022, 255, (short)0, 0, (short)0, 0));
             escherGroupB = patriarch.CreateGroup(new HSSFClientAnchor(20, 30, 500, 200, (short)0, 0, (short)0, 0));

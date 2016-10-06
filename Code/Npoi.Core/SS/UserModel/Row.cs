@@ -15,7 +15,7 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.UserModel
+namespace Npoi.Core.SS.UserModel
 {
     using System.Collections.Generic;
     using System.Collections;
@@ -71,7 +71,7 @@ namespace NPOI.SS.UserModel
         /// <throws>ArgumentException if columnIndex &lt; 0 or greater than the maximum number of supported columns
         /// (255 for *.xls, 1048576 for *.xlsx)
         /// </throws>
-        ICell CreateCell(int column, NPOI.SS.UserModel.CellType type);
+        ICell CreateCell(int column, Npoi.Core.SS.UserModel.CellType type);
 
         /// <summary>
         /// Remove the Cell from this row.
@@ -91,11 +91,11 @@ namespace NPOI.SS.UserModel
         /// </summary>
         /// <param name="cellnum">0 based column number</param>
         /// <returns>Cell representing that column or null if undefined.</returns>
-        /// <see cref="GetCell(int, NPOI.SS.UserModel.MissingCellPolicy)"/>
+        /// <see cref="GetCell(int, Npoi.Core.SS.UserModel.MissingCellPolicy)"/>
         ICell GetCell(int cellnum);
 
         /// <summary>
-        /// Returns the cell at the given (0 based) index, with the specified {@link NPOI.SS.usermodel.Row.MissingCellPolicy}
+        /// Returns the cell at the given (0 based) index, with the specified {@link Npoi.Core.SS.usermodel.Row.MissingCellPolicy}
         /// </summary>
         /// <returns>the cell at the given (0 based) index</returns>
         /// <throws>ArgumentException if cellnum &lt; 0 or the specified MissingCellPolicy is invalid</throws>

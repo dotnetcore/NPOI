@@ -14,10 +14,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ==================================================================== */
-using NPOI.SS.Util;
+using Npoi.Core.SS.Util;
 using NUnit.Framework;
 using TestCases.HSSF.Record;
-using NPOI.Util;
+using Npoi.Core.Util;
 using System.IO;
 using System;
 namespace TestCases.SS.Util

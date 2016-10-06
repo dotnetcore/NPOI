@@ -17,10 +17,10 @@
 
 using System;
 using System.Collections.Generic;
-using NPOI.SS.Formula;
-using NPOI.SS.UserModel;
-using NPOI.SS.Util;
-namespace NPOI.SS.Formula.Eval.Forked
+using Npoi.Core.SS.Formula;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.Util;
+namespace Npoi.Core.SS.Formula.Eval.Forked
 {
 
 

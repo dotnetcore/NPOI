@@ -3,7 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 
 using NUnit.Framework;
-using NPOI.SS;
+using Npoi.Core.SS;
 
 namespace TestCases.SS
 {

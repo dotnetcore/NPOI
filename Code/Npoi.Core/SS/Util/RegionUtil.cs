@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Util
+namespace Npoi.Core.SS.Util
 {
     using System;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
 
     /**
      * Various utility functions that make working with a region of cells easier.

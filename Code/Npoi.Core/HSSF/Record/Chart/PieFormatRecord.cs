@@ -1,7 +1,7 @@
 ﻿using System.Text;
-using NPOI.Util;
+using Npoi.Core.Util;
 
-namespace NPOI.HSSF.Record.Chart
+namespace Npoi.Core.HSSF.Record.Chart
 {
     /// <summary>
     /// The PieFormat record specifies the distance of a data point or data points in a series from the center of one of the following:
@@ -32,7 +32,7 @@ namespace NPOI.HSSF.Record.Chart
             get { return 2; }
         }
 
-        public override void Serialize(NPOI.Util.ILittleEndianOutput out1)
+        public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             out1.WriteShort(field_1_pcExplode);
         }

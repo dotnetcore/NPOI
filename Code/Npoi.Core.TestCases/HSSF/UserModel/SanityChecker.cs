@@ -21,10 +21,10 @@ namespace TestCases.HSSF.UserModel
 {
     using System;
     using System.Collections;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.Aggregates;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Aggregates;
+    using Npoi.Core.HSSF.UserModel;
 
     using NUnit.Framework;
 

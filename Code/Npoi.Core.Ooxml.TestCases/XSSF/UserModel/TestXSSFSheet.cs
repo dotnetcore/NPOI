@@ -15,21 +15,21 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.XSSF.UserModel;
+using Npoi.Core.XSSF.UserModel;
 using NUnit.Framework;
-using NPOI.XSSF.UserModel.Helpers;
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.SS.UserModel;
-using NPOI.SS.Util;
-using NPOI.XSSF.Model;
+using Npoi.Core.XSSF.UserModel.Helpers;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.Util;
+using Npoi.Core.XSSF.Model;
 using System.Collections.Generic;
 using System;
-using NPOI.XSSF;
-using NPOI.Util;
-using NPOI.HSSF.Record;
+using Npoi.Core.XSSF;
+using Npoi.Core.Util;
+using Npoi.Core.HSSF.Record;
 using TestCases.SS.UserModel;
 using TestCases.HSSF;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     [TestFixture]
     public class TestXSSFSheet : BaseTestSheet

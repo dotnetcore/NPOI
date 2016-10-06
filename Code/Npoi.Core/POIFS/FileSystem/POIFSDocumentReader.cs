@@ -28,7 +28,7 @@
 using System;
 using System.IO;
 
-namespace NPOI.POIFS.FileSystem
+namespace Npoi.Core.POIFS.FileSystem
 {
     /// <summary>
     /// This class provides methods to read a DocumentEntry managed by a

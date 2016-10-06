@@ -1,7 +1,7 @@
 ﻿using System;
-using NPOI.SS.Util;
+using Npoi.Core.SS.Util;
 
-namespace NPOI.SS
+namespace Npoi.Core.SS
 {
     /**
      * This enum allows spReadsheets from multiple Excel versions to be handled by the common code.

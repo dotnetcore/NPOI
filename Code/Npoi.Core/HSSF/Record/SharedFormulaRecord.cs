@@ -15,15 +15,15 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
     using System;
     using System.Text;
-    using NPOI.SS.Formula;
-    using NPOI.Util;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.Util;
-    using NPOI.SS;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.Util;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.SS;
 
     /**
      * Title:        SharedFormulaRecord
@@ -42,12 +42,12 @@ namespace NPOI.HSSF.Record
 
 
         private int field_5_reserved;
-        private NPOI.SS.Formula.Formula field_7_parsed_expr;
+        private Npoi.Core.SS.Formula.Formula field_7_parsed_expr;
 
         public SharedFormulaRecord()
             : this(new CellRangeAddress8Bit(0, 0, 0, 0))
         {
-            //field_7_parsed_expr = NPOI.SS.Formula.Formula.Create(Ptg.EMPTY_PTG_ARRAY);
+            //field_7_parsed_expr = Npoi.Core.SS.Formula.Formula.Create(Ptg.EMPTY_PTG_ARRAY);
         }
         private SharedFormulaRecord(CellRangeAddress8Bit range):
             base(range)
@@ -64,7 +64,7 @@ namespace NPOI.HSSF.Record
             field_5_reserved = in1.ReadShort();
             int field_6_expression_len = in1.ReadShort();
             int nAvailableBytes = in1.Available();
-            field_7_parsed_expr = NPOI.SS.Formula.Formula.Read(field_6_expression_len, in1, nAvailableBytes);
+            field_7_parsed_expr = Npoi.Core.SS.Formula.Formula.Read(field_6_expression_len, in1, nAvailableBytes);
         }
         protected override int ExtraDataSize
         {

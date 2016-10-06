@@ -5,11 +5,11 @@ using System.ComponentModel;
 using System.Text;
 using System.Xml.Serialization;
 using System.IO;
-using NPOI.OpenXml4Net.Util;
+using Npoi.Core.OpenXml4Net.Util;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace NPOI.OpenXmlFormats.Spreadsheet
+namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]

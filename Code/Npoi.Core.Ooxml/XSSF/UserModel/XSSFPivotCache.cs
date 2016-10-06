@@ -17,13 +17,13 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     using System;
-    using NPOI.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXml4Net.OPC;
     using System.IO;
     using System.Xml;
-    using NPOI.OpenXmlFormats.Spreadsheet;
+    using Npoi.Core.OpenXmlFormats.Spreadsheet;
 
     public class XSSFPivotCache : POIXMLDocumentPart
     {

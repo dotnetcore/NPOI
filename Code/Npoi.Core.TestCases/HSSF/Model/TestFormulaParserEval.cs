@@ -19,10 +19,10 @@ namespace TestCases.HSSF.Model
 {
     using System;
     using NUnit.Framework;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.UserModel;
 
     /**
      * Test the low level formula parser functionality,
@@ -72,7 +72,7 @@ namespace TestCases.HSSF.Model
         {
 
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sheet = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet();
             wb.SetSheetName(0, "Sheet1");
 
             IRow row = sheet.CreateRow(0);
@@ -85,7 +85,7 @@ namespace TestCases.HSSF.Model
 
             //HSSFFormulaEvaluator fe = new HSSFFormulaEvaluator(sheet, wb);
             HSSFFormulaEvaluator fe = new HSSFFormulaEvaluator(wb);
-            NPOI.SS.UserModel.CellValue result;
+            Npoi.Core.SS.UserModel.CellValue result;
             try
             {
                 result = fe.Evaluate(cell);
@@ -98,7 +98,7 @@ namespace TestCases.HSSF.Model
                 }
                 throw;
             }
-            Assert.AreEqual(NPOI.SS.UserModel.CellType.Numeric, result.CellType);
+            Assert.AreEqual(Npoi.Core.SS.UserModel.CellType.Numeric, result.CellType);
             Assert.AreEqual(42.0, result.NumberValue, 0.0);
         }
     }

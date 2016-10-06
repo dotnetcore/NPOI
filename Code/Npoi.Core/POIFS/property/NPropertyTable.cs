@@ -20,12 +20,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using NPOI.POIFS.Common;
-using NPOI.POIFS.FileSystem;
-using NPOI.POIFS.Storage;
-using NPOI.Util;
+using Npoi.Core.POIFS.Common;
+using Npoi.Core.POIFS.FileSystem;
+using Npoi.Core.POIFS.Storage;
+using Npoi.Core.Util;
 
-namespace NPOI.POIFS.Properties
+namespace Npoi.Core.POIFS.Properties
 {
     public class NPropertyTable : PropertyTableBase
     {

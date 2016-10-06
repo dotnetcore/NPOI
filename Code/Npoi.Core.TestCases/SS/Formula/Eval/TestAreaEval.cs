@@ -17,11 +17,11 @@
 
 namespace TestCases.SS.Formula.Eval
 {
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.Formula.Functions;
     using TestCases.SS.Formula.Functions;
     using NUnit.Framework;
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Eval;
 
     /**
      * Tests for <c>AreaEval</c>

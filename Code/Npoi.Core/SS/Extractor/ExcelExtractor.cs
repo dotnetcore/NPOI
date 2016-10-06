@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-namespace NPOI.SS.Extractor
+namespace Npoi.Core.SS.Extractor
 {
     using System;
 

@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using NUnit.Framework;
-using NPOI.XSSF.Model;
-namespace NPOI.XSSF.UserModel.Helpers
+using Npoi.Core.XSSF.Model;
+namespace Npoi.Core.XSSF.UserModel.Helpers
 {
     /**
      * Tests for {@link ColumnHelper}

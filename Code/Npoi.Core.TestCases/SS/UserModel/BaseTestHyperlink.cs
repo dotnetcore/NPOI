@@ -17,7 +17,7 @@
 
 using TestCases.SS;
 using NUnit.Framework;
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.UserModel;
 namespace TestCases.SS.UserModel
 {
 

@@ -17,7 +17,7 @@
 
 using System;
 using System.Collections.Generic;
-using NPOI.Util;
+using Npoi.Core.Util;
 namespace TestCases.SS.Util
 {
     /**

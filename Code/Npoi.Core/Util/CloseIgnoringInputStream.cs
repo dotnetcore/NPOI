@@ -27,7 +27,7 @@
 
 using System.IO;
 
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
     internal class CloseIgnoringInputStream : Stream
     {

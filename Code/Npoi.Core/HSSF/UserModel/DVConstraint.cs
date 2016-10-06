@@ -15,17 +15,17 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
     using System;
-    using NPOI.HSSF.Model;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.Formula;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.UserModel;
     using System.Text;
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.Util;
     using System.Globalization;
-using NPOI.HSSF.Record;
+using Npoi.Core.HSSF.Record;
 
     /**
      * 
@@ -104,11 +104,11 @@ using NPOI.HSSF.Record;
          * can be either standard Excel formulas or formatted number values. If the expression starts 
          * with '=' it is Parsed as a formula, otherwise it is Parsed as a formatted number. 
          * 
-         * @param validationType one of {@link NPOI.SS.UserModel.DataValidationConstraint.ValidationType#ANY},
-         * {@link NPOI.SS.UserModel.DataValidationConstraint.ValidationType#DECIMAL},
-         * {@link NPOI.SS.UserModel.DataValidationConstraint.ValidationType#INTEGER},
-         * {@link NPOI.SS.UserModel.DataValidationConstraint.ValidationType#TEXT_LENGTH}
-         * @param comparisonOperator any constant from {@link NPOI.SS.UserModel.DataValidationConstraint.OperatorType} enum
+         * @param validationType one of {@link Npoi.Core.SS.UserModel.DataValidationConstraint.ValidationType#ANY},
+         * {@link Npoi.Core.SS.UserModel.DataValidationConstraint.ValidationType#DECIMAL},
+         * {@link Npoi.Core.SS.UserModel.DataValidationConstraint.ValidationType#INTEGER},
+         * {@link Npoi.Core.SS.UserModel.DataValidationConstraint.ValidationType#TEXT_LENGTH}
+         * @param comparisonOperator any constant from {@link Npoi.Core.SS.UserModel.DataValidationConstraint.OperatorType} enum
          * @param expr1 date formula (when first char is '=') or formatted number value
          * @param expr2 date formula (when first char is '=') or formatted number value
          */
@@ -162,7 +162,7 @@ using NPOI.HSSF.Record;
          * formatted times, two formats are supported:  "HH:MM" or "HH:MM:SS".  This is contrary to 
          * Excel which uses the default time format from the OS.
          * 
-         * @param comparisonOperator constant from {@link NPOI.SS.UserModel.DataValidationConstraint.OperatorType} enum
+         * @param comparisonOperator constant from {@link Npoi.Core.SS.UserModel.DataValidationConstraint.OperatorType} enum
          * @param expr1 date formula (when first char is '=') or formatted time value
          * @param expr2 date formula (when first char is '=') or formatted time value
          */
@@ -190,7 +190,7 @@ using NPOI.HSSF.Record;
          * the same convention).  To parse formatted dates, a date format needs to be specified.  This
          * is contrary to Excel which uses the default short date format from the OS.
          * 
-         * @param comparisonOperator constant from {@link NPOI.SS.UserModel.DataValidationConstraint.OperatorType} enum
+         * @param comparisonOperator constant from {@link Npoi.Core.SS.UserModel.DataValidationConstraint.OperatorType} enum
          * @param expr1 date formula (when first char is '=') or formatted date value
          * @param expr2 date formula (when first char is '=') or formatted date value
          * @param dateFormat ignored if both expr1 and expr2 are formulas.  Default value is "YYYY/MM/DD"
@@ -315,7 +315,7 @@ using NPOI.HSSF.Record;
         }
 
         /* (non-Javadoc)
-         * @see NPOI.HSSF.UserModel.DataValidationConstraint#getValidationType()
+         * @see Npoi.Core.HSSF.UserModel.DataValidationConstraint#getValidationType()
          */
         public int GetValidationType()
         {
@@ -374,7 +374,7 @@ using NPOI.HSSF.Record;
             }
         }
         /* (non-Javadoc)
-         * @see NPOI.HSSF.UserModel.DataValidationConstraint#getFormula1()
+         * @see Npoi.Core.HSSF.UserModel.DataValidationConstraint#getFormula1()
          */
         public String Formula1
         {
@@ -391,7 +391,7 @@ using NPOI.HSSF.Record;
         }
 
         /* (non-Javadoc)
-         * @see NPOI.HSSF.UserModel.DataValidationConstraint#getFormula2()
+         * @see Npoi.Core.HSSF.UserModel.DataValidationConstraint#getFormula2()
          */
         public String Formula2
         {

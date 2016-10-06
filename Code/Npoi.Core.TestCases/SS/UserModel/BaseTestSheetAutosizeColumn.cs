@@ -20,12 +20,12 @@ namespace TestCases.SS.UserModel
     using System;
 
     using NUnit.Framework;
-    using NPOI.SS;
-    using NPOI.SS.Util;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.SS.UserModel;
     using System.Collections;
     using System.IO;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
 
 
 

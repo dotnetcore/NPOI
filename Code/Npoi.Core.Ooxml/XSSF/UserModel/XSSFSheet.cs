@@ -22,20 +22,20 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
-using NPOI.HSSF.Record;
-using NPOI.OpenXml4Net.Exceptions;
-using NPOI.OpenXml4Net.OPC;
-using NPOI.OpenXmlFormats;
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.SS;
-using NPOI.SS.Formula;
-using NPOI.SS.UserModel;
-using NPOI.SS.Util;
-using NPOI.Util;
-using NPOI.XSSF.Model;
-using NPOI.XSSF.UserModel.Helpers;
+using Npoi.Core.HSSF.Record;
+using Npoi.Core.OpenXml4Net.Exceptions;
+using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.OpenXmlFormats;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS;
+using Npoi.Core.SS.Formula;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.Util;
+using Npoi.Core.Util;
+using Npoi.Core.XSSF.Model;
+using Npoi.Core.XSSF.UserModel.Helpers;
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * High level representation of a SpreadsheetML worksheet.
@@ -70,7 +70,7 @@ namespace NPOI.XSSF.UserModel
         /**
          * Creates new XSSFSheet   - called by XSSFWorkbook to create a sheet from scratch.
          *
-         * @see NPOI.XSSF.usermodel.XSSFWorkbook#CreateSheet()
+         * @see Npoi.Core.XSSF.usermodel.XSSFWorkbook#CreateSheet()
          */
         public XSSFSheet()
             : base()
@@ -207,7 +207,7 @@ namespace NPOI.XSSF.UserModel
                     GetPackagePart().GetRelationshipsByType(XSSFRelation.SHEET_HYPERLINKS.Relation);
 
                 // Turn each one into a XSSFHyperlink
-                foreach (NPOI.OpenXmlFormats.Spreadsheet.CT_Hyperlink hyperlink in worksheet.hyperlinks.hyperlink)
+                foreach (Npoi.Core.OpenXmlFormats.Spreadsheet.CT_Hyperlink hyperlink in worksheet.hyperlinks.hyperlink)
                 {
                     PackageRelationship hyperRel = null;
                     if (hyperlink.id != null)
@@ -450,7 +450,7 @@ namespace NPOI.XSSF.UserModel
         internal XSSFVMLDrawing GetVMLDrawing(bool autoCreate)
         {
             XSSFVMLDrawing drawing = null;
-            NPOI.OpenXmlFormats.Spreadsheet.CT_LegacyDrawing ctDrawing = GetCTLegacyDrawing();
+            Npoi.Core.OpenXmlFormats.Spreadsheet.CT_LegacyDrawing ctDrawing = GetCTLegacyDrawing();
             if (ctDrawing == null)
             {
                 if (autoCreate)
@@ -491,11 +491,11 @@ namespace NPOI.XSSF.UserModel
             return drawing;
         }
 
-        protected virtual NPOI.OpenXmlFormats.Spreadsheet.CT_Drawing GetCTDrawing()
+        protected virtual Npoi.Core.OpenXmlFormats.Spreadsheet.CT_Drawing GetCTDrawing()
         {
             return worksheet.drawing;
         }
-        protected virtual NPOI.OpenXmlFormats.Spreadsheet.CT_LegacyDrawing GetCTLegacyDrawing()
+        protected virtual Npoi.Core.OpenXmlFormats.Spreadsheet.CT_LegacyDrawing GetCTLegacyDrawing()
         {
             return worksheet.legacyDrawing;
         }
@@ -586,8 +586,8 @@ namespace NPOI.XSSF.UserModel
          *  need to assign it to a cell though
          *
          * @deprecated since Nov 2009 this method is not compatible with the common SS interfaces,
-         * use {@link NPOI.XSSF.usermodel.XSSFDrawing#CreateCellComment
-         *  (NPOI.SS.usermodel.ClientAnchor)} instead
+         * use {@link Npoi.Core.XSSF.usermodel.XSSFDrawing#CreateCellComment
+         *  (Npoi.Core.SS.usermodel.ClientAnchor)} instead
          */
         public IComment CreateComment()
         {
@@ -615,7 +615,7 @@ namespace NPOI.XSSF.UserModel
          *
          * @param rownum  row number
          * @return High level {@link XSSFRow} object representing a row in the sheet
-         * @see #RemoveRow(NPOI.SS.usermodel.Row)
+         * @see #RemoveRow(Npoi.Core.SS.usermodel.Row)
          */
         public virtual IRow CreateRow(int rownum)
         {
@@ -655,10 +655,10 @@ namespace NPOI.XSSF.UserModel
          * @param leftmostColumn   Left column visible in right pane.
          * @param activePane    Active pane.  One of: PANE_LOWER_RIGHT,
          *                      PANE_UPPER_RIGHT, PANE_LOWER_LEFT, PANE_UPPER_LEFT
-         * @see NPOI.SS.usermodel.Sheet#PANE_LOWER_LEFT
-         * @see NPOI.SS.usermodel.Sheet#PANE_LOWER_RIGHT
-         * @see NPOI.SS.usermodel.Sheet#PANE_UPPER_LEFT
-         * @see NPOI.SS.usermodel.Sheet#PANE_UPPER_RIGHT
+         * @see Npoi.Core.SS.usermodel.Sheet#PANE_LOWER_LEFT
+         * @see Npoi.Core.SS.usermodel.Sheet#PANE_LOWER_RIGHT
+         * @see Npoi.Core.SS.usermodel.Sheet#PANE_UPPER_LEFT
+         * @see Npoi.Core.SS.usermodel.Sheet#PANE_UPPER_RIGHT
          */
         public void CreateSplitPane(int xSplitPos, int ySplitPos, int leftmostColumn, int topRow, PanePosition activePane)
         {
@@ -1799,7 +1799,7 @@ namespace NPOI.XSSF.UserModel
          *
          * @param indices A Set of the regions to unmerge
          */
-        public void RemoveMergedRegions(NPOI.Util.Collections.HashSet<int> indices)
+        public void RemoveMergedRegions(Npoi.Core.Util.Collections.HashSet<int> indices)
         {
             CT_MergeCells ctMergeCells = worksheet.mergeCells;
 
@@ -3041,7 +3041,7 @@ namespace NPOI.XSSF.UserModel
          *
          * @param cellRef cell region
          * @param comment the comment to assign
-         * @deprecated since Nov 2009 use {@link XSSFCell#SetCellComment(NPOI.SS.usermodel.Comment)} instead
+         * @deprecated since Nov 2009 use {@link XSSFCell#SetCellComment(Npoi.Core.SS.usermodel.Comment)} instead
          */
 
         public static void SetCellComment(String cellRef, XSSFComment comment)
@@ -3295,8 +3295,8 @@ namespace NPOI.XSSF.UserModel
                 {
                     worksheet.AddNewHyperlinks();
                 }
-                NPOI.OpenXmlFormats.Spreadsheet.CT_Hyperlink[] ctHls
-                    = new NPOI.OpenXmlFormats.Spreadsheet.CT_Hyperlink[hyperlinks.Count];
+                Npoi.Core.OpenXmlFormats.Spreadsheet.CT_Hyperlink[] ctHls
+                    = new Npoi.Core.OpenXmlFormats.Spreadsheet.CT_Hyperlink[hyperlinks.Count];
                 for (int i = 0; i < ctHls.Length; i++)
                 {
                     // If our sheet has hyperlinks, have them add
@@ -4087,7 +4087,7 @@ namespace NPOI.XSSF.UserModel
         {
             CT_SheetPr pr = worksheet.sheetPr;
             if (pr == null) pr = worksheet.AddNewSheetPr();
-            NPOI.OpenXmlFormats.Spreadsheet.CT_Color color = new OpenXmlFormats.Spreadsheet.CT_Color();
+            Npoi.Core.OpenXmlFormats.Spreadsheet.CT_Color color = new OpenXmlFormats.Spreadsheet.CT_Color();
             color.indexed = (uint)(colorIndex);
             pr.tabColor = (color);
         }
@@ -4101,7 +4101,7 @@ namespace NPOI.XSSF.UserModel
             {
                 if (drawing == null)
                 {
-                    NPOI.OpenXmlFormats.Spreadsheet.CT_Drawing ctDrawing = GetCTDrawing();
+                    Npoi.Core.OpenXmlFormats.Spreadsheet.CT_Drawing ctDrawing = GetCTDrawing();
                     if (ctDrawing == null)
                     {
                         return null;

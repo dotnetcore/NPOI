@@ -16,17 +16,17 @@
 ==================================================================== */
 
 
-using NPOI.DDF;
-using NPOI.HPSF;
+using Npoi.Core.DDF;
+using Npoi.Core.HPSF;
 
-namespace NPOI.HSSF.Record.Aggregates
+namespace Npoi.Core.HSSF.Record.Aggregates
 {
 
     using System;
-    using NPOI.HSSF.Record;
-    using NPOI.SS.Util;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.Util;
 
     /// <summary>
     /// The formula record aggregate is used to join toGether the formula record and it's
@@ -422,7 +422,7 @@ namespace NPOI.HSSF.Record.Aggregates
         public void SetArrayFormula(CellRangeAddress r, Ptg[] ptgs)
         {
 
-            ArrayRecord arr = new ArrayRecord(NPOI.SS.Formula.Formula.Create(ptgs), new CellRangeAddress8Bit(r.FirstRow, r.LastRow, r.FirstColumn, r.LastColumn));
+            ArrayRecord arr = new ArrayRecord(Npoi.Core.SS.Formula.Formula.Create(ptgs), new CellRangeAddress8Bit(r.FirstRow, r.LastRow, r.FirstColumn, r.LastColumn));
             _sharedValueManager.AddArrayRecord(arr);
         }
         /**

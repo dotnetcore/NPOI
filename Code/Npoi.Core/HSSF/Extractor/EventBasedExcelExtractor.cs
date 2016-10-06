@@ -15,22 +15,22 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Extractor
+namespace Npoi.Core.HSSF.Extractor
 {
     using System;
     using System.Text;
     using System.IO;
     using System.Collections;
 
-    using NPOI.HSSF.UserModel;
-    using NPOI.HSSF.Record;
-    using NPOI.POIFS.FileSystem;
-    using NPOI;
-    using NPOI.HPSF;
-    using NPOI.HSSF.EventUserModel;
-    using NPOI.HSSF.Model;
-    //using NPOI.HSSF.Util;
-    using NPOI.SS.Util;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core;
+    using Npoi.Core.HPSF;
+    using Npoi.Core.HSSF.EventUserModel;
+    using Npoi.Core.HSSF.Model;
+    //using Npoi.Core.HSSF.Util;
+    using Npoi.Core.SS.Util;
     using System.Globalization;
 
     /// <summary>
@@ -314,8 +314,8 @@ namespace NPOI.HSSF.Extractor
                 else
                 {
                     // Is it a date?
-                    if (NPOI.SS.UserModel.DateUtil.IsADateFormat(formatIndex, formatString) &&
-                            NPOI.SS.UserModel.DateUtil.IsValidExcelDate(value))
+                    if (Npoi.Core.SS.UserModel.DateUtil.IsADateFormat(formatIndex, formatString) &&
+                            Npoi.Core.SS.UserModel.DateUtil.IsValidExcelDate(value))
                     {
                         // Java wants M not m for month
                         formatString = formatString.Replace('m', 'M');
@@ -323,7 +323,7 @@ namespace NPOI.HSSF.Extractor
                         formatString = formatString.Replace("\\\\-", "-");
 
                         // Format as a date
-                        DateTime d = NPOI.SS.UserModel.DateUtil.GetJavaDate(value, false);
+                        DateTime d = Npoi.Core.SS.UserModel.DateUtil.GetJavaDate(value, false);
                         SimpleDateFormat df = new SimpleDateFormat(formatString);
                         return df.Format(d, CultureInfo.CurrentCulture);
                     }

@@ -17,12 +17,12 @@
 namespace TestCases.SS.Util.CellWalk
 {
 
-    using NPOI.SS.UserModel;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Util;
     using System;
     using NUnit.Framework;
-    using NPOI.SS.Util.CellWalk;
+    using Npoi.Core.SS.Util.CellWalk;
     [TestFixture]
     public class TestCellWalk
     {

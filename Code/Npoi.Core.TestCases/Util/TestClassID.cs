@@ -33,7 +33,7 @@ namespace TestCases.Util
 
     using NUnit.Framework;
     using System.IO;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * Tests ClassID structure.

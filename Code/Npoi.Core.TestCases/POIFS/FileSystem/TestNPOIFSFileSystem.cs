@@ -20,14 +20,14 @@ using System.IO;
 using System.Collections.Generic;
 
 using NUnit.Framework;
-using NPOI.POIFS.Storage;
-using NPOI.POIFS.Properties;
-using NPOI.POIFS.FileSystem;
-using NPOI.POIFS.Common;
-using NPOI.HPSF;
-using NPOI.POIFS.NIO;
-using NPOI.Util;
-using NPOI.POIFS.EventFileSystem;
+using Npoi.Core.POIFS.Storage;
+using Npoi.Core.POIFS.Properties;
+using Npoi.Core.POIFS.FileSystem;
+using Npoi.Core.POIFS.Common;
+using Npoi.Core.HPSF;
+using Npoi.Core.POIFS.NIO;
+using Npoi.Core.Util;
+using Npoi.Core.POIFS.EventFileSystem;
 using NUnit.Framework.Constraints;
 
 namespace TestCases.POIFS.FileSystem
@@ -164,8 +164,8 @@ namespace TestCases.POIFS.FileSystem
                 Assert.AreEqual(11564, root.Size);
                 Assert.AreEqual(0, root.StartBlock);
 
-                NPOI.POIFS.Properties.Property prop;
-                IEnumerator<NPOI.POIFS.Properties.Property> pi = root.Children;
+                Npoi.Core.POIFS.Properties.Property prop;
+                IEnumerator<Npoi.Core.POIFS.Properties.Property> pi = root.Children;
                 //prop = pi.Current;
                 pi.MoveNext();
                 prop = pi.Current;
@@ -238,8 +238,8 @@ namespace TestCases.POIFS.FileSystem
                 Assert.AreEqual(11564, root.Size);
                 Assert.AreEqual(0, root.StartBlock);
 
-                NPOI.POIFS.Properties.Property prop;
-                IEnumerator<NPOI.POIFS.Properties.Property> pi = root.Children;
+                Npoi.Core.POIFS.Properties.Property prop;
+                IEnumerator<Npoi.Core.POIFS.Properties.Property> pi = root.Children;
 
                 pi.MoveNext();
                 prop = pi.Current;

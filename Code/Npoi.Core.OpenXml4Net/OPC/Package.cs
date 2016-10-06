@@ -2,11 +2,11 @@
 //using System.Collections.Generic;
 //using System.Text;
 //using System.IO;
-//using NPOI.OpenXml4Net.Exceptions;
-//using NPOI.OpenXml4Net.OPC.Internal;
-//using NPOI.Util;
+//using Npoi.Core.OpenXml4Net.Exceptions;
+//using Npoi.Core.OpenXml4Net.OPC.Internal;
+//using Npoi.Core.Util;
 
-//namespace NPOI.OpenXml4Net.OPC
+//namespace Npoi.Core.OpenXml4Net.OPC
 //{
 //    /**
 //     * @deprecated (name clash with {@link java.lang.Package} use {@link OPCPackage} instead.

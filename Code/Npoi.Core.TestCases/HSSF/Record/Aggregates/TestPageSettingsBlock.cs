@@ -16,15 +16,15 @@
 ==================================================================== */
 
 using TestCases.HSSF;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.SS.UserModel;
 using System;
 using NUnit.Framework;
-using NPOI.Util;
-using NPOI.HSSF.Model;
+using Npoi.Core.Util;
+using Npoi.Core.HSSF.Model;
 using TestCases.HSSF.UserModel;
-using NPOI.HSSF.Record;
-using NPOI.HSSF.Record.Aggregates;
+using Npoi.Core.HSSF.Record;
+using Npoi.Core.HSSF.Record.Aggregates;
 namespace TestCases.HSSF.Record.Aggregates
 {
 
@@ -71,7 +71,7 @@ namespace TestCases.HSSF.Record.Aggregates
             nr.Column = ((short)colIx);
             nr.Value = (3.0);
 
-            NPOI.HSSF.Record.Record[] recs = {
+            Npoi.Core.HSSF.Record.Record[] recs = {
 				BOFRecord.CreateSheetBOF(),
 				new HeaderRecord("&LSales Figures"),
 				new FooterRecord("&LJanuary"),
@@ -103,7 +103,7 @@ namespace TestCases.HSSF.Record.Aggregates
 
             TestCases.HSSF.UserModel.RecordInspector.RecordCollector rv = new TestCases.HSSF.UserModel.RecordInspector.RecordCollector();
             sheet.VisitContainedRecords(rv, rowIx);
-            NPOI.HSSF.Record.Record[] outRecs = rv.Records;
+            Npoi.Core.HSSF.Record.Record[] outRecs = rv.Records;
             Assert.AreEqual(13, outRecs.Length);
         }
 
@@ -121,7 +121,7 @@ namespace TestCases.HSSF.Record.Aggregates
             nr.Column = ((short)colIx);
             nr.Value = (3.0);
 
-            NPOI.HSSF.Record.Record[] recs = {
+            Npoi.Core.HSSF.Record.Record[] recs = {
 				BOFRecord.CreateSheetBOF(),
 				new HeaderRecord("&LSales Figures"),
 				new FooterRecord("&LJanuary"),
@@ -135,7 +135,7 @@ namespace TestCases.HSSF.Record.Aggregates
 
             RecordInspector.RecordCollector rv = new RecordInspector.RecordCollector();
             sheet.VisitContainedRecords(rv, 0);
-            NPOI.HSSF.Record.Record[] outRecs = rv.Records;
+            Npoi.Core.HSSF.Record.Record[] outRecs = rv.Records;
             if (outRecs[4] == EOFRecord.instance)
             {
                 throw new AssertionException("Identified bug 46953 - EOF incorrectly Appended to PSB");
@@ -167,7 +167,7 @@ namespace TestCases.HSSF.Record.Aggregates
         public void TestLateMargins_bug47199()
         {
 
-            NPOI.HSSF.Record.Record[] recs = {
+            Npoi.Core.HSSF.Record.Record[] recs = {
 				BOFRecord.CreateSheetBOF(),
 				new HeaderRecord("&LSales Figures"),
 				new FooterRecord("&LJanuary"),
@@ -194,7 +194,7 @@ namespace TestCases.HSSF.Record.Aggregates
 
             TestCases.HSSF.UserModel.RecordInspector.RecordCollector rv = new TestCases.HSSF.UserModel.RecordInspector.RecordCollector();
             sheet.VisitContainedRecords(rv, 0);
-            NPOI.HSSF.Record.Record[] outRecs = rv.Records;
+            Npoi.Core.HSSF.Record.Record[] outRecs = rv.Records;
             Assert.AreEqual(recs.Length + 1, outRecs.Length); // +1 for index record
 
             Assert.AreEqual(typeof(BOFRecord), outRecs[0].GetType());
@@ -206,7 +206,7 @@ namespace TestCases.HSSF.Record.Aggregates
             Assert.AreEqual(typeof(EOFRecord), outRecs[7].GetType());
         }
 
-        private NPOI.HSSF.Record.Record CreateBottomMargin(float value)
+        private Npoi.Core.HSSF.Record.Record CreateBottomMargin(float value)
         {
             BottomMarginRecord result = new BottomMarginRecord();
             result.Margin = (value);
@@ -222,7 +222,7 @@ namespace TestCases.HSSF.Record.Aggregates
         {
 
             // Hypothetical Setup of PSB records which should cause POI to crash
-            NPOI.HSSF.Record.Record[] recs = {
+            Npoi.Core.HSSF.Record.Record[] recs = {
 				new HeaderRecord("&LSales Figures"),
 				new HeaderRecord("&LInventory"),
 		};
@@ -260,7 +260,7 @@ namespace TestCases.HSSF.Record.Aggregates
         public void TestMissingHeaderFooter()
         {
             // Initialise PSB with some records, but not the header / footer
-            NPOI.HSSF.Record.Record[] recs = {
+            Npoi.Core.HSSF.Record.Record[] recs = {
 				new HCenterRecord(),
 				new VCenterRecord(),
 		};
@@ -270,7 +270,7 @@ namespace TestCases.HSSF.Record.Aggregates
             // serialize the PSB to see what records come out
             RecordInspector.RecordCollector rc = new RecordInspector.RecordCollector();
             psb.VisitContainedRecords(rc);
-            NPOI.HSSF.Record.Record[] outRecs = rc.Records;
+            Npoi.Core.HSSF.Record.Record[] outRecs = rc.Records;
 
             if (outRecs.Length == 2)
             {
@@ -301,11 +301,11 @@ namespace TestCases.HSSF.Record.Aggregates
         [Test]
         public void TestDuplicatePLS_bug47415()
         {
-            NPOI.HSSF.Record.Record plsA = ur(UnknownRecord.PLS_004D, "BA AD F0 0D");
-            NPOI.HSSF.Record.Record plsB = ur(UnknownRecord.PLS_004D, "DE AD BE EF");
-            NPOI.HSSF.Record.Record contB1 = new ContinueRecord(HexRead.ReadFromString("FE ED"));
-            NPOI.HSSF.Record.Record contB2 = new ContinueRecord(HexRead.ReadFromString("FA CE"));
-            NPOI.HSSF.Record.Record[] recs = {
+            Npoi.Core.HSSF.Record.Record plsA = ur(UnknownRecord.PLS_004D, "BA AD F0 0D");
+            Npoi.Core.HSSF.Record.Record plsB = ur(UnknownRecord.PLS_004D, "DE AD BE EF");
+            Npoi.Core.HSSF.Record.Record contB1 = new ContinueRecord(HexRead.ReadFromString("FE ED"));
+            Npoi.Core.HSSF.Record.Record contB2 = new ContinueRecord(HexRead.ReadFromString("FA CE"));
+            Npoi.Core.HSSF.Record.Record[] recs = {
 				new HeaderRecord("&LSales Figures"),
 				new FooterRecord("&LInventory"),
 				new HCenterRecord(),
@@ -331,7 +331,7 @@ namespace TestCases.HSSF.Record.Aggregates
             // serialize the PSB to see what records come out
             RecordInspector.RecordCollector rc = new RecordInspector.RecordCollector();
             psb.VisitContainedRecords(rc);
-            NPOI.HSSF.Record.Record[] outRecs = rc.Records;
+            Npoi.Core.HSSF.Record.Record[] outRecs = rc.Records;
 
             // records were assembled in standard order, so this simple check is OK
             Assert.IsTrue(Arrays.Equals(recs, outRecs));
@@ -340,7 +340,7 @@ namespace TestCases.HSSF.Record.Aggregates
         public void TestDuplicateHeaderFooter_bug48026()
         {
 
-            NPOI.HSSF.Record.Record[] recs = {
+            Npoi.Core.HSSF.Record.Record[] recs = {
                 BOFRecord.CreateSheetBOF(),
                 new IndexRecord(),
 
@@ -380,11 +380,11 @@ namespace TestCases.HSSF.Record.Aggregates
 
             RecordInspector.RecordCollector rv = new RecordInspector.RecordCollector();
             sheet.VisitContainedRecords(rv, 0);
-            NPOI.HSSF.Record.Record[] outRecs = rv.Records;
+            Npoi.Core.HSSF.Record.Record[] outRecs = rv.Records;
 
             Assert.AreEqual(recs.Length, outRecs.Length);
             //expected order of records:
-            NPOI.HSSF.Record.Record[] expectedRecs = {
+            Npoi.Core.HSSF.Record.Record[] expectedRecs = {
                 recs[0],  //BOFRecord
                 recs[1],  //IndexRecord
 

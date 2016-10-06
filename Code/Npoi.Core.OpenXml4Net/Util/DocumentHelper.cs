@@ -22,9 +22,9 @@ using System.Xml.XPath;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.UserModel;
 
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
 	public class DocumentHelper
 	{

@@ -15,8 +15,8 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI;
-using NPOI.HSSF.Record.Aggregates;
+using Npoi.Core;
+using Npoi.Core.HSSF.Record.Aggregates;
 
 namespace TestCases.HSSF.UserModel
 {
@@ -28,20 +28,20 @@ namespace TestCases.HSSF.UserModel
 
     using TestCases.HSSF;
 
-    using NPOI.HSSF.UserModel;
-    //using NPOI.HSSF.Model;
-    using NPOI.HSSF.Record;
-    using NPOI.SS.Formula;
-    using NPOI.HSSF.Record.Aggregates;
-    using NPOI.SS.Util;
-    using NPOI.Util;
-    using NPOI.SS.UserModel;
-    using NPOI.HSSF.Model;
+    using Npoi.Core.HSSF.UserModel;
+    //using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.HSSF.Record.Aggregates;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.HSSF.Model;
     using System.Collections.Generic;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.POIFS.FileSystem;
-    using NPOI.HSSF.Extractor;
-    using NPOI.HSSF.Record.Crypto;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.HSSF.Extractor;
+    using Npoi.Core.HSSF.Record.Crypto;
 
     /**
      * Testcases for bugs entered in bugzilla
@@ -480,7 +480,7 @@ namespace TestCases.HSSF.UserModel
 
             for (int i = 0; i < wb.NumberOfNames; i++)
             {
-                NPOI.SS.UserModel.IName name = wb.GetNameAt(i);
+                Npoi.Core.SS.UserModel.IName name = wb.GetNameAt(i);
                 //name.NameName();
                 if (name.IsFunctionName)
                 {
@@ -1917,7 +1917,7 @@ namespace TestCases.HSSF.UserModel
                 OpenSample("46904.xls");
                 Assert.Fail();
             }
-            catch (NPOI.HSSF.OldExcelFormatException e)
+            catch (Npoi.Core.HSSF.OldExcelFormatException e)
             {
                 Assert.IsTrue(e.Message.StartsWith(
                         "The supplied spreadsheet seems to be Excel"
@@ -2879,7 +2879,7 @@ namespace TestCases.HSSF.UserModel
                 this.list = list;
             }
 
-            public void VisitRecord(NPOI.HSSF.Record.Record r)
+            public void VisitRecord(Npoi.Core.HSSF.Record.Record r)
             {
                 list.Add(r.Sid);
             }
@@ -3090,7 +3090,7 @@ namespace TestCases.HSSF.UserModel
          * Formulas which reference named ranges, either in other
          *  sheets, or workbook scoped but in other workbooks.
          * Currently failing with 
-         * java.lang.Exception: Unexpected eval class (NPOI.SS.Formula.Eval.NameXEval)
+         * java.lang.Exception: Unexpected eval class (Npoi.Core.SS.Formula.Eval.NameXEval)
          */
         [Test]
         public void Bug56737()
@@ -3186,7 +3186,7 @@ namespace TestCases.HSSF.UserModel
         }
 
         /**
-         * Unexpected record type (NPOI.HSSF.Record.ColumnInfoRecord)
+         * Unexpected record type (Npoi.Core.HSSF.Record.ColumnInfoRecord)
          */
         [Test]
         public void Bug53984()

@@ -17,8 +17,8 @@
  * ====================================================================
  */
 
-using NPOI.HSSF.UserModel;
-using NPOI.SS.Util;
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.SS.Util;
 using NUnit.Framework;
 using TestCases.HSSF;
 

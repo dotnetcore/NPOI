@@ -18,17 +18,17 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
-using NPOI.HSSF.UserModel;
+using Npoi.Core.HSSF.UserModel;
 using TestCases.HSSF.UserModel;
 
 namespace TestCases.HSSF.Record.Aggregates.Chart
 {
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.Aggregates;
-    using NPOI.HSSF.Model;
-    using NPOI.Util;
-    using NPOI.HSSF.Record.Aggregates.Chart;
-    using NPOI.HSSF.Record.Chart;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Aggregates;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.Util;
+    using Npoi.Core.HSSF.Record.Aggregates.Chart;
+    using Npoi.Core.HSSF.Record.Chart;
     [TestFixture]
     public class TestChartSheetAggregate
     {

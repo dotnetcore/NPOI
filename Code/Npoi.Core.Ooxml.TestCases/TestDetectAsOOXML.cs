@@ -18,11 +18,11 @@
 
 using System.IO;
 using NUnit.Framework;
-using NPOI.OpenXml4Net.OPC;
-using NPOI.Util;
+using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.Util;
 using TestCases.HSSF;
 
-namespace NPOI.OOXML
+namespace Npoi.Core.OOXML
 {
 
     /**

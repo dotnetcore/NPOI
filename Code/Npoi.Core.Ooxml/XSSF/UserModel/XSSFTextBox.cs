@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.OpenXmlFormats.Dml;
-using NPOI.OpenXmlFormats.Dml.Spreadsheet;
-using NPOI.SS.UserModel;
+using Npoi.Core.OpenXmlFormats.Dml;
+using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
+using Npoi.Core.SS.UserModel;
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
 
     /**

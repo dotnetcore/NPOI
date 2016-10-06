@@ -15,13 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI
+namespace Npoi.Core
 {
     using System;
     using System.IO;
     using System.Collections;
-    using NPOI.POIFS.FileSystem;
-    using NPOI.HPSF;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.HPSF;
     using System.Collections.Generic;
 
 

@@ -20,10 +20,10 @@
 namespace TestCases.HSSF.Record
 {
     using System;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Record;
     using NUnit.Framework;
     using System.Collections.Generic;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * Tests BoundSheetRecord.

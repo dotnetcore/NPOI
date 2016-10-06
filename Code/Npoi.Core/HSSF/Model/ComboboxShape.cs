@@ -1,10 +1,10 @@
-﻿namespace NPOI.HSSF.Model
+﻿namespace Npoi.Core.HSSF.Model
 {
     using System;
-    using NPOI.DDF;
-    using NPOI.HSSF.UserModel;
-    using NPOI.HSSF.Record;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.DDF;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS.UserModel;
 
     [Obsolete]
     public class ComboboxShape:AbstractShape

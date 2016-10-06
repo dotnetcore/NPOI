@@ -1,11 +1,11 @@
-using NPOI.OpenXml4Net.Util;
+using Npoi.Core.OpenXml4Net.Util;
 using System;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace NPOI.OpenXmlFormats.Vml.Presentation
+namespace Npoi.Core.OpenXmlFormats.Vml.Presentation
 {
     
 

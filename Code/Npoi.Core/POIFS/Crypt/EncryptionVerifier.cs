@@ -22,9 +22,9 @@ using System.Xml;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using NPOI.POIFS.FileSystem;
+using Npoi.Core.POIFS.FileSystem;
 
-namespace NPOI.POIFS.Crypt
+namespace Npoi.Core.POIFS.Crypt
 {
 	public class EncryptionVerifier
 	{

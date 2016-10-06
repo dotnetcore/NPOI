@@ -17,12 +17,12 @@
 ==================================================================== */
 
 
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
     using System;
     using System.Text;
     using System.Collections;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     public enum BOFRecordType {
         Workbook = 0x05,

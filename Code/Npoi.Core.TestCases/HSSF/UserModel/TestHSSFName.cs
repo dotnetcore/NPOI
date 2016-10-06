@@ -20,17 +20,17 @@ namespace TestCases.HSSF.UserModel
     using System;
     using System.Reflection;
     using NUnit.Framework;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
     using TestCases.SS.UserModel;
 
     /**
-     * Tests various functionality having to do with {@link NPOI.SS.usermodel.Name}.
+     * Tests various functionality having to do with {@link Npoi.Core.SS.usermodel.Name}.
      *
      * @author Andrew C. Oliver (acoliver at apache dot org)
      * @author ROMANL

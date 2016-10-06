@@ -17,16 +17,16 @@
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using NPOI.SS.Formula.Function;
+using Npoi.Core.SS.Formula.Function;
 
-namespace NPOI.SS.Formula.Atp
+namespace Npoi.Core.SS.Formula.Atp
 {
     using System;
     using System.Collections;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Formula.Functions;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.Udf;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Udf;
 
     public class NotImplemented : FreeRefFunction
     {

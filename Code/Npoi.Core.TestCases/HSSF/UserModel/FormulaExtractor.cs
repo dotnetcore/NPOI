@@ -19,12 +19,12 @@ namespace TestCases.HSSF.UserModel
 {
     using System;
     using System.Collections;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.UserModel;
-    using NPOI.HSSF.Record.Aggregates;
-    using NPOI.SS.Formula;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.HSSF.Record.Aggregates;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Formula.PTG;
 
     /**
      * Test utility class to Get <c>Ptg</c> arrays out of formula cells

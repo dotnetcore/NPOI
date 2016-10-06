@@ -18,8 +18,8 @@
 namespace TestCases.HSSF.UserModel
 {
     using System;
-    using NPOI.Util.Collections;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.Util.Collections;
+    using Npoi.Core.HSSF.UserModel;
     using NUnit.Framework;
     /**
      * Tests the implementation of the FontDetails class.

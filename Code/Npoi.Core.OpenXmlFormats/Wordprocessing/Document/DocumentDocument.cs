@@ -6,7 +6,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace NPOI.OpenXmlFormats.Wordprocessing
+namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
     public class DocumentDocument
     {

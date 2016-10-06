@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
-    using NPOI.SS.Formula;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.UserModel;
 
     /**
      * HSSF wrapper for a sheet under evaluation

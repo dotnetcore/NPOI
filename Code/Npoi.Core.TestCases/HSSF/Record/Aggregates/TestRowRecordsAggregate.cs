@@ -19,14 +19,14 @@ namespace TestCases.HSSF.Record.Aggregates
 {
     using System;
     using NUnit.Framework;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.Aggregates;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Aggregates;
+    using Npoi.Core.HSSF.UserModel;
     using TestCases.HSSF.UserModel;
-    using NPOI.Util;
+    using Npoi.Core.Util;
     using System.IO;
-    using NPOI.SS.Util;
-    using NPOI.HSSF.Model;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.HSSF.Model;
     using System.Text;
 
     /**

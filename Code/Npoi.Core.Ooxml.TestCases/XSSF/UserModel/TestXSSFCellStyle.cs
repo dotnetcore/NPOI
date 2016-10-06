@@ -15,15 +15,15 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.XSSF.Model;
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.XSSF.UserModel.Extensions;
+using Npoi.Core.XSSF.Model;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.XSSF.UserModel.Extensions;
 using NUnit.Framework;
-using NPOI.SS.UserModel;
-using NPOI.HSSF.UserModel;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.HSSF.UserModel;
 using System.Drawing;
-using NPOI.HSSF.Util;
-namespace NPOI.XSSF.UserModel
+using Npoi.Core.HSSF.Util;
+namespace Npoi.Core.XSSF.UserModel
 {
 
     [TestFixture]

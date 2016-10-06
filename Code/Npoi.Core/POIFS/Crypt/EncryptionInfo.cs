@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.POIFS.FileSystem;
+using Npoi.Core.POIFS.FileSystem;
 using System.Text;
 
 
-namespace NPOI.POIFS.Crypt
+namespace Npoi.Core.POIFS.Crypt
 {
     public class EncryptionInfo
     {

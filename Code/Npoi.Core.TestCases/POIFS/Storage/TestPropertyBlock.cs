@@ -29,11 +29,11 @@ using System.IO;
 using System.Collections.Generic;
 
 using NUnit.Framework;
-using NPOI.POIFS.Storage;
-using NPOI.Util;
-using NPOI.POIFS.FileSystem;
-using NPOI.POIFS.Common;
-using NPOI.POIFS.Properties;
+using Npoi.Core.POIFS.Storage;
+using Npoi.Core.Util;
+using Npoi.Core.POIFS.FileSystem;
+using Npoi.Core.POIFS.Common;
+using Npoi.Core.POIFS.Properties;
 
 namespace TestCases.POIFS.Storage
 {
@@ -66,7 +66,7 @@ namespace TestCases.POIFS.Storage
         {
 
             // Test with 0 properties
-            List<NPOI.POIFS.Properties.Property> properties = new List<NPOI.POIFS.Properties.Property>();
+            List<Npoi.Core.POIFS.Properties.Property> properties = new List<Npoi.Core.POIFS.Properties.Property>();
             BlockWritable[] blocks =
                 PropertyBlock.CreatePropertyBlockArray(POIFSConstants.SMALLER_BIG_BLOCK_SIZE_DETAILS, properties);
 

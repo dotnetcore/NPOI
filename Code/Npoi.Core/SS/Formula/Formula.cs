@@ -15,13 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula
+namespace Npoi.Core.SS.Formula
 {
-    using NPOI.SS.Formula;
-    using NPOI.Util;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.Util;
 
-    using NPOI.SS.Util;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.SS.Formula.PTG;
 
     /**
      * Encapsulates an encoded formula token array. 

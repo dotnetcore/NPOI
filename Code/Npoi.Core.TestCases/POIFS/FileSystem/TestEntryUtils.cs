@@ -19,9 +19,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NPOI.POIFS.FileSystem;
+using Npoi.Core.POIFS.FileSystem;
 using NUnit.Framework;
-using NPOI.Util;
+using Npoi.Core.Util;
 using System.IO;
 
 namespace TestCases.POIFS.FileSystem

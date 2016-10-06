@@ -21,8 +21,8 @@ namespace TestCases.HSSF.Record
     using System.Collections.Generic;
     using System.IO;
     using NUnit.Framework;
-    using NPOI.Util;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.Util;
+    using Npoi.Core.HSSF.Record;
 
 
 

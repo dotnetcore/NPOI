@@ -17,19 +17,19 @@
 
 using System;
 using System.IO;
-using NPOI.OpenXml4Net.OPC;
-using NPOI.OpenXmlFormats.Dml.Spreadsheet; // http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing
-using NPOI.SS.UserModel;
-using NPOI.XSSF.Model;
+using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet; // http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.XSSF.Model;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Linq;
-using NPOI.OpenXmlFormats.Dml;
-using NPOI.SS.Util;
-using NPOI.Util;
+using Npoi.Core.OpenXmlFormats.Dml;
+using Npoi.Core.SS.Util;
+using Npoi.Core.Util;
 
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
 
     /**
@@ -45,14 +45,14 @@ namespace NPOI.XSSF.UserModel
         /**
          * Root element of the SpreadsheetML Drawing part
          */
-        private NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing drawing = NewDrawing();
+        private Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing drawing = NewDrawing();
        // private bool isNew = true; not used so far
         private long numOfGraphicFrames = 0L;
 
         /**
          * Create a new SpreadsheetML Drawing
          *
-         * @see NPOI.xssf.usermodel.XSSFSheet#CreateDrawingPatriarch()
+         * @see Npoi.Core.xssf.usermodel.XSSFSheet#CreateDrawingPatriarch()
          */
         public XSSFDrawing()
             : base()
@@ -71,7 +71,7 @@ namespace NPOI.XSSF.UserModel
             : base(part, rel)
         {
             XDocument xmldoc = ConvertStreamToXml(part.GetInputStream());
-            drawing = NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing.Parse(xmldoc, NamespaceManager);
+            drawing = Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing.Parse(xmldoc, NamespaceManager);
         }
 
         /**
@@ -79,7 +79,7 @@ namespace NPOI.XSSF.UserModel
          *
          * @return a new CT_Drawing bean
          */
-        private static NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing NewDrawing()
+        private static Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing NewDrawing()
         {
             return new CT_Drawing();
         }
@@ -134,7 +134,7 @@ namespace NPOI.XSSF.UserModel
          *
          * @param anchor    the client anchor describes how this picture is attached to the sheet.
          * @param pictureIndex the index of the picture in the workbook collection of pictures,
-         *   {@link NPOI.xssf.usermodel.XSSFWorkbook#getAllPictures()} .
+         *   {@link Npoi.Core.xssf.usermodel.XSSFWorkbook#getAllPictures()} .
          *
          * @return  the newly Created picture shape.
          */
@@ -189,7 +189,7 @@ namespace NPOI.XSSF.UserModel
          * Add the indexed picture to this Drawing relations
          *
          * @param pictureIndex the index of the picture in the workbook collection of pictures,
-         *   {@link NPOI.xssf.usermodel.XSSFWorkbook#getAllPictures()} .
+         *   {@link Npoi.Core.xssf.usermodel.XSSFWorkbook#getAllPictures()} .
          */
         internal PackageRelationship AddPictureReference(int pictureIndex)
         {
@@ -273,7 +273,7 @@ namespace NPOI.XSSF.UserModel
             //create comments and vmlDrawing parts if they don't exist
             CommentsTable comments = sheet.GetCommentsTable(true);
             XSSFVMLDrawing vml = sheet.GetVMLDrawing(true);
-            NPOI.OpenXmlFormats.Vml.CT_Shape vmlShape = vml.newCommentShape();
+            Npoi.Core.OpenXmlFormats.Vml.CT_Shape vmlShape = vml.newCommentShape();
             if (ca.IsSet())
             {
                 // convert offsets from emus to pixels since we get a DrawingML-anchor

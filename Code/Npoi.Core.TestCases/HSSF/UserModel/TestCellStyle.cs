@@ -26,13 +26,13 @@ namespace TestCases.HSSF.UserModel
 {
     using System;
     using System.IO;
-    using NPOI.Util;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.Util;
+    using Npoi.Core.HSSF.UserModel;
 
 
     using NUnit.Framework;
     using TestCases.HSSF;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
 
     /**
      * Class to Test cell styling functionality
@@ -58,10 +58,10 @@ namespace TestCases.HSSF.UserModel
         /**
          * TEST NAME:  Test Write Sheet Font <P>
          * OBJECTIVE:  Test that HSSF can Create a simple spreadsheet with numeric and string values and styled with fonts.<P>
-         * SUCCESS:    HSSF Creates a sheet.  Filesize Matches a known good.  NPOI.SS.UserModel.Sheet objects
+         * SUCCESS:    HSSF Creates a sheet.  Filesize Matches a known good.  Npoi.Core.SS.UserModel.Sheet objects
          *             Last row, first row is Tested against the correct values (99,0).<P>
          * FAILURE:    HSSF does not Create a sheet or excepts.  Filesize does not Match the known good.
-         *             NPOI.SS.UserModel.Sheet last row or first row is incorrect.             <P>
+         *             Npoi.Core.SS.UserModel.Sheet last row or first row is incorrect.             <P>
          *
          */
         [Test]
@@ -71,13 +71,13 @@ namespace TestCases.HSSF.UserModel
                                                     ".xls");
         FileStream out1  = new FileStream(filepath,FileMode.OpenOrCreate);
         HSSFWorkbook     wb   = new HSSFWorkbook();
-        NPOI.SS.UserModel.ISheet        s    = wb.CreateSheet();
+        Npoi.Core.SS.UserModel.ISheet        s    = wb.CreateSheet();
         IRow          r    = null;
         ICell         c    = null;
         IFont         fnt  = wb.CreateFont();
-        NPOI.SS.UserModel.ICellStyle    cs   = wb.CreateCellStyle();
+        Npoi.Core.SS.UserModel.ICellStyle    cs   = wb.CreateCellStyle();
 
-        fnt.Color=(NPOI.HSSF.Util.HSSFColor.Red.Index);
+        fnt.Color=(Npoi.Core.HSSF.Util.HSSFColor.Red.Index);
         fnt.Boldweight= (short)FontBoldWeight.Bold;
         cs.SetFont(fnt);
         for (short rownum = ( short ) 0; rownum < 100; rownum++)
@@ -117,8 +117,8 @@ namespace TestCases.HSSF.UserModel
                                                     ".xls");
         FileStream out1  = new FileStream(filepath,FileMode.OpenOrCreate);
         HSSFWorkbook     wb   = new HSSFWorkbook();
-        NPOI.SS.UserModel.ISheet        s    = wb.CreateSheet();
-        NPOI.SS.UserModel.ICellStyle    cs   = wb.CreateCellStyle();
+        Npoi.Core.SS.UserModel.ISheet        s    = wb.CreateSheet();
+        Npoi.Core.SS.UserModel.ICellStyle    cs   = wb.CreateCellStyle();
         IRow row = s.CreateRow(0);
 
         // with Date:
@@ -146,9 +146,9 @@ namespace TestCases.HSSF.UserModel
         public void TestHashEquals()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
-            NPOI.SS.UserModel.ICellStyle cs1 = wb.CreateCellStyle();
-            NPOI.SS.UserModel.ICellStyle cs2 = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ICellStyle cs1 = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cs2 = wb.CreateCellStyle();
             IRow row = s.CreateRow(0);
             ICell cell1 = row.CreateCell(1);
             ICell cell2 = row.CreateCell(2);
@@ -177,10 +177,10 @@ namespace TestCases.HSSF.UserModel
          * TEST NAME:  Test Write Sheet Style <P>
          * OBJECTIVE:  Test that HSSF can Create a simple spreadsheet with numeric and string values and styled with colors
          *             and borders.<P>
-         * SUCCESS:    HSSF Creates a sheet.  Filesize Matches a known good.  NPOI.SS.UserModel.Sheet objects
+         * SUCCESS:    HSSF Creates a sheet.  Filesize Matches a known good.  Npoi.Core.SS.UserModel.Sheet objects
          *             Last row, first row is Tested against the correct values (99,0).<P>
          * FAILURE:    HSSF does not Create a sheet or excepts.  Filesize does not Match the known good.
-         *             NPOI.SS.UserModel.Sheet last row or first row is incorrect.             <P>
+         *             Npoi.Core.SS.UserModel.Sheet last row or first row is incorrect.             <P>
          *
          */
         [Test]
@@ -190,12 +190,12 @@ namespace TestCases.HSSF.UserModel
                                                     ".xls");
         FileStream out1  = new FileStream(filepath,FileMode.OpenOrCreate);
         HSSFWorkbook     wb   = new HSSFWorkbook();
-        NPOI.SS.UserModel.ISheet        s    = wb.CreateSheet();
+        Npoi.Core.SS.UserModel.ISheet        s    = wb.CreateSheet();
         IRow          r    = null;
         ICell         c    = null;
         IFont         fnt  = wb.CreateFont();
-        NPOI.SS.UserModel.ICellStyle cs = wb.CreateCellStyle();
-        NPOI.SS.UserModel.ICellStyle cs2 = wb.CreateCellStyle();
+        Npoi.Core.SS.UserModel.ICellStyle cs = wb.CreateCellStyle();
+        Npoi.Core.SS.UserModel.ICellStyle cs2 = wb.CreateCellStyle();
 
         cs.BorderBottom= (BorderStyle.Thin);
         cs.BorderLeft= (BorderStyle.Thin);
@@ -236,7 +236,7 @@ namespace TestCases.HSSF.UserModel
     }
 
         /**
-         * Cloning one NPOI.SS.UserModel.CellType onto Another, same
+         * Cloning one Npoi.Core.SS.UserModel.CellType onto Another, same
          *  HSSFWorkbook
          */
         [Test]
@@ -247,7 +247,7 @@ namespace TestCases.HSSF.UserModel
             fnt.FontName=("TestingFont");
             Assert.AreEqual(5, wb.NumberOfFonts);
 
-            NPOI.SS.UserModel.ICellStyle orig = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle orig = wb.CreateCellStyle();
             orig.Alignment=(HorizontalAlignment.Right);
             orig.SetFont(fnt);
             orig.DataFormat=((short)18);
@@ -256,7 +256,7 @@ namespace TestCases.HSSF.UserModel
             Assert.AreEqual(fnt,orig.GetFont(wb));
             Assert.AreEqual(18,orig.DataFormat);
 
-            NPOI.SS.UserModel.ICellStyle clone = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle clone = wb.CreateCellStyle();
             Assert.AreNotEqual(HorizontalAlignment.Right , clone.Alignment);
             Assert.AreNotEqual(fnt, clone.GetFont(wb));
             Assert.AreNotEqual(18, clone.DataFormat);
@@ -272,7 +272,7 @@ namespace TestCases.HSSF.UserModel
         }
 
         /**
-         * Cloning one NPOI.SS.UserModel.CellType onto Another, across
+         * Cloning one Npoi.Core.SS.UserModel.CellType onto Another, across
          *  two different HSSFWorkbooks
          */
         [Test]
@@ -288,7 +288,7 @@ namespace TestCases.HSSF.UserModel
             fmt.GetFormat("MadeUpOne");
             fmt.GetFormat("MadeUpTwo");
 
-            NPOI.SS.UserModel.ICellStyle orig = wbOrig.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle orig = wbOrig.CreateCellStyle();
             orig.Alignment = (HorizontalAlignment.Right);
             orig.SetFont(fnt);
             orig.DataFormat=(fmt.GetFormat("Test##"));
@@ -302,7 +302,7 @@ namespace TestCases.HSSF.UserModel
             Assert.AreEqual(4, wbClone.NumberOfFonts);
             IDataFormat fmtClone = wbClone.CreateDataFormat();
 
-            NPOI.SS.UserModel.ICellStyle clone = wbClone.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle clone = wbClone.CreateCellStyle();
             Assert.AreEqual(4, wbClone.NumberOfFonts);
 
             Assert.AreNotEqual(HorizontalAlignment.Right,clone.Alignment);
@@ -319,7 +319,7 @@ namespace TestCases.HSSF.UserModel
         public void TestStyleNames()
         {
             HSSFWorkbook wb = OpenSample("WithExtendedStyles.xls");
-            NPOI.SS.UserModel.ISheet s = wb.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet s = wb.GetSheetAt(0);
             ICell c1 = s.GetRow(0).GetCell(0);
             ICell c2 = s.GetRow(1).GetCell(0);
             ICell c3 = s.GetRow(2).GetCell(0);

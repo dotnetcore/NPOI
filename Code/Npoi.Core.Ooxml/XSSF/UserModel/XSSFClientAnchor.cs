@@ -16,10 +16,10 @@
 ==================================================================== */
 
 using System;
-using NPOI.OpenXmlFormats.Dml.Spreadsheet;
-using NPOI.SS.UserModel;
+using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
+using Npoi.Core.SS.UserModel;
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * A client anchor is attached to an excel worksheet.  It anchors against

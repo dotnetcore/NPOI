@@ -18,10 +18,10 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using NPOI.SS.Formula;
-using NPOI.SS.Formula.Atp;
-using NPOI.SS.Formula.Eval;
-using NPOI.SS.Util;
+using Npoi.Core.SS.Formula;
+using Npoi.Core.SS.Formula.Atp;
+using Npoi.Core.SS.Formula.Eval;
+using Npoi.Core.SS.Util;
 using NUnit.Framework;
 
 namespace TestCases.SS.Formula.Atp

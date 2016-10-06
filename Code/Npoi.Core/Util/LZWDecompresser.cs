@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
     using System.IO;
 

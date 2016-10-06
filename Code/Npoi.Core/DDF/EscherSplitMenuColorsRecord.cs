@@ -18,10 +18,10 @@
 
 using System.Text;
 
-namespace NPOI.DDF
+namespace Npoi.Core.DDF
 {
     using System;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /// <summary>
     /// A list of the most recently used colours for the drawings contained in

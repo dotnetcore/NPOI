@@ -32,11 +32,11 @@ using System.IO;
 
 using NUnit.Framework;
 
-using NPOI.POIFS.FileSystem;
-using NPOI.Util;
-using NPOI.POIFS.Storage;
-using NPOI.POIFS.Properties;
-using NPOI.POIFS.NIO;
+using Npoi.Core.POIFS.FileSystem;
+using Npoi.Core.Util;
+using Npoi.Core.POIFS.Storage;
+using Npoi.Core.POIFS.Properties;
+using Npoi.Core.POIFS.NIO;
 
 namespace TestCases.POIFS.FileSystem
 {

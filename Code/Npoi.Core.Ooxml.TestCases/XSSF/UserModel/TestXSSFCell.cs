@@ -17,15 +17,15 @@
 
 using NUnit.Framework;
 using TestCases.SS.UserModel;
-using NPOI.SS.UserModel;
-using NPOI.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using System;
-using NPOI.XSSF.Model;
-using NPOI.SS.Util;
-using NPOI.SS;
+using Npoi.Core.XSSF.Model;
+using Npoi.Core.SS.Util;
+using Npoi.Core.SS;
 using TestCases.HSSF;
 using System.Text;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
 
     /**

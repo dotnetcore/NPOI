@@ -15,15 +15,15 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.EventUserModel
+namespace Npoi.Core.HSSF.EventUserModel
 {
     using System;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
     using System.Collections.Generic;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
     using System.Globalization;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * A proxy HSSFListener that keeps track of the document

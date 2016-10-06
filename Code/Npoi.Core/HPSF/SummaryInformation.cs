@@ -25,10 +25,10 @@
  * 
  * ==============================================================*/
 
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     using System;
-    using NPOI.HPSF.Wellknown;
+    using Npoi.Core.HPSF.Wellknown;
 
 
     /// <summary>

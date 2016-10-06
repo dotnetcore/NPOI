@@ -20,10 +20,10 @@ namespace TestCases.SS.Formula.Functions
     using System;
     using System.Text;
     using NUnit.Framework;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
     using TestCases.HSSF;
-    using NPOI.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.Functions;
 
     /**
      * Tests for {@link Irr}
@@ -94,7 +94,7 @@ namespace TestCases.SS.Formula.Functions
             StringBuilder failures = new StringBuilder();
             int failureCount = 0;
             // TODO YK: Formulas in rows 16 and 17 operate with ArrayPtg which isn't yet supported
-            // FormulaEvaluator as of r1041407 throws "Unexpected ptg class (NPOI.SS.Formula.PTG.ArrayPtg)"
+            // FormulaEvaluator as of r1041407 throws "Unexpected ptg class (Npoi.Core.SS.Formula.PTG.ArrayPtg)"
             for (int rownum = 9; rownum <= 15; rownum++)
             {
                 IRow row = sheet.GetRow(rownum);

@@ -20,7 +20,7 @@ namespace TestCases.POIFS.FileSystem
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using NPOI.POIFS.FileSystem;
+    using Npoi.Core.POIFS.FileSystem;
     using NUnit.Framework;
     using TestCases;
 

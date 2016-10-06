@@ -15,13 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula.Functions
+namespace Npoi.Core.SS.Formula.Functions
 {
     using System;
     using System.Text;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
-    using NPOI.XSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.XSSF.UserModel;
     using NUnit.Framework;
 
     [TestFixture]

@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Record.Chart
+namespace Npoi.Core.HSSF.Record.Chart
 {
     using System;
     using System.Text;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * STARTBLOCK - Chart Future Record Type Start Block (0x0852)<br/>

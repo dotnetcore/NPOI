@@ -18,10 +18,10 @@
 namespace TestCases.SS.Formula.Functions
 {
     using System;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Formula.Functions;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Functions;
+    using Npoi.Core.SS.UserModel;
     using NUnit.Framework;
     [TestFixture]
     public class TestEOMonth

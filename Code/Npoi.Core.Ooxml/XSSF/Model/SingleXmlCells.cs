@@ -17,12 +17,12 @@
 
 using System.Xml;
 using System.IO;
-using NPOI.OpenXml4Net.OPC;
-using NPOI.XSSF.UserModel.Helpers;
-using NPOI.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.XSSF.UserModel.Helpers;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using System.Collections.Generic;
-using NPOI.XSSF.UserModel;
-namespace NPOI.XSSF.Model
+using Npoi.Core.XSSF.UserModel;
+namespace Npoi.Core.XSSF.Model
 {
 
 

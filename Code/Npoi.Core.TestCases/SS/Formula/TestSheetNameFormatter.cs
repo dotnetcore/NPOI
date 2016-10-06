@@ -18,7 +18,7 @@
 namespace TestCases.SS.Formula
 {
 
-    using NPOI.SS.Formula;
+    using Npoi.Core.SS.Formula;
     using NUnit.Framework;
     using System;
 

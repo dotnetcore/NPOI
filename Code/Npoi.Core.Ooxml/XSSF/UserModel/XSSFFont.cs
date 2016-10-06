@@ -15,14 +15,14 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.UserModel;
 using System;
-using Spreadsheet=NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.OpenXmlFormats.Dml;
-using Dml = NPOI.OpenXmlFormats.Dml;
-using NPOI.XSSF.Model;
-namespace NPOI.XSSF.UserModel
+using Spreadsheet=Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.OpenXmlFormats.Dml;
+using Dml = Npoi.Core.OpenXmlFormats.Dml;
+using Npoi.Core.XSSF.Model;
+namespace Npoi.Core.XSSF.UserModel
 {
 
     /**
@@ -43,7 +43,7 @@ namespace NPOI.XSSF.UserModel
         public const short DEFAULT_FONT_SIZE = 11;
         /**
          * Default font color is black
-         * @see NPOI.SS.usermodel.IndexedColors#BLACK
+         * @see Npoi.Core.SS.usermodel.IndexedColors#BLACK
          */
         public static short DEFAULT_FONT_COLOR = IndexedColors.Black.Index;
 
@@ -117,7 +117,7 @@ namespace NPOI.XSSF.UserModel
          * get character-set to use.
          *
          * @return int - character-set (0-255)
-         * @see NPOI.SS.usermodel.FontCharset
+         * @see Npoi.Core.SS.usermodel.FontCharset
          */
         public short Charset
         {
@@ -395,7 +395,7 @@ namespace NPOI.XSSF.UserModel
          * get type of text underlining to use
          *
          * @return byte - underlining type
-         * @see NPOI.SS.usermodel.FontUnderline
+         * @see Npoi.Core.SS.usermodel.FontUnderline
          */
         public FontUnderlineType Underline
         {
@@ -573,11 +573,11 @@ namespace NPOI.XSSF.UserModel
          * is used only in StylesTable to create the default instance of font
          *
          * @return FontScheme
-         * @see NPOI.XSSF.model.StylesTable#CreateDefaultFont()
+         * @see Npoi.Core.XSSF.model.StylesTable#CreateDefaultFont()
          */
         public FontScheme GetScheme()
         {
-            NPOI.OpenXmlFormats.Spreadsheet.CT_FontScheme scheme = _ctFont.sizeOfSchemeArray() == 0 ? null : _ctFont.GetSchemeArray(0);
+            Npoi.Core.OpenXmlFormats.Spreadsheet.CT_FontScheme scheme = _ctFont.sizeOfSchemeArray() == 0 ? null : _ctFont.GetSchemeArray(0);
             return scheme == null ? FontScheme.NONE : FontScheme.ValueOf((int)scheme.val);
         }
 
@@ -589,7 +589,7 @@ namespace NPOI.XSSF.UserModel
          */
         public void SetScheme(FontScheme scheme)
         {
-            NPOI.OpenXmlFormats.Spreadsheet.CT_FontScheme ctFontScheme = _ctFont.sizeOfSchemeArray() == 0 ? _ctFont.AddNewScheme() : _ctFont.GetSchemeArray(0);
+            Npoi.Core.OpenXmlFormats.Spreadsheet.CT_FontScheme ctFontScheme = _ctFont.sizeOfSchemeArray() == 0 ? _ctFont.AddNewScheme() : _ctFont.GetSchemeArray(0);
             ST_FontScheme val = (ST_FontScheme)scheme.Value;
             ctFontScheme.val = val;
         }
@@ -598,7 +598,7 @@ namespace NPOI.XSSF.UserModel
          * get the font family to use.
          *
          * @return the font family to use
-         * @see NPOI.SS.usermodel.FontFamily
+         * @see Npoi.Core.SS.usermodel.FontFamily
          */
         public int Family
         {

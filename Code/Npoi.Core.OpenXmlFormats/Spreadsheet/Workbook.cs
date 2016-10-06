@@ -12,10 +12,10 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Xml;
 using System.Xml.Linq;
-using NPOI.OpenXml4Net.Util;
-using NPOI.OpenXml4Net.OPC;
+using Npoi.Core.OpenXml4Net.Util;
+using Npoi.Core.OpenXml4Net.OPC;
 
-namespace NPOI.OpenXmlFormats.Spreadsheet
+namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
 
 

@@ -22,21 +22,21 @@ namespace TestCases.HSSF.UserModel
     using System.Collections;
 
     using TestCases.HSSF;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.Record;
-    using NPOI.SS.Formula;
-    using NPOI.Util;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.Util;
+    using Npoi.Core.HSSF.UserModel;
     using NUnit.Framework;
-    using NPOI.DDF;
+    using Npoi.Core.DDF;
     using TestCases.SS.UserModel;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.UserModel;
-    using NPOI.POIFS.FileSystem;
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.SS.Util;
     using System.Collections.Generic;
     using System.Text;
-    using NPOI.HSSF;
+    using Npoi.Core.HSSF;
     using System.Threading;
     using System.Globalization;
     /**
@@ -64,8 +64,8 @@ namespace TestCases.HSSF.UserModel
         public void CaseInsensitiveNames()
         {
             HSSFWorkbook b = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet originalSheet = b.CreateSheet("Sheet1");
-            NPOI.SS.UserModel.ISheet fetchedSheet = b.GetSheet("sheet1");
+            Npoi.Core.SS.UserModel.ISheet originalSheet = b.CreateSheet("Sheet1");
+            Npoi.Core.SS.UserModel.ISheet fetchedSheet = b.GetSheet("sheet1");
             if (fetchedSheet == null)
             {
                 throw new AssertionException("Identified bug 44892");
@@ -176,7 +176,7 @@ namespace TestCases.HSSF.UserModel
         public void ReadWriteWithCharts()
         {
             HSSFWorkbook b;
-            NPOI.SS.UserModel.ISheet s;
+            Npoi.Core.SS.UserModel.ISheet s;
 
             // Single chart, two sheets
             b = OpenSample("44010-SingleChart.xls");
@@ -247,10 +247,10 @@ namespace TestCases.HSSF.UserModel
         public void SelectedSheet_bug44523()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sheet1 = wb.CreateSheet("Sheet1");
-            NPOI.SS.UserModel.ISheet sheet2 = wb.CreateSheet("Sheet2");
-            NPOI.SS.UserModel.ISheet sheet3 = wb.CreateSheet("Sheet3");
-            NPOI.SS.UserModel.ISheet sheet4 = wb.CreateSheet("Sheet4");
+            Npoi.Core.SS.UserModel.ISheet sheet1 = wb.CreateSheet("Sheet1");
+            Npoi.Core.SS.UserModel.ISheet sheet2 = wb.CreateSheet("Sheet2");
+            Npoi.Core.SS.UserModel.ISheet sheet3 = wb.CreateSheet("Sheet3");
+            Npoi.Core.SS.UserModel.ISheet sheet4 = wb.CreateSheet("Sheet4");
 
             ConfirmActiveSelected(sheet1, true);
             ConfirmActiveSelected(sheet2, false);
@@ -283,12 +283,12 @@ namespace TestCases.HSSF.UserModel
         //public void SelectMultiple()
         //{
         //    HSSFWorkbook wb = new HSSFWorkbook();
-        //    NPOI.SS.UserModel.Sheet sheet1 = wb.CreateSheet("Sheet1");
-        //    NPOI.SS.UserModel.Sheet sheet2 = wb.CreateSheet("Sheet2");
-        //    NPOI.SS.UserModel.Sheet sheet3 = wb.CreateSheet("Sheet3");
-        //    NPOI.SS.UserModel.Sheet sheet4 = wb.CreateSheet("Sheet4");
-        //    NPOI.SS.UserModel.Sheet sheet5 = wb.CreateSheet("Sheet5");
-        //    NPOI.SS.UserModel.Sheet sheet6 = wb.CreateSheet("Sheet6");
+        //    Npoi.Core.SS.UserModel.Sheet sheet1 = wb.CreateSheet("Sheet1");
+        //    Npoi.Core.SS.UserModel.Sheet sheet2 = wb.CreateSheet("Sheet2");
+        //    Npoi.Core.SS.UserModel.Sheet sheet3 = wb.CreateSheet("Sheet3");
+        //    Npoi.Core.SS.UserModel.Sheet sheet4 = wb.CreateSheet("Sheet4");
+        //    Npoi.Core.SS.UserModel.Sheet sheet5 = wb.CreateSheet("Sheet5");
+        //    Npoi.Core.SS.UserModel.Sheet sheet6 = wb.CreateSheet("Sheet6");
 
         //    wb.SetSelectedTabs(new int[] { 0, 2, 3 });
 
@@ -343,11 +343,11 @@ namespace TestCases.HSSF.UserModel
         public void ActiveSheetAfterDelete_bug40414()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sheet0 = wb.CreateSheet("Sheet0");
-            NPOI.SS.UserModel.ISheet sheet1 = wb.CreateSheet("Sheet1");
-            NPOI.SS.UserModel.ISheet sheet2 = wb.CreateSheet("Sheet2");
-            NPOI.SS.UserModel.ISheet sheet3 = wb.CreateSheet("Sheet3");
-            NPOI.SS.UserModel.ISheet sheet4 = wb.CreateSheet("Sheet4");
+            Npoi.Core.SS.UserModel.ISheet sheet0 = wb.CreateSheet("Sheet0");
+            Npoi.Core.SS.UserModel.ISheet sheet1 = wb.CreateSheet("Sheet1");
+            Npoi.Core.SS.UserModel.ISheet sheet2 = wb.CreateSheet("Sheet2");
+            Npoi.Core.SS.UserModel.ISheet sheet3 = wb.CreateSheet("Sheet3");
+            Npoi.Core.SS.UserModel.ISheet sheet4 = wb.CreateSheet("Sheet4");
 
             // Confirm default activation/selection
             ConfirmActiveSelected(sheet0, true);
@@ -409,13 +409,13 @@ namespace TestCases.HSSF.UserModel
             ConfirmActiveSelected(sheet0, true, true);
         }
 
-        private static void ConfirmActiveSelected(NPOI.SS.UserModel.ISheet sheet, bool expected)
+        private static void ConfirmActiveSelected(Npoi.Core.SS.UserModel.ISheet sheet, bool expected)
         {
             ConfirmActiveSelected(sheet, expected, expected);
         }
 
 
-        private static void ConfirmActiveSelected(NPOI.SS.UserModel.ISheet sheet,
+        private static void ConfirmActiveSelected(Npoi.Core.SS.UserModel.ISheet sheet,
                 bool expectedActive, bool expectedSelected)
         {
             Assert.AreEqual(expectedActive, sheet.IsActive, "active");
@@ -450,7 +450,7 @@ namespace TestCases.HSSF.UserModel
         }
 
         /**
-         * Checks that us and NPOI.SS.UserModel.Name play nicely with named ranges
+         * Checks that us and Npoi.Core.SS.UserModel.Name play nicely with named ranges
          *  that point to deleted sheets
          */
         [Test]
@@ -465,7 +465,7 @@ namespace TestCases.HSSF.UserModel
 
             Area3DPtg ptg;
             NameRecord nr;
-            NPOI.SS.UserModel.IName n;
+            Npoi.Core.SS.UserModel.IName n;
 
             /* ======= Name pointing to deleted sheet ====== */
 
@@ -577,7 +577,7 @@ namespace TestCases.HSSF.UserModel
             }
             catch (RecordFormatException e)
             {
-                if (e.InnerException is NPOI.Util.BufferUnderrunException)
+                if (e.InnerException is Npoi.Core.Util.BufferUnderrunException)
                 {
                     throw new AssertionException("Identified bug 45582");
                 }

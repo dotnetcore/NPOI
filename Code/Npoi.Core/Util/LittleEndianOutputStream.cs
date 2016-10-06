@@ -15,13 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
     using System;
     using System.IO;
 
     /// <summary>
-    /// Wraps an <see cref="T:System.IO.Stream"/> providing <see cref="T:NPOI.Util.ILittleEndianOutput"/>
+    /// Wraps an <see cref="T:System.IO.Stream"/> providing <see cref="T:Npoi.Core.Util.ILittleEndianOutput"/>
     /// </summary>
     /// <remarks>@author Josh Micich</remarks>
     public class LittleEndianOutputStream : ILittleEndianOutput, IDisposable

@@ -17,10 +17,10 @@
 
 
 using System;
-using NPOI.POIFS.Storage;
+using Npoi.Core.POIFS.Storage;
 using System.IO;
 
-namespace NPOI.POIFS.FileSystem
+namespace Npoi.Core.POIFS.FileSystem
 {
     /**
      * This class provides methods to read a DocumentEntry managed by a

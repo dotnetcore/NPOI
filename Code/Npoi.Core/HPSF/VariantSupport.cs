@@ -27,12 +27,12 @@
 
 using System.Collections.Generic;
 
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     using System;
     using System.IO;
     using System.Globalization;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /// <summary>
     /// Supports Reading and writing of variant data.

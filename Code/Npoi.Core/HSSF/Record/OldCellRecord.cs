@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
     using System;
     using System.Text;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
 
     /**
@@ -73,7 +73,7 @@ namespace NPOI.HSSF.Record
         /**
          * Get the index to the ExtendedFormat, for non-Biff2
          *
-         * @see NPOI.HSSF.Record.ExtendedFormatRecord
+         * @see Npoi.Core.HSSF.Record.ExtendedFormatRecord
          * @return index to the XF record
          */
         public short XFIndex

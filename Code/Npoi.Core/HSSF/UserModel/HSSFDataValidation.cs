@@ -15,14 +15,14 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
     using System;
 
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
 
     /**
      *Utility class for creating data validation cells
@@ -59,7 +59,7 @@ namespace NPOI.HSSF.UserModel
 
 
         /* (non-Javadoc)
-         * @see NPOI.HSSF.UserModel.DataValidation#getConstraint()
+         * @see Npoi.Core.HSSF.UserModel.DataValidation#getConstraint()
          */
         public IDataValidationConstraint ValidationConstraint
         {
@@ -149,7 +149,7 @@ namespace NPOI.HSSF.UserModel
 
 
         /* (non-Javadoc)
-         * @see NPOI.HSSF.UserModel.DataValidation#CreatePromptBox(java.lang.String, java.lang.String)
+         * @see Npoi.Core.HSSF.UserModel.DataValidation#CreatePromptBox(java.lang.String, java.lang.String)
          */
         public void CreatePromptBox(String title, String text)
         {
@@ -159,7 +159,7 @@ namespace NPOI.HSSF.UserModel
         }
 
         /* (non-Javadoc)
-         * @see NPOI.HSSF.UserModel.DataValidation#getPromptBoxTitle()
+         * @see Npoi.Core.HSSF.UserModel.DataValidation#getPromptBoxTitle()
          */
         public String PromptBoxTitle
         {
@@ -170,7 +170,7 @@ namespace NPOI.HSSF.UserModel
         }
 
         /* (non-Javadoc)
-         * @see NPOI.HSSF.UserModel.DataValidation#getPromptBoxText()
+         * @see Npoi.Core.HSSF.UserModel.DataValidation#getPromptBoxText()
          */
         public String PromptBoxText
         {
@@ -181,7 +181,7 @@ namespace NPOI.HSSF.UserModel
         }
 
         /* (non-Javadoc)
-         * @see NPOI.HSSF.UserModel.DataValidation#CreateErrorBox(java.lang.String, java.lang.String)
+         * @see Npoi.Core.HSSF.UserModel.DataValidation#CreateErrorBox(java.lang.String, java.lang.String)
          */
         public void CreateErrorBox(String title, String text)
         {
@@ -191,7 +191,7 @@ namespace NPOI.HSSF.UserModel
         }
 
         /* (non-Javadoc)
-         * @see NPOI.HSSF.UserModel.DataValidation#getErrorBoxTitle()
+         * @see Npoi.Core.HSSF.UserModel.DataValidation#getErrorBoxTitle()
          */
         public String ErrorBoxTitle
         {
@@ -202,7 +202,7 @@ namespace NPOI.HSSF.UserModel
         }
 
         /* (non-Javadoc)
-         * @see NPOI.HSSF.UserModel.DataValidation#getErrorBoxText()
+         * @see Npoi.Core.HSSF.UserModel.DataValidation#getErrorBoxText()
          */
         public String ErrorBoxText
         {
@@ -215,7 +215,7 @@ namespace NPOI.HSSF.UserModel
         public DVRecord CreateDVRecord(HSSFSheet sheet)
         {
 
-            NPOI.HSSF.UserModel.DVConstraint.FormulaPair fp = _constraint.CreateFormulas(sheet);
+            Npoi.Core.HSSF.UserModel.DVConstraint.FormulaPair fp = _constraint.CreateFormulas(sheet);
 
             return new DVRecord(_constraint.GetValidationType(),
                     _constraint.Operator,

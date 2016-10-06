@@ -15,13 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula
+namespace Npoi.Core.SS.Formula
 {
 
     using System;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.Udf;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Udf;
+    using Npoi.Core.SS.Formula.PTG;
 
     public class ExternalSheet
     {

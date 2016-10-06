@@ -33,12 +33,12 @@ namespace TestCases.POIFS.FileSystem
 
     using NUnit.Framework;
 
-    using NPOI.POIFS.FileSystem;
-    using NPOI.Util;
-    using NPOI.POIFS.Storage;
-    using NPOI.POIFS.Properties;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.Util;
+    using Npoi.Core.POIFS.Storage;
+    using Npoi.Core.POIFS.Properties;
     using TestCases.HSSF;
-    using NPOI.POIFS.Common;
+    using Npoi.Core.POIFS.Common;
     using System.Collections.Generic;
 
     /**

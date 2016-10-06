@@ -19,9 +19,9 @@
 using System;
 using System.Text;
 using System.Collections;
-using NPOI.POIFS.FileSystem;
+using Npoi.Core.POIFS.FileSystem;
 using NUnit.Framework;
-using NPOI.POIFS.EventFileSystem;
+using Npoi.Core.POIFS.EventFileSystem;
 namespace TestCases.POIFS.EventFileSystem
 {
     /**

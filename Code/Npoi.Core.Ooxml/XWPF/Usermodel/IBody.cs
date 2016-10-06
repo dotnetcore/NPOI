@@ -17,12 +17,12 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     using System;
     using System.Collections.Generic;
     using System.Xml;
-    using NPOI.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
 
     /**
      * An IBody represents the different parts of the document which

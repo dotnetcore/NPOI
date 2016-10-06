@@ -15,15 +15,15 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS
+namespace Npoi.Core.SS
 {
     using System;
     using NUnit.Framework;
-    using NPOI.HSSF.UserModel;
-    using NPOI.OpenXml4Net.OPC;
-    using NPOI.POIFS.FileSystem;
-    using NPOI.SS.UserModel;
-    using NPOI.XSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.XSSF.UserModel;
     using TestCases.HSSF;
     using System.IO;
 

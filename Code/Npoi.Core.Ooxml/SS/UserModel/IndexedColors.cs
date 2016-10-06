@@ -15,12 +15,12 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.HSSF.Util;
-using NPOI.XSSF.UserModel;
+using Npoi.Core.HSSF.Util;
+using Npoi.Core.XSSF.UserModel;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
-namespace NPOI.SS.UserModel
+namespace Npoi.Core.SS.UserModel
 {
 
     /**

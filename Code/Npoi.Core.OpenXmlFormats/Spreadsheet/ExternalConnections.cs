@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml.Serialization;
 using System.IO;
-using NPOI.OpenXml4Net.Util;
+using Npoi.Core.OpenXml4Net.Util;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace NPOI.OpenXmlFormats {
+namespace Npoi.Core.OpenXmlFormats {
     
     
 

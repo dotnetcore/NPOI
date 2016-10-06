@@ -1,7 +1,7 @@
 ﻿using System;
-using NPOI.Util;
+using Npoi.Core.Util;
 
-namespace NPOI.HSSF.Record.AutoFilter
+namespace Npoi.Core.HSSF.Record.AutoFilter
 {
     public enum DOPERComparisonCode:byte
     { 

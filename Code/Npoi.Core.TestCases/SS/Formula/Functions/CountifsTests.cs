@@ -21,9 +21,9 @@ namespace TestCases.SS.Formula.Functions
     using System;
 
     using NUnit.Framework;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula.Atp;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula.Atp;
+    using Npoi.Core.SS.UserModel;
 
     [TestFixture]
     public class CountifsTests

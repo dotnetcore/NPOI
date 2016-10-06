@@ -16,10 +16,10 @@
 ==================================================================== */
 
 using NUnit.Framework;
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.UserModel;
 using System;
-using NPOI.HSSF.Record.CF;
-using NPOI.HSSF.Util;
+using Npoi.Core.HSSF.Record.CF;
+using Npoi.Core.HSSF.Util;
 namespace TestCases.SS.UserModel
 {
 
@@ -148,7 +148,7 @@ namespace TestCases.SS.UserModel
         /**
          * Test that fonts get Added properly
          *
-         * @see NPOI.HSSF.usermodel.TestBugs#test45338()
+         * @see Npoi.Core.HSSF.usermodel.TestBugs#test45338()
          */
         [Test]
         public void Test45338()

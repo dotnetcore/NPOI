@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using NPOI.OpenXml4Net.OPC.Internal.Marshallers;
+using Npoi.Core.OpenXml4Net.OPC.Internal.Marshallers;
 using ICSharpCode.SharpZipLib.Zip;
 
-namespace NPOI.OpenXml4Net.OPC
+namespace Npoi.Core.OpenXml4Net.OPC
 {
 /**
  * Zip implementation of a PackagePart.

@@ -20,8 +20,8 @@ namespace TestCases.HSSF.Record
 
     using System;
     using TestCases.HSSF;
-    using NPOI.HSSF.UserModel;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.HSSF.Record;
     using NUnit.Framework;
     /**
      * Tests for <c>LabelRecord</c>

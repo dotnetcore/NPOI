@@ -19,8 +19,8 @@ namespace TestCases.SS.Formula.PTG
 {
     using System;
     using NUnit.Framework;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula.PTG;
 
     /**
      * Tests for Area3DPtg

@@ -2,7 +2,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace NPOI.OpenXmlFormats
+namespace Npoi.Core.OpenXmlFormats
 {
     public class CustomPropertiesDocument
     {

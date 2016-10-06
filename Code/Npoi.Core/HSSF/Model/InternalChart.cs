@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using NPOI.HPSF;
-using NPOI.HSSF.Record;
-using NPOI.HSSF.Record.Chart;
-using NPOI.HSSF.Record.Aggregates;
-using NPOI.Util;
-using NPOI.SS.UserModel;
+using Npoi.Core.HPSF;
+using Npoi.Core.HSSF.Record;
+using Npoi.Core.HSSF.Record.Chart;
+using Npoi.Core.HSSF.Record.Aggregates;
+using Npoi.Core.Util;
+using Npoi.Core.SS.UserModel;
 
-namespace NPOI.HSSF.Model
+namespace Npoi.Core.HSSF.Model
 {
 
     [Serializable]
@@ -143,7 +143,7 @@ namespace NPOI.HSSF.Model
             }
             #region RecordVisitor 成员
 
-            public void VisitRecord(NPOI.HSSF.Record.Record r)
+            public void VisitRecord(Npoi.Core.HSSF.Record.Record r)
             {
                 container.Add((RecordBase)r);
             }
@@ -675,7 +675,7 @@ namespace NPOI.HSSF.Model
         #region SS
         //SS = DataFormat Begin [Chart3DBarShape] [LineFormat AreaFormat PieFormat] [SerFmt] 
         //[GELFRAME] [MarkerFormat] [AttachedLabel] *2SHAPEPROPS [CRTMLFRT] End
-        private static void CreateRuleSS(List<NPOI.HSSF.Record.Record> records)
+        private static void CreateRuleSS(List<Npoi.Core.HSSF.Record.Record> records)
         {
             records.Add(CreateDataFormatRecord());
             records.Add(new BeginRecord());

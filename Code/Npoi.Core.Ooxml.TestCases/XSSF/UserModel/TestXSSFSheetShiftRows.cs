@@ -16,11 +16,11 @@
 ==================================================================== */
 
 using System;
-using NPOI.SS.UserModel;
-using NPOI.SS.Util;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.Util;
 using NUnit.Framework;
 using TestCases.SS.UserModel;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
 
     /**

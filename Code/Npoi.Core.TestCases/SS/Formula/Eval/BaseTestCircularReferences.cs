@@ -17,11 +17,11 @@
 namespace TestCases.SS.Formula.Eval
 {
     using System;
-    using NPOI.SS.UserModel;
-    using NPOI.Util;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.Util;
     using NUnit.Framework;
     using TestCases.SS;
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Eval;
 
     /**
      * Common superclass for testing cases of circular references

@@ -19,16 +19,16 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-using NPOI.OpenXml4Net.OPC;
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.SS.UserModel;
-using NPOI.XSSF.UserModel;
-using NPOI.XSSF.UserModel.Extensions;
+using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.XSSF.UserModel;
+using Npoi.Core.XSSF.UserModel.Extensions;
 using System.Collections.ObjectModel;
 using System.Xml.Linq;
-using NPOI.SS;
+using Npoi.Core.SS;
 
-namespace NPOI.XSSF.Model
+namespace Npoi.Core.XSSF.Model
 {
 
 

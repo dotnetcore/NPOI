@@ -23,8 +23,8 @@ namespace TestCases.SS.Formula.Eval
     using System;
     using System.IO;
     using NUnit.Framework;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
     using TestCases.HSSF;
 
     /**

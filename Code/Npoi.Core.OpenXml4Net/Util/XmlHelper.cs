@@ -8,7 +8,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace NPOI.OpenXml4Net.Util
+namespace Npoi.Core.OpenXml4Net.Util
 {
     public static class XmlHelper
     {

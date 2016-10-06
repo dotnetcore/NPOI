@@ -22,12 +22,12 @@ namespace TestCases.HSSF.Model
     using NUnit.Framework;
 
     using TestCases.HSSF;
-    using NPOI.SS.Formula;
-    using NPOI.HSSF.UserModel;
-    using NPOI.HSSF.Model;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.HSSF.Model;
     using TestCases.HSSF.UserModel;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Formula.PTG;
 
     /**
      * Tests 'operand class' transformation performed by
@@ -52,7 +52,7 @@ namespace TestCases.HSSF.Model
         public void TestFormulasRVA()
         {
             HSSFWorkbook wb = HSSFTestDataSamples.OpenSampleWorkbook("testRVA.xls");
-            NPOI.SS.UserModel.ISheet sheet = wb.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.GetSheetAt(0);
 
             int countFailures = 0;
             int countErrors = 0;
@@ -66,7 +66,7 @@ namespace TestCases.HSSF.Model
                     break;
                 }
                 ICell cell = row.GetCell(0);
-                if (cell == null || cell.CellType == NPOI.SS.UserModel.CellType.Blank)
+                if (cell == null || cell.CellType == Npoi.Core.SS.UserModel.CellType.Blank)
                 {
                     break;
                 }

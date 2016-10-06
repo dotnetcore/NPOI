@@ -21,14 +21,14 @@ namespace TestCases.SS.Util
 
     using NUnit.Framework;
 
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
 
     /**
      * Tests SheetUtil.
      *
-     * @see NPOI.SS.Util.SheetUtil
+     * @see Npoi.Core.SS.Util.SheetUtil
      */
     [TestFixture]
     public class TestSheetUtil

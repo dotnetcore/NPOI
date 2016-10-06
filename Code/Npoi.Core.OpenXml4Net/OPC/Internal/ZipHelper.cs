@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
 
-namespace NPOI.OpenXml4Net.OPC.Internal
+namespace Npoi.Core.OpenXml4Net.OPC.Internal
 {
     public class ZipHelper
     {

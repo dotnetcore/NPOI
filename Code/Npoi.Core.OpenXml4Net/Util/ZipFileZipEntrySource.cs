@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
 
-namespace NPOI.OpenXml4Net.Util
+namespace Npoi.Core.OpenXml4Net.Util
 {
     /**
      * A ZipEntrySource wrapper around a ZipFile.

@@ -20,15 +20,15 @@ namespace TestCases.SS.UserModel
 {
     using System;
     using NUnit.Framework;
-    using NPOI.SS;
-    using NPOI.SS.Util;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.SS.UserModel;
     using System.Collections;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
 
     /**
-     * Common superclass for Testing {@link NPOI.xssf.UserModel.XSSFCell}  and
-     * {@link NPOI.HSSF.UserModel.HSSFCell}
+     * Common superclass for Testing {@link Npoi.Core.xssf.UserModel.XSSFCell}  and
+     * {@link Npoi.Core.HSSF.UserModel.HSSFCell}
      */
     [TestFixture]
     public class BaseTestSheet

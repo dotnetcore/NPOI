@@ -18,12 +18,12 @@
 namespace TestCases.HSSF.UserModel
 {
     using System;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     using System.IO;
     using TestCases.HSSF;
     using NUnit.Framework;
 
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
 
     [TestFixture]
     public class TestHSSFRichTextString

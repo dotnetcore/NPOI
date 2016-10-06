@@ -14,17 +14,17 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-namespace NPOI.XWPF.Model
+namespace Npoi.Core.XWPF.Model
 {
     using System;
-    using NPOI.XWPF.UserModel;
-    using NPOI.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.XWPF.UserModel;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
     using System.Collections.Generic;
     using System.IO;
     using System.Xml.Serialization;
     using System.Xml;
-    using NPOI.OpenXmlFormats.Vml;
-    using NPOI.OpenXmlFormats.Vml.Office;
+    using Npoi.Core.OpenXmlFormats.Vml;
+    using Npoi.Core.OpenXmlFormats.Vml.Office;
     using System.Diagnostics;
 
     /**
@@ -414,7 +414,7 @@ namespace NPOI.XWPF.Model
             CT_PPr pPr = p.AddNewPPr();
             pPr.AddNewPStyle().val = ("Header");
             // start watermark paragraph
-            NPOI.OpenXmlFormats.Wordprocessing.CT_R r = p.AddNewR();
+            Npoi.Core.OpenXmlFormats.Wordprocessing.CT_R r = p.AddNewR();
             CT_RPr rPr = r.AddNewRPr();
             rPr.AddNewNoProof();
             CT_Picture pict = r.AddNewPict();
@@ -442,18 +442,18 @@ namespace NPOI.XWPF.Model
             formulas.AddNewF().eqn = ("mid @6 @7");
             formulas.AddNewF().eqn = ("sum @6 0 @5");
             CT_Path path = shapetype.AddNewPath();
-            path.textpathok=(NPOI.OpenXmlFormats.Vml.ST_TrueFalse.t);
+            path.textpathok=(Npoi.Core.OpenXmlFormats.Vml.ST_TrueFalse.t);
             path.connecttype=(ST_ConnectType.custom);
             path.connectlocs=("@9,0;@10,10800;@11,21600;@12,10800");
             path.connectangles=("270,180,90,0");
             CT_TextPath shapeTypeTextPath = shapetype.AddNewTextpath();
-            shapeTypeTextPath.on=(NPOI.OpenXmlFormats.Vml.ST_TrueFalse.t);
-            shapeTypeTextPath.fitshape=(NPOI.OpenXmlFormats.Vml.ST_TrueFalse.t);
+            shapeTypeTextPath.on=(Npoi.Core.OpenXmlFormats.Vml.ST_TrueFalse.t);
+            shapeTypeTextPath.fitshape=(Npoi.Core.OpenXmlFormats.Vml.ST_TrueFalse.t);
             CT_Handles handles = shapetype.AddNewHandles();
             CT_H h = handles.AddNewH();
             h.position=("#0,bottomRight");
             h.xrange=("6629,14971");
-            NPOI.OpenXmlFormats.Vml.Office.CT_Lock lock1 = shapetype.AddNewLock();
+            Npoi.Core.OpenXmlFormats.Vml.Office.CT_Lock lock1 = shapetype.AddNewLock();
             lock1.ext=(ST_Ext.edit);
             CT_Shape shape = group.AddNewShape();
             shape.id = ("PowerPlusWaterMarkObject" + idx);
@@ -462,7 +462,7 @@ namespace NPOI.XWPF.Model
             shape.style = ("position:absolute;margin-left:0;margin-top:0;width:415pt;height:207.5pt;z-index:-251654144;mso-wrap-edited:f;mso-position-horizontal:center;mso-position-horizontal-relative:margin;mso-position-vertical:center;mso-position-vertical-relative:margin");
             shape.wrapcoords = ("616 5068 390 16297 39 16921 -39 17155 7265 17545 7186 17467 -39 17467 18904 17467 10507 17467 8710 17545 18904 17077 18787 16843 18358 16297 18279 12554 19178 12476 20701 11774 20779 11228 21131 10059 21248 8811 21248 7563 20975 6316 20935 5380 19490 5146 14022 5068 2616 5068");
             shape.fillcolor = ("black");
-            shape.stroked = (NPOI.OpenXmlFormats.Vml.ST_TrueFalse.@false);
+            shape.stroked = (Npoi.Core.OpenXmlFormats.Vml.ST_TrueFalse.@false);
             CT_TextPath shapeTextPath = shape.AddNewTextpath();
             shapeTextPath.style=("font-family:&quot;Cambria&quot;;font-size:1pt");
             shapeTextPath.@string=(text);

@@ -15,16 +15,16 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 //==================================================================== */
-//namespace NPOI
+//namespace Npoi.Core
 //{
 
 //    using junit.framework.TestCase;
 
 //    using org.apache.poi.Openxml4j.opc.OPCPackage;
-//    using NPOI.UTIL.PackageHelper;
-//    using NPOI.XSLF.XSLFSlideShow;
-//    using NPOI.XSSF.extractor.XSSFExcelExtractor;
-//    using NPOI.XSSF.usermodel.XSSFWorkbook;
+//    using Npoi.Core.UTIL.PackageHelper;
+//    using Npoi.Core.XSLF.XSLFSlideShow;
+//    using Npoi.Core.XSSF.extractor.XSSFExcelExtractor;
+//    using Npoi.Core.XSSF.usermodel.XSSFWorkbook;
 
 //    public class TestXMLPropertiesTextExtractor
 //    {

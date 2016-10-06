@@ -21,10 +21,10 @@ namespace TestCases.HSSF.Record
 {
     using System;
     using NUnit.Framework;
-    using NPOI.Util.Collections;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.Cont;
-    using NPOI.Util;
+    using Npoi.Core.Util.Collections;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Cont;
+    using Npoi.Core.Util;
 
 
     /**

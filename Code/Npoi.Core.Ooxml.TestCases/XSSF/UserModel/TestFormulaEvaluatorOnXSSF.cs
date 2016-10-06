@@ -16,15 +16,15 @@
 */
 
 using System;
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.UserModel;
 using NUnit.Framework;
 using TestCases.SS.Formula.Functions;
-using NPOI.OpenXml4Net.OPC;
+using Npoi.Core.OpenXml4Net.OPC;
 using System.IO;
 using TestCases.HSSF;
-using NPOI.Util;
-using NPOI.SS.Util;
-namespace NPOI.XSSF.UserModel{
+using Npoi.Core.Util;
+using Npoi.Core.SS.Util;
+namespace Npoi.Core.XSSF.UserModel{
 
 
     /**

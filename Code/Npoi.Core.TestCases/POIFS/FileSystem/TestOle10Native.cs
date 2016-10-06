@@ -22,8 +22,8 @@ namespace TestCases.POIFS.FileSystem
     using TestCases;
     using System.IO;
     using System.Collections.Generic;
-    using NPOI.Util;
-    using NPOI.POIFS.FileSystem;
+    using Npoi.Core.Util;
+    using Npoi.Core.POIFS.FileSystem;
 
 
 

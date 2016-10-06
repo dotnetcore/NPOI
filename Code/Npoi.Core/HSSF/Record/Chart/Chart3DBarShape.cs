@@ -18,9 +18,9 @@
 //using System.Collections.Generic;
 //using System.Text;
 
-//using NPOI.Util;
+//using Npoi.Core.Util;
 
-//namespace NPOI.HSSF.Record.Chart
+//namespace Npoi.Core.HSSF.Record.Chart
 //{
 //    public class Chart3DBarShapeRecord:StandardRecord
 //    {

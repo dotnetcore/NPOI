@@ -17,11 +17,11 @@
  * ====================================================================
  */
 
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.SS.UserModel;
-using NPOI.XSSF.Model;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.XSSF.Model;
 using System;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
 
     /**
@@ -196,7 +196,7 @@ namespace NPOI.XSSF.UserModel
          * The comparison function used when the type of conditional formatting is Set to
          * {@link ConditionalFormattingRule#CONDITION_TYPE_CELL_VALUE_IS}
          * <p>
-         *     MUST be a constant from {@link NPOI.ss.usermodel.ComparisonOperator}
+         *     MUST be a constant from {@link Npoi.Core.ss.usermodel.ComparisonOperator}
          * </p>
          *
          * @return the conditional format operator
@@ -249,7 +249,7 @@ namespace NPOI.XSSF.UserModel
         /**
          * The formula used to Evaluate the second operand of the comparison when
          * comparison type is  {@link ConditionalFormattingRule#CONDITION_TYPE_CELL_VALUE_IS} and operator
-         * is either {@link NPOI.ss.usermodel.ComparisonOperator#BETWEEN} or {@link NPOI.ss.usermodel.ComparisonOperator#NOT_BETWEEN}
+         * is either {@link Npoi.Core.ss.usermodel.ComparisonOperator#BETWEEN} or {@link Npoi.Core.ss.usermodel.ComparisonOperator#NOT_BETWEEN}
          *
          * @return  the second formula
          */

@@ -16,7 +16,7 @@
 ==================================================================== */
 
 using System.Collections.Generic;
-namespace NPOI.SS.UserModel
+namespace Npoi.Core.SS.UserModel
 {
 
     /**

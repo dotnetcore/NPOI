@@ -28,9 +28,9 @@ namespace TestCases.HSSF.UserModel
     using NUnit.Framework;
 
     using TestCases.HSSF;
-    using NPOI.Util;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.Util;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
 
     /**
      * Class to Test row styling functionality
@@ -52,23 +52,23 @@ namespace TestCases.HSSF.UserModel
         /**
          * TEST NAME:  Test Write Sheet Font <P>
          * OBJECTIVE:  Test that HSSF can Create a simple spreadsheet with numeric and string values and styled with fonts.<P>
-         * SUCCESS:    HSSF Creates a sheet.  Filesize Matches a known good.  NPOI.SS.UserModel.Sheet objects
+         * SUCCESS:    HSSF Creates a sheet.  Filesize Matches a known good.  Npoi.Core.SS.UserModel.Sheet objects
          *             Last row, first row is Tested against the correct values (99,0).<P>
          * FAILURE:    HSSF does not Create a sheet or excepts.  Filesize does not Match the known good.
-         *             NPOI.SS.UserModel.Sheet last row or first row is incorrect.             <P>
+         *             Npoi.Core.SS.UserModel.Sheet last row or first row is incorrect.             <P>
          *
          */
         [Test]
         public void TestWriteSheetFont()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
             IRow r = null;
             //ICell c = null;
             IFont fnt = wb.CreateFont();
-            NPOI.SS.UserModel.ICellStyle cs = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cs = wb.CreateCellStyle();
 
-            fnt.Color=(NPOI.HSSF.Util.HSSFColor.Red.Index);
+            fnt.Color=(Npoi.Core.HSSF.Util.HSSFColor.Red.Index);
             fnt.Boldweight=(short)FontBoldWeight.Bold;
             cs.SetFont(fnt);
             for (short rownum = (short)0; rownum < 100; rownum++)
@@ -92,8 +92,8 @@ namespace TestCases.HSSF.UserModel
         public void TestDataStyle()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
-            NPOI.SS.UserModel.ICellStyle cs = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ICellStyle cs = wb.CreateCellStyle();
             IRow row = s.CreateRow((short)0);
 
             // with Date:
@@ -122,21 +122,21 @@ namespace TestCases.HSSF.UserModel
          * TEST NAME:  Test Write Sheet Style <P>
          * OBJECTIVE:  Test that HSSF can Create a simple spreadsheet with numeric and string values and styled with colors
          *             and borders.<P>
-         * SUCCESS:    HSSF Creates a sheet.  Filesize Matches a known good.  NPOI.SS.UserModel.Sheet objects
+         * SUCCESS:    HSSF Creates a sheet.  Filesize Matches a known good.  Npoi.Core.SS.UserModel.Sheet objects
          *             Last row, first row is Tested against the correct values (99,0).<P>
          * FAILURE:    HSSF does not Create a sheet or excepts.  Filesize does not Match the known good.
-         *             NPOI.SS.UserModel.Sheet last row or first row is incorrect.             <P>
+         *             Npoi.Core.SS.UserModel.Sheet last row or first row is incorrect.             <P>
          *
          */
         [Test]
         public void TestWriteSheetStyle()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
             IRow r = null;
             IFont fnt = wb.CreateFont();
-            NPOI.SS.UserModel.ICellStyle cs = wb.CreateCellStyle();
-            NPOI.SS.UserModel.ICellStyle cs2 = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cs = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cs2 = wb.CreateCellStyle();
 
             cs.BorderBottom=(BorderStyle.Thin);
             cs.BorderLeft=(BorderStyle.Thin);

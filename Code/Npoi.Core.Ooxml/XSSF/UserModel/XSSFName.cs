@@ -15,12 +15,12 @@
    limitations under the License.
 ==================================================================== */
 using System;
-using NPOI.SS.Util;
-using NPOI.SS.Formula.PTG;
-using NPOI.SS.Formula;
-using NPOI.SS.UserModel;
-using NPOI.OpenXmlFormats.Spreadsheet;
-namespace NPOI.XSSF.UserModel
+using Npoi.Core.SS.Util;
+using Npoi.Core.SS.Formula.PTG;
+using Npoi.Core.SS.Formula;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+namespace Npoi.Core.XSSF.UserModel
 {
 
     /**
@@ -111,7 +111,7 @@ namespace NPOI.XSSF.UserModel
          *
          * @param name - the xml bean that holds data represenring this defined name.
          * @param workbook - the workbook object associated with the name
-         * @see NPOI.XSSF.usermodel.XSSFWorkbook#CreateName()
+         * @see Npoi.Core.XSSF.usermodel.XSSFWorkbook#CreateName()
          */
         public XSSFName(CT_DefinedName name, XSSFWorkbook workbook)
         {

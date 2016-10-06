@@ -23,11 +23,11 @@ namespace TestCases.HSSF.Record.Chart
     using NUnit.Framework;
 
     using TestCases.HSSF;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.EventUserModel;
-    using NPOI.HSSF.UserModel;
-    using NPOI.POIFS.FileSystem;
-    using NPOI.HSSF.Record.Chart;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.EventUserModel;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.HSSF.Record.Chart;
     /**
      * 
      */

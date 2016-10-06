@@ -17,13 +17,13 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     using System;
-    using NPOI.OpenXml4Net.Exceptions;
-    using NPOI.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXml4Net.Exceptions;
+    using Npoi.Core.OpenXml4Net.OPC;
     using System.Collections.Generic;
-    using NPOI.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
     using System.IO;
     using System.Xml.Serialization;
     using System.Xml;

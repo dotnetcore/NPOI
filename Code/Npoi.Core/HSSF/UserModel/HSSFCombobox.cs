@@ -15,11 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 using System;
-using NPOI.DDF;
-using NPOI.HSSF.Record;
-using NPOI.SS.UserModel;
+using Npoi.Core.DDF;
+using Npoi.Core.HSSF.Record;
+using Npoi.Core.SS.UserModel;
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
     public class HSSFCombobox : HSSFSimpleShape
     {

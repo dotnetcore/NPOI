@@ -15,7 +15,7 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Util
+namespace Npoi.Core.SS.Util
 {
 
     /**

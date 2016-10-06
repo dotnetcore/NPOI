@@ -19,7 +19,7 @@ namespace TestCases.SS.Formula.PTG
 {
 
     using NUnit.Framework;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     /**
      * Tests for {@link AreaErrPtg}.
      *

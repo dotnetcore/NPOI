@@ -16,13 +16,13 @@
 ==================================================================== */
 
 
-namespace NPOI.HSSF.Model
+namespace Npoi.Core.HSSF.Model
 {
     using System;
 
-    using NPOI.HSSF.Record;
-    using NPOI.DDF;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.DDF;
+    using Npoi.Core.HSSF.UserModel;
 
     /// <summary>
     /// Represents a line shape and Creates all the line specific low level records.

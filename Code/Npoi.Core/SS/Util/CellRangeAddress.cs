@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Text;
-using NPOI.Util;
-using NPOI.HSSF.Record;
+using Npoi.Core.Util;
+using Npoi.Core.HSSF.Record;
 
-using NPOI.SS.Formula;
+using Npoi.Core.SS.Formula;
 
-namespace NPOI.SS.Util
+namespace Npoi.Core.SS.Util
 {
     public class CellRangeAddress : CellRangeAddressBase
     {

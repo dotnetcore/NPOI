@@ -20,7 +20,7 @@
  */
 using NUnit.Framework;
 using TestCases.SS.Formula.Functions;
-using NPOI.SS.Formula.Functions;
+using Npoi.Core.SS.Formula.Functions;
 namespace TestCases.SS.Formula.Functions
 {
 

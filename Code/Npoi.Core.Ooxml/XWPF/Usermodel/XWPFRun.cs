@@ -17,19 +17,19 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     using System;
-    using NPOI.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
     using System.Collections.Generic;
     using System.Text;
     using System.Xml;
     using System.IO;
-    using NPOI.Util;
-    using NPOI.OpenXmlFormats.Dml;
+    using Npoi.Core.Util;
+    using Npoi.Core.OpenXmlFormats.Dml;
     using System.Xml.Serialization;
-    using NPOI.OpenXmlFormats.Dml.WordProcessing;
-    using NPOI.WP.UserModel;
+    using Npoi.Core.OpenXmlFormats.Dml.WordProcessing;
+    using Npoi.Core.WP.UserModel;
 
     /**
      * @see <a href="http://msdn.microsoft.com/en-us/library/ff533743(v=office.12).aspx">[MS-OI29500] Run Fonts</a> 
@@ -138,9 +138,9 @@ namespace NPOI.XWPF.UserModel
             : this(r, (IRunBody)p)
         {
         }
-        private List<NPOI.OpenXmlFormats.Dml.Picture.CT_Picture> GetCTPictures(object o)
+        private List<Npoi.Core.OpenXmlFormats.Dml.Picture.CT_Picture> GetCTPictures(object o)
         {
-            List<NPOI.OpenXmlFormats.Dml.Picture.CT_Picture> pictures = new List<NPOI.OpenXmlFormats.Dml.Picture.CT_Picture>();
+            List<Npoi.Core.OpenXmlFormats.Dml.Picture.CT_Picture> pictures = new List<Npoi.Core.OpenXmlFormats.Dml.Picture.CT_Picture>();
             //XmlObject[] picts = o.SelectPath("declare namespace pic='"+CT_Picture.type.Name.NamespaceURI+"' .//pic:pic");
             //XmlElement[] picts = o.Any;
             //foreach (XmlElement pict in picts)
@@ -153,9 +153,9 @@ namespace NPOI.XWPF.UserModel
             //        throw new POIXMLException(e);
             //    }
             //}
-            //if (pict is NPOI.OpenXmlFormats.Dml.CT_Picture)
+            //if (pict is Npoi.Core.OpenXmlFormats.Dml.CT_Picture)
             //{
-            //    pictures.Add((NPOI.OpenXmlFormats.Dml.CT_Picture)pict);
+            //    pictures.Add((Npoi.Core.OpenXmlFormats.Dml.CT_Picture)pict);
             //}
             //}
             if (o is CT_Drawing)
@@ -176,15 +176,15 @@ namespace NPOI.XWPF.UserModel
             return pictures;
         }
 
-        private void GetPictures(CT_GraphicalObjectData god, List<NPOI.OpenXmlFormats.Dml.Picture.CT_Picture> pictures)
+        private void GetPictures(CT_GraphicalObjectData god, List<Npoi.Core.OpenXmlFormats.Dml.Picture.CT_Picture> pictures)
         {
-            XmlSerializer xmlse = new XmlSerializer(typeof(NPOI.OpenXmlFormats.Dml.Picture.CT_Picture));
+            XmlSerializer xmlse = new XmlSerializer(typeof(Npoi.Core.OpenXmlFormats.Dml.Picture.CT_Picture));
             foreach (string el in god.Any)
             {
                 System.IO.StringReader stringReader = new System.IO.StringReader(el);
 
-                NPOI.OpenXmlFormats.Dml.Picture.CT_Picture pict =
-                    xmlse.Deserialize(System.Xml.XmlReader.Create(stringReader)) as NPOI.OpenXmlFormats.Dml.Picture.CT_Picture;
+                Npoi.Core.OpenXmlFormats.Dml.Picture.CT_Picture pict =
+                    xmlse.Deserialize(System.Xml.XmlReader.Create(stringReader)) as Npoi.Core.OpenXmlFormats.Dml.Picture.CT_Picture;
                 pictures.Add(pict);
             }
         }
@@ -304,7 +304,7 @@ namespace NPOI.XWPF.UserModel
                 CT_RPr pr = run.rPr;
                 if (pr.IsSetColor())
                 {
-                    NPOI.OpenXmlFormats.Wordprocessing.CT_Color clr = pr.color;
+                    Npoi.Core.OpenXmlFormats.Wordprocessing.CT_Color clr = pr.color;
                     color = clr.val; //clr.xgetVal().getStringValue();
                 }
             }
@@ -318,7 +318,7 @@ namespace NPOI.XWPF.UserModel
         public void SetColor(String rgbStr)
         {
             CT_RPr pr = run.IsSetRPr() ? run.rPr : run.AddNewRPr();
-            NPOI.OpenXmlFormats.Wordprocessing.CT_Color color = pr.IsSetColor() ? pr.color : pr.AddNewColor();
+            Npoi.Core.OpenXmlFormats.Wordprocessing.CT_Color color = pr.IsSetColor() ? pr.color : pr.AddNewColor();
             color.val = (rgbStr);
         }
         /**
@@ -1041,18 +1041,18 @@ namespace NPOI.XWPF.UserModel
          * Adds a picture to the run. This method handles
          *  attaching the picture data to the overall file.
          *  
-         * @see NPOI.XWPF.UserModel.Document#PICTURE_TYPE_EMF
-         * @see NPOI.XWPF.UserModel.Document#PICTURE_TYPE_WMF
-         * @see NPOI.XWPF.UserModel.Document#PICTURE_TYPE_PICT
-         * @see NPOI.XWPF.UserModel.Document#PICTURE_TYPE_JPEG
-         * @see NPOI.XWPF.UserModel.Document#PICTURE_TYPE_PNG
-         * @see NPOI.XWPF.UserModel.Document#PICTURE_TYPE_DIB
+         * @see Npoi.Core.XWPF.UserModel.Document#PICTURE_TYPE_EMF
+         * @see Npoi.Core.XWPF.UserModel.Document#PICTURE_TYPE_WMF
+         * @see Npoi.Core.XWPF.UserModel.Document#PICTURE_TYPE_PICT
+         * @see Npoi.Core.XWPF.UserModel.Document#PICTURE_TYPE_JPEG
+         * @see Npoi.Core.XWPF.UserModel.Document#PICTURE_TYPE_PNG
+         * @see Npoi.Core.XWPF.UserModel.Document#PICTURE_TYPE_DIB
          *  
          * @param pictureData The raw picture data
          * @param pictureType The type of the picture, eg {@link Document#PICTURE_TYPE_JPEG}
          * @param width width in EMUs. To convert to / from points use {@link org.apache.poi.util.Units}
          * @param height height in EMUs. To convert to / from points use {@link org.apache.poi.util.Units}
-         * @throws NPOI.Openxml4j.exceptions.InvalidFormatException 
+         * @throws Npoi.Core.Openxml4j.exceptions.InvalidFormatException 
          * @throws IOException 
          */
         public XWPFPicture AddPicture(Stream pictureData, int pictureType, String filename, int width, int height)
@@ -1092,24 +1092,24 @@ namespace NPOI.XWPF.UserModel
             inline.distB = (0);
             inline.distL = (0);
 
-            NPOI.OpenXmlFormats.Dml.WordProcessing.CT_NonVisualDrawingProps docPr = inline.AddNewDocPr();
+            Npoi.Core.OpenXmlFormats.Dml.WordProcessing.CT_NonVisualDrawingProps docPr = inline.AddNewDocPr();
             long id = parent.Document.DrawingIdManager.ReserveNew();
             docPr.id = (uint)(id);
             /* This name is not visible in Word 2010 anywhere. */
             docPr.name = ("Drawing " + id);
             docPr.descr = (filename);
 
-            NPOI.OpenXmlFormats.Dml.WordProcessing.CT_PositiveSize2D extent = inline.AddNewExtent();
+            Npoi.Core.OpenXmlFormats.Dml.WordProcessing.CT_PositiveSize2D extent = inline.AddNewExtent();
             extent.cx = (width);
             extent.cy = (height);
 
             // Grab the picture object
-            NPOI.OpenXmlFormats.Dml.Picture.CT_Picture pic = new OpenXmlFormats.Dml.Picture.CT_Picture();
+            Npoi.Core.OpenXmlFormats.Dml.Picture.CT_Picture pic = new OpenXmlFormats.Dml.Picture.CT_Picture();
 
             // Set it up
-            NPOI.OpenXmlFormats.Dml.Picture.CT_PictureNonVisual nvPicPr = pic.AddNewNvPicPr();
+            Npoi.Core.OpenXmlFormats.Dml.Picture.CT_PictureNonVisual nvPicPr = pic.AddNewNvPicPr();
 
-            NPOI.OpenXmlFormats.Dml.CT_NonVisualDrawingProps cNvPr = nvPicPr.AddNewCNvPr();
+            Npoi.Core.OpenXmlFormats.Dml.CT_NonVisualDrawingProps cNvPr = nvPicPr.AddNewCNvPr();
             /* use "0" for the id. See ECM-576, 20.2.2.3 */
             cNvPr.id = (0);
             /* This name is not visible in Word 2010 anywhere */
@@ -1131,7 +1131,7 @@ namespace NPOI.XWPF.UserModel
             off.x = (0);
             off.y = (0);
 
-            NPOI.OpenXmlFormats.Dml.CT_PositiveSize2D ext = xfrm.AddNewExt();
+            Npoi.Core.OpenXmlFormats.Dml.CT_PositiveSize2D ext = xfrm.AddNewExt();
             ext.cx = (width);
             ext.cy = (height);
 

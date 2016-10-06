@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula.Atp
+namespace Npoi.Core.SS.Formula.Atp
 {
     using System;
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Eval;
 
 
     /// <summary>
@@ -421,7 +421,7 @@ namespace NPOI.SS.Formula.Atp
         private static SimpleDate CreateDate(int dayCount)
         {
             DateTime dt = DateTime.Now;
-            NPOI.SS.UserModel.DateUtil.SetCalendar(ref dt, dayCount, 0, false, false);
+            Npoi.Core.SS.UserModel.DateUtil.SetCalendar(ref dt, dayCount, 0, false, false);
             return new SimpleDate(dt);
         }
 

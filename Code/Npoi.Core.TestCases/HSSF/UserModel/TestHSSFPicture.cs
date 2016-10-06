@@ -19,11 +19,11 @@ namespace TestCases.HSSF.UserModel
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using NPOI.DDF;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
-    using NPOI.Util;
+    using Npoi.Core.DDF;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.Util;
     using NUnit.Framework;
     using TestCases.SS.UserModel;
 
@@ -62,7 +62,7 @@ namespace TestCases.HSSF.UserModel
         public void Bug45829()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sh1 = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet sh1 = wb.CreateSheet();
             IDrawing p1 = sh1.CreateDrawingPatriarch();
 
             byte[] pictureData = HSSFTestDataSamples.GetTestDataFileContent("45829.png");

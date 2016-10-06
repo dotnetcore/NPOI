@@ -18,8 +18,8 @@
 namespace TestCases.SS.Formula.Eval
 {
 
-    using NPOI.SS.Formula.Functions;
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.Eval;
 
     /**
      * Collects eval instances for easy access by Tests in this package

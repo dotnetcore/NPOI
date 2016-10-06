@@ -17,24 +17,24 @@
 
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
-using NPOI.XSSF.Model;
-using NPOI.SS.UserModel;
-using NPOI.Util;
+using Npoi.Core.XSSF.Model;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.Util;
 using System.IO;
 using System;
-using NPOI.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using System.Xml;
-using NPOI.OpenXml4Net.OPC;
+using Npoi.Core.OpenXml4Net.OPC;
 using System.Text;
-using NPOI.SS.Util;
-using NPOI.SS.Formula;
-using NPOI.XSSF.UserModel.Helpers;
-using NPOI.SS.Formula.Udf;
-using NPOI.OpenXmlFormats;
+using Npoi.Core.SS.Util;
+using Npoi.Core.SS.Formula;
+using Npoi.Core.XSSF.UserModel.Helpers;
+using Npoi.Core.SS.Formula.Udf;
+using Npoi.Core.OpenXmlFormats;
 using System.Collections;
 using System.Xml.Linq;
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * High level representation of a SpreadsheetML workbook.  This is the first object most users
@@ -140,7 +140,7 @@ namespace NPOI.XSSF.UserModel
         /**
          * The policy to apply in the event of missing or
          *  blank cells when fetching from a row.
-         * See {@link NPOI.ss.usermodel.Row.MissingCellPolicy}
+         * See {@link Npoi.Core.ss.usermodel.Row.MissingCellPolicy}
          */
         private MissingCellPolicy _missingCellPolicy = MissingCellPolicy.RETURN_NULL_AND_BLANK;
 
@@ -1401,7 +1401,7 @@ namespace NPOI.XSSF.UserModel
          * @throws ArgumentException if the name is null or invalid
          *  or workbook already Contains a sheet with this name
          * @see {@link #CreateSheet(String)}
-         * @see {@link NPOI.ss.util.WorkbookUtil#CreateSafeSheetName(String nameProposal)}
+         * @see {@link Npoi.Core.ss.util.WorkbookUtil#CreateSafeSheetName(String nameProposal)}
          *      for a safe way to create valid names
          */
         public void SetSheetName(int sheetIndex, String sheetname)

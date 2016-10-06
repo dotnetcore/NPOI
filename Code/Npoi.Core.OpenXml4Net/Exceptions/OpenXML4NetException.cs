@@ -1,7 +1,7 @@
 ﻿using System;
-using NPOI.OpenXml4Net.Exceptions;
+using Npoi.Core.OpenXml4Net.Exceptions;
 
-namespace NPOI.OpenXml4Net
+namespace Npoi.Core.OpenXml4Net
 {
     public class OpenXml4NetException : Exception
     {

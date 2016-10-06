@@ -18,9 +18,9 @@
 namespace TestCases.HSSF.Record
 {
     using System;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Record;
     using NUnit.Framework;
-    using NPOI.Util;
+    using Npoi.Core.Util;
     /**
      * 
      * @author Josh Micich
@@ -131,7 +131,7 @@ namespace TestCases.HSSF.Record
             /**
              * Hex dump read directly from text of bugzilla 47229
              */
-            byte[] dataDDE = NPOI.Util.HexRead.ReadFromString(
+            byte[] dataDDE = Npoi.Core.Util.HexRead.ReadFromString(
                    "E2 7F 00 00 00 00 " +
                    "37 00 " + // text len
                 // 010672AT0 MUNI,[RTG_MOODY_UNDERLYING,RTG_SP_UNDERLYING]
@@ -165,7 +165,7 @@ namespace TestCases.HSSF.Record
         public void TestUnicodeName_bug47384()
         {
             // data taken from bugzilla 47384 att 23830 at offset 0x13A0
-            byte[] dataUN = NPOI.Util.HexRead.ReadFromString(
+            byte[] dataUN = Npoi.Core.Util.HexRead.ReadFromString(
                     "23 00 22 00" +
                     "00 00 00 00 00 00 " +
                     "0C 01 " +

@@ -15,17 +15,17 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using System;
-using NPOI.XSSF.Model;
-using NPOI.XSSF.UserModel;
-using NPOI.SS.Util;
-using NPOI.SS.UserModel;
+using Npoi.Core.XSSF.Model;
+using Npoi.Core.XSSF.UserModel;
+using Npoi.Core.SS.Util;
+using Npoi.Core.SS.UserModel;
 using System.Collections.Generic;
-using NPOI.Util;
-using NPOI.SS;
+using Npoi.Core.Util;
+using Npoi.Core.SS;
 using System.Collections;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
 
     /**
@@ -196,7 +196,7 @@ namespace NPOI.XSSF.UserModel
 
         /**
          * Returns the cell at the given (0 based) index,
-         *  with the {@link NPOI.SS.usermodel.Row.MissingCellPolicy} from the parent Workbook.
+         *  with the {@link Npoi.Core.SS.usermodel.Row.MissingCellPolicy} from the parent Workbook.
          *
          * @return the cell at the given (0 based) index
          */
@@ -220,7 +220,7 @@ namespace NPOI.XSSF.UserModel
             return _cells[cellnum];
         }
         /**
-         * Returns the cell at the given (0 based) index, with the specified {@link NPOI.SS.usermodel.Row.MissingCellPolicy}
+         * Returns the cell at the given (0 based) index, with the specified {@link Npoi.Core.SS.usermodel.Row.MissingCellPolicy}
          *
          * @return the cell at the given (0 based) index
          * @throws ArgumentException if cellnum < 0 or the specified MissingCellPolicy is invalid
@@ -320,7 +320,7 @@ namespace NPOI.XSSF.UserModel
 
         /**
          * Get the row's height measured in twips (1/20th of a point). If the height is not Set, the default worksheet value is returned,
-         * See {@link NPOI.XSSF.usermodel.XSSFSheet#GetDefaultRowHeightInPoints()}
+         * See {@link Npoi.Core.XSSF.usermodel.XSSFSheet#GetDefaultRowHeightInPoints()}
          *
          * @return row height measured in twips (1/20th of a point)
          */
@@ -348,10 +348,10 @@ namespace NPOI.XSSF.UserModel
 
         /**
          * Returns row height measured in point size. If the height is not Set, the default worksheet value is returned,
-         * See {@link NPOI.XSSF.usermodel.XSSFSheet#GetDefaultRowHeightInPoints()}
+         * See {@link Npoi.Core.XSSF.usermodel.XSSFSheet#GetDefaultRowHeightInPoints()}
          *
          * @return row height measured in point size
-         * @see NPOI.XSSF.usermodel.XSSFSheet#GetDefaultRowHeightInPoints()
+         * @see Npoi.Core.XSSF.usermodel.XSSFSheet#GetDefaultRowHeightInPoints()
          */
         public float HeightInPoints
         {
@@ -532,7 +532,7 @@ namespace NPOI.XSSF.UserModel
         /**
          * Fired when the document is written to an output stream.
          *
-         * @see NPOI.XSSF.usermodel.XSSFSheet#Write(java.io.OutputStream) ()
+         * @see Npoi.Core.XSSF.usermodel.XSSFSheet#Write(java.io.OutputStream) ()
          */
         internal void OnDocumentWrite()
         {

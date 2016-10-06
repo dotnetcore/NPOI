@@ -19,9 +19,9 @@ namespace TestCases.SS.Formula.Functions
 {
     using System;
     using NUnit.Framework;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Formula.Functions;
 
     /**
      * @author Josh Micich

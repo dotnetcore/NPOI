@@ -25,14 +25,14 @@
  * 
  * ==============================================================*/
 
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     using System;
     using System.IO;
     using System.Text;
     using System.Collections;
-    using NPOI.Util;
-    using NPOI.HPSF.Wellknown;
+    using Npoi.Core.Util;
+    using Npoi.Core.HPSF.Wellknown;
     using System.Globalization;
 
     /// <summary>

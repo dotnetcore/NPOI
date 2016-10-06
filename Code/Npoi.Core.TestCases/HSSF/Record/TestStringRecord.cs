@@ -20,8 +20,8 @@ namespace TestCases.HSSF.Record
     using System;
     using System.Text;
     using NUnit.Framework;
-    using NPOI.HSSF.Record;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.Util;
 
     /**
      * Tests the serialization and deserialization of the StringRecord

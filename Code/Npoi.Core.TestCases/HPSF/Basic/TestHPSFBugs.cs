@@ -19,12 +19,12 @@ namespace TestCases.HPSF.Basic
 {
     using System.IO;
     using NUnit.Framework;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     using System;
-    using NPOI.SS.UserModel;
-    using NPOI.POIFS.FileSystem;
-    using NPOI.HPSF;
-    using NPOI;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.HPSF;
+    using Npoi.Core;
 
     /**
      * Tests various bugs have been fixed

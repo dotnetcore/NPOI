@@ -30,10 +30,10 @@ using System;
 using System.Collections;
 using System.Text;
 using System.Collections.Generic;
-using NPOI.Util.Collections;
+using Npoi.Core.Util.Collections;
 
 
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
     public class Arrays
     {
@@ -983,12 +983,12 @@ namespace NPOI.Util
             if (a.Length != 0 && bufLen <= 0)
                 bufLen = Int32.MaxValue;
             StringBuilder buf = new StringBuilder(bufLen);
-            DeepToString(a, buf, new NPOI.Util.Collections.HashSet<Object[]>());
+            DeepToString(a, buf, new Npoi.Core.Util.Collections.HashSet<Object[]>());
             return buf.ToString();
         }
 
         private static void DeepToString(Object[] a, StringBuilder buf,
-                                         NPOI.Util.Collections.HashSet<Object[]> dejaVu)
+                                         Npoi.Core.Util.Collections.HashSet<Object[]> dejaVu)
         {
             if (a == null)
             {

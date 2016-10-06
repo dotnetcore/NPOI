@@ -21,9 +21,9 @@ namespace TestCases.HSSF.Record
     using System;
     using NUnit.Framework;
 
-    using NPOI.Util;
+    using Npoi.Core.Util;
     using TestCases.HSSF.Record;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Record;
 
     /**
      * Tests Subrecord components of an OBJ record.  Test data taken directly

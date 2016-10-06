@@ -19,12 +19,12 @@ namespace TestCases.HSSF.UserModel
 {
     using System;
     using System.Collections;
-    using NPOI.HSSF.UserModel;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.HSSF.Record;
     using TestCases.HSSF;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
     using NUnit.Framework;
-    using NPOI.HSSF.Model;
+    using Npoi.Core.HSSF.Model;
 
     /**
      * @author Glen Stampoultzis (glens at apache.org)
@@ -40,7 +40,7 @@ namespace TestCases.HSSF.UserModel
         public void TestBOFandEOFRecords()
         {
             HSSFWorkbook workbook = HSSFTestDataSamples.OpenSampleWorkbook("SimpleChart.xls");
-            NPOI.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
             IRow firstRow = sheet.GetRow(0);
             ICell firstCell = firstRow.GetCell(0);
 

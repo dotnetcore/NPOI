@@ -17,8 +17,8 @@
 
 namespace TestCases.SS.Formula.Functions
 {
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
     using NUnit.Framework;
     /**
      * Tests for Excel function ISBLANK()

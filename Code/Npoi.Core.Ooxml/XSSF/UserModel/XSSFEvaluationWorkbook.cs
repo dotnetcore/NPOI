@@ -16,19 +16,19 @@
 ==================================================================== */
 
 using System;
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.SS;
-using NPOI.SS.Formula;
-using NPOI.SS.Formula.Functions;
-using NPOI.SS.Formula.PTG;
-using NPOI.SS.Formula.Udf;
-using NPOI.SS.UserModel;
-using NPOI.XSSF.Model;
-using NPOI.Util;
-using NPOI.SS.Util;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS;
+using Npoi.Core.SS.Formula;
+using Npoi.Core.SS.Formula.Functions;
+using Npoi.Core.SS.Formula.PTG;
+using Npoi.Core.SS.Formula.Udf;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.XSSF.Model;
+using Npoi.Core.Util;
+using Npoi.Core.SS.Util;
 using System.Collections.Generic;
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * Internal POI use only

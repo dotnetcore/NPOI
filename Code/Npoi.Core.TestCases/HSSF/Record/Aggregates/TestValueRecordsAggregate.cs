@@ -23,11 +23,11 @@ namespace TestCases.HSSF.Record.Aggregates
 
     using NUnit.Framework;
 
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.Aggregates;
-    using NPOI.HSSF.UserModel;
-    using NPOI.HSSF.Model;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Aggregates;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.Util;
 
     [TestFixture]
     public class TestValueRecordsAggregate
@@ -222,7 +222,7 @@ namespace TestCases.HSSF.Record.Aggregates
             }
             HSSFWorkbook wb = HSSFTestDataSamples.OpenSampleWorkbook(ABNORMAL_SHARED_FORMULA_FLAG_TEST_FILE);
 
-            NPOI.SS.UserModel.ISheet s = wb.GetSheetAt(0); // Sheet1
+            Npoi.Core.SS.UserModel.ISheet s = wb.GetSheetAt(0); // Sheet1
 
             String cellFormula;
             cellFormula = GetFormulaFromFirstCell(s, 0); // row "1"
@@ -243,7 +243,7 @@ namespace TestCases.HSSF.Record.Aggregates
                 throw new Exception("Something else wrong with this Test case");
             }
         }
-        private static String GetFormulaFromFirstCell(NPOI.SS.UserModel.ISheet s, int rowIx)
+        private static String GetFormulaFromFirstCell(Npoi.Core.SS.UserModel.ISheet s, int rowIx)
         {
             return s.GetRow(rowIx).GetCell((short)0).CellFormula;
         }

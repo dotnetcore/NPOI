@@ -21,12 +21,12 @@ namespace TestCases.SS.UserModel
 
     using NUnit.Framework;
 
-    using NPOI.SS;
-    using NPOI.SS.Util;
-    using NPOI.Util;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
+    using Npoi.Core.SS.UserModel;
     using TestCases.HSSF;
-    using NPOI.HSSF.Util;
+    using Npoi.Core.HSSF.Util;
 
     /**
      * Class for Testing Excel's data validation mechanism

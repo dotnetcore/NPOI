@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.POIFS.FileSystem
+namespace Npoi.Core.POIFS.FileSystem
 {
     using System.IO;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * This class provides a wrapper over an OutputStream so that Document

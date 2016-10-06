@@ -20,10 +20,10 @@ namespace TestCases.HSSF.Record
     using System;
     using System.IO;
     using NUnit.Framework;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Record;
     using TestCases.HSSF;
-    using NPOI.Util;
-    using NPOI.Util.Collections;
+    using Npoi.Core.Util;
+    using Npoi.Core.Util.Collections;
 
     /**
      * Exercise the SSTDeserializer class.

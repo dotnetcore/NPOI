@@ -1,4 +1,4 @@
-﻿namespace NPOI.HPSF
+﻿namespace Npoi.Core.HPSF
 {
     public class IndirectPropertyName
     {

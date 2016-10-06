@@ -21,15 +21,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using NPOI.POIFS.Common;
-using NPOI.POIFS.Dev;
-using NPOI.POIFS.NIO;
-using NPOI.POIFS.Properties;
-using NPOI.POIFS.Storage;
-using NPOI.Util;
-using NPOI.POIFS.EventFileSystem;
+using Npoi.Core.POIFS.Common;
+using Npoi.Core.POIFS.Dev;
+using Npoi.Core.POIFS.NIO;
+using Npoi.Core.POIFS.Properties;
+using Npoi.Core.POIFS.Storage;
+using Npoi.Core.Util;
+using Npoi.Core.POIFS.EventFileSystem;
 
-namespace NPOI.POIFS.FileSystem
+namespace Npoi.Core.POIFS.FileSystem
 {
 
 

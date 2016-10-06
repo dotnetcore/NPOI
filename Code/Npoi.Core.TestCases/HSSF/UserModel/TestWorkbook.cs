@@ -19,19 +19,19 @@ namespace TestCases.HSSF.UserModel
 {
     using System;
     using System.IO;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.UserModel;
     using System.Collections;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Util;
-    using NPOI.POIFS.FileSystem;
-    using NPOI.Util;
-    using NPOI.HSSF.Record.Aggregates;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.Util;
+    using Npoi.Core.HSSF.Record.Aggregates;
     using TestCases.HSSF;
 
     using NUnit.Framework;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
     /**
      * Class to Test Workbook functionality
      *
@@ -63,10 +63,10 @@ namespace TestCases.HSSF.UserModel
         /**
          * TEST NAME:  Test Write Sheet Simple <P>
          * OBJECTIVE:  Test that HSSF can Create a simple spreadsheet with numeric and string values.<P>
-         * SUCCESS:    HSSF Creates a sheet.  Filesize Matches a known good.  NPOI.SS.UserModel.Sheet objects
+         * SUCCESS:    HSSF Creates a sheet.  Filesize Matches a known good.  Npoi.Core.SS.UserModel.Sheet objects
          *             Last row, first row is Tested against the correct values (99,0).<P>
          * FAILURE:    HSSF does not Create a sheet or excepts.  Filesize does not Match the known good.
-         *             NPOI.SS.UserModel.Sheet last row or first row is incorrect.             <P>
+         *             Npoi.Core.SS.UserModel.Sheet last row or first row is incorrect.             <P>
          *
          */
         [Test]
@@ -76,7 +76,7 @@ namespace TestCases.HSSF.UserModel
                                                         ".xls");
             FileStream out1 = new FileStream(filepath, FileMode.OpenOrCreate);
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
             IRow r = null;
             ICell c = null;
 
@@ -105,10 +105,10 @@ namespace TestCases.HSSF.UserModel
          * TEST NAME:  Test Write/Modify Sheet Simple <P>
          * OBJECTIVE:  Test that HSSF can Create a simple spreadsheet with numeric and string values,
          *             Remove some rows, yet still have a valid file/data.<P>
-         * SUCCESS:    HSSF Creates a sheet.  Filesize Matches a known good.  NPOI.SS.UserModel.Sheet objects
+         * SUCCESS:    HSSF Creates a sheet.  Filesize Matches a known good.  Npoi.Core.SS.UserModel.Sheet objects
          *             Last row, first row is Tested against the correct values (74,25).<P>
          * FAILURE:    HSSF does not Create a sheet or excepts.  Filesize does not Match the known good.
-         *             NPOI.SS.UserModel.Sheet last row or first row is incorrect.             <P>
+         *             Npoi.Core.SS.UserModel.Sheet last row or first row is incorrect.             <P>
          *
          */
         [Test]
@@ -118,7 +118,7 @@ namespace TestCases.HSSF.UserModel
                                                         ".xls");
             FileStream out1 = new FileStream(filepath, FileMode.OpenOrCreate);
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
             IRow r = null;
             ICell c = null;
 
@@ -166,7 +166,7 @@ namespace TestCases.HSSF.UserModel
         public void TestReadSimple()
         {
             HSSFWorkbook workbook = OpenSample("Simple.xls");
-            NPOI.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
 
             ICell cell = sheet.GetRow(0).GetCell(0);
             Assert.AreEqual(REPLACE_ME, cell.RichStringCellValue.String);
@@ -184,7 +184,7 @@ namespace TestCases.HSSF.UserModel
         public void TestReadSimpleWithDataFormat()
         {
             HSSFWorkbook workbook = OpenSample("SimpleWithDataFormat.xls");
-            NPOI.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
             IDataFormat format = workbook.CreateDataFormat();
             ICell cell = sheet.GetRow(0).GetCell(0);
 
@@ -207,11 +207,11 @@ namespace TestCases.HSSF.UserModel
             string filepath = TempFile.GetTempFilePath("TestWriteSheetSimple", ".xls");
             FileStream out1 = new FileStream(filepath, FileMode.OpenOrCreate);
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
             IRow r = null;
             ICell c = null;
             IDataFormat format = wb.CreateDataFormat();
-            NPOI.SS.UserModel.ICellStyle cs = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cs = wb.CreateCellStyle();
 
             short df = format.GetFormat("0.0");
             cs.DataFormat = (df);
@@ -227,7 +227,7 @@ namespace TestCases.HSSF.UserModel
             FileStream stream = new FileStream(filepath, FileMode.OpenOrCreate);
             POIFSFileSystem fs = new POIFSFileSystem(stream);
             HSSFWorkbook workbook = new HSSFWorkbook(fs);
-            NPOI.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
             ICell cell =
                              sheet.GetRow(0).GetCell(0);
             format = workbook.CreateDataFormat();
@@ -253,7 +253,7 @@ namespace TestCases.HSSF.UserModel
         public void TestReadEmployeeSimple()
         {
             HSSFWorkbook workbook = OpenSample("Employee.xls");
-            NPOI.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
 
             Assert.AreEqual(EMPLOYEE_INFORMATION, sheet.GetRow(1).GetCell(1).RichStringCellValue.String);
             Assert.AreEqual(LAST_NAME_KEY, sheet.GetRow(3).GetCell(2).RichStringCellValue.String);
@@ -277,7 +277,7 @@ namespace TestCases.HSSF.UserModel
         public void TestModifySimple()
         {
             HSSFWorkbook workbook = OpenSample("Simple.xls");
-            NPOI.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
             ICell cell = sheet.GetRow(0).GetCell(0);
 
             cell.SetCellValue(new HSSFRichTextString(REPLACED));
@@ -305,7 +305,7 @@ namespace TestCases.HSSF.UserModel
         public void TestModifySimpleWithSkip()
         {
             HSSFWorkbook workbook = OpenSample("SimpleWithSkip.xls");
-            NPOI.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
             ICell cell = sheet.GetRow(0).GetCell(1);
 
             cell.SetCellValue(new HSSFRichTextString(REPLACED));
@@ -342,7 +342,7 @@ namespace TestCases.HSSF.UserModel
         public void TestModifySimpleWithStyling()
         {
             HSSFWorkbook workbook = OpenSample("SimpleWithStyling.xls");
-            NPOI.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
 
             for (int k = 0; k < 4; k++)
             {
@@ -379,7 +379,7 @@ namespace TestCases.HSSF.UserModel
         public void TestModifyEmployee()
         {
             HSSFWorkbook workbook = OpenSample("Employee.xls");
-            NPOI.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
             ICell cell = sheet.GetRow(3).GetCell(2);
 
             cell.SetCellValue(new HSSFRichTextString(LAST_NAME_VALUE));
@@ -408,28 +408,28 @@ namespace TestCases.HSSF.UserModel
         public void TestReadSheetWithRK()
         {
             HSSFWorkbook h = OpenSample("rk.xls");
-            NPOI.SS.UserModel.ISheet s = h.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet s = h.GetSheetAt(0);
             ICell c = s.GetRow(0).GetCell(0);
-            NPOI.SS.UserModel.CellType a = c.CellType;
+            Npoi.Core.SS.UserModel.CellType a = c.CellType;
 
-            Assert.AreEqual(a, NPOI.SS.UserModel.CellType.Numeric);
+            Assert.AreEqual(a, Npoi.Core.SS.UserModel.CellType.Numeric);
         }
 
         /**
          * TEST NAME:  Test Write/Modify Sheet Simple <P>
          * OBJECTIVE:  Test that HSSF can Create a simple spreadsheet with numeric and string values,
          *             Remove some rows, yet still have a valid file/data.<P>
-         * SUCCESS:    HSSF Creates a sheet.  Filesize Matches a known good.  NPOI.SS.UserModel.Sheet objects
+         * SUCCESS:    HSSF Creates a sheet.  Filesize Matches a known good.  Npoi.Core.SS.UserModel.Sheet objects
          *             Last row, first row is Tested against the correct values (74,25).<P>
          * FAILURE:    HSSF does not Create a sheet or excepts.  Filesize does not Match the known good.
-         *             NPOI.SS.UserModel.Sheet last row or first row is incorrect.             <P>
+         *             Npoi.Core.SS.UserModel.Sheet last row or first row is incorrect.             <P>
          *
          */
         [Test]
         public void TestWriteModifySheetMerged()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
 
             for (int rownum = 0; rownum < 100; rownum++)
             {
@@ -533,7 +533,7 @@ namespace TestCases.HSSF.UserModel
         public void TestManyRows()
         {
             HSSFWorkbook workbook = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sheet = workbook.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook.CreateSheet();
             IRow row;
             ICell cell;
             int i, j;
@@ -549,7 +549,7 @@ namespace TestCases.HSSF.UserModel
             double lastVal = cell.NumericCellValue;
 
             HSSFWorkbook wb = HSSFTestDataSamples.WriteOutAndReadBack(workbook);
-            NPOI.SS.UserModel.ISheet s = wb.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet s = wb.GetSheetAt(0);
             row = s.GetRow(32770);
             cell = row.GetCell(0);
             Assert.AreEqual(lastVal, cell.NumericCellValue, 0, "Value from last row == 32770");
@@ -563,7 +563,7 @@ namespace TestCases.HSSF.UserModel
         public void TestRepeatingColsRows()
         {
             HSSFWorkbook workbook = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sheet = workbook.CreateSheet("Test Print Titles");
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook.CreateSheet("Test Print Titles");
 
             IRow row = sheet.CreateRow(0);
 
@@ -594,7 +594,7 @@ namespace TestCases.HSSF.UserModel
                 int i = workbook.ActiveSheetIndex;
             }
             HSSFWorkbook workbook2 = OpenSample("blankworkbook.xls");
-            NPOI.SS.UserModel.ISheet sheet = workbook2.GetSheetAt(1);
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook2.GetSheetAt(1);
         }
         [Test]
         public void TestRepeatingColsRowsMinusOne()

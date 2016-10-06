@@ -25,10 +25,10 @@
  * 
  * ==============================================================*/
 
-using NPOI.POIFS.Common;
-using NPOI.Util;
+using Npoi.Core.POIFS.Common;
+using Npoi.Core.Util;
 
-namespace NPOI.POIFS.Storage
+namespace Npoi.Core.POIFS.Storage
 {
     /// <summary>
     /// Constants used in reading/writing the Header block

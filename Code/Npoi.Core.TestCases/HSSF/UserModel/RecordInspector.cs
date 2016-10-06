@@ -19,11 +19,11 @@
 namespace TestCases.HSSF.UserModel
 {
     using System;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     using System.Collections;
 
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.Aggregates;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Aggregates;
 
     /**
      * Test utility class to get {@link Record}s out HSSF objects
@@ -68,7 +68,7 @@ namespace TestCases.HSSF.UserModel
          * @return the {@link Record}s (in order) which will be output when the
          *         specified sheet is serialized
          */
-        public static Record[] GetRecords(NPOI.SS.UserModel.ISheet hSheet, int streamOffset)
+        public static Record[] GetRecords(Npoi.Core.SS.UserModel.ISheet hSheet, int streamOffset)
         {
             RecordCollector rc = new RecordCollector();
             ((HSSFSheet)hSheet).Sheet.VisitContainedRecords(rc, streamOffset);

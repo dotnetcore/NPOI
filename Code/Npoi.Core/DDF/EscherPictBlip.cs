@@ -17,12 +17,12 @@
 
 using System.Drawing;
 
-namespace NPOI.DDF
+namespace Npoi.Core.DDF
 {
     using System;
     using System.IO;
     using System.Text;
-    using NPOI.Util;
+    using Npoi.Core.Util;
     using ICSharpCode.SharpZipLib.Zip.Compression;
     using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 

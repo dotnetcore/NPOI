@@ -1,13 +1,13 @@
-using NPOI.Util;
+using Npoi.Core.Util;
 
-namespace NPOI.SS.Formula
+namespace Npoi.Core.SS.Formula
 {
     using System;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Formula.Functions;
-    using NPOI.SS.Util;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Functions;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.PTG;
     using System.Globalization;
     /**
      * Contains all the contextual information required to Evaluate an operation

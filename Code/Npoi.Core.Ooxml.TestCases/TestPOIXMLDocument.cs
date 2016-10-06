@@ -15,15 +15,15 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.OOXML
+namespace Npoi.Core.OOXML
 {
     using System;
-    using NPOI.Util;
+    using Npoi.Core.Util;
     using System.Collections.Generic;
     using NUnit.Framework;
     using System.IO;
-    using NPOI.OpenXml4Net.OPC;
-    using NPOI;
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core;
     using TestCases;
 
     /**

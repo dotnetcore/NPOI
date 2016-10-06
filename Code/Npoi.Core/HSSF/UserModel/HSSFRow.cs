@@ -15,15 +15,15 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
 
-    using NPOI.HSSF.Record;
-    using NPOI.SS.UserModel;
-    using NPOI.SS;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS;
 
     /// <summary>
     /// High level representation of a row of a spReadsheet.
@@ -73,7 +73,7 @@ namespace NPOI.HSSF.UserModel
         /// <param name="book">low-level Workbook object containing the sheet that Contains this row</param>
         /// <param name="sheet">low-level Sheet object that Contains this Row</param>
         /// <param name="rowNum">the row number of this row (0 based)</param>
-        ///<see cref="NPOI.HSSF.UserModel.HSSFSheet.CreateRow(int)"/>
+        ///<see cref="Npoi.Core.HSSF.UserModel.HSSFSheet.CreateRow(int)"/>
         public HSSFRow(HSSFWorkbook book, HSSFSheet sheet, int rowNum):this(book, sheet, new RowRecord(rowNum))
         {
 
@@ -86,7 +86,7 @@ namespace NPOI.HSSF.UserModel
         /// <param name="book">low-level Workbook object containing the sheet that Contains this row</param>
         /// <param name="sheet"> low-level Sheet object that Contains this Row</param>
         /// <param name="record">the low level api object this row should represent</param>
-        ///<see cref="NPOI.HSSF.UserModel.HSSFSheet.CreateRow(int)"/>
+        ///<see cref="Npoi.Core.HSSF.UserModel.HSSFSheet.CreateRow(int)"/>
         public HSSFRow(HSSFWorkbook book, HSSFSheet sheet, RowRecord record)
         {
             this.book = book;
@@ -139,7 +139,7 @@ namespace NPOI.HSSF.UserModel
         }
         public ICell CopyCell(int sourceIndex, int targetIndex)
         {
-            return NPOI.SS.Util.CellUtil.CopyCell(this, sourceIndex, targetIndex);
+            return Npoi.Core.SS.Util.CellUtil.CopyCell(this, sourceIndex, targetIndex);
         }
         /// <summary>
         /// Remove the Cell from this row.

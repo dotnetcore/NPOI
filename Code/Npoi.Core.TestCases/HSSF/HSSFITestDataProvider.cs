@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using TestCases.SS;
-using NPOI.HSSF.UserModel;
-using NPOI.SS;
-using NPOI.SS.UserModel;
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.SS;
+using Npoi.Core.SS.UserModel;
 
 namespace TestCases.HSSF
 {

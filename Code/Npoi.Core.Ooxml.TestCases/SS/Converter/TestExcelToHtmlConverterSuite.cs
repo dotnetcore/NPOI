@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using NPOI.HSSF.UserModel;
+using Npoi.Core.HSSF.UserModel;
 using NUnit.Framework;
 using TestCases;
 
-namespace NPOI.SS.Converter
+namespace Npoi.Core.SS.Converter
 {
 	[TestFixture]
 	public class TestExcelToHtmlConverterSuite

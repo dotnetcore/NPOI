@@ -17,16 +17,16 @@
 
 using System.Xml.Linq;
 
-namespace NPOI
+namespace Npoi.Core
 {
-    using NPOI.Util;
-    using NPOI.OpenXml4Net.OPC;
+    using Npoi.Core.Util;
+    using Npoi.Core.OpenXml4Net.OPC;
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using NPOI.OpenXml4Net.Exceptions;
+    using Npoi.Core.OpenXml4Net.Exceptions;
 using System.Xml;
-    using NPOI.OpenXml4Net.OPC.Internal;
+    using Npoi.Core.OpenXml4Net.OPC.Internal;
 
     /**
      * Represents an entry of a OOXML namespace.

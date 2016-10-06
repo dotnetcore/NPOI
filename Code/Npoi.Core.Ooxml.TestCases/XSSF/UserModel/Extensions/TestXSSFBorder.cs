@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.SS.UserModel;
-using NPOI.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using NUnit.Framework;
-namespace NPOI.XSSF.UserModel.Extensions
+namespace Npoi.Core.XSSF.UserModel.Extensions
 {
 
     [TestFixture]

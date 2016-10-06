@@ -15,15 +15,15 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
 
     using System;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.CF;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.CF;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.UserModel;
 
     /**
      * 
@@ -200,8 +200,8 @@ namespace NPOI.HSSF.UserModel
                     byte comparisonOperation = cfRuleRecord.ComparisonOperation;
                     switch (comparisonOperation)
                     {
-                        case (byte)NPOI.SS.UserModel.ComparisonOperator.Between:
-                        case (byte)NPOI.SS.UserModel.ComparisonOperator.NotBetween:
+                        case (byte)Npoi.Core.SS.UserModel.ComparisonOperator.Between:
+                        case (byte)Npoi.Core.SS.UserModel.ComparisonOperator.NotBetween:
                             return ToFormulaString(cfRuleRecord.ParsedExpression2);
                     }
                 }

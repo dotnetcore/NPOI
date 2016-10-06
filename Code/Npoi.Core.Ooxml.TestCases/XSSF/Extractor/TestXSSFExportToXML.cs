@@ -15,8 +15,8 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.XSSF.UserModel;
-using NPOI.XSSF.Model;
+using Npoi.Core.XSSF.UserModel;
+using Npoi.Core.XSSF.Model;
 using System.IO;
 using NUnit.Framework;
 using System;
@@ -26,7 +26,7 @@ using System.Text;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
-namespace NPOI.XSSF.Extractor
+namespace Npoi.Core.XSSF.Extractor
 {
 
     /**

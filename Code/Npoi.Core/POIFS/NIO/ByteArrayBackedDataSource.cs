@@ -17,12 +17,12 @@
 
 using System.IO;
 using System;
-using NPOI.Util;
+using Npoi.Core.Util;
 
-namespace NPOI.POIFS.NIO
+namespace Npoi.Core.POIFS.NIO
 {
     /// <summary>
-    /// A POIFS <see cref="T:NPOI.POIFS.NIO.DataSource"/> backed by a byte array.
+    /// A POIFS <see cref="T:Npoi.Core.POIFS.NIO.DataSource"/> backed by a byte array.
     /// </summary>
     public class ByteArrayBackedDataSource : DataSource
     {

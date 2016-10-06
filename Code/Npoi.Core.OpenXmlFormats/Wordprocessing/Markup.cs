@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
-using NPOI.OpenXmlFormats.Shared;
+using Npoi.Core.OpenXmlFormats.Shared;
 using System.Xml;
-using NPOI.OpenXml4Net.Util;
+using Npoi.Core.OpenXml4Net.Util;
 using System.IO;
 using System.Collections;
 using System.Xml.Linq;
 
-namespace NPOI.OpenXmlFormats.Wordprocessing
+namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
 
     [XmlInclude(typeof(CT_Bookmark))]

@@ -16,9 +16,9 @@
 ==================================================================== */
 
 using NUnit.Framework;
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.SS.UserModel;
-namespace NPOI.XSSF.UserModel
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+namespace Npoi.Core.XSSF.UserModel
 {
 
     /**

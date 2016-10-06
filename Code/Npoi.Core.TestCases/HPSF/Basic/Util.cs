@@ -23,9 +23,9 @@ namespace TestCases.HPSF.Basic
     using System.IO;
     using System.Collections;
     using NUnit.Framework;
-    using NPOI.HPSF;
-    using NPOI.POIFS.EventFileSystem;
-    using NPOI.Util;
+    using Npoi.Core.HPSF;
+    using Npoi.Core.POIFS.EventFileSystem;
+    using Npoi.Core.Util;
     using System.Collections.Generic;
 
 

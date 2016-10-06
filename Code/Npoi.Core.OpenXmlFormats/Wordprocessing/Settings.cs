@@ -1,14 +1,14 @@
-﻿using NPOI.OpenXml4Net.Util;
-using NPOI.OpenXmlFormats.Shared;
+﻿using Npoi.Core.OpenXml4Net.Util;
+using Npoi.Core.OpenXmlFormats.Shared;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-//using NPOI.OpenXmlFormats.Shared;
+//using Npoi.Core.OpenXmlFormats.Shared;
 
-namespace NPOI.OpenXmlFormats.Wordprocessing
+namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
 
 
@@ -630,7 +630,7 @@ namespace NPOI.OpenXmlFormats.Wordprocessing
 
         private CT_DocRsids rsidsField;
 
-        private NPOI.OpenXmlFormats.Shared.CT_MathPr mathPrField;
+        private Npoi.Core.OpenXmlFormats.Shared.CT_MathPr mathPrField;
 
         private CT_OnOff uiCompat97To2003Field;
 
@@ -696,7 +696,7 @@ namespace NPOI.OpenXmlFormats.Wordprocessing
             this.themeFontLang.eastAsia = "zh-CN";
             //this.attachedSchemaField = new List<CT_String>();
             //this.uiCompat97To2003Field = new CT_OnOff();
-            this.mathPrField = new NPOI.OpenXmlFormats.Shared.CT_MathPr();
+            this.mathPrField = new Npoi.Core.OpenXmlFormats.Shared.CT_MathPr();
             this.rsidsField = new CT_DocRsids();
             //this.docVarsField = new List<CT_DocVar>();
             this.compatField = new CT_Compat();
@@ -1869,7 +1869,7 @@ namespace NPOI.OpenXmlFormats.Wordprocessing
         }
 
         [XmlElement(Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/math", Order = 83)]
-        public NPOI.OpenXmlFormats.Shared.CT_MathPr mathPr
+        public Npoi.Core.OpenXmlFormats.Shared.CT_MathPr mathPr
         {
             get
             {

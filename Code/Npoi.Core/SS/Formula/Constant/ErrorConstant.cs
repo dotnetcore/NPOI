@@ -15,11 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula.Constant
+namespace Npoi.Core.SS.Formula.Constant
 {
     using System;
     using System.Text;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     
     /// <summary>
     /// Represents a constant error code value as encoded in a constant values array.

@@ -16,9 +16,9 @@
 ==================================================================== */
 
 using System;
-using NPOI.SS.UserModel;
-using NPOI.SS.Formula.Eval;
-namespace NPOI.SS.Formula.Functions
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.Formula.Eval;
+namespace Npoi.Core.SS.Formula.Functions
 {
     /**
      * Implementation of Excel NOW() Function

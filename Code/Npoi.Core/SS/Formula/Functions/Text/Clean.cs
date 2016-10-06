@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
-using NPOI.SS.Formula.Eval;
+using Npoi.Core.SS.Formula.Eval;
 
-namespace NPOI.SS.Formula.Functions
+namespace Npoi.Core.SS.Formula.Functions
 {
     public class Clean : SingleArgTextFunc
     {

@@ -15,13 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula.PTG
+namespace Npoi.Core.SS.Formula.PTG
 {
     using System;
     using System.Text;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.Util;
 
     /**
      * Common superclass of 2-D area refs 

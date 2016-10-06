@@ -18,12 +18,12 @@
 namespace TestCases.HSSF.Record
 {
     using System;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Record;
 
     using NUnit.Framework;
-    using NPOI.HSSF.Record.CF;
-    using NPOI.HSSF.Util;
-    using NPOI.SS.Util;
+    using Npoi.Core.HSSF.Record.CF;
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.SS.Util;
 
     /**
      * Tests the serialization and deserialization of the TestCFHeaderRecord

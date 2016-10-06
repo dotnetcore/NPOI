@@ -18,9 +18,9 @@
  * Created on May 8, 2005
  *
  */
-namespace NPOI.SS.Formula.Eval
+namespace Npoi.Core.SS.Formula.Eval
 {
-    using NPOI.SS.Formula;
+    using Npoi.Core.SS.Formula;
 
     /**
      * Evaluation of 2D (Row+Column) and 3D (Sheet+Row+Column) areas

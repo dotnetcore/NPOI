@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace NPOI.OpenXml4Net.OPC.Internal.Marshallers
+namespace Npoi.Core.OpenXml4Net.OPC.Internal.Marshallers
 {
     /**
      * Default marshaller that specified that the part is responsible to marshall its content.

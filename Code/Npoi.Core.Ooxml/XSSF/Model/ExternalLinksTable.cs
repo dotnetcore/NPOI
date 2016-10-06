@@ -17,16 +17,16 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.XSSF.Model
+namespace Npoi.Core.XSSF.Model
 {
     using System;
-    using NPOI.SS.UserModel;
-    using NPOI.OpenXmlFormats.Spreadsheet;
-    using NPOI.OpenXml4Net.OPC;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.OpenXmlFormats.Spreadsheet;
+    using Npoi.Core.OpenXml4Net.OPC;
     using System.IO;
     using System.Xml;
     using System.Collections.Generic;
-    using NPOI.OpenXmlFormats.Spreadsheet.Document;
+    using Npoi.Core.OpenXmlFormats.Spreadsheet.Document;
 
 
     /**

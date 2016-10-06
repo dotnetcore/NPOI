@@ -18,9 +18,9 @@
  */
 
 using System;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
-using NPOI.Util;
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.Util;
 using NUnit.Framework;
 using TestCases.HSSF;
 using System.Collections.Generic;

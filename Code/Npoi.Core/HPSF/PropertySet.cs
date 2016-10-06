@@ -27,13 +27,13 @@
 
 using System.Collections.Generic;
 
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     using System;
     using System.IO;
     using System.Text;
-    using NPOI.Util;
-    using NPOI.HPSF.Wellknown;
+    using Npoi.Core.Util;
+    using Npoi.Core.HPSF.Wellknown;
 
     /// <summary>
     /// Represents a property Set in the Horrible Property Set Format

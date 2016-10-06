@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using NPOI.XWPF.UserModel;
-using NPOI.OpenXmlFormats.Wordprocessing;
+using Npoi.Core.XWPF.UserModel;
+using Npoi.Core.OpenXmlFormats.Wordprocessing;
 using System.Reflection;
 
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
     public static class EnumConverter
     {       

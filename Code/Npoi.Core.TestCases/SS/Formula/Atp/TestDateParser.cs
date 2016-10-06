@@ -18,8 +18,8 @@
 namespace TestCases.SS.Formula.Atp
 {
     using System;
-    using NPOI.SS.Formula.Atp;
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Atp;
+    using Npoi.Core.SS.Formula.Eval;
     using NUnit.Framework;
 
     /**

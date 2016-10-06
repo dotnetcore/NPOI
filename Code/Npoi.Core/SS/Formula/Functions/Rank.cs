@@ -18,9 +18,9 @@
  */
 
 using System;
-using NPOI.SS.Formula.Eval;
+using Npoi.Core.SS.Formula.Eval;
 
-namespace NPOI.SS.Formula.Functions
+namespace Npoi.Core.SS.Formula.Functions
 {
     /**
      * Returns the rank of a number in a list of numbers. The rank of a number is its size relative to other values in a list.

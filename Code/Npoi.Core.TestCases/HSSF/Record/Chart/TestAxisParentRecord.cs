@@ -21,9 +21,9 @@
 namespace TestCases.HSSF.Record.Chart
 {
     using System;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Record;
     using NUnit.Framework;
-    using NPOI.HSSF.Record.Chart;
+    using Npoi.Core.HSSF.Record.Chart;
     /**
      * Tests the serialization and deserialization of the AxisParentRecord
      * class works correctly.  Test data taken directly from a real

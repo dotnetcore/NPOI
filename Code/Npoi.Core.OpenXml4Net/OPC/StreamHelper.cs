@@ -5,7 +5,7 @@ using System.Xml;
 using System.IO;
 using System.Xml.Linq;
 
-namespace NPOI.OpenXml4Net.OPC
+namespace Npoi.Core.OpenXml4Net.OPC
 {
 	public class StreamHelper
 	{

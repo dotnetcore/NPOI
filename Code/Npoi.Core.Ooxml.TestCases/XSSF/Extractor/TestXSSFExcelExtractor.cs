@@ -17,10 +17,10 @@
 
 using System;
 using NUnit.Framework;
-using NPOI.HSSF.Extractor;
+using Npoi.Core.HSSF.Extractor;
 using TestCases.HSSF;
 using System.Text.RegularExpressions;
-namespace NPOI.XSSF.Extractor
+namespace Npoi.Core.XSSF.Extractor
 {
 
     /**

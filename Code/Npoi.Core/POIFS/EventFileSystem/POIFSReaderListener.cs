@@ -18,7 +18,7 @@
 
 
 
-namespace NPOI.POIFS.EventFileSystem
+namespace Npoi.Core.POIFS.EventFileSystem
 {
     /**
      * Interface POIFSReaderListener

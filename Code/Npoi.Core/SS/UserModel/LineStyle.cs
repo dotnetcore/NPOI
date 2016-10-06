@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NPOI.SS.UserModel
+namespace Npoi.Core.SS.UserModel
 {
     public enum LineStyle:int
     {

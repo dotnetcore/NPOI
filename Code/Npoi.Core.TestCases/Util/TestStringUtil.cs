@@ -21,7 +21,7 @@ namespace TestCases.Util
     using System;
     using System.Text;
 
-    using NPOI.Util;
+    using Npoi.Core.Util;
     using NUnit.Framework;
     /**
      * Unit Test for StringUtil

@@ -27,7 +27,7 @@
 
 using System.Collections.Generic;
 
-namespace NPOI.POIFS.Storage
+namespace Npoi.Core.POIFS.Storage
 {
     /// <summary>
     /// A list of SmallDocumentBlocks instances, and methods to manage the list

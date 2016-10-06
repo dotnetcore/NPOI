@@ -16,7 +16,7 @@
 ==================================================================== */
 
 using System;
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.UserModel;
 using TestCases.HSSF;
 using NUnit.Framework;
 using System.IO;

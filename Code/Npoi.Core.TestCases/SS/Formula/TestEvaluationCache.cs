@@ -23,17 +23,17 @@ namespace TestCases.SS.Formula
     using System.IO;
     using System.Text;
     using NUnit.Framework;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
     using TestCases.HSSF.UserModel;
 
     /**
-     * Tests {@link NPOI.SS.Formula.EvaluationCache}.  Makes sure that where possible (previously calculated) cached
+     * Tests {@link Npoi.Core.SS.Formula.EvaluationCache}.  Makes sure that where possible (previously calculated) cached
      * values are used.  Also Checks that changing cell values causes the correct (minimal) Set of
      * dependent cached values to be Cleared.
      *

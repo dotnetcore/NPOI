@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using NUnit.Framework;
-using NPOI.Util;
+using Npoi.Core.Util;
 using System;
-namespace NPOI.XSSF.Util
+namespace Npoi.Core.XSSF.Util
 {
 
     [TestFixture]

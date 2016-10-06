@@ -18,10 +18,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using NPOI.HSSF.Record;
-using NPOI.HSSF.Record.Chart;
+using Npoi.Core.HSSF.Record;
+using Npoi.Core.HSSF.Record.Chart;
 using NUnit.Framework;
-using NPOI.Util;
+using Npoi.Core.Util;
 
 namespace TestCases.HSSF.Record.Chart
 {

@@ -14,12 +14,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.UserModel;
 using System;
 using System.Text;
-using NPOI.Util;
-using NPOI.OpenXmlFormats.Spreadsheet;
-namespace NPOI.XSSF.UserModel
+using Npoi.Core.Util;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+namespace Npoi.Core.XSSF.UserModel
 {
 
     /**
@@ -113,7 +113,7 @@ namespace NPOI.XSSF.UserModel
         }
 
         /* (non-Javadoc)
-         * @see NPOI.ss.usermodel.DataValidationConstraint#getFormula1()
+         * @see Npoi.Core.ss.usermodel.DataValidationConstraint#getFormula1()
          */
         public String Formula1
         {
@@ -128,7 +128,7 @@ namespace NPOI.XSSF.UserModel
         }
 
         /* (non-Javadoc)
-         * @see NPOI.ss.usermodel.DataValidationConstraint#getFormula2()
+         * @see Npoi.Core.ss.usermodel.DataValidationConstraint#getFormula2()
          */
         public String Formula2
         {
@@ -143,7 +143,7 @@ namespace NPOI.XSSF.UserModel
         }
 
         /* (non-Javadoc)
-         * @see NPOI.ss.usermodel.DataValidationConstraint#getOperator()
+         * @see Npoi.Core.ss.usermodel.DataValidationConstraint#getOperator()
          */
         public int Operator
         {
@@ -158,7 +158,7 @@ namespace NPOI.XSSF.UserModel
         }
 
         /* (non-Javadoc)
-         * @see NPOI.ss.usermodel.DataValidationConstraint#getValidationType()
+         * @see Npoi.Core.ss.usermodel.DataValidationConstraint#getValidationType()
          */
         public int GetValidationType()
         {

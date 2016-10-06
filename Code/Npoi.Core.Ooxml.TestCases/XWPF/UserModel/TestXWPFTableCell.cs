@@ -18,9 +18,9 @@
  */
 
 using NUnit.Framework;
-using NPOI.OpenXmlFormats.Wordprocessing;
+using Npoi.Core.OpenXmlFormats.Wordprocessing;
 using System;
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     [TestFixture]
     public class TestXWPFTableCell

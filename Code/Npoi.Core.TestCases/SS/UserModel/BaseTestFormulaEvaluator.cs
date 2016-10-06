@@ -21,8 +21,8 @@ namespace TestCases.SS.UserModel
 
     using NUnit.Framework;
 
-    using NPOI.SS;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS;
+    using Npoi.Core.SS.UserModel;
 
     /**
      * Common superclass for Testing implementatiosn of{@link FormulaEvaluator}
@@ -256,7 +256,7 @@ namespace TestCases.SS.UserModel
         }
 
         /**
-         * {@link FormulaEvaluator#Evaluate(NPOI.SS.UserModel.Cell)} should behave the same whether the cell
+         * {@link FormulaEvaluator#Evaluate(Npoi.Core.SS.UserModel.Cell)} should behave the same whether the cell
          * is <code>null</code> or blank.
          */
         [Test]

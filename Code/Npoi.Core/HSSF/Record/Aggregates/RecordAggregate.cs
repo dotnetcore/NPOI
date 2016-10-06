@@ -15,13 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.HPSF;
+using Npoi.Core.HPSF;
 
-namespace NPOI.HSSF.Record.Aggregates
+namespace Npoi.Core.HSSF.Record.Aggregates
 {
 
     using System;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Record;
 
 
     public interface RecordVisitor

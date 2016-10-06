@@ -29,10 +29,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using NPOI.Util;
-using NPOI.POIFS.Common;
+using Npoi.Core.Util;
+using Npoi.Core.POIFS.Common;
 
-namespace NPOI.POIFS.Storage
+namespace Npoi.Core.POIFS.Storage
 {
     /// <summary>
     /// This class manages and creates the Block Allocation Table, which is

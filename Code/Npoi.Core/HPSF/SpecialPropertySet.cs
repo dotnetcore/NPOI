@@ -27,13 +27,13 @@
 
 using System.Collections.Generic;
 
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     using System;
     using System.IO;
-    using NPOI.HPSF.Wellknown;
-    using NPOI.POIFS.FileSystem;
-    using NPOI.Util;
+    using Npoi.Core.HPSF.Wellknown;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.Util;
     using System.Text;
 
     /// <summary>

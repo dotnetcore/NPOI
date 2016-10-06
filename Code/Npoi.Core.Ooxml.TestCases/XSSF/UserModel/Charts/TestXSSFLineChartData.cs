@@ -1,12 +1,12 @@
-﻿namespace NPOI.XSSF.UserModel.Charts
+﻿namespace Npoi.Core.XSSF.UserModel.Charts
 {
     using System;
 
     using NUnit.Framework;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.UserModel.Charts;
-    using NPOI.SS.Util;
-    using NPOI.XSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.UserModel.Charts;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.XSSF.UserModel;
 
     /**
      * @author Martin Andersson

@@ -26,7 +26,7 @@
  * ==============================================================*/
 
 using System;
-using NPOI.POIFS.Properties;
+using Npoi.Core.POIFS.Properties;
 
 namespace TestCases.POIFS.Properties
 {

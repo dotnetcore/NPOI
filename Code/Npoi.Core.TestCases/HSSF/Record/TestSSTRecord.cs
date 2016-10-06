@@ -21,12 +21,12 @@ namespace TestCases.HSSF.Record
     using System.Collections;
     using System.IO;
     using NUnit.Framework;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.Util;
     using TestCases.HSSF;
     using TestCases.HSSF.Record;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Record;
 
     /**
      * @author Marc Johnson (mjohnson at apache dot org)

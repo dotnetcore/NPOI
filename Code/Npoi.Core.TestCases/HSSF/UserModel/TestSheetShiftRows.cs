@@ -19,11 +19,11 @@ namespace TestCases.HSSF.UserModel
 {
     using System;
     using System.IO;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
 
     using NUnit.Framework;
     using TestCases.HSSF;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
 
     /**
      * Tests row shifting capabilities.
@@ -49,7 +49,7 @@ namespace TestCases.HSSF.UserModel
         {
             // Read initial file in
             HSSFWorkbook wb = HSSFTestDataSamples.OpenSampleWorkbook("SimpleMultiCell.xls");
-            NPOI.SS.UserModel.ISheet s = wb.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet s = wb.GetSheetAt(0);
 
             // Shift the second row down 1 and Write to temp file
             s.ShiftRows(1, 1, 1);
@@ -94,7 +94,7 @@ namespace TestCases.HSSF.UserModel
             ConfirmEmptyRow(s, 3);
             Assert.AreEqual(s.GetRow(4).PhysicalNumberOfCells, 5);
         }
-        private static void ConfirmEmptyRow(NPOI.SS.UserModel.ISheet s, int rowIx)
+        private static void ConfirmEmptyRow(Npoi.Core.SS.UserModel.ISheet s, int rowIx)
         {
             IRow row = s.GetRow(rowIx);
             Assert.IsTrue(row == null || row.PhysicalNumberOfCells == 0);
@@ -108,7 +108,7 @@ namespace TestCases.HSSF.UserModel
         public void TestShiftRow()
         {
             HSSFWorkbook b = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = b.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = b.CreateSheet();
             s.CreateRow(0).CreateCell(0).SetCellValue("TEST1");
             s.CreateRow(3).CreateCell(0).SetCellValue("TEST2");
             s.ShiftRows(0, 4, 1);
@@ -123,7 +123,7 @@ namespace TestCases.HSSF.UserModel
         public void TestShiftRow0()
         {
             HSSFWorkbook b = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = b.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = b.CreateSheet();
             s.CreateRow(0).CreateCell(0).SetCellValue("TEST1");
             s.CreateRow(3).CreateCell(0).SetCellValue("TEST2");
             s.ShiftRows(0, 4, 1);
@@ -137,7 +137,7 @@ namespace TestCases.HSSF.UserModel
         public void TestShiftRowBreaks()
         {
             HSSFWorkbook b = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet s = b.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = b.CreateSheet();
             IRow row = s.CreateRow(4);
             row.CreateCell(0).SetCellValue("Test");
             s.SetRowBreak(4);
@@ -152,7 +152,7 @@ namespace TestCases.HSSF.UserModel
         {
             HSSFWorkbook wb = HSSFTestDataSamples.OpenSampleWorkbook("comments.xls");
 
-            NPOI.SS.UserModel.ISheet sheet = wb.GetSheet("Sheet1");
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.GetSheet("Sheet1");
             Assert.AreEqual(3, sheet.LastRowNum);
 
             // Verify comments are in the position expected
@@ -217,7 +217,7 @@ namespace TestCases.HSSF.UserModel
         {
             HSSFWorkbook wb = HSSFTestDataSamples.OpenSampleWorkbook("ForShifting.xls");
 
-            NPOI.SS.UserModel.ISheet sheet = wb.GetSheet("Sheet1");
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.GetSheet("Sheet1");
             Assert.AreEqual(20, sheet.LastRowNum);
 
             ConfirmRow(sheet, 0, 1, 171, 1, "ROW(D1)", "100+B1", "COUNT(D1:E1)");
@@ -259,7 +259,7 @@ namespace TestCases.HSSF.UserModel
             ConfirmCell(sheet, 8, 1, 273, "200+B3");
 
             // Check formulas on other sheets
-            NPOI.SS.UserModel.ISheet sheet2 = wb.GetSheet("Sheet2");
+            Npoi.Core.SS.UserModel.ISheet sheet2 = wb.GetSheet("Sheet2");
             ConfirmCell(sheet2, 0, 0, 371, "300+Sheet1!B1");
             ConfirmCell(sheet2, 1, 0, 372, "300+Sheet1!B12");
             ConfirmCell(sheet2, 2, 0, 373, "300+Sheet1!B3");
@@ -270,7 +270,7 @@ namespace TestCases.HSSF.UserModel
             // Note - named ranges formulas have not been updated
         }
 
-        private static void ConfirmRow(NPOI.SS.UserModel.ISheet sheet, int rowIx, double valA, double valB, double valC,
+        private static void ConfirmRow(Npoi.Core.SS.UserModel.ISheet sheet, int rowIx, double valA, double valB, double valC,
                     String formulaA, String formulaB, String formulaC)
         {
             ConfirmCell(sheet, rowIx, 4, valA, formulaA);
@@ -278,7 +278,7 @@ namespace TestCases.HSSF.UserModel
             ConfirmCell(sheet, rowIx, 6, valC, formulaC);
         }
 
-        private static void ConfirmCell(NPOI.SS.UserModel.ISheet sheet, int rowIx, int colIx,
+        private static void ConfirmCell(Npoi.Core.SS.UserModel.ISheet sheet, int rowIx, int colIx,
                 double expectedValue, String expectedFormula)
         {
             ICell cell = sheet.GetRow(rowIx).GetCell(colIx);

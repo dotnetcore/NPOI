@@ -22,12 +22,12 @@ namespace TestCases.SS.UserModel
     using System;
 
     using NUnit.Framework;
-    using NPOI.SS;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
+    using Npoi.Core.SS;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
     using TestCases.SS;
-    using NPOI.HSSF.Record.CF;
-    using NPOI.HSSF.Util;
+    using Npoi.Core.HSSF.Record.CF;
+    using Npoi.Core.HSSF.Util;
 
     /**
      * @author Dmitriy Kumshayev

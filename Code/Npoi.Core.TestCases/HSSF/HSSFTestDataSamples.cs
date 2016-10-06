@@ -20,7 +20,7 @@ namespace TestCases.HSSF
     using System;
     using System.IO;
     using System.Text;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
 
     /**
      * Centralises logic for finding/opening sample files in the src/testcases/org/apache/poi/hssf/hssf/data folder. 

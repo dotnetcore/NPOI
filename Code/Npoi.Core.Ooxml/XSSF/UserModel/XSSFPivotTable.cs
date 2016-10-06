@@ -17,16 +17,16 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Xml;
-    using NPOI.OpenXml4Net.OPC;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
-    using NPOI.OpenXmlFormats.Spreadsheet;
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.OpenXmlFormats.Spreadsheet;
 
 
     public class XSSFPivotTable : POIXMLDocumentPart

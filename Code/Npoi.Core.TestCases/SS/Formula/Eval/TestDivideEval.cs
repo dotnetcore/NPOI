@@ -19,7 +19,7 @@ namespace TestCases.SS.Formula.Eval
 {
 
     using NUnit.Framework;
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Eval;
     using TestCases.SS.Formula.Functions;
 
     /**

@@ -23,11 +23,11 @@ namespace TestCases.HPSF.Basic
     using System.IO;
     using System.Text;
 
-    using NPOI.HPSF;
-    using NPOI.HPSF.Wellknown;
-    using NPOI.POIFS.EventFileSystem;
-    using NPOI.POIFS.FileSystem;
-    using NPOI.Util;
+    using Npoi.Core.HPSF;
+    using Npoi.Core.HPSF.Wellknown;
+    using Npoi.Core.POIFS.EventFileSystem;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.Util;
 
     using NUnit.Framework;
     using NUnit.Framework.Constraints;

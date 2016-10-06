@@ -25,11 +25,11 @@
  * 
  * ==============================================================*/
 
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     using System;
     using System.Collections;
-    using NPOI.HPSF.Wellknown;
+    using Npoi.Core.HPSF.Wellknown;
     using System.Text;
 
 
@@ -336,7 +336,7 @@ namespace NPOI.HPSF
                             codepage = (int)Constants.CP_UNICODE;
                         byte[] a= Encoding.GetEncoding(codepage).GetBytes(key);
                         byte[] b = Encoding.UTF8.GetBytes(name);
-                        if (NPOI.Util.Arrays.Equals(a, b))
+                        if (Npoi.Core.Util.Arrays.Equals(a, b))
                             x = ((DictionaryEntry)dic.Current).Value;
                     }
                     if (x == null)

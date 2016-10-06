@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 using System;
-using NPOI.SS.Formula.Functions;
-using NPOI.SS.Formula.Eval;
+using Npoi.Core.SS.Formula.Functions;
+using Npoi.Core.SS.Formula.Eval;
 
-namespace NPOI.SS.Formula.Eval
+namespace Npoi.Core.SS.Formula.Eval
 {
 
     /**
@@ -27,7 +27,7 @@ namespace NPOI.SS.Formula.Eval
     public class IntersectionEval : Fixed2ArgFunction
     {
 
-        public static NPOI.SS.Formula.Functions.Function instance = new IntersectionEval();
+        public static Npoi.Core.SS.Formula.Functions.Function instance = new IntersectionEval();
 
         private IntersectionEval()
         {

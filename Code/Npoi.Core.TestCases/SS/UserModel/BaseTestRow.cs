@@ -23,14 +23,14 @@ namespace TestCases.SS.UserModel
 
     using NUnit.Framework;
 
-    using NPOI.SS;
+    using Npoi.Core.SS;
     using System.Collections;
     using TestCases.SS;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
 
     /**
      * A base class for Testing implementations of
-     * {@link NPOI.SS.UserModel.Row}
+     * {@link Npoi.Core.SS.UserModel.Row}
      */
     public class BaseTestRow
     {

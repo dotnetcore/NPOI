@@ -17,11 +17,11 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     using System;
     using System.Collections.Generic;
-    using NPOI.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
     using System.Xml;
 
     public class XWPFFootnote : IEnumerator<XWPFParagraph>, IBody
@@ -158,7 +158,7 @@ namespace NPOI.XWPF.UserModel
          * the method will return this table
          * if there is no corresponding {@link XWPFTable} the method will return null 
          * @param ctTable
-         * @see NPOI.XWPF.UserModel.IBody#getTable(CTTbl ctTable)
+         * @see Npoi.Core.XWPF.UserModel.IBody#getTable(CTTbl ctTable)
          */
         public XWPFTable GetTable(CT_Tbl ctTable)
         {
@@ -178,7 +178,7 @@ namespace NPOI.XWPF.UserModel
          * @param p is instance of CTP and is searching for an XWPFParagraph
          * @return null if there is no XWPFParagraph with an corresponding CTPparagraph in the paragraphList of this header or footer
          * 		   XWPFParagraph with the correspondig CTP p
-         * @see NPOI.XWPF.UserModel.IBody#getParagraph(CTP p)
+         * @see Npoi.Core.XWPF.UserModel.IBody#getParagraph(CTP p)
          */
         public XWPFParagraph GetParagraph(CT_P p)
         {
@@ -253,7 +253,7 @@ namespace NPOI.XWPF.UserModel
          * 
          * @param cursor
          * @return the inserted table
-         * @see NPOI.XWPF.UserModel.IBody#insertNewTbl(XmlCursor cursor)
+         * @see Npoi.Core.XWPF.UserModel.IBody#insertNewTbl(XmlCursor cursor)
          */
         public XWPFTable InsertNewTbl(/*XmlCursor*/XDocument cursor)
         {
@@ -296,7 +296,7 @@ namespace NPOI.XWPF.UserModel
          * add a new paragraph at position of the cursor
          * @param cursor
          * @return the inserted paragraph
-         * @see NPOI.XWPF.UserModel.IBody#insertNewParagraph(XmlCursor cursor)
+         * @see Npoi.Core.XWPF.UserModel.IBody#insertNewParagraph(XmlCursor cursor)
          */
         public XWPFParagraph InsertNewParagraph(/*XmlCursor*/XDocument cursor)
         {
@@ -363,7 +363,7 @@ namespace NPOI.XWPF.UserModel
         }
 
         /**
-         * @see NPOI.XWPF.UserModel.IBody#getXWPFDocument()
+         * @see Npoi.Core.XWPF.UserModel.IBody#getXWPFDocument()
          */
         public XWPFDocument GetXWPFDocument()
         {
@@ -372,7 +372,7 @@ namespace NPOI.XWPF.UserModel
 
         /**
          * returns the Part, to which the body belongs, which you need for Adding relationship to other parts
-         * @see NPOI.XWPF.UserModel.IBody#getPart()
+         * @see Npoi.Core.XWPF.UserModel.IBody#getPart()
          */
         public POIXMLDocumentPart Part
         {
@@ -384,7 +384,7 @@ namespace NPOI.XWPF.UserModel
 
         /**
          * Get the PartType of the body
-         * @see NPOI.XWPF.UserModel.IBody#getPartType()
+         * @see Npoi.Core.XWPF.UserModel.IBody#getPartType()
          */
         public BodyType PartType
         {

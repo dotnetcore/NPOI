@@ -15,9 +15,9 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Model
+namespace Npoi.Core.HSSF.Model
 {
-    using NPOI.DDF;
+    using Npoi.Core.DDF;
     using System.Collections;
 
     /// <summary>

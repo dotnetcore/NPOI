@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System;
 using System.ComponentModel;
 
-namespace NPOI.OpenXmlFormats
+namespace Npoi.Core.OpenXmlFormats
 {
 
     [Serializable]

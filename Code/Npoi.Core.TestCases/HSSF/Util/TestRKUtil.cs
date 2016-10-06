@@ -20,8 +20,8 @@ namespace TestCases.HSSF.Util
     using System;
 
     using NUnit.Framework;
-    using NPOI.Util;
-    using NPOI.HSSF.Util;
+    using Npoi.Core.Util;
+    using Npoi.Core.HSSF.Util;
 
     /**
      * Tests the {@link RKUtil} class.

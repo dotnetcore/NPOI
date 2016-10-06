@@ -25,7 +25,7 @@
  * 
  * ==============================================================*/
 using System;
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     /// <summary>
     /// Defines constants of general use.

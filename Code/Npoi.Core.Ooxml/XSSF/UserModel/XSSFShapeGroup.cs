@@ -16,11 +16,11 @@
 ==================================================================== */
 
 using System;
-using NPOI.OpenXml4Net.OPC;
-using NPOI.OpenXmlFormats.Dml;
-using NPOI.OpenXmlFormats.Dml.Spreadsheet;
+using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.OpenXmlFormats.Dml;
+using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * This object specifies a group shape that represents many shapes grouped together. This shape is to be treated
@@ -58,7 +58,7 @@ namespace NPOI.XSSF.UserModel
 
 
                 CT_GroupShapeNonVisual nv = shape.AddNewNvGrpSpPr();
-                NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_NonVisualDrawingProps nvpr = nv.AddNewCNvPr();
+                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_NonVisualDrawingProps nvpr = nv.AddNewCNvPr();
                 nvpr.id = (0);
                 nvpr.name = ("Group 0");
                 nv.AddNewCNvGrpSpPr();
@@ -190,7 +190,7 @@ namespace NPOI.XSSF.UserModel
             chExt.cy = (y2);
         }
 
-        protected internal override NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties GetShapeProperties()
+        protected internal override Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties GetShapeProperties()
         {
             throw new InvalidOperationException("Not supported for shape group");
         }

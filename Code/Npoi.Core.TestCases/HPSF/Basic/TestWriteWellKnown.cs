@@ -22,9 +22,9 @@ namespace TestCases.HPSF.Basic
     using System.Globalization;
     using System.IO;
 
-    using NPOI.HPSF;
-    using NPOI.HPSF.Wellknown;
-    using NPOI.POIFS.FileSystem;
+    using Npoi.Core.HPSF;
+    using Npoi.Core.HPSF.Wellknown;
+    using Npoi.Core.POIFS.FileSystem;
 
     using NUnit.Framework;
 

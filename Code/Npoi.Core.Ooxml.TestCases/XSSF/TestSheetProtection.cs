@@ -15,14 +15,14 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 //==================================================================== */
-//namespace NPOI.xssf
+//namespace Npoi.Core.xssf
 //{
 //    using System;
 
 //using NUnit.Framework;
 
-//using NPOI.XSSF.UserModel;
-//using NPOI.XSSF.UserModel;
+//using Npoi.Core.XSSF.UserModel;
+//using Npoi.Core.XSSF.UserModel;
 
 //    [TestFixture]
 //    public class TestSheetProtection 

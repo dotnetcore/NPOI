@@ -18,12 +18,12 @@
 using TestCases.SS.UserModel;
 using NUnit.Framework;
 using System.Collections.Generic;
-using NPOI.SS.UserModel;
-using NPOI.Util;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.Util;
 using System.Text;
-using NPOI.OpenXmlFormats.Dml.Spreadsheet;
+using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
 using System.Collections;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
 
     /**

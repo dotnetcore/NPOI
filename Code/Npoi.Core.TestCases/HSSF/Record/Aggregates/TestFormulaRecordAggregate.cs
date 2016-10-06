@@ -24,14 +24,14 @@
 namespace TestCases.HSSF.Record.Aggregates
 {
     using System;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.Aggregates;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Aggregates;
     using NUnit.Framework;
-    using NPOI.Util;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.HSSF.Model;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Util;
+    using Npoi.Core.Util;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Util;
 
     /**
      *

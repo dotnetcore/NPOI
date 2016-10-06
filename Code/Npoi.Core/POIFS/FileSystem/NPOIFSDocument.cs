@@ -16,18 +16,18 @@
 ==================================================================== */
 
 
-using NPOI.POIFS.Common;
-using NPOI.POIFS.Dev;
-using NPOI.POIFS.Properties;
-using NPOI.Util;
+using Npoi.Core.POIFS.Common;
+using Npoi.Core.POIFS.Dev;
+using Npoi.Core.POIFS.Properties;
+using Npoi.Core.Util;
 using System.IO;
 using System.Collections.Generic;
 using System;
 using System.Text;
 using System.Collections;
-using NPOI.POIFS.EventFileSystem;
+using Npoi.Core.POIFS.EventFileSystem;
 
-namespace NPOI.POIFS.FileSystem
+namespace Npoi.Core.POIFS.FileSystem
 {
     /**
  * This class manages a document in the NIO POIFS filesystem.

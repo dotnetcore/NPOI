@@ -14,11 +14,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     using System;
 
-    using NPOI.XWPF;
+    using Npoi.Core.XWPF;
     using NUnit.Framework;
     using System.IO;
 

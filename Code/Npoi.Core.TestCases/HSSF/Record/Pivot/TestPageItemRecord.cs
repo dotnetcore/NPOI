@@ -19,9 +19,9 @@ namespace TestCases.HSSF.Record.Pivot
 {
     using System;
     using NUnit.Framework;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.PivotTable;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.PivotTable;
+    using Npoi.Core.Util;
     using TestCases.HSSF.Record;
 
     /**

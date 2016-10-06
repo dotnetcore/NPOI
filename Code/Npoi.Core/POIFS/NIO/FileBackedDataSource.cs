@@ -17,9 +17,9 @@
 
 using System.IO;
 using System;
-using NPOI.Util;
+using Npoi.Core.Util;
 //using System.IO.MemoryMappedFiles;
-namespace NPOI.POIFS.NIO
+namespace Npoi.Core.POIFS.NIO
 {
     /// <summary>
     /// A POIFS DataSource backed by a File

@@ -21,16 +21,16 @@ namespace TestCases.HSSF.EventUserModel
     using System.IO;
     using System.Collections;
 
-    using NPOI.HSSF;
-    using NPOI.HSSF.EventUserModel;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.UserModel;
-    using NPOI.HSSF.Record;
-    using NPOI.POIFS.FileSystem;
-    using NPOI.SS.Formula;
+    using Npoi.Core.HSSF;
+    using Npoi.Core.HSSF.EventUserModel;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.SS.Formula;
 
     using NUnit.Framework;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.SS.Formula.PTG;
 
 
     [TestFixture]

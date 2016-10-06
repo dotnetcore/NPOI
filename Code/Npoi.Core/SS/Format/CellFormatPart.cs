@@ -17,11 +17,11 @@
 
 using System.Reflection;
 
-namespace NPOI.SS.Format
+namespace Npoi.Core.SS.Format
 {
     using System;
 
-    using NPOI.HSSF.Util;
+    using Npoi.Core.HSSF.Util;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Collections;

@@ -18,16 +18,16 @@
 namespace TestCases.HSSF.Model
 {
     using System;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
     using NUnit.Framework;
     using TestCases.HSSF;
-    using NPOI.SS.UserModel;
-    using NPOI.Util;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.Util;
     using System.Collections.Generic;
     using System.Collections;
-    using NPOI.HSSF.Model;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.SS.Formula.PTG;
 
     /**
      * Tests for {@link LinkTable}
@@ -164,7 +164,7 @@ namespace TestCases.HSSF.Model
             }
             catch (Exception e)
             {
-                if (e.Message.Equals("Expected an EXTERNSHEET record but got (NPOI.HSSF.record.SSTRecord)"))
+                if (e.Message.Equals("Expected an EXTERNSHEET record but got (Npoi.Core.HSSF.record.SSTRecord)"))
                 {
                     throw new AssertionException("Identified bug 47001b");
                 }

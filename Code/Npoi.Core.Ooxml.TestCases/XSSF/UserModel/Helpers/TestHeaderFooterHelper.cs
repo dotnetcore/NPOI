@@ -17,7 +17,7 @@
 
 using System;
 using NUnit.Framework;
-namespace NPOI.XSSF.UserModel.Helpers
+namespace Npoi.Core.XSSF.UserModel.Helpers
 {
 
     /**

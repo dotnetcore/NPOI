@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
     internal class AssertFailedException : Exception
     {

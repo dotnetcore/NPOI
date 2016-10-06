@@ -20,13 +20,13 @@ namespace TestCases.HSSF.UserModel
     using System;
     using System.IO;
     using System.Collections;
-    using NPOI.HSSF.UserModel;
-    using NPOI.HSSF.Record;
-    using NPOI.Util;
-    using NPOI.HSSF.Util;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.Util;
+    using Npoi.Core.HSSF.Util;
     using TestCases.HSSF;
     using NUnit.Framework;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
 
     /**
      * @author Brian Sanders (bsanders at risklabs dot com)

@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Record.Cont
+namespace Npoi.Core.HSSF.Record.Cont
 {
     using System;
-    using NPOI.HSSF.Record;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.Util;
     /**
      * Allows the writing of BIFF records when the 'ushort size' header field is not known in advance.
      * When the client is finished writing data, it calls {@link #terminate()}, at which point this 

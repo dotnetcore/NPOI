@@ -1,9 +1,9 @@
-namespace NPOI.HSSF.Record.Crypto
+namespace Npoi.Core.HSSF.Record.Crypto
 {
     using System;
     using System.IO;
 
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     
     using System.Security.Cryptography;

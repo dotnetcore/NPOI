@@ -3,9 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
-using NPOI;
+using Npoi.Core;
 
-namespace NPOI.OpenXml4Net.OPC.Internal.Marshallers
+namespace Npoi.Core.OpenXml4Net.OPC.Internal.Marshallers
 {
 	/**
      * Package properties marshaller.

@@ -16,16 +16,16 @@
 ==================================================================== */
 
 
-using NPOI.HPSF;
-using NPOI.Util;
+using Npoi.Core.HPSF;
+using Npoi.Core.Util;
 
-namespace NPOI.HSSF.Record.Aggregates
+namespace Npoi.Core.HSSF.Record.Aggregates
 {
     using System;
     using System.Text;
     using System.Collections.Generic;
-    using NPOI.HSSF.Record;
-    using NPOI.SS.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS.Util;
 
     /// <summary>
     /// Manages various auxiliary records while constructing a RowRecordsAggregate

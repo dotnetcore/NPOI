@@ -31,9 +31,9 @@ using System.IO;
 
 using NUnit.Framework;
 
-using NPOI.POIFS.Common;
-using NPOI.POIFS.Storage;
-using NPOI.POIFS.Properties;
+using Npoi.Core.POIFS.Common;
+using Npoi.Core.POIFS.Storage;
+using Npoi.Core.POIFS.Properties;
 using TestCases.POIFS.Storage;
 using System.Collections.Generic;
 
@@ -336,7 +336,7 @@ namespace TestCases.POIFS.Properties
             for (int j = 0; j < rawData.Length; j++)
                 rawData[j] = new RawDataBlock(stream);
 
-            List<NPOI.POIFS.Properties.Property> properties = PropertyFactory.ConvertToProperties(rawData);
+            List<Npoi.Core.POIFS.Properties.Property> properties = PropertyFactory.ConvertToProperties(rawData);
 
             Assert.AreEqual(64, properties.Count);
 
@@ -424,7 +424,7 @@ namespace TestCases.POIFS.Properties
                     if (isDocument[j])
                         Assert.IsTrue(properties[j] is DocumentProperty, "Checking property " + j);
 
-                    Assert.AreEqual(names[j], ((NPOI.POIFS.Properties.Property)properties[j]).Name, "Checking property " + j);
+                    Assert.AreEqual(names[j], ((Npoi.Core.POIFS.Properties.Property)properties[j]).Name, "Checking property " + j);
                 }
             }
         }

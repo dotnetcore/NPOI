@@ -17,7 +17,7 @@
 
 using System.Drawing;
 
-namespace NPOI.SS.UserModel
+namespace Npoi.Core.SS.UserModel
 {
     public enum PictureType : int
     {

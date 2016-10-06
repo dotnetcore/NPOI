@@ -18,8 +18,8 @@
 using System.IO;
 using NUnit.Framework;
 using System.Text;
-using NPOI.Util;
-namespace NPOI.XSSF.Util
+using Npoi.Core.Util;
+namespace Npoi.Core.XSSF.Util
 {
     [TestFixture]
     public class TestEvilUnclosedBRFixingInputStream

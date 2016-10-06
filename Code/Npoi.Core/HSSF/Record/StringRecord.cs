@@ -17,12 +17,12 @@
 ==================================================================== */
 
 
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
     using System;
     using System.Text;
-    using NPOI.Util;
-    using NPOI.HSSF.Record.Cont;
+    using Npoi.Core.Util;
+    using Npoi.Core.HSSF.Record.Cont;
 
     /**
      * Supports the STRING record structure.

@@ -15,7 +15,7 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
     using System;
     using System.Globalization;

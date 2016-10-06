@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Text;
 
-using NPOI.Util;
+using Npoi.Core.Util;
 
 using NUnit.Framework;
 
 namespace TestCases.Util
 {
     /// <summary>
-    /// This class is used to test NPOI.Util.Arrays class
+    /// This class is used to test Npoi.Core.Util.Arrays class
     /// </summary>
     [TestFixture]
     public class TestArrayUtil

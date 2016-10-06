@@ -17,9 +17,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using NPOI.Util;
+using Npoi.Core.Util;
 
-namespace NPOI.HSSF.Record.Drawing
+namespace Npoi.Core.HSSF.Record.Drawing
 {
     /// <summary>
     /// specifies the common record header for all the OfficeArt records.

@@ -15,7 +15,7 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula
+namespace Npoi.Core.SS.Formula
 {
 
     using System;
@@ -24,11 +24,11 @@ namespace NPOI.SS.Formula
     using System.Globalization;
     using System.Text;
     using System.Text.RegularExpressions;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula.Constant;
-    using NPOI.SS.Formula.Function;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.Util;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula.Constant;
+    using Npoi.Core.SS.Formula.Function;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.Util;
 
     /// <summary>
     /// Specific exception thrown when a supplied formula does not Parse properly.

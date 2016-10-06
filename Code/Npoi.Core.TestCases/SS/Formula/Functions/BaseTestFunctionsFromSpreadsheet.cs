@@ -18,16 +18,16 @@
 namespace TestCases.SS.Formula.Functions
 {
 
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.UserModel;
     using System;
     using NUnit.Framework;
     using TestCases.HSSF;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     using System.Text;
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.Util;
     using System.IO;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * Tests INDEX() as loaded from a Test data spreadsheet.<p/>

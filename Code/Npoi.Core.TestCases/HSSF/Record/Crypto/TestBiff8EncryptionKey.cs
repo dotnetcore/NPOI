@@ -19,9 +19,9 @@ namespace TestCases.HSSF.Record.Crypto
 {
     using System;
     using NUnit.Framework;
-    using NPOI.Util;
+    using Npoi.Core.Util;
     using TestCases.Exceptions;
-    using NPOI.HSSF.Record.Crypto;
+    using Npoi.Core.HSSF.Record.Crypto;
 
     /**
      * Tests for {@link Biff8EncryptionKey}

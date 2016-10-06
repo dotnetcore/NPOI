@@ -29,11 +29,11 @@ using System;
 using System.IO;
 
 
-using NPOI.POIFS.Common;
-using NPOI.Util;
+using Npoi.Core.POIFS.Common;
+using Npoi.Core.Util;
 
 
-namespace NPOI.POIFS.Storage
+namespace Npoi.Core.POIFS.Storage
 {
     public class DocumentBlock : BigBlock
     {

@@ -1,7 +1,7 @@
 ﻿using System.IO;
-using NPOI.Util;
+using Npoi.Core.Util;
 
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     public class Filetime
     {

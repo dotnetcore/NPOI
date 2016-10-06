@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Xml;
 using System.IO;
 using System.Xml.Linq;
-using NPOI.OpenXml4Net.Util;
+using Npoi.Core.OpenXml4Net.Util;
 
-namespace NPOI.OpenXmlFormats.Dml
+namespace Npoi.Core.OpenXmlFormats.Dml
 {
     [Serializable]
     

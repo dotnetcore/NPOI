@@ -14,14 +14,14 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-namespace NPOI.SS.Format
+namespace Npoi.Core.SS.Format
 {
     using System;
     using System.Text;
     using System.Text.RegularExpressions;
     using NUnit.Framework;
-    using NPOI.SS.UserModel;
-    using NPOI.XSSF;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.XSSF;
     using TestCases.SS.Format;
     using System.Globalization;
 

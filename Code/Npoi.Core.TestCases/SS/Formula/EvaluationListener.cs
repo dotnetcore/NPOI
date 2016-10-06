@@ -17,8 +17,8 @@
 
 namespace TestCases.SS.Formula
 {
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula;
 
     /**
      * Tests should extend this class if they need to track the internal working of the {@link WorkbookEvaluator}.<br/>

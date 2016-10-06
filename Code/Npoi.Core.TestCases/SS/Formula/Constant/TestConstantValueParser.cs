@@ -18,11 +18,11 @@
 namespace TestCases.SS.Formula.Constant
 {
     using NUnit.Framework;
-    using NPOI.HSSF.UserModel;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.Util;
 
     using TestCases.HSSF.Record;
-    using NPOI.SS.Formula.Constant;
+    using Npoi.Core.SS.Formula.Constant;
     /**
      * 
      * @author Josh Micich

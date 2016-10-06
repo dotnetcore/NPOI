@@ -21,7 +21,7 @@ namespace TestCases.HSSF.Util
 {
 
     using System;
-    using NPOI.HSSF.Util;
+    using Npoi.Core.HSSF.Util;
     using NUnit.Framework;
 
     /**

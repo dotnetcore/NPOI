@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Text;
-using NPOI.Util;
-using NPOI.SS.Formula.PTG;
+using Npoi.Core.Util;
+using Npoi.Core.SS.Formula.PTG;
 using System.Globalization;
 
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
     public class LbsDataSubRecord : SubRecord
     {

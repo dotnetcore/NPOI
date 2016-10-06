@@ -15,8 +15,8 @@
    limitations under the License.
 */
 using System;
-using NPOI.Util;
-namespace NPOI.SS.Format
+using Npoi.Core.Util;
+namespace Npoi.Core.SS.Format
 {
     public class SimpleFraction
     {

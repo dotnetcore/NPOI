@@ -22,17 +22,17 @@
  * 
  * ==============================================================*/
 
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
     using System;
     using System.IO;
     using System.Reflection;
     using System.Collections;
     using System.Collections.Generic;
-    using NPOI.HSSF.Record.Chart;
-    using NPOI.HSSF.Record.PivotTable;
-    using NPOI.HSSF.Record.AutoFilter;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record.Chart;
+    using Npoi.Core.HSSF.Record.PivotTable;
+    using Npoi.Core.HSSF.Record.AutoFilter;
+    using Npoi.Core.Util;
     using System.Globalization;
 
     /**

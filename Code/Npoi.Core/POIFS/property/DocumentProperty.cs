@@ -27,9 +27,9 @@
 
 using System;
 
-using NPOI.POIFS.FileSystem;
+using Npoi.Core.POIFS.FileSystem;
 
-namespace NPOI.POIFS.Properties
+namespace Npoi.Core.POIFS.Properties
 {
     /// <summary>
     /// Trivial extension of Property for POIFSDocuments

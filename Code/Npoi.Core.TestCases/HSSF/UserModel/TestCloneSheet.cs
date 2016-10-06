@@ -20,13 +20,13 @@
 namespace TestCases.HSSF.UserModel
 {
     using System;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Util;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Util;
     using NUnit.Framework;
-    using NPOI.SS.UserModel;
-    using NPOI.DDF;
-    using NPOI.HSSF.Record;
-    using NPOI.Util;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.DDF;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.Util;
     /**
      * Test the ability to clone a sheet. 
      *  If Adding new records that belong to a sheet (as opposed to a book)

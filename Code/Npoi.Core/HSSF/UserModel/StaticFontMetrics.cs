@@ -17,13 +17,13 @@
 
 using System.Reflection;
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
 	using System;
 	using System.Collections;
 	using System.IO;
 	using System.Drawing;
-	using NPOI.Util.Collections;
+	using Npoi.Core.Util.Collections;
 
 	/**
      * Allows the user to lookup the font metrics for a particular font without

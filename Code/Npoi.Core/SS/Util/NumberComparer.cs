@@ -1,7 +1,7 @@
 ﻿using System;
-using NPOI.Util;
+using Npoi.Core.Util;
 
-namespace NPOI.SS.Util
+namespace Npoi.Core.SS.Util
 {
     public class NumberComparer
     {

@@ -25,13 +25,13 @@
  * 
  * ==============================================================*/
 
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     using System;
     using System.Text;
     using System.Collections;
-    using NPOI.Util;
-    using NPOI.HPSF.Wellknown;
+    using Npoi.Core.Util;
+    using Npoi.Core.HPSF.Wellknown;
 
     /// <summary>
     /// Represents a section in a {@link PropertySet}.

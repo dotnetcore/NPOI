@@ -19,8 +19,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
-using NPOI.POIFS.FileSystem;
-using NPOI.POIFS.Crypt;
+using Npoi.Core.POIFS.FileSystem;
+using Npoi.Core.POIFS.Crypt;
 
 namespace TestCases.POIFS.Crypt
 {

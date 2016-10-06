@@ -13,11 +13,11 @@ using System.Xml.Schema;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Xml;
-using NPOI.OpenXml4Net.Util;
+using Npoi.Core.OpenXml4Net.Util;
 using System.IO;
 using System.Xml.Linq;
 
-namespace NPOI.OpenXmlFormats.Spreadsheet
+namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
 
 

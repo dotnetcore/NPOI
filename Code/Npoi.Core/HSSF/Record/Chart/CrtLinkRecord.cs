@@ -1,5 +1,5 @@
 ﻿
-namespace NPOI.HSSF.Record.Chart
+namespace Npoi.Core.HSSF.Record.Chart
 {
     /// <summary>
     /// The CrtLink record is written but unused.
@@ -25,7 +25,7 @@ namespace NPOI.HSSF.Record.Chart
             get { return 10; }
         }
 
-        public override void Serialize(NPOI.Util.ILittleEndianOutput out1)
+        public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             out1.WriteInt(0);
             out1.WriteInt(0);

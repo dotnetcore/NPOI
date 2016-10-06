@@ -16,9 +16,9 @@
 ==================================================================== */
 
 
-using NPOI.HPSF;
+using Npoi.Core.HPSF;
 
-namespace NPOI.HSSF.EventUserModel
+namespace Npoi.Core.HSSF.EventUserModel
 {
     using System;
     /// <summary>

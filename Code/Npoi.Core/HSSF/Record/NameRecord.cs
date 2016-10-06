@@ -15,17 +15,17 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
 
     using System;
     using System.Text;
 
-    using NPOI.Util;
-    using NPOI.HSSF.Record;
-    using SSFormula=NPOI.SS.Formula;
-    using NPOI.HSSF.Record.Cont;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.Util;
+    using Npoi.Core.HSSF.Record;
+    using SSFormula=Npoi.Core.SS.Formula;
+    using Npoi.Core.HSSF.Record.Cont;
+    using Npoi.Core.SS.Formula.PTG;
 
     /**
      * Title:        Name Record (aka Named Range) 

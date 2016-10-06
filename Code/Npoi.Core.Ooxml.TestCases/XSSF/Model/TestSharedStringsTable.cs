@@ -16,14 +16,14 @@
 ==================================================================== */
 
 using NUnit.Framework;
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.XSSF.UserModel;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.XSSF.UserModel;
 using System.Collections.Generic;
 using System;
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.UserModel;
 using TestCases;
 using System.IO;
-namespace NPOI.XSSF.Model
+namespace Npoi.Core.XSSF.Model
 {
 
     /**

@@ -1,5 +1,5 @@
 ﻿
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
     public interface BiffHeaderInput
     {

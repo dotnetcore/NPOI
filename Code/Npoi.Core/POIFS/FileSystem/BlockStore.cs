@@ -16,11 +16,11 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.POIFS.FileSystem
+namespace Npoi.Core.POIFS.FileSystem
 {
     using System;
-    using NPOI.POIFS.Storage;
-    using NPOI.Util;
+    using Npoi.Core.POIFS.Storage;
+    using Npoi.Core.Util;
 
     /// <summary>
     /// This abstract class describes a way to read, store, chain

@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.OpenXmlFormats.Dml;
-using NPOI.OpenXmlFormats.Dml.Spreadsheet;
+using Npoi.Core.OpenXmlFormats.Dml;
+using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
 using System.Xml;
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
 
     /**
@@ -55,12 +55,12 @@ namespace NPOI.XSSF.UserModel
 
                 CT_Connector shape = new CT_Connector();
                 CT_ConnectorNonVisual nv = shape.AddNewNvCxnSpPr();
-                NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_NonVisualDrawingProps nvp = nv.AddNewCNvPr();
+                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_NonVisualDrawingProps nvp = nv.AddNewCNvPr();
                 nvp.id = (1);
                 nvp.name = ("Shape 1");
                 nv.AddNewCNvCxnSpPr();
 
-                NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties sp = shape.AddNewSpPr();
+                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties sp = shape.AddNewSpPr();
                 CT_Transform2D t2d = sp.AddNewXfrm();
                 CT_PositiveSize2D p1 = t2d.AddNewExt();
                 p1.cx = (0);
@@ -73,7 +73,7 @@ namespace NPOI.XSSF.UserModel
                 geom.prst = (ST_ShapeType.line);
                 geom.AddNewAvLst();
 
-                NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeStyle style = shape.AddNewStyle();
+                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeStyle style = shape.AddNewStyle();
                 CT_SchemeColor scheme = style.AddNewLnRef().AddNewSchemeClr();
                 scheme.val = (ST_SchemeColorVal.accent1);
                 style.lnRef.idx = (1);
@@ -102,10 +102,10 @@ namespace NPOI.XSSF.UserModel
         }
 
         /**
-         * Gets the shape type, one of the constants defined in {@link NPOI.ss.usermodel.ShapeTypes}.
+         * Gets the shape type, one of the constants defined in {@link Npoi.Core.ss.usermodel.ShapeTypes}.
          *
          * @return the shape type
-         * @see NPOI.ss.usermodel.ShapeTypes
+         * @see Npoi.Core.ss.usermodel.ShapeTypes
          */
         public ST_ShapeType ShapeType
         {
@@ -118,7 +118,7 @@ namespace NPOI.XSSF.UserModel
                 ctShape.spPr.prstGeom.prst = value;
             }
         }
-        protected internal override NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties GetShapeProperties()
+        protected internal override Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties GetShapeProperties()
         {
             return ctShape.spPr;
         }

@@ -15,10 +15,10 @@
    limitations Under the License.
 ==================================================================== */
 
-using NPOI.HSSF.Model;
-using NPOI.HSSF.Record.Chart;
+using Npoi.Core.HSSF.Model;
+using Npoi.Core.HSSF.Record.Chart;
 using System.Diagnostics;
-namespace NPOI.HSSF.Record.Aggregates.Chart
+namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 {
     /// <summary>
     /// DROPBAR = DropBar Begin LineFormat AreaFormat [GELFRAME] [SHAPEPROPS] End

@@ -15,11 +15,11 @@
   limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Format
+namespace Npoi.Core.SS.Format
 {
     using System;
 
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
     using System.Text.RegularExpressions;
     using System.Collections.Generic;
 //    using System.Windows.Forms;
@@ -214,7 +214,7 @@ namespace NPOI.SS.Format
         public virtual CellFormatResult Apply(Object value)
         {
             //if (value is Number) {
-            if (NPOI.Util.Number.IsNumber(value))
+            if (Npoi.Core.Util.Number.IsNumber(value))
             {
                 double val ;
                 double.TryParse(value.ToString(), out val);
@@ -397,7 +397,7 @@ namespace NPOI.SS.Format
         private CellFormatPart GetApplicableFormatPart(Object value)
         {
             //if (value is Number) {
-            if (NPOI.Util.Number.IsNumber(value))
+            if (Npoi.Core.Util.Number.IsNumber(value))
             {
                 double val;
                 double.TryParse(value.ToString(), out val);

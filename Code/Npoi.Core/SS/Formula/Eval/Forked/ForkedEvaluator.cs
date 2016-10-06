@@ -16,19 +16,19 @@
 ==================================================================== */
 
 using System;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.Formula;
-using NPOI.SS.Formula.Eval;
-using NPOI.SS.Formula.Udf;
-using NPOI.SS.UserModel;
-namespace NPOI.SS.Formula.Eval.Forked
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.SS.Formula;
+using Npoi.Core.SS.Formula.Eval;
+using Npoi.Core.SS.Formula.Udf;
+using Npoi.Core.SS.UserModel;
+namespace Npoi.Core.SS.Formula.Eval.Forked
 {
 
 
     /**
      * An alternative workbook Evaluator that saves memory in situations where a single workbook is
      * concurrently and independently Evaluated many times.  With standard formula Evaluation, around
-     * 90% of memory consumption is due to loading of the {@link HSSFWorkbook} or {@link NPOI.xssf.usermodel.XSSFWorkbook}.
+     * 90% of memory consumption is due to loading of the {@link HSSFWorkbook} or {@link Npoi.Core.xssf.usermodel.XSSFWorkbook}.
      * This class enables a 'master workbook' to be loaded just once and shared between many Evaluation
      * clients.  Each Evaluation client Creates its own {@link ForkedEvaluator} and can Set cell values
      * that will be used for local Evaluations (and don't disturb Evaluations on other Evaluators).

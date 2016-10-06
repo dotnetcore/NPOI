@@ -21,12 +21,12 @@ using System.Collections;
 
 using NUnit.Framework;
 
-using NPOI.POIFS.Common;
+using Npoi.Core.POIFS.Common;
 using TestCases;
-using NPOI.POIFS.FileSystem;
-using NPOI.POIFS.NIO;
+using Npoi.Core.POIFS.FileSystem;
+using Npoi.Core.POIFS.NIO;
 using System.Collections.Generic;
-using NPOI.Util;
+using Npoi.Core.Util;
 
 namespace TestCases.POIFS.FileSystem
 {

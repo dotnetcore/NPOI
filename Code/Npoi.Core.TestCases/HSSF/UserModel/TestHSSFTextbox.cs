@@ -17,12 +17,12 @@
 namespace TestCases.HSSF.UserModel
 {
     using System;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     using NUnit.Framework;
     using System.IO;
     using TestCases.HSSF;
-    using NPOI.SS.UserModel;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.HSSF.Record;
 
     /**
      * Test <c>HSSFTextbox</c>.
@@ -40,7 +40,7 @@ namespace TestCases.HSSF.UserModel
         public void TestAlignment()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sh1 = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet sh1 = wb.CreateSheet();
             HSSFPatriarch patriarch = sh1.CreateDrawingPatriarch() as HSSFPatriarch;
 
             HSSFTextbox textbox = patriarch.CreateTextbox(new HSSFClientAnchor(0, 0, 0, 0, 1, 1, 6, 4)) as HSSFTextbox;
@@ -61,7 +61,7 @@ namespace TestCases.HSSF.UserModel
         public void TestSetDeafultTextFormat()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sheet = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet();
             HSSFPatriarch patriarch = sheet.CreateDrawingPatriarch() as HSSFPatriarch;
 
             HSSFTextbox textbox1 = patriarch.CreateTextbox(new HSSFClientAnchor(0, 0, 0, 0, 1, 1, 3, 3)) as HSSFTextbox;

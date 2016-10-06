@@ -15,12 +15,12 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula
+namespace Npoi.Core.SS.Formula
 {
 
     using System;
     using System.Collections;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     public class Loc
     {

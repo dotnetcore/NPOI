@@ -16,8 +16,8 @@
 ==================================================================== */
 
 using System.IO;
-using NPOI.Util;
-namespace NPOI.POIFS.NIO
+using Npoi.Core.Util;
+namespace Npoi.Core.POIFS.NIO
 {
     /// <summary>
     /// Common definition of how we read and write bytes

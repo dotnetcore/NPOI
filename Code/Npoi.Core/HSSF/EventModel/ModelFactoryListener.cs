@@ -15,11 +15,11 @@
 //   limitations Under the License.
 //==================================================================== */
 
-//namespace NPOI.HSSF.EventModel
+//namespace Npoi.Core.HSSF.EventModel
 //{
 //    using System;
 //    using System.IO;
-//    using NPOI.HSSF.Model;
+//    using Npoi.Core.HSSF.Model;
 
 //    /**
 //     * ModelFactoryListener Is registered with the 

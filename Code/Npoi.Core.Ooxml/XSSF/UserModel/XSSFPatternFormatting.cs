@@ -16,9 +16,9 @@
  *    limitations under the License.
  * ====================================================================
  */
-using NPOI.SS.UserModel;
-using NPOI.OpenXmlFormats.Spreadsheet;
-namespace NPOI.XSSF.UserModel
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * @author Yegor Kozlov

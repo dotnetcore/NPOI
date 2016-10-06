@@ -18,15 +18,15 @@
 namespace TestCases.HSSF.UserModel
 {
     using System;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
 
     using NUnit.Framework;
     using TestCases.HSSF;
-    using NPOI.SS.Formula;
+    using Npoi.Core.SS.Formula;
     using TestCases.SS.Formula;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.HSSF.Record;
     using TestCases.SS.UserModel;
     /**
      * 
@@ -55,16 +55,16 @@ namespace TestCases.HSSF.UserModel
         public void TestEvaluateSimple()
         {
             HSSFWorkbook wb = HSSFTestDataSamples.OpenSampleWorkbook("TestNames.xls");
-            NPOI.SS.UserModel.ISheet sheet = wb.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.GetSheetAt(0);
             ICell cell = sheet.GetRow(8).GetCell(0);
             HSSFFormulaEvaluator fe = new HSSFFormulaEvaluator(wb);
-            NPOI.SS.UserModel.CellValue cv = fe.Evaluate(cell);
-            Assert.AreEqual(NPOI.SS.UserModel.CellType.Numeric, cv.CellType);
+            Npoi.Core.SS.UserModel.CellValue cv = fe.Evaluate(cell);
+            Assert.AreEqual(Npoi.Core.SS.UserModel.CellType.Numeric, cv.CellType);
             Assert.AreEqual(3.72, cv.NumberValue, 0.0);
         }
         
 
-        private static void setValue(NPOI.SS.UserModel.ISheet sheet, int rowIndex, int colIndex, double value)
+        private static void setValue(Npoi.Core.SS.UserModel.ISheet sheet, int rowIndex, int colIndex, double value)
         {
             IRow row = sheet.GetRow(rowIndex);
             if (row == null)

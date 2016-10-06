@@ -23,7 +23,7 @@ namespace TestCases.HSSF.UserModel
     using TestCases.SS.UserModel;
 
     /**
-     * Tests NPOI.SS.UserModel.Sheet.  This Test case is very incomplete at the moment.
+     * Tests Npoi.Core.SS.UserModel.Sheet.  This Test case is very incomplete at the moment.
      *
      *
      * @author Glen Stampoultzis (glens at apache.org)

@@ -17,12 +17,12 @@
  * ====================================================================
  */
 
-using NPOI.SS.UserModel;
-using NPOI.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using System.Collections.Generic;
-using NPOI.SS.Util;
+using Npoi.Core.SS.Util;
 using System;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
 
 

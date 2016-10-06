@@ -19,9 +19,9 @@
 
 using System;
 using System.Reflection;
-using NPOI.SS.Util;
+using Npoi.Core.SS.Util;
 
-namespace NPOI.SS.UserModel.Charts
+namespace Npoi.Core.SS.UserModel.Charts
 {
     public class DataSources {
 

@@ -15,21 +15,21 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
     using System;
     using System.Text;
 
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Model;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.SS.Formula.PTG;
 
 
     /// <summary>
     /// High Level Represantion of Named Range
     /// </summary>
     /// <remarks>@author Libin Roman (Vista Portal LDT. Developer)</remarks>
-    public class HSSFName:NPOI.SS.UserModel.IName
+    public class HSSFName:Npoi.Core.SS.UserModel.IName
     {
         private HSSFWorkbook book;
         private NameRecord _definedNameRec;
@@ -148,7 +148,7 @@ namespace NPOI.HSSF.UserModel
             }
             set
             {
-                Ptg[] ptgs = HSSFFormulaParser.Parse(value, book, NPOI.SS.Formula.FormulaType.NamedRange, SheetIndex);
+                Ptg[] ptgs = HSSFFormulaParser.Parse(value, book, Npoi.Core.SS.Formula.FormulaType.NamedRange, SheetIndex);
                 _definedNameRec.NameDefinition = ptgs;
             }
         }

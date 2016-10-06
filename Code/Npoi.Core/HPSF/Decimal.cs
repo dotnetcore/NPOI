@@ -14,9 +14,9 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
-using NPOI.Util;
+using Npoi.Core.Util;
 
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     public class Decimal
     {

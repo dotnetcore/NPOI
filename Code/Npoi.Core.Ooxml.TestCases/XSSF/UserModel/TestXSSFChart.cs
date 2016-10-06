@@ -16,11 +16,11 @@
 ==================================================================== */
 
 using NUnit.Framework;
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.UserModel;
 using System.Collections.Generic;
-using NPOI.SS.UserModel.Charts;
+using Npoi.Core.SS.UserModel.Charts;
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     [TestFixture]
     public class TestXSSFChart

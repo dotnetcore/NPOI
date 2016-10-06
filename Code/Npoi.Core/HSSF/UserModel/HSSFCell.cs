@@ -16,19 +16,19 @@
 ==================================================================== */
 
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
     using System;
     using System.Collections;
     using System.IO;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.Aggregates;
-    using NPOI.SS;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
-    using NPOI.SS.Formula;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Aggregates;
+    using Npoi.Core.SS;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.SS.Formula;
     using System.Globalization;
     using System.Collections.Generic;
 
@@ -561,7 +561,7 @@ namespace NPOI.HSSF.UserModel
                 return;
             }
 
-            if (value.Length > NPOI.SS.SpreadsheetVersion.EXCEL97.MaxTextLength)
+            if (value.Length > Npoi.Core.SS.SpreadsheetVersion.EXCEL97.MaxTextLength)
             {
                 throw new ArgumentException("The maximum length of cell contents (text) is 32,767 characters");
             }
@@ -1076,7 +1076,7 @@ namespace NPOI.HSSF.UserModel
                 case CellType.Boolean:
                     return BooleanCellValue ? "TRUE" : "FALSE";
                 case CellType.Error:
-                    return NPOI.SS.Formula.Eval.ErrorEval.GetText(((BoolErrRecord)_record).ErrorValue);
+                    return Npoi.Core.SS.Formula.Eval.ErrorEval.GetText(((BoolErrRecord)_record).ErrorValue);
                 case CellType.Formula:
                     return CellFormula;
                 case CellType.Numeric:

@@ -19,12 +19,12 @@ namespace TestCases.HSSF.Record
 {
     using System;
 
-    using NPOI.HSSF.Util;
+    using Npoi.Core.HSSF.Util;
 
     using NUnit.Framework;
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.Util;
     using TestCases.HSSF.Record;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Record;
 
     /**
      * Tests the serialization and deserialization of the TableRecord

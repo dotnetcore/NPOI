@@ -20,12 +20,12 @@ namespace TestCases.SS.Formula.Functions
 
     using System;
     using NUnit.Framework;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Util;
-    using NPOI.Util;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
     using TestCases.SS.Formula.Functions;
-    using NPOI.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.Functions;
 
     /**
      * Tests for the INDEX() function.</p>
@@ -127,7 +127,7 @@ namespace TestCases.SS.Formula.Functions
             }
             catch (Exception e)
             {
-                if (e.Message.Equals("Unexpected arg eval type (NPOI.hssf.Record.Formula.Eval.MissingArgEval"))
+                if (e.Message.Equals("Unexpected arg eval type (Npoi.Core.hssf.Record.Formula.Eval.MissingArgEval"))
                 {
                     throw new AssertionException("Identified bug 47048b - INDEX() should support missing-arg");
                 }

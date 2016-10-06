@@ -28,10 +28,10 @@
 using System.IO;
 using System.Collections.Generic;
 
-using NPOI.POIFS.Storage;
-using NPOI.POIFS.Common;
+using Npoi.Core.POIFS.Storage;
+using Npoi.Core.POIFS.Common;
 
-namespace NPOI.POIFS.Properties
+namespace Npoi.Core.POIFS.Properties
 {
     public class PropertyTable : PropertyTableBase, BlockWritable
     {

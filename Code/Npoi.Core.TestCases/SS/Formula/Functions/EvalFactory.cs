@@ -20,9 +20,9 @@ using TestCases.Exceptions;
 namespace TestCases.SS.Formula.Functions
 {
 
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Formula;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula;
     using System;
 
     /**

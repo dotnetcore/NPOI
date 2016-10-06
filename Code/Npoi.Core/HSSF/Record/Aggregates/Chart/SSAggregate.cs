@@ -15,11 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-using NPOI.HSSF.Model;
-using NPOI.HSSF.Record.Chart;
+using Npoi.Core.HSSF.Model;
+using Npoi.Core.HSSF.Record.Chart;
 using System.Diagnostics;
 
-namespace NPOI.HSSF.Record.Aggregates.Chart
+namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 {
     /// <summary>
     /// SS = DataFormat Begin [Chart3DBarShape] [LineFormat AreaFormat PieFormat] [SerFmt] 

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
-using NPOI.OpenXml4Net.Exceptions;
+using Npoi.Core.OpenXml4Net.Exceptions;
 
-namespace NPOI.OpenXml4Net.OPC
+namespace Npoi.Core.OpenXml4Net.OPC
 {
      interface RelationshipSource
     {

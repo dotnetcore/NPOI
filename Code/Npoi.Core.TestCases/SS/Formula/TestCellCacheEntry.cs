@@ -18,12 +18,12 @@
 namespace TestCases.SS.Formula
 {
 
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Eval;
     using NUnit.Framework;
-    using NPOI.SS.Formula;
+    using Npoi.Core.SS.Formula;
 
     /**
-     * Tests {@link NPOI.SS.Formula.CellCacheEntry}.
+     * Tests {@link Npoi.Core.SS.Formula.CellCacheEntry}.
      *
      * @author Josh Micich
      */

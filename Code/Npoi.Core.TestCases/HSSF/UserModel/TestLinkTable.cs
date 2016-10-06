@@ -1,7 +1,7 @@
 namespace TestCases.HSSF.UserModel
 {
     using System;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     using NUnit.Framework;
 
     using TestCases.HSSF;
@@ -101,7 +101,7 @@ namespace TestCases.HSSF.UserModel
             display such a formula as "''!$A2", but then complains of broken link errors.
             */
 
-            NPOI.SS.UserModel.ICell cell = wb.GetSheetAt(0).GetRow(1).GetCell(1);
+            Npoi.Core.SS.UserModel.ICell cell = wb.GetSheetAt(0).GetRow(1).GetCell(1);
             String cellFormula;
             try
             {

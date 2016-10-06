@@ -32,9 +32,9 @@ using System.Collections.Generic;
 using System.IO;
 
 using NUnit.Framework;
-using NPOI.Util;
+using Npoi.Core.Util;
 using System.Reflection;
-using NPOI;
+using Npoi.Core;
 
 namespace TestCases.Util
 {

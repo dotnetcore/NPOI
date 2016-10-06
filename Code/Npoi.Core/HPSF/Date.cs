@@ -15,9 +15,9 @@
    limitations Under the License.
 ==================================================================== */
 
-using NPOI.Util;
+using Npoi.Core.Util;
 
-namespace NPOI.HPSF
+namespace Npoi.Core.HPSF
 {
     internal class Date
     {

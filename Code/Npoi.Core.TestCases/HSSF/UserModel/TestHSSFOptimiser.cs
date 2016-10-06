@@ -16,11 +16,11 @@
 namespace TestCases.HSSF.UserModel
 {
     using System;
-    using NPOI.HSSF.UserModel;
-    using NPOI.HSSF.Model;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.HSSF.Model;
     using NUnit.Framework;
 
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
 
     [TestFixture]
     public class TestHSSFOptimiser
@@ -36,7 +36,7 @@ namespace TestCases.HSSF.UserModel
             // Create a test font and style, and use them
             IFont f = wb.CreateFont();
             f.FontName = ("Testing");
-            NPOI.SS.UserModel.ICellStyle s = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle s = wb.CreateCellStyle();
             s.SetFont(f);
 
             HSSFSheet sheet = (HSSFSheet)wb.CreateSheet();
@@ -98,19 +98,19 @@ namespace TestCases.HSSF.UserModel
             // Use all three of the four in cell styles
             Assert.AreEqual(21, wb.NumCellStyles);
 
-            NPOI.SS.UserModel.ICellStyle cs1 = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cs1 = wb.CreateCellStyle();
             cs1.SetFont(f1);
             Assert.AreEqual(5, cs1.FontIndex);
 
-            NPOI.SS.UserModel.ICellStyle cs2 = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cs2 = wb.CreateCellStyle();
             cs2.SetFont(f4);
             Assert.AreEqual(8, cs2.FontIndex);
 
-            NPOI.SS.UserModel.ICellStyle cs3 = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cs3 = wb.CreateCellStyle();
             cs3.SetFont(f5);
             Assert.AreEqual(9, cs3.FontIndex);
 
-            NPOI.SS.UserModel.ICellStyle cs4 = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cs4 = wb.CreateCellStyle();
             cs4.SetFont(f6);
             Assert.AreEqual(10, cs4.FontIndex);
 
@@ -118,7 +118,7 @@ namespace TestCases.HSSF.UserModel
 
 
             // And three in rich text
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
             IRow r = s.CreateRow(0);
 
             HSSFRichTextString rtr1 = new HSSFRichTextString("Test");
@@ -189,31 +189,31 @@ namespace TestCases.HSSF.UserModel
             // Several styles
             Assert.AreEqual(21, wb.NumCellStyles);
 
-            NPOI.SS.UserModel.ICellStyle cs1 = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cs1 = wb.CreateCellStyle();
             cs1.SetFont(f1);
 
-            NPOI.SS.UserModel.ICellStyle cs2 = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cs2 = wb.CreateCellStyle();
             cs2.SetFont(f2);
 
-            NPOI.SS.UserModel.ICellStyle cs3 = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cs3 = wb.CreateCellStyle();
             cs3.SetFont(f1);
 
-            NPOI.SS.UserModel.ICellStyle cs4 = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cs4 = wb.CreateCellStyle();
             cs4.SetFont(f1);
             cs4.Alignment = HorizontalAlignment.CenterSelection;// ((short)22);
 
-            NPOI.SS.UserModel.ICellStyle cs5 = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cs5 = wb.CreateCellStyle();
             cs5.SetFont(f2);
             cs5.Alignment = HorizontalAlignment.Fill; //((short)111);
 
-            NPOI.SS.UserModel.ICellStyle cs6 = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cs6 = wb.CreateCellStyle();
             cs6.SetFont(f2);
 
             Assert.AreEqual(27, wb.NumCellStyles);
 
 
             // Use them
-            NPOI.SS.UserModel.ISheet s = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
             IRow r = s.CreateRow(0);
 
             r.CreateCell(0).CellStyle = (cs1);

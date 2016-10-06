@@ -16,12 +16,12 @@
 ==================================================================== */
 
 using TestCases;
-using NPOI.XSSF.UserModel;
+using Npoi.Core.XSSF.UserModel;
 using NUnit.Framework;
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.UserModel;
 using System.Collections.Generic;
 using System.Collections;
-namespace NPOI.XSSF.IO
+namespace Npoi.Core.XSSF.IO
 {
 
     [TestFixture]

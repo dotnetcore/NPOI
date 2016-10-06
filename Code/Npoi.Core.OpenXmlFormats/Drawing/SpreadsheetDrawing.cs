@@ -8,9 +8,9 @@ using System.ComponentModel;
 using System.Text;
 using System.Xml.Linq;
 using System.Xml.XPath;
-using NPOI.OpenXml4Net.Util;
+using Npoi.Core.OpenXml4Net.Util;
 
-namespace NPOI.OpenXmlFormats.Dml.Spreadsheet
+namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
 {
     [Serializable]
     [System.ComponentModel.DesignerCategoryAttribute("code")]

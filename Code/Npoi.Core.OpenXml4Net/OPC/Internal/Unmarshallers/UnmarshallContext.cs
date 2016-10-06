@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using ICSharpCode.SharpZipLib.Zip;
 
-namespace NPOI.OpenXml4Net.OPC.Internal.Unmarshallers
+namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
 {
     /**
      * Context needed for the unmarshall process of a part. This class is immutable.

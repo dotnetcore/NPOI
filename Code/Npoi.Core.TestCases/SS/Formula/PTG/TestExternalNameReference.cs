@@ -19,9 +19,9 @@ namespace TestCases.SS.Formula.PTG
 {
     using System;
     using NUnit.Framework;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
     using TestCases.HSSF;
     /**
      * Tests for proper calculation of named ranges from external workbooks.

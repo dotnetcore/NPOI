@@ -1,4 +1,4 @@
-﻿using NPOI.OpenXml4Net.Util;
+﻿using Npoi.Core.OpenXml4Net.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +6,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace NPOI.OpenXmlFormats.Wordprocessing
+namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]

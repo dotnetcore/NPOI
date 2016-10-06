@@ -19,10 +19,10 @@ namespace TestCases.SS.Formula.Eval
 {
     using System;
 
-    using NPOI.HSSF;
+    using Npoi.Core.HSSF;
     using NUnit.Framework;
     using TestCases.HSSF;
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Eval;
 
     /**
      * Tests HSSFFormulaEvaluator for its handling of cell formula circular references.

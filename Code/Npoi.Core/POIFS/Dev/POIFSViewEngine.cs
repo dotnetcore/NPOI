@@ -29,9 +29,9 @@ using System;
 using System.Text;
 using System.Collections;
 using System.IO;
-using NPOI.POIFS.FileSystem;
+using Npoi.Core.POIFS.FileSystem;
 
-namespace NPOI.POIFS.Dev
+namespace Npoi.Core.POIFS.Dev
 {
     /// <summary>
     /// This class contains methods used to inspect POIFSViewable objects

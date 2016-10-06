@@ -18,12 +18,12 @@
  */
 
 using System;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.Formula;
-using NPOI.SS.Formula.Atp;
-using NPOI.SS.Formula.Eval;
-using NPOI.SS.Formula.Functions;
-using NPOI.SS.UserModel;
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.SS.Formula;
+using Npoi.Core.SS.Formula.Atp;
+using Npoi.Core.SS.Formula.Eval;
+using Npoi.Core.SS.Formula.Functions;
+using Npoi.Core.SS.UserModel;
 using NUnit.Framework;
 
 namespace TestCases.SS.Formula
@@ -90,7 +90,7 @@ namespace TestCases.SS.Formula
             Assert.AreEqual(ErrorEval.NUM_ERROR.ErrorCode, cv.ErrorValue);
         }
 
-        private class Function1 : NPOI.SS.Formula.Functions.Function
+        private class Function1 : Npoi.Core.SS.Formula.Functions.Function
         {
             public ValueEval Evaluate(ValueEval[] args, int srcRowIndex, int srcColumnIndex)
             {
@@ -106,7 +106,7 @@ namespace TestCases.SS.Formula
             }
         }
 
-        class Function2 : NPOI.SS.Formula.Functions.Function
+        class Function2 : Npoi.Core.SS.Formula.Functions.Function
         {
             public ValueEval Evaluate(ValueEval[] args, int srcRowIndex, int srcColumnIndex)
             {
@@ -116,7 +116,7 @@ namespace TestCases.SS.Formula
         [Test]
         public void TestExceptions()
         {
-            NPOI.SS.Formula.Functions.Function func = new Function2();
+            Npoi.Core.SS.Formula.Functions.Function func = new Function2();
             try
             {
                 FunctionEval.RegisterFunction("SUM", func);

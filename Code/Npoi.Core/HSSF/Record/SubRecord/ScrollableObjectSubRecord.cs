@@ -1,8 +1,8 @@
 ﻿using System;
-using NPOI.Util;
+using Npoi.Core.Util;
 using System.Globalization;
 
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
     /// <summary>
     /// FtSbs structure

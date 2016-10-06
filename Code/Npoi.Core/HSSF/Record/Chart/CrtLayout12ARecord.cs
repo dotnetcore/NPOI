@@ -16,9 +16,9 @@
 ==================================================================== */
 using System;
 using System.Text;
-using NPOI.Util;
+using Npoi.Core.Util;
 
-namespace NPOI.HSSF.Record.Chart
+namespace Npoi.Core.HSSF.Record.Chart
 {
     /// <summary>
     /// The CrtLayout12A record specifies layout information for a plot area.
@@ -126,7 +126,7 @@ namespace NPOI.HSSF.Record.Chart
             get { return 12 + 4 + 9 * 2 + 8 * 4 + 2; }
         }
 
-        public override void Serialize(NPOI.Util.ILittleEndianOutput out1)
+        public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             out1.WriteShort(frtHeader.rt);
             out1.WriteShort(frtHeader.grbitFrt);

@@ -16,12 +16,12 @@
 ==================================================================== */
 
 using NUnit.Framework;
-using NPOI.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using System.Collections.Generic;
 using System;
-using NPOI.SS.UserModel;
-using NPOI.XSSF.Model;
-namespace NPOI.XSSF.UserModel
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.XSSF.Model;
+namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * Tests functionality of the XSSFRichTextRun object

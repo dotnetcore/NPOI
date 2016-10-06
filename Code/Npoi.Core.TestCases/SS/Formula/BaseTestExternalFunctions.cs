@@ -19,11 +19,11 @@ namespace TestCases.SS.Formula
 
     using System;
     using NUnit.Framework;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Formula.Functions;
-    using NPOI.SS.Formula.Udf;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.Udf;
+    using Npoi.Core.SS.UserModel;
     using TestCases.SS;
 
     /**

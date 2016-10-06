@@ -15,13 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     using System;
     using System.Collections.Generic;
-    using NPOI.OpenXmlFormats.Spreadsheet;
-    using NPOI.SS.UserModel;
-    using NPOI.XSSF;
+    using Npoi.Core.OpenXmlFormats.Spreadsheet;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.XSSF;
     using NUnit.Framework;
 
 
@@ -46,11 +46,11 @@ namespace NPOI.XSSF.UserModel
             // no SXSSF class
             // save the worksheet as-is using SXSSF
             //File outputFile = File.CreateTempFile("poi-56274", ".xlsx");
-            //SXSSFWorkbook outputWorkbook = new NPOI.XSSF.streaming.SXSSFWorkbook(inputWorkbook);
+            //SXSSFWorkbook outputWorkbook = new Npoi.Core.XSSF.streaming.SXSSFWorkbook(inputWorkbook);
             //outputWorkbook.Write(new FileOutputStream(outputFile));
 
             // re-read the saved file and make sure headers in the xml are in the original order
-            //inputWorkbook = new NPOI.XSSF.UserModel.XSSFWorkbook(new FileStream(outputFile));
+            //inputWorkbook = new Npoi.Core.XSSF.UserModel.XSSFWorkbook(new FileStream(outputFile));
             inputWorkbook = XSSFTestDataSamples.WriteOutAndReadBack(inputWorkbook) as XSSFWorkbook;
             CT_Table ctTable = (inputWorkbook.GetSheetAt(0) as XSSFSheet).GetTables()[0].GetCTTable();
             List<CT_TableColumn> ctTableColumnList = ctTable.tableColumns.tableColumn;

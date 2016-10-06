@@ -1,4 +1,4 @@
-namespace NPOI.DDF
+namespace Npoi.Core.DDF
 {
 	public class Rectangle
 	{

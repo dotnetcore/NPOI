@@ -19,13 +19,13 @@ namespace TestCases.HSSF.Record
 {
     using System;
     using NUnit.Framework;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.Util;
-    using NPOI.Util;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
     using TestCases.HSSF.Record;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
 
     [TestFixture]
     public class TestArrayRecord

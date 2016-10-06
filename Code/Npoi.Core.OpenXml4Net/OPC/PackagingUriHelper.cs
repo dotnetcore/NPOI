@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Text;
 using System.Text.RegularExpressions;
-using NPOI.OpenXml4Net.Exceptions;
+using Npoi.Core.OpenXml4Net.Exceptions;
 using System.IO;
 
-namespace NPOI.OpenXml4Net.OPC
+namespace Npoi.Core.OpenXml4Net.OPC
 {
     /**
      * Helper for part and pack Uri.

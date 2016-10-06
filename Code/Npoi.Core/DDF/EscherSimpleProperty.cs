@@ -18,10 +18,10 @@
 
 using System.Text;
 
-namespace NPOI.DDF
+namespace Npoi.Core.DDF
 {
     using System;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /// <summary>
     /// A simple property is of fixed Length and as a property number in Addition

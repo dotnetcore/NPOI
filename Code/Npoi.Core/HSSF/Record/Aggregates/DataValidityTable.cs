@@ -15,12 +15,12 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Record.Aggregates
+namespace Npoi.Core.HSSF.Record.Aggregates
 {
     using System.Collections;
 
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
 
     /// <summary>
     /// Manages the DVALRecord and DVRecords for a single sheet

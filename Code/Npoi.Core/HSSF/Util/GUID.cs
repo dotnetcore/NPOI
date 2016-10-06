@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text;
 using System.IO;
-using NPOI.Util;
+using Npoi.Core.Util;
 
-namespace NPOI.HSSF.Util
+namespace Npoi.Core.HSSF.Util
 {
     public class GUID {
         /*

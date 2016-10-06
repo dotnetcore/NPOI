@@ -15,7 +15,7 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Util
+namespace Npoi.Core.HSSF.Util
 {
     using System;
     using System.Collections;
@@ -34,7 +34,7 @@ namespace NPOI.HSSF.Util
      * @author  Andrew C. Oliver (acoliver at apache dot org)
      * @author  Brian Sanders (bsanders at risklabs dot com) - full default color palette
      */
-    public class HSSFColor : NPOI.SS.UserModel.IColor
+    public class HSSFColor : Npoi.Core.SS.UserModel.IColor
     {
         private static Hashtable indexHash;
         public const short COLOR_NORMAL = 0x7fff;

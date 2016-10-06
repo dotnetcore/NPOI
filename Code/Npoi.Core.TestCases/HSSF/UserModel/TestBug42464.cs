@@ -20,17 +20,17 @@ namespace TestCases.HSSF.UserModel
     using System;
     using System.Collections;
     using System.IO;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.Aggregates;
-    using NPOI.SS.Formula;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Aggregates;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.HSSF.UserModel;
     
     using NUnit.Framework;
 
     using TestCases.HSSF;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
-    using NPOI.SS.Formula.PTG;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.SS.Formula.PTG;
 
     /**
      * 
@@ -56,7 +56,7 @@ namespace TestCases.HSSF.UserModel
             HSSFFormulaEvaluator eval = new HSSFFormulaEvaluator(wb);
             for (int i = 0; i < wb.NumberOfSheets; i++)
             {
-                NPOI.SS.UserModel.ISheet s = wb.GetSheetAt(i);
+                Npoi.Core.SS.UserModel.ISheet s = wb.GetSheetAt(i);
 
                 IEnumerator it = s.GetRowEnumerator();
                 while (it.MoveNext())
@@ -73,7 +73,7 @@ namespace TestCases.HSSF.UserModel
             while (it.MoveNext())
             {
                 ICell cell = (ICell)it.Current;
-                if (cell.CellType != NPOI.SS.UserModel.CellType.Formula)
+                if (cell.CellType != Npoi.Core.SS.UserModel.CellType.Formula)
                 {
                     continue;
                 }
@@ -96,7 +96,7 @@ namespace TestCases.HSSF.UserModel
                 }
 #endif
 
-                NPOI.SS.UserModel.CellValue evalResult = eval.Evaluate(cell);
+                Npoi.Core.SS.UserModel.CellValue evalResult = eval.Evaluate(cell);
                 Assert.IsNotNull(evalResult);
             }
         }

@@ -16,8 +16,8 @@
 ==================================================================== */
 
 using System;
-using NPOI.SS.Formula.Atp;
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.Formula.Atp;
+using Npoi.Core.SS.UserModel;
 using NUnit.Framework;
 
 namespace TestCases.SS.Formula.Atp

@@ -16,22 +16,22 @@
 ==================================================================== */
 
 using System.Diagnostics;
-using NPOI.SS.Formula.Atp;
+using Npoi.Core.SS.Formula.Atp;
 
-namespace NPOI.SS.Formula
+namespace Npoi.Core.SS.Formula
 {
     using System;
     using System.Collections;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Util;
-    using NPOI.SS.Formula.Functions;
-    using NPOI.SS.Formula.Udf;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.SS.Formula.Functions;
+    using Npoi.Core.SS.Formula.Udf;
     using System.Collections.Generic;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.Util;
-    using NPOI.SS.Formula.Function;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.Util;
+    using Npoi.Core.SS.Formula.Function;
 
     /**
      * Evaluates formula cells.<p/>

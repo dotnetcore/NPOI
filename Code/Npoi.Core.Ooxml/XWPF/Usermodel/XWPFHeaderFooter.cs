@@ -17,16 +17,16 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     using System;
 
     using System.Collections.Generic;
-    using NPOI.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXml4Net.OPC;
     using System.IO;
-    using NPOI.Util;
+    using Npoi.Core.Util;
     using System.Text;
-    using NPOI.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
 
     /**
      * Parent of XWPF headers and footers
@@ -485,7 +485,7 @@ namespace NPOI.XWPF.UserModel
 
         /**
          * Returns the table at position pos
-         * @see NPOI.XWPF.UserModel.IBody#getTableArray(int)
+         * @see Npoi.Core.XWPF.UserModel.IBody#getTableArray(int)
          */
         public XWPFTable GetTableArray(int pos)
         {
@@ -610,7 +610,7 @@ namespace NPOI.XWPF.UserModel
 
         /**
          * returns the Part, to which the body belongs, which you need for Adding relationship to other parts
-         * @see NPOI.XWPF.UserModel.IBody#getPart()
+         * @see Npoi.Core.XWPF.UserModel.IBody#getPart()
          */
         public POIXMLDocumentPart Part
         {

@@ -18,9 +18,9 @@
  * Created on May 30, 2005
  *
  */
-namespace NPOI.SS.Formula.Functions
+namespace Npoi.Core.SS.Formula.Functions
 {
-    using NPOI.Util;
+    using Npoi.Core.Util;
     using System;
 
     /**

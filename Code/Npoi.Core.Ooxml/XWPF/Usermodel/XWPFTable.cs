@@ -14,11 +14,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     using System;
     using System.Text;
-    using NPOI.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
     using System.Collections.Generic;
 
     /**
@@ -750,7 +750,7 @@ namespace NPOI.XWPF.UserModel
 
         /**
          * returns the type of the BodyElement Table
-         * @see NPOI.XWPF.UserModel.IBodyElement#getElementType()
+         * @see Npoi.Core.XWPF.UserModel.IBodyElement#getElementType()
          */
         public BodyElementType ElementType
         {
@@ -770,7 +770,7 @@ namespace NPOI.XWPF.UserModel
 
         /**
          * returns the part of the bodyElement
-         * @see NPOI.XWPF.UserModel.IBody#getPart()
+         * @see Npoi.Core.XWPF.UserModel.IBody#getPart()
          */
         public POIXMLDocumentPart Part
         {
@@ -786,7 +786,7 @@ namespace NPOI.XWPF.UserModel
 
         /**
          * returns the partType of the bodyPart which owns the bodyElement
-         * @see NPOI.XWPF.UserModel.IBody#getPartType()
+         * @see Npoi.Core.XWPF.UserModel.IBody#getPartType()
          */
         public BodyType PartType
         {

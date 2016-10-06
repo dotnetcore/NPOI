@@ -16,15 +16,15 @@
 ==================================================================== */
 
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
     using System;
     using System.Collections;
 
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
     using System.Collections.Generic;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
 
     /*
      * Identifies both built-in and user defined formats within a workbook.<p/>

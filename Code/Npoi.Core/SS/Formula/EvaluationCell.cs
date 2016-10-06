@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula
+namespace Npoi.Core.SS.Formula
 {
     using System;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
     /**
      * Abstracts a cell for the purpose of formula evaluation.  This interface represents both formula
      * and non-formula cells.<br/>

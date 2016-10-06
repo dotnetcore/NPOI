@@ -19,13 +19,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using NPOI.HSSF.Record;
-using NPOI.Util;
+using Npoi.Core.HSSF.Record;
+using Npoi.Core.Util;
 using NUnit.Framework;
-using NPOI.DDF;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
-using NPOI.HSSF.Model;
+using Npoi.Core.DDF;
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.HSSF.Model;
 using TestCases.HSSF.UserModel;
 
 namespace TestCases.HSSF.Model
@@ -42,7 +42,7 @@ namespace TestCases.HSSF.Model
             MemoryStream out1 = new MemoryStream();
             foreach (RecordBase rb in records)
             {
-                NPOI.HSSF.Record.Record r = (NPOI.HSSF.Record.Record)rb;
+                Npoi.Core.HSSF.Record.Record r = (Npoi.Core.HSSF.Record.Record)rb;
                 try
                 {
                     byte[] data = r.Serialize();

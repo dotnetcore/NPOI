@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.XWPF
+namespace Npoi.Core.XWPF
 {
     using System;
-    using NPOI.XWPF.UserModel;
-    using NPOI.OpenXmlFormats;
+    using Npoi.Core.XWPF.UserModel;
+    using Npoi.Core.OpenXmlFormats;
     using NUnit.Framework;
 
     /**

@@ -19,9 +19,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using NPOI.SS.UserModel;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.Util;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.SS.Util;
 
 namespace TestCases.SS.Formula.Atp
 {

@@ -23,14 +23,14 @@ namespace TestCases.HPSF.Extractor
 
     using NUnit.Framework;
 
-    using NPOI.HSSF;
-    using NPOI.HSSF.UserModel;
-    using NPOI.POIFS.FileSystem;
+    using Npoi.Core.HSSF;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.POIFS.FileSystem;
     using System.IO;
-    using NPOI.HSSF.Extractor;
-    using NPOI.HPSF.Extractor;
+    using Npoi.Core.HSSF.Extractor;
+    using Npoi.Core.HPSF.Extractor;
     using TestCases.HSSF;
-    using NPOI.HPSF;
+    using Npoi.Core.HPSF;
 
     [TestFixture]
     public class TestHPSFPropertiesExtractor

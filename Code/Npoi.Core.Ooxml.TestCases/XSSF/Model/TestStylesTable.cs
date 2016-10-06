@@ -17,8 +17,8 @@
 
 using System;
 using NUnit.Framework;
-using NPOI.XSSF.UserModel;
-namespace NPOI.XSSF.Model
+using Npoi.Core.XSSF.UserModel;
+namespace Npoi.Core.XSSF.Model
 {
     [TestFixture]
     public class TestStylesTable

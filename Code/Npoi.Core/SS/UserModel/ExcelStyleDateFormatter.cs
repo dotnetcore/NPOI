@@ -19,9 +19,9 @@ using System;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
-using NPOI.SS.Util;
+using Npoi.Core.SS.Util;
 
-namespace NPOI.SS.UserModel
+namespace Npoi.Core.SS.UserModel
 {
     /**
      * A wrapper around a {@link SimpleDateFormat} instance,

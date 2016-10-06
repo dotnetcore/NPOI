@@ -19,11 +19,11 @@ namespace TestCases.SS.UserModel
 {
     using System;
     using NUnit.Framework;
-    using NPOI.SS.Formula;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
     using TestCases.SS;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * Common superclass for Testing usermodel API for array formulas.<br/>

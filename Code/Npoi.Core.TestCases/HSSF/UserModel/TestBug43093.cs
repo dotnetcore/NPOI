@@ -18,9 +18,9 @@
 namespace TestCases.HSSF.UserModel
 {
     using System;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.UserModel;
     using NUnit.Framework;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
     /**
      * 
      */
@@ -31,7 +31,7 @@ namespace TestCases.HSSF.UserModel
         private static void AddNewSheetWithCellsA1toD4(HSSFWorkbook book, int sheet)
         {
 
-            NPOI.SS.UserModel.ISheet sht = book.CreateSheet("s" + sheet);
+            Npoi.Core.SS.UserModel.ISheet sht = book.CreateSheet("s" + sheet);
             for (int r = 0; r < 4; r++)
             {
 
@@ -54,7 +54,7 @@ namespace TestCases.HSSF.UserModel
             AddNewSheetWithCellsA1toD4(xlw, 3);
             AddNewSheetWithCellsA1toD4(xlw, 4);
 
-            NPOI.SS.UserModel.ISheet s2 = xlw.GetSheet("s2");
+            Npoi.Core.SS.UserModel.ISheet s2 = xlw.GetSheet("s2");
             IRow s2r3 = s2.GetRow(3);
             ICell s2E4 = s2r3.CreateCell(4);
             s2E4.CellFormula = ("SUM(s3!B2:C3)");

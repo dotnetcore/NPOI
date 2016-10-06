@@ -17,15 +17,15 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     using System;
-    using NPOI.OpenXml4Net.OPC;
-    using NPOI.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
     using System.IO;
     using System.Xml.Serialization;
     using System.Xml;
-    using NPOI.Util;
+    using Npoi.Core.Util;
     using System.Xml.XPath;
 
     /**

@@ -15,23 +15,23 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.XSSF;
-using NPOI.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.XSSF;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using NUnit.Framework;
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.UserModel;
 using System.IO;
-using NPOI.Util;
-using NPOI.OpenXml4Net.OPC;
+using Npoi.Core.Util;
+using Npoi.Core.OpenXml4Net.OPC;
 using TestCases.HSSF;
-using NPOI.XSSF.Model;
-using NPOI.OpenXml4Net.OPC.Internal;
+using Npoi.Core.XSSF.Model;
+using Npoi.Core.OpenXml4Net.OPC.Internal;
 using System.Collections.Generic;
 using System.Collections;
 using System;
 using TestCases.SS.UserModel;
 using System.Text;
-using NPOI.SS.Util;
-namespace NPOI.XSSF.UserModel
+using Npoi.Core.SS.Util;
+namespace Npoi.Core.XSSF.UserModel
 {
 
     [TestFixture]

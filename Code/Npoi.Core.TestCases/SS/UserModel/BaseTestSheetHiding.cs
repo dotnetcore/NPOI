@@ -21,9 +21,9 @@ namespace TestCases.SS.UserModel
 
     using NUnit.Framework;
 
-    using NPOI.SS;
+    using Npoi.Core.SS;
     using TestCases.SS;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
 
     /**
      */

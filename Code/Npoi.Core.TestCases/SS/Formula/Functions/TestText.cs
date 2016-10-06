@@ -18,11 +18,11 @@
 namespace TestCases.SS.Formula.Functions
 {
 
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Eval;
     using NUnit.Framework;
     using System;
-    using NPOI.SS.Util;
-    using NPOI.SS.Formula.Functions;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.SS.Formula.Functions;
     using System.Globalization;
 
     /**
@@ -124,7 +124,7 @@ namespace TestCases.SS.Formula.Functions
             formatArg = new StringEval("MMMM dd, yyyy");
             args[1] = formatArg;
             //fix error in non-en Culture
-            NPOI.SS.Formula.Functions.Text.Formatter = new NPOI.SS.UserModel.DataFormatter(CultureInfo.CurrentCulture);
+            Npoi.Core.SS.Formula.Functions.Text.Formatter = new Npoi.Core.SS.UserModel.DataFormatter(CultureInfo.CurrentCulture);
             result = TextFunction.TEXT.Evaluate(args, -1, (short)-1);
             testResult = new StringEval(november + " 16, 1900");
             Assert.AreEqual(testResult.ToString(), result.ToString());

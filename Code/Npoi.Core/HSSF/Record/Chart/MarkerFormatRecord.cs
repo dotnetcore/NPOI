@@ -16,9 +16,9 @@
 ==================================================================== */
 
 using System.Text;
-using NPOI.Util;
+using Npoi.Core.Util;
 
-namespace NPOI.HSSF.Record.Chart
+namespace Npoi.Core.HSSF.Record.Chart
 {
     /// <summary>
     /// specifies the color, size, and shape of the associated data markers that appear on line, radar, 
@@ -62,7 +62,7 @@ namespace NPOI.HSSF.Record.Chart
             field_7_miSize = ris.ReadInt();
         }
 
-        public override void Serialize(NPOI.Util.ILittleEndianOutput out1)
+        public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             out1.WriteInt(field_1_rgbFore);
             out1.WriteInt(field_2_rgbBack);

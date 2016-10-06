@@ -19,12 +19,12 @@ namespace TestCases.HSSF.Record
 {
 
     using NUnit.Framework;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.Record.Common;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record.Common;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.UserModel;
     using TestCases.HSSF;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.HSSF.Record;
     using TestCases.HSSF.UserModel;
     /**
      * Tests for <tt>FeatRecord</tt>

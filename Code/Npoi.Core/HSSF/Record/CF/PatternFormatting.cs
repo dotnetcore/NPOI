@@ -23,15 +23,15 @@
  * Created on January 22, 2008, 10:05 PM
  */
 
-using NPOI.DDF;
+using Npoi.Core.DDF;
 
-namespace NPOI.HSSF.Record.CF
+namespace Npoi.Core.HSSF.Record.CF
 {
     using System;
     using System.Text;
-    using NPOI.HSSF.Record;
-    using NPOI.SS.UserModel;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.Util;
 
 
     /**

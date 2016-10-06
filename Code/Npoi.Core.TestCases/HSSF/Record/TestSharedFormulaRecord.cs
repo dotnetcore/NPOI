@@ -19,13 +19,13 @@ namespace TestCases.HSSF.Record
 {
     using System;
     using NUnit.Framework;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.UserModel;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.Util;
     using TestCases.Exceptions;
     using TestCases.HSSF;
     using TestCases.HSSF.UserModel;
@@ -248,11 +248,11 @@ namespace TestCases.HSSF.Record
          */
         private static int countSharedFormulas(ISheet sheet)
         {
-            NPOI.HSSF.Record.Record[] records = RecordInspector.GetRecords(sheet, 0);
+            Npoi.Core.HSSF.Record.Record[] records = RecordInspector.GetRecords(sheet, 0);
             int count = 0;
             for (int i = 0; i < records.Length; i++)
             {
-                NPOI.HSSF.Record.Record rec = records[i];
+                Npoi.Core.HSSF.Record.Record rec = records[i];
                 if (rec is SharedFormulaRecord)
                 {
                     count++;

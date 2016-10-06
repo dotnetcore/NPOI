@@ -19,10 +19,10 @@ using System;
 using System.IO;
 using System.Security.Cryptography;
 
-using NPOI.POIFS.FileSystem;
-using NPOI.Util;
+using Npoi.Core.POIFS.FileSystem;
+using Npoi.Core.Util;
 
-namespace NPOI.POIFS.Crypt
+namespace Npoi.Core.POIFS.Crypt
 {
     public class EcmaDecryptor : Decryptor
     {

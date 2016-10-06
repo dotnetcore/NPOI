@@ -29,7 +29,7 @@
 
 using System;
 
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
     /// <summary>
     /// Manage operations dealing with bit-mapped fields.

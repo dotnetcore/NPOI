@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
     using System;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.SS.UserModel;
 
     public class HSSFCreationHelper : ICreationHelper
     {
@@ -33,17 +33,17 @@ namespace NPOI.HSSF.UserModel
             dataFormat = new HSSFDataFormat(workbook.Workbook);
         }
 
-        public NPOI.SS.UserModel.IRichTextString CreateRichTextString(String text)
+        public Npoi.Core.SS.UserModel.IRichTextString CreateRichTextString(String text)
         {
             return new HSSFRichTextString(text);
         }
 
-        public NPOI.SS.UserModel.IDataFormat CreateDataFormat()
+        public Npoi.Core.SS.UserModel.IDataFormat CreateDataFormat()
         {
             return dataFormat;
         }
 
-        public NPOI.SS.UserModel.IHyperlink CreateHyperlink(HyperlinkType type)
+        public Npoi.Core.SS.UserModel.IHyperlink CreateHyperlink(HyperlinkType type)
         {
             return new HSSFHyperlink(type);
         }
@@ -53,7 +53,7 @@ namespace NPOI.HSSF.UserModel
          *
          * @return a HSSFFormulaEvaluator instance
          */
-        public NPOI.SS.UserModel.IFormulaEvaluator CreateFormulaEvaluator()
+        public Npoi.Core.SS.UserModel.IFormulaEvaluator CreateFormulaEvaluator()
         {
             return new HSSFFormulaEvaluator(workbook);
         }
@@ -62,9 +62,9 @@ namespace NPOI.HSSF.UserModel
          * Creates a HSSFClientAnchor. Use this object to position drawing object in a sheet
          *
          * @return a HSSFClientAnchor instance
-         * @see NPOI.SS.usermodel.Drawing
+         * @see Npoi.Core.SS.usermodel.Drawing
          */
-        public NPOI.SS.UserModel.IClientAnchor CreateClientAnchor()
+        public Npoi.Core.SS.UserModel.IClientAnchor CreateClientAnchor()
         {
             return new HSSFClientAnchor();
         }

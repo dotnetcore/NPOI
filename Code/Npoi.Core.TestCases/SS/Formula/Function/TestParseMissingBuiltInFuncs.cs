@@ -18,9 +18,9 @@
 namespace TestCases.SS.Formula.Function
 {
 
-    using NPOI.HSSF.Model;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.HSSF.UserModel;
     using System;
     using NUnit.Framework;
     /**

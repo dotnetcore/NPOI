@@ -18,14 +18,14 @@
 namespace TestCases.HSSF.UserModel
 {
     using System;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.Util;
-    using NPOI.HSSF.UserModel;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.HSSF.UserModel;
 
     using NUnit.Framework;
     using TestCases.HSSF;
-    using NPOI.SS.UserModel;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.HSSF.Record;
     using System.Text;
     using TestCases.SS.UserModel;
 
@@ -63,25 +63,25 @@ namespace TestCases.HSSF.UserModel
         //{
 
         //    HSSFWorkbook wb = new HSSFWorkbook();
-        //    NPOI.SS.UserModel.Sheet s = wb.CreateSheet("TestSheet1");
+        //    Npoi.Core.SS.UserModel.Sheet s = wb.CreateSheet("TestSheet1");
         //    Row r = null;
         //    Cell c = null;
         //    r = s.CreateRow(0);
         //    c = r.CreateCell(1);
-        //    //c.SetCellType(NPOI.SS.UserModel.CellType.Boolean);
+        //    //c.SetCellType(Npoi.Core.SS.UserModel.CellType.Boolean);
         //    c.SetCellValue(true);
 
         //    c = r.CreateCell(2);
-        //    //c.SetCellType(NPOI.SS.UserModel.CellType.Boolean);
+        //    //c.SetCellType(Npoi.Core.SS.UserModel.CellType.Boolean);
         //    c.SetCellValue(false);
 
         //    r = s.CreateRow(1);
         //    c = r.CreateCell(1);
-        //    //c.SetCellType(NPOI.SS.UserModel.CellType.Error);
+        //    //c.SetCellType(Npoi.Core.SS.UserModel.CellType.Error);
         //    c.SetCellErrorValue((byte)0);
 
         //    c = r.CreateCell(2);
-        //    //c.SetCellType(NPOI.SS.UserModel.CellType.Error);
+        //    //c.SetCellType(Npoi.Core.SS.UserModel.CellType.Error);
         //    c.SetCellErrorValue((byte)7);
 
         //    wb = WriteOutAndReadBack(wb);
@@ -110,7 +110,7 @@ namespace TestCases.HSSF.UserModel
 
             // first Check a file with 1900 Date Windowing
             HSSFWorkbook workbook = OpenSample("1900DateWindowing.xls");
-            NPOI.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
 
             Assert.AreEqual(date, sheet.GetRow(0).GetCell(0).DateCellValue,
                                "Date from file using 1900 Date Windowing");
@@ -168,7 +168,7 @@ namespace TestCases.HSSF.UserModel
             cell.SetCellValue("abc");
             ConfirmStringRecord(sheet, true);
             cell.SetCellValue(123);
-            NPOI.HSSF.Record.Record[] recs = RecordInspector.GetRecords(sheet, 0);
+            Npoi.Core.HSSF.Record.Record[] recs = RecordInspector.GetRecords(sheet, 0);
             if (recs.Length == 28 && recs[23] is StringRecord)
             {
                 wb.Close();
@@ -212,7 +212,7 @@ namespace TestCases.HSSF.UserModel
 
         private static void SetCell(HSSFWorkbook workbook, int rowIdx, int colIdx, DateTime date)
         {
-            NPOI.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
             IRow row = sheet.GetRow(rowIdx);
             ICell cell = row.GetCell(colIdx);
 
@@ -225,7 +225,7 @@ namespace TestCases.HSSF.UserModel
 
         private static DateTime ReadCell(HSSFWorkbook workbook, int rowIdx, int colIdx)
         {
-            NPOI.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
             IRow row = sheet.GetRow(rowIdx);
             ICell cell = row.GetCell(colIdx);
             return cell.DateCellValue;
@@ -325,7 +325,7 @@ namespace TestCases.HSSF.UserModel
 
             HSSFWorkbook wb = OpenSample("WithHyperlink.xls");
 
-            NPOI.SS.UserModel.ISheet sheet = wb.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.GetSheetAt(0);
             ICell cell = sheet.GetRow(4).GetCell(0);
             IHyperlink link = cell.Hyperlink;
             Assert.IsNotNull(link);
@@ -345,7 +345,7 @@ namespace TestCases.HSSF.UserModel
 
             HSSFWorkbook wb = OpenSample("WithTwoHyperLinks.xls");
 
-            NPOI.SS.UserModel.ISheet sheet = wb.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.GetSheetAt(0);
 
             ICell cell1 = sheet.GetRow(4).GetCell(0);
             IHyperlink link1 = cell1.Hyperlink;
@@ -372,12 +372,12 @@ namespace TestCases.HSSF.UserModel
             HSSFWorkbook wb = new HSSFWorkbook();
             ICell cell = wb.CreateSheet("Sheet1").CreateRow(0).CreateCell(0);
             cell.SetCellValue(new DateTime(2009, 8, 20));
-            NPOI.SS.UserModel.ICellStyle cellStyle = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cellStyle = wb.CreateCellStyle();
             cellStyle.DataFormat = HSSFDataFormat.GetBuiltinFormat("m/d/yy");
             cell.CellStyle = cellStyle;
             Assert.AreEqual("8/20/09", cell.ToString());
 
-            NPOI.SS.UserModel.ICellStyle cellStyle2 = wb.CreateCellStyle();
+            Npoi.Core.SS.UserModel.ICellStyle cellStyle2 = wb.CreateCellStyle();
             IDataFormat format = wb.CreateDataFormat();
             cellStyle2.DataFormat = format.GetFormat("YYYY-mm/dd");
             cell.CellStyle = cellStyle2;

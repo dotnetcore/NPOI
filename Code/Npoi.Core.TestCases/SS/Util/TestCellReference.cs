@@ -15,13 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.SS.Util;
+using Npoi.Core.SS.Util;
 using NUnit.Framework;
 using TestCases.HSSF.Record;
 
 using System.IO;
 using System;
-using NPOI.SS;
+using Npoi.Core.SS;
 
 namespace TestCases.SS.Util
 {

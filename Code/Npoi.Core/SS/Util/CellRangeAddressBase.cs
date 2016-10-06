@@ -1,4 +1,4 @@
-﻿namespace NPOI.SS.Util
+﻿namespace Npoi.Core.SS.Util
 {
     using System;
     /**

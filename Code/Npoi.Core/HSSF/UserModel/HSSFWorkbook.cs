@@ -15,7 +15,7 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
 
     using System;
@@ -26,15 +26,15 @@ namespace NPOI.HSSF.UserModel
     using System.Reflection;
     using System.Security.Cryptography;
     using System.Text;
-    using NPOI.DDF;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.Record;
-    using NPOI.POIFS.FileSystem;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.Udf;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
-    using NPOI.Util;
+    using Npoi.Core.DDF;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Udf;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
 
 
     /// <summary>
@@ -111,7 +111,7 @@ namespace NPOI.HSSF.UserModel
 
         //private static POILogger log = POILogFactory.GetLogger(typeof(HSSFWorkbook));
 
-        public NPOI.SS.UserModel.ICreationHelper GetCreationHelper()
+        public Npoi.Core.SS.UserModel.ICreationHelper GetCreationHelper()
         {
             return new HSSFCreationHelper(this);
         }
@@ -119,7 +119,7 @@ namespace NPOI.HSSF.UserModel
         /// <summary>
         /// Totals the sizes of all sheet records and eventually serializes them
         /// </summary>
-        private class SheetRecordCollector : NPOI.HSSF.Record.Aggregates.RecordVisitor,IDisposable
+        private class SheetRecordCollector : Npoi.Core.HSSF.Record.Aggregates.RecordVisitor,IDisposable
         {
 
             private ArrayList _list;
@@ -425,14 +425,14 @@ namespace NPOI.HSSF.UserModel
             //    log.Log(POILogger.DEBUG, "ConvertLabelRecords exit");
         }
         [NonSerialized]
-        private NPOI.SS.UserModel.MissingCellPolicy missingCellPolicy = NPOI.SS.UserModel.MissingCellPolicy.RETURN_NULL_AND_BLANK;
+        private Npoi.Core.SS.UserModel.MissingCellPolicy missingCellPolicy = Npoi.Core.SS.UserModel.MissingCellPolicy.RETURN_NULL_AND_BLANK;
         /// <summary>
         /// Retrieves the current policy on what to do when
         /// getting missing or blank cells from a row.
         /// The default is to return blank and null cells.
         /// </summary>
         /// <value>The missing cell policy.</value>
-        public NPOI.SS.UserModel.MissingCellPolicy MissingCellPolicy
+        public Npoi.Core.SS.UserModel.MissingCellPolicy MissingCellPolicy
         {
             get { return missingCellPolicy; }
             set { this.missingCellPolicy = value; }
@@ -900,7 +900,7 @@ namespace NPOI.HSSF.UserModel
         ///</summary>
         /// <param name="index">index of the sheet number (0-based)</param>
         /// <returns>HSSFSheet at the provided index</returns>
-        public NPOI.SS.UserModel.ISheet GetSheetAt(int index)
+        public Npoi.Core.SS.UserModel.ISheet GetSheetAt(int index)
         {
             return (HSSFSheet)_sheets[index];
         }
@@ -910,7 +910,7 @@ namespace NPOI.HSSF.UserModel
         /// </summary>
         /// <param name="name">name of the sheet</param>
         /// <returns>HSSFSheet with the name provided or null if it does not exist</returns>
-        public NPOI.SS.UserModel.ISheet GetSheet(String name)
+        public Npoi.Core.SS.UserModel.ISheet GetSheet(String name)
         {
             HSSFSheet retval = null;
 
@@ -1109,7 +1109,7 @@ namespace NPOI.HSSF.UserModel
         /// Create a new Font and Add it to the workbook's font table
         /// </summary>
         /// <returns>new font object</returns>
-        public NPOI.SS.UserModel.IFont CreateFont()
+        public Npoi.Core.SS.UserModel.IFont CreateFont()
         {
             FontRecord font = workbook.CreateNewFont();
             short fontindex = (short)(NumberOfFonts - 1);
@@ -1127,9 +1127,9 @@ namespace NPOI.HSSF.UserModel
             return GetFontAt(fontindex);
         }
 
-        //public NPOI.SS.UserModel.Font FindFont(NPOI.SS.UserModel.FontBoldWeight boldWeight, short color, short fontHeight,
+        //public Npoi.Core.SS.UserModel.Font FindFont(Npoi.Core.SS.UserModel.FontBoldWeight boldWeight, short color, short fontHeight,
         //                 String name, bool italic, bool strikeout,
-        //                 NPOI.SS.UserModel.FontSuperScript typeOffset, NPOI.SS.UserModel.FontUnderlineType Underline)
+        //                 Npoi.Core.SS.UserModel.FontSuperScript typeOffset, Npoi.Core.SS.UserModel.FontUnderlineType Underline)
         //{
         //    return this.FindFont(boldWeight, color, fontHeight, name, italic, strikeout, typeOffset, Underline);
         //}
@@ -1146,7 +1146,7 @@ namespace NPOI.HSSF.UserModel
         /// <param name="typeOffset">The type offset.</param>
         /// <param name="underline">The underline.</param>
         /// <returns></returns>
-        public NPOI.SS.UserModel.IFont FindFont(short boldWeight, short color, short fontHeight,
+        public Npoi.Core.SS.UserModel.IFont FindFont(short boldWeight, short color, short fontHeight,
                          String name, bool italic, bool strikeout,
                          FontSuperScript typeOffset, FontUnderlineType underline)
         {
@@ -1157,7 +1157,7 @@ namespace NPOI.HSSF.UserModel
                 if (i == 4)
                     continue;
 
-                NPOI.SS.UserModel.IFont hssfFont = GetFontAt(i);
+                Npoi.Core.SS.UserModel.IFont hssfFont = GetFontAt(i);
                 //            Console.WriteLine( hssfFont.GetBoldweight() + ", " + hssfFont.GetColor() + ", " + hssfFont.FontHeight + ", " + hssfFont.FontName + ", " + hssfFont.GetItalic() + ", " + hssfFont.GetStrikeout() + ", " + hssfFont.GetTypeOffset() + ", " + hssfFont.Underline );
                 if (hssfFont.Boldweight == boldWeight
                         && hssfFont.Color == color
@@ -1206,7 +1206,7 @@ namespace NPOI.HSSF.UserModel
         /// </summary>
         /// <param name="idx">The index number</param>
         /// <returns>HSSFFont at the index</returns>
-        public NPOI.SS.UserModel.IFont GetFontAt(short idx)
+        public Npoi.Core.SS.UserModel.IFont GetFontAt(short idx)
         {
             if (fonts == null) fonts = new Hashtable();
 
@@ -1240,7 +1240,7 @@ namespace NPOI.HSSF.UserModel
         /// Create a new Cell style and Add it to the workbook's style table
         /// </summary>
         /// <returns>the new Cell Style object</returns>
-        public NPOI.SS.UserModel.ICellStyle CreateCellStyle()
+        public Npoi.Core.SS.UserModel.ICellStyle CreateCellStyle()
         {
             if (workbook.NumExFormats == MAX_STYLES)
             {
@@ -1272,7 +1272,7 @@ namespace NPOI.HSSF.UserModel
         /// </summary>
         /// <param name="idx">index within the Set of styles</param>
         /// <returns>HSSFCellStyle object at the index</returns>
-        public NPOI.SS.UserModel.ICellStyle GetCellStyleAt(short idx)
+        public Npoi.Core.SS.UserModel.ICellStyle GetCellStyleAt(short idx)
         {
             ExtendedFormatRecord xfr = workbook.GetExFormatAt(idx);
             HSSFCellStyle style = new HSSFCellStyle(idx, xfr, this);
@@ -1312,10 +1312,10 @@ namespace NPOI.HSSF.UserModel
             {
                 this.DocumentSummaryInformation = HPSF.PropertySetFactory.CreateDocumentSummaryInformation();
             }
-            NPOI.HPSF.CustomProperties cp = this.DocumentSummaryInformation.CustomProperties;
+            Npoi.Core.HPSF.CustomProperties cp = this.DocumentSummaryInformation.CustomProperties;
             if(cp==null)
             {
-                cp= new NPOI.HPSF.CustomProperties();
+                cp= new Npoi.Core.HPSF.CustomProperties();
             }
             cp.Put("Generator", "NPOI");
             cp.Put("Generator Version", typeof(HSSFWorkbook).GetTypeInfo().Assembly.GetName().Version.ToString(3));
@@ -1482,7 +1482,7 @@ namespace NPOI.HSSF.UserModel
                 return result;
             }
         }
-        public NPOI.SS.UserModel.IName GetName(String name)
+        public Npoi.Core.SS.UserModel.IName GetName(String name)
         {
             int nameIndex = GetNameIndex(name);
             if (nameIndex < 0)
@@ -1497,7 +1497,7 @@ namespace NPOI.HSSF.UserModel
         /// </summary>
         /// <param name="nameIndex">position of the named range</param>
         /// <returns>named range high level</returns>
-        public NPOI.SS.UserModel.IName GetNameAt(int nameIndex)
+        public Npoi.Core.SS.UserModel.IName GetNameAt(int nameIndex)
         {
             int nNames = names.Count;
             if (nNames < 1)
@@ -1619,7 +1619,7 @@ namespace NPOI.HSSF.UserModel
         /// Creates a new named range and Add it to the model
         /// </summary>
         /// <returns>named range high level</returns>
-        public NPOI.SS.UserModel.IName CreateName()
+        public Npoi.Core.SS.UserModel.IName CreateName()
         {
             NameRecord nameRecord = workbook.CreateName();
 
@@ -1688,7 +1688,7 @@ namespace NPOI.HSSF.UserModel
         /// Creates the instance of HSSFDataFormat for this workbook.
         /// </summary>
         /// <returns>the HSSFDataFormat object</returns>
-        public NPOI.SS.UserModel.IDataFormat CreateDataFormat()
+        public Npoi.Core.SS.UserModel.IDataFormat CreateDataFormat()
         {
             if (formatter == null)
                 formatter = new HSSFDataFormat(workbook);
@@ -1792,7 +1792,7 @@ namespace NPOI.HSSF.UserModel
         /// <param name="format">The format of the picture.  One of 
         /// PictureType.</param>
         /// <returns>the index to this picture (1 based).</returns>
-        public int AddPicture(byte[] pictureData, NPOI.SS.UserModel.PictureType format)
+        public int AddPicture(byte[] pictureData, Npoi.Core.SS.UserModel.PictureType format)
         {
             InitDrawings();
 
@@ -1847,22 +1847,22 @@ namespace NPOI.HSSF.UserModel
             
             switch (format)
             {
-                case NPOI.SS.UserModel.PictureType.EMF:
+                case Npoi.Core.SS.UserModel.PictureType.EMF:
                     blipRecord.Options = HSSFPictureData.MSOBI_EMF;
                     break;
-                case NPOI.SS.UserModel.PictureType.WMF:
+                case Npoi.Core.SS.UserModel.PictureType.WMF:
                     blipRecord.Options = HSSFPictureData.MSOBI_WMF;
                     break;
-                case NPOI.SS.UserModel.PictureType.PICT:
+                case Npoi.Core.SS.UserModel.PictureType.PICT:
                     blipRecord.Options = HSSFPictureData.MSOBI_PICT;
                     break;
-                case NPOI.SS.UserModel.PictureType.PNG:
+                case Npoi.Core.SS.UserModel.PictureType.PNG:
                     blipRecord.Options = HSSFPictureData.MSOBI_PNG;
                     break;
-                case NPOI.SS.UserModel.PictureType.JPEG:
+                case Npoi.Core.SS.UserModel.PictureType.JPEG:
                     blipRecord.Options = HSSFPictureData.MSOBI_JPEG;
                     break;
-                case NPOI.SS.UserModel.PictureType.DIB:
+                case Npoi.Core.SS.UserModel.PictureType.DIB:
                     blipRecord.Options = HSSFPictureData.MSOBI_DIB;
                     break;
             }

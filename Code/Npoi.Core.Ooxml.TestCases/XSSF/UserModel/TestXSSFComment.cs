@@ -16,15 +16,15 @@
 ==================================================================== */
 
 using System;
-using NPOI.HSSF.UserModel;
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.OpenXmlFormats.Vml;
-using NPOI.SS.UserModel;
-using NPOI.SS.Util;
-using NPOI.XSSF.Model;
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.OpenXmlFormats.Vml;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.Util;
+using Npoi.Core.XSSF.Model;
 using NUnit.Framework;
 using TestCases.SS.UserModel;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * @author Yegor Kozlov

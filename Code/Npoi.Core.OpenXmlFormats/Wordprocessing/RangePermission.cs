@@ -3,10 +3,10 @@ using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using NPOI.OpenXml4Net.Util;
+using Npoi.Core.OpenXml4Net.Util;
 
 
-namespace NPOI.OpenXmlFormats.Wordprocessing
+namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
     #region Range Permission
 

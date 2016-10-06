@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-namespace NPOI.SS.Format
+namespace Npoi.Core.SS.Format
 {
     using System;
     using System.Text;
@@ -45,7 +45,7 @@ namespace NPOI.SS.Format
         public override void FormatValue(StringBuilder toAppendTo, Object value)
         {
             //if (value is Number) {
-            if (NPOI.Util.Number.IsNumber(value))
+            if (Npoi.Core.Util.Number.IsNumber(value))
             {
                 double val ;
                 double.TryParse(value.ToString(), out val);

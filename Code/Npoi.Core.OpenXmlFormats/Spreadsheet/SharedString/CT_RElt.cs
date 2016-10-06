@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 using System.Text;
 using System.Xml.Serialization;
-using NPOI.OpenXml4Net.Util;
+using Npoi.Core.OpenXml4Net.Util;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
-namespace NPOI.OpenXmlFormats.Spreadsheet
+namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
     /// <summary>
     /// Rich Text Run container.

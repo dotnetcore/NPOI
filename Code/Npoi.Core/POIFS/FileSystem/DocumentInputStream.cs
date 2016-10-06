@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.POIFS.FileSystem
+namespace Npoi.Core.POIFS.FileSystem
 {
     using System.IO;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * This class provides methods to read a DocumentEntry managed by a

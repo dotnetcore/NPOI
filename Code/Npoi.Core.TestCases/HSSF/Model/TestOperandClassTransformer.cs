@@ -19,9 +19,9 @@ namespace TestCases.HSSF.Model
 {
     using System;
     using NUnit.Framework;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.HSSF.Model;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.HSSF.Model;
 
     /**
      * Tests specific formula examples in <tt>OperandClassTransformer</tt>.

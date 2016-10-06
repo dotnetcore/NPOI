@@ -22,14 +22,14 @@
  *
  * Created on October 1, 2001, 8:01 PM
  */
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
 
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     using System;
     using System.Text;
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.Util;
 
     /**
      * Contains a numeric cell value. 

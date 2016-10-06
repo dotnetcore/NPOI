@@ -15,12 +15,12 @@
    limitations Under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Model
+namespace Npoi.Core.HSSF.Model
 {
     using System;
-    using NPOI.DDF;
-    using NPOI.HSSF.UserModel;
-    using NPOI.HSSF.Record;
+    using Npoi.Core.DDF;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.HSSF.Record;
     using System.Collections.Generic;
 
     /// <summary>

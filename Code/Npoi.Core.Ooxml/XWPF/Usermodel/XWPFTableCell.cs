@@ -17,10 +17,10 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     using System;
-    using NPOI.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
     using System.Collections.Generic;
     using System.Text;
     using System.Xml;
@@ -110,7 +110,7 @@ namespace NPOI.XWPF.UserModel
 
         /**
          * returns an Iterator with paragraphs and tables
-         * @see NPOI.XWPF.UserModel.IBody#getBodyElements()
+         * @see Npoi.Core.XWPF.UserModel.IBody#getBodyElements()
          */
         public IList<IBodyElement> BodyElements
         {
@@ -370,7 +370,7 @@ namespace NPOI.XWPF.UserModel
 
 
         /**
-         * @see NPOI.XWPF.UserModel.IBody#getParagraphArray(int)
+         * @see Npoi.Core.XWPF.UserModel.IBody#getParagraphArray(int)
          */
         public XWPFParagraph GetParagraphArray(int pos)
         {
@@ -384,7 +384,7 @@ namespace NPOI.XWPF.UserModel
         /**
          * Get the to which the TableCell belongs
          * 
-         * @see NPOI.XWPF.UserModel.IBody#getPart()
+         * @see Npoi.Core.XWPF.UserModel.IBody#getPart()
          */
         public POIXMLDocumentPart Part
         {
@@ -396,7 +396,7 @@ namespace NPOI.XWPF.UserModel
 
 
         /** 
-         * @see NPOI.XWPF.UserModel.IBody#getPartType()
+         * @see Npoi.Core.XWPF.UserModel.IBody#getPartType()
          */
         public BodyType PartType
         {
@@ -409,7 +409,7 @@ namespace NPOI.XWPF.UserModel
 
         /**
          * Get a table by its CTTbl-Object
-         * @see NPOI.XWPF.UserModel.IBody#getTable(org.Openxmlformats.schemas.wordProcessingml.x2006.main.CTTbl)
+         * @see Npoi.Core.XWPF.UserModel.IBody#getTable(org.Openxmlformats.schemas.wordProcessingml.x2006.main.CTTbl)
          */
         public XWPFTable GetTable(CT_Tbl ctTable)
         {
@@ -421,7 +421,7 @@ namespace NPOI.XWPF.UserModel
 
 
         /** 
-         * @see NPOI.XWPF.UserModel.IBody#getTableArray(int)
+         * @see Npoi.Core.XWPF.UserModel.IBody#getTableArray(int)
          */
         public XWPFTable GetTableArray(int pos)
         {
@@ -434,7 +434,7 @@ namespace NPOI.XWPF.UserModel
 
 
         /** 
-         * @see NPOI.XWPF.UserModel.IBody#getTables()
+         * @see Npoi.Core.XWPF.UserModel.IBody#getTables()
          */
         public IList<XWPFTable> Tables
         {
@@ -447,7 +447,7 @@ namespace NPOI.XWPF.UserModel
 
         /**
          * inserts an existing XWPFTable to the arrays bodyElements and tables
-         * @see NPOI.XWPF.UserModel.IBody#insertTable(int, NPOI.XWPF.UserModel.XWPFTable)
+         * @see Npoi.Core.XWPF.UserModel.IBody#insertTable(int, Npoi.Core.XWPF.UserModel.XWPFTable)
          */
         public void InsertTable(int pos, XWPFTable table)
         {

@@ -18,7 +18,7 @@
 
 using System.Xml.Linq;
 
-namespace NPOI.SS
+namespace Npoi.Core.SS
 {
 	using System.Collections.Generic;
 	using System.Text;

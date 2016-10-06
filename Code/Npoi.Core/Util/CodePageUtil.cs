@@ -18,7 +18,7 @@
 using System;
 using System.IO;
 using System.Text;
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
 
     /**

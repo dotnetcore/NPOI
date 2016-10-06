@@ -19,17 +19,17 @@ namespace TestCases.HSSF.Model
 {
     using System;
     using NUnit.Framework;
-    using NPOI.HSSF.Model;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.UserModel;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.Util;
 
     using TestCases.HSSF.UserModel;
     using TestCases.SS.Formula;
-    using NPOI.SS.Formula.Constant;
+    using Npoi.Core.SS.Formula.Constant;
 
     /**
      * Test the low level formula Parser functionality. High level Tests are to
@@ -161,7 +161,7 @@ namespace TestCases.HSSF.Model
             wb.CreateSheet("NoQuotesNeeded");
             wb.CreateSheet("Quotes Needed Here &#$@");
 
-            NPOI.SS.UserModel.ISheet sheet = wb.CreateSheet("Test");
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet("Test");
             IRow row = sheet.CreateRow(0);
             ICell cell;
 
@@ -243,7 +243,7 @@ namespace TestCases.HSSF.Model
 
             wb.CreateSheet("Cash_Flow");
 
-            NPOI.SS.UserModel.ISheet sheet = wb.CreateSheet("Test");
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet("Test");
             IRow row = sheet.CreateRow(0);
             ICell cell;
 
@@ -335,7 +335,7 @@ namespace TestCases.HSSF.Model
 
             wb.CreateSheet("Cash_Flow");
 
-            NPOI.SS.UserModel.ISheet sheet = wb.CreateSheet("Test");
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet("Test");
             IRow row = sheet.CreateRow(0);
             ICell cell = row.CreateCell((short)0);
             String formula = null;
@@ -411,7 +411,7 @@ namespace TestCases.HSSF.Model
 
             wb.CreateSheet("Cash_Flow");
 
-            NPOI.SS.UserModel.ISheet sheet = wb.CreateSheet("Test");
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet("Test");
             IRow row = sheet.CreateRow(0);
             ICell cell = row.CreateCell((short)0);
             String formula = null;
@@ -453,7 +453,7 @@ namespace TestCases.HSSF.Model
 
             wb.CreateSheet("Cash_Flow");
 
-            NPOI.SS.UserModel.ISheet sheet = wb.CreateSheet("Test");
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet("Test");
             IRow row = sheet.CreateRow(0);
             ICell cell = row.CreateCell((short)0);
             String formula = null;
@@ -811,7 +811,7 @@ namespace TestCases.HSSF.Model
             HSSFWorkbook wb = new HSSFWorkbook();
             try
             {
-                NPOI.SS.UserModel.ISheet sheet = wb.CreateSheet();
+                Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet();
                 wb.SetSheetName(0, "Sheet1");
 
                 IRow row = sheet.CreateRow(0);
@@ -894,7 +894,7 @@ namespace TestCases.HSSF.Model
         {
 
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sheet = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet();
             wb.SetSheetName(0, "Sheet1");
 
             IRow row = sheet.CreateRow(0);

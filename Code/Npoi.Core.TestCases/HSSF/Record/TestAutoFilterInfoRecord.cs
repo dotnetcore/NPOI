@@ -19,8 +19,8 @@ namespace TestCases.HSSF.Record
 {
 
     using NUnit.Framework;
-    using NPOI.HSSF.Record.AutoFilter;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record.AutoFilter;
+    using Npoi.Core.Util;
 
     /**
      * Tests the AutoFilterInfoRecord class.

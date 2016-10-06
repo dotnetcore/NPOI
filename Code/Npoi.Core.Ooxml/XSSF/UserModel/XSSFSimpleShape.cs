@@ -15,22 +15,22 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     using System;
     using System.Collections.Generic;
-    using NPOI.HSSF.Util;
-    using NPOI.SS.UserModel;
-    using NPOI.OpenXmlFormats.Dml.Spreadsheet;
-    using NPOI.OpenXmlFormats.Dml;
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
+    using Npoi.Core.OpenXmlFormats.Dml;
     using System.Text;
-    using NPOI.OpenXmlFormats.Spreadsheet;
-    using NPOI.Util;
+    using Npoi.Core.OpenXmlFormats.Spreadsheet;
+    using Npoi.Core.Util;
 
 
     /**
      * Represents a shape with a predefined geometry in a SpreadsheetML Drawing.
-     * Possible shape types are defined in {@link NPOI.SS.UserModel.ShapeTypes}
+     * Possible shape types are defined in {@link Npoi.Core.SS.UserModel.ShapeTypes}
      */
     public class XSSFSimpleShape : XSSFShape, IEnumerable<XSSFTextParagraph>
     { // TODO - instantiable superclass
@@ -57,7 +57,7 @@ namespace NPOI.XSSF.UserModel
 
             // Initialize any existing paragraphs - this will be the default body paragraph in a new shape, 
             // or existing paragraphs that have been loaded from the file
-            NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_TextBody body = ctShape.txBody;
+            Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_TextBody body = ctShape.txBody;
             if (body != null)
             {
                 for (int i = 0; i < body.SizeOfPArray(); i++)
@@ -77,12 +77,12 @@ namespace NPOI.XSSF.UserModel
                 CT_Shape shape = new CT_Shape();
 
                 CT_ShapeNonVisual nv = shape.AddNewNvSpPr();
-                NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_NonVisualDrawingProps nvp = nv.AddNewCNvPr();
+                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_NonVisualDrawingProps nvp = nv.AddNewCNvPr();
                 nvp.id = (/*setter*/1);
                 nvp.name = (/*setter*/"Shape 1");
                 nv.AddNewCNvSpPr();
 
-                NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties sp = shape.AddNewSpPr();
+                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties sp = shape.AddNewSpPr();
                 CT_Transform2D t2d = sp.AddNewXfrm();
                 CT_PositiveSize2D p1 = t2d.AddNewExt();
                 p1.cx = (/*setter*/0);
@@ -95,7 +95,7 @@ namespace NPOI.XSSF.UserModel
                 geom.prst = (/*setter*/ST_ShapeType.rect);
                 geom.AddNewAvLst();
 
-                NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_TextBody body = shape.AddNewTxBody();
+                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_TextBody body = shape.AddNewTxBody();
                 CT_TextBodyProperties bodypr = body.AddNewBodyPr();
                 bodypr.anchor = (/*setter*/ST_TextAnchoringType.t);
                 bodypr.rtlCol = (/*setter*/false);
@@ -390,7 +390,7 @@ namespace NPOI.XSSF.UserModel
         public void ClearText()
         {
             _paragraphs.Clear();
-            NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_TextBody txBody = ctShape.txBody;
+            Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_TextBody txBody = ctShape.txBody;
             txBody.SetPArray(null); // remove any existing paragraphs
         }
 
@@ -468,7 +468,7 @@ namespace NPOI.XSSF.UserModel
          */
         public XSSFTextParagraph AddNewTextParagraph()
         {
-            NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_TextBody txBody = ctShape.txBody;
+            Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_TextBody txBody = ctShape.txBody;
             CT_TextParagraph p = txBody.AddNewP();
             XSSFTextParagraph paragraph = new XSSFTextParagraph(p, ctShape);
             _paragraphs.Add(paragraph);
@@ -494,7 +494,7 @@ namespace NPOI.XSSF.UserModel
          */
         public XSSFTextParagraph AddNewTextParagraph(XSSFRichTextString str)
         {
-            NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_TextBody txBody = ctShape.txBody;
+            Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_TextBody txBody = ctShape.txBody;
             CT_TextParagraph p = txBody.AddNewP();
 
             if (str.NumFormattingRuns == 0)
@@ -889,10 +889,10 @@ namespace NPOI.XSSF.UserModel
         }
 
         /**
-         * Gets the shape type, one of the constants defined in {@link NPOI.SS.UserModel.ShapeTypes}.
+         * Gets the shape type, one of the constants defined in {@link Npoi.Core.SS.UserModel.ShapeTypes}.
          *
          * @return the shape type
-         * @see NPOI.SS.UserModel.ShapeTypes
+         * @see Npoi.Core.SS.UserModel.ShapeTypes
          */
         public int ShapeType
         {
@@ -906,7 +906,7 @@ namespace NPOI.XSSF.UserModel
             }
         }
 
-        protected internal override NPOI.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties GetShapeProperties()
+        protected internal override Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties GetShapeProperties()
         {
             return ctShape.spPr;
         }
@@ -943,7 +943,7 @@ namespace NPOI.XSSF.UserModel
             if (pr.SizeOfColorArray() > 0)
             {
                 CT_SolidColorFillProperties fill = rPr.IsSetSolidFill() ? rPr.solidFill : rPr.AddNewSolidFill();
-                NPOI.OpenXmlFormats.Spreadsheet.CT_Color xlsColor = pr.GetColorArray(0);
+                Npoi.Core.OpenXmlFormats.Spreadsheet.CT_Color xlsColor = pr.GetColorArray(0);
                 if (xlsColor.IsSetRgb())
                 {
                     CT_SRgbColor clr = fill.IsSetSrgbClr() ? fill.srgbClr : fill.AddNewSrgbClr();

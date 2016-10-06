@@ -20,14 +20,14 @@ namespace TestCases.HSSF.Extractor
     using System;
     using System.IO;
 
-    using NPOI.HSSF.UserModel;
-    using NPOI.POIFS.FileSystem;
-    using NPOI.HSSF.Extractor;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.HSSF.Extractor;
     using TestCases.HSSF;
 
 
     using NUnit.Framework;
-using NPOI.HSSF.Record.Crypto;
+using Npoi.Core.HSSF.Record.Crypto;
 
 
     [TestFixture]

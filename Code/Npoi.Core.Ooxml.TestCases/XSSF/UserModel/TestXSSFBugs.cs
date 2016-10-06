@@ -16,25 +16,25 @@
 ==================================================================== */
 
 using TestCases.SS.UserModel;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
-    using NPOI.HSSF.UserModel;
-    using NPOI.OpenXml4Net.OPC;
-    using NPOI.OpenXmlFormats.Spreadsheet;
-    using NPOI.POIFS.FileSystem;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Formula.Functions;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
-    using NPOI.Util;
-    using NPOI.XSSF;
-    using NPOI.XSSF.Model;
-    using NPOI.XSSF.UserModel.Extensions;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXmlFormats.Spreadsheet;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Functions;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
+    using Npoi.Core.XSSF;
+    using Npoi.Core.XSSF.Model;
+    using Npoi.Core.XSSF.UserModel.Extensions;
     using NUnit.Framework;
     using NUnit.Framework.Constraints;
     using TestCases;
@@ -1564,7 +1564,7 @@ namespace NPOI.XSSF.UserModel
 
         /**
          * Was giving NullPointerException
-         * at NPOI.XSSF.UserModel.XSSFWorkbook.onDocumentRead
+         * at Npoi.Core.XSSF.UserModel.XSSFWorkbook.onDocumentRead
          * due to a lack of Styles Table
          */
         [Test]
@@ -1747,8 +1747,8 @@ namespace NPOI.XSSF.UserModel
          * Formulas which reference named ranges, either in other
          *  sheets, or workbook scoped but in other workbooks.
          * Currently failing with errors like
-         * NPOI.SS.Formula.FormulaParseException: Cell reference expected After sheet name at index 9
-         * NPOI.SS.Formula.FormulaParseException: Parse error near char 0 '[' in specified formula '[0]!NR_Global_B2'. Expected number, string, or defined name 
+         * Npoi.Core.SS.Formula.FormulaParseException: Cell reference expected After sheet name at index 9
+         * Npoi.Core.SS.Formula.FormulaParseException: Parse error near char 0 '[' in specified formula '[0]!NR_Global_B2'. Expected number, string, or defined name 
          */
         [Test]
         public void Bug56737()
@@ -2091,7 +2091,7 @@ namespace NPOI.XSSF.UserModel
         [Test]
         public void Test57196_WorkbookEvaluator()
         {
-            //Environment.SetEnvironmentVariable("NPOI.UTIL.POILogger", "NPOI.UTIL.SystemOutLogger");
+            //Environment.SetEnvironmentVariable("Npoi.Core.UTIL.POILogger", "Npoi.Core.UTIL.SystemOutLogger");
             //Environment.SetEnvironmentVariable("poi.log.level", "3");
             try
             {
@@ -2164,7 +2164,7 @@ namespace NPOI.XSSF.UserModel
             }
             finally
             {
-                //System.ClearProperty("NPOI.UTIL.POILogger");
+                //System.ClearProperty("Npoi.Core.UTIL.POILogger");
                 //System.ClearProperty("poi.log.level");
             }
         }

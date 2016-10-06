@@ -15,14 +15,14 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.SS.UserModel;
-using NPOI.XSSF.UserModel;
-using NPOI.OpenXml4Net.OPC;
-using NPOI.Util;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.XSSF.UserModel;
+using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.Util;
 using System.IO;
 using System;
 using System.Collections.Generic;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
 
     /**
@@ -55,7 +55,7 @@ namespace NPOI.XSSF.UserModel
         /**
          * Create a new XSSFPictureData node
          *
-         * @see NPOI.xssf.usermodel.XSSFWorkbook#AddPicture(byte[], int)
+         * @see Npoi.Core.xssf.usermodel.XSSFWorkbook#AddPicture(byte[], int)
          */
         public XSSFPictureData()
             : base()
@@ -91,12 +91,12 @@ namespace NPOI.XSSF.UserModel
          * Return an integer constant that specifies type of this picture
          *
          * @return an integer constant that specifies type of this picture 
-         * @see NPOI.ss.usermodel.Workbook#PICTURE_TYPE_EMF
-         * @see NPOI.ss.usermodel.Workbook#PICTURE_TYPE_WMF
-         * @see NPOI.ss.usermodel.Workbook#PICTURE_TYPE_PICT
-         * @see NPOI.ss.usermodel.Workbook#PICTURE_TYPE_JPEG
-         * @see NPOI.ss.usermodel.Workbook#PICTURE_TYPE_PNG
-         * @see NPOI.ss.usermodel.Workbook#PICTURE_TYPE_DIB
+         * @see Npoi.Core.ss.usermodel.Workbook#PICTURE_TYPE_EMF
+         * @see Npoi.Core.ss.usermodel.Workbook#PICTURE_TYPE_WMF
+         * @see Npoi.Core.ss.usermodel.Workbook#PICTURE_TYPE_PICT
+         * @see Npoi.Core.ss.usermodel.Workbook#PICTURE_TYPE_JPEG
+         * @see Npoi.Core.ss.usermodel.Workbook#PICTURE_TYPE_PNG
+         * @see Npoi.Core.ss.usermodel.Workbook#PICTURE_TYPE_DIB
          */
         public PictureType PictureType
         {

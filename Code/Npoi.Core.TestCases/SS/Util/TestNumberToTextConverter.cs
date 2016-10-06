@@ -19,7 +19,7 @@ namespace TestCases.SS.Util
 {
     using System;
 
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.Util;
 
     using NUnit.Framework;
 

@@ -33,9 +33,9 @@ namespace TestCases.POIFS.Storage
     using System.Collections;
 
     using NUnit.Framework;
-    using NPOI.POIFS.Storage;
-    using NPOI.Util;
-    using NPOI.POIFS.FileSystem;
+    using Npoi.Core.POIFS.Storage;
+    using Npoi.Core.Util;
+    using Npoi.Core.POIFS.FileSystem;
     /**
      * Class to Test HeaderBlockReader functionality
      *

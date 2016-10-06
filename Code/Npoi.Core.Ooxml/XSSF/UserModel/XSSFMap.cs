@@ -16,13 +16,13 @@
 ==================================================================== */
 
 using System;
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.XSSF.UserModel.Helpers;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.XSSF.UserModel.Helpers;
 using System.Collections.Generic;
-using NPOI.XSSF.Model;
-using NPOI.SS.UserModel;
+using Npoi.Core.XSSF.Model;
+using Npoi.Core.SS.UserModel;
 using System.Xml;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * This class : the Map element (Open Office XML Part 4:

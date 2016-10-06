@@ -16,11 +16,11 @@
 ==================================================================== */
 
 using System;
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.SS.UserModel;
-using NPOI.XSSF.UserModel;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.XSSF.UserModel;
 using NUnit.Framework;
-namespace NPOI.XSSF.Model
+namespace Npoi.Core.XSSF.Model
 {
 
 

@@ -19,9 +19,9 @@ namespace TestCases.HSSF.Record
     using System;
     using System.Web;
     using System.IO;
-    using NPOI.Util;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Util;
+    using Npoi.Core.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Util;
 
 
 

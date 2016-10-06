@@ -17,12 +17,12 @@
 
 using System.Linq;
 
-namespace NPOI.XWPF.UserModel
+namespace Npoi.Core.XWPF.UserModel
 {
     using System;
 
-    using NPOI.OpenXml4Net.OPC;
-    using NPOI.Util;
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.Util;
     using System.Reflection;
 
     /**

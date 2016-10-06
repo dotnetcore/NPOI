@@ -16,20 +16,20 @@
 ==================================================================== */
 
 
-using NPOI.HSSF.Util;
+using Npoi.Core.HSSF.Util;
 
-namespace NPOI.HSSF.UserModel
+namespace Npoi.Core.HSSF.UserModel
 {
     using System;
-    using NPOI.HSSF.Record;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS.UserModel;
 
     /// <summary>
     /// Represents a Font used in a workbook.
     /// @version 1.0-pre
     /// @author  Andrew C. Oliver
     /// </summary>
-    public class HSSFFont:NPOI.SS.UserModel.IFont
+    public class HSSFFont:Npoi.Core.SS.UserModel.IFont
     {
         public const String FONT_ARIAL = "Arial";
 
@@ -204,7 +204,7 @@ namespace NPOI.HSSF.UserModel
         /// </returns>
         public override String ToString()
         {
-            return "NPOI.HSSF.UserModel.HSSFFont{" +
+            return "Npoi.Core.HSSF.UserModel.HSSFFont{" +
                      font +
                     "}";
         }

@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.SS.Formula.Functions
+namespace Npoi.Core.SS.Formula.Functions
 {
 
-    using NPOI.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Eval;
 
     /**
      * Implementation for the Excel function TIME
@@ -70,7 +70,7 @@ namespace NPOI.SS.Formula.Functions
          * @return An Excel representation of a time of day.
          * If the time value represents more than a day, the days are Removed from
          * the result, leaving only the time of day component.
-         * @throws NPOI.SS.Formula.Eval.EvaluationException
+         * @throws Npoi.Core.SS.Formula.Eval.EvaluationException
          * If any of the arguments are greater than 32767 or the hours
          * minutes and seconds when combined form a time value less than 0, the function
          * Evaluates to an error.

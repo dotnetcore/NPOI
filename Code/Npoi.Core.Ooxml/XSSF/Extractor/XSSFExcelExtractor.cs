@@ -14,19 +14,19 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using NPOI.XSSF.UserModel;
+using Npoi.Core.XSSF.UserModel;
 using System;
-using NPOI.OpenXml4Net.OPC;
+using Npoi.Core.OpenXml4Net.OPC;
 using System.Text;
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.UserModel;
 using System.Collections;
 using System.Globalization;
-namespace NPOI.XSSF.Extractor
+namespace Npoi.Core.XSSF.Extractor
 {
     /**
      * Helper class to extract text from an OOXML Excel file
      */
-    public class XSSFExcelExtractor : POIXMLTextExtractor, NPOI.SS.Extractor.IExcelExtractor
+    public class XSSFExcelExtractor : POIXMLTextExtractor, Npoi.Core.SS.Extractor.IExcelExtractor
     {
         public static XSSFRelation[] SUPPORTED_TYPES = new XSSFRelation[] {
       XSSFRelation.WORKBOOK, XSSFRelation.MACRO_TEMPLATE_WORKBOOK,
@@ -301,7 +301,7 @@ namespace NPOI.XSSF.Extractor
         }
         private String ExtractHeaderFooter(IHeaderFooter hf)
         {
-            return NPOI.HSSF.Extractor.ExcelExtractor.ExtractHeaderFooter(hf);
+            return Npoi.Core.HSSF.Extractor.ExcelExtractor.ExtractHeaderFooter(hf);
         }
     }
 

@@ -17,7 +17,7 @@
 ==================================================================== */
 
 
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
     using System.Collections.Generic;
 

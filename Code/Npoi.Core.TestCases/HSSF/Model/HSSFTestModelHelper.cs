@@ -18,8 +18,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NPOI.HSSF.Model;
-using NPOI.HSSF.UserModel;
+using Npoi.Core.HSSF.Model;
+using Npoi.Core.HSSF.UserModel;
 
 
 namespace TestCases.HSSF.Model

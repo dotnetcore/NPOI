@@ -1,5 +1,5 @@
 ﻿
-namespace NPOI.SS.UserModel
+namespace Npoi.Core.SS.UserModel
 {
     public enum BorderDiagonal
     {

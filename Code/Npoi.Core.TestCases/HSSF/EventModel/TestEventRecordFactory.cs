@@ -21,11 +21,11 @@ namespace TestCases.HSSF.EventModel
     using System.IO;
     using System.Collections;
 
-    using NPOI.HSSF;
-    using NPOI.HSSF.EventModel;
+    using Npoi.Core.HSSF;
+    using Npoi.Core.HSSF.EventModel;
     using TestCases.HSSF.Record;
-    using NPOI.HSSF.Record;
-    using NPOI.POIFS.FileSystem;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.POIFS.FileSystem;
 
     using NUnit.Framework;
 

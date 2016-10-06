@@ -17,16 +17,16 @@
 ==================================================================== */
 
 
-namespace NPOI.HSSF.Record
+namespace Npoi.Core.HSSF.Record
 {
 
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     using System;
     using System.IO;
 
 
-    using NPOI.HSSF.Record.Crypto;
+    using Npoi.Core.HSSF.Record.Crypto;
     using System.Diagnostics;
 
 

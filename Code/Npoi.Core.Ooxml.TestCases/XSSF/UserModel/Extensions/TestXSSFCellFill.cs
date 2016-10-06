@@ -16,8 +16,8 @@
 ==================================================================== */
 
 using NUnit.Framework;
-using NPOI.OpenXmlFormats.Spreadsheet;
-namespace NPOI.XSSF.UserModel.Extensions
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+namespace Npoi.Core.XSSF.UserModel.Extensions
 {
 
     [TestFixture]

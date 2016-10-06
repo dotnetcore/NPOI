@@ -3,8 +3,8 @@ using System.Text;
 using System.Collections.Generic;
 
 using NUnit.Framework;
-using NPOI.Util;
-using NPOI.HSSF.Record;
+using Npoi.Core.Util;
+using Npoi.Core.HSSF.Record;
 
 namespace TestCases.HSSF.Record
 {

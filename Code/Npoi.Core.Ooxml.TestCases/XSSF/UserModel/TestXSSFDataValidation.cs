@@ -15,13 +15,13 @@
    limitations under the License.
 ==================================================================== */
 using TestCases.SS.UserModel;
-using NPOI.SS.UserModel;
+using Npoi.Core.SS.UserModel;
 using System.Collections.Generic;
 using NUnit.Framework;
-using NPOI.SS.Util;
+using Npoi.Core.SS.Util;
 using System;
 using System.Text;
-namespace NPOI.XSSF.UserModel
+namespace Npoi.Core.XSSF.UserModel
 {
     [TestFixture]
     public class TestXSSFDataValidation : BaseTestDataValidation

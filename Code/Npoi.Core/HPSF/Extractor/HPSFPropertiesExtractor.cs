@@ -14,17 +14,17 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-namespace NPOI.HPSF.Extractor
+namespace Npoi.Core.HPSF.Extractor
 {
     using System;
     using System.Text;
     using System.IO;
     using System.Collections;
 
-    using NPOI;
-    using NPOI.HPSF;
-    using NPOI.POIFS.FileSystem;
-    using NPOI.Util;
+    using Npoi.Core;
+    using Npoi.Core.HPSF;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.Util;
     using System.Globalization;
 
     /// <summary>

@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-namespace NPOI.HSSF.Record.Cont
+namespace Npoi.Core.HSSF.Record.Cont
 {
-    using NPOI.HSSF.Record;
-    using NPOI.Util;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.Util;
 
     /**
      * Common superclass of all records that can produce {@link ContinueRecord}s while being Serialized.

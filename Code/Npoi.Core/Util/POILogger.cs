@@ -31,7 +31,7 @@ using System.Text;
 using System.Collections;
 using System.Globalization;
 
-namespace NPOI.Util
+namespace Npoi.Core.Util
 {
     public abstract class POILogger
     {

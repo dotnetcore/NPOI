@@ -16,10 +16,10 @@
 ==================================================================== */
 
 using System;
-namespace NPOI.SS.Util
+namespace Npoi.Core.SS.Util
 {
 
-    using NPOI.Util;
+    using Npoi.Core.Util;
     /*
      * Represents a 64 bit IEEE double quantity expressed with both decimal and binary exponents
      * Does not handle negative numbers or zero

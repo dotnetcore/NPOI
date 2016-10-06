@@ -17,7 +17,7 @@
 
 using System;
 using System.IO;
-using NPOI.Util;
+using Npoi.Core.Util;
 
 namespace TestCases.POIFS.Storage
 {

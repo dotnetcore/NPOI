@@ -18,19 +18,19 @@
 namespace TestCases.SS.Formula.Functions
 {
 
-    using NPOI.HSSF;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.HSSF.UserModel;
-    using NPOI.HSSF.Util;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.SS.UserModel;
     using System;
     using NUnit.Framework;
     using System.Text;
-    using NPOI.SS.Util;
+    using Npoi.Core.SS.Util;
     using TestCases.Exceptions;
     using System.IO;
     using TestCases.HSSF;
-    using NPOI.Util;
+    using Npoi.Core.Util;
 
     /**
      * Tests lookup functions (VLOOKUP, HLOOKUP, LOOKUP, MATCH) as loaded from a Test data spreadsheet.<p/>

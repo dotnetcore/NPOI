@@ -21,12 +21,12 @@ namespace TestCases.HSSF.UserModel
     using System.Collections;
     using System.IO;
     using NUnit.Framework;
-    using NPOI.HSSF.Record.Aggregates;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.Formula;
-    using NPOI.SS.Formula.Eval;
-    using NPOI.SS.Formula.PTG;
-    using NPOI.SS.UserModel;
+    using Npoi.Core.HSSF.Record.Aggregates;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.UserModel;
     using TestCases.HSSF;
     using TestCases.SS.Formula;
     /**
@@ -62,7 +62,7 @@ namespace TestCases.HSSF.UserModel
             // re-calculate
 
             HSSFWorkbook wb = HSSFTestDataSamples.OpenSampleWorkbook("44636.xls");
-            NPOI.SS.UserModel.ISheet sheet = wb.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.GetSheetAt(0);
             IRow row = sheet.GetRow(0);
 
             row.GetCell(0).SetCellValue(4.2);
@@ -122,7 +122,7 @@ namespace TestCases.HSSF.UserModel
             IRow row;
             ICell cell;
 
-            NPOI.SS.UserModel.ISheet sheet = wb.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.GetSheetAt(0);
 
             HSSFFormulaEvaluator eva = new HSSFFormulaEvaluator(wb);
 
@@ -184,7 +184,7 @@ namespace TestCases.HSSF.UserModel
 
             HSSFWorkbook wb = HSSFTestDataSamples.OpenSampleWorkbook("SingleLetterRanges.xls");
 
-            NPOI.SS.UserModel.ISheet sheet = wb.GetSheetAt(0);
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.GetSheetAt(0);
 
             HSSFFormulaEvaluator eva = new HSSFFormulaEvaluator(wb);
 
@@ -242,7 +242,7 @@ namespace TestCases.HSSF.UserModel
         public void TestEvaluateBooleanInCell_bug44508()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sheet = wb.CreateSheet();
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet();
             wb.SetSheetName(0, "Sheet1");
             IRow row = sheet.CreateRow(0);
             ICell cell = row.CreateCell(0);
@@ -272,7 +272,7 @@ namespace TestCases.HSSF.UserModel
             int numSheets = wb.NumberOfSheets;
             for (int i = 0; i < numSheets; i++)
             {
-                NPOI.SS.UserModel.ISheet s = wb.GetSheetAt(i);
+                Npoi.Core.SS.UserModel.ISheet s = wb.GetSheetAt(i);
                 HSSFFormulaEvaluator eval = new HSSFFormulaEvaluator(wb);
 
                 for (IEnumerator rows = s.GetRowEnumerator(); rows.MoveNext(); )
@@ -291,7 +291,7 @@ namespace TestCases.HSSF.UserModel
         public void TestEvaluateInCellWithErrorCode_bug44950()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sheet = wb.CreateSheet("Sheet1");
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet("Sheet1");
             IRow row = sheet.CreateRow(1);
             ICell cell = row.CreateCell(0);
             cell.CellFormula = ("na()"); // this formula Evaluates to an Excel error code '#N/A'
@@ -353,7 +353,7 @@ namespace TestCases.HSSF.UserModel
             // Firstly set up a sequence of formula cells where each depends on the  previous multiple
             // times.  Without caching, each subsequent cell take about 4 times longer to Evaluate.
             HSSFWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sheet = wb.CreateSheet("Sheet1");
+            Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet("Sheet1");
             IRow row = sheet.CreateRow(0);
             for (int i = 1; i < 10; i++)
             {

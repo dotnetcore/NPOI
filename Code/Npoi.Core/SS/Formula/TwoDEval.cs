@@ -15,8 +15,8 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.SS.Formula.Eval;
-namespace NPOI.SS.Formula
+using Npoi.Core.SS.Formula.Eval;
+namespace Npoi.Core.SS.Formula
 {
 
     /**

@@ -14,11 +14,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
    ==================================================================== */
-using NPOI.SS.Util;
+using Npoi.Core.SS.Util;
 using NUnit.Framework;
 using System;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.SS.UserModel;
 namespace TestCases.SS.Util
 {
 
@@ -39,22 +39,22 @@ namespace TestCases.SS.Util
         public void TestNotCreateEmptyCells()
         {
             IWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sheet = new SheetBuilder(wb, testData).Build();
+            Npoi.Core.SS.UserModel.ISheet sheet = new SheetBuilder(wb, testData).Build();
 
             Assert.AreEqual(sheet.PhysicalNumberOfRows, 3);
 
-            NPOI.SS.UserModel.IRow firstRow = sheet.GetRow(0);
-            NPOI.SS.UserModel.ICell firstCell = firstRow.GetCell(0);
+            Npoi.Core.SS.UserModel.IRow firstRow = sheet.GetRow(0);
+            Npoi.Core.SS.UserModel.ICell firstCell = firstRow.GetCell(0);
 
             Assert.AreEqual(firstCell.CellType, CellType.Numeric);
             Assert.AreEqual(1.0, firstCell.NumericCellValue, 0.00001);
 
 
-            NPOI.SS.UserModel.IRow secondRow = sheet.GetRow(1);
+            Npoi.Core.SS.UserModel.IRow secondRow = sheet.GetRow(1);
             Assert.IsNotNull(secondRow.GetCell(0));
             Assert.IsNull(secondRow.GetCell(2));
 
-            NPOI.SS.UserModel.IRow thirdRow = sheet.GetRow(2);
+            Npoi.Core.SS.UserModel.IRow thirdRow = sheet.GetRow(2);
             Assert.AreEqual(CellType.String, thirdRow.GetCell(0).CellType);
             String cellValue = thirdRow.GetCell(0).StringCellValue;
             Assert.AreEqual(testData[2][0].ToString(), cellValue);
@@ -65,10 +65,10 @@ namespace TestCases.SS.Util
         [Test]
         public void TestEmptyCells()
         {
-            NPOI.SS.UserModel.IWorkbook wb = new HSSFWorkbook();
-            NPOI.SS.UserModel.ISheet sheet = new SheetBuilder(wb, testData).SetCreateEmptyCells(true).Build();
+            Npoi.Core.SS.UserModel.IWorkbook wb = new HSSFWorkbook();
+            Npoi.Core.SS.UserModel.ISheet sheet = new SheetBuilder(wb, testData).SetCreateEmptyCells(true).Build();
 
-            NPOI.SS.UserModel.ICell emptyCell = sheet.GetRow(1).GetCell(1);
+            Npoi.Core.SS.UserModel.ICell emptyCell = sheet.GetRow(1).GetCell(1);
             Assert.IsNotNull(emptyCell);
             Assert.AreEqual(CellType.Blank, emptyCell.CellType);
         }

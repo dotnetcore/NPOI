@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-using NPOI.POIFS.Properties;
+using Npoi.Core.POIFS.Properties;
 
 namespace TestCases.POIFS.Storage
 {
-    public class LocalProperty : NPOI.POIFS.Properties.Property
+    public class LocalProperty : Npoi.Core.POIFS.Properties.Property
     {
         /**
          * Constructor TestProperty

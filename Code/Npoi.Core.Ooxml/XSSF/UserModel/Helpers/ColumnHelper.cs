@@ -16,10 +16,10 @@
 ==================================================================== */
 
 using System.Collections.Generic;
-using NPOI.OpenXmlFormats.Spreadsheet;
-using NPOI.SS.UserModel;
-using NPOI.XSSF.Util;
-namespace NPOI.XSSF.UserModel.Helpers
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.XSSF.Util;
+namespace Npoi.Core.XSSF.UserModel.Helpers
 {
     /**
      * Helper class for dealing with the Column Settings on
@@ -259,7 +259,7 @@ namespace NPOI.XSSF.UserModel.Helpers
                 if (col.Equals(overrideColumn)) haveOverrideColumn = overrideColumn;
                 while (currentIndex <= nextIndex && !(currentElements.Count == 0))
                 {
-                    NPOI.Util.Collections.HashSet<CT_Col> currentIndexElements = new NPOI.Util.Collections.HashSet<CT_Col>();
+                    Npoi.Core.Util.Collections.HashSet<CT_Col> currentIndexElements = new Npoi.Core.Util.Collections.HashSet<CT_Col>();
                     long currentElemIndex;
 
                     {

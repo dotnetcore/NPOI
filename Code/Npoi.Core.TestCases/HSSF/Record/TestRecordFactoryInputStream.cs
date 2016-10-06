@@ -20,10 +20,10 @@ namespace TestCases.HSSF.Record
     using System;
     using System.IO;
     using NUnit.Framework;
-    using NPOI;
-    using NPOI.HSSF.Record;
-    using NPOI.HSSF.Record.Crypto;
-    using NPOI.Util;
+    using Npoi.Core;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Crypto;
+    using Npoi.Core.Util;
 
     /**
      * Tests for {@link RecordFactoryInputStream}

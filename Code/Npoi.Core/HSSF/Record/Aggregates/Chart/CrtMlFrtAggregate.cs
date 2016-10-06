@@ -16,10 +16,10 @@
 ==================================================================== */
 
 using System.Collections.Generic;
-using NPOI.HSSF.Record.Chart;
-using NPOI.HSSF.Model;
+using Npoi.Core.HSSF.Record.Chart;
+using Npoi.Core.HSSF.Model;
 
-namespace NPOI.HSSF.Record.Aggregates.Chart
+namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 {
     /// <summary>
     /// CRTMLFRT = CrtMlFrt *CrtMlFrtContinue
