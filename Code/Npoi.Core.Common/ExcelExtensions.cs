@@ -141,55 +141,12 @@ namespace Npoi.Core
 				}
 			}
 		}
-		public static XElement AddSchemaAttribute(this XElement root, string schema)
-		{
-			var nsAttribute =
-				new XAttribute("xmlns", schema);
-			root.Add(nsAttribute);
-			return root;
-		}
 
 		public static string AttributeValue(this XElement element, string attribute, string sub = null)
 		{
 			return element.Attribute(attribute).Value ?? sub;
 		}
-
-		public static XElement SetAttrValue(this XElement element, string attribute, string value)
-		{
-			element.SetAttributeValue(attribute, value);
-			return element;
-			//var attr = element.Attribute(attribute);
-			//if (attr == null)
-			//{
-			//	attr = new XAttribute(attribute, value);
-			//}
-			//else
-			//{
-			//	attr.Value = value;
-			//}
-			//return element;
-		}
-
-		/// <summary>
-		/// Adds additional schema attributes to the root element
-		/// </summary>
-		/// <param name="root">The root element</param>
-		/// <param name="nameSpace">The namespace of the schema</param>
-		/// <param name="schema">The schema to apply</param>
-		public static XElement AddSchemaAttribute(this XElement root, XNamespace schema, string nameSpace)
-		{
-			var nsAttribute =
-				new XAttribute(XNamespace.Xmlns + nameSpace, schema);
-			root.Add(nsAttribute);
-			return root;
-		}
-
-		public static XElement SetAttribute(this XElement element, string name, string value)
-		{
-			element.SetAttributeValue(name, value);
-			return element;
-		}
-
+        
 		//public static XElement SetAttribute(this XElement root, string name, string value)
 		//{
 		//	var nsAttribute =

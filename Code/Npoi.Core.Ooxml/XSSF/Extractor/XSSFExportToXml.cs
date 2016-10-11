@@ -109,7 +109,7 @@ namespace Npoi.Core.XSSF.Extractor
 
             if (IsNamespaceDeclared())
             {
-                root = new XElement(rootElement).AddSchemaAttribute(this.GetNamespace());
+                root = new XElement((XNamespace)this.GetNamespace() + rootElement);
             }
             else
             {
@@ -131,7 +131,7 @@ namespace Npoi.Core.XSSF.Extractor
             {
                 String commonXPath = table.GetCommonXpath();
                 xpaths.Add(commonXPath);
-                tableMappings[commonXPath]=table;
+                tableMappings[commonXPath] = table;
             }
 
 
@@ -144,7 +144,7 @@ namespace Npoi.Core.XSSF.Extractor
                 if (SingleXmlCellsMappings.ContainsKey(xpath))
                     simpleXmlCell = SingleXmlCellsMappings[xpath];
                 else
-                    simpleXmlCell=null;
+                    simpleXmlCell = null;
                 XSSFTable table;
                 if (tableMappings.ContainsKey(xpath))
                     table = tableMappings[xpath];
@@ -228,8 +228,8 @@ namespace Npoi.Core.XSSF.Extractor
                 //Output the XML
                 XmlWriterSettings settings = new XmlWriterSettings();
                 //settings.OmitXmlDeclaration=false;
-                settings.Indent=true;
-                settings.Encoding=Encoding.GetEncoding(encoding);
+                settings.Indent = true;
+                settings.Encoding = Encoding.GetEncoding(encoding);
                 //create string from xml tree
                 using (XmlWriter xmlWriter = XmlWriter.Create(os, settings))
                 {
@@ -288,7 +288,7 @@ namespace Npoi.Core.XSSF.Extractor
             }
             if (node is XElement)
             {
-				XElement currentElement = (XElement)node;
+                XElement currentElement = (XElement)node;
                 currentElement.Value = value;
             }
             else
@@ -299,14 +299,14 @@ namespace Npoi.Core.XSSF.Extractor
 
         private String RemoveNamespace(String elementName)
         {
-            return Regex.IsMatch(elementName,".*:.*") ? elementName.Split(new char[]{':'})[1] : elementName;
+            return Regex.IsMatch(elementName, ".*:.*") ? elementName.Split(new char[] { ':' })[1] : elementName;
         }
 
 
 
         private XElement GetNodeByXPath(String xpath, XElement rootNode, XDocument doc, bool CreateMultipleInstances)
         {
-            String[] xpathTokens = xpath.Split(new char[]{'/'});
+            String[] xpathTokens = xpath.Split(new char[] { '/' });
 
 
             XElement currentNode = rootNode;
@@ -361,7 +361,7 @@ namespace Npoi.Core.XSSF.Extractor
             XElement selectedNode;
             if (IsNamespaceDeclared())
             {
-                selectedNode = new XElement(axisName).AddSchemaAttribute(GetNamespace());
+                selectedNode = new XElement((XNamespace)GetNamespace() + axisName);
             }
             else
             {
@@ -410,7 +410,7 @@ namespace Npoi.Core.XSSF.Extractor
             string xmlSchema = map.GetSchema();
             XDocument doc = XDocument.Load(new StringReader(xmlSchema));
 
-            String[] leftTokens = leftXpath.Split(new char[]{'/'});
+            String[] leftTokens = leftXpath.Split(new char[] { '/' });
             String[] rightTokens = rightXpath.Split(new char[] { '/' });
 
             int minLenght = leftTokens.Length < rightTokens.Length ? leftTokens.Length : rightTokens.Length;
@@ -426,7 +426,7 @@ namespace Npoi.Core.XSSF.Extractor
 
                 if (leftElementName.Equals(rightElementName))
                 {
-                    XElement complexType = GetComplexTypeForElement(leftElementName,doc.Document.Root, localComplexTypeRootNode);
+                    XElement complexType = GetComplexTypeForElement(leftElementName, doc.Document.Root, localComplexTypeRootNode);
                     localComplexTypeRootNode = complexType;
                 }
                 else
@@ -438,7 +438,8 @@ namespace Npoi.Core.XSSF.Extractor
                         if (leftIndex < rightIndex)
                         {
                             result = -1;
-                        } if (leftIndex > rightIndex)
+                        }
+                        if (leftIndex > rightIndex)
                         {
                             result = 1;
                         }
@@ -461,14 +462,14 @@ namespace Npoi.Core.XSSF.Extractor
             for (int i = 0; i < list.Count; i++)
             {
                 XElement node = list[i];
-                    if (node.Name.LocalName.Equals("element"))
+                if (node.Name.LocalName.Equals("element"))
+                {
+                    var nameAttribute = node.Attribute("name");
+                    if (nameAttribute.Value.Equals(RemoveNamespace(elementName)))
                     {
-                        var nameAttribute = node.Attribute("name");
-                        if (nameAttribute.Value.Equals(RemoveNamespace(elementName)))
-                        {
-                            indexOf = i;
-                            break;
-                        }
+                        indexOf = i;
+                        break;
+                    }
                 }
             }
             return indexOf;
@@ -489,19 +490,19 @@ namespace Npoi.Core.XSSF.Extractor
             for (int i = 0; i < list.Count; i++)
             {
                 XElement node = list[i];
-                    if (node.Name.LocalName.Equals("element"))
+                if (node.Name.LocalName.Equals("element"))
+                {
+                    var nameAttribute = node.Attribute("name");
+                    if (nameAttribute.Value.Equals(elementNameWithoutNamespace))
                     {
-                        var nameAttribute = node.Attribute("name");
-                        if (nameAttribute.Value.Equals(elementNameWithoutNamespace))
+                        var complexTypeAttribute = node.Attribute("type");
+                        if (complexTypeAttribute != null)
                         {
-                            var complexTypeAttribute = node.Attribute("type");
-                            if (complexTypeAttribute != null)
-                            {
-                                complexTypeName = complexTypeAttribute.Value;
-                                break;
-                            }
+                            complexTypeName = complexTypeAttribute.Value;
+                            break;
                         }
                     }
+                }
             }
             // Note: we expect that all the complex types are defined at root level
             if (!"".Equals(complexTypeName))

@@ -1,4 +1,4 @@
-/* ====================================================================
+﻿/* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
    this work for additional information regarding copyright ownership.
@@ -162,7 +162,7 @@ namespace Npoi.Core.SS.Converter
                 return;
 
             XElement table = htmlDocumentFacade.CreateTable();
-            table.SetAttribute("class", cssClassTable);
+            table.SetAttributeValue("class", cssClassTable);
 
             XElement tableBody = htmlDocumentFacade.CreateTableBody();
 
@@ -326,9 +326,9 @@ namespace Npoi.Core.SS.Converter
                 if (range != null)
                 {
                     if (range.FirstColumn != range.LastColumn)
-                        tableCellElement.SetAttribute("colspan", (range.LastColumn - range.FirstColumn + 1).ToString());
+                        tableCellElement.SetAttributeValue("colspan", (range.LastColumn - range.FirstColumn + 1).ToString());
                     if (range.FirstRow != range.LastRow)
-                        tableCellElement.SetAttribute("rowspan", (range.LastRow - range.FirstRow + 1).ToString());
+                        tableCellElement.SetAttributeValue("rowspan", (range.LastRow - range.FirstRow + 1).ToString());
                 }
 
                 bool emptyCell;
@@ -366,7 +366,7 @@ namespace Npoi.Core.SS.Converter
         }
         protected void ProcessRowNumber(IRow row, XElement tableRowNumberCellElement)
         {
-            tableRowNumberCellElement.SetAttribute("class", "rownumber");
+            tableRowNumberCellElement.SetAttributeValue("class", "rownumber");
             XText text = htmlDocumentFacade.CreateText(GetRowName(row));
             tableRowNumberCellElement.AppendChild(text);
         }
@@ -389,7 +389,7 @@ namespace Npoi.Core.SS.Converter
                     continue;
 
                 XElement col = htmlDocumentFacade.CreateTableColumn();
-                col.SetAttribute("width", GetColumnWidth(sheet, c).ToString());
+                col.SetAttributeValue("width", GetColumnWidth(sheet, c).ToString());
                 columnGroup.AppendChild(col);
             }
             table.AppendChild(columnGroup);
@@ -558,12 +558,12 @@ namespace Npoi.Core.SS.Converter
                 string mainCssClass = GetStyleClassName(workbook, cellStyle);
                 if (wrapInDivs)
                 {
-                    tableCellElement.SetAttribute("class", mainCssClass + " "
+                    tableCellElement.SetAttributeValue("class", mainCssClass + " "
                             + cssClassContainerCell);
                 }
                 else
                 {
-                    tableCellElement.SetAttribute("class", mainCssClass);
+                    tableCellElement.SetAttributeValue("class", mainCssClass);
                 }
 
                 if (noText)
@@ -598,7 +598,7 @@ namespace Npoi.Core.SS.Converter
             if (wrapInDivs)
             {
                 XElement outerDiv = htmlDocumentFacade.CreateBlock();
-                outerDiv.SetAttribute("class", this.cssClassContainerDiv);
+                outerDiv.SetAttributeValue("class", this.cssClassContainerDiv);
 
                 XElement innerDiv = htmlDocumentFacade.CreateBlock();
                 StringBuilder innerDivStyle = new StringBuilder();

@@ -99,41 +99,44 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Marshallers
 		{
 			// Building xml
 			var xmlOutDoc = new XDocument();
-			// make something like <Relationships
-			// xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-			System.Xml.XmlNamespaceManager xmlnsManager = null;
+            // make something like <Relationships
+            // xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+            System.Xml.XmlNamespaceManager xmlnsManager = null;
 			using (var reader = xmlOutDoc.CreateReader())
 			{
 				xmlnsManager = new System.Xml.XmlNamespaceManager(reader.NameTable);
 			}
 			xmlnsManager.AddNamespace("x", PackageNamespaces.RELATIONSHIPS);
 
-			var root = new XElement(PackageRelationship.RELATIONSHIPS_TAG_NAME).AddSchemaAttribute(PackageNamespaces.RELATIONSHIPS);
+		    XNamespace ns = PackageNamespaces.RELATIONSHIPS;
+
+            var root = new XElement(ns + PackageRelationship.RELATIONSHIPS_TAG_NAME);
+		    
 			xmlOutDoc.Add(root);
 
-			// <Relationship
-			// TargetMode="External"
-			// Id="rIdx"
-			// Target="http://www.custom.com/images/pic1.jpg"
-			// Type="http://www.custom.com/external-resource"/>
+            // <Relationship
+            // TargetMode="External"
+            // Id="rIdx"
+            // Target="http://www.custom.com/images/pic1.jpg"
+            // Type="http://www.custom.com/external-resource"/>
 
-			Uri sourcePartURI = PackagingUriHelper
+            Uri sourcePartURI = PackagingUriHelper
 					.GetSourcePartUriFromRelationshipPartUri(relPartName.URI);
 
 			foreach (PackageRelationship rel in rels)
 			{
 				// the relationship element
-				XElement relElem = new XElement(PackageRelationship.RELATIONSHIP_TAG_NAME).AddSchemaAttribute(PackageNamespaces.RELATIONSHIPS);
+				XElement relElem = new XElement(ns + PackageRelationship.RELATIONSHIP_TAG_NAME);
 
-				// the relationship ID
-				relElem.SetAttribute(PackageRelationship.ID_ATTRIBUTE_NAME, rel.Id);
+                // the relationship ID
+                relElem.SetAttributeValue(PackageRelationship.ID_ATTRIBUTE_NAME, rel.Id);
 
-				// the relationship Type
-				relElem.SetAttribute(PackageRelationship.TYPE_ATTRIBUTE_NAME, rel
+                // the relationship Type
+                relElem.SetAttributeValue(PackageRelationship.TYPE_ATTRIBUTE_NAME, rel
 						.RelationshipType);
 
-				// the relationship Target
-				String targetValue;
+                // the relationship Target
+                String targetValue;
 				Uri uri = rel.TargetUri;
 				if (rel.TargetMode == TargetMode.External)
 				{
@@ -141,9 +144,8 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Marshallers
 					//  alter it etc
 					targetValue = uri.OriginalString;
 
-					// add TargetMode attribute (as it is external link external)
-					relElem.SetAttribute(
-							PackageRelationship.TARGET_MODE_ATTRIBUTE_NAME,
+                    // add TargetMode attribute (as it is external link external)
+                    relElem.SetAttributeValue(PackageRelationship.TARGET_MODE_ATTRIBUTE_NAME,
 							"External");
 				}
 				else
@@ -151,9 +153,9 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Marshallers
 					targetValue = PackagingUriHelper.RelativizeUri(
 							sourcePartURI, rel.TargetUri, true).ToString();
 				}
-				relElem.SetAttribute(PackageRelationship.TARGET_ATTRIBUTE_NAME,
+                relElem.SetAttributeValue(PackageRelationship.TARGET_ATTRIBUTE_NAME,
 						targetValue);
-				xmlOutDoc.Document.Add(relElem);
+				root.AppendChild(relElem);
 			}
 
 			//xmlOutDoc.Normalize();

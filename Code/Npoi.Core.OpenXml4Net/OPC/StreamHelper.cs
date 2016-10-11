@@ -34,12 +34,25 @@ namespace Npoi.Core.OpenXml4Net.OPC
 			settings.Encoding = Encoding.UTF8;
 			settings.OmitXmlDeclaration = false;
 			XmlWriter writer = XmlWriter.Create(outStream, settings);
-			//XmlWriter writer = new XmlTextWriter(outStream,Encoding.UTF8);
-			xmlContent.WriteTo(writer);
-			writer.Flush();
-		}
+            xmlContent.WriteTo(writer);
+            writer.Flush();
+            //XmlWriter writer = new XmlTextWriter(outStream,Encoding.UTF8);
 
-		/**
+            // For debugging the migration from .NET to .NET Core
+		    //var outFile = @"D:\temp\excel\out.new.xml";
+		    //using (var fs = new FileStream(outFile, FileMode.Create))
+      //      {
+      //          XmlWriter fswriter = XmlWriter.Create(fs, settings);
+      //          xmlContent.WriteTo(fswriter);
+      //          fswriter.Flush();
+      //      }
+		    //if (File.ReadAllText(outFile).Contains("dcterms:created"))
+		    //{
+		        
+		    //}
+        }
+
+        /**
          * Copy the input stream into the output stream.
          *
          * @param inStream
@@ -48,7 +61,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *            The destination stream.
          * @return <b>true</b> if the operation succeed, else return <b>false</b>.
          */
-		public static void CopyStream(Stream inStream, Stream outStream)
+        public static void CopyStream(Stream inStream, Stream outStream)
 		{
 			byte[] buffer = new byte[1024];
 			int bytesRead = 0;

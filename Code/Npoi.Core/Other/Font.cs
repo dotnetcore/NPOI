@@ -2,11 +2,14 @@ namespace System.Drawing
 {
 	public class Font : IDisposable
 	{
-		public Font(object o, int i, object style)
+		public Font(string name, int size, object style)
 		{
+		    Name = name;
+		    Size = size;
+		    Style = style;
 		}
 
-		public Font(string name, float size)
+	    public Font(string name, float size)
 		{
 			Name = name;
 			Size = size;

@@ -148,10 +148,10 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
             if (overrideContentType == null)
                 overrideContentType = new SortedList<PackagePartName, String>();
 
-            if(!overrideContentType.ContainsKey(partName))
+            if (!overrideContentType.ContainsKey(partName))
                 overrideContentType.Add(partName, contentType);
             else
-                overrideContentType[partName]= contentType;
+                overrideContentType[partName] = contentType;
         }
 
         /**
@@ -383,7 +383,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
                 XmlNamespaceManager nsMgr = new XmlNamespaceManager(xpathnav.NameTable);
                 nsMgr.AddNamespace("x", TYPES_NAMESPACE_URI);
 
-                XPathNodeIterator iterator = xpathnav.Select("//x:"+DEFAULT_TAG_NAME,nsMgr);
+                XPathNodeIterator iterator = xpathnav.Select("//x:" + DEFAULT_TAG_NAME, nsMgr);
                 while (iterator.MoveNext())
                 {
                     // Default content types
@@ -423,13 +423,21 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
         public bool Save(Stream outStream)
         {
             var xmlOutDoc = new XDocument();
-	        XmlNamespaceManager xmlnm = null;
-			using (var reader = xmlOutDoc.CreateReader())
-	        {
-				xmlnm = new XmlNamespaceManager(reader.NameTable);
-			}
-			xmlnm.AddNamespace("x", TYPES_NAMESPACE_URI);
-            XElement typesElem = new XElement(TYPES_TAG_NAME).AddSchemaAttribute(TYPES_NAMESPACE_URI);
+            Action save = () =>
+            {
+                using (var fs = new FileStream(@"D:\temp\excel\new.xml", FileMode.Create))
+                {
+                    xmlOutDoc.Save(fs);
+                }
+            };
+            XmlNamespaceManager xmlnm = null;
+            using (var reader = xmlOutDoc.CreateReader())
+            {
+                xmlnm = new XmlNamespaceManager(reader.NameTable);
+            }
+            xmlnm.AddNamespace("x", TYPES_NAMESPACE_URI);
+            XNamespace ns = TYPES_NAMESPACE_URI;
+            XElement typesElem = new XElement(ns + TYPES_TAG_NAME);
             xmlOutDoc.Add(typesElem);
 
             // Adding default types
@@ -469,13 +477,12 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
         private void AppendSpecificTypes(XDocument xmldoc, XElement root,
                 KeyValuePair<PackagePartName, String> entry)
         {
-            var elem = new XElement(OVERRIDE_TAG_NAME).AddSchemaAttribute(PackageNamespaces.CONTENT_TYPES);
+            XNamespace ns = PackageNamespaces.CONTENT_TYPES;
+            var elem = new XElement(ns + OVERRIDE_TAG_NAME);
             root.AppendChild(elem);
-            elem.SetAttribute(
-                    PART_NAME_ATTRIBUTE_NAME,
+            elem.SetAttributeValue(PART_NAME_ATTRIBUTE_NAME,
                     ((PackagePartName)entry.Key).Name);
-            elem.SetAttribute(
-                    CONTENT_TYPE_ATTRIBUTE_NAME, entry.Value);
+            elem.SetAttributeValue(CONTENT_TYPE_ATTRIBUTE_NAME, entry.Value);
         }
 
         /**
@@ -489,10 +496,11 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          */
         private void AppendDefaultType(XDocument xmldoc, XElement root, KeyValuePair<String, String> entry)
         {
-            var elem = new XElement(DEFAULT_TAG_NAME).AddSchemaAttribute(PackageNamespaces.CONTENT_TYPES);
+            XNamespace ns = PackageNamespaces.CONTENT_TYPES;
+            var elem = new XElement(ns + DEFAULT_TAG_NAME);
             root.AppendChild(elem);
-            elem.SetAttribute(EXTENSION_ATTRIBUTE_NAME, entry.Key);
-            elem.SetAttribute(CONTENT_TYPE_ATTRIBUTE_NAME, entry.Value);
+            elem.SetAttributeValue(EXTENSION_ATTRIBUTE_NAME, entry.Key);
+            elem.SetAttributeValue(CONTENT_TYPE_ATTRIBUTE_NAME, entry.Value);
         }
 
         /**

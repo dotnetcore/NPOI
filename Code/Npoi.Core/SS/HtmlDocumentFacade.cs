@@ -48,7 +48,7 @@ namespace Npoi.Core.SS
 			body = document.CreateElement("body");
 			head = document.CreateElement("head");
 			stylesheetElement = document.CreateElement("style");
-			stylesheetElement.SetAttribute("type", "text/css");
+            stylesheetElement.SetAttributeValue("type", "text/css");
 
 			html.AppendChild(head);
 			html.AppendChild(body);
@@ -61,8 +61,8 @@ namespace Npoi.Core.SS
 		public void AddCharset()
 		{
 			XElement meta = document.CreateElement("meta");
-			meta.SetAttribute("http-equiv", "Content-Type");
-			meta.SetAttribute("content", "text/html; charset=UTF-8");
+			meta.SetAttributeValue("http-equiv", "Content-Type");
+			meta.SetAttributeValue("content", "text/html; charset=UTF-8");
 			head.AppendChild(meta);
 		}
 		public void AddAuthor(string value)
@@ -82,8 +82,8 @@ namespace Npoi.Core.SS
 		public void AddMeta(string name, string value)
 		{
 			XElement meta = document.CreateElement("meta");
-			meta.SetAttribute("name", name);
-			meta.SetAttribute("content", value);
+			meta.SetAttributeValue("name", name);
+			meta.SetAttributeValue("content", value);
 			head.AppendChild(meta);
 		}
 
@@ -104,7 +104,7 @@ namespace Npoi.Core.SS
 		public XElement CreateBookmark(string name)
 		{
 			XElement basicLink = document.CreateElement("a");
-			basicLink.SetAttribute("name", name);
+			basicLink.SetAttributeValue("name", name);
 			return basicLink;
 		}
 
@@ -121,14 +121,14 @@ namespace Npoi.Core.SS
 		public XElement CreateHyperlink(string internalDestination)
 		{
 			XElement basicLink = document.CreateElement("a");
-			basicLink.SetAttribute("href", internalDestination);
+			basicLink.SetAttributeValue("href", internalDestination);
 			return basicLink;
 		}
 
 		public XElement CreateImage(string src)
 		{
 			XElement result = document.CreateElement("img");
-			result.SetAttribute("src", src);
+			result.SetAttributeValue("src", src);
 			return result;
 		}
 
