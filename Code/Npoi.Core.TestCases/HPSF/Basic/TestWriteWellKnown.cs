@@ -27,6 +27,7 @@ namespace TestCases.HPSF.Basic
     using Npoi.Core.POIFS.FileSystem;
 
     using NUnit.Framework;
+    using System.Collections.Generic;
 
     /**
      * Tests HPSF's high-level writing functionality for the well-known property
@@ -613,7 +614,7 @@ namespace TestCases.HPSF.Basic
                 /* The document does not have custom properties. */
                 return;
 
-            foreach (DictionaryEntry de in cps)
+            foreach (var de in cps)
             {
                 CustomProperty cp = (CustomProperty)de.Value;
                 Assert.IsNotNull(cp.Name);
@@ -698,7 +699,7 @@ namespace TestCases.HPSF.Basic
             long ID_2 = 3;
             String NAME_1 = "Schlüssel";
             String VALUE_1 = "Wert 1";
-            Hashtable dictionary = new Hashtable();
+            Dictionary<object,object> dictionary = new Dictionary<object,object>();
 
             DocumentSummaryInformation dsi = PropertySetFactory.CreateDocumentSummaryInformation();
             CustomProperties cps;

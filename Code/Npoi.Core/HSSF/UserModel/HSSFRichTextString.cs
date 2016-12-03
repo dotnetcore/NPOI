@@ -147,7 +147,7 @@ namespace Npoi.Core.HSSF.UserModel
             _string = CloneStringIfRequired();
             System.Collections.Generic.List<UnicodeString.FormatRun> formatting = _string.FormatIterator();
 
-            ArrayList deletedFR = new ArrayList();
+            List<object> deletedFR = new List<object>();
             if (formatting != null)
             {
                 IEnumerator<UnicodeString.FormatRun> formats = formatting.GetEnumerator();

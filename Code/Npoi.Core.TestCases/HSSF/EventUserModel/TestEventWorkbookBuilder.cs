@@ -31,7 +31,7 @@ namespace TestCases.HSSF.EventUserModel
 
     using NUnit.Framework;
     using Npoi.Core.SS.Formula.PTG;
-
+    using System.Collections.Generic;
 
     [TestFixture]
     public class TestEventWorkbookBuilder
@@ -154,8 +154,8 @@ namespace TestCases.HSSF.EventUserModel
         private class MockHSSFListener : IHSSFListener
         {
             public MockHSSFListener() { }
-            private ArrayList _records = new ArrayList();
-            private ArrayList _frecs = new ArrayList();
+            private List<Record> _records = new List<Record>();
+            private List<Record> _frecs = new List<Record>();
 
             public void ProcessRecord(Record record)
             {
@@ -167,7 +167,7 @@ namespace TestCases.HSSF.EventUserModel
             }
             public FormulaRecord[] GetFormulaRecords()
             {
-                FormulaRecord[] result = (FormulaRecord[])_frecs.ToArray(typeof(FormulaRecord));
+                FormulaRecord[] result = (FormulaRecord[])_frecs.ToArray();
                 return result;
             }
         }

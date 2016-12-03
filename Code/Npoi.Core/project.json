@@ -2,11 +2,11 @@
   "version": "1.0.2-*",
 
   "dependencies": {
-    "ICSharpCode.SharpZipLib": "1.0.0",
     "System.Security.Cryptography.Algorithms": "4.2.0",
     "NETStandard.Library": "1.6.0",
     "System.Threading.Thread": "4.0.0",
-    "Npoi.Core.Common": "1.0.0-*"
+    "Npoi.Core.Common": "1.0.2-*",
+    "SharpZipLib.NETStandard": "0.86.0.1"
   },
 
   "frameworks": {

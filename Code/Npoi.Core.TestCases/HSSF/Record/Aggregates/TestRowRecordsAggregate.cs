@@ -138,7 +138,7 @@ namespace TestCases.HSSF.Record.Aggregates
 			//new UnknownRecord(0x5555, "dummydata".getBytes()),
 			//new ContinueRecord("moredummydata".getBytes()),
 		};
-            RecordStream rs = new RecordStream(Arrays.AsList(inRecs), 0);
+            RecordStream rs = new RecordStream(inRecs, 0);
             RowRecordsAggregate rra;
             try
             {

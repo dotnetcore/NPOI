@@ -38,11 +38,13 @@ namespace TestCases.POIFS.Storage
     using Npoi.Core.Util;
     using Npoi.Core.POIFS.Properties;
     using Npoi.Core.POIFS.FileSystem;
+    using System.Collections.Generic;
+
     /**
-     * Class to Test SmallBlockTableWriter functionality
-     *
-     * @author Marc Johnson
-     */
+* Class to Test SmallBlockTableWriter functionality
+*
+* @author Marc Johnson
+*/
     [TestFixture]
     public class TestSmallBlockTableWriter
     {
@@ -65,7 +67,7 @@ namespace TestCases.POIFS.Storage
         [Test]
         public void TestWritingConstructor()
         {
-            ArrayList documents = new ArrayList();
+            List<object> documents = new List<object>();
 
             documents.Add(
                 new POIFSDocument(

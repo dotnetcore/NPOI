@@ -83,7 +83,7 @@ namespace Npoi.Core.HSSF.Model
         [NonSerialized]
         private PageSettingsBlock _psBlock;
         protected IMargin[] margins = null;
-        //protected IList mergedRecords = new ArrayList();
+        //protected IList mergedRecords = new List<object>();
 
         [NonSerialized]
         protected SelectionRecord selection = null;
@@ -2029,7 +2029,7 @@ namespace Npoi.Core.HSSF.Model
             if (rowBreaks == null)
                 return;
             IEnumerator iterator = breaks.GetBreaksEnumerator();
-            IList ShiftedBreak = new ArrayList();
+            IList ShiftedBreak = new List<object>();
             while (iterator.MoveNext())
             {
                 PageBreakRecord.Break breakItem = (PageBreakRecord.Break)iterator.Current;

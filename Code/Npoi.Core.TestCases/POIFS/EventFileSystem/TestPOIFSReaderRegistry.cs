@@ -15,13 +15,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-   
+
 using System;
 using System.Text;
 using System.Collections;
 using Npoi.Core.POIFS.FileSystem;
 using NUnit.Framework;
 using Npoi.Core.POIFS.EventFileSystem;
+using System.Collections.Generic;
+
 namespace TestCases.POIFS.EventFileSystem
 {
     /**
@@ -96,7 +98,7 @@ namespace TestCases.POIFS.EventFileSystem
                         Assert.IsTrue(!listeners.MoveNext());
                     else
                     {
-                        ArrayList registeredListeners = new ArrayList();
+                        List<object> registeredListeners = new List<object>();
 
                         while (listeners.MoveNext())
                         {
@@ -123,7 +125,7 @@ namespace TestCases.POIFS.EventFileSystem
                 {
                     IEnumerator listeners = registry.GetListeners(paths[k], names[n]);
 
-                    ArrayList registeredListeners = new ArrayList();
+                    List<object> registeredListeners = new List<object>();
 
                     while (listeners.MoveNext())
                     {

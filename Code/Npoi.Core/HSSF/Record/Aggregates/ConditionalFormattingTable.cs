@@ -25,6 +25,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.PTG;
+    using System.Collections.Generic;
 
     /**
      * Holds all the conditional formatting for a workbook sheet.<p/>
@@ -43,13 +44,13 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          */
         public ConditionalFormattingTable()
         {
-            _cfHeaders = new ArrayList();
+            _cfHeaders = new List<object>();
         }
 
         public ConditionalFormattingTable(RecordStream rs)
         {
 
-            IList temp = new ArrayList();
+            IList temp = new List<object>();
             while (rs.PeekNextClass() == typeof(CFHeaderRecord))
             {
                 temp.Add(CFRecordsAggregate.CreateCFAggregate(rs));

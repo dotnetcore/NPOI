@@ -26,6 +26,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
     using Npoi.Core.SS.Formula;
     using Npoi.Core.HSSF.Model;
     using Npoi.Core.SS.Formula.PTG;
+    using System.Collections.Generic;
 
     /**
      *
@@ -145,7 +146,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         }
         public CellValueRecordInterface[] GetValueRecords()
         {
-            ArrayList temp = new ArrayList();
+            List<CellValueRecordInterface> temp = new List<CellValueRecordInterface>();
 
             for (int i = 0; i < records.Length; i++)
             {
@@ -163,7 +164,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                     }
                 }
             }
-             return (CellValueRecordInterface[])temp.ToArray(typeof(CellValueRecordInterface));
+             return (CellValueRecordInterface[])temp.ToArray();
         }
         public int PhysicalNumberOfCells
         {

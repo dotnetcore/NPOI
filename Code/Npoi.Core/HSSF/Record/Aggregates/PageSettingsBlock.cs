@@ -469,7 +469,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         private static void ShiftBreaks(PageBreakRecord breaks, int start, int stop, int count) {
 
 		IEnumerator iterator = breaks.GetBreaksEnumerator();
-		IList shiftedBreak = new ArrayList();
+		IList shiftedBreak = new List<object>();
 		while(iterator.MoveNext())
 		{
 			PageBreakRecord.Break breakItem = (PageBreakRecord.Break)iterator.Current;

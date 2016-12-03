@@ -19,6 +19,7 @@ namespace Npoi.Core.HSSF.Model
 {
     using Npoi.Core.DDF;
     using System.Collections;
+    using System.Collections.Generic;
 
 
     /**
@@ -29,7 +30,7 @@ namespace Npoi.Core.HSSF.Model
     public class DrawingManager
     {
         EscherDggRecord dgg;
-        Hashtable dgMap = new Hashtable(); // key = Short(drawingId), value=EscherDgRecord
+        Dictionary<object, object> dgMap = new Dictionary<object, object>(); // key = Short(drawingId), value=EscherDgRecord
 
         public DrawingManager(EscherDggRecord dgg)
         {

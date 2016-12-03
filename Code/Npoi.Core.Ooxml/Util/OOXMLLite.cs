@@ -71,7 +71,7 @@
 
 //    void build() {
 
-//        List<String> lst = new ArrayList<String>();
+//        List<String> lst = new List<object><String>();
 //        //collect unit tests
 //        Console.WriteLine("Collecting unit tests from " + _testDir);
 //        collectTests(_testDir, _testDir, lst, ".+?\\.Test.+?\\.class$");

@@ -18,7 +18,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         private CT_PPr pPrField;
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ParagraphItemsChoiceType> itemsElementNameField;
 
@@ -35,7 +35,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         public CT_P()
         {
             this.itemsElementNameField = new List<ParagraphItemsChoiceType>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
             this.pPrField = new CT_PPr();
         }
 
@@ -349,7 +349,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("smartTag", typeof(CT_SmartTagRun), Order = 1)]
         [XmlElement("subDoc", typeof(CT_Rel), Order = 1)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {

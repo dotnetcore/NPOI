@@ -37,7 +37,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
     {
         private int firstrow = -1;
         private int lastrow = -1;
-        private SortedList _rowRecords;
+        private SortedList<object,object> _rowRecords;
         //private int size = 0;
         private ValueRecordsAggregate _valuesAgg;
         private List<Record> _unknownRecords;
@@ -61,7 +61,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         }
         private RowRecordsAggregate(SharedValueManager svm)
         {
-            _rowRecords = new SortedList();
+            _rowRecords = new SortedList<object, object>();
             _valuesAgg = new ValueRecordsAggregate();
             _unknownRecords = new List<Record>();
             _sharedValueManager = svm;

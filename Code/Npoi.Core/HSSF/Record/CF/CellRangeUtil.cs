@@ -98,7 +98,7 @@ namespace Npoi.Core.HSSF.Record.CF
             {
                 return cellRanges;
             }
-            //ArrayList temp = MergeCellRanges(Npoi.Core.Util.Arrays.AsList(cellRanges));
+            //List<object> temp = MergeCellRanges(Npoi.Core.Util.(cellRanges));
             List<CellRangeAddress> lst = new List<CellRangeAddress>(cellRanges);
             List<CellRangeAddress> temp = MergeCellRanges(lst);
             return temp.ToArray();
@@ -219,7 +219,7 @@ namespace Npoi.Core.HSSF.Record.CF
         //private static CellRangeAddress[] SliceUp(CellRangeAddress crA, CellRangeAddress crB)
         //{
 
-        //    ArrayList temp = new ArrayList();
+        //    List<object> temp = new List<object>();
 
         //    // Chop up range horizontally and vertically
         //    temp.Add(crB);
@@ -251,10 +251,10 @@ namespace Npoi.Core.HSSF.Record.CF
         //    return ToArray(temp);
         //}
 
-        //private static ArrayList CutHorizontally(int cutRow, ArrayList input)
+        //private static List<object> CutHorizontally(int cutRow, List<object> input)
         //{
 
-        //    ArrayList result = new ArrayList();
+        //    List<object> result = new List<object>();
         //    CellRangeAddress[] crs = ToArray(input);
         //    for (int i = 0; i < crs.Length; i++)
         //    {
@@ -271,10 +271,10 @@ namespace Npoi.Core.HSSF.Record.CF
         //    }
         //    return result;
         //}
-        //private static ArrayList CutVertically(int cutColumn, ArrayList input)
+        //private static List<object> CutVertically(int cutColumn, List<object> input)
         //{
 
-        //    ArrayList result = new ArrayList();
+        //    List<object> result = new List<object>();
         //    CellRangeAddress[] crs = ToArray(input);
         //    for (int i = 0; i < crs.Length; i++)
         //    {
@@ -293,10 +293,10 @@ namespace Npoi.Core.HSSF.Record.CF
         //}
 
 
-        private static CellRangeAddress[] ToArray(ArrayList temp)
+        private static CellRangeAddress[] ToArray(List<CellRangeAddress> temp)
         {
             CellRangeAddress[] result = new CellRangeAddress[temp.Count];
-            result = (CellRangeAddress[])temp.ToArray(typeof(CellRangeAddress));
+            result = (CellRangeAddress[])temp.ToArray();
             return result;
         }
 

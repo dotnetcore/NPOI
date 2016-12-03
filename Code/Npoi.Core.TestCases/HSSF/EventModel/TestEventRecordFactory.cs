@@ -28,6 +28,7 @@ namespace TestCases.HSSF.EventModel
     using Npoi.Core.POIFS.FileSystem;
 
     using NUnit.Framework;
+    using System.Collections.Generic;
 
 
     /**
@@ -69,7 +70,7 @@ namespace TestCases.HSSF.EventModel
             bool[] wascalled = { false, }; // hack to pass boolean by ref into inner class
 
             IERFListener listener = new ERFListener1(ref wascalled);
-            ArrayList param = new ArrayList();
+            List<object> param = new List<object>();
             param.Add(BOFRecord.sid);
             EventRecordFactory factory = new EventRecordFactory(listener, param);
 
@@ -210,7 +211,7 @@ namespace TestCases.HSSF.EventModel
             int[] recCnt =  {0} ;
             int[] offset =  {0} ;
             IERFListener listener = new ERFListener2(ref data, ref recCnt,ref offset);
-            ArrayList sids = new ArrayList(2);
+            List<object> sids = new List<object>(2);
             sids.Add((short)-256);
             sids.Add((short)0x3C);
 

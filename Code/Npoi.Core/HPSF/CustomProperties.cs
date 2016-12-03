@@ -31,6 +31,7 @@ namespace Npoi.Core.HPSF
     using System.Collections;
     using Npoi.Core.HPSF.Wellknown;
     using System.Text;
+    using System.Collections.Generic;
 
 
     /// <summary>
@@ -57,18 +58,18 @@ namespace Npoi.Core.HPSF
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
     /// @since 2006-02-09
     /// </summary>
-    public class CustomProperties : Hashtable
+    public class CustomProperties : Dictionary<object,object>
     {
 
         /**
          * Maps property IDs To property names.
          */
-        private Hashtable dictionaryIDToName = new Hashtable();
+        private Dictionary<object,object> dictionaryIDToName = new Dictionary<object, object>();
 
         /**
          * Maps property names To property IDs.
          */
-        private Hashtable dictionaryNameToID = new Hashtable();
+        private Dictionary<object, object> dictionaryNameToID = new Dictionary<object, object>();
 
         /**
          * Tells whether this object is pure or not.
@@ -351,41 +352,41 @@ namespace Npoi.Core.HPSF
         }
         /**
      * Checks against both String Name and Long ID
-     */
-        public override bool ContainsKey(Object key)
-        {
-            if (key is long)
-            {
-                return base.ContainsKey((long)key);
-            }
-            if (key is String)
-            {
-                return base.ContainsKey((long)dictionaryNameToID[(key)]);
-            }
-            return false;
-        }
+     //*/
+     //   public override bool ContainsKey(Object key)
+     //   {
+     //       if (key is long)
+     //       {
+     //           return base.ContainsKey((long)key);
+     //       }
+     //       if (key is String)
+     //       {
+     //           return base.ContainsKey((long)dictionaryNameToID[(key)]);
+     //       }
+     //       return false;
+     //   }
 
-        /**
-         * Checks against both the property, and its values. 
-         */
-        public override bool ContainsValue(Object value)
-        {
-            if (value is CustomProperty)
-            {
-                return base.ContainsValue(value);
-            }
-            else
-            {
-                foreach (object cp in base.Values)
-                {
-                    if ((cp as CustomProperty).Value == value)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
+     //   /**
+     //    * Checks against both the property, and its values. 
+     //    */
+     //   public override bool ContainsValue(Object value)
+     //   {
+     //       if (value is CustomProperty)
+     //       {
+     //           return base.ContainsValue(value);
+     //       }
+     //       else
+     //       {
+     //           foreach (object cp in base.Values)
+     //           {
+     //               if ((cp as CustomProperty).Value == value)
+     //               {
+     //                   return true;
+     //               }
+     //           }
+     //       }
+     //       return false;
+     //   }
 
         /// <summary>
         /// Gets the dictionary which Contains IDs and names of the named custom

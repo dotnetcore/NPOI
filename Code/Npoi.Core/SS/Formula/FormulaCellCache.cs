@@ -18,6 +18,7 @@
 namespace Npoi.Core.SS.Formula
 {
     using System.Collections;
+    using System.Collections.Generic;
 
     public interface IEntryOperation
     {
@@ -31,12 +32,12 @@ namespace Npoi.Core.SS.Formula
     public class FormulaCellCache
     {
 
-        private Hashtable _formulaEntriesByCell;
+        private Dictionary<object, object> _formulaEntriesByCell;
 
         public FormulaCellCache()
         {
             // assumes HSSFCell does not override HashCode or Equals, otherwise we need IdentityHashMap
-            _formulaEntriesByCell = new Hashtable();
+            _formulaEntriesByCell = new Dictionary<object, object>();
         }
 
         public CellCacheEntry[] GetCacheEntries()

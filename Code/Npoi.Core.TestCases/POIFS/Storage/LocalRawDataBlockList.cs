@@ -94,9 +94,9 @@ namespace TestCases.POIFS.Storage
         }
 
         /**
-         * create a BAT block and Add it to the ArrayList
+         * create a BAT block and Add it to the List<object>
          *
-         * @param start_index initial index for the block ArrayList
+         * @param start_index initial index for the block List<object>
          *
          * @exception IOException
          */
@@ -128,7 +128,7 @@ namespace TestCases.POIFS.Storage
         }
 
         /**
-         * fill the ArrayList with dummy blocks
+         * fill the List<object> with dummy blocks
          *
          * @param count of blocks
          *
@@ -189,7 +189,7 @@ namespace TestCases.POIFS.Storage
         }
 
         /**
-         * Remove the specified block from the ArrayList
+         * Remove the specified block from the List<object>
          *
          * @param index the index of the specified block; if the index Is
          *              out of range, that's ok

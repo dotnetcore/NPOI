@@ -25,6 +25,7 @@ namespace Npoi.Core.HSSF.Record.Chart
     using System.Collections;
     using System.Text;
     using Npoi.Core.Util;
+    using System.Collections.Generic;
 
 
     /*
@@ -75,7 +76,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
         }
 
-        private ArrayList m_formats;
+        private List<object> m_formats;
 
         public AlRunsRecord()
             : base()
@@ -90,7 +91,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             CTFormat ctf;
             if (m_formats == null)
             {
-                m_formats = new ArrayList(m_recs);
+                m_formats = new List<object>(m_recs);
             }
             for (idx = 0; idx < m_recs; idx++)
             {

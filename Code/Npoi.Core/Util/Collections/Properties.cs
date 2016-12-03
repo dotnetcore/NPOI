@@ -28,6 +28,7 @@ using System;
 using System.Text;
 using System.IO;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Npoi.Core.Util.Collections
 {
@@ -36,7 +37,7 @@ namespace Npoi.Core.Util.Collections
     /// </summary>
     public class Properties
     {
-        private Hashtable _col;
+        private Dictionary<object,object> _col;
         private const string whiteSpaceChars = " \t\r\n\f";
         private const string keyValueSeparators = "=: \t\r\n\f";
         private const string strictKeyValueSeparators = "=:";
@@ -46,7 +47,7 @@ namespace Npoi.Core.Util.Collections
         /// </summary>
         public Properties()
         {
-            _col = new Hashtable();
+            _col = new Dictionary<object,object>();
         }
 
         /// <summary>

@@ -24,7 +24,7 @@
  * Contributors:
  * 
  * ==============================================================*/
-        
+
 
 using System;
 using System.IO;
@@ -35,6 +35,7 @@ using Npoi.Core.POIFS.Storage;
 using Npoi.Core.Util;
 using Npoi.Core.POIFS.FileSystem;
 using Npoi.Core.POIFS.Common;
+using System.Collections.Generic;
 
 namespace TestCases.POIFS.Storage
 {
@@ -68,7 +69,7 @@ namespace TestCases.POIFS.Storage
         public void TestConvert1()
         {
             MemoryStream stream = new MemoryStream(testData);
-            ArrayList documents = new ArrayList();
+            List<BlockWritable> documents = new List<BlockWritable>();
 
             while (true)
             {
@@ -81,7 +82,7 @@ namespace TestCases.POIFS.Storage
                 }
             }
             SmallDocumentBlock[] results =
-                SmallDocumentBlock.Convert(POIFSConstants.SMALLER_BIG_BLOCK_SIZE_DETAILS, (BlockWritable[])documents.ToArray(typeof(DocumentBlock)), testDataSize);
+                SmallDocumentBlock.Convert(POIFSConstants.SMALLER_BIG_BLOCK_SIZE_DETAILS, (BlockWritable[])documents.ToArray(), testDataSize);
 
             Assert.AreEqual((testDataSize + 63) / 64, results.Length, "checking correct result size: ");
             MemoryStream output = new MemoryStream();
@@ -158,7 +159,7 @@ namespace TestCases.POIFS.Storage
         public void TestRead()
         {
             MemoryStream stream = new MemoryStream(testData);
-            ArrayList documents = new ArrayList();
+            List<BlockWritable> documents = new List<BlockWritable>();
 
             while (true)
             {
@@ -171,7 +172,7 @@ namespace TestCases.POIFS.Storage
                 }
             }
             SmallDocumentBlock[] blocks =
-                SmallDocumentBlock.Convert(POIFSConstants.SMALLER_BIG_BLOCK_SIZE_DETAILS, (BlockWritable[])documents.ToArray(typeof(DocumentBlock)), testDataSize);
+                SmallDocumentBlock.Convert(POIFSConstants.SMALLER_BIG_BLOCK_SIZE_DETAILS, (BlockWritable[])documents.ToArray(), testDataSize);
 
             for (int j = 1; j <= testDataSize; j += 38)
             {
@@ -201,7 +202,7 @@ namespace TestCases.POIFS.Storage
         {
             for (int j = 0; j <= 8; j++)
             {
-                ArrayList foo = new ArrayList();
+                List<object> foo = new List<object>();
 
                 for (int k = 0; k < j; k++)
                 {

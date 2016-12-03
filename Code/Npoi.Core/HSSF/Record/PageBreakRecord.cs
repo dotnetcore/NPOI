@@ -44,7 +44,7 @@ namespace Npoi.Core.HSSF.Record
         public short sid;
         // fix warning CS0169 "never used": private short numBreaks;
         private IList<Break> _breaks;
-        private Hashtable _breakMap;
+        private Dictionary<object, object> _breakMap;
 
         /**
          * Since both records store 2byte integers (short), no point in 
@@ -86,14 +86,14 @@ namespace Npoi.Core.HSSF.Record
         public PageBreakRecord()
         {
             _breaks = new List<Break>();
-            _breakMap = new Hashtable();
+            _breakMap = new Dictionary<object, object>();
         }
 
         public PageBreakRecord(RecordInputStream in1)
         {
             int nBreaks = in1.ReadShort();
             _breaks = new List<Break>(nBreaks + 2);
-            _breakMap = new Hashtable();
+            _breakMap = new Dictionary<object, object>();
 
             for (int k = 0; k < nBreaks; k++)
             {
@@ -148,7 +148,7 @@ namespace Npoi.Core.HSSF.Record
         public IEnumerator<Break> GetBreaksEnumerator()
         {
             //if (_breaks == null)
-            //    return new ArrayList().GetEnumerator();
+            //    return new List<object>().GetEnumerator();
             //else
             return _breaks.GetEnumerator();
         }
@@ -204,8 +204,8 @@ namespace Npoi.Core.HSSF.Record
         {
             //if (_breaks == null)
             //{
-            //    _breaks = new ArrayList(NumBreaks + 10);
-            //    _breakMap = new Hashtable();
+            //    _breaks = new List<object>(NumBreaks + 10);
+            //    _breakMap = new Dictionary<object,object>();
             //}
             int key = (int)main;
             Break region = (Break)_breakMap[key];

@@ -21,6 +21,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
     using Npoi.Core.HSSF.Model;
     using Npoi.Core.HSSF.Record;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Manages the DVALRecord and DVRecords for a single sheet
@@ -40,7 +41,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         public DataValidityTable(RecordStream rs)
         {
             _headerRec = (DVALRecord)rs.GetNext();
-            IList temp = new ArrayList();
+            IList temp = new List<object>();
             while (rs.PeekNextClass() == typeof(DVRecord))
             {
                 temp.Add(rs.GetNext());
@@ -51,7 +52,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         public DataValidityTable()
         {
             _headerRec = new DVALRecord();
-            _validationList = new ArrayList();
+            _validationList = new List<object>();
         }
 
         public override void VisitContainedRecords(RecordVisitor rv)

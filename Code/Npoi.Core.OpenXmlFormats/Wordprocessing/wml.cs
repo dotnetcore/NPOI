@@ -1702,7 +1702,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         private CT_Text fldDataField;
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType13> itemsElementNameField;
 
@@ -1719,7 +1719,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         public CT_SimpleField()
         {
             this.itemsElementNameField = new List<ItemsChoiceType13>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
             //this.fldDataField = new CT_Text();
         }
 
@@ -2021,7 +2021,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("smartTag", typeof(CT_SmartTagRun), Order = 1)]
         [XmlElement("subDoc", typeof(CT_Rel), Order = 1)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {
@@ -2290,7 +2290,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     public class CT_Hyperlink1
     {
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType12> itemsElementNameField;
 
@@ -2311,7 +2311,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         public CT_Hyperlink1()
         {
             this.itemsElementNameField = new List<ItemsChoiceType12>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
         }
         public static CT_Hyperlink1 Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
@@ -2605,7 +2605,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("smartTag", typeof(CT_SmartTagRun), Order = 0)]
         [XmlElement("subDoc", typeof(CT_Rel), Order = 0)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {

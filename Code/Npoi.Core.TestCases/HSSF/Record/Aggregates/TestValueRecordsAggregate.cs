@@ -28,6 +28,7 @@ namespace TestCases.HSSF.Record.Aggregates
     using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.HSSF.Model;
     using Npoi.Core.Util;
+    using System.Collections.Generic;
 
     [TestFixture]
     public class TestValueRecordsAggregate
@@ -46,7 +47,7 @@ namespace TestCases.HSSF.Record.Aggregates
         [Test]
         public void TestSharedFormula()
         {
-            IList records = new ArrayList();
+            var records = new List<Record>();
             records.Add(new FormulaRecord());
             records.Add(new SharedFormulaRecord());
             records.Add(new WindowTwoRecord());
@@ -64,7 +65,7 @@ namespace TestCases.HSSF.Record.Aggregates
 
         private IList TestData()
         {
-            IList records = new ArrayList();
+            IList records = new List<object>();
             FormulaRecord formulaRecord = new FormulaRecord();
             //UnknownRecord unknownRecord = new UnknownRecord();
             BlankRecord blankRecord = new BlankRecord();

@@ -532,7 +532,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get
                 {
-                ArrayList components = new ArrayList();
+                List<object> components = new List<object>();
 
                 components.Add(Property);
                 components.AddRange(this._entries);

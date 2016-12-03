@@ -543,7 +543,7 @@ namespace Npoi.Core.HSSF.Model
                     else if (er is EscherContainerRecord)
                     {
                         //recursively find shape records and re-generate shapeId
-                        ArrayList spRecords = new ArrayList();
+                        List<object> spRecords = new List<object>();
                         EscherContainerRecord cp = (EscherContainerRecord)er;
                         for (IEnumerator spIt = cp.ChildRecords.GetEnumerator(); spIt.MoveNext(); )
                         {
@@ -1110,7 +1110,7 @@ namespace Npoi.Core.HSSF.Model
         //        log.Log(DEBUG, "Serializing Workbook!");
         //        byte[] retval    = null;
         //
-        ////         ArrayList bytes     = new ArrayList(records.Count);
+        ////         List<object> bytes     = new List<object>(records.Count);
         //        int    arraysize = Size;
         //        int    pos       = 0;
         //
@@ -2463,7 +2463,7 @@ namespace Npoi.Core.HSSF.Model
 
         /**
          * Returns the list of FormatRecords in the workbook.
-         * @return ArrayList of FormatRecords in the notebook
+         * @return List<object> of FormatRecords in the notebook
          */
         public List<FormatRecord> Formats
         {

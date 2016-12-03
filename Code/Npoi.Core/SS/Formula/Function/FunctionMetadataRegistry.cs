@@ -19,6 +19,7 @@ namespace Npoi.Core.SS.Formula.Function
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
 
     /**
      * Allows clients to Get <c>FunctionMetadata</c> instances for any built-in function of Excel.
@@ -40,7 +41,7 @@ namespace Npoi.Core.SS.Formula.Function
         private static FunctionMetadataRegistry _instance;
 
         private FunctionMetadata[] _functionDataByIndex;
-        private Hashtable _functionDataByName;
+        private Dictionary<object,object> _functionDataByName;
 
         private static FunctionMetadataRegistry GetInstance()
         {
@@ -52,7 +53,7 @@ namespace Npoi.Core.SS.Formula.Function
         }
 
         /* package */
-        public FunctionMetadataRegistry(FunctionMetadata[] functionDataByIndex, Hashtable functionDataByName)
+        public FunctionMetadataRegistry(FunctionMetadata[] functionDataByIndex, Dictionary<object, object> functionDataByName)
         {
             _functionDataByIndex = functionDataByIndex;
             _functionDataByName = functionDataByName;

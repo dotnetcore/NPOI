@@ -29,6 +29,7 @@ namespace Npoi.Core.HPSF.Wellknown
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
 
 
     /// <summary>
@@ -43,7 +44,7 @@ namespace Npoi.Core.HPSF.Wellknown
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
     /// @since 2002-02-09
     /// </summary>
-    public class PropertyIDMap : Hashtable
+    public class PropertyIDMap : Dictionary<object,object>
     {
 
         /*
@@ -268,7 +269,7 @@ namespace Npoi.Core.HPSF.Wellknown
         /// <param name="initialCapacity">initialCapacity The initial capacity as defined for
         /// {@link HashMap}</param>
         /// <param name="loadFactor">The load factor as defined for {@link HashMap}</param>
-        public PropertyIDMap(int initialCapacity, float loadFactor):base(initialCapacity, loadFactor)
+        public PropertyIDMap(int initialCapacity):base(initialCapacity)
         {
             
         }
@@ -279,7 +280,7 @@ namespace Npoi.Core.HPSF.Wellknown
         /// Initializes a new instance of the <see cref="PropertyIDMap"/> class.
         /// </summary>
         /// <param name="map">The instance To be Created is backed by this map.</param>
-        public PropertyIDMap(IDictionary map):base(map)
+        public PropertyIDMap(IDictionary<object,object> map):base(map)
         {
             
         }
@@ -324,7 +325,7 @@ namespace Npoi.Core.HPSF.Wellknown
             {
                 if (summaryInformationProperties == null)
                 {
-                    PropertyIDMap m = new PropertyIDMap(18, (float)1.0);
+                    PropertyIDMap m = new PropertyIDMap(18);
                     m.Put(PID_TITLE, "PID_TITLE");
                     m.Put(PID_SUBJECT, "PID_SUBJECT");
                     m.Put(PID_AUTHOR, "PID_AUTHOR");
@@ -363,7 +364,7 @@ namespace Npoi.Core.HPSF.Wellknown
             {
                 if (documentSummaryInformationProperties == null)
                 {
-                    PropertyIDMap m = new PropertyIDMap(17, (float)1.0);
+                    PropertyIDMap m = new PropertyIDMap(17);
                     m.Put(PID_DICTIONARY, "PID_DICTIONARY");
                     m.Put(PID_CODEPAGE, "PID_CODEPAGE");
                     m.Put(PID_CATEGORY, "PID_CATEGORY");

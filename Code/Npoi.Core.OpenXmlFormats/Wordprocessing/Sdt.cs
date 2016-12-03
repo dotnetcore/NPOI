@@ -36,14 +36,14 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return text;
         }
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType23> itemsElementNameField;
 
         public CT_SdtContentCell()
         {
             this.itemsElementNameField = new List<ItemsChoiceType23>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
         }
         public static CT_SdtContentCell Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
@@ -291,7 +291,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("sdt", typeof(CT_SdtCell), Order = 0)]
         [XmlElement("tc", typeof(CT_Tc), Order = 0)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {
@@ -982,14 +982,14 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     public class CT_SdtContentBlock
     {
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType19> itemsElementNameField;
 
         public CT_SdtContentBlock()
         {
             this.itemsElementNameField = new List<ItemsChoiceType19>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
         }
         public static CT_SdtContentBlock Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
@@ -1245,7 +1245,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("sdt", typeof(CT_SdtBlock), Order = 0)]
         [XmlElement("tbl", typeof(CT_Tbl), Order = 0)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {
@@ -1483,14 +1483,14 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     public class CT_SdtContentRow
     {
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType22> itemsElementNameField;
 
         public CT_SdtContentRow()
         {
             this.itemsElementNameField = new List<ItemsChoiceType22>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
         }
         public static CT_SdtContentRow Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
@@ -1738,7 +1738,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("sdt", typeof(CT_SdtRow), Order = 0)]
         [XmlElement("tr", typeof(CT_Row), Order = 0)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {
@@ -1773,14 +1773,14 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     public class CT_SdtPr
     {
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<SdtPrElementType> itemsElementNameField;
 
         public CT_SdtPr()
         {
             this.itemsElementNameField = new List<SdtPrElementType>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
         }
 
         [XmlElement("alias", typeof(CT_String), Order = 0)]
@@ -1805,7 +1805,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("temporary", typeof(CT_OnOff), Order = 0)]
         [XmlElement("text", typeof(CT_SdtText), Order = 0)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {
@@ -2235,14 +2235,14 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     public class CT_SdtContentRun
     {
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType18> itemsElementNameField;
 
         public CT_SdtContentRun()
         {
             this.itemsElementNameField = new List<ItemsChoiceType18>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
         }
         public static CT_SdtContentRun Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
@@ -2522,7 +2522,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("smartTag", typeof(CT_SmartTagRun), Order = 0)]
         [XmlElement("subDoc", typeof(CT_Rel), Order = 0)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {

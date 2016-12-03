@@ -33,6 +33,7 @@ using System.IO;
 using Npoi.Core.POIFS.Dev;
 using Npoi.Core.POIFS.Common;
 using Npoi.Core.Util;
+using System.Collections.Generic;
 
 namespace Npoi.Core.POIFS.Properties
 {
@@ -496,7 +497,7 @@ namespace Npoi.Core.POIFS.Properties
         {
             get
             {
-                return ArrayList.ReadOnly(new ArrayList()).GetEnumerator();
+                return new List<object>().GetEnumerator();
             }
         }
 

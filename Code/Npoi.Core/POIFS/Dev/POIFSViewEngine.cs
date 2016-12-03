@@ -30,6 +30,7 @@ using System.Text;
 using System.Collections;
 using System.IO;
 using Npoi.Core.POIFS.FileSystem;
+using System.Collections.Generic;
 
 namespace Npoi.Core.POIFS.Dev
 {
@@ -47,12 +48,12 @@ namespace Npoi.Core.POIFS.Dev
         /// <param name="indentLevel">how far in to indent each string</param>
         /// <param name="indentString">string to use for indenting</param>
         /// <returns>a List of Strings holding the content</returns>
-         public static IList InspectViewable(Object viewable,
+         public static IEnumerable<object> InspectViewable(Object viewable,
                                        bool drilldown,
                                        int indentLevel,
                                        String indentString)
         {
-            IList objects = new ArrayList();
+            var objects = new List<object>();
             if (viewable is DictionaryEntry)
             {
                 ProcessViewable(((DictionaryEntry)viewable).Value, drilldown, indentLevel,indentString, objects);
@@ -84,7 +85,7 @@ namespace Npoi.Core.POIFS.Dev
              {
                  if (inspected is POIFSDocument)
                  {
-                     ((ArrayList)objects).AddRange(InspectViewable("POIFSDocument content is too long so ignored", drilldown,
+                     ((List<object>)objects).AddRange(InspectViewable("POIFSDocument content is too long so ignored", drilldown,
                                                        indentLevel + 1,
                                                        indentString));
                      return;
@@ -95,7 +96,7 @@ namespace Npoi.Core.POIFS.Dev
 
                      for (int j = 0; j < data.Length; j++)
                      {
-                         ((ArrayList)objects).AddRange(InspectViewable(data.GetValue(j), drilldown,
+                         ((List<object>)objects).AddRange(InspectViewable(data.GetValue(j), drilldown,
                                                         indentLevel + 1,
                                                         indentString));
                      }
@@ -106,7 +107,7 @@ namespace Npoi.Core.POIFS.Dev
 
                      while (iter.MoveNext())
                      {
-                         ((ArrayList)objects).AddRange(InspectViewable(iter.Current,
+                         ((List<object>)objects).AddRange(InspectViewable(iter.Current,
                                                         drilldown,
                                                         indentLevel + 1,
                                                         indentString));

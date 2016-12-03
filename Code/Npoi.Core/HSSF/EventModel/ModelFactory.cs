@@ -46,7 +46,7 @@
 //        public ModelFactory(): base()
 //        {
 //            currentmodel = null;
-//            listeners = new ArrayList(1);
+//            listeners = new List<object>(1);
 //        }
 
 //        /**

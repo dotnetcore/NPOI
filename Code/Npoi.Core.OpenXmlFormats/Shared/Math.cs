@@ -1752,7 +1752,7 @@ namespace Npoi.Core.OpenXmlFormats.Shared
 
         private CT_RPr rPr1Field;   //w:rPr
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType6> itemsElementNameField;
 
@@ -1762,7 +1762,7 @@ namespace Npoi.Core.OpenXmlFormats.Shared
         public CT_R()
         {
             this.itemsElementNameField = new List<ItemsChoiceType6>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
         }
 
         [XmlElement(Order = 0)]
@@ -2092,7 +2092,7 @@ namespace Npoi.Core.OpenXmlFormats.Shared
         [XmlElement("yearLong", typeof(CT_Empty), Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", Order = 2)]
         [XmlElement("yearShort", typeof(CT_Empty), Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", Order = 2)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {
@@ -2506,7 +2506,7 @@ namespace Npoi.Core.OpenXmlFormats.Shared
 
         private CT_OMathArgPr argPrField;
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType7> itemsElementNameField;
 
@@ -2519,7 +2519,7 @@ namespace Npoi.Core.OpenXmlFormats.Shared
         {
             //this.ctrlPrField = new CT_CtrlPr();
             this.itemsElementNameField = new List<ItemsChoiceType7>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
             //this.argPrField = new CT_OMathArgPr();
         }
 
@@ -2582,7 +2582,7 @@ namespace Npoi.Core.OpenXmlFormats.Shared
         [XmlElement("permStart", typeof(CT_PermStart), Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", Order = 1)]
         [XmlElement("proofErr", typeof(CT_ProofErr), Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", Order = 1)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {
@@ -7125,7 +7125,7 @@ namespace Npoi.Core.OpenXmlFormats.Shared
     public class CT_OMath
     {
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType8> itemsElementNameField;
 
@@ -7135,7 +7135,7 @@ namespace Npoi.Core.OpenXmlFormats.Shared
         public CT_OMath()
         {
             this.itemsElementNameField = new List<ItemsChoiceType8>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
         }
 
         [XmlElement("acc", typeof(CT_Acc), Order = 0)]
@@ -7184,7 +7184,7 @@ namespace Npoi.Core.OpenXmlFormats.Shared
         [XmlElement("permStart", typeof(CT_PermStart), Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", Order = 0)]
         [XmlElement("proofErr", typeof(CT_ProofErr), Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", Order = 0)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {

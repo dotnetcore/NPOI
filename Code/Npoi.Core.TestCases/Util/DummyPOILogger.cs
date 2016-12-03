@@ -29,6 +29,7 @@
 using System;
 using System.Collections;
 using Npoi.Core.Util;
+using System.Collections.Generic;
 
 namespace TestCases.Util
 {
@@ -36,10 +37,10 @@ namespace TestCases.Util
     /// Summary description for DummyPOILogger
     /// </summary>
     public class DummyPOILogger:POILogger {
-	    public ArrayList logged = new ArrayList(); 
+	    public List<string> logged = new List<string>(); 
 
 	    public void Reset() {
-		    logged.Clear(); // = new ArrayList();
+		    logged.Clear(); // = new List<object>();
 	    }
 
         public override bool Check(int level)

@@ -22,6 +22,8 @@ namespace Npoi.Core.SS.Formula
     using System.Collections;
     using System.Text;
     using Npoi.Core.SS.Formula.Eval;
+    using System.Collections.Generic;
+    using System.Linq;
 
     /**
      * Stores details about the current evaluation of a cell.<br/>
@@ -30,13 +32,13 @@ namespace Npoi.Core.SS.Formula
     {
 
         private FormulaCellCacheEntry _cce;
-        private ArrayList _sensitiveInputCells;
+        private List<CellCacheEntry> _sensitiveInputCells;
         private FormulaUsedBlankCellSet _usedBlankCellGroup;
 
         public CellEvaluationFrame(FormulaCellCacheEntry cce)
         {
             _cce = cce;
-            _sensitiveInputCells = new ArrayList();
+            _sensitiveInputCells = new List<CellCacheEntry>();
         }
         public CellCacheEntry GetCCE()
         {
@@ -69,7 +71,7 @@ namespace Npoi.Core.SS.Formula
                 return CellCacheEntry.EMPTY_ARRAY;
             }
             CellCacheEntry[] result = new CellCacheEntry[nItems];
-            result = (CellCacheEntry[])_sensitiveInputCells.ToArray(typeof(CellCacheEntry));
+            result = (CellCacheEntry[])_sensitiveInputCells.ToArray();
             return result;
         }
         public void AddUsedBlankCell(int bookIndex, int sheetIndex, int rowIndex, int columnIndex)

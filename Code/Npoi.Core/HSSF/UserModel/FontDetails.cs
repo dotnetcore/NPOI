@@ -21,6 +21,7 @@ namespace Npoi.Core.HSSF.UserModel
     using System.Collections;
     using Npoi.Core.Util.Collections;
     using System.Globalization;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Stores width and height details about a font.
@@ -30,7 +31,7 @@ namespace Npoi.Core.HSSF.UserModel
     {
         private String fontName;
         private int height;
-        private Hashtable charWidths = new Hashtable();
+        private Dictionary<object,object> charWidths = new Dictionary<object,object>();
 
         /// <summary>
         /// Construct the font details with the given name and height.

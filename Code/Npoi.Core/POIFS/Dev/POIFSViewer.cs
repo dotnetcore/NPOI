@@ -59,7 +59,7 @@ namespace Npoi.Core.POIFS.Dev
                 {
                     POIFSViewable fs = (POIFSViewable)new POIFSFileSystem(fileStream);
                 
-                    IList strings = POIFSViewEngine.InspectViewable(fs, true,
+                    var strings = POIFSViewEngine.InspectViewable(fs, true,
                                                 0, "  ");
                     IEnumerator iter = strings.GetEnumerator();
 

@@ -140,7 +140,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     public class CT_Body
     {
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<DocumentBodyItemChoiceType> itemsElementNameField;
 
@@ -150,7 +150,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         {
             //this.sectPrField = new CT_SectPr();
             this.itemsElementNameField = new List<DocumentBodyItemChoiceType>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
         }
         public static CT_Body Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
@@ -422,7 +422,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("sdt", typeof(CT_SdtBlock), Order = 0)]
         [XmlElement("tbl", typeof(CT_Tbl), Order = 0)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {

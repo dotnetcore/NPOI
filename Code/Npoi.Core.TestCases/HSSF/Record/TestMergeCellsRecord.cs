@@ -26,6 +26,7 @@ namespace TestCases.HSSF.Record
     using Npoi.Core.HSSF.Record.Aggregates;
     using System.Collections;
     using Npoi.Core.HSSF.Model;
+    using System.Collections.Generic;
 
     /**
      * Make sure the merge cells record behaves
@@ -68,7 +69,7 @@ namespace TestCases.HSSF.Record
         public void testMCTable_bug46009()
         {
             MergedCellsTable mct = new MergedCellsTable();
-            ArrayList recList = new ArrayList();
+            List<object> recList = new List<object>();
             CellRangeAddress[] cras = new CellRangeAddress[] {
 				new CellRangeAddress(0, 0, 0, 3), 
 		};

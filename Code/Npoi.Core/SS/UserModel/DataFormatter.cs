@@ -24,6 +24,7 @@ namespace Npoi.Core.SS.UserModel
 
     using Npoi.Core.SS.Util;
     using System.Globalization;
+    using System.Collections.Generic;
 
 
 
@@ -130,7 +131,7 @@ namespace Npoi.Core.SS.UserModel
          * A map to cache formats.
          *  Map<String,FormatBase> Formats
          */
-        private Hashtable formats;
+        private Dictionary<object,object> formats;
         private bool emulateCsv = false;
         /**
      * Creates a formatter using the {@link Locale#getDefault() default locale}.
@@ -145,7 +146,7 @@ namespace Npoi.Core.SS.UserModel
         public DataFormatter(CultureInfo culture)
         {
             this.currentCulture = culture;
-            formats = new Hashtable();
+            formats = new Dictionary<object,object>();
 
             // init built-in Formats
 
@@ -438,7 +439,7 @@ namespace Npoi.Core.SS.UserModel
             char[] chars = formatStr.ToCharArray();
             bool mIsMonth = true;
             bool isElapsed = false;
-            ArrayList ms = new ArrayList();
+            List<object> ms = new List<object>();
             for (int j = 0; j < chars.Length; j++)
             {
                 char c = chars[j];

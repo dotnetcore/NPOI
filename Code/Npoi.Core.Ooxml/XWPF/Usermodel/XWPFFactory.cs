@@ -80,9 +80,11 @@ namespace Npoi.Core.XWPF.UserModel
         {
             try
             {
-                Type cls = descriptor.RelationClass;
-                ConstructorInfo constructor = cls.GetTypeInfo().GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public).FilterConstructorsByType(Type.EmptyTypes);
-                return constructor.Invoke(new object[] { }) as POIXMLDocumentPart;
+                //Type cls = descriptor.RelationClass;
+                //ConstructorInfo constructor = cls.GetTypeInfo().GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public).FilterConstructorsByType(Type.EmptyTypes);
+                //return constructor.Invoke(new object[] { }) as POIXMLDocumentPart;
+                //todo://
+                return new POIXMLDocumentPart();
             }
             catch (Exception e)
             {

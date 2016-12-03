@@ -23,6 +23,7 @@ namespace TestCases.HSSF.UserModel
     using NUnit.Framework;
     using System.Threading;
     using Npoi.Core.HSSF.Record;
+    using System.Collections.Generic;
 
     /**
      * A Test case for a Test utility class.<br/>
@@ -42,7 +43,7 @@ namespace TestCases.HSSF.UserModel
         public void TestCheckRecordOrder()
         {
             SanityChecker c = new SanityChecker();
-            ArrayList records = new ArrayList();
+            List<object> records = new List<object>();
             records.Add(new BOFRecord());
             records.Add(INTERFACEHDR);
             records.Add(CreateBoundSheetRec());
@@ -122,8 +123,7 @@ namespace TestCases.HSSF.UserModel
             try
             {
                 SanityChecker c = new SanityChecker();
-                IList recs1 = Npoi.Core.Util.Arrays.AsList(recs);
-                c.CheckRecordOrder(recs1, check);
+                c.CheckRecordOrder(recs, check);
             }
             catch (AssertionException)
             {

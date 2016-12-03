@@ -32,6 +32,7 @@ namespace Npoi.Core.HSSF.Extractor
     //using Npoi.Core.HSSF.Util;
     using Npoi.Core.SS.Util;
     using System.Globalization;
+    using System.Collections.Generic;
 
     /// <summary>
     /// A text extractor for Excel files, that is based
@@ -167,7 +168,7 @@ namespace Npoi.Core.HSSF.Extractor
             public FormatTrackingHSSFListener ft;
             private SSTRecord sstRecord;
 
-            private IList sheetNames = new ArrayList();
+            private IList sheetNames = new List<object>();
             public StringBuilder text = new StringBuilder();
             private int sheetNum = -1;
             private int rowNum;

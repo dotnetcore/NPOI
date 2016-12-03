@@ -24,6 +24,7 @@ namespace Npoi.Core.SS.Formula.PTG
     using System.Collections;
 
     using Npoi.Core.Util;
+    using System.Collections.Generic;
 
 
     /**
@@ -53,7 +54,7 @@ namespace Npoi.Core.SS.Formula.PTG
          */
         public static Ptg[] ReadTokens(int size, ILittleEndianInput in1)
         {
-            ArrayList temp = new ArrayList(4 + size / 2);
+            List<Ptg> temp = new List<Ptg>(4 + size / 2);
             int pos = 0;
             bool hasArrayPtgs = false;
             while (pos < size)
@@ -179,14 +180,14 @@ namespace Npoi.Core.SS.Formula.PTG
             }
             throw new Exception("Unexpected base token id (" + id + ")");
         }
-        private static Ptg[] ToPtgArray(ArrayList l)
+        private static Ptg[] ToPtgArray(List<Ptg> l)
         {
             if (l.Count == 0)
             {
                 return EMPTY_PTG_ARRAY;
             }
 
-            Ptg[] result = (Ptg[])l.ToArray(typeof(Ptg));
+            Ptg[] result = (Ptg[])l.ToArray();
             return result;
         }
         /**
@@ -270,7 +271,7 @@ namespace Npoi.Core.SS.Formula.PTG
 
             LittleEndianByteArrayOutputStream out1 = new LittleEndianByteArrayOutputStream(array, offset);
 
-            ArrayList arrayPtgs = null;
+            List<object> arrayPtgs = null;
 
             for (int k = 0; k < size; k++)
             {
@@ -281,7 +282,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 {
                     if (arrayPtgs == null)
                     {
-                        arrayPtgs = new ArrayList(5);
+                        arrayPtgs = new List<object>(5);
                     }
                     arrayPtgs.Add(ptg);
 

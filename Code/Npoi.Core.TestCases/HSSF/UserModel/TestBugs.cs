@@ -42,6 +42,7 @@ namespace TestCases.HSSF.UserModel
     using Npoi.Core.POIFS.FileSystem;
     using Npoi.Core.HSSF.Extractor;
     using Npoi.Core.HSSF.Record.Crypto;
+    using System.Linq;
 
     /**
      * Testcases for bugs entered in bugzilla
@@ -2551,8 +2552,6 @@ namespace TestCases.HSSF.UserModel
             "Good", "Heading 1", "Heading 2", "Heading 3", "Heading 4", "Input", "Linked Cell",
             "Neutral", "Note", "Output", "Title", "Total", "Warning Text"};
 
-            ArrayList namedStylesList = Arrays.AsList(namedStyles);
-
             List<String> collecteddStyles = new List<String>();
             for (short i = 0; i < numCellStyles; i++)
             {
@@ -2561,7 +2560,7 @@ namespace TestCases.HSSF.UserModel
                 if (styleName != null)
                 {
                     collecteddStyles.Add(styleName);
-                    Assert.IsTrue(namedStylesList.Contains(styleName));
+                    Assert.IsTrue(namedStyles.Contains(styleName));
                 }
             }
         }

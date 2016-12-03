@@ -2257,7 +2257,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             get
             {
-                IList dvRecords = new ArrayList();
+                IList dvRecords = new List<object>();
                 IList records = _sheet.Records;
 
                 for (int index = 0; index < records.Count; index++)

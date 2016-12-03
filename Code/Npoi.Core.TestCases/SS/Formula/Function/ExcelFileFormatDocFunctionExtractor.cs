@@ -276,9 +276,9 @@
 //                _fdc = fdc;
 //                _elemNameStack = new Stack<string>();
 //                _isInsideTable = false;
-//                _rowData = new ArrayList();
+//                _rowData = new List<object>();
 //                _textNodeBuffer = new StringBuilder();
-//                _rowNoteFlags = new ArrayList();
+//                _rowNoteFlags = new List<object>();
 //            }
 
 //            private bool matchesTargetPath()

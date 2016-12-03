@@ -60,7 +60,7 @@ namespace Npoi.Core.SS.Formula.Eval
 
         protected static Function[] functions = ProduceFunctions();
 
-        // fix warning CS0169 "never used": private static Hashtable freeRefFunctionsByIdMap;
+        // fix warning CS0169 "never used": private static Dictionary<object,object> freeRefFunctionsByIdMap;
         private static FunctionMetadataRegistry _instance;
 
         private static FunctionMetadataRegistry GetInstance()

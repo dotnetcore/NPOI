@@ -52,7 +52,7 @@ namespace Npoi.Core.SS.Formula
         private int _workbookIx;
 
         private IEvaluationListener _evaluationListener;
-        private Hashtable _sheetIndexesBySheet;
+        private Dictionary<object,object> _sheetIndexesBySheet;
         private Dictionary<String, int> _sheetIndexesByName;
         private CollaboratingWorkbooksEnvironment _collaboratingWorkbookEnvironment;
         private IStabilityClassifier _stabilityClassifier;
@@ -71,7 +71,7 @@ namespace Npoi.Core.SS.Formula
             _workbook = workbook;
             _evaluationListener = evaluationListener;
             _cache = new EvaluationCache(evaluationListener);
-            _sheetIndexesBySheet = new Hashtable();
+            _sheetIndexesBySheet = new Dictionary<object,object>();
             _sheetIndexesByName = new Dictionary<string, int>();
             _collaboratingWorkbookEnvironment = CollaboratingWorkbooksEnvironment.EMPTY;
             _workbookIx = 0;

@@ -31,7 +31,7 @@ using System.Collections;
 using Npoi.Core.POIFS.Common;
 using Npoi.Core.POIFS.Properties;
 using Npoi.Core.POIFS.FileSystem;
-
+using System.Collections.Generic;
 
 namespace Npoi.Core.POIFS.Storage
 {
@@ -53,11 +53,11 @@ namespace Npoi.Core.POIFS.Storage
         /// <param name="bigBlockSize">the poifs bigBlockSize</param>
         /// <param name="documents">a IList of POIFSDocument instances</param>
         /// <param name="root">the Filesystem's root property</param>
-        public SmallBlockTableWriter(POIFSBigBlockSize bigBlockSize, IList documents,
+        public SmallBlockTableWriter(POIFSBigBlockSize bigBlockSize, IList<object> documents,
                                      RootProperty root)
         {
             _sbat = new BlockAllocationTableWriter(bigBlockSize);
-            _small_blocks = new ArrayList();
+            _small_blocks = new List<object>();
             _root         = root;
             IEnumerator iter = documents.GetEnumerator();
 

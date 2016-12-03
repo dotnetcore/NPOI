@@ -3,11 +3,10 @@
 
   "dependencies": {
     "NETStandard.Library": "1.6.0",
-    "ICSharpCode.SharpZipLib": "1.0.0",
-    "Npoi.Core": "1.0.0-*",
-    "Npoi.Core.Ooxml": "1.0.0-*",
-    "Npoi.Core.OpenXml4Net": "1.0.0-*",
-    "Npoi.Core.OpenXmlFormats": "1.0.0-*",
+    "Npoi.Core": "1.0.2-*",
+    "Npoi.Core.Ooxml": "1.0.2-*",
+    "Npoi.Core.OpenXml4Net": "1.0.2-*",
+    "Npoi.Core.OpenXmlFormats": "1.0.2-*",
     "nunit": "3.2.1"
   },
 

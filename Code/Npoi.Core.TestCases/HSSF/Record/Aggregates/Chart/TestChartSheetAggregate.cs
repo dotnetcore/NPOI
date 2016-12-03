@@ -29,6 +29,8 @@ namespace TestCases.HSSF.Record.Aggregates.Chart
     using Npoi.Core.Util;
     using Npoi.Core.HSSF.Record.Aggregates.Chart;
     using Npoi.Core.HSSF.Record.Chart;
+    using System.Linq;
+
     [TestFixture]
     public class TestChartSheetAggregate
     {
@@ -38,7 +40,7 @@ namespace TestCases.HSSF.Record.Aggregates.Chart
             HSSFWorkbook wb = HSSFTestDataSamples.OpenSampleWorkbook("chartdemo.xls");
             Record[] sheetRecs = RecordInspector.GetRecords(wb.GetSheetAt(0), 0);
 
-            RecordStream rs = new RecordStream(Arrays.AsList(sheetRecs), 0);
+            RecordStream rs = new RecordStream(sheetRecs.ToList(), 0);
 
             rs.FindChartSubStream();
             int pos = rs.GetCountRead();

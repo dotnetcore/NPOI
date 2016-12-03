@@ -22,6 +22,7 @@ namespace TestCases.HSSF.Record.Aggregates
     using Npoi.Core.HSSF.Record;
     using NUnit.Framework;
     using Npoi.Core.HSSF.Record.Aggregates;
+    using System.Collections.Generic;
 
     /**
      * @author Glen Stampoultzis
@@ -66,10 +67,10 @@ namespace TestCases.HSSF.Record.Aggregates
         private class CIRCollector : RecordVisitor
         {
 
-            private ArrayList _list;
+            private List<Record> _list;
             public CIRCollector()
             {
-                _list = new ArrayList();
+                _list = new List<Record>();
             }
             public void VisitRecord(Record r)
             {
@@ -79,9 +80,9 @@ namespace TestCases.HSSF.Record.Aggregates
             {
                 CIRCollector circ = new CIRCollector();
                 agg.VisitContainedRecords(circ);
-                ArrayList list = circ._list;
+                List<Record> list = circ._list;
                 ColumnInfoRecord[] result = new ColumnInfoRecord[list.Count];
-                result = (ColumnInfoRecord[])list.ToArray(typeof(ColumnInfoRecord));
+                result = (ColumnInfoRecord[])list.ToArray();
                 return result;
             }
         }

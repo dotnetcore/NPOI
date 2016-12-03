@@ -19,6 +19,7 @@ namespace Npoi.Core.HSSF.Model
 {
     using Npoi.Core.DDF;
     using System.Collections;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Provides utilities to manage drawing Groups.
@@ -29,7 +30,7 @@ namespace Npoi.Core.HSSF.Model
     public class DrawingManager2
     {
         EscherDggRecord dgg;
-        IList drawingGroups = new ArrayList();
+        IList drawingGroups = new List<object>();
 
 
         public DrawingManager2(EscherDggRecord dgg)

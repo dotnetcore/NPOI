@@ -3,10 +3,10 @@
 
   "dependencies": {
     "NETStandard.Library": "1.6.0",
-    "ICSharpCode.SharpZipLib": "1.0.0",
-    "Npoi.Core.TestCases": "1.0.0-*",
-    "Npoi.Core.Ooxml": "1.0.0-*",
-    "nunit": "3.2.1"
+    "Npoi.Core.TestCases": "1.0.2-*",
+    "Npoi.Core.Ooxml": "1.0.2-*",
+    "nunit": "3.2.1",
+    "SharpZipLib.NETStandard": "0.86.0.1"
   },
 
   "frameworks": {

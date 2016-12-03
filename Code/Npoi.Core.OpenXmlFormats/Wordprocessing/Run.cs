@@ -23,7 +23,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         private CT_RPr rPrField;
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<RunItemsChoiceType> itemsElementNameField;
 
@@ -36,7 +36,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         public CT_R()
         {
             this.itemsElementNameField = new List<RunItemsChoiceType>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
             //this.rPrField = new CT_RPr();
         }
 
@@ -86,7 +86,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("yearLong", typeof(CT_Empty), Order = 1)]
         [XmlElement("yearShort", typeof(CT_Empty), Order = 1)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {
@@ -94,7 +94,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             set
             {
-               this.itemsField = new ArrayList();
+               this.itemsField = new List<object>();
             }
         }
 
@@ -956,14 +956,14 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     public class CT_RubyContent
     {
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType16> itemsElementNameField;
 
         public CT_RubyContent()
         {
             this.itemsElementNameField = new List<ItemsChoiceType16>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
         }
 
         [XmlElement("oMath", typeof(CT_OMath), Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/math", Order = 0)]
@@ -993,7 +993,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("proofErr", typeof(CT_ProofErr), Order = 0)]
         [XmlElement("r", typeof(CT_R), Order = 0)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {
@@ -1875,14 +1875,14 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_RunTrackChange : CT_TrackChange
     {
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType6> itemsElementNameField;
 
         public CT_RunTrackChange()
         {
             this.itemsElementNameField = new List<ItemsChoiceType6>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
         }
         public new static CT_RunTrackChange Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
@@ -2298,7 +2298,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("sdt", typeof(CT_SdtRun), Order = 0)]
         [XmlElement("smartTag", typeof(CT_SmartTagRun), Order = 0)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {

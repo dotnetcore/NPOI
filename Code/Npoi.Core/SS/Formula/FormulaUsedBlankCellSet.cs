@@ -22,6 +22,7 @@ namespace Npoi.Core.SS.Formula
     using System.Text;
     using System.Collections;
     using Npoi.Core.SS.Util;
+    using System.Collections.Generic;
 
     public class BookSheetKey
     {
@@ -63,7 +64,7 @@ namespace Npoi.Core.SS.Formula
 
             public BlankCellSheetGroup()
             {
-                _rectangleGroups = new ArrayList();
+                _rectangleGroups = new List<object>();
                 _currentRowIndex = -1;
             }
 
@@ -194,11 +195,11 @@ namespace Npoi.Core.SS.Formula
             }
         }
 
-        private Hashtable _sheetGroupsByBookSheet;
+        private Dictionary<object, object> _sheetGroupsByBookSheet;
 
         public FormulaUsedBlankCellSet()
         {
-            _sheetGroupsByBookSheet = new Hashtable();
+            _sheetGroupsByBookSheet = new Dictionary<object, object>();
         }
 
         public void AddCell(int bookIndex, int sheetIndex, int rowIndex, int columnIndex)

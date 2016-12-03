@@ -23,6 +23,7 @@ namespace Npoi.Core.SS.Formula
 
     using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.PTG;
+    using System.Collections.Generic;
 
     /**
      * Common logic for rendering formulas.<br/>
@@ -47,7 +48,7 @@ namespace Npoi.Core.SS.Formula
             {
                 throw new ArgumentException("ptgs must not be null");
             }
-            Stack stack = new Stack();
+            Stack<object> stack = new Stack<object>();
 
             for (int i = 0; i < ptgs.Length; i++)
             {
@@ -127,7 +128,7 @@ namespace Npoi.Core.SS.Formula
             return result;
         }
 
-        private static String[] GetOperands(Stack stack, int nOperands)
+        private static String[] GetOperands(Stack<object> stack, int nOperands)
         {
             String[] operands = new String[nOperands];
 

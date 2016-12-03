@@ -28,6 +28,7 @@ namespace TestCases.HSSF.EventUserModel
     using Npoi.Core.HSSF.EventUserModel.DummyRecord;
 
     using NUnit.Framework;
+    using System.Collections.Generic;
 
     [TestFixture]
     public class TestMissingRecordAwareHSSFListener
@@ -372,7 +373,7 @@ namespace TestCases.HSSF.EventUserModel
         private class MockHSSFListener : IHSSFListener
         {
             public MockHSSFListener() { }
-            private ArrayList _records = new ArrayList();
+            private List<Record> _records = new List<Record>();
             private bool logToStdOut = false;
 
             public void ProcessRecord(Record record)
@@ -418,7 +419,7 @@ namespace TestCases.HSSF.EventUserModel
             }
             public Record[] GetRecords()
             {
-                Record[] result = (Record[])_records.ToArray(typeof(Record));
+                Record[] result = (Record[])_records.ToArray();
                 return result;
             }
         }

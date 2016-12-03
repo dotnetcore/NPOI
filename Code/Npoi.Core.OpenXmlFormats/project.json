@@ -3,8 +3,8 @@
 
   "dependencies": {
     "NETStandard.Library": "1.6.0",
-    "Npoi.Core.Common": "1.0.0-*",
-    "Npoi.Core.OpenXml4Net": "1.0.0-*",
+    "Npoi.Core.Common": "1.0.2-*",
+    "Npoi.Core.OpenXml4Net": "1.0.2-*",
     "System.ComponentModel.Primitives": "4.1.0",
     "System.Xml.XmlSerializer": "4.0.11"
   },

@@ -412,7 +412,8 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get
             {
-                return ArrayList.ReadOnly(new ArrayList()).GetEnumerator();
+
+                return new List<object>().GetEnumerator();
             }
         }
         public event POIFSWriterEventHandler BeforeWriting;

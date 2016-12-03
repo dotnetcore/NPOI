@@ -18,14 +18,14 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     public class CT_HdrFtr
     {
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType8> itemsElementNameField;
 
         public CT_HdrFtr()
         {
             this.itemsElementNameField = new List<ItemsChoiceType8>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
         }
         public static CT_HdrFtr Parse(CT_HdrFtr ctObj,XElement node, XmlNamespaceManager namespaceManager)
         {
@@ -295,7 +295,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("sdt", typeof(CT_SdtBlock), Order = 0)]
         [XmlElement("tbl", typeof(CT_Tbl), Order = 0)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {
@@ -870,7 +870,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     public class CT_FtnEdn
     {
 
-        private ArrayList itemsField = new ArrayList();
+        private List<object> itemsField = new List<object>();
 
         private List<ItemsChoiceType7> itemsElementNameField = new List<ItemsChoiceType7>();
 
@@ -1151,7 +1151,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("sdt", typeof(CT_SdtBlock), Order = 0)]
         [XmlElement("tbl", typeof(CT_Tbl), Order = 0)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {

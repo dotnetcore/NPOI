@@ -28,6 +28,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Npoi.Core.Util
 {
@@ -37,7 +38,7 @@ namespace Npoi.Core.Util
         /**
          * Map of POILogger instances, with classes as keys
          */
-        private static Hashtable _loggers = new Hashtable();
+        private static Dictionary<string,object> _loggers = new Dictionary<string, object>();
 
         /**
          * A common instance of NullLogger, as it does nothing

@@ -20,6 +20,7 @@ namespace Npoi.Core.HSSF.EventModel
     using System.IO;
     using System.Collections;
     using Npoi.Core.HSSF.Record;
+    using System.Collections.Generic;
 
 
     /**
@@ -37,7 +38,7 @@ namespace Npoi.Core.HSSF.EventModel
     {
 
         private IERFListener _listener;
-        private ArrayList _sids;
+        private List<object> _sids;
 
         /**
          * Create an EventRecordFactory
@@ -45,7 +46,7 @@ namespace Npoi.Core.HSSF.EventModel
          * handler functions are obeyed.  False means they are ignored. True
          * means the event loop exits on error.
          */
-        public EventRecordFactory(IERFListener listener, ArrayList sids)
+        public EventRecordFactory(IERFListener listener, List<object> sids)
         {
             _listener = listener;
             _sids = sids;
@@ -57,7 +58,7 @@ namespace Npoi.Core.HSSF.EventModel
             else
             {
                 if (_sids == null)
-                _sids = new ArrayList();
+                _sids = new List<object>();
                 _sids.Sort(); // for faster binary search
             }
         }

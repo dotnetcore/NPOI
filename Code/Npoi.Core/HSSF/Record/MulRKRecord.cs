@@ -122,9 +122,9 @@ namespace Npoi.Core.HSSF.Record
         }
 
 
-        //private ArrayList ParseRKs(RecordInputStream in1)
+        //private List<object> ParseRKs(RecordInputStream in1)
         //{
-        //    ArrayList retval = new ArrayList();
+        //    List<object> retval = new List<object>();
         //    while ((in1.Remaining - 2) > 0)
         //    {
         //        RkRec rec = new RkRec();

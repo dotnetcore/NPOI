@@ -19,6 +19,7 @@ namespace Npoi.Core.SS.Formula.Function
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
 
 
     /**
@@ -30,17 +31,17 @@ namespace Npoi.Core.SS.Formula.Function
     class FunctionDataBuilder
     {
         private int _maxFunctionIndex;
-        private Hashtable _functionDataByName;
-        private Hashtable _functionDataByIndex;
+        private Dictionary<object, object> _functionDataByName;
+        private Dictionary<object, object> _functionDataByIndex;
         /** stores indexes of all functions with footnotes (i.e. whose definitions might Change) */
-        private ArrayList _mutatingFunctionIndexes;
+        private List<object> _mutatingFunctionIndexes;
 
         public FunctionDataBuilder(int sizeEstimate)
         {
             _maxFunctionIndex = -1;
-            _functionDataByName = new Hashtable(sizeEstimate * 3 / 2);
-            _functionDataByIndex = new Hashtable(sizeEstimate * 3 / 2);
-            _mutatingFunctionIndexes = new ArrayList();
+            _functionDataByName = new Dictionary<object, object>(sizeEstimate * 3 / 2);
+            _functionDataByIndex = new Dictionary<object, object>(sizeEstimate * 3 / 2);
+            _mutatingFunctionIndexes = new List<object>();
         }
 
         public void Add(int functionIndex, String functionName, int minParams, int maxParams,

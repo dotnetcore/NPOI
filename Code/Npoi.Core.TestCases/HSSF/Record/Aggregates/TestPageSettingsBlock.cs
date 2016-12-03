@@ -86,7 +86,7 @@ namespace TestCases.HSSF.Record.Aggregates
 
 				EOFRecord.instance,
 		};
-            RecordStream rs = new RecordStream(Arrays.AsList(recs), 0);
+            RecordStream rs = new RecordStream((recs), 0);
             InternalSheet sheet;
             try
             {
@@ -130,7 +130,7 @@ namespace TestCases.HSSF.Record.Aggregates
 				new HeaderFooterRecord(HexRead.ReadFromString("9C 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 C4 60 00 00 00 00 00 00 00 00")),
 				EOFRecord.instance,
 		};
-            RecordStream rs = new RecordStream(Arrays.AsList(recs), 0);
+            RecordStream rs = new RecordStream(recs, 0);
             InternalSheet sheet = InternalSheet.CreateSheet(rs);
 
             RecordInspector.RecordCollector rv = new RecordInspector.RecordCollector();
@@ -176,7 +176,7 @@ namespace TestCases.HSSF.Record.Aggregates
 				new WindowTwoRecord(),
 				EOFRecord.instance,
 		};
-            RecordStream rs = new RecordStream(Arrays.AsList(recs), 0);
+            RecordStream rs = new RecordStream((recs), 0);
 
             InternalSheet sheet;
             try
@@ -226,7 +226,7 @@ namespace TestCases.HSSF.Record.Aggregates
 				new HeaderRecord("&LSales Figures"),
 				new HeaderRecord("&LInventory"),
 		};
-            RecordStream rs = new RecordStream(Arrays.AsList(recs), 0);
+            RecordStream rs = new RecordStream((recs), 0);
 
             try
             {
@@ -264,7 +264,7 @@ namespace TestCases.HSSF.Record.Aggregates
 				new HCenterRecord(),
 				new VCenterRecord(),
 		};
-            RecordStream rs = new RecordStream(Arrays.AsList(recs), 0);
+            RecordStream rs = new RecordStream((recs), 0);
             PageSettingsBlock psb = new PageSettingsBlock(rs);
 
             // serialize the PSB to see what records come out
@@ -313,7 +313,7 @@ namespace TestCases.HSSF.Record.Aggregates
 				plsA,
 				plsB, contB1, contB2, // make sure continuing PLS is still OK
 		};
-            RecordStream rs = new RecordStream(Arrays.AsList(recs), 0);
+            RecordStream rs = new RecordStream((recs), 0);
             PageSettingsBlock psb;
             try
             {
@@ -363,7 +363,7 @@ namespace TestCases.HSSF.Record.Aggregates
 
                 EOFRecord.instance,
             };
-            RecordStream rs = new RecordStream(Arrays.AsList(recs), 0);
+            RecordStream rs = new RecordStream((recs), 0);
             InternalSheet sheet;
             try
             {

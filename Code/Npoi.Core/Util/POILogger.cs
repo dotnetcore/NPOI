@@ -30,6 +30,7 @@ using System;
 using System.Text;
 using System.Collections;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace Npoi.Core.Util
 {
@@ -615,7 +616,7 @@ namespace Npoi.Core.Util
 
         private Array FlattenArrays(Object [] objects)
         {
-            ArrayList results = new ArrayList();
+            List<object> results = new List<object>();
 
             for (int i = 0; i < objects.Length; i++)
             {
@@ -624,9 +625,9 @@ namespace Npoi.Core.Util
             return results.ToArray();
         }
 
-        private ArrayList ObjectToObjectArray(Object obj)
+        private List<object> ObjectToObjectArray(Object obj)
         {
-            ArrayList results = new ArrayList();
+            List<object> results = new List<object>();
 
             if (obj.GetType()==typeof(char[]))
             {

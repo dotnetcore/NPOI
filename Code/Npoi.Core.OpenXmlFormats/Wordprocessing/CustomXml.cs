@@ -19,7 +19,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         private CT_CustomXmlPr customXmlPrField;
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType21> itemsElementNameField;
 
@@ -30,7 +30,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         public CT_CustomXmlRow()
         {
             this.itemsElementNameField = new List<ItemsChoiceType21>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
             //this.customXmlPrField = new CT_CustomXmlPr();
         }
 
@@ -304,7 +304,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("sdt", typeof(CT_SdtRow), Order = 1)]
         [XmlElement("tr", typeof(CT_Row), Order = 1)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {
@@ -708,7 +708,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         private CT_CustomXmlPr customXmlPrField;
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType24> itemsElementNameField;
 
@@ -719,7 +719,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         public CT_CustomXmlRun()
         {
             this.itemsElementNameField = new List<ItemsChoiceType24>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
             //this.customXmlPrField = new CT_CustomXmlPr();
         }
 
@@ -769,7 +769,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("smartTag", typeof(CT_SmartTagRun), Order = 1)]
         [XmlElement("subDoc", typeof(CT_Rel), Order = 1)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {
@@ -1188,7 +1188,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         private List<CT_Attr> smartTagPrField;
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType25> itemsElementNameField;
 
@@ -1199,7 +1199,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         public CT_SmartTagRun()
         {
             this.itemsElementNameField = new List<ItemsChoiceType25>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
             //this.smartTagPrField = new List<CT_Attr>();
         }
 
@@ -1250,7 +1250,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("smartTag", typeof(CT_SmartTagRun), Order = 1)]
         [XmlElement("subDoc", typeof(CT_Rel), Order = 1)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {
@@ -1680,7 +1680,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         private CT_CustomXmlPr customXmlPrField;
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType26> itemsElementNameField;
 
@@ -1691,7 +1691,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         public CT_CustomXmlBlock()
         {
             this.itemsElementNameField = new List<ItemsChoiceType26>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
             //this.customXmlPrField = new CT_CustomXmlPr();
         }
 
@@ -1966,7 +1966,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("sdt", typeof(CT_SdtBlock), Order = 1)]
         [XmlElement("tbl", typeof(CT_Tbl), Order = 1)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {
@@ -2125,7 +2125,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         private CT_CustomXmlPr customXmlPrField;
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType27> itemsElementNameField;
 
@@ -2136,7 +2136,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         public CT_CustomXmlCell()
         {
             this.itemsElementNameField = new List<ItemsChoiceType27>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
             //this.customXmlPrField = new CT_CustomXmlPr();
         }
         public static CT_CustomXmlCell Parse(XElement node, XmlNamespaceManager namespaceManager)
@@ -2409,7 +2409,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("sdt", typeof(CT_SdtCell), Order = 1)]
         [XmlElement("tc", typeof(CT_Tc), Order = 1)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {

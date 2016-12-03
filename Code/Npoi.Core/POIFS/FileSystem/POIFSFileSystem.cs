@@ -35,7 +35,7 @@ using Npoi.Core.POIFS.Storage;
 using Npoi.Core.POIFS.EventFileSystem;
 using Npoi.Core.POIFS.Common;
 using Npoi.Core.Util;
-
+using System.Collections.Generic;
 
 namespace Npoi.Core.POIFS.FileSystem
 {
@@ -67,7 +67,7 @@ namespace Npoi.Core.POIFS.FileSystem
         }
 
         private PropertyTable _property_table;
-        private IList          _documents;
+        private IList<object>          _documents;
         private DirectoryNode _root;
         /**
  * What big block size the file uses. Most files
@@ -97,7 +97,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             HeaderBlock headerBlock = new HeaderBlock(bigBlockSize);
             _property_table = new PropertyTable(headerBlock);
-            _documents      = new ArrayList();
+            _documents      = new List<object>();
             _root           = null;
         }
 
@@ -270,7 +270,7 @@ namespace Npoi.Core.POIFS.FileSystem
 
             // Create a list of BATManaged objects: the documents plus the
             // property table and the small block table
-            ArrayList bm_objects = new ArrayList();
+            List<object> bm_objects = new List<object>();
 
             bm_objects.AddRange(_documents);
             bm_objects.Add(_property_table);
@@ -323,7 +323,7 @@ namespace Npoi.Core.POIFS.FileSystem
             // property table, the small block store, the small block
             // allocation table, the block allocation table, and the
             // extended block allocation table blocks)
-            ArrayList Writers = new ArrayList();
+            List<object> Writers = new List<object>();
 
             Writers.Add(header_block_Writer);
             Writers.AddRange(_documents);
@@ -490,7 +490,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 }
                 else
                 {
-                    return ArrayList.ReadOnly(new ArrayList()).GetEnumerator();
+                    return new List<object>().GetEnumerator();
                 }
             }
         }

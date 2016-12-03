@@ -373,7 +373,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="recordId"></param>
         /// <param name="out1">list to store found records</param>
-        public void GetRecordsById(short recordId, ref ArrayList out1)
+        public void GetRecordsById(short recordId, ref List<object> out1)
         {
             for (IEnumerator it = ChildRecords.GetEnumerator(); it.MoveNext(); )
             {

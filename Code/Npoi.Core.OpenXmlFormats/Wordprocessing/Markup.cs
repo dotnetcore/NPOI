@@ -250,7 +250,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     public class CT_Comment : CT_TrackChange
     {
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType50> itemsElementNameField;
 
@@ -259,7 +259,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         public CT_Comment()
         {
             this.itemsElementNameField = new List<ItemsChoiceType50>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
         }
         public static new CT_Comment Parse(XElement root, XmlNamespaceManager namespaceManager)
         {
@@ -531,7 +531,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [System.Xml.Serialization.XmlElementAttribute("sdt", typeof(CT_SdtBlock), Order = 0)]
         [System.Xml.Serialization.XmlElementAttribute("tbl", typeof(CT_Tbl), Order = 0)]
         [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {

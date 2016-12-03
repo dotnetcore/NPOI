@@ -32,6 +32,7 @@ namespace TestCases.HSSF.Model
     using Npoi.Core.SS.Formula;
     using Npoi.Core.Util;
     using Npoi.Core.DDF;
+    using System.Linq;
 
     /**
      * Unit Test for the Sheet class.
@@ -48,7 +49,7 @@ namespace TestCases.HSSF.Model
             s.VisitContainedRecords(rc, offset);
             return rc.Records;
         }
-        private static InternalSheet CreateSheet(ArrayList inRecs)
+        private static InternalSheet CreateSheet(List<Record> inRecs)
         {
             return InternalSheet.CreateSheet(new RecordStream(inRecs, 0));
         }
@@ -57,7 +58,7 @@ namespace TestCases.HSSF.Model
         public void TestCreateSheet()
         {
             // Check we're Adding row and cell aggregates
-            ArrayList records = new ArrayList();
+            List<Record> records = new List<Record>();
             records.Add(BOFRecord.CreateSheetBOF());
             records.Add(new DimensionsRecord());
             records.Add(CreateWindow2Record());
@@ -175,7 +176,7 @@ namespace TestCases.HSSF.Model
         [Test]
         public void TestMovingMergedRegion()
         {
-            ArrayList records = new ArrayList();
+            List<Record> records = new List<Record>();
 
             CellRangeAddress[] cras = {
                 new CellRangeAddress(0, 1, 0, 2),
@@ -226,7 +227,7 @@ namespace TestCases.HSSF.Model
         [Test]
         public void TestRowAggregation()
         {
-            ArrayList records = new ArrayList();
+            List<Record> records = new List<Record>();
 
             records.Add(InternalSheet.CreateBOF());
             records.Add(new DimensionsRecord());
@@ -475,7 +476,7 @@ namespace TestCases.HSSF.Model
         public void TestUncalcSize_bug45066()
         {
 
-            ArrayList records = new ArrayList();
+            List<Record> records = new List<Record>();
             records.Add(BOFRecord.CreateSheetBOF());
             records.Add(new UncalcedRecord());
             records.Add(new DimensionsRecord());
@@ -640,7 +641,7 @@ namespace TestCases.HSSF.Model
             nr.Column = ((short)colIx);
             nr.Value = (3.0);
 
-            ArrayList inRecs = new ArrayList();
+            List<Record> inRecs = new List<Record>();
             inRecs.Add(BOFRecord.CreateSheetBOF());
             inRecs.Add(new RowRecord(rowIx));
             inRecs.Add(nr);
@@ -734,7 +735,7 @@ namespace TestCases.HSSF.Model
                 EOFRecord.instance,
         };
 
-            InternalSheet sheet = CreateSheet(Npoi.Core.Util.Arrays.AsList(recs));
+            InternalSheet sheet = CreateSheet(recs.ToList());
 
             InternalSheet sheet2;
             try

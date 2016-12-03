@@ -20,6 +20,7 @@ namespace Npoi.Core.DDF
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Provides a list of all known escher properties including the description and
@@ -330,7 +331,7 @@ namespace Npoi.Core.DDF
 	    public const short GROUPSHAPE__PRINT = 959;
         #endregion
 
-        private static Hashtable properties;
+        private static Dictionary<object,object> properties;
 
         /// <summary>
         /// Inits the props.
@@ -339,7 +340,7 @@ namespace Npoi.Core.DDF
         {
             if (properties == null)
             {
-                properties = new Hashtable();
+                properties = new Dictionary<object,object>();
                 AddProp(TRANSFORM__ROTATION, GetData("transform.rotation"));
                 AddProp(PROTECTION__LOCKROTATION, GetData("protection.lockrotation"));
                 AddProp(PROTECTION__LOCKASPECTRATIO, GetData("protection.lockaspectratio"));

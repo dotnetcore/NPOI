@@ -324,11 +324,11 @@ namespace Npoi.Core.HSSF.Util
         {
             SetCellStyleProperty(cell, workbook, FONT, font);
         }
-        private static bool CompareHashTableKeyValueIsEqual(Hashtable a, Hashtable b)
+        private static bool CompareHashTableKeyValueIsEqual(Dictionary<string,object> a, Dictionary<string, object> b)
         {
-            foreach (DictionaryEntry a_entry in a)
+            foreach (var a_entry in a)
             {
-                foreach (DictionaryEntry b_entry in b)
+                foreach (var b_entry in b)
                 {
                     if (a_entry.Key.ToString() == b_entry.Key.ToString())
                     {
@@ -364,7 +364,7 @@ namespace Npoi.Core.HSSF.Util
         {
             ICellStyle originalStyle = cell.CellStyle;
             ICellStyle newStyle = null;
-            Hashtable values = GetFormatProperties(originalStyle);
+            var values = GetFormatProperties(originalStyle);
             values[propertyName] = propertyValue;
 
             // index seems like what  index the cellstyle is in the list of styles for a workbook.
@@ -374,7 +374,7 @@ namespace Npoi.Core.HSSF.Util
             for (short i = 0; i < numberCellStyles; i++)
             {
                 ICellStyle wbStyle = workbook.GetCellStyleAt(i);
-                Hashtable wbStyleMap = GetFormatProperties(wbStyle);
+                var wbStyleMap = GetFormatProperties(wbStyle);
 
                 // if (wbStyleMap.Equals(values))
                 if (CompareHashTableKeyValueIsEqual(wbStyleMap, values))
@@ -398,9 +398,9 @@ namespace Npoi.Core.HSSF.Util
         /// </summary>
         /// <param name="style">cell style</param>
         /// <returns>map of format properties (String -&gt; Object)</returns>
-        private static Hashtable GetFormatProperties(ICellStyle style)
+        private static Dictionary<string, object> GetFormatProperties(ICellStyle style)
         {
-            Hashtable properties = new Hashtable();
+            var properties = new Dictionary<string, object>();
             PutShort(properties, ALIGNMENT, (short)style.Alignment);
             PutShort(properties, BORDER_BOTTOM, (short)style.BorderBottom);
             PutShort(properties, BORDER_LEFT, (short)style.BorderLeft);
@@ -431,7 +431,7 @@ namespace Npoi.Core.HSSF.Util
         /// <param name="workbook">The parent workbook.</param>
         /// <param name="properties">The map of format properties (String -&gt; Object).</param>
         private static void SetFormatProperties(
-                ICellStyle style, HSSFWorkbook workbook, Hashtable properties)
+                ICellStyle style, HSSFWorkbook workbook, Dictionary<string, object> properties)
         {
             style.Alignment = (HorizontalAlignment)GetShort(properties, ALIGNMENT);
             style.BorderBottom = (BorderStyle)GetShort(properties, BORDER_BOTTOM);
@@ -462,7 +462,7 @@ namespace Npoi.Core.HSSF.Util
         /// <param name="properties">The map of named properties (String -&gt; Object)</param>
         /// <param name="name">The property name.</param>
         /// <returns>property value, or zero</returns>
-        private static short GetShort(Hashtable properties, String name)
+        private static short GetShort(Dictionary<string, object> properties, String name)
         {
             Object value = properties[name];
             if (value is short)
@@ -482,7 +482,7 @@ namespace Npoi.Core.HSSF.Util
         /// <param name="properties">map of properties (String -&gt; Object)</param>
         /// <param name="name">The property name.</param>
         /// <returns>property value, or false</returns>
-        private static bool GetBoolean(Hashtable properties, String name)
+        private static bool GetBoolean(Dictionary<string, object> properties, String name)
         {
             Object value = properties[name];
             if (value is Boolean)
@@ -501,7 +501,7 @@ namespace Npoi.Core.HSSF.Util
         /// <param name="properties">The map of properties (String -&gt; Object).</param>
         /// <param name="name">The property name.</param>
         /// <param name="value">The property value.</param>
-        private static void PutShort(Hashtable properties, String name, short value)
+        private static void PutShort(Dictionary<string, object> properties, String name, short value)
         {
             properties[name] = value;
         }
@@ -512,7 +512,7 @@ namespace Npoi.Core.HSSF.Util
         /// <param name="properties">map of properties (String -&gt; Object)</param>
         /// <param name="name">property name</param>
         /// <param name="value">property value</param>
-        private static void PutBoolean(Hashtable properties, String name, bool value)
+        private static void PutBoolean(Dictionary<string, object> properties, String name, bool value)
         {
             properties[name] = value;
         }

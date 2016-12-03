@@ -29,6 +29,7 @@ namespace Npoi.Core.HPSF
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
 
 
     /// <summary>
@@ -397,7 +398,7 @@ namespace Npoi.Core.HPSF
         static Variant()
         {
             /* Initialize the number-to-name map: */
-            Hashtable tm1 = new Hashtable();
+            Dictionary<object,object> tm1 = new Dictionary<object,object>();
             tm1[0] = "VT_EMPTY";
             tm1[1] = "VT_NULL";
             tm1[2] = "VT_I2";
@@ -442,7 +443,7 @@ namespace Npoi.Core.HPSF
             numberToName = tm1;
 
             /* Initialize the number-to-Length map: */
-            Hashtable tm2 = new Hashtable();
+            Dictionary<object,object> tm2 = new Dictionary<object,object>();
             tm2[0] = Length_0;
             tm2[1] = Length_UNKNOWN;
             tm2[2] = Length_2;

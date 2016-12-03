@@ -130,12 +130,12 @@ namespace Npoi.Core.HSSF.Model
             public ExternalBookBlock(RecordStream rs)
             {
                 _externalBookRecord = (SupBookRecord)rs.GetNext();
-                ArrayList temp = new ArrayList();
+                List<object> temp = new List<object>();
                 while (rs.PeekNextClass() == typeof(ExternalNameRecord))
                 {
                     temp.Add(rs.GetNext());
                 }
-                _externalNameRecords = (ExternalNameRecord[])temp.ToArray(typeof(ExternalNameRecord));
+                _externalNameRecords = (ExternalNameRecord[])temp.ToArray();
 
                 temp.Clear();
 
@@ -143,7 +143,7 @@ namespace Npoi.Core.HSSF.Model
                 {
                     temp.Add(new CRNBlock(rs));
                 }
-                _crnBlocks = (CRNBlock[])temp.ToArray(typeof(CRNBlock));
+                _crnBlocks = (CRNBlock[])temp.ToArray();
             }
 
             /**
@@ -228,14 +228,14 @@ namespace Npoi.Core.HSSF.Model
             _workbookRecordList = workbookRecordList;
             RecordStream rs = new RecordStream(inputList, startIndex);
 
-            ArrayList temp = new ArrayList();
+            List<object> temp = new List<object>();
             while (rs.PeekNextClass() == typeof(SupBookRecord))
             {
                 temp.Add(new ExternalBookBlock(rs));
             }
 
             //_externalBookBlocks = new ExternalBookBlock[temp.Count];
-            _externalBookBlocks = (ExternalBookBlock[])temp.ToArray(typeof(ExternalBookBlock));
+            _externalBookBlocks = (ExternalBookBlock[])temp.ToArray();
             temp.Clear();
 
             if (_externalBookBlocks.Length > 0)

@@ -28,9 +28,11 @@ namespace TestCases.HSSF.Record.Chart
     using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.POIFS.FileSystem;
     using Npoi.Core.HSSF.Record.Chart;
+    using System.Collections.Generic;
+
     /**
-     * 
-     */
+* 
+*/
     [TestFixture]
     public class TestAlRunsRecord
     {
@@ -67,7 +69,7 @@ namespace TestCases.HSSF.Record.Chart
 
             public ChartTitleFormatRecordGrabber()
             {
-                chartTitleFormatRecords = new ArrayList();
+                chartTitleFormatRecords = new List<object>();
             }
 
             public void ProcessRecord(Record record)

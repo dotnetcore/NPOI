@@ -107,22 +107,7 @@ namespace Npoi.Core.Util
                 throw new IndexOutOfRangeException( "toIndex(" + toIndex + ")");
             }
         }
-        /// <summary>
-        /// Convert Array to ArrayList
-        /// </summary>
-        /// <param name="arr">source array</param>
-        /// <returns></returns>
-        public static ArrayList AsList(Array arr)
-        {
-            if (arr.Length <= 0)
-                return new ArrayList();
-            ArrayList al = new ArrayList(arr.Length);
-            for (int i = 0; i < arr.Length; i++)
-            {
-                al.Add(arr.GetValue(i));
-            }
-            return al;
-        }
+ 
         /// <summary>
         /// Fills the specified array.
         /// </summary>
@@ -529,7 +514,7 @@ namespace Npoi.Core.Util
          * <tt>Arrays.HashCode(a) == Arrays.HashCode(b)</tt>.
          *
          * The value returned by this method is equal to the value that would
-         * be returned by <tt>Arrays.AsList(a).HashCode()</tt>, unless <tt>a</tt>
+         * be returned by <tt>(a).HashCode()</tt>, unless <tt>a</tt>
          * is <tt>null</tt>, in which case <tt>0</tt> is returned.
          *
          * @param a the array whose content-based hash code to compute

@@ -105,7 +105,7 @@ namespace Npoi.Core.HSSF.UserModel
          * this holds the HSSFFont objects attached to this workbook.
          * We only create these from the low level records as required.
          */
-        private Hashtable fonts;
+        private Dictionary<object,object> fonts;
 
 
 
@@ -122,13 +122,13 @@ namespace Npoi.Core.HSSF.UserModel
         private class SheetRecordCollector : Npoi.Core.HSSF.Record.Aggregates.RecordVisitor,IDisposable
         {
 
-            private ArrayList _list;
+            private List<object> _list;
             private int _totalSize;
 
             public SheetRecordCollector()
             {
                 _totalSize = 0;
-                _list = new ArrayList(128);
+                _list = new List<object>(128);
             }
             public int TotalSize
             {
@@ -1208,7 +1208,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <returns>HSSFFont at the index</returns>
         public Npoi.Core.SS.UserModel.IFont GetFontAt(short idx)
         {
-            if (fonts == null) fonts = new Hashtable();
+            if (fonts == null) fonts = new Dictionary<object,object>();
 
             // So we don't confuse users, give them back
             //  the same object every time, but create
@@ -1234,7 +1234,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         public void ResetFontCache()
         {
-            fonts = new Hashtable();
+            fonts = new Dictionary<object,object>();
         }
         /// <summary>
         /// Create a new Cell style and Add it to the workbook's style table

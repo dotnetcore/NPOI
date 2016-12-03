@@ -21,6 +21,7 @@ namespace Npoi.Core.SS.Util
     using System;
     using System.Text;
     using System.Collections;
+    using System.Collections.Generic;
 
     public class AreaReference
     {
@@ -235,7 +236,7 @@ namespace Npoi.Core.SS.Util
          */
         public static AreaReference[] GenerateContiguous(String reference)
         {
-            ArrayList refs = new ArrayList();
+            List<AreaReference> refs = new List<AreaReference>();
             String st = reference;
             string[] token = st.Split(',');
             foreach (string t in token)
@@ -244,7 +245,7 @@ namespace Npoi.Core.SS.Util
                         new AreaReference(t)
                 );
             }
-            return (AreaReference[])refs.ToArray(typeof(AreaReference));
+            return (AreaReference[])refs.ToArray();
         }
 
         /**
@@ -293,7 +294,7 @@ namespace Npoi.Core.SS.Util
             int maxCol = Math.Max(_firstCell.Col, _lastCell.Col);
             String sheetName = _firstCell.SheetName;
 
-            ArrayList refs = new ArrayList();
+            List<CellReference> refs = new List<CellReference>();
             for (int row = minRow; row <= maxRow; row++)
             {
                 for (int col = minCol; col <= maxCol; col++)
@@ -302,7 +303,7 @@ namespace Npoi.Core.SS.Util
                     refs.Add(ref1);
                 }
             }
-            return (CellReference[])refs.ToArray(typeof(CellReference));
+            return (CellReference[])refs.ToArray();
         }
 
         /**

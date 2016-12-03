@@ -34,7 +34,7 @@ namespace Npoi.Core.HSSF.Model
     public class RowBlocksReader
     {
 
-        private ArrayList _plainRecords;
+        private List<object> _plainRecords;
         private SharedValueManager _sfm;
         private MergeCellsRecord[] _mergedCellsRecords;
 
@@ -44,11 +44,11 @@ namespace Npoi.Core.HSSF.Model
          */
         public RowBlocksReader(RecordStream rs)
         {
-            ArrayList plainRecords = new ArrayList();
-            ArrayList shFrmRecords = new ArrayList();
-            ArrayList arrayRecords = new ArrayList();
-            ArrayList tableRecords = new ArrayList();
-            ArrayList mergeCellRecords = new ArrayList();
+            List<object> plainRecords = new List<object>();
+            List<object> shFrmRecords = new List<object>();
+            List<object> arrayRecords = new List<object>();
+            List<object> tableRecords = new List<object>();
+            List<object> mergeCellRecords = new List<object>();
             List<CellReference> firstCellRefs = new List<CellReference>();
             Record prevRec = null;
 
@@ -64,7 +64,7 @@ namespace Npoi.Core.HSSF.Model
 
                 }
                 Record rec = rs.GetNext();
-                ArrayList dest;
+                List<object> dest;
                 switch (rec.Sid)
                 {
                     case MergeCellsRecord.sid:
@@ -95,17 +95,17 @@ namespace Npoi.Core.HSSF.Model
             SharedFormulaRecord[] sharedFormulaRecs = new SharedFormulaRecord[shFrmRecords.Count];
             List<ArrayRecord> arrayRecs = new List<ArrayRecord>(arrayRecords.Count);
             List<TableRecord> tableRecs = new List<TableRecord>(tableRecords.Count);
-            sharedFormulaRecs = (SharedFormulaRecord[])shFrmRecords.ToArray(typeof(SharedFormulaRecord));
+            sharedFormulaRecs = (SharedFormulaRecord[])shFrmRecords.ToArray();
 
             CellReference[] firstCells = new CellReference[firstCellRefs.Count];
             firstCells=firstCellRefs.ToArray();
-            arrayRecs = new List<ArrayRecord>((ArrayRecord[])arrayRecords.ToArray(typeof(ArrayRecord)));
-            tableRecs = new List<TableRecord>((TableRecord[])tableRecords.ToArray(typeof(TableRecord)));
+            arrayRecs = new List<ArrayRecord>((ArrayRecord[])arrayRecords.ToArray());
+            tableRecs = new List<TableRecord>((TableRecord[])tableRecords.ToArray());
 
             _plainRecords = plainRecords;
             _sfm = SharedValueManager.Create(sharedFormulaRecs,firstCells, arrayRecs, tableRecs);
             _mergedCellsRecords = new MergeCellsRecord[mergeCellRecords.Count];
-            _mergedCellsRecords = (MergeCellsRecord[])mergeCellRecords.ToArray(typeof(MergeCellsRecord));
+            _mergedCellsRecords = (MergeCellsRecord[])mergeCellRecords.ToArray();
         }
 
         /**

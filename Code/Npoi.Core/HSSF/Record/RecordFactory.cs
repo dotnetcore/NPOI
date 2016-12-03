@@ -34,6 +34,7 @@ namespace Npoi.Core.HSSF.Record
     using Npoi.Core.HSSF.Record.AutoFilter;
     using Npoi.Core.Util;
     using System.Globalization;
+    using System.Linq;
 
     /**
      * Title:  Record Factory
@@ -403,7 +404,7 @@ namespace Npoi.Core.HSSF.Record
 
             _recordCreatorsById = RecordsToMap(recordClasses);
         }
-        //private static Hashtable recordsMap;
+        //private static Dictionary<object,object> recordsMap;
         /**
 	     * cache of the recordsToMap();
 	     */
@@ -579,7 +580,7 @@ namespace Npoi.Core.HSSF.Record
         private static Dictionary<short, I_RecordCreator> RecordsToMap(Type[] records)
         {
             Dictionary<short, I_RecordCreator> result = new Dictionary<short, I_RecordCreator>();
-            Hashtable uniqueRecClasses = new Hashtable(records.Length * 3 / 2);
+            Dictionary<Type, Type> uniqueRecClasses = new Dictionary<Type, Type>(records.Length * 3 / 2);
 
             for (int i = 0; i < records.Length; i++)
             {
@@ -593,7 +594,7 @@ namespace Npoi.Core.HSSF.Record
                 {
                     throw new Exception("Invalid record class (" + recClass.Name + ") - must not be abstract");
                 }
-                if (uniqueRecClasses.Contains(recClass))
+                if (uniqueRecClasses.ContainsKey(recClass))
                 {
                     throw new Exception("duplicate record class (" + recClass.Name + ")");
                 }

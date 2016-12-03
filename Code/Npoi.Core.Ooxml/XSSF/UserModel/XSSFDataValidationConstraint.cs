@@ -226,7 +226,12 @@ namespace Npoi.Core.XSSF.UserModel
                 String QUOTE = "";
                 if (validationType == ValidationType.LIST && explicitListOfValues != null)
                 {
-                    builder.Append(QUOTE).Append(Arrays.AsList(explicitListOfValues)).Append(QUOTE).Append(' ');
+                    builder.Append(QUOTE);
+                    foreach (var item in explicitListOfValues) {
+                        builder.Append(item);
+                    }
+
+                    builder.Append(QUOTE).Append(' ');
                 }
                 else
                 {

@@ -16,6 +16,7 @@
 ==================================================================== */
 
 using System.Collections;
+using System.Collections.Generic;
 
 /* ================================================================
  * About NPOI
@@ -35,8 +36,8 @@ namespace Npoi.Core.Util
     /// </summary>
     public class BitFieldFactory
     {
-        //use Hashtable to replace HashMap
-        private static Hashtable instances = new Hashtable();
+        //use Dictionary<object,object> to replace HashMap
+        private static Dictionary<object, object> instances = new Dictionary<object, object>();
 
         /// <summary>
         /// Gets the instance.

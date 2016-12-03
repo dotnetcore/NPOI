@@ -330,7 +330,7 @@ namespace TestCases.POIFS.Storage
 
             new BlockAllocationTableReader(POIFSConstants.SMALLER_BIG_BLOCK_SIZE_DETAILS, 1, batArray, 0, -2, dataBlocks);
 
-            // need to initialize the block ArrayList with a block allocation
+            // need to initialize the block List<object> with a block allocation
             // table
             HeaderBlock headerBlock = new HeaderBlock(POIFSConstants.SMALLER_BIG_BLOCK_SIZE_DETAILS);
             headerBlock.PropertyStart = 0;

@@ -23,6 +23,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.Model;
     using System.Globalization;
+    using System.Collections.Generic;
 
 
     /// <summary>
@@ -30,9 +31,9 @@ namespace Npoi.Core.HSSF.Record.Aggregates
     /// </summary>
     public class ColumnInfoRecordsAggregate : RecordAggregate
     {
-        private class CIRComparator : IComparer
+        private class CIRComparator: IComparer<object>
         {
-            public static IComparer instance = new CIRComparator();
+            public static IComparer<object> instance = new CIRComparator();
             private CIRComparator()
             {
                 // enforce singleton
@@ -48,14 +49,14 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         }
 
         //    int     size     = 0;
-        ArrayList records = null;
+        List<object> records = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ColumnInfoRecordsAggregate"/> class.
         /// </summary>
         public ColumnInfoRecordsAggregate()
         {
-            records = new ArrayList();
+            records = new List<object>();
         }
         /// <summary>
         /// Initializes a new instance of the <see cref="ColumnInfoRecordsAggregate"/> class.

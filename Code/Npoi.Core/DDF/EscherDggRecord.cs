@@ -311,7 +311,7 @@ using System.Collections.Generic;
             clusters.Add(new FileIdCluster(dgId, numShapedUsed));
             if (sort)
             {
-                //ArrayList.Sort is not stable, we need a stable sort ,
+                //List<object>.Sort is not stable, we need a stable sort ,
                 //see test case TestHSSFComment.TestBug56380InsertTooManyComments
                 //clusters.Sort(new EscherDggRecordComparer());
                 InsertionSort<FileIdCluster>(clusters, new EscherDggRecordComparer());

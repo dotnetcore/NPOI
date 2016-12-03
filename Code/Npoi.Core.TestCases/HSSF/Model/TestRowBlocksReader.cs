@@ -23,6 +23,7 @@ namespace TestCases.HSSF.Model
     using Npoi.Core.Util;
     using NUnit.Framework;
     using Npoi.Core.HSSF.Model;
+    using System.Linq;
 
     /**
      * Tests for {@link RowBlocksReader}
@@ -43,7 +44,7 @@ namespace TestCases.HSSF.Model
 			new UnknownRecord(SXVIEW_SID, System.Text.Encoding.UTF8.GetBytes("dummydata (SXVIEW: View DefInition)")),
 			new WindowTwoRecord(),
 		};
-            RecordStream rs = new RecordStream(Arrays.AsList(inRecs), 0);
+            RecordStream rs = new RecordStream(inRecs.ToList(), 0);
             RowBlocksReader rbr = new RowBlocksReader(rs);
             if (rs.PeekNextClass() == typeof(WindowTwoRecord))
             {

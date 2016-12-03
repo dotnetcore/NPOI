@@ -27,6 +27,7 @@ namespace TestCases.HSSF.EventUserModel
     using Npoi.Core.POIFS.FileSystem;
 
     using NUnit.Framework;
+    using System.Collections.Generic;
 
     [TestFixture]
     public class TestHSSFEventFactory
@@ -113,12 +114,12 @@ namespace TestCases.HSSF.EventUserModel
 
         private class MockHSSFListener : IHSSFListener
         {
-            private ArrayList records = new ArrayList();
+            private List<object> records = new List<object>();
 
             public MockHSSFListener() { }
             public Record[] GetRecords()
             {
-                Record[] result = (Record[])records.ToArray(typeof(Record));
+                Record[] result = (Record[])records.ToArray();
                 return result;
             }
 

@@ -22,6 +22,7 @@ namespace Npoi.Core.HSSF.EventUserModel
     using System;
     using System.Collections;
     using Npoi.Core.HSSF.Record;
+    using System.Collections.Generic;
 
 
     /// <summary>
@@ -32,7 +33,7 @@ namespace Npoi.Core.HSSF.EventUserModel
     /// </summary>
     public class HSSFRequest
     {
-        private Hashtable records;
+        private Dictionary<object,object> records;
 
         /// <summary>
         /// Creates a new instance of HSSFRequest
@@ -40,7 +41,7 @@ namespace Npoi.Core.HSSF.EventUserModel
         public HSSFRequest()
         {
             records =
-                new Hashtable(50);   // most folks won't listen for too many of these
+                new Dictionary<object,object>(50);   // most folks won't listen for too many of these
         }
 
         /// <summary>
@@ -63,7 +64,7 @@ namespace Npoi.Core.HSSF.EventUserModel
             }
             else
             {
-                list = new ArrayList(
+                list = new List<object>(
                     1);   // probably most people will use one listener
                 list.Add(lsnr);
                 records[sid]=list;

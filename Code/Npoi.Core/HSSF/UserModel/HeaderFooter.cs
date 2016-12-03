@@ -441,7 +441,7 @@ namespace Npoi.Core.HSSF.UserModel
         public class Field
         {
             [Obsolete("Use the generic list Fields.AllFields instead.")]
-            public static ArrayList ALL_FIELDS { get { return new ArrayList(Fields.AllFields); } }
+            public static List<object> ALL_FIELDS { get { return new List<object>(Fields.AllFields); } }
 
             /** The character sequence that marks this field */
             public String sequence;

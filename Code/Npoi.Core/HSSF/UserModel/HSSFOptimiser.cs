@@ -19,6 +19,7 @@ namespace Npoi.Core.HSSF.UserModel
     using Npoi.Core.SS.UserModel;
 
     using Npoi.Core.HSSF.Record;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Excel can Get cranky if you give it files containing too
@@ -145,7 +146,7 @@ namespace Npoi.Core.HSSF.UserModel
             //  the new locations of the fonts
             // Remember that one underlying unicode string
             //  may be shared by multiple RichTextStrings!
-            ArrayList doneUnicodeStrings = new ArrayList();
+            List<object> doneUnicodeStrings = new List<object>();
             for (int sheetNum = 0; sheetNum < workbook.NumberOfSheets; sheetNum++)
             {
                 Npoi.Core.SS.UserModel.ISheet s = workbook.GetSheetAt(sheetNum);

@@ -15,7 +15,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-        
+
 using System;
 using System.Collections;
 using System.IO;
@@ -23,6 +23,7 @@ using System.IO;
 
 using Npoi.Core.POIFS.EventFileSystem;
 using Npoi.Core.POIFS.FileSystem;
+using System.Collections.Generic;
 
 /**
  * Test (Proof of concept) program that employs the
@@ -38,13 +39,13 @@ namespace TestCases.POIFS.FileSystem
         private DirectoryEntry root;
 
         // keys are DocumentDescriptors, values are byte[]s
-        private Hashtable dataMap;
+        private Dictionary<object,object> dataMap;
 
         public ReaderWriter(POIFSFileSystem fileSystem)
         {
             this.filesystem = fileSystem;
             root = this.filesystem.Root;
-            dataMap = new Hashtable();
+            dataMap = new Dictionary<object,object>();
         }
 
         /* ********** START implementation of POIFSReaderListener ********** */

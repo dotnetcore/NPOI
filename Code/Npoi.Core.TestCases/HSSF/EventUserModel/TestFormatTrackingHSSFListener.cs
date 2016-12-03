@@ -29,6 +29,7 @@ namespace TestCases.HSSF.EventUserModel
     using Npoi.Core.POIFS.FileSystem;
 
     using NUnit.Framework;
+    using System.Collections.Generic;
 
     [TestFixture]
     public class TestFormatTrackingHSSFListener
@@ -118,7 +119,7 @@ namespace TestCases.HSSF.EventUserModel
         private class MockHSSFListener : IHSSFListener
         {
             public MockHSSFListener() { }
-            internal ArrayList _records = new ArrayList();
+            internal List<Record> _records = new List<Record>();
 
             public void ProcessRecord(Record record)
             {

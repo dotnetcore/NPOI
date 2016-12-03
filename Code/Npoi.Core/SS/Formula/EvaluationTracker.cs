@@ -21,7 +21,8 @@ namespace Npoi.Core.SS.Formula
     using System;
     using System.Collections;
     using Npoi.Core.SS.Formula.Eval;
-    
+    using System.Collections.Generic;
+
 
     /// <summary>
     /// Instances of this class keep track of multiple dependent cell evaluations due
@@ -43,8 +44,8 @@ namespace Npoi.Core.SS.Formula
         public EvaluationTracker(EvaluationCache cache)
         {
             _cache = cache;
-            _evaluationFrames = new ArrayList();
-            _currentlyEvaluatingCells = new ArrayList();
+            _evaluationFrames = new List<object>();
+            _currentlyEvaluatingCells = new List<object>();
         }
 
         /**

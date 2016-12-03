@@ -25,6 +25,7 @@ namespace Npoi.Core.SS.Formula
     using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.Formula.Functions;
     using Npoi.Core.SS.Formula.PTG;
+    using System.Collections.Generic;
 
     /**
      * This class Creates <c>OperationEval</c> instances To help evaluate <c>OperationPtg</c>
@@ -36,16 +37,16 @@ namespace Npoi.Core.SS.Formula
     {
         private static Type[] OPERATION_CONSTRUCTOR_CLASS_ARRAY = new Type[] { typeof(Ptg) };
 
-        private static Hashtable _instancesByPtgClass = InitialiseInstancesMap();
+        private static Dictionary<OperationPtg, object> _instancesByPtgClass = InitialiseInstancesMap();
 
         private OperationEvaluatorFactory()
         {
             // no instances of this class
         }
 
-        private static Hashtable InitialiseInstancesMap()
+        private static Dictionary<OperationPtg, object> InitialiseInstancesMap()
         {
-            Hashtable m = new Hashtable(32);
+            var m = new Dictionary<OperationPtg, object>(32);
             Add(m, EqualPtg.instance, RelationalOperationEval.EqualEval);
             Add(m, GreaterEqualPtg.instance, RelationalOperationEval.GreaterEqualEval);
             Add(m, GreaterThanPtg.instance, RelationalOperationEval.GreaterThanEval);
@@ -67,7 +68,7 @@ namespace Npoi.Core.SS.Formula
             return m;
         }
 
-        private static void Add(Hashtable m, OperationPtg ptgKey,
+        private static void Add(Dictionary<OperationPtg, object> m, OperationPtg ptgKey,
             Npoi.Core.SS.Formula.Functions.Function instance)
         {
             // make sure ptg has single private constructor because map lookups assume singleton keys

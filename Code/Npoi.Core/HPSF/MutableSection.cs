@@ -34,6 +34,7 @@ namespace Npoi.Core.HPSF
     using Npoi.Core.Util;
     using Npoi.Core.HPSF.Wellknown;
     using System.Globalization;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Adds writing capability To the {@link Section} class.
@@ -56,7 +57,7 @@ namespace Npoi.Core.HPSF
          * decision has been taken when specifying the "properties" field
          * as an Property[]. It should have been a {@link java.util.List}.
          */
-        private ArrayList preprops;
+        private List<object> preprops;
 
 
 
@@ -77,7 +78,7 @@ namespace Npoi.Core.HPSF
             dirty = true;
             formatID = null;
             offset = -1;
-            preprops = new ArrayList();
+            preprops = new List<object>();
         }
 
 
@@ -138,7 +139,7 @@ namespace Npoi.Core.HPSF
         public void SetProperties(Property[] properties)
         {
             this.properties = properties;
-            preprops = new ArrayList();
+            preprops = new List<object>();
             for (int i = 0; i < properties.Length; i++)
                 preprops.Add(properties[i]);
             dirty = true;
@@ -311,14 +312,11 @@ namespace Npoi.Core.HPSF
         }
 
 
-        private class PropertyComparer : IComparer
+        private class PropertyComparer : IComparer<object>
         {
-            #region IComparer Members
-
-            int IComparer.Compare(object o1, object o2)
-            {
-                Property p1 = (Property)o1;
-                Property p2 = (Property)o2;
+            public int Compare(object x, object y) {
+                Property p1 = (Property)x;
+                Property p2 = (Property)y;
                 if (p1.ID < p2.ID)
                     return -1;
                 else if (p1.ID == p2.ID)
@@ -326,8 +324,6 @@ namespace Npoi.Core.HPSF
                 else
                     return 1;
             }
-
-            #endregion
         }
         /// <summary>
         /// Writes this section into an output stream.
@@ -561,7 +557,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         public void EnsureProperties()
         {
-            properties = (Property[])preprops.ToArray(typeof(Property));
+            properties = (Property[])preprops.ToArray();
         }
 
 

@@ -22,10 +22,12 @@ namespace Npoi.Core.SS.Formula.Functions
     using Npoi.Core.Util;
     using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.Formula;
+    using System.Collections.Generic;
+
     /**
-     * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     *
-     */
+* @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
+*
+*/
     public class Mode : Function
     {
         /**
@@ -76,7 +78,7 @@ namespace Npoi.Core.SS.Formula.Functions
             double result;
             try
             {
-                IList temp = new ArrayList();
+                IList temp = new List<object>();
                 for (int i = 0; i < args.Length; i++)
                 {
                     CollectValues(args[i], temp);

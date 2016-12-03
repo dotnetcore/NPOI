@@ -68,7 +68,7 @@ namespace TestCases.POIFS.Storage
         {
 
             // need to create an array of raw blocks containing the SBAT,
-            // and a small document block ArrayList
+            // and a small document block List<object>
             byte[] sbat_data =
         {
             ( byte ) 0xFF, ( byte ) 0xFF, ( byte ) 0xFF, ( byte ) 0xFF,
@@ -1243,7 +1243,7 @@ namespace TestCases.POIFS.Storage
             // strategy:
             // 
             // 1. Set up a single BAT block from which to construct a
-            // BAT. create nonsense blocks in the raw data block ArrayList
+            // BAT. create nonsense blocks in the raw data block List<object>
             // corresponding to the indices in the BAT block.
             // 2. The indices will include very short documents (0 and 1
             // block in Length), longer documents, and some screwed up

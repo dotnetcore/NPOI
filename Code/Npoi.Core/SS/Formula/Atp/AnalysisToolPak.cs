@@ -47,7 +47,7 @@ namespace Npoi.Core.SS.Formula.Atp
     {
         public static UDFFinder instance = new AnalysisToolPak();
 
-        private static Hashtable _functionsByName = CreateFunctionsMap();
+        private static Dictionary<object, object> _functionsByName = CreateFunctionsMap();
 
         private AnalysisToolPak()
         {
@@ -63,9 +63,9 @@ namespace Npoi.Core.SS.Formula.Atp
             return (FreeRefFunction)_functionsByName[name.ToUpper()];
         }
 
-        private static Hashtable CreateFunctionsMap()
+        private static Dictionary<object, object> CreateFunctionsMap()
         {
-            Hashtable m = new Hashtable(100);
+            Dictionary<object, object> m = new Dictionary<object, object>(100);
 
             r(m, "ACCRINT", null);
             r(m, "ACCRINTM", null);
@@ -179,7 +179,7 @@ namespace Npoi.Core.SS.Formula.Atp
             return m;
         }
 
-        private static void r(Hashtable m, String functionName, FreeRefFunction pFunc)
+        private static void r(Dictionary<object, object> m, String functionName, FreeRefFunction pFunc)
         {
             FreeRefFunction func = pFunc == null ? new NotImplemented(functionName) : pFunc;
             m[functionName] = func;

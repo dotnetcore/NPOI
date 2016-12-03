@@ -27,6 +27,7 @@ namespace TestCases.HSSF.UserModel
     using TestCases.HSSF;
     using NUnit.Framework;
     using Npoi.Core.SS.UserModel;
+    using System.Collections.Generic;
 
     /**
      * @author Brian Sanders (bsanders at risklabs dot com)
@@ -241,7 +242,7 @@ namespace TestCases.HSSF.UserModel
 
         private void CompareToDefaults(ColorComparator c)
         {
-            Hashtable colors = HSSFColor.GetIndexHash();
+            Dictionary<object,object> colors = HSSFColor.GetIndexHash();
             IEnumerator it = colors.Keys.GetEnumerator();
             while (it.MoveNext())
             {

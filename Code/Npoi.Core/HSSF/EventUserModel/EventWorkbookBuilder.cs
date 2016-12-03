@@ -114,8 +114,8 @@ namespace Npoi.Core.HSSF.EventUserModel
         public class SheetRecordCollectingListener : IHSSFListener
         {
             private IHSSFListener childListener;
-            private ArrayList boundSheetRecords = new ArrayList();
-            private ArrayList externSheetRecords = new ArrayList();
+            private List<BoundSheetRecord> boundSheetRecords = new List<BoundSheetRecord>();
+            private List<ExternSheetRecord> externSheetRecords = new List<ExternSheetRecord>();
             private SSTRecord sstRecord = null;
 
             /// <summary>
@@ -134,9 +134,7 @@ namespace Npoi.Core.HSSF.EventUserModel
             /// <returns></returns>
             public BoundSheetRecord[] GetBoundSheetRecords()
             {
-                return (BoundSheetRecord[])boundSheetRecords.ToArray(
-                        typeof(BoundSheetRecord)
-                );
+                return boundSheetRecords.ToArray();
             }
             /// <summary>
             /// Gets the extern sheet records.
@@ -144,9 +142,7 @@ namespace Npoi.Core.HSSF.EventUserModel
             /// <returns></returns>
             public ExternSheetRecord[] GetExternSheetRecords()
             {
-                return (ExternSheetRecord[])externSheetRecords.ToArray(
-                        typeof(ExternSheetRecord)
-                );
+                return externSheetRecords.ToArray();
             }
             /// <summary>
             /// Gets the SST record.
@@ -208,11 +204,11 @@ namespace Npoi.Core.HSSF.EventUserModel
             {
                 if (record is BoundSheetRecord)
                 {
-                    boundSheetRecords.Add(record);
+                    boundSheetRecords.Add((BoundSheetRecord)record);
                 }
                 else if (record is ExternSheetRecord)
                 {
-                    externSheetRecords.Add(record);
+                    externSheetRecords.Add((ExternSheetRecord)record);
                 }
                 else if (record is SSTRecord)
                 {

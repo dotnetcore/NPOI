@@ -30,6 +30,7 @@ namespace Npoi.Core.HPSF.Wellknown
     using System;
     using System.Text;
     using System.Collections;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Maps section format IDs To {@link PropertyIDMap}s. It Is
@@ -46,7 +47,7 @@ namespace Npoi.Core.HPSF.Wellknown
     /// @author Rainer Klute (klute@rainer-klute.de)
     /// @since 2002-02-09
     /// </summary>
-    public class SectionIDMap : Hashtable
+    public class SectionIDMap : Dictionary<object,object>
     {
 
         /**

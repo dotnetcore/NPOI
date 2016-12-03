@@ -467,7 +467,7 @@ namespace Npoi.Core.HSSF.Record
             }
 
             // Decode the shapes
-            //        agg.escherRecords = new ArrayList();
+            //        agg.escherRecords = new List<object>();
             int pos = 0;
             byte[] buffer = stream.ToArray();
             while (pos < buffer.Length)
@@ -1088,7 +1088,7 @@ namespace Npoi.Core.HSSF.Record
         }
         
 
-        //private void ConvertShapes(HSSFShapeContainer parent, EscherContainerRecord escherParent, Hashtable shapeToObj)
+        //private void ConvertShapes(HSSFShapeContainer parent, EscherContainerRecord escherParent, Dictionary<object,object> shapeToObj)
         //{
         //    if (escherParent == null) throw new ArgumentException("Parent record required");
 
@@ -1126,7 +1126,7 @@ namespace Npoi.Core.HSSF.Record
 
         //}
 
-        //private void ConvertGroup(HSSFShapeGroup shape, EscherContainerRecord escherParent, Hashtable shapeToObj)
+        //private void ConvertGroup(HSSFShapeGroup shape, EscherContainerRecord escherParent, Dictionary<object,object> shapeToObj)
         //{
         //    EscherContainerRecord spgrContainer = new EscherContainerRecord();
         //    EscherContainerRecord spContainer = new EscherContainerRecord();

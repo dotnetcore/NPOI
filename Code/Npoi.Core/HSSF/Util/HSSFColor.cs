@@ -19,6 +19,7 @@ namespace Npoi.Core.HSSF.Util
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
     using System.IO;
     using System.Reflection;
     /**
@@ -36,7 +37,7 @@ namespace Npoi.Core.HSSF.Util
      */
     public class HSSFColor : Npoi.Core.SS.UserModel.IColor
     {
-        private static Hashtable indexHash;
+        private static Dictionary<object,object> indexHash;
         public const short COLOR_NORMAL = 0x7fff;
 
         // TODO make subclass instances immutable
@@ -54,7 +55,7 @@ namespace Npoi.Core.HSSF.Util
          *
          * @return a hashtable containing all colors keyed by <c>int</c> excel-style palette indexes
          */
-        public static Hashtable GetIndexHash()
+        public static Dictionary<object, object> GetIndexHash()
         {
             if (indexHash == null)
             {
@@ -64,20 +65,20 @@ namespace Npoi.Core.HSSF.Util
         }
 
         /**
-         * This function returns all the Colours, stored in a Hashtable that
+         * This function returns all the Colours, stored in a Dictionary<object,object> that
          *  can be edited. No caching is performed. If you don't need to edit
          *  the table, then call {@link #getIndexHash()} which returns a
          *  statically cached imuatable map of colours.
          */
-        public static Hashtable GetMutableIndexHash()
+        public static Dictionary<object, object> GetMutableIndexHash()
         {
             return CreateColorsByIndexMap();
         }
 
-        private static Hashtable CreateColorsByIndexMap()
+        private static Dictionary<object, object> CreateColorsByIndexMap()
         {
             HSSFColor[] colors = GetAllColors();
-            Hashtable result = new Hashtable(colors.Length * 3 / 2);
+            Dictionary<object, object> result = new Dictionary<object, object>(colors.Length * 3 / 2);
 
             for (int i = 0; i < colors.Length; i++)
             {
@@ -155,15 +156,15 @@ namespace Npoi.Core.HSSF.Util
         /// if you have none of those requests.
         /// </summary>
         /// <returns>a hashtable containing all colors keyed by String gnumeric-like triplets</returns>
-        public static Hashtable GetTripletHash()
+        public static Dictionary<object,object> GetTripletHash()
         {
             return CreateColorsByHexStringMap();
         }
 
-        private static Hashtable CreateColorsByHexStringMap()
+        private static Dictionary<object, object> CreateColorsByHexStringMap()
         {
             HSSFColor[] colors = GetAllColors();
-            Hashtable result = new Hashtable(colors.Length * 3 / 2);
+            Dictionary<object, object> result = new Dictionary<object, object>(colors.Length * 3 / 2);
 
             for (int i = 0; i < colors.Length; i++)
             {

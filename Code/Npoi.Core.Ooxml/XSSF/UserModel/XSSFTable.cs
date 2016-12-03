@@ -26,6 +26,8 @@ using Npoi.Core.Util;
 using System.Collections;
 using System.Xml.Linq;
 using Npoi.Core.XSSF.UserModel.Helpers;
+using System.Linq;
+
 namespace Npoi.Core.XSSF.UserModel
 {
 
@@ -143,7 +145,7 @@ namespace Npoi.Core.XSSF.UserModel
             if (commonXPath == null)
             {
 
-                Array commonTokens = null;
+                List<string> commonTokens = null;
 
                 foreach (CT_TableColumn column in ctTable.tableColumns.tableColumn)
                 {
@@ -153,17 +155,16 @@ namespace Npoi.Core.XSSF.UserModel
                         String[] tokens = xpath.Split(new char[] { '/' });
                         if (commonTokens==null)
                         {
-                            commonTokens = tokens;
+                            commonTokens = tokens.ToList();
                         }
                         else
                         {
-                            int maxLenght = commonTokens.Length > tokens.Length ? tokens.Length : commonTokens.Length;
+                            int maxLenght = commonTokens.Count > tokens.Length ? tokens.Length : commonTokens.Count;
                             for (int i = 0; i < maxLenght; i++)
                             {
-                                if (!commonTokens.GetValue(i).Equals(tokens[i]))
+                                if (!commonTokens[i].Equals(tokens[i]))
                                 {
-                                    ArrayList subCommonTokens = Arrays.AsList(commonTokens).GetRange(0, i);
-                                    commonTokens = subCommonTokens.ToArray(typeof(string));
+                                    commonTokens = commonTokens.GetRange(0, i);
                                     break;
 
 
@@ -177,9 +178,9 @@ namespace Npoi.Core.XSSF.UserModel
 
                 commonXPath = "";
 
-                for (int i = 1; i < commonTokens.Length; i++)
+                for (int i = 1; i < commonTokens.Count; i++)
                 {
-                    commonXPath += "/" + commonTokens.GetValue(i);
+                    commonXPath += "/" + commonTokens[i];
 
                 }
             }

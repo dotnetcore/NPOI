@@ -19,7 +19,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     public class CT_Tbl
     {
         //EG_RangeMarkupElements
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType30> itemsElementNameField;
 
@@ -27,18 +27,18 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         private CT_TblGrid tblGridField;
 
-        private ArrayList items1Field;
+        private List<object> items1Field;
 
         private List<Items1ChoiceType> items1ElementNameField;
 
         public CT_Tbl()
         {
             this.items1ElementNameField = new List<Items1ChoiceType>();
-            this.items1Field = new ArrayList();
+            this.items1Field = new List<object>();
             //this.tblGridField = new CT_TblGrid();
             //this.tblPrField = new CT_TblPr();
             this.itemsElementNameField = new List<ItemsChoiceType30>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
         }
         public static CT_Tbl Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
@@ -399,7 +399,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("moveToRangeEnd", typeof(CT_MarkupRange), Order = 0)]
         [XmlElement("moveToRangeStart", typeof(CT_MoveBookmark), Order = 0)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {
@@ -483,7 +483,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("sdt", typeof(CT_SdtRow), Order = 4)]
         [XmlElement("tr", typeof(CT_Row), Order = 4)]
         [XmlChoiceIdentifier("Items1ElementName")]
-        public ArrayList Items1
+        public List<object> Items1
         {
             get
             {
@@ -512,9 +512,9 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         public void Set(CT_Tbl table)
         {
             this.items1ElementNameField = new List<Items1ChoiceType>(table.Items1ElementName);
-            this.items1Field = new ArrayList(table.items1Field);
+            this.items1Field = new List<object>(table.items1Field);
             this.itemsElementNameField = new List<ItemsChoiceType30>(table.itemsElementNameField);
-            this.itemsField = new ArrayList(table.itemsField);
+            this.itemsField = new List<object>(table.itemsField);
             this.tblGridField = table.tblGridField;
             this.tblPrField = table.tblPrField;
         }
@@ -2921,14 +2921,14 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     public class CT_TrPrBase
     {
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceType2> itemsElementNameField;
 
         public CT_TrPrBase()
         {
             this.itemsElementNameField = new List<ItemsChoiceType2>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
         }
         public static CT_TrPrBase Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
@@ -3061,7 +3061,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("wAfter", typeof(CT_TblWidth), Order = 0)]
         [XmlElement("wBefore", typeof(CT_TblWidth), Order = 0)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {
@@ -3247,14 +3247,14 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         private CT_TcPr tcPrField;
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceTableCellType> itemsElementNameField;
 
         public CT_Tc()
         {
             this.itemsElementNameField = new List<ItemsChoiceTableCellType>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
             //this.tcPrField = new CT_TcPr();
         }
 
@@ -3543,7 +3543,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("sdt", typeof(CT_SdtBlock), Order = 1)]
         [XmlElement("tbl", typeof(CT_Tbl), Order = 1)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {
@@ -5401,7 +5401,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         private CT_TrPr trPrField;
 
-        private ArrayList itemsField;
+        private List<object> itemsField;
 
         private List<ItemsChoiceTableRowType> itemsElementNameField;
 
@@ -5416,7 +5416,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         public CT_Row()
         {
             this.itemsElementNameField = new List<ItemsChoiceTableRowType>();
-            this.itemsField = new ArrayList();
+            this.itemsField = new List<object>();
         }
         object parent;
         [XmlIgnore]
@@ -5718,7 +5718,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlElement("sdt", typeof(CT_SdtCell), Order = 2)]
         [XmlElement("tc", typeof(CT_Tc), Order = 2)]
         [XmlChoiceIdentifier("ItemsElementName")]
-        public ArrayList Items
+        public List<object> Items
         {
             get
             {

@@ -20,6 +20,7 @@ namespace TestCases.HSSF.UserModel
     using Npoi.Core.HSSF.UserModel;
     using System.IO;
     using System.Collections;
+    using System.Collections.Generic;
 
     /**
      * Utility class to help Test code verify that generated files do not differ from proof copies in 
@@ -94,7 +95,7 @@ namespace TestCases.HSSF.UserModel
         private static int[] DiffInternal(Stream isA, Stream isB, int[] allowableDifferenceRegions)
         {
             int offset = 0;
-            ArrayList temp = new ArrayList();
+            List<int> temp = new List<int>();
             while (true)
             {
                 int b = isA.ReadByte();
@@ -134,7 +135,7 @@ namespace TestCases.HSSF.UserModel
             return false;
         }
 
-        private static int[] ToPrimitiveIntArray(ArrayList temp)
+        private static int[] ToPrimitiveIntArray(List<int> temp)
         {
             int nItems = temp.Count;
             if (nItems < 1)
@@ -142,7 +143,7 @@ namespace TestCases.HSSF.UserModel
                 return null;
             }
              
-             int[] boxInts = (int[])temp.ToArray(typeof(int));
+             int[] boxInts = (int[])temp.ToArray();
 
             int[] result = new int[nItems];
             for (int i = 0; i < result.Length; i++)

@@ -19,13 +19,14 @@ using System.Reflection;
 
 namespace Npoi.Core.HSSF.UserModel
 {
-	using System;
-	using System.Collections;
-	using System.IO;
-	using System.Drawing;
-	using Npoi.Core.Util.Collections;
+    using System;
+    using System.Collections;
+    using System.IO;
+    using System.Drawing;
+    using Npoi.Core.Util.Collections;
+    using System.Collections.Generic;
 
-	/**
+    /**
      * Allows the user to lookup the font metrics for a particular font without
      * actually having the font on the system.  The font details are Loaded
      * as a resource from the POI jar file (or classpath) and should be contained
@@ -34,14 +35,14 @@ namespace Npoi.Core.HSSF.UserModel
      *
      * @author Glen Stampoultzis (glens at apache.org)
      */
-	class StaticFontMetrics
+    class StaticFontMetrics
 	{
 		const string FONT_METRICS_PROPERTIES_FILE_NAME = "font_metrics.properties";
 
 		/** The font metrics property file we're using */
 		private static Properties fontMetricsProps;
 		/** Our cache of font details we've alReady looked up */
-		private static Hashtable fontDetailsMap = new Hashtable();
+		private static Dictionary<object, object> fontDetailsMap = new Dictionary<object, object>();
 
 		/**
          * Retrieves the fake font details for a given font.

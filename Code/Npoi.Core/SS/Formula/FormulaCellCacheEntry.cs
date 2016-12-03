@@ -19,6 +19,7 @@ namespace Npoi.Core.SS.Formula
 {
     using System.Collections;
     using Npoi.Core.SS.Formula.Eval;
+    using System.Collections.Generic;
 
 
     /**
@@ -99,14 +100,14 @@ namespace Npoi.Core.SS.Formula
             {
                 return;
             }
-            ArrayList usedSet;
+            List<object> usedSet;
             if (nUsed < 1)
             {
-                usedSet = new ArrayList();
+                usedSet = new List<object>();
             }
             else
             {
-                usedSet = new ArrayList(nUsed * 3 / 2);
+                usedSet = new List<object>(nUsed * 3 / 2);
                 for (int i = 0; i < nUsed; i++)
                 {
                     usedSet.Add(usedCells[i]);

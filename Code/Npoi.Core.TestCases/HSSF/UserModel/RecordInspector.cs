@@ -24,6 +24,7 @@ namespace TestCases.HSSF.UserModel
 
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.Record.Aggregates;
+    using System.Collections.Generic;
 
     /**
      * Test utility class to get {@link Record}s out HSSF objects
@@ -41,11 +42,11 @@ namespace TestCases.HSSF.UserModel
         public class RecordCollector : RecordVisitor
         {
 
-            private ArrayList _list;
+            private List<object> _list;
 
             public RecordCollector()
             {
-                _list = new ArrayList(128);
+                _list = new List<object>(128);
             }
 
             public void VisitRecord(Record r)
@@ -57,7 +58,7 @@ namespace TestCases.HSSF.UserModel
             {
                 get
                 {
-                    return (Record[])_list.ToArray(typeof(Record));
+                    return (Record[])_list.ToArray();
                 }
             }
         }

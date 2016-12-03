@@ -40,15 +40,17 @@ namespace TestCases.POIFS.FileSystem
     using Npoi.Core.POIFS.Properties;
 
     using TestCases.HSSF;
+    using System.Collections.Generic;
+
     /**
-     * Verify the order of entries <c>DirectoryProperty</c> .
-     * 
-     * In particular it is important to serialize ROOT._VBA_PROJECT_CUR.VBA node.
-     * See bug 39234 in bugzilla. Thanks to Bill Seddon for providing the solution.
-     * 
-     *
-     * @author Yegor Kozlov
-     */
+* Verify the order of entries <c>DirectoryProperty</c> .
+* 
+* In particular it is important to serialize ROOT._VBA_PROJECT_CUR.VBA node.
+* See bug 39234 in bugzilla. Thanks to Bill Seddon for providing the solution.
+* 
+*
+* @author Yegor Kozlov
+*/
     [TestFixture]
     public class TestPropertySorter
     {
@@ -146,13 +148,13 @@ namespace TestCases.POIFS.FileSystem
             DirectoryNode vba = (DirectoryNode)vba_project.GetEntry(VBA);
             DirectoryProperty p = (DirectoryProperty)vba.Property;
 
-            ArrayList lst = new ArrayList();
+            List<Property> lst = new List<Property>();
             for (IEnumerator it = p.Children; it.MoveNext(); )
             {
                 Property ch = (Property)it.Current;
                 lst.Add(ch);
             }
-            return (Property[])lst.ToArray(typeof(Property));
+            return (Property[])lst.ToArray();
         }
 
         private class PropertyComparer : IComparer

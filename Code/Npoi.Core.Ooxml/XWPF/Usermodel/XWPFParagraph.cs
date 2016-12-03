@@ -111,7 +111,7 @@ namespace Npoi.Core.XWPF.UserModel
          *  sub-paragraph that correspond to character text
          *  runs, and builds the appropriate runs for these.
          */
-        private void BuildRunsInOrderFromXml(ArrayList items)
+        private void BuildRunsInOrderFromXml(List<object> items)
         {
             foreach (object o in items)
             {

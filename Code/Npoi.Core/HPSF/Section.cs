@@ -32,6 +32,7 @@ namespace Npoi.Core.HPSF
     using System.Collections;
     using Npoi.Core.Util;
     using Npoi.Core.HPSF.Wellknown;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Represents a section in a {@link PropertySet}.
@@ -191,7 +192,7 @@ namespace Npoi.Core.HPSF
 
             /* Pass 1: Read the property list. */
             int pass1OffSet = o1;
-            ArrayList propertyList = new ArrayList(propertyCount);
+            List<object> propertyList = new List<object>(propertyCount);
             PropertyListEntry ple;
             for (int i = 0; i < properties.Length; i++)
             {
@@ -541,8 +542,8 @@ namespace Npoi.Core.HPSF
             if (p10 != null && p20 != null)
             {
                 //tony qu fixed this issue
-                Hashtable a=(Hashtable)p10.Value;
-                Hashtable b = (Hashtable)p20.Value;
+                Dictionary<object,object> a=(Dictionary<object,object>)p10.Value;
+                Dictionary<object,object> b = (Dictionary<object,object>)p20.Value;
                 dictionaryEqual = a.Count==b.Count;
             }
             else if (p10 != null || p20 != null)
@@ -641,7 +642,7 @@ namespace Npoi.Core.HPSF
         {
             get {
                 if (dictionary == null)
-                    dictionary = new Hashtable();
+                    dictionary = new Dictionary<object,object>();
                 return dictionary;
             }
             set { 

@@ -21,7 +21,7 @@ using System.Collections;
 using Npoi.Core.POIFS.FileSystem;
 using Npoi.Core.POIFS.Properties;
 using Npoi.Core.POIFS.Dev;
-
+using System.Collections.Generic;
 
 namespace Npoi.Core.POIFS.FileSystem
 {
@@ -121,7 +121,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get
             {
-                IList components = new ArrayList();
+                IList components = new List<object>();
 
                 components.Add(Property);
                 components.Add(_document);

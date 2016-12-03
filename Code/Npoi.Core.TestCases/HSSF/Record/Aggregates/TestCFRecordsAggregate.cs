@@ -29,6 +29,7 @@ namespace TestCases.HSSF.Record.Aggregates
     using Npoi.Core.HSSF.Util;
     using Npoi.Core.SS.Util;
     using Npoi.Core.SS.UserModel;
+    using System.Collections.Generic;
 
     /**
      * Tests the serialization and deserialization of the CFRecordsAggregate
@@ -45,7 +46,7 @@ namespace TestCases.HSSF.Record.Aggregates
         {
             HSSFWorkbook workbook = new HSSFWorkbook();
             HSSFSheet sheet = (HSSFSheet)workbook.CreateSheet();
-            IList recs = new ArrayList();
+            var recs = new List<Record>();
             CFHeaderRecord header = new CFHeaderRecord();
             CFRuleRecord rule1 = CFRuleRecord.Create(sheet, "7");
             CFRuleRecord rule2 = CFRuleRecord.Create(sheet, (byte)ComparisonOperator.Between, "2", "5");

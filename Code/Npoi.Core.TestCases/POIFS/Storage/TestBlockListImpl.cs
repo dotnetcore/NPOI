@@ -33,6 +33,7 @@ using Npoi.Core.POIFS.Storage;
 using Npoi.Core.Util;
 using Npoi.Core.POIFS.FileSystem;
 using Npoi.Core.POIFS.Common;
+using System.Collections.Generic;
 
 namespace TestCases.POIFS.Storage
 {
@@ -192,7 +193,7 @@ namespace TestCases.POIFS.Storage
             // strategy:
             // 
             // 1. Set up a single BAT block from which to construct a
-            // BAT. create nonsense blocks in the raw data block ArrayList
+            // BAT. create nonsense blocks in the raw data block List<object>
             // corresponding to the indices in the BAT block.
             // 2. The indices will include very short documents (0 and 1
             // block in Length), longer documents, and some screwed up
@@ -202,7 +203,7 @@ namespace TestCases.POIFS.Storage
             // that includes a reserved (XBAT) block, and one that
             // points off into space somewhere
             BlockListImpl list = new BlockListImpl();
-            ArrayList raw_blocks = new ArrayList();
+            List<ListManagedBlock> raw_blocks = new List<ListManagedBlock>();
             byte[] data = new byte[512];
             int offset = 0;
 
@@ -260,7 +261,7 @@ namespace TestCases.POIFS.Storage
                 raw_blocks.Add(
                     new RawDataBlock(new MemoryStream(new byte[0])));
             }
-            ListManagedBlock[] tmp = (ListManagedBlock[])raw_blocks.ToArray(typeof(RawDataBlock));
+            ListManagedBlock[] tmp = (ListManagedBlock[])raw_blocks.ToArray();
             list.SetBlocks(tmp);
             int[] blocks =
         {

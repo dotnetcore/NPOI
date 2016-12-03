@@ -35,7 +35,7 @@ namespace Npoi.Core.XSSF.UserModel
         public void TestNew()
         {
             XSSFVMLDrawing vml = new XSSFVMLDrawing();
-            ArrayList items = vml.GetItems();
+            List<object> items = vml.GetItems();
             Assert.AreEqual(2, items.Count);
             Assert.IsTrue(items[0] is CT_ShapeLayout);
             CT_ShapeLayout layout = (CT_ShapeLayout)items[0];
@@ -81,7 +81,7 @@ namespace Npoi.Core.XSSF.UserModel
 
             XSSFVMLDrawing vml2 = new XSSFVMLDrawing();
             vml2.Read(new MemoryStream(out1.ToArray()));
-            ArrayList items2 = vml2.GetItems();
+            List<object> items2 = vml2.GetItems();
             Assert.AreEqual(3, items2.Count);
             Assert.IsTrue(items2[0] is CT_ShapeLayout);
             Assert.IsTrue(items2[1] is CT_Shapetype);

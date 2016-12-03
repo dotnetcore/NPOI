@@ -21,6 +21,7 @@ namespace Npoi.Core.SS.Formula
     using System;
     using System.Collections;
     using Npoi.Core.Util;
+    using System.Collections.Generic;
 
     public class Loc
     {
@@ -93,11 +94,11 @@ namespace Npoi.Core.SS.Formula
     public class PlainCellCache
     {
 
-        private Hashtable _plainValueEntriesByLoc;
+        private Dictionary<object, object> _plainValueEntriesByLoc;
 
         public PlainCellCache()
         {
-            _plainValueEntriesByLoc = new Hashtable();
+            _plainValueEntriesByLoc = new Dictionary<object, object>();
         }
         public void Put(Loc key, PlainValueCellCacheEntry cce)
         {

@@ -31,6 +31,7 @@ namespace TestCases.HPSF.Basic
 
     using NUnit.Framework;
     using NUnit.Framework.Constraints;
+    using System.Collections.Generic;
 
     /**
      * Tests HPSF's writing functionality.
@@ -772,7 +773,7 @@ namespace TestCases.HPSF.Basic
                 POIFSFileSystem poiFs = new POIFSFileSystem();
                 MutablePropertySet ps1 = new MutablePropertySet();
                 MutableSection s = (MutableSection)ps1.Sections[0];
-                Hashtable m = new Hashtable(3, 1.0f);
+                Dictionary<object,object> m = new Dictionary<object,object>(3);
                 m[1] = "String 1";
                 m[2] = "String 2";
                 m[3] = "String 3";
@@ -1001,7 +1002,7 @@ namespace TestCases.HPSF.Basic
                 POIFSFileSystem poiFs = new POIFSFileSystem();
                 MutablePropertySet ps1 = new MutablePropertySet();
                 MutableSection s = (MutableSection)ps1.Sections[0];
-                Hashtable m = new Hashtable(3, 1.0f);
+                Dictionary<object,object> m = new Dictionary<object,object>(3);
                 m[1] = "String 1";
                 m[2] = "String 2";
                 m[3] = "String 3";

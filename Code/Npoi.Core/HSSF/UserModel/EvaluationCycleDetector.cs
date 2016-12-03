@@ -20,6 +20,7 @@ namespace Npoi.Core.HSSF.UserModel
     using System;
     using System.Text;
     using System.Collections;
+    using System.Collections.Generic;
 
     /**
      * Instances of this class keep track of multiple dependent cell evaluations due
@@ -110,7 +111,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         public EvaluationCycleDetector()
         {
-            _evaluationFrames = new ArrayList();
+            _evaluationFrames = new List<object>();
         }
 
         /**

@@ -23,6 +23,7 @@ namespace TestCases.HSSF.Record
     using NUnit.Framework;
     using Npoi.Core.HSSF.Util;
     using Npoi.Core.HSSF.Record;
+    using System.Collections.Generic;
 
 
     /**
@@ -42,7 +43,7 @@ namespace TestCases.HSSF.Record
             PaletteRecord palette = new PaletteRecord();
 
             //make sure all the HSSFColor constants match
-            Hashtable colors = HSSFColor.GetIndexHash();
+            Dictionary<object,object> colors = HSSFColor.GetIndexHash();
             IEnumerator indexes = colors.Keys.GetEnumerator();
             while (indexes.MoveNext())
             {

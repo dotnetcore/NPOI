@@ -6,17 +6,18 @@ namespace Npoi.Core.SS.Util
     using Npoi.Core.Util;
 
     using Npoi.Core.HSSF.Record;
+    using System.Collections.Generic;
 
     public class CellRangeAddressList
     {
         /**
  * List of <c>CellRangeAddress</c>es. Each structure represents a cell range
  */
-        private ArrayList _list;
+        private List<CellRangeAddress> _list;
 
         public CellRangeAddressList()
         {
-            _list = new ArrayList();
+            _list = new List<CellRangeAddress>();
         }
         /**
          * Convenience constructor for creating a <c>CellRangeAddressList</c> with a single 
@@ -35,7 +36,7 @@ namespace Npoi.Core.SS.Util
         public CellRangeAddressList(RecordInputStream in1)
         {
             int nItems = in1.ReadUShort();
-            _list = new ArrayList(nItems);
+            _list = new List<CellRangeAddress>(nItems);
 
             for (int k = 0; k < nItems; k++)
             {
@@ -86,7 +87,7 @@ namespace Npoi.Core.SS.Util
                         + ") is outside allowable range (0.." + (_list.Count - 1) + ")");
             }
             CellRangeAddress cra = (CellRangeAddress)_list[rangeIndex];
-            _list.Remove(rangeIndex);
+            _list.Remove(cra);
             return cra;
         }
 
@@ -146,7 +147,7 @@ namespace Npoi.Core.SS.Util
             get
             {
                 CellRangeAddress[] result =
-                    (CellRangeAddress[])_list.ToArray(typeof(CellRangeAddress));
+                    (CellRangeAddress[])_list.ToArray();
                 return result;
             }
         }
