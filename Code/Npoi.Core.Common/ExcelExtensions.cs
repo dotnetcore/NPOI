@@ -36,7 +36,7 @@ namespace Npoi.Core
 
         public static XAttribute GetAttributeNode(this XElement root, string name)
         {
-            throw new NotImplementedException();
+            return root.Attribute(name);
         }
 
         public static ConstructorInfo FilterConstructorsByType(this IEnumerable<ConstructorInfo> constructors, params Type[] types)
