@@ -15,11 +15,17 @@ namespace Npoi.Samples.CreateNewSpreadsheet
 {
     public class Program
     {
-        public static void Main(string[] args) {
+        public static void Main(string[] args)
+        {
+            ExportWord();
+        }
 
+        private static void ExportExcel()
+        {
             var newFile = @"newbook.core.xlsx";
 
-            using (var fs = new FileStream(newFile, FileMode.Create, FileAccess.Write)) {
+            using (var fs = new FileStream(newFile, FileMode.Create, FileAccess.Write))
+            {
 
                 IWorkbook workbook = new XSSFWorkbook();
                 ISheet sheet1 = workbook.CreateSheet("Sheet1");
@@ -78,10 +84,13 @@ namespace Npoi.Samples.CreateNewSpreadsheet
                 workbook.Write(fs);
             }
             Console.WriteLine("Excel  Done");
+        }
 
-
+        private static void ExportWord()
+        {
             var newFile2 = @"newbook.core.docx";
-            using (var fs = new FileStream(newFile2, FileMode.Create, FileAccess.Write)) {
+            using (var fs = new FileStream(newFile2, FileMode.Create, FileAccess.Write))
+            {
                 XWPFDocument doc = new XWPFDocument();
                 var p0 = doc.CreateParagraph();
                 p0.Alignment = ParagraphAlignment.LEFT;
@@ -94,7 +103,6 @@ namespace Npoi.Samples.CreateNewSpreadsheet
                 doc.Write(fs);
             }
             Console.WriteLine("Word  Done");
-
         }
     }
 }
