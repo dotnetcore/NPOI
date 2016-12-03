@@ -80,6 +80,21 @@ namespace Npoi.Samples.CreateNewSpreadsheet
             Console.WriteLine("Excel  Done");
 
 
+            var newFile2 = @"newbook.core.docx";
+            using (var fs = new FileStream(newFile2, FileMode.Create, FileAccess.Write)) {
+                XWPFDocument doc = new XWPFDocument();
+                var p0 = doc.CreateParagraph();
+                p0.Alignment = ParagraphAlignment.LEFT;
+                XWPFRun r0 = p0.CreateRun();
+                r0.FontFamily = "宋体";
+                r0.FontSize = 18;
+                r0.IsBold = true;
+                r0.SetText("未登录过学生的账号密码");
+
+                doc.Write(fs);
+            }
+            Console.WriteLine("Word  Done");
+
         }
     }
 }
