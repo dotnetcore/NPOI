@@ -8,57 +8,78 @@ using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.XSSF.UserModel;
 using Npoi.Core.XWPF.UserModel;
+using Npoi.Core.SS.Util;
+using Npoi.Core.HSSF.Util;
 
 namespace Npoi.Samples.CreateNewSpreadsheet
 {
     public class Program
     {
-        public static void Main(string[] args)
-        {
-            //var newFile = @"newbook.core.xlsx";
-            //using (var fs = new FileStream(newFile, FileMode.Create, FileAccess.Write))
-            //{
-            //    IWorkbook wb = new XSSFWorkbook();
-            //    ISheet sheet = wb.CreateSheet("Sheet1");
-            //    //ICreationHelper cH = wb.GetCreationHelper();
-            //    var rowIndex = 0;
-            //    IRow row = sheet.CreateRow(rowIndex);
-            //    var cell = row.CreateCell(0);
-            //    var font = new XSSFFont();
-            //    font.IsBold = true;
-            //    cell.CellStyle.SetFont(font);
-            //    cell.SetCellValue("A very long piece of text that I want to auto-fit innit, yeah. Although if it gets really, really long it'll probably start messing up more.");
-            //    sheet.AutoSizeColumn(0);
-            //    rowIndex++;
-            //    wb.Write(fs);
-            //}
-            //Console.WriteLine("Excel  Done");
-            
-            using (FileStream out1 = new FileStream("newbook.core.docx", FileMode.Create, FileAccess.Write)) {
+        public static void Main(string[] args) {
 
-                //创建document对象  
-                XWPFDocument doc = new XWPFDocument();
-                ////创建段落对象  
-                XWPFParagraph p1 = doc.CreateParagraph();
-                ////段落对其方式为居中  
-                p1.Alignment = ParagraphAlignment.CENTER;
-                XWPFRun r1 = p1.CreateRun();//段落中添加文字  
-                r1.FontSize = 22;//设置大小  
-                r1.FontFamily = "宋体"; //设置字体  
-                r1.SetText("段落一");
+            var newFile = @"newbook.core.xlsx";
+
+            using (var fs = new FileStream(newFile, FileMode.Create, FileAccess.Write)) {
+
+                IWorkbook workbook = new XSSFWorkbook();
+                ISheet sheet1 = workbook.CreateSheet("Sheet1");
+                sheet1.AddMergedRegion(new CellRangeAddress(0, 0, 0, 10));
+                //ICreationHelper cH = wb.GetCreationHelper();
+                var rowIndex = 0;
+                IRow row = sheet1.CreateRow(rowIndex);
+                row.Height = 30 * 80;
+                var cell = row.CreateCell(0);
+                //var font = new XSSFFont();
+                var font = workbook.CreateFont();
+                font.IsBold = true;
+                font.Color = HSSFColor.DarkBlue.Index2;
+                font.FontName = "宋体";
+                font.FontHeightInPoints = 10;
+                cell.CellStyle.SetFont(font);
+
+                cell.SetCellValue("你们什么时候A very long piece of text that I want to auto-fit innit, yeah. Although if it gets really, really long it'll probably start messing up more.");
+                sheet1.AutoSizeColumn(0);
+                rowIndex++;
 
 
-                XWPFParagraph p2 = doc.CreateParagraph();
-                //段落对其方式为居中  
-                p2.Alignment = ParagraphAlignment.RIGHT;
-                XWPFRun r2 = p2.CreateRun();//向该段落中添加文字  
-                r2.FontSize = 15;//设置大小  
-                r2.FontFamily = "宋体"; //设置字体  
-                r2.SetText("段落二");
+                // 新增試算表。
+                var sheet2 = workbook.CreateSheet("My Sheet");
+                // 建立儲存格樣式。
+                var style1 = workbook.CreateCellStyle();
+                style1.FillForegroundColor = HSSFColor.Blue.Index2;
+                style1.FillPattern = FillPattern.SolidForeground;
 
-                doc.Write(out1);
+                var style2 = workbook.CreateCellStyle();
+                style2.FillForegroundColor = HSSFColor.Yellow.Index2;
+                style2.FillPattern = FillPattern.SolidForeground;
+
+                // 設定儲存格樣式與資料。
+                var cell2 = sheet2.CreateRow(0).CreateCell(0);
+                cell2.CellStyle = style1;
+                cell2.SetCellValue(0);
+
+                cell2 = sheet2.CreateRow(1).CreateCell(0);
+                cell2.CellStyle = style2;
+                cell2.SetCellValue(1);
+
+                cell2 = sheet2.CreateRow(2).CreateCell(0);
+                cell2.CellStyle = style1;
+                cell2.SetCellValue(2);
+
+                cell2 = sheet2.CreateRow(3).CreateCell(0);
+                cell2.CellStyle = style2;
+                cell2.SetCellValue(3);
+
+                cell2 = sheet2.CreateRow(4).CreateCell(0);
+                cell2.CellStyle = style1;
+                cell2.SetCellValue(4);
+
+
+                workbook.Write(fs);
             }
-            Console.WriteLine("Word  Done");
+            Console.WriteLine("Excel  Done");
+
+
         }
     }
 }
