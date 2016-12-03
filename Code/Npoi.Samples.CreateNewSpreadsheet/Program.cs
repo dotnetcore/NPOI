@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Npoi.Core.HSSF.Record.Crypto;
-using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.XSSF.UserModel;
 using Npoi.Core.XWPF.UserModel;
@@ -17,6 +12,7 @@ namespace Npoi.Samples.CreateNewSpreadsheet
     {
         public static void Main(string[] args)
         {
+            ExportExcel();
             ExportWord();
         }
 
@@ -35,15 +31,12 @@ namespace Npoi.Samples.CreateNewSpreadsheet
                 IRow row = sheet1.CreateRow(rowIndex);
                 row.Height = 30 * 80;
                 var cell = row.CreateCell(0);
-                //var font = new XSSFFont();
                 var font = workbook.CreateFont();
                 font.IsBold = true;
                 font.Color = HSSFColor.DarkBlue.Index2;
-                font.FontName = "宋体";
-                font.FontHeightInPoints = 10;
                 cell.CellStyle.SetFont(font);
 
-                cell.SetCellValue("你们什么时候A very long piece of text that I want to auto-fit innit, yeah. Although if it gets really, really long it'll probably start messing up more.");
+                cell.SetCellValue("A very long piece of text that I want to auto-fit innit, yeah. Although if it gets really, really long it'll probably start messing up more.");
                 sheet1.AutoSizeColumn(0);
                 rowIndex++;
 
