@@ -1,6 +1,6 @@
 ###  NPOI.Core
 
-This project is the .NET version of POI Java project. With NPOI, you can read/write Office 2003/2007 files very easily.
+This project is the .NET Core version of POI Java project. With NPOI, you can read/write Office 2003/2007 files very easily.
 
 ### NPOI Core here, NPOI elsewhere
 
