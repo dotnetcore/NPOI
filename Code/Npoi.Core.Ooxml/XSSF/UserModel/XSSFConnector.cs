@@ -17,20 +17,18 @@
 
 using Npoi.Core.OpenXmlFormats.Dml;
 using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
-using System.Xml;
 
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * A connection shape Drawing element. A connection shape is a line, etc.
      * that connects two other shapes in this Drawing.
      *
      * @author Yegor Kozlov
      */
+
     public class XSSFConnector : XSSFShape
     {
-
         private static CT_Connector prototype = null;
 
         private CT_Connector ctShape;
@@ -41,60 +39,61 @@ namespace Npoi.Core.XSSF.UserModel
          * @param Drawing the XSSFDrawing that owns this shape
          * @param ctShape the shape bean that holds all the shape properties
          */
+
         public XSSFConnector(XSSFDrawing drawing, CT_Connector ctShape)
         {
             this.drawing = drawing;
             this.ctShape = ctShape;
         }
+
         /**
          * Initialize default structure of a new auto-shape
          *
          */
+
         public static CT_Connector Prototype()
         {
+            CT_Connector shape = new CT_Connector();
+            CT_ConnectorNonVisual nv = shape.AddNewNvCxnSpPr();
+            Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_NonVisualDrawingProps nvp = nv.AddNewCNvPr();
+            nvp.id = (1);
+            nvp.name = ("Shape 1");
+            nv.AddNewCNvCxnSpPr();
 
-                CT_Connector shape = new CT_Connector();
-                CT_ConnectorNonVisual nv = shape.AddNewNvCxnSpPr();
-                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_NonVisualDrawingProps nvp = nv.AddNewCNvPr();
-                nvp.id = (1);
-                nvp.name = ("Shape 1");
-                nv.AddNewCNvCxnSpPr();
+            Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties sp = shape.AddNewSpPr();
+            CT_Transform2D t2d = sp.AddNewXfrm();
+            CT_PositiveSize2D p1 = t2d.AddNewExt();
+            p1.cx = (0);
+            p1.cy = (0);
+            CT_Point2D p2 = t2d.AddNewOff();
+            p2.x = (0);
+            p2.y = (0);
 
-                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties sp = shape.AddNewSpPr();
-                CT_Transform2D t2d = sp.AddNewXfrm();
-                CT_PositiveSize2D p1 = t2d.AddNewExt();
-                p1.cx = (0);
-                p1.cy = (0);
-                CT_Point2D p2 = t2d.AddNewOff();
-                p2.x =(0);
-                p2.y=(0);
+            CT_PresetGeometry2D geom = sp.AddNewPrstGeom();
+            geom.prst = (ST_ShapeType.line);
+            geom.AddNewAvLst();
 
-                CT_PresetGeometry2D geom = sp.AddNewPrstGeom();
-                geom.prst = (ST_ShapeType.line);
-                geom.AddNewAvLst();
+            Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeStyle style = shape.AddNewStyle();
+            CT_SchemeColor scheme = style.AddNewLnRef().AddNewSchemeClr();
+            scheme.val = (ST_SchemeColorVal.accent1);
+            style.lnRef.idx = (1);
 
-                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeStyle style = shape.AddNewStyle();
-                CT_SchemeColor scheme = style.AddNewLnRef().AddNewSchemeClr();
-                scheme.val = (ST_SchemeColorVal.accent1);
-                style.lnRef.idx = (1);
+            CT_StyleMatrixReference fillref = style.AddNewFillRef();
+            fillref.idx = (0);
+            fillref.AddNewSchemeClr().val = (ST_SchemeColorVal.accent1);
 
-                CT_StyleMatrixReference fillref = style.AddNewFillRef();
-                fillref.idx = (0);
-                fillref.AddNewSchemeClr().val=(ST_SchemeColorVal.accent1);
+            CT_StyleMatrixReference effectRef = style.AddNewEffectRef();
+            effectRef.idx = (0);
+            effectRef.AddNewSchemeClr().val = (ST_SchemeColorVal.accent1);
 
-                CT_StyleMatrixReference effectRef = style.AddNewEffectRef();
-                effectRef.idx = (0);
-                effectRef.AddNewSchemeClr().val = (ST_SchemeColorVal.accent1);
+            CT_FontReference fontRef = style.AddNewFontRef();
+            fontRef.idx = (ST_FontCollectionIndex.minor);
+            fontRef.AddNewSchemeClr().val = (ST_SchemeColorVal.tx1);
 
-                CT_FontReference fontRef = style.AddNewFontRef();
-                fontRef.idx = (ST_FontCollectionIndex.minor);
-                fontRef.AddNewSchemeClr().val = (ST_SchemeColorVal.tx1);
-
-                prototype = shape;
+            prototype = shape;
 
             return prototype;
         }
-
 
         public CT_Connector GetCTConnector()
         {
@@ -107,24 +106,22 @@ namespace Npoi.Core.XSSF.UserModel
          * @return the shape type
          * @see Npoi.Core.ss.usermodel.ShapeTypes
          */
+
         public ST_ShapeType ShapeType
         {
             get
             {
                 return ctShape.spPr.prstGeom.prst;
             }
-            set 
+            set
             {
                 ctShape.spPr.prstGeom.prst = value;
             }
         }
+
         protected internal override Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties GetShapeProperties()
         {
             return ctShape.spPr;
         }
-
     }
 }
-
-
-

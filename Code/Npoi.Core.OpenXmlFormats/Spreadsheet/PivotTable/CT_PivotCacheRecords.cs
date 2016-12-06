@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Npoi.Core.OpenXml4Net.Util;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
-using Npoi.Core.OpenXml4Net.Util;
-using System.Xml;
 using System.IO;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
@@ -57,8 +56,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw)
         {
             sw.Write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>");
@@ -97,6 +94,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.Write(sw);
             }
         }
+
         private List<object> rField;
 
         private CT_ExtensionList extLstField;
@@ -170,5 +168,4 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
-    
 }

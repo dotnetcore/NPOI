@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using System.Collections.Generic;
-using System.Text;
-using Npoi.Core.OpenXmlFormats.Spreadsheet;
 
 namespace Npoi.Core.XSSF.Util
 {
-    public class CTColComparator:Comparer<CT_Col>
+    public class CTColComparator : Comparer<CT_Col>
     {
         public override int Compare(CT_Col o1, CT_Col o2)
         {
@@ -30,9 +28,10 @@ namespace Npoi.Core.XSSF.Util
                 return 0;
             }
         }
-    
+
         public static IComparer<CT_Col> BY_MAX = new CTColComparatorByMax();
         public static IComparer<CT_Col> BY_MIN_MAX = new CTColComparatorByMinMax();
+
         public class CTColComparatorByMinMax : CTColComparator
         {
             public override int Compare(CT_Col col1, CT_Col col2)
@@ -42,6 +41,7 @@ namespace Npoi.Core.XSSF.Util
                 return col11min < col2min ? -1 : col11min > col2min ? 1 : BY_MAX.Compare(col1, col2);
             }
         }
+
         public class CTColComparatorByMax : CTColComparator
         {
             public override int Compare(CT_Col col1, CT_Col col2)

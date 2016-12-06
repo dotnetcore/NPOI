@@ -1,21 +1,20 @@
 ﻿using Npoi.Core.OpenXml4Net.Util;
-using System;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 using System.Xml.XPath;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
     public class CalcChainDocument
     {
-        CT_CalcChain calcChain;
+        private CT_CalcChain calcChain;
 
         public CalcChainDocument()
         {
             this.calcChain = new CT_CalcChain();
         }
+
         internal CalcChainDocument(CT_CalcChain calcChain)
         {
             this.calcChain = calcChain;
@@ -37,7 +36,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             foreach (XElement node in xmlDoc.XPathSelectElements("//d:c", NameSpaceManager))
             {
                 CT_CalcCell cc = new CT_CalcCell();
-                if (node.GetAttributeNode("i")!= null)
+                if (node.GetAttributeNode("i") != null)
                 {
                     cc.i = XmlHelper.ReadInt(node.GetAttributeNode("i"));
                     cc.iSpecified = true;
@@ -59,21 +58,19 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             foreach (CT_CalcCell cc in calcChain.c)
             {
                 sw.Write("<c");
-                sw.Write(" r=\""+cc.r+"\"");
-                if(cc.i>0)
+                sw.Write(" r=\"" + cc.r + "\"");
+                if (cc.i > 0)
                     sw.Write(" i=\"" + cc.i + "\"");
-                if(cc.s)
-                    sw.Write(" s=\"" + (cc.s?1:0) + "\"");
+                if (cc.s)
+                    sw.Write(" s=\"" + (cc.s ? 1 : 0) + "\"");
                 if (cc.t)
-                    sw.Write(" t=\"" + (cc.t?1:0) + "\"");
+                    sw.Write(" t=\"" + (cc.t ? 1 : 0) + "\"");
                 if (cc.l)
-                    sw.Write(" l=\"" + (cc.l?1:0) + "\"");
+                    sw.Write(" l=\"" + (cc.l ? 1 : 0) + "\"");
                 sw.Write("/>");
-
             }
             sw.Write("</calcChain>");
             sw.Flush();
         }
-
     }
 }

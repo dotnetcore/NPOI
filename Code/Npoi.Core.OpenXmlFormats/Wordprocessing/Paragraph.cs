@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml;
-using System.Xml.Serialization;
+﻿using Npoi.Core.OpenXml4Net.Util;
 using Npoi.Core.OpenXmlFormats.Shared;
+using System;
+using System.Collections.Generic;
 using System.IO;
-using Npoi.Core.OpenXml4Net.Util;
-using System.Collections;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
@@ -15,7 +14,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_P
     {
-
         private CT_PPr pPrField;
 
         private List<object> itemsField;
@@ -51,6 +49,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.pPrField = value;
             }
         }
+
         public static CT_P Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -259,7 +258,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                     ((CT_OMath)o).Write(sw, "oMath");
                 else if (o is CT_Bookmark && this.itemsElementNameField[i] == ParagraphItemsChoiceType.bookmarkStart)
                     ((CT_Bookmark)o).Write(sw, "bookmarkStart");
-                else if (o is CT_MarkupRange&& this.itemsElementNameField[i] == ParagraphItemsChoiceType.commentRangeEnd)
+                else if (o is CT_MarkupRange && this.itemsElementNameField[i] == ParagraphItemsChoiceType.commentRangeEnd)
                     ((CT_MarkupRange)o).Write(sw, "commentRangeEnd");
                 else if (o is CT_MarkupRange && this.itemsElementNameField[i] == ParagraphItemsChoiceType.commentRangeStart)
                     ((CT_MarkupRange)o).Write(sw, "commentRangeStart");
@@ -487,6 +486,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         {
             return GetObjectList<CT_Hyperlink1>(ParagraphItemsChoiceType.hyperlink);
         }
+
         #region Generic methods for object operation
 
         private List<T> GetObjectList<T>(ParagraphItemsChoiceType type) where T : class
@@ -502,6 +502,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return list;
             }
         }
+
         private int SizeOfArray(ParagraphItemsChoiceType type)
         {
             lock (this)
@@ -515,6 +516,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return size;
             }
         }
+
         private T GetObjectArray<T>(int p, ParagraphItemsChoiceType type) where T : class
         {
             lock (this)
@@ -525,6 +527,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return itemsField[pos] as T;
             }
         }
+
         private T InsertNewObject<T>(ParagraphItemsChoiceType type, int p) where T : class, new()
         {
             T t = new T();
@@ -538,6 +541,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return t;
         }
+
         private T AddNewObject<T>(ParagraphItemsChoiceType type) where T : class, new()
         {
             T t = new T();
@@ -548,6 +552,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return t;
         }
+
         private void SetObject<T>(ParagraphItemsChoiceType type, int p, T obj) where T : class
         {
             lock (this)
@@ -562,6 +567,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                         pos, this.itemsField[pos].GetType().Name, typeof(T).Name));
             }
         }
+
         private int GetObjectIndex(ParagraphItemsChoiceType type, int p)
         {
             int index = -1;
@@ -582,6 +588,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return index;
         }
+
         private void RemoveObject(ParagraphItemsChoiceType type, int p)
         {
             lock (this)
@@ -593,8 +600,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 itemsField.RemoveAt(pos);
             }
         }
-        #endregion
 
+        #endregion Generic methods for object operation
 
         public IList<CT_R> GetRList()
         {
@@ -621,117 +628,83 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return GetObjectList<CT_Bookmark>(ParagraphItemsChoiceType.bookmarkStart);
         }
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IncludeInSchema = false)]
     public enum ParagraphItemsChoiceType
     {
-
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:oMath")]
         oMath,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:oMathPara")]
         oMathPara,
 
-    
         bookmarkEnd,
 
-    
         bookmarkStart,
 
-    
         commentRangeEnd,
 
-    
         commentRangeStart,
 
-    
         customXml,
 
-    
         customXmlDelRangeEnd,
 
-    
         customXmlDelRangeStart,
 
-    
         customXmlInsRangeEnd,
 
-    
         customXmlInsRangeStart,
 
-    
         customXmlMoveFromRangeEnd,
 
-    
         customXmlMoveFromRangeStart,
 
-    
         customXmlMoveToRangeEnd,
 
-    
         customXmlMoveToRangeStart,
 
-    
         del,
 
-    
         fldSimple,
 
-    
         hyperlink,
 
-    
         ins,
 
-    
         moveFrom,
 
-    
         moveFromRangeEnd,
 
-    
         moveFromRangeStart,
 
-    
         moveTo,
 
-    
         moveToRangeEnd,
 
-    
         moveToRangeStart,
 
-    
         permEnd,
 
-    
         permStart,
 
-    
         proofErr,
 
-    
         r,
 
-    
         sdt,
 
-    
         smartTag,
 
-    
         subDoc,
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_PPr : CT_PPrBase
     {
-
         private CT_ParaRPr rPrField;
 
         private CT_SectPr sectPrField;
@@ -740,16 +713,17 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         public CT_PPr()
         {
-
         }
+
         public override bool IsEmpty
         {
             get
             {
-                return base.IsEmpty && 
+                return base.IsEmpty &&
                     rPrField == null && sectPrField == null && pPrChangeField == null;
             }
         }
+
         public static new CT_PPr Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -839,8 +813,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal new void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -929,8 +901,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
 
-
-
         [XmlElement(Order = 0)]
         public CT_ParaRPr rPr
         {
@@ -990,14 +960,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_ParaRPr
     {
-
         private CT_TrackChange insField;
 
         private CT_TrackChange delField;
@@ -1088,7 +1055,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         public CT_ParaRPr()
         {
-
         }
 
         [XmlElement(Order = 0)]
@@ -1769,8 +1735,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -1865,26 +1829,20 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.rPrChange.Write(sw, "rPrChange");
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
-
     }
 
-
-
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SectPrChange : CT_TrackChange
     {
-
         private CT_SectPrBase sectPrField;
 
         public CT_SectPrChange()
         {
             //this.sectPrField = new CT_SectPrBase();
         }
+
         public static new CT_SectPrChange Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1900,8 +1858,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal new void Write(StreamWriter sw, string nodeName)
         {
@@ -1929,14 +1885,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SectPrBase
     {
-
         private CT_FtnProps footnotePrField;
 
         private CT_EdnProps endnotePrField;
@@ -2005,6 +1958,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             //this.endnotePrField = new CT_EdnProps();
             //this.footnotePrField = new CT_FtnProps();
         }
+
         public static CT_SectPrBase Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2057,8 +2011,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -2409,14 +2361,12 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-    
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SectPr
     {
-                private CT_FtnProps footnotePrField;
+        private CT_FtnProps footnotePrField;
 
         private CT_EdnProps endnotePrField;
 
@@ -2472,7 +2422,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             this.docGrid.type = ST_DocGrid.lines;
             this.docGrid.typeSpecified = true;
             this.docGrid.linePitch = "312";
-            
+
             //this.rtlGutterField = new CT_OnOff();
             //this.bidiField = new CT_OnOff();
             //this.textDirectionField = new CT_TextDirection();
@@ -2508,14 +2458,17 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             //this.itemsElementNameField = new List<ItemsChoiceHdrFtrRefType>();
             //this.itemsField = new List<CT_HdrFtrRef>();
         }
-        List<CT_HdrFtrRef> footerReferenceField;
+
+        private List<CT_HdrFtrRef> footerReferenceField;
+
         public List<CT_HdrFtrRef> footerReference
         {
             get { return this.footerReferenceField; }
             set { this.footerReferenceField = value; }
         }
 
-        List<CT_HdrFtrRef> headerReferenceField;
+        private List<CT_HdrFtrRef> headerReferenceField;
+
         public List<CT_HdrFtrRef> headerReference
         {
             get { return this.headerReferenceField; }
@@ -2833,6 +2786,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.rsidSectField = value;
             }
         }
+
         public CT_HdrFtrRef AddNewHeaderReference()
         {
             CT_HdrFtrRef ref1 = new CT_HdrFtrRef();
@@ -2851,10 +2805,12 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             this.footerReferenceField.Add(ref1);
             return ref1;
         }
+
         public int SizeOfHeaderReferenceArray()
         {
             return headerReferenceField.Count;
         }
+
         public CT_HdrFtrRef GetHeaderReferenceArray(int i)
         {
             return headerReferenceField[i];
@@ -2931,8 +2887,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -2997,16 +2951,13 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.sectPrChange.Write(sw, "sectPrChange");
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
-
     }
-    [Serializable]
 
+    [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_PBdr
     {
-
         private CT_Border topField;
 
         private CT_Border leftField;
@@ -3021,8 +2972,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         public CT_PBdr()
         {
-
         }
+
         public static CT_PBdr Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -3046,8 +2997,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -3066,8 +3015,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.bar.Write(sw, "bar");
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
-
 
         [XmlElement(Order = 0)]
         public CT_Border top
@@ -3234,12 +3181,10 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Spacing
     {
-
         private ulong beforeField;
 
         private bool beforeFieldSpecified;
@@ -3265,6 +3210,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private ST_LineSpacingRule lineRuleField;
 
         private bool lineRuleFieldSpecified;
+
         public static CT_Spacing Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -3284,25 +3230,22 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "w:before", this.before);
             XmlHelper.WriteAttribute(sw, "w:beforeLines", this.beforeLines);
-            if(this.beforeAutospacing!= ST_OnOff.off)
+            if (this.beforeAutospacing != ST_OnOff.off)
                 XmlHelper.WriteAttribute(sw, "w:beforeAutospacing", this.beforeAutospacing.ToString());
             XmlHelper.WriteAttribute(sw, "w:after", this.after);
             XmlHelper.WriteAttribute(sw, "w:afterLines", this.afterLines);
             if (this.afterAutospacing != ST_OnOff.off)
                 XmlHelper.WriteAttribute(sw, "w:afterAutospacing", this.afterAutospacing.ToString());
             XmlHelper.WriteAttribute(sw, "w:line", this.line);
-            if(this.lineRule!= ST_LineSpacingRule.nil)
+            if (this.lineRule != ST_LineSpacingRule.nil)
                 XmlHelper.WriteAttribute(sw, "w:lineRule", this.lineRule.ToString());
             sw.Write("/>");
         }
-
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public ulong before
@@ -3499,30 +3442,24 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_LineSpacingRule
     {
         nil,
-    
+
         auto,
 
-    
         exact,
 
-    
         atLeast,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Ind
     {
-
         private string leftField;
 
         private string leftCharsField;
@@ -3542,6 +3479,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private bool firstLineFieldSpecified;
 
         private string firstLineCharsField;
+
         public CT_Ind()
         {
             firstLineField = -1;
@@ -3558,13 +3496,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             ctObj.rightChars = XmlHelper.ReadString(node.Attribute("w:rightChars"));
             ctObj.hanging = XmlHelper.ReadULong(node.Attribute("w:hanging"));
             ctObj.hangingChars = XmlHelper.ReadString(node.Attribute("w:hangingChars"));
-            if (node.Attribute("w:firstLine")!=null)
+            if (node.Attribute("w:firstLine") != null)
                 ctObj.firstLine = XmlHelper.ReadLong(node.Attribute("w:firstLine"));
             ctObj.firstLineChars = XmlHelper.ReadString(node.Attribute("w:firstLineChars"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3576,11 +3512,10 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             XmlHelper.WriteAttribute(sw, "w:hangingChars", this.hangingChars);
             XmlHelper.WriteAttribute(sw, "w:hanging", this.hanging);
             XmlHelper.WriteAttribute(sw, "w:firstLineChars", this.firstLineChars);
-            if(firstLineField>=0)
+            if (firstLineField >= 0)
                 XmlHelper.WriteAttribute(sw, "w:firstLine", this.firstLine, true);
             sw.Write("/>");
         }
-
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, DataType = "integer")]
         public string left
@@ -3730,17 +3665,15 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         public bool IsSetFirstLine()
         {
-            return !(this.firstLineField==0);
+            return !(this.firstLineField == 0);
         }
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_RPr
     {
-
         private CT_String rStyleField;
 
         private CT_Fonts rFontsField;
@@ -3824,6 +3757,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         public CT_RPr()
         {
         }
+
         public static CT_RPr Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -3914,8 +3848,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -4580,7 +4512,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         public bool IsSetPosition()
         {
-            return this.positionField!=null && !string.IsNullOrEmpty(this.positionField.val);
+            return this.positionField != null && !string.IsNullOrEmpty(this.positionField.val);
         }
 
         public CT_SignedHpsMeasure AddNewPosition()
@@ -4615,7 +4547,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         public bool IsSetU()
         {
-            return this.uField != null 
+            return this.uField != null
                 && this.uField.val != ST_Underline.none;
         }
 
@@ -4657,7 +4589,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         public bool IsSetSz()
         {
-            return (this.szField!=null && this.szField.val != 0);
+            return (this.szField != null && this.szField.val != 0);
         }
 
         public bool IsSetColor()
@@ -4762,9 +4694,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_ParaRPrChange : CT_TrackChange
@@ -4785,8 +4715,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal new void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
@@ -4798,7 +4726,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.rPr.Write(sw, "rPr");
             sw.Write(string.Format("</{0}>", nodeName));
         }
-
 
         private CT_ParaRPrOriginal rPrField;
 
@@ -4821,14 +4748,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_ParaRPrOriginal
     {
-
         private CT_TrackChange insField;
 
         private CT_TrackChange delField;
@@ -4837,10 +4761,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
         private CT_TrackChange moveToField;
 
-
         public CT_ParaRPrOriginal()
         {
-
         }
 
         [XmlElement(Order = 0)]
@@ -4895,7 +4817,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
         }
 
-        List<CT_OnOff> webHiddenField;
+        private List<CT_OnOff> webHiddenField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> webHidden
         {
@@ -4903,7 +4826,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.webHiddenField = value; }
         }
 
-        List<CT_OnOff> bField;
+        private List<CT_OnOff> bField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> b
         {
@@ -4911,7 +4835,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.bField = value; }
         }
 
-        List<CT_OnOff> bCsField;
+        private List<CT_OnOff> bCsField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> bCs
         {
@@ -4919,7 +4844,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.bCsField = value; }
         }
 
-        List<CT_Border> bdrField;
+        private List<CT_Border> bdrField;
+
         [XmlElement(Order = 4)]
         public List<CT_Border> bdr
         {
@@ -4927,7 +4853,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.bdrField = value; }
         }
 
-        List<CT_OnOff> capsField;
+        private List<CT_OnOff> capsField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> caps
         {
@@ -4935,7 +4862,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.capsField = value; }
         }
 
-        List<CT_Color> colorField;
+        private List<CT_Color> colorField;
+
         [XmlElement(Order = 4)]
         public List<CT_Color> color
         {
@@ -4943,7 +4871,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.colorField = value; }
         }
 
-        List<CT_OnOff> csField;
+        private List<CT_OnOff> csField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> cs
         {
@@ -4951,7 +4880,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.csField = value; }
         }
 
-        List<CT_OnOff> dstrikeField;
+        private List<CT_OnOff> dstrikeField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> dstrike
         {
@@ -4959,7 +4889,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.dstrikeField = value; }
         }
 
-        List<CT_EastAsianLayout> eastAsianLayoutField;
+        private List<CT_EastAsianLayout> eastAsianLayoutField;
+
         [XmlElement(Order = 4)]
         public List<CT_EastAsianLayout> eastAsianLayout
         {
@@ -4967,7 +4898,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.eastAsianLayoutField = value; }
         }
 
-        List<CT_TextEffect> effectField;
+        private List<CT_TextEffect> effectField;
+
         [XmlElement(Order = 4)]
         public List<CT_TextEffect> effect
         {
@@ -4975,7 +4907,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.effectField = value; }
         }
 
-        List<CT_Em> emField;
+        private List<CT_Em> emField;
+
         [XmlElement(Order = 4)]
         public List<CT_Em> em
         {
@@ -4983,7 +4916,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.emField = value; }
         }
 
-        List<CT_OnOff> embossField;
+        private List<CT_OnOff> embossField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> emboss
         {
@@ -4991,7 +4925,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.embossField = value; }
         }
 
-        List<CT_FitText> fitTextField;
+        private List<CT_FitText> fitTextField;
+
         [XmlElement(Order = 4)]
         public List<CT_FitText> fitText
         {
@@ -4999,7 +4934,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.fitTextField = value; }
         }
 
-        List<CT_Highlight> highlightField;
+        private List<CT_Highlight> highlightField;
+
         [XmlElement(Order = 4)]
         public List<CT_Highlight> highlight
         {
@@ -5007,7 +4943,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.highlightField = value; }
         }
 
-        List<CT_OnOff> iField;
+        private List<CT_OnOff> iField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> i
         {
@@ -5015,7 +4952,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.iField = value; }
         }
 
-        List<CT_OnOff> iCsField;
+        private List<CT_OnOff> iCsField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> iCs
         {
@@ -5023,7 +4961,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.iCsField = value; }
         }
 
-        List<CT_OnOff> imprintField;
+        private List<CT_OnOff> imprintField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> imprint
         {
@@ -5031,7 +4970,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.imprintField = value; }
         }
 
-        List<CT_HpsMeasure> kernField;
+        private List<CT_HpsMeasure> kernField;
+
         [XmlElement(Order = 4)]
         public List<CT_HpsMeasure> kern
         {
@@ -5039,7 +4979,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.kernField = value; }
         }
 
-        List<CT_Language> langField;
+        private List<CT_Language> langField;
+
         [XmlElement(Order = 4)]
         public List<CT_Language> lang
         {
@@ -5047,7 +4988,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.langField = value; }
         }
 
-        List<CT_OnOff> noProofField;
+        private List<CT_OnOff> noProofField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> noProof
         {
@@ -5055,7 +4997,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.noProofField = value; }
         }
 
-        List<CT_OnOff> oMathField;
+        private List<CT_OnOff> oMathField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> oMath
         {
@@ -5063,7 +5006,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.oMathField = value; }
         }
 
-        List<CT_OnOff> outlineField;
+        private List<CT_OnOff> outlineField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> outline
         {
@@ -5071,7 +5015,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.outlineField = value; }
         }
 
-        List<CT_SignedHpsMeasure> positionField;
+        private List<CT_SignedHpsMeasure> positionField;
+
         [XmlElement(Order = 4)]
         public List<CT_SignedHpsMeasure> position
         {
@@ -5079,7 +5024,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.positionField = value; }
         }
 
-        List<CT_Fonts> rFontsField;
+        private List<CT_Fonts> rFontsField;
+
         [XmlElement(Order = 4)]
         public List<CT_Fonts> rFonts
         {
@@ -5087,7 +5033,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.rFontsField = value; }
         }
 
-        List<CT_String> rStyleField;
+        private List<CT_String> rStyleField;
+
         [XmlElement(Order = 4)]
         public List<CT_String> rStyle
         {
@@ -5095,7 +5042,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.rStyleField = value; }
         }
 
-        List<CT_OnOff> rtlField;
+        private List<CT_OnOff> rtlField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> rtl
         {
@@ -5103,7 +5051,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.rtlField = value; }
         }
 
-        List<CT_OnOff> shadowField;
+        private List<CT_OnOff> shadowField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> shadow
         {
@@ -5111,7 +5060,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.shadowField = value; }
         }
 
-        List<CT_Shd> shdField;
+        private List<CT_Shd> shdField;
+
         [XmlElement(Order = 4)]
         public List<CT_Shd> shd
         {
@@ -5119,7 +5069,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.shdField = value; }
         }
 
-        List<CT_OnOff> smallCapsField;
+        private List<CT_OnOff> smallCapsField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> smallCaps
         {
@@ -5127,7 +5078,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.smallCapsField = value; }
         }
 
-        List<CT_OnOff> snapToGridField;
+        private List<CT_OnOff> snapToGridField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> snapToGrid
         {
@@ -5135,7 +5087,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.snapToGridField = value; }
         }
 
-        List<CT_SignedTwipsMeasure> spacingField;
+        private List<CT_SignedTwipsMeasure> spacingField;
+
         [XmlElement(Order = 4)]
         public List<CT_SignedTwipsMeasure> spacing
         {
@@ -5143,7 +5096,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.spacingField = value; }
         }
 
-        List<CT_OnOff> specVanishField;
+        private List<CT_OnOff> specVanishField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> specVanish
         {
@@ -5151,7 +5105,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.specVanishField = value; }
         }
 
-        List<CT_OnOff> strikeField;
+        private List<CT_OnOff> strikeField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> strike
         {
@@ -5159,7 +5114,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.strikeField = value; }
         }
 
-        List<CT_HpsMeasure> szField;
+        private List<CT_HpsMeasure> szField;
+
         [XmlElement(Order = 4)]
         public List<CT_HpsMeasure> sz
         {
@@ -5167,7 +5123,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.szField = value; }
         }
 
-        List<CT_HpsMeasure> szCsField;
+        private List<CT_HpsMeasure> szCsField;
+
         [XmlElement(Order = 4)]
         public List<CT_HpsMeasure> szCs
         {
@@ -5175,7 +5132,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.szCsField = value; }
         }
 
-        List<CT_Underline> uField;
+        private List<CT_Underline> uField;
+
         [XmlElement(Order = 4)]
         public List<CT_Underline> u
         {
@@ -5183,7 +5141,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.uField = value; }
         }
 
-        List<CT_OnOff> vanishField;
+        private List<CT_OnOff> vanishField;
+
         [XmlElement(Order = 4)]
         public List<CT_OnOff> vanish
         {
@@ -5191,7 +5150,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.vanishField = value; }
         }
 
-        List<CT_VerticalAlignRun> vertAlignField;
+        private List<CT_VerticalAlignRun> vertAlignField;
+
         [XmlElement(Order = 4)]
         public List<CT_VerticalAlignRun> vertAlign
         {
@@ -5199,14 +5159,14 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             set { this.vertAlignField = value; }
         }
 
-        List<CT_TextScale> wField;
+        private List<CT_TextScale> wField;
+
         [XmlElement(Order = 4)]
         public List<CT_TextScale> w
         {
             get { return this.wField; }
             set { this.wField = value; }
         }
-
 
         public static CT_ParaRPrOriginal Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
@@ -5343,8 +5303,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -5632,147 +5590,103 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IncludeInSchema = false)]
     public enum ItemsChoiceType3
     {
-
-    
         b,
 
-    
         bCs,
 
-    
         bdr,
 
-    
         caps,
 
-    
         color,
 
-    
         cs,
 
-    
         dstrike,
 
-    
         eastAsianLayout,
 
-    
         effect,
 
-    
         em,
 
-    
         emboss,
 
-    
         fitText,
 
-    
         highlight,
 
-    
         i,
 
-    
         iCs,
 
-    
         imprint,
 
-    
         kern,
 
-    
         lang,
 
-    
         noProof,
 
-    
         oMath,
 
-    
         outline,
 
-    
         position,
 
-    
         rFonts,
 
-    
         rStyle,
 
-    
         rtl,
 
-    
         shadow,
 
-    
         shd,
 
-    
         smallCaps,
 
-    
         snapToGrid,
 
-    
         spacing,
 
-    
         specVanish,
 
-    
         strike,
 
-    
         sz,
 
-    
         szCs,
 
-    
         u,
 
-    
         vanish,
 
-    
         vertAlign,
 
-    
         w,
 
-    
         webHidden,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_PPrChange : CT_TrackChange
     {
-
         private CT_PPrBase pPrField;
 
         public CT_PPrChange()
         {
             //this.pPrField = new CT_PPrBase();
         }
+
         public static new CT_PPrChange Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -5789,8 +5703,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal new void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -5802,8 +5714,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.pPr.Write(sw, "pPr");
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
-
 
         [XmlElement(Order = 0)]
         public CT_PPrBase pPr
@@ -5820,14 +5730,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     }
 
     [XmlInclude(typeof(CT_PPr))]
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_PPrBase
     {
-
         private CT_String pStyleField;
 
         private CT_OnOff keepNextField;
@@ -5936,8 +5843,8 @@ cnfStyleField == null;
 
         public CT_PPrBase()
         {
-
         }
+
         public static CT_PPrBase Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -6021,8 +5928,6 @@ cnfStyleField == null;
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -6103,7 +6008,6 @@ cnfStyleField == null;
 
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
 
         [XmlElement(Order = 0)]
         public CT_String pStyle
@@ -6534,6 +6438,7 @@ cnfStyleField == null;
                 this.cnfStyleField = value;
             }
         }
+
         public bool IsSetTextAlignment()
         {
             if (this.textAlignmentField == null)
@@ -6566,6 +6471,7 @@ cnfStyleField == null;
         {
             return this.shdField != null;
         }
+
         public CT_Shd AddNewShd()
         {
             if (this.shdField == null)
@@ -6574,6 +6480,7 @@ cnfStyleField == null;
             }
             return this.shdField;
         }
+
         public bool IsSetJc()
         {
             return this.jcField != null;
@@ -6587,8 +6494,6 @@ cnfStyleField == null;
             }
             return this.jcField;
         }
-
-
 
         public bool IsSetPBdr()
         {
@@ -6652,19 +6557,19 @@ cnfStyleField == null;
             return tab;
         }
     }
-    [Serializable]
 
+    [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_RPrChange : CT_TrackChange
     {
-
         private CT_RPrOriginal rPrField;
 
         public CT_RPrChange()
         {
             //this.rPrField = new CT_RPrOriginal();
         }
+
         public static new CT_RPrChange Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -6681,8 +6586,6 @@ cnfStyleField == null;
             return ctObj;
         }
 
-
-
         internal new void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -6694,7 +6597,6 @@ cnfStyleField == null;
                 this.rPr.Write(sw, "w:rPr");
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
 
         [XmlElement(Order = 0)]
         public CT_RPrOriginal rPr
@@ -6710,291 +6612,326 @@ cnfStyleField == null;
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_RPrOriginal
     {
-
         public CT_RPrOriginal()
         {
         }
 
-        List<CT_SignedTwipsMeasure> spacingField;
+        private List<CT_SignedTwipsMeasure> spacingField;
+
         public List<CT_SignedTwipsMeasure> spacing
         {
             get { return this.spacingField; }
             set { this.spacingField = value; }
         }
 
-        List<CT_VerticalAlignRun> vertAlignField;
+        private List<CT_VerticalAlignRun> vertAlignField;
+
         public List<CT_VerticalAlignRun> vertAlign
         {
             get { return this.vertAlignField; }
             set { this.vertAlignField = value; }
         }
 
-        List<CT_TextScale> wField;
+        private List<CT_TextScale> wField;
+
         public List<CT_TextScale> w
         {
             get { return this.wField; }
             set { this.wField = value; }
         }
 
-        List<CT_OnOff> noProofField;
+        private List<CT_OnOff> noProofField;
+
         public List<CT_OnOff> noProof
         {
             get { return this.noProofField; }
             set { this.noProofField = value; }
         }
 
-        List<CT_OnOff> snapToGridField;
+        private List<CT_OnOff> snapToGridField;
+
         public List<CT_OnOff> snapToGrid
         {
             get { return this.snapToGridField; }
             set { this.snapToGridField = value; }
         }
 
-        List<CT_Language> langField;
+        private List<CT_Language> langField;
+
         public List<CT_Language> lang
         {
             get { return this.langField; }
             set { this.langField = value; }
         }
 
-        List<CT_HpsMeasure> kernField;
+        private List<CT_HpsMeasure> kernField;
+
         public List<CT_HpsMeasure> kern
         {
             get { return this.kernField; }
             set { this.kernField = value; }
         }
 
-        List<CT_OnOff> outlineField;
+        private List<CT_OnOff> outlineField;
+
         public List<CT_OnOff> outline
         {
             get { return this.outlineField; }
             set { this.outlineField = value; }
         }
 
-        List<CT_SignedHpsMeasure> positionField;
+        private List<CT_SignedHpsMeasure> positionField;
+
         public List<CT_SignedHpsMeasure> position
         {
             get { return this.positionField; }
             set { this.positionField = value; }
         }
 
-        List<CT_Fonts> rFontsField;
+        private List<CT_Fonts> rFontsField;
+
         public List<CT_Fonts> rFonts
         {
             get { return this.rFontsField; }
             set { this.rFontsField = value; }
         }
 
-        List<CT_String> rStyleField;
+        private List<CT_String> rStyleField;
+
         public List<CT_String> rStyle
         {
             get { return this.rStyleField; }
             set { this.rStyleField = value; }
         }
 
-        List<CT_OnOff> rtlField;
+        private List<CT_OnOff> rtlField;
+
         public List<CT_OnOff> rtl
         {
             get { return this.rtlField; }
             set { this.rtlField = value; }
         }
 
-        List<CT_OnOff> shadowField;
+        private List<CT_OnOff> shadowField;
+
         public List<CT_OnOff> shadow
         {
             get { return this.shadowField; }
             set { this.shadowField = value; }
         }
 
-        List<CT_OnOff> strikeField;
+        private List<CT_OnOff> strikeField;
+
         public List<CT_OnOff> strike
         {
             get { return this.strikeField; }
             set { this.strikeField = value; }
         }
 
-        List<CT_Shd> shdField;
+        private List<CT_Shd> shdField;
+
         public List<CT_Shd> shd
         {
             get { return this.shdField; }
             set { this.shdField = value; }
         }
 
-        List<CT_HpsMeasure> szField;
+        private List<CT_HpsMeasure> szField;
+
         public List<CT_HpsMeasure> sz
         {
             get { return this.szField; }
             set { this.szField = value; }
         }
 
-        List<CT_HpsMeasure> szCsField;
+        private List<CT_HpsMeasure> szCsField;
+
         public List<CT_HpsMeasure> szCs
         {
             get { return this.szCsField; }
             set { this.szCsField = value; }
         }
 
-        List<CT_OnOff> smallCapsField;
+        private List<CT_OnOff> smallCapsField;
+
         public List<CT_OnOff> smallCaps
         {
             get { return this.smallCapsField; }
             set { this.smallCapsField = value; }
         }
 
-        List<CT_Underline> uField;
+        private List<CT_Underline> uField;
+
         public List<CT_Underline> u
         {
             get { return this.uField; }
             set { this.uField = value; }
         }
 
-        List<CT_OnOff> vanishField;
+        private List<CT_OnOff> vanishField;
+
         public List<CT_OnOff> vanish
         {
             get { return this.vanishField; }
             set { this.vanishField = value; }
         }
 
-        List<CT_OnOff> oMathField;
+        private List<CT_OnOff> oMathField;
+
         public List<CT_OnOff> oMath
         {
             get { return this.oMathField; }
             set { this.oMathField = value; }
         }
 
-        List<CT_OnOff> webHiddenField;
+        private List<CT_OnOff> webHiddenField;
+
         public List<CT_OnOff> webHidden
         {
             get { return this.webHiddenField; }
             set { this.webHiddenField = value; }
         }
 
-        List<CT_OnOff> specVanishField;
+        private List<CT_OnOff> specVanishField;
+
         public List<CT_OnOff> specVanish
         {
             get { return this.specVanishField; }
             set { this.specVanishField = value; }
         }
 
-        List<CT_OnOff> bField;
+        private List<CT_OnOff> bField;
+
         public List<CT_OnOff> b
         {
             get { return this.bField; }
             set { this.bField = value; }
         }
 
-        List<CT_OnOff> bCsField;
+        private List<CT_OnOff> bCsField;
+
         public List<CT_OnOff> bCs
         {
             get { return this.bCsField; }
             set { this.bCsField = value; }
         }
 
-        List<CT_Border> bdrField;
+        private List<CT_Border> bdrField;
+
         public List<CT_Border> bdr
         {
             get { return this.bdrField; }
             set { this.bdrField = value; }
         }
 
-        List<CT_OnOff> capsField;
+        private List<CT_OnOff> capsField;
+
         public List<CT_OnOff> caps
         {
             get { return this.capsField; }
             set { this.capsField = value; }
         }
 
-        List<CT_Color> colorField;
+        private List<CT_Color> colorField;
+
         public List<CT_Color> color
         {
             get { return this.colorField; }
             set { this.colorField = value; }
         }
 
-        List<CT_OnOff> csField;
+        private List<CT_OnOff> csField;
+
         public List<CT_OnOff> cs
         {
             get { return this.csField; }
             set { this.csField = value; }
         }
 
-        List<CT_OnOff> dstrikeField;
+        private List<CT_OnOff> dstrikeField;
+
         public List<CT_OnOff> dstrike
         {
             get { return this.dstrikeField; }
             set { this.dstrikeField = value; }
         }
 
-        List<CT_EastAsianLayout> eastAsianLayoutField;
+        private List<CT_EastAsianLayout> eastAsianLayoutField;
+
         public List<CT_EastAsianLayout> eastAsianLayout
         {
             get { return this.eastAsianLayoutField; }
             set { this.eastAsianLayoutField = value; }
         }
 
-        List<CT_TextEffect> effectField;
+        private List<CT_TextEffect> effectField;
+
         public List<CT_TextEffect> effect
         {
             get { return this.effectField; }
             set { this.effectField = value; }
         }
 
-        List<CT_Em> emField;
+        private List<CT_Em> emField;
+
         public List<CT_Em> em
         {
             get { return this.emField; }
             set { this.emField = value; }
         }
 
-        List<CT_OnOff> embossField;
+        private List<CT_OnOff> embossField;
+
         public List<CT_OnOff> emboss
         {
             get { return this.embossField; }
             set { this.embossField = value; }
         }
 
-        List<CT_FitText> fitTextField;
+        private List<CT_FitText> fitTextField;
+
         public List<CT_FitText> fitText
         {
             get { return this.fitTextField; }
             set { this.fitTextField = value; }
         }
 
-        List<CT_Highlight> highlightField;
+        private List<CT_Highlight> highlightField;
+
         public List<CT_Highlight> highlight
         {
             get { return this.highlightField; }
             set { this.highlightField = value; }
         }
 
-        List<CT_OnOff> iField;
+        private List<CT_OnOff> iField;
+
         public List<CT_OnOff> i
         {
             get { return this.iField; }
             set { this.iField = value; }
         }
 
-        List<CT_OnOff> iCsField;
+        private List<CT_OnOff> iCsField;
+
         public List<CT_OnOff> iCs
         {
             get { return this.iCsField; }
             set { this.iCsField = value; }
         }
 
-        List<CT_OnOff> imprintField;
+        private List<CT_OnOff> imprintField;
+
         public List<CT_OnOff> imprint
         {
             get { return this.imprintField; }
             set { this.imprintField = value; }
         }
-
 
         public static CT_RPrOriginal Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
@@ -7123,8 +7060,6 @@ cnfStyleField == null;
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -7405,19 +7340,13 @@ cnfStyleField == null;
             }
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
     }
 
-    
-
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Br
     {
-
         private ST_BrType typeField;
 
         private bool typeFieldSpecified;
@@ -7425,6 +7354,7 @@ cnfStyleField == null;
         private ST_BrClear clearField;
 
         private bool clearFieldSpecified;
+
         public static CT_Br Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -7436,8 +7366,6 @@ cnfStyleField == null;
                 ctObj.clear = (ST_BrClear)Enum.Parse(typeof(ST_BrClear), node.Attribute("w:clear").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -7503,49 +7431,35 @@ cnfStyleField == null;
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_BrType
     {
-
-    
         page,
 
-    
         column,
 
-    
         textWrapping,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_BrClear
     {
-
-    
         none,
 
-    
         left,
 
-    
         right,
 
-    
         all,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_TblStylePr
     {
-
         private CT_PPr pPrField;
 
         private CT_RPr rPrField;
@@ -7557,6 +7471,7 @@ cnfStyleField == null;
         private CT_TcPr tcPrField;
 
         private ST_TblStyleOverrideType typeField;
+
         public static CT_TblStylePr Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -7579,8 +7494,6 @@ cnfStyleField == null;
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -7688,49 +7601,34 @@ cnfStyleField == null;
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_TblStyleOverrideType
     {
-
-    
         wholeTable,
 
-    
         firstRow,
 
-    
         lastRow,
 
-    
         firstCol,
 
-    
         lastCol,
 
-    
         band1Vert,
 
-    
         band2Vert,
 
-    
         band1Horz,
 
-    
         band2Horz,
 
-    
         neCell,
 
-    
         nwCell,
 
-    
         seCell,
 
-    
         swCell,
     }
 }

@@ -17,8 +17,6 @@
 
 namespace Npoi.Core.SS.Formula.Eval
 {
-    using System;
-
     using Npoi.Core.XSSF;
     using NUnit.Framework;
     using TestCases.SS.Formula.Eval;
@@ -28,6 +26,7 @@ namespace Npoi.Core.SS.Formula.Eval
      *
      * @author Josh Micich
      */
+
     [TestFixture]
     public class TestXSSFCircularReferences : BaseTestCircularReferences
     {
@@ -37,5 +36,4 @@ namespace Npoi.Core.SS.Formula.Eval
             ;
         }
     }
-
 }

@@ -17,19 +17,18 @@
 
 using NUnit.Framework;
 using TestCases.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * @author Yegor Kozlov
      */
+
     [TestFixture]
     public class TestXSSFSheetAutosizeColumn : BaseTestSheetAutosizeColumn
     {
-        public TestXSSFSheetAutosizeColumn():base(XSSFITestDataProvider.instance)
+        public TestXSSFSheetAutosizeColumn() : base(XSSFITestDataProvider.instance)
         {
-            
         }
     }
 }
-

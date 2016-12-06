@@ -15,36 +15,32 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.XSSF.UserModel;
 using Npoi.Core.XSSF.Model;
-using System.IO;
+using Npoi.Core.XSSF.UserModel;
 using NUnit.Framework;
 using System;
-using System.Xml;
-using System.Text.RegularExpressions;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
 namespace Npoi.Core.XSSF.Extractor
 {
-
     /**
      * @author Roberto Manicardi
      */
+
     [TestFixture]
     public class TestXSSFExportToXML
     {
-
         [Test]
         public void TestExportToXML()
         {
-
             XSSFWorkbook wb = XSSFTestDataSamples.OpenSampleWorkbook("CustomXMLMappings.xlsx");
 
             foreach (POIXMLDocumentPart p in wb.GetRelations())
             {
-
                 if (!(p is MapInfo))
                 {
                     continue;
@@ -59,7 +55,6 @@ namespace Npoi.Core.XSSF.Extractor
                 var xml = XDocument.Load(os);
                 Assert.IsNotNull(xml);
                 Assert.IsTrue(xml.OuterXml() != "");
-
 
                 String docente = xml.XPathSelectElement("//DOCENTE").Value.Trim();
                 String nome = xml.XPathSelectElement("//NOME").Value.Trim();
@@ -80,10 +75,10 @@ namespace Npoi.Core.XSSF.Extractor
                 Assert.AreEqual("aa", crediti);
             }
         }
+
         [Test]
         public void TestExportToXMLInverseOrder()
         {
-
             XSSFWorkbook wb = XSSFTestDataSamples
                     .OpenSampleWorkbook("CustomXmlMappings-inverse-order.xlsx");
 
@@ -91,7 +86,6 @@ namespace Npoi.Core.XSSF.Extractor
 
             foreach (POIXMLDocumentPart p in wb.GetRelations())
             {
-
                 if (!(p is MapInfo))
                 {
                     continue;
@@ -126,10 +120,10 @@ namespace Npoi.Core.XSSF.Extractor
                 Assert.AreEqual("ro", crediti);
             }
         }
+
         [Test]
         public void TestXPathOrdering()
         {
-
             XSSFWorkbook wb = XSSFTestDataSamples
                     .OpenSampleWorkbook("CustomXmlMappings-inverse-order.xlsx");
 
@@ -137,7 +131,6 @@ namespace Npoi.Core.XSSF.Extractor
 
             foreach (POIXMLDocumentPart p in wb.GetRelations())
             {
-
                 if (p is MapInfo)
                 {
                     mapInfo = (MapInfo)p;
@@ -150,16 +143,15 @@ namespace Npoi.Core.XSSF.Extractor
                 }
             }
         }
+
         [Test]
         public void TestMultiTable()
         {
-
             XSSFWorkbook wb = XSSFTestDataSamples
                     .OpenSampleWorkbook("CustomXMLMappings-complex-type.xlsx");
 
             foreach (POIXMLDocumentPart p in wb.GetRelations())
             {
-
                 if (p is MapInfo)
                 {
                     MapInfo mapInfo = (MapInfo)p;
@@ -171,27 +163,25 @@ namespace Npoi.Core.XSSF.Extractor
                     XSSFExportToXml exporter = new XSSFExportToXml(map);
                     MemoryStream os = new MemoryStream();
                     exporter.ExportToXML(os, true);
-                    String xml = Encoding.UTF8.GetString(os.ToArray()); 
+                    String xml = Encoding.UTF8.GetString(os.ToArray());
                     Assert.IsNotNull(xml);
 
                     String[] regexConditions = {
-						"<MapInfo", "</MapInfo>",
-						"<Schema ID=\"1\" SchemaRef=\"\" Namespace=\"\" />",
-						"<Schema ID=\"4\" SchemaRef=\"\" Namespace=\"\" />",
-						"DataBinding",
-						"Map ID=\"1\"",
-						"Map ID=\"5\"",
-				};
+                        "<MapInfo", "</MapInfo>",
+                        "<Schema ID=\"1\" SchemaRef=\"\" Namespace=\"\" />",
+                        "<Schema ID=\"4\" SchemaRef=\"\" Namespace=\"\" />",
+                        "DataBinding",
+                        "Map ID=\"1\"",
+                        "Map ID=\"5\"",
+                };
 
                     foreach (String condition in regexConditions)
                     {
-                        Regex pattern = new Regex(condition,RegexOptions.Compiled);
-                        Assert.IsTrue(pattern.IsMatch(xml),condition);
+                        Regex pattern = new Regex(condition, RegexOptions.Compiled);
+                        Assert.IsTrue(pattern.IsMatch(xml), condition);
                     }
                 }
             }
         }
     }
 }
-
-

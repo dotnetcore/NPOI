@@ -14,25 +14,20 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
-
-
-
     /**
      * Specifies the possible types of break characters in a WordProcessingML
      * document.
      * The break type determines the next location where text shall be
      * placed After this manual break is applied to the text contents
-     * 
+     *
      * @author Gisella Bronzetti
      */
+
     public enum BreakType
     {
-
-
         /**
          * Specifies that the current break shall restart itself on the next page of
          * the document when the document is displayed in page view.
@@ -84,5 +79,4 @@ namespace Npoi.Core.XWPF.UserModel
         //   return bType;
         //}
     }
-
 }

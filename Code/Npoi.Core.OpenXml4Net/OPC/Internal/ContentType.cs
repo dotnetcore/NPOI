@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Npoi.Core.OpenXml4Net.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-
-using Npoi.Core.OpenXml4Net.Exceptions;
-using System.Collections;
 
 namespace Npoi.Core.OpenXml4Net.OPC.Internal
 {
@@ -29,9 +27,9 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
      * @see <a href="http://www.ietf.org/rfc/rfc2045.txt">http://www.ietf.org/rfc/rfc2045.txt</a>
      * @see <a href="http://www.ietf.org/rfc/rfc2616.txt">http://www.ietf.org/rfc/rfc2616.txt</a>
      */
-    public class ContentType:IComparable
-    {
 
+    public class ContentType : IComparable
+    {
         /**
          * Type in Type/Subtype.
          */
@@ -45,7 +43,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
         /**
          * Parameters
          */
-        Dictionary<object,object> p;
+        private Dictionary<object, object> p;
         private Dictionary<String, String> parameters;
 
         /**
@@ -62,6 +60,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * around the Java Regexp group capture behaviour
          */
         private static Regex patternParams;
+
         static ContentType()
         {
             /*
@@ -124,6 +123,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @throws InvalidFormatException
          *             If the specified content type is not valid with RFC 2616.
          */
+
         public ContentType(String contentType)
         {
             Match mMediaType = patternTypeSubType.Match(contentType);
@@ -157,10 +157,12 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
                 }
             }
         }
+
         public override String ToString()
         {
             return ToString(true);
         }
+
         public String ToString(bool withParameters)
         {
             StringBuilder retVal = new StringBuilder();
@@ -179,6 +181,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
             }
             return retVal.ToString();
         }
+
         public String ToStringWithParameters()
         {
             StringBuilder retVal = new StringBuilder();
@@ -194,15 +197,11 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
             return retVal.ToString();
         }
 
-
         public override bool Equals(Object obj)
         {
             return (!(obj is ContentType))
                     || (this.ToString().Equals(obj.ToString(), StringComparison.OrdinalIgnoreCase));
         }
-
-        
-
 
         public override int GetHashCode()
         {
@@ -216,6 +215,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          *
          * @return The subtype of this content type.
          */
+
         public String SubType
         {
             get
@@ -229,6 +229,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          *
          * @return The type of this content type.
          */
+
         public String Type
         {
             get
@@ -240,6 +241,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
         /**
          * Does this content type have any parameters associated with it?
          */
+
         public bool HasParameters()
         {
             return (parameters != null) && !(parameters.Count == 0);
@@ -248,6 +250,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
         /**
          * Return the parameter keys
          */
+
         public String[] GetParameterKeys()
         {
             if (parameters == null)
@@ -264,6 +267,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          *            The key of the key/value pair.
          * @return The value associated to the specified key.
          */
+
         public String GetParameter(String key)
         {
             return parameters[key];
@@ -272,6 +276,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
         /**
      * @deprecated Use {@link #getParameter(String)} instead
      */
+
         public String GetParameters(String key)
         {
             return GetParameter(key);
@@ -290,6 +295,6 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
             return 1;
         }
 
-        #endregion
+        #endregion IComparable Members
     }
 }

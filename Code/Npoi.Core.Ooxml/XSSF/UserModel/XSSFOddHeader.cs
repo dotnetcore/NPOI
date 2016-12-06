@@ -15,37 +15,38 @@
    limitations under the License.
 ==================================================================== */
 
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.XSSF.UserModel.Extensions;
 using System;
-using Npoi.Core.OpenXmlFormats.Spreadsheet;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
-     * Odd page header value. Corresponds to odd printed pages. 
-     * Odd page(s) in the sheet may not be printed, for example, if the print area is specified to be 
+     * Odd page header value. Corresponds to odd printed pages.
+     * Odd page(s) in the sheet may not be printed, for example, if the print area is specified to be
      * a range such that it falls outside an odd page's scope.
      *
      */
+
     public class XSSFOddHeader : XSSFHeaderFooter, IHeader
     {
-
         /**
          * Create an instance of XSSFOddHeader from the supplied XML bean
          * @see XSSFSheet#GetOddHeader()
          * @param headerFooter
          */
+
         public XSSFOddHeader(CT_HeaderFooter headerFooter)
             : base(headerFooter)
         {
-
         }
 
         /**
          * Get the content text representing this header
          * @return text
          */
+
         public override String Text
         {
             get
@@ -59,4 +60,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-

@@ -17,15 +17,14 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-    using System.Collections.Generic;
-    using NUnit.Framework;
     using Npoi.Core.OpenXml4Net.OPC;
     using Npoi.Core.Util;
     using Npoi.Core.XSSF.UserModel;
     using Npoi.Core.XWPF;
     using Npoi.Core.XWPF.Model;
-    using System.Xml;
+    using NUnit.Framework;
+    using System;
+    using System.Collections.Generic;
 
     [TestFixture]
     public class TestXWPFPictureData
@@ -54,6 +53,7 @@ namespace Npoi.Core.XWPF.UserModel
             Assert.AreEqual("jpeg", pict.SuggestFileExtension());
             Assert.IsTrue(Arrays.Equals(pictureData, pict.Data));
         }
+
         [Test]
         public void TestPictureInHeader()
         {
@@ -73,6 +73,7 @@ namespace Npoi.Core.XWPF.UserModel
             IList<XWPFPictureData> pictures = header.AllPictures;
             Assert.AreEqual(1, pictures.Count);
         }
+
         [Test]
         public void TestNew()
         {

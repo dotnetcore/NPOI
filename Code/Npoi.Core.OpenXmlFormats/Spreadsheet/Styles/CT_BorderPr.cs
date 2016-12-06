@@ -1,9 +1,7 @@
 ﻿using Npoi.Core.OpenXml4Net.Util;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -14,10 +12,10 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_BorderPr
     {
-
         private CT_Color colorField;
 
         private ST_BorderStyle styleField;
+
         public static CT_BorderPr Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -33,12 +31,10 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
-            if(this.style!= ST_BorderStyle.none)
+            if (this.style != ST_BorderStyle.none)
                 XmlHelper.WriteAttribute(sw, "style", this.style.ToString());
             if (this.color != null)
             {
@@ -52,24 +48,27 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
 
-
         public CT_BorderPr()
         {
             //this.colorField = new CT_Color();
             this.styleField = ST_BorderStyle.none;
         }
+
         public void SetColor(CT_Color color)
         {
             this.colorField = color;
         }
+
         public bool IsSetColor()
         {
             return colorField != null;
         }
+
         public void UnsetColor()
         {
             colorField = null;
         }
+
         public bool IsSetStyle()
         {
             return styleField != ST_BorderStyle.none;

@@ -17,18 +17,14 @@
 
 namespace Npoi.Core.XWPF.Model
 {
-    using System;
-
-
-
-    using NUnit.Framework;
-
     using Npoi.Core.XWPF;
     using Npoi.Core.XWPF.UserModel;
+    using NUnit.Framework;
 
     /**
      * Tests for XWPF Header Footer Stuff
      */
+
     [TestFixture]
     public class TestXWPFHeaderFooterPolicy
     {
@@ -38,10 +34,10 @@ namespace Npoi.Core.XWPF.Model
         private XWPFDocument footer;
         private XWPFDocument oddEven;
         private XWPFDocument diffFirst;
+
         [SetUp]
         public void SetUp()
         {
-
             noHeader = XWPFTestDataSamples.OpenSampleDocument("NoHeadFoot.docx");
             header = XWPFTestDataSamples.OpenSampleDocument("ThreeColHead.docx");
             headerFooter = XWPFTestDataSamples.OpenSampleDocument("SimpleHeadThreeColFoot.docx");
@@ -66,7 +62,6 @@ namespace Npoi.Core.XWPF.Model
             Assert.IsNull(policy.GetFooter(2));
             Assert.IsNull(policy.GetFooter(3));
 
-
             policy = header.GetHeaderFooterPolicy();
             Assert.IsNotNull(policy.GetDefaultHeader());
             Assert.IsNull(policy.GetDefaultFooter());
@@ -77,7 +72,6 @@ namespace Npoi.Core.XWPF.Model
             Assert.IsNull(policy.GetFooter(1));
             Assert.IsNull(policy.GetFooter(2));
             Assert.IsNull(policy.GetFooter(3));
-
 
             policy = footer.GetHeaderFooterPolicy();
             Assert.IsNull(policy.GetDefaultHeader());
@@ -90,7 +84,6 @@ namespace Npoi.Core.XWPF.Model
             Assert.AreEqual(policy.GetDefaultFooter(), policy.GetFooter(2));
             Assert.AreEqual(policy.GetDefaultFooter(), policy.GetFooter(3));
 
-
             policy = headerFooter.GetHeaderFooterPolicy();
             Assert.IsNotNull(policy.GetDefaultHeader());
             Assert.IsNotNull(policy.GetDefaultFooter());
@@ -101,7 +94,6 @@ namespace Npoi.Core.XWPF.Model
             Assert.AreEqual(policy.GetDefaultFooter(), policy.GetFooter(1));
             Assert.AreEqual(policy.GetDefaultFooter(), policy.GetFooter(2));
             Assert.AreEqual(policy.GetDefaultFooter(), policy.GetFooter(3));
-
 
             policy = oddEven.GetHeaderFooterPolicy();
             Assert.IsNotNull(policy.GetDefaultHeader());
@@ -115,7 +107,6 @@ namespace Npoi.Core.XWPF.Model
             Assert.AreEqual(policy.GetDefaultFooter(), policy.GetFooter(1));
             Assert.AreEqual(policy.GetEvenPageFooter(), policy.GetFooter(2));
             Assert.AreEqual(policy.GetDefaultFooter(), policy.GetFooter(3));
-
 
             policy = diffFirst.GetHeaderFooterPolicy();
             Assert.IsNotNull(policy.GetDefaultHeader());
@@ -150,7 +141,6 @@ namespace Npoi.Core.XWPF.Model
                     policy.GetDefaultHeader().Text
             );
 
-
             // And a few bits off a more complex header
             policy = oddEven.GetHeaderFooterPolicy();
 
@@ -164,5 +154,4 @@ namespace Npoi.Core.XWPF.Model
             );
         }
     }
-
 }

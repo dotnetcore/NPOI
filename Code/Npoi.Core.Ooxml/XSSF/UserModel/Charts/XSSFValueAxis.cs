@@ -15,33 +15,31 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.SS.UserModel.Charts;
 using Npoi.Core.OpenXmlFormats.Dml.Chart;
+using Npoi.Core.SS.UserModel.Charts;
 using System;
+
 namespace Npoi.Core.XSSF.UserModel.Charts
 {
-
     /**
      * Value axis type.
      *
      * @author Roman Kashitsyn
      */
+
     public class XSSFValueAxis : XSSFChartAxis, IValueAxis
     {
-
         private CT_ValAx ctValAx;
 
         public XSSFValueAxis(XSSFChart chart, long id, AxisPosition pos)
             : base(chart)
         {
-
             CreateAxis(id, pos);
         }
 
         public XSSFValueAxis(XSSFChart chart, CT_ValAx ctValAx)
             : base(chart)
         {
-
             this.ctValAx = ctValAx;
         }
 
@@ -55,7 +53,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
 
         public void SetCrossBetween(AxisCrossBetween crossBetween)
         {
-            ctValAx.crossBetween.val= fromCrossBetween(crossBetween);
+            ctValAx.crossBetween.val = fromCrossBetween(crossBetween);
         }
 
         public AxisCrossBetween GetCrossBetween()
@@ -77,11 +75,11 @@ namespace Npoi.Core.XSSF.UserModel.Charts
         {
             return ctValAx.minorTickMark;
         }
+
         protected override CT_AxPos GetCTAxPos()
         {
             return ctValAx.axPos;
         }
-
 
         protected override CT_NumFmt GetCTNumFmt()
         {
@@ -91,11 +89,11 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             }
             return ctValAx.AddNewNumFmt();
         }
+
         protected override CT_Scaling GetCTScaling()
         {
             return ctValAx.scaling;
         }
-
 
         protected override CT_Crosses GetCTCrosses()
         {
@@ -104,7 +102,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
 
         public override void CrossAxis(IChartAxis axis)
         {
-            ctValAx.crossAx.val= (uint)axis.Id;
+            ctValAx.crossAx.val = (uint)axis.Id;
         }
 
         private void CreateAxis(long id, AxisPosition pos)
@@ -121,13 +119,13 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             ctValAx.AddNewMajorTickMark();
             ctValAx.AddNewMinorTickMark();
 
-            Position=(pos);
-            Orientation=(AxisOrientation.MinToMax);
+            Position = (pos);
+            Orientation = (AxisOrientation.MinToMax);
             SetCrossBetween(AxisCrossBetween.MidpointCategory);
-            Crosses=(AxisCrosses.AutoZero);
-            IsVisible=(true);
+            Crosses = (AxisCrosses.AutoZero);
+            IsVisible = (true);
             MajorTickMark = (AxisTickMark.Cross);
-            MinorTickMark=(AxisTickMark.None);
+            MinorTickMark = (AxisTickMark.None);
         }
 
         private static ST_CrossBetween fromCrossBetween(AxisCrossBetween crossBetween)

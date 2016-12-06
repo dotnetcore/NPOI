@@ -15,38 +15,34 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.XSSF;
-using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using NUnit.Framework;
-using Npoi.Core.SS.UserModel;
-using System.IO;
-using Npoi.Core.Util;
 using Npoi.Core.OpenXml4Net.OPC;
-using TestCases.HSSF;
-using Npoi.Core.XSSF.Model;
 using Npoi.Core.OpenXml4Net.OPC.Internal;
-using System.Collections.Generic;
-using System.Collections;
-using System;
-using TestCases.SS.UserModel;
-using System.Text;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.Util;
+using Npoi.Core.Util;
+using Npoi.Core.XSSF.Model;
+using NUnit.Framework;
+using System;
+using System.IO;
+using System.Text;
+using TestCases.HSSF;
+using TestCases.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     [TestFixture]
     public class TestXSSFWorkbook : BaseTestWorkbook
     {
-
         public TestXSSFWorkbook()
             : base(XSSFITestDataProvider.instance)
         {
-
         }
 
         /**
          * Tests that we can save, and then re-load a new document
          */
+
         [Test]
         public void SaveLoadNew()
         {
@@ -117,10 +113,10 @@ namespace Npoi.Core.XSSF.UserModel
 
             pkg.Close();
         }
+
         [Test]
         public void Existing()
         {
-
             XSSFWorkbook workbook = XSSFTestDataSamples.OpenSampleWorkbook("Formatting.xlsx");
             Assert.IsNotNull(workbook.GetSharedStringSource());
             Assert.IsNotNull(workbook.GetStylesSource());
@@ -135,6 +131,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(6, wbPart.Relationships.Size);
             pkg.Close();
         }
+
         [Test]
         public void GetCellStyleAt()
         {
@@ -154,6 +151,7 @@ namespace Npoi.Core.XSSF.UserModel
             cellStyleAt = workbook.GetCellStyleAt((short)x);
             Assert.IsNotNull(cellStyleAt);
         }
+
         [Test]
         public void GetFontAt()
         {
@@ -171,6 +169,7 @@ namespace Npoi.Core.XSSF.UserModel
             fontAt = workbook.GetFontAt((short)x);
             Assert.IsNotNull(fontAt);
         }
+
         [Test]
         public void NumCellStyles()
         {
@@ -179,6 +178,7 @@ namespace Npoi.Core.XSSF.UserModel
             //get default cellStyles
             Assert.AreEqual(1, i);
         }
+
         [Test]
         public void LoadSave()
         {
@@ -203,6 +203,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.IsNotNull(wb2.GetSharedStringSource());
             Assert.IsNotNull(wb2.GetStylesSource());
         }
+
         [Test]
         public void Styles()
         {
@@ -230,7 +231,6 @@ namespace Npoi.Core.XSSF.UserModel
                     st.PutNumberFormat("testFORMAT2"));
             Assert.AreEqual(10, st.NumberFormatSize);
 
-
             // Save, load back in again, and check
             workbook = (XSSFWorkbook)XSSFTestDataSamples.WriteOutAndReadBack(workbook);
 
@@ -242,6 +242,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(2, st.GetFills().Count);
             Assert.AreEqual(1, st.GetBorders().Count);
         }
+
         [Test]
         public void IncrementSheetId()
         {
@@ -257,7 +258,7 @@ namespace Npoi.Core.XSSF.UserModel
                 XSSFWorkbook wbBack = XSSFTestDataSamples.OpenSampleWorkbook("47089.xlsm");
                 try
                 {
-                    int lastSheetId = (int)(wbBack.GetSheetAt(wbBack.NumberOfSheets - 1)  as XSSFSheet).sheet.sheetId;
+                    int lastSheetId = (int)(wbBack.GetSheetAt(wbBack.NumberOfSheets - 1) as XSSFSheet).sheet.sheetId;
                     sheetId = (int)(wbBack.CreateSheet() as XSSFSheet).sheet.sheetId;
                     Assert.AreEqual(lastSheetId + 1, sheetId);
                 }
@@ -275,6 +276,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          *  Test Setting of core properties such as Title and Author
          */
+
         [Test]
         public void WorkbookProperties()
         {
@@ -346,6 +348,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * When deleting a sheet make sure that we adjust sheet indices of named ranges
          */
+
         [Test]
         public void Bug47737()
         {
@@ -368,12 +371,12 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(0u, nm2.GetCTName().localSheetId);
             //calculation chain is Removed as well
             Assert.IsNull(wb.GetCalculationChain());
-
         }
 
         /**
          * Problems with XSSFWorkbook.RemoveSheetAt when workbook Contains chart
          */
+
         [Test]
         public void Bug47813()
         {
@@ -403,6 +406,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Problems with the count of the number of styles
          *  coming out wrong
          */
+
         [Test]
         public void Bug49702()
         {
@@ -459,6 +463,7 @@ namespace Npoi.Core.XSSF.UserModel
             }
             catch (ArgumentOutOfRangeException) { }
         }
+
         [Test]
         public void RecalcId()
         {
@@ -485,11 +490,13 @@ namespace Npoi.Core.XSSF.UserModel
             wb.SetForceFormulaRecalculation(true);
             Assert.AreEqual(ST_CalcMode.auto, calcPr.calcMode);
         }
+
         [Test]
         public void ChangeSheetNameWithSharedFormulas()
         {
             ChangeSheetNameWithSharedFormulas("shared_formulas.xlsx");
         }
+
         [Test]
         public void SetTabColor()
         {
@@ -501,6 +508,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(IndexedColors.Red.Index,
                     sh.GetCTWorksheet().sheetPr.tabColor.indexed);
         }
+
         [Test]
         public void ColumnWidthPOI52233()
         {
@@ -528,7 +536,6 @@ namespace Npoi.Core.XSSF.UserModel
                 stream.Close();
             }
             accessWorkbook(workbook);
-
         }
 
         private void accessWorkbook(XSSFWorkbook workbook)
@@ -558,7 +565,6 @@ namespace Npoi.Core.XSSF.UserModel
 
                 assertSheetOrder(wb, "Sheet1", "Sheet1 (2)");
 
-
                 IWorkbook read = XSSFTestDataSamples.WriteOutAndReadBack(wb);
                 Assert.IsNotNull(read);
                 assertSheetOrder(read, "Sheet1", "Sheet1 (2)");
@@ -566,8 +572,8 @@ namespace Npoi.Core.XSSF.UserModel
             catch (Exception e)
             {
             }
-
         }
+
         [Test]
         public void Bug47090a()
         {
@@ -834,6 +840,5 @@ namespace Npoi.Core.XSSF.UserModel
                 wb.Close();
             }
         }
-
     }
 }

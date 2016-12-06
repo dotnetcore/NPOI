@@ -14,13 +14,13 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XSSF.UserModel
 {
-    using System;
     using Npoi.Core.SS.UserModel;
     using NUnit.Framework;
+    using System;
     using System.Drawing;
-
 
     [TestFixture]
     public class TestXSSFSimpleShape
@@ -177,5 +177,4 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
     }
-
 }

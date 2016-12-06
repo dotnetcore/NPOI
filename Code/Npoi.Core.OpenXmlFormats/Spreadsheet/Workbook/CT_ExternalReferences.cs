@@ -2,22 +2,19 @@
 using Npoi.Core.OpenXml4Net.Util;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_ExternalReference
     {
-
         private string idField;
+
         public static CT_ExternalReference Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -26,8 +23,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             ctObj.id = XmlHelper.ReadString(node.Attribute((XNamespace)PackageNamespaces.SCHEMA_RELATIONSHIPS + "id"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -50,12 +45,13 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_ExternalReferences
     {
-
         private List<CT_ExternalReference> externalReferenceField;
+
         public static CT_ExternalReferences Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -69,8 +65,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -90,6 +84,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             //this.externalReferenceField = new List<CT_ExternalReference>();
         }
+
         [XmlElement]
         public List<CT_ExternalReference> externalReference
         {

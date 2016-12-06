@@ -19,20 +19,20 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.XSSF.Model
 {
-    using System;
-    using Npoi.Core.SS.UserModel;
-    using Npoi.Core.OpenXmlFormats.Spreadsheet;
     using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXmlFormats.Spreadsheet;
+    using Npoi.Core.OpenXmlFormats.Spreadsheet.Document;
+    using Npoi.Core.SS.UserModel;
+    using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Xml;
-    using System.Collections.Generic;
-    using Npoi.Core.OpenXmlFormats.Spreadsheet.Document;
-
 
     /**
      * Holds details of links to parts of other workbooks (eg named ranges),
      *  along with the most recently seen values for what they point to.
      */
+
     public class ExternalLinksTable : POIXMLDocumentPart
     {
         private CT_ExternalLink link;
@@ -64,13 +64,13 @@ namespace Npoi.Core.XSSF.Model
                 throw new IOException(e.Message);
             }
         }
+
         public void WriteTo(Stream out1)
         {
             ExternalLinkDocument doc = new ExternalLinkDocument();
             doc.ExternalLink = (/*setter*/link);
             doc.Save(out1);
         }
-
 
         protected internal override void Commit()
         {
@@ -84,6 +84,7 @@ namespace Npoi.Core.XSSF.Model
          * Returns the underlying xmlbeans object for the external
          *  link table
          */
+
         public CT_ExternalLink CTExternalLink
         {
             get
@@ -96,6 +97,7 @@ namespace Npoi.Core.XSSF.Model
          * get or set the last recorded name of the file that this
          *  is linked to
          */
+
         public virtual String LinkedFileName
         {
             get
@@ -132,7 +134,6 @@ namespace Npoi.Core.XSSF.Model
             }
         }
 
-
         public List<String> SheetNames
         {
             get
@@ -163,14 +164,13 @@ namespace Npoi.Core.XSSF.Model
             }
         }
 
-
         // TODO Last seen data
-
 
         protected internal class ExternalName : IName
         {
             private ExternalLinksTable externalLinkTable;
             private CT_ExternalDefinedName name;
+
             protected internal ExternalName(CT_ExternalDefinedName name, ExternalLinksTable externalLinkTable)
             {
                 this.name = name;
@@ -204,6 +204,7 @@ namespace Npoi.Core.XSSF.Model
                     }
                 }
             }
+
             public int SheetIndex
             {
                 get
@@ -219,6 +220,7 @@ namespace Npoi.Core.XSSF.Model
                     name.sheetId = (uint)value;
                 }
             }
+
             public String RefersToFormula
             {
                 get
@@ -232,6 +234,7 @@ namespace Npoi.Core.XSSF.Model
                     name.refersTo = (/*setter*/'=' + value);
                 }
             }
+
             public bool IsFunctionName
             {
                 get
@@ -239,6 +242,7 @@ namespace Npoi.Core.XSSF.Model
                     return false;
                 }
             }
+
             public bool IsDeleted
             {
                 get
@@ -258,6 +262,7 @@ namespace Npoi.Core.XSSF.Model
                     throw new InvalidOperationException("Not Supported");
                 }
             }
+
             public void SetFunction(bool value)
             {
                 throw new InvalidOperationException("Not Supported");

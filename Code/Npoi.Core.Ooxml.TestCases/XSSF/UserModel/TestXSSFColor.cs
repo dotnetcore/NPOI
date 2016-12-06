@@ -17,7 +17,6 @@
 
 namespace Npoi.Core.XSSF.UserModel
 {
-
     using NUnit.Framework;
 
     [TestFixture]
@@ -66,6 +65,7 @@ namespace Npoi.Core.XSSF.UserModel
             // You don't Get tinted indexed colours, sorry...
             Assert.AreEqual(null, indexed.GetRgbWithTint());
         }
+
         [Test]
         public void TestRGBColour()
         {
@@ -121,6 +121,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(0x11, rgb3.GetCTColor().GetRgb()[1]);
             Assert.AreEqual(0x12, rgb3.GetCTColor().GetRgb()[2]);
         }
+
         [Test]
         public void TestARGBColour()
         {
@@ -155,7 +156,6 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(0, rgb4.GetRgbWithTint()[1]);
             Assert.AreEqual(0, rgb4.GetRgbWithTint()[2]);
 
-
             // Turn on tinting, and check it behaves
             // TODO These values are suspected to be wrong...
             rgb4.Tint = (0.4);
@@ -167,5 +167,4 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(102, rgb4.GetRgbWithTint()[2]);
         }
     }
-
 }

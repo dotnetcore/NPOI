@@ -14,20 +14,21 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using NUnit.Framework;
-using System.Collections.Generic;
+
 using Npoi.Core.OpenXmlFormats.Vml;
 using Npoi.Core.OpenXmlFormats.Vml.Office;
+using Npoi.Core.OpenXmlFormats.Vml.Spreadsheet;
+using NUnit.Framework;
+using System.Collections.Generic;
 using System.IO;
 using TestCases;
-using System.Collections;
-using Npoi.Core.OpenXmlFormats.Vml.Spreadsheet;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * @author Yegor Kozlov
      */
+
     [TestFixture]
     public class TestXSSFVMLDrawing
     {
@@ -87,10 +88,10 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.IsTrue(items2[1] is CT_Shapetype);
             Assert.IsTrue(items2[2] is CT_Shape);
         }
+
         [Test]
         public void TestFindCommentShape()
         {
-
             XSSFVMLDrawing vml = new XSSFVMLDrawing();
             vml.Read(POIDataSamples.GetSpreadSheetInstance().OpenResourceAsStream("vmlDrawing1.vml"));
 
@@ -121,6 +122,7 @@ namespace Npoi.Core.XSSF.UserModel
             sh_a1.GetClientDataArray(0).SetColumnArray(0, 1);
             Assert.AreSame(sh_a1, newVml.FindCommentShape(0, 1));
         }
+
         [Test]
         public void TestRemoveCommentShape()
         {
@@ -132,7 +134,6 @@ namespace Npoi.Core.XSSF.UserModel
 
             Assert.IsTrue(vml.RemoveCommentShape(0, 0));
             Assert.IsNull(vml.FindCommentShape(0, 0));
-
         }
     }
 }

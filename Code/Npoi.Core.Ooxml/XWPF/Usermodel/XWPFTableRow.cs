@@ -14,21 +14,21 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using System;
     using System.Collections.Generic;
-
 
     /**
      * A row within an {@link XWPFTable}. Rows mostly just have
      *  sizings and stylings, the interesting content lives inside
      *  the child {@link XWPFTableCell}s
      */
+
     public class XWPFTableRow
     {
-
         private CT_Row ctRow;
         private XWPFTable table;
         private List<XWPFTableCell> tableCells;
@@ -40,7 +40,6 @@ namespace Npoi.Core.XWPF.UserModel
             GetTableCells();
         }
 
-
         public CT_Row GetCTRow()
         {
             return ctRow;
@@ -50,12 +49,14 @@ namespace Npoi.Core.XWPF.UserModel
          * create a new XWPFTableCell and add it to the tableCell-list of this tableRow
          * @return the newly Created XWPFTableCell
          */
+
         public XWPFTableCell CreateCell()
         {
             XWPFTableCell tableCell = new XWPFTableCell(ctRow.AddNewTc(), this, table.Body);
             tableCells.Add(tableCell);
             return tableCell;
         }
+
         public void MergeCells(int startIndex, int endIndex)
         {
             if (startIndex >= endIndex)
@@ -68,19 +69,20 @@ namespace Npoi.Core.XWPF.UserModel
             }
             XWPFTableCell startCell = this.GetCell(startIndex);
             //remove merged cells
-            for (int i = endIndex; i >startIndex; i--)
+            for (int i = endIndex; i > startIndex; i--)
                 this.RemoveCell(i);
-            
+
             if (!startCell.GetCTTc().IsSetTcPr())
             {
                 startCell.GetCTTc().AddNewTcPr();
             }
             CT_TcPr tcPr = startCell.GetCTTc().tcPr;
-            if(tcPr.gridSpan==null)
+            if (tcPr.gridSpan == null)
                 tcPr.AddNewGridspan();
             CT_DecimalNumber gridspan = tcPr.gridSpan;
-            gridspan.val = (endIndex - startIndex+1).ToString();
+            gridspan.val = (endIndex - startIndex + 1).ToString();
         }
+
         public XWPFTableCell GetCell(int pos)
         {
             if (pos >= 0 && pos < ctRow.SizeOfTcArray())
@@ -89,6 +91,7 @@ namespace Npoi.Core.XWPF.UserModel
             }
             return null;
         }
+
         public void RemoveCell(int pos)
         {
             if (pos >= 0 && pos < ctRow.SizeOfTcArray())
@@ -97,9 +100,11 @@ namespace Npoi.Core.XWPF.UserModel
                 ctRow.RemoveTc(pos);
             }
         }
+
         /**
          * Adds a new TableCell at the end of this tableRow
          */
+
         public XWPFTableCell AddNewTableCell()
         {
             CT_Tc cell = ctRow.AddNewTc();
@@ -107,7 +112,6 @@ namespace Npoi.Core.XWPF.UserModel
             tableCells.Add(tableCell);
             return tableCell;
         }
-
 
         /**
          * This element specifies the height of the current table row within the
@@ -119,6 +123,7 @@ namespace Npoi.Core.XWPF.UserModel
          *
          * @return height
          */
+
         public int Height
         {
             get
@@ -134,7 +139,6 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
 
-
         private CT_TrPr GetTrPr()
         {
             return (ctRow.IsSetTrPr()) ? ctRow.trPr : ctRow.AddNewTrPr();
@@ -148,16 +152,16 @@ namespace Npoi.Core.XWPF.UserModel
         /**
      * create and return a list of all XWPFTableCell
      * who belongs to this row
-     * @return a list of {@link XWPFTableCell} 
+     * @return a list of {@link XWPFTableCell}
      */
+
         public List<ICell> GetTableICells()
         {
-
             List<ICell> cells = new List<ICell>();
             //Can't use ctRow.getTcList because that only gets table cells
             //Can't use ctRow.getSdtList because that only gets sdts that are at cell level
 
-            foreach(object o in ctRow.Items)
+            foreach (object o in ctRow.Items)
             {
                 if (o is CT_Tc)
                 {
@@ -174,8 +178,9 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * create and return a list of all XWPFTableCell
          * who belongs to this row
-         * @return a list of {@link XWPFTableCell} 
+         * @return a list of {@link XWPFTableCell}
          */
+
         public List<XWPFTableCell> GetTableCells()
         {
             if (tableCells == null)
@@ -189,7 +194,6 @@ namespace Npoi.Core.XWPF.UserModel
                 //TODO: it is possible to have an SDT that contains a cell in within a row
                 //need to modify this code so that it pulls out SDT wrappers around cells, too.
 
-
                 this.tableCells = cells;
             }
             return tableCells;
@@ -199,11 +203,12 @@ namespace Npoi.Core.XWPF.UserModel
          * returns the XWPFTableCell which belongs to the CTTC cell
          * if there is no XWPFTableCell which belongs to the parameter CTTc cell null will be returned
          */
+
         public XWPFTableCell GetTableCell(CT_Tc cell)
         {
             for (int i = 0; i < tableCells.Count; i++)
             {
-                if (tableCells[(i)].GetCTTc() == cell) 
+                if (tableCells[(i)].GetCTTc() == cell)
                     return tableCells[(i)];
             }
             return null;
@@ -215,6 +220,7 @@ namespace Npoi.Core.XWPF.UserModel
          * split, FALSE means allow rows to split.
          * @return true if rows can't be split, false otherwise.
          */
+
         public bool IsCantSplitRow
         {
             get
@@ -228,7 +234,7 @@ namespace Npoi.Core.XWPF.UserModel
                 }
                 return isCant;
             }
-            set 
+            set
             {
                 CT_TrPr trpr = GetTrPr();
                 CT_OnOff onoff = trpr.AddNewCantSplit();
@@ -242,6 +248,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @return true if table's header row should be repeated at the top of each
          *         page of table, false otherwise.
          */
+
         public bool IsRepeatHeader
         {
             get
@@ -255,7 +262,7 @@ namespace Npoi.Core.XWPF.UserModel
                 }
                 return repeat;
             }
-            set 
+            set
             {
                 CT_TrPr trpr = GetTrPr();
                 CT_OnOff onoff = trpr.AddNewTblHeader();
@@ -263,5 +270,4 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
     }// end class
-
 }

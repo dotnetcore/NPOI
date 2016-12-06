@@ -15,19 +15,19 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.SS.UserModel.Charts;
 using Npoi.Core.OpenXmlFormats.Dml.Chart;
+using Npoi.Core.SS.UserModel.Charts;
 using System;
+
 namespace Npoi.Core.XSSF.UserModel.Charts
 {
-
     /**
      * Represents a SpreadsheetML chart legend
      * @author Roman Kashitsyn
      */
+
     public class XSSFChartLegend : IChartLegend
     {
-
         /**
          * Underlaying CTLagend bean
          */
@@ -36,6 +36,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
         /**
          * Create a new SpreadsheetML chart legend
          */
+
         public XSSFChartLegend(XSSFChart chart)
         {
             CT_Chart ctChart = chart.GetCTChart();
@@ -45,9 +46,11 @@ namespace Npoi.Core.XSSF.UserModel.Charts
 
             SetDefaults();
         }
+
         /**
          * Set sensible default styling.
          */
+
         private void SetDefaults()
         {
             if (!legend.IsSetOverlay())
@@ -67,10 +70,11 @@ namespace Npoi.Core.XSSF.UserModel.Charts
         {
             return legend;
         }
-        
+
         /*
          * According to ECMA-376 default position is RIGHT.
          */
+
         public LegendPosition Position
         {
             get
@@ -84,7 +88,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
                     return LegendPosition.Right;
                 }
             }
-            set 
+            set
             {
                 if (!legend.IsSetLegendPos())
                 {
@@ -139,4 +143,3 @@ namespace Npoi.Core.XSSF.UserModel.Charts
         }
     }
 }
-

@@ -14,19 +14,19 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-    using NUnit.Framework;
-
-    using Npoi.Core.XWPF;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.XWPF;
+    using NUnit.Framework;
+    using System;
     using System.Collections.Generic;
-
 
     /**
      * Tests for XWPF Run
      */
+
     [TestFixture]
     public class TestXWPFTable
     {
@@ -90,7 +90,6 @@ namespace Npoi.Core.XWPF.UserModel
             Assert.AreEqual("finally I can Write!\n", xtab.Text);
         }
 
-
         [Test]
         public void TestCreateRow()
         {
@@ -138,6 +137,7 @@ namespace Npoi.Core.XWPF.UserModel
             xtab.Width = 100;
             Assert.AreEqual(100, int.Parse(table.tblPr.tblW.w));
         }
+
         [Test]
         public void TestSetGetHeight()
         {
@@ -150,6 +150,7 @@ namespace Npoi.Core.XWPF.UserModel
             row.Height = (20);
             Assert.AreEqual(20, row.Height);
         }
+
         [Test]
         public void TestSetGetMargins()
         {
@@ -174,6 +175,7 @@ namespace Npoi.Core.XWPF.UserModel
             int r = table.CellMarginRight;
             Assert.AreEqual(450, r);
         }
+
         [Test]
         public void TestSetGetHBorders()
         {
@@ -200,6 +202,7 @@ namespace Npoi.Core.XWPF.UserModel
             Npoi.Core.XWPF.UserModel.XWPFTable.XWPFBorderType bt = table.InsideHBorderType;
             Assert.AreEqual(Npoi.Core.XWPF.UserModel.XWPFTable.XWPFBorderType.SINGLE, bt);
         }
+
         [Test]
         public void TestSetGetVBorders()
         {
@@ -219,6 +222,7 @@ namespace Npoi.Core.XWPF.UserModel
             String clr = table.InsideVBorderColor;
             Assert.AreEqual("00FF00", clr);
         }
+
         [Test]
         public void TestSetGetRowBandSize()
         {
@@ -229,6 +233,7 @@ namespace Npoi.Core.XWPF.UserModel
             int sz = table.RowBandSize;
             Assert.AreEqual(12, sz);
         }
+
         [Test]
         public void TestSetGetColBandSize()
         {
@@ -239,6 +244,7 @@ namespace Npoi.Core.XWPF.UserModel
             int sz = table.ColBandSize;
             Assert.AreEqual(16, sz);
         }
+
         [Test]
         public void TestCreateTable()
         {

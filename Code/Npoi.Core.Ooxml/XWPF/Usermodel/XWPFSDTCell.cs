@@ -14,9 +14,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
 
     /**
@@ -28,6 +28,7 @@ namespace Npoi.Core.XWPF.UserModel
      * <p/>
      * WARNING - APIs expected to change rapidly
      */
+
     public class XWPFSDTCell : AbstractXWPFSDT, ICell
     {
         private XWPFSDTContentCell cellContent;
@@ -39,7 +40,6 @@ namespace Npoi.Core.XWPF.UserModel
             cellContent = new XWPFSDTContentCell(sdtCell.sdtContent, xwpfTableRow, part);
         }
 
-
         public override ISDTContent Content
         {
             get
@@ -47,6 +47,5 @@ namespace Npoi.Core.XWPF.UserModel
                 return cellContent;
             }
         }
-
     }
 }

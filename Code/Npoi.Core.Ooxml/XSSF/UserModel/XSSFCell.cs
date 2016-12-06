@@ -15,20 +15,20 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.SS.UserModel;
-using Npoi.Core.XSSF.Model;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using Npoi.Core.SS.Util;
-using System;
-using Npoi.Core.SS.Formula.PTG;
-using Npoi.Core.SS.Formula;
 using Npoi.Core.SS;
-using Npoi.Core.Util;
+using Npoi.Core.SS.Formula;
 using Npoi.Core.SS.Formula.Eval;
+using Npoi.Core.SS.Formula.PTG;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.Util;
+using Npoi.Core.Util;
+using Npoi.Core.XSSF.Model;
+using System;
 using System.Globalization;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * High level representation of a cell in a row of a spreadsheet.
      * <p>
@@ -43,9 +43,9 @@ namespace Npoi.Core.XSSF.UserModel
      * cells that have values should be Added.
      * </p>
      */
+
     public class XSSFCell : ICell
     {
-
         private static String FALSE_AS_STRING = "0";
         private static String TRUE_AS_STRING = "1";
 
@@ -82,6 +82,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param row the parent row.
          * @param cell the xml bean Containing information about the cell.
          */
+
         public XSSFCell(XSSFRow row, CT_Cell cell)
         {
             _cell = cell;
@@ -105,6 +106,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return table of strings shared across this workbook
          */
+
         protected SharedStringsTable GetSharedStringSource()
         {
             return _sharedStringSource;
@@ -113,6 +115,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return table of cell styles shared across this workbook
          */
+
         protected StylesTable GetStylesSource()
         {
             return _stylesSource;
@@ -123,6 +126,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the sheet this cell belongs to
          */
+
         public ISheet Sheet
         {
             get
@@ -136,6 +140,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the row this cell belongs to
          */
+
         public IRow Row
         {
             get
@@ -153,6 +158,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @throws InvalidOperationException if the cell type returned by {@link #CellType}
          *   is not CellType.Boolean, CellType.Blank or CellType.Formula
          */
+
         public bool BooleanCellValue
         {
             get
@@ -162,11 +168,14 @@ namespace Npoi.Core.XSSF.UserModel
                 {
                     case CellType.Blank:
                         return false;
+
                     case CellType.Boolean:
                         return _cell.IsSetV() && TRUE_AS_STRING.Equals(_cell.v);
+
                     case CellType.Formula:
                         //YK: should throw an exception if requesting bool value from a non-bool formula
                         return _cell.IsSetV() && TRUE_AS_STRING.Equals(_cell.v);
+
                     default:
                         throw TypeMismatch(CellType.Boolean, cellType, false);
                 }
@@ -180,6 +189,7 @@ namespace Npoi.Core.XSSF.UserModel
          *        precalculated value, for bools we'll Set its value. For other types we
          *        will change the cell to a bool cell and Set its value.
          */
+
         public void SetCellValue(bool value)
         {
             _cell.t = (ST_CellType.b);
@@ -197,6 +207,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @exception NumberFormatException if the cell value isn't a parsable <code>double</code>.
          * @see DataFormatter for turning this number into a string similar to that which Excel would render this number as.
          */
+
         public double NumericCellValue
         {
             get
@@ -206,6 +217,7 @@ namespace Npoi.Core.XSSF.UserModel
                 {
                     case CellType.Blank:
                         return 0.0;
+
                     case CellType.Formula:
                     case CellType.Numeric:
                         if (_cell.IsSetV())
@@ -231,7 +243,6 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         /**
          * Set a numeric value for the cell
          *
@@ -239,6 +250,7 @@ namespace Npoi.Core.XSSF.UserModel
          *        precalculated value, for numerics we'll Set its value. For other types we
          *        will change the cell to a numeric cell and Set its value.
          */
+
         public void SetCellValue(double value)
         {
             if (Double.IsInfinity(value))
@@ -270,6 +282,7 @@ namespace Npoi.Core.XSSF.UserModel
          * </p>
          * @return the value of the cell as a string
          */
+
         public String StringCellValue
         {
             get
@@ -287,6 +300,7 @@ namespace Npoi.Core.XSSF.UserModel
          * </p>
          * @return the value of the cell as a XSSFRichTextString
          */
+
         public IRichTextString RichStringCellValue
         {
             get
@@ -298,6 +312,7 @@ namespace Npoi.Core.XSSF.UserModel
                     case CellType.Blank:
                         rt = new XSSFRichTextString("");
                         break;
+
                     case CellType.String:
                         if (_cell.t == ST_CellType.inlineStr)
                         {
@@ -334,10 +349,12 @@ namespace Npoi.Core.XSSF.UserModel
                             }
                         }
                         break;
+
                     case CellType.Formula:
                         CheckFormulaCachedValueType(CellType.String, GetBaseCellType(false));
                         rt = new XSSFRichTextString(_cell.IsSetV() ? _cell.v : "");
                         break;
+
                     default:
                         throw TypeMismatch(CellType.String, cellType, false);
                 }
@@ -362,6 +379,7 @@ namespace Npoi.Core.XSSF.UserModel
          * change the cell to a string cell and Set its value.
          * If value is null then we will change the cell to a Blank cell.
          */
+
         public void SetCellValue(String str)
         {
             SetCellValue(str == null ? null : new XSSFRichTextString(str));
@@ -375,6 +393,7 @@ namespace Npoi.Core.XSSF.UserModel
          * change the cell to a string cell and Set its value.
          * If value is null then we will change the cell to a Blank cell.
          */
+
         public void SetCellValue(IRichTextString str)
         {
             if (str == null || string.IsNullOrEmpty(str.String))
@@ -392,8 +411,9 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 case CellType.Formula:
                     _cell.v = (str.String);
-                    _cell.t= (ST_CellType.str);
+                    _cell.t = (ST_CellType.str);
                     break;
+
                 default:
                     if (_cell.t == ST_CellType.inlineStr)
                     {
@@ -406,7 +426,7 @@ namespace Npoi.Core.XSSF.UserModel
                         XSSFRichTextString rt = (XSSFRichTextString)str;
                         rt.SetStylesTableReference(_stylesSource);
                         int sRef = _sharedStringSource.AddEntry(rt.GetCTRst());
-                        _cell.v=sRef.ToString();
+                        _cell.v = sRef.ToString();
                     }
                     break;
             }
@@ -420,7 +440,7 @@ namespace Npoi.Core.XSSF.UserModel
             get
             {
                 CellType cellType = CellType;
-                if (cellType != CellType.Formula) 
+                if (cellType != CellType.Formula)
                     throw TypeMismatch(CellType.Formula, cellType, false);
 
                 CT_CellFormula f = _cell.f;
@@ -435,7 +455,7 @@ namespace Npoi.Core.XSSF.UserModel
                 }
                 return f.Value;
             }
-            set 
+            set
             {
                 SetCellFormula(value);
             }
@@ -483,6 +503,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @throws InvalidOperationException if the operation is not allowed, for example,
          *  when the cell is a part of a multi-cell array formula
          */
+
         public void SetCellFormula(String formula)
         {
             if (IsPartOfArrayFormulaGroup)
@@ -516,7 +537,7 @@ namespace Npoi.Core.XSSF.UserModel
 
             CT_CellFormula f = new CT_CellFormula();
             f.Value = formula;
-            _cell.f= (f);
+            _cell.f = (f);
             if (_cell.IsSetV()) _cell.unsetV();
         }
 
@@ -541,6 +562,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return _row.RowNum;
             }
         }
+
         /// <summary>
         /// Returns an A1 style reference to the location of this cell
         /// </summary>
@@ -570,7 +592,7 @@ namespace Npoi.Core.XSSF.UserModel
                 }
                 return style;
             }
-            set 
+            set
             {
                 if (value == null)
                 {
@@ -586,6 +608,7 @@ namespace Npoi.Core.XSSF.UserModel
                 }
             }
         }
+
         /// <summary>
         /// Return the cell type.
         /// </summary>
@@ -593,7 +616,6 @@ namespace Npoi.Core.XSSF.UserModel
         {
             get
             {
-
                 if (_cell.f != null || ((XSSFSheet)Sheet).IsCellInArrayFormulaContext(this))
                 {
                     return CellType.Formula;
@@ -602,6 +624,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return GetBaseCellType(true);
             }
         }
+
         /// <summary>
         /// Only valid for formula cells
         /// </summary>
@@ -629,6 +652,7 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 case ST_CellType.b:
                     return CellType.Boolean;
+
                 case ST_CellType.n:
                     if (!_cell.IsSetV() && blankCells)
                     {
@@ -640,12 +664,15 @@ namespace Npoi.Core.XSSF.UserModel
                         return CellType.Blank;
                     }
                     return CellType.Numeric;
+
                 case ST_CellType.e:
                     return CellType.Error;
+
                 case ST_CellType.s: // String is in shared strings
                 case ST_CellType.inlineStr: // String is inline in cell
                 case ST_CellType.str:
                     return CellType.String;
+
                 default:
                     throw new InvalidOperationException("Illegal cell type: " + this._cell.t);
             }
@@ -673,13 +700,14 @@ namespace Npoi.Core.XSSF.UserModel
         /// <summary>
         ///  Set a date value for the cell. Excel treats dates as numeric so you will need to format the cell as a date.
         /// </summary>
-        /// <param name="value">the date value to Set this cell to.  For formulas we'll set the precalculated value, 
+        /// <param name="value">the date value to Set this cell to.  For formulas we'll set the precalculated value,
         /// for numerics we'll Set its value. For other types we will change the cell to a numeric cell and Set its value. </param>
         public void SetCellValue(DateTime value)
         {
             bool date1904 = ((XSSFWorkbook)Sheet.Workbook).IsDate1904();
             SetCellValue(DateUtil.GetExcelDate(value, date1904));
         }
+
         /// <summary>
         /// Returns the error message, such as #VALUE!
         /// </summary>
@@ -712,15 +740,17 @@ namespace Npoi.Core.XSSF.UserModel
                 return FormulaError.ForString(code).Code;
             }
         }
+
         public void SetCellErrorValue(byte errorCode)
         {
             FormulaError error = FormulaError.ForInt(errorCode);
             SetCellErrorValue(error);
         }
+
         /// <summary>
         /// Set a error value for the cell
         /// </summary>
-        /// <param name="error">the error value to Set this cell to. 
+        /// <param name="error">the error value to Set this cell to.
         /// For formulas we'll Set the precalculated value , for errors we'll set
         /// its value. For other types we will change the cell to an error cell and Set its value.
         /// </param>
@@ -746,7 +776,7 @@ namespace Npoi.Core.XSSF.UserModel
         {
             CT_Cell blank = new CT_Cell();
             blank.r = (_cell.r);
-            if (_cell.IsSetS()) blank.s=(_cell.s);
+            if (_cell.IsSetS()) blank.s = (_cell.s);
             _cell.Set(blank);
         }
 
@@ -761,6 +791,7 @@ namespace Npoi.Core.XSSF.UserModel
             String ref1 = new CellReference(RowIndex, ColumnIndex).FormatAsString();
             _cell.r = (ref1);
         }
+
         /// <summary>
         /// Set the cells type (numeric, formula or string)
         /// </summary>
@@ -783,17 +814,21 @@ namespace Npoi.Core.XSSF.UserModel
                 case CellType.Blank:
                     SetBlank();
                     break;
+
                 case CellType.Boolean:
                     String newVal = ConvertCellValueToBoolean() ? TRUE_AS_STRING : FALSE_AS_STRING;
-                    _cell.t= (ST_CellType.b);
-                    _cell.v= (newVal);
+                    _cell.t = (ST_CellType.b);
+                    _cell.v = (newVal);
                     break;
+
                 case CellType.Numeric:
                     _cell.t = (ST_CellType.n);
                     break;
+
                 case CellType.Error:
                     _cell.t = (ST_CellType.e);
                     break;
+
                 case CellType.String:
                     if (prevType != CellType.String)
                     {
@@ -801,10 +836,11 @@ namespace Npoi.Core.XSSF.UserModel
                         XSSFRichTextString rt = new XSSFRichTextString(str);
                         rt.SetStylesTableReference(_stylesSource);
                         int sRef = _sharedStringSource.AddEntry(rt.GetCTRst());
-                        _cell.v= sRef.ToString();
+                        _cell.v = sRef.ToString();
                     }
-                    _cell.t= (ST_CellType.s);
+                    _cell.t = (ST_CellType.s);
                     break;
+
                 case CellType.Formula:
                     if (!_cell.IsSetF())
                     {
@@ -814,6 +850,7 @@ namespace Npoi.Core.XSSF.UserModel
                         if (_cell.IsSetT()) _cell.unsetT();
                     }
                     break;
+
                 default:
                     throw new ArgumentException("Illegal cell type: " + cellType);
             }
@@ -822,6 +859,7 @@ namespace Npoi.Core.XSSF.UserModel
                 _cell.unsetF();
             }
         }
+
         /// <summary>
         /// Returns a string representation of the cell
         /// </summary>
@@ -835,12 +873,16 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 case CellType.Blank:
                     return "";
+
                 case CellType.Boolean:
                     return BooleanCellValue ? "TRUE" : "FALSE";
+
                 case CellType.Error:
                     return ErrorEval.GetText(ErrorCellValue);
+
                 case CellType.Formula:
                     return CellFormula;
+
                 case CellType.Numeric:
                     if (DateUtil.IsCellDateFormatted(this))
                     {
@@ -848,8 +890,10 @@ namespace Npoi.Core.XSSF.UserModel
                         return sdf.Format(DateCellValue, CultureInfo.CurrentCulture);
                     }
                     return NumericCellValue.ToString();
+
                 case CellType.String:
                     return RichStringCellValue.ToString();
+
                 default:
                     return "Unknown Cell Type: " + CellType;
             }
@@ -867,6 +911,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return the raw cell value as Contained in the underlying CT_Cell bean,
          *     <code>null</code> for blank cells.
          */
+
         public String GetRawValue()
         {
             return _cell.v;
@@ -894,6 +939,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Used to help format error messages
          */
+
         private static Exception TypeMismatch(CellType expectedTypeCode, CellType actualTypeCode, bool IsFormulaCell)
         {
             String msg = "Cannot get a "
@@ -905,6 +951,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @throws RuntimeException if the bounds are exceeded.
          */
+
         private static void CheckBounds(int cellIndex)
         {
             SpreadsheetVersion v = SpreadsheetVersion.EXCEL2007;
@@ -926,7 +973,7 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 return Sheet.GetCellComment(_row.RowNum, ColumnIndex);
             }
-            set 
+            set
             {
                 if (value == null)
                 {
@@ -942,7 +989,8 @@ namespace Npoi.Core.XSSF.UserModel
         /// <summary>
         /// Removes the comment for this cell, if there is one.
         /// </summary>
-        public void RemoveCellComment() {
+        public void RemoveCellComment()
+        {
             IComment comment = this.CellComment;
             if (comment != null)
             {
@@ -963,7 +1011,7 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 return ((XSSFSheet)Sheet).GetHyperlink(_row.RowNum, _cellNum);
             }
-            set 
+            set
             {
                 if (value == null)
                 {
@@ -983,16 +1031,19 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Removes the hyperlink for this cell, if there is one.
          */
+
         public void RemoveHyperlink()
         {
             ((XSSFSheet)Sheet).RemoveHyperlink(_row.RowNum, _cellNum);
         }
+
         /**
          * Returns the xml bean containing information about the cell's location (reference), value,
          * data type, formatting, and formula
          *
          * @return the xml bean containing information about this cell
          */
+
         internal CT_Cell GetCTCell()
         {
             return _cell;
@@ -1006,6 +1057,7 @@ namespace Npoi.Core.XSSF.UserModel
          * the cell a somewhat reasonable value until the SetCellValue() call (if at all).
          * TODO - perhaps a method like SetCellTypeAndValue(int, Object) should be introduced to avoid this
          */
+
         private bool ConvertCellValueToBoolean()
         {
             CellType cellType = CellType;
@@ -1019,11 +1071,13 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 case CellType.Boolean:
                     return TRUE_AS_STRING.Equals(_cell.v);
+
                 case CellType.String:
                     int sstIndex = Int32.Parse(_cell.v);
                     XSSFRichTextString rt = new XSSFRichTextString(_sharedStringSource.GetEntryAt(sstIndex));
                     String text = rt.String;
                     return Boolean.Parse(text);
+
                 case CellType.Numeric:
                     return Double.Parse(_cell.v, CultureInfo.InvariantCulture) != 0;
 
@@ -1042,19 +1096,24 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 case CellType.Blank:
                     return "";
+
                 case CellType.Boolean:
                     return TRUE_AS_STRING.Equals(_cell.v) ? "TRUE" : "FALSE";
+
                 case CellType.String:
                     int sstIndex = Int32.Parse(_cell.v);
                     XSSFRichTextString rt = new XSSFRichTextString(_sharedStringSource.GetEntryAt(sstIndex));
                     return rt.String;
+
                 case CellType.Numeric:
                 case CellType.Error:
                     return _cell.v;
+
                 case CellType.Formula:
                     // should really Evaluate, but HSSFCell can't call HSSFFormulaEvaluator
                     // just use cached formula result instead
                     break;
+
                 default:
                     throw new InvalidOperationException("Unexpected cell type (" + cellType + ")");
             }
@@ -1109,6 +1168,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @see #NotifyArrayFormulaChanging()
          */
+
         internal void NotifyArrayFormulaChanging(String msg)
         {
             if (IsPartOfArrayFormulaGroup)
@@ -1137,23 +1197,19 @@ namespace Npoi.Core.XSSF.UserModel
 
         #region ICell Members
 
-
         public bool IsMergedCell
         {
-            get {
+            get
+            {
                 return this.Sheet.IsMergedRegion(new CellRangeAddress(this.RowIndex, this.RowIndex, this.ColumnIndex, this.ColumnIndex));
             }
-            
         }
 
-        #endregion
-
+        #endregion ICell Members
 
         public ICell CopyCellTo(int targetIndex)
         {
             return CellUtil.CopyCell(this.Row, this.ColumnIndex, targetIndex);
         }
     }
-
-
 }

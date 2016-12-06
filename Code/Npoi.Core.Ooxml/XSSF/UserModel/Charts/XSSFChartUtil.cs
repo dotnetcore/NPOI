@@ -17,9 +17,9 @@
  * ====================================================================
  */
 
-using System;
 using Npoi.Core.OpenXmlFormats.Dml.Chart;
 using Npoi.Core.SS.UserModel.Charts;
+using System;
 
 namespace Npoi.Core.XSSF.UserModel.Charts
 {
@@ -28,16 +28,19 @@ namespace Npoi.Core.XSSF.UserModel.Charts
      *
      * @author Roman Kashitsyn
      */
+
     internal class XSSFChartUtil
     {
-
-        private XSSFChartUtil() { }
+        private XSSFChartUtil()
+        {
+        }
 
         /**
          * Builds CTAxDataSource object content from POI ChartDataSource.
          * @param ctAxDataSource OOXML data source to build
          * @param dataSource POI data source to use
          */
+
         public static void BuildAxDataSource<T>(CT_AxDataSource ctAxDataSource, IChartDataSource<T> dataSource)
         {
             if (dataSource.IsNumeric)
@@ -69,6 +72,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
          * @param ctNumDataSource OOXML data source to build
          * @param dataSource POI data source to use
          */
+
         public static void BuildNumDataSource<T>(CT_NumDataSource ctNumDataSource,
                                               IChartDataSource<T> dataSource)
         {
@@ -120,7 +124,6 @@ namespace Npoi.Core.XSSF.UserModel.Charts
                     ctStrVal.v = (value.ToString());
                 }
             }
-
         }
 
         private static void FillNumCache<T>(CT_NumData cache, IChartDataSource<T> dataSource)

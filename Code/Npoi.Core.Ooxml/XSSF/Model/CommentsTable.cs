@@ -19,13 +19,13 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.XSSF.Model
 {
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.XSSF.UserModel;
+    using OpenXmlFormats.Spreadsheet;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Xml;
-    using Npoi.Core.OpenXml4Net.OPC;
-    using Npoi.Core.XSSF.UserModel;
-    using OpenXmlFormats.Spreadsheet;
 
     public class CommentsTable : POIXMLDocumentPart
     {
@@ -40,7 +40,6 @@ namespace Npoi.Core.XSSF.Model
         public CommentsTable()
             : base()
         {
-
             comments = new CT_Comments();
             comments.AddNewCommentList();
             comments.AddNewAuthors().AddAuthor("");
@@ -49,7 +48,6 @@ namespace Npoi.Core.XSSF.Model
         internal CommentsTable(PackagePart part, PackageRelationship rel)
             : base(part, rel)
         {
-
             XDocument xml = ConvertStreamToXml(part.GetInputStream());
             ReadFrom(xml);
         }
@@ -60,20 +58,19 @@ namespace Npoi.Core.XSSF.Model
             {
                 CommentsDocument doc = CommentsDocument.Parse(xmlDoc, NamespaceManager);
                 comments = doc.GetComments();
-
             }
             catch (XmlException e)
             {
                 throw new IOException(e.Message);
             }
         }
+
         public void WriteTo(Stream out1)
         {
             CommentsDocument doc = new CommentsDocument();
             doc.SetComments(comments);
             doc.Save(out1);
         }
-
 
         protected internal override void Commit()
         {
@@ -87,6 +84,7 @@ namespace Npoi.Core.XSSF.Model
          * Called after the reference is updated, so that
          *  we can reflect that in our cache
          */
+
         public void ReferenceUpdated(String oldReference, CT_Comment comment)
         {
             if (commentRefs != null)
@@ -170,8 +168,10 @@ namespace Npoi.Core.XSSF.Model
          *
          * @return
          */
+
         [Obsolete]
-        public CT_Comment NewComment() {
+        public CT_Comment NewComment()
+        {
             return NewComment("A1");
         }
 
@@ -220,8 +220,4 @@ namespace Npoi.Core.XSSF.Model
             return comments;
         }
     }
-
 }
-
-
-

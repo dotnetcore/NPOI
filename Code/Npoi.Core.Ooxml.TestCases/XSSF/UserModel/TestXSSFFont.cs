@@ -15,35 +15,35 @@
    limitations under the License.
 ==================================================================== */
 
-using TestCases.SS.UserModel;
-using Npoi.Core.SS.UserModel;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
 using NUnit.Framework;
-using System;
-using Npoi.Core.Util;
 using System.Text;
+using TestCases.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
     [TestFixture]
     public class TestXSSFFont : BaseTestFont
     {
-
         public TestXSSFFont()
             : base(XSSFITestDataProvider.instance)
         {
-
         }
+
         [Test]
         public void TestDefaultFont()
         {
             BaseTestDefaultFont("Calibri", 220, IndexedColors.Black.Index);
         }
+
         [Test]
         public void TestConstructor()
         {
             XSSFFont xssfFont = new XSSFFont();
             Assert.IsNotNull(xssfFont.GetCTFont());
         }
+
         [Test]
         public void TestBoldweight()
         {
@@ -58,6 +58,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(ctFont.b.Count, 1);
             Assert.AreEqual(true, ctFont.GetBArray(0).val);
         }
+
         [Test]
         public void TestCharSet()
         {
@@ -89,7 +90,6 @@ namespace Npoi.Core.XSSF.UserModel
             }
             catch (POIXMLException) { }
 
-
             // Now try with a few sample files
 
             // Normal charset
@@ -104,13 +104,14 @@ namespace Npoi.Core.XSSF.UserModel
                   ((XSSFCellStyle)workbook.GetSheetAt(0).GetRow(0).GetCell(0).CellStyle).GetFont().Charset
             );
         }
+
         [Test]
         public void TestFontName()
         {
             CT_Font ctFont = new CT_Font();
             CT_FontName fname = ctFont.AddNewName();
             fname.val = "Arial";
-            ctFont.name =  fname;
+            ctFont.name = fname;
 
             XSSFFont xssfFont = new XSSFFont(ctFont);
             Assert.AreEqual("Arial", xssfFont.FontName);
@@ -118,6 +119,7 @@ namespace Npoi.Core.XSSF.UserModel
             xssfFont.FontName = "Courier";
             Assert.AreEqual("Courier", ctFont.name.val);
         }
+
         [Test]
         public void TestItalic()
         {
@@ -130,10 +132,11 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(false, xssfFont.IsItalic);
 
             xssfFont.IsItalic = (true);
-            Assert.AreEqual(1,ctFont.i.Count);
+            Assert.AreEqual(1, ctFont.i.Count);
             Assert.AreEqual(true, ctFont.GetIArray(0).val);
             Assert.AreEqual(true, ctFont.GetIArray(0).val);
         }
+
         [Test]
         public void TestStrikeout()
         {
@@ -150,6 +153,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(true, ctFont.GetStrikeArray(0).val);
             Assert.AreEqual(true, ctFont.GetStrikeArray(0).val);
         }
+
         [Test]
         public void TestFontHeight()
         {
@@ -164,6 +168,7 @@ namespace Npoi.Core.XSSF.UserModel
             xssfFont.FontHeight = 20;
             Assert.AreEqual(20.0, ctFont.GetSzArray(0).val, 0.0);
         }
+
         [Test]
         public void TestFontHeightInPoint()
         {
@@ -178,6 +183,7 @@ namespace Npoi.Core.XSSF.UserModel
             xssfFont.FontHeightInPoints = (short)20;
             Assert.AreEqual(20.0, ctFont.GetSzArray(0).val, 0.0);
         }
+
         [Test]
         public void TestUnderline()
         {
@@ -190,13 +196,14 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(FontUnderlineType.Single, xssfFont.Underline);
 
             xssfFont.SetUnderline(FontUnderlineType.Double);
-            Assert.AreEqual(1,ctFont.u.Count);
+            Assert.AreEqual(1, ctFont.u.Count);
             Assert.AreEqual(ST_UnderlineValues.@double, ctFont.GetUArray(0).val);
 
             xssfFont.SetUnderline(FontUnderlineType.DoubleAccounting);
-            Assert.AreEqual(1,ctFont.u.Count);
+            Assert.AreEqual(1, ctFont.u.Count);
             Assert.AreEqual(ST_UnderlineValues.doubleAccounting, ctFont.GetUArray(0).val);
         }
+
         [Test]
         public void TestColor()
         {
@@ -211,6 +218,7 @@ namespace Npoi.Core.XSSF.UserModel
             xssfFont.Color = IndexedColors.Red.Index;
             Assert.AreEqual((uint)IndexedColors.Red.Index, ctFont.GetColorArray(0).indexed);
         }
+
         [Test]
         public void TestRgbColor()
         {
@@ -233,6 +241,7 @@ namespace Npoi.Core.XSSF.UserModel
             xssfFont.SetColor(newColor);
             Assert.AreEqual(ctFont.GetColorArray(0).GetRgb()[2], newColor.GetRgb()[2]);
         }
+
         [Test]
         public void TestThemeColor()
         {
@@ -248,6 +257,7 @@ namespace Npoi.Core.XSSF.UserModel
             xssfFont.SetThemeColor(IndexedColors.Red.Index);
             Assert.AreEqual((uint)IndexedColors.Red.Index, ctFont.GetColorArray(0).theme);
         }
+
         [Test]
         public void TestFamily()
         {
@@ -259,6 +269,7 @@ namespace Npoi.Core.XSSF.UserModel
             XSSFFont xssfFont = new XSSFFont(ctFont);
             Assert.AreEqual(FontFamily.MODERN.Value, xssfFont.Family);
         }
+
         [Test]
         public void TestScheme()
         {
@@ -273,6 +284,7 @@ namespace Npoi.Core.XSSF.UserModel
             font.SetScheme(FontScheme.NONE);
             Assert.AreEqual(ST_FontScheme.none, ctFont.GetSchemeArray(0).val);
         }
+
         [Test]
         public void TestTypeOffset()
         {

@@ -15,13 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
 using Npoi.Core.XSSF.UserModel;
 using NUnit.Framework;
-using Npoi.Core.SS.UserModel;
-using Npoi.Core.OpenXmlFormats.Spreadsheet;
+
 namespace Npoi.Core.XSSF.Model
 {
-
     [TestFixture]
     public class TestCalculationChain
     {
@@ -55,8 +55,5 @@ namespace Npoi.Core.XSSF.Model
             cell.SetCellValue("ABC");
             Assert.AreEqual(CellType.String, cell.CellType);
         }
-
-
     }
 }
-

@@ -15,22 +15,21 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.OpenXml4Net.OPC;
 using Npoi.Core.OpenXml4Net.Exceptions;
+using Npoi.Core.OpenXml4Net.OPC;
 using System;
 using System.IO;
-using Npoi.Core.Util;
+
 namespace Npoi.Core.Util
 {
-
     /**
      * Provides handy methods to work with OOXML namespaces
      *
      * @author Yegor Kozlov
      */
+
     public class PackageHelper
     {
-
         public static OPCPackage Open(Stream is1)
         {
             try
@@ -50,9 +49,9 @@ namespace Npoi.Core.Util
          * @param   file  the destination file
          * @return  the Cloned namespace
          */
+
         public static OPCPackage Clone(OPCPackage pkg, string path)
         {
-
             OPCPackage dest = OPCPackage.Create(path);
             PackageRelationshipCollection rels = pkg.Relationships;
             foreach (PackageRelationship rel in rels)
@@ -86,6 +85,7 @@ namespace Npoi.Core.Util
         /**
          * Creates an empty file in the default temporary-file directory,
          */
+
         public string CreateTempFile()
         {
             string file = TempFile.GetTempFilePath("poi-ooxml-", ".tmp");
@@ -95,39 +95,42 @@ namespace Npoi.Core.Util
         /**
          * Recursively copy namespace parts to the destination namespace
          */
-        private static void Copy(OPCPackage pkg, PackagePart part, OPCPackage tgt, PackagePart part_tgt) {
-        PackageRelationshipCollection rels = part.Relationships;
-        if(rels != null) 
-            foreach (PackageRelationship rel in rels) {
-            PackagePart p;
-            if(rel.TargetMode == TargetMode.External){
-                part_tgt.AddExternalRelationship(rel.TargetUri.ToString(), rel.RelationshipType, rel.Id);
-                //external relations don't have associated namespace parts
-                continue;
-            }
-            Uri uri = rel.TargetUri;
 
-            if(uri.Fragment != null) {
-                part_tgt.AddRelationship(uri, (TargetMode)rel.TargetMode, rel.RelationshipType, rel.Id);
-                continue;
-            }
-            PackagePartName relName = PackagingUriHelper.CreatePartName(rel.TargetUri);
-            p = pkg.GetPart(relName);
-            part_tgt.AddRelationship(p.PartName, (TargetMode)rel.TargetMode, rel.RelationshipType, rel.Id);
+        private static void Copy(OPCPackage pkg, PackagePart part, OPCPackage tgt, PackagePart part_tgt)
+        {
+            PackageRelationshipCollection rels = part.Relationships;
+            if (rels != null)
+                foreach (PackageRelationship rel in rels)
+                {
+                    PackagePart p;
+                    if (rel.TargetMode == TargetMode.External)
+                    {
+                        part_tgt.AddExternalRelationship(rel.TargetUri.ToString(), rel.RelationshipType, rel.Id);
+                        //external relations don't have associated namespace parts
+                        continue;
+                    }
+                    Uri uri = rel.TargetUri;
 
+                    if (uri.Fragment != null)
+                    {
+                        part_tgt.AddRelationship(uri, (TargetMode)rel.TargetMode, rel.RelationshipType, rel.Id);
+                        continue;
+                    }
+                    PackagePartName relName = PackagingUriHelper.CreatePartName(rel.TargetUri);
+                    p = pkg.GetPart(relName);
+                    part_tgt.AddRelationship(p.PartName, (TargetMode)rel.TargetMode, rel.RelationshipType, rel.Id);
 
-
-
-            PackagePart dest;
-            if(!tgt.ContainPart(p.PartName)){
-                dest = tgt.CreatePart(p.PartName, p.ContentType);
-                Stream out1 = dest.GetOutputStream();
-                IOUtils.Copy(p.GetInputStream(), out1);
-                out1.Dispose();
-                Copy(pkg, p, tgt, dest);
-            }
+                    PackagePart dest;
+                    if (!tgt.ContainPart(p.PartName))
+                    {
+                        dest = tgt.CreatePart(p.PartName, p.ContentType);
+                        Stream out1 = dest.GetOutputStream();
+                        IOUtils.Copy(p.GetInputStream(), out1);
+                        out1.Dispose();
+                        Copy(pkg, p, tgt, dest);
+                    }
+                }
         }
-    }
 
         /**
          * Copy core namespace properties
@@ -135,6 +138,7 @@ namespace Npoi.Core.Util
          * @param src source properties
          * @param tgt target properties
          */
+
         private static void CopyProperties(PackageProperties src, PackageProperties tgt)
         {
             tgt.SetCategoryProperty(src.GetCategoryProperty());
@@ -151,6 +155,4 @@ namespace Npoi.Core.Util
             tgt.SetVersionProperty(src.GetVersionProperty());
         }
     }
-
-
 }

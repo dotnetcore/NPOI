@@ -15,33 +15,33 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.XSSF.UserModel.Extensions;
-using Npoi.Core.SS.UserModel;
-using System;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.XSSF.UserModel.Extensions;
+using System;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
-     * 
-     * Even page footer value. Corresponds to even printed pages. 
-     * Even page(s) in the sheet may not be printed, for example, if the print area is specified to be 
-     * a range such that it falls outside an even page's scope. 
-     * If no even footer is specified, then the odd footer's value is assumed for even page footers. 
+     *
+     * Even page footer value. Corresponds to even printed pages.
+     * Even page(s) in the sheet may not be printed, for example, if the print area is specified to be
+     * a range such that it falls outside an even page's scope.
+     * If no even footer is specified, then the odd footer's value is assumed for even page footers.
      *
      */
+
     public class XSSFEvenFooter : XSSFHeaderFooter, IFooter
     {
-
         /**
          * Create an instance of XSSFEvenFooter from the supplied XML bean
          * @see XSSFSheet#GetEvenFooter()
          * @param headerFooter
          */
+
         public XSSFEvenFooter(CT_HeaderFooter headerFooter)
             : base(headerFooter)
         {
-
             headerFooter.differentOddEven = true;
         }
 
@@ -49,6 +49,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Get the content text representing the footer
          * @return text
          */
+
         public override String Text
         {
             get
@@ -60,6 +61,5 @@ namespace Npoi.Core.XSSF.UserModel
                 GetHeaderFooter().evenFooter = value;
             }
         }
-
     }
 }

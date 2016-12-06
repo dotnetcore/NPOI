@@ -1,8 +1,6 @@
 ﻿using Npoi.Core.OpenXml4Net.Util;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -23,6 +21,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             return this.patternTypeField != ST_PatternType.none;
         }
+
         public CT_Color AddNewFgColor()
         {
             this.fgColorField = new CT_Color();
@@ -34,18 +33,22 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.bgColorField = new CT_Color();
             return bgColorField;
         }
+
         public void UnsetPatternType()
         {
             this.patternTypeField = ST_PatternType.none;
         }
+
         public void UnsetFgColor()
         {
             this.fgColorField = null;
         }
+
         public void UnsetBgColor()
         {
             this.bgColorField = null;
         }
+
         public static CT_PatternFill Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -62,8 +65,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -138,63 +139,42 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public enum ST_PatternType
     {
-
-
         none,
-
 
         solid,
 
-
         mediumGray,
-
 
         darkGray,
 
-
         lightGray,
-
 
         darkHorizontal,
 
-
         darkVertical,
-
 
         darkDown,
 
-
         darkUp,
-
 
         darkGrid,
 
-
         darkTrellis,
-
 
         lightHorizontal,
 
-
         lightVertical,
-
 
         lightDown,
 
-
         lightUp,
-
 
         lightGrid,
 
-
         lightTrellis,
-
 
         gray125,
 
-
         gray0625,
     }
-
 }

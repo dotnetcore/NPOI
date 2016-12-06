@@ -14,34 +14,33 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
-    using Npoi.Core.SS.UserModel;
-    using System;
     using Npoi.Core.OpenXmlFormats.Spreadsheet;
-    using System.Collections.Generic;
+    using Npoi.Core.SS.UserModel;
     using Npoi.Core.SS.Util;
+    using System;
 
     /**
      * @author <a href="rjankiraman@emptoris.com">Radhakrishnan J</a>
      *
      */
+
     public class XSSFDataValidationHelper : IDataValidationHelper
     {
         private XSSFSheet xssfSheet;
 
-
         public XSSFDataValidationHelper(XSSFSheet xssfSheet)
             : base()
         {
-
             this.xssfSheet = xssfSheet;
         }
 
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidationHelper#CreateDateConstraint(int, java.lang.String, java.lang.String, java.lang.String)
          */
+
         public IDataValidationConstraint CreateDateConstraint(int operatorType, String formula1, String formula2, String dateFormat)
         {
             return new XSSFDataValidationConstraint(ValidationType.DATE, operatorType, formula1, formula2);
@@ -50,6 +49,7 @@ namespace Npoi.Core.XSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidationHelper#CreateDecimalConstraint(int, java.lang.String, java.lang.String)
          */
+
         public IDataValidationConstraint CreateDecimalConstraint(int operatorType, String formula1, String formula2)
         {
             return new XSSFDataValidationConstraint(ValidationType.DECIMAL, operatorType, formula1, formula2);
@@ -58,6 +58,7 @@ namespace Npoi.Core.XSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidationHelper#CreateExplicitListConstraint(java.lang.String[])
          */
+
         public IDataValidationConstraint CreateExplicitListConstraint(String[] listOfValues)
         {
             return new XSSFDataValidationConstraint(listOfValues);
@@ -66,12 +67,11 @@ namespace Npoi.Core.XSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidationHelper#CreateFormulaListConstraint(java.lang.String)
          */
+
         public IDataValidationConstraint CreateFormulaListConstraint(String listFormula)
         {
             return new XSSFDataValidationConstraint(ValidationType.LIST, listFormula);
         }
-
-
 
         public IDataValidationConstraint CreateNumericConstraint(int validationType, int operatorType, String formula1, String formula2)
         {
@@ -93,6 +93,7 @@ namespace Npoi.Core.XSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidationHelper#CreateintConstraint(int, java.lang.String, java.lang.String)
          */
+
         public IDataValidationConstraint CreateintConstraint(int operatorType, String formula1, String formula2)
         {
             return new XSSFDataValidationConstraint(ValidationType.INTEGER, operatorType, formula1, formula2);
@@ -101,6 +102,7 @@ namespace Npoi.Core.XSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidationHelper#CreateTextLengthConstraint(int, java.lang.String, java.lang.String)
          */
+
         public IDataValidationConstraint CreateTextLengthConstraint(int operatorType, String formula1, String formula2)
         {
             return new XSSFDataValidationConstraint(ValidationType.TEXT_LENGTH, operatorType, formula1, formula2);
@@ -109,6 +111,7 @@ namespace Npoi.Core.XSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidationHelper#CreateTimeConstraint(int, java.lang.String, java.lang.String, java.lang.String)
          */
+
         public IDataValidationConstraint CreateTimeConstraint(int operatorType, String formula1, String formula2)
         {
             return new XSSFDataValidationConstraint(ValidationType.TIME, operatorType, formula1, formula2);
@@ -122,6 +125,7 @@ namespace Npoi.Core.XSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidationHelper#CreateValidation(Npoi.Core.ss.usermodel.DataValidationConstraint, Npoi.Core.ss.util.CellRangeAddressList)
          */
+
         public IDataValidation CreateValidation(IDataValidationConstraint constraint, CellRangeAddressList cellRangeAddressList)
         {
             XSSFDataValidationConstraint dataValidationConstraint = (XSSFDataValidationConstraint)constraint;
@@ -134,27 +138,35 @@ namespace Npoi.Core.XSSF.UserModel
                     newDataValidation.type = (ST_DataValidationType.list);
                     newDataValidation.formula1 = (constraint.Formula1);
                     break;
+
                 case ValidationType.ANY:
                     newDataValidation.type = ST_DataValidationType.none;
                     break;
+
                 case ValidationType.TEXT_LENGTH:
                     newDataValidation.type = ST_DataValidationType.textLength;
                     break;
+
                 case ValidationType.DATE:
                     newDataValidation.type = ST_DataValidationType.date;
                     break;
+
                 case ValidationType.INTEGER:
                     newDataValidation.type = ST_DataValidationType.whole;
                     break;
+
                 case ValidationType.DECIMAL:
                     newDataValidation.type = ST_DataValidationType.@decimal;
                     break;
+
                 case ValidationType.TIME:
                     newDataValidation.type = ST_DataValidationType.time;
                     break;
+
                 case ValidationType.FORMULA:
                     newDataValidation.type = ST_DataValidationType.custom;
                     break;
+
                 default:
                     newDataValidation.type = ST_DataValidationType.none;
                     break;
@@ -181,7 +193,7 @@ namespace Npoi.Core.XSSF.UserModel
             for (int i = 0; i < cellRangeAddresses.Length; i++)
             {
                 CellRangeAddress cellRangeAddress = cellRangeAddresses[i];
-                if(sqref.Length==0)
+                if (sqref.Length == 0)
                     sqref = cellRangeAddress.FormatAsString();
                 else
                     sqref = " " + cellRangeAddress.FormatAsString();
@@ -193,5 +205,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-
-

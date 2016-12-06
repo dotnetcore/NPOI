@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace Npoi.Core.OpenXml4Net.OPC.Internal
@@ -30,10 +28,12 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
         {
             get { return false; }
         }
+
         public override bool CanWrite
         {
             get { return true; }
         }
+
         public override bool CanSeek
         {
             get { return false; }
@@ -43,19 +43,22 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
         {
             get { return _buff.Length; }
         }
-        
+
         public void Write(int b)
         {
             _buff.WriteByte((byte)b);
         }
+
         public override void SetLength(long value)
         {
             _buff.SetLength(value);
         }
+
         public override long Seek(long offset, SeekOrigin origin)
         {
             return _buff.Seek(offset, origin);
         }
+
         public override long Position
         {
             get
@@ -72,6 +75,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * Close this stream and flush the content.
          * @see #flush()
          */
+
         protected override void Dispose(bool disposing)
         {
             this.Flush();
@@ -82,6 +86,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * Warning : don't call this method for output consistency.
          * @see #close()
          */
+
         public override void Flush()
         {
             _buff.Flush();
@@ -93,12 +98,10 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
             _buff.Position = 0;
         }
 
-
         public override void Write(byte[] b, int off, int len)
         {
             _buff.Write(b, off, len);
         }
-
 
         public void Write(byte[] b)
         {

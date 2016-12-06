@@ -15,39 +15,39 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.OpenXml4Net.OPC;
-using System;
-using Npoi.Core.XSSF.UserModel;
-using System.IO;
-using Npoi.Core.SS.UserModel;
 using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.SS.UserModel;
 using Npoi.Core.Util;
-using Npoi.Core.HSSF;
-using TestCases.HSSF;
+using Npoi.Core.XSSF.UserModel;
+using System;
 using System.Diagnostics;
+using System.IO;
+using TestCases.HSSF;
+
 namespace Npoi.Core.XSSF
 {
-
     /**
-     * Centralises logic for Finding/opening sample files in the src/testcases/org/apache/poi/hssf/hssf/data folder. 
-     * 
+     * Centralises logic for Finding/opening sample files in the src/testcases/org/apache/poi/hssf/hssf/data folder.
+     *
      * @author Josh Micich
      */
+
     public class XSSFTestDataSamples
     {
-
         public static OPCPackage OpenSamplePackage(String sampleName)
         {
             return OPCPackage.Open(
                   HSSFTestDataSamples.OpenSampleFileStream(sampleName)
             );
         }
+
         public static XSSFWorkbook OpenSampleWorkbook(String sampleName)
         {
             Stream is1 = HSSFTestDataSamples.OpenSampleFileStream(sampleName);
             return new XSSFWorkbook(is1);
-
         }
+
         public static IWorkbook WriteOutAndReadBack(IWorkbook wb)
         {
             IWorkbook result;
@@ -90,16 +90,16 @@ namespace Npoi.Core.XSSF
         }
 
         /**
-     * Writes the Workbook either into a file or into a byte array, depending on presence of 
+     * Writes the Workbook either into a file or into a byte array, depending on presence of
      * the system property {@value #TEST_OUTPUT_DIR}, and reads it in a new instance of the Workbook back.
      * @param wb workbook to write
      * @param testName file name to be used if writing into a file. The old file with the same name will be overridden.
      * @return new instance read from the stream written by the wb parameter.
      */
+
         public static XSSFWorkbook WriteOutAndReadBack(XSSFWorkbook wb, String testName)
         {
             XSSFWorkbook result = null;
-
 
             try
             {
@@ -136,6 +136,4 @@ namespace Npoi.Core.XSSF
             return result;
         }
     }
-
 }
-

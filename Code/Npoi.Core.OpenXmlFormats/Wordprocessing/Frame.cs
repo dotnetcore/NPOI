@@ -7,13 +7,11 @@ using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Frameset
     {
-
         private CT_String szField;
 
         private CT_FramesetSplitbar framesetSplitbarField;
@@ -84,14 +82,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_FramesetSplitbar
     {
-
         private CT_TwipsMeasure wField;
 
         private CT_Color colorField;
@@ -161,14 +156,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_FrameLayout
     {
-
         private ST_FrameLayout valField;
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
@@ -185,30 +177,22 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_FrameLayout
     {
-
-    
         rows,
 
-    
         cols,
 
-    
         none,
     }
 
-    
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Frame
     {
-
         private CT_String szField;
 
         private CT_String nameField;
@@ -347,7 +331,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_FrameScrollbar
     {
-
         private ST_FrameScrollbar valField;
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
@@ -364,29 +347,22 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_FrameScrollbar
     {
-
-    
         on,
 
-    
         off,
 
-    
         auto,
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_FramePr
     {
-
         private ST_DropCap dropCapField;
 
         private bool dropCapFieldSpecified;
@@ -440,6 +416,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private ST_OnOff anchorLockField;
 
         private bool anchorLockFieldSpecified;
+
         public static CT_FramePr Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -471,8 +448,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -494,7 +469,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             sw.Write(">");
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public ST_DropCap dropCap
@@ -848,139 +822,96 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_DropCap
     {
-
-    
         none,
 
-    
         drop,
 
-    
         margin,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_Wrap
     {
-
-    
         auto,
 
-    
         notBeside,
 
-    
         around,
 
-    
         tight,
 
-    
         through,
 
-    
         none,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_HAnchor
     {
-
-    
         text,
 
-    
         margin,
 
-    
         page,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_VAnchor
     {
-
-    
         text,
 
-    
         margin,
 
-    
         page,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_XAlign
     {
-
-    
         left,
 
-    
         center,
 
-    
         right,
 
-    
         inside,
 
-    
         outside,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_YAlign
     {
-
-    
         inline,
 
-    
         top,
 
-    
         center,
 
-    
         bottom,
 
-    
         inside,
 
-    
         outside,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_HeightRule
     {
-
-    
         auto,
 
-    
         exact,
 
-    
         atLeast,
     }
 }

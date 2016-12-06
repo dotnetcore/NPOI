@@ -19,160 +19,161 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.XWPF.UserModel
 {
-	using System;
-	using System.Collections.Generic;
-	using Npoi.Core.OpenXmlFormats.Wordprocessing;
-	using Npoi.Core.OpenXml4Net.OPC;
-	using System.IO;
-	using System.Xml;
-	using System.Xml.Serialization;
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Xml;
 
-
-	/**
+    /**
      * Looks After the collection of Footnotes for a document
-     *  
+     *
      * @author Mike McEuen (mceuen@hp.com)
      */
-	public class XWPFFootnotes : POIXMLDocumentPart
-	{
-		private List<XWPFFootnote> listFootnote = new List<XWPFFootnote>();
-		private CT_Footnotes ctFootnotes;
 
-		protected XWPFDocument document;
+    public class XWPFFootnotes : POIXMLDocumentPart
+    {
+        private List<XWPFFootnote> listFootnote = new List<XWPFFootnote>();
+        private CT_Footnotes ctFootnotes;
 
-		/**
+        protected XWPFDocument document;
+
+        /**
          * Construct XWPFFootnotes from a package part
          *
          * @param part the package part holding the data of the footnotes,
          * @param rel  the package relationship of type "http://schemas.Openxmlformats.org/officeDocument/2006/relationships/footnotes"
          */
-		public XWPFFootnotes(PackagePart part, PackageRelationship rel)
-			: base(part, rel)
-		{
-			;
-		}
 
-		/**
+        public XWPFFootnotes(PackagePart part, PackageRelationship rel)
+            : base(part, rel)
+        {
+            ;
+        }
+
+        /**
          * Construct XWPFFootnotes from scratch for a new document.
          */
-		public XWPFFootnotes()
-		{
-		}
 
-		/**
+        public XWPFFootnotes()
+        {
+        }
+
+        /**
          * Read document
          */
 
-		internal override void OnDocumentRead()
-		{
-			FootnotesDocument notesDoc;
-			try
-			{
-				XDocument xmldoc = ConvertStreamToXml(GetPackagePart().GetInputStream());
-				notesDoc = FootnotesDocument.Parse(xmldoc, NamespaceManager);
-				ctFootnotes = notesDoc.Footnotes;
-			}
-			catch (XmlException)
-			{
-				throw new POIXMLException();
-			}
+        internal override void OnDocumentRead()
+        {
+            FootnotesDocument notesDoc;
+            try
+            {
+                XDocument xmldoc = ConvertStreamToXml(GetPackagePart().GetInputStream());
+                notesDoc = FootnotesDocument.Parse(xmldoc, NamespaceManager);
+                ctFootnotes = notesDoc.Footnotes;
+            }
+            catch (XmlException)
+            {
+                throw new POIXMLException();
+            }
 
-			//get any Footnote
-			if (ctFootnotes.footnote != null)
-			{
-				foreach (CT_FtnEdn note in ctFootnotes.footnote)
-				{
-					listFootnote.Add(new XWPFFootnote(note, this));
-				}
-			}
-		}
+            //get any Footnote
+            if (ctFootnotes.footnote != null)
+            {
+                foreach (CT_FtnEdn note in ctFootnotes.footnote)
+                {
+                    listFootnote.Add(new XWPFFootnote(note, this));
+                }
+            }
+        }
 
-
-		protected internal override void Commit()
-		{
-			/*XmlOptions xmlOptions = new XmlOptions(DEFAULT_XML_OPTIONS);
+        protected internal override void Commit()
+        {
+            /*XmlOptions xmlOptions = new XmlOptions(DEFAULT_XML_OPTIONS);
             xmlOptions.SaveSyntheticDocumentElement=(new QName(CTFootnotes.type.Name.NamespaceURI, "footnotes"));
             Dictionary<String,String> map = new Dictionary<String,String>();
             map.Put("http://schemas.Openxmlformats.org/officeDocument/2006/relationships", "r");
             map.Put("http://schemas.Openxmlformats.org/wordProcessingml/2006/main", "w");
             xmlOptions.SaveSuggestedPrefixes=(map);*/
-			PackagePart part = GetPackagePart();
-			using (Stream out1 = part.GetOutputStream())
-			{
-				FootnotesDocument notesDoc = new FootnotesDocument(ctFootnotes);
-				notesDoc.Save(out1);
-			}
-		}
+            PackagePart part = GetPackagePart();
+            using (Stream out1 = part.GetOutputStream())
+            {
+                FootnotesDocument notesDoc = new FootnotesDocument(ctFootnotes);
+                notesDoc.Save(out1);
+            }
+        }
 
-		public List<XWPFFootnote> GetFootnotesList()
-		{
-			return listFootnote;
-		}
+        public List<XWPFFootnote> GetFootnotesList()
+        {
+            return listFootnote;
+        }
 
-		public XWPFFootnote GetFootnoteById(int id)
-		{
-			foreach (XWPFFootnote note in listFootnote)
-			{
-				if (note.GetCTFtnEdn().id == id.ToString())
-					return note;
-			}
-			return null;
-		}
+        public XWPFFootnote GetFootnoteById(int id)
+        {
+            foreach (XWPFFootnote note in listFootnote)
+            {
+                if (note.GetCTFtnEdn().id == id.ToString())
+                    return note;
+            }
+            return null;
+        }
 
-		/**
+        /**
          * Sets the ctFootnotes
          * @param footnotes
          */
-		public void SetFootnotes(CT_Footnotes footnotes)
-		{
-			ctFootnotes = footnotes;
-		}
 
-		/**
+        public void SetFootnotes(CT_Footnotes footnotes)
+        {
+            ctFootnotes = footnotes;
+        }
+
+        /**
          * add an XWPFFootnote to the document
          * @param footnote
-         * @throws IOException		 
+         * @throws IOException
          */
-		public void AddFootnote(XWPFFootnote footnote)
-		{
-			listFootnote.Add(footnote);
-			ctFootnotes.AddNewFootnote().Set(footnote.GetCTFtnEdn());
-		}
 
-		/**
+        public void AddFootnote(XWPFFootnote footnote)
+        {
+            listFootnote.Add(footnote);
+            ctFootnotes.AddNewFootnote().Set(footnote.GetCTFtnEdn());
+        }
+
+        /**
          * add a footnote to the document
          * @param note
-         * @throws IOException		 
+         * @throws IOException
          */
-		public XWPFFootnote AddFootnote(CT_FtnEdn note)
-		{
-			CT_FtnEdn newNote = ctFootnotes.AddNewFootnote();
-			newNote.Set(note);
-			XWPFFootnote xNote = new XWPFFootnote(newNote, this);
-			listFootnote.Add(xNote);
-			return xNote;
-		}
 
-		public void SetXWPFDocument(XWPFDocument doc)
-		{
-			document = doc;
-		}
+        public XWPFFootnote AddFootnote(CT_FtnEdn note)
+        {
+            CT_FtnEdn newNote = ctFootnotes.AddNewFootnote();
+            newNote.Set(note);
+            XWPFFootnote xNote = new XWPFFootnote(newNote, this);
+            listFootnote.Add(xNote);
+            return xNote;
+        }
 
-		/**
+        public void SetXWPFDocument(XWPFDocument doc)
+        {
+            document = doc;
+        }
+
+        /**
          * @see Npoi.Core.XWPF.UserModel.IBody#getPart()
          */
-		public XWPFDocument GetXWPFDocument()
-		{
-			if (document != null)
-			{
-				return document;
-			}
-			else
-			{
-				return (XWPFDocument)GetParent();
-			}
-		}
-	}//end class
 
-
+        public XWPFDocument GetXWPFDocument()
+        {
+            if (document != null)
+            {
+                return document;
+            }
+            else
+            {
+                return (XWPFDocument)GetParent();
+            }
+        }
+    }//end class
 }

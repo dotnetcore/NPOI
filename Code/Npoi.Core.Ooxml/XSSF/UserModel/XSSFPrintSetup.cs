@@ -15,15 +15,15 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.SS.UserModel;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
-
     /**
      * Page Setup and page margins Settings for the worksheet.
      */
+
     public class XSSFPrintSetup : IPrintSetup
     {
         private CT_Worksheet ctWorksheet;
@@ -52,23 +52,16 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         /**
          * Set the paper size as enum value.
          *
          * @param size value for the paper size.
          */
+
         public void SetPaperSize(PaperSize size)
         {
             PaperSize = ((short)(size + 1));
         }
-
-
-
-
-
-
-
 
         /**
          * Orientation of the page: landscape - portrait.
@@ -76,6 +69,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return Orientation of the page
          * @see PrintOrientation
          */
+
         public PrintOrientation Orientation
         {
             get
@@ -83,13 +77,12 @@ namespace Npoi.Core.XSSF.UserModel
                 ST_Orientation? val = pageSetup.orientation;
                 return val == null ? PrintOrientation.DEFAULT : PrintOrientation.ValueOf((int)val);
             }
-            set 
+            set
             {
                 ST_Orientation v = (ST_Orientation)(value.Value);
                 pageSetup.orientation = (v);
             }
         }
-
 
         public PrintCellComments GetCellComment()
         {
@@ -97,19 +90,19 @@ namespace Npoi.Core.XSSF.UserModel
             return val == null ? PrintCellComments.NONE : PrintCellComments.ValueOf((int)val);
         }
 
-
         /**
          * Get print page order.
          *
          * @return PageOrder
          */
+
         public PageOrder PageOrder
         {
             get
             {
                 return PageOrder.ValueOf((int)pageSetup.pageOrder);
             }
-            set 
+            set
             {
                 ST_PageOrder v = (ST_PageOrder)value.Value;
                 pageSetup.pageOrder = (v);
@@ -121,13 +114,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return short - paper size
          */
+
         public short PaperSize
         {
             get
             {
                 return (short)pageSetup.paperSize;
             }
-            set 
+            set
             {
                 pageSetup.paperSize = (uint)value;
             }
@@ -139,6 +133,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return PaperSize paper size
          * @see PaperSize
          */
+
         public PaperSize GetPaperSizeEnum()
         {
             return (PaperSize)(PaperSize - 1);
@@ -149,15 +144,16 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return short - scale
          */
+
         public short Scale
         {
             get
             {
                 return (short)pageSetup.scale;
             }
-            set 
+            set
             {
-                if (value < 10 || value > 400) 
+                if (value < 10 || value > 400)
                     throw new POIXMLException("Scale value not accepted: you must choose a value between 10 and 400.");
                 pageSetup.scale = (uint)value;
             }
@@ -169,13 +165,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return page number for first printed page
          */
+
         public short PageStart
         {
             get
             {
                 return (short)pageSetup.firstPageNumber;
             }
-            set 
+            set
             {
                 pageSetup.firstPageNumber = (uint)value;
             }
@@ -186,13 +183,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return number of pages wide to fit sheet in
          */
+
         public short FitWidth
         {
             get
             {
                 return (short)pageSetup.fitToWidth;
             }
-            set 
+            set
             {
                 pageSetup.fitToWidth = (uint)value;
             }
@@ -203,13 +201,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return number of pages high to fit the sheet in
          */
+
         public short FitHeight
         {
             get
             {
                 return (short)pageSetup.fitToHeight;
             }
-            set 
+            set
             {
                 pageSetup.fitToHeight = (uint)value;
             }
@@ -220,13 +219,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return left to right print order
          */
+
         public bool LeftToRight
         {
             get
             {
                 return PageOrder == PageOrder.OVER_THEN_DOWN;
             }
-            set 
+            set
             {
                 if (value)
                     PageOrder = (PageOrder.OVER_THEN_DOWN);
@@ -238,16 +238,17 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return landscape mode
          */
+
         public bool Landscape
         {
             get
             {
                 return Orientation == PrintOrientation.LANDSCAPE;
             }
-            set 
+            set
             {
                 if (value)
-                    Orientation =(PrintOrientation.LANDSCAPE);
+                    Orientation = (PrintOrientation.LANDSCAPE);
             }
         }
 
@@ -259,13 +260,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return valid Settings
          */
+
         public bool ValidSettings
         {
             get
             {
                 return pageSetup.usePrinterDefaults;
             }
-            set 
+            set
             {
                 pageSetup.usePrinterDefaults = value;
             }
@@ -276,13 +278,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return black and white Setting
          */
+
         public bool NoColor
         {
             get
             {
                 return pageSetup.blackAndWhite;
             }
-            set 
+            set
             {
                 pageSetup.blackAndWhite = value;
             }
@@ -293,13 +296,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return draft mode
          */
+
         public bool Draft
         {
             get
             {
                 return pageSetup.draft;
             }
-            set 
+            set
             {
                 pageSetup.draft = value;
             }
@@ -310,13 +314,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return print notes
          */
+
         public bool Notes
         {
             get
             {
                 return GetCellComment() == PrintCellComments.AS_DISPLAYED;
             }
-            set 
+            set
             {
                 if (value)
                 {
@@ -330,13 +335,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return no orientation
          */
+
         public bool NoOrientation
         {
             get
             {
                 return Orientation == PrintOrientation.DEFAULT;
             }
-            set 
+            set
             {
                 if (value)
                 {
@@ -350,13 +356,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return use page numbers
          */
+
         public bool UsePage
         {
             get
             {
                 return pageSetup.useFirstPageNumber;
             }
-            set 
+            set
             {
                 pageSetup.useFirstPageNumber = (value);
             }
@@ -367,13 +374,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return horizontal resolution
          */
+
         public short HResolution
         {
             get
             {
                 return (short)pageSetup.horizontalDpi;
             }
-            set 
+            set
             {
                 pageSetup.horizontalDpi = (uint)value;
             }
@@ -384,13 +392,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return vertical resolution
          */
+
         public short VResolution
         {
             get
             {
                 return (short)pageSetup.verticalDpi;
             }
-            set 
+            set
             {
                 pageSetup.verticalDpi = (uint)value;
             }
@@ -401,13 +410,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return header margin
          */
+
         public double HeaderMargin
         {
             get
             {
                 return pageMargins.header;
             }
-            set 
+            set
             {
                 pageMargins.header = (value);
             }
@@ -418,13 +428,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return footer margin
          */
+
         public double FooterMargin
         {
             get
             {
                 return pageMargins.footer;
             }
-            set 
+            set
             {
                 pageMargins.footer = value;
             }
@@ -435,18 +446,18 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return number of copies
          */
+
         public short Copies
         {
             get
             {
                 return (short)pageSetup.copies;
             }
-            set 
+            set
             {
                 pageSetup.copies = (uint)value;
             }
         }
-
 
         #region IPrintSetup Members
 
@@ -466,7 +477,6 @@ namespace Npoi.Core.XSSF.UserModel
         {
             get
             {
-                
                 throw new System.NotImplementedException();
             }
             set
@@ -475,9 +485,6 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-        #endregion
+        #endregion IPrintSetup Members
     }
 }
-
-
-

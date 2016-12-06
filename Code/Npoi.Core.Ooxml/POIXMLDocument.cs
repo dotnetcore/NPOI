@@ -14,16 +14,17 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core
 {
-    using System;
+    using Npoi.Core.OpenXml4Net;
+    using Npoi.Core.OpenXml4Net.Exceptions;
+    using Npoi.Core.OpenXml4Net.OPC;
     using Npoi.Core.POIFS.Common;
     using Npoi.Core.Util;
-    using Npoi.Core.OpenXml4Net.Exceptions;
-    using System.IO;
-    using Npoi.Core.OpenXml4Net.OPC;
+    using System;
     using System.Collections.Generic;
-    using Npoi.Core.OpenXml4Net;
+    using System.IO;
     using System.Reflection;
 
     public abstract class POIXMLDocument : POIXMLDocumentPart
@@ -55,6 +56,7 @@ namespace Npoi.Core
          *  in the event of a problem.
          * Works around shortcomings in java's this() constructor calls
          */
+
         public static OPCPackage OpenPackage(String path)
         {
             try
@@ -88,6 +90,7 @@ namespace Npoi.Core
          *  relationships of the base document with the
          *  specified content type.
          */
+
         protected PackagePart[] GetRelatedByType(String contentType)
         {
             PackageRelationshipCollection partsC =
@@ -112,6 +115,7 @@ namespace Npoi.Core
          *  sure to always use that, and not the original!
          * @param inp An Stream which supports either mark/reSet, or is a PushbackStream
          */
+
         public static bool HasOOXMLHeader(Stream inp)
         {
             // We want to peek at the first 4 bytes
@@ -143,6 +147,7 @@ namespace Npoi.Core
          * Get the document properties. This gives you access to the
          *  core ooxml properties, and the extended ooxml properties.
          */
+
         public POIXMLProperties GetProperties()
         {
             if (properties == null)
@@ -162,6 +167,7 @@ namespace Npoi.Core
         /**
          * Get the document's embedded files.
          */
+
         public abstract List<PackagePart> GetAllEmbedds();
 
         protected void Load(POIXMLFactory factory)
@@ -178,10 +184,12 @@ namespace Npoi.Core
             OnDocumentRead();
             context.Clear();
         }
+
         /**
          * Closes the underlying {@link OPCPackage} from which this
          *  document was read, if there is one
          */
+
         public void Close()
         {
             if (pkg != null)
@@ -197,6 +205,7 @@ namespace Npoi.Core
                 pkg = null;
             }
         }
+
         /**
          * Write out this document to an Outputstream.
          *
@@ -204,6 +213,7 @@ namespace Npoi.Core
          *
          * @exception IOException if anything can't be written.
          */
+
         public void Write(Stream stream)
         {
             if (!this.GetProperties().CustomProperties.Contains("Generator"))
@@ -222,8 +232,3 @@ namespace Npoi.Core
         }
     }
 }
-
-
-
-
-

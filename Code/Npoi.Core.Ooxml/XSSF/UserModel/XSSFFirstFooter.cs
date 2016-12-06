@@ -15,32 +15,32 @@
    limitations under the License.
 ==================================================================== */
 
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.XSSF.UserModel.Extensions;
-using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using System;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
-     * 
-     * First page footer content. Corresponds to first printed page.  
-     * The first logical page in the sheet may not be printed, for example, if the print area is specified to 
+     *
+     * First page footer content. Corresponds to first printed page.
+     * The first logical page in the sheet may not be printed, for example, if the print area is specified to
      * be a range such that it falls outside the first page's scope.
-     * 
+     *
      */
+
     public class XSSFFirstFooter : XSSFHeaderFooter, IFooter
     {
-
         /**
          * Create an instance of XSSFFirstFooter from the supplied XML bean
          * @see XSSFSheet#getFirstFooter()
          * @param headerFooter
          */
+
         public XSSFFirstFooter(CT_HeaderFooter headerFooter)
             : base(headerFooter)
         {
-
             headerFooter.differentFirst = (true);
         }
 
@@ -48,13 +48,14 @@ namespace Npoi.Core.XSSF.UserModel
          * Get the content text representing the footer
          * @return text
          */
+
         public override String Text
         {
             get
             {
                 return GetHeaderFooter().firstFooter;
             }
-            set 
+            set
             {
                 if (value == null)
                 {
@@ -68,5 +69,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-
-

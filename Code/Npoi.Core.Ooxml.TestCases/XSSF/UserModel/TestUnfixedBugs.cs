@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Npoi.Core.SS.UserModel;
 using NUnit.Framework;
+using System;
+using System.Text;
 using TestCases.HSSF;
-using Npoi.Core.SS.UserModel;
-using Npoi.Core.Util;
-using System.IO;
-using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using Npoi.Core.HSSF.UserModel;
-using System.Globalization;
 
 namespace Npoi.Core.XSSF.UserModel
 {
@@ -55,6 +48,7 @@ namespace Npoi.Core.XSSF.UserModel
 
             Assert.AreEqual(testData, value, "The data in the text-file should exactly match the data that we read from the workbook");
         }
+
         [Test]
         public void Test54071()
         {
@@ -86,6 +80,7 @@ namespace Npoi.Core.XSSF.UserModel
                 }
             }
         }
+
         [Ignore("No explanation provided")]
         public void Test54071Simple()
         {
@@ -99,12 +94,12 @@ namespace Npoi.Core.XSSF.UserModel
             int millisecondsInDay2 = (int)((value2 - wholeDays2) * DateUtil.DAY_MILLISECONDS + 0.5);
 
             Assert.AreEqual(wholeDays1, wholeDays2);
-            // here we see that the time-value is 5 milliseconds apart, one is 86399000 and the other is 86398995, 
+            // here we see that the time-value is 5 milliseconds apart, one is 86399000 and the other is 86398995,
             // thus one is one second higher than the other
             Assert.AreEqual(millisecondsInDay1, millisecondsInDay2, "The time-values are 5 milliseconds apart");
 
             // when we do the calendar-stuff, there is a bool which determines if
-            // the milliseconds are rounded or not, having this at "false" causes the 
+            // the milliseconds are rounded or not, having this at "false" causes the
             // second to be different here!
             int startYear = 1900;
             int dayAdjust = -1; // Excel thinks 2/29/1900 is a valid date, which it isn't
@@ -168,4 +163,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-

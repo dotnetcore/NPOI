@@ -15,27 +15,23 @@
    limitations under the License.
 ==================================================================== */
 
-using System.Linq;
-
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
     using Npoi.Core.OpenXml4Net.OPC;
     using Npoi.Core.Util;
+    using System;
     using System.Reflection;
 
     /**
      * @author Yegor Kozlov
      */
+
     public class XWPFFactory : POIXMLFactory
     {
-
         private static POILogger logger = POILogFactory.GetLogger(typeof(XWPFFactory));
 
         private XWPFFactory()
         {
-
         }
 
         private static XWPFFactory inst = new XWPFFactory();
@@ -44,7 +40,6 @@ namespace Npoi.Core.XWPF.UserModel
         {
             return inst;
         }
-
 
         public override POIXMLDocumentPart CreateDocumentPart(POIXMLDocumentPart parent, PackageRelationship rel, PackagePart part)
         {
@@ -75,7 +70,6 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
 
-
         public override POIXMLDocumentPart CreateDocumentPart(POIXMLRelation descriptor)
         {
             try
@@ -89,6 +83,5 @@ namespace Npoi.Core.XWPF.UserModel
                 throw new POIXMLException(e);
             }
         }
-
     }
 }

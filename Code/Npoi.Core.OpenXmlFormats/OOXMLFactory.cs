@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats
 {
     public class OOXMLFactory<T>
     {
-        XmlSerializer serializerObj = null; 
+        private XmlSerializer serializerObj = null;
+
         public OOXMLFactory()
         {
             serializerObj = new XmlSerializer(typeof(T));
@@ -20,6 +19,7 @@ namespace Npoi.Core.OpenXmlFormats
             stream.Dispose();
             return obj;
         }
+
         public T Create()
         {
             return (T)Activator.CreateInstance(typeof(T));

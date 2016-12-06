@@ -14,63 +14,58 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 using System.IO;
-using System.Xml.XPath;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Schema;
-using Npoi.Core.SS.UserModel;
+using System.Xml.XPath;
 
 namespace Npoi.Core.Util
 {
-	public class DocumentHelper
-	{
-		private DocumentHelper()
-		{
+    public class DocumentHelper
+    {
+        private DocumentHelper()
+        {
+        }
 
-		}
+        public static XPathDocument ReadDocument(Stream stream)
+        {
+            XmlReaderSettings settings = new XmlReaderSettings();
+            //settings.ValidationFlags = XmlSchemaValidationFlags.None;
+            //settings.ValidationType = ValidationType.None;
+            //settings.XmlResolver = null;
+            settings.DtdProcessing = DtdProcessing.Prohibit;
+            //settings.ConformanceLevel = ConformanceLevel.Document;
+            XmlReader xr = XmlReader.Create(stream, settings);
 
-		public static XPathDocument ReadDocument(Stream stream)
-		{
-			XmlReaderSettings settings = new XmlReaderSettings();
-			//settings.ValidationFlags = XmlSchemaValidationFlags.None;
-			//settings.ValidationType = ValidationType.None;
-			//settings.XmlResolver = null;
-			settings.DtdProcessing = DtdProcessing.Prohibit;
-			//settings.ConformanceLevel = ConformanceLevel.Document;
-			XmlReader xr = XmlReader.Create(stream, settings);
+            XPathDocument xpathdoc = new XPathDocument(xr);
+            return xpathdoc;
+        }
 
-			XPathDocument xpathdoc = new XPathDocument(xr);
-			return xpathdoc;
-		}
+        public static XDocument LoadDocument(Stream stream)
+        {
+            XmlReaderSettings settings = new XmlReaderSettings();
+            //settings.ValidationFlags = XmlSchemaValidationFlags.None;
+            //settings.ValidationType = ValidationType.Schema;
+            //settings.XmlResolver = null;
+            settings.DtdProcessing = DtdProcessing.Prohibit;
+            settings.ConformanceLevel = ConformanceLevel.Auto;
+            settings.IgnoreProcessingInstructions = true;
+            try
+            {
+                XmlReader xr = XmlReader.Create(stream, settings);
 
-		public static XDocument LoadDocument(Stream stream)
-		{
-			XmlReaderSettings settings = new XmlReaderSettings();
-			//settings.ValidationFlags = XmlSchemaValidationFlags.None;
-			//settings.ValidationType = ValidationType.Schema;
-			//settings.XmlResolver = null;
-			settings.DtdProcessing = DtdProcessing.Prohibit;
-			settings.ConformanceLevel = ConformanceLevel.Auto;
-			settings.IgnoreProcessingInstructions = true;
-			try
-			{
-				XmlReader xr = XmlReader.Create(stream, settings);
+                XDocument xmlDoc = XDocument.Load(xr, LoadOptions.PreserveWhitespace);
 
-				XDocument xmlDoc = XDocument.Load(xr, LoadOptions.PreserveWhitespace);
-
-				return xmlDoc;
-			}
-			catch (XmlException)
-			{
-				//try to load using xml string, see TestExternalEntities.TestFile
-				stream.Position = 0;
-				var xmlDoc = XDocument.Load(stream, LoadOptions.PreserveWhitespace);
-				return xmlDoc;
-			}
-		}
-	}
+                return xmlDoc;
+            }
+            catch (XmlException)
+            {
+                //try to load using xml string, see TestExternalEntities.TestFile
+                stream.Position = 0;
+                var xmlDoc = XDocument.Load(stream, LoadOptions.PreserveWhitespace);
+                return xmlDoc;
+            }
+        }
+    }
 }

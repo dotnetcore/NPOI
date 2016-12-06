@@ -15,11 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.SS.Util;
 using Npoi.Core.SS.UserModel;
-using System;
-using NUnit.Framework;
 using Npoi.Core.SS.UserModel.Charts;
+using NUnit.Framework;
+
 namespace Npoi.Core.XSSF.UserModel.Charts
 {
     [TestFixture]
@@ -38,11 +37,10 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             axis.SetCrossBetween(AxisCrossBetween.MidpointCategory);
             Assert.AreEqual(axis.GetCrossBetween(), AxisCrossBetween.MidpointCategory);
 
-            axis.Crosses=(AxisCrosses.AutoZero);
+            axis.Crosses = (AxisCrosses.AutoZero);
             Assert.AreEqual(axis.Crosses, AxisCrosses.AutoZero);
 
             Assert.AreEqual(chart.GetAxis().Count, 1);
         }
     }
 }
-

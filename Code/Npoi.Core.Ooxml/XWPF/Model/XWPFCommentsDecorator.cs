@@ -14,29 +14,31 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.Model
 {
-    using System;
-
-    using Npoi.Core.XWPF.UserModel;
-    using System.Text;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.XWPF.UserModel;
+    using System;
+    using System.Text;
 
     /**
-     * Decorator class for XWPFParagraph allowing to add comments 
+     * Decorator class for XWPFParagraph allowing to add comments
      * found in paragraph to its text
      *
      * @author Yury Batrakov (batrakov at gmail.com)
-     * 
+     *
      */
+
     public class XWPFCommentsDecorator : XWPFParagraphDecorator
     {
         private StringBuilder commentText;
 
-        public XWPFCommentsDecorator(XWPFParagraphDecorator nextDecorator):
+        public XWPFCommentsDecorator(XWPFParagraphDecorator nextDecorator) :
             this(nextDecorator.paragraph, nextDecorator)
         {
         }
+
         public XWPFCommentsDecorator(XWPFParagraph paragraph, XWPFParagraphDecorator nextDecorator)
             : base(paragraph, nextDecorator)
         {

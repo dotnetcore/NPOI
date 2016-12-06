@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace Npoi.Core.OpenXml4Net.OPC.Internal
@@ -11,9 +9,9 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
      * @author Julien Chable
      * @version 0.1
      */
+
     public class FileHelper
     {
-
         /**
          * Get the directory part of the specified file path.
          *
@@ -21,9 +19,10 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          *            File to process.
          * @return The directory path from the specified
          */
+
         public static string GetDirectory(string filepath)
         {
-            return Path.GetDirectoryName(filepath).Replace("\\","/");
+            return Path.GetDirectoryName(filepath).Replace("\\", "/");
         }
 
         /**
@@ -36,13 +35,16 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @throws IOException
          *             If an I/O error occur.
          */
-        public static void CopyFile(string inpath, string outpath){
-            File.Copy(inpath, outpath,true);
+
+        public static void CopyFile(string inpath, string outpath)
+        {
+            File.Copy(inpath, outpath, true);
         }
 
         /**
          * Get file name from the specified File object.
          */
+
         public static String GetFilename(string filepath)
         {
             String path = filepath;
@@ -56,7 +58,5 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
             }
             return "";
         }
-
     }
-
 }

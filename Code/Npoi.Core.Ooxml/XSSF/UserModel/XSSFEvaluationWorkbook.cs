@@ -15,7 +15,6 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS;
 using Npoi.Core.SS.Formula;
@@ -23,9 +22,10 @@ using Npoi.Core.SS.Formula.Functions;
 using Npoi.Core.SS.Formula.PTG;
 using Npoi.Core.SS.Formula.Udf;
 using Npoi.Core.SS.UserModel;
-using Npoi.Core.XSSF.Model;
-using Npoi.Core.Util;
 using Npoi.Core.SS.Util;
+using Npoi.Core.Util;
+using Npoi.Core.XSSF.Model;
+using System;
 using System.Collections.Generic;
 
 namespace Npoi.Core.XSSF.UserModel
@@ -35,10 +35,10 @@ namespace Npoi.Core.XSSF.UserModel
      *
      * @author Josh Micich
      */
-    public class XSSFEvaluationWorkbook : IFormulaRenderingWorkbook, 
+
+    public class XSSFEvaluationWorkbook : IFormulaRenderingWorkbook,
         IEvaluationWorkbook, IFormulaParsingWorkbook
     {
-
         private XSSFWorkbook _uBook;
 
         public static XSSFEvaluationWorkbook Create(IWorkbook book)
@@ -59,19 +59,23 @@ namespace Npoi.Core.XSSF.UserModel
         {
             return externSheetIndex;
         }
+
         /**
          * @return the sheet index of the sheet with the given external index.
          */
+
         public int ConvertFromExternSheetIndex(int externSheetIndex)
         {
             return externSheetIndex;
         }
+
         /**
          * @return  the external sheet index of the sheet with the given internal
          * index. Used by some of the more obscure formula and named range things.
          * Fairly easy on XSSF (we think...) since the internal and external
          * indicies are the same
          */
+
         private int ConvertToExternalSheetIndex(int sheetIndex)
         {
             return sheetIndex;
@@ -124,6 +128,7 @@ namespace Npoi.Core.XSSF.UserModel
             // Not properly referenced
             throw new Exception("Book not linked for filename " + bookName);
         }
+
         private int FindExternalLinkIndex(String bookName, List<ExternalLinksTable> tables)
         {
             for (int i = 0; i < tables.Count; i++)
@@ -135,13 +140,16 @@ namespace Npoi.Core.XSSF.UserModel
             }
             return -1;
         }
+
         private class FakeExternalLinksTable : ExternalLinksTable
         {
             private String fileName;
+
             public FakeExternalLinksTable(String fileName)
             {
                 this.fileName = fileName;
             }
+
             public override String LinkedFileName
             {
                 get
@@ -154,7 +162,6 @@ namespace Npoi.Core.XSSF.UserModel
                 }
             }
         }
-
 
         public IEvaluationName GetName(String name, int sheetIndex)
         {
@@ -187,6 +194,7 @@ namespace Npoi.Core.XSSF.UserModel
         {
             throw new InvalidOperationException("HSSF-style external references are not supported for XSSF");
         }
+
         public ExternalName GetExternalName(String nameName, String sheetName, int externalWorkbookNumber)
         {
             if (externalWorkbookNumber > 0)
@@ -216,8 +224,8 @@ namespace Npoi.Core.XSSF.UserModel
                 int nameIdx = _uBook.GetNameIndex(nameName);
                 return new ExternalName(nameName, nameIdx, 0);  // TODO Is this right?
             }
-
         }
+
         public Ptg GetNameXPtg(String name, SheetIdentifier sheet)
         {
             IndexedUDFFinder udfFinder = (IndexedUDFFinder)GetUDFFinder();
@@ -256,6 +264,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return new NameXPxg(sheetName, name);
             }
         }
+
         public Ptg Get3DReferencePtg(CellReference cell, SheetIdentifier sheet)
         {
             if (sheet._bookName != null)
@@ -268,6 +277,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return new Ref3DPxg(sheet, cell);
             }
         }
+
         public Ptg Get3DReferencePtg(AreaReference area, SheetIdentifier sheet)
         {
             if (sheet._bookName != null)
@@ -280,6 +290,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return new Area3DPxg(sheet, area);
             }
         }
+
         public String ResolveNameXText(NameXPtg n)
         {
             int idx = n.NameIndex;
@@ -336,11 +347,11 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         public int GetExternalSheetIndex(String workbookName, String sheetName)
         {
             throw new RuntimeException("not implemented yet");
         }
+
         public int GetSheetIndex(String sheetName)
         {
             return _uBook.GetSheetIndex(sheetName);
@@ -362,16 +373,18 @@ namespace Npoi.Core.XSSF.UserModel
         {
             return _uBook.GetNameAt(namePtg.Index).NameName;
         }
+
         public IEvaluationName GetName(NamePtg namePtg)
         {
             int ix = namePtg.Index;
             return new Name(_uBook.GetNameAt(ix), ix, this);
         }
+
         public Ptg[] GetFormulaTokens(IEvaluationCell EvalCell)
         {
             XSSFCell cell = ((XSSFEvaluationCell)EvalCell).GetXSSFCell();
             XSSFEvaluationWorkbook frBook = XSSFEvaluationWorkbook.Create(_uBook);
-            
+
             return FormulaParser.Parse(cell.CellFormula, frBook, FormulaType.Cell, _uBook.GetSheetIndex(cell.Sheet));
         }
 
@@ -385,6 +398,7 @@ namespace Npoi.Core.XSSF.UserModel
          *  HSSF does not. As these can't be composed down to HSSF-compatible
          *  Ptgs, this method strips them out for us.
          */
+
         private String CleanXSSFFormulaText(String text)
         {
             // Newlines are allowed in XSSF
@@ -396,7 +410,6 @@ namespace Npoi.Core.XSSF.UserModel
 
         private class Name : IEvaluationName
         {
-
             private XSSFName _nameRecord;
             private int _index;
             private IFormulaParsingWorkbook _fpBook;
@@ -412,8 +425,7 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 get
                 {
-
-                    return FormulaParser.Parse(_nameRecord.RefersToFormula, _fpBook, 
+                    return FormulaParser.Parse(_nameRecord.RefersToFormula, _fpBook,
                         FormulaType.NamedRange, _nameRecord.SheetIndex);
                 }
             }
@@ -452,6 +464,7 @@ namespace Npoi.Core.XSSF.UserModel
                     return HasFormula; // TODO - is this right?
                 }
             }
+
             public NamePtg CreatePtg()
             {
                 return new NamePtg(_index);
@@ -464,4 +477,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-

@@ -14,28 +14,25 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
-
-
-
     /**
-     * Specifies all types of vertical alignment which are available to be applied to of all text 
+     * Specifies all types of vertical alignment which are available to be applied to of all text
      * on each line displayed within a paragraph.
-     * 
+     *
      * @author Gisella Bronzetti
      */
+
     public enum TextAlignment
     {
         /**
-         * Specifies that all text in the parent object shall be 
+         * Specifies that all text in the parent object shall be
          * aligned to the top of each character when displayed
          */
         TOP = (1),
         /**
-         * Specifies that all text in the parent object shall be 
+         * Specifies that all text in the parent object shall be
          * aligned to the center of each character when displayed.
          */
         CENTER = (2),
@@ -50,7 +47,7 @@ namespace Npoi.Core.XWPF.UserModel
          */
         BOTTOM = (4),
         /**
-         * Specifies that all text in the parent object shall be 
+         * Specifies that all text in the parent object shall be
          * aligned automatically when displayed.
          */
         AUTO = (5)
@@ -79,4 +76,3 @@ namespace Npoi.Core.XWPF.UserModel
         //}
     }
 }
-

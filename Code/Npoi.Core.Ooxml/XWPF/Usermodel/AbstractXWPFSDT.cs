@@ -14,10 +14,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using System;
 
     /**
      * Experimental abstract class that is a base for XWPFSDT and XWPFSDTCell
@@ -26,6 +27,7 @@ namespace Npoi.Core.XWPF.UserModel
      * <p/>
      * These classes have so far been built only for Read-only Processing.
      */
+
     public abstract class AbstractXWPFSDT : ISDTContents
     {
         private String title;
@@ -34,7 +36,6 @@ namespace Npoi.Core.XWPF.UserModel
 
         public AbstractXWPFSDT(CT_SdtPr pr, IBody part)
         {
-
             CT_String[] aliases = pr.GetAliasArray();
             if (aliases != null && aliases.Length > 0)
             {
@@ -54,12 +55,12 @@ namespace Npoi.Core.XWPF.UserModel
                 tag = "";
             }
             this.part = part;
-
         }
 
         /**
          * @return first SDT Title
          */
+
         public String GetTitle()
         {
             return title;
@@ -68,6 +69,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * @return first SDT Tag
          */
+
         public String GetTag()
         {
             return tag;
@@ -81,6 +83,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * @return null
          */
+
         public IBody GetBody()
         {
             return null;
@@ -89,6 +92,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * @return document part
          */
+
         public POIXMLDocumentPart GetPart()
         {
             return part.Part;
@@ -97,6 +101,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * @return partType
          */
+
         public BodyType GetPartType()
         {
             return BodyType.CONTENTCONTROL;
@@ -105,6 +110,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * @return element type
          */
+
         public BodyElementType GetElementType()
         {
             return BodyElementType.CONTENTCONTROL;
@@ -115,5 +121,4 @@ namespace Npoi.Core.XWPF.UserModel
             return part.GetXWPFDocument();
         }
     }
-
 }

@@ -19,13 +19,12 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-    using System.Collections.Generic;
     using Npoi.Core.OpenXml4Net.OPC;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Xml;
-    using System.Xml.Serialization;
 
     /**
      * Holds details of built-in, default and user styles, which
@@ -33,6 +32,7 @@ namespace Npoi.Core.XWPF.UserModel
      * Text within one of those with custom stylings has the style
      *  information stored in the {@link XWPFRun}
      */
+
     public class XWPFStyles : POIXMLDocumentPart
     {
         private CT_Styles ctStyles;
@@ -57,6 +57,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * Construct XWPFStyles from scratch for a new document.
          */
+
         public XWPFStyles()
         {
         }
@@ -71,17 +72,15 @@ namespace Npoi.Core.XWPF.UserModel
             try
             {
                 XDocument doc = ConvertStreamToXml(GetPackagePart().GetInputStream());
-                stylesDoc = StylesDocument.Parse(doc,NamespaceManager);
+                stylesDoc = StylesDocument.Parse(doc, NamespaceManager);
                 SetStyles(stylesDoc.Styles);
                 latentStyles = new XWPFLatentStyles(ctStyles.latentStyles, this);
-
             }
             catch (XmlException e)
             {
                 throw new POIXMLException("Unable to read styles", e);
             }
         }
-
 
         protected internal override void Commit()
         {
@@ -123,13 +122,13 @@ namespace Npoi.Core.XWPF.UserModel
 
             defaultRunStyle = new XWPFDefaultRunStyle(rprd.rPr);
             defaultParaStyle = new XWPFDefaultParagraphStyle(pprd.pPr);
-
         }
 
         /**
          * Sets the ctStyles
          * @param styles
          */
+
         public void SetStyles(CT_Styles styles)
         {
             ctStyles = styles;
@@ -153,7 +152,6 @@ namespace Npoi.Core.XWPF.UserModel
                             docDefaults.pPrDefault.pPr);
                 }
             }
-
         }
 
         /**
@@ -161,6 +159,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @param styleID		styleID of the Style in the style-Document
          * @return				true if style exist, false if style not exist
          */
+
         public bool StyleExist(String styleID)
         {
             foreach (XWPFStyle style in listStyle)
@@ -170,11 +169,13 @@ namespace Npoi.Core.XWPF.UserModel
             }
             return false;
         }
+
         /**
          * add a style to the document
-         * @param style				
-         * @throws IOException		 
+         * @param style
+         * @throws IOException
          */
+
         public void AddStyle(XWPFStyle style)
         {
             listStyle.Add(style);
@@ -182,11 +183,13 @@ namespace Npoi.Core.XWPF.UserModel
             int pos = (ctStyles.GetStyleList().Count) - 1;
             ctStyles.SetStyleArray(pos, style.GetCTStyle());
         }
+
         /**
-         *get style by a styleID 
+         *get style by a styleID
          * @param styleID	styleID of the searched style
          * @return style
          */
+
         public XWPFStyle GetStyle(String styleID)
         {
             foreach (XWPFStyle style in listStyle)
@@ -204,12 +207,14 @@ namespace Npoi.Core.XWPF.UserModel
                 return listStyle.Count;
             }
         }
+
         /**
          * Get the styles which are related to the parameter style and their relatives
-         * this method can be used to copy all styles from one document to another document 
+         * this method can be used to copy all styles from one document to another document
          * @param style
-         * @return a list of all styles which were used by this method 
+         * @return a list of all styles which were used by this method
          */
+
         public List<XWPFStyle> GetUsedStyleList(XWPFStyle style)
         {
             List<XWPFStyle> usedStyleList = new List<XWPFStyle>();
@@ -217,11 +222,12 @@ namespace Npoi.Core.XWPF.UserModel
             return GetUsedStyleList(style, usedStyleList);
         }
 
-        /** 
+        /**
          * Get the styles which are related to parameter style
          * @param style
          * @return all Styles of the parameterList
          */
+
         private List<XWPFStyle> GetUsedStyleList(XWPFStyle style, List<XWPFStyle> usedStyleList)
         {
             String basisStyleID = style.BasisStyleID;
@@ -270,6 +276,7 @@ namespace Npoi.Core.XWPF.UserModel
          * Sets the default spelling language on ctStyles DocDefaults parameter
          * @param strSpellingLanguage
          */
+
         public void SetSpellingLanguage(String strSpellingLanguage)
         {
             CT_Language lang = GetCTLanguage();
@@ -281,6 +288,7 @@ namespace Npoi.Core.XWPF.UserModel
          * Sets the default East Asia spelling language on ctStyles DocDefaults parameter
          * @param strEastAsia
          */
+
         public void SetEastAsia(String strEastAsia)
         {
             CT_Language lang = GetCTLanguage();
@@ -292,6 +300,7 @@ namespace Npoi.Core.XWPF.UserModel
          * TODO Replace this with specific Setters for each type, possibly
          *  on XWPFDefaultRunStyle
          */
+
         public void SetDefaultFonts(CT_Fonts fonts)
         {
             EnsureDocDefaults();
@@ -300,12 +309,11 @@ namespace Npoi.Core.XWPF.UserModel
             RunProps.rFonts = (/*setter*/fonts);
         }
 
-
-
         /**
          * Get the style with the same name
          * if this style is not existing, return null
          */
+
         public XWPFStyle GetStyleWithSameName(XWPFStyle style)
         {
             foreach (XWPFStyle ownStyle in listStyle)
@@ -316,12 +324,12 @@ namespace Npoi.Core.XWPF.UserModel
                 }
             }
             return null;
-
         }
 
         /**
          * Get the default style which applies text runs in the document
          */
+
         public XWPFDefaultRunStyle DefaultRunStyle
         {
             get
@@ -330,9 +338,11 @@ namespace Npoi.Core.XWPF.UserModel
                 return defaultRunStyle;
             }
         }
+
         /**
          * Get the default paragraph style which applies to the document
          */
+
         public XWPFDefaultParagraphStyle DefaultParagraphStyle
         {
             get
@@ -345,6 +355,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * Get the definition of all the Latent Styles
          */
+
         public XWPFLatentStyles LatentStyles
         {
             get
@@ -353,5 +364,4 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
     }
-
 }

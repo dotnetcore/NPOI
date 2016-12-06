@@ -17,9 +17,10 @@
  * ====================================================================
  */
 
-using NUnit.Framework;
 using Npoi.Core.OpenXmlFormats.Wordprocessing;
+using NUnit.Framework;
 using System;
+
 namespace Npoi.Core.XWPF.UserModel
 {
     [TestFixture]
@@ -54,6 +55,7 @@ namespace Npoi.Core.XWPF.UserModel
             XWPFTableCell.XWPFVertAlign al = cell.GetVerticalAlignment();
             Assert.AreEqual(XWPFTableCell.XWPFVertAlign.BOTH, al);
         }
+
         [Test]
         public void TestSetGetColor()
         {
@@ -75,6 +77,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * ensure that CTHMerge & CTTcBorders go in poi-ooxml.jar
          */
+
         [Test]
         public void Test54099()
         {
@@ -93,5 +96,4 @@ namespace Npoi.Core.XWPF.UserModel
             CT_VMerge vMerge = tcPr.AddNewVMerge();
         }
     }
-
 }

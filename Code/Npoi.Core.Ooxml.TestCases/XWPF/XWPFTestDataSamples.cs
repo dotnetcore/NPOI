@@ -14,21 +14,21 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF
 {
-    using System;
+    using Npoi.Core.Util;
     using Npoi.Core.XWPF.UserModel;
-    using NUnit.Framework;
+    using System;
     using System.IO;
     using TestCases;
-    using Npoi.Core.Util;
 
     /**
      * @author Yegor Kozlov
      */
+
     public class XWPFTestDataSamples
     {
-
         public static XWPFDocument OpenSampleDocument(String sampleName)
         {
             Stream is1 = POIDataSamples.GetDocumentInstance().OpenResourceAsStream(sampleName);
@@ -60,5 +60,4 @@ namespace Npoi.Core.XWPF
             }
         }
     }
-
 }

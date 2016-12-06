@@ -13,7 +13,7 @@ NPOI Core is a .NET Core version of the NPOI.
 
 #### Export Excel
 
-```
+```csharp
 
 var newFile = @"newbook.core.xlsx";
 
@@ -52,7 +52,7 @@ using (var fs = new FileStream(newFile, FileMode.Create, FileAccess.Write)) {
     workbook.Write(fs);
 }
 
-```
+```csharp
 
 #### Export Word
 

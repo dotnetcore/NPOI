@@ -3,28 +3,25 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Dml.Chart
 {
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_SizeRepresents
     {
-
         private ST_SizeRepresents valField;
 
         public CT_SizeRepresents()
         {
             this.valField = ST_SizeRepresents.area;
         }
+
         public static CT_SizeRepresents Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -34,8 +31,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
                 ctObj.val = (ST_SizeRepresents)Enum.Parse(typeof(ST_SizeRepresents), node.Attribute("val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -60,31 +55,30 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     public enum ST_SizeRepresents
     {
-
         /// <remarks/>
         area,
 
         /// <remarks/>
         w,
     }
+
     [Serializable]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_BubbleScale
     {
-
         private uint valField;
 
         public CT_BubbleScale()
         {
             this.valField = ((uint)(100));
         }
+
         public static CT_BubbleScale Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -94,8 +88,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
                 ctObj.val = XmlHelper.ReadUInt(node.Attribute("val"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -120,14 +112,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
     [Serializable]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_BubbleSer
     {
-
         private CT_UnsignedInt idxField;
 
         private CT_UnsignedInt orderField;
@@ -159,6 +149,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         public CT_BubbleSer()
         {
         }
+
         public static CT_BubbleSer Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -201,8 +192,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -258,7 +247,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             sw.Write(string.Format("</c:{0}>", nodeName));
         }
-
 
         [XmlElement(Order = 0)]
         public CT_UnsignedInt idx
@@ -442,13 +430,13 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
         }
     }
+
     [Serializable]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_BubbleChart
     {
-
         private CT_Boolean varyColorsField;
 
         private List<CT_BubbleSer> serField;
@@ -469,8 +457,8 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
 
         public CT_BubbleChart()
         {
-
         }
+
         public static CT_BubbleChart Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -502,8 +490,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -662,6 +648,4 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
         }
     }
-
-
 }

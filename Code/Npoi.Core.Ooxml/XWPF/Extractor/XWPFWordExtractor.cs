@@ -14,26 +14,28 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.Extractor
 {
-    using System;
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
     using Npoi.Core.XWPF.Model;
     using Npoi.Core.XWPF.UserModel;
-    using Npoi.Core.OpenXml4Net.OPC;
-    using System.Text;
+    using System;
     using System.Collections.Generic;
-    using Npoi.Core.OpenXmlFormats.Wordprocessing;
     using System.IO;
+    using System.Text;
     using System.Xml;
 
     /**
      * Helper class to extract text from an OOXML Word file
      */
+
     public class XWPFWordExtractor : POIXMLTextExtractor
     {
         public static XWPFRelation[] SUPPORTED_TYPES = new XWPFRelation[] {
       XWPFRelation.DOCUMENT, XWPFRelation.TEMPLATE,
-      XWPFRelation.MACRO_DOCUMENT, 
+      XWPFRelation.MACRO_DOCUMENT,
       XWPFRelation.MACRO_TEMPLATE_DOCUMENT
    };
 
@@ -43,25 +45,24 @@ namespace Npoi.Core.XWPF.Extractor
         public XWPFWordExtractor(OPCPackage Container)
             : this(new XWPFDocument(Container))
         {
-
         }
+
         public XWPFWordExtractor(XWPFDocument document)
             : base(document)
         {
-
             this.document = document;
         }
 
         /**
-         * Should we also fetch the hyperlinks, when fetching 
+         * Should we also fetch the hyperlinks, when fetching
          *  the text content? Default is to only output the
          *  hyperlink label, and not the contents
          */
+
         public void SetFetchHyperlinks(bool fetch)
         {
             fetchHyperlinks = fetch;
         }
-
 
         public override String Text
         {
@@ -121,7 +122,6 @@ namespace Npoi.Core.XWPF.Extractor
                     extractHeaders(text, headerFooterPolicy);
                 }
 
-
                 foreach (IRunElement run in paragraph.Runs)
                 {
                     text.Append(run.ToString());
@@ -161,7 +161,6 @@ namespace Npoi.Core.XWPF.Extractor
             {
                 throw new POIXMLException(e);
             }
-
         }
 
         private void appendTableText(StringBuilder text, XWPFTable table)
@@ -224,5 +223,4 @@ namespace Npoi.Core.XWPF.Extractor
             }
         }
     }
-
 }

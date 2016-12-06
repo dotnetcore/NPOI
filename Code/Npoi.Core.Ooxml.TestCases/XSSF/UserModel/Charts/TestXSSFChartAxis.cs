@@ -15,16 +15,16 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
-using NUnit.Framework;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.UserModel.Charts;
+using NUnit.Framework;
+using System;
+
 namespace Npoi.Core.XSSF.UserModel.Charts
 {
     [TestFixture]
     public class TestXSSFChartAxis
     {
-
         private static double EPSILON = 1E-7;
         private IChartAxis axis;
 
@@ -37,13 +37,14 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             IChart chart = Drawing.CreateChart(anchor);
             axis = chart.ChartAxisFactory.CreateValueAxis(AxisPosition.Bottom);
         }
+
         [Test]
         public void TestLogBaseIllegalArgument()
         {
             ArgumentException iae = null;
             try
             {
-                axis.LogBase=(0.0);
+                axis.LogBase = (0.0);
             }
             catch (ArgumentException e)
             {
@@ -54,7 +55,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             iae = null;
             try
             {
-                axis.LogBase=(30000.0);
+                axis.LogBase = (30000.0);
             }
             catch (ArgumentException e)
             {
@@ -62,30 +63,34 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             }
             Assert.IsNotNull(iae);
         }
+
         [Test]
         public void TestLogBaseLegalArgument()
         {
-            axis.LogBase=(Math.E);
+            axis.LogBase = (Math.E);
             Assert.IsTrue(Math.Abs(axis.LogBase - Math.E) < EPSILON);
         }
+
         [Test]
         public void TestNumberFormat()
         {
             String numberFormat = "General";
-            axis.NumberFormat=(numberFormat);
+            axis.NumberFormat = (numberFormat);
             Assert.AreEqual(numberFormat, axis.NumberFormat);
         }
+
         [Test]
         public void TestMaxAndMinAccessMethods()
         {
             double newValue = 10.0;
 
-            axis.Minimum=(newValue);
+            axis.Minimum = (newValue);
             Assert.IsTrue(Math.Abs(axis.Minimum - newValue) < EPSILON);
 
-            axis.Maximum=(newValue);
+            axis.Maximum = (newValue);
             Assert.IsTrue(Math.Abs(axis.Maximum - newValue) < EPSILON);
         }
+
         [Test]
         public void TestVisibleAccessMethods()
         {
@@ -127,6 +132,5 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             axis.MinorTickMark = (/*setter*/AxisTickMark.Cross);
             Assert.AreEqual(AxisTickMark.Cross, axis.MinorTickMark);
         }
-
     }
 }

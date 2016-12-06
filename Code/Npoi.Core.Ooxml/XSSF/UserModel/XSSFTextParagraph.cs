@@ -14,20 +14,23 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using System.Collections.Generic;
+
 using Npoi.Core.OpenXmlFormats.Dml;
 using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
-using System;
-using System.Text;
-using Npoi.Core.XSSF.Model;
-using System.Drawing;
 using Npoi.Core.Util;
+using Npoi.Core.XSSF.Model;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Text;
+
 namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * Represents a paragraph of text within the Containing text body.
      * The paragraph is the highest level text separation mechanism.
      */
+
     public class XSSFTextParagraph : IEnumerator<XSSFTextRun>, IEnumerable<XSSFTextRun>
     {
         private CT_TextParagraph _p;
@@ -51,7 +54,7 @@ namespace Npoi.Core.XSSF.UserModel
                     CT_TextLineBreak br = (CT_TextLineBreak)ch;
                     CT_RegularTextRun r = new CT_RegularTextRun();
                     r.rPr = (br.rPr);
-                    r.t=("\n");
+                    r.t = ("\n");
                     _Runs.Add(new XSSFTextRun(r, this));
                 }
                 else if (ch is CT_TextField)
@@ -96,12 +99,10 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         public CT_TextParagraph GetXmlObject()
         {
             return _p;
         }
-
 
         public CT_Shape ParentShape
         {
@@ -124,6 +125,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return a new run of text
          */
+
         public XSSFTextRun AddNewTextRun()
         {
             CT_RegularTextRun r = _p.AddNewR();
@@ -139,6 +141,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return text run representing this line break ('\n')
          */
+
         public XSSFTextRun AddLineBreak()
         {
             CT_TextLineBreak br = _p.AddNewBr();
@@ -163,6 +166,7 @@ namespace Npoi.Core.XSSF.UserModel
          * If this attribute is omitted, then a value of left is implied.
          * @return alignment that is applied to the paragraph
          */
+
         public TextAlign TextAlign
         {
             get
@@ -184,11 +188,13 @@ namespace Npoi.Core.XSSF.UserModel
                 }
             }
         }
+
         private class ParagraphPropertyTextAlignFetcher : ParagraphPropertyFetcher<TextAlign?>
         {
-            public ParagraphPropertyTextAlignFetcher(int level) : base(level) 
+            public ParagraphPropertyTextAlignFetcher(int level) : base(level)
             {
             }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
                 if (props.IsSetAlgn())
@@ -201,7 +207,6 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         /**
          * Determines where vertically on a line of text the actual words are positioned. This deals
          * with vertical placement of the characters with respect to the baselines. For instance
@@ -210,6 +215,7 @@ namespace Npoi.Core.XSSF.UserModel
          * If this attribute is omitted, then a value of baseline is implied.
          * @return alignment that is applied to the paragraph
          */
+
         public TextFontAlign TextFontAlign
         {
             get
@@ -226,7 +232,7 @@ namespace Npoi.Core.XSSF.UserModel
                 //};
                 ParagraphPropertyFetcherTextFontAlign fetcher = new ParagraphPropertyFetcherTextFontAlign(Level);
                 fetchParagraphProperty(fetcher);
-                return fetcher.GetValue() == null ? TextFontAlign.BASELINE : fetcher.GetValue().Value;        
+                return fetcher.GetValue() == null ? TextFontAlign.BASELINE : fetcher.GetValue().Value;
             }
             set
             {
@@ -241,9 +247,13 @@ namespace Npoi.Core.XSSF.UserModel
                 }
             }
         }
-        class ParagraphPropertyFetcherTextFontAlign : ParagraphPropertyFetcher<TextFontAlign?>
+
+        private class ParagraphPropertyFetcherTextFontAlign : ParagraphPropertyFetcher<TextFontAlign?>
         {
-            public ParagraphPropertyFetcherTextFontAlign(int level) : base(level) { }
+            public ParagraphPropertyFetcherTextFontAlign(int level) : base(level)
+            {
+            }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
                 if (props.IsSetFontAlgn())
@@ -255,9 +265,11 @@ namespace Npoi.Core.XSSF.UserModel
                 return false;
             }
         }
+
         /**
          * @return the font to be used on bullet characters within a given paragraph
          */
+
         public String BulletFont
         {
             get
@@ -282,9 +294,13 @@ namespace Npoi.Core.XSSF.UserModel
                 font.typeface = (value);
             }
         }
-        class ParagraphPropertyFetcherBulletFont : ParagraphPropertyFetcher<String>
+
+        private class ParagraphPropertyFetcherBulletFont : ParagraphPropertyFetcher<String>
         {
-            public ParagraphPropertyFetcherBulletFont(int level) : base(level) { }
+            public ParagraphPropertyFetcherBulletFont(int level) : base(level)
+            {
+            }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
                 if (props.IsSetBuFont())
@@ -295,9 +311,11 @@ namespace Npoi.Core.XSSF.UserModel
                 return false;
             }
         }
+
         /**
          * @return the character to be used in place of the standard bullet point
          */
+
         public String BulletCharacter
         {
             get
@@ -322,9 +340,13 @@ namespace Npoi.Core.XSSF.UserModel
                 c.@char = (value);
             }
         }
-        class ParagraphPropertyFetcherBulletCharacter : ParagraphPropertyFetcher<String>
+
+        private class ParagraphPropertyFetcherBulletCharacter : ParagraphPropertyFetcher<String>
         {
-            public ParagraphPropertyFetcherBulletCharacter(int level) : base(level) { }
+            public ParagraphPropertyFetcherBulletCharacter(int level) : base(level)
+            {
+            }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
                 if (props.IsSetBuChar())
@@ -335,11 +357,13 @@ namespace Npoi.Core.XSSF.UserModel
                 return false;
             }
         }
+
         /**
          *
          * @return the color of bullet characters within a given paragraph.
          * A <code>null</code> value means to use the text font color.
          */
+
         public Color BulletFontColor
         {
             get
@@ -369,9 +393,13 @@ namespace Npoi.Core.XSSF.UserModel
                 clr.val = (new byte[] { value.R, value.G, value.B });
             }
         }
-        class ParagraphPropertyFetcherBulletFontColor : ParagraphPropertyFetcher<Color>
+
+        private class ParagraphPropertyFetcherBulletFontColor : ParagraphPropertyFetcher<Color>
         {
-            public ParagraphPropertyFetcherBulletFontColor(int level) : base(level) { }
+            public ParagraphPropertyFetcherBulletFontColor(int level) : base(level)
+            {
+            }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
                 if (props.IsSetBuClr())
@@ -387,6 +415,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return false;
             }
         }
+
         /**
          * Returns the bullet size that is to be used within a paragraph.
          * This may be specified in two different ways, percentage spacing and font point spacing:
@@ -397,6 +426,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the bullet size
          */
+
         public double BulletFontSize
         {
             get
@@ -440,9 +470,13 @@ namespace Npoi.Core.XSSF.UserModel
                 }
             }
         }
-        class ParagraphPropertyFetcherBulletFontSize : ParagraphPropertyFetcher<double?>
+
+        private class ParagraphPropertyFetcherBulletFontSize : ParagraphPropertyFetcher<double?>
         {
-            public ParagraphPropertyFetcherBulletFontSize(int level) : base(level) { }
+            public ParagraphPropertyFetcherBulletFontSize(int level) : base(level)
+            {
+            }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
                 if (props.IsSetBuSzPct())
@@ -458,10 +492,12 @@ namespace Npoi.Core.XSSF.UserModel
                 return false;
             }
         }
+
         /**
          *
          * @return the indent applied to the first line of text in the paragraph.
          */
+
         public double Indent
         {
             get
@@ -493,9 +529,12 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-        class ParagraphPropertyFetcherIndent : ParagraphPropertyFetcher<double>
+        private class ParagraphPropertyFetcherIndent : ParagraphPropertyFetcher<double>
         {
-            public ParagraphPropertyFetcherIndent(int level) : base(level) { }
+            public ParagraphPropertyFetcherIndent(int level) : base(level)
+            {
+            }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
                 if (props.IsSetIndent())
@@ -514,6 +553,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param value the left margin of the paragraph, -1 to clear the margin and use the default of 0.
          */
+
         public double LeftMargin
         {
             get
@@ -546,9 +586,13 @@ namespace Npoi.Core.XSSF.UserModel
                 }
             }
         }
-        class ParagraphPropertyFetcherLeftMargin : ParagraphPropertyFetcher<double>
+
+        private class ParagraphPropertyFetcherLeftMargin : ParagraphPropertyFetcher<double>
         {
-            public ParagraphPropertyFetcherLeftMargin(int level) : base(level) { }
+            public ParagraphPropertyFetcherLeftMargin(int level) : base(level)
+            {
+            }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
                 if (props.IsSetMarL())
@@ -560,6 +604,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return false;
             }
         }
+
         /**
          * Specifies the right margin of the paragraph. This is specified in Addition to the text body
          * inset and applies only to this text paragraph. That is the text body inset and the marR
@@ -567,6 +612,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param value the right margin of the paragraph, -1 to clear the margin and use the default of 0.
          */
+
         public double RightMargin
         {
             get
@@ -584,7 +630,7 @@ namespace Npoi.Core.XSSF.UserModel
                 ParagraphPropertyFetcherRightMargin fetcher = new ParagraphPropertyFetcherRightMargin(Level);
                 fetchParagraphProperty(fetcher);
                 // if the marL attribute is omitted, then a value of 347663 is implied
-                return fetcher.GetValue();        
+                return fetcher.GetValue();
             }
             set
             {
@@ -599,9 +645,13 @@ namespace Npoi.Core.XSSF.UserModel
                 }
             }
         }
-        class ParagraphPropertyFetcherRightMargin : ParagraphPropertyFetcher<double>
+
+        private class ParagraphPropertyFetcherRightMargin : ParagraphPropertyFetcher<double>
         {
-            public ParagraphPropertyFetcherRightMargin(int level) : base(level) { }
+            public ParagraphPropertyFetcherRightMargin(int level) : base(level)
+            {
+            }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
                 if (props.IsSetMarR())
@@ -613,10 +663,12 @@ namespace Npoi.Core.XSSF.UserModel
                 return false;
             }
         }
+
         /**
          *
          * @return the default size for a tab character within this paragraph in points
          */
+
         public double DefaultTabSize
         {
             get
@@ -636,9 +688,13 @@ namespace Npoi.Core.XSSF.UserModel
                 return fetcher.GetValue();
             }
         }
-        class ParagraphPropertyFetcherDefaultTabSize : ParagraphPropertyFetcher<double>
+
+        private class ParagraphPropertyFetcherDefaultTabSize : ParagraphPropertyFetcher<double>
         {
-            public ParagraphPropertyFetcherDefaultTabSize(int level) : base(level) { }
+            public ParagraphPropertyFetcherDefaultTabSize(int level) : base(level)
+            {
+            }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
                 if (props.IsSetDefTabSz())
@@ -650,6 +706,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return false;
             }
         }
+
         public double GetTabStop(int idx)
         {
             //ParagraphPropertyFetcher<Double> fetcher = new ParagraphPropertyFetcher<Double>(getLevel()){
@@ -671,10 +728,15 @@ namespace Npoi.Core.XSSF.UserModel
             return fetcher.GetValue();
         }
 
-        class ParagraphPropertyFetcherTabStop : ParagraphPropertyFetcher<double>
+        private class ParagraphPropertyFetcherTabStop : ParagraphPropertyFetcher<double>
         {
             private int idx;
-            public ParagraphPropertyFetcherTabStop(int level, int idx) : base(level) { this.idx = idx; }
+
+            public ParagraphPropertyFetcherTabStop(int level, int idx) : base(level)
+            {
+                this.idx = idx;
+            }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
                 if (props.IsSetTabLst())
@@ -691,12 +753,14 @@ namespace Npoi.Core.XSSF.UserModel
                 return false;
             }
         }
+
         /**
          * Add a single tab stop to be used on a line of text when there are one or more tab characters
-         * present within the text. 
-         * 
+         * present within the text.
+         *
          * @param value the position of the tab stop relative to the left margin
          */
+
         public void AddTabStop(double value)
         {
             CT_TextParagraphProperties pr = _p.IsSetPPr() ? _p.pPr : _p.AddNewPPr();
@@ -722,7 +786,7 @@ namespace Npoi.Core.XSSF.UserModel
          *      // spacing will be 48 points
          *      paragraph.SetLineSpacing(-48.0);
          * </code></pre>
-         * 
+         *
          * @param linespacing the vertical line spacing
 
          * Returns the vertical line spacing that is to be used within a paragraph.
@@ -734,6 +798,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the vertical line spacing.
          */
+
         public double LineSpacing
         {
             get
@@ -776,9 +841,13 @@ namespace Npoi.Core.XSSF.UserModel
                 pr.lnSpc = (spc);
             }
         }
-        class ParagraphPropertyFetcherLineSpacing : ParagraphPropertyFetcher<double?>
+
+        private class ParagraphPropertyFetcherLineSpacing : ParagraphPropertyFetcher<double?>
         {
-            public ParagraphPropertyFetcherLineSpacing(int level) : base(level) { }
+            public ParagraphPropertyFetcherLineSpacing(int level) : base(level)
+            {
+            }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
                 if (props.IsSetLnSpc())
@@ -792,6 +861,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return false;
             }
         }
+
         /**
          * Set the amount of vertical white space that will be present before the paragraph.
          * This space is specified in either percentage or points:
@@ -820,6 +890,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the vertical white space before the paragraph
          */
+
         public double SpaceBefore
         {
             get
@@ -851,12 +922,17 @@ namespace Npoi.Core.XSSF.UserModel
                 pr.spcBef = (spc);
             }
         }
-        class ParagraphPropertyFetcherSpaceBefore : ParagraphPropertyFetcher<double>
+
+        private class ParagraphPropertyFetcherSpaceBefore : ParagraphPropertyFetcher<double>
         {
-            public ParagraphPropertyFetcherSpaceBefore(int level) : base(level) { }
+            public ParagraphPropertyFetcherSpaceBefore(int level) : base(level)
+            {
+            }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
-                if(props.IsSetSpcBef()){
+                if (props.IsSetSpcBef())
+                {
                     CT_TextSpacing spc = props.spcBef;
 
                     if (spc.IsSetSpcPct()) SetValue(spc.spcPct.val * 0.001);
@@ -866,6 +942,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return false;
             }
         }
+
         /**
          * Set the amount of vertical white space that will be present After the paragraph.
          * This space is specified in either percentage or points:
@@ -894,6 +971,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the vertical white space After the paragraph
          */
+
         public double SpaceAfter
         {
             get
@@ -923,9 +1001,13 @@ namespace Npoi.Core.XSSF.UserModel
                 pr.spcAft = (spc);
             }
         }
-        class ParagraphPropertyFetcherSpaceAfter : ParagraphPropertyFetcher<double>
+
+        private class ParagraphPropertyFetcherSpaceAfter : ParagraphPropertyFetcher<double>
         {
-            public ParagraphPropertyFetcherSpaceAfter(int level) : base(level) { }
+            public ParagraphPropertyFetcherSpaceAfter(int level) : base(level)
+            {
+            }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
                 if (props.IsSetSpcAft())
@@ -939,6 +1021,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return false;
             }
         }
+
         /**
          * Specifies the particular level text properties that this paragraph will follow.
          * The value for this attribute formats the text according to the corresponding level
@@ -946,19 +1029,20 @@ namespace Npoi.Core.XSSF.UserModel
          * that this paragraph belongs to (therefore in the parent shape).
          * <p>
          * Note that the closest properties object to the text is used, therefore if there is
-         * a conflict between the text paragraph properties and the list style properties for 
+         * a conflict between the text paragraph properties and the list style properties for
          * this level then the text paragraph properties will take precedence.
          * </p>
          * Returns the level of text properties that this paragraph will follow.
-         * 
+         *
          * @return the text level of this paragraph (0-based). Default is 0.
          */
+
         public int Level
         {
             get
             {
                 CT_TextParagraphProperties pr = _p.pPr;
-                if(pr == null) return 0;
+                if (pr == null) return 0;
 
                 return pr.lvl;
             }
@@ -970,10 +1054,10 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         /**
          * Returns whether this paragraph has bullets
          */
+
         public bool IsBullet
         {
             get
@@ -1003,7 +1087,7 @@ namespace Npoi.Core.XSSF.UserModel
             }
             set
             {
-                if(IsBullet == value) return;
+                if (IsBullet == value) return;
 
                 CT_TextParagraphProperties pr = _p.IsSetPPr() ? _p.pPr : _p.AddNewPPr();
                 if (!value)
@@ -1029,9 +1113,13 @@ namespace Npoi.Core.XSSF.UserModel
                 }
             }
         }
-        class ParagraphPropertyFetcherBullet : ParagraphPropertyFetcher<bool?>
+
+        private class ParagraphPropertyFetcherBullet : ParagraphPropertyFetcher<bool?>
         {
-            public ParagraphPropertyFetcherBullet(int level) : base(level){}
+            public ParagraphPropertyFetcherBullet(int level) : base(level)
+            {
+            }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
                 if (props.IsSetBuNone())
@@ -1064,6 +1152,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param startAt the number that will start number for a given sequence of automatically
          *        numbered bullets (1-based).
          */
+
         public void SetBullet(ListAutoNumber scheme, int startAt)
         {
             if (startAt < 1) throw new ArgumentException("Start Number must be greater or equal that 1");
@@ -1076,7 +1165,7 @@ namespace Npoi.Core.XSSF.UserModel
             if (pr.IsSetBuNone()) pr.UnsetBuNone();
             // remove these elements if present as it results in invalid content when opening in Excel.
             if (pr.IsSetBuBlip()) pr.UnsetBuBlip();
-            if (pr.IsSetBuChar()) pr.UnsetBuChar();        
+            if (pr.IsSetBuChar()) pr.UnsetBuChar();
         }
 
         /**
@@ -1084,6 +1173,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param scheme type of auto-numbering
          */
+
         public void SetBullet(ListAutoNumber scheme)
         {
             CT_TextParagraphProperties pr = _p.IsSetPPr() ? _p.pPr : _p.AddNewPPr();
@@ -1100,6 +1190,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Returns whether this paragraph has automatic numbered bullets
          */
+
         public bool IsBulletAutoNumber
         {
             get
@@ -1118,9 +1209,13 @@ namespace Npoi.Core.XSSF.UserModel
                 return fetcher.GetValue();
             }
         }
-        class ParagraphPropertyFetcherIsBulletAutoNumber : ParagraphPropertyFetcher<bool>
+
+        private class ParagraphPropertyFetcherIsBulletAutoNumber : ParagraphPropertyFetcher<bool>
         {
-            public ParagraphPropertyFetcherIsBulletAutoNumber(int level) : base(level) { }
+            public ParagraphPropertyFetcherIsBulletAutoNumber(int level) : base(level)
+            {
+            }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
                 if (props.IsSetBuAutoNum())
@@ -1131,9 +1226,11 @@ namespace Npoi.Core.XSSF.UserModel
                 return false;
             }
         }
+
         /**
          * Returns the starting number if this paragraph has automatic numbered bullets, otherwise returns 0
          */
+
         public int BulletAutoNumberStart
         {
             get
@@ -1153,9 +1250,13 @@ namespace Npoi.Core.XSSF.UserModel
                 return fetcher.GetValue();
             }
         }
-        class ParagraphPropertyFetcherBulletAutoNumberStart : ParagraphPropertyFetcher<int>
+
+        private class ParagraphPropertyFetcherBulletAutoNumberStart : ParagraphPropertyFetcher<int>
         {
-            public ParagraphPropertyFetcherBulletAutoNumberStart(int level) : base(level) { }
+            public ParagraphPropertyFetcherBulletAutoNumberStart(int level) : base(level)
+            {
+            }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
                 if (props.IsSetBuAutoNum() && props.buAutoNum.IsSetStartAt())
@@ -1166,9 +1267,11 @@ namespace Npoi.Core.XSSF.UserModel
                 return false;
             }
         }
+
         /**
          * Returns the auto number scheme if this paragraph has automatic numbered bullets, otherwise returns ListAutoNumber.ARABIC_PLAIN
          */
+
         public ListAutoNumber BulletAutoNumberScheme
         {
             get
@@ -1192,9 +1295,12 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-        class ParagraphPropertyFetcherBulletAutoNumberScheme : ParagraphPropertyFetcher<ListAutoNumber?>
+        private class ParagraphPropertyFetcherBulletAutoNumberScheme : ParagraphPropertyFetcher<ListAutoNumber?>
         {
-            public ParagraphPropertyFetcherBulletAutoNumberScheme(int level) : base(level) { }
+            public ParagraphPropertyFetcherBulletAutoNumberScheme(int level) : base(level)
+            {
+            }
+
             public override bool Fetch(CT_TextParagraphProperties props)
             {
                 if (props.IsSetBuAutoNum())
@@ -1205,6 +1311,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return false;
             }
         }
+
         private bool fetchParagraphProperty(ParagraphPropertyFetcher visitor)
         {
             bool ok = false;
@@ -1218,7 +1325,6 @@ namespace Npoi.Core.XSSF.UserModel
 
             return ok;
         }
-
 
         public override String ToString()
         {
@@ -1260,5 +1366,4 @@ namespace Npoi.Core.XSSF.UserModel
             return _Runs.GetEnumerator();
         }
     }
-
 }

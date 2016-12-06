@@ -17,10 +17,8 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
-    using NUnit.Framework;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using NUnit.Framework;
 
     [TestFixture]
     public class TestXWPFTableRow
@@ -32,7 +30,7 @@ namespace Npoi.Core.XWPF.UserModel
             Assert.IsNotNull(ctRow);
         }
 
-         [Ignore("No explanation provided")]
+        [Ignore("No explanation provided")]
         public void TestSetGetCantSplitRow()
         {
             // create a table
@@ -48,7 +46,8 @@ namespace Npoi.Core.XWPF.UserModel
             //assert(isCant);
             Assert.IsTrue(isCant);
         }
-         [Ignore("No explanation provided")]
+
+        [Ignore("No explanation provided")]
         public void TestSetGetRepeatHeader()
         {
             // create a table
@@ -59,11 +58,10 @@ namespace Npoi.Core.XWPF.UserModel
             XWPFTableRow tr = table.GetRow(0);
             Assert.IsNotNull(tr);
 
-            tr.IsRepeatHeader =true;
+            tr.IsRepeatHeader = true;
             bool isRpt = tr.IsRepeatHeader;
             //assert(isRpt);
             Assert.IsTrue(isRpt);
         }
     }
-
 }

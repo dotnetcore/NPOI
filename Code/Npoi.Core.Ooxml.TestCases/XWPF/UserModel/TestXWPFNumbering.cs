@@ -17,17 +17,14 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
-    using NUnit.Framework;
-
-    using Npoi.Core.XWPF;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.XWPF;
+    using NUnit.Framework;
+    using System;
 
     [TestFixture]
     public class TestXWPFNumbering
     {
-
         [Test]
         public void TestCompareAbstractNum()
         {
@@ -61,6 +58,7 @@ namespace Npoi.Core.XWPF.UserModel
             string CompareAbstractNum = num.GetCTNum().abstractNumId.val;
             Assert.AreEqual(abstractNumId, CompareAbstractNum);
         }
+
         [Test]
         public void TestGetNumIlvl()
         {
@@ -70,6 +68,7 @@ namespace Npoi.Core.XWPF.UserModel
             numIlvl = "1";
             Assert.AreEqual(numIlvl, doc.Paragraphs[5].GetNumIlvl());
         }
+
         [Test]
         public void TestGetNumFmt()
         {
@@ -123,6 +122,5 @@ namespace Npoi.Core.XWPF.UserModel
             }
             Assert.IsTrue(ex);
         }
-
     }
 }

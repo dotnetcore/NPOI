@@ -14,26 +14,27 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.Model
 {
-    using System;
-    using Npoi.Core.XWPF.UserModel;
-    using Npoi.Core.OpenXmlFormats.Wordprocessing;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Xml.Serialization;
-    using System.Xml;
     using Npoi.Core.OpenXmlFormats.Vml;
     using Npoi.Core.OpenXmlFormats.Vml.Office;
-    using System.Diagnostics;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.XWPF.UserModel;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Xml;
+    using System.Xml.Serialization;
 
     /**
      * A .docx file can have no headers/footers, the same header/footer
-     *  on each page, odd/even page footers, and optionally also 
+     *  on each page, odd/even page footers, and optionally also
      *  a different header/footer on the first page.
      * This class handles sorting out what there is, and giving you
      *  the right headers and footers for the document.
      */
+
     public class XWPFHeaderFooterPolicy
     {
         public static ST_HdrFtr DEFAULT = ST_HdrFtr.@default;
@@ -56,6 +57,7 @@ namespace Npoi.Core.XWPF.Model
          *  and Creates any header and footer objects
          *  as required.
          */
+
         public XWPFHeaderFooterPolicy(XWPFDocument doc)
             : this(doc, doc.Document.body.sectPr)
         {
@@ -66,6 +68,7 @@ namespace Npoi.Core.XWPF.Model
          *  and Creates any header and footer objects
          *  as required.
          */
+
         public XWPFHeaderFooterPolicy(XWPFDocument doc, CT_SectPr sectPr)
         {
             // Grab what headers and footers have been defined
@@ -191,7 +194,7 @@ namespace Npoi.Core.XWPF.Model
         {
             List<POIXMLDocumentPart> relations = doc.GetRelations();
             int i = 1;
-            for (IEnumerator<POIXMLDocumentPart> it = relations.GetEnumerator(); it.MoveNext(); )
+            for (IEnumerator<POIXMLDocumentPart> it = relations.GetEnumerator(); it.MoveNext();)
             {
                 POIXMLDocumentPart item = it.Current;
                 if (item.GetPackageRelationship().RelationshipType.Equals(relation.Relation))
@@ -221,14 +224,17 @@ namespace Npoi.Core.XWPF.Model
         private CT_HdrFtr buildHdrFtr(String pStyle, XWPFParagraph[] paragraphs)
         {
             CT_HdrFtr ftr = new CT_HdrFtr();
-            if (paragraphs != null) {
-                for (int i = 0 ; i < paragraphs.Length ; i++) {
+            if (paragraphs != null)
+            {
+                for (int i = 0; i < paragraphs.Length; i++)
+                {
                     CT_P p = ftr.AddNewP();
                     //ftr.PArray=(0, paragraphs[i].CTP);		// MB 23 May 2010
                     ftr.SetPArray(i, paragraphs[i].GetCTP());   	// MB 23 May 2010
                 }
             }
-            else {
+            else
+            {
                 CT_P p = ftr.AddNewP();
                 byte[] rsidr = doc.Document.body.GetPArray(0).rsidR;
                 byte[] rsidrdefault = doc.Document.body.GetPArray(0).rsidRDefault;
@@ -246,33 +252,36 @@ namespace Npoi.Core.XWPF.Model
          * and CreateFooter(int, XWPFParagraph[]) methods or the GetXXXXXHeader/Footer methods where
          * headers or footers had been Added to a document since it had been Created/opened, returned
          * an object that Contained no XWPFParagraph objects even if the header/footer itself did contain
-         * text. The reason was that this line of code; CTHdrFtr ftr = CTHdrFtr.Factory.NewInstance(); 
+         * text. The reason was that this line of code; CTHdrFtr ftr = CTHdrFtr.Factory.NewInstance();
          * Created a brand new instance of the CTHDRFtr class which was then populated with data when
          * it should have recovered the CTHdrFtr object encapsulated within the XWPFHeaderFooter object
-         * that had previoulsy been instantiated in the CreateHeader(int, XWPFParagraph[]) or 
+         * that had previoulsy been instantiated in the CreateHeader(int, XWPFParagraph[]) or
          * CreateFooter(int, XWPFParagraph[]) methods.
          */
+
         private CT_HdrFtr buildHdrFtr(String pStyle, XWPFParagraph[] paragraphs, XWPFHeaderFooter wrapper)
         {
             CT_HdrFtr ftr = wrapper._getHdrFtr();
-            if (paragraphs != null) {
-                for (int i = 0 ; i < paragraphs.Length ; i++) {
+            if (paragraphs != null)
+            {
+                for (int i = 0; i < paragraphs.Length; i++)
+                {
                     CT_P p = ftr.AddNewP();
                     ftr.SetPArray(i, paragraphs[i].GetCTP());
                 }
             }
-            else {
+            else
+            {
                 CT_P p = ftr.AddNewP();
                 byte[] rsidr = doc.Document.body.GetPArray(0).rsidR;
                 byte[] rsidrdefault = doc.Document.body.GetPArray(0).rsidRDefault;
-                p.rsidP=(rsidr);
-                p.rsidRDefault=(rsidrdefault);
+                p.rsidP = (rsidr);
+                p.rsidRDefault = (rsidrdefault);
                 CT_PPr pPr = p.AddNewPPr();
                 pPr.AddNewPStyle().val = (pStyle);
             }
             return ftr;
         }
-
 
         private void SetFooterReference(ST_HdrFtr type, XWPFHeaderFooter wrapper)
         {
@@ -281,14 +290,12 @@ namespace Npoi.Core.XWPF.Model
             ref1.id = (wrapper.GetPackageRelationship().Id);
         }
 
-
         private void SetHeaderReference(ST_HdrFtr type, XWPFHeaderFooter wrapper)
         {
             CT_HdrFtrRef ref1 = doc.Document.body.sectPr.AddNewHeaderReference();
             ref1.type = (type);
             ref1.id = (wrapper.GetPackageRelationship().Id);
         }
-
 
         private XmlSerializerNamespaces Commit(XWPFHeaderFooter wrapper)
         {
@@ -309,38 +316,47 @@ namespace Npoi.Core.XWPF.Model
         {
             return firstPageHeader;
         }
+
         public XWPFFooter GetFirstPageFooter()
         {
             return firstPageFooter;
         }
+
         /**
          * Returns the odd page header. This is
          *  also the same as the default one...
          */
+
         public XWPFHeader GetOddPageHeader()
         {
             return defaultHeader;
         }
+
         /**
          * Returns the odd page footer. This is
          *  also the same as the default one...
          */
+
         public XWPFFooter GetOddPageFooter()
         {
             return defaultFooter;
         }
+
         public XWPFHeader GetEvenPageHeader()
         {
             return evenPageHeader;
         }
+
         public XWPFFooter GetEvenPageFooter()
         {
             return evenPageFooter;
         }
+
         public XWPFHeader GetDefaultHeader()
         {
             return defaultHeader;
         }
+
         public XWPFFooter GetDefaultFooter()
         {
             return defaultFooter;
@@ -351,6 +367,7 @@ namespace Npoi.Core.XWPF.Model
          *  (1 based) page.
          * @param pageNumber The one based page number
          */
+
         public XWPFHeader GetHeader(int pageNumber)
         {
             if (pageNumber == 1 && firstPageHeader != null)
@@ -363,11 +380,13 @@ namespace Npoi.Core.XWPF.Model
             }
             return defaultHeader;
         }
+
         /**
          * Get the footer that applies to the given
          *  (1 based) page.
          * @param pageNumber The one based page number
          */
+
         public XWPFFooter GetFooter(int pageNumber)
         {
             if (pageNumber == 1 && firstPageFooter != null)
@@ -404,6 +423,7 @@ namespace Npoi.Core.XWPF.Model
          * This is the default Watermark paragraph; the only variable is the text message
          * TODO: manage all the other variables
          */
+
         private XWPFParagraph GetWatermarkParagraph(String text, int idx)
         {
             CT_P p = new CT_P();
@@ -427,7 +447,7 @@ namespace Npoi.Core.XWPF.Model
             shapetype.adj = ("10800");
             shapetype.path2 = ("m@7,0l@8,0m@5,21600l@6,21600e");
             CT_Formulas formulas = shapetype.AddNewFormulas();
-            formulas.AddNewF().eqn=("sum #0 0 10800");
+            formulas.AddNewF().eqn = ("sum #0 0 10800");
             formulas.AddNewF().eqn = ("prod #0 2 1");
             formulas.AddNewF().eqn = ("sum 21600 0 @1");
             formulas.AddNewF().eqn = ("sum 0 0 @2");
@@ -442,19 +462,19 @@ namespace Npoi.Core.XWPF.Model
             formulas.AddNewF().eqn = ("mid @6 @7");
             formulas.AddNewF().eqn = ("sum @6 0 @5");
             CT_Path path = shapetype.AddNewPath();
-            path.textpathok=(Npoi.Core.OpenXmlFormats.Vml.ST_TrueFalse.t);
-            path.connecttype=(ST_ConnectType.custom);
-            path.connectlocs=("@9,0;@10,10800;@11,21600;@12,10800");
-            path.connectangles=("270,180,90,0");
+            path.textpathok = (Npoi.Core.OpenXmlFormats.Vml.ST_TrueFalse.t);
+            path.connecttype = (ST_ConnectType.custom);
+            path.connectlocs = ("@9,0;@10,10800;@11,21600;@12,10800");
+            path.connectangles = ("270,180,90,0");
             CT_TextPath shapeTypeTextPath = shapetype.AddNewTextpath();
-            shapeTypeTextPath.on=(Npoi.Core.OpenXmlFormats.Vml.ST_TrueFalse.t);
-            shapeTypeTextPath.fitshape=(Npoi.Core.OpenXmlFormats.Vml.ST_TrueFalse.t);
+            shapeTypeTextPath.on = (Npoi.Core.OpenXmlFormats.Vml.ST_TrueFalse.t);
+            shapeTypeTextPath.fitshape = (Npoi.Core.OpenXmlFormats.Vml.ST_TrueFalse.t);
             CT_Handles handles = shapetype.AddNewHandles();
             CT_H h = handles.AddNewH();
-            h.position=("#0,bottomRight");
-            h.xrange=("6629,14971");
+            h.position = ("#0,bottomRight");
+            h.xrange = ("6629,14971");
             Npoi.Core.OpenXmlFormats.Vml.Office.CT_Lock lock1 = shapetype.AddNewLock();
-            lock1.ext=(ST_Ext.edit);
+            lock1.ext = (ST_Ext.edit);
             CT_Shape shape = group.AddNewShape();
             shape.id = ("PowerPlusWaterMarkObject" + idx);
             shape.spid = ("_x0000_s102" + (4 + idx));
@@ -464,12 +484,11 @@ namespace Npoi.Core.XWPF.Model
             shape.fillcolor = ("black");
             shape.stroked = (Npoi.Core.OpenXmlFormats.Vml.ST_TrueFalse.@false);
             CT_TextPath shapeTextPath = shape.AddNewTextpath();
-            shapeTextPath.style=("font-family:&quot;Cambria&quot;;font-size:1pt");
-            shapeTextPath.@string=(text);
+            shapeTextPath.style = ("font-family:&quot;Cambria&quot;;font-size:1pt");
+            shapeTextPath.@string = (text);
             pict.Set(group);
             // end watermark paragraph
             return new XWPFParagraph(p, doc);
         }
     }
-
 }

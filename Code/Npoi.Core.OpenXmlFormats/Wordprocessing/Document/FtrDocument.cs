@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
     public class FtrDocument
     {
+        private CT_Ftr ftr = null;
 
-        CT_Ftr ftr = null;
         public FtrDocument()
         {
             ftr = new CT_Ftr();
         }
+
         public static FtrDocument Parse(XDocument doc, XmlNamespaceManager namespaceMgr)
         {
             CT_Ftr obj = CT_Ftr.Parse(doc.Document.Root, namespaceMgr);
@@ -34,6 +31,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         {
             this.ftr = ftr;
         }
+
         public CT_Ftr Ftr
         {
             get
@@ -41,6 +39,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return this.ftr;
             }
         }
+
         public void SetFtr(CT_Ftr ftr)
         {
             this.ftr = ftr;

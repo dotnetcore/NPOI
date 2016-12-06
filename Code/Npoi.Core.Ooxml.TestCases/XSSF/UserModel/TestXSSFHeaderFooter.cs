@@ -15,14 +15,16 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
-using NUnit.Framework;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using NUnit.Framework;
+using System;
+
 namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * Tests for {@link XSSFHeaderFooter}
      */
+
     [TestFixture]
     public class TestXSSFHeaderFooter
     {
@@ -64,10 +66,10 @@ namespace Npoi.Core.XSSF.UserModel
             head.Center = ("HEADER TEXT &P&N&D&T&Z&F&F&A&V");
             Assert.AreEqual("HEADER TEXT &V", head.Center);
         }
+
         [Test]
         public void TestGetSetCenterLeftRight()
         {
-
             XSSFOddFooter footer = new XSSFOddFooter(new CT_HeaderFooter());
             Assert.AreEqual("", footer.Center);
             footer.Center = ("My first center section");
@@ -86,12 +88,8 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual("Second center version", footer.Center);
             Assert.AreEqual("Second left version", footer.Left);
             Assert.AreEqual("Second right version", footer.Right);
-
         }
 
         // TODO Rest of Tests
     }
-
-
 }
-

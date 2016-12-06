@@ -19,21 +19,19 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
     using Npoi.Core.OpenXml4Net.OPC;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
-    using System.IO;
-    using System.Xml.Serialization;
-    using System.Xml;
     using Npoi.Core.Util;
-    using System.Xml.XPath;
+    using System;
+    using System.IO;
 
     /**
      * Sketch of XWPF header class
      */
+
     public class XWPFHeader : XWPFHeaderFooter
     {
-        public XWPFHeader():base()
+        public XWPFHeader() : base()
         {
             headerFooter = new CT_Hdr();
             ReadHdrFtr();
@@ -42,7 +40,6 @@ namespace Npoi.Core.XWPF.UserModel
         public XWPFHeader(POIXMLDocumentPart parent, PackagePart part, PackageRelationship rel)
             : base(parent, part, rel)
         {
-            
         }
 
         public XWPFHeader(XWPFDocument doc, CT_HdrFtr hdrFtr)
@@ -104,7 +101,6 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
 
-
         /// <summary>
         /// Read the document
         /// </summary>
@@ -143,6 +139,7 @@ namespace Npoi.Core.XWPF.UserModel
                 throw new POIXMLException(e);
             }
         }
+
         /// <summary>
         /// Get the PartType of the body
         /// </summary>

@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.SS.UserModel;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     //YK: TODO: this is only a prototype
     public class XSSFDialogsheet : XSSFSheet, ISheet
     {
@@ -28,7 +28,6 @@ namespace Npoi.Core.XSSF.UserModel
         public XSSFDialogsheet(XSSFSheet sheet)
             : base(sheet.GetPackagePart(), sheet.GetPackageRelationship())
         {
-
             this.dialogsheet = new CT_Dialogsheet();
             this.worksheet = new CT_Worksheet();
         }
@@ -694,7 +693,7 @@ namespace Npoi.Core.XSSF.UserModel
             get { throw new System.NotImplementedException(); }
         }
 
-        bool IsRightToLeft
+        private bool IsRightToLeft
         {
             get
             {
@@ -707,5 +706,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-
-

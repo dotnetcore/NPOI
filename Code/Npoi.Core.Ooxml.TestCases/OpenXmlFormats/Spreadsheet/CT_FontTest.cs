@@ -5,8 +5,6 @@
 
 //namespace ooxml.Testcases
 //{
-    
-    
 //    /// <summary>
 //    ///This is a test class for CT_FontTest and is intended
 //    ///to contain all CT_FontTest Unit Tests
@@ -14,8 +12,6 @@
 //    [TestClass()]
 //    public class CT_FontTest
 //    {
-
-
 //        private TestContext testContextInstance;
 
 //        /// <summary>
@@ -35,7 +31,7 @@
 //        }
 
 //        #region Additional test attributes
-//        // 
+//        //
 //        //You can use the following additional attributes as you write your tests:
 //        //
 //        //Use ClassInitialize to run code before running the first test in the class
@@ -64,7 +60,6 @@
 //        //
 //        #endregion
 
-
 //        /// <summary>
 //        ///A test for Parse
 //        ///</summary>
@@ -83,7 +78,7 @@
 //            string secondXml = CT_Font.GetString(actual);
 //            Assert.AreEqual(firstXml, secondXml);
 //            Assert.AreEqual(expected.name.val, actual.name.val);
-//            Assert.AreEqual(fontName, actual.name.val);           
+//            Assert.AreEqual(fontName, actual.name.val);
 //            Assert.AreEqual(expected.nameSpecified, actual.nameSpecified);
 //            Assert.AreEqual(expected.b.val, actual.b.val);
 //            Assert.AreEqual(true, actual.b.val);

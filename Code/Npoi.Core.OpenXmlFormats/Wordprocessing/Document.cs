@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml;
-using System.Xml.Serialization;
+﻿using Npoi.Core.OpenXml4Net.Util;
 using Npoi.Core.OpenXmlFormats.Shared;
-using Npoi.Core.OpenXml4Net.Util;
+using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Collections;
+using System.Xml;
 using System.Xml.Linq;
-using Npoi.Core;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot("glossaryDocument", Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = false)]
     public class CT_GlossaryDocument : CT_DocumentBase
     {
-
         private CT_DocParts docPartsField;
 
         public CT_GlossaryDocument()
@@ -38,6 +34,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
         }
     }
+
     [XmlInclude(typeof(CT_GlossaryDocument))]
     [XmlInclude(typeof(CT_Document))]
     [Serializable]
@@ -45,7 +42,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_DocumentBase
     {
-
         private CT_Background backgroundField;
 
         public CT_DocumentBase()
@@ -67,9 +63,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot("document", Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = false)]
     public class CT_Document : CT_DocumentBase
@@ -88,8 +82,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw)
         {
@@ -132,14 +124,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Body
     {
-
         private List<object> itemsField;
 
         private List<DocumentBodyItemChoiceType> itemsElementNameField;
@@ -152,6 +141,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             this.itemsElementNameField = new List<DocumentBodyItemChoiceType>();
             this.itemsField = new List<object>();
         }
+
         public static CT_Body Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -321,7 +311,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         {
             sw.Write(string.Format("<w:{0}", nodeName));
             sw.Write(">");
-            int i=0;
+            int i = 0;
             foreach (object o in this.Items)
             {
                 if (o is CT_RunTrackChange && this.itemsElementNameField[i] == DocumentBodyItemChoiceType.moveTo)
@@ -334,7 +324,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                     ((CT_OMath)o).Write(sw, "oMath");
                 else if (o is CT_AltChunk)
                     ((CT_AltChunk)o).Write(sw, "altChunk");
-                else if ((o is CT_MarkupRange)&&this.itemsElementNameField[i]== DocumentBodyItemChoiceType.bookmarkEnd)
+                else if ((o is CT_MarkupRange) && this.itemsElementNameField[i] == DocumentBodyItemChoiceType.bookmarkEnd)
                     ((CT_MarkupRange)o).Write(sw, "bookmarkEnd");
                 else if (o is CT_Bookmark && this.itemsElementNameField[i] == DocumentBodyItemChoiceType.bookmarkStart)
                     ((CT_Bookmark)o).Write(sw, "bookmarkStart");
@@ -444,7 +434,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return p;
         }
-        
+
         [XmlElement("ItemsElementName", Order = 1)]
         [XmlIgnore]
         public List<DocumentBodyItemChoiceType> ItemsElementName
@@ -471,6 +461,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.sectPrField = value;
             }
         }
+
         public CT_Tbl AddNewTbl()
         {
             CT_Tbl tbl = new CT_Tbl();
@@ -481,22 +472,27 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return tbl;
         }
+
         public int sizeOfTblArray()
         {
             return SizeOfArray(DocumentBodyItemChoiceType.tbl);
         }
+
         public List<CT_Tbl> getTblArray()
         {
             return GetObjectList<CT_Tbl>(DocumentBodyItemChoiceType.tbl);
         }
+
         public CT_Tbl insertNewTbl(int paramInt)
         {
             throw new NotImplementedException();
         }
+
         public void removeTbl(int paramInt)
         {
             throw new NotImplementedException();
         }
+
         public CT_Tbl GetTblArray(int i)
         {
             return GetObjectArray<CT_Tbl>(i, DocumentBodyItemChoiceType.tbl);
@@ -516,10 +512,12 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         {
             return GetObjectArray<CT_P>(p, DocumentBodyItemChoiceType.p);
         }
+
         public void RemoveP(int paraPos)
         {
             RemoveObject(DocumentBodyItemChoiceType.p, paraPos);
         }
+
         public void RemoveTbl(int tablePos)
         {
             RemoveObject(DocumentBodyItemChoiceType.tbl, tablePos);
@@ -529,8 +527,9 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         {
             return AddNewObject<CT_SdtBlock>(DocumentBodyItemChoiceType.sdt);
         }
+
         #region Generic methods for object operation
-  
+
         private List<T> GetObjectList<T>(DocumentBodyItemChoiceType type) where T : class
         {
             lock (this)
@@ -544,6 +543,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return list;
             }
         }
+
         private int SizeOfArray(DocumentBodyItemChoiceType type)
         {
             lock (this)
@@ -557,6 +557,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return size;
             }
         }
+
         private T GetObjectArray<T>(int p, DocumentBodyItemChoiceType type) where T : class
         {
             lock (this)
@@ -567,6 +568,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return itemsField[pos] as T;
             }
         }
+
         private T AddNewObject<T>(DocumentBodyItemChoiceType type) where T : class, new()
         {
             T t = new T();
@@ -577,7 +579,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return t;
         }
-        private void SetObject<T> (DocumentBodyItemChoiceType type, int p, T obj) where T : class
+
+        private void SetObject<T>(DocumentBodyItemChoiceType type, int p, T obj) where T : class
         {
             lock (this)
             {
@@ -587,10 +590,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 if (this.itemsField[pos] is T)
                     this.itemsField[pos] = obj;
                 else
-                    throw new Exception(string.Format(@"object types are difference, itemsField[{0}] is {1}, and parameter obj is {2}", 
+                    throw new Exception(string.Format(@"object types are difference, itemsField[{0}] is {1}, and parameter obj is {2}",
                         pos, this.itemsField[pos].GetType().Name, typeof(T).Name));
             }
         }
+
         private int GetObjectIndex(DocumentBodyItemChoiceType type, int p)
         {
             int index = -1;
@@ -610,6 +614,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return index;
         }
+
         private void RemoveObject(DocumentBodyItemChoiceType type, int p)
         {
             lock (this)
@@ -621,10 +626,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 itemsField.RemoveAt(pos);
             }
         }
-        #endregion
 
-
-
+        #endregion Generic methods for object operation
 
         public void SetPArray(int pos, CT_P cT_P)
         {
@@ -632,84 +635,58 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IncludeInSchema = false)]
     public enum DocumentBodyItemChoiceType
     {
-
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:oMath")]
         oMath,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:oMathPara")]
         oMathPara,
 
-    
         altChunk,
 
-    
         bookmarkEnd,
 
-    
         bookmarkStart,
 
-    
         commentRangeEnd,
 
-    
         commentRangeStart,
 
-    
         customXml,
 
-    
         customXmlDelRangeEnd,
 
-    
         customXmlDelRangeStart,
 
-    
         customXmlInsRangeEnd,
 
-    
         customXmlInsRangeStart,
 
-    
         customXmlMoveFromRangeEnd,
 
-    
         customXmlMoveFromRangeStart,
 
-    
         customXmlMoveToRangeEnd,
 
-    
         customXmlMoveToRangeStart,
 
-    
         del,
 
-    
         ins,
 
-    
         moveFrom,
 
-    
         moveFromRangeEnd,
 
-    
         moveFromRangeStart,
 
-    
         moveTo,
 
-    
         moveToRangeEnd,
 
-    
         moveToRangeStart,
 
         /// <summary>
@@ -717,30 +694,22 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         /// </summary>
         p,
 
-    
         permEnd,
 
-    
         permStart,
 
-    
         proofErr,
 
-    
         sdt,
 
-    
         tbl,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_DocParts
     {
-
         private List<CT_DocPart> itemsField;
 
         public CT_DocParts()
@@ -762,14 +731,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_DocPart
     {
-
         private CT_DocPartPr docPartPrField;
 
         private CT_Body docPartBodyField;
@@ -807,14 +773,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_DocPartPr
     {
-
         private object[] itemsField;
 
         private ItemsChoiceType11[] itemsElementNameField;
@@ -860,14 +823,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_DocPartBehaviors
     {
-
         private List<CT_DocPartBehavior> itemsField;
 
         public CT_DocPartBehaviors()
@@ -889,14 +849,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_DocPartBehavior
     {
-
         private ST_DocPartBehavior valField;
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
@@ -913,30 +870,22 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_DocPartBehavior
     {
-
-    
         content,
 
-    
         p,
 
-    
         pg,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_DocPartCategory
     {
-
         private CT_String nameField;
 
         private CT_DocPartGallery galleryField;
@@ -974,13 +923,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_DocPartGallery
     {
-
         private ST_DocPartGallery valField;
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
@@ -997,124 +944,84 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_DocPartGallery
     {
-
-    
         placeholder,
 
-    
         any,
 
-    
         @default,
 
-    
         docParts,
 
-    
         coverPg,
 
-    
         eq,
 
-    
         ftrs,
 
-    
         hdrs,
 
-    
         pgNum,
 
-    
         tbls,
 
-    
         watermarks,
 
-    
         autoTxt,
 
-    
         txtBox,
 
-    
         pgNumT,
 
-    
         pgNumB,
 
-    
         pgNumMargins,
 
-    
         tblOfContents,
 
-    
         bib,
 
-    
         custQuickParts,
 
-    
         custCoverPg,
 
-    
         custEq,
 
-    
         custFtrs,
 
-    
         custHdrs,
 
-    
         custPgNum,
 
-    
         custTbls,
 
-    
         custWatermarks,
 
-    
         custAutoTxt,
 
-    
         custTxtBox,
 
-    
         custPgNumT,
 
-    
         custPgNumB,
 
-    
         custPgNumMargins,
 
-    
         custTblOfContents,
 
-    
         custBib,
 
-    
         custom1,
 
-    
         custom2,
 
-    
         custom3,
 
-    
         custom4,
 
-    
         custom5,
     }
 
@@ -1123,7 +1030,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_DocPartName
     {
-
         private string valField;
 
         private ST_OnOff decoratedField;
@@ -1170,13 +1076,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_DocPartTypes
     {
-
         private List<CT_DocPartType> itemsField;
 
         private ST_OnOff allField;
@@ -1228,13 +1132,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_DocPartType
     {
-
         private ST_DocPartType valField;
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
@@ -1251,31 +1153,22 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_DocPartType
     {
-
-    
         none,
 
-    
         normal,
 
-    
         autoExp,
 
-    
         toolbar,
 
-    
         speller,
 
-    
         formFld,
 
-    
         bbPlcHdr,
     }
 
@@ -1283,36 +1176,26 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IncludeInSchema = false)]
     public enum ItemsChoiceType11
     {
-
-    
         behaviors,
 
-    
         category,
 
-    
         description,
 
-    
         guid,
 
-    
         name,
 
-    
         style,
 
-    
         types,
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_DocGrid
     {
-
         private ST_DocGrid typeField;
 
         private bool typeFieldSpecified;
@@ -1320,6 +1203,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private string linePitchField;
 
         private string charSpaceField;
+
         public CT_DocGrid()
         {
             this.type = ST_DocGrid.@default;
@@ -1337,12 +1221,10 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
-            if(this.type!= ST_DocGrid.@default)
+            if (this.type != ST_DocGrid.@default)
                 XmlHelper.WriteAttribute(sw, "w:type", this.type.ToString());
             XmlHelper.WriteAttribute(sw, "w:linePitch", this.linePitch);
             XmlHelper.WriteAttribute(sw, "w:charSpace", this.charSpace);
@@ -1402,32 +1284,24 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_DocGrid
     {
-
-    
         @default,
 
-    
         lines,
 
-    
         linesAndChars,
 
-    
         snapToChars,
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_DocVars
     {
-
         private List<CT_DocVar> docVarField;
 
         public CT_DocVars()
@@ -1448,5 +1322,4 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
         }
     }
-
 }

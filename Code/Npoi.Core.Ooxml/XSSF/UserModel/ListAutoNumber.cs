@@ -16,11 +16,13 @@
  *    limitations under the License.
  * ====================================================================
  */
+
 namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * Specifies type of automatic numbered bullet points that should be applied to a paragraph.
      */
+
     public enum ListAutoNumber
     {
         /**

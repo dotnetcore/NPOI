@@ -14,13 +14,13 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-    using System.Collections;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
-    using System.Text;
+    using System;
     using System.IO;
+    using System.Text;
     using System.Xml;
 
     /**
@@ -29,9 +29,9 @@ namespace Npoi.Core.XWPF.UserModel
      * <p/>
      * WARNING - APIs expected to change rapidly
      */
+
     public class XWPFSDTContentCell : ISDTContent
     {
-
         //A full implementation would grab the icells
         //that a content cell can Contain.  This would require
         //significant Changes, including changing the notion that the
@@ -46,7 +46,6 @@ namespace Npoi.Core.XWPF.UserModel
                                   XWPFTableRow xwpfTableRow, IBody part)
         {
             StringBuilder sb = new StringBuilder();
-            
 
             //keep track of the following,
             //and add "\n" only before the start of a body
@@ -93,7 +92,6 @@ namespace Npoi.Core.XWPF.UserModel
                             }
                             iBodyCnt++;
                         }
-
                     }
                 }
             }
@@ -140,6 +138,7 @@ namespace Npoi.Core.XWPF.UserModel
             //}
             text = sb.ToString();
         }
+
         private bool IsStartToken(XmlReader cursor, String string1)
         {
             if (!cursor.IsStartElement())
@@ -170,7 +169,6 @@ namespace Npoi.Core.XWPF.UserModel
             return false;
         }
 
-
         public string Text
         {
             get
@@ -185,4 +183,3 @@ namespace Npoi.Core.XWPF.UserModel
         }
     }
 }
-

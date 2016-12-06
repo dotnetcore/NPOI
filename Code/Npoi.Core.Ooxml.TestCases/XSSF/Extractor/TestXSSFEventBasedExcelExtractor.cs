@@ -39,26 +39,26 @@
 //        // a very simple file
 //       XSSFEventBasedExcelExtractor extractor = GetExtractor("sample.xlsx");
 //        extractor.GetText();
-        
+
 //        String text = extractor.GetText();
 //        Assert.IsTrue(text.Length > 0);
-        
+
 //        // Check sheet names
 //        Assert.IsTrue(text.startsWith("Sheet1"));
 //        Assert.IsTrue(text.EndsWith("Sheet3\n"));
-        
+
 //        // Now without, will have text
 //        extractor.SetIncludeSheetNames(false);
 //        text = extractor.GetText();
 //        String CHUNK1 =
-//            "Lorem\t111\n" + 
-//            "ipsum\t222\n" + 
-//            "dolor\t333\n" + 
-//            "sit\t444\n" + 
-//            "amet\t555\n" + 
-//            "consectetuer\t666\n" + 
-//            "adipiscing\t777\n" + 
-//            "elit\t888\n" + 
+//            "Lorem\t111\n" +
+//            "ipsum\t222\n" +
+//            "dolor\t333\n" +
+//            "sit\t444\n" +
+//            "amet\t555\n" +
+//            "consectetuer\t666\n" +
+//            "adipiscing\t777\n" +
+//            "elit\t888\n" +
 //            "Nunc\t999\n";
 //        String CHUNK2 =
 //            "The quick brown fox jumps over the lazy dog\n" +
@@ -67,51 +67,51 @@
 //            "hello, xssf	hello, xssf\n" +
 //            "hello, xssf	hello, xssf\n";
 //        Assert.AreEqual(
-//                CHUNK1 + 
-//                "at\t4995\n" + 
+//                CHUNK1 +
+//                "at\t4995\n" +
 //                CHUNK2
 //                , text);
-        
+
 //        // Now Get formulas not their values
 //        extractor.SetFormulasNotResults(true);
 //        text = extractor.GetText();
 //        Assert.AreEqual(
 //                CHUNK1 +
-//                "at\tSUM(B1:B9)\n" + 
+//                "at\tSUM(B1:B9)\n" +
 //                CHUNK2, text);
-        
+
 //        // With sheet names too
 //        extractor.SetIncludeSheetNames(true);
 //        text = extractor.GetText();
 //        Assert.AreEqual(
 //                "Sheet1\n" +
 //                CHUNK1 +
-//                "at\tSUM(B1:B9)\n" + 
+//                "at\tSUM(B1:B9)\n" +
 //                "rich Test\n" +
 //                CHUNK2 +
 //                "Sheet3\n"
 //                , text);
-        
+
 //        extractor.Close();
 //    }
-    
+
 //    public void TestGetComplexText()  {
 //        // A fairly complex file
 //       XSSFEventBasedExcelExtractor extractor = GetExtractor("AverageTaxRates.xlsx");
 //        extractor.GetText();
-        
+
 //        String text = extractor.GetText();
 //        Assert.IsTrue(text.Length > 0);
-        
+
 //        // Might not have all formatting it should do!
 //        Assert.IsTrue(text.startsWith(
 //                        "Avgtxfull\n" +
-//                        "(iii) AVERAGE TAX RATES ON ANNUAL"	
+//                        "(iii) AVERAGE TAX RATES ON ANNUAL"
 //        ));
-        
+
 //        extractor.Close();
 //    }
-    
+
 //   public void TestInlineStrings(){
 //      XSSFEventBasedExcelExtractor extractor = GetExtractor("InlineStrings.xlsx");
 //      extractor.SetFormulasNotResults(true);
@@ -120,22 +120,22 @@
 //      // Numbers
 //      Assert.IsTrue("Unable to find expected word in text\n" + text, text.Contains("43"));
 //      Assert.IsTrue("Unable to find expected word in text\n" + text, text.Contains("22"));
-      
+
 //      // Strings
 //      Assert.IsTrue("Unable to find expected word in text\n" + text, text.Contains("ABCDE"));
 //      Assert.IsTrue("Unable to find expected word in text\n" + text, text.Contains("Long Text"));
-      
+
 //      // Inline Strings
 //      Assert.IsTrue("Unable to find expected word in text\n" + text, text.Contains("1st Inline String"));
 //      Assert.IsTrue("Unable to find expected word in text\n" + text, text.Contains("And More"));
-      
+
 //      // Formulas
 //      Assert.IsTrue("Unable to find expected word in text\n" + text, text.Contains("A2"));
 //      Assert.IsTrue("Unable to find expected word in text\n" + text, text.Contains("A5-A$2"));
-        
+
 //      extractor.Close();
 //   }
-   
+
 //    /**
 //     * Test that we return pretty much the same as
 //     *  ExcelExtractor does, when we're both passed
@@ -147,19 +147,19 @@
 
 //        ExcelExtractor ole2Extractor =
 //            new ExcelExtractor(HSSFTestDataSamples.OpenSampleWorkbook("SampleSS.xls"));
-        
+
 //        POITextExtractor[] extractors =
 //            new POITextExtractor[] { ooxmlExtractor, ole2Extractor };
 //        for (int i = 0; i < extractors.Length; i++) {
 //            POITextExtractor extractor = extractors[i];
-            
+
 //            String text = extractor.GetText().ReplaceAll("[\r\t]", "");
 //            Assert.IsTrue(text.startsWith("First Sheet\nTest spreadsheet\n2nd row2nd row 2nd column\n"));
 //            Pattern pattern = Pattern.compile(".*13(\\.0+)?\\s+Sheet3.*", Pattern.DOTALL);
 //            Matcher m = pattern.matcher(text);
-//            Assert.IsTrue(m.matches());			
+//            Assert.IsTrue(m.matches());
 //        }
-        
+
 //        ole2Extractor.Close();
 //        ooxmlExtractor.Close();
 //    }

@@ -15,33 +15,29 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using Npoi.Core.XSSF.UserModel.Helpers;
-using System.Collections.Generic;
 using Npoi.Core.XSSF.Model;
-using Npoi.Core.SS.UserModel;
-using System.Xml;
+using Npoi.Core.XSSF.UserModel.Helpers;
+using System;
+using System.Collections.Generic;
+
 namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * This class : the Map element (Open Office XML Part 4:
      * chapter 3.16.2)
-     * 
+     *
      * This element Contains all of the properties related to the XML map,
      * and the behaviors expected during data refresh operations.
      *
      * @author Roberto Manicardi
      */
 
-
     public class XSSFMap
     {
-
         private CT_Map ctMap;
 
         private MapInfo mapInfo;
-
 
         public XSSFMap(CT_Map ctMap, MapInfo mapInfo)
         {
@@ -49,14 +45,10 @@ namespace Npoi.Core.XSSF.UserModel
             this.mapInfo = mapInfo;
         }
 
-
-
         public CT_Map GetCTMap()
         {
             return ctMap;
         }
-
-
 
         public CT_Schema GetCTSchema()
         {
@@ -73,6 +65,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return the list of Single Xml Cells that provide a map rule to this mapping.
          */
+
         public List<XSSFSingleXmlCell> GetRelatedSingleXMLCell()
         {
             List<XSSFSingleXmlCell> relatedSimpleXmlCells = new List<XSSFSingleXmlCell>();
@@ -102,9 +95,9 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return the list of all Tables that provide a map rule to this mapping
          */
+
         public List<XSSFTable> GetRelatedTables()
         {
-
             List<XSSFTable> tables = new List<XSSFTable>();
             int sheetNumber = mapInfo.Workbook.NumberOfSheets;
 
@@ -128,5 +121,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-
-

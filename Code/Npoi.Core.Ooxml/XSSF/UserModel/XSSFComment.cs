@@ -15,20 +15,18 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.OpenXmlFormats.Vml;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.Util;
-using Npoi.Core.XSSF.Model;
 using Npoi.Core.Util;
+using Npoi.Core.XSSF.Model;
+using System;
 
 namespace Npoi.Core.XSSF.UserModel
 {
-
     public class XSSFComment : IComment
     {
-
         private CT_Comment _comment;
         private CommentsTable _comments;
         private CT_Shape _vmlShape;
@@ -42,6 +40,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Creates a new XSSFComment, associated with a given
          *  low level comment object.
          */
+
         public XSSFComment(CommentsTable comments, CT_Comment comment, CT_Shape vmlShape)
         {
             _comment = comment;
@@ -53,29 +52,32 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return Name of the original comment author. Default value is blank.
          */
+
         public String Author
         {
             get
             {
                 return _comments.GetAuthor((int)_comment.authorId);
             }
-            set 
+            set
             {
                 _comment.authorId = (
                     (uint)_comments.FindAuthor(value)
                 );
             }
         }
+
         /**
          * @return the 0-based column of the cell that the comment is associated with.
          */
+
         public int Column
         {
             get
             {
                 return new CellReference(_comment.@ref).Col;
             }
-            set 
+            set
             {
                 String oldRef = _comment.@ref;
 
@@ -86,7 +88,7 @@ namespace Npoi.Core.XSSF.UserModel
                 if (_vmlShape != null)
                 {
                     _vmlShape.GetClientDataArray(0).SetColumnArray(
-                          0,value
+                          0, value
                     );
 
                     // There is a very odd xmlbeans bug when changing the column
@@ -100,13 +102,14 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return the 0-based row index of the cell that the comment is associated with.
          */
+
         public int Row
         {
             get
             {
                 return new CellReference(_comment.@ref).Row;
             }
-            set 
+            set
             {
                 String oldRef = _comment.@ref;
 
@@ -130,6 +133,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return whether the comment is visible
          */
+
         public bool Visible
         {
             get
@@ -150,7 +154,7 @@ namespace Npoi.Core.XSSF.UserModel
                 }
                 return visible;
             }
-            set 
+            set
             {
                 if (_vmlShape != null)
                 {
@@ -166,16 +170,16 @@ namespace Npoi.Core.XSSF.UserModel
                         style = "position:absolute;visibility:hidden";
                         _vmlShape.GetClientDataArray(0).visible = OpenXmlFormats.Vml.Spreadsheet.ST_TrueFalseBlank.@false;
                         _vmlShape.GetClientDataArray(0).visibleSpecified = false;
-
                     }
                     _vmlShape.style = (style);
-                }   
+                }
             }
         }
 
         /**
          * @return the rich text string of the comment
          */
+
         public IRichTextString String
         {
             get
@@ -186,7 +190,7 @@ namespace Npoi.Core.XSSF.UserModel
                 }
                 return _str;
             }
-            set 
+            set
             {
                 if (!(value is XSSFRichTextString))
                 {
@@ -202,6 +206,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param string  the XSSFRichTextString used by this object.
          */
+
         public void SetString(string str)
         {
             this.String = (new XSSFRichTextString(str));
@@ -227,6 +232,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return the xml bean holding this comment's properties
          */
+
         internal CT_Comment GetCTComment()
         {
             return _comment;
@@ -238,4 +244,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-

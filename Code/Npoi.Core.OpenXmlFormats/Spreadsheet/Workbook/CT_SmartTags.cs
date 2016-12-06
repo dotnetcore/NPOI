@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -14,13 +13,13 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_SmartTagTypes
     {
-
         private List<CT_SmartTagType> smartTagTypeField;
 
         public CT_SmartTagTypes()
         {
             //this.smartTagTypeField = new List<CT_SmartTagType>();
         }
+
         public static CT_SmartTagTypes Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -34,8 +33,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -64,6 +61,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_SmartTagType
@@ -78,8 +76,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             ctObj.url = XmlHelper.ReadString(node.Attribute("url"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -138,10 +134,10 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_SmartTagPr
     {
-
         private bool embedField;
 
         private ST_SmartTagShow showField;
+
         public static CT_SmartTagPr Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -152,8 +148,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 ctObj.show = (ST_SmartTagShow)Enum.Parse(typeof(ST_SmartTagShow), node.Attribute("show").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -169,6 +163,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.embedField = false;
             this.showField = ST_SmartTagShow.all;
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool embed
@@ -182,6 +177,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.embedField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(ST_SmartTagShow.all)]
         public ST_SmartTagShow show

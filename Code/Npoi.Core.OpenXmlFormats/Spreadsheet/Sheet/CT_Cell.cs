@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Npoi.Core.OpenXml4Net.Util;
+using System;
 using System.ComponentModel;
-
-using System.Text;
-using System.Xml.Serialization;
-using System.Xml;
-using Npoi.Core.OpenXml4Net.Util;
 using System.IO;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
@@ -15,7 +12,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_Cell
     {
-
         private CT_CellFormula fField = null;
 
         private string vField = null;
@@ -62,8 +58,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
@@ -97,7 +91,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
 
-
         //public CT_Cell()
         //{
         //    this.extLstField = new CT_ExtensionList();
@@ -122,30 +115,37 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             vmField = cell.vmField;
             phField = cell.phField;
         }
+
         public bool IsSetT()
         {
             return tField != ST_CellType.n;
         }
+
         public bool IsSetS()
         {
             return sField != 0;
         }
+
         public bool IsSetF()
         {
             return fField != null;
         }
+
         public bool IsSetV()
         {
             return vField != null;
         }
+
         public bool IsSetIs()
         {
             return isField != null;
         }
+
         public bool IsSetR()
         {
             return rField != null;
         }
+
         public void unsetF()
         {
             this.fField = null;
@@ -160,6 +160,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             this.sField = 0;
         }
+
         public void unsetT()
         {
             this.tField = ST_CellType.n;
@@ -169,10 +170,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             this.isField = null;
         }
+
         public void unsetR()
         {
             this.rField = null;
         }
+
         [XmlElement]
         public CT_CellFormula f
         {
@@ -185,6 +188,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.fField = value;
             }
         }
+
         [XmlElement]
         public string v
         {
@@ -210,6 +214,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.isField = value;
             }
         }
+
         [XmlElement]
         public CT_ExtensionList extLst
         {
@@ -222,6 +227,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.extLstField = value;
             }
         }
+
         [XmlAttribute]
         public string r
         {
@@ -234,6 +240,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.rField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(typeof(uint), "0")]
         public uint s
@@ -247,6 +254,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.sField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(ST_CellType.n)]
         public ST_CellType t
@@ -260,6 +268,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.tField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(typeof(uint), "0")]
         public uint cm
@@ -273,6 +282,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.cmField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(typeof(uint), "0")]
         public uint vm
@@ -286,6 +296,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.vmField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool ph

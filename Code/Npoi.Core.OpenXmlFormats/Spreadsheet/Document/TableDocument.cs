@@ -1,19 +1,17 @@
-﻿using Npoi.Core.OpenXml4Net.Util;
-using System;
-using System.IO;
+﻿using System.IO;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
     public class TableDocument
     {
-        CT_Table ctTable = null;
+        private CT_Table ctTable = null;
 
         public TableDocument()
-        { 
+        {
         }
+
         public TableDocument(CT_Table table)
         {
             this.ctTable = table;

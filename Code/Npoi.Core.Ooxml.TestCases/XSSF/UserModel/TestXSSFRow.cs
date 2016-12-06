@@ -15,33 +15,33 @@
    limitations under the License.
 ==================================================================== */
 
-using TestCases.SS.UserModel;
 using Npoi.Core.SS;
 using NUnit.Framework;
+using TestCases.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Tests for XSSFRow
      */
+
     [TestFixture]
     public class TestXSSFRow : BaseTestRow
     {
-
-        public TestXSSFRow():base(XSSFITestDataProvider.instance)
+        public TestXSSFRow() : base(XSSFITestDataProvider.instance)
         {
-            
         }
+
         [Test]
         public void TestRowBounds()
         {
             BaseTestRowBounds(SpreadsheetVersion.EXCEL2007.LastRowIndex);
         }
+
         [Test]
         public void TestCellBounds()
         {
             BaseTestCellBounds(SpreadsheetVersion.EXCEL2007.LastColumnIndex);
         }
     }
-
 }

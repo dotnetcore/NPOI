@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Npoi.Core.OpenXml4Net.OPC
+﻿namespace Npoi.Core.OpenXml4Net.OPC
 {
     /**
      * Specifies package access.
@@ -10,6 +6,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
      * @author Julien Chable
      * @version 1.0
      */
+
     public enum PackageAccess
     {
         /** Read only. Write not authorized. */
@@ -19,5 +16,4 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /** Read and Write mode. */
         READ_WRITE
     }
-
 }

@@ -9,11 +9,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
     public class SstDocument
     {
-        CT_Sst sst = null;
+        private CT_Sst sst = null;
 
         public SstDocument()
-        {         
+        {
         }
+
         public SstDocument(CT_Sst sst)
         {
             this.sst = sst;
@@ -28,11 +29,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             return this.sst;
         }
+
         public static SstDocument Parse(XDocument xml, XmlNamespaceManager namespaceManager)
         {
             try
             {
-                SstDocument sstDoc=new SstDocument();
+                SstDocument sstDoc = new SstDocument();
                 sstDoc.AddNewSst();
                 CT_Sst sst = sstDoc.GetSst();
                 sst.count = XmlHelper.ReadInt(xml.Document.Root.Attribute("count"));
@@ -53,7 +55,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             {
                 throw new IOException(e.Message);
             }
-        }        
+        }
 
         public void Save(Stream stream)
         {
@@ -66,6 +68,5 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             sw.Write("</sst>");
             sw.Flush();
         }
-
     }
 }

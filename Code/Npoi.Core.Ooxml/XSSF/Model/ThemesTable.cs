@@ -19,20 +19,18 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.XSSF.Model
 {
-
-    using System.Xml;
     using Npoi.Core.OpenXml4Net.OPC;
-    using Npoi.Core.XSSF.UserModel;
-    using Npoi.Core.OpenXmlFormats.Spreadsheet;
     using Npoi.Core.OpenXmlFormats.Dml;
-    using System;
-    using System.Collections.Generic;
+    using Npoi.Core.OpenXmlFormats.Spreadsheet;
+    using Npoi.Core.XSSF.UserModel;
     using System.IO;
+    using System.Xml;
 
     /**
      * Class that represents theme of XLSX document. The theme includes specific
      * colors and fonts.
      */
+
     public class ThemesTable : POIXMLDocumentPart
     {
         private ThemeDocument theme;
@@ -41,12 +39,12 @@ namespace Npoi.Core.XSSF.Model
          * @param part A PackagePart.
          * @param rel A PackageRelationship.
          */
+
         internal ThemesTable(PackagePart part, PackageRelationship rel)
             : base(part, rel)
         {
-
             XDocument xmldoc = ConvertStreamToXml(part.GetInputStream());
-                
+
             try
             {
                 theme = ThemeDocument.Parse(xmldoc, NamespaceManager);
@@ -56,19 +54,23 @@ namespace Npoi.Core.XSSF.Model
                 throw new IOException(e.Message, e);
             }
         }
+
         /**
          * Construct a ThemesTable from an existing ThemeDocument.
          * @param theme A ThemeDocument.
          */
+
         internal ThemesTable(ThemeDocument theme)
         {
             this.theme = theme;
         }
+
         /**
          * Convert a theme "index" into a color.
          * @param idx A theme "index"
          * @return The mapped XSSFColor, or null if not mapped.
          */
+
         public XSSFColor GetThemeColor(int idx)
         {
             // Theme color references are NOT positional indices into the color scheme,
@@ -110,14 +112,14 @@ namespace Npoi.Core.XSSF.Model
                 return null;
             }
             return new XSSFColor(rgb);
-
         }
 
         /**
-         * If the colour is based on a theme, then inherit 
+         * If the colour is based on a theme, then inherit
          *  information (currently just colours) from it as
          *  required.
          */
+
         public void InheritFromThemeAsRequired(XSSFColor color)
         {
             if (color == null)
@@ -140,9 +142,4 @@ namespace Npoi.Core.XSSF.Model
             // All done
         }
     }
-
 }
-
-
-
-

@@ -1,8 +1,6 @@
 ﻿using Npoi.Core.OpenXml4Net.Util;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -15,8 +13,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         ElementName = "comment")]
     public class CT_Comment
     {
-
-        private CT_Rst textField = new CT_Rst(); // required element 
+        private CT_Rst textField = new CT_Rst(); // required element
 
         private string refField = string.Empty; // required attribute
 
@@ -44,6 +41,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
+
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
@@ -55,6 +53,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.text.Write(sw, "text");
             sw.Write(string.Format("</{0}>", nodeName));
         }
+
         [XmlElement("text")]
         public CT_Rst text
         {

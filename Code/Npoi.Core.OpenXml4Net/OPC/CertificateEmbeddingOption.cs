@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Npoi.Core.OpenXml4Net.OPC
+﻿namespace Npoi.Core.OpenXml4Net.OPC
 {
     /**
      * Specifies the location where the X.509 certificate that is used in signing is stored.
      *
      * @author Julien Chable
      */
+
     public enum CertificateEmbeddingOption
     {
         /** The certificate is embedded in its own PackagePart. */
@@ -18,5 +15,4 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /** The certificate in not embedded in the package. */
         NOT_EMBEDDED
     }
-
 }

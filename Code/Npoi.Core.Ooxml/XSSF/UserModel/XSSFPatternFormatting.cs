@@ -16,16 +16,19 @@
  *    limitations under the License.
  * ====================================================================
  */
-using Npoi.Core.SS.UserModel;
+
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * @author Yegor Kozlov
      */
+
     public class XSSFPatternFormatting : IPatternFormatting
     {
-        CT_Fill _fill;
+        private CT_Fill _fill;
 
         public XSSFPatternFormatting(CT_Fill fill)
         {
@@ -40,7 +43,7 @@ namespace Npoi.Core.XSSF.UserModel
 
                 return _fill.GetPatternFill().bgColor.indexedSpecified ? (short)_fill.GetPatternFill().bgColor.indexed : (short)0;
             }
-            set 
+            set
             {
                 CT_PatternFill ptrn =
                 _fill.IsSetPatternFill() ? _fill.GetPatternFill() : _fill.AddNewPatternFill();
@@ -58,9 +61,9 @@ namespace Npoi.Core.XSSF.UserModel
                 if (!_fill.IsSetPatternFill() || !_fill.GetPatternFill().IsSetFgColor())
                     return 0;
 
-                return _fill.GetPatternFill().fgColor.indexedSpecified?  (short)_fill.GetPatternFill().fgColor.indexed : (short)0;
+                return _fill.GetPatternFill().fgColor.indexedSpecified ? (short)_fill.GetPatternFill().fgColor.indexed : (short)0;
             }
-            set 
+            set
             {
                 CT_PatternFill ptrn = _fill.IsSetPatternFill() ? _fill.GetPatternFill() : _fill.AddNewPatternFill();
                 CT_Color fgColor = new CT_Color();
@@ -79,14 +82,11 @@ namespace Npoi.Core.XSSF.UserModel
 
                 return (short)_fill.GetPatternFill().patternType;
             }
-            set 
+            set
             {
                 CT_PatternFill ptrn = _fill.IsSetPatternFill() ? _fill.GetPatternFill() : _fill.AddNewPatternFill();
                 ptrn.patternType = (ST_PatternType)(value);
             }
         }
-
     }
-
 }
-

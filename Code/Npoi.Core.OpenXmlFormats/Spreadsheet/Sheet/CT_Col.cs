@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Npoi.Core.OpenXml4Net.Util;
+using System;
 using System.ComponentModel;
-
-using System.Text;
-using System.Xml.Serialization;
-using System.Xml;
-using Npoi.Core.OpenXml4Net.Util;
 using System.IO;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
@@ -18,7 +15,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_Col
     {
-
         private uint minField; // required
 
         private uint maxField; // required
@@ -80,6 +76,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.widthSpecified = true;
             }
         }
+
         [XmlIgnore]
         public bool widthSpecified
         {
@@ -93,50 +90,56 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
 
-
         public bool IsSetBestFit()
         {
             return this.bestFitField != false;
         }
+
         public bool IsSetCustomWidth()
         {
             return this.customWidthField != false;
         }
+
         public bool IsSetHidden()
         {
             return this.hiddenField != false;
         }
+
         public bool IsSetStyle()
         {
-            return this.styleField!=null;
+            return this.styleField != null;
         }
+
         public bool IsSetWidth()
         {
             return this.widthField > 0;
         }
+
         public bool IsSetCollapsed()
         {
             return this.collapsedSpecifiedField;
         }
+
         public bool IsSetPhonetic()
         {
             return this.phoneticField != false;
         }
+
         public bool IsSetOutlineLevel()
         {
             return this.outlineLevelField != 0;
         }
+
         public void UnsetHidden()
         {
             this.hiddenField = false;
         }
+
         public void UnsetCollapsed()
         {
             this.collapsedField = true;
             this.collapsedSpecified = false;
         }
-
-
 
         [XmlAttribute]
         public uint? style
@@ -178,6 +181,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.bestFitField = value;
             }
         }
+
         [DefaultValue(false)]
         [XmlAttribute]
         public bool customWidth
@@ -205,7 +209,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.phoneticField = value;
             }
         }
-
 
         [DefaultValue(typeof(byte), "0")]
         [XmlAttribute]
@@ -235,6 +238,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.collapsedSpecifiedField = true;
             }
         }
+
         [XmlIgnore]
         public bool collapsedSpecified
         {
@@ -244,7 +248,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 
         public CT_Col()
         {
-            
         }
 
         public static CT_Col Parse(XElement node, XmlNamespaceManager namespaceManager)
@@ -268,28 +271,22 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "min", this.min);
             XmlHelper.WriteAttribute(sw, "max", this.max);
             XmlHelper.WriteAttribute(sw, "width", this.width);
-            if(this.style!=null)
-                XmlHelper.WriteAttribute(sw, "style", (uint)this.style,true);
-            XmlHelper.WriteAttribute(sw, "hidden", this.hidden,false);
-            XmlHelper.WriteAttribute(sw, "bestFit", this.bestFit,false);
-            XmlHelper.WriteAttribute(sw, "customWidth", this.customWidth,false);
-            XmlHelper.WriteAttribute(sw, "phonetic", this.phonetic,false);
+            if (this.style != null)
+                XmlHelper.WriteAttribute(sw, "style", (uint)this.style, true);
+            XmlHelper.WriteAttribute(sw, "hidden", this.hidden, false);
+            XmlHelper.WriteAttribute(sw, "bestFit", this.bestFit, false);
+            XmlHelper.WriteAttribute(sw, "customWidth", this.customWidth, false);
+            XmlHelper.WriteAttribute(sw, "phonetic", this.phonetic, false);
             XmlHelper.WriteAttribute(sw, "outlineLevel", this.outlineLevel);
-            XmlHelper.WriteAttribute(sw, "collapsed", this.collapsed,false);
+            XmlHelper.WriteAttribute(sw, "collapsed", this.collapsed, false);
             sw.Write("/>");
         }
-
-
-
-
 
         public CT_Col Copy()
         {
@@ -306,7 +303,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             col.styleField = this.styleField;
             col.widthField = this.widthField;
             col.widthSpecifiedField = this.widthSpecifiedField;
-            
+
             return col;
         }
 

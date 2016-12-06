@@ -17,23 +17,21 @@
  * ====================================================================
  */
 
-using System;
 using Npoi.Core.OpenXmlFormats;
 using Npoi.Core.OpenXmlFormats.Dml;
 using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
-using System.Xml;
+using System;
 
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Represents DrawingML GraphicalObjectFrame.
      *
      * @author Roman Kashitsyn
      */
+
     public class XSSFGraphicFrame : XSSFShape
     {
-
         private static CT_GraphicalObjectFrame prototype = null;
 
         private CT_GraphicalObjectFrame graphicFrame;
@@ -46,12 +44,12 @@ namespace Npoi.Core.XSSF.UserModel
          * @param Drawing the XSSFDrawing that owns this frame
          * @param ctGraphicFrame the XML bean that stores this frame content
          */
+
         public XSSFGraphicFrame(XSSFDrawing Drawing, CT_GraphicalObjectFrame ctGraphicFrame)
         {
             this.drawing = Drawing;
             this.graphicFrame = ctGraphicFrame;
         }
-
 
         internal CT_GraphicalObjectFrame GetCTGraphicalObjectFrame()
         {
@@ -61,38 +59,37 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Initialize default structure of a new graphic frame
          */
+
         public static CT_GraphicalObjectFrame Prototype()
         {
+            CT_GraphicalObjectFrame graphicFrame = new CT_GraphicalObjectFrame();
 
-                CT_GraphicalObjectFrame graphicFrame = new CT_GraphicalObjectFrame();
+            Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_GraphicalObjectFrameNonVisual nvGraphic = graphicFrame.AddNewNvGraphicFramePr();
+            Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_NonVisualDrawingProps props = nvGraphic.AddNewCNvPr();
+            props.id = (0);
+            props.name = ("Diagramm 1");
+            nvGraphic.AddNewCNvGraphicFramePr();
 
-                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_GraphicalObjectFrameNonVisual nvGraphic = graphicFrame.AddNewNvGraphicFramePr();
-                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_NonVisualDrawingProps props = nvGraphic.AddNewCNvPr();
-                props.id = (0);
-                props.name = ("Diagramm 1");
-                nvGraphic.AddNewCNvGraphicFramePr();
+            CT_Transform2D transform = graphicFrame.AddNewXfrm();
+            CT_PositiveSize2D extPoint = transform.AddNewExt();
+            CT_Point2D offPoint = transform.AddNewOff();
 
+            extPoint.cx = (0);
+            extPoint.cy = (0);
+            offPoint.x = (0);
+            offPoint.y = (0);
 
+            CT_GraphicalObject graphic = graphicFrame.AddNewGraphic();
 
-                CT_Transform2D transform = graphicFrame.AddNewXfrm();
-                CT_PositiveSize2D extPoint = transform.AddNewExt();
-                CT_Point2D offPoint = transform.AddNewOff();
+            prototype = graphicFrame;
 
-                extPoint.cx=(0);
-                extPoint.cy=(0);
-                offPoint.x=(0);
-                offPoint.y=(0);
-
-                CT_GraphicalObject graphic = graphicFrame.AddNewGraphic();
-
-                prototype = graphicFrame;
-            
             return prototype;
         }
 
         /**
          * Sets the frame macro.
          */
+
         public void SetMacro(String macro)
         {
             graphicFrame.macro = (macro);
@@ -102,13 +99,14 @@ namespace Npoi.Core.XSSF.UserModel
          * Returns the frame name.
          * @return name of the frame
          */
+
         public String Name
         {
             get
             {
                 return GetNonVisualProperties().name;
             }
-            set 
+            set
             {
                 GetNonVisualProperties().name = value;
             }
@@ -124,13 +122,14 @@ namespace Npoi.Core.XSSF.UserModel
          * Returns the frame anchor.
          * @return the anchor this frame is attached to
          */
+
         public XSSFClientAnchor Anchor
         {
             get
             {
                 return anchor;
             }
-            set 
+            set
             {
                 this.anchor = value;
             }
@@ -139,6 +138,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Assign a DrawingML chart to the graphic frame.
          */
+
         internal void SetChart(XSSFChart chart, String relId)
         {
             CT_GraphicalObjectData data = graphicFrame.graphic.AddNewGraphicData();
@@ -150,29 +150,31 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Gets the frame id.
          */
+
         public long Id
         {
             get
             {
                 return graphicFrame.nvGraphicFramePr.cNvPr.id;
             }
-            set 
+            set
             {
                 graphicFrame.nvGraphicFramePr.cNvPr.id = (uint)value;
             }
-        } 
+        }
+
         /// <summary>
         /// The low level code to insert <code><c:chart></code> tag into <code><a:graphicData></code>
         /// </summary>
         /// <param name="data"></param>
         /// <param name="id"></param>
         /// <example>
-         /// <complexType name="CT_GraphicalObjectData">
-         ///   <sequence>
-         ///     <any minOccurs="0" maxOccurs="unbounded" ProcessContents="strict"/>
-         ///   </sequence>
-         ///   <attribute name="uri" type="xsd:token"/>
-         /// </complexType>
+        /// <complexType name="CT_GraphicalObjectData">
+        ///   <sequence>
+        ///     <any minOccurs="0" maxOccurs="unbounded" ProcessContents="strict"/>
+        ///   </sequence>
+        ///   <attribute name="uri" type="xsd:token"/>
+        /// </complexType>
         /// </example>
         private void AppendChartElement(CT_GraphicalObjectData data, String id)
         {
@@ -182,7 +184,7 @@ namespace Npoi.Core.XSSF.UserModel
             //AppendChartElement
             string el = string.Format("<c:chart xmlns:c=\"{1}\" xmlns:r=\"{2}\" r:id=\"{0}\"/>", id, c_namespaceUri, r_namespaceUri);
             data.AddChartElement(el);
-            
+
             //XmlCursor cursor = data.newCursor();
             //cursor.ToNextToken();
             //cursor.beginElement(new QName(c_namespaceUri, "chart", "c"));
@@ -192,13 +194,9 @@ namespace Npoi.Core.XSSF.UserModel
             //throw new NotImplementedException();
         }
 
-
         protected internal override Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties GetShapeProperties()
         {
             return null;
         }
     }
 }
-
-
-

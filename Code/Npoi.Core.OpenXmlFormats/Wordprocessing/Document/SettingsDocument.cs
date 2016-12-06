@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
-
     public class SettingsDocument
     {
+        private CT_Settings settings = null;
 
-        CT_Settings settings = null;
         public SettingsDocument()
         {
             settings = new CT_Settings();
         }
+
         public static SettingsDocument Parse(XDocument doc, XmlNamespaceManager NameSpaceManager)
         {
             CT_Settings obj = CT_Settings.Parse(doc.Document.Root, NameSpaceManager);
@@ -35,6 +31,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         {
             this.settings = settings;
         }
+
         public CT_Settings Settings
         {
             get

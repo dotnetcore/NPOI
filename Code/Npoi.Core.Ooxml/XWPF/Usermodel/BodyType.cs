@@ -17,11 +17,10 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
     /**
      * The different kinds of {@link IBody} that exist
      */
+
     public enum BodyType
     {
         CONTENTCONTROL,
@@ -30,7 +29,5 @@ namespace Npoi.Core.XWPF.UserModel
         FOOTER,
         FOOTNOTE,
         TABLECELL
-
     }
-
 }

@@ -17,17 +17,13 @@
 
 namespace Npoi.Core.XSSF.UserModel.Charts
 {
-    using System;
-
-    using NUnit.Framework;
-
     using Npoi.Core.SS.UserModel.Charts;
     using Npoi.Core.XSSF.UserModel;
+    using NUnit.Framework;
 
     [TestFixture]
     public class TestXSSFCategoryAxis
     {
-
         [Test]
         public void TestAccessMethods()
         {
@@ -38,11 +34,10 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             XSSFChart chart = Drawing.CreateChart(anchor) as XSSFChart;
             XSSFCategoryAxis axis = chart.ChartAxisFactory.CreateCategoryAxis(AxisPosition.Bottom) as XSSFCategoryAxis;
 
-            axis.Crosses=(AxisCrosses.AutoZero);
+            axis.Crosses = (AxisCrosses.AutoZero);
             Assert.AreEqual(axis.Crosses, AxisCrosses.AutoZero);
 
             Assert.AreEqual(chart.GetAxis().Count, 1);
         }
     }
-
 }

@@ -15,9 +15,9 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
 using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
 using Npoi.Core.SS.UserModel;
+using System;
 
 namespace Npoi.Core.XSSF.UserModel
 {
@@ -27,6 +27,7 @@ namespace Npoi.Core.XSSF.UserModel
      *
      * @author Yegor Kozlov
      */
+
     public class XSSFClientAnchor : XSSFAnchor, IClientAnchor
     {
         private int anchorType;
@@ -44,18 +45,19 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Creates a new client anchor and defaults all the anchor positions to 0.
          */
+
         public XSSFClientAnchor()
         {
             cell1 = new CT_Marker();
-            cell1.col= (0);
-            cell1.colOff=(0);
-            cell1.row=(0);
-            cell1.rowOff=(0);
+            cell1.col = (0);
+            cell1.colOff = (0);
+            cell1.row = (0);
+            cell1.rowOff = (0);
             cell2 = new CT_Marker();
-            cell2.col=(0);
-            cell2.colOff=(0);
-            cell2.row=(0);
-            cell2.rowOff=(0);
+            cell2.col = (0);
+            cell2.colOff = (0);
+            cell2.row = (0);
+            cell2.rowOff = (0);
         }
 
         /**
@@ -71,10 +73,10 @@ namespace Npoi.Core.XSSF.UserModel
          * @param col2 the column (0 based) of the second cell.
          * @param row2 the row (0 based) of the second cell.
          */
+
         public XSSFClientAnchor(int dx1, int dy1, int dx2, int dy2, int col1, int row1, int col2, int row2)
             : this()
         {
-
             cell1.col = (col1);
             cell1.colOff = (dx1);
             cell1.row = (row1);
@@ -91,15 +93,12 @@ namespace Npoi.Core.XSSF.UserModel
          * @param cell1 starting anchor point
          * @param cell2 ending anchor point
          */
+
         internal XSSFClientAnchor(CT_Marker cell1, CT_Marker cell2)
         {
             this.cell1 = cell1;
             this.cell2 = cell2;
         }
-
- 
-
-
 
         public override bool Equals(Object o)
         {
@@ -114,9 +113,7 @@ namespace Npoi.Core.XSSF.UserModel
                 Col2 == anchor.Col2 &&
                 Row1 == anchor.Row1 &&
                 Row2 == anchor.Row2;
-
         }
-
 
         public override String ToString()
         {
@@ -135,7 +132,7 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 return cell1;
             }
-            set 
+            set
             {
                 cell1 = value;
             }
@@ -153,12 +150,11 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 return cell2;
             }
-            set 
+            set
             {
                 cell2 = value;
             }
         }
-
 
         internal bool IsSet()
         {
@@ -167,6 +163,7 @@ namespace Npoi.Core.XSSF.UserModel
         }
 
         #region IClientAnchor Members
+
         public override int Dx1
         {
             get
@@ -214,6 +211,7 @@ namespace Npoi.Core.XSSF.UserModel
                 cell2.colOff = value;
             }
         }
+
         public AnchorType AnchorType
         {
             get
@@ -234,7 +232,7 @@ namespace Npoi.Core.XSSF.UserModel
             }
             set
             {
-                cell1.col=value;
+                cell1.col = value;
             }
         }
 
@@ -274,9 +272,6 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-        #endregion
+        #endregion IClientAnchor Members
     }
 }
-
-
-

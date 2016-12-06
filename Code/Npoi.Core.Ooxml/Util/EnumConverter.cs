@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Npoi.Core.OpenXmlFormats.Wordprocessing;
 using Npoi.Core.XWPF.UserModel;
-using Npoi.Core.OpenXmlFormats.Wordprocessing;
-using System.Reflection;
+using System;
 
 namespace Npoi.Core.Util
 {
     public static class EnumConverter
-    {       
+    {
         public static ST_Jc ValueOf(ParagraphAlignment val)
         {
             switch (val)
@@ -25,6 +22,7 @@ namespace Npoi.Core.Util
                 default: return ST_Jc.left;
             }
         }
+
         public static ParagraphAlignment ValueOf(ST_Jc val)
         {
             switch (val)
@@ -36,6 +34,7 @@ namespace Npoi.Core.Util
                 default: return ParagraphAlignment.LEFT;
             }
         }
+
         public static T ValueOf<T, F>(F val)
         {
             string value = Enum.GetName(val.GetType(), val);

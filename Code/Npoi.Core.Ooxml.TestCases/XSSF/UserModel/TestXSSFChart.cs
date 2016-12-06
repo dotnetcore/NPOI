@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-using NUnit.Framework;
 using Npoi.Core.SS.UserModel;
-using System.Collections.Generic;
 using Npoi.Core.SS.UserModel.Charts;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Npoi.Core.XSSF.UserModel
 {
@@ -39,6 +39,7 @@ namespace Npoi.Core.XSSF.UserModel
 
             Assert.IsNotNull(XSSFTestDataSamples.WriteOutAndReadBack(wb));
         }
+
         [Test]
         public void TestGetCharts()
         {
@@ -64,6 +65,7 @@ namespace Npoi.Core.XSSF.UserModel
 
             Assert.IsNotNull(XSSFTestDataSamples.WriteOutAndReadBack(wb));
         }
+
         [Test]
         public void TestAddChartsToNewWorkbook()
         {
@@ -74,7 +76,7 @@ namespace Npoi.Core.XSSF.UserModel
             XSSFChart c1 = (XSSFChart)d1.CreateChart(a1);
 
             Assert.AreEqual(1, d1.GetCharts().Count);
-            
+
             Assert.IsNotNull(c1.GetGraphicFrame());
             Assert.IsNotNull(c1.GetOrCreateLegend());
 
@@ -104,7 +106,5 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.IsNotNull(axisList[(2)]);
             Assert.IsNotNull(axisList[(3)]);
         }
-
     }
-
 }

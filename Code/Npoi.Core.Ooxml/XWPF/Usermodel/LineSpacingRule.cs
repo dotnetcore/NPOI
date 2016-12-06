@@ -14,22 +14,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
-
-
-
     /**
      * Specifies the logic which shall be used to calculate the line spacing of the
      * parent object when it is displayed in the document.
-     * 
+     *
      * @author Gisella Bronzetti
      */
+
     public enum LineSpacingRule
     {
-
         /**
          * Specifies that the line spacing of the parent object shall be
          * automatically determined by the size of its contents, with no
@@ -50,7 +46,6 @@ namespace Npoi.Core.XWPF.UserModel
          * specified, but may be expanded to fit its content as needed.
          */
         ATLEAST = (3)
-
 
         //private int value;
 
@@ -76,5 +71,4 @@ namespace Npoi.Core.XWPF.UserModel
         //   return lineType;
         //}
     }
-
 }

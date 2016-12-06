@@ -14,14 +14,13 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
-
     /**
      * saves the begin and end position  of a text in a Paragraph
     */
+
     public class TextSegment
     {
         private PositionInParagraph beginPos;
@@ -66,6 +65,7 @@ namespace Npoi.Core.XWPF.UserModel
                 return endPos;
             }
         }
+
         /// <summary>
         /// The index of the start run
         /// </summary>
@@ -75,11 +75,12 @@ namespace Npoi.Core.XWPF.UserModel
             {
                 return beginPos.Run;
             }
-            set 
+            set
             {
                 beginPos.Run = value;
             }
         }
+
         /// <summary>
         /// The index of the start CT_Text
         /// </summary>
@@ -89,11 +90,12 @@ namespace Npoi.Core.XWPF.UserModel
             {
                 return beginPos.Text;
             }
-            set 
+            set
             {
                 beginPos.Text = value;
             }
         }
+
         /// <summary>
         /// The index of the start text character
         /// </summary>
@@ -103,24 +105,26 @@ namespace Npoi.Core.XWPF.UserModel
             {
                 return beginPos.Char;
             }
-            set 
+            set
             {
                 beginPos.Char = value;
             }
         }
+
         public int EndRun
         {
             get
             {
                 return endPos.Run;
             }
-            set 
+            set
             {
                 endPos.Run = value;
             }
         }
+
         /// <summary>
-        /// the index of the end CT_Text 
+        /// the index of the end CT_Text
         /// </summary>
         public int EndText
         {
@@ -128,11 +132,12 @@ namespace Npoi.Core.XWPF.UserModel
             {
                 return endPos.Text;
             }
-            set 
+            set
             {
                 endPos.Text = value;
             }
         }
+
         /// <summary>
         /// the index of the end text character
         /// </summary>
@@ -142,11 +147,10 @@ namespace Npoi.Core.XWPF.UserModel
             {
                 return endPos.Char;
             }
-            set 
+            set
             {
                 endPos.Char = value;
             }
         }
     }
-
 }

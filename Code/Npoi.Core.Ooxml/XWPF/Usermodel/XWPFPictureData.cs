@@ -17,9 +17,9 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
     using Npoi.Core.OpenXml4Net.OPC;
     using Npoi.Core.Util;
+    using System;
     using System.IO;
 
     /// <summary>
@@ -30,11 +30,11 @@ namespace Npoi.Core.XWPF.UserModel
     /// </remarks>
     public class XWPFPictureData : POIXMLDocumentPart
     {
-
         /**
          * Relationships for each known picture type
          */
         internal static POIXMLRelation[] RELATIONS;
+
         static XWPFPictureData()
         {
             RELATIONS = new POIXMLRelation[13];
@@ -57,6 +57,7 @@ namespace Npoi.Core.XWPF.UserModel
          * Create a new XWPFGraphicData node
          *
          */
+
         protected XWPFPictureData()
             : base()
         {
@@ -69,11 +70,11 @@ namespace Npoi.Core.XWPF.UserModel
          * @param rel  the package relationship holding this Drawing,
          * the relationship type must be http://schemas.Openxmlformats.org/officeDocument/2006/relationships/image
          */
+
         public XWPFPictureData(PackagePart part, PackageRelationship rel)
             : base(part, rel)
         {
         }
-
 
         internal override void OnDocumentRead()
         {
@@ -92,6 +93,7 @@ namespace Npoi.Core.XWPF.UserModel
          * </p>
          * @return the Picture data.
          */
+
         public byte[] Data
         {
             get
@@ -112,6 +114,7 @@ namespace Npoi.Core.XWPF.UserModel
          * isn't always available, but if it can be found it's likely to be in the
          * CTDrawing
          */
+
         public String FileName
         {
             get
@@ -127,6 +130,7 @@ namespace Npoi.Core.XWPF.UserModel
          * Suggests a file extension for this image.
          * @return the file extension.
          */
+
         public String SuggestFileExtension()
         {
             return GetPackagePart().PartName.Extension;
@@ -134,7 +138,7 @@ namespace Npoi.Core.XWPF.UserModel
 
         /**
          * Return an integer constant that specifies type of this picture
-         * 
+         *
          * @return an integer constant that specifies type of this picture
          * @see Npoi.Core.XWPF.UserModel.PictureTypeEMF
          * @see Npoi.Core.XWPF.UserModel.PictureTypeWMF
@@ -143,6 +147,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @see Npoi.Core.XWPF.UserModel.PictureTypePNG
          * @see Npoi.Core.XWPF.UserModel.PictureTypeDIB
          */
+
         public int GetPictureType()
         {
             String contentType = GetPackagePart().ContentType;
@@ -196,7 +201,6 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
 
-
         public override bool Equals(Object obj)
         {
             /**
@@ -248,7 +252,6 @@ namespace Npoi.Core.XWPF.UserModel
                 }
                 if (ownPackage != null)
                 {
-
                     if (!ownPackage.Equals(foreignPackage))
                     {
                         return false;
@@ -266,20 +269,19 @@ namespace Npoi.Core.XWPF.UserModel
             return Arrays.Equals(this.Data, picData.Data);
         }
 
-
         public override int GetHashCode()
         {
             return Checksum.GetHashCode();
         }
 
         /**
-         * *PictureData objects store the actual content in the part directly without keeping a 
+         * *PictureData objects store the actual content in the part directly without keeping a
          * copy like all others therefore we need to handle them differently.
          */
+
         protected internal override void PrepareForCommit()
         {
             // do not clear the part here
         }
     }
-
 }

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -13,7 +12,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_NumFmts
     {
-
         private List<CT_NumFmt> numFmtField;
 
         private uint countField;
@@ -24,6 +22,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             //this.numFmtField = new List<CT_NumFmt>();
         }
+
         public static CT_NumFmts Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -38,8 +37,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -64,6 +61,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.numFmtField.Add(newNumFmt);
             return newNumFmt;
         }
+
         [XmlElement]
         public List<CT_NumFmt> numFmt
         {
@@ -76,6 +74,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.numFmtField = value;
             }
         }
+
         [XmlAttribute]
         public uint count
         {
@@ -102,5 +101,4 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
-
 }

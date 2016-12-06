@@ -14,16 +14,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.Converter
 {
-    using System;
-    using System.Text;
-    using System.IO;
-
     using Npoi.Core.HSSF.UserModel;
-    using Npoi.Core.SS.UserModel;
     using Npoi.Core.HSSF.Util;
+    using Npoi.Core.SS.UserModel;
     using Npoi.Core.SS.Util;
+    using System;
+    using System.IO;
+    using System.Text;
 
     public class ExcelToHtmlUtils
     {
@@ -37,79 +37,88 @@ namespace Npoi.Core.SS.Converter
                 case HorizontalAlignment.Center:
                     style.Append("text-align: center; ");
                     break;
+
                 case HorizontalAlignment.CenterSelection:
                     style.Append("text-align: center; ");
                     break;
+
                 case HorizontalAlignment.Fill:
                     // XXX: shall we support fill?
                     break;
+
                 case HorizontalAlignment.General:
                     break;
+
                 case HorizontalAlignment.Justify:
                     style.Append("text-align: justify; ");
                     break;
+
                 case HorizontalAlignment.Left:
                     style.Append("text-align: left; ");
                     break;
+
                 case HorizontalAlignment.Right:
                     style.Append("text-align: right; ");
                     break;
             }
         }
+
         /**
      * Creates a map (i.e. two-dimensional array) filled with ranges. Allow fast
      * retrieving {@link CellRangeAddress} of any cell, if cell is contained in
      * range.
-     * 
+     *
      * @see #getMergedRange(CellRangeAddress[][], int, int)
      */
+
         public static CellRangeAddress[][] BuildMergedRangesMap(ISheet sheet)
-    {
-        CellRangeAddress[][] mergedRanges = new CellRangeAddress[1][];
-        for ( int m = 0; m < sheet.NumMergedRegions; m++ )
         {
-            CellRangeAddress cellRangeAddress = sheet.GetMergedRegion( m );
-
-            int requiredHeight = cellRangeAddress.LastRow + 1;
-            if ( mergedRanges.Length < requiredHeight )
+            CellRangeAddress[][] mergedRanges = new CellRangeAddress[1][];
+            for (int m = 0; m < sheet.NumMergedRegions; m++)
             {
-                CellRangeAddress[][] newArray = new CellRangeAddress[requiredHeight][];
-                Array.Copy( mergedRanges, 0, newArray, 0, mergedRanges.Length );
-                mergedRanges = newArray;
-            }
+                CellRangeAddress cellRangeAddress = sheet.GetMergedRegion(m);
 
-            for ( int r = cellRangeAddress.FirstRow; r <= cellRangeAddress.LastRow; r++ )
-            {
-                int requiredWidth = cellRangeAddress.LastColumn + 1;
-
-                CellRangeAddress[] rowMerged = mergedRanges[r];
-                if ( rowMerged == null )
+                int requiredHeight = cellRangeAddress.LastRow + 1;
+                if (mergedRanges.Length < requiredHeight)
                 {
-                    rowMerged = new CellRangeAddress[requiredWidth];
-                    mergedRanges[r] = rowMerged;
+                    CellRangeAddress[][] newArray = new CellRangeAddress[requiredHeight][];
+                    Array.Copy(mergedRanges, 0, newArray, 0, mergedRanges.Length);
+                    mergedRanges = newArray;
                 }
-                else
-                {
-                     int rowMergedLength = rowMerged.Length;
-                    if ( rowMergedLength < requiredWidth )
-                    {
-                        CellRangeAddress[] newRow = new CellRangeAddress[requiredWidth];
-                        Array.Copy(rowMerged, 0, newRow, 0,rowMergedLength );
 
-                        mergedRanges[r] = newRow;
-                        rowMerged = newRow;
+                for (int r = cellRangeAddress.FirstRow; r <= cellRangeAddress.LastRow; r++)
+                {
+                    int requiredWidth = cellRangeAddress.LastColumn + 1;
+
+                    CellRangeAddress[] rowMerged = mergedRanges[r];
+                    if (rowMerged == null)
+                    {
+                        rowMerged = new CellRangeAddress[requiredWidth];
+                        mergedRanges[r] = rowMerged;
+                    }
+                    else
+                    {
+                        int rowMergedLength = rowMerged.Length;
+                        if (rowMergedLength < requiredWidth)
+                        {
+                            CellRangeAddress[] newRow = new CellRangeAddress[requiredWidth];
+                            Array.Copy(rowMerged, 0, newRow, 0, rowMergedLength);
+
+                            mergedRanges[r] = newRow;
+                            rowMerged = newRow;
+                        }
+                    }
+
+                    //Arrays.Fill( rowMerged, cellRangeAddress.FirstColumn, cellRangeAddress.LastColumn + 1, cellRangeAddress );
+                    for (int i = cellRangeAddress.FirstColumn; i < cellRangeAddress.LastColumn + 1; i++)
+                    {
+                        rowMerged[i] = cellRangeAddress;
                     }
                 }
-               
-                //Arrays.Fill( rowMerged, cellRangeAddress.FirstColumn, cellRangeAddress.LastColumn + 1, cellRangeAddress );
-                for (int i = cellRangeAddress.FirstColumn; i < cellRangeAddress.LastColumn + 1; i++)
-                {
-                    rowMerged[i] = cellRangeAddress;
-                }
             }
+            return mergedRanges;
         }
-        return mergedRanges;
-    }
+
         public static string GetBorderStyle(BorderStyle xlsBorder)
         {
             string borderStyle;
@@ -118,6 +127,7 @@ namespace Npoi.Core.SS.Converter
                 case BorderStyle.None:
                     borderStyle = "none";
                     break;
+
                 case BorderStyle.DashDot:
                 case BorderStyle.DashDotDot:
                 case BorderStyle.Dotted:
@@ -127,13 +137,16 @@ namespace Npoi.Core.SS.Converter
                 case BorderStyle.SlantedDashDot:
                     borderStyle = "dotted";
                     break;
+
                 case BorderStyle.Dashed:
                 case BorderStyle.MediumDashed:
                     borderStyle = "dashed";
                     break;
+
                 case BorderStyle.Double:
                     borderStyle = "double";
                     break;
+
                 default:
                     borderStyle = "solid";
                     break;
@@ -151,15 +164,18 @@ namespace Npoi.Core.SS.Converter
                 case BorderStyle.MediumDashed:
                     borderWidth = "2pt";
                     break;
+
                 case BorderStyle.Thick:
                     borderWidth = "thick";
                     break;
+
                 default:
                     borderWidth = "thin";
                     break;
             }
             return borderWidth;
         }
+
         public static string GetColor(Npoi.Core.XSSF.UserModel.XSSFColor color)
         {
             StringBuilder stringBuilder = new StringBuilder(7);
@@ -186,6 +202,7 @@ namespace Npoi.Core.SS.Converter
 
             return result;
         }
+
         public static string GetColor(HSSFColor color)
         {
             StringBuilder stringBuilder = new StringBuilder(7);
@@ -213,11 +230,13 @@ namespace Npoi.Core.SS.Converter
 
             return result;
         }
+
         /**
      * See <a href=
      * "http://apache-poi.1045710.n5.nabble.com/Excel-Column-Width-Unit-Converter-pixels-excel-column-width-units-td2301481.html"
      * >here</a> for Xio explanation and details
      */
+
         public static int GetColumnWidthInPx(int widthUnits)
         {
             int pixels = (widthUnits / EXCEL_COLUMN_WIDTH_FACTOR)
@@ -228,6 +247,7 @@ namespace Npoi.Core.SS.Converter
 
             return pixels;
         }
+
         /**
      * @param mergedRanges
      *            map of sheet merged ranges built with
@@ -235,6 +255,7 @@ namespace Npoi.Core.SS.Converter
      * @return {@link CellRangeAddress} from map if cell with specified row and
      *         column numbers contained in found range, <tt>null</tt> otherwise
      */
+
         public static CellRangeAddress GetMergedRange(
                 CellRangeAddress[][] mergedRanges, int rowNumber, int columnNumber)
         {
@@ -246,6 +267,7 @@ namespace Npoi.Core.SS.Converter
 
             return cellRangeAddress;
         }
+
         public static HSSFWorkbook LoadXls(string xlsFile)
         {
             FileStream inputStream = File.Open(xlsFile, FileMode.Open);
@@ -263,5 +285,4 @@ namespace Npoi.Core.SS.Converter
             }
         }
     }
-
 }

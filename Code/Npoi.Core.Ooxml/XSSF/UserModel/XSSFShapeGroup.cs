@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
 using Npoi.Core.OpenXml4Net.OPC;
 using Npoi.Core.OpenXmlFormats.Dml;
 using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
+using System;
 
 namespace Npoi.Core.XSSF.UserModel
 {
@@ -30,6 +30,7 @@ namespace Npoi.Core.XSSF.UserModel
      *
      * @author Yegor Kozlov
      */
+
     public class XSSFShapeGroup : XSSFShape
     {
         private static CT_GroupShape prototype = null;
@@ -42,6 +43,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param Drawing the XSSFDrawing that owns this shape
          * @param ctGroup the XML bean that stores this group content
          */
+
         public XSSFShapeGroup(XSSFDrawing drawing, CT_GroupShape ctGroup)
         {
             this.drawing = drawing;
@@ -51,33 +53,32 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Initialize default structure of a new shape group
          */
+
         internal static CT_GroupShape Prototype()
         {
+            CT_GroupShape shape = new CT_GroupShape();
 
-                CT_GroupShape shape = new CT_GroupShape();
+            CT_GroupShapeNonVisual nv = shape.AddNewNvGrpSpPr();
+            Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_NonVisualDrawingProps nvpr = nv.AddNewCNvPr();
+            nvpr.id = (0);
+            nvpr.name = ("Group 0");
+            nv.AddNewCNvGrpSpPr();
+            CT_GroupShapeProperties sp = shape.AddNewGrpSpPr();
+            CT_GroupTransform2D t2d = sp.AddNewXfrm();
+            CT_PositiveSize2D p1 = t2d.AddNewExt();
+            p1.cx = (0);
+            p1.cy = (0);
+            CT_Point2D p2 = t2d.AddNewOff();
+            p2.x = (0);
+            p2.y = (0);
+            CT_PositiveSize2D p3 = t2d.AddNewChExt();
+            p3.cx = (0);
+            p3.cy = (0);
+            CT_Point2D p4 = t2d.AddNewChOff();
+            p4.x = (0);
+            p4.y = (0);
 
-
-                CT_GroupShapeNonVisual nv = shape.AddNewNvGrpSpPr();
-                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_NonVisualDrawingProps nvpr = nv.AddNewCNvPr();
-                nvpr.id = (0);
-                nvpr.name = ("Group 0");
-                nv.AddNewCNvGrpSpPr();
-                CT_GroupShapeProperties sp = shape.AddNewGrpSpPr();
-                CT_GroupTransform2D t2d = sp.AddNewXfrm();
-                CT_PositiveSize2D p1 = t2d.AddNewExt();
-                p1.cx = (0);
-                p1.cy = (0);
-                CT_Point2D p2 = t2d.AddNewOff();
-                p2.x = (0);
-                p2.y = (0);
-                CT_PositiveSize2D p3 = t2d.AddNewChExt();
-                p3.cx = (0);
-                p3.cy = (0);
-                CT_Point2D p4 = t2d.AddNewChOff();
-                p4.x = (0);
-                p4.y = (0);
-
-                prototype = shape;
+            prototype = shape;
             return prototype;
         }
 
@@ -88,6 +89,7 @@ namespace Npoi.Core.XSSF.UserModel
          *               to the group.
          * @return      the newly Created textbox.
          */
+
         public XSSFTextBox CreateTextbox(XSSFChildAnchor anchor)
         {
             CT_Shape ctShape = ctGroup.AddNewSp();
@@ -98,8 +100,8 @@ namespace Npoi.Core.XSSF.UserModel
             shape.anchor = anchor;
             shape.GetCTShape().spPr.xfrm = (anchor.GetCTTransform2D());
             return shape;
-
         }
+
         /**
          * Creates a simple shape.  This includes such shapes as lines, rectangles,
          * and ovals.
@@ -108,6 +110,7 @@ namespace Npoi.Core.XSSF.UserModel
          *               to the group.
          * @return the newly Created shape.
          */
+
         public XSSFSimpleShape CreateSimpleShape(XSSFChildAnchor anchor)
         {
             CT_Shape ctShape = ctGroup.AddNewSp();
@@ -128,6 +131,7 @@ namespace Npoi.Core.XSSF.UserModel
          *               to the group.
          * @return the newly Created shape.
          */
+
         public XSSFConnector CreateConnector(XSSFChildAnchor anchor)
         {
             CT_Connector ctShape = ctGroup.AddNewCxnSp();
@@ -148,6 +152,7 @@ namespace Npoi.Core.XSSF.UserModel
          *                     {@link XSSFWorkbook#getAllPictures()} .
          * @return the newly Created picture shape.
          */
+
         public XSSFPicture CreatePicture(XSSFClientAnchor anchor, int pictureIndex)
         {
             PackageRelationship rel = GetDrawing().AddPictureReference(pictureIndex);
@@ -162,7 +167,6 @@ namespace Npoi.Core.XSSF.UserModel
             return shape;
         }
 
-
         public CT_GroupShape GetCTGroupShape()
         {
             return ctGroup;
@@ -172,6 +176,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Sets the coordinate space of this group.  All children are constrained
          * to these coordinates.
          */
+
         public void SetCoordinates(int x1, int y1, int x2, int y2)
         {
             CT_GroupTransform2D t2d = ctGroup.grpSpPr.xfrm;
@@ -194,8 +199,5 @@ namespace Npoi.Core.XSSF.UserModel
         {
             throw new InvalidOperationException("Not supported for shape group");
         }
-
     }
-
-
 }

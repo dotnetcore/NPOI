@@ -9,12 +9,10 @@ using System.Xml.Serialization;
 namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Num
     {
-
         private CT_DecimalNumber abstractNumIdField;
 
         private List<CT_NumLvl> lvlOverrideField;
@@ -26,6 +24,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             //this.lvlOverrideField = new List<CT_NumLvl>();
             //this.abstractNumIdField = new CT_DecimalNumber();
         }
+
         public static CT_Num Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -43,8 +42,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -61,8 +58,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
-
 
         [XmlElement(Order = 0)]
         public CT_DecimalNumber abstractNumId
@@ -121,14 +116,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_NumLvl
     {
-
         private CT_DecimalNumber startOverrideField;
 
         private CT_Lvl lvlField;
@@ -140,6 +132,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             //this.lvlField = new CT_Lvl();
             //this.startOverrideField = new CT_DecimalNumber();
         }
+
         public static CT_NumLvl Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -156,8 +149,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -169,8 +160,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.lvl.Write(sw, "lvl");
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
-
 
         [XmlElement(Order = 0)]
         public CT_DecimalNumber startOverride
@@ -212,14 +201,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot("numbering", Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = false)]
     public class CT_Numbering
     {
-
         private List<CT_NumPicBullet> numPicBulletField;
 
         private List<CT_AbstractNum> abstractNumField;
@@ -227,6 +213,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private List<CT_Num> numField;
 
         private CT_DecimalNumber numIdMacAtCleanupField;
+
         public static CT_Numbering Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -248,8 +235,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw)
         {
@@ -400,14 +385,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_NumPicBullet
     {
-
         private CT_Picture pictField;
 
         private string numPicBulletIdField;
@@ -442,6 +424,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.numPicBulletIdField = value;
             }
         }
+
         public static CT_NumPicBullet Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -456,8 +439,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -467,15 +448,9 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.pict.Write(sw, "pict");
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
-
-
-
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_NumFmt
@@ -490,15 +465,12 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "w:val", this.val.ToString());
             sw.Write("/>");
         }
-
 
         private ST_NumberFormat valField;
 
@@ -516,197 +488,133 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_NumberFormat
     {
-
-    
         [XmlEnum("decimal")]
         @decimal,
 
-    
         upperRoman,
 
-    
         lowerRoman,
 
-    
         upperLetter,
 
-    
         lowerLetter,
 
-    
         ordinal,
 
-    
         cardinalText,
 
-    
         ordinalText,
 
-    
         hex,
 
-    
         chicago,
 
-    
         ideographDigital,
 
-    
         japaneseCounting,
 
-    
         aiueo,
 
-    
         iroha,
 
-    
         decimalFullWidth,
 
-    
         decimalHalfWidth,
 
-    
         japaneseLegal,
 
-    
         japaneseDigitalTenThousand,
 
-    
         decimalEnclosedCircle,
 
-    
         decimalFullWidth2,
 
-    
         aiueoFullWidth,
 
-    
         irohaFullWidth,
 
-    
         decimalZero,
 
-    
         bullet,
 
-    
         ganada,
 
-    
         chosung,
 
-    
         decimalEnclosedFullstop,
 
-    
         decimalEnclosedParen,
 
-    
         decimalEnclosedCircleChinese,
 
-    
         ideographEnclosedCircle,
 
-    
         ideographTraditional,
 
-    
         ideographZodiac,
 
-    
         ideographZodiacTraditional,
 
-    
         taiwaneseCounting,
 
-    
         ideographLegalTraditional,
 
-    
         taiwaneseCountingThousand,
 
-    
         taiwaneseDigital,
 
-    
         chineseCounting,
 
-    
         chineseLegalSimplified,
 
-    
         chineseCountingThousand,
 
-    
         koreanDigital,
 
-    
         koreanCounting,
 
-    
         koreanLegal,
 
-    
         koreanDigital2,
 
-    
         vietnameseCounting,
 
-    
         russianLower,
 
-    
         russianUpper,
 
-    
         none,
 
-    
         numberInDash,
 
-    
         hebrew1,
 
-    
         hebrew2,
 
-    
         arabicAlpha,
 
-    
         arabicAbjad,
 
-    
         hindiVowels,
 
-    
         hindiConsonants,
 
-    
         hindiNumbers,
 
-    
         hindiCounting,
 
-    
         thaiLetters,
 
-    
         thaiNumbers,
 
-    
         thaiCounting,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_NumRestart
@@ -720,8 +628,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.val = (ST_RestartNumber)Enum.Parse(typeof(ST_RestartNumber), node.Attribute("w:val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -747,28 +653,22 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_RestartNumber
     {
-
-    
         continuous,
 
-    
         eachSect,
 
-    
         eachPage,
     }
-    [Serializable]
 
+    [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_NumPr
     {
-
         private CT_DecimalNumber ilvlField;
 
         private CT_DecimalNumber numIdField;
@@ -784,6 +684,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             //this.numIdField = new CT_DecimalNumber();
             //this.ilvlField = new CT_DecimalNumber();
         }
+
         public static CT_NumPr Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -803,8 +704,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -819,8 +718,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.ins.Write(sw, "ins");
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
-
 
         [XmlElement(Order = 0)]
         public CT_DecimalNumber ilvl
@@ -881,17 +778,15 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Sym
     {
-
         private string fontField;
 
         private byte[] charField;
+
         public static CT_Sym Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -901,8 +796,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             ctObj.@char = XmlHelper.ReadBytes(node.Attribute("w:char"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -941,12 +834,10 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_AbstractNum
     {
-
         private CT_LongHexNumber nsidField;
 
         private CT_MultiLevelType multiLevelTypeField;
@@ -1063,7 +954,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             set
             {
-                 this.lvlField = value;
+                this.lvlField = value;
             }
         }
 
@@ -1138,8 +1029,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -1167,9 +1056,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
 
-
-
-
         public int SizeOfLvlArray()
         {
             return this.lvlField == null ? 0 : this.lvlField.Count;
@@ -1181,9 +1067,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_MultiLevelType
@@ -1197,8 +1081,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.val = (ST_MultiLevelType)Enum.Parse(typeof(ST_MultiLevelType), node.Attribute("w:val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -1223,30 +1105,22 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_MultiLevelType
     {
-
-    
         singleLevel,
 
-    
         multilevel,
 
-    
         hybridMultilevel,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Lvl
     {
-
         private CT_DecimalNumber startField;
 
         private CT_NumFmt numFmtField;
@@ -1294,6 +1168,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             this.numFmtField = new CT_NumFmt();
             this.startField = new CT_DecimalNumber();
         }
+
         public static CT_Lvl Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1333,14 +1208,12 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "w:ilvl", this.ilvl);
             XmlHelper.WriteAttribute(sw, "w:tplc", this.tplc);
-            if(this.tentative!= ST_OnOff.off)
+            if (this.tentative != ST_OnOff.off)
                 XmlHelper.WriteAttribute(sw, "w:tentative", this.tentative.ToString());
             sw.Write(">");
             if (this.start != null)
@@ -1369,8 +1242,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.rPr.Write(sw, "rPr");
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
-
 
         [XmlElement(Order = 0)]
         public CT_DecimalNumber start
@@ -1582,9 +1453,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_LevelSuffix
@@ -1598,8 +1467,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.val = (ST_LevelSuffix)Enum.Parse(typeof(ST_LevelSuffix), node.Attribute("w:val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -1624,7 +1491,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_LevelSuffix
@@ -1634,42 +1500,36 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         nothing,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_LevelText
     {
-
         private string valField;
 
-        private ST_OnOff nullField= ST_OnOff.off;
+        private ST_OnOff nullField = ST_OnOff.off;
 
         private bool nullFieldSpecified;
 
         public static CT_LevelText Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
-            if(node==null)
+            if (node == null)
                 return null;
             CT_LevelText ctObj = new CT_LevelText();
             ctObj.val = XmlHelper.ReadString(node.Attribute("w:val"));
-            if (node.Attribute("w:null")!=null)
+            if (node.Attribute("w:null") != null)
                 ctObj.@null = (ST_OnOff)Enum.Parse(typeof(ST_OnOff), node.Attribute("w:null").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "w:val", this.val);
-            if(this.@null!= ST_OnOff.off)
+            if (this.@null != ST_OnOff.off)
                 XmlHelper.WriteAttribute(sw, "w:null", this.@null.ToString());
             sw.Write("/>");
         }
-
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public string val
@@ -1711,14 +1571,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_LvlLegacy
     {
-
         private ST_OnOff legacyField;
 
         private bool legacyFieldSpecified;
@@ -1750,7 +1607,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             sw.Write(">");
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public ST_OnOff legacy
@@ -1818,14 +1674,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_LsdException
     {
-
         private string nameField;
 
         private ST_OnOff lockedField;
@@ -1845,6 +1698,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private ST_OnOff qFormatField;
 
         private bool qFormatFieldSpecified;
+
         public CT_LsdException()
         {
             semiHidden = ST_OnOff.off;
@@ -1870,15 +1724,13 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "w:name", this.name);
             if (locked != ST_OnOff.off)
                 XmlHelper.WriteAttribute(sw, "w:locked", this.locked.ToString());
-            if(this.semiHidden== ST_OnOff.on)
+            if (this.semiHidden == ST_OnOff.on)
                 XmlHelper.WriteAttribute(sw, "w:semiHidden", "1");
             XmlHelper.WriteAttribute(sw, "w:uiPriority", this.uiPriority);
             if (this.unhideWhenUsed == ST_OnOff.on)
@@ -2019,9 +1871,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_TrackChangeNumbering : CT_TrackChange
@@ -2037,8 +1887,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             ctObj.id = XmlHelper.ReadString(node.Attribute("id"));
             return ctObj;
         }
-
-
 
         internal new void Write(StreamWriter sw, string nodeName)
         {
@@ -2066,5 +1914,4 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
         }
     }
-
 }

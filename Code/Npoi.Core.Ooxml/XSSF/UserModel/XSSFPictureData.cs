@@ -15,30 +15,30 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.SS.UserModel;
-using Npoi.Core.XSSF.UserModel;
 using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.SS.UserModel;
 using Npoi.Core.Util;
-using System.IO;
 using System;
 using System.Collections.Generic;
+using System.IO;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Raw picture data, normally attached to a SpreadsheetML Drawing.
      * As a rule, pictures are stored in the /xl/media/ part of a SpreadsheetML package.
      */
+
     public class XSSFPictureData : POIXMLDocumentPart, IPictureData
     {
-
         /**
          * Relationships for each known picture type
          */
         internal static Dictionary<int, POIXMLRelation> RELATIONS;
+
         static XSSFPictureData()
         {
-            RELATIONS = new Dictionary<int,POIXMLRelation>(8);
+            RELATIONS = new Dictionary<int, POIXMLRelation>(8);
             RELATIONS[(int)PictureType.EMF] = XSSFRelation.IMAGE_EMF;
             RELATIONS[(int)PictureType.WMF] = XSSFRelation.IMAGE_WMF;
             RELATIONS[(int)PictureType.PICT] = XSSFRelation.IMAGE_PICT;
@@ -57,10 +57,10 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @see Npoi.Core.xssf.usermodel.XSSFWorkbook#AddPicture(byte[], int)
          */
+
         public XSSFPictureData()
             : base()
         {
-
         }
 
         /**
@@ -70,18 +70,18 @@ namespace Npoi.Core.XSSF.UserModel
          * @param rel  the namespace relationship holding this Drawing,
          * the relationship type must be http://schemas.Openxmlformats.org/officeDocument/2006/relationships/image
          */
+
         internal XSSFPictureData(PackagePart part, PackageRelationship rel)
             : base(part, rel)
         {
-
         }
-
 
         /**
          * Suggests a file extension for this image.
          *
          * @return the file extension.
          */
+
         public String SuggestFileExtension()
         {
             return GetPackagePart().PartName.Extension;
@@ -90,7 +90,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Return an integer constant that specifies type of this picture
          *
-         * @return an integer constant that specifies type of this picture 
+         * @return an integer constant that specifies type of this picture
          * @see Npoi.Core.ss.usermodel.Workbook#PICTURE_TYPE_EMF
          * @see Npoi.Core.ss.usermodel.Workbook#PICTURE_TYPE_WMF
          * @see Npoi.Core.ss.usermodel.Workbook#PICTURE_TYPE_PICT
@@ -98,6 +98,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @see Npoi.Core.ss.usermodel.Workbook#PICTURE_TYPE_PNG
          * @see Npoi.Core.ss.usermodel.Workbook#PICTURE_TYPE_DIB
          */
+
         public PictureType PictureType
         {
             get
@@ -113,7 +114,6 @@ namespace Npoi.Core.XSSF.UserModel
                 return PictureType.None;
             }
         }
-
 
         /// <summary>
         /// Gets the picture data as a byte array.
@@ -139,13 +139,13 @@ namespace Npoi.Core.XSSF.UserModel
         }
 
         /**
-         * *PictureData objects store the actual content in the part directly without keeping a 
+         * *PictureData objects store the actual content in the part directly without keeping a
          * copy like all others therefore we need to handle them differently.
          */
-        protected internal override void PrepareForCommit() {
+
+        protected internal override void PrepareForCommit()
+        {
             // do not clear the part here
         }
     }
 }
-
-

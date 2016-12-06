@@ -14,19 +14,22 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using Npoi.Core.SS.UserModel;
+
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
+    /**
+     * @author Yegor Kozlov
+     */
 
-/**
- * @author Yegor Kozlov
- */
     public class XSSFBorderFormatting : IBorderFormatting
     {
-        CT_Border _border;
+        private CT_Border _border;
 
         /*package*/
+
         internal XSSFBorderFormatting(CT_Border border)
         {
             _border = border;
@@ -114,7 +117,7 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 CT_BorderPr pr = _border.IsSetRight() ? _border.right : _border.AddNewRight();
                 if (value == (short)BorderStyle.None) _border.unsetRight();
-                else pr.style = (ST_BorderStyle)(value );
+                else pr.style = (ST_BorderStyle)(value);
             }
         }
 
@@ -135,7 +138,7 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 CT_BorderPr pr = _border.IsSetTop() ? _border.top : _border.AddNewTop();
                 if (value == (short)BorderStyle.None) _border.unsetTop();
-                else pr.style = (ST_BorderStyle)(value );
+                else pr.style = (ST_BorderStyle)(value);
             }
         }
 
@@ -239,9 +242,6 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-        #endregion
+        #endregion IBorderFormatting Members
     }
 }
-
-
-

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -21,6 +20,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             //this.fillField = new List<CT_Fill>();
         }
+
         public static CT_Fills Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -35,8 +35,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -65,10 +63,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.fillField = value;
             }
         }
+
         public void SetFillArray(List<CT_Fill> array)
         {
             fillField = array;
         }
+
         [XmlAttribute]
         public uint count
         {

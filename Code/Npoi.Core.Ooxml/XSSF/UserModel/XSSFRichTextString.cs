@@ -15,16 +15,16 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.SS.UserModel;
-using System.Text.RegularExpressions;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using System;
-using System.Text;
-using System.Collections.Generic;
+using Npoi.Core.SS.UserModel;
 using Npoi.Core.XSSF.Model;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Rich text unicode string.  These strings can have fonts applied to arbitary parts of the string.
      *
@@ -65,6 +65,7 @@ namespace Npoi.Core.XSSF.UserModel
      *
      * @author Yegor Kozlov
      */
+
     public class XSSFRichTextString : IRichTextString
     {
         private static Regex utfPtrn = new Regex("_x([0-9A-F]{4})_");
@@ -75,14 +76,13 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Create a rich text string
          */
+
         public XSSFRichTextString(String str)
         {
             st = new CT_Rst();
             st.t = str;
             PreserveSpaces(st.t);
         }
-
-
 
         public void SetStylesTableReference(StylesTable stylestable)
         {
@@ -106,9 +106,11 @@ namespace Npoi.Core.XSSF.UserModel
                 }
             }
         }
+
         /**
          * Create empty rich text string and Initialize it with empty string
          */
+
         public XSSFRichTextString()
         {
             st = new CT_Rst();
@@ -117,6 +119,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Create a rich text string from the supplied XML bean
          */
+
         public XSSFRichTextString(CT_Rst st)
         {
             this.st = st;
@@ -129,6 +132,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param endIndex      The end index to apply the font to (exclusive)
          * @param fontIndex     The font to use.
          */
+
         public void ApplyFont(int startIndex, int endIndex, short fontIndex)
         {
             XSSFFont font;
@@ -145,14 +149,14 @@ namespace Npoi.Core.XSSF.UserModel
             }
             ApplyFont(startIndex, endIndex, font);
         }
-        internal void ApplyFont(SortedDictionary<int, CT_RPrElt> formats, int startIndex, int endIndex, CT_RPrElt fmt) 
+
+        internal void ApplyFont(SortedDictionary<int, CT_RPrElt> formats, int startIndex, int endIndex, CT_RPrElt fmt)
         {
-            
             // delete format runs that fit between startIndex and endIndex
             // runs intersecting startIndex and endIndex remain
             //int runStartIdx = 0;
-            List<int> toRemoveKeys=new List<int>();
-            for (SortedDictionary<int, CT_RPrElt>.KeyCollection.Enumerator it = formats.Keys.GetEnumerator(); it.MoveNext(); )
+            List<int> toRemoveKeys = new List<int>();
+            for (SortedDictionary<int, CT_RPrElt>.KeyCollection.Enumerator it = formats.Keys.GetEnumerator(); it.MoveNext();)
             {
                 int runIdx = it.Current;
                 if (runIdx >= startIndex && runIdx < endIndex)
@@ -182,8 +186,9 @@ namespace Npoi.Core.XSSF.UserModel
             // there can be two or three runs depending whether startIndex or endIndex
             // intersected existing format runs
             //SortedMap<int, CT_RPrElt> sub = formats.subMap(startIndex, endIndex);
-            //while(sub.size() > 1) sub.remove(sub.lastKey());       
+            //while(sub.size() > 1) sub.remove(sub.lastKey());
         }
+
         /**
          * Applies a font to the specified characters of a string.
          *
@@ -191,6 +196,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param endIndex      The end index to apply to font to (exclusive)
          * @param font          The index of the font to use.
          */
+
         public void ApplyFont(int startIndex, int endIndex, IFont font)
         {
             if (startIndex > endIndex)
@@ -217,10 +223,8 @@ namespace Npoi.Core.XSSF.UserModel
 
             CT_Rst newSt = buildCTRst(text, formats);
             st.Set(newSt);
-
-
-
         }
+
         internal SortedDictionary<int, CT_RPrElt> GetFormatMap(CT_Rst entry)
         {
             int length = 0;
@@ -235,10 +239,12 @@ namespace Npoi.Core.XSSF.UserModel
             }
             return formats;
         }
+
         /**
          * Sets the font of the entire string.
          * @param font          The font to use.
          */
+
         public void ApplyFont(IFont font)
         {
             String text = this.String;
@@ -250,6 +256,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param fontIndex  the font to Apply.
          */
+
         public void ApplyFont(short fontIndex)
         {
             XSSFFont font;
@@ -272,6 +279,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param text  the text to append
          * @param font  the font to apply to the Appended text or <code>null</code> if no formatting is required
          */
+
         public void Append(String text, XSSFFont font)
         {
             if (st.sizeOfRArray() == 0 && st.IsSetT())
@@ -283,7 +291,7 @@ namespace Npoi.Core.XSSF.UserModel
                 st.unsetT();
             }
             CT_RElt lt2 = st.AddNewR();
-            lt2.t= (text);
+            lt2.t = (text);
             PreserveSpaces(lt2.t);
             CT_RPrElt pr = lt2.AddNewRPr();
             if (font != null) SetRunAttributes(font.GetCTFont(), pr);
@@ -294,6 +302,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param text  the text to append
          */
+
         public void Append(String text)
         {
             Append(text, null);
@@ -302,11 +311,12 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Copy font attributes from CTFont bean into CTRPrElt bean
          */
+
         private void SetRunAttributes(CT_Font ctFont, CT_RPrElt pr)
         {
             if (ctFont.SizeOfBArray() > 0) pr.AddNewB().val = (ctFont.GetBArray(0).val);
-            if (ctFont.sizeOfUArray() > 0) pr.AddNewU().val =(ctFont.GetUArray(0).val);
-            if (ctFont.sizeOfIArray() > 0) pr.AddNewI().val =(ctFont.GetIArray(0).val);
+            if (ctFont.sizeOfUArray() > 0) pr.AddNewU().val = (ctFont.GetUArray(0).val);
+            if (ctFont.sizeOfIArray() > 0) pr.AddNewI().val = (ctFont.GetIArray(0).val);
             if (ctFont.sizeOfColorArray() > 0)
             {
                 CT_Color c1 = ctFont.GetColorArray(0);
@@ -340,25 +350,26 @@ namespace Npoi.Core.XSSF.UserModel
 
             if (ctFont.sizeOfSzArray() > 0) pr.AddNewSz().val = (ctFont.GetSzArray(0).val);
             if (ctFont.sizeOfNameArray() > 0) pr.AddNewRFont().val = (ctFont.name.val);
-            if (ctFont.sizeOfFamilyArray() > 0) pr.AddNewFamily().val =(ctFont.GetFamilyArray(0).val);
+            if (ctFont.sizeOfFamilyArray() > 0) pr.AddNewFamily().val = (ctFont.GetFamilyArray(0).val);
             if (ctFont.sizeOfSchemeArray() > 0) pr.AddNewScheme().val = (ctFont.GetSchemeArray(0).val);
             if (ctFont.sizeOfCharsetArray() > 0) pr.AddNewCharset().val = (ctFont.GetCharsetArray(0).val);
             if (ctFont.sizeOfCondenseArray() > 0) pr.AddNewCondense().val = (ctFont.GetCondenseArray(0).val);
             if (ctFont.sizeOfExtendArray() > 0) pr.AddNewExtend().val = (ctFont.GetExtendArray(0).val);
             if (ctFont.sizeOfVertAlignArray() > 0) pr.AddNewVertAlign().val = (ctFont.GetVertAlignArray(0).val);
-            if (ctFont.sizeOfOutlineArray() > 0) pr.AddNewOutline().val =(ctFont.GetOutlineArray(0).val);
-            if (ctFont.sizeOfShadowArray() > 0) pr.AddNewShadow().val =(ctFont.GetShadowArray(0).val);
+            if (ctFont.sizeOfOutlineArray() > 0) pr.AddNewOutline().val = (ctFont.GetOutlineArray(0).val);
+            if (ctFont.sizeOfShadowArray() > 0) pr.AddNewShadow().val = (ctFont.GetShadowArray(0).val);
             if (ctFont.sizeOfStrikeArray() > 0) pr.AddNewStrike().val = (ctFont.GetStrikeArray(0).val);
         }
 
         /**
          * Removes any formatting that may have been applied to the string.
          */
+
         public void ClearFormatting()
         {
             String text = this.String;
             st.r = (null);
-            st.t= (text);
+            st.t = (text);
         }
 
         /**
@@ -367,6 +378,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param index     the index of the formatting run
          * @return  the index within the string.
          */
+
         public int GetIndexOfFormattingRun(int index)
         {
             if (st.sizeOfRArray() == 0) return 0;
@@ -388,6 +400,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param index     the index of the formatting run
          * @return  the number of characters this format run covers
          */
+
         public int GetLengthOfFormattingRun(int index)
         {
             if (st.sizeOfRArray() == 0 || index >= st.sizeOfRArray())
@@ -415,7 +428,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return UtfDecode(buf.ToString());
             }
 
-            set 
+            set
             {
                 ClearFormatting();
                 st.t = value;
@@ -426,6 +439,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Returns the plain string representation.
          */
+
         public override String ToString()
         {
             return this.String;
@@ -434,6 +448,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Returns the number of characters in this string.
          */
+
         public int Length
         {
             get
@@ -445,6 +460,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return  The number of formatting Runs used.
          */
+
         public int NumFormattingRuns
         {
             get
@@ -459,6 +475,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param index     the index of the formatting run
          * @return  A copy of the  font used or null if no formatting is applied to the specified text Run.
          */
+
         public IFont GetFontOfFormattingRun(int index)
         {
             if (st.sizeOfRArray() == 0 || index >= st.sizeOfRArray()) return null;
@@ -481,6 +498,7 @@ namespace Npoi.Core.XSSF.UserModel
          *                      index or null if no font is being applied or the
          *                      index is out of range.
          */
+
         public XSSFFont GetFontAtIndex(int index)
         {
             if (st.sizeOfRArray() == 0) return null;
@@ -499,7 +517,6 @@ namespace Npoi.Core.XSSF.UserModel
                 pos += r.t.Length;
             }
             return null;
-
         }
 
         /**
@@ -511,11 +528,11 @@ namespace Npoi.Core.XSSF.UserModel
             return st;
         }
 
-
         /**
          *
          * CTRPrElt --> CTFont adapter
          */
+
         protected static CT_Font ToCTFont(CT_RPrElt pr)
         {
             CT_Font ctFont = new CT_Font();
@@ -553,7 +570,7 @@ namespace Npoi.Core.XSSF.UserModel
                     c2.tintSpecified = true;
                 }
             }
- 
+
             if (pr.SizeOfSzArray() > 0) ctFont.AddNewSz().val = (pr.GetSzArray(0).val);
             if (pr.SizeOfRFontArray() > 0) ctFont.AddNewName().val = (pr.GetRFontArray(0).val);
             if (pr.SizeOfFamilyArray() > 0) ctFont.AddNewFamily().val = (pr.GetFamilyArray(0).val);
@@ -604,34 +621,35 @@ namespace Npoi.Core.XSSF.UserModel
          * @param   value the string to decode
          * @return  the decoded string
          */
-        static String UtfDecode(String value)
+
+        private static String UtfDecode(String value)
         {
             if (value == null) return null;
 
             StringBuilder buf = new StringBuilder();
             MatchCollection mc = utfPtrn.Matches(value);
             int idx = 0;
-            for (int i = 0; i < mc.Count;i++ )
+            for (int i = 0; i < mc.Count; i++)
             {
-                    int pos = mc[i].Index;
-                    if (pos > idx)
-                    {
-                        buf.Append(value.Substring(idx, pos-idx));
-                    }
-
-                    String code = mc[i].Groups[1].Value;
-                    int icode = Int32.Parse(code, System.Globalization.NumberStyles.AllowHexSpecifier);
-                    buf.Append((char)icode);
-
-                    idx = mc[i].Index+mc[i].Length;
+                int pos = mc[i].Index;
+                if (pos > idx)
+                {
+                    buf.Append(value.Substring(idx, pos - idx));
                 }
+
+                String code = mc[i].Groups[1].Value;
+                int icode = Int32.Parse(code, System.Globalization.NumberStyles.AllowHexSpecifier);
+                buf.Append((char)icode);
+
+                idx = mc[i].Index + mc[i].Length;
+            }
             buf.Append(value.Substring(idx));
             return buf.ToString();
         }
 
         public int GetLastKey(SortedDictionary<int, CT_RPrElt>.KeyCollection keys)
         {
-            int i=0;
+            int i = 0;
             foreach (int key in keys)
             {
                 if (i == keys.Count - 1)
@@ -641,7 +659,7 @@ namespace Npoi.Core.XSSF.UserModel
             throw new ArgumentOutOfRangeException("GetLastKey failed");
         }
 
-        CT_Rst buildCTRst(String text, SortedDictionary<int, CT_RPrElt> formats)
+        private CT_Rst buildCTRst(String text, SortedDictionary<int, CT_RPrElt> formats)
         {
             if (text.Length != GetLastKey(formats.Keys))
             {
@@ -650,7 +668,7 @@ namespace Npoi.Core.XSSF.UserModel
             }
             CT_Rst st = new CT_Rst();
             int runStartIdx = 0;
-            for (SortedDictionary<int, CT_RPrElt>.KeyCollection.Enumerator it = formats.Keys.GetEnumerator(); it.MoveNext(); )
+            for (SortedDictionary<int, CT_RPrElt>.KeyCollection.Enumerator it = formats.Keys.GetEnumerator(); it.MoveNext();)
             {
                 int runEndIdx = it.Current;
                 CT_RElt run = st.AddNewR();
@@ -672,4 +690,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-

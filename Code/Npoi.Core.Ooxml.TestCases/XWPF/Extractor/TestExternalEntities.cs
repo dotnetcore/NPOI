@@ -17,24 +17,20 @@
 
 namespace Npoi.Core.XWPF.Extractor
 {
-    using System;
-
-
-
-    using NUnit.Framework;
     using Npoi.Core.XWPF;
     using Npoi.Core.XWPF.UserModel;
-    using Npoi.Core.XWPF.Extractor;
+    using NUnit.Framework;
+    using System;
 
     [TestFixture]
     public class TestExternalEntities
     {
-
         /**
          * Get text out of the simple file
          *
          * @
          */
+
         [Test]
         public void TestFile()
         {
@@ -50,7 +46,5 @@ namespace Npoi.Core.XWPF.Extractor
 
             extractor.Close();
         }
-
     }
-
 }

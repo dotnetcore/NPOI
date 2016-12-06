@@ -17,17 +17,15 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
-
     /**
      * postion of a character in a paragrapho
     * 1st RunPositon
     * 2nd TextPosition
-    * 3rd CharacterPosition 
-    * 
+    * 3rd CharacterPosition
+    *
     *
     */
+
     public class PositionInParagraph
     {
         private int posRun = 0, posText = 0, posChar = 0;
@@ -67,7 +65,6 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
 
-
         public int Char
         {
             get
@@ -80,5 +77,4 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
     }
-
 }

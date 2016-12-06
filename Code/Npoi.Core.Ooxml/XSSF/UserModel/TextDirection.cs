@@ -16,11 +16,13 @@
  *    limitations under the License.
  * ====================================================================
  */
+
 namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * Vertical Text Types
      */
+
     public enum TextDirection
     {
         None,
@@ -48,5 +50,4 @@ namespace Npoi.Core.XSSF.UserModel
          */
         STACKED
     }
-
 }

@@ -15,24 +15,22 @@
    limitations under the License.
    ==================================================================== */
 
-using System.Collections.Generic;
 using Npoi.Core.OpenXmlFormats.Dml.Chart;
-using Npoi.Core.SS.Util;
-using Npoi.Core.SS.UserModel.Charts;
-using Npoi.Core.XSSF.UserModel.Charts;
 using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.UserModel.Charts;
 using System;
+using System.Collections.Generic;
+
 namespace Npoi.Core.XSSF.UserModel.Charts
 {
-
     /**
      * Represents DrawingML scatter chart.
      *
      * @author Roman Kashitsyn
      */
+
     public class XSSFScatterChartData<Tx, Ty> : IScatterChartData<Tx, Ty>
     {
-
         /**
          * List of all data series.
          */
@@ -42,9 +40,11 @@ namespace Npoi.Core.XSSF.UserModel.Charts
         {
             series = new List<IScatterChartSeries<Tx, Ty>>();
         }
+
         /**
          * Package private ScatterChartSerie implementation.
          */
+
         internal class Series : AbstractXSSFChartSeries, IScatterChartSeries<Tx, Ty>
         {
             private int id;
@@ -62,7 +62,6 @@ namespace Npoi.Core.XSSF.UserModel.Charts
                 IChartDataSource<Tx> xs, IChartDataSource<Ty> ys)
                 : base()
             {
-
                 this.id = id;
                 this.order = order;
                 //this.useCache = true;
@@ -74,6 +73,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
              * Returns data source used for X axis values.
              * @return data source used for X axis values
              */
+
             public IChartDataSource<Tx> GetXValues()
             {
                 return xs;
@@ -83,6 +83,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
              * Returns data source used for Y axis values.
              * @return data source used for Y axis values
              */
+
             public IChartDataSource<Ty> GetYValues()
             {
                 return ys;
@@ -91,11 +92,11 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             /**
              * @param useCache if true, cached results will be Added on plot
              */
+
             public void SetUseCache(bool useCache)
             {
                 this.useCache = useCache;
             }
-
 
             internal void AddToChart(CT_ScatterChart ctScatterChart)
             {
@@ -115,7 +116,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             }
         }
 
-        public IScatterChartSeries<Tx,Ty> AddSeries(IChartDataSource<Tx> xs, IChartDataSource<Ty> ys)
+        public IScatterChartSeries<Tx, Ty> AddSeries(IChartDataSource<Tx> xs, IChartDataSource<Ty> ys)
         {
             if (!ys.IsNumeric)
             {
@@ -161,5 +162,4 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             scatterStyle.val = ST_ScatterStyle.lineMarker;
         }
     }
-
 }

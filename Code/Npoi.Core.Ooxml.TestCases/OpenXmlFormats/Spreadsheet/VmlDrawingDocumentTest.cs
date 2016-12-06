@@ -31,7 +31,7 @@
 //        }
 
 //        #region Additional test attributes
-//        // 
+//        //
 //        //You can use the following additional attributes as you write your tests:
 //        //
 //        //Use ClassInitialize to run code before running the first test in the class
@@ -59,7 +59,6 @@
 //        //}
 //        //
 //        #endregion
-
 
 ////        /// <summary>
 ////        ///A test for the Serialization of CT_Drawing.
@@ -217,8 +216,6 @@
 //            //Assert.AreEqual(0, anchor.from.col);
 //        }
 
-
-
 //        /// <summary>
 //        ///A test for Deserialize
 //        ///</summary>
@@ -286,7 +283,6 @@
 //            var anchor = result.TwoCellAnchors[0];
 //            Assert.AreEqual(2, anchor.from.col);
 //        }
-
 
 //    }
 //}

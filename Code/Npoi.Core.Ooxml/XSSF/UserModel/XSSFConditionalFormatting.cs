@@ -17,25 +17,25 @@
  * ====================================================================
  */
 
-using Npoi.Core.SS.UserModel;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using System.Collections.Generic;
+using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.Util;
 using System;
+using System.Collections.Generic;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
-
-
     /**
      * @author Yegor Kozlov
      */
+
     public class XSSFConditionalFormatting : IConditionalFormatting
     {
         private CT_ConditionalFormatting _cf;
         private XSSFSheet _sh;
 
         /*package*/
+
         internal XSSFConditionalFormatting(XSSFSheet sh)
         {
             _cf = new CT_ConditionalFormatting();
@@ -43,6 +43,7 @@ namespace Npoi.Core.XSSF.UserModel
         }
 
         /*package*/
+
         internal XSSFConditionalFormatting(XSSFSheet sh, CT_ConditionalFormatting cf)
         {
             _cf = cf;
@@ -50,6 +51,7 @@ namespace Npoi.Core.XSSF.UserModel
         }
 
         /*package*/
+
         internal CT_ConditionalFormatting GetCTConditionalFormatting()
         {
             return _cf;
@@ -58,6 +60,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
           * @return array of <tt>CellRangeAddress</tt>s. Never <code>null</code>
           */
+
         public CellRangeAddress[] GetFormattingRanges()
         {
             List<CellRangeAddress> lst = new List<CellRangeAddress>();
@@ -77,6 +80,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param idx position of the rule. Should be between 0 and 2.
          * @param cfRule - Conditional Formatting rule
          */
+
         public void SetRule(int idx, IConditionalFormattingRule cfRule)
         {
             XSSFConditionalFormattingRule xRule = (XSSFConditionalFormattingRule)cfRule;
@@ -89,6 +93,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param cfRule - Conditional Formatting rule
          */
+
         public void AddRule(IConditionalFormattingRule cfRule)
         {
             XSSFConditionalFormattingRule xRule = (XSSFConditionalFormattingRule)cfRule;
@@ -98,6 +103,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return the Conditional Formatting rule at position idx.
          */
+
         public IConditionalFormattingRule GetRule(int idx)
         {
             return new XSSFConditionalFormattingRule(_sh, _cf.GetCfRuleArray(idx));
@@ -106,6 +112,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return number of Conditional Formatting rules.
          */
+
         public int NumberOfRules
         {
             get
@@ -115,4 +122,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-

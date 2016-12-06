@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Npoi.Core.OpenXml4Net.Exceptions;
+using System;
 using System.Text.RegularExpressions;
-
-using Npoi.Core.OpenXml4Net.Exceptions;
-using Npoi.Core.Util;
 
 namespace Npoi.Core.OpenXml4Net.OPC
 {
@@ -15,9 +11,9 @@ namespace Npoi.Core.OpenXml4Net.OPC
      *
      * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">http://www.ietf.org/rfc/rfc3986.txt</a>
      */
+
     public class PackagePartName : IComparable<PackagePartName>
     {
-
         /**
          * Part name stored as an URI.
          */
@@ -30,6 +26,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * Reserved characters for sub delimitations.
          */
+
         private static String[] RFC3986_PCHAR_SUB_DELIMS = { "!", "$", "&", "'",
             "(", ")", "*", "+", ",", ";", "=" };
 
@@ -63,6 +60,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *             Packaging Convention specifications.
          * @see java.net.URI
          */
+
         public PackagePartName(Uri uri, bool checkConformance)
         {
             if (checkConformance)
@@ -95,6 +93,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *             Throw if the specified part name is not conform to Open
          *             Packaging Convention specifications.
          */
+
         internal PackagePartName(String partName, bool checkConformance)
         {
             Uri partURI;
@@ -132,6 +131,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @return <code>true</code> if this part name respect the relationship
          *         part naming convention else <code>false</code>.
          */
+
         private bool IsRelationshipPartURI(Uri partUri)
         {
             if (partUri == null)
@@ -149,6 +149,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @return <code>true</code> if this part name respect the relationship
          *         part naming convention else <code>false</code>.
          */
+
         public bool IsRelationshipPartURI()
         {
             return this.isRelationship;
@@ -163,6 +164,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @throws Exception
          *             Throws if the part name is invalid.
          */
+
         private static void ThrowExceptionIfInvalidPartUri(Uri partUri)
         {
             if (partUri == null)
@@ -192,6 +194,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @throws InvalidFormatException
          *             If the specified URI is empty.
          */
+
         private static void ThrowExceptionIfEmptyURI(Uri partURI)
         {
             if (partURI == null)
@@ -230,6 +233,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *             segments contained in the part name, ends with a dot ('.')
          *             character.
          */
+
         private static void ThrowExceptionIfPartNameHaveInvalidSegments(Uri partUri)
         {
             if (partUri == null || "".Equals(partUri))
@@ -288,6 +292,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @param segment
          *            The segment to check
          */
+
         private static void CheckPCharCompliance(String segment)
         {
             bool errorFlag;
@@ -400,6 +405,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *             If the specified part name doesn't start with a forward slash
          *             character '/'.
          */
+
         private static void ThrowExceptionIfPartNameNotStartsWithForwardSlashChar(
                 Uri partUri)
         {
@@ -421,6 +427,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *             If the specified part name ends with a forwar slash character
          *             '/'.
          */
+
         private static void ThrowExceptionIfPartNameEndsWithForwardSlashChar(
                 Uri partUri)
         {
@@ -440,6 +447,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @throws InvalidFormatException
          *             Throws if the specified URI is absolute.
          */
+
         private static void ThrowExceptionIfAbsoluteUri(Uri partUri)
         {
             if (partUri.IsAbsoluteUri)
@@ -455,6 +463,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * part names and package implementers shall neither create nor recognize
          * packages with equivalent part names. [M1.12]
          */
+
         public int CompareTo(PackagePartName other)
         {
             // compare with natural sort order
@@ -467,6 +476,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *
          * @return The extension of the part name.
          */
+
         public String Extension
         {
             get
@@ -487,6 +497,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *
          * @return The name of this part name.
          */
+
         public String Name
         {
             get
@@ -518,12 +529,10 @@ namespace Npoi.Core.OpenXml4Net.OPC
             }
         }
 
-
         public override int GetHashCode()
         {
             return this.partNameURI.OriginalString.ToLower().GetHashCode();
         }
-
 
         public override String ToString()
         {
@@ -537,6 +546,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *
          * @return This part name URI.
          */
+
         public Uri URI
         {
             get
@@ -562,6 +572,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * part names and package implementers shall neither create nor recognize
          * packages with equivalent part names. [M1.12]
          */
+
         public static int Compare(PackagePartName obj1, PackagePartName obj2)
         {
             // NOTE could also throw a NullPointerException() if desired
@@ -583,7 +594,6 @@ namespace Npoi.Core.OpenXml4Net.OPC
             );
         }
 
-
         /**
          * A natural sort order for strings, consistent with the
          * requirements of {@code java.util.Comparator}, but simply implemented
@@ -593,6 +603,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * numerical portion), but sorts "File10.png" before "file2.png"
          * (lexigraphical sort)
          */
+
         public static int Compare(String str1, String str2)
         {
             if (str1 == null)

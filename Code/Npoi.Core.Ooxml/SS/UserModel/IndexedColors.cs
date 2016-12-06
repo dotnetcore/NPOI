@@ -16,13 +16,11 @@
 ==================================================================== */
 
 using Npoi.Core.HSSF.Util;
-using Npoi.Core.XSSF.UserModel;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Text;
+
 namespace Npoi.Core.SS.UserModel
 {
-
     /**
      * A deprecated indexing scheme for colours that is still required for some records, and for backwards
      *  compatibility with OLE2 formats.
@@ -35,6 +33,7 @@ namespace Npoi.Core.SS.UserModel
      *
      * @author Yegor Kozlov
      */
+
     public class IndexedColors
     {
         public static readonly IndexedColors Black;
@@ -80,7 +79,7 @@ namespace Npoi.Core.SS.UserModel
         public static readonly IndexedColors SeaGreen;
         public static readonly IndexedColors DarkGreen;
         public static readonly IndexedColors OliveGreen;
-        public static readonly IndexedColors Brown ;
+        public static readonly IndexedColors Brown;
         public static readonly IndexedColors Plum;
         public static readonly IndexedColors Indigo;
         public static readonly IndexedColors Grey80Percent;
@@ -88,15 +87,16 @@ namespace Npoi.Core.SS.UserModel
 
         private int index;
         private HSSFColor hssfColor;
-        
 
-        IndexedColors(int idx, HSSFColor color)
+        private IndexedColors(int idx, HSSFColor color)
         {
             index = idx;
             this.hssfColor = color;
         }
-        static Dictionary<string, IndexedColors> mappingName = null;
-        static Dictionary<int, IndexedColors> mappingIndex = null;
+
+        private static Dictionary<string, IndexedColors> mappingName = null;
+        private static Dictionary<int, IndexedColors> mappingIndex = null;
+
         static IndexedColors()
         {
             Black = new IndexedColors(8, new HSSFColor.Black());
@@ -121,7 +121,7 @@ namespace Npoi.Core.SS.UserModel
             Orchid = new IndexedColors(28, new HSSFColor.Orchid());
             Coral = new IndexedColors(29, new HSSFColor.Coral());
             RoyalBlue = new IndexedColors(30, new HSSFColor.RoyalBlue());
-            LightCornflowerBlue = new IndexedColors(31,new HSSFColor.LightCornflowerBlue());
+            LightCornflowerBlue = new IndexedColors(31, new HSSFColor.LightCornflowerBlue());
             SkyBlue = new IndexedColors(40, new HSSFColor.SkyBlue());
             LightTurquoise = new IndexedColors(41, new HSSFColor.LightTurquoise());
             LightGreen = new IndexedColors(42, new HSSFColor.LightGreen());
@@ -147,7 +147,6 @@ namespace Npoi.Core.SS.UserModel
             Indigo = new IndexedColors(62, new HSSFColor.Indigo());
             Grey80Percent = new IndexedColors(63, new HSSFColor.Grey80Percent());
             Automatic = new IndexedColors(64, new HSSFColor.Automatic());
-
 
             mappingName = new Dictionary<string, IndexedColors>();
             mappingName.Add("black", IndexedColors.Black);
@@ -199,7 +198,6 @@ namespace Npoi.Core.SS.UserModel
             mappingName.Add("grey80percent", IndexedColors.Grey80Percent);
             mappingName.Add("automatic", IndexedColors.Automatic);
 
-
             mappingIndex = new Dictionary<int, IndexedColors>();
             mappingIndex.Add(8, IndexedColors.Black);
             mappingIndex.Add(9, IndexedColors.White);
@@ -250,6 +248,7 @@ namespace Npoi.Core.SS.UserModel
             mappingIndex.Add(63, IndexedColors.Grey80Percent);
             mappingIndex.Add(64, IndexedColors.Automatic);
         }
+
         public static IndexedColors ValueOf(string colorName)
         {
             if (mappingName.ContainsKey(colorName.ToLower()))
@@ -257,9 +256,10 @@ namespace Npoi.Core.SS.UserModel
 
             return null;
         }
+
         public static IndexedColors ValueOf(int index)
         {
-            if(mappingIndex.ContainsKey(index))
+            if (mappingIndex.ContainsKey(index))
                 return mappingIndex[index];
             return null;
         }
@@ -268,6 +268,7 @@ namespace Npoi.Core.SS.UserModel
         {
             get { return hssfColor.RGB; }
         }
+
         public string HexString
         {
             get
@@ -289,6 +290,7 @@ namespace Npoi.Core.SS.UserModel
          *
          * @return index of this color
          */
+
         public short Index
         {
             get

@@ -15,16 +15,15 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.SS.UserModel;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
 using NUnit.Framework;
+
 namespace Npoi.Core.XSSF.UserModel.Extensions
 {
-
     [TestFixture]
     public class TestXSSFBorder
     {
-
         [Test]
         public void TestGetBorderStyle()
         {
@@ -48,6 +47,5 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
 
             Assert.AreEqual(BorderStyle.Thin, cellBorderStyle.GetBorderStyle(BorderSide.BOTTOM));
         }
-
     }
 }

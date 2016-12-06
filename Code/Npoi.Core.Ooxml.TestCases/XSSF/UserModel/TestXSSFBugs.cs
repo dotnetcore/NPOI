@@ -16,12 +16,9 @@
 ==================================================================== */
 
 using TestCases.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.IO;
     using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.OpenXml4Net.OPC;
     using Npoi.Core.OpenXmlFormats.Spreadsheet;
@@ -37,22 +34,26 @@ namespace Npoi.Core.XSSF.UserModel
     using Npoi.Core.XSSF.UserModel.Extensions;
     using NUnit.Framework;
     using NUnit.Framework.Constraints;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
     using TestCases;
     using TestCases.HSSF;
+
     [TestFixture]
     public class TestXSSFBugs : BaseTestBugzillaIssues
     {
-
         public TestXSSFBugs()
             : base(XSSFITestDataProvider.instance)
         {
-
         }
 
         /**
          * Test writing a file with large number of unique strings,
          * open resulting file in Excel to check results!
          */
+
         [Test]
         public void Test15375_2()
         {
@@ -63,6 +64,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Named ranges had the right reference, but
          *  the wrong sheet name
          */
+
         [Test]
         public void Test45430()
         {
@@ -97,6 +99,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * We should carry vba macros over After save
          */
+
         [Test]
         public void Test45431()
         {
@@ -114,7 +117,6 @@ namespace Npoi.Core.XSSF.UserModel
                     PackagingUriHelper.CreatePartName("/xl/drawings/vmlDrawing1.vml")
             );
             Assert.IsNotNull(drw);
-
 
             // Save and re-open, both still there
             XSSFWorkbook nwb = XSSFTestDataSamples.WriteOutAndReadBack(wb) as XSSFWorkbook;
@@ -144,6 +146,7 @@ namespace Npoi.Core.XSSF.UserModel
             );
             Assert.IsNotNull(drw);
         }
+
         [Test]
         public void Test47504()
         {
@@ -171,6 +174,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Clearly Excel shouldn't do this, but Test that we can
          *  read the file despite the naughtyness
          */
+
         [Test]
         public void Test49020()
         {
@@ -181,6 +185,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * ensure that CTPhoneticPr is loaded by the ooxml Test suite so that it is included in poi-ooxml-schemas
          */
+
         [Test]
         public void Test49325()
         {
@@ -191,8 +196,9 @@ namespace Npoi.Core.XSSF.UserModel
 
         /**
          * Names which are defined with a Sheet
-         *  should return that sheet index properly 
+         *  should return that sheet index properly
          */
+
         [Test]
         public void Test48923()
         {
@@ -230,9 +236,10 @@ namespace Npoi.Core.XSSF.UserModel
          *  NameXPtgs.
          * Blows up on:
          *   IF(B6= (ROUNDUP(B6,0) + ROUNDDOWN(B6,0))/2, MROUND(B6,2),ROUND(B6,0))
-         * 
+         *
          * TODO: delete this Test case when MROUND and VAR are implemented
          */
+
         [Test]
         public void Bug48539()
         {
@@ -280,8 +287,9 @@ namespace Npoi.Core.XSSF.UserModel
 
         /**
          * Foreground colours should be found even if
-         *  a theme is used 
+         *  a theme is used
          */
+
         [Test]
         public void Test48779()
         {
@@ -317,11 +325,12 @@ namespace Npoi.Core.XSSF.UserModel
 
         /**
          * With HSSF, if you create a font, don't change it, and
-         *  create a 2nd, you really do Get two fonts that you 
+         *  create a 2nd, you really do Get two fonts that you
          *  can alter as and when you want.
          * With XSSF, that wasn't the case, but this verfies
          *  that it now is again
          */
+
         [Test]
         public void Test48718()
         {
@@ -357,8 +366,9 @@ namespace Npoi.Core.XSSF.UserModel
 
         /**
          * Ensure General and @ format are working properly
-         *  for integers 
+         *  for integers
          */
+
         [Test]
         public void Test47490()
         {
@@ -394,6 +404,7 @@ namespace Npoi.Core.XSSF.UserModel
          *  and with the docs on when fetching the wrong
          *  kind of value from a Formula cell
          */
+
         [Test]
         public void Test47815()
         {
@@ -475,14 +486,15 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * The OPC spec tolerates both of these peculiarities, so does POI
          */
+
         [Test]
         public void Test49609()
         {
             XSSFWorkbook wb = XSSFTestDataSamples.OpenSampleWorkbook("49609.xlsx");
             Assert.AreEqual("FAM", wb.GetSheetName(0));
             Assert.AreEqual("Cycle", wb.GetSheetAt(0).GetRow(0).GetCell(1).StringCellValue);
-
         }
+
         [Test]
         public void Test49783()
         {
@@ -516,6 +528,7 @@ namespace Npoi.Core.XSSF.UserModel
          *  preserve spaces to the 2nd bit, lest we end up
          *  with something like "helloworld" !
          */
+
         [Test]
         public void Test49941()
         {
@@ -595,6 +608,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Repeatedly writing the same file which has styles
          */
+
         [Test]
         public void Test49940()
         {
@@ -624,6 +638,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Various ways of removing a cell formula should all zap
          *  the calcChain entry.
          */
+
         [Test]
         public void Test49966()
         {
@@ -682,6 +697,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual("A9", cc.GetCTCalcChain().GetCArray(2).r);
             wbRead.Close();
         }
+
         [Test]
         public void Bug49966Row()
         {
@@ -702,6 +718,7 @@ namespace Npoi.Core.XSSF.UserModel
                 ((XSSFRow)row).OnDocumentWrite();
             }
         }
+
         [Test]
         public void Test49156()
         {
@@ -724,6 +741,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Newlines are valid characters in a formula
          */
+
         [Test]
         public void Test50440And51875()
         {
@@ -750,6 +768,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Moving a cell comment from one cell to another
          */
+
         [Test]
         public void Test50795()
         {
@@ -767,7 +786,6 @@ namespace Npoi.Core.XSSF.UserModel
             XSSFComment comment = cellWith.CellComment as XSSFComment;
             Assert.AreEqual(exp, comment.String.String);
 
-
             // Check we can write it out and read it back as-is
             wb = XSSFTestDataSamples.WriteOutAndReadBack(wb) as XSSFWorkbook;
             sheet = wb.GetSheetAt(0) as XSSFSheet;
@@ -781,10 +799,8 @@ namespace Npoi.Core.XSSF.UserModel
             comment = cellWith.CellComment as XSSFComment;
             Assert.AreEqual(exp, comment.String.String);
 
-
             // Move the comment
             cellWithoutComment.CellComment = (comment);
-
 
             // Write out and re-check
             wb = XSSFTestDataSamples.WriteOutAndReadBack(wb) as XSSFWorkbook;
@@ -803,10 +819,11 @@ namespace Npoi.Core.XSSF.UserModel
 
         /**
          * When the cell background colour is Set with one of the first
-         *  two columns of the theme colour palette, the colours are 
+         *  two columns of the theme colour palette, the colours are
          *  shades of white or black.
          * For those cases, ensure we don't break on Reading the colour
          */
+
         [Test]
         public void Test50299()
         {
@@ -843,6 +860,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Excel .xls style indexed colours in a .xlsx file
          */
+
         [Test]
         public void Test50786()
         {
@@ -863,9 +881,10 @@ namespace Npoi.Core.XSSF.UserModel
         }
 
         /**
-         * If the border colours are Set with themes, then we 
+         * If the border colours are Set with themes, then we
          *  should still be able to Get colours
          */
+
         [Test]
         public void Test50846()
         {
@@ -896,6 +915,7 @@ namespace Npoi.Core.XSSF.UserModel
          *  then being Set explicitly still should allow the
          *  fetching of the RGB.
          */
+
         [Test]
         public void Test50784()
         {
@@ -926,6 +946,7 @@ namespace Npoi.Core.XSSF.UserModel
          * New lines were being eaten when Setting a font on
          *  a rich text string
          */
+
         [Test]
         public void Test48877()
         {
@@ -992,12 +1013,12 @@ namespace Npoi.Core.XSSF.UserModel
             //       FileOutputStream out = new FileOutputStream("/tmp/test48877.xlsx");
             //       wb.Write(out);
             //       out.Close();
-
         }
 
         /**
          * Adding sheets when one has a table, then re-ordering
          */
+
         [Test]
         public void Test50867()
         {
@@ -1051,7 +1072,6 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual("Tabella1", t.Name);
             Assert.AreEqual("Tabella1", t.DisplayName);
             Assert.AreEqual("A1:C3", t.GetCTTable().@ref);
-
 
             // Add some more tables, and check
             t = s2.CreateTable();
@@ -1116,6 +1136,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Setting repeating rows and columns shouldn't break
          *  any print Settings that were there before
          */
+
         [Test]
         public void Test49253()
         {
@@ -1135,7 +1156,6 @@ namespace Npoi.Core.XSSF.UserModel
             XSSFPrintSetup ps1 = s1.PrintSetup as XSSFPrintSetup;
             Assert.AreEqual(false, ps1.ValidSettings);
             Assert.AreEqual(false, ps1.Landscape);
-
 
             // Had valid print Settings before repeating
             XSSFSheet s2 = wb2.CreateSheet() as XSSFSheet;
@@ -1162,6 +1182,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Default Column style
          */
+
         [Test]
         public void Test51037()
         {
@@ -1202,7 +1223,6 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(defaultStyle, s.GetColumnStyle(2));
             Assert.AreEqual(defaultStyle, s.GetColumnStyle(3));
 
-
             // Apply the styles
             s.SetDefaultColumnStyle(0, pinkStyle);
             s.SetDefaultColumnStyle(3, blueStyle);
@@ -1223,8 +1243,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(4, cols.GetColArray(1).max);
             Assert.AreEqual(blueStyle.Index, cols.GetColArray(1).style);
 
-
-            // Save, re-load and re-check 
+            // Save, re-load and re-check
             wb = XSSFTestDataSamples.WriteOutAndReadBack(wb) as XSSFWorkbook;
             s = wb.GetSheetAt(0) as XSSFSheet;
             defaultStyle = wb.GetCellStyleAt(defaultStyle.Index);
@@ -1242,6 +1261,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Repeatedly writing a file.
          * Something with the SharedStringsTable currently breaks...
          */
+
         [Test]
         public void Test46662()
         {
@@ -1262,8 +1282,9 @@ namespace Npoi.Core.XSSF.UserModel
         }
 
         /**
-         * Colours and styles when the list has gaps in it 
+         * Colours and styles when the list has gaps in it
          */
+
         [Test]
         public void Test51222()
         {
@@ -1303,6 +1324,7 @@ namespace Npoi.Core.XSSF.UserModel
             //       Assert.AreEqual("FFEEECE1", cA4_EEECE1.CellStyle.GetFillForegroundXSSFColor().GetARGBHex());
             //       Assert.AreEqual("FF1F497D", cA5_1F497D.CellStyle.GetFillForegroundXSSFColor().GetARGBHex());
         }
+
         [Test]
         public void Test51470()
         {
@@ -1321,6 +1343,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Add comments to Sheet 1, when Sheet 2 already has
          *  comments (so /xl/comments1.xml is taken)
          */
+
         [Test]
         public void Test51850()
         {
@@ -1369,7 +1392,6 @@ namespace Npoi.Core.XSSF.UserModel
             c2.SetCellValue(2.1);
             c2.CellComment = (comment2);
 
-
             // Save and re-load
             wb = XSSFTestDataSamples.WriteOutAndReadBack(wb) as XSSFWorkbook;
             sh1 = wb.GetSheetAt(0) as XSSFSheet;
@@ -1386,6 +1408,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Sheet names with a , in them
          */
+
         [Test]
         public void Test51963()
         {
@@ -1408,6 +1431,7 @@ namespace Npoi.Core.XSSF.UserModel
          *  eg =SUM($Sheet1.C1:$Sheet4.C1)
          * DISABLED As we can't currently Evaluate these
          */
+
         public void DISABLEDtest48703()
         {
             XSSFWorkbook wb = XSSFTestDataSamples.OpenSampleWorkbook("48703.xlsx");
@@ -1437,6 +1461,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Bugzilla 51710: problems Reading shared formuals from .xlsx
          */
+
         [Test]
         public void Test51710()
         {
@@ -1446,7 +1471,6 @@ namespace Npoi.Core.XSSF.UserModel
             int rowMax = 500; // bug triggers on row index 59
 
             ISheet sheet = wb.GetSheetAt(0);
-
 
             // go through all formula cells
             for (int rInd = 2; rInd <= rowMax; rInd++)
@@ -1464,13 +1488,13 @@ namespace Npoi.Core.XSSF.UserModel
 
                     Assert.AreEqual(correct, formula, "Incorrect formula in " + ref1.FormatAsString());
                 }
-
             }
         }
 
         /**
          * Bug 53101:
          */
+
         [Test]
         public void Test5301()
         {
@@ -1491,6 +1515,7 @@ namespace Npoi.Core.XSSF.UserModel
             // Assert
             Assert.AreEqual(259.0, a1Value, 0.0);
         }
+
         private class Function54436 : Function
         {
             public ValueEval Evaluate(ValueEval[] args, int srcRowIndex, int srcColumnIndex)
@@ -1498,6 +1523,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return ErrorEval.NA;
             }
         }
+
         [Test]
         public void Test54436()
         {
@@ -1516,6 +1542,7 @@ namespace Npoi.Core.XSSF.UserModel
          *  error message when called via WorkbookFactory.
          * (You need to supply a password explicitly for them)
          */
+
         [Test]
         public void Test55692()
         {
@@ -1549,6 +1576,7 @@ namespace Npoi.Core.XSSF.UserModel
             }
             catch (EncryptedDocumentException e) { }
         }
+
         [Test]
         public void Bug53282()
         {
@@ -1557,7 +1585,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual("#@_#", c.StringCellValue);
 
             //with .net new Uri("mailto:#@_#") is valid, but java think it invalid, http://invalid.uri,
-            //excel does nothing, it still show string "#@_#" 
+            //excel does nothing, it still show string "#@_#"
             //should we add more validation to valid mail address in method PackagingUriHelper.ParseUri(string, UriKind)
             Assert.AreEqual("mailto:#@_#", c.Hyperlink.Address);
         }
@@ -1567,6 +1595,7 @@ namespace Npoi.Core.XSSF.UserModel
          * at Npoi.Core.XSSF.UserModel.XSSFWorkbook.onDocumentRead
          * due to a lack of Styles Table
          */
+
         [Test]
         public void Bug56278()
         {
@@ -1587,6 +1616,7 @@ namespace Npoi.Core.XSSF.UserModel
             double rounded = cv.NumberValue;
             Assert.AreEqual(0.1, rounded, 0.0);
         }
+
         [Test]
         public void Bug56468()
         {
@@ -1596,7 +1626,7 @@ namespace Npoi.Core.XSSF.UserModel
             XSSFCell cell = row.CreateCell(0) as XSSFCell;
             cell.SetCellValue("Hi");
             sheet.RepeatingRows = (new CellRangeAddress(0, 0, 0, 0));
-            
+
             MemoryStream bos = new MemoryStream(8096);
             wb.Write(bos);
             byte[] firstSave = bos.ToArray();
@@ -1605,7 +1635,7 @@ namespace Npoi.Core.XSSF.UserModel
             //    fs.Write(firstSave, 0, firstSave.Length);
             //    fs.Flush();
             //}
-            
+
             MemoryStream bos2 = new MemoryStream(8096);
             wb.Write(bos2);
             byte[] secondSave = bos2.ToArray();
@@ -1614,17 +1644,18 @@ namespace Npoi.Core.XSSF.UserModel
             //    fs2.Write(secondSave, 0, secondSave.Length);
             //    fs2.Flush();
             //}
-            
 
-            Assert.That(firstSave, new EqualConstraint(secondSave), 
+            Assert.That(firstSave, new EqualConstraint(secondSave),
                 "Had: \n" + Arrays.ToString(firstSave) + " and \n" + Arrays.ToString(secondSave));
 
             wb.Close();
         }
+
         /**
          * ISO-8601 style cell formats with a T in them, eg
          * cell format of "yyyy-MM-ddTHH:mm:ss"
          */
+
         [Test]
         public void Bug54034()
         {
@@ -1654,9 +1685,11 @@ namespace Npoi.Core.XSSF.UserModel
             FileInfo xlsOutput = TempFile.CreateTempFile("testBug53798", ".xls");
             bug53798Work(wb, xlsOutput);
         }
+
         /**
          * SUMIF was throwing a NPE on some formulas
          */
+
         [Test]
         [Ignore("This bug is still to be fixed")]
         public void TestBug56420SumIfNPE()
@@ -1671,6 +1704,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual("SUMIF($A$1:$A$4,A3,$B$1:$B$4)", c.CellFormula);
             evaluator.EvaluateInCell(c);
         }
+
         private void bug53798Work(IWorkbook wb, FileInfo xlsOutput)
         {
             ISheet testSheet = wb.GetSheetAt(0);
@@ -1721,6 +1755,7 @@ namespace Npoi.Core.XSSF.UserModel
          * XSSFCell.typeMismatch on certain blank cells when formatting
          *  with DataFormatter
          */
+
         [Test]
         public void Bug56702()
         {
@@ -1748,8 +1783,9 @@ namespace Npoi.Core.XSSF.UserModel
          *  sheets, or workbook scoped but in other workbooks.
          * Currently failing with errors like
          * Npoi.Core.SS.Formula.FormulaParseException: Cell reference expected After sheet name at index 9
-         * Npoi.Core.SS.Formula.FormulaParseException: Parse error near char 0 '[' in specified formula '[0]!NR_Global_B2'. Expected number, string, or defined name 
+         * Npoi.Core.SS.Formula.FormulaParseException: Parse error near char 0 '[' in specified formula '[0]!NR_Global_B2'. Expected number, string, or defined name
          */
+
         [Test]
         public void Bug56737()
         {
@@ -1876,6 +1912,7 @@ namespace Npoi.Core.XSSF.UserModel
          * New hyperlink with no initial cell reference, still need
          *  to be able to change it
          */
+
         [Test]
         public void TestBug56527()
         {
@@ -1908,9 +1945,10 @@ namespace Npoi.Core.XSSF.UserModel
         }
 
         /**
-         * Shifting rows with a formula that references a 
+         * Shifting rows with a formula that references a
          * function in another file
          */
+
         [Test]
         public void Bug56502()
         {
@@ -1976,6 +2014,7 @@ namespace Npoi.Core.XSSF.UserModel
      * CTDefinedNamesImpl should be included in the smaller
      *  poi-ooxml-schemas jar
      */
+
         [Test]
         public void Bug57176()
         {
@@ -1994,6 +2033,7 @@ namespace Npoi.Core.XSSF.UserModel
          * .xlsb files are not supported, but we should generate a helpful
          *  error message if given one
          */
+
         [Test]
         public void Bug56800_xlsb()
         {
@@ -2106,7 +2146,6 @@ namespace Npoi.Core.XSSF.UserModel
                 cell = row.CreateCell(2) as XSSFCell;
                 cell.SetCellValue(0);
 
-
                 // simple formula worked
                 cell.CellFormula = (/*setter*/"DEC2HEX(O2+D2)");
 
@@ -2160,7 +2199,6 @@ namespace Npoi.Core.XSSF.UserModel
                 workbookEvaluator = new WorkbookEvaluator(XSSFEvaluationWorkbook.Create(wb), null, null);
                 workbookEvaluator.DebugEvaluationOutputForNextEval = (/*setter*/true);
                 workbookEvaluator.Evaluate(new XSSFEvaluationCell(cell));
-
             }
             finally
             {
@@ -2168,6 +2206,7 @@ namespace Npoi.Core.XSSF.UserModel
                 //System.ClearProperty("poi.log.level");
             }
         }
+
         [Test]
         public void Bug57430()
         {
@@ -2190,6 +2229,7 @@ namespace Npoi.Core.XSSF.UserModel
          * A .xlsx file with no Shared Strings table should open fine
          *  in Read-only mode
          */
+
         [Test]
         public void Bug57482()
         {
@@ -2242,7 +2282,6 @@ namespace Npoi.Core.XSSF.UserModel
                     Assert.AreEqual("11", fmt.FormatCellValue(s.GetRow(0).GetCell(1)));
                     Assert.AreEqual("5", fmt.FormatCellValue(s.GetRow(4).GetCell(0)));
                     Assert.AreEqual("Testing", fmt.FormatCellValue(s.GetRow(0).GetCell(3)));
-
                 }
                 finally
                 {
@@ -2254,6 +2293,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
      * "Unknown error type: -60" fetching formula error value
      */
+
         [Test]
         public void Bug57535()
         {
@@ -2272,7 +2312,6 @@ namespace Npoi.Core.XSSF.UserModel
 
             Assert.AreEqual("~CIRCULAR~REF~", FormulaError.ForInt(value.ErrorValue).String);
             //Assert.AreEqual("CIRCULAR_REF", FormulaError.ForInt(value.ErrorValue).ToString());
-
         }
 
         [Test]
@@ -2289,7 +2328,6 @@ namespace Npoi.Core.XSSF.UserModel
                 XSSFWorkbook wbBack = XSSFTestDataSamples.WriteOutAndReadBack(wb) as XSSFWorkbook;
                 try
                 {
-
                 }
                 finally
                 {
@@ -2316,7 +2354,6 @@ namespace Npoi.Core.XSSF.UserModel
                 XSSFWorkbook wbBack = XSSFTestDataSamples.WriteOutAndReadBack(wb) as XSSFWorkbook;
                 try
                 {
-
                 }
                 finally
                 {
@@ -2328,7 +2365,6 @@ namespace Npoi.Core.XSSF.UserModel
                 wb.Close();
             }
         }
-
 
         private static void RemoveAllSheetsBut(int sheetIndex, IWorkbook wb)
         {
@@ -2345,6 +2381,7 @@ namespace Npoi.Core.XSSF.UserModel
      * Sums 2 plus the cell at the left, indirectly to avoid reference
      * problems when deleting columns, conditionally to stop recursion
      */
+
         private static String FORMULA1 =
                 "IF( INDIRECT( ADDRESS( ROW(), COLUMN()-1 ) ) = 0, 0,"
                         + "INDIRECT( ADDRESS( ROW(), COLUMN()-1 ) ) ) + 2";
@@ -2353,6 +2390,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Sums 2 plus the upper cell, indirectly to avoid reference
          * problems when deleting rows, conditionally to stop recursion
          */
+
         private static String FORMULA2 =
                 "IF( INDIRECT( ADDRESS( ROW()-1, COLUMN() ) ) = 0, 0,"
                         + "INDIRECT( ADDRESS( ROW()-1, COLUMN() ) ) ) + 2";
@@ -2363,6 +2401,7 @@ namespace Npoi.Core.XSSF.UserModel
          * [  0][  2][  4]
          * @
          */
+
         [Test]
         public void TestBug56820_Formula1()
         {
@@ -2398,6 +2437,7 @@ namespace Npoi.Core.XSSF.UserModel
          * [  4] <- formula
          * @
          */
+
         [Test]
         public void TestBug56820_Formula2()
         {
@@ -2457,10 +2497,12 @@ namespace Npoi.Core.XSSF.UserModel
                 wb.Close();
             }
         }
+
         /**
      * OOXML-Strict files
      * Not currently working - namespace mis-match from XMLBeans
      */
+
         [Ignore("XMLBeans namespace mis-match on ooxml-strict files")]
         [Test]
         public void Test57699()
@@ -2492,7 +2534,7 @@ namespace Npoi.Core.XSSF.UserModel
             //        System.out.Println("Having " + Fills.Count + " Fills");
             //        for(XSSFCellFill fill : Fills) {
             //        	System.out.Println("Fill: " + Fill.FillBackgroundColor + "/" + Fill.FillForegroundColor);
-            //        }        
+            //        }
 
             XSSFWorkbook targetWorkbook = new XSSFWorkbook();
             XSSFSheet newSheet = targetWorkbook.CreateSheet(sheet.SheetName) as XSSFSheet;
@@ -2556,6 +2598,7 @@ namespace Npoi.Core.XSSF.UserModel
          *  32,767 must not be -32,768, then -32,767, -32,766
          *  long time test, run over 1 minute.
          */
+
         [Test]
         public void Bug57880()
         {
@@ -2604,7 +2647,5 @@ namespace Npoi.Core.XSSF.UserModel
             wb.Close();
             tmp.Delete();
         }
-
     }
-
 }

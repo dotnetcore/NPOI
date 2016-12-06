@@ -17,11 +17,12 @@
  * ====================================================================
  */
 
-using Npoi.Core.SS.Formula;
-using System;
-using Npoi.Core.SS.UserModel;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.Formula;
 using Npoi.Core.SS.Formula.PTG;
+using Npoi.Core.SS.UserModel;
+using System;
+
 namespace Npoi.Core.XSSF.UserModel.Helpers
 {
     //class XSSFFormulaRenderingWorkbook : IFormulaRenderingWorkbook
@@ -44,7 +45,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
 
     //    public String GetSheetNameByExternSheet(int externSheetIndex)
     //    {
-    //        if (externSheetIndex == _sheetIndex) 
+    //        if (externSheetIndex == _sheetIndex)
     //            return _name;
     //        else return _fpwb.GetSheetNameByExternSheet(externSheetIndex);
     //    }
@@ -61,7 +62,6 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
 
     //    #endregion
 
-
     //    public string GetSheetFirstNameByExternSheet(int externSheetIndex)
     //    {
     //        throw new NotImplementedException();
@@ -77,6 +77,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
      *
      * @author Yegor Kozlov
      */
+
     public class XSSFFormulaUtils
     {
         private XSSFWorkbook _wb;
@@ -102,6 +103,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
          * @param oldName    the old sheet name
          * @param newName    the new sheet name
          */
+
         public void UpdateSheetName(int sheetIndex, string oldName, string newName)
         {
             // update named ranges
@@ -136,6 +138,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
          * @param cell the cell to update
          * @param frwb the formula rendering workbbok that returns new sheet name
          */
+
         private void UpdateFormula(XSSFCell cell, String oldName, String newName)
         {
             CT_CellFormula f = cell.GetCTCell().f;
@@ -162,6 +165,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
          * @param name the name to update
          * @param frwb the formula rendering workbbok that returns new sheet name
          */
+
         private void UpdateName(IName name, String oldName, String newName)
         {
             String formula = name.RefersToFormula;
@@ -199,11 +203,8 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
                             pxg3D.LastSheetName = (/*setter*/newName);
                         }
                     }
-
                 }
             }
         }
     }
-
 }
-

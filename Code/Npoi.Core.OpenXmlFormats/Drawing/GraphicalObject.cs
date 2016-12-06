@@ -1,16 +1,14 @@
-
-using System;
-using System.Xml.Serialization;
-using System.Collections.Generic;
-using System.Xml;
-using System.IO;
-using System.Xml.Linq;
 using Npoi.Core.OpenXml4Net.Util;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Dml
 {
     [Serializable]
-    
     [System.ComponentModel.DesignerCategory("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
@@ -29,8 +27,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -52,10 +48,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         {
             anyField.Add(el);
         }
+
         public void AddPicElement(string el)
         {
             anyField.Add(el);
         }
+
         //[XmlAnyElement()]
         [XmlIgnore]
         public List<string> Any
@@ -84,9 +82,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
-    
     [System.ComponentModel.DesignerCategory("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
@@ -97,7 +93,9 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             this.graphicDataField = new CT_GraphicalObjectData();
             return this.graphicDataField;
         }
+
         private CT_GraphicalObjectData graphicDataField;
+
         public static CT_GraphicalObject Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -110,8 +108,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {

@@ -1,4 +1,3 @@
-
 using Npoi.Core.OpenXml4Net.Util;
 using System;
 using System.Collections.Generic;
@@ -9,129 +8,102 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace Npoi.Core.OpenXmlFormats.Dml 
+namespace Npoi.Core.OpenXmlFormats.Dml
 {
-    
-
     [Serializable]
-    [XmlType(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main")]
-    [XmlRoot(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable=false)]
-    public enum ST_TextAnchoringType {
-        
-    
+    [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
+    [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = false)]
+    public enum ST_TextAnchoringType
+    {
         t,
-        
-    
+
         ctr,
-        
-    
+
         b,
-        
-    
+
         just,
-        
-    
+
         dist,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main")]
-    [XmlRoot(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable=false)]
-    public enum ST_TextVertOverflowType {
-        
-    
+    [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
+    [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = false)]
+    public enum ST_TextVertOverflowType
+    {
         overflow,
-        
-    
+
         ellipsis,
-        
-    
+
         clip,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main")]
-    [XmlRoot(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable=false)]
-    public enum ST_TextHorzOverflowType {
-        
-    
+    [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
+    [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = false)]
+    public enum ST_TextHorzOverflowType
+    {
         overflow,
-        
-    
+
         clip,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main")]
-    [XmlRoot(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable=false)]
-    public enum ST_TextVerticalType {
-        
-    
+    [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
+    [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = false)]
+    public enum ST_TextVerticalType
+    {
         horz,
-        
-    
+
         vert,
-        
-    
+
         vert270,
-        
-    
+
         wordArtVert,
-        
-    
+
         eaVert,
-        
-    
+
         mongolianVert,
-        
-    
+
         wordArtVertRtl,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main")]
-    [XmlRoot(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable=false)]
-    public enum ST_TextWrappingType {
-        
-    
+    [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
+    [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = false)]
+    public enum ST_TextWrappingType
+    {
         none,
-        
-    
+
         square,
     }
-    
 
     [Serializable]
-    
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main")]
-    [XmlRoot(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable=true)]
-    public class CT_TextListStyle {
-        
+    [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
+    [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
+    public class CT_TextListStyle
+    {
         private CT_TextParagraphProperties defPPrField;
-        
+
         private CT_TextParagraphProperties lvl1pPrField;
-        
+
         private CT_TextParagraphProperties lvl2pPrField;
-        
+
         private CT_TextParagraphProperties lvl3pPrField;
-        
+
         private CT_TextParagraphProperties lvl4pPrField;
-        
+
         private CT_TextParagraphProperties lvl5pPrField;
-        
+
         private CT_TextParagraphProperties lvl6pPrField;
-        
+
         private CT_TextParagraphProperties lvl7pPrField;
-        
+
         private CT_TextParagraphProperties lvl8pPrField;
-        
+
         private CT_TextParagraphProperties lvl9pPrField;
-        
+
         private CT_OfficeArtExtensionList extLstField;
 
         public static CT_TextListStyle Parse(XElement node, XmlNamespaceManager namespaceManager)
@@ -167,8 +139,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0}", nodeName));
@@ -198,132 +168,155 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             sw.Write(string.Format("</a:{0}>", nodeName));
         }
 
-        public CT_TextParagraphProperties defPPr {
-            get {
+        public CT_TextParagraphProperties defPPr
+        {
+            get
+            {
                 return this.defPPrField;
             }
-            set {
+            set
+            {
                 this.defPPrField = value;
             }
         }
-        
-    
-        public CT_TextParagraphProperties lvl1pPr {
-            get {
+
+        public CT_TextParagraphProperties lvl1pPr
+        {
+            get
+            {
                 return this.lvl1pPrField;
             }
-            set {
+            set
+            {
                 this.lvl1pPrField = value;
             }
         }
-        
-    
-        public CT_TextParagraphProperties lvl2pPr {
-            get {
+
+        public CT_TextParagraphProperties lvl2pPr
+        {
+            get
+            {
                 return this.lvl2pPrField;
             }
-            set {
+            set
+            {
                 this.lvl2pPrField = value;
             }
         }
-        
-    
-        public CT_TextParagraphProperties lvl3pPr {
-            get {
+
+        public CT_TextParagraphProperties lvl3pPr
+        {
+            get
+            {
                 return this.lvl3pPrField;
             }
-            set {
+            set
+            {
                 this.lvl3pPrField = value;
             }
         }
-        
-    
-        public CT_TextParagraphProperties lvl4pPr {
-            get {
+
+        public CT_TextParagraphProperties lvl4pPr
+        {
+            get
+            {
                 return this.lvl4pPrField;
             }
-            set {
+            set
+            {
                 this.lvl4pPrField = value;
             }
         }
-        
-    
-        public CT_TextParagraphProperties lvl5pPr {
-            get {
+
+        public CT_TextParagraphProperties lvl5pPr
+        {
+            get
+            {
                 return this.lvl5pPrField;
             }
-            set {
+            set
+            {
                 this.lvl5pPrField = value;
             }
         }
-        
-    
-        public CT_TextParagraphProperties lvl6pPr {
-            get {
+
+        public CT_TextParagraphProperties lvl6pPr
+        {
+            get
+            {
                 return this.lvl6pPrField;
             }
-            set {
+            set
+            {
                 this.lvl6pPrField = value;
             }
         }
-        
-    
-        public CT_TextParagraphProperties lvl7pPr {
-            get {
+
+        public CT_TextParagraphProperties lvl7pPr
+        {
+            get
+            {
                 return this.lvl7pPrField;
             }
-            set {
+            set
+            {
                 this.lvl7pPrField = value;
             }
         }
-        
-    
-        public CT_TextParagraphProperties lvl8pPr {
-            get {
+
+        public CT_TextParagraphProperties lvl8pPr
+        {
+            get
+            {
                 return this.lvl8pPrField;
             }
-            set {
+            set
+            {
                 this.lvl8pPrField = value;
             }
         }
-        
-    
-        public CT_TextParagraphProperties lvl9pPr {
-            get {
+
+        public CT_TextParagraphProperties lvl9pPr
+        {
+            get
+            {
                 return this.lvl9pPrField;
             }
-            set {
+            set
+            {
                 this.lvl9pPrField = value;
             }
         }
-        
-    
-        public CT_OfficeArtExtensionList extLst {
-            get {
+
+        public CT_OfficeArtExtensionList extLst
+        {
+            get
+            {
                 return this.extLstField;
             }
-            set {
+            set
+            {
                 this.extLstField = value;
             }
         }
     }
-    
 
     [Serializable]
-    
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main")]
-    [XmlRoot(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable=true)]
-    public class CT_TextNormalAutofit {
-        
+    [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
+    [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
+    public class CT_TextNormalAutofit
+    {
         private int fontScaleField;
-        
+
         private int lnSpcReductionField;
-        
-        public CT_TextNormalAutofit() {
+
+        public CT_TextNormalAutofit()
+        {
             this.fontScaleField = 100000;
             this.lnSpcReductionField = 0;
         }
+
         public static CT_TextNormalAutofit Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -334,8 +327,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0}", nodeName));
@@ -344,58 +335,58 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             sw.Write(">");
             sw.Write(string.Format("</a:{0}>", nodeName));
         }
-    
+
         [XmlAttribute]
         [DefaultValue(100000)]
-        public int fontScale {
-            get {
+        public int fontScale
+        {
+            get
+            {
                 return this.fontScaleField;
             }
-            set {
+            set
+            {
                 this.fontScaleField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValue(0)]
-        public int lnSpcReduction {
-            get {
+        public int lnSpcReduction
+        {
+            get
+            {
                 return this.lnSpcReductionField;
             }
-            set {
+            set
+            {
                 this.lnSpcReductionField = value;
             }
         }
     }
-    
 
     [Serializable]
-    
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main")]
-    [XmlRoot(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable=true)]
-    public class CT_TextShapeAutofit {
-    }
-    
-
-    [Serializable]
-    
-    [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main")]
-    [XmlRoot(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable=true)]
-    public class CT_TextNoAutofit {
+    [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
+    [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
+    public class CT_TextShapeAutofit
+    {
     }
 
+    [Serializable]
+    [System.ComponentModel.DesignerCategory("code")]
+    [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
+    [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
+    public class CT_TextNoAutofit
+    {
+    }
 
     [Serializable]
-    
     [System.ComponentModel.DesignerCategory("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_TextBodyProperties
     {
-
         private CT_PresetTextShape prstTxWarpField;
 
         private CT_TextNoAutofit noAutofitField;
@@ -493,6 +484,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             this.wrapField = ST_TextWrappingType.none;
             this.spcFirstLastParaField = false;
         }
+
         public static CT_TextBodyProperties Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -544,20 +536,18 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0}", nodeName));
-            XmlHelper.WriteAttribute(sw, "rot", this.rot,true);
-            if(spcFirstLastPara)
+            XmlHelper.WriteAttribute(sw, "rot", this.rot, true);
+            if (spcFirstLastPara)
                 XmlHelper.WriteAttribute(sw, "spcFirstLastPara", this.spcFirstLastPara);
             XmlHelper.WriteAttribute(sw, "vertOverflow", this.vertOverflow.ToString());
-            if(this.horzOverflow!= ST_TextHorzOverflowType.overflow)
+            if (this.horzOverflow != ST_TextHorzOverflowType.overflow)
                 XmlHelper.WriteAttribute(sw, "horzOverflow", this.horzOverflow.ToString());
-            if(this.vert!= ST_TextVerticalType.vert)
+            if (this.vert != ST_TextVerticalType.vert)
                 XmlHelper.WriteAttribute(sw, "vert", this.vert.ToString());
-            if(this.wrap!= ST_TextWrappingType.none)
+            if (this.wrap != ST_TextWrappingType.none)
                 XmlHelper.WriteAttribute(sw, "wrap", this.wrap.ToString());
             XmlHelper.WriteAttribute(sw, "lIns", this.lIns);
             XmlHelper.WriteAttribute(sw, "tIns", this.tIns);
@@ -570,7 +560,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             XmlHelper.WriteAttribute(sw, "anchor", this.anchor.ToString());
             XmlHelper.WriteAttribute(sw, "anchorCtr", this.anchorCtr, false);
             XmlHelper.WriteAttribute(sw, "forceAA", this.forceAA, false);
-            if(upright)
+            if (upright)
                 XmlHelper.WriteAttribute(sw, "upright", this.upright);
             if (compatLnSpc)
                 XmlHelper.WriteAttribute(sw, "compatLnSpc", this.compatLnSpc);
@@ -629,6 +619,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.normAutofitField = value;
             }
         }
+
         public CT_TextShapeAutofit spAutoFit
         {
             get
@@ -640,7 +631,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.spAutoFitField = value;
             }
         }
-
 
         public CT_Scene3D scene3d
         {
@@ -654,7 +644,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         public CT_Shape3D sp3d
         {
             get
@@ -666,7 +655,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.sp3dField = value;
             }
         }
-
 
         public CT_FlatText flatTx
         {
@@ -680,7 +668,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         public CT_OfficeArtExtensionList extLst
         {
             get
@@ -692,7 +679,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.extLstField = value;
             }
         }
-
 
         [XmlAttribute]
         public int rot
@@ -708,7 +694,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlIgnore]
         public bool rotSpecified
         {
@@ -721,7 +706,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.rotFieldSpecified = value;
             }
         }
-
 
         [XmlAttribute]
         public bool spcFirstLastPara
@@ -737,7 +721,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlIgnore]
         public bool spcFirstLastParaSpecified
         {
@@ -750,7 +733,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.spcFirstLastParaFieldSpecified = value;
             }
         }
-
 
         [XmlAttribute]
         public ST_TextVertOverflowType vertOverflow
@@ -766,7 +748,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlIgnore]
         public bool vertOverflowSpecified
         {
@@ -779,7 +760,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.vertOverflowFieldSpecified = value;
             }
         }
-
 
         [XmlAttribute]
         public ST_TextHorzOverflowType horzOverflow
@@ -795,7 +775,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlIgnore]
         public bool horzOverflowSpecified
         {
@@ -808,7 +787,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.horzOverflowFieldSpecified = value;
             }
         }
-
 
         [XmlAttribute]
         public ST_TextVerticalType vert
@@ -824,7 +802,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlIgnore]
         public bool vertSpecified
         {
@@ -837,7 +814,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.vertFieldSpecified = value;
             }
         }
-
 
         [XmlAttribute]
         public ST_TextWrappingType wrap
@@ -853,7 +829,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlIgnore]
         public bool wrapSpecified
         {
@@ -866,7 +841,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.wrapFieldSpecified = value;
             }
         }
-
 
         [XmlAttribute]
         public int lIns
@@ -882,7 +856,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlIgnore]
         public bool lInsSpecified
         {
@@ -895,7 +868,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.lInsFieldSpecified = value;
             }
         }
-
 
         [XmlAttribute]
         public int tIns
@@ -911,7 +883,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlIgnore]
         public bool tInsSpecified
         {
@@ -924,7 +895,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.tInsFieldSpecified = value;
             }
         }
-
 
         [XmlAttribute]
         public int rIns
@@ -940,7 +910,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlIgnore]
         public bool rInsSpecified
         {
@@ -953,7 +922,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.rInsFieldSpecified = value;
             }
         }
-
 
         [XmlAttribute]
         public int bIns
@@ -969,7 +937,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlIgnore]
         public bool bInsSpecified
         {
@@ -982,7 +949,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.bInsFieldSpecified = value;
             }
         }
-
 
         [XmlAttribute]
         public int numCol
@@ -998,7 +964,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlIgnore]
         public bool numColSpecified
         {
@@ -1011,7 +976,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.numColFieldSpecified = value;
             }
         }
-
 
         [XmlAttribute]
         public int spcCol
@@ -1027,7 +991,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlIgnore]
         public bool spcColSpecified
         {
@@ -1040,7 +1003,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.spcColFieldSpecified = value;
             }
         }
-
 
         [XmlAttribute]
         public bool rtlCol
@@ -1056,7 +1018,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlIgnore]
         public bool rtlColSpecified
         {
@@ -1069,7 +1030,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.rtlColFieldSpecified = value;
             }
         }
-
 
         [XmlAttribute]
         public bool fromWordArt
@@ -1085,7 +1045,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlIgnore]
         public bool fromWordArtSpecified
         {
@@ -1098,7 +1057,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.fromWordArtFieldSpecified = value;
             }
         }
-
 
         [XmlAttribute]
         public ST_TextAnchoringType anchor
@@ -1114,7 +1072,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlIgnore]
         public bool anchorSpecified
         {
@@ -1127,7 +1084,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.anchorFieldSpecified = value;
             }
         }
-
 
         [XmlAttribute]
         public bool anchorCtr
@@ -1143,7 +1099,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlIgnore]
         public bool anchorCtrSpecified
         {
@@ -1156,7 +1111,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.anchorCtrFieldSpecified = value;
             }
         }
-
 
         [XmlAttribute]
         public bool forceAA
@@ -1172,7 +1126,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlIgnore]
         public bool forceAASpecified
         {
@@ -1185,7 +1138,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.forceAAFieldSpecified = value;
             }
         }
-
 
         [XmlAttribute]
         [DefaultValue(false)]
@@ -1201,7 +1153,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         public bool compatLnSpc
         {
@@ -1215,7 +1166,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.compatLnSpcFieldSpecified = value;
             }
         }
-
 
         [XmlIgnore]
         public bool compatLnSpcSpecified
@@ -1343,7 +1293,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return this.horzOverflowFieldSpecified;
         }
 
-
         public bool IsSetVertOverflow()
         {
             return this.vertOverflowFieldSpecified;
@@ -1363,24 +1312,23 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         {
             return this.wrapFieldSpecified;
         }
+
         public void UnsetWrap()
         {
             this.wrapFieldSpecified = false;
         }
     }
-    
 
     [Serializable]
-    
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main")]
-    [XmlRoot(Namespace="http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable=true)]
-    public class CT_TextBody {
-        
+    [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
+    [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
+    public class CT_TextBody
+    {
         private CT_TextBodyProperties bodyPrField;
-        
+
         private CT_TextListStyle lstStyleField;
-        
+
         private List<CT_TextParagraph> pField;
 
         public static CT_TextBody Parse(XElement node, XmlNamespaceManager namespaceManager)
@@ -1401,8 +1349,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0}", nodeName));
@@ -1422,6 +1368,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         {
             pField = new List<CT_TextParagraph>(array);
         }
+
         public CT_TextParagraph AddNewP()
         {
             if (this.pField == null)
@@ -1430,38 +1377,46 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             pField.Add(tp);
             return tp;
         }
+
         public CT_TextBodyProperties AddNewBodyPr()
         {
             this.bodyPrField = new CT_TextBodyProperties();
             return this.bodyPrField;
         }
+
         public CT_TextListStyle AddNewLstStyle()
         {
-                this.lstStyleField=new CT_TextListStyle();
-            return this.lstStyleField;   
+            this.lstStyleField = new CT_TextListStyle();
+            return this.lstStyleField;
         }
-    
-        public CT_TextBodyProperties bodyPr {
-            get {
+
+        public CT_TextBodyProperties bodyPr
+        {
+            get
+            {
                 return this.bodyPrField;
             }
-            set {
+            set
+            {
                 this.bodyPrField = value;
             }
         }
-        
-    
-        public CT_TextListStyle lstStyle {
-            get {
+
+        public CT_TextListStyle lstStyle
+        {
+            get
+            {
                 return this.lstStyleField;
             }
-            set {
+            set
+            {
                 this.lstStyleField = value;
             }
         }
+
         public override string ToString()
         {
-            if (p == null||p.Count==0)
+            if (p == null || p.Count == 0)
                 return string.Empty;
             StringBuilder sb = new StringBuilder();
             foreach (CT_TextParagraph tp in p)
@@ -1473,13 +1428,16 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return sb.ToString();
         }
-    
+
         [XmlElement("p")]
-        public List<CT_TextParagraph> p {
-            get {
+        public List<CT_TextParagraph> p
+        {
+            get
+            {
                 return this.pField;
             }
-            set {
+            set
+            {
                 this.pField = value;
             }
         }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
-using System.IO;
+﻿using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -10,11 +6,12 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
     public class DocumentDocument
     {
-        CT_Document document = null;
+        private CT_Document document = null;
+
         public DocumentDocument()
         {
-
         }
+
         public static DocumentDocument Parse(XDocument doc, XmlNamespaceManager namespaceMgr)
         {
             CT_Document obj = CT_Document.Parse(doc.Document.Root, namespaceMgr);
@@ -25,6 +22,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         {
             this.document = document;
         }
+
         public CT_Document Document
         {
             get
@@ -32,6 +30,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return this.document;
             }
         }
+
         public void Save(Stream stream)
         {
             using (StreamWriter sw = new StreamWriter(stream))

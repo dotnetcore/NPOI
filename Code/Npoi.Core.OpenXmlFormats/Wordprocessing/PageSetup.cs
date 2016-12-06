@@ -7,12 +7,11 @@ using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
-	[Serializable]
+    [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_PageSz
     {
-
         private ulong wField;
 
         private bool wFieldSpecified;
@@ -26,6 +25,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private bool orientFieldSpecified;
 
         private string codeField;
+
         public static CT_PageSz Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -39,14 +39,12 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "w:w", this.w);
             XmlHelper.WriteAttribute(sw, "w:h", this.h);
-            if( this.orientField!= ST_PageOrientation.portrait)
+            if (this.orientField != ST_PageOrientation.portrait)
                 XmlHelper.WriteAttribute(sw, "w:orient", this.orient.ToString());
             XmlHelper.WriteAttribute(sw, "w:code", this.code);
             sw.Write("/>");
@@ -144,27 +142,20 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_PageOrientation
     {
-
-    
         portrait,
 
-    
         landscape,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_PageMar
     {
-
         private string topField;
 
         private ulong rightField;
@@ -193,8 +184,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             ctObj.gutter = XmlHelper.ReadULong(node.Attribute("w:gutter"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -301,17 +290,15 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_PaperSource
     {
-
         private string firstField;
 
         private string otherField;
+
         public static CT_PaperSource Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -321,8 +308,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             ctObj.other = XmlHelper.ReadString(node.Attribute("w:other"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -360,14 +345,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_PageBorders
     {
-
         private CT_Border topField;
 
         private CT_Border leftField;
@@ -395,6 +377,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             //this.leftField = new CT_Border();
             //this.topField = new CT_Border();
         }
+
         public static CT_PageBorders Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -420,8 +403,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -439,7 +420,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.right.Write(sw, "right");
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
 
         [XmlElement(Order = 0)]
         public CT_Border top
@@ -572,56 +552,40 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_PageBorderZOrder
     {
-
-    
         front,
 
-    
         back,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_PageBorderDisplay
     {
-
-    
         allPages,
 
-    
         firstPage,
 
-    
         notFirstPage,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_PageBorderOffset
     {
-
-    
         page,
 
-    
         text,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_PageNumber
     {
-
         private ST_NumberFormat fmtField;
 
         private bool fmtFieldSpecified;
@@ -633,6 +597,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private ST_ChapterSep chapSepField;
 
         private bool chapSepFieldSpecified;
+
         public static CT_PageNumber Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -646,8 +611,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.chapSep = (ST_ChapterSep)Enum.Parse(typeof(ST_ChapterSep), node.Attribute("w:chapSep").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -740,15 +703,14 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SectType
     {
-
         private ST_SectionMark valField;
 
         private bool valFieldSpecified;
+
         public static CT_SectType Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -758,8 +720,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.val = (ST_SectionMark)Enum.Parse(typeof(ST_SectionMark), node.Attribute("w:val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -796,34 +756,26 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_SectionMark
     {
-
-    
         nextPage,
 
-    
         nextColumn,
 
-    
         continuous,
 
-    
         evenPage,
 
-    
         oddPage,
     }
-    [Serializable]
 
+    [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_LineNumber
     {
-
         private string countByField;
 
         private string startField;
@@ -835,6 +787,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private ST_LineNumberRestart restartField;
 
         private bool restartFieldSpecified;
+
         public static CT_LineNumber Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -847,8 +800,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.restart = (ST_LineNumberRestart)Enum.Parse(typeof(ST_LineNumberRestart), node.Attribute("w:restart").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -940,19 +891,14 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_LineNumberRestart
     {
-
-    
         newPage,
 
-    
         newSection,
 
-    
         continuous,
     }
 }

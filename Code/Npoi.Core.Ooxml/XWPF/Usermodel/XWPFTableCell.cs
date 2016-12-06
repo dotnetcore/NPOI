@@ -19,15 +19,16 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using System;
     using System.Collections.Generic;
     using System.Text;
-    using System.Xml;
+
     /**
      * Represents a Cell within a {@link XWPFTable}. The
      *  Cell is the thing that holds the actual content (paragraphs etc)
      */
+
     public class XWPFTableCell : IBody, ICell
     {
         private CT_Tc ctTc;
@@ -39,7 +40,9 @@ namespace Npoi.Core.XWPF.UserModel
 
         // Create a map from this XWPF-level enum to the STVerticalJc.Enum values
         public enum XWPFVertAlign { TOP, CENTER, BOTH, BOTTOM };
+
         private static Dictionary<XWPFVertAlign, ST_VerticalJc> alignMap;
+
         // Create a map from the STVerticalJc.Enum values to the XWPF-level enums
         private static Dictionary<ST_VerticalJc, XWPFVertAlign> stVertAlignTypeMap;
 
@@ -57,19 +60,19 @@ namespace Npoi.Core.XWPF.UserModel
             stVertAlignTypeMap.Add(ST_VerticalJc.center, XWPFVertAlign.CENTER);
             stVertAlignTypeMap.Add(ST_VerticalJc.both, XWPFVertAlign.BOTH);
             stVertAlignTypeMap.Add(ST_VerticalJc.bottom, XWPFVertAlign.BOTTOM);
-
         }
 
         /**
          * If a table cell does not include at least one block-level element, then this document shall be considered corrupt
          */
+
         public XWPFTableCell(CT_Tc cell, XWPFTableRow tableRow, IBody part)
         {
             this.ctTc = cell;
             this.part = part;
             this.tableRow = tableRow;
             // NB: If a table cell does not include at least one block-level element, then this document shall be considered corrupt.
-            if(cell.GetPList().Count<1)
+            if (cell.GetPList().Count < 1)
                 cell.AddNewP();
             bodyElements = new List<IBodyElement>();
             paragraphs = new List<XWPFParagraph>();
@@ -101,8 +104,6 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
 
-
-
         public CT_Tc GetCTTc()
         {
             return ctTc;
@@ -112,6 +113,7 @@ namespace Npoi.Core.XWPF.UserModel
          * returns an Iterator with paragraphs and tables
          * @see Npoi.Core.XWPF.UserModel.IBody#getBodyElements()
          */
+
         public IList<IBodyElement> BodyElements
         {
             get
@@ -122,7 +124,8 @@ namespace Npoi.Core.XWPF.UserModel
 
         public void SetParagraph(XWPFParagraph p)
         {
-            if (ctTc.SizeOfPArray() == 0) {
+            if (ctTc.SizeOfPArray() == 0)
+            {
                 ctTc.AddNewP();
             }
             ctTc.SetPArray(0, p.GetCTP());
@@ -131,6 +134,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * returns a list of paragraphs
          */
+
         public IList<XWPFParagraph> Paragraphs
         {
             get
@@ -143,6 +147,7 @@ namespace Npoi.Core.XWPF.UserModel
          * Add a Paragraph to this Table Cell
          * @return The paragraph which was Added
          */
+
         public XWPFParagraph AddParagraph()
         {
             XWPFParagraph p = new XWPFParagraph(ctTc.AddNewP(), this);
@@ -154,6 +159,7 @@ namespace Npoi.Core.XWPF.UserModel
          * add a Paragraph to this TableCell
          * @param p the paragaph which has to be Added
          */
+
         public void AddParagraph(XWPFParagraph p)
         {
             paragraphs.Add(p);
@@ -163,6 +169,7 @@ namespace Npoi.Core.XWPF.UserModel
          * Removes a paragraph of this tablecell
          * @param pos
          */
+
         public void RemoveParagraph(int pos)
         {
             paragraphs.RemoveAt(pos);
@@ -172,15 +179,18 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * if there is a corresponding {@link XWPFParagraph} of the parameter ctTable in the paragraphList of this table
          * the method will return this paragraph
-         * if there is no corresponding {@link XWPFParagraph} the method will return null 
+         * if there is no corresponding {@link XWPFParagraph} the method will return null
          * @param p is instance of CTP and is searching for an XWPFParagraph
          * @return null if there is no XWPFParagraph with an corresponding CTPparagraph in the paragraphList of this table
          * 		   XWPFParagraph with the correspondig CTP p
          */
+
         public XWPFParagraph GetParagraph(CT_P p)
         {
-            foreach (XWPFParagraph paragraph in paragraphs) {
-                if(p.Equals(paragraph.GetCTP())){
+            foreach (XWPFParagraph paragraph in paragraphs)
+            {
+                if (p.Equals(paragraph.GetCTP()))
+                {
                     return paragraph;
                 }
             }
@@ -220,6 +230,7 @@ namespace Npoi.Core.XWPF.UserModel
      * you may want to access these elements individually.
      * @param rgbStr - the desired cell color, in the hex form "RRGGBB".
      */
+
         public void SetColor(String rgbStr)
         {
             CT_TcPr tcpr = ctTc.IsSetTcPr() ? ctTc.tcPr : ctTc.AddNewTcPr();
@@ -233,6 +244,7 @@ namespace Npoi.Core.XWPF.UserModel
          * Get cell color. Note that this method only returns the "fill" value.
          * @return RGB string of cell color
          */
+
         public String GetColor()
         {
             String color = null;
@@ -252,6 +264,7 @@ namespace Npoi.Core.XWPF.UserModel
          * Set the vertical alignment of the cell.
          * @param vAlign - the desired alignment enum value
          */
+
         public void SetVerticalAlignment(XWPFVertAlign vAlign)
         {
             CT_TcPr tcpr = ctTc.IsSetTcPr() ? ctTc.tcPr : ctTc.AddNewTcPr();
@@ -263,6 +276,7 @@ namespace Npoi.Core.XWPF.UserModel
          * Get the vertical alignment of the cell.
          * @return the cell alignment enum value
          */
+
         public XWPFVertAlign GetVerticalAlignment()
         {
             XWPFVertAlign vAlign = XWPFVertAlign.TOP;
@@ -280,11 +294,12 @@ namespace Npoi.Core.XWPF.UserModel
          * @param cursor
          * @return the inserted paragraph
          */
+
         public XWPFParagraph InsertNewParagraph(/*XmlCursor*/ XDocument cursor)
         {
             /*if(!isCursorInTableCell(cursor))
                 return null;
-            
+
             String uri = CTP.type.Name.NamespaceURI;
             String localPart = "p";
             cursor.BeginElement(localPart,uri);
@@ -356,6 +371,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * verifies that cursor is on the right position
          */
+
         private bool IsCursorInTableCell(/*XmlCursor*/XDocument cursor)
         {
             /*XmlCursor verify = cursor.NewCursor();
@@ -367,11 +383,10 @@ namespace Npoi.Core.XWPF.UserModel
             throw new NotImplementedException();
         }
 
-
-
         /**
          * @see Npoi.Core.XWPF.UserModel.IBody#getParagraphArray(int)
          */
+
         public XWPFParagraph GetParagraphArray(int pos)
         {
             if (pos > 0 && pos < paragraphs.Count)
@@ -383,9 +398,10 @@ namespace Npoi.Core.XWPF.UserModel
 
         /**
          * Get the to which the TableCell belongs
-         * 
+         *
          * @see Npoi.Core.XWPF.UserModel.IBody#getPart()
          */
+
         public POIXMLDocumentPart Part
         {
             get
@@ -394,10 +410,10 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
 
-
-        /** 
+        /**
          * @see Npoi.Core.XWPF.UserModel.IBody#getPartType()
          */
+
         public BodyType PartType
         {
             get
@@ -406,36 +422,37 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
 
-
         /**
          * Get a table by its CTTbl-Object
          * @see Npoi.Core.XWPF.UserModel.IBody#getTable(org.Openxmlformats.schemas.wordProcessingml.x2006.main.CTTbl)
          */
+
         public XWPFTable GetTable(CT_Tbl ctTable)
         {
-            for(int i=0; i<tables.Count; i++){
-                if(this.Tables[(i)].GetCTTbl() == ctTable) return Tables[(i)]; 
+            for (int i = 0; i < tables.Count; i++)
+            {
+                if (this.Tables[(i)].GetCTTbl() == ctTable) return Tables[(i)];
             }
             return null;
         }
 
-
-        /** 
+        /**
          * @see Npoi.Core.XWPF.UserModel.IBody#getTableArray(int)
          */
+
         public XWPFTable GetTableArray(int pos)
         {
-            if (pos >=0 && pos < tables.Count)
+            if (pos >= 0 && pos < tables.Count)
             {
                 return tables[pos];
             }
             return null;
         }
 
-
-        /** 
+        /**
          * @see Npoi.Core.XWPF.UserModel.IBody#getTables()
          */
+
         public IList<XWPFTable> Tables
         {
             get
@@ -444,18 +461,20 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
 
-
         /**
          * inserts an existing XWPFTable to the arrays bodyElements and tables
          * @see Npoi.Core.XWPF.UserModel.IBody#insertTable(int, Npoi.Core.XWPF.UserModel.XWPFTable)
          */
+
         public void InsertTable(int pos, XWPFTable table)
         {
             bodyElements.Insert(pos, table);
             int i;
-            for (i = 0; i < ctTc.GetTblList().Count; i++) {
+            for (i = 0; i < ctTc.GetTblList().Count; i++)
+            {
                 CT_Tbl tbl = ctTc.GetTblArray(i);
-                if(tbl == table.GetCTTbl()){
+                if (tbl == table.GetCTTbl())
+                {
                     break;
                 }
             }
@@ -475,9 +494,9 @@ namespace Npoi.Core.XWPF.UserModel
         /**
      * extracts all text recursively through embedded tables and embedded SDTs
      */
+
         public String GetTextRecursively()
         {
-
             StringBuilder text = new StringBuilder();
             for (int i = 0; i < bodyElements.Count; i++)
             {
@@ -528,9 +547,11 @@ namespace Npoi.Core.XWPF.UserModel
                 }
             }
         }
+
         /**
          * Get the TableCell which belongs to the TableCell
          */
+
         public XWPFTableCell GetTableCell(CT_Tc cell)
         {
             if (!(cell.Parent is CT_Row))

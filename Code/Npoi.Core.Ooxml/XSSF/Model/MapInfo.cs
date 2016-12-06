@@ -15,35 +15,31 @@
    limitations under the License.
 ==================================================================== */
 
-using System.Xml;
-using System.Collections.Generic;
-using System.IO;
-using Npoi.Core.OpenXmlFormats;
 using Npoi.Core.OpenXml4Net.OPC;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using System;
-using System.Xml.Linq;
 using Npoi.Core.XSSF.UserModel;
-using Npoi.Core.Util;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml;
+using System.Xml.Linq;
+
 namespace Npoi.Core.XSSF.Model
 {
-
-
     /**
-     * 
+     *
      * This class : the Custom XML Mapping Part (Open Office XML Part 1:
      * chapter 12.3.6)
-     * 
+     *
      * An instance of this part type Contains a schema for an XML file, and
      * information on the behavior that is used when allowing this custom XML schema
      * to be mapped into the spreadsheet.
-     * 
+     *
      * @author Roberto Manicardi
      */
 
     public class MapInfo : POIXMLDocumentPart
     {
-
         private CT_MapInfo mapInfo;
 
         private Dictionary<int, XSSFMap> maps;
@@ -51,11 +47,11 @@ namespace Npoi.Core.XSSF.Model
         public MapInfo()
             : base()
         {
-
             mapInfo = new CT_MapInfo();
-
         }
-        XDocument xml = null;
+
+        private XDocument xml = null;
+
         internal MapInfo(PackagePart part, PackageRelationship rel)
             : base(part, rel)
         {
@@ -75,7 +71,6 @@ namespace Npoi.Core.XSSF.Model
                 {
                     maps[(int)map.ID] = new XSSFMap(map, this);
                 }
-
             }
             catch (XmlException e)
             {
@@ -88,6 +83,7 @@ namespace Npoi.Core.XSSF.Model
          *
          * @return the parent XSSFWorkbook
          */
+
         public XSSFWorkbook Workbook
         {
             get
@@ -97,13 +93,13 @@ namespace Npoi.Core.XSSF.Model
         }
 
         /**
-         * 
+         *
          * @return the internal data object
          */
+
         public CT_MapInfo GetCTMapInfo()
         {
             return mapInfo;
-
         }
 
         /**
@@ -111,6 +107,7 @@ namespace Npoi.Core.XSSF.Model
          * @param schemaId the schema ID
          * @return CTSchema by it's ID
          */
+
         public Npoi.Core.OpenXmlFormats.Spreadsheet.CT_Schema GetCTSchemaById(String schemaId)
         {
             Npoi.Core.OpenXmlFormats.Spreadsheet.CT_Schema xmlSchema = null;
@@ -126,34 +123,35 @@ namespace Npoi.Core.XSSF.Model
             return xmlSchema;
         }
 
-
         public XSSFMap GetXSSFMapById(int id)
         {
             return maps[id];
         }
 
-        public XSSFMap GetXSSFMapByName(String name){
-		
-		XSSFMap matchedMap = null;
-		
-		foreach(XSSFMap map in maps.Values){
-            if (map.GetCTMap().Name != null && map.GetCTMap().Name.Equals(name))
+        public XSSFMap GetXSSFMapByName(String name)
+        {
+            XSSFMap matchedMap = null;
+
+            foreach (XSSFMap map in maps.Values)
             {
-				matchedMap = map;
-			}
-		}		
-		
-		return matchedMap;
-	}
+                if (map.GetCTMap().Name != null && map.GetCTMap().Name.Equals(name))
+                {
+                    matchedMap = map;
+                }
+            }
+
+            return matchedMap;
+        }
 
         /**
-         * 
+         *
          * @return all the mappings configured in this document
          */
+
         public List<XSSFMap> GetAllXSSFMaps()
         {
             List<XSSFMap> tmaps = new List<XSSFMap>();
-            foreach(XSSFMap map in maps.Values)
+            foreach (XSSFMap map in maps.Values)
             {
                 tmaps.Add(map);
             }
@@ -168,7 +166,6 @@ namespace Npoi.Core.XSSF.Model
             xml.Save(out1);
         }
 
-
         protected internal override void Commit()
         {
             PackagePart part = GetPackagePart();
@@ -176,9 +173,5 @@ namespace Npoi.Core.XSSF.Model
             WriteTo(out1);
             out1.Dispose();
         }
-
     }
 }
-
-
-

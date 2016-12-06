@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ICSharpCode.SharpZipLib.Zip;
+﻿using ICSharpCode.SharpZipLib.Zip;
 
 namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
 {
     /**
      * Context needed for the unmarshall process of a part. This class is immutable.
-     * 
+     *
      * @author Julien Chable
      * @version 1.0
      */
+
     public class UnmarshallContext
     {
-
         private OPCPackage _package;
 
         private PackagePartName partName;
@@ -22,12 +19,13 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
 
         /**
          * Constructor.
-         * 
+         *
          * @param targetPackage
          *            Container.
          * @param partName
          *            Name of the part to unmarshall.
          */
+
         public UnmarshallContext(OPCPackage targetPackage, PackagePartName partName)
         {
             this._package = targetPackage;
@@ -37,13 +35,14 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
         /**
          * @return the container
          */
+
         internal OPCPackage Package
         {
             get
             {
                 return _package;
             }
-            set 
+            set
             {
                 this._package = value;
             }
@@ -52,6 +51,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
         /**
          * @return the partName
          */
+
         internal PackagePartName PartName
         {
             get
@@ -63,9 +63,11 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
                 this.partName = value;
             }
         }
+
         /**
          * @return the zipEntry
          */
+
         internal ZipEntry ZipEntry
         {
             get

@@ -15,10 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-using System.IO;
-using NUnit.Framework;
-using System.Text;
 using Npoi.Core.Util;
+using NUnit.Framework;
+using System.IO;
+using System.Text;
+
 namespace Npoi.Core.XSSF.Util
 {
     [TestFixture]
@@ -52,6 +53,7 @@ namespace Npoi.Core.XSSF.Util
             byte[] result = bout.ToArray();
             Assert.IsTrue(Arrays.Equals(ok, result));
         }
+
         [Test]
         public void TestProblem()
         {
@@ -85,6 +87,7 @@ namespace Npoi.Core.XSSF.Util
         /**
          * Checks that we can copy with br tags around the buffer boundaries
          */
+
         [Test]
         public void TestBufferSize()
         {
@@ -121,4 +124,3 @@ namespace Npoi.Core.XSSF.Util
         }
     }
 }
-

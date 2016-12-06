@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-
-using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -14,9 +11,8 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         ElementName = "calcChain")]
     public class CT_CalcChain
     {
-
         private List<CT_CalcCell> cField = new List<CT_CalcCell>(); // [1..*]    Cell
-        private CT_ExtensionList extLstField = null; //  [0..1]  
+        private CT_ExtensionList extLstField = null; //  [0..1]
 
         public int SizeOfCArray()
         {
@@ -27,14 +23,17 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             return c[index];
         }
+
         public void AddC(CT_CalcCell cell)
         {
             this.c.Add(cell);
         }
+
         public void RemoveC(int index)
         {
             this.c.RemoveAt(index);
         }
+
         [XmlElement("c")]
         public List<CT_CalcCell> c
         {
@@ -60,6 +59,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.extLstField = value;
             }
         }
+
         [XmlIgnore]
         public bool extLstSpecified
         {

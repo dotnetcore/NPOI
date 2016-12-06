@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ICSharpCode.SharpZipLib.Zip;
+using System;
 using System.Collections;
-using System.Text;
 using System.IO;
-using ICSharpCode.SharpZipLib.Zip;
 
 namespace Npoi.Core.OpenXml4Net.OPC.Internal
 {
     public class ZipHelper
     {
-
         /**
          * Forward slash use to convert part name between OPC and zip item naming
          * conventions.
@@ -26,6 +23,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
         /**
          * Prevent this class to be instancied.
          */
+
         private ZipHelper()
         {
             // Do nothing
@@ -37,6 +35,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @throws OpenXml4NetException
          *             Throws if internal error occurs.
          */
+
         public static ZipEntry GetCorePropertiesZipEntry(ZipPackage pkg)
         {
             PackageRelationship corePropsRel = pkg.GetRelationshipsByType(
@@ -52,6 +51,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
         /**
          * Retrieve the Zip entry of the content types part.
          */
+
         public static ZipEntry GetContentTypeZipEntry(ZipPackage pkg)
         {
             IEnumerator entries = pkg.ZipArchive.Entries;
@@ -75,6 +75,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          *            Zip item name to convert.
          * @return An OPC compliant name.
          */
+
         public static String GetOPCNameFromZipItemName(String zipItemName)
         {
             if (zipItemName == null)
@@ -93,6 +94,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          *            The OPC item name to convert.
          * @return A zip item name without any leading slashes.
          */
+
         public static String GetZipItemNameFromOPCName(String opcItemName)
         {
             if (opcItemName == null)
@@ -112,6 +114,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          *            The OPC item name to convert.
          * @return A zip URI without any leading slashes.
          */
+
         public static Uri GetZipURIFromOPCName(String opcItemName)
         {
             if (opcItemName == null)
@@ -129,6 +132,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
                 return null;
             }
         }
+
         /**
         * Opens the specified file as a zip, or returns null if no such file exists
         *
@@ -136,6 +140,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
         *            The file to open.
         * @return The zip archive freshly open.
         */
+
         public static ZipFile OpenZipFile(FileInfo file)
         {
             if (!file.Exists)
@@ -145,6 +150,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
 
             return new ZipFile(File.OpenRead(file.FullName));
         }
+
         /**
          * Retrieve and open a zip file with the specified path.
          *
@@ -152,6 +158,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          *            The file path.
          * @return The zip archive freshly open.
          */
+
         public static ZipFile OpenZipFile(String path)
         {
             if (!File.Exists(path))
@@ -161,6 +168,5 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
 
             return new ZipFile(File.OpenRead(path));
         }
-
     }
 }

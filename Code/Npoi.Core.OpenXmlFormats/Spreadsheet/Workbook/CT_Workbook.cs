@@ -1,9 +1,6 @@
-﻿using Npoi.Core.OpenXml4Net.Util;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -59,6 +56,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         public CT_Workbook()
         {
         }
+
         public static CT_Workbook Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -108,8 +106,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw)
         {
@@ -161,7 +157,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             sw.Write("</workbook>");
         }
 
-
         public CT_WorkbookPr AddNewWorkbookPr()
         {
             this.workbookPrField = new CT_WorkbookPr();
@@ -173,28 +168,34 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.calcPrField = new CT_CalcPr();
             return this.calcPrField;
         }
+
         public CT_Sheets AddNewSheets()
         {
             this.sheetsField = new CT_Sheets();
             return this.sheetsField;
         }
+
         public CT_BookViews AddNewBookViews()
         {
             this.bookViewsField = new CT_BookViews();
             return this.bookViewsField;
         }
+
         public bool IsSetWorkbookPr()
         {
             return this.workbookPrField != null;
         }
+
         public bool IsSetCalcPr()
         {
             return this.calcPrField != null;
         }
+
         public bool IsSetSheets()
         {
             return this.sheetsField != null;
         }
+
         public bool IsSetBookViews()
         {
             return this.bookViewsField != null;
@@ -209,20 +210,24 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             return this.definedNamesField != null;
         }
+
         public CT_DefinedNames AddNewDefinedNames()
         {
             this.definedNamesField = new CT_DefinedNames();
             return this.definedNamesField;
         }
+
         //AddNewWorkbookView()
         public void SetDefinedNames(CT_DefinedNames definedNames)
         {
             this.definedNamesField = definedNames;
         }
+
         public void unsetDefinedNames()
         {
             this.definedNamesField = null;
         }
+
         [XmlElement]
         public CT_FileVersion fileVersion
         {
@@ -235,6 +240,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.fileVersionField = value;
             }
         }
+
         [XmlElement]
         public CT_FileSharing fileSharing
         {
@@ -286,7 +292,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.bookViewsField = value;
             }
         }
-
 
         [XmlElement("sheets", IsNullable = false)]
         public CT_Sheets sheets

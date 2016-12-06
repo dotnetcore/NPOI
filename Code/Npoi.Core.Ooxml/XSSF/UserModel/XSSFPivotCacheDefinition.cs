@@ -19,24 +19,21 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.XSSF.UserModel
 {
-    using System.IO;
-    using System.Xml;
     using Npoi.Core.OpenXml4Net.OPC;
     using Npoi.Core.OpenXmlFormats.Spreadsheet;
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.SS.Util;
     using System;
-
+    using System.IO;
+    using System.Xml;
 
     public class XSSFPivotCacheDefinition : POIXMLDocumentPart
     {
-
         private CT_PivotCacheDefinition ctPivotCacheDefinition;
-        
+
         public XSSFPivotCacheDefinition()
             : base()
         {
-
             ctPivotCacheDefinition = new CT_PivotCacheDefinition();
             CreateDefaultValues();
         }
@@ -52,10 +49,8 @@ namespace Npoi.Core.XSSF.UserModel
         protected XSSFPivotCacheDefinition(PackagePart part, PackageRelationship rel)
             : base(part, rel)
         {
-
             ReadFrom(part.GetInputStream());
         }
-
 
         public void ReadFrom(Stream is1)
         {
@@ -73,13 +68,10 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
-
         public CT_PivotCacheDefinition GetCTPivotCacheDefInition()
         {
             return ctPivotCacheDefinition;
         }
-
 
         private void CreateDefaultValues()
         {
@@ -90,8 +82,6 @@ namespace Npoi.Core.XSSF.UserModel
             ctPivotCacheDefinition.refreshedDate = DateTime.Now.ToOADate();
             ctPivotCacheDefinition.refreshOnLoad = (/*setter*/true);
         }
-
-
 
         protected internal override void Commit()
         {

@@ -1,9 +1,7 @@
 ﻿using Npoi.Core.OpenXml4Net.Util;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -27,11 +25,11 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         mediumDashDotDot,
         slantDashDot,
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_Border
     {
-
         private CT_BorderPr leftField;
 
         private CT_BorderPr rightField;
@@ -58,8 +56,8 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 
         public CT_Border()
         {
-
         }
+
         public override string ToString()
         {
             MemoryStream ms = new MemoryStream();
@@ -72,6 +70,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 return sr.ReadToEnd();
             }
         }
+
         public static CT_Border Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -99,8 +98,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -145,16 +142,19 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             obj.outlineField = this.outlineField;
             return obj;
         }
+
         public CT_BorderPr AddNewDiagonal()
         {
             if (this.diagonalField == null)
                 this.diagonalField = new CT_BorderPr();
             return this.diagonalField;
         }
+
         public bool IsSetDiagonal()
         {
             return this.diagonalField != null;
         }
+
         public void unsetDiagonal()
         {
             this.diagonalField = null;
@@ -164,30 +164,37 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             this.rightField = null;
         }
+
         public void unsetLeft()
         {
             this.leftField = null;
         }
+
         public void unsetTop()
         {
             this.topField = null;
         }
+
         public void UnsetBottom()
         {
             this.bottomField = null;
         }
+
         public bool IsSetBottom()
         {
             return this.bottomField != null;
         }
+
         public bool IsSetLeft()
         {
             return this.leftField != null;
         }
+
         public bool IsSetRight()
         {
             return this.rightField != null;
         }
+
         public bool IsSetTop()
         {
             return this.topField != null;
@@ -198,24 +205,28 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return this.leftField != null || this.rightField != null
                 || this.topField != null || this.bottomField != null;
         }
+
         public CT_BorderPr AddNewTop()
         {
             if (this.topField == null)
                 this.topField = new CT_BorderPr();
             return this.topField;
         }
+
         public CT_BorderPr AddNewRight()
         {
             if (this.rightField == null)
                 this.rightField = new CT_BorderPr();
             return this.rightField;
         }
+
         public CT_BorderPr AddNewLeft()
         {
             if (this.leftField == null)
                 this.leftField = new CT_BorderPr();
             return this.leftField;
         }
+
         public CT_BorderPr AddNewBottom()
         {
             if (this.bottomField == null)
@@ -235,6 +246,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.leftField = value;
             }
         }
+
         [XmlElement(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
         public CT_BorderPr right
         {
@@ -247,6 +259,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.rightField = value;
             }
         }
+
         [XmlElement(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
         public CT_BorderPr top
         {
@@ -259,6 +272,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.topField = value;
             }
         }
+
         [XmlElement(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
         public CT_BorderPr bottom
         {
@@ -271,6 +285,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.bottomField = value;
             }
         }
+
         [XmlElement(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
         public CT_BorderPr diagonal
         {
@@ -283,6 +298,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.diagonalField = value;
             }
         }
+
         [XmlElement(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
         public CT_BorderPr vertical
         {
@@ -295,6 +311,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.verticalField = value;
             }
         }
+
         [XmlElement(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
         public CT_BorderPr horizontal
         {
@@ -307,6 +324,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.horizontalField = value;
             }
         }
+
         [XmlAttribute]
         public bool diagonalUp
         {
@@ -332,6 +350,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.diagonalUpFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public bool diagonalDown
         {
@@ -357,6 +376,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.diagonalDownFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool outline

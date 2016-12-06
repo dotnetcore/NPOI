@@ -1,8 +1,6 @@
 ﻿using Npoi.Core.OpenXml4Net.Util;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -14,7 +12,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlRoot(ElementName = "fonts", Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = false)]
     public class CT_Fonts
     {
-
         private List<CT_Font> fontField;
 
         private uint countField;
@@ -25,6 +22,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             //this.fontField = new List<CT_Font>();
         }
+
         public static CT_Fonts Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -57,8 +55,9 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 
         public void SetFontArray(List<CT_Font> array)
         {
-             fontField = array;
+            fontField = array;
         }
+
         [XmlElement]
         public List<CT_Font> font
         {
@@ -71,6 +70,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.fontField = value;
             }
         }
+
         [XmlAttribute]
         public uint count
         {
@@ -96,6 +96,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.countFieldSpecified = value;
             }
         }
+
         //internal static XmlSerializer serializer = new XmlSerializer(typeof(CT_Fonts));
         //internal static XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces(new XmlQualifiedName[] {
         //    new XmlQualifiedName("", "http://schemas.openxmlformats.org/spreadsheetml/2006/main") });

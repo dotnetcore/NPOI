@@ -14,22 +14,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
-
-
-
     /**
      * Specifies the types of patterns which may be used to create the underline
      * applied beneath the text in a Run.
-     * 
+     *
      * @author Gisella Bronzetti
      */
+
     public enum UnderlinePatterns
     {
-
         /**
          * Specifies an underline consisting of a single line beneath all characters
          * in this Run.
@@ -163,5 +159,4 @@ namespace Npoi.Core.XWPF.UserModel
         //   return align;
         //}
     }
-
 }

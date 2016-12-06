@@ -14,10 +14,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
     /**
      * Interface for anything that can be at a table cell level:
      * {@link XWPFTableCell}, {@link XWPFSDTCell}
@@ -25,8 +24,8 @@ namespace Npoi.Core.XWPF.UserModel
      * Schematically something like this:
      * &lt;tr&gt;&lt;tc/&gt;&lt;tc/&gt;&lt;sdt&gt&lt;tc/&gt;&lt;/sdt&gt;&lt;/tr&gt;
      */
+
     public interface ICell
     {
     }
-
 }

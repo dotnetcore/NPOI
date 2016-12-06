@@ -22,7 +22,6 @@
 //using Npoi.Core.OpenXmlFormats.Dml.Chart;
 //namespace Npoi.Core.XSSF.UserModel.Charts
 //{
-
 //    /**
 //     * Package private class to fill chart's number reference with cached
 //     * numeric values. If a formula-typed cell referenced by data marker,
@@ -33,7 +32,6 @@
 //     */
 //    internal class XSSFNumberCache
 //    {
-
 //        private CT_NumData ctNumData;
 
 //        internal XSSFNumberCache(CT_NumData ctNumData)
@@ -117,7 +115,6 @@
 
 //        private class NumCacheCellHandler : ICellHandler
 //        {
-
 //            private IFormulaEvaluator Evaluator;
 //            private CT_NumData ctNumData;
 
@@ -164,4 +161,3 @@
 //        }
 //    }
 //}
-

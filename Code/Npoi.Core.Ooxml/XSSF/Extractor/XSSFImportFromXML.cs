@@ -17,11 +17,6 @@
 
 //namespace Npoi.Core.xssf.extractor;
 
-
-
-
-
-
 //using javax.xml.namespace.NamespaceContext;
 //using javax.xml.Parsers.DocumentBuilder;
 //using javax.xml.Parsers.DocumentBuilderFactory;
@@ -57,7 +52,6 @@
 // * </ul>
 // */
 //public class XSSFImportFromXML {
-
 //    private XSSFMap _map;
 
 //    private static POILogger logger = POILogFactory.GetLogger(XSSFImportFromXML.class);
@@ -76,7 +70,6 @@
 //     * @throws IOException  if there are problems Reading the input string
 //     */
 //    public void importFromXML(String xmlInputString) , XPathExpressionException, ParserConfigurationException, IOException {
-
 //        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 //        factory.SetNamespaceAware(true);
 //        DocumentBuilder builder = factory.newDocumentBuilder();
@@ -96,7 +89,6 @@
 //        xpath.SetNamespaceContext(new DefaultNamespaceContext(doc));
 
 //        foreach (XSSFSingleXmlCell SingleXmlCell in SingleXmlCells) {
-
 //            String xpathString = SingleXmlCell.GetXpath();
 //            Node result = (Node) xpath.Evaluate(xpathString, doc, XPathConstants.NODE);
 //            String textContent = result.GetTextContent();
@@ -108,19 +100,16 @@
 //        }
 
 //        foreach (XSSFTable table in tables) {
-
 //            String commonXPath = table.GetCommonXpath();
 //            NodeList result = (NodeList) xpath.Evaluate(commonXPath, doc, XPathConstants.NODESET);
 //            int rowOffset = table.GetStartCellReference().Row + 1;// the first row Contains the table header
 //            int columnOffset = table.GetStartCellReference().Col - 1;
 
 //            for (int i = 0; i < result.GetLength(); i++) {
-
 //                // TODO: implement support for denormalized XMLs (see
 //                // OpenOffice part 4: chapter 3.5.1.7)
 
 //                foreach (XSSFXmlColumnPr xmlColumnPr in table.GetXmlColumnPrs()) {
-
 //                    int localColumnId = (int) xmlColumnPr.GetId();
 //                    int rowId = rowOffset + i;
 //                    int columnId = columnOffset + localColumnId;
@@ -172,7 +161,6 @@
 //         *         <code>null</code> if specified prefix is not bound.
 //         */
 //        private String GetNamespaceForPrefix(String prefix) {
-
 //            // Code adapted from Xalan's org.apache.xml.utils.PrefixResolverDefault.GetNamespaceForPrefix()
 
 //            if (prefix.Equals("xml")) {
@@ -182,7 +170,6 @@
 //            Node parent = _docElem;
 
 //            while (parent != null) {
-
 //                int type = parent.GetNodeType();
 //                if (type == Node.ELEMENT_NODE) {
 //                    if (parent.GetNodeName().startsWith(prefix + ":")) {
@@ -226,4 +213,3 @@
 //        }
 //    }
 //}
-

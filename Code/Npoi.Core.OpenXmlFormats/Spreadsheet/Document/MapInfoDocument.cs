@@ -1,35 +1,38 @@
 ﻿using Npoi.Core.OpenXml4Net.Util;
 using System.IO;
-using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 using System.Xml.XPath;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
     public class MapInfoDocument
     {
-        CT_MapInfo map = null;
+        private CT_MapInfo map = null;
 
         public MapInfoDocument()
-        { 
+        {
         }
+
         public MapInfoDocument(CT_MapInfo map)
         {
             this.map = map;
         }
+
         public CT_MapInfo GetMapInfo()
         {
             return this.map;
         }
+
         public void SetMapInfo(CT_MapInfo map)
         {
             this.map = map;
         }
+
         public void SetComments(CT_MapInfo map)
         {
             this.map = map;
         }
+
         public void Save(Stream stream)
         {
             using (StreamWriter sw = new StreamWriter(stream))
@@ -83,8 +86,8 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             doc.map = new CT_MapInfo();
             doc.map.Map = new System.Collections.Generic.List<CT_Map>();
             foreach (XElement mapNode in xmldoc.XPathSelectElements("d:MapInfo/d:Map", NameSpaceManager))
-            { 
-                CT_Map ctMap=new CT_Map();
+            {
+                CT_Map ctMap = new CT_Map();
                 ctMap.ID = XmlHelper.ReadUInt(mapNode.GetAttributeNode("ID"));
                 ctMap.Name = XmlHelper.ReadString(mapNode.GetAttributeNode("Name"));
                 ctMap.RootElement = XmlHelper.ReadString(mapNode.GetAttributeNode("RootElement"));
@@ -103,8 +106,8 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 ctSchema.ID = schemaNode.AttributeValue("ID");
                 if (schemaNode.Attribute("Namespace") != null)
                     ctSchema.Namespace = schemaNode.AttributeValue("Namespace");
-				if (schemaNode.Attribute("SchemaRef") != null)
-					ctSchema.Namespace = schemaNode.AttributeValue("SchemaRef");
+                if (schemaNode.Attribute("SchemaRef") != null)
+                    ctSchema.Namespace = schemaNode.AttributeValue("SchemaRef");
                 ctSchema.InnerXml = schemaNode.InnerXml();
                 doc.map.Schema.Add(ctSchema);
             }

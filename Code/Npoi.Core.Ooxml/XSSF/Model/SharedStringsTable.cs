@@ -15,20 +15,15 @@
    limitations under the License.
 ==================================================================== */
 
-
 using System.Xml.Linq;
 
 namespace Npoi.Core.XSSF.Model
 {
-    using System.Collections.Generic;
+    using Npoi.Core.OpenXml4Net.OPC;
     using OpenXmlFormats.Spreadsheet;
     using System;
+    using System.Collections.Generic;
     using System.IO;
-    using Npoi.Core.OpenXml4Net.OPC;
-    using System.Xml;
-    using System.Security;
-    using System.Text.RegularExpressions;
-    using System.Text;
 
     /**
      * Table of strings shared across all sheets in a workbook.
@@ -54,9 +49,9 @@ namespace Npoi.Core.XSSF.Model
      * @author Nick Birch
      * @author Yegor Kozlov
      */
+
     public class SharedStringsTable : POIXMLDocumentPart
     {
-
         /**
          *  Array of individual string items in the Shared String table.
          */
@@ -85,7 +80,6 @@ namespace Npoi.Core.XSSF.Model
         public SharedStringsTable()
             : base()
         {
-
             _sstDoc = new SstDocument();
             _sstDoc.AddNewSst();
         }
@@ -93,28 +87,25 @@ namespace Npoi.Core.XSSF.Model
         internal SharedStringsTable(PackagePart part, PackageRelationship rel)
             : base(part, rel)
         {
-			XDocument xml = ConvertStreamToXml(part.GetInputStream());
+            XDocument xml = ConvertStreamToXml(part.GetInputStream());
             ReadFrom(xml);
         }
 
-
-
         public void ReadFrom(XDocument xml)
         {
-                 int cnt = 0;
-                _sstDoc = SstDocument.Parse(xml, NamespaceManager);
-                CT_Sst sst = _sstDoc.GetSst();
-                count = (int)sst.count;
-                uniqueCount = (int)sst.uniqueCount;
-                foreach (CT_Rst st in sst.si)
-                {
-                     string key=GetKey(st);
-                   if(key!=null && !stmap.ContainsKey(key))
-                       stmap.Add(key, cnt);
-                   strings.Add(st);
-                    cnt++;
-                }
-
+            int cnt = 0;
+            _sstDoc = SstDocument.Parse(xml, NamespaceManager);
+            CT_Sst sst = _sstDoc.GetSst();
+            count = (int)sst.count;
+            uniqueCount = (int)sst.uniqueCount;
+            foreach (CT_Rst st in sst.si)
+            {
+                string key = GetKey(st);
+                if (key != null && !stmap.ContainsKey(key))
+                    stmap.Add(key, cnt);
+                strings.Add(st);
+                cnt++;
+            }
         }
 
         private String GetKey(CT_Rst st)
@@ -128,6 +119,7 @@ namespace Npoi.Core.XSSF.Model
          * @param idx index of item to return.
          * @return the item at the specified position in this Shared String table.
          */
+
         public CT_Rst GetEntryAt(int idx)
         {
             return strings[idx];
@@ -139,6 +131,7 @@ namespace Npoi.Core.XSSF.Model
          *
          * @return the total count of strings in the workbook
          */
+
         public int Count
         {
             get
@@ -154,6 +147,7 @@ namespace Npoi.Core.XSSF.Model
          *
          * @return the total count of unique strings in the workbook
          */
+
         public int UniqueCount
         {
             get
@@ -173,6 +167,7 @@ namespace Npoi.Core.XSSF.Model
          * @param st the entry to add
          * @return index the index of Added entry
          */
+
         public int AddEntry(CT_Rst st)
         {
             String s = GetKey(st);
@@ -192,11 +187,13 @@ namespace Npoi.Core.XSSF.Model
             strings.Add(newSt);
             return idx;
         }
+
         /**
          * Provide low-level access to the underlying array of CT_Rst beans
          *
          * @return array of CT_Rst beans
          */
+
         public List<CT_Rst> Items
         {
             get
@@ -206,12 +203,13 @@ namespace Npoi.Core.XSSF.Model
         }
 
         /**
-         * 
+         *
          * this table out as XML.
-         * 
+         *
          * @param out The stream to write to.
          * @throws IOException if an error occurs while writing.
          */
+
         public void WriteTo(Stream out1)
         {
             // the following two lines turn off writing CDATA
@@ -220,12 +218,11 @@ namespace Npoi.Core.XSSF.Model
             //options.SetSaveCDataEntityCountThreshold(-1);
             CT_Sst sst = _sstDoc.GetSst();
             sst.count = count;
-           sst.uniqueCount = uniqueCount;
+            sst.uniqueCount = uniqueCount;
 
-           //re-create the sst table every time saving a workbook
-           _sstDoc.Save(out1);
+            //re-create the sst table every time saving a workbook
+            _sstDoc.Save(out1);
         }
-
 
         protected internal override void Commit()
         {
@@ -237,9 +234,3 @@ namespace Npoi.Core.XSSF.Model
         }
     }
 }
-
-
-
-
-
-

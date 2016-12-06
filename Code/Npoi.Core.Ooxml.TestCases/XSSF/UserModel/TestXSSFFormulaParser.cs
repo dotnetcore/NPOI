@@ -15,19 +15,19 @@
    limitations under the License.
 ==================================================================== */
 
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.SS.Formula;
+using Npoi.Core.SS.Formula.PTG;
+using Npoi.Core.SS.UserModel;
 using NUnit.Framework;
 using System;
-using Npoi.Core.SS.Formula.PTG;
-using Npoi.Core.SS.Formula;
-using Npoi.Core.SS.UserModel;
 using TestCases.HSSF;
-using Npoi.Core.HSSF.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
     [TestFixture]
     public class TestXSSFFormulaParser
     {
-
         private static Ptg[] Parse(IFormulaParsingWorkbook fpb, String fmla)
         {
             return FormulaParser.Parse(fmla, fpb, FormulaType.Cell, -1);
@@ -56,7 +56,6 @@ namespace Npoi.Core.XSSF.UserModel
             ptgs = Parse(fpb, "XFD1048576");
             Assert.AreEqual(1, ptgs.Length);
             Assert.IsTrue(ptgs[0] is RefPtg);
-
 
             //column greater than XFD
             try
@@ -113,8 +112,8 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(typeof(AttrPtg), ptgs[1].GetType());
             Assert.AreEqual("Sheet1!A1:B3", ptgs[0].ToFormulaString());
             Assert.AreEqual("SUM", ptgs[1].ToFormulaString());
-
         }
+
         [Test]
         public void TestBuiltInFormulas()
         {
@@ -131,6 +130,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.IsTrue(ptgs[0] is IntPtg);
             Assert.IsTrue(ptgs[1] is FuncPtg);
         }
+
         [Test]
         public void FormaulReferncesSameWorkbook()
         {
@@ -175,7 +175,6 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual("Testing 47100", ((Ref3DPxg)ptgs[0]).SheetName);
             Assert.AreEqual("A1", ((Ref3DPxg)ptgs[0]).Format2DRefAsString());
             Assert.AreEqual("'Testing 47100'!A1", ((Ref3DPxg)ptgs[0]).ToFormulaString());
-        
 
             // Reference to a sheet scoped named range from another sheet
             ptgs = Parse(fpb, "Defines!NR_To_A1");
@@ -191,7 +190,6 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(1, ptgs.Length);
             Assert.AreEqual(typeof(NamePtg), ptgs[0].GetType());
             Assert.AreEqual("NR_Global_B2", ((NamePtg)ptgs[0]).ToFormulaString(fpb));
-
         }
 
         [Test]
@@ -228,19 +226,19 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(null, ((NameXPxg)ptgs[0]).SheetName);
             Assert.AreEqual("NR_Global_B2", ((NameXPxg)ptgs[0]).NameName);
             Assert.AreEqual("[1]!NR_Global_B2", ((NameXPxg)ptgs[0]).ToFormulaString());
-
         }
 
         /**
          * A handful of functions (such as SUM, COUNTA, MIN) support
          *  multi-sheet references (eg Sheet1:Sheet3!A1 = Cell A1 from
-         *  Sheets 1 through Sheet 3) and multi-sheet area references 
+         *  Sheets 1 through Sheet 3) and multi-sheet area references
          *  (eg Sheet1:Sheet3!A1:B2 = Cells A1 through B2 from Sheets
          *   1 through Sheet 3).
          * This test, based on common test files for HSSF and XSSF, checks
-         *  that we can read and parse these kinds of references 
+         *  that we can read and parse these kinds of references
          * (but not evaluate - that's elsewhere in the test suite)
          */
+
         [Test]
         public void MultiSheetReferencesHSSFandXSSF()
         {
@@ -285,7 +283,6 @@ namespace Npoi.Core.XSSF.UserModel
                 ICell countFA = s1.GetRow(5).GetCell(8);
                 Assert.IsNotNull(countFA);
                 Assert.AreEqual("COUNT(Sheet1:Sheet3!$A$1:$B$2)", countFA.CellFormula);
-            
 
                 // Create a formula Parser
                 IFormulaParsingWorkbook fpb = null;
@@ -293,7 +290,6 @@ namespace Npoi.Core.XSSF.UserModel
                     fpb = HSSFEvaluationWorkbook.Create((HSSFWorkbook)wb);
                 else
                     fpb = XSSFEvaluationWorkbook.Create((XSSFWorkbook)wb);
-
 
                 // Check things parse as expected:
 
@@ -312,7 +308,6 @@ namespace Npoi.Core.XSSF.UserModel
                 Assert.AreEqual(typeof(AttrPtg), ptgs[1].GetType());
                 Assert.AreEqual("SUM", ToFormulaString(ptgs[1], fpb));
 
-
                 // MAX to one cell over 3 workbooks, absolute row reference
                 ptgs = Parse(fpb, "MAX(Sheet1:Sheet3!A$1)");
                 Assert.AreEqual(2, ptgs.Length);
@@ -326,8 +321,7 @@ namespace Npoi.Core.XSSF.UserModel
                 }
                 Assert.AreEqual("Sheet1:Sheet3!A$1", ToFormulaString(ptgs[0], fpb));
                 Assert.AreEqual(typeof(FuncVarPtg), ptgs[1].GetType());
-                Assert.AreEqual( "MAX", ToFormulaString(ptgs[1], fpb));
-
+                Assert.AreEqual("MAX", ToFormulaString(ptgs[1], fpb));
 
                 // MIN to one cell over 3 workbooks, absolute reference
                 ptgs = Parse(fpb, "MIN(Sheet1:Sheet3!$A$1)");
@@ -359,7 +353,6 @@ namespace Npoi.Core.XSSF.UserModel
                 Assert.AreEqual(typeof(AttrPtg), ptgs[1].GetType());
                 Assert.AreEqual("SUM", ToFormulaString(ptgs[1], fpb));
 
-
                 // MIN to a range of cells over 3 workbooks, absolute reference
                 ptgs = Parse(fpb, "MIN(Sheet1:Sheet3!$A$1:$B$2)");
                 Assert.AreEqual(2, ptgs.Length);
@@ -375,7 +368,6 @@ namespace Npoi.Core.XSSF.UserModel
                 Assert.AreEqual(typeof(FuncVarPtg), ptgs[1].GetType());
                 Assert.AreEqual("MIN", ToFormulaString(ptgs[1], fpb));
 
-
                 // Check we can round-trip - try to Set a new one to a new single cell
                 ICell newF = s1.GetRow(0).CreateCell(10, CellType.Formula);
                 newF.CellFormula = (/*setter*/"SUM(Sheet2:Sheet3!A1)");
@@ -385,9 +377,9 @@ namespace Npoi.Core.XSSF.UserModel
                 newF = s1.GetRow(0).CreateCell(11, CellType.Formula);
                 newF.CellFormula = (/*setter*/"MIN(Sheet1:Sheet2!A1:B2)");
                 Assert.AreEqual("MIN(Sheet1:Sheet2!A1:B2)", newF.CellFormula);
-
             }
         }
+
         private static String ToFormulaString(Ptg ptg, IFormulaParsingWorkbook wb)
         {
             if (ptg is WorkbookDependentFormula)
@@ -396,8 +388,5 @@ namespace Npoi.Core.XSSF.UserModel
             }
             return ptg.ToFormulaString();
         }
-
-
     }
 }
-

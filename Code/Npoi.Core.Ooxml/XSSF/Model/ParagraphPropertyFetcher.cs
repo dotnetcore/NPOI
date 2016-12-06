@@ -17,21 +17,24 @@
  * ====================================================================
  */
 
-using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
 using Npoi.Core.OpenXmlFormats.Dml;
+using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
+
 namespace Npoi.Core.XSSF.Model
 {
     /**
      *  Used internally to navigate the paragraph text style hierarchy within a shape and fetch properties
     */
+
     public abstract class ParagraphPropertyFetcher
     {
         public abstract bool Fetch(CT_TextParagraphProperties props);
+
         public abstract bool Fetch(CT_Shape props);
     }
+
     public abstract class ParagraphPropertyFetcher<T> : ParagraphPropertyFetcher
     {
-
         private T _value;
         private int _level;
 
@@ -55,6 +58,7 @@ namespace Npoi.Core.XSSF.Model
         * @param shape the shape being examined
         * @return true if the desired property was fetched
         */
+
         public override bool Fetch(CT_Shape shape)
         {
             //XmlObject[] o = shape.selectPath(
@@ -70,7 +74,7 @@ namespace Npoi.Core.XSSF.Model
             if (shape != null && shape.txBody != null && shape.txBody.lstStyle != null)
             {
                 CT_TextParagraphProperties props;
-                switch(this._level+1)
+                switch (this._level + 1)
                 {
                     case 1: props = shape.txBody.lstStyle.lvl1pPr; break;
                     case 2: props = shape.txBody.lstStyle.lvl2pPr; break;
@@ -88,7 +92,5 @@ namespace Npoi.Core.XSSF.Model
             }
             return false;
         }
-
-        
     }
 }

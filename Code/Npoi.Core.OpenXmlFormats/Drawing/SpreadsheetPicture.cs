@@ -1,6 +1,5 @@
 using Npoi.Core.OpenXml4Net.Util;
 using System;
-using System.ComponentModel;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
@@ -8,18 +7,18 @@ using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
 {
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing")]
     public class CT_Picture // empty interface: EG_ObjectChoices
     {
-        private CT_PictureNonVisual nvPicPrField = new CT_PictureNonVisual();        //  draw-ssdraw: 1..1 
-        private CT_BlipFillProperties blipFillField = new CT_BlipFillProperties();   //  draw-ssdraw: 1..1 
-        private CT_ShapeProperties spPrField = new CT_ShapeProperties();             //  draw-ssdraw: 1..1 
+        private CT_PictureNonVisual nvPicPrField = new CT_PictureNonVisual();        //  draw-ssdraw: 1..1
+        private CT_BlipFillProperties blipFillField = new CT_BlipFillProperties();   //  draw-ssdraw: 1..1
+        private CT_ShapeProperties spPrField = new CT_ShapeProperties();             //  draw-ssdraw: 1..1
         private CT_ShapeStyle styleField = null; // 0..1
 
         private string macroField = null;
         private bool fPublishedField = false;
+
         public static CT_Picture Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -40,8 +39,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -94,7 +91,9 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
                 this.styleField = value;
             }
         }
+
         private bool styleSpecifiedField = false;
+
         [XmlIgnore]
         public bool styleSpecified
         {
@@ -108,7 +107,9 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             get { return macroField; }
             set { macroField = value; }
         }
+
         private bool macroSpecifiedField = false;
+
         [XmlIgnore]
         public bool macroSpecified
         {
@@ -122,7 +123,9 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             get { return fPublishedField; }
             set { fPublishedField = value; }
         }
+
         private bool fPublishedSpecifiedField = false;
+
         [XmlIgnore]
         public bool fPublishedSpecified
         {
@@ -159,10 +162,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             this.fPublished = pict.fPublished;
             this.fPublishedSpecified = pict.fPublishedSpecified;
             this.blipFill = pict.blipFill;
-
-
         }
-
     }
 
     // see same class in different name space in Picture.cs
@@ -170,7 +170,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing")]
     public class CT_PictureNonVisual
     {
-
         private CT_NonVisualDrawingProps cNvPrField = new CT_NonVisualDrawingProps(); // 1..1
         private CT_NonVisualPictureProperties cNvPicPrField = new CT_NonVisualPictureProperties(); // 1..1
 
@@ -189,8 +188,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<xdr:{0}", nodeName));
@@ -201,11 +198,13 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
                 this.cNvPicPr.Write(sw, "cNvPicPr");
             sw.Write(string.Format("</xdr:{0}>", nodeName));
         }
+
         public CT_NonVisualDrawingProps AddNewCNvPr()
         {
             this.cNvPrField = new CT_NonVisualDrawingProps();
             return this.cNvPrField;
         }
+
         public CT_NonVisualPictureProperties AddNewCNvPicPr()
         {
             this.cNvPicPrField = new CT_NonVisualPictureProperties();
@@ -219,14 +218,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             set { this.cNvPrField = value; }
         }
 
-
         [XmlElement]
         public CT_NonVisualPictureProperties cNvPicPr
         {
             get { return this.cNvPicPrField; }
             set { this.cNvPicPrField = value; }
         }
-
     }
-
 }

@@ -19,29 +19,28 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.XWPF.UserModel
 {
-	using System;
-	using Npoi.Core.OpenXmlFormats.Wordprocessing;
-	using Npoi.Core.OpenXml4Net.OPC;
-	using System.IO;
-	using System.Xml;
-	using System.Xml.Serialization;
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using System;
+    using System.IO;
 
-	/**
+    /**
      * Sketch of XWPF footer class
      */
-	public class XWPFFooter : XWPFHeaderFooter
-	{
-		public XWPFFooter()
-		//: base()
-		{
-			headerFooter = new CT_Ftr();
-			ReadHdrFtr();
-		}
 
-		public XWPFFooter(XWPFDocument doc, CT_HdrFtr hdrFtr)
-			: base(doc, hdrFtr)
-		{
-			/*
+    public class XWPFFooter : XWPFHeaderFooter
+    {
+        public XWPFFooter()
+        //: base()
+        {
+            headerFooter = new CT_Ftr();
+            ReadHdrFtr();
+        }
+
+        public XWPFFooter(XWPFDocument doc, CT_HdrFtr hdrFtr)
+            : base(doc, hdrFtr)
+        {
+            /*
             XmlCursor cursor = headerFooter.NewCursor();
             cursor.SelectPath("./*");
             while (cursor.ToNextSelection()) {
@@ -58,33 +57,33 @@ namespace Npoi.Core.XWPF.UserModel
                 }
             }
             cursor.Dispose();*/
-			foreach (object o in hdrFtr.Items)
-			{
-				if (o is CT_P)
-				{
-					XWPFParagraph p = new XWPFParagraph((CT_P)o, this);
-					paragraphs.Add(p);
-				}
-				if (o is CT_Tbl)
-				{
-					XWPFTable t = new XWPFTable((CT_Tbl)o, this);
-					tables.Add(t);
-				}
-			}
-		}
+            foreach (object o in hdrFtr.Items)
+            {
+                if (o is CT_P)
+                {
+                    XWPFParagraph p = new XWPFParagraph((CT_P)o, this);
+                    paragraphs.Add(p);
+                }
+                if (o is CT_Tbl)
+                {
+                    XWPFTable t = new XWPFTable((CT_Tbl)o, this);
+                    tables.Add(t);
+                }
+            }
+        }
 
-		public XWPFFooter(POIXMLDocumentPart parent, PackagePart part, PackageRelationship rel)
-			: base(parent, part, rel)
-		{
-		}
+        public XWPFFooter(POIXMLDocumentPart parent, PackagePart part, PackageRelationship rel)
+            : base(parent, part, rel)
+        {
+        }
 
-		/**
+        /**
          * save and Commit footer
          */
 
-		protected internal override void Commit()
-		{
-			/*XmlOptions xmlOptions = new XmlOptions(DEFAULT_XML_OPTIONS);
+        protected internal override void Commit()
+        {
+            /*XmlOptions xmlOptions = new XmlOptions(DEFAULT_XML_OPTIONS);
             xmlOptions.SaveSyntheticDocumentElement=(new QName(CTNumbering.type.Name.NamespaceURI, "ftr"));
             Dictionary<String,String> map = new Dictionary<String, String>();
             map.Put("http://schemas.Openxmlformats.org/markup-compatibility/2006", "ve");
@@ -97,64 +96,63 @@ namespace Npoi.Core.XWPF.UserModel
             map.Put("http://schemas.Openxmlformats.org/wordProcessingml/2006/main", "w");
             map.Put("http://schemas.microsoft.com/office/word/2006/wordml", "wne");
             xmlOptions.SaveSuggestedPrefixes=(map);*/
-			PackagePart part = GetPackagePart();
-			using (Stream out1 = part.GetOutputStream())
-			{
-				FtrDocument doc = new FtrDocument((CT_Ftr)headerFooter);
-				doc.Save(out1);
-			}
-		}
+            PackagePart part = GetPackagePart();
+            using (Stream out1 = part.GetOutputStream())
+            {
+                FtrDocument doc = new FtrDocument((CT_Ftr)headerFooter);
+                doc.Save(out1);
+            }
+        }
 
+        internal override void OnDocumentRead()
+        {
+            base.OnDocumentRead();
+            FtrDocument ftrDocument = null;
+            try
+            {
+                XDocument xmldoc = ConvertStreamToXml(GetPackagePart().GetInputStream());
+                ftrDocument = FtrDocument.Parse(xmldoc, NamespaceManager);
+                headerFooter = ftrDocument.Ftr;
+                // parse the document with cursor and add
+                // the XmlObject to its lists
+                foreach (object o in headerFooter.Items)
+                {
+                    if (o is CT_P)
+                    {
+                        XWPFParagraph p = new XWPFParagraph((CT_P)o, this);
+                        paragraphs.Add(p);
+                        bodyElements.Add(p);
+                    }
+                    if (o is CT_Tbl)
+                    {
+                        XWPFTable t = new XWPFTable((CT_Tbl)o, this);
+                        tables.Add(t);
+                        bodyElements.Add(t);
+                    }
+                    if (o is CT_SdtBlock)
+                    {
+                        XWPFSDT c = new XWPFSDT((CT_SdtBlock)o, this);
+                        bodyElements.Add(c);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new POIXMLException(e);
+            }
+        }
 
-		internal override void OnDocumentRead()
-		{
-			base.OnDocumentRead();
-			FtrDocument ftrDocument = null;
-			try
-			{
-				XDocument xmldoc = ConvertStreamToXml(GetPackagePart().GetInputStream());
-				ftrDocument = FtrDocument.Parse(xmldoc, NamespaceManager);
-				headerFooter = ftrDocument.Ftr;
-				// parse the document with cursor and add
-				// the XmlObject to its lists
-				foreach (object o in headerFooter.Items)
-				{
-					if (o is CT_P)
-					{
-						XWPFParagraph p = new XWPFParagraph((CT_P)o, this);
-						paragraphs.Add(p);
-						bodyElements.Add(p);
-					}
-					if (o is CT_Tbl)
-					{
-						XWPFTable t = new XWPFTable((CT_Tbl)o, this);
-						tables.Add(t);
-						bodyElements.Add(t);
-					}
-					if (o is CT_SdtBlock)
-					{
-						XWPFSDT c = new XWPFSDT((CT_SdtBlock)o, this);
-						bodyElements.Add(c);
-					}
-				}
-			}
-			catch (Exception e)
-			{
-				throw new POIXMLException(e);
-			}
-		}
-
-		/**
+        /**
          * Get the PartType of the body
          * @see Npoi.Core.XWPF.UserModel.IBody#getPartType()
          */
-		public override BodyType PartType
-		{
-			get
-			{
-				return BodyType.FOOTER;
-			}
-		}
-	}
 
+        public override BodyType PartType
+        {
+            get
+            {
+                return BodyType.FOOTER;
+            }
+        }
+    }
 }

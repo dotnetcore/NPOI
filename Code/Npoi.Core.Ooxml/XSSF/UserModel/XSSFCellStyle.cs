@@ -16,15 +16,14 @@
 ==================================================================== */
 
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.XSSF.Model;
+using Npoi.Core.XSSF.UserModel.Extensions;
 using System;
 using System.Xml;
-using Npoi.Core.SS.UserModel;
-using Npoi.Core.XSSF.UserModel.Extensions;
-using Npoi.Core.XSSF.Model;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
-
     /**
      *
      * High level representation of the the possible formatting information for the contents of the cells on a sheet in a
@@ -34,9 +33,9 @@ namespace Npoi.Core.XSSF.UserModel
      * @see Npoi.Core.xssf.usermodel.XSSFWorkbook#getCellStyleAt(short)
      * @see Npoi.Core.xssf.usermodel.XSSFCell#setCellStyle(Npoi.Core.ss.usermodel.CellStyle)
      */
+
     public class XSSFCellStyle : ICellStyle
     {
-
         private int _cellXfId;
         private StylesTable _stylesSource;
         private CT_Xf _cellXf;
@@ -51,6 +50,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param cellStyleXfId Optional, style xf. A value of <code>-1</code> means no xf.
          * @param stylesSource Styles Source to work off
          */
+
         public XSSFCellStyle(int cellXfId, int cellStyleXfId, StylesTable stylesSource, ThemesTable theme)
         {
             _cellXfId = cellXfId;
@@ -100,6 +100,7 @@ namespace Npoi.Core.XSSF.UserModel
          *  workbook (if they're not, it won't work)
          * @throws ArgumentException if there's a workbook mis-match
          */
+
         public void VerifyBelongsToStylesSource(StylesTable src)
         {
             if (this._stylesSource != src)
@@ -120,6 +121,7 @@ namespace Npoi.Core.XSSF.UserModel
          *  XSSFWorkbook if you like. This allows you to
          *  copy styles from one XSSFWorkbook to another.
          */
+
         public void CloneStyleFrom(ICellStyle source)
         {
             if (source is XSSFCellStyle)
@@ -191,6 +193,7 @@ namespace Npoi.Core.XSSF.UserModel
                 throw new ArgumentException("Can only clone from one XSSFCellStyle to another, not between HSSFCellStyle and XSSFCellStyle");
             }
         }
+
         private void AddFill(CT_Fill fill)
         {
             int idx = _stylesSource.PutFill(new XSSFCellFill(fill));
@@ -198,6 +201,7 @@ namespace Npoi.Core.XSSF.UserModel
             _cellXf.fillId = (uint)(idx);
             _cellXf.applyFill = (true);
         }
+
         public HorizontalAlignment Alignment
         {
             get
@@ -245,9 +249,9 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 CT_Border ct = GetCTBorder();
                 CT_BorderPr pr = ct.IsSetBottom() ? ct.bottom : ct.AddNewBottom();
-                if (value == BorderStyle.None) 
+                if (value == BorderStyle.None)
                     ct.UnsetBottom();
-                else 
+                else
                     pr.style = (ST_BorderStyle)value;
 
                 int idx = _stylesSource.PutBorder(new XSSFCellBorder(ct, _theme));
@@ -256,7 +260,6 @@ namespace Npoi.Core.XSSF.UserModel
                 _cellXf.applyBorder = (true);
             }
         }
-
 
         public BorderStyle BorderLeft
         {
@@ -286,7 +289,6 @@ namespace Npoi.Core.XSSF.UserModel
 
                 _cellXf.borderId = (uint)idx;
                 _cellXf.applyBorder = (true);
-
             }
         }
 
@@ -361,6 +363,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return the index of the color defInition, default value is {@link Npoi.Core.ss.usermodel.IndexedColors#AUTOMATIC}
          * @see Npoi.Core.ss.usermodel.IndexedColors
          */
+
         public short BottomBorderColor
         {
             get
@@ -381,6 +384,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the used color or <code>null</code> if not Set
          */
+
         public XSSFColor BottomBorderXSSFColor
         {
             get
@@ -399,6 +403,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the index of the number format
          */
+
         public short DataFormat
         {
             get
@@ -411,22 +416,26 @@ namespace Npoi.Core.XSSF.UserModel
                 SetDataFormat(value & 0xFFFF);
             }
         }
+
         /**
          * Set the index of a data format
          *
          * @param fmt the index of a data format
          */
-            public void SetDataFormat(int fmt)
-            {
-                _cellXf.applyNumberFormat = (true);
-                _cellXf.numFmtId = (uint)(fmt);
-            }
+
+        public void SetDataFormat(int fmt)
+        {
+            _cellXf.applyNumberFormat = (true);
+            _cellXf.numFmtId = (uint)(fmt);
+        }
+
         /**
          * Get the contents of the format string, by looking up
          * the StylesSource
          *
          * @return the number format string
          */
+
         public String GetDataFormatString()
         {
             int idx = DataFormat;
@@ -461,6 +470,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @see Npoi.Core.xssf.usermodel.XSSFColor#getRgb()
          * @return XSSFColor - fill color or <code>null</code> if not Set
          */
+
         public IColor FillBackgroundColorColor
         {
             get
@@ -472,6 +482,7 @@ namespace Npoi.Core.XSSF.UserModel
                 this.FillBackgroundXSSFColor = (XSSFColor)value;
             }
         }
+
         public XSSFColor FillBackgroundXSSFColor
         {
             get
@@ -506,6 +517,7 @@ namespace Npoi.Core.XSSF.UserModel
                 AddFill(ct);
             }
         }
+
         /**
          * Get the foreground fill color.
          * <p>
@@ -515,6 +527,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @see IndexedColors
          * @return fill color, default value is {@link Npoi.Core.ss.usermodel.IndexedColors#AUTOMATIC}
          */
+
         public short FillForegroundColor
         {
             get
@@ -583,6 +596,7 @@ namespace Npoi.Core.XSSF.UserModel
                 AddFill(ct);
             }
         }
+
         public FillPattern FillPattern
         {
             get
@@ -594,7 +608,7 @@ namespace Npoi.Core.XSSF.UserModel
                 XSSFCellFill fill = _stylesSource.GetFillAt(FillIndex);
 
                 ST_PatternType ptrn = fill.GetPatternType();
-                if(ptrn == ST_PatternType.none) return FillPattern.NoFill;
+                if (ptrn == ST_PatternType.none) return FillPattern.NoFill;
 
                 return (FillPattern)((int)ptrn);
             }
@@ -610,11 +624,11 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         /**
         * Gets the font for this style
         * @return Font - font
         */
+
         public XSSFFont GetFont()
         {
             if (_font == null)
@@ -630,6 +644,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return short - font index
          * @see Npoi.Core.xssf.usermodel.XSSFWorkbook#getFontAt(short)
          */
+
         public short FontIndex
         {
             get
@@ -643,6 +658,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return bool -  whether the cell using this style is hidden
          */
+
         public bool IsHidden
         {
             get
@@ -668,6 +684,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return indent - number of spaces
          */
+
         public short Indention
         {
             get
@@ -686,6 +703,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return unique index number of the underlying record this style represents
          */
+
         public short Index
         {
             get
@@ -693,6 +711,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return (short)this._cellXfId;
             }
         }
+
         protected internal int UIndex
         {
             get
@@ -700,12 +719,14 @@ namespace Npoi.Core.XSSF.UserModel
                 return this._cellXfId;
             }
         }
+
         /**
          * Get the color to use for the left border
          *
          * @return the index of the color defInition, default value is {@link Npoi.Core.ss.usermodel.IndexedColors#BLACK}
          * @see Npoi.Core.ss.usermodel.IndexedColors
          */
+
         public short LeftBorderColor
         {
             get
@@ -720,6 +741,7 @@ namespace Npoi.Core.XSSF.UserModel
                 SetLeftBorderColor(clr);
             }
         }
+
         public XSSFColor DiagonalBorderXSSFColor
         {
             get
@@ -732,12 +754,14 @@ namespace Npoi.Core.XSSF.UserModel
                 return border.GetBorderColor(BorderSide.DIAGONAL);
             }
         }
+
         /**
          * Get the color to use for the left border
          *
          * @return the index of the color defInition or <code>null</code> if not Set
          * @see Npoi.Core.ss.usermodel.IndexedColors
          */
+
         public XSSFColor LeftBorderXSSFColor
         {
             get
@@ -750,7 +774,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return border.GetBorderColor(BorderSide.LEFT);
             }
         }
- 
+
         /// <summary>
         /// Get whether the cell's using this style are locked
         /// </summary>
@@ -758,7 +782,6 @@ namespace Npoi.Core.XSSF.UserModel
         {
             get
             {
-
                 if (!_cellXf.IsSetProtection())
                 {
                     return true;
@@ -792,6 +815,7 @@ namespace Npoi.Core.XSSF.UserModel
                 SetRightBorderColor(clr);
             }
         }
+
         /// <summary>
         /// Get the color to use for the right border
         /// </summary>
@@ -808,6 +832,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return border.GetBorderColor(BorderSide.RIGHT);
             }
         }
+
         /// <summary>
         /// Get the degree of rotation (between 0 and 180 degrees) for the text in the cell
         /// </summary>
@@ -836,6 +861,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return the index of the color defInition, default value is {@link Npoi.Core.ss.usermodel.IndexedColors#BLACK}
          * @see Npoi.Core.ss.usermodel.IndexedColors
          */
+
         public short TopBorderColor
         {
             get
@@ -850,6 +876,7 @@ namespace Npoi.Core.XSSF.UserModel
                 SetTopBorderColor(clr);
             }
         }
+
         /// <summary>
         /// Get the color to use for the top border
         /// </summary>
@@ -881,6 +908,7 @@ namespace Npoi.Core.XSSF.UserModel
                 GetCellAlignment().Vertical = value;
             }
         }
+
         /// <summary>
         /// Get the type of vertical alignment for the cell
         /// </summary>
@@ -894,6 +922,7 @@ namespace Npoi.Core.XSSF.UserModel
             }
             return VerticalAlignment.Bottom;
         }
+
         /// <summary>
         /// Whether the text in a cell should be line-wrapped within the cell.
         /// </summary>
@@ -910,12 +939,12 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         /**
          * Set the color to use for the bottom border
          *
          * @param color the color to use, null means no color
          */
+
         public void SetBottomBorderColor(XSSFColor color)
         {
             CT_Border ct = GetCTBorder();
@@ -930,6 +959,7 @@ namespace Npoi.Core.XSSF.UserModel
             _cellXf.borderId = (uint)idx;
             _cellXf.applyBorder = (true);
         }
+
         /**
          * Set the background fill color represented as a {@link XSSFColor} value.
          * <p>
@@ -955,6 +985,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param color - the color to use
          */
+
         public void SetFillBackgroundColor(XSSFColor color)
         {
             CT_Fill ct = GetCTFill();
@@ -965,7 +996,6 @@ namespace Npoi.Core.XSSF.UserModel
             }
             else
             {
-
                 if (ptrn == null) ptrn = ct.AddNewPatternFill();
                 ptrn.bgColor = color.GetCTColor();
             }
@@ -983,6 +1013,7 @@ namespace Npoi.Core.XSSF.UserModel
         * @param color the color to use
         * @see #setFillBackgroundColor(Npoi.Core.xssf.usermodel.XSSFColor) )
         */
+
         public void SetFillForegroundColor(XSSFColor color)
         {
             CT_Fill ct = GetCTFill();
@@ -1007,6 +1038,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Get a <b>copy</b> of the currently used CT_Fill, if none is used, return a new instance.
          */
+
         public CT_Fill GetCTFill()
         {
             CT_Fill ct;
@@ -1028,6 +1060,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Get a <b>copy</b> of the currently used CT_Border, if none is used, return a new instance.
          */
+
         public CT_Border GetCTBorder()
         {
             CT_Border ctBorder;
@@ -1050,7 +1083,6 @@ namespace Npoi.Core.XSSF.UserModel
             return ctBorder;
         }
 
-
         /**
          * Set the font for this style
          *
@@ -1058,6 +1090,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @see Npoi.Core.xssf.usermodel.XSSFWorkbook#CreateFont()
          * @see Npoi.Core.xssf.usermodel.XSSFWorkbook#getFontAt(short)
          */
+
         public void SetFont(IFont font)
         {
             if (font != null)
@@ -1072,6 +1105,7 @@ namespace Npoi.Core.XSSF.UserModel
                 this._cellXf.applyFont = (false);
             }
         }
+
         public void SetDiagonalBorderColor(XSSFColor color)
         {
             CT_Border ct = GetCTBorder();
@@ -1086,11 +1120,13 @@ namespace Npoi.Core.XSSF.UserModel
             _cellXf.borderId = (uint)idx;
             _cellXf.applyBorder = (true);
         }
+
         /**
          * Set the color to use for the left border as a {@link XSSFColor} value
          *
          * @param color the color to use
          */
+
         public void SetLeftBorderColor(XSSFColor color)
         {
             CT_Border ct = GetCTBorder();
@@ -1111,6 +1147,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param color the color to use
          */
+
         public void SetRightBorderColor(XSSFColor color)
         {
             CT_Border ct = GetCTBorder();
@@ -1126,14 +1163,12 @@ namespace Npoi.Core.XSSF.UserModel
             _cellXf.applyBorder = (true);
         }
 
-
-
-
         /**
          * Set the color to use for the top border as a {@link XSSFColor} value
          *
          * @param color the color to use
          */
+
         public void SetTopBorderColor(XSSFColor color)
         {
             CT_Border ct = GetCTBorder();
@@ -1159,11 +1194,11 @@ namespace Npoi.Core.XSSF.UserModel
          * @see Npoi.Core.ss.usermodel.CellStyle#VERTICAL_JUSTIFY
          * @see Npoi.Core.ss.usermodel.VerticalAlignment
          */
+
         public void SetVerticalAlignment(short align)
         {
             GetCellAlignment().Vertical = (VerticalAlignment)align;
         }
-
 
         /**
          * Gets border color
@@ -1171,18 +1206,23 @@ namespace Npoi.Core.XSSF.UserModel
          * @param side the border side
          * @return the used color
          */
+
         public XSSFColor GetBorderColor(BorderSide side)
         {
             switch (side)
             {
                 case BorderSide.BOTTOM:
                     return BottomBorderXSSFColor;
+
                 case BorderSide.RIGHT:
                     return RightBorderXSSFColor;
+
                 case BorderSide.TOP:
                     return TopBorderXSSFColor;
+
                 case BorderSide.LEFT:
                     return LeftBorderXSSFColor;
+
                 default:
                     throw new ArgumentException("Unknown border: " + side);
             }
@@ -1194,6 +1234,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param side - where to apply the color defInition
          * @param color - the color to use
          */
+
         public void SetBorderColor(BorderSide side, XSSFColor color)
         {
             switch (side)
@@ -1201,17 +1242,21 @@ namespace Npoi.Core.XSSF.UserModel
                 case BorderSide.BOTTOM:
                     SetBottomBorderColor(color);
                     break;
+
                 case BorderSide.RIGHT:
                     SetRightBorderColor(color);
                     break;
+
                 case BorderSide.TOP:
                     SetTopBorderColor(color);
                     break;
+
                 case BorderSide.LEFT:
                     SetLeftBorderColor(color);
                     break;
             }
         }
+
         private int FontId
         {
             get
@@ -1228,6 +1273,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Get the cellAlignment object to use for manage alignment
          * @return XSSFCellAlignment - cell alignment
          */
+
         internal XSSFCellAlignment GetCellAlignment()
         {
             if (this._cellAlignment == null)
@@ -1242,6 +1288,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return CT_CellAlignment
          */
+
         internal CT_CellAlignment GetCTCellAlignment()
         {
             if (_cellXf.alignment == null)
@@ -1256,6 +1303,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the hash code value for this style
          */
+
         public override int GetHashCode()
         {
             return _cellXf.ToString().GetHashCode();
@@ -1267,6 +1315,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param o the style to check
          * @return true if the supplied style is equal to this style
          */
+
         public override bool Equals(Object o)
         {
             if (o == null || !(o is XSSFCellStyle)) return false;
@@ -1281,6 +1330,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return a copy of this style
          */
+
         public Object Clone()
         {
             CT_Xf xf = (CT_Xf)_cellXf.Copy();
@@ -1292,7 +1342,6 @@ namespace Npoi.Core.XSSF.UserModel
 
         #region ICellStyle Members
 
-
         public IFont GetFont(IWorkbook parentWorkbook)
         {
             return this.GetFont();
@@ -1302,12 +1351,12 @@ namespace Npoi.Core.XSSF.UserModel
         {
             get
             {
-               CT_CellAlignment align = _cellXf.alignment;
-               return align != null && align.shrinkToFit;
+                CT_CellAlignment align = _cellXf.alignment;
+                return align != null && align.shrinkToFit;
             }
             set
             {
-               GetCTCellAlignment().shrinkToFit = value;
+                GetCTCellAlignment().shrinkToFit = value;
             }
         }
 
@@ -1408,7 +1457,6 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-        #endregion
+        #endregion ICellStyle Members
     }
-
 }

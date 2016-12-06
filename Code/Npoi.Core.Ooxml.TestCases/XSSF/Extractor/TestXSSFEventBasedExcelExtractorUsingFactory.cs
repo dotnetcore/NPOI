@@ -24,13 +24,11 @@
 //{
 //    public class TestXSSFEventBasedExcelExtractorUsingFactory : TestXSSFEventBasedExcelExtractor
 //    {
-
 //        protected XSSFEventBasedExcelExtractor GetExtractor(String sampleName)
 //        {
 //            ExtractorFactory.SetAllThreadsPreferEventExtractors(true);
 //            return (XSSFEventBasedExcelExtractor)ExtractorFactory.CreateExtractor(HSSFTestDataSamples.OpenSampleFileStream(sampleName));
 //        }
 //    }
-
 
 //}

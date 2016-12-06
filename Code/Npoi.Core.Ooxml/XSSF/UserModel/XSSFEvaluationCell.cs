@@ -16,20 +16,19 @@
 ==================================================================== */
 
 using Npoi.Core.SS.Formula;
-using Npoi.Core.XSSF.UserModel;
-using System;
 using Npoi.Core.SS.UserModel;
+using System;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * XSSF wrapper for a cell under Evaluation
-     * 
+     *
      * @author Josh Micich
      */
+
     public class XSSFEvaluationCell : IEvaluationCell
     {
-
         private IEvaluationSheet _evalSheet;
         private XSSFCell _cell;
 
@@ -42,7 +41,6 @@ namespace Npoi.Core.XSSF.UserModel
         public XSSFEvaluationCell(ICell cell)
             : this(cell, new XSSFEvaluationSheet(cell.Sheet))
         {
-
         }
 
         public Object IdentityKey
@@ -59,6 +57,7 @@ namespace Npoi.Core.XSSF.UserModel
         {
             return _cell;
         }
+
         public bool BooleanCellValue
         {
             get
@@ -66,6 +65,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return _cell.BooleanCellValue;
             }
         }
+
         public CellType CellType
         {
             get
@@ -73,6 +73,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return _cell.CellType;
             }
         }
+
         public int ColumnIndex
         {
             get
@@ -80,6 +81,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return _cell.ColumnIndex;
             }
         }
+
         public int ErrorCellValue
         {
             get
@@ -87,6 +89,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return _cell.ErrorCellValue;
             }
         }
+
         public double NumericCellValue
         {
             get
@@ -94,6 +97,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return _cell.NumericCellValue;
             }
         }
+
         public int RowIndex
         {
             get
@@ -101,6 +105,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return _cell.RowIndex;
             }
         }
+
         public IEvaluationSheet Sheet
         {
             get
@@ -108,6 +113,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return _evalSheet;
             }
         }
+
         public String StringCellValue
         {
             get
@@ -118,12 +124,11 @@ namespace Npoi.Core.XSSF.UserModel
 
         #region IEvaluationCell 成员
 
-
         public CellType CachedFormulaResultType
         {
             get { return _cell.CachedFormulaResultType; }
         }
 
-        #endregion
+        #endregion IEvaluationCell 成员
     }
 }

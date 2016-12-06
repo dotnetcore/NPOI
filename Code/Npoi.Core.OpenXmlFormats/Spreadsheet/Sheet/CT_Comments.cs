@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -20,6 +18,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         private CT_CommentList commentListField = new CT_CommentList(); // required field
 
         private CT_ExtensionList extLstField = null; // optional field
+
         public static CT_Comments Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -36,6 +35,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
+
         internal void Write(StreamWriter sw)
         {
             sw.Write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>");
@@ -48,11 +48,13 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.extLst.Write(sw, "extLst");
             sw.Write("</comments>");
         }
+
         public CT_Authors AddNewAuthors()
         {
             this.authorsField = new CT_Authors();
             return this.authorsField;
         }
+
         public void AddNewCommentList()
         {
             this.commentListField = new CT_CommentList();
@@ -70,6 +72,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.authorsField = value;
             }
         }
+
         [XmlElement("commentList", Order = 1)]
         public CT_CommentList commentList
         {

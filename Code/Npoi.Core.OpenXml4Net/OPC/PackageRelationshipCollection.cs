@@ -1,24 +1,22 @@
-﻿using System;
+﻿using Npoi.Core.OpenXml4Net.Exceptions;
+using Npoi.Core.Util;
+using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 using System.Xml.XPath;
-
-using Npoi.Core.OpenXml4Net.Exceptions;
-using Npoi.Core.Util;
 
 namespace Npoi.Core.OpenXml4Net.OPC
 {
     /**
      * Represents a collection of PackageRelationship elements that are owned by a
      * given PackagePart or the Package.
-     * 
+     *
      * @author Julien Chable, CDubettier
      * @version 0.1
      */
+
     public class PackageRelationshipCollection : IEnumerator<PackageRelationship>
     {
-
         private static POILogger logger = POILogFactory.GetLogger(typeof(PackageRelationshipCollection));
 
         /**
@@ -58,14 +56,15 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * Constructor.
          */
+
         public PackageRelationshipCollection()
         {
             relationshipsByID = new SortedList<String, PackageRelationship>();
             relationshipsByType = new SortedList<String, PackageRelationship>(new DuplicateComparer());
         }
-        class DuplicateComparer : IComparer<string>
-        {
 
+        private class DuplicateComparer : IComparer<string>
+        {
             #region IComparer<string> Members
 
             public int Compare(string x, string y)
@@ -77,25 +76,26 @@ namespace Npoi.Core.OpenXml4Net.OPC
                 return 1;
             }
 
-            #endregion
+            #endregion IComparer<string> Members
         }
+
         /**
          * Copy constructor.
-         * 
+         *
          * This collection will contain only elements from the specified collection
          * for which the type is compatible with the specified relationship type
          * filter.
-         * 
+         *
          * @param coll
          *            Collection to import.
          * @param filter
          *            Relationship type filter.
          */
+
         public PackageRelationshipCollection(PackageRelationshipCollection coll,
                 String filter)
             : this()
         {
-
             foreach (PackageRelationship rel in coll.relationshipsByID.Values)
             {
                 if (filter == null || rel.RelationshipType.Equals(filter))
@@ -106,30 +106,30 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * Constructor.
          */
+
         public PackageRelationshipCollection(OPCPackage container)
             : this(container, null)
         {
-
         }
 
         /**
          * Constructor.
-         * 
+         *
          * @throws InvalidFormatException
          *             Throws if the format of the content part is invalid.
-         * 
+         *
          * @throws InvalidOperationException
          *             Throws if the specified part is a relationship part.
          */
+
         public PackageRelationshipCollection(PackagePart part) :
             this(part._container, part)
         {
-
         }
 
         /**
          * Constructor. Parse the existing package relationship part if one exists.
-         * 
+         *
          * @param container
          *            The parent package.
          * @param part
@@ -139,11 +139,10 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *             If an error occurs during the parsing of the relatinships
          *             part fo the specified part.
          */
+
         public PackageRelationshipCollection(OPCPackage container, PackagePart part)
             : this()
         {
-
-
             if (container == null)
                 throw new ArgumentException("container");
 
@@ -164,7 +163,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Get the relationship part name of the specified part.
-         * 
+         *
          * @param part
          *            The part .
          * @return The relationship part name of the specified part. Be careful,
@@ -173,6 +172,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @throws InvalidOperationException
          *             Throws if the specified part is a relationship part.
          */
+
         private static PackagePartName GetRelationshipPartName(PackagePart part)
         {
             PackagePartName partName;
@@ -189,10 +189,11 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Add the specified relationship to the collection.
-         * 
+         *
          * @param relPart
          *            The relationship to add.
          */
+
         public void AddRelationship(PackageRelationship relPart)
         {
             relationshipsByID.Add(relPart.Id, relPart);
@@ -201,7 +202,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Add a relationship to the collection.
-         * 
+         *
          * @param targetUri
          *            Target URI.
          * @param targetMode
@@ -213,6 +214,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @return The newly created relationship.
          * @see PackageAccess
          */
+
         public PackageRelationship AddRelationship(Uri targetUri,
                 TargetMode targetMode, String relationshipType, String id)
         {
@@ -240,10 +242,11 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Remove a relationship by its ID.
-         * 
+         *
          * @param id
          *            The relationship ID to Remove.
          */
+
         public void RemoveRelationship(String id)
         {
             if (relationshipsByID != null && relationshipsByType != null)
@@ -263,10 +266,11 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Remove a relationship by its reference.
-         * 
+         *
          * @param rel
          *            The relationship to delete.
          */
+
         public void RemoveRelationship(PackageRelationship rel)
         {
             if (rel == null)
@@ -278,10 +282,11 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Retrieves a relationship by its index in the collection.
-         * 
+         *
          * @param index
          *            Must be a value between [0-relationships_count-1]
          */
+
         public PackageRelationship GetRelationship(int index)
         {
             if (index < 0 || index > relationshipsByID.Values.Count)
@@ -299,11 +304,12 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Retrieves a package relationship based on its id.
-         * 
+         *
          * @param id
          *            ID of the package relationship to retrieve.
          * @return The package relationship identified by the specified id.
          */
+
         public PackageRelationship GetRelationshipByID(String id)
         {
             if (!relationshipsByID.ContainsKey(id))
@@ -314,6 +320,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * Get the numbe rof relationships in the collection.
          */
+
         public int Size
         {
             get
@@ -324,12 +331,13 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Parse the relationship part and add all relationship in this collection.
-         * 
+         *
          * @param relPart
          *            The package part to parse.
          * @throws InvalidFormatException
          *             Throws if the relationship part is invalid.
          */
+
         private void ParseRelationshipsPart(PackagePart relPart)
         {
             try
@@ -404,12 +412,13 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Retrieves all relations with the specified type.
-         * 
+         *
          * @param typeFilter
          *            Relationship type filter. If <b>null</b> then all
          *            relationships are returned.
          * @return All relationships of the type specified by the filter.
          */
+
         public PackageRelationshipCollection GetRelationships(String typeFilter)
         {
             PackageRelationshipCollection coll = new PackageRelationshipCollection(
@@ -420,6 +429,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * Get this collection's iterator.
          */
+
         public IEnumerator<PackageRelationship> GetEnumerator()
         {
             return relationshipsByID.Values.GetEnumerator();
@@ -428,12 +438,13 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * Get an iterator of a collection with all relationship with the specified
          * type.
-         * 
+         *
          * @param typeFilter
          *            Type filter.
          * @return An iterator to a collection containing all relationships with the
          *         specified type contain in this collection.
          */
+
         public IEnumerator<PackageRelationship> Iterator(String typeFilter)
         {
             List<PackageRelationship> retArr = new List<PackageRelationship>();
@@ -448,6 +459,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * Clear all relationships.
          */
+
         public void Clear()
         {
             relationshipsByID.Clear();
@@ -501,7 +513,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
             get { throw new NotImplementedException(); }
         }
 
-        #endregion
+        #endregion IEnumerator<PackageRelationship> Members
 
         #region IDisposable Members
 
@@ -511,7 +523,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
             //relationshipsByType = null;
         }
 
-        #endregion
+        #endregion IDisposable Members
 
         #region IEnumerator Members
 
@@ -530,7 +542,6 @@ namespace Npoi.Core.OpenXml4Net.OPC
             Clear();
         }
 
-        #endregion
+        #endregion IEnumerator Members
     }
-
 }

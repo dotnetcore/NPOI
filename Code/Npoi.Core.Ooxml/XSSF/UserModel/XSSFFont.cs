@@ -15,24 +15,23 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.SS.UserModel;
-using System;
-using Spreadsheet=Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using Npoi.Core.OpenXmlFormats.Dml;
-using Dml = Npoi.Core.OpenXmlFormats.Dml;
+using Npoi.Core.SS.UserModel;
 using Npoi.Core.XSSF.Model;
+using System;
+
+using Spreadsheet = Npoi.Core.OpenXmlFormats.Spreadsheet;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Represents a font used in a workbook.
      *
      * @author Gisella Bronzetti
      */
+
     public class XSSFFont : IFont
     {
-
         /**
          * By default, Microsoft Office Excel 2007 uses the Calibry font in font size 11
          */
@@ -56,6 +55,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param font the underlying CT_Font bean
          */
+
         public XSSFFont(CT_Font font)
         {
             _ctFont = font;
@@ -71,11 +71,12 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Create a new XSSFont. This method is protected to be used only by XSSFWorkbook
          */
+
         public XSSFFont()
         {
             this._ctFont = new CT_Font();
             FontName = DEFAULT_FONT_NAME;
-            FontHeight =DEFAULT_FONT_SIZE;
+            FontHeight = DEFAULT_FONT_SIZE;
         }
 
         /**
@@ -92,6 +93,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return bool - bold
          */
+
         public bool IsBold
         {
             get
@@ -99,7 +101,7 @@ namespace Npoi.Core.XSSF.UserModel
                 CT_BooleanProperty bold = _ctFont.SizeOfBArray() == 0 ? null : _ctFont.GetBArray(0);
                 return (bold != null && bold.val);
             }
-            set 
+            set
             {
                 if (value)
                 {
@@ -119,6 +121,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return int - character-set (0-255)
          * @see Npoi.Core.SS.usermodel.FontCharset
          */
+
         public short Charset
         {
             get
@@ -129,10 +132,8 @@ namespace Npoi.Core.XSSF.UserModel
             }
             set
             {
-
             }
         }
-
 
         /**
          * get the indexed color value for the font
@@ -141,6 +142,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return short - indexed color to use
          * @see IndexedColors
          */
+
         public short Color
         {
             get
@@ -163,31 +165,30 @@ namespace Npoi.Core.XSSF.UserModel
                     return (short)index;
                 }
             }
-            set 
+            set
             {
                 Spreadsheet.CT_Color ctColor = _ctFont.sizeOfColorArray() == 0 ? _ctFont.AddNewColor() : _ctFont.GetColorArray(0);
                 switch (value)
                 {
                     case (short)FontColor.Normal:
-                        
-                            ctColor.indexed = (uint)(XSSFFont.DEFAULT_FONT_COLOR);
-                            ctColor.indexedSpecified = true;
-                            break;
-                        
+
+                        ctColor.indexed = (uint)(XSSFFont.DEFAULT_FONT_COLOR);
+                        ctColor.indexedSpecified = true;
+                        break;
+
                     case (short)FontColor.Red:
 
-                            ctColor.indexed = (uint)(IndexedColors.Red.Index);
-                            ctColor.indexedSpecified = true;
-                            break;
-                        
+                        ctColor.indexed = (uint)(IndexedColors.Red.Index);
+                        ctColor.indexedSpecified = true;
+                        break;
+
                     default:
-                            ctColor.indexed = (uint)(value);
-                            ctColor.indexedSpecified = true;
+                        ctColor.indexed = (uint)(value);
+                        ctColor.indexedSpecified = true;
                         break;
                 }
             }
         }
-
 
         /**
          * get the color value for the font
@@ -195,6 +196,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return XSSFColor - rgb color to use
          */
+
         public XSSFColor GetXSSFColor()
         {
             Spreadsheet.CT_Color ctColor = _ctFont.sizeOfColorArray() == 0 ? null : _ctFont.GetColorArray(0);
@@ -213,13 +215,13 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         /**
          * get the color value for the font
          * References a color defined in theme.
          *
          * @return short - theme defined to use
          */
+
         public short GetThemeColor()
         {
             Spreadsheet.CT_Color color = _ctFont.sizeOfColorArray() == 0 ? null : _ctFont.GetColorArray(0);
@@ -232,6 +234,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return short - height in point
          */
+
         public double FontHeight
         {
             get
@@ -244,24 +247,24 @@ namespace Npoi.Core.XSSF.UserModel
                 }
                 return (short)(DEFAULT_FONT_SIZE * 20);
             }
-            set 
+            set
             {
                 CT_FontSize fontSize = _ctFont.sizeOfSzArray() == 0 ? _ctFont.AddNewSz() : _ctFont.GetSzArray(0);
                 fontSize.val = value;
             }
         }
 
-
         /**
          * @see #GetFontHeight()
          */
+
         public short FontHeightInPoints
         {
             get
             {
                 return (short)(FontHeight / 20);
             }
-            set 
+            set
             {
                 CT_FontSize fontSize = _ctFont.sizeOfSzArray() == 0 ? _ctFont.AddNewSz() : _ctFont.GetSzArray(0);
                 fontSize.val = value;
@@ -273,6 +276,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return String - a string representing the name of the font to use
          */
+
         public String FontName
         {
             get
@@ -280,9 +284,9 @@ namespace Npoi.Core.XSSF.UserModel
                 CT_FontName name = _ctFont.name;
                 return name == null ? DEFAULT_FONT_NAME : name.val;
             }
-            set 
+            set
             {
-                CT_FontName fontName = _ctFont.name==null?_ctFont.AddNewName():_ctFont.name;
+                CT_FontName fontName = _ctFont.name == null ? _ctFont.AddNewName() : _ctFont.name;
                 fontName.val = value == null ? DEFAULT_FONT_NAME : value;
             }
         }
@@ -292,6 +296,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return bool - value for italic
          */
+
         public bool IsItalic
         {
             get
@@ -299,7 +304,7 @@ namespace Npoi.Core.XSSF.UserModel
                 CT_BooleanProperty italic = _ctFont.sizeOfIArray() == 0 ? null : _ctFont.GetIArray(0);
                 return italic != null && italic.val;
             }
-            set 
+            set
             {
                 if (value)
                 {
@@ -318,6 +323,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return bool - value for strikeout
          */
+
         public bool IsStrikeout
         {
             get
@@ -325,7 +331,7 @@ namespace Npoi.Core.XSSF.UserModel
                 CT_BooleanProperty strike = _ctFont.sizeOfStrikeArray() == 0 ? null : _ctFont.GetStrikeArray(0);
                 return strike != null && strike.val;
             }
-            set 
+            set
             {
                 if (!value) _ctFont.SetStrikeArray(null);
                 else
@@ -344,6 +350,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @see Font#SS_SUPER
          * @see Font#SS_SUB
          */
+
         public FontSuperScript TypeOffset
         {
             get
@@ -358,15 +365,18 @@ namespace Npoi.Core.XSSF.UserModel
                 {
                     case ST_VerticalAlignRun.baseline:
                         return FontSuperScript.None;
+
                     case ST_VerticalAlignRun.subscript:
                         return FontSuperScript.Sub;
+
                     case ST_VerticalAlignRun.superscript:
                         return FontSuperScript.Super;
+
                     default:
                         throw new POIXMLException("Wrong offset value " + val);
                 }
             }
-            set 
+            set
             {
                 if (value == (short)FontSuperScript.None)
                 {
@@ -380,9 +390,11 @@ namespace Npoi.Core.XSSF.UserModel
                         case FontSuperScript.None:
                             offSetProperty.val = ST_VerticalAlignRun.baseline;
                             break;
+
                         case FontSuperScript.Sub:
                             offSetProperty.val = ST_VerticalAlignRun.subscript;
                             break;
+
                         case FontSuperScript.Super:
                             offSetProperty.val = ST_VerticalAlignRun.superscript;
                             break;
@@ -397,6 +409,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return byte - underlining type
          * @see Npoi.Core.SS.usermodel.FontUnderline
          */
+
         public FontUnderlineType Underline
         {
             get
@@ -409,7 +422,7 @@ namespace Npoi.Core.XSSF.UserModel
                 }
                 return (FontUnderlineType)FontUnderline.NONE.ByteValue;
             }
-            set 
+            set
             {
                 SetUnderline(value);
             }
@@ -428,7 +441,7 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 return (IsBold ? (short)FontBoldWeight.Bold : (short)FontBoldWeight.Normal);
             }
-            set 
+            set
             {
                 this.IsBold = (value == (short)FontBoldWeight.Bold);
             }
@@ -440,6 +453,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param charset - charset
          * @see FontCharset
          */
+
         public void SetCharSet(byte charSet)
         {
             int cs = (int)charSet;
@@ -449,12 +463,14 @@ namespace Npoi.Core.XSSF.UserModel
             }
             SetCharSet(cs);
         }
+
         /**
          * set character-set to use.
          *
          * @param charset - charset
          * @see FontCharset
          */
+
         public void SetCharSet(int charset)
         {
             FontCharset FontCharset = FontCharset.ValueOf(charset);
@@ -473,6 +489,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param charSet
          */
+
         public void SetCharSet(FontCharset charset)
         {
             CT_IntProperty charSetProperty;
@@ -494,6 +511,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param color - color to use
          */
+
         public void SetColor(XSSFColor color)
         {
             if (color == null) _ctFont.SetColorArray(null);
@@ -504,20 +522,17 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         /**
          * set the theme color for the font to use
          *
          * @param theme - theme color to use
          */
+
         public void SetThemeColor(short theme)
         {
             Spreadsheet.CT_Color ctColor = _ctFont.sizeOfColorArray() == 0 ? _ctFont.AddNewColor() : _ctFont.GetColorArray(0);
             ctColor.theme = (uint)theme;
         }
-
-
-
 
         /**
          * set an enumeration representing the style of underlining that is used.
@@ -526,6 +541,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param underline - FontUnderline enum value
          */
+
         internal void SetUnderline(FontUnderlineType underline)
         {
             if (underline == FontUnderlineType.None)
@@ -540,15 +556,13 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         public override String ToString()
         {
             return _ctFont.ToString();
         }
 
-
         ///**
-        // * Perform a registration of ourselves 
+        // * Perform a registration of ourselves
         // *  to the style table
         // */
         public long RegisterTo(StylesTable styles)
@@ -558,11 +572,13 @@ namespace Npoi.Core.XSSF.UserModel
             this._index = idx;
             return idx;
         }
+
         /**
          * Records the Themes Table that is associated with
          *  the current font, used when looking up theme
          *  based colours and properties.
          */
+
         public void SetThemesTable(ThemesTable themes)
         {
             this._themes = themes;
@@ -575,6 +591,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return FontScheme
          * @see Npoi.Core.XSSF.model.StylesTable#CreateDefaultFont()
          */
+
         public FontScheme GetScheme()
         {
             Npoi.Core.OpenXmlFormats.Spreadsheet.CT_FontScheme scheme = _ctFont.sizeOfSchemeArray() == 0 ? null : _ctFont.GetSchemeArray(0);
@@ -587,6 +604,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param scheme - FontScheme enum value
          * @see FontScheme
          */
+
         public void SetScheme(FontScheme scheme)
         {
             Npoi.Core.OpenXmlFormats.Spreadsheet.CT_FontScheme ctFontScheme = _ctFont.sizeOfSchemeArray() == 0 ? _ctFont.AddNewScheme() : _ctFont.GetSchemeArray(0);
@@ -600,6 +618,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return the font family to use
          * @see Npoi.Core.SS.usermodel.FontFamily
          */
+
         public int Family
         {
             get
@@ -607,13 +626,12 @@ namespace Npoi.Core.XSSF.UserModel
                 CT_IntProperty family = _ctFont.sizeOfFamilyArray() == 0 ? _ctFont.AddNewFamily() : _ctFont.GetFamilyArray(0);
                 return family == null ? FontFamily.NOT_APPLICABLE.Value : FontFamily.ValueOf(family.val).Value;
             }
-            set 
+            set
             {
                 CT_IntProperty family = _ctFont.sizeOfFamilyArray() == 0 ? _ctFont.AddNewFamily() : _ctFont.GetFamilyArray(0);
                 family.val = value;
             }
         }
-
 
         /**
          * set an enumeration representing the font family this font belongs to.
@@ -622,6 +640,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param family font family
          * @link #SetFamily(int value)
          */
+
         public void SetFamily(FontFamily family)
         {
             Family = family.Value;
@@ -632,6 +651,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return unique index number of the underlying record this Font represents (probably you don't care
          *  unless you're comparing which one is which)
          */
+
         public short Index
         {
             get
@@ -652,6 +672,5 @@ namespace Npoi.Core.XSSF.UserModel
             XSSFFont cf = (XSSFFont)o;
             return _ctFont.ToString().Equals(cf.GetCTFont().ToString());
         }
-
     }
 }

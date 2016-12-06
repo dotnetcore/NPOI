@@ -14,18 +14,19 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS.UserModel;
 using System;
 using System.Text;
-using Npoi.Core.Util;
-using Npoi.Core.OpenXmlFormats.Spreadsheet;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * @author <a href="rjankiraman@emptoris.com">Radhakrishnan J</a>
      *
      */
+
     public class XSSFDataValidationConstraint : IDataValidationConstraint
     {
         private String formula1;
@@ -49,18 +50,14 @@ namespace Npoi.Core.XSSF.UserModel
         public XSSFDataValidationConstraint(int validationType, String formula1)
             : base()
         {
-
             Formula1 = (formula1);
             this.validationType = validationType;
             Validate();
         }
 
-
-
         public XSSFDataValidationConstraint(int validationType, int operator1, String formula1)
             : base()
         {
-
             Formula1 = (formula1);
             this.validationType = validationType;
             this.operator1 = operator1;
@@ -70,7 +67,6 @@ namespace Npoi.Core.XSSF.UserModel
         public XSSFDataValidationConstraint(int validationType, int operator1, String formula1, String formula2)
             : base()
         {
-
             Formula1 = (formula1);
             Formula2 = (formula2);
             this.validationType = validationType;
@@ -81,7 +77,7 @@ namespace Npoi.Core.XSSF.UserModel
             //FIXME: Need to confirm if this is not a formula.
             if (ValidationType.LIST == validationType)
             {
-                explicitListOfValues = formula1.Split(new char[]{','});
+                explicitListOfValues = formula1.Split(new char[] { ',' });
             }
         }
 
@@ -91,7 +87,7 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 return explicitListOfValues;
             }
-            set 
+            set
             {
                 this.explicitListOfValues = value;
                 if (explicitListOfValues != null && explicitListOfValues.Length > 0)
@@ -115,13 +111,14 @@ namespace Npoi.Core.XSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidationConstraint#getFormula1()
          */
+
         public String Formula1
         {
             get
             {
                 return formula1;
             }
-            set 
+            set
             {
                 this.formula1 = RemoveLeadingEquals(value);
             }
@@ -130,13 +127,14 @@ namespace Npoi.Core.XSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidationConstraint#getFormula2()
          */
+
         public String Formula2
         {
             get
             {
                 return formula2;
             }
-            set 
+            set
             {
                 this.formula2 = RemoveLeadingEquals(value);
             }
@@ -145,13 +143,14 @@ namespace Npoi.Core.XSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidationConstraint#getOperator()
          */
+
         public int Operator
         {
             get
             {
                 return operator1;
             }
-            set 
+            set
             {
                 this.operator1 = value;
             }
@@ -160,6 +159,7 @@ namespace Npoi.Core.XSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidationConstraint#getValidationType()
          */
+
         public int GetValidationType()
         {
             return validationType;
@@ -227,7 +227,8 @@ namespace Npoi.Core.XSSF.UserModel
                 if (validationType == ValidationType.LIST && explicitListOfValues != null)
                 {
                     builder.Append(QUOTE);
-                    foreach (var item in explicitListOfValues) {
+                    foreach (var item in explicitListOfValues)
+                    {
                         builder.Append(item);
                     }
 
@@ -246,4 +247,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-

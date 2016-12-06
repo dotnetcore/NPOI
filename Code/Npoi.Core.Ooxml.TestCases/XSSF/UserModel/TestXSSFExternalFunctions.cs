@@ -15,28 +15,26 @@
    limitations under the License.
 ==================================================================== */
 
-using TestCases.SS.Formula;
 using NUnit.Framework;
+using TestCases.SS.Formula;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Tests Setting and Evaluating user-defined functions in HSSF
      */
+
     [TestFixture]
     public class TestXSSFExternalFunctions : BaseTestExternalFunctions
     {
-
-        public TestXSSFExternalFunctions():base(XSSFITestDataProvider.instance)
+        public TestXSSFExternalFunctions() : base(XSSFITestDataProvider.instance)
         {
-            
         }
+
         [Test]
         public void TestATP()
         {
             BaseTestInvokeATP("atp.xlsx");
         }
     }
-
-
 }

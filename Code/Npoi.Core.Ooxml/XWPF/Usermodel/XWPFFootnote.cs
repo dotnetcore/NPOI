@@ -19,10 +19,9 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.XWPF.UserModel
 {
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
     using System;
     using System.Collections.Generic;
-    using Npoi.Core.OpenXmlFormats.Wordprocessing;
-    using System.Xml;
 
     public class XWPFFootnote : IEnumerator<XWPFParagraph>, IBody
     {
@@ -49,13 +48,13 @@ namespace Npoi.Core.XWPF.UserModel
             this.document = document;
             Init();
         }
+
         private void Init()
         {
             //copied from XWPFDocument...should centralize this code
-            //to avoid duplication       
+            //to avoid duplication
             foreach (object o in ctFtnEdn.Items)
             {
-
                 if (o is CT_P)
                 {
                     XWPFParagraph p = new XWPFParagraph((CT_P)o, this);
@@ -75,6 +74,7 @@ namespace Npoi.Core.XWPF.UserModel
                 }
             }
         }
+
         public IList<XWPFParagraph> Paragraphs
         {
             get
@@ -82,6 +82,7 @@ namespace Npoi.Core.XWPF.UserModel
                 return paragraphs;
             }
         }
+
         public IEnumerator<XWPFParagraph> GetEnumerator()
         {
             return paragraphs.GetEnumerator();
@@ -121,10 +122,10 @@ namespace Npoi.Core.XWPF.UserModel
             ctFtnEdn = footnote;
         }
 
-         /// <summary>
-         /// 
-         /// </summary>
-         /// <param name="pos">position in table array</param>
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="pos">position in table array</param>
         /// <returns>The table at position pos</returns>
         public XWPFTable GetTableArray(int pos)
         {
@@ -144,9 +145,11 @@ namespace Npoi.Core.XWPF.UserModel
         {
             bodyElements.Insert(pos, table);
             int i;
-            for (i = 0; i < ctFtnEdn.GetTblList().Count; i++) {
+            for (i = 0; i < ctFtnEdn.GetTblList().Count; i++)
+            {
                 CT_Tbl tbl = ctFtnEdn.GetTblArray(i);
-                if(tbl == table.GetCTTbl()){
+                if (tbl == table.GetCTTbl())
+                {
                     break;
                 }
             }
@@ -156,17 +159,19 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * if there is a corresponding {@link XWPFTable} of the parameter ctTable in the tableList of this header
          * the method will return this table
-         * if there is no corresponding {@link XWPFTable} the method will return null 
+         * if there is no corresponding {@link XWPFTable} the method will return null
          * @param ctTable
          * @see Npoi.Core.XWPF.UserModel.IBody#getTable(CTTbl ctTable)
          */
+
         public XWPFTable GetTable(CT_Tbl ctTable)
         {
-            foreach (XWPFTable table in tables) {
-                if(table==null)
+            foreach (XWPFTable table in tables)
+            {
+                if (table == null)
                     return null;
-                if(table.GetCTTbl().Equals(ctTable))
-                    return table;	
+                if (table.GetCTTbl().Equals(ctTable))
+                    return table;
             }
             return null;
         }
@@ -174,20 +179,23 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * if there is a corresponding {@link XWPFParagraph} of the parameter ctTable in the paragraphList of this header or footer
          * the method will return this paragraph
-         * if there is no corresponding {@link XWPFParagraph} the method will return null 
+         * if there is no corresponding {@link XWPFParagraph} the method will return null
          * @param p is instance of CTP and is searching for an XWPFParagraph
          * @return null if there is no XWPFParagraph with an corresponding CTPparagraph in the paragraphList of this header or footer
          * 		   XWPFParagraph with the correspondig CTP p
          * @see Npoi.Core.XWPF.UserModel.IBody#getParagraph(CTP p)
          */
+
         public XWPFParagraph GetParagraph(CT_P p)
         {
-            foreach (XWPFParagraph paragraph in paragraphs) {
-                if(paragraph.GetCTP().Equals(p))
+            foreach (XWPFParagraph paragraph in paragraphs)
+            {
+                if (paragraph.GetCTP().Equals(p))
                     return paragraph;
             }
             return null;
         }
+
         /// <summary>
         /// Returns the paragraph that holds the text of the header or footer.
         /// </summary>
@@ -195,7 +203,6 @@ namespace Npoi.Core.XWPF.UserModel
         /// <returns></returns>
         public XWPFParagraph GetParagraphArray(int pos)
         {
-
             return paragraphs[pos];
         }
 
@@ -216,11 +223,13 @@ namespace Npoi.Core.XWPF.UserModel
 
             CT_Tbl tbl = (CT_Tbl)row.Parent;
             XWPFTable table = GetTable(tbl);
-            if(table == null){
+            if (table == null)
+            {
                 return null;
             }
             XWPFTableRow tableRow = table.GetRow(row);
-            if(row == null){
+            if (row == null)
+            {
                 return null;
             }
             return tableRow.GetTableCell(cell);
@@ -230,6 +239,7 @@ namespace Npoi.Core.XWPF.UserModel
          * verifies that cursor is on the right position
          * @param cursor
          */
+
         private bool IsCursorInFtn(/*XmlCursor*/XDocument cursor)
         {
             /*XmlCursor verify = cursor.NewCursor();
@@ -250,11 +260,12 @@ namespace Npoi.Core.XWPF.UserModel
         }
 
         /**
-         * 
+         *
          * @param cursor
          * @return the inserted table
          * @see Npoi.Core.XWPF.UserModel.IBody#insertNewTbl(XmlCursor cursor)
          */
+
         public XWPFTable InsertNewTbl(/*XmlCursor*/XDocument cursor)
         {
             /*if(isCursorInFtn(cursor)){
@@ -298,6 +309,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @return the inserted paragraph
          * @see Npoi.Core.XWPF.UserModel.IBody#insertNewParagraph(XmlCursor cursor)
          */
+
         public XWPFParagraph InsertNewParagraph(/*XmlCursor*/XDocument cursor)
         {
             /*if(isCursorInFtn(cursor)){
@@ -339,6 +351,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @param table
          * @return the Added XWPFTable
          */
+
         public XWPFTable AddNewTbl(CT_Tbl table)
         {
             CT_Tbl newTable = ctFtnEdn.AddNewTbl();
@@ -353,6 +366,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @param paragraph
          * @return the Added XWPFParagraph
          */
+
         public XWPFParagraph AddNewParagraph(CT_P paragraph)
         {
             CT_P newPara = ctFtnEdn.AddNewP(paragraph);
@@ -365,6 +379,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * @see Npoi.Core.XWPF.UserModel.IBody#getXWPFDocument()
          */
+
         public XWPFDocument GetXWPFDocument()
         {
             return document;
@@ -374,6 +389,7 @@ namespace Npoi.Core.XWPF.UserModel
          * returns the Part, to which the body belongs, which you need for Adding relationship to other parts
          * @see Npoi.Core.XWPF.UserModel.IBody#getPart()
          */
+
         public POIXMLDocumentPart Part
         {
             get
@@ -386,6 +402,7 @@ namespace Npoi.Core.XWPF.UserModel
          * Get the PartType of the body
          * @see Npoi.Core.XWPF.UserModel.IBody#getPartType()
          */
+
         public BodyType PartType
         {
             get

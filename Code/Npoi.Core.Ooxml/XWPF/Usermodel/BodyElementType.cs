@@ -17,8 +17,6 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
     /**
      * <p>
      * 9 Jan 2010
@@ -29,11 +27,11 @@ namespace Npoi.Core.XWPF.UserModel
      * @author epp
      *
      */
+
     public enum BodyElementType
     {
         CONTENTCONTROL,
         PARAGRAPH,
         TABLE,
     }
-
 }

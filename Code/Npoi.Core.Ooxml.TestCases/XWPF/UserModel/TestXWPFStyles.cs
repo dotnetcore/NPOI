@@ -17,17 +17,15 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-    using NUnit.Framework;
-
-    using Npoi.Core.XWPF;
-    using System.Collections.Generic;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.XWPF;
+    using NUnit.Framework;
+    using System;
+    using System.Collections.Generic;
 
     [TestFixture]
     public class TestXWPFStyles
     {
-
         //	protected void SetUp()  {
         //		super.Up=();
         //	}
@@ -46,7 +44,7 @@ namespace Npoi.Core.XWPF.UserModel
             style.HasSameName(style);
 
             List<XWPFStyle> usedStyleList = styles.GetUsedStyleList(style);
-            
+
             //Assert.AreEqual(usedStyleList, testUsedStyleList);
             Assert.AreEqual(usedStyleList.Count, testUsedStyleList.Count);
             for (int i = 0; i < usedStyleList.Count; i++)
@@ -80,6 +78,7 @@ namespace Npoi.Core.XWPF.UserModel
          * Bug #52449 - We should be able to write a file containing
          *  both regular and glossary styles without error
          */
+
         [Test]
         public void Test52449()
         {
@@ -92,11 +91,11 @@ namespace Npoi.Core.XWPF.UserModel
             Assert.IsNotNull(styles);
         }
 
-
         /**
          * YK: tests below don't make much sense,
          * they exist only to copy xml beans to pi-ooxml-schemas.jar
          */
+
         [Test]
         public void TestLanguages()
         {
@@ -109,6 +108,7 @@ namespace Npoi.Core.XWPF.UserModel
             CT_Fonts def = new CT_Fonts();
             styles.SetDefaultFonts(def);
         }
+
         [Test]
         public void TestType()
         {
@@ -118,12 +118,13 @@ namespace Npoi.Core.XWPF.UserModel
             style.StyleType = ST_StyleType.paragraph;
             Assert.AreEqual(ST_StyleType.paragraph, style.StyleType);
         }
+
         [Test]
         public void TestLatentStyles()
         {
             CT_LatentStyles latentStyles = new CT_LatentStyles();
             CT_LsdException ex = latentStyles.AddNewLsdException();
-            ex.name=("ex1");
+            ex.name = ("ex1");
             XWPFLatentStyles ls = new XWPFLatentStyles(latentStyles);
             Assert.AreEqual(true, ls.IsLatentStyle("ex1"));
             Assert.AreEqual(false, ls.IsLatentStyle("notex1"));
@@ -208,9 +209,6 @@ namespace Npoi.Core.XWPF.UserModel
 
             Assert.AreEqual(11, styles.DefaultRunStyle.FontSize);
             Assert.AreEqual(200, styles.DefaultParagraphStyle.SpacingAfter);
-
         }
-
     }
-
 }

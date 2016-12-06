@@ -2,7 +2,6 @@
 using Npoi.Core.SS.UserModel.Charts;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Npoi.Core.XSSF.UserModel.Charts
 {
@@ -11,7 +10,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
     /// </summary>
     /// <typeparam name="Tx"></typeparam>
     /// <typeparam name="Ty"></typeparam>
-    public class XSSFLineChartData<Tx, Ty> : ILineChartData<Tx,Ty>
+    public class XSSFLineChartData<Tx, Ty> : ILineChartData<Tx, Ty>
     {
         /**
          * List of all data series.
@@ -23,7 +22,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             series = new List<ILineChartSeries<Tx, Ty>>();
         }
 
-        public class Series:AbstractXSSFChartSeries, ILineChartSeries<Tx,Ty> 
+        public class Series : AbstractXSSFChartSeries, ILineChartSeries<Tx, Ty>
         {
             private int id;
             private int order;
@@ -32,7 +31,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
 
             internal Series(int id, int order,
                             IChartDataSource<Tx> categories,
-                            IChartDataSource<Ty> values) 
+                            IChartDataSource<Ty> values)
             {
                 this.id = id;
                 this.order = order;
@@ -40,19 +39,22 @@ namespace Npoi.Core.XSSF.UserModel.Charts
                 this.values = values;
             }
 
-            public IChartDataSource<Tx> GetCategoryAxisData() {
+            public IChartDataSource<Tx> GetCategoryAxisData()
+            {
                 return categories;
             }
 
-            public IChartDataSource<Ty> GetValues() {
+            public IChartDataSource<Ty> GetValues()
+            {
                 return values;
             }
 
-            internal void AddToChart(CT_LineChart ctLineChart) {
+            internal void AddToChart(CT_LineChart ctLineChart)
+            {
                 CT_LineSer ctLineSer = ctLineChart.AddNewSer();
                 CT_Grouping ctGrouping = ctLineChart.AddNewGrouping();
                 ctGrouping.val = ST_Grouping.standard;
-                ctLineSer.AddNewIdx().val= (uint)id;
+                ctLineSer.AddNewIdx().val = (uint)id;
                 ctLineSer.AddNewOrder().val = (uint)order;
 
                 // No marker symbol on the chart line.
@@ -63,11 +65,13 @@ namespace Npoi.Core.XSSF.UserModel.Charts
                 CT_NumDataSource valueDS = ctLineSer.AddNewVal();
                 XSSFChartUtil.BuildNumDataSource(valueDS, values);
 
-                if (IsTitleSet) {
+                if (IsTitleSet)
+                {
                     ctLineSer.tx = GetCTSerTx();
                 }
             }
         }
+
         public ILineChartSeries<Tx, Ty> AddSeries(IChartDataSource<Tx> categoryAxisData, IChartDataSource<Ty> values)
         {
             if (!values.IsNumeric)

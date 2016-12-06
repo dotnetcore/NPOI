@@ -17,15 +17,15 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
-    using System.Collections.Generic;
     using Npoi.Core.Util;
+    using System.Collections.Generic;
 
     /**
      * @author Philipp Epp
      *
      */
+
     public class XWPFAbstractNum
     {
         private CT_AbstractNum ctAbstractNum;
@@ -35,8 +35,8 @@ namespace Npoi.Core.XWPF.UserModel
         {
             this.ctAbstractNum = null;
             this.numbering = null;
-
         }
+
         public XWPFAbstractNum(CT_AbstractNum abstractNum)
         {
             this.ctAbstractNum = abstractNum;
@@ -47,6 +47,7 @@ namespace Npoi.Core.XWPF.UserModel
             this.ctAbstractNum = ctAbstractNum;
             this.numbering = numbering;
         }
+
         public CT_AbstractNum GetAbstractNum()
         {
             return ctAbstractNum;
@@ -66,7 +67,9 @@ namespace Npoi.Core.XWPF.UserModel
         {
             this.numbering = numbering;
         }
+
         #region AbstractNum property
+
         /// <summary>
         /// Abstract Numbering Definition Type
         /// </summary>
@@ -75,11 +78,13 @@ namespace Npoi.Core.XWPF.UserModel
             get { return EnumConverter.ValueOf<MultiLevelType, ST_MultiLevelType>(ctAbstractNum.multiLevelType.val); }
             set { ctAbstractNum.multiLevelType.val = EnumConverter.ValueOf<ST_MultiLevelType, MultiLevelType>(value); }
         }
+
         public string AbstractNumId
         {
             get { return ctAbstractNum.abstractNumId; }
             set { ctAbstractNum.abstractNumId = value; }
         }
+
         //square, dot, diamond
         private char[] lvlText = new char[] { '\u006e', '\u006c', '\u0075' };
 
@@ -90,7 +95,7 @@ namespace Npoi.Core.XWPF.UserModel
             {
                 CT_Lvl lvl = new CT_Lvl();
                 lvl.start.val = "1";
-                lvl.tentative = i==0? ST_OnOff.on : ST_OnOff.off;
+                lvl.tentative = i == 0 ? ST_OnOff.on : ST_OnOff.off;
                 lvl.ilvl = i.ToString();
                 lvl.lvlJc.val = ST_Jc.left;
                 lvl.numFmt.val = ST_NumberFormat.bullet;
@@ -107,7 +112,8 @@ namespace Npoi.Core.XWPF.UserModel
             }
             ctAbstractNum.lvl = list;
         }
-        #endregion
+
+        #endregion AbstractNum property
 
         internal void SetLevelTentative(int lvl, bool tentative)
         {
@@ -117,6 +123,7 @@ namespace Npoi.Core.XWPF.UserModel
                 this.ctAbstractNum.lvl[lvl].tentative = ST_OnOff.off;
         }
     }
+
     /// <summary>
     /// Numbering Definition Type
     /// </summary>
@@ -137,6 +144,7 @@ namespace Npoi.Core.XWPF.UserModel
         /// </summary>
         HybridMultilevel
     }
+
     /// <summary>
     /// Numbering Format
     /// </summary>

@@ -15,23 +15,23 @@
    limitations under the License.
 ==================================================================== */
 
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
-using Npoi.Core.XSSF.Model;
-using Npoi.Core.SS.UserModel;
-using Npoi.Core.Util;
-using System.IO;
-using System;
-using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using System.Xml;
 using Npoi.Core.OpenXml4Net.OPC;
-using System.Text;
-using Npoi.Core.SS.Util;
-using Npoi.Core.SS.Formula;
-using Npoi.Core.XSSF.UserModel.Helpers;
-using Npoi.Core.SS.Formula.Udf;
 using Npoi.Core.OpenXmlFormats;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.Formula;
+using Npoi.Core.SS.Formula.Udf;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.Util;
+using Npoi.Core.Util;
+using Npoi.Core.XSSF.Model;
+using Npoi.Core.XSSF.UserModel.Helpers;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace Npoi.Core.XSSF.UserModel
@@ -41,6 +41,7 @@ namespace Npoi.Core.XSSF.UserModel
      * will construct whether they are Reading or writing a workbook.  It is also the
      * top level object for creating new sheets/etc.
      */
+
     public class XSSFWorkbook : POIXMLDocument, IWorkbook
     {
         private static Regex COMMA_PATTERN = new Regex(",");
@@ -165,25 +166,26 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Create a new SpreadsheetML workbook.
          */
+
         public XSSFWorkbook()
             : base(newPackage())
         {
-
             OnWorkbookCreate();
         }
 
         /**
          * Constructs a XSSFWorkbook object given a OpenXML4J <code>Package</code> object,
          *  see <a href="http://poi.apache.org/oxml4j/">http://poi.apache.org/oxml4j/</a>.
-         * 
+         *
          * Once you have finished working with the Workbook, you should close the package
          * by calling pkg.close, to avoid leaving file handles open.
-         * 
+         *
          * Creating a XSSFWorkbook from a file-backed OPC Package has a lower memory
          *  footprint than an InputStream backed one.
          *
          * @param pkg the OpenXML4J <code>OPC Package</code> object.
          */
+
         public XSSFWorkbook(OPCPackage pkg)
             : base(pkg)
         {
@@ -200,10 +202,11 @@ namespace Npoi.Core.XSSF.UserModel
                 bv.activeTab = (0);
             }
         }
+
         /**
          * Constructs a XSSFWorkbook object, by buffering the whole stream into memory
          *  and then opening an {@link OPCPackage} object for it.
-         * 
+         *
          * Using an {@link InputStream} requires more memory than using a File, so
          *  if a {@link File} is available then you should instead do something like
          *   <pre><code>
@@ -212,8 +215,9 @@ namespace Npoi.Core.XSSF.UserModel
          *       // work with the wb object
          *       ......
          *       pkg.close(); // gracefully closes the underlying zip file
-         *   </code></pre>     
+         *   </code></pre>
          */
+
         public XSSFWorkbook(Stream is1)
             : base(PackageHelper.Open(is1))
         {
@@ -233,16 +237,17 @@ namespace Npoi.Core.XSSF.UserModel
 
         /**
          * Constructs a XSSFWorkbook object from a given file.
-         * 
-         * <p>Once you have finished working with the Workbook, you should close 
-         * the package by calling  {@link #close()}, to avoid leaving file 
+         *
+         * <p>Once you have finished working with the Workbook, you should close
+         * the package by calling  {@link #close()}, to avoid leaving file
          * handles open.
-         * 
-         * <p>Opening a XSSFWorkbook from a file has a lower memory footprint 
+         *
+         * <p>Opening a XSSFWorkbook from a file has a lower memory footprint
          *  than opening from an InputStream
-         *  
+         *
          * @param file   the file to open
          */
+
         public XSSFWorkbook(FileInfo file)
             : this(OPCPackage.Open(file))
         {
@@ -266,7 +271,7 @@ namespace Npoi.Core.XSSF.UserModel
          *     then pass the data to ZipInputStream.
          *     </li>
          * <ol>
-         * <p>    
+         * <p>
          *     It should be noted, that (2) uses quite a bit more memory than (1), which
          *      doesn't need to hold the whole zip file in memory, and can take advantage
          *      of native methods.
@@ -280,15 +285,15 @@ namespace Npoi.Core.XSSF.UserModel
          *       // work with the wb object
          *       ......
          *       pkg.close(); // gracefully closes the underlying zip file
-         *   </code></pre>     
+         *   </code></pre>
          * </p>
-         * 
+         *
          * @param      path   the file name.
          */
+
         public XSSFWorkbook(String path)
             : this(OpenPackage(path))
         {
-
         }
 
         protected void BeforeDocumentRead()
@@ -304,7 +309,8 @@ namespace Npoi.Core.XSSF.UserModel
             pivotCaches = new List<CT_PivotCache>();
         }
 
-        WorkbookDocument doc = null;
+        private WorkbookDocument doc = null;
+
         internal override void OnDocumentRead()
         {
             try
@@ -324,7 +330,7 @@ namespace Npoi.Core.XSSF.UserModel
                     else if (p is MapInfo) mapInfo = (MapInfo)p;
                     else if (p is XSSFSheet)
                     {
-                        shIdMap.Add(p.GetPackageRelationship().Id,(XSSFSheet)p);
+                        shIdMap.Add(p.GetPackageRelationship().Id, (XSSFSheet)p);
                     }
                     else if (p is ExternalLinksTable)
                     {
@@ -367,7 +373,7 @@ namespace Npoi.Core.XSSF.UserModel
                 foreach (CT_Sheet ctSheet in this.workbook.sheets.sheet)
                 {
                     XSSFSheet sh = null;
-                    if(shIdMap.ContainsKey(ctSheet.id))
+                    if (shIdMap.ContainsKey(ctSheet.id))
                         sh = shIdMap[ctSheet.id];
                     if (sh == null)
                     {
@@ -378,7 +384,7 @@ namespace Npoi.Core.XSSF.UserModel
                     sh.OnDocumentRead();
                     sheets.Add(sh);
                 }
-                // Load the external links tables. Their order is defined by the order 
+                // Load the external links tables. Their order is defined by the order
                 //  of CTExternalReference elements in the workbook
                 externalLinks = new List<ExternalLinksTable>(elIdMap.Count);
                 if (this.workbook.IsSetExternalReferences())
@@ -386,7 +392,7 @@ namespace Npoi.Core.XSSF.UserModel
                     foreach (CT_ExternalReference er in this.workbook.externalReferences.externalReference)
                     {
                         ExternalLinksTable el = null;
-                        if(elIdMap.ContainsKey(er.id))
+                        if (elIdMap.ContainsKey(er.id))
                             el = elIdMap[(er.id)];
                         if (el == null)
                         {
@@ -408,9 +414,9 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Create a new CT_Workbook with all values Set to default
          */
+
         private void OnWorkbookCreate()
         {
-
             doc = new WorkbookDocument();
             workbook = doc.Workbook;
             // don't EVER use the 1904 date system
@@ -423,7 +429,7 @@ namespace Npoi.Core.XSSF.UserModel
             workbook.AddNewSheets();
 
             ExtendedProperties expProps = GetProperties().ExtendedProperties;
-            CT_ExtendedProperties ctExtendedProp= expProps.GetUnderlyingProperties();
+            CT_ExtendedProperties ctExtendedProp = expProps.GetUnderlyingProperties();
             ctExtendedProp.Application = DOCUMENT_CREATOR;
             ctExtendedProp.DocSecurity = 0;
             ctExtendedProp.DocSecuritySpecified = true;
@@ -448,6 +454,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Create a new SpreadsheetML namespace and Setup the default minimal content
          */
+
         protected static OPCPackage newPackage()
         {
             try
@@ -496,6 +503,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @see Workbook#PICTURE_TYPE_DIB
          * @see #getAllPictures()
          */
+
         public int AddPicture(byte[] pictureData, int format)
         {
             return this.AddPicture(pictureData, (PictureType)format);
@@ -516,6 +524,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @see Workbook#PICTURE_TYPE_DIB
          * @see #getAllPictures()
          */
+
         public int AddPicture(Stream picStream, int format)
         {
             int imageNumber = GetAllPictures().Count + 1;
@@ -535,6 +544,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @throws ArgumentException if the sheet index in invalid
          * @throws POIXMLException if there were errors when cloning
          */
+
         public ISheet CloneSheet(int sheetNum)
         {
             ValidateSheetIndex(sheetNum);
@@ -562,6 +572,7 @@ namespace Npoi.Core.XSSF.UserModel
                 formatter = new XSSFDataFormat(stylesSource);
             return formatter;
         }
+
         /// <summary>
         /// Create a new Font and add it to the workbook's font table
         /// </summary>
@@ -588,6 +599,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return XSSFSheet representing the new sheet.
          */
+
         public ISheet CreateSheet()
         {
             String sheetname = "Sheet" + (sheets.Count);
@@ -647,6 +659,7 @@ namespace Npoi.Core.XSSF.UserModel
          *  or workbook already contains a sheet with this name
          * @see org.apache.poi.ss.util.WorkbookUtil#createSafeSheetName(String nameProposal)
          */
+
         public ISheet CreateSheet(String sheetname)
         {
             if (sheetname == null)
@@ -717,7 +730,8 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Finds a font that matches the one with the supplied attributes
          */
-        public IFont FindFont(short boldWeight, short color, short fontHeight, String name, bool italic, bool strikeout,FontSuperScript typeOffset, FontUnderlineType underline)
+
+        public IFont FindFont(short boldWeight, short color, short fontHeight, String name, bool italic, bool strikeout, FontSuperScript typeOffset, FontUnderlineType underline)
         {
             return stylesSource.FindFont(boldWeight, color, fontHeight, name, italic, strikeout, typeOffset, underline);
         }
@@ -727,6 +741,7 @@ namespace Npoi.Core.XSSF.UserModel
          * which is currently displayed when the workbook is viewed in Excel.
          * 'Selected' sheet(s) is a distinct concept.
          */
+
         public int ActiveSheetIndex
         {
             get
@@ -743,6 +758,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return the list of pictures (a list of {@link XSSFPictureData} objects.)
          * @see #AddPicture(byte[], int)
          */
+
         public IList GetAllPictures()
         {
             if (pictures == null)
@@ -763,16 +779,19 @@ namespace Npoi.Core.XSSF.UserModel
          * @param idx  index within the Set of styles
          * @return XSSFCellStyle object at the index
          */
+
         public ICellStyle GetCellStyleAt(short idx)
         {
             return GetCellStyleAt(idx & 0xffff);
         }
+
         /**
          * Get the cell style object at the given index
          *
          * @param idx  index within the set of styles
          * @return XSSFCellStyle object at the index
          */
+
         public XSSFCellStyle GetCellStyleAt(int idx)
         {
             return stylesSource.GetStyleAt(idx);
@@ -784,6 +803,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param idx  index number
          * @return XSSFFont at the index
          */
+
         public IFont GetFontAt(short idx)
         {
             return stylesSource.GetFontAt(idx);
@@ -822,6 +842,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param name named range name
          * @return named range index
          */
+
         public int GetNameIndex(String name)
         {
             int i = 0;
@@ -841,6 +862,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return count of cell styles
          */
+
         public short NumCellStyles
         {
             get
@@ -854,10 +876,12 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return number of fonts
          */
+
         public short NumberOfFonts
         {
-            get{
-            return (short)stylesSource.GetFonts().Count;
+            get
+            {
+                return (short)stylesSource.GetFonts().Count;
             }
         }
 
@@ -866,10 +890,12 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return number of named ranges
          */
+
         public int NumberOfNames
         {
-            get{
-            return namedRanges.Count;
+            get
+            {
+                return namedRanges.Count;
             }
         }
 
@@ -878,6 +904,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return number of worksheets
          */
+
         public int NumberOfSheets
         {
             get
@@ -891,13 +918,13 @@ namespace Npoi.Core.XSSF.UserModel
          * @param sheetIndex Zero-based sheet index (0 Represents the first sheet to keep consistent with java)
          * @return String Null if no print area has been defined
          */
+
         public String GetPrintArea(int sheetIndex)
         {
             XSSFName name = GetBuiltInName(XSSFName.BUILTIN_PRINT_AREA, sheetIndex);
             if (name == null) return null;
             //Adding one here because 0 indicates a global named region; doesnt make sense for print areas
             return name.RefersToFormula;
-
         }
 
         /**
@@ -906,6 +933,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param name of the sheet
          * @return XSSFSheet with the name provided or <code>null</code> if it does not exist
          */
+
         public ISheet GetSheet(String name)
         {
             foreach (XSSFSheet sheet in sheets)
@@ -926,6 +954,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @throws ArgumentException if the index is out of range (index
          *            &lt; 0 || index &gt;= NumberOfSheets).
          */
+
         public ISheet GetSheetAt(int index)
         {
             ValidateSheetIndex(index);
@@ -942,7 +971,7 @@ namespace Npoi.Core.XSSF.UserModel
             for (int i = 0; i < sheets.Count; ++i)
             {
                 XSSFSheet sheet = sheets[i];
-                if (name.Equals(sheet.SheetName,StringComparison.OrdinalIgnoreCase))
+                if (name.Equals(sheet.SheetName, StringComparison.OrdinalIgnoreCase))
                 {
                     return i;
                 }
@@ -956,6 +985,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param sheet the sheet to look up
          * @return index of the sheet (0 based). <tt>-1</tt> if not found
          */
+
         public int GetSheetIndex(ISheet sheet)
         {
             int idx = 0;
@@ -973,6 +1003,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param sheetIx Number
          * @return Sheet name
          */
+
         public String GetSheetName(int sheetIx)
         {
             ValidateSheetIndex(sheetIx);
@@ -988,14 +1019,17 @@ namespace Npoi.Core.XSSF.UserModel
          * }
          * </code></pre>
          */
+
         public IEnumerator GetEnumerator()
         {
             return sheets.GetEnumerator();
         }
+
         /**
          * Are we a normal workbook (.xlsx), or a
          *  macro enabled workbook (.xlsm)?
          */
+
         public bool IsMacroEnabled()
         {
             return GetPackagePart().ContentType.Equals(XSSFRelation.MACROS_WORKBOOK.ContentType);
@@ -1011,7 +1045,7 @@ namespace Npoi.Core.XSSF.UserModel
             for (int i = 0; i < namedRanges.Count; i++)
             {
                 XSSFName nm = namedRanges[i];
-                if (nm.NameName.Equals(name,StringComparison.OrdinalIgnoreCase))
+                if (nm.NameName.Equals(name, StringComparison.OrdinalIgnoreCase))
                 {
                     RemoveName(i);
                     return;
@@ -1019,12 +1053,14 @@ namespace Npoi.Core.XSSF.UserModel
             }
             throw new ArgumentException("Named range was not found: " + name);
         }
+
         /**
-         * As {@link #removeName(String)} is not necessarily unique 
+         * As {@link #removeName(String)} is not necessarily unique
          * (name + sheet index is unique), this method is more accurate.
-         * 
+         *
          * @param name the name to remove.
          */
+
         public void RemoveName(XSSFName name)
         {
             if (!namedRanges.Remove(name))
@@ -1032,17 +1068,19 @@ namespace Npoi.Core.XSSF.UserModel
                 throw new ArgumentException("Name was not found: " + name);
             }
         }
+
         /**
          * Delete the printarea for the sheet specified
          *
          * @param sheetIndex 0-based sheet index (0 = First Sheet)
          */
+
         public void RemovePrintArea(int sheetIndex)
         {
             int cont = 0;
             foreach (XSSFName name in namedRanges)
             {
-                if (name.NameName.Equals(XSSFName.BUILTIN_PRINT_AREA) 
+                if (name.NameName.Equals(XSSFName.BUILTIN_PRINT_AREA)
                     && name.SheetIndex == sheetIndex)
                 {
                     namedRanges.RemoveAt(cont);
@@ -1066,6 +1104,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param index of the sheet  (0-based)
          */
+
         public void RemoveSheetAt(int index)
         {
             ValidateSheetIndex(index);
@@ -1100,7 +1139,6 @@ namespace Npoi.Core.XSSF.UserModel
                 // Removed sheet was below the active one => active is one less now
                 SetActiveSheet(active - 1);
             }
-
         }
 
         /**
@@ -1108,6 +1146,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param index the 0-based index of the sheet to delete
          */
+
         private void OnSheetDelete(int index)
         {
             //delete the CT_Sheet reference from workbook.xml
@@ -1120,11 +1159,10 @@ namespace Npoi.Core.XSSF.UserModel
                 calcChain = null;
             }
 
-            List<XSSFName> toRemoveNamedRanges=new List<XSSFName>();
+            List<XSSFName> toRemoveNamedRanges = new List<XSSFName>();
             //adjust indices of names ranges
             foreach (XSSFName nm in namedRanges)
             {
-                
                 CT_DefinedName ct = nm.GetCTName();
                 if (!ct.IsSetLocalSheetId()) continue;
                 if (ct.localSheetId == index)
@@ -1150,13 +1188,14 @@ namespace Npoi.Core.XSSF.UserModel
          * The default is to return blank and null cells.
          *  {@link MissingCellPolicy}
          */
+
         public MissingCellPolicy MissingCellPolicy
         {
             get
             {
                 return _missingCellPolicy;
             }
-            set 
+            set
             {
                 _missingCellPolicy = value;
             }
@@ -1169,6 +1208,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @throws ArgumentException if the index is out of range (index
          *            &lt; 0 || index &gt;= NumberOfSheets).
         */
+
         private void ValidateSheetIndex(int index)
         {
             int lastSheetIx = sheets.Count - 1;
@@ -1189,6 +1229,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return integer that Contains the index to the active sheet in this book view.
          */
+
         public int FirstVisibleTab
         {
             get
@@ -1197,7 +1238,7 @@ namespace Npoi.Core.XSSF.UserModel
                 CT_BookView bookView = bookViews.GetWorkbookViewArray(0);
                 return (int)bookView.firstSheet;
             }
-            set 
+            set
             {
                 CT_BookViews bookViews = workbook.bookViews;
                 CT_BookView bookView = bookViews.GetWorkbookViewArray(0);
@@ -1212,6 +1253,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param sheetIndex Zero-based sheet index (0 Represents the first sheet to keep consistent with java)
          * @param reference Valid name Reference for the Print Area
          */
+
         public void SetPrintArea(int sheetIndex, String reference)
         {
             XSSFName name = GetBuiltInName(XSSFName.BUILTIN_PRINT_AREA, sheetIndex);
@@ -1245,12 +1287,12 @@ namespace Npoi.Core.XSSF.UserModel
          * @param startRow Row to begin the printarea
          * @param endRow Row to end the printarea
          */
+
         public void SetPrintArea(int sheetIndex, int startColumn, int endColumn, int startRow, int endRow)
         {
             String reference = GetReferencePrintArea(GetSheetName(sheetIndex), startColumn, endColumn, startRow, endRow);
             SetPrintArea(sheetIndex, reference);
         }
-
 
         /**
          * Sets the repeating rows and columns for a sheet.
@@ -1274,6 +1316,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param startRow    0 based start of repeating rows.
          * @param endRow      0 based end of repeating rows.
          */
+
         [Obsolete("use XSSFSheet#setRepeatingRows(CellRangeAddress) or XSSFSheet#setRepeatingColumns(CellRangeAddress)")]
         public void SetRepeatingRowsAndColumns(int sheetIndex,
                                                int startColumn, int endColumn,
@@ -1293,9 +1336,8 @@ namespace Npoi.Core.XSSF.UserModel
                 cols = new CellRangeAddress(-1, -1, startColumn, endColumn);
             }
 
-            sheet.RepeatingRows=(rows);
-            sheet.RepeatingColumns=(cols);
-
+            sheet.RepeatingRows = (rows);
+            sheet.RepeatingColumns = (cols);
         }
 
         private static String GetReferenceBuiltInRecord(String sheetName, int startC, int endC, int startR, int endR)
@@ -1359,6 +1401,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @throws ArgumentException if sheetNumber is invalid
          * @throws POIXMLException if such a name already exists in the workbook
          */
+
         internal XSSFName CreateBuiltInName(String builtInName, int sheetNumber)
         {
             ValidateSheetIndex(sheetNumber);
@@ -1384,6 +1427,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * We only Set one sheet as selected for compatibility with HSSF.
          */
+
         public void SetSelectedTab(int index)
         {
             for (int i = 0; i < sheets.Count; ++i)
@@ -1404,6 +1448,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @see {@link Npoi.Core.ss.util.WorkbookUtil#CreateSafeSheetName(String nameProposal)}
          *      for a safe way to create valid names
          */
+
         public void SetSheetName(int sheetIndex, String sheetname)
         {
             ValidateSheetIndex(sheetIndex);
@@ -1433,12 +1478,13 @@ namespace Npoi.Core.XSSF.UserModel
          * @param sheetname the name of the sheet to reorder
          * @param pos the position that we want to insert the sheet into (0 based)
          */
+
         public void SetSheetOrder(String sheetname, int pos)
         {
             int idx = GetSheetIndex(sheetname);
             XSSFSheet sheet = sheets[idx];
             sheets.RemoveAt(idx);
-            sheets.Insert(pos,sheet);
+            sheets.Insert(pos, sheet);
             // Reorder CT_Sheets
             CT_Sheets ct = workbook.sheets;
             CT_Sheet cts = ct.GetSheetArray(idx).Copy();
@@ -1475,12 +1521,12 @@ namespace Npoi.Core.XSSF.UserModel
                 // remaining case: Moved sheet was higher than active before and is lower now => active is one more
                 SetActiveSheet(active + 1);
             }
-
         }
 
         /**
          * marshal named ranges from the {@link #namedRanges} collection to the underlying CT_Workbook bean
          */
+
         private void SaveNamedRanges()
         {
             // Named ranges
@@ -1509,6 +1555,7 @@ namespace Npoi.Core.XSSF.UserModel
                 }
             }
         }
+
         private void ReprocessNamedRanges()
         {
             namedRanges = new List<XSSFName>();
@@ -1520,6 +1567,7 @@ namespace Npoi.Core.XSSF.UserModel
                 }
             }
         }
+
         private void SaveCalculationChain()
         {
             if (calcChain != null)
@@ -1532,7 +1580,6 @@ namespace Npoi.Core.XSSF.UserModel
                 }
             }
         }
-
 
         protected internal override void Commit()
         {
@@ -1558,6 +1605,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Return a object representing a collection of shared objects used for styling content,
          * e.g. fonts, cell styles, colors, etc.
          */
+
         public StylesTable GetStylesSource()
         {
             return this.stylesSource;
@@ -1566,6 +1614,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Returns the Theme of current workbook.
          */
+
         public ThemesTable GetTheme()
         {
             return theme;
@@ -1575,6 +1624,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Returns an object that handles instantiating concrete
          *  classes of the various instances for XSSF.
          */
+
         public ICreationHelper GetCreationHelper()
         {
             if (_creationHelper == null) _creationHelper = new XSSFCreationHelper(this);
@@ -1589,6 +1639,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param excludeSheetIdx the sheet to exclude from the check or -1 to include all sheets in the Check.
          * @return true if the sheet Contains the name, false otherwise.
          */
+
         //@SuppressWarnings("deprecation") //  GetXYZArray() array accessors are deprecated
         private bool ContainsSheet(String name, int excludeSheetIdx)
         {
@@ -1621,6 +1672,7 @@ namespace Npoi.Core.XSSF.UserModel
          * </p>
          * @return true if the date systems used in the workbook starts in 1904
          */
+
         internal bool IsDate1904()
         {
             CT_WorkbookPr workbookPr = workbook.workbookPr;
@@ -1630,6 +1682,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Get the document's embedded files.
          */
+
         public override List<PackagePart> GetAllEmbedds()
         {
             List<PackagePart> embedds = new List<PackagePart>();
@@ -1655,7 +1708,7 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 throw new NotImplementedException();
             }
-            set 
+            set
             {
                 throw new NotImplementedException();
             }
@@ -1670,6 +1723,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param sheetIx Number
          * @return <code>true</code> if sheet is hidden
          */
+
         public bool IsSheetHidden(int sheetIx)
         {
             ValidateSheetIndex(sheetIx);
@@ -1686,6 +1740,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param sheetIx sheet index to check
          * @return <code>true</code> if sheet is very hidden
          */
+
         public bool IsSheetVeryHidden(int sheetIx)
         {
             ValidateSheetIndex(sheetIx);
@@ -1707,6 +1762,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param hidden whether this sheet is hidden
          * @see #setSheetHidden(int, int)
          */
+
         public void SetSheetHidden(int sheetIx, bool hidden)
         {
             SetSheetHidden(sheetIx, hidden ? SheetState.Hidden : SheetState.Visible);
@@ -1727,6 +1783,7 @@ namespace Npoi.Core.XSSF.UserModel
          *        <code>Workbook.SHEET_STATE_VERY_HIDDEN</code>.
          * @throws ArgumentException if the supplied sheet index or state is invalid
          */
+
         public void SetSheetHidden(int sheetIx, SheetState state)
         {
             ValidateSheetIndex(sheetIx);
@@ -1752,6 +1809,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @see XSSFCell#setCellFormula(String)
          */
+
         internal void OnDeleteFormula(XSSFCell cell)
         {
             if (calcChain != null)
@@ -1777,7 +1835,7 @@ namespace Npoi.Core.XSSF.UserModel
 
         /**
          * Returns the list of {@link ExternalLinksTable} object for this workbook
-         * 
+         *
          * <p>The external links table specifies details of named ranges etc
          *  that are referenced from other workbooks, along with the last seen
          *  values of what they point to.</p>
@@ -1788,6 +1846,7 @@ namespace Npoi.Core.XSSF.UserModel
 
          * @return the <code>ExternalLinksTable</code> list, which may be empty
          */
+
         public List<ExternalLinksTable> ExternalLinksTable
         {
             get
@@ -1800,6 +1859,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return a collection of custom XML mappings defined in this workbook
          */
+
         public List<XSSFMap> GetCustomXMLMappings()
         {
             return mapInfo == null ? new List<XSSFMap>() : mapInfo.GetAllXSSFMaps();
@@ -1816,26 +1876,29 @@ namespace Npoi.Core.XSSF.UserModel
         }
 
         /**
-         * Adds the External Link Table part and relations required to allow formulas 
+         * Adds the External Link Table part and relations required to allow formulas
          *  referencing the specified external workbook to be added to this one. Allows
-         *  formulas such as "[MyOtherWorkbook.xlsx]Sheet3!$A$5" to be added to the 
+         *  formulas such as "[MyOtherWorkbook.xlsx]Sheet3!$A$5" to be added to the
          *  file, for workbooks not already linked / referenced.
          *
          * @param name The name the workbook will be referenced as in formulas
          * @param workbook The open workbook to fetch the link required information from
          */
+
         public int LinkExternalWorkbook(String name, IWorkbook workbook)
         {
             throw new RuntimeException("Not Implemented - see bug #57184");
         }
+
         /**
          * Specifies a bool value that indicates whether structure of workbook is locked. <br/>
          * A value true indicates the structure of the workbook is locked. Worksheets in the workbook can't be Moved,
          * deleted, hidden, unhidden, or Renamed, and new worksheets can't be inserted.<br/>
          * A value of false indicates the structure of the workbook is not locked.<br/>
-         * 
+         *
          * @return true if structure of workbook is locked
          */
+
         public bool IsStructureLocked()
         {
             return WorkbookProtectionPresent() && workbook.workbookProtection.lockStructure;
@@ -1846,9 +1909,10 @@ namespace Npoi.Core.XSSF.UserModel
          * A value of true indicates the workbook windows are locked. Windows are the same size and position each time the
          * workbook is opened.<br/>
          * A value of false indicates the workbook windows are not locked.
-         * 
+         *
          * @return true if windows that comprise the workbook are locked
          */
+
         public bool IsWindowsLocked()
         {
             return WorkbookProtectionPresent() && workbook.workbookProtection.lockWindows;
@@ -1856,9 +1920,10 @@ namespace Npoi.Core.XSSF.UserModel
 
         /**
          * Specifies a bool value that indicates whether the workbook is locked for revisions.
-         * 
+         *
          * @return true if the workbook is locked for revisions.
          */
+
         public bool IsRevisionLocked()
         {
             return WorkbookProtectionPresent() && workbook.workbookProtection.lockRevision;
@@ -1867,6 +1932,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Locks the structure of workbook.
          */
+
         public void LockStructure()
         {
             CreateProtectionFieldIfNotPresent();
@@ -1876,6 +1942,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Unlocks the structure of workbook.
          */
+
         public void UnlockStructure()
         {
             CreateProtectionFieldIfNotPresent();
@@ -1883,8 +1950,9 @@ namespace Npoi.Core.XSSF.UserModel
         }
 
         /**
-         * Locks the windows that comprise the workbook. 
+         * Locks the windows that comprise the workbook.
          */
+
         public void LockWindows()
         {
             CreateProtectionFieldIfNotPresent();
@@ -1892,8 +1960,9 @@ namespace Npoi.Core.XSSF.UserModel
         }
 
         /**
-         * Unlocks the windows that comprise the workbook. 
+         * Unlocks the windows that comprise the workbook.
          */
+
         public void UnlockWindows()
         {
             CreateProtectionFieldIfNotPresent();
@@ -1903,6 +1972,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Locks the workbook for revisions.
          */
+
         public void LockRevision()
         {
             CreateProtectionFieldIfNotPresent();
@@ -1912,6 +1982,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Unlocks the workbook for revisions.
          */
+
         public void UnlockRevision()
         {
             CreateProtectionFieldIfNotPresent();
@@ -1944,6 +2015,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return wrapped instance of UDFFinder that allows seeking functions both by index and name
          */
         /*package*/
+
         internal UDFFinder GetUDFFinder()
         {
             return _udfFinder;
@@ -1954,6 +2026,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param toopack the toolpack to register
          */
+
         public void AddToolPack(UDFFinder toopack)
         {
             _udfFinder.Add(toopack);
@@ -1976,6 +2049,7 @@ namespace Npoi.Core.XSSF.UserModel
          * workbook values when the workbook is opened
          * @since 3.8
          */
+
         public void SetForceFormulaRecalculation(bool value)
         {
             CT_Workbook ctWorkbook = GetCTWorkbook();
@@ -1995,25 +2069,28 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @since 3.8
          */
+
         public bool GetForceFormulaRecalculation()
         {
             CT_Workbook ctWorkbook = GetCTWorkbook();
             CT_CalcPr calcPr = ctWorkbook.calcPr;
             return calcPr != null && calcPr.calcId != 0;
         }
+
         public void SetActiveSheet(int sheetIndex)
         {
             ValidateSheetIndex(sheetIndex);
 
-            
             foreach (CT_BookView arrayBook in workbook.bookViews.workbookView)
             {
                 arrayBook.activeTab = (uint)(sheetIndex);
             }
         }
-       /**
-         * Add pivotCache to the workbook
-         */
+
+        /**
+          * Add pivotCache to the workbook
+          */
+
         protected internal CT_PivotCache AddPivotCache(String rId)
         {
             CT_Workbook ctWorkbook = GetCTWorkbook();
@@ -2051,9 +2128,7 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         #region IWorkbook Members
-
 
         public int AddPicture(byte[] pictureData, PictureType format)
         {
@@ -2071,12 +2146,9 @@ namespace Npoi.Core.XSSF.UserModel
             }
             pictures.Add(img);
             return imageNumber - 1;
-
         }
 
-
-
-        #endregion
+        #endregion IWorkbook Members
 
         #region IList<XSSFSheet> Members
 
@@ -2114,7 +2186,7 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-        #endregion
+        #endregion IList<XSSFSheet> Members
 
         #region ICollection<ISheet> Members
 
@@ -2150,12 +2222,9 @@ namespace Npoi.Core.XSSF.UserModel
 
         public bool Remove(ISheet item)
         {
-
             return this.sheets.Remove((XSSFSheet)item);
         }
 
-        #endregion
+        #endregion ICollection<ISheet> Members
     }
 }
-
-

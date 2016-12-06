@@ -15,22 +15,21 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
-using NUnit.Framework;
 using Npoi.Core.HSSF.Extractor;
-using TestCases.HSSF;
+using NUnit.Framework;
+using System;
 using System.Text.RegularExpressions;
+using TestCases.HSSF;
+
 namespace Npoi.Core.XSSF.Extractor
 {
-
     /**
      * Tests for {@link XSSFExcelExtractor}
      */
+
     [TestFixture]
     public class TestXSSFExcelExtractor
     {
-
-
         protected XSSFExcelExtractor GetExtractor(String sampleName)
         {
             return new XSSFExcelExtractor(XSSFTestDataSamples.OpenSampleWorkbook(sampleName));
@@ -39,7 +38,8 @@ namespace Npoi.Core.XSSF.Extractor
         /**
          * Get text out of the simple file
          */
-           [Test]
+
+        [Test]
         public void TestGetSimpleText()
         {
             // a very simple file
@@ -98,6 +98,7 @@ namespace Npoi.Core.XSSF.Extractor
                     , text);
             extractor.Close();
         }
+
         [Test]
         public void TestGetComplexText()
         {
@@ -121,7 +122,8 @@ namespace Npoi.Core.XSSF.Extractor
          *  ExcelExtractor does, when we're both passed
          *  the same file, just saved as xls and xlsx
          */
-           [Test]
+
+        [Test]
         public void TestComparedToOLE2()
         {
             // A fairly simple file - ooxml
@@ -136,11 +138,10 @@ namespace Npoi.Core.XSSF.Extractor
             {
                 POITextExtractor extractor = extractors[i];
 
-                String text = Regex.Replace(extractor.Text,"[\r\t]", "");
+                String text = Regex.Replace(extractor.Text, "[\r\t]", "");
                 Assert.IsTrue(text.StartsWith("First Sheet\nTest spreadsheet\n2nd row2nd row 2nd column\n"));
-                Regex pattern = new Regex(".*13(\\.0+)?\\s+Sheet3.*",RegexOptions.Compiled);
+                Regex pattern = new Regex(".*13(\\.0+)?\\s+Sheet3.*", RegexOptions.Compiled);
                 Assert.IsTrue(pattern.IsMatch(text));
-                
             }
             ole2Extractor.Close();
             ooxmlExtractor.Close();
@@ -149,31 +150,32 @@ namespace Npoi.Core.XSSF.Extractor
         /**
          * From bug #45540
          */
-           [Test]
-           public void TestHeaderFooter()
-           {
-               String[] files = new String[] {
+
+        [Test]
+        public void TestHeaderFooter()
+        {
+            String[] files = new String[] {
         "45540_classic_Header.xlsx", "45540_form_Header.xlsx",
         "45540_classic_Footer.xlsx", "45540_form_Footer.xlsx",
         };
-               foreach (String sampleName in files)
-               {
-                   XSSFExcelExtractor extractor = GetExtractor(sampleName);
-                   String text = extractor.Text;
+            foreach (String sampleName in files)
+            {
+                XSSFExcelExtractor extractor = GetExtractor(sampleName);
+                String text = extractor.Text;
 
-                   Assert.IsTrue(text.Contains("testdoc"), "Unable to find expected word in text from " + sampleName + "\n" + text);
-                   Assert.IsTrue(text.Contains("test phrase"), "Unable to find expected word in text\n" + text);
-                   extractor.Close();
-               }
-           }
+                Assert.IsTrue(text.Contains("testdoc"), "Unable to find expected word in text from " + sampleName + "\n" + text);
+                Assert.IsTrue(text.Contains("test phrase"), "Unable to find expected word in text\n" + text);
+                extractor.Close();
+            }
+        }
 
         /**
          * From bug #45544
          */
-           [Test]
+
+        [Test]
         public void TestComments()
         {
-
             XSSFExcelExtractor extractor = GetExtractor("45544.xlsx");
             String text = extractor.Text;
 
@@ -188,6 +190,7 @@ namespace Npoi.Core.XSSF.Extractor
             Assert.IsTrue(text.Contains("test phrase"), "Unable to find expected word in text\n" + text);
             extractor.Close();
         }
+
         [Test]
         public void TestInlineStrings()
         {
@@ -214,5 +217,3 @@ namespace Npoi.Core.XSSF.Extractor
         }
     }
 }
-
-

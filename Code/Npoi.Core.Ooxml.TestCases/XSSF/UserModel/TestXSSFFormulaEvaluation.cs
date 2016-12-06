@@ -15,24 +15,22 @@
    limitations under the License.
 ==================================================================== */
 
-using TestCases.SS.UserModel;
-using NUnit.Framework;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.Util;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using TestCases.HSSF;
+using TestCases.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     [TestFixture]
     public class TestXSSFFormulaEvaluation : BaseTestFormulaEvaluator
     {
-
         public TestXSSFFormulaEvaluation()
             : base(XSSFITestDataProvider.instance)
         {
-
         }
 
         [Test]
@@ -40,6 +38,7 @@ namespace Npoi.Core.XSSF.UserModel
         {
             BaseTestSharedFormulas("shared_formulas.xlsx");
         }
+
         [Test]
         public void TestSharedFormulas_EvaluateInCell()
         {
@@ -70,6 +69,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Evaluation of cell references with column indexes greater than 255. See bugzilla 50096
          */
+
         [Test]
         public void TestEvaluateColumnGreaterThan255()
         {
@@ -97,7 +97,6 @@ namespace Npoi.Core.XSSF.UserModel
                 CellValue cv_formula = Evaluator.Evaluate(cell_formula);
                 Assert.AreEqual(cv_noformula.NumberValue, cv_formula.NumberValue, "Wrong Evaluation result in " + ref_formula.FormatAsString());
             }
-
         }
 
         /**
@@ -105,6 +104,7 @@ namespace Npoi.Core.XSSF.UserModel
      *  formulas that refer to cells and named ranges in multiple other
      *  workbooks, both HSSF and XSSF ones
      */
+
         [Test]
         public void TestReferencesToOtherWorkbooks()
         {
@@ -179,46 +179,45 @@ namespace Npoi.Core.XSSF.UserModel
 
             // Add another formula referencing these workbooks
             ICell cXSL_cell2 = rXSL.CreateCell(40);
-            cXSL_cell2.CellFormula=(/*setter*/"[56737.xls]Uses!$C$1");
+            cXSL_cell2.CellFormula = (/*setter*/"[56737.xls]Uses!$C$1");
             // TODO Shouldn't it become [2] like the others?
             Assert.AreEqual("[56737.xls]Uses!$C$1", cXSL_cell2.CellFormula);
-            Assert.AreEqual("\"Hello!\"",  evaluator.Evaluate(cXSL_cell2).FormatAsString());
-        
-        
+            Assert.AreEqual("\"Hello!\"", evaluator.Evaluate(cXSL_cell2).FormatAsString());
+
             // Now add a formula that refers to yet another (different) workbook
             // Won't work without the workbook being linked
             ICell cXSLX_nw_cell = rXSLX.CreateCell(42);
-            try {
-                cXSLX_nw_cell.CellFormula=(/*setter*/"[alt.xlsx]Sheet1!$A$1");
+            try
+            {
+                cXSLX_nw_cell.CellFormula = (/*setter*/"[alt.xlsx]Sheet1!$A$1");
                 Assert.Fail("New workbook not linked, shouldn't be able to Add");
-            } catch (Exception e) {}
-        
+            }
+            catch (Exception e) { }
+
             // Link and re-try
             IWorkbook alt = new XSSFWorkbook();
             alt.CreateSheet().CreateRow(0).CreateCell(0).SetCellValue("In another workbook");
-        // TODO Implement the rest of this, see bug #57184
-/*
-        wb.LinkExternalWorkbook("alt.xlsx", alt);
-                
-        cXSLX_nw_cell.SetCellFormula"[alt.xlsx]Sheet1!$A$1");
-        // Check it - TODO Is this correct? Or should it become [3]Sheet1!$A$1 ?
-        Assert.AreEqual("[alt.xlsx]Sheet1!$A$1", cXSLX_nw_cell.CellFormula);
-        
-        // Evaluate it, without a link to that workbook
-        try {
-            Evaluator.Evaluate(cXSLX_nw_cell);
-            Assert.Fail("No cached value and no link to workbook, shouldn't Evaluate");
-        } catch(Exception e) {}
-        
-        // Add a link, check it does
-        Evaluators.Put("alt.xlsx", alt.GetCreationHelper().CreateFormulaEvaluator());
-        Evaluator.SetupReferencedWorkbooks(evaluators);
-        
-        Evaluator.Evaluate(cXSLX_nw_cell);
-        Assert.AreEqual("In another workbook", cXSLX_nw_cell.StringCellValue);
-*/
+            // TODO Implement the rest of this, see bug #57184
+            /*
+                    wb.LinkExternalWorkbook("alt.xlsx", alt);
 
+                    cXSLX_nw_cell.SetCellFormula"[alt.xlsx]Sheet1!$A$1");
+                    // Check it - TODO Is this correct? Or should it become [3]Sheet1!$A$1 ?
+                    Assert.AreEqual("[alt.xlsx]Sheet1!$A$1", cXSLX_nw_cell.CellFormula);
 
+                    // Evaluate it, without a link to that workbook
+                    try {
+                        Evaluator.Evaluate(cXSLX_nw_cell);
+                        Assert.Fail("No cached value and no link to workbook, shouldn't Evaluate");
+                    } catch(Exception e) {}
+
+                    // Add a link, check it does
+                    Evaluators.Put("alt.xlsx", alt.GetCreationHelper().CreateFormulaEvaluator());
+                    Evaluator.SetupReferencedWorkbooks(evaluators);
+
+                    Evaluator.Evaluate(cXSLX_nw_cell);
+                    Assert.AreEqual("In another workbook", cXSLX_nw_cell.StringCellValue);
+            */
         }
 
         /**
@@ -228,11 +227,13 @@ namespace Npoi.Core.XSSF.UserModel
          * TODO Add the support then add a unit test
          * See bug #56752
          */
+
         [Test]
         public void TestCachedReferencesToOtherWorkbooks()
         {
             // TODO
         }
+
         /**
          * A handful of functions (such as SUM, COUNTA, MIN) support
          *  multi-sheet references (eg Sheet1:Sheet3!A1 = Cell A1 from
@@ -240,6 +241,7 @@ namespace Npoi.Core.XSSF.UserModel
          * This test, based on common test files for HSSF and XSSF, Checks
          *  that we can correctly Evaluate these
          */
+
         [Test]
         public void TestMultiSheetReferencesHSSFandXSSF()
         {
@@ -252,13 +254,11 @@ namespace Npoi.Core.XSSF.UserModel
                 IFormulaEvaluator Evaluator = wb.GetCreationHelper().CreateFormulaEvaluator();
                 ISheet s1 = wb.GetSheetAt(0);
 
-
                 // Simple SUM over numbers
                 ICell sumF = s1.GetRow(2).GetCell(0);
                 Assert.IsNotNull(sumF);
                 Assert.AreEqual("SUM(Sheet1:Sheet3!A1)", sumF.CellFormula);
                 Assert.AreEqual("66", Evaluator.Evaluate(sumF).FormatAsString(), "Failed for " + wb.GetType());
-
 
                 // Various Stats formulas on numbers
                 ICell avgF = s1.GetRow(2).GetCell(1);
@@ -281,7 +281,6 @@ namespace Npoi.Core.XSSF.UserModel
                 Assert.AreEqual("COUNT(Sheet1:Sheet3!A$1)", countF.CellFormula);
                 Assert.AreEqual("3", Evaluator.Evaluate(countF).FormatAsString());
 
-
                 // Various CountAs on Strings
                 ICell countA_1F = s1.GetRow(2).GetCell(2);
                 Assert.IsNotNull(countA_1F);
@@ -299,6 +298,7 @@ namespace Npoi.Core.XSSF.UserModel
                 Assert.AreEqual("3", Evaluator.Evaluate(countA_3F).FormatAsString());
             }
         }
+
         /**
          * A handful of functions (such as SUM, COUNTA, MIN) support
          *  multi-sheet areas (eg Sheet1:Sheet3!A1:B2 = Cell A1 to Cell B2,
@@ -306,6 +306,7 @@ namespace Npoi.Core.XSSF.UserModel
          * This test, based on common test files for HSSF and XSSF, checks
          *  that we can correctly evaluate these
          */
+
         [Test]
         public void TestMultiSheetAreasHSSFandXSSF()
         {
@@ -318,13 +319,11 @@ namespace Npoi.Core.XSSF.UserModel
                 IFormulaEvaluator Evaluator = wb.GetCreationHelper().CreateFormulaEvaluator();
                 ISheet s1 = wb.GetSheetAt(0);
 
-
                 // SUM over a range
                 ICell sumFA = s1.GetRow(2).GetCell(7);
                 Assert.IsNotNull(sumFA);
                 Assert.AreEqual("SUM(Sheet1:Sheet3!A1:B2)", sumFA.CellFormula);
                 Assert.AreEqual("110", Evaluator.Evaluate(sumFA).FormatAsString(), "Failed for " + wb.GetType());
-
 
                 // Various Stats formulas on ranges of numbers
                 ICell avgFA = s1.GetRow(2).GetCell(8);
@@ -346,7 +345,6 @@ namespace Npoi.Core.XSSF.UserModel
                 Assert.IsNotNull(countFA);
                 Assert.AreEqual("COUNT(Sheet1:Sheet3!$A$1:$B$2)", countFA.CellFormula);
                 Assert.AreEqual("4", Evaluator.Evaluate(countFA).FormatAsString());
-
             }
         }
 
@@ -573,7 +571,6 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         [Test]
         public void TestBug55843f()
         {
@@ -598,8 +595,5 @@ namespace Npoi.Core.XSSF.UserModel
                 wb.Close();
             }
         }
-
-
     }
-
 }

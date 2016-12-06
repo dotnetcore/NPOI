@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-
-using System.Text;
-using System.Xml.Serialization;
-using System.Xml;
 using System.IO;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
@@ -13,7 +11,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_SheetData
     {
-
         public static CT_SheetData Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -27,8 +24,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -44,9 +39,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             sw.Write(string.Format("</{0}>", nodeName));
         }
 
-
-
-        private List<CT_Row> rowField = null; // [0..*] 
+        private List<CT_Row> rowField = null; // [0..*]
 
         //public CT_SheetData()
         //{
@@ -59,6 +52,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             rowField.Add(newrow);
             return newrow;
         }
+
         public CT_Row InsertNewRow(int index)
         {
             if (null == rowField) { rowField = new List<CT_Row>(); }
@@ -66,6 +60,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             rowField.Insert(index, newrow);
             return newrow;
         }
+
         public void RemoveRows(IList<CT_Row> toRemove)
         {
             if (rowField == null) return;
@@ -74,11 +69,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 rowField.Remove(r);
             }
         }
+
         public void RemoveRow(int rowNum)
         {
             if (null != rowField)
             {
-                CT_Row rowToRemove=null;
+                CT_Row rowToRemove = null;
                 foreach (CT_Row ctrow in rowField)
                 {
                     if (ctrow.r == rowNum)
@@ -90,6 +86,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 rowField.Remove(rowToRemove);
             }
         }
+
         public int SizeOfRowArray()
         {
             return (null == rowField) ? 0 : rowField.Count;
@@ -99,6 +96,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             return (null == rowField) ? null : rowField[index];
         }
+
         [XmlElement("row")]
         public List<CT_Row> row
         {
@@ -111,6 +109,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.rowField = value;
             }
         }
+
         [XmlIgnore]
         public bool rowSpecified
         {

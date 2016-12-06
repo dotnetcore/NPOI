@@ -2,9 +2,7 @@
 using Npoi.Core.OpenXml4Net.Util;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -15,13 +13,13 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_PivotCaches
     {
-
         private List<CT_PivotCache> pivotCacheField;
 
         public CT_PivotCaches()
         {
             //this.pivotCacheField = new List<CT_PivotCache>();
         }
+
         public static CT_PivotCaches Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -36,8 +34,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
@@ -51,6 +47,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             sw.Write(string.Format("</{0}>", nodeName));
         }
+
         [XmlElement]
         public List<CT_PivotCache> pivotCache
         {
@@ -80,14 +77,15 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return pivotCacheField[p];
         }
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_PivotCache
     {
-
         private uint cacheIdField;
 
         private string idField;
+
         public static CT_PivotCache Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -98,8 +96,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
@@ -108,6 +104,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             sw.Write(">");
             sw.Write(string.Format("</{0}>", nodeName));
         }
+
         [XmlAttribute]
         public uint cacheId
         {
@@ -120,6 +117,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.cacheIdField = value;
             }
         }
+
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/relationships")]
         public string id
         {
@@ -133,5 +131,4 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
-
 }

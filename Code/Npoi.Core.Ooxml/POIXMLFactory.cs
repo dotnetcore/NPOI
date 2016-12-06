@@ -14,19 +14,19 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 using Npoi.Core.OpenXml4Net.OPC;
+
 namespace Npoi.Core
 {
-
-
     /**
      * Defines a factory API that enables sub-classes to create instances of <code>POIXMLDocumentPart</code>
      *
      * @author Yegor Kozlov
      */
+
     public abstract class POIXMLFactory
     {
-
         /**
          * Create a POIXMLDocumentPart from existing namespace part and relation. This method is called
          * from {@link POIXMLDocument#load(POIXMLFactory)} when parsing a document
@@ -36,6 +36,7 @@ namespace Npoi.Core
          * @param part  the PackagePart representing the Created instance
          * @return A new instance of a POIXMLDocumentPart.
          */
+
         public abstract POIXMLDocumentPart CreateDocumentPart(POIXMLDocumentPart parent, PackageRelationship rel, PackagePart part);
 
         /**
@@ -45,12 +46,7 @@ namespace Npoi.Core
          * @param descriptor  describes the object to create
          * @return A new instance of a POIXMLDocumentPart.
          */
+
         public abstract POIXMLDocumentPart CreateDocumentPart(POIXMLRelation descriptor);
     }
-
-
 }
-
-
-
-

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Npoi.Core
 {
-    public class POIXMLException:Exception
+    public class POIXMLException : Exception
     {
         public POIXMLException()
             : base()
@@ -14,12 +12,12 @@ namespace Npoi.Core
             : base(msg)
         { }
 
-        public POIXMLException(string msg,Exception ex)
-            : base(msg,ex)
+        public POIXMLException(string msg, Exception ex)
+            : base(msg, ex)
         { }
 
         public POIXMLException(Exception ex)
-            : base(string.Empty,ex)
+            : base(string.Empty, ex)
         { }
     }
 }

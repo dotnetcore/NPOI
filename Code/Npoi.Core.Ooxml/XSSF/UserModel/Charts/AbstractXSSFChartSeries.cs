@@ -2,8 +2,6 @@
 using Npoi.Core.SS.UserModel.Charts;
 using Npoi.Core.SS.Util;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Npoi.Core.XSSF.UserModel.Charts
 {
@@ -12,6 +10,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
         private String titleValue;
         private CellReference titleRef;
         private TitleType? titleType;
+
         public void SetTitle(string title)
         {
             titleType = TitleType.String;
@@ -35,7 +34,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
 
         public CellReference GetTitleCellReference()
         {
-            if (titleType== TitleType.CellReference)
+            if (titleType == TitleType.CellReference)
             {
                 return titleRef;
             }
@@ -46,6 +45,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
         {
             return titleType;
         }
+
         protected bool IsTitleSet
         {
             get
@@ -62,9 +62,11 @@ namespace Npoi.Core.XSSF.UserModel.Charts
                 case TitleType.CellReference:
                     tx.AddNewStrRef().f = titleRef.FormatAsString();
                     return tx;
+
                 case TitleType.String:
-                    tx.v =  titleValue;
+                    tx.v = titleValue;
                     return tx;
+
                 default:
                     throw new InvalidOperationException("Unkown title type: " + titleType);
             }

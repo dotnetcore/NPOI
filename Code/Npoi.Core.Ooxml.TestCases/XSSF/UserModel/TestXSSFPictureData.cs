@@ -15,18 +15,20 @@
    limitations under the License.
 ==================================================================== */
 
-using NUnit.Framework;
-using System.Collections.Generic;
-using System;
-using Npoi.Core.Util;
 using Npoi.Core.SS.UserModel;
+using Npoi.Core.Util;
+using NUnit.Framework;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
+
 namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * @author Yegor Kozlov
      */
+
     [TestFixture]
     public class TestXSSFPictureData
     {
@@ -59,6 +61,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual("jpeg", pict.SuggestFileExtension());
             Assert.IsTrue(Arrays.Equals(pictureData, pict.Data));
         }
+
         [Test]
         public void TestNew()
         {
@@ -100,7 +103,7 @@ namespace Npoi.Core.XSSF.UserModel
             wb = (XSSFWorkbook)XSSFTestDataSamples.WriteOutAndReadBack(wb);
             IList pictures2 = wb.GetAllPictures();
             Assert.AreEqual(3, pictures2.Count);
-            
+
             Assert.AreEqual("jpeg", ((XSSFPictureData)pictures2[jpegIdx]).SuggestFileExtension());
             Assert.IsTrue(Arrays.Equals(jpegData, ((XSSFPictureData)pictures2[jpegIdx]).Data));
 
@@ -109,12 +112,12 @@ namespace Npoi.Core.XSSF.UserModel
 
             Assert.AreEqual("png", ((XSSFPictureData)pictures2[pngIdx]).SuggestFileExtension());
             Assert.IsTrue(Arrays.Equals(pngData, ((XSSFPictureData)pictures2[pngIdx]).Data));
-
         }
 
         /**
          * Bug 53568:  XSSFPicture.PictureData can return null.
          */
+
         [Test]
         public void Test53568()
         {
@@ -142,9 +145,6 @@ namespace Npoi.Core.XSSF.UserModel
                     }
                 }
             }
-
         }
     }
-
-
 }

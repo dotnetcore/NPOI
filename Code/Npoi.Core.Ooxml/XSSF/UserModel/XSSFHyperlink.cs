@@ -14,20 +14,21 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using Npoi.Core.SS.UserModel;
+
 using Npoi.Core.OpenXml4Net.OPC;
-using System;
-using Npoi.Core.SS.Util;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.Util;
+using System;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
-
     /**
      * XSSF Implementation of a Hyperlink.
      * Note - unlike with HSSF, many kinds of hyperlink
      * are largely stored as relations of the sheet
      */
+
     public class XSSFHyperlink : IHyperlink
     {
         private HyperlinkType _type;
@@ -40,6 +41,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param type - the type of hyperlink to create
          */
+
         public XSSFHyperlink(HyperlinkType type)
         {
             _type = type;
@@ -52,6 +54,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param ctHyperlink the xml bean Containing xml properties
          * @param hyperlinkRel the relationship in the underlying OPC namespace which stores the actual link's Address
          */
+
         public XSSFHyperlink(CT_Hyperlink ctHyperlink, PackageRelationship hyperlinkRel)
         {
             _ctHyperlink = ctHyperlink;
@@ -112,6 +115,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return the underlying CTHyperlink object
          */
+
         public CT_Hyperlink GetCTHyperlink()
         {
             return _ctHyperlink;
@@ -121,6 +125,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Do we need to a relation too, to represent
          * this hyperlink?
          */
+
         public bool NeedsRelationToo()
         {
             return (_type != HyperlinkType.Document);
@@ -129,6 +134,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Generates the relation if required
          */
+
         internal void GenerateRelationIfNeeded(PackagePart sheetPart)
         {
             if (_externalRel == null && NeedsRelationToo())
@@ -147,6 +153,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the type of this hyperlink
          */
+
         public HyperlinkType Type
         {
             get
@@ -159,6 +166,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Get the reference of the cell this applies to,
          * es A55
          */
+
         public String GetCellRef()
         {
             return _ctHyperlink.@ref;
@@ -169,6 +177,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the Address of this hyperlink
          */
+
         public String Address
         {
             get
@@ -186,6 +195,7 @@ namespace Npoi.Core.XSSF.UserModel
                 }
             }
         }
+
         private void Validate(String address)
         {
             switch (_type)
@@ -194,16 +204,18 @@ namespace Npoi.Core.XSSF.UserModel
                 case HyperlinkType.Email:
                 case HyperlinkType.File:
                 case HyperlinkType.Url:
-                        if(!Uri.IsWellFormedUriString(address,UriKind.RelativeOrAbsolute))
-                            throw new ArgumentException("Address of hyperlink must be a valid URI:" + address);
+                    if (!Uri.IsWellFormedUriString(address, UriKind.RelativeOrAbsolute))
+                        throw new ArgumentException("Address of hyperlink must be a valid URI:" + address);
                     break;
             }
         }
+
         /**
          * Return text label for this hyperlink
          *
          * @return text to display
          */
+
         public String Label
         {
             get
@@ -222,6 +234,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return location
          */
+
         public String Location
         {
             get
@@ -235,10 +248,10 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         /**
          * Assigns this hyperlink to the given cell reference
          */
+
         internal void SetCellReference(String ref1)
         {
             _ctHyperlink.@ref = ref1;
@@ -248,7 +261,6 @@ namespace Npoi.Core.XSSF.UserModel
         {
             SetCellReference(ref1.FormatAsString());
         }
-
 
         private CellReference buildCellReference()
         {
@@ -260,12 +272,12 @@ namespace Npoi.Core.XSSF.UserModel
             return new CellReference(ref1);
         }
 
-
         /**
          * Return the column of the first cell that Contains the hyperlink
          *
          * @return the 0-based column of the first cell that Contains the hyperlink
          */
+
         public int FirstColumn
         {
             get
@@ -278,13 +290,13 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         /**
          * Return the column of the last cell that Contains the hyperlink
          * For XSSF, a Hyperlink may only reference one cell
-         * 
+         *
          * @return the 0-based column of the last cell that Contains the hyperlink
          */
+
         public int LastColumn
         {
             get
@@ -302,6 +314,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the 0-based row of the cell that Contains the hyperlink
          */
+
         public int FirstRow
         {
             get
@@ -314,13 +327,13 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         /**
          * Return the row of the last cell that Contains the hyperlink
          * For XSSF, a Hyperlink may only reference one cell
          *
          * @return the 0-based row of the last cell that Contains the hyperlink
          */
+
         public int LastRow
         {
             get
@@ -340,6 +353,7 @@ namespace Npoi.Core.XSSF.UserModel
             set
             { throw new NotImplementedException(); }
         }
+
         /// <summary>
         /// get or set additional text to help the user understand more about the hyperlink
         /// </summary>
@@ -354,7 +368,5 @@ namespace Npoi.Core.XSSF.UserModel
                 _ctHyperlink.tooltip = (value);
             }
         }
-
     }
-
 }

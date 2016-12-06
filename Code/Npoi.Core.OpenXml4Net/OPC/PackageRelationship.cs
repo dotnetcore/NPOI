@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Npoi.Core.OpenXml4Net.OPC
 {
     /**
 * A part relationship.
-* 
+*
 * @author Julien Chable
 * @version 1.0
 */
+
     public class PackageRelationship
     {
-
         private static Uri containerRelationshipPart = PackagingUriHelper.ParseUri("/_rels/.rels", UriKind.RelativeOrAbsolute);
 
         /* XML markup */
@@ -63,7 +62,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Constructor.
-         * 
+         *
          * @param pkg
          * @param sourcePart
          * @param targetUri
@@ -71,6 +70,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @param relationshipType
          * @param id
          */
+
         public PackageRelationship(OPCPackage pkg, PackagePart sourcePart,
                 Uri targetUri, TargetMode targetMode, String relationshipType,
                 String id)
@@ -92,7 +92,6 @@ namespace Npoi.Core.OpenXml4Net.OPC
             this.id = id;
         }
 
-
         public override bool Equals(Object obj)
         {
             if (!(obj is PackageRelationship))
@@ -106,7 +105,6 @@ namespace Npoi.Core.OpenXml4Net.OPC
                     && this.targetMode == rel.targetMode && this.targetUri
                     .Equals(rel.targetUri));
         }
-
 
         public override int GetHashCode()
         {
@@ -128,6 +126,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * @return the container
          */
+
         public OPCPackage Package
         {
             get
@@ -139,6 +138,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * @return the id
          */
+
         public String Id
         {
             get
@@ -150,6 +150,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * @return the relationshipType
          */
+
         public String RelationshipType
         {
             get
@@ -161,6 +162,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * @return the source
          */
+
         public PackagePart Source
         {
             get
@@ -170,9 +172,10 @@ namespace Npoi.Core.OpenXml4Net.OPC
         }
 
         /**
-         * 
+         *
          * @return URL of the source part of this relationship
          */
+
         public Uri SourceUri
         {
             get
@@ -187,9 +190,10 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * public URI getSourceUri(){ }
-         * 
+         *
          * @return the targetMode
          */
+
         public TargetMode? TargetMode
         {
             get
@@ -201,6 +205,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * @return the targetUri
          */
+
         public Uri TargetUri
         {
             get
@@ -223,7 +228,6 @@ namespace Npoi.Core.OpenXml4Net.OPC
                 return targetUri;
             }
         }
-
 
         public override String ToString()
         {

@@ -1,23 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-
 namespace Npoi.Core.OpenXmlFormats.Dml.Chart
 {
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_LineSer
     {
-
         private CT_UnsignedInt idxField;
 
         private CT_UnsignedInt orderField;
@@ -87,8 +82,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -338,15 +331,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_Line3DChart
     {
-
         private CT_Grouping groupingField;
 
         private CT_Boolean varyColorsField;
@@ -478,6 +468,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
                 this.extLstField = value;
             }
         }
+
         public static CT_Line3DChart Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -507,8 +498,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -547,20 +536,14 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             sw.Write(string.Format("</c:{0}>", nodeName));
         }
-
     }
 
-
-
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_UpDownBars
     {
-
         private CT_GapAmount gapWidthField;
 
         private CT_UpDownBar upBarsField;
@@ -572,6 +555,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         public CT_UpDownBars()
         {
         }
+
         public static CT_UpDownBars Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -592,8 +576,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<c:{0}", nodeName));
@@ -613,7 +595,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             sw.Write(string.Format("</c:{0}>", nodeName));
         }
-
 
         [XmlElement(Order = 0)]
         public CT_GapAmount gapWidth
@@ -668,16 +649,14 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_UpDownBar
     {
-
         private CT_ShapeProperties spPrField;
+
         public static CT_UpDownBar Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -690,8 +669,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -716,15 +693,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_StockChart
     {
-
         private List<CT_LineSer> serField;
 
         private CT_DLbls dLblsField;
@@ -742,6 +716,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         public CT_StockChart()
         {
         }
+
         public static CT_StockChart Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -769,8 +744,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -807,7 +780,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             sw.Write(string.Format("</c:{0}>", nodeName));
         }
-
 
         [XmlElement("ser", Order = 0)]
         public List<CT_LineSer> ser
@@ -902,13 +874,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
     }
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_LineChart
     {
-
         private CT_Grouping groupingField;
 
         private CT_Boolean varyColorsField;
@@ -934,6 +904,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         public CT_LineChart()
         {
         }
+
         public static CT_LineChart Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -969,8 +940,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -1016,7 +985,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             sw.Write(string.Format("</c:{0}>", nodeName));
         }
-
 
         [XmlElement(Order = 0)]
         public CT_Grouping grouping
@@ -1160,14 +1128,16 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
                 this.extLstField = value;
             }
         }
+
         public CT_Grouping AddNewGrouping()
         {
             this.groupingField = new CT_Grouping();
             return this.groupingField;
         }
+
         public CT_LineSer AddNewSer()
         {
-            CT_LineSer newSer = new  CT_LineSer();
+            CT_LineSer newSer = new CT_LineSer();
             if (this.serField == null)
             {
                 this.serField = new List<CT_LineSer>();
@@ -1191,6 +1161,4 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             return si;
         }
     }
-
-
 }

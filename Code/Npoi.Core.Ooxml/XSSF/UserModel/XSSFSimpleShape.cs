@@ -17,21 +17,21 @@
 
 namespace Npoi.Core.XSSF.UserModel
 {
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.OpenXmlFormats.Dml;
+    using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
+    using Npoi.Core.OpenXmlFormats.Spreadsheet;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.Util;
     using System;
     using System.Collections.Generic;
-    using Npoi.Core.HSSF.Util;
-    using Npoi.Core.SS.UserModel;
-    using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
-    using Npoi.Core.OpenXmlFormats.Dml;
     using System.Text;
-    using Npoi.Core.OpenXmlFormats.Spreadsheet;
-    using Npoi.Core.Util;
-
 
     /**
      * Represents a shape with a predefined geometry in a SpreadsheetML Drawing.
      * Possible shape types are defined in {@link Npoi.Core.SS.UserModel.ShapeTypes}
      */
+
     public class XSSFSimpleShape : XSSFShape, IEnumerable<XSSFTextParagraph>
     { // TODO - instantiable superclass
         /**
@@ -55,7 +55,7 @@ namespace Npoi.Core.XSSF.UserModel
 
             _paragraphs = new List<XSSFTextParagraph>();
 
-            // Initialize any existing paragraphs - this will be the default body paragraph in a new shape, 
+            // Initialize any existing paragraphs - this will be the default body paragraph in a new shape,
             // or existing paragraphs that have been loaded from the file
             Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_TextBody body = ctShape.txBody;
             if (body != null)
@@ -70,6 +70,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Prototype with the default structure of a new auto-shape.
          */
+
         protected internal static CT_Shape GetPrototype()
         {
             if (prototype == null)
@@ -114,26 +115,27 @@ namespace Npoi.Core.XSSF.UserModel
             return prototype;
         }
 
-
         public CT_Shape GetCTShape()
         {
             return ctShape;
         }
 
-
         public IEnumerator<XSSFTextParagraph> GetEnumerator()
         {
             return (IEnumerator<XSSFTextParagraph>)_paragraphs.GetEnumerator();
         }
+
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
         }
+
         /**
          * Returns the text from all paragraphs in the shape. Paragraphs are Separated by new lines.
-         * 
+         *
          * @return  text Contained within this shape or empty string
          */
+
         public String Text
         {
             get
@@ -156,7 +158,6 @@ namespace Npoi.Core.XSSF.UserModel
 
                     if (p.IsBullet && p.Text.Length > 0)
                     {
-
                         int level = Math.Min(p.Level, MAX_LEVELS - 1);
 
                         if (p.IsBulletAutoNumber)
@@ -192,8 +193,9 @@ namespace Npoi.Core.XSSF.UserModel
         }
 
         /**
-         * 
+         *
          */
+
         private int ProcessAutoNumGroup(int index, int level, List<int> levelCount, StringBuilder out1)
         {
             XSSFTextParagraph p = null;
@@ -230,7 +232,7 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 nextp = (index + 1) == _paragraphs.Count ? null : _paragraphs[(index + 1)];
                 if (nextp == null) break; // out of paragraphs
-                if (!(nextp.IsBullet && p.IsBulletAutoNumber)) break; // not an auto-number bullet                      
+                if (!(nextp.IsBullet && p.IsBulletAutoNumber)) break; // not an auto-number bullet
                 if (nextp.Level > level)
                 {
                     // recurse into the new level group
@@ -240,14 +242,14 @@ namespace Npoi.Core.XSSF.UserModel
                 }
                 else if (nextp.Level < level)
                 {
-                    break; // Changed level   
+                    break; // Changed level
                 }
                 nextScheme = nextp.BulletAutoNumberScheme;
                 nextStartAt = nextp.BulletAutoNumberStart;
 
                 if (nextScheme == scheme && nextStartAt == startAt)
                 {
-                    // bullet is valid, so increment i 
+                    // bullet is valid, so increment i
                     ++index;
                     if (out1.Length > 0) out1.Append('\n');
                     // indent for the level
@@ -270,17 +272,19 @@ namespace Npoi.Core.XSSF.UserModel
                     break;
                 }
             }
-            // end of the group so reset the count for this level 
+            // end of the group so reset the count for this level
             levelCount[level] = 0;
 
             return index;
         }
+
         /**
          * Returns a string Containing an appropriate prefix for an auto-numbering bullet
          * @param scheme the auto-numbering scheme used by the bullet
          * @param value the value of the bullet
          * @return appropriate prefix for an auto-numbering bullet
          */
+
         private String GetBulletPrefix(ListAutoNumber scheme, int value)
         {
             StringBuilder out1 = new StringBuilder();
@@ -293,53 +297,64 @@ namespace Npoi.Core.XSSF.UserModel
                     out1.Append(valueToAlpha(value).ToLower());
                     out1.Append(')');
                     break;
+
                 case ListAutoNumber.ALPHA_UC_PARENT_BOTH:
                 case ListAutoNumber.ALPHA_UC_PARENT_R:
                     if (scheme == ListAutoNumber.ALPHA_UC_PARENT_BOTH) out1.Append('(');
                     out1.Append(valueToAlpha(value));
                     out1.Append(')');
                     break;
+
                 case ListAutoNumber.ALPHA_LC_PERIOD:
                     out1.Append(valueToAlpha(value).ToLower());
                     out1.Append('.');
                     break;
+
                 case ListAutoNumber.ALPHA_UC_PERIOD:
                     out1.Append(valueToAlpha(value));
                     out1.Append('.');
                     break;
+
                 case ListAutoNumber.ARABIC_PARENT_BOTH:
                 case ListAutoNumber.ARABIC_PARENT_R:
                     if (scheme == ListAutoNumber.ARABIC_PARENT_BOTH) out1.Append('(');
                     out1.Append(value);
                     out1.Append(')');
                     break;
+
                 case ListAutoNumber.ARABIC_PERIOD:
                     out1.Append(value);
                     out1.Append('.');
                     break;
+
                 case ListAutoNumber.ARABIC_PLAIN:
                     out1.Append(value);
                     break;
+
                 case ListAutoNumber.ROMAN_LC_PARENT_BOTH:
                 case ListAutoNumber.ROMAN_LC_PARENT_R:
                     if (scheme == ListAutoNumber.ROMAN_LC_PARENT_BOTH) out1.Append('(');
                     out1.Append(valueToRoman(value).ToLower());
                     out1.Append(')');
                     break;
+
                 case ListAutoNumber.ROMAN_UC_PARENT_BOTH:
                 case ListAutoNumber.ROMAN_UC_PARENT_R:
                     if (scheme == ListAutoNumber.ROMAN_UC_PARENT_BOTH) out1.Append('(');
                     out1.Append(valueToRoman(value));
                     out1.Append(')');
                     break;
+
                 case ListAutoNumber.ROMAN_LC_PERIOD:
                     out1.Append(valueToRoman(value).ToLower());
                     out1.Append('.');
                     break;
+
                 case ListAutoNumber.ROMAN_UC_PERIOD:
                     out1.Append(valueToRoman(value));
                     out1.Append('.');
                     break;
+
                 default:
                     out1.Append('\u2022');   // can't Set the font to wingdings so use the default bullet character
                     break;
@@ -351,6 +366,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Convert an integer to its alpha equivalent e.g. 1 = A, 2 = B, 27 = AA etc
          */
+
         private String valueToAlpha(int value)
         {
             String alpha = "";
@@ -370,6 +386,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Convert an integer to its roman equivalent e.g. 1 = I, 9 = IX etc
          */
+
         private String valueToRoman(int value)
         {
             StringBuilder out1 = new StringBuilder();
@@ -387,6 +404,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Clear all text from this shape
          */
+
         public void ClearText()
         {
             _paragraphs.Clear();
@@ -398,6 +416,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Set a single paragraph of text on the shape. Note this will replace all existing paragraphs Created on the shape.
          * @param text	string representing the paragraph text
          */
+
         public void SetText(String text)
         {
             ClearText();
@@ -409,9 +428,9 @@ namespace Npoi.Core.XSSF.UserModel
          * Set a single paragraph of text on the shape. Note this will replace all existing paragraphs Created on the shape.
          * @param str	rich text string representing the paragraph text
          */
+
         public void SetText(XSSFRichTextString str)
         {
-
             XSSFWorkbook wb = (XSSFWorkbook)GetDrawing().GetParent().GetParent();
             str.SetStylesTableReference(wb.GetStylesSource());
 
@@ -423,7 +442,6 @@ namespace Npoi.Core.XSSF.UserModel
                 rPr.lang = (/*setter*/"en-US");
                 rPr.sz = (/*setter*/1100);
                 r.t = (/*setter*/str.String);
-
             }
             else
             {
@@ -450,9 +468,10 @@ namespace Npoi.Core.XSSF.UserModel
 
         /**
          * Returns a collection of the XSSFTextParagraphs that are attached to this shape
-         * 
+         *
          * @return text paragraphs in this shape
          */
+
         public List<XSSFTextParagraph> TextParagraphs
         {
             get
@@ -466,6 +485,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return Created paragraph run
          */
+
         public XSSFTextParagraph AddNewTextParagraph()
         {
             Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_TextBody txBody = ctShape.txBody;
@@ -480,18 +500,20 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return Created paragraph run
          */
+
         public XSSFTextParagraph AddNewTextParagraph(String text)
         {
             XSSFTextParagraph paragraph = AddNewTextParagraph();
-            paragraph.AddNewTextRun().Text=(text);
+            paragraph.AddNewTextRun().Text = (text);
             return paragraph;
         }
 
         /**
-         * Add a new paragraph run to this shape, Set to the provided rich text string 
+         * Add a new paragraph run to this shape, Set to the provided rich text string
          *
          * @return Created paragraph run
          */
+
         public XSSFTextParagraph AddNewTextParagraph(XSSFRichTextString str)
         {
             Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_TextBody txBody = ctShape.txBody;
@@ -504,7 +526,6 @@ namespace Npoi.Core.XSSF.UserModel
                 rPr.lang = (/*setter*/"en-US");
                 rPr.sz = (/*setter*/1100);
                 r.t = (/*setter*/str.String);
-
             }
             else
             {
@@ -536,6 +557,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the type of horizontal overflow
          */
+
         public TextHorizontalOverflow TextHorizontalOverflow
         {
             get
@@ -572,6 +594,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the type of vertical overflow
          */
+
         public TextVerticalOverflow TextVerticalOverflow
         {
             get
@@ -608,6 +631,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the type of vertical alignment
          */
+
         public VerticalAlignment VerticalAlignment
         {
             get
@@ -641,9 +665,10 @@ namespace Npoi.Core.XSSF.UserModel
 
         /**
          * Gets the vertical orientation of the text
-         * 
+         *
          * @return vertical orientation of the text
          */
+
         public TextDirection TextDirection
         {
             get
@@ -676,13 +701,13 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         /**
          * Returns the distance (in points) between the bottom of the text frame
          * and the bottom of the inscribed rectangle of the shape that Contains the text.
          *
          * @return the bottom inset in points
          */
+
         public double BottomInset
         {
             get
@@ -719,6 +744,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the left inset in points
          */
+
         public double LeftInset
         {
             get
@@ -755,6 +781,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the right inset in points
          */
+
         public double RightInset
         {
             get
@@ -790,6 +817,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the top inset in points
          */
+
         public double TopInset
         {
             get
@@ -822,6 +850,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return whether to wrap words within the bounding rectangle
          */
+
         public bool WordWrap
         {
             get
@@ -846,8 +875,6 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
-
         /**
          *
          * Specifies that a shape should be auto-fit to fully contain the text described within it.
@@ -856,6 +883,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param value type of autofit
          * @return type of autofit
          */
+
         public TextAutofit TextAutofit
         {
             get
@@ -894,6 +922,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return the shape type
          * @see Npoi.Core.SS.UserModel.ShapeTypes
          */
+
         public int ShapeType
         {
             get
@@ -915,9 +944,9 @@ namespace Npoi.Core.XSSF.UserModel
          * org.Openxmlformats.schemas.spreadsheetml.x2006.main.CTRPrElt to
          * org.Openxmlformats.schemas.Drawingml.x2006.main.CTFont adapter
          */
+
         private static void ApplyAttributes(CT_RPrElt pr, CT_TextCharacterProperties rPr)
         {
-
             if (pr.SizeOfBArray() > 0) rPr.b = (/*setter*/pr.GetBArray(0).val);
             if (pr.SizeOfUArray() > 0)
             {

@@ -6,8 +6,6 @@
 
 //namespace ooxml.Testcases
 //{
-    
-    
 //    /// <summary>
 //    ///This is a test class for WorkbookDocumentTest and is intended
 //    ///to contain all WorkbookDocumentTest Unit Tests
@@ -15,8 +13,6 @@
 //    [TestFixture]
 //    public class WorkbookDocumentTest
 //    {
-
-
 //        private TestContext testContextInstance;
 
 //        /// <summary>
@@ -36,7 +32,7 @@
 //        }
 
 //        #region Additional test attributes
-//        // 
+//        //
 //        //You can use the following additional attributes as you write your tests:
 //        //
 //        //Use ClassInitialize to run code before running the first test in the class
@@ -65,7 +61,6 @@
 //        //
 //        #endregion
 
-
 //        /// <summary>
 //        ///A test for the Serialization of CT_Worksheet.
 //        ///</summary>
@@ -82,7 +77,6 @@
 //</workbook>";
 //            Assert.AreEqual(expected, stream.ToString());
 //        }
-
 
 //        /// <summary>
 //        ///A test for the Serialization of CT_Worksheet.
@@ -108,8 +102,6 @@
 //            bk.windowHeight = 5580;
 //            bk.windowHeightSpecified = true;
 
-
-
 //            StringWriter stream = new StringWriter();
 //            WorkbookDocument_Accessor.serializer.Serialize(stream, worksheet, WorkbookDocument_Accessor.namespaces);
 //            string expected = @"<?xml version=""1.0"" encoding=""utf-16""?>
@@ -123,7 +115,6 @@
 //</workbook>";
 //            Assert.AreEqual(expected, stream.ToString());
 //        }
-
 
 //        /// <summary>
 //        ///A test for Deserialization of CT_Worksheet.
@@ -167,7 +158,6 @@
 //            Assert.AreEqual(3u, result.sheets.sheet[2].sheetId);
 //            Assert.AreEqual("rId3", result.sheets.sheet[2].id);
 //        }
-
 
 //    }
 //}

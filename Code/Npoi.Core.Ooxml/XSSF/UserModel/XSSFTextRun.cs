@@ -14,17 +14,19 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using System;
+
 using Npoi.Core.OpenXmlFormats.Dml;
-using System.Drawing;
 using Npoi.Core.Util;
+using System;
+using System.Drawing;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Represents a run of text within the Containing text body. The run element is the
      * lowest level text separation mechanism within a text body.
      */
+
     public class XSSFTextRun
     {
         private CT_RegularTextRun _r;
@@ -98,6 +100,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return font size in points or -1 if font size is not Set.
          */
+
         public double FontSize
         {
             get
@@ -139,6 +142,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return the spacing between characters within a text Run,
          * If this attribute is omitted then a value of 0 or no adjustment is assumed.
          */
+
         public double CharacterSpacing
         {
             get
@@ -170,6 +174,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param typeface  the font to apply to this text Run.
          * The value of <code>null</code> unsets the Typeface attribute from the underlying xml.
          */
+
         public void SetFont(String typeface)
         {
             SetFontFamily(typeface, unchecked((byte)-1), unchecked((byte)-1), false);
@@ -205,6 +210,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return  font family or null if not Set
          */
+
         public String FontFamily
         {
             get
@@ -236,6 +242,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * get or set whether a run of text will be formatted as strikethrough text. Default is false.
          */
+
         public bool IsStrikethrough
         {
             get
@@ -257,6 +264,7 @@ namespace Npoi.Core.XSSF.UserModel
          * get or set whether a run of text will be formatted as a superscript text. Default is false.
          * Default base line offset is 30%
          */
+
         public bool IsSuperscript
         {
             get
@@ -283,6 +291,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param baselineOffset
          */
+
         public void SetBaselineOffset(double baselineOffset)
         {
             GetRPr().baseline = ((int)baselineOffset * 1000);
@@ -292,6 +301,7 @@ namespace Npoi.Core.XSSF.UserModel
          * get or set whether a run of text will be formatted as a superscript text. Default is false.
          * Default base line offset is -25%.
          */
+
         public bool IsSubscript
         {
             get
@@ -312,6 +322,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return whether a run of text will be formatted as a superscript text. Default is false.
          */
+
         public TextCap TextCap
         {
             get
@@ -328,6 +339,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * get or set whether this run of text is formatted as bold text
          */
+
         public bool IsBold
         {
             get
@@ -348,6 +360,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * get or set whether this run of text is formatted as italic text
          */
+
         public bool IsItalic
         {
             get
@@ -368,6 +381,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * get or set whether this run of text is formatted as underlined text
          */
+
         public bool IsUnderline
         {
             get
@@ -390,11 +404,9 @@ namespace Npoi.Core.XSSF.UserModel
             return _r.IsSetRPr() ? _r.rPr : _r.AddNewRPr();
         }
 
-
         public override String ToString()
         {
             return "[" + this.GetType().ToString() + "]" + Text;
         }
     }
-
 }

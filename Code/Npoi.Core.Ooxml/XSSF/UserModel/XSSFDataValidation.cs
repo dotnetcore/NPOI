@@ -14,19 +14,21 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using System.Collections.Generic;
+
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS.UserModel;
-using System;
-using System.Text;
 using Npoi.Core.SS.Util;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * @author <a href="rjankiraman@emptoris.com">Radhakrishnan J</a>
      *
      */
+
     public class XSSFDataValidation : IDataValidation
     {
         private CT_DataValidation ctDdataValidation;
@@ -38,43 +40,41 @@ namespace Npoi.Core.XSSF.UserModel
         internal static Dictionary<int, ST_DataValidationType> validationTypeMappings = new Dictionary<int, ST_DataValidationType>();
         internal static Dictionary<ST_DataValidationType, int> validationTypeReverseMappings = new Dictionary<ST_DataValidationType, int>();
         internal static Dictionary<int, ST_DataValidationErrorStyle> errorStyleMappings = new Dictionary<int, ST_DataValidationErrorStyle>();
+
         static XSSFDataValidation()
         {
+            errorStyleMappings[ERRORSTYLE.INFO] = ST_DataValidationErrorStyle.information;
+            errorStyleMappings[ERRORSTYLE.STOP] = ST_DataValidationErrorStyle.stop;
+            errorStyleMappings[ERRORSTYLE.WARNING] = ST_DataValidationErrorStyle.warning;
 
-            errorStyleMappings[ERRORSTYLE.INFO]= ST_DataValidationErrorStyle.information;
-            errorStyleMappings[ERRORSTYLE.STOP]= ST_DataValidationErrorStyle.stop;
-            errorStyleMappings[ERRORSTYLE.WARNING]= ST_DataValidationErrorStyle.warning;
-
-            
-            operatorTypeMappings[OperatorType.BETWEEN] =  ST_DataValidationOperator.between;
-            operatorTypeMappings[OperatorType.NOT_BETWEEN] =  ST_DataValidationOperator.notBetween;
-            operatorTypeMappings[OperatorType.EQUAL] =  ST_DataValidationOperator.equal;
-            operatorTypeMappings[OperatorType.NOT_EQUAL] =  ST_DataValidationOperator.notEqual;
-            operatorTypeMappings[OperatorType.GREATER_THAN] =  ST_DataValidationOperator.greaterThan;
-            operatorTypeMappings[OperatorType.GREATER_OR_EQUAL] =  ST_DataValidationOperator.greaterThanOrEqual;
-            operatorTypeMappings[OperatorType.LESS_THAN] =  ST_DataValidationOperator.lessThan;
-            operatorTypeMappings[OperatorType.LESS_OR_EQUAL] =  ST_DataValidationOperator.lessThanOrEqual;
+            operatorTypeMappings[OperatorType.BETWEEN] = ST_DataValidationOperator.between;
+            operatorTypeMappings[OperatorType.NOT_BETWEEN] = ST_DataValidationOperator.notBetween;
+            operatorTypeMappings[OperatorType.EQUAL] = ST_DataValidationOperator.equal;
+            operatorTypeMappings[OperatorType.NOT_EQUAL] = ST_DataValidationOperator.notEqual;
+            operatorTypeMappings[OperatorType.GREATER_THAN] = ST_DataValidationOperator.greaterThan;
+            operatorTypeMappings[OperatorType.GREATER_OR_EQUAL] = ST_DataValidationOperator.greaterThanOrEqual;
+            operatorTypeMappings[OperatorType.LESS_THAN] = ST_DataValidationOperator.lessThan;
+            operatorTypeMappings[OperatorType.LESS_OR_EQUAL] = ST_DataValidationOperator.lessThanOrEqual;
 
             foreach (KeyValuePair<int, ST_DataValidationOperator> entry in operatorTypeMappings)
             {
-                operatorTypeReverseMappings[entry.Value]=entry.Key;
+                operatorTypeReverseMappings[entry.Value] = entry.Key;
             }
 
-            validationTypeMappings[ValidationType.FORMULA] =  ST_DataValidationType.custom;
-            validationTypeMappings[ValidationType.DATE] =  ST_DataValidationType.date;
-            validationTypeMappings[ValidationType.DECIMAL] =  ST_DataValidationType.@decimal;
-            validationTypeMappings[ValidationType.LIST] =  ST_DataValidationType.list;
-            validationTypeMappings[ValidationType.ANY] =  ST_DataValidationType.none;
-            validationTypeMappings[ValidationType.TEXT_LENGTH] =  ST_DataValidationType.textLength;
-            validationTypeMappings[ValidationType.TIME] =  ST_DataValidationType.time;
-            validationTypeMappings[ValidationType.INTEGER] =  ST_DataValidationType.whole;
+            validationTypeMappings[ValidationType.FORMULA] = ST_DataValidationType.custom;
+            validationTypeMappings[ValidationType.DATE] = ST_DataValidationType.date;
+            validationTypeMappings[ValidationType.DECIMAL] = ST_DataValidationType.@decimal;
+            validationTypeMappings[ValidationType.LIST] = ST_DataValidationType.list;
+            validationTypeMappings[ValidationType.ANY] = ST_DataValidationType.none;
+            validationTypeMappings[ValidationType.TEXT_LENGTH] = ST_DataValidationType.textLength;
+            validationTypeMappings[ValidationType.TIME] = ST_DataValidationType.time;
+            validationTypeMappings[ValidationType.INTEGER] = ST_DataValidationType.whole;
 
             foreach (KeyValuePair<int, ST_DataValidationType> entry in validationTypeMappings)
             {
-                validationTypeReverseMappings[entry.Value]= entry.Key;
+                validationTypeReverseMappings[entry.Value] = entry.Key;
             }
         }
-
 
         public XSSFDataValidation(CellRangeAddressList regions, CT_DataValidation ctDataValidation)
             : this(GetConstraint(ctDataValidation), regions, ctDataValidation)
@@ -84,7 +84,6 @@ namespace Npoi.Core.XSSF.UserModel
         public XSSFDataValidation(XSSFDataValidationConstraint constraint, CellRangeAddressList regions, CT_DataValidation ctDataValidation)
             : base()
         {
-
             this.validationConstraint = constraint;
             this.ctDdataValidation = ctDataValidation;
             this.regions = regions;
@@ -95,11 +94,10 @@ namespace Npoi.Core.XSSF.UserModel
             return ctDdataValidation;
         }
 
-
-
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidation#CreateErrorBox(java.lang.String, java.lang.String)
          */
+
         public void CreateErrorBox(String title, String text)
         {
             ctDdataValidation.errorTitle = (title);
@@ -109,6 +107,7 @@ namespace Npoi.Core.XSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidation#CreatePromptBox(java.lang.String, java.lang.String)
          */
+
         public void CreatePromptBox(String title, String text)
         {
             ctDdataValidation.promptTitle = (title);
@@ -121,9 +120,9 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 return ctDdataValidation.allowBlank;
             }
-            set 
+            set
             {
-                ctDdataValidation.allowBlank =value;
+                ctDdataValidation.allowBlank = value;
             }
         }
 
@@ -149,9 +148,8 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 return (int)ctDdataValidation.errorStyle;
             }
-            set 
+            set
             {
-
                 ctDdataValidation.errorStyle = (errorStyleMappings[value]);
             }
         }
@@ -167,6 +165,7 @@ namespace Npoi.Core.XSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidation#getPromptBoxTitle()
          */
+
         public String PromptBoxTitle
         {
             get
@@ -178,13 +177,14 @@ namespace Npoi.Core.XSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidation#getShowErrorBox()
          */
+
         public bool ShowErrorBox
         {
             get
             {
                 return ctDdataValidation.showErrorMessage;
             }
-            set 
+            set
             {
                 ctDdataValidation.showErrorMessage = value;
             }
@@ -193,13 +193,14 @@ namespace Npoi.Core.XSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidation#getShowPromptBox()
          */
+
         public bool ShowPromptBox
         {
             get
             {
                 return ctDdataValidation.showInputMessage;
             }
-            set 
+            set
             {
                 ctDdataValidation.showInputMessage = value;
             }
@@ -208,13 +209,14 @@ namespace Npoi.Core.XSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.ss.usermodel.DataValidation#getSuppressDropDownArrow()
          */
+
         public bool SuppressDropDownArrow
         {
             get
             {
                 return !ctDdataValidation.showDropDown;
             }
-            set 
+            set
             {
                 if (validationConstraint.GetValidationType() == ValidationType.LIST)
                 {
@@ -264,6 +266,4 @@ namespace Npoi.Core.XSSF.UserModel
             return constraint;
         }
     }
-
 }
-

@@ -1,23 +1,19 @@
-﻿
+﻿using Npoi.Core.OpenXml4Net.Util;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using Npoi.Core.OpenXml4Net.Util;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
-
     [Serializable]
     [System.ComponentModel.DesignerCategory("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(ElementName = "styleSheet", Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = false)]
     public class CT_Stylesheet
     {
-
         private CT_NumFmts numFmtsField;
 
         private CT_Fonts fontsField;
@@ -52,6 +48,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             //this.fontsField = new CT_Fonts();
             //this.numFmtsField = new CT_NumFmts();
         }
+
         public static CT_Stylesheet Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -84,8 +81,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw)
         {
@@ -121,16 +116,19 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.bordersField = new CT_Borders();
             return this.bordersField;
         }
+
         public CT_CellStyleXfs AddNewCellStyleXfs()
         {
             this.cellStyleXfsField = new CT_CellStyleXfs();
             return this.cellStyleXfsField;
         }
+
         public CT_CellXfs AddNewCellXfs()
         {
             this.cellXfsField = new CT_CellXfs();
             return this.cellXfsField;
         }
+
         [XmlElement]
         public CT_NumFmts numFmts
         {
@@ -143,6 +141,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.numFmtsField = value;
             }
         }
+
         [XmlElement]
         public CT_Fonts fonts
         {
@@ -155,6 +154,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.fontsField = value;
             }
         }
+
         [XmlElement]
         public CT_Fills fills
         {
@@ -167,6 +167,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.fillsField = value;
             }
         }
+
         [XmlElement]
         public CT_Borders borders
         {
@@ -179,6 +180,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.bordersField = value;
             }
         }
+
         [XmlElement]
         public CT_CellStyleXfs cellStyleXfs
         {
@@ -191,6 +193,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.cellStyleXfsField = value;
             }
         }
+
         [XmlElement]
         public CT_CellXfs cellXfs
         {
@@ -203,6 +206,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.cellXfsField = value;
             }
         }
+
         [XmlElement]
         public CT_CellStyles cellStyles
         {
@@ -215,6 +219,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.cellStylesField = value;
             }
         }
+
         [XmlElement]
         public CT_Dxfs dxfs
         {
@@ -227,6 +232,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.dxfsField = value;
             }
         }
+
         [XmlElement]
         public CT_TableStyles tableStyles
         {
@@ -239,6 +245,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.tableStylesField = value;
             }
         }
+
         [XmlElement]
         public CT_Colors colors
         {
@@ -251,6 +258,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.colorsField = value;
             }
         }
+
         [XmlElement]
         public CT_ExtensionList extLst
         {
@@ -265,22 +273,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-
-
-
-
-
-
-
-
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_FontScheme
     {
         private ST_FontScheme valField;
 
-    
         [XmlAttribute]
         public ST_FontScheme val
         {
@@ -304,25 +302,18 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "val", this.val.ToString());
             sw.Write("/>");
         }
-
-
     }
-
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_FontName
     {
-
         private string valField;
 
         public static CT_FontName Parse(XElement node, XmlNamespaceManager namespaceManager)
@@ -334,15 +325,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "val", this.val);
             sw.Write("/>");
         }
-
 
         [XmlAttribute]
         public string val
@@ -363,6 +351,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     public class CT_FontSize
     {
         private double valField;
+
         public static CT_FontSize Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -372,16 +361,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "val", this.val);
             sw.Write("/>");
         }
-
-
 
         [XmlAttribute]
         public double val
@@ -397,27 +382,21 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public enum ST_FontScheme
     {
-    
         none = 1,
 
-    
         major = 2,
 
-    
         minor = 3,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_UnderlineProperty
     {
-
         private ST_UnderlineValues? valField = null;
 
         public CT_UnderlineProperty()
@@ -435,8 +414,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
@@ -444,22 +421,20 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             sw.Write("/>");
         }
 
-
-
-
         [DefaultValue(ST_UnderlineValues.single)]
         [XmlAttribute]
         public ST_UnderlineValues val
         {
             get
             {
-                return  (null == valField) ? ST_UnderlineValues.single : (ST_UnderlineValues)this.valField;
+                return (null == valField) ? ST_UnderlineValues.single : (ST_UnderlineValues)this.valField;
             }
             set
             {
                 this.valField = value;
             }
         }
+
         [XmlIgnore]
         public bool valbSpecified
         {
@@ -471,22 +446,16 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public enum ST_UnderlineValues
     {
-    
         none,
 
-    
         single,
 
-    
         [XmlEnum("double")]
         @double,
 
-    
         singleAccounting,
 
-    
         doubleAccounting,
-
     }
 
     [Serializable]
@@ -507,6 +476,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.valField = value;
             }
         }
+
         public static CT_VerticalAlignFontProperty Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -517,29 +487,22 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "val", this.val.ToString());
             sw.Write("/>");
         }
-
-
     }
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public enum ST_VerticalAlignRun
     {
-    
         baseline,
 
-    
         superscript,
 
-    
         subscript,
     }
 
@@ -547,32 +510,29 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_BooleanProperty
     {
-
         private bool valField = true;
 
         public CT_BooleanProperty()
         {
         }
+
         public static CT_BooleanProperty Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
                 return null;
             CT_BooleanProperty ctObj = new CT_BooleanProperty();
-            if (node.Attribute("val")!=null)
+            if (node.Attribute("val") != null)
                 ctObj.val = XmlHelper.ReadBool(node.Attribute("val"));
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
-            if(!val)
+            if (!val)
                 XmlHelper.WriteAttribute(sw, "val", this.val);
             sw.Write("/>");
         }
-
 
         [DefaultValue(true)]
         [XmlAttribute]
@@ -593,7 +553,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_IntProperty
     {
-
         private int valField;
 
         [XmlAttribute]
@@ -625,6 +584,4 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             sw.Write("/>");
         }
     }
-
-
 }

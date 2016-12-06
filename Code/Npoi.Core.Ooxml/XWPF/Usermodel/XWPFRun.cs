@@ -19,21 +19,21 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-    using Npoi.Core.OpenXmlFormats.Wordprocessing;
-    using System.Collections.Generic;
-    using System.Text;
-    using System.Xml;
-    using System.IO;
-    using Npoi.Core.Util;
     using Npoi.Core.OpenXmlFormats.Dml;
-    using System.Xml.Serialization;
     using Npoi.Core.OpenXmlFormats.Dml.WordProcessing;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.Util;
     using Npoi.Core.WP.UserModel;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text;
+    using System.Xml.Serialization;
 
     /**
-     * @see <a href="http://msdn.microsoft.com/en-us/library/ff533743(v=office.12).aspx">[MS-OI29500] Run Fonts</a> 
+     * @see <a href="http://msdn.microsoft.com/en-us/library/ff533743(v=office.12).aspx">[MS-OI29500] Run Fonts</a>
      */
+
     public enum FontCharRange
     {
         None,
@@ -42,24 +42,29 @@ namespace Npoi.Core.XWPF.UserModel
         EastAsia /* east asia */,
         HAnsi /* high ansi */
     };
+
     /**
      * XWPFrun.object defines a region of text with a common Set of properties
      *
      * @author Yegor Kozlov
      * @author Gregg Morris (gregg dot morris at gmail dot com) - added getColor(), setColor()
      */
+
     public class XWPFRun : ISDTContents, IRunElement, ICharacterRun
     {
         private CT_R run;
         private String pictureText;
+
         //private XWPFParagraph paragraph;
         private IRunBody parent;
+
         private List<XWPFPicture> pictures;
 
         /**
          * @param r the CT_R bean which holds the run.attributes
          * @param p the parent paragraph
          */
+
         public XWPFRun(CT_R r, IRunBody p)
         {
             this.run = r;
@@ -133,11 +138,13 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * @deprecated Use {@link XWPFRun#XWPFRun(CTR, IRunBody)}
          */
+
         [Obsolete("Use XWPFRun(CTR, IRunBody)")]
         public XWPFRun(CT_R r, XWPFParagraph p)
             : this(r, (IRunBody)p)
         {
         }
+
         private List<Npoi.Core.OpenXmlFormats.Dml.Picture.CT_Picture> GetCTPictures(object o)
         {
             List<Npoi.Core.OpenXmlFormats.Dml.Picture.CT_Picture> pictures = new List<Npoi.Core.OpenXmlFormats.Dml.Picture.CT_Picture>();
@@ -203,6 +210,7 @@ namespace Npoi.Core.XWPF.UserModel
          * Get the currently referenced paragraph/SDT object
          * @return current parent
          */
+
         public IRunBody Parent
         {
             get
@@ -210,10 +218,12 @@ namespace Npoi.Core.XWPF.UserModel
                 return parent;
             }
         }
+
         /**
          * Get the currently referenced paragraph, or null if a SDT object
          * @deprecated use {@link XWPFRun#getParent()} instead
          */
+
         public XWPFParagraph Paragraph
         {
             get
@@ -228,6 +238,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @return The {@link XWPFDocument} instance, this run.belongs to, or
          *         <code>null</code> if parent structure (paragraph > document) is not properly Set.
          */
+
         public XWPFDocument Document
         {
             get
@@ -243,6 +254,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * For isBold, isItalic etc
          */
+
         private bool IsCTOnOff(CT_OnOff onoff)
         {
             if (!onoff.IsSetVal())
@@ -252,7 +264,7 @@ namespace Npoi.Core.XWPF.UserModel
 
         /**
          * Whether the bold property shall be applied to all non-complex script
-         * characters in the contents of this run.when displayed in a document. 
+         * characters in the contents of this run.when displayed in a document.
          * <p>
          * This formatting property is a toggle property, which specifies that its
          * behavior differs between its use within a style defInition and its use as
@@ -274,6 +286,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @param value <code>true</code> if the bold property is applied to
          *              this run
          */
+
         public bool IsBold
         {
             get
@@ -296,6 +309,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
      * Get text color. The returned value is a string in the hex form "RRGGBB".
      */
+
         public String GetColor()
         {
             String color = null;
@@ -315,17 +329,20 @@ namespace Npoi.Core.XWPF.UserModel
          * Set text color.
          * @param rgbStr - the desired color, in the hex form "RRGGBB".
          */
+
         public void SetColor(String rgbStr)
         {
             CT_RPr pr = run.IsSetRPr() ? run.rPr : run.AddNewRPr();
             Npoi.Core.OpenXmlFormats.Wordprocessing.CT_Color color = pr.IsSetColor() ? pr.color : pr.AddNewColor();
             color.val = (rgbStr);
         }
+
         /**
          * Return the string content of this text run
          *
          * @return the text of this text run.or <code>null</code> if not Set
          */
+
         public String GetText(int pos)
         {
             return run.SizeOfTArray() == 0 ? null : run.GetTArray(pos).Value;
@@ -334,6 +351,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * Returns text embedded in pictures
          */
+
         public String PictureText
         {
             get
@@ -341,11 +359,13 @@ namespace Npoi.Core.XWPF.UserModel
                 return pictureText;
             }
         }
+
         public void ReplaceText(string oldText, string newText)
         {
             string text = this.Text.Replace(oldText, newText);
             this.SetText(text);
         }
+
         /// <summary>
         ///Sets the text of this text run
         /// </summary>
@@ -355,23 +375,23 @@ namespace Npoi.Core.XWPF.UserModel
             SetText(value, 0);
         }
 
-
         public void AppendText(String value)
         {
             SetText(value, run.GetTList().Count);
         }
 
         /**
-         * Sets the text of this text run.in the 
+         * Sets the text of this text run.in the
          *
          * @param value the literal text which shall be displayed in the document
          * @param pos - position in the text array (NB: 0 based)
          */
+
         public void SetText(String value, int pos)
         {
             int length = run.SizeOfTArray();
             if (pos > length) throw new IndexOutOfRangeException("Value too large for the parameter position");
-            CT_Text t = (pos < length && pos >= 0) ? run.GetTArray(pos): run.AddNewT();
+            CT_Text t = (pos < length && pos >= 0) ? run.GetTArray(pos) : run.AddNewT();
             t.Value = (value);
             preserveSpaces(t);
         }
@@ -382,6 +402,7 @@ namespace Npoi.Core.XWPF.UserModel
          *
          * @return <code>true</code> if the italic property is applied
          */
+
         public bool IsItalic
         {
             get
@@ -399,7 +420,6 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
 
-
         /**
          * Specifies that the contents of this run.should be displayed along with an
          * underline appearing directly below the character heigh
@@ -407,6 +427,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @return the Underline pattern Applyed to this run
          * @see UnderlinePatterns
          */
+
         public UnderlinePatterns Underline
         {
             get
@@ -416,6 +437,7 @@ namespace Npoi.Core.XWPF.UserModel
                     EnumConverter.ValueOf<UnderlinePatterns, ST_Underline>(pr.u.val) : UnderlinePatterns.None;
             }
         }
+
         internal void InsertText(CT_Text text, int textIndex)
         {
             run.GetTList().Insert(textIndex, text);
@@ -442,6 +464,7 @@ namespace Npoi.Core.XWPF.UserModel
                 }
             }
         }
+
         public string Text
         {
             get
@@ -526,6 +549,7 @@ namespace Npoi.Core.XWPF.UserModel
                 return text.ToString();
             }
         }
+
         /**
          * Specifies that the contents of this run.should be displayed along with an
          * underline appearing directly below the character heigh
@@ -538,6 +562,7 @@ namespace Npoi.Core.XWPF.UserModel
          *              underline type
          * @see UnderlinePatterns : all possible patterns that could be applied
          */
+
         public void SetUnderline(UnderlinePatterns value)
         {
             CT_RPr pr = run.IsSetRPr() ? run.rPr : run.AddNewRPr();
@@ -551,6 +576,7 @@ namespace Npoi.Core.XWPF.UserModel
          *
          * @return <code>true</code> if the strike property is applied
          */
+
         public bool IsStrikeThrough
         {
             get
@@ -567,6 +593,7 @@ namespace Npoi.Core.XWPF.UserModel
                 strike.val = value;//(value ? ST_OnOff.True : ST_OnOff.False);
             }
         }
+
         /**
          * Specifies that the contents of this run.shall be displayed with a single
          * horizontal line through the center of the line.
@@ -591,6 +618,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @param value <code>true</code> if the strike property is applied to
          *              this run
          */
+
         [Obsolete]
         public bool IsStrike
         {
@@ -603,12 +631,14 @@ namespace Npoi.Core.XWPF.UserModel
                 IsStrikeThrough = value;
             }
         }
+
         /**
          * Specifies that the contents of this run shall be displayed with a double
          * horizontal line through the center of the line.
          *
          * @return <code>true</code> if the double strike property is applied
          */
+
         public bool IsDoubleStrikeThrough
         {
             get
@@ -625,6 +655,7 @@ namespace Npoi.Core.XWPF.UserModel
                 dstrike.val = value;//(value ? STOnOff.TRUE : STOnOff.FALSE);
             }
         }
+
         public bool IsSmallCaps
         {
             get
@@ -708,10 +739,7 @@ namespace Npoi.Core.XWPF.UserModel
                 CT_OnOff emboss = pr.IsSetEmboss() ? pr.emboss : pr.AddNewEmboss();
                 emboss.val = value;//(value ? ST_OnOff.True : ST_OnOff.False);
             }
-
         }
-
-
 
         [Obsolete]
         public void SetStrike(bool value)
@@ -730,6 +758,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @return VerticalAlign
          * @see VerticalAlign all possible value that could be Applyed to this run
          */
+
         public VerticalAlign Subscript
         {
             get
@@ -761,7 +790,6 @@ namespace Npoi.Core.XWPF.UserModel
                 CT_HpsMeasure kernmes = pr.IsSetKern() ? pr.kern : pr.AddNewKern();
                 kernmes.val = (ulong)value;
             }
-
         }
 
         public int CharacterSpacing
@@ -788,6 +816,7 @@ namespace Npoi.Core.XWPF.UserModel
          *
          * @return a string representing the font family
          */
+
         public String FontFamily
         {
             get
@@ -804,6 +833,7 @@ namespace Npoi.Core.XWPF.UserModel
         {
             get { return FontFamily; }
         }
+
         /**
          * Gets the font family for the specified font char range.
          * If fcr is null, the font char range "ascii" is used
@@ -811,6 +841,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @param fcr the font char range, defaults to "ansi"
          * @return  a string representing the font famil
          */
+
         public String GetFontFamily(FontCharRange fcr)
         {
             CT_RPr pr = run.rPr;
@@ -822,10 +853,13 @@ namespace Npoi.Core.XWPF.UserModel
                 default:
                 case FontCharRange.Ascii:
                     return fonts.ascii;
+
                 case FontCharRange.CS:
                     return fonts.cs;
+
                 case FontCharRange.EastAsia:
                     return fonts.eastAsia;
+
                 case FontCharRange.HAnsi:
                     return fonts.hAnsi;
             }
@@ -840,6 +874,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @param fontFamily
          * @param fcr FontCharRange or null for default handling
          */
+
         public void SetFontFamily(String fontFamily, FontCharRange fcr)
         {
             CT_RPr pr = run.IsSetRPr() ? run.rPr : run.AddNewRPr();
@@ -868,12 +903,15 @@ namespace Npoi.Core.XWPF.UserModel
                     case FontCharRange.Ascii:
                         fonts.ascii = (fontFamily);
                         break;
+
                     case FontCharRange.CS:
                         fonts.cs = (fontFamily);
                         break;
+
                     case FontCharRange.EastAsia:
                         fonts.eastAsia = (fontFamily);
                         break;
+
                     case FontCharRange.HAnsi:
                         fonts.hAnsi = (fontFamily);
                         break;
@@ -887,6 +925,7 @@ namespace Npoi.Core.XWPF.UserModel
          *
          * @return value representing the font size
          */
+
         public int FontSize
         {
             get
@@ -910,6 +949,7 @@ namespace Npoi.Core.XWPF.UserModel
          *
          * @return a big integer representing the amount of text shall be "moved"
          */
+
         public int GetTextPosition()
         {
             CT_RPr pr = run.rPr;
@@ -922,19 +962,20 @@ namespace Npoi.Core.XWPF.UserModel
          * lowered for this run.in relation to the default baseline of the
          * surrounding non-positioned text. This allows the text to be repositioned
          * without altering the font size of the contents.
-         * 
+         *
          * If the val attribute is positive, then the parent run.shall be raised
          * above the baseline of the surrounding text by the specified number of
          * half-points. If the val attribute is negative, then the parent run.shall
          * be lowered below the baseline of the surrounding text by the specified
          * number of half-points.
-         *         * 
+         *         *
          * If this element is not present, the default value is to leave the
          * formatting applied at previous level in the style hierarchy. If this
          * element is never applied in the style hierarchy, then the text shall not
          * be raised or lowered relative to the default baseline location for the
          * contents of this run.
          */
+
         public void SetTextPosition(int val)
         {
             CT_RPr pr = run.IsSetRPr() ? run.rPr : run.AddNewRPr();
@@ -943,8 +984,9 @@ namespace Npoi.Core.XWPF.UserModel
         }
 
         /**
-         * 
+         *
          */
+
         public void RemoveBreak()
         {
             // TODO
@@ -952,12 +994,13 @@ namespace Npoi.Core.XWPF.UserModel
 
         /**
          * Specifies that a break shall be placed at the current location in the run
-         * content. 
+         * content.
          * A break is a special character which is used to override the
          * normal line breaking that would be performed based on the normal layout
-         * of the document's contents. 
-         * @see #AddCarriageReturn() 
+         * of the document's contents.
+         * @see #AddCarriageReturn()
          */
+
         public void AddBreak()
         {
             run.AddNewBr();
@@ -976,6 +1019,7 @@ namespace Npoi.Core.XWPF.UserModel
          * </p>
          * @see BreakType
          */
+
         public void AddBreak(BreakType type)
         {
             CT_Br br = run.AddNewBr();
@@ -994,6 +1038,7 @@ namespace Npoi.Core.XWPF.UserModel
          * </p>
          * @see BreakClear
          */
+
         public void AddBreak(BreakClear Clear)
         {
             CT_Br br = run.AddNewBr();
@@ -1002,9 +1047,10 @@ namespace Npoi.Core.XWPF.UserModel
         }
 
         /**
-         * Specifies that a tab shall be placed at the current location in 
+         * Specifies that a tab shall be placed at the current location in
          *  the run content.
          */
+
         public void AddTab()
         {
             run.AddNewTab();
@@ -1027,6 +1073,7 @@ namespace Npoi.Core.XWPF.UserModel
          * The carriage return character forced the following text to be
          * restarted on the next available line in the document.
          */
+
         public void AddCarriageReturn()
         {
             run.AddNewCr();
@@ -1040,21 +1087,22 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * Adds a picture to the run. This method handles
          *  attaching the picture data to the overall file.
-         *  
+         *
          * @see Npoi.Core.XWPF.UserModel.Document#PICTURE_TYPE_EMF
          * @see Npoi.Core.XWPF.UserModel.Document#PICTURE_TYPE_WMF
          * @see Npoi.Core.XWPF.UserModel.Document#PICTURE_TYPE_PICT
          * @see Npoi.Core.XWPF.UserModel.Document#PICTURE_TYPE_JPEG
          * @see Npoi.Core.XWPF.UserModel.Document#PICTURE_TYPE_PNG
          * @see Npoi.Core.XWPF.UserModel.Document#PICTURE_TYPE_DIB
-         *  
+         *
          * @param pictureData The raw picture data
          * @param pictureType The type of the picture, eg {@link Document#PICTURE_TYPE_JPEG}
          * @param width width in EMUs. To convert to / from points use {@link org.apache.poi.util.Units}
          * @param height height in EMUs. To convert to / from points use {@link org.apache.poi.util.Units}
-         * @throws Npoi.Core.Openxml4j.exceptions.InvalidFormatException 
-         * @throws IOException 
+         * @throws Npoi.Core.Openxml4j.exceptions.InvalidFormatException
+         * @throws IOException
          */
+
         public XWPFPicture AddPicture(Stream pictureData, int pictureType, String filename, int width, int height)
         {
             XWPFDocument doc = parent.Document;
@@ -1084,7 +1132,6 @@ namespace Npoi.Core.XWPF.UserModel
             inline.graphic = new CT_GraphicalObject();
             inline.graphic.graphicData = new CT_GraphicalObjectData();
             inline.graphic.graphicData.uri = "http://schemas.openxmlformats.org/drawingml/2006/picture";
-
 
             // Setup the inline
             inline.distT = (0);
@@ -1153,26 +1200,26 @@ namespace Npoi.Core.XWPF.UserModel
             XWPFPicture xwpfPicture = new XWPFPicture(pic, this);
             pictures.Add(xwpfPicture);
             return xwpfPicture;
-
         }
 
         /**
          * Returns the embedded pictures of the run. These
-         *  are pictures which reference an external, 
+         *  are pictures which reference an external,
          *  embedded picture image such as a .png or .jpg
          */
+
         public List<XWPFPicture> GetEmbeddedPictures()
         {
             return pictures;
         }
-
 
         /**
          * Add the xml:spaces="preserve" attribute if the string has leading or trailing white spaces
          *
          * @param xs    the string to check
          */
-        static void preserveSpaces(CT_Text xs)
+
+        private static void preserveSpaces(CT_Text xs)
         {
             String text = xs.Value;
             if (text != null && (text.StartsWith(" ") || text.EndsWith(" ")))
@@ -1189,10 +1236,10 @@ namespace Npoi.Core.XWPF.UserModel
          * Returns the string version of the text, with tabs and
          *  carriage returns in place of their xml equivalents.
          */
+
         public override String ToString()
         {
             return Text;
         }
     }
-
 }

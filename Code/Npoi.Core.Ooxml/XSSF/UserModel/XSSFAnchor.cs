@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Npoi.Core.XSSF.UserModel
+﻿namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * An anchor is what specifics the position of a shape within a client object
@@ -10,12 +6,12 @@ namespace Npoi.Core.XSSF.UserModel
      *
      * @author Yegor Kozlov
      */
+
     public abstract class XSSFAnchor
     {
         public abstract int Dx1 { get; set; }
         public abstract int Dy1 { get; set; }
         public abstract int Dy2 { get; set; }
         public abstract int Dx2 { get; set; }
-
     }
 }

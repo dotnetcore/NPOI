@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-using NUnit.Framework;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using NUnit.Framework;
+
 namespace Npoi.Core.XSSF.UserModel.Extensions
 {
-
     [TestFixture]
     public class TestXSSFCellFill
     {
@@ -35,6 +35,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
             bgColor.indexedSpecified = true;
             Assert.AreEqual(2, cellFill.GetFillBackgroundColor().Indexed);
         }
+
         [Test]
         public void TestGetFillForegroundColor()
         {
@@ -47,6 +48,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
             fgColor.indexedSpecified = true;
             Assert.AreEqual(8, cellFill.GetFillForegroundColor().Indexed);
         }
+
         [Test]
         public void TestGetSetPatternType()
         {
@@ -56,6 +58,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
             ctPatternFill.patternType = (ST_PatternType.solid);
             Assert.AreEqual(ST_PatternType.solid, cellFill.GetPatternType());
         }
+
         [Test]
         public void TestGetNotModifies()
         {
@@ -65,6 +68,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
             ctPatternFill.patternType = (ST_PatternType.darkDown);
             Assert.AreEqual(ST_PatternType.darkDown, cellFill.GetPatternType());
         }
+
         [Test]
         public void TestColorFromTheme()
         {
@@ -85,8 +89,6 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
             Assert.AreEqual(rgbWithTint[0], 120);
             Assert.AreEqual((sbyte)rgbWithTint[1], -111);
             Assert.AreEqual((sbyte)rgbWithTint[2], -80);
-
         }
     }
-
 }

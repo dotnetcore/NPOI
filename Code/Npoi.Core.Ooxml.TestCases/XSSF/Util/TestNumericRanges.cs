@@ -16,9 +16,9 @@
 ==================================================================== */
 
 using NUnit.Framework;
+
 namespace Npoi.Core.XSSF.Util
 {
-
     [TestFixture]
     public class TestNumericRanges
     {
@@ -37,6 +37,7 @@ namespace Npoi.Core.XSSF.Util
             Assert.AreEqual(NumericRanges.OVERLAPS_1_WRAPS, NumericRanges.GetOverlappingType(r1, r5));
             Assert.AreEqual(NumericRanges.NO_OVERLAPS, NumericRanges.GetOverlappingType(r1, r6));
         }
+
         [Test]
         public void TestGetOverlappingRange()
         {
@@ -57,7 +58,5 @@ namespace Npoi.Core.XSSF.Util
             Assert.AreEqual(-1, NumericRanges.GetOverlappingRange(r1, r6)[0]);
             Assert.AreEqual(-1, NumericRanges.GetOverlappingRange(r1, r6)[1]);
         }
-
     }
-
 }

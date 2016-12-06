@@ -15,21 +15,23 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
-using System.IO;
 using Npoi.Core.OpenXml4Net.Exceptions;
 using Npoi.Core.OpenXml4Net.OPC;
 using Npoi.Core.OpenXml4Net.OPC.Internal;
 using Npoi.Core.OpenXmlFormats;
+using System;
+using System.IO;
 
 namespace Npoi.Core
 {
     /**
  * The core document properties
  */
+
     public class CoreProperties
     {
         private PackagePropertiesPart part;
+
         internal CoreProperties(PackagePropertiesPart part)
         {
             this.part = part;
@@ -41,144 +43,159 @@ namespace Npoi.Core
             {
                 return part.GetCategoryProperty();
             }
-            set 
+            set
             {
                 part.SetCategoryProperty(value);
             }
         }
+
         public String ContentStatus
         {
             get
             {
                 return part.GetContentStatusProperty();
             }
-            set 
+            set
             {
                 part.SetContentStatusProperty(value);
             }
         }
+
         public String ContentType
         {
             get
             {
                 return part.GetContentTypeProperty();
             }
-            set 
+            set
             {
                 part.SetContentTypeProperty(value);
             }
         }
+
         public DateTime? Created
         {
             get
             {
                 return part.GetCreatedProperty();
             }
-            set 
+            set
             {
-                part.SetCreatedProperty(value);    
+                part.SetCreatedProperty(value);
             }
         }
+
         public void SetCreated(String date)
         {
             part.SetCreatedProperty(date);
         }
+
         public String Creator
         {
             get
             {
                 return part.GetCreatorProperty();
             }
-            set 
+            set
             {
                 part.SetCreatorProperty(value);
             }
         }
+
         public String Description
         {
             get
             {
                 return part.GetDescriptionProperty();
             }
-            set 
+            set
             {
                 part.SetDescriptionProperty(value);
             }
         }
+
         public String Identifier
         {
             get
             {
                 return part.GetIdentifierProperty();
             }
-            set 
+            set
             {
                 part.SetIdentifierProperty(value);
             }
         }
+
         public String Keywords
         {
             get
             {
                 return part.GetKeywordsProperty();
             }
-            set 
+            set
             {
                 part.SetKeywordsProperty(value);
             }
         }
+
         public DateTime? LastPrinted
         {
             get
             {
                 return part.GetLastPrintedProperty();
             }
-            set 
+            set
             {
                 part.SetLastPrintedProperty(value);
             }
         }
+
         public void SetLastPrinted(String date)
         {
             part.SetLastPrintedProperty(date);
         }
+
         public DateTime? Modified
         {
             get
             {
                 return part.GetModifiedProperty();
             }
-            set 
+            set
             {
                 part.SetModifiedProperty(value);
             }
         }
+
         public void SetModified(String date)
         {
             part.SetModifiedProperty(date);
         }
+
         public String Subject
         {
             get
             {
                 return part.GetSubjectProperty();
             }
-            set 
+            set
             {
                 part.SetSubjectProperty(value);
             }
         }
+
         public String Title
         {
             get
             {
                 return part.GetTitleProperty();
             }
-            set 
+            set
             {
                 part.SetTitleProperty(value);
             }
         }
+
         public String Revision
         {
             get
@@ -192,7 +209,7 @@ namespace Npoi.Core
                     long.Parse(value);
                     part.SetRevisionProperty(value);
                 }
-                catch (FormatException) { }            
+                catch (FormatException) { }
             }
         }
 
@@ -205,9 +222,11 @@ namespace Npoi.Core
     /**
      * Extended document properties
      */
+
     public class ExtendedProperties
     {
         public ExtendedPropertiesDocument props;
+
         internal ExtendedProperties(ExtendedPropertiesDocument props)
         {
             this.props = props;
@@ -225,22 +244,27 @@ namespace Npoi.Core
                 return props.GetProperties().Template;
             }
         }
+
         public String Manager
         {
             get { return props.GetProperties().Manager; }
         }
+
         public String Company
         {
             get { return props.GetProperties().Company; }
         }
+
         public String PresentationFormat
         {
             get { return props.GetProperties().PresentationFormat; }
         }
+
         public String Application
         {
             get { return props.GetProperties().Application; }
         }
+
         public String AppVersion
         {
             get { return props.GetProperties().AppVersion; }
@@ -257,6 +281,7 @@ namespace Npoi.Core
                 return -1;
             }
         }
+
         public int Words
         {
             get
@@ -268,6 +293,7 @@ namespace Npoi.Core
                 return -1;
             }
         }
+
         public int Characters
         {
             get
@@ -279,6 +305,7 @@ namespace Npoi.Core
                 return -1;
             }
         }
+
         public int CharactersWithSpaces
         {
             get
@@ -290,6 +317,7 @@ namespace Npoi.Core
                 return -1;
             }
         }
+
         public int Lines
         {
             get
@@ -301,6 +329,7 @@ namespace Npoi.Core
                 return -1;
             }
         }
+
         public int Paragraphs
         {
             get
@@ -312,6 +341,7 @@ namespace Npoi.Core
                 return -1;
             }
         }
+
         public int Slides
         {
             get
@@ -323,6 +353,7 @@ namespace Npoi.Core
                 return -1;
             }
         }
+
         public int Notes
         {
             get
@@ -334,6 +365,7 @@ namespace Npoi.Core
                 return -1;
             }
         }
+
         public int TotalTime
         {
             get
@@ -345,6 +377,7 @@ namespace Npoi.Core
                 return -1;
             }
         }
+
         public int HiddenSlides
         {
             get
@@ -356,6 +389,7 @@ namespace Npoi.Core
                 return -1;
             }
         }
+
         public int MMClips
         {
             get
@@ -377,6 +411,7 @@ namespace Npoi.Core
     /**
      *  Custom document properties
      */
+
     public class CustomProperties
     {
         /**
@@ -386,6 +421,7 @@ namespace Npoi.Core
         public static String FORMAT_ID = "{D5CDD505-2E9C-101B-9397-08002B2CF9AE}";
 
         public CustomPropertiesDocument props;
+
         internal CustomProperties(CustomPropertiesDocument props)
         {
             this.props = props;
@@ -402,6 +438,7 @@ namespace Npoi.Core
          * @param name the property name
          * @throws IllegalArgumentException if a property with this name already exists
          */
+
         private CT_Property Add(String name)
         {
             if (Contains(name))
@@ -423,6 +460,7 @@ namespace Npoi.Core
          *
          * @throws IllegalArgumentException if a property with this name already exists
          */
+
         public void AddProperty(String name, String value)
         {
             CT_Property p = Add(name);
@@ -435,6 +473,7 @@ namespace Npoi.Core
          *
          * @throws IllegalArgumentException if a property with this name already exists
          */
+
         public void AddProperty(String name, double value)
         {
             CT_Property p = Add(name);
@@ -447,6 +486,7 @@ namespace Npoi.Core
          *
          * @throws IllegalArgumentException if a property with this name already exists
          */
+
         public void AddProperty(String name, int value)
         {
             CT_Property p = Add(name);
@@ -459,6 +499,7 @@ namespace Npoi.Core
          *
          * @throws IllegalArgumentException if a property with this name already exists
          */
+
         public void AddProperty(String name, bool value)
         {
             CT_Property p = Add(name);
@@ -471,6 +512,7 @@ namespace Npoi.Core
          *
          * @return next property id starting with 2
          */
+
         protected int NextPid()
         {
             int propid = 1;
@@ -487,6 +529,7 @@ namespace Npoi.Core
          * @param name the name to check
          * @return whether a property with the given name exists in the custom properties
          */
+
         public bool Contains(String name)
         {
             foreach (CT_Property p in props.GetProperties().GetPropertyList())
@@ -500,24 +543,30 @@ namespace Npoi.Core
          * Retrieve the custom property with this name, or null if none exists.
          *
          * You will need to test the various isSetX methods to work out
-         *  what the type of the property is, before fetching the 
+         *  what the type of the property is, before fetching the
          *  appropriate value for it.
          *
          * @param name the name of the property to fetch
          */
-        public CT_Property GetProperty(String name) {
-            foreach(CT_Property p in props.GetProperties().GetPropertyList()){
-                if(p.name.Equals(name)) {
+
+        public CT_Property GetProperty(String name)
+        {
+            foreach (CT_Property p in props.GetProperties().GetPropertyList())
+            {
+                if (p.name.Equals(name))
+                {
                     return p;
                 }
             }
             return null;
         }
     }
+
     /**
      * Wrapper around the two different kinds of OOXML properties
      *  a document can have
      */
+
     public class POIXMLProperties
     {
         private OPCPackage pkg;
@@ -528,9 +577,9 @@ namespace Npoi.Core
         private PackagePart extPart;
         private PackagePart custPart;
 
-
         private static ExtendedPropertiesDocument NEW_EXT_INSTANCE;
         private static CustomPropertiesDocument NEW_CUST_INSTANCE;
+
         static POIXMLProperties()
         {
             NEW_EXT_INSTANCE = new ExtendedPropertiesDocument();
@@ -585,6 +634,7 @@ namespace Npoi.Core
         /**
          * Returns the core document properties
          */
+
         public CoreProperties CoreProperties
         {
             get
@@ -596,6 +646,7 @@ namespace Npoi.Core
         /**
          * Returns the extended document properties
          */
+
         public ExtendedProperties ExtendedProperties
         {
             get
@@ -607,6 +658,7 @@ namespace Npoi.Core
         /**
          * Returns the custom document properties
          */
+
         public CustomProperties CustomProperties
         {
             get
@@ -618,9 +670,9 @@ namespace Npoi.Core
         /**
          * Commit Changes to the underlying OPC namespace
          */
+
         public virtual void Commit()
         {
-
             if (extPart == null && !NEW_EXT_INSTANCE.ToString().Equals(ext.props.ToString()))
             {
                 try
@@ -662,11 +714,6 @@ namespace Npoi.Core
                 cust.props.Save(out1);
                 out1.Dispose();
             }
-
-
         }
-
-
     }
-
 }

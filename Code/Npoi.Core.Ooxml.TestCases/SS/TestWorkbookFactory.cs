@@ -17,15 +17,15 @@
 
 namespace Npoi.Core.SS
 {
-    using System;
-    using NUnit.Framework;
     using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.OpenXml4Net.OPC;
     using Npoi.Core.POIFS.FileSystem;
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.XSSF.UserModel;
-    using TestCases.HSSF;
+    using NUnit.Framework;
+    using System;
     using System.IO;
+    using TestCases.HSSF;
 
     [TestFixture]
     public class TestWorkbookFactory
@@ -34,7 +34,8 @@ namespace Npoi.Core.SS
         private String xlsx;
         private String txt;
 
-        string testdataPath;
+        private string testdataPath;
+
         [SetUp]
         public void SetUp()
         {
@@ -71,6 +72,7 @@ namespace Npoi.Core.SS
          *  Checking the mime magic at the start of the
          *  InputStream, then creating what's required.
          */
+
         [Test]
         public void TestCreateGeneric()
         {
@@ -125,5 +127,4 @@ namespace Npoi.Core.SS
             }
         }
     }
-
 }

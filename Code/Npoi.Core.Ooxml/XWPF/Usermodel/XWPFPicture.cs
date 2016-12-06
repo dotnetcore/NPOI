@@ -15,20 +15,19 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
 using Npoi.Core.OpenXml4Net.OPC;
-using Npoi.Core.OpenXmlFormats.Dml.Picture;
 using Npoi.Core.OpenXmlFormats.Dml;
+using Npoi.Core.OpenXmlFormats.Dml.Picture;
+using System;
 
 namespace Npoi.Core.XWPF.UserModel
 {
-
     /**
      * @author Philipp Epp
      */
+
     public class XWPFPicture
     {
-
         private CT_Picture ctPic;
         private String description;
         private XWPFRun run;
@@ -44,6 +43,7 @@ namespace Npoi.Core.XWPF.UserModel
          * Link Picture with PictureData
          * @param rel
          */
+
         public void SetPictureReference(PackageRelationship rel)
         {
             ctPic.blipFill.blip.embed = (rel.Id);
@@ -54,6 +54,7 @@ namespace Npoi.Core.XWPF.UserModel
          *
          * @return the underlying CTPicture bean
          */
+
         public CT_Picture GetCTPicture()
         {
             return ctPic;
@@ -63,6 +64,7 @@ namespace Npoi.Core.XWPF.UserModel
          * Get the PictureData of the Picture, if present.
          * Note - not all kinds of picture have data
          */
+
         public XWPFPictureData GetPictureData()
         {
             //String blipId = ctPic.blipFill.blip.embed;
@@ -75,7 +77,6 @@ namespace Npoi.Core.XWPF.UserModel
             }
 
             String blipId = blipProps.blip.embed;
-
 
             POIXMLDocumentPart part = run.Parent.Part;
             if (part != null)
@@ -94,5 +95,4 @@ namespace Npoi.Core.XWPF.UserModel
             return description;
         }
     }
-
 }

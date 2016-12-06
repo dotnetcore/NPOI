@@ -14,15 +14,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.Model
 {
-    using System;
-
     using Npoi.Core.XWPF.UserModel;
+    using System;
 
     /**
      * Base decorator class for XWPFParagraph
      */
+
     public abstract class XWPFParagraphDecorator
     {
         internal XWPFParagraph paragraph;
@@ -51,5 +52,4 @@ namespace Npoi.Core.XWPF.Model
             }
         }
     }
-
 }

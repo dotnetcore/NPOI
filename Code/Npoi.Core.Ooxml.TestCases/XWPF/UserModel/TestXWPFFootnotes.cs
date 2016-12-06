@@ -17,19 +17,15 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-
-    using NUnit.Framework;
-
-    using Npoi.Core.XWPF;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
-    using System.Collections.Generic;
+    using Npoi.Core.XWPF;
+    using NUnit.Framework;
     using System;
-
+    using System.Collections.Generic;
 
     [TestFixture]
     public class TestXWPFFootnotes
     {
-
         [Test]
         public void TestAddFootnotesToDocument()
         {
@@ -52,6 +48,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
         * Bug 55066 - avoid double loading the footnotes
         */
+
         [Test]
         public void TestLoadFootnotesOnce()
         {
@@ -75,5 +72,4 @@ namespace Npoi.Core.XWPF.UserModel
             Assert.AreEqual(1, hits, "Load footnotes once");
         }
     }
-
 }

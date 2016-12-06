@@ -1,17 +1,17 @@
-﻿using System.IO;
-using System.Xml.Serialization;
-using Npoi.Core.OpenXmlFormats.Dml;
-using System.Diagnostics;
+﻿using Npoi.Core.OpenXmlFormats.Dml;
+using System.IO;
 using System.Xml.Linq;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
     public class ThemeDocument
     {
-        CT_OfficeStyleSheet stylesheet = null;
+        private CT_OfficeStyleSheet stylesheet = null;
+
         public ThemeDocument()
         {
         }
+
         public ThemeDocument(CT_OfficeStyleSheet stylesheet)
         {
             this.stylesheet = stylesheet;

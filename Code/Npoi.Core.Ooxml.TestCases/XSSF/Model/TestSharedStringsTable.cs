@@ -15,22 +15,23 @@
    limitations under the License.
 ==================================================================== */
 
-using NUnit.Framework;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using Npoi.Core.XSSF.UserModel;
-using System.Collections.Generic;
-using System;
 using Npoi.Core.SS.UserModel;
-using TestCases;
+using Npoi.Core.XSSF.UserModel;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using TestCases;
+
 namespace Npoi.Core.XSSF.Model
 {
-
     /**
      * Test {@link SharedStringsTable}, the cache of strings in a workbook
      *
      * @author Yegor Kozlov
      */
+
     [TestFixture]
     public class TestSharedStringsTable
     {
@@ -106,6 +107,7 @@ namespace Npoi.Core.XSSF.Model
             Assert.AreEqual("Second string", new XSSFRichTextString(sst.GetEntryAt(1)).ToString());
             Assert.AreEqual("Second string", new XSSFRichTextString(sst.GetEntryAt(2)).ToString());
         }
+
         [Test]
         public void TestReadWrite()
         {
@@ -138,6 +140,7 @@ namespace Npoi.Core.XSSF.Model
          *
          * @author Philippe Laflamme
          */
+
         [Test]
         public void TestBug48936()
         {
@@ -186,7 +189,5 @@ namespace Npoi.Core.XSSF.Model
             br.Dispose();
             return strs;
         }
-
     }
 }
-

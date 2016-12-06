@@ -4,62 +4,62 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXml4Net.Util
 {
     public static class XmlHelper
     {
-		public static string GetEnumValue(Enum e)
-		{
-			// Get the Type of the enum
-			Type t = e.GetType();
+        public static string GetEnumValue(Enum e)
+        {
+            // Get the Type of the enum
+            Type t = e.GetType();
 
-			// Get the FieldInfo for the member field with the enums name
-			FieldInfo info = t.GetTypeInfo().GetField(e.ToString("G"));
+            // Get the FieldInfo for the member field with the enums name
+            FieldInfo info = t.GetTypeInfo().GetField(e.ToString("G"));
 
-			return e.ToString("G");
-			//// Check to see if the XmlEnumAttribute is defined on this field
-			//if (!info.IsDefined(typeof(XmlEnumAttribute), false))
-			//{
-			//	// If no XmlEnumAttribute then return the string version of the enum.
-			//	return e.ToString("G");
-			//}
+            return e.ToString("G");
+            //// Check to see if the XmlEnumAttribute is defined on this field
+            //if (!info.IsDefined(typeof(XmlEnumAttribute), false))
+            //{
+            //	// If no XmlEnumAttribute then return the string version of the enum.
+            //	return e.ToString("G");
+            //}
 
-			//// Get the XmlEnumAttribute
-			//object[] o = info.GetCustomAttributes(typeof(XmlEnumAttribute), false);
-			//XmlEnumAttribute att = (XmlEnumAttribute)o[0];
-			//return att.Name;
-		}
+            //// Get the XmlEnumAttribute
+            //object[] o = info.GetCustomAttributes(typeof(XmlEnumAttribute), false);
+            //XmlEnumAttribute att = (XmlEnumAttribute)o[0];
+            //return att.Name;
+        }
 
-		public static string GetXmlAttrNameFromEnumValue<T>(T pEnumVal)
-		{
-			// http://stackoverflow.com/q/3047125/194717
-			return null;
-			//Type type = pEnumVal.GetType();
-			//FieldInfo info = type.GetTypeInfo().GetField(Enum.GetName(typeof(T), pEnumVal));
-			//XEnumAttribute att = (XmlEnumAttribute)info.GetCustomAttributes(typeof(XmlEnumAttribute), false)[0];
-			////If there is an XAttribute defined, return the name
+        public static string GetXmlAttrNameFromEnumValue<T>(T pEnumVal)
+        {
+            // http://stackoverflow.com/q/3047125/194717
+            return null;
+            //Type type = pEnumVal.GetType();
+            //FieldInfo info = type.GetTypeInfo().GetField(Enum.GetName(typeof(T), pEnumVal));
+            //XEnumAttribute att = (XmlEnumAttribute)info.GetCustomAttributes(typeof(XmlEnumAttribute), false)[0];
+            ////If there is an XAttribute defined, return the name
 
-			//return att.Name;
-		}
-		public static T GetEnumValueFromString<T>(string value)
-		{
-			// http://stackoverflow.com/a/3073272/194717
-			foreach (object o in System.Enum.GetValues(typeof(T)))
-			{
-				T enumValue = (T)o;
-				if (GetXmlAttrNameFromEnumValue<T>(enumValue).Equals(value, StringComparison.OrdinalIgnoreCase))
-				{
-					return (T)o;
-				}
-			}
+            //return att.Name;
+        }
 
-			throw new ArgumentException("No XmlEnumAttribute code exists for type " + typeof(T).ToString() + " corresponding to value of " + value);
-		}
-		public static int ReadInt(XAttribute attr)
+        public static T GetEnumValueFromString<T>(string value)
+        {
+            // http://stackoverflow.com/a/3073272/194717
+            foreach (object o in System.Enum.GetValues(typeof(T)))
+            {
+                T enumValue = (T)o;
+                if (GetXmlAttrNameFromEnumValue<T>(enumValue).Equals(value, StringComparison.OrdinalIgnoreCase))
+                {
+                    return (T)o;
+                }
+            }
+
+            throw new ArgumentException("No XmlEnumAttribute code exists for type " + typeof(T).ToString() + " corresponding to value of " + value);
+        }
+
+        public static int ReadInt(XAttribute attr)
         {
             if (attr == null)
                 return 0;
@@ -73,6 +73,7 @@ namespace Npoi.Core.OpenXml4Net.Util
                 return 0;
             }
         }
+
         public static long ReadLong(XAttribute attr)
         {
             if (attr == null)
@@ -87,6 +88,7 @@ namespace Npoi.Core.OpenXml4Net.Util
                 return 0;
             }
         }
+
         public static int? ReadIntNull(XAttribute attr)
         {
             if (attr == null)
@@ -102,12 +104,14 @@ namespace Npoi.Core.OpenXml4Net.Util
                 return null;
             }
         }
+
         public static string ReadString(XAttribute attr)
         {
             if (attr == null)
                 return null;
             return attr.Value;
         }
+
         public static decimal ReadDecimal(XAttribute attr)
         {
             if (attr == null)
@@ -122,6 +126,7 @@ namespace Npoi.Core.OpenXml4Net.Util
                 return 0;
             }
         }
+
         public static uint ReadUInt(XAttribute attr)
         {
             if (attr == null)
@@ -137,6 +142,7 @@ namespace Npoi.Core.OpenXml4Net.Util
                 return 0;
             }
         }
+
         public static ulong ReadULong(XAttribute attr)
         {
             if (attr == null)
@@ -152,10 +158,12 @@ namespace Npoi.Core.OpenXml4Net.Util
                 return 0;
             }
         }
+
         public static bool ReadBool(XAttribute attr)
         {
             return ReadBool(attr, false);
         }
+
         public static double ReadDouble(XAttribute attr)
         {
             if (attr == null)
@@ -178,6 +186,7 @@ namespace Npoi.Core.OpenXml4Net.Util
                 }
             }
         }
+
         public static double? ReadDoubleNull(XAttribute attr)
         {
             if (attr == null)
@@ -220,6 +229,7 @@ namespace Npoi.Core.OpenXml4Net.Util
                 return false;
             }
         }
+
         public static DateTime? ReadDateTime(XAttribute attr)
         {
             if (attr == null)
@@ -263,6 +273,7 @@ namespace Npoi.Core.OpenXml4Net.Util
             }
             return sw.ToString();
         }
+
         public static string ExcelDecodeString(string t)
         {
             Match match = Regex.Match(t, "(_x005F|_x[0-9A-F]{4,4}_)");
@@ -296,30 +307,36 @@ namespace Npoi.Core.OpenXml4Net.Util
             ret.Append(t.Substring(prevIndex, t.Length - prevIndex));
             return ret.ToString();
         }
+
         public static string EncodeXml(string xml)
         {
             return xml.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;");//.Replace("'", "&apos;");
         }
+
         public static void WriteAttribute(StreamWriter sw, string attributeName, bool value)
         {
             WriteAttribute(sw, attributeName, value, true);
         }
+
         public static void WriteAttribute(StreamWriter sw, string attributeName, bool value, bool writeIfBlank)
         {
             if (value == false && !writeIfBlank)
                 return;
             WriteAttribute(sw, attributeName, value ? "1" : "0");
         }
+
         public static void WriteAttribute(StreamWriter sw, string attributeName, double value)
         {
             WriteAttribute(sw, attributeName, value, false);
         }
+
         public static void WriteAttribute(StreamWriter sw, string attributeName, double value, bool writeIfBlank)
         {
             if (value == 0.0 && !writeIfBlank)
                 return;
             WriteAttribute(sw, attributeName, value == 0.0 ? "0" : value.ToString(CultureInfo.InvariantCulture));
         }
+
         public static void WriteAttribute(StreamWriter sw, string attributeName, int value, bool writeIfBlank)
         {
             if (value == 0 && !writeIfBlank)
@@ -327,20 +344,24 @@ namespace Npoi.Core.OpenXml4Net.Util
 
             WriteAttribute(sw, attributeName, value.ToString(CultureInfo.InvariantCulture));
         }
+
         public static void WriteAttribute(StreamWriter sw, string attributeName, int value)
         {
             WriteAttribute(sw, attributeName, value, false);
         }
+
         public static void WriteAttribute(StreamWriter sw, string attributeName, string value)
         {
             WriteAttribute(sw, attributeName, value, false);
         }
+
         public static void WriteAttribute(StreamWriter sw, string attributeName, string value, bool writeIfBlank)
         {
             if (string.IsNullOrEmpty(value) && !writeIfBlank)
                 return;
             sw.Write(string.Format(" {0}=\"{1}\"", attributeName, value == null ? string.Empty : EncodeXml(value)));
         }
+
         public static void WriteAttribute(StreamWriter sw, string attributeName, byte[] value)
         {
             if (value == null)
@@ -348,6 +369,7 @@ namespace Npoi.Core.OpenXml4Net.Util
 
             WriteAttribute(sw, attributeName, BitConverter.ToString(value).Replace("-", ""), false);
         }
+
         public static void WriteAttribute(StreamWriter sw, string attributeName, uint value)
         {
             WriteAttribute(sw, attributeName, (int)value, false);
@@ -361,6 +383,7 @@ namespace Npoi.Core.OpenXml4Net.Util
             //how to write xsd:datetime data
             throw new NotImplementedException();
         }
+
         //public static void LoadXmlSafe(XDocument xmlDoc, Stream stream)
         //{
         //    XmlReaderSettings settings = new XmlReaderSettings();

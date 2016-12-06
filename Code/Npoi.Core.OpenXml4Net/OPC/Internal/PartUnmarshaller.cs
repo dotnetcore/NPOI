@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers;
 using System.IO;
-using Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers;
 
 namespace Npoi.Core.OpenXml4Net.OPC.Internal
 {
@@ -14,9 +11,9 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
      * @author Julien Chable
      * @version 0.1
      */
+
     public interface PartUnmarshaller
     {
-
         /**
          * Save the content of the package in the stream
          *
@@ -27,6 +24,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          *             Throws only if any other exceptions are thrown by inner
          *             methods.
          */
+
         PackagePart Unmarshall(UnmarshallContext context, Stream in1);
     }
 }

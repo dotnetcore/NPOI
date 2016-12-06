@@ -15,18 +15,20 @@
    limitations under the License.
 ==================================================================== */
 
-using System.Collections.Generic;
-using Npoi.Core.SS.Util;
-using Npoi.Core.SS.Formula.PTG;
-using Npoi.Core.SS.Formula;
-using System;
-using Npoi.Core.SS.UserModel;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.Formula;
+using Npoi.Core.SS.Formula.PTG;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.Util;
+using System;
+using System.Collections.Generic;
+
 namespace Npoi.Core.XSSF.UserModel.Helpers
 {
     /**
      * @author Yegor Kozlov
      */
+
     public class XSSFRowShifter
     {
         private XSSFSheet sheet;
@@ -44,13 +46,14 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
          * @param n        the number of rows to shift
          * @return an array of affected cell regions
          */
+
         public List<CellRangeAddress> ShiftMerged(int startRow, int endRow, int n)
         {
             List<CellRangeAddress> ShiftedRegions = new List<CellRangeAddress>();
             Npoi.Core.Util.Collections.HashSet<int> removedIndices = new Npoi.Core.Util.Collections.HashSet<int>();
             //move merged regions completely if they fall within the new region boundaries when they are Shifted
             int size = sheet.NumMergedRegions;
-            for (int i = 0; i < size; i++) 
+            for (int i = 0; i < size; i++)
             {
                 CellRangeAddress merged = sheet.GetMergedRegion(i);
 
@@ -75,7 +78,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
                     removedIndices.Add(i);
                 }
             }
-            if (removedIndices.Count>0)
+            if (removedIndices.Count > 0)
             {
                 sheet.RemoveMergedRegions(removedIndices);
             }
@@ -95,6 +98,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
          * @param colIx the column to check
          * @return true if the range Contains the cell [rowIx,colIx]
          */
+
         private static bool ContainsCell(CellRangeAddress cr, int rowIx, int colIx)
         {
             if (cr.FirstRow <= rowIx && cr.LastRow >= rowIx
@@ -108,6 +112,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
         /**
          * Updated named ranges
          */
+
         public void UpdateNamedRanges(FormulaShifter shifter)
         {
             IWorkbook wb = sheet.Workbook;
@@ -124,13 +129,13 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
                     String shiftedFmla = FormulaRenderer.ToFormulaString(fpb, ptgs);
                     name.RefersToFormula = shiftedFmla;
                 }
-
             }
         }
 
         /**
          * Update formulas.
          */
+
         public void UpdateFormulas(FormulaShifter shifter)
         {
             //update formulas on the parent sheet
@@ -187,7 +192,6 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
                         if (ShiftedRef != null) f.@ref = ShiftedRef;
                     }
                 }
-
             }
         }
 
@@ -200,6 +204,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
          * @return the Shifted formula if the formula was Changed,
          *         <code>null</code> if the formula wasn't modified
          */
+
         private static String ShiftFormula(XSSFRow row, String formula, FormulaShifter Shifter)
         {
             ISheet sheet = row.Sheet;
@@ -228,7 +233,6 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
         {
             IWorkbook wb = sheet.Workbook;
             int sheetIndex = wb.GetSheetIndex(sheet);
-
 
             XSSFEvaluationWorkbook fpb = XSSFEvaluationWorkbook.Create(wb);
             CT_Worksheet ctWorksheet = sheet.GetCTWorksheet();
@@ -321,8 +325,5 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             }
             throw new InvalidOperationException("Unexpected Shifted ptg class (" + ptg0.GetType().Name + ")");
         }
-
     }
 }
-
-

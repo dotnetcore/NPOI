@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Npoi.Core.OpenXml4Net.OPC
+﻿namespace Npoi.Core.OpenXml4Net.OPC
 {
     /**
      * Relationship types.
@@ -10,8 +6,9 @@ namespace Npoi.Core.OpenXml4Net.OPC
      * @author Julien Chable
      * @version 0.2
      */
+
     public static class PackageRelationshipTypes
-    {    
+    {
         /**
          * Core properties relationship type.
          *
@@ -107,5 +104,4 @@ namespace Npoi.Core.OpenXml4Net.OPC
          */
         public const string VISIO_CORE_DOCUMENT = "http://schemas.microsoft.com/visio/2010/relationships/document";
     }
-
 }

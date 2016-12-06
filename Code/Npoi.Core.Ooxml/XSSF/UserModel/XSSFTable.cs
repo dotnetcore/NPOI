@@ -15,50 +15,44 @@
    limitations under the License.
 ==================================================================== */
 
-using System.Xml;
-using System.Collections.Generic;
-using Npoi.Core.SS.Util;
-using System;
 using Npoi.Core.OpenXml4Net.OPC;
-using System.IO;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using Npoi.Core.Util;
-using System.Collections;
-using System.Xml.Linq;
+using Npoi.Core.SS.Util;
 using Npoi.Core.XSSF.UserModel.Helpers;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
-     * 
+     *
      * This class : the Table Part (Open Office XML Part 4:
      * chapter 3.5.1)
-     * 
+     *
      * This implementation works under the assumption that a table Contains mappings to a subtree of an XML.
      * The root element of this subtree an occur multiple times (one for each row of the table). The child nodes
      * of the root element can be only attributes or element with maxOccurs=1 property set
-     * 
+     *
      *
      * @author Roberto Manicardi
      */
+
     public class XSSFTable : POIXMLDocumentPart
     {
-
         private CT_Table ctTable;
         private List<XSSFXmlColumnPr> xmlColumnPr;
         private CellReference startCellReference;
         private CellReference endCellReference;
         private String commonXPath;
 
-
         public XSSFTable()
             : base()
         {
-
             ctTable = new CT_Table();
-
         }
 
         internal XSSFTable(PackagePart part, PackageRelationship rel)
@@ -94,7 +88,6 @@ namespace Npoi.Core.XSSF.UserModel
             doc.Save(out1);
         }
 
-
         protected internal override void Commit()
         {
             PackagePart part = GetPackagePart();
@@ -113,6 +106,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param id the XSSFMap ID
          * @return true if the Table element contain mappings
          */
+
         public bool MapsTo(long id)
         {
             bool maps = false;
@@ -131,20 +125,18 @@ namespace Npoi.Core.XSSF.UserModel
             return maps;
         }
 
-
         /**
-         * 
+         *
          * Calculates the xpath of the root element for the table. This will be the common part
          * of all the mapping's xpaths
-         * 
+         *
          * @return the xpath of the table's root element
          */
+
         public String GetCommonXpath()
         {
-
             if (commonXPath == null)
             {
-
                 List<string> commonTokens = null;
 
                 foreach (CT_TableColumn column in ctTable.tableColumns.tableColumn)
@@ -153,7 +145,7 @@ namespace Npoi.Core.XSSF.UserModel
                     {
                         String xpath = column.xmlColumnPr.xpath;
                         String[] tokens = xpath.Split(new char[] { '/' });
-                        if (commonTokens==null)
+                        if (commonTokens == null)
                         {
                             commonTokens = tokens.ToList();
                         }
@@ -166,32 +158,25 @@ namespace Npoi.Core.XSSF.UserModel
                                 {
                                     commonTokens = commonTokens.GetRange(0, i);
                                     break;
-
-
                                 }
                             }
                         }
-
                     }
                 }
-
 
                 commonXPath = "";
 
                 for (int i = 1; i < commonTokens.Count; i++)
                 {
                     commonXPath += "/" + commonTokens[i];
-
                 }
             }
 
             return commonXPath;
         }
 
-
         public List<XSSFXmlColumnPr> GetXmlColumnPrs()
         {
-
             if (xmlColumnPr == null)
             {
                 xmlColumnPr = new List<XSSFXmlColumnPr>();
@@ -210,13 +195,14 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return the name of the Table, if set
          */
+
         public String Name
         {
             get
             {
                 return ctTable.name;
             }
-            set 
+            set
             {
                 ctTable.name = value;
             }
@@ -225,6 +211,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return the display name of the Table, if set
          */
+
         public String DisplayName
         {
             get
@@ -235,12 +222,12 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 ctTable.displayName = value;
             }
-
         }
 
         /**
          * @return  the number of mapped table columns (see Open Office XML Part 4: chapter 3.5.1.4)
          */
+
         public long NumberOfMappedColumns
         {
             get
@@ -249,19 +236,19 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         /**
          * @return The reference for the cell in the top-left part of the table
-         * (see Open Office XML Part 4: chapter 3.5.1.2, attribute ref) 
+         * (see Open Office XML Part 4: chapter 3.5.1.2, attribute ref)
          *
          */
+
         public CellReference GetStartCellReference()
         {
-
             if (startCellReference == null)
             {
                 String ref1 = ctTable.@ref;
-                if(ref1 != null) {
+                if (ref1 != null)
+                {
                     String[] boundaries = ref1.Split(":".ToCharArray());
                     String from = boundaries[0];
                     startCellReference = new CellReference(from);
@@ -275,12 +262,11 @@ namespace Npoi.Core.XSSF.UserModel
          * (see Open Office XML Part 4: chapter 3.5.1.2, attribute ref)
          *
          */
+
         public CellReference GetEndCellReference()
         {
-
             if (endCellReference == null)
             {
-
                 String ref1 = ctTable.@ref;
                 String[] boundaries = ref1.Split(new char[] { ':' });
                 String from = boundaries[1];
@@ -289,11 +275,11 @@ namespace Npoi.Core.XSSF.UserModel
             return endCellReference;
         }
 
-
         /**
          *  @return the total number of rows in the selection. (Note: in this version autofiltering is ignored)
          *
          */
+
         public int RowCount
         {
             get
@@ -310,12 +296,12 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         /**
      * Synchronize table headers with cell values in the parent sheet.
      * Headers <em>must</em> be in sync, otherwise Excel will display a
      * "Found unreadable content" message on startup.
      */
+
         public void UpdateHeaders()
         {
             XSSFSheet sheet = (XSSFSheet)GetParent();

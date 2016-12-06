@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -13,7 +12,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_CellStyles
     {
-
         private List<CT_CellStyle> cellStyleField;
 
         private uint countField;
@@ -24,6 +22,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             //this.cellStyleField = new List<CT_CellStyle>();
         }
+
         [XmlElement]
         public List<CT_CellStyle> cellStyle
         {
@@ -78,8 +77,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
@@ -94,6 +91,5 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             sw.Write(string.Format("</{0}>", nodeName));
         }
-
     }
 }

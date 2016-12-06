@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
-using NUnit.Framework;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.UserModel.Charts;
+using NUnit.Framework;
+
 namespace Npoi.Core.XSSF.UserModel.Charts
 {
     [TestFixture]
@@ -37,6 +37,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             legend.Position = LegendPosition.TopRight;
             Assert.AreEqual(LegendPosition.TopRight, legend.Position);
         }
+
         [Test]
         public void Test_setOverlay_defaultChartLegend_expectOverlayInitialValueSetToFalse()
         {
@@ -71,7 +72,5 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             // Assert
             Assert.IsTrue(legend.IsOverlay);
         }
-
     }
 }
-

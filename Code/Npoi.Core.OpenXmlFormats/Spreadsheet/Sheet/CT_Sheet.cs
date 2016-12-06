@@ -1,10 +1,8 @@
 ﻿using Npoi.Core.OpenXml4Net.OPC;
 using Npoi.Core.OpenXml4Net.Util;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -17,7 +15,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlRoot("sheet", Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public class CT_Sheet
     {
-
         private string nameField;
 
         private uint sheetIdField;
@@ -44,7 +41,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             sw.Write(string.Format("<{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "name", this.name);
             XmlHelper.WriteAttribute(sw, "sheetId", this.sheetId);
-            if(state!= ST_SheetState.visible)
+            if (state != ST_SheetState.visible)
                 XmlHelper.WriteAttribute(sw, "state", this.state.ToString());
             XmlHelper.WriteAttribute(sw, "r:id", this.id);
             sw.Write(">");
@@ -55,6 +52,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             this.stateField = ST_SheetState.visible;
         }
+
         public void Set(CT_Sheet sheet)
         {
             this.nameField = sheet.nameField;
@@ -62,6 +60,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.stateField = sheet.stateField;
             this.idField = sheet.idField;
         }
+
         public CT_Sheet Copy()
         {
             CT_Sheet obj = new CT_Sheet();
@@ -71,6 +70,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             obj.stateField = this.stateField;
             return obj;
         }
+
         [XmlAttribute("name")]
         public string name
         {
@@ -83,6 +83,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.nameField = value;
             }
         }
+
         [XmlAttribute("sheetId")]
         public uint sheetId
         {
@@ -95,6 +96,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.sheetIdField = value;
             }
         }
+
         [XmlAttribute("state")]
         [DefaultValue(ST_SheetState.visible)]
         public ST_SheetState state
@@ -108,6 +110,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.stateField = value;
             }
         }
+
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/relationships")]
         public string id
         {

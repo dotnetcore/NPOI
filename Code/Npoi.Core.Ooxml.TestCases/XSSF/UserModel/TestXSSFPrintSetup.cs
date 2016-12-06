@@ -15,15 +15,16 @@
    limitations under the License.
 ==================================================================== */
 
-using NUnit.Framework;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS.UserModel;
+using NUnit.Framework;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Tests for {@link XSSFPrintSetup}
      */
+
     [TestFixture]
     public class TestXSSFPrintSetup
     {
@@ -53,6 +54,7 @@ namespace Npoi.Core.XSSF.UserModel
             printSetup.Scale = ((short)100);
             Assert.AreEqual((uint)100, pSetup.scale);
         }
+
         [Test]
         public void TestSetGetPageStart()
         {
@@ -81,8 +83,8 @@ namespace Npoi.Core.XSSF.UserModel
             printSetup.FitHeight = ((short)80);
             Assert.AreEqual((uint)66, pSetup.fitToWidth);
             Assert.AreEqual((uint)80, pSetup.fitToHeight);
-
         }
+
         [Test]
         public void TestSetGetLeftToRight()
         {
@@ -95,6 +97,7 @@ namespace Npoi.Core.XSSF.UserModel
             printSetup.LeftToRight = (true);
             Assert.AreEqual(PageOrder.OVER_THEN_DOWN.Value, (int)pSetup.pageOrder);
         }
+
         [Test]
         public void TestSetGetOrientation()
         {
@@ -124,6 +127,7 @@ namespace Npoi.Core.XSSF.UserModel
             printSetup.ValidSettings = (true);
             Assert.AreEqual(true, pSetup.usePrinterDefaults);
         }
+
         [Test]
         public void TestSetGetNoColor()
         {
@@ -136,6 +140,7 @@ namespace Npoi.Core.XSSF.UserModel
             printSetup.NoColor = true;
             Assert.AreEqual(true, pSetup.blackAndWhite);
         }
+
         [Test]
         public void TestSetGetDraft()
         {
@@ -148,6 +153,7 @@ namespace Npoi.Core.XSSF.UserModel
             printSetup.Draft = (true);
             Assert.AreEqual(true, pSetup.draft);
         }
+
         [Test]
         public void TestSetGetNotes()
         {
@@ -173,6 +179,7 @@ namespace Npoi.Core.XSSF.UserModel
             printSetup.UsePage = (true);
             Assert.AreEqual(true, pSetup.useFirstPageNumber);
         }
+
         [Test]
         public void TestSetGetHVResolution()
         {
@@ -189,6 +196,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual((uint)150, pSetup.horizontalDpi);
             Assert.AreEqual((uint)130, pSetup.verticalDpi);
         }
+
         [Test]
         public void TestSetGetHeaderFooterMargin()
         {
@@ -205,6 +213,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(5.0, pMargins.header, 0.0);
             Assert.AreEqual(3.5, pMargins.footer, 0.0);
         }
+
         [Test]
         public void TestSetGetCopies()
         {
@@ -217,6 +226,7 @@ namespace Npoi.Core.XSSF.UserModel
             printSetup.Copies = (short)15;
             Assert.AreEqual((uint)15, pSetup.copies);
         }
+
         [Test]
         public void TestSetSaveRead()
         {
@@ -253,6 +263,5 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(3, print.Copies);
             Assert.AreEqual(true, print.Landscape);
         }
-
     }
 }

@@ -1,8 +1,6 @@
 ﻿using Npoi.Core.OpenXml4Net.Util;
-using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
@@ -11,13 +9,11 @@ using System.Xml.Serialization;
 namespace Npoi.Core.OpenXmlFormats.Dml
 {
     [Serializable]
-    
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_ConnectorLocking
     {
-
         private CT_OfficeArtExtensionList extLstField;
 
         private bool noGrpField;
@@ -39,6 +35,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private bool noChangeArrowheadsField;
 
         private bool noChangeShapeTypeField;
+
         public static CT_ConnectorLocking Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -61,8 +58,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -252,16 +247,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
-
     [Serializable]
-    
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_PictureLocking
     {
-
         private CT_OfficeArtExtensionList extLstField;
 
         private bool noGrpField;
@@ -301,6 +292,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             this.noChangeShapeTypeField = false;
             this.noCropField = false;
         }
+
         public static CT_PictureLocking Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -325,12 +317,10 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0}", nodeName));
-            if(noGrp)
+            if (noGrp)
                 XmlHelper.WriteAttribute(sw, "noGrp", this.noGrp);
             if (noSelect)
                 XmlHelper.WriteAttribute(sw, "noSelect", this.noSelect);
@@ -357,6 +347,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.extLst.Write(sw, "extLst");
             sw.Write(string.Format("</a:{0}>", nodeName));
         }
+
         [XmlElement(Order = 0)]
         public CT_OfficeArtExtensionList extLst
         {
@@ -525,18 +516,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
-
-
-
     [Serializable]
-    
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_GraphicalObjectFrameLocking
     {
-
         private CT_OfficeArtExtensionList extLstField;
 
         private bool noGrpField;
@@ -561,6 +546,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             this.noMoveField = false;
             this.noResizeField = false;
         }
+
         public static CT_GraphicalObjectFrameLocking Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -579,8 +565,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -695,9 +679,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
-    
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
@@ -724,15 +706,13 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<pic:{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "id", this.id, true);
             XmlHelper.WriteAttribute(sw, "name", this.name);
             XmlHelper.WriteAttribute(sw, "descr", this.descr);
-            if(this.hidden)
+            if (this.hidden)
                 XmlHelper.WriteAttribute(sw, "hidden", this.hidden);
             sw.Write(">");
             if (this.hlinkClick != null)
@@ -836,11 +816,13 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.descrField = value;
             }
         }
+
         [XmlIgnore]
         public bool descrSpecified
         {
             get { return (null != descrField); }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool hidden
@@ -862,20 +844,18 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
-    
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_NonVisualDrawingShapeProps
     {
-
         private CT_ShapeLocking spLocksField;
 
         private CT_OfficeArtExtensionList extLstField;
 
         private bool txBoxField;
+
         public static CT_NonVisualDrawingShapeProps Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -892,8 +872,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0}", nodeName));
@@ -905,8 +883,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.extLst.Write(sw, "extLst");
             sw.Write(string.Format("</a:{0}>", nodeName));
         }
-
-
 
         [XmlElement(Order = 0)]
         public CT_ShapeLocking spLocks
@@ -949,9 +925,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
-    
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
@@ -976,8 +950,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<xdr:{0}", nodeName));
@@ -992,7 +964,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.extLst.Write(sw, "extLst");
             sw.Write(string.Format("</xdr:{0}>", nodeName));
         }
-
 
         private CT_ConnectorLocking cxnSpLocksField;
 
@@ -1059,10 +1030,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
-
     [Serializable]
-    
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
@@ -1083,8 +1051,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -1155,15 +1121,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
-    
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_NonVisualGroupDrawingShapeProps
     {
-
         private CT_GroupLocking grpSpLocksField;
 
         private CT_OfficeArtExtensionList extLstField;
@@ -1183,8 +1146,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0}", nodeName));
@@ -1199,7 +1160,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         public CT_NonVisualGroupDrawingShapeProps()
         {
             //this.extLstField = new CT_OfficeArtExtensionList();
-           //this.grpSpLocksField = new CT_GroupLocking();
+            //this.grpSpLocksField = new CT_GroupLocking();
         }
 
         [XmlElement(Order = 0)]
@@ -1229,14 +1190,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_NonVisualGraphicFrameProperties
     {
-
         private CT_GraphicalObjectFrameLocking graphicFrameLocksField;
 
         private CT_OfficeArtExtensionList extLstField;
@@ -1246,6 +1205,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             //this.extLstField = new CT_OfficeArtExtensionList();
             //this.graphicFrameLocksField = new CT_GraphicalObjectFrameLocking();
         }
+
         public static CT_NonVisualGraphicFrameProperties Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1260,8 +1220,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -1302,13 +1260,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     }
 
     [Serializable]
-    
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_ShapeLocking
     {
-
         private CT_OfficeArtExtensionList extLstField;
 
         private bool noGrpField;
@@ -1332,6 +1288,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private bool noChangeShapeTypeField;
 
         private bool noTextEditField;
+
         public static CT_ShapeLocking Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1356,8 +1313,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0}", nodeName));
@@ -1373,10 +1328,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             XmlHelper.WriteAttribute(sw, "noChangeShapeType", this.noChangeShapeType, false);
             XmlHelper.WriteAttribute(sw, "noTextEdit", this.noTextEdit, false);
             sw.Write(">");
-            if(this.extLst!=null)
+            if (this.extLst != null)
                 this.extLst.Write(sw, "extLst");
             sw.Write(string.Format("</a:{0}>", nodeName));
         }
+
         public CT_ShapeLocking()
         {
             //this.extLstField = new CT_OfficeArtExtensionList();
@@ -1562,13 +1518,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     }
 
     [Serializable]
-    
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_GroupLocking
     {
-
         private CT_OfficeArtExtensionList extLstField;
 
         private bool noGrpField;
@@ -1596,6 +1550,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             this.noMoveField = false;
             this.noResizeField = false;
         }
+
         public static CT_GroupLocking Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1615,8 +1570,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -1745,12 +1698,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_ShapeProperties
     {
-
         private CT_Transform2D xfrmField = null;
 
         private CT_CustomGeometry2D custGeomField = null;
@@ -1783,43 +1736,50 @@ namespace Npoi.Core.OpenXmlFormats.Dml
 
         private ST_BlackWhiteMode bwModeField = ST_BlackWhiteMode.none;
 
-
         public CT_PresetGeometry2D AddNewPrstGeom()
         {
             this.prstGeomField = new CT_PresetGeometry2D();
             return this.prstGeomField;
         }
+
         public CT_Transform2D AddNewXfrm()
         {
             this.xfrmField = new CT_Transform2D();
             return this.xfrmField;
         }
+
         public CT_SolidColorFillProperties AddNewSolidFill()
         {
             this.solidFillField = new CT_SolidColorFillProperties();
             return this.solidFillField;
         }
+
         public bool IsSetPattFill()
         {
             return this.pattFillField != null;
         }
+
         public bool IsSetSolidFill()
         {
             return this.solidFillField != null;
         }
+
         public bool IsSetLn()
         {
             return this.lnField != null;
         }
+
         public CT_LineProperties AddNewLn()
         {
             this.lnField = new CT_LineProperties();
             return lnField;
         }
+
         public void unsetPattFill()
         {
             this.pattFill = null;
         }
+
         public void unsetSolidFill()
         {
             this.solidFill = null;
@@ -2032,6 +1992,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.bwModeField = value;
             }
         }
+
         [XmlIgnore]
         public bool bwModeSpecified
         {
@@ -2081,12 +2042,10 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
-            if(this.bwMode!= ST_BlackWhiteMode.none)
+            if (this.bwMode != ST_BlackWhiteMode.none)
                 XmlHelper.WriteAttribute(sw, "bwMode", this.bwMode.ToString());
             sw.Write(">");
             if (this.xfrm != null)
@@ -2121,14 +2080,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.extLst.Write(sw, "extLst");
             sw.Write(string.Format("</{0}>", nodeName));
         }
-
     }
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     public partial class CT_GroupShapeProperties
     {
-
         private CT_GroupTransform2D xfrmField;
 
         private CT_NoFillProperties noFillField;
@@ -2154,6 +2111,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private ST_BlackWhiteMode bwModeField;
 
         private bool bwModeFieldSpecified;
+
         public static CT_GroupShapeProperties Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2189,12 +2147,10 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0}", nodeName));
-            if(this.bwMode!= ST_BlackWhiteMode.none)
+            if (this.bwMode != ST_BlackWhiteMode.none)
                 XmlHelper.WriteAttribute(sw, "bwMode", this.bwMode.ToString());
             sw.Write(">");
             if (this.xfrm != null)
@@ -2242,6 +2198,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             this.xfrmField = new CT_GroupTransform2D();
             return this.xfrmField;
         }
+
         [XmlElement(Order = 0)]
         public CT_GroupTransform2D xfrm
         {

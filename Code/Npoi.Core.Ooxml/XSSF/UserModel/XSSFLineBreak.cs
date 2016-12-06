@@ -19,9 +19,9 @@
 
 using Npoi.Core.OpenXmlFormats.Dml;
 using System;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     public class XSSFLineBreak : XSSFTextRun
     {
         private CT_TextCharacterProperties _brProps;
@@ -32,7 +32,6 @@ namespace Npoi.Core.XSSF.UserModel
             _brProps = brProps;
         }
 
-
         protected CT_TextCharacterProperties GetRPr()
         {
             return _brProps;
@@ -41,11 +40,10 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Always . You cannot change text of a line break.
          */
+
         public void SetText(String text)
         {
             throw new InvalidOperationException("You cannot change text of a line break, it is always '\\n'");
         }
-
     }
-
 }

@@ -3,23 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Dml.Chart
 {
-
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_BarChart
     {
-
         private CT_BarDir barDirField;
 
         private CT_BarGrouping groupingField;
@@ -43,6 +38,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         public CT_BarChart()
         {
         }
+
         public static CT_BarChart Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -77,8 +73,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -126,7 +120,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             sw.Write(string.Format("</c:{0}>", nodeName));
         }
-
 
         [XmlElement(Order = 0)]
         public CT_BarDir barDir
@@ -260,21 +253,19 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_BarDir
     {
-
         private ST_BarDir valField;
 
         public CT_BarDir()
         {
             this.valField = ST_BarDir.col;
         }
+
         public static CT_BarDir Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -284,8 +275,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
                 ctObj.val = (ST_BarDir)Enum.Parse(typeof(ST_BarDir), node.Attribute("val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -310,12 +299,10 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     public enum ST_BarDir
     {
-
         /// <remarks/>
         bar,
 
@@ -323,21 +310,19 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         col,
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_BarGrouping
     {
-
         private ST_BarGrouping valField;
 
         public CT_BarGrouping()
         {
             this.valField = ST_BarGrouping.clustered;
         }
+
         public static CT_BarGrouping Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -347,8 +332,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
                 ctObj.val = (ST_BarGrouping)Enum.Parse(typeof(ST_BarGrouping), node.Attribute("val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -373,12 +356,10 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     public enum ST_BarGrouping
     {
-
         /// <remarks/>
         percentStacked,
 
@@ -392,15 +373,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         stacked,
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_BarSer
     {
-
         private CT_UnsignedInt idxField;
 
         private CT_UnsignedInt orderField;
@@ -432,6 +410,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         public CT_BarSer()
         {
         }
+
         public static CT_BarSer Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -473,8 +452,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -525,7 +502,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             sw.Write(string.Format("</c:{0}>", nodeName));
         }
-
 
         [XmlElement(Order = 0)]
         public CT_UnsignedInt idx
@@ -710,15 +686,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_Bar3DChart
     {
-
         private CT_BarDir barDirField;
 
         private CT_BarGrouping groupingField;
@@ -883,6 +856,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
                 this.extLstField = value;
             }
         }
+
         public static CT_Bar3DChart Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -916,8 +890,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -960,7 +932,5 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             sw.Write(string.Format("</c:{0}>", nodeName));
         }
-
     }
-
 }

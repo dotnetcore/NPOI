@@ -1,27 +1,29 @@
-﻿using System.Diagnostics;
-using System.IO;
+﻿using System.IO;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
     public class WorkbookDocument
     {
-        CT_Workbook workbook = null;
+        private CT_Workbook workbook = null;
+
         public WorkbookDocument()
         {
             workbook = new CT_Workbook();
         }
+
         public static WorkbookDocument Parse(XDocument xmlDoc, XmlNamespaceManager NameSpaceManager)
         {
             CT_Workbook obj = CT_Workbook.Parse(xmlDoc.Document.Root, NameSpaceManager);
             return new WorkbookDocument(obj);
         }
+
         public WorkbookDocument(CT_Workbook workbook)
         {
             this.workbook = workbook;
         }
+
         public CT_Workbook Workbook
         {
             get
@@ -29,6 +31,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 return this.workbook;
             }
         }
+
         public void Save(Stream stream)
         {
             using (StreamWriter sw1 = new StreamWriter(stream))

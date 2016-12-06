@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Npoi.Core.OpenXml4Net.OPC
 {
@@ -10,6 +8,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
      * @author Julien Chable
      * @version 1.0
      */
+
     public class PackageNamespaces
     {
         /**
@@ -51,5 +50,4 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         public const string SCHEMA_RELATIONSHIPS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships";
     }
-
 }

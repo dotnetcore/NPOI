@@ -1,8 +1,6 @@
 ﻿using Npoi.Core.OpenXml4Net.Util;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -13,7 +11,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_NumFmt
     {
-
         private uint numFmtIdField;
 
         private string formatCodeField;
@@ -28,12 +25,10 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
-            XmlHelper.WriteAttribute(sw, "numFmtId", this.numFmtId,true);
+            XmlHelper.WriteAttribute(sw, "numFmtId", this.numFmtId, true);
             XmlHelper.WriteAttribute(sw, "formatCode", this.formatCode);
             sw.Write("/>");
         }
@@ -50,6 +45,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.numFmtIdField = value;
             }
         }
+
         [XmlAttribute]
         public string formatCode
         {

@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
+﻿using Npoi.Core.OpenXml4Net.Util;
 using Npoi.Core.OpenXmlFormats.Shared;
-using System.Collections;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
-using Npoi.Core.OpenXml4Net.Util;
-
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SdtContentCell
@@ -36,6 +32,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return text;
         }
+
         private List<object> itemsField;
 
         private List<ItemsChoiceType23> itemsElementNameField;
@@ -45,6 +42,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             this.itemsElementNameField = new List<ItemsChoiceType23>();
             this.itemsField = new List<object>();
         }
+
         public static CT_SdtContentCell Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -322,102 +320,70 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IncludeInSchema = false)]
     public enum ItemsChoiceType23
     {
-
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:oMath")]
         oMath,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:oMathPara")]
         oMathPara,
 
-    
         bookmarkEnd,
 
-    
         bookmarkStart,
 
-    
         commentRangeEnd,
 
-    
         commentRangeStart,
 
-    
         customXml,
 
-    
         customXmlDelRangeEnd,
 
-    
         customXmlDelRangeStart,
 
-    
         customXmlInsRangeEnd,
 
-    
         customXmlInsRangeStart,
 
-    
         customXmlMoveFromRangeEnd,
 
-    
         customXmlMoveFromRangeStart,
 
-    
         customXmlMoveToRangeEnd,
 
-    
         customXmlMoveToRangeStart,
 
-    
         del,
 
-    
         ins,
 
-    
         moveFrom,
 
-    
         moveFromRangeEnd,
 
-    
         moveFromRangeStart,
 
-    
         moveTo,
 
-    
         moveToRangeEnd,
 
-    
         moveToRangeStart,
 
-    
         permEnd,
 
-    
         permStart,
 
-    
         proofErr,
 
-    
         sdt,
 
-    
         tc,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SdtBlock
     {
-
         private CT_SdtPr sdtPrField;
 
         private List<CT_RPr> sdtEndPrField;
@@ -429,6 +395,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             //this.sdtEndPrField = new List<CT_RPr>();
             //this.sdtPrField = new CT_SdtPr();
         }
+
         public static CT_SdtBlock Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -446,8 +413,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -529,14 +494,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SdtRun
     {
-
         private CT_SdtPr sdtPrField;
 
         private List<CT_RPr> sdtEndPrField;
@@ -549,6 +511,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             //this.sdtEndPrField = new List<CT_RPr>();
             //this.sdtPrField = new CT_SdtPr();
         }
+
         public static CT_SdtRun Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -566,8 +529,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -628,14 +589,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SdtCell
     {
-
         private CT_SdtPr sdtPrField;
 
         private List<CT_RPr> sdtEndPrField;
@@ -648,6 +606,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             //this.sdtEndPrField = new List<CT_RPr>();
             //this.sdtPrField = new CT_SdtPr();
         }
+
         public static CT_SdtCell Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -665,8 +624,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -728,7 +685,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SdtComboBox
@@ -747,8 +703,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -801,14 +755,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SdtDocPart
     {
-
         private CT_String docPartGalleryField;
 
         private CT_String docPartCategoryField;
@@ -821,6 +772,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             //this.docPartCategoryField = new CT_String();
             //this.docPartGalleryField = new CT_String();
         }
+
         public static CT_SdtDocPart Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -837,8 +789,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -900,14 +850,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SdtDropDownList
     {
-
         private List<CT_SdtListItem> listItemField;
 
         private string lastValueField;
@@ -916,6 +863,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         {
             //this.listItemField = new List<CT_SdtListItem>();
         }
+
         public static CT_SdtDropDownList Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -930,8 +878,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -976,12 +922,10 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SdtContentBlock
     {
-
         private List<object> itemsField;
 
         private List<ItemsChoiceType19> itemsElementNameField;
@@ -991,6 +935,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             this.itemsElementNameField = new List<ItemsChoiceType19>();
             this.itemsField = new List<object>();
         }
+
         public static CT_SdtContentBlock Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1263,11 +1208,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         {
             get
             {
-                return this.itemsElementNameField ;
+                return this.itemsElementNameField;
             }
             set
             {
-               this.itemsElementNameField = value;
+                this.itemsElementNameField = value;
             }
         }
 
@@ -1275,6 +1220,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         {
             return AddNewObject<CT_P>(ItemsChoiceType19.p);
         }
+
         #region Generic methods for object operation
 
         private List<T> GetObjectList<T>(ItemsChoiceType19 type) where T : class
@@ -1290,6 +1236,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return list;
             }
         }
+
         private int SizeOfArray(ItemsChoiceType19 type)
         {
             lock (this)
@@ -1303,6 +1250,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return size;
             }
         }
+
         private T GetObjectArray<T>(int p, ItemsChoiceType19 type) where T : class
         {
             lock (this)
@@ -1313,6 +1261,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return itemsField[pos] as T;
             }
         }
+
         private T InsertNewObject<T>(ItemsChoiceType19 type, int p) where T : class, new()
         {
             T t = new T();
@@ -1324,6 +1273,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return t;
         }
+
         private T AddNewObject<T>(ItemsChoiceType19 type) where T : class, new()
         {
             T t = new T();
@@ -1334,6 +1284,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return t;
         }
+
         private void SetObject<T>(ItemsChoiceType19 type, int p, T obj) where T : class
         {
             lock (this)
@@ -1348,6 +1299,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                         pos, this.itemsField[pos].GetType().Name, typeof(T).Name));
             }
         }
+
         private int GetObjectIndex(ItemsChoiceType19 type, int p)
         {
             int index = -1;
@@ -1367,6 +1319,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return index;
         }
+
         private void RemoveObject(ItemsChoiceType19 type, int p)
         {
             lock (this)
@@ -1378,111 +1331,80 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 itemsField.RemoveAt(pos);
             }
         }
-        #endregion
+
+        #endregion Generic methods for object operation
     }
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IncludeInSchema = false)]
     public enum ItemsChoiceType19
     {
-
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:oMath")]
         oMath,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:oMathPara")]
         oMathPara,
 
-    
         bookmarkEnd,
 
-    
         bookmarkStart,
 
-    
         commentRangeEnd,
 
-    
         commentRangeStart,
 
-    
         customXml,
 
-    
         customXmlDelRangeEnd,
 
-    
         customXmlDelRangeStart,
 
-    
         customXmlInsRangeEnd,
 
-    
         customXmlInsRangeStart,
 
-    
         customXmlMoveFromRangeEnd,
 
-    
         customXmlMoveFromRangeStart,
 
-    
         customXmlMoveToRangeEnd,
 
-    
         customXmlMoveToRangeStart,
 
-    
         del,
 
-    
         ins,
 
-    
         moveFrom,
 
-    
         moveFromRangeEnd,
 
-    
         moveFromRangeStart,
 
-    
         moveTo,
 
-    
         moveToRangeEnd,
 
-    
         moveToRangeStart,
 
-    
         p,
 
-    
         permEnd,
 
-    
         permStart,
 
-    
         proofErr,
 
-    
         sdt,
 
-    
         tbl,
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SdtContentRow
     {
-
         private List<object> itemsField;
 
         private List<ItemsChoiceType22> itemsElementNameField;
@@ -1492,6 +1414,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             this.itemsElementNameField = new List<ItemsChoiceType22>();
             this.itemsField = new List<object>();
         }
+
         public static CT_SdtContentRow Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1765,14 +1688,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SdtPr
     {
-
         private List<object> itemsField;
 
         private List<SdtPrElementType> itemsElementNameField;
@@ -1813,7 +1733,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             set
             {
-                 this.itemsField = value;
+                this.itemsField = value;
             }
         }
 
@@ -1830,6 +1750,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.itemsElementNameField = value;
             }
         }
+
         public static CT_SdtPr Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1950,24 +1871,24 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         {
             sw.Write(string.Format("<w:{0}", nodeName));
             sw.Write(">");
-            
-            for (int i=0;i<this.Items.Count;i++)
+
+            for (int i = 0; i < this.Items.Count; i++)
             {
                 object o = Items[i];
-                SdtPrElementType t= this.itemsElementNameField[i];
-                if (o is CT_Empty && t== SdtPrElementType.richText)
+                SdtPrElementType t = this.itemsElementNameField[i];
+                if (o is CT_Empty && t == SdtPrElementType.richText)
                     sw.Write("<richText/>");
-                else if (o is CT_SdtDocPart&& t  == SdtPrElementType.docPartList)
+                else if (o is CT_SdtDocPart && t == SdtPrElementType.docPartList)
                     ((CT_SdtDocPart)o).Write(sw, "docPartList");
-                else if (o is CT_SdtDocPart&& t == SdtPrElementType.docPartObj)
+                else if (o is CT_SdtDocPart && t == SdtPrElementType.docPartObj)
                     ((CT_SdtDocPart)o).Write(sw, "docPartObj");
                 else if (o is CT_SdtDropDownList)
                     ((CT_SdtDropDownList)o).Write(sw, "dropDownList");
-                else if (o is CT_Empty&& t== SdtPrElementType.equation)
+                else if (o is CT_Empty && t == SdtPrElementType.equation)
                     sw.Write("<equation/>");
-                else if (o is CT_Empty&& t== SdtPrElementType.group)
+                else if (o is CT_Empty && t == SdtPrElementType.group)
                     sw.Write("<group/>");
-                else if (o is CT_DecimalNumber&& t== SdtPrElementType.id)
+                else if (o is CT_DecimalNumber && t == SdtPrElementType.id)
                     ((CT_DecimalNumber)o).Write(sw, "id");
                 else if (o is CT_Lock)
                     ((CT_Lock)o).Write(sw, "lock");
@@ -1977,27 +1898,26 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                     ((CT_Placeholder)o).Write(sw, "placeholder");
                 else if (o is CT_RPr)
                     ((CT_RPr)o).Write(sw, "rPr");
-                else if (o is CT_OnOff && t== SdtPrElementType.showingPlcHdr)
+                else if (o is CT_OnOff && t == SdtPrElementType.showingPlcHdr)
                     ((CT_OnOff)o).Write(sw, "showingPlcHdr");
-                else if (o is CT_String&& t== SdtPrElementType.tag)
+                else if (o is CT_String && t == SdtPrElementType.tag)
                     ((CT_String)o).Write(sw, "tag");
-                else if (o is CT_OnOff && t== SdtPrElementType.temporary)
+                else if (o is CT_OnOff && t == SdtPrElementType.temporary)
                     ((CT_OnOff)o).Write(sw, "temporary");
                 else if (o is CT_SdtText)
                     ((CT_SdtText)o).Write(sw, "text");
-                else if (o is CT_Empty && t== SdtPrElementType.picture)
+                else if (o is CT_Empty && t == SdtPrElementType.picture)
                     sw.Write("<picture/>");
-                else if (o is CT_String&& t== SdtPrElementType.alias)
+                else if (o is CT_String && t == SdtPrElementType.alias)
                     ((CT_String)o).Write(sw, "alias");
-                else if (o is CT_Empty && t== SdtPrElementType.bibliography)
+                else if (o is CT_Empty && t == SdtPrElementType.bibliography)
                     sw.Write("<bibliography/>");
-                else if (o is CT_Empty && t== SdtPrElementType.citation)
+                else if (o is CT_Empty && t == SdtPrElementType.citation)
                     sw.Write("<citation/>");
                 else if (o is CT_SdtComboBox)
                     ((CT_SdtComboBox)o).Write(sw, "comboBox");
                 else if (o is CT_DataBinding)
                     ((CT_DataBinding)o).Write(sw, "dataBinding");
-                
             }
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
@@ -2032,6 +1952,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return list;
             }
         }
+
         private int SizeOfArray(SdtPrElementType type)
         {
             lock (this)
@@ -2045,6 +1966,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return size;
             }
         }
+
         private T GetObjectArray<T>(int p, SdtPrElementType type) where T : class
         {
             lock (this)
@@ -2055,6 +1977,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return itemsField[pos] as T;
             }
         }
+
         private T InsertNewObject<T>(SdtPrElementType type, int p) where T : class, new()
         {
             T t = new T();
@@ -2066,6 +1989,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return t;
         }
+
         private T AddNewObject<T>(SdtPrElementType type) where T : class, new()
         {
             T t = new T();
@@ -2076,6 +2000,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return t;
         }
+
         private void SetObject<T>(SdtPrElementType type, int p, T obj) where T : class
         {
             lock (this)
@@ -2090,6 +2015,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                         pos, this.itemsField[pos].GetType().Name, typeof(T).Name));
             }
         }
+
         private int GetObjectIndex(SdtPrElementType type, int p)
         {
             int index = -1;
@@ -2109,6 +2035,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return index;
         }
+
         private void RemoveObject(SdtPrElementType type, int p)
         {
             lock (this)
@@ -2120,85 +2047,62 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 itemsField.RemoveAt(pos);
             }
         }
-        #endregion
+
+        #endregion Generic methods for object operation
     }
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IncludeInSchema = false)]
     public enum SdtPrElementType
     {
-
-    
         alias,
 
-    
         bibliography,
 
-    
         citation,
 
-    
         comboBox,
 
-    
         dataBinding,
 
-    
         date,
 
-    
         docPartList,
 
-    
         docPartObj,
 
-    
         dropDownList,
 
-    
         equation,
 
-    
         group,
 
-    
         id,
 
-    
         @lock,
 
-    
         picture,
 
-    
         placeholder,
 
-    
         rPr,
 
-    
         richText,
 
-    
         showingPlcHdr,
 
-    
         tag,
 
-    
         temporary,
 
-    
         text,
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SdtEndPr
     {
-
         private List<CT_RPr> itemsField;
 
         public CT_SdtEndPr()
@@ -2227,14 +2131,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SdtContentRun
     {
-
         private List<object> itemsField;
 
         private List<ItemsChoiceType18> itemsElementNameField;
@@ -2244,6 +2145,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             this.itemsElementNameField = new List<ItemsChoiceType18>();
             this.itemsField = new List<object>();
         }
+
         public static CT_SdtContentRun Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2552,6 +2454,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         {
             return GetObjectList<CT_R>(ItemsChoiceType18.r);
         }
+
         #region Generic methods for object operation
 
         private List<T> GetObjectList<T>(ItemsChoiceType18 type) where T : class
@@ -2567,6 +2470,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return list;
             }
         }
+
         private int SizeOfArray(ItemsChoiceType18 type)
         {
             lock (this)
@@ -2580,6 +2484,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return size;
             }
         }
+
         private T GetObjectArray<T>(int p, ItemsChoiceType18 type) where T : class
         {
             lock (this)
@@ -2590,6 +2495,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return itemsField[pos] as T;
             }
         }
+
         private T InsertNewObject<T>(ItemsChoiceType18 type, int p) where T : class, new()
         {
             T t = new T();
@@ -2601,6 +2507,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return t;
         }
+
         private T AddNewObject<T>(ItemsChoiceType18 type) where T : class, new()
         {
             T t = new T();
@@ -2611,6 +2518,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return t;
         }
+
         private void SetObject<T>(ItemsChoiceType18 type, int p, T obj) where T : class
         {
             lock (this)
@@ -2625,6 +2533,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                         pos, this.itemsField[pos].GetType().Name, typeof(T).Name));
             }
         }
+
         private int GetObjectIndex(ItemsChoiceType18 type, int p)
         {
             int index = -1;
@@ -2644,6 +2553,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return index;
         }
+
         private void RemoveObject(ItemsChoiceType18 type, int p)
         {
             lock (this)
@@ -2655,123 +2565,90 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 itemsField.RemoveAt(pos);
             }
         }
-        #endregion
+
+        #endregion Generic methods for object operation
     }
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IncludeInSchema = false)]
     public enum ItemsChoiceType18
     {
-
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:oMath")]
         oMath,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:oMathPara")]
         oMathPara,
 
-    
         bookmarkEnd,
 
-    
         bookmarkStart,
 
-    
         commentRangeEnd,
 
-    
         commentRangeStart,
 
-    
         customXml,
 
-    
         customXmlDelRangeEnd,
 
-    
         customXmlDelRangeStart,
 
-    
         customXmlInsRangeEnd,
 
-    
         customXmlInsRangeStart,
 
-    
         customXmlMoveFromRangeEnd,
 
-    
         customXmlMoveFromRangeStart,
 
-    
         customXmlMoveToRangeEnd,
 
-    
         customXmlMoveToRangeStart,
 
-    
         del,
 
-    
         fldSimple,
 
-    
         hyperlink,
 
-    
         ins,
 
-    
         moveFrom,
 
-    
         moveFromRangeEnd,
 
-    
         moveFromRangeStart,
 
-    
         moveTo,
 
-    
         moveToRangeEnd,
 
-    
         moveToRangeStart,
 
-    
         permEnd,
 
-    
         permStart,
 
-    
         proofErr,
 
-    
         r,
 
-    
         sdt,
 
-    
         smartTag,
 
-    
         subDoc,
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SdtListItem
     {
-
         private string displayTextField;
 
         private string valueField;
+
         public static CT_SdtListItem Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2781,8 +2658,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             ctObj.value = XmlHelper.ReadString(node.Attribute("w:value"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -2820,17 +2695,15 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SdtDateMappingType
     {
-
         private ST_SdtDateMappingType valField;
 
         private bool valFieldSpecified;
+
         public static CT_SdtDateMappingType Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2840,8 +2713,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.val = (ST_SdtDateMappingType)Enum.Parse(typeof(ST_SdtDateMappingType), node.Attribute("w:val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -2878,30 +2749,22 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_SdtDateMappingType
     {
-
-    
         text,
 
-    
         date,
 
-    
         dateTime,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_CalendarType
     {
-
         private ST_CalendarType valField;
 
         private bool valFieldSpecified;
@@ -2916,8 +2779,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -2925,7 +2786,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             sw.Write(">");
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public ST_CalendarType val
@@ -2954,51 +2814,36 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_CalendarType
     {
-
-    
         gregorian,
 
-    
         hijri,
 
-    
         hebrew,
 
-    
         taiwan,
 
-    
         japan,
 
-    
         thai,
 
-    
         korea,
 
-    
         saka,
 
-    
         gregorianXlitEnglish,
 
-    
         gregorianXlitFrench,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SdtDate
     {
-
         private CT_String dateFormatField;
 
         private CT_Lang lidField;
@@ -3018,6 +2863,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             //this.lidField = new CT_Lang();
             //this.dateFormatField = new CT_String();
         }
+
         public static CT_SdtDate Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -3037,8 +2883,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3134,13 +2978,12 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
         }
     }
-    [Serializable]
 
+    [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SdtRow
     {
-
         private CT_SdtPr sdtPrField;
 
         private List<CT_RPr> sdtEndPrField;
@@ -3171,8 +3014,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3232,16 +3073,16 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
         }
     }
-    [Serializable]
 
+    [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SdtText
     {
-
         private ST_OnOff multiLineField;
 
         private bool multiLineFieldSpecified;
+
         public static CT_SdtText Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -3251,8 +3092,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.multiLine = (ST_OnOff)Enum.Parse(typeof(ST_OnOff), node.Attribute("w:multiLine").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3290,7 +3129,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Lock
@@ -3304,8 +3142,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.val = (ST_Lock)Enum.Parse(typeof(ST_Lock), node.Attribute("w:val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3346,22 +3182,16 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_Lock
     {
-
-    
         sdtLocked,
 
-    
         contentLocked,
 
-    
         unlocked,
 
-    
         sdtContentLocked,
     }
 }

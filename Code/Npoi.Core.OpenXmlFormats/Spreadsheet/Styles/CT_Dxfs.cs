@@ -1,24 +1,20 @@
 ﻿using Npoi.Core.OpenXml4Net.Util;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
-
-
     public class CT_Dxfs
     {
-
         private List<CT_Dxf> dxfField;
 
         private uint countField;
 
         private bool countFieldSpecified;
+
         public static CT_Dxfs Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -33,8 +29,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -55,6 +49,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             //this.dxfField = new List<CT_Dxf>();
         }
+
         [XmlElement]
         public List<CT_Dxf> dxf
         {
@@ -67,6 +62,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.dxfField = value;
             }
         }
+
         [XmlAttribute]
         public uint count
         {
@@ -92,13 +88,10 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.countFieldSpecified = value;
             }
         }
-
-
     }
 
     public class CT_Dxf
     {
-
         private CT_Font fontField;
 
         private CT_NumFmt numFmtField;
@@ -112,6 +105,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         private CT_CellProtection protectionField;
 
         private CT_ExtensionList extLstField;
+
         public static CT_Dxf Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -136,8 +130,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -175,6 +167,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             return borderField != null;
         }
+
         public CT_Font AddNewFont()
         {
             CT_Font font = new CT_Font();
@@ -195,14 +188,17 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.borderField = border;
             return border;
         }
+
         public bool IsSetFont()
         {
             return fontField != null;
         }
+
         public bool IsSetFill()
         {
             return fillField != null;
         }
+
         [XmlElement]
         public CT_Font font
         {
@@ -215,6 +211,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.fontField = value;
             }
         }
+
         [XmlElement]
         public CT_NumFmt numFmt
         {
@@ -227,6 +224,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.numFmtField = value;
             }
         }
+
         [XmlElement]
         public CT_Fill fill
         {
@@ -239,6 +237,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.fillField = value;
             }
         }
+
         [XmlElement]
         public CT_CellAlignment alignment
         {
@@ -251,6 +250,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.alignmentField = value;
             }
         }
+
         [XmlElement]
         public CT_Border border
         {
@@ -263,6 +263,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.borderField = value;
             }
         }
+
         [XmlElement]
         public CT_CellProtection protection
         {
@@ -275,6 +276,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.protectionField = value;
             }
         }
+
         [XmlElement]
         public CT_ExtensionList extLst
         {

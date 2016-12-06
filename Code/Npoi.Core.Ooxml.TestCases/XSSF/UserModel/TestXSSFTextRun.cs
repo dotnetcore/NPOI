@@ -14,12 +14,14 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XSSF.UserModel
 {
-    using System;
     using NUnit.Framework;
+    using System;
     using System.Collections.Generic;
     using System.Drawing;
+
     [TestFixture]
     public class TestXSSFTextRun
     {
@@ -35,7 +37,7 @@ namespace Npoi.Core.XSSF.UserModel
                 XSSFTextBox shape = Drawing.CreateTextbox(new XSSFClientAnchor(0, 0, 0, 0, 2, 2, 3, 4)) as XSSFTextBox;
 
                 XSSFTextParagraph para = shape.AddNewTextParagraph();
-                para.AddNewTextRun().Text=("Line 1");
+                para.AddNewTextRun().Text = ("Line 1");
 
                 List<XSSFTextRun> Runs = para.TextRuns;
                 Assert.AreEqual(1, Runs.Count);
@@ -145,5 +147,4 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
     }
-
 }

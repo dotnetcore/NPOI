@@ -17,26 +17,24 @@
 
 namespace Npoi.Core.XWPF
 {
-    using System;
-
-
-
-    using NUnit.Framework;
     using Npoi.Core.XWPF.UserModel;
+    using NUnit.Framework;
+    using System;
 
     /**
      * Tests if the {@link CoreProperties#getKeywords()} method. This test has been
      * submitted because even though the
      * {@link PackageProperties#getKeywordsProperty()} had been present before, the
      * {@link CoreProperties#getKeywords()} had been missing.
-     * 
+     *
      * The author of this has Added {@link CoreProperties#getKeywords()} and
      * {@link CoreProperties#setKeywords(String)} and this test is supposed to test
      * them.
-     * 
+     *
      * @author Antoni Mylka
-     * 
+     *
      */
+
     [TestFixture]
     public class TestPackageCorePropertiesGetKeywords
     {
@@ -47,11 +45,10 @@ namespace Npoi.Core.XWPF
             String keywords = doc.GetProperties().CoreProperties.Keywords;
             Assert.AreEqual("extractor, test, rdf", keywords);
 
-            doc.GetProperties().CoreProperties.Keywords =  ("test, keywords");
+            doc.GetProperties().CoreProperties.Keywords = ("test, keywords");
             doc = XWPFTestDataSamples.WriteOutAndReadBack(doc);
             keywords = doc.GetProperties().CoreProperties.Keywords;
             Assert.AreEqual("test, keywords", keywords);
         }
     }
-
 }

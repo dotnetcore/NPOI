@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Npoi.Core.OpenXml4Net.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-
-using System.Text;
-using System.Xml.Serialization;
-using System.Xml;
-using Npoi.Core.OpenXml4Net.Util;
 using System.IO;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
@@ -15,7 +13,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_Row
     {
-
         private List<CT_Cell> cField = null; // optional element
 
         private CT_ExtensionList extLstField = null; // optional element
@@ -29,7 +26,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 
         private bool customFormatField;
 
-        private double htField=-1;
+        private double htField = -1;
 
         private bool hiddenField;
 
@@ -54,7 +51,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             ctObj.spans = XmlHelper.ReadString(node.Attribute("spans"));
             ctObj.s = XmlHelper.ReadUInt(node.Attribute("s"));
             ctObj.customFormat = XmlHelper.ReadBool(node.Attribute("customFormat"));
-            if (node.Attribute("ht")!=null)
+            if (node.Attribute("ht") != null)
                 ctObj.ht = XmlHelper.ReadDouble(node.Attribute("ht"));
             ctObj.hidden = XmlHelper.ReadBool(node.Attribute("hidden"));
             ctObj.outlineLevel = XmlHelper.ReadByte(node.Attribute("outlineLevel"));
@@ -74,23 +71,21 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "r", this.r);
             XmlHelper.WriteAttribute(sw, "spans", this.spans);
             XmlHelper.WriteAttribute(sw, "s", this.s);
-            XmlHelper.WriteAttribute(sw, "customFormat", this.customFormat,false);
-            if(this.ht>=0)
+            XmlHelper.WriteAttribute(sw, "customFormat", this.customFormat, false);
+            if (this.ht >= 0)
                 XmlHelper.WriteAttribute(sw, "ht", this.ht);
-            XmlHelper.WriteAttribute(sw, "hidden", this.hidden,false);
-            XmlHelper.WriteAttribute(sw, "customHeight", this.customHeight,false);
+            XmlHelper.WriteAttribute(sw, "hidden", this.hidden, false);
+            XmlHelper.WriteAttribute(sw, "customHeight", this.customHeight, false);
             XmlHelper.WriteAttribute(sw, "outlineLevel", this.outlineLevel);
             XmlHelper.WriteAttribute(sw, "collapsed", this.collapsed, false);
-            XmlHelper.WriteAttribute(sw, "thickTop", this.thickTop,false);
-            XmlHelper.WriteAttribute(sw, "thickBot", this.thickBot,false);
+            XmlHelper.WriteAttribute(sw, "thickTop", this.thickTop, false);
+            XmlHelper.WriteAttribute(sw, "thickBot", this.thickBot, false);
             XmlHelper.WriteAttribute(sw, "ph", this.ph, false);
             sw.Write(">");
             if (this.extLst != null)
@@ -104,8 +99,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             sw.Write(string.Format("</{0}>", nodeName));
         }
-
-
 
         public void Set(CT_Row row)
         {
@@ -124,6 +117,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             thickBotField = row.thickBotField;
             phField = row.phField;
         }
+
         public CT_Cell AddNewC()
         {
             if (null == cField) { cField = new List<CT_Cell>(); }
@@ -131,46 +125,57 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.cField.Add(cell);
             return cell;
         }
+
         public void UnsetCollapsed()
         {
             this.collapsedField = false;
         }
+
         public void UnsetS()
         {
             this.sField = 0;
         }
+
         public void UnsetCustomFormat()
         {
             this.customFormatField = false;
         }
+
         public bool IsSetHidden()
         {
             return this.hiddenField != false;
         }
+
         public bool IsSetCollapsed()
         {
             return this.collapsedField != false;
         }
+
         public bool IsSetHt()
         {
-            return this.htField >=0;
+            return this.htField >= 0;
         }
+
         public void unSetHt()
         {
             this.htField = -1;
         }
+
         public bool IsSetCustomHeight()
         {
             return this.customHeightField != false;
         }
+
         public void unSetCustomHeight()
         {
             this.customHeightField = false;
         }
+
         public bool IsSetS()
         {
             return this.sField != 0;
         }
+
         public void unsetHidden()
         {
             this.hiddenField = false;
@@ -180,14 +185,17 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             return (null == cField) ? 0 : cField.Count;
         }
+
         public CT_Cell GetCArray(int index)
         {
             return (null == cField) ? null : cField[index];
         }
+
         public void SetCArray(CT_Cell[] array)
         {
             cField = new List<CT_Cell>(array);
         }
+
         [XmlElement("c")]
         public List<CT_Cell> c
         {
@@ -200,6 +208,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.cField = value;
             }
         }
+
         [XmlElement("extLst")]
         public CT_ExtensionList extLst
         {
@@ -266,6 +275,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.customFormatField = value;
             }
         }
+
         [XmlAttribute]
         public double ht
         {
@@ -278,7 +288,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.htField = value;
             }
         }
-
 
         //[DefaultValue(false)]
         [XmlAttribute]
@@ -378,5 +387,4 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
-
 }

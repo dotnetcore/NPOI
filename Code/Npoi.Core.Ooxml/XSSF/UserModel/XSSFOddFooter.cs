@@ -15,44 +15,45 @@
    limitations under the License.
 ==================================================================== */
 
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
 using Npoi.Core.XSSF.UserModel.Extensions;
 using System;
-using Npoi.Core.SS.UserModel;
-using Npoi.Core.OpenXmlFormats.Spreadsheet;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Odd page footer value. Corresponds to odd printed pages.
-     * Odd page(s) in the sheet may not be printed, for example, if the print area is specified to be 
+     * Odd page(s) in the sheet may not be printed, for example, if the print area is specified to be
      * a range such that it falls outside an odd page's scope.
      *
      */
+
     public class XSSFOddFooter : XSSFHeaderFooter, IFooter
     {
-
         /**
          * Create an instance of XSSFOddFooter from the supplied XML bean
          * @see XSSFSheet#GetOddFooter()
          * @param headerFooter
          */
+
         public XSSFOddFooter(CT_HeaderFooter headerFooter)
             : base(headerFooter)
         {
-
         }
 
         /**
          * Get the content text representing the footer
          * @return text
          */
+
         public override String Text
         {
             get
             {
                 return GetHeaderFooter().oddFooter;
             }
-            set 
+            set
             {
                 GetHeaderFooter().oddFooter = value;
             }

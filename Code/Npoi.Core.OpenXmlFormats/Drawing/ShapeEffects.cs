@@ -1,21 +1,19 @@
-using System;
-using System.ComponentModel;
-using System.Xml.Serialization;
-using System.Collections.Generic;
-using System.Xml;
-using System.IO;
-using System.Xml.Linq;
 using Npoi.Core.OpenXml4Net.Util;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Dml
 {
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot("blip", Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = false)]
     public class CT_Blip
     {
-
         private List<object> itemsField;
 
         private CT_OfficeArtExtensionList extLstField;
@@ -34,6 +32,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             this.linkField = "";
             this.cstateField = ST_BlipCompression.none;
         }
+
         public static CT_Blip Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -55,13 +54,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0} xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"", nodeName));
             XmlHelper.WriteAttribute(sw, "r:embed", this.embed);
             XmlHelper.WriteAttribute(sw, "r:link", this.link);
-            if(cstate!= ST_BlipCompression.none)
+            if (cstate != ST_BlipCompression.none)
                 XmlHelper.WriteAttribute(sw, "cstate", this.cstate.ToString());
             sw.Write(">");
             if (this.extLst != null)
@@ -154,13 +152,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_AlphaBiLevelEffect
     {
-
         private int threshField;
 
         [XmlAttribute]
@@ -177,13 +173,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_TransformEffect
     {
-
         private int sxField;
 
         private int syField;
@@ -291,13 +285,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_TintEffect
     {
-
         private int hueField;
 
         private int amtField;
@@ -351,8 +343,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0}", nodeName));
@@ -382,7 +372,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_RelativeOffsetEffect
     {
-
         private int txField;
 
         private int tyField;
@@ -427,7 +416,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_ReflectionEffect
     {
-
         private long blurRadField;
 
         private int stAField;
@@ -455,6 +443,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private ST_RectAlignment algnField;
 
         private bool rotWithShapeField;
+
         public static CT_ReflectionEffect Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -477,8 +466,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             ctObj.rotWithShape = XmlHelper.ReadBool(node.Attribute("rotWithShape"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -721,7 +708,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_PresetShadowEffect
     {
-
         private CT_ScRgbColor scrgbClrField;
 
         private CT_SRgbColor srgbClrField;
@@ -739,6 +725,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private long distField;
 
         private int dirField;
+
         public static CT_PresetShadowEffect Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -765,8 +752,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -926,7 +911,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     public enum ST_PresetShadowVal
     {
-
         /// <remarks/>
         shdw1,
 
@@ -993,7 +977,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_OuterShadowEffect
     {
-
         private CT_ScRgbColor scrgbClrField;
 
         private CT_SRgbColor srgbClrField;
@@ -1023,6 +1006,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private ST_RectAlignment algnField;
 
         private bool rotWithShapeField;
+
         public static CT_OuterShadowEffect Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1055,8 +1039,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -1315,7 +1297,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_LuminanceEffect
     {
-
         private int brightField;
 
         private int contrastField;
@@ -1360,7 +1341,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_InnerShadowEffect
     {
-
         private CT_ScRgbColor scrgbClrField;
 
         private CT_SRgbColor srgbClrField;
@@ -1378,6 +1358,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private long distField;
 
         private int dirField;
+
         public static CT_InnerShadowEffect Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1403,8 +1384,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -1567,7 +1546,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_HSLEffect
     {
-
         private int hueField;
 
         private int satField;
@@ -1631,13 +1609,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     {
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_GlowEffect
     {
-
         private CT_ScRgbColor scrgbClrField;
 
         private CT_SRgbColor srgbClrField;
@@ -1651,6 +1627,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private CT_PresetColor prstClrField;
 
         private long radField;
+
         public static CT_GlowEffect Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1674,8 +1651,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -1801,13 +1776,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_FillOverlayEffect
     {
-
         private CT_NoFillProperties noFillField;
 
         private CT_SolidColorFillProperties solidFillField;
@@ -1821,6 +1794,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private CT_GroupFillProperties grpFillField;
 
         private ST_BlendMode blendField;
+
         public static CT_FillOverlayEffect Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1845,8 +1819,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -1970,7 +1942,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
@@ -1978,13 +1949,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     {
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_SolidColorFillProperties
     {
-
         private CT_ScRgbColor scrgbClrField;
 
         private CT_SRgbColor srgbClrField;
@@ -2006,6 +1975,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             //this.srgbClrField = new CT_SRgbColor();
             //this.scrgbClrField = new CT_ScRgbColor();
         }
+
         public static CT_SolidColorFillProperties Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2193,7 +2163,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_GradientFillProperties
     {
-
         private CT_GradientStopList gsLstField;
 
         private CT_LinearShadeProperties linField;
@@ -2217,6 +2186,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             //this.linField = new CT_LinearShadeProperties();
             //this.gsLstField = new List<CT_GradientStop>();
         }
+
         public static CT_GradientFillProperties Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2239,8 +2209,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0}", nodeName));
@@ -2257,6 +2225,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.tileRect.Write(sw, "tileRect");
             sw.Write(string.Format("</a:{0}>", nodeName));
         }
+
         [XmlElement(Order = 0)]
         public CT_GradientStopList gsLst
         {
@@ -2360,7 +2329,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.rotWithShapeFieldSpecified = value;
             }
         }
-
     }
 
     [Serializable]
@@ -2368,7 +2336,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_GradientStop
     {
-
         private CT_ScRgbColor scrgbClrField;
 
         private CT_SRgbColor srgbClrField;
@@ -2392,6 +2359,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             //this.srgbClrField = new CT_SRgbColor();
             //this.scrgbClrField = new CT_ScRgbColor();
         }
+
         public static CT_GradientStop Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2415,8 +2383,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -2535,7 +2501,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_LinearShadeProperties
     {
-
         private int angField;
 
         private bool angFieldSpecified;
@@ -2543,6 +2508,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private bool scaledField;
 
         private bool scaledFieldSpecified;
+
         public static CT_LinearShadeProperties Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2552,8 +2518,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             ctObj.scaled = XmlHelper.ReadBool(node.Attribute("scaled"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -2622,7 +2586,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_PathShadeProperties
     {
-
         private CT_RelativeRect fillToRectField;
 
         private ST_PathShadeType pathField;
@@ -2633,6 +2596,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         {
             //this.fillToRectField = new CT_RelativeRect();
         }
+
         public static CT_PathShadeProperties Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2648,8 +2612,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0}", nodeName));
@@ -2659,7 +2621,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.fillToRect.Write(sw, "fillToRect");
             sw.Write(string.Format("</a:{0}>", nodeName));
         }
-
 
         [XmlElement(Order = 0)]
         public CT_RelativeRect fillToRect
@@ -2705,7 +2666,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     public enum ST_PathShadeType
     {
-
         /// <remarks/>
         shape,
 
@@ -2716,12 +2676,10 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         rect,
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     public enum ST_TileFlipMode
     {
-
         /// <remarks/>
         none,
 
@@ -2740,7 +2698,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_BlipFillProperties
     {
-
         private CT_Blip blipField = null;
 
         private CT_RelativeRect srcRectField = null;
@@ -2788,8 +2745,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -2863,15 +2818,16 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         [XmlAttribute]
         public uint dpi
         {
-            get 
-            { 
-                return (uint)this.dpiField; 
+            get
+            {
+                return (uint)this.dpiField;
             }
-            set 
-            { 
-                this.dpiField = value; 
+            set
+            {
+                this.dpiField = value;
             }
         }
+
         [XmlIgnore]
         public bool dpiSpecified
         {
@@ -2885,7 +2841,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         public bool rotWithShape
         {
@@ -2898,6 +2853,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.rotWithShapeField = value;
             }
         }
+
         [XmlIgnore]
         public bool rotWithShapeSpecified
         {
@@ -2915,17 +2871,13 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         {
             return this.blipField != null;
         }
-
     }
-
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_TileInfoProperties
     {
-
         private long txField;
 
         private bool txFieldSpecified;
@@ -2965,8 +2917,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 ctObj.algn = (ST_RectAlignment)Enum.Parse(typeof(ST_RectAlignment), node.Attribute("algn").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3138,7 +3088,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
@@ -3156,8 +3105,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3195,7 +3142,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_PatternFillProperties
     {
-
         private CT_Color fgClrField;
 
         private CT_Color bgClrField;
@@ -3203,6 +3149,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private ST_PresetPatternVal prstField;
 
         private bool prstFieldSpecified;
+
         public static CT_PatternFillProperties Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -3220,8 +3167,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0}", nodeName));
@@ -3233,7 +3178,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.bgClr.Write(sw, "bgClr");
             sw.Write(string.Format("</a:{0}>", nodeName));
         }
-
 
         public CT_PatternFillProperties()
         {
@@ -3298,7 +3242,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     public enum ST_PresetPatternVal
     {
-
         /// <remarks/>
         pct5,
 
@@ -3462,7 +3405,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         zigZag,
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
@@ -3474,7 +3416,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     public enum ST_BlendMode
     {
-
         /// <remarks/>
         over,
 
@@ -3496,7 +3437,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_FillEffect
     {
-
         private CT_NoFillProperties noFillField;
 
         private CT_SolidColorFillProperties solidFillField;
@@ -3629,6 +3569,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
 
         #region another way
+
         //private CT_ScRgbColor[] scrgbClrField;
 
         //private CT_SRgbColor[] srgbClrField;
@@ -3640,7 +3581,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         //private CT_SchemeColor[] schemeClrField;
 
         //private CT_PresetColor[] prstClrField;
-
 
         //[XmlElement("scrgbClr")]
         //public CT_ScRgbColor[] scrgbClr
@@ -3655,7 +3595,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         //    }
         //}
 
-
         //[XmlElement("srgbClr")]
         //public CT_SRgbColor[] srgbClr
         //{
@@ -3668,7 +3607,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         //        this.srgbClrField = value;
         //    }
         //}
-
 
         //[XmlElement("hslClr")]
         //public CT_HslColor[] hslClr
@@ -3683,7 +3621,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         //    }
         //}
 
-
         //[XmlElement("sysClr")]
         //public CT_SystemColor[] sysClr
         //{
@@ -3696,7 +3633,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         //        this.sysClrField = value;
         //    }
         //}
-
 
         //[XmlElement("schemeClr")]
         //public CT_SchemeColor[] schemeClr
@@ -3711,7 +3647,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         //    }
         //}
 
-
         //[XmlElement("prstClr")]
         //public CT_PresetColor[] prstClr
         //{
@@ -3725,7 +3660,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         //    }
         //}
 
-        #endregion
+        #endregion another way
     }
 
     [Serializable]
@@ -3733,7 +3668,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_ColorReplaceEffect
     {
-
         private CT_ScRgbColor scrgbClrField;
 
         private CT_SRgbColor srgbClrField;
@@ -3835,13 +3769,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_ColorChangeEffect
     {
-
         private CT_Color clrFromField;
 
         private CT_Color clrToField;
@@ -3896,7 +3828,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
@@ -3912,8 +3843,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0}", nodeName));
@@ -3922,6 +3851,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             sw.Write(">");
             sw.Write(string.Format("</a:{0}>", nodeName));
         }
+
         private long radField;
 
         private bool growField;
@@ -3961,13 +3891,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_BlendEffect
     {
-
         private CT_EffectContainer contField;
 
         private ST_BlendMode blendField;
@@ -4004,13 +3932,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_EffectContainer
     {
-
         private List<object> itemsField;
 
         private ST_EffectContainerType typeField;
@@ -4022,6 +3948,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             this.itemsField = new List<object>();
             this.typeField = ST_EffectContainerType.sib;
         }
+
         public static CT_EffectContainer Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -4032,8 +3959,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             ctObj.name = XmlHelper.ReadString(node.Attribute("name"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -4114,14 +4039,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_AlphaCeilingEffect
     {
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
@@ -4130,13 +4053,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     {
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_AlphaInverseEffect
     {
-
         private CT_ScRgbColor scrgbClrField;
 
         private CT_SRgbColor srgbClrField;
@@ -4243,7 +4164,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_AlphaModulateEffect
     {
-
         private CT_EffectContainer contField;
 
         public CT_AlphaModulateEffect()
@@ -4270,7 +4190,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_AlphaModulateFixedEffect
     {
-
         private int amtField;
 
         public CT_AlphaModulateFixedEffect()
@@ -4293,13 +4212,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_AlphaOutsetEffect
     {
-
         private long radField;
 
         public CT_AlphaOutsetEffect()
@@ -4322,13 +4239,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_AlphaReplaceEffect
     {
-
         private int aField;
 
         [XmlAttribute]
@@ -4345,13 +4260,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_BiLevelEffect
     {
-
         private int threshField;
 
         [XmlAttribute]
@@ -4373,7 +4286,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_EffectReference
     {
-
         private string refField;
 
         [XmlAttribute(DataType = "token")]
@@ -4390,12 +4302,10 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     public enum ST_EffectContainerType
     {
-
         /// <remarks/>
         sib,
 
@@ -4403,12 +4313,10 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         tree,
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     public enum ST_BlipCompression
     {
-
         /// <remarks/>
         email,
 
@@ -4424,7 +4332,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         /// <remarks/>
         none,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
@@ -4444,8 +4351,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -4487,7 +4392,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_FillProperties
     {
-
         private CT_NoFillProperties noFillField;
 
         private CT_SolidColorFillProperties solidFillField;
@@ -4594,7 +4498,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_EffectList
     {
-
         private CT_BlurEffect blurField;
 
         private CT_FillOverlayEffect fillOverlayField;
@@ -4610,6 +4513,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private CT_ReflectionEffect reflectionField;
 
         private CT_SoftEdgesEffect softEdgeField;
+
         public static CT_EffectList Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -4636,8 +4540,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -4779,13 +4681,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_EffectProperties
     {
-
         private CT_EffectList effectLstField;
 
         private CT_EffectContainer effectDagField;

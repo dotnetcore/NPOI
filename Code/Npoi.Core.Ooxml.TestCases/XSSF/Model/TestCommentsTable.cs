@@ -15,22 +15,21 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.XSSF.UserModel;
 using NUnit.Framework;
+using System;
+
 namespace Npoi.Core.XSSF.Model
 {
-
-
     [TestFixture]
     public class TestCommentsTable
     {
-
         private static String TEST_A2_TEXT = "test A2 text";
         private static String TEST_A1_TEXT = "test A1 text";
         private static String TEST_AUTHOR = "test author";
+
         [Test]
         public void FindAuthor()
         {
@@ -45,6 +44,7 @@ namespace Npoi.Core.XSSF.Model
             Assert.AreEqual(3, sheetComments.FindAuthor("YAA"));
             Assert.AreEqual(2, sheetComments.FindAuthor("another author"));
         }
+
         [Test]
         public void GetCellComment()
         {
@@ -102,6 +102,7 @@ namespace Npoi.Core.XSSF.Model
             Assert.AreEqual(6, cc7.Row);
             Assert.AreEqual(2, cc7.Column);
         }
+
         [Test]
         public void WriteRead()
         {
@@ -129,7 +130,6 @@ namespace Npoi.Core.XSSF.Model
             cc2.String = (new XSSFRichTextString("A new comment"));
             c1r2s2.CellComment = (cc2);
 
-
             // Save, and re-load the file
             workbook = (XSSFWorkbook)XSSFTestDataSamples.WriteOutAndReadBack(workbook);
 
@@ -151,6 +151,7 @@ namespace Npoi.Core.XSSF.Model
             Assert.AreEqual("Hello!",
                     sheet1.GetRow(4).GetCell(2).CellComment.String.String);
         }
+
         [Test]
         public void ReadWriteMultipleAuthors()
         {
@@ -187,6 +188,7 @@ namespace Npoi.Core.XSSF.Model
 
             // Todo - check text too, once bug fixed
         }
+
         [Test]
         public void RemoveComment()
         {
@@ -218,6 +220,7 @@ namespace Npoi.Core.XSSF.Model
             Assert.IsNull(sheetComments.GetCTComment("A2"));
             Assert.IsNull(sheetComments.GetCTComment("A3"));
         }
+
         [Test]
         public void Bug54920()
         {
@@ -297,5 +300,4 @@ namespace Npoi.Core.XSSF.Model
             return cell;
         }
     }
-
 }

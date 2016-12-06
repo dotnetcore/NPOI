@@ -16,20 +16,22 @@
  *    limitations under the License.
  * ====================================================================
  */
+
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
-
     /**
      * @author Yegor Kozlov
      */
+
     public class XSSFFontFormatting : IFontFormatting
     {
-        CT_Font _font;
+        private CT_Font _font;
 
         /*package*/
+
         internal XSSFFontFormatting(CT_Font font)
         {
             _font = font;
@@ -43,6 +45,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @see #SS_SUPER
          * @see #SS_SUB
          */
+
         public FontSuperScript EscapementType
         {
             get
@@ -52,7 +55,7 @@ namespace Npoi.Core.XSSF.UserModel
                 CT_VerticalAlignFontProperty prop = _font.GetVertAlignArray(0);
                 return (FontSuperScript)(prop.val - 1);
             }
-            set 
+            set
             {
                 _font.SetVertAlignArray(null);
                 if (value != FontSuperScript.None)
@@ -62,10 +65,10 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         /**
          * @return font color index
          */
+
         public short FontColorIndex
         {
             get
@@ -77,23 +80,23 @@ namespace Npoi.Core.XSSF.UserModel
                 if (color.IsSetIndexed()) idx = (int)color.indexed;
                 return (short)idx;
             }
-            set 
+            set
             {
                 _font.SetColorArray(null);
                 if (value != -1)
                 {
-                    var clr=_font.AddNewColor();
+                    var clr = _font.AddNewColor();
                     clr.indexed = (uint)(value);
                     clr.indexedSpecified = true;
                 }
             }
         }
 
-
         /**
          *
          * @return xssf color wrapper or null if color info is missing
          */
+
         public XSSFColor GetXSSFColor()
         {
             if (_font.sizeOfColorArray() == 0) return null;
@@ -106,6 +109,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return fontheight (in points/20); or -1 if not modified
          */
+
         public int FontHeight
         {
             get
@@ -115,7 +119,7 @@ namespace Npoi.Core.XSSF.UserModel
                 CT_FontSize sz = _font.GetSzArray(0);
                 return (short)(20 * sz.val);
             }
-            set 
+            set
             {
                 _font.SetSzArray(null);
                 if (value != -1)
@@ -136,6 +140,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @see #U_SINGLE_ACCOUNTING
          * @see #U_DOUBLE_ACCOUNTING
          */
+
         public FontUnderlineType UnderlineType
         {
             get
@@ -151,7 +156,7 @@ namespace Npoi.Core.XSSF.UserModel
                     default: return FontUnderlineType.None;
                 }
             }
-            set 
+            set
             {
                 _font.SetUArray(null);
                 if (value != FontUnderlineType.None)
@@ -163,12 +168,12 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         /**
          * Get whether the font weight is Set to bold or not
          *
          * @return bold - whether the font is bold or not
          */
+
         public bool IsBold
         {
             get
@@ -180,6 +185,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return true if font style was Set to <i>italic</i>
          */
+
         public bool IsItalic
         {
             get
@@ -194,6 +200,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param italic - if true, Set posture style to italic, otherwise to normal
          * @param bold if true, Set font weight to bold, otherwise to normal
          */
+
         public void SetFontStyle(bool italic, bool bold)
         {
             _font.SetIArray(null);
@@ -205,11 +212,10 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Set font style options to default values (non-italic, non-bold)
          */
+
         public void ResetFontStyle()
         {
             _font = new CT_Font();
         }
     }
-
-
 }

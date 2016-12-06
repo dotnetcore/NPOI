@@ -25,16 +25,15 @@
 //using Npoi.Core.XSSF.UserModel;
 
 //    [TestFixture]
-//    public class TestSheetProtection 
+//    public class TestSheetProtection
 //{
 //	private XSSFSheet sheet;
-	
-	
+
 //	protected void SetUp()  {
 //		XSSFWorkbook workbook = XSSFTestDataSamples.OpenSampleWorkbook("sheetProtection_not_protected.xlsx");
 //		sheet = workbook.GetSheetAt(0);
 //	}
-	
+
 //	    [Test]
 //    public void TestShouldReadWorkbookProtection(){
 //		Assert.IsFalse(sheet.IsAutoFilterLocked());
@@ -73,7 +72,7 @@
 //		Assert.IsTrue(sheet.IsSelectUnlockedCellsLocked());
 //		Assert.IsTrue(sheet.IsSheetLocked());
 //	}
-	
+
 //	    [Test]
 //    public void TestWriteAutoFilter(){
 //		Assert.IsFalse(sheet.IsAutoFilterLocked());
@@ -84,7 +83,7 @@
 //		sheet.LockAutoFilter(false);
 //		Assert.IsFalse(sheet.IsAutoFilterLocked());
 //	}
-	
+
 //	    [Test]
 //    public void TestWriteDeleteColumns(){
 //		Assert.IsFalse(sheet.IsDeleteColumnsLocked());
@@ -95,7 +94,7 @@
 //		sheet.LockDeleteColumns(false);
 //		Assert.IsFalse(sheet.IsDeleteColumnsLocked());
 //	}
-	
+
 //	    [Test]
 //    public void TestWriteDeleteRows(){
 //		Assert.IsFalse(sheet.IsDeleteRowsLocked());
@@ -106,7 +105,7 @@
 //        sheet.LockDeleteRows(false);
 //        Assert.IsFalse(sheet.IsDeleteRowsLocked());
 //	}
-	
+
 //	    [Test]
 //    public void TestWriteFormatCells(){
 //		Assert.IsFalse(sheet.IsFormatCellsLocked());
@@ -117,7 +116,7 @@
 //        sheet.LockFormatCells(false);
 //        Assert.IsFalse(sheet.IsFormatCellsLocked());
 //	}
-	
+
 //	    [Test]
 //    public void TestWriteFormatColumns(){
 //		Assert.IsFalse(sheet.IsFormatColumnsLocked());
@@ -128,7 +127,7 @@
 //        sheet.LockFormatColumns(false);
 //        Assert.IsFalse(sheet.IsFormatColumnsLocked());
 //	}
-	
+
 //	    [Test]
 //    public void TestWriteFormatRows(){
 //		Assert.IsFalse(sheet.IsFormatRowsLocked());
@@ -139,7 +138,7 @@
 //        sheet.LockFormatRows(false);
 //        Assert.IsFalse(sheet.IsFormatRowsLocked());
 //	}
-	
+
 //	    [Test]
 //    public void TestWriteInsertColumns(){
 //		Assert.IsFalse(sheet.IsInsertColumnsLocked());
@@ -150,7 +149,7 @@
 //        sheet.LockInsertColumns(false);
 //        Assert.IsFalse(sheet.IsInsertColumnsLocked());
 //	}
-	
+
 //	    [Test]
 //    public void TestWriteInsertHyperlinks(){
 //		Assert.IsFalse(sheet.IsInsertHyperlinksLocked());
@@ -161,7 +160,7 @@
 //        sheet.LockInsertHyperlinks(false);
 //        Assert.IsFalse(sheet.IsInsertHyperlinksLocked());
 //	}
-	
+
 //	    [Test]
 //    public void TestWriteInsertRows(){
 //		Assert.IsFalse(sheet.IsInsertRowsLocked());
@@ -172,7 +171,7 @@
 //        sheet.LockInsertRows(false);
 //        Assert.IsFalse(sheet.IsInsertRowsLocked());
 //	}
-	
+
 //	    [Test]
 //    public void TestWritePivotTables(){
 //		Assert.IsFalse(sheet.IsPivotTablesLocked());
@@ -183,7 +182,7 @@
 //        sheet.LockPivotTables(false);
 //        Assert.IsFalse(sheet.IsPivotTablesLocked());
 //	}
-	
+
 //	    [Test]
 //    public void TestWriteSort(){
 //		Assert.IsFalse(sheet.IsSortLocked());
@@ -194,7 +193,7 @@
 //        sheet.LockSort(false);
 //        Assert.IsFalse(sheet.IsSortLocked());
 //	}
-	
+
 //	    [Test]
 //    public void TestWriteObjects(){
 //		Assert.IsFalse(sheet.IsObjectsLocked());
@@ -205,7 +204,7 @@
 //        sheet.LockObjects(false);
 //        Assert.IsFalse(sheet.IsObjectsLocked());
 //	}
-	
+
 //	    [Test]
 //    public void TestWriteScenarios(){
 //		Assert.IsFalse(sheet.IsScenariosLocked());
@@ -216,7 +215,7 @@
 //        sheet.LockScenarios(false);
 //        Assert.IsFalse(sheet.IsScenariosLocked());
 //	}
-	
+
 //	    [Test]
 //    public void TestWriteSelectLockedCells(){
 //		Assert.IsFalse(sheet.IsSelectLockedCellsLocked());
@@ -227,7 +226,7 @@
 //        sheet.LockSelectLockedCells(false);
 //        Assert.IsFalse(sheet.IsSelectLockedCellsLocked());
 //	}
-	
+
 //	    [Test]
 //    public void TestWriteSelectUnlockedCells(){
 //		Assert.IsFalse(sheet.IsSelectUnlockedCellsLocked());
@@ -242,7 +241,7 @@
 //	    [Test]
 //    public void TestWriteSelectEnableLocking(){
 //		sheet = XSSFTestDataSamples.OpenSampleWorkbook("sheetProtection_allLocked.xlsx").GetSheetAt(0);
-		
+
 //		Assert.IsTrue(sheet.IsAutoFilterLocked());
 //		Assert.IsTrue(sheet.IsDeleteColumnsLocked());
 //		Assert.IsTrue(sheet.IsDeleteRowsLocked());
@@ -259,9 +258,9 @@
 //		Assert.IsTrue(sheet.IsSelectLockedCellsLocked());
 //		Assert.IsTrue(sheet.IsSelectUnlockedCellsLocked());
 //		Assert.IsTrue(sheet.IsSheetLocked());
-		
+
 //		sheet.DisableLocking();
-		
+
 //		Assert.IsFalse(sheet.IsAutoFilterLocked());
 //		Assert.IsFalse(sheet.IsDeleteColumnsLocked());
 //		Assert.IsFalse(sheet.IsDeleteRowsLocked());
@@ -280,4 +279,3 @@
 //		Assert.IsFalse(sheet.IsSheetLocked());
 //	}
 //}
-

@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -17,7 +16,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlRoot("table", Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public class CT_Table
     {
-
         private CT_AutoFilter autoFilterField;
 
         private CT_SortState sortStateField;
@@ -101,6 +99,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.totalsRowShownField = true;
             this.publishedField = false;
         }
+
         public static CT_Table Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -159,11 +158,8 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw)
         {
-
             sw.Write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>");
             sw.Write("<table xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\"");
             XmlHelper.WriteAttribute(sw, "id", this.id);
@@ -214,6 +210,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.autoFilterField = value;
             }
         }
+
         [XmlElement]
         public CT_SortState sortState
         {
@@ -226,6 +223,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.sortStateField = value;
             }
         }
+
         [XmlElement]
         public CT_TableColumns tableColumns
         {
@@ -238,6 +236,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.tableColumnsField = value;
             }
         }
+
         [XmlElement]
         public CT_TableStyleInfo tableStyleInfo
         {
@@ -250,6 +249,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.tableStyleInfoField = value;
             }
         }
+
         [XmlElement]
         public CT_ExtensionList extLst
         {
@@ -262,6 +262,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.extLstField = value;
             }
         }
+
         [XmlAttribute]
         public uint id
         {
@@ -274,6 +275,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.idField = value;
             }
         }
+
         [XmlAttribute]
         public string name
         {
@@ -286,6 +288,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.nameField = value;
             }
         }
+
         [XmlAttribute]
         public string displayName
         {
@@ -298,6 +301,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.displayNameField = value;
             }
         }
+
         [XmlAttribute]
         public string comment
         {
@@ -310,6 +314,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.commentField = value;
             }
         }
+
         [XmlAttribute]
         public string @ref
         {
@@ -322,6 +327,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.refField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(ST_TableType.worksheet)]
         public ST_TableType tableType
@@ -335,6 +341,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.tableTypeField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(typeof(uint), "1")]
         public uint headerRowCount
@@ -348,6 +355,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.headerRowCountField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool insertRow
@@ -361,6 +369,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.insertRowField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool insertRowShift
@@ -374,6 +383,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.insertRowShiftField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(typeof(uint), "0")]
         public uint totalsRowCount
@@ -387,6 +397,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.totalsRowCountField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(true)]
         public bool totalsRowShown
@@ -400,6 +411,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.totalsRowShownField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool published
@@ -413,6 +425,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.publishedField = value;
             }
         }
+
         [XmlAttribute]
         public uint headerRowDxfId
         {
@@ -425,6 +438,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.headerRowDxfIdField = value;
             }
         }
+
         [XmlIgnore]
         public bool headerRowDxfIdSpecified
         {
@@ -437,6 +451,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.headerRowDxfIdFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public uint dataDxfId
         {
@@ -462,6 +477,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.dataDxfIdFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public uint totalsRowDxfId
         {
@@ -487,6 +503,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.totalsRowDxfIdFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public uint headerRowBorderDxfId
         {
@@ -512,6 +529,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.headerRowBorderDxfIdFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public uint tableBorderDxfId
         {
@@ -537,6 +555,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.tableBorderDxfIdFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public uint totalsRowBorderDxfId
         {
@@ -562,6 +581,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.totalsRowBorderDxfIdFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public string headerRowCellStyle
         {
@@ -574,6 +594,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.headerRowCellStyleField = value;
             }
         }
+
         [XmlAttribute]
         public string dataCellStyle
         {
@@ -586,6 +607,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.dataCellStyleField = value;
             }
         }
+
         [XmlAttribute]
         public string totalsRowCellStyle
         {
@@ -598,6 +620,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.totalsRowCellStyleField = value;
             }
         }
+
         [XmlAttribute]
         public uint connectionId
         {
@@ -624,11 +647,11 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_TableColumns
     {
-
         private List<CT_TableColumn> tableColumnField;
 
         private uint countField;
@@ -639,6 +662,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             //this.tableColumnField = new List<CT_TableColumn>();
         }
+
         public static CT_TableColumns Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -654,8 +678,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -684,6 +706,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.tableColumnField = value;
             }
         }
+
         [XmlAttribute]
         public uint count
         {
@@ -710,11 +733,11 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_TableColumn
     {
-
         private CT_TableFormula calculatedColumnFormulaField;
 
         private CT_TableFormula totalsRowFormulaField;
@@ -763,6 +786,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             //this.calculatedColumnFormulaField = new CT_TableFormula();
             this.totalsRowFunctionField = ST_TotalsRowFunction.none;
         }
+
         public static CT_TableColumn Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -799,8 +823,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -841,6 +863,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.calculatedColumnFormulaField = value;
             }
         }
+
         [XmlElement]
         public CT_TableFormula totalsRowFormula
         {
@@ -853,6 +876,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.totalsRowFormulaField = value;
             }
         }
+
         public CT_XmlColumnPr xmlColumnPr
         {
             get
@@ -864,6 +888,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.xmlColumnPrField = value;
             }
         }
+
         [XmlElement]
         public CT_ExtensionList extLst
         {
@@ -876,6 +901,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.extLstField = value;
             }
         }
+
         [XmlAttribute]
         public uint id
         {
@@ -888,6 +914,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.idField = value;
             }
         }
+
         [XmlAttribute]
         public string uniqueName
         {
@@ -900,6 +927,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.uniqueNameField = value;
             }
         }
+
         [XmlAttribute]
         public string name
         {
@@ -912,6 +940,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.nameField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(ST_TotalsRowFunction.none)]
         public ST_TotalsRowFunction totalsRowFunction
@@ -925,6 +954,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.totalsRowFunctionField = value;
             }
         }
+
         [XmlAttribute]
         public string totalsRowLabel
         {
@@ -937,6 +967,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.totalsRowLabelField = value;
             }
         }
+
         [XmlAttribute]
         public uint queryTableFieldId
         {
@@ -962,6 +993,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.queryTableFieldIdFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public uint headerRowDxfId
         {
@@ -987,6 +1019,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.headerRowDxfIdFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public uint dataDxfId
         {
@@ -1012,6 +1045,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.dataDxfIdFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public uint totalsRowDxfId
         {
@@ -1037,6 +1071,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.totalsRowDxfIdFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public string headerRowCellStyle
         {
@@ -1049,6 +1084,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.headerRowCellStyleField = value;
             }
         }
+
         [XmlAttribute]
         public string dataCellStyle
         {
@@ -1061,6 +1097,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.dataCellStyleField = value;
             }
         }
+
         [XmlAttribute]
         public string totalsRowCellStyle
         {
@@ -1074,11 +1111,11 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_TableFormula
     {
-
         private bool arrayField;
 
         private string valueField;
@@ -1087,6 +1124,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             this.arrayField = false;
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool array
@@ -1125,8 +1163,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
@@ -1135,6 +1171,5 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             sw.Write(XmlHelper.EncodeXml(this.valueField));
             sw.Write(string.Format("</{0}>", nodeName));
         }
-
     }
 }

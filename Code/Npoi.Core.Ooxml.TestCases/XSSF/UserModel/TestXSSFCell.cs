@@ -15,36 +15,36 @@
    limitations under the License.
 ==================================================================== */
 
-using NUnit.Framework;
-using TestCases.SS.UserModel;
-using Npoi.Core.SS.UserModel;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using System;
-using Npoi.Core.XSSF.Model;
-using Npoi.Core.SS.Util;
 using Npoi.Core.SS;
-using TestCases.HSSF;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.Util;
+using Npoi.Core.XSSF.Model;
+using NUnit.Framework;
+using System;
 using System.Text;
+using TestCases.HSSF;
+using TestCases.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * @author Yegor Kozlov
      */
+
     [TestFixture]
     public class TestXSSFCell : BaseTestXCell
     {
-
         public TestXSSFCell()
             : base(XSSFITestDataProvider.instance)
         {
-
         }
 
         /**
          * Bug 47026: trouble changing cell type when workbook doesn't contain
          * Shared String Table
          */
+
         [Test]
         public void Test47026_1()
         {
@@ -55,6 +55,7 @@ namespace Npoi.Core.XSSF.UserModel
             cell.SetCellType(CellType.String);
             cell.SetCellValue("456");
         }
+
         [Test]
         public void Test47026_2()
         {
@@ -73,6 +74,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Some programs, for example, Microsoft Excel Driver for .xlsx insert inline string
          * instead of using the shared string table. See bug 47206
          */
+
         [Test]
         public void TestInlineString()
         {
@@ -99,6 +101,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          *  Bug 47278 -  xsi:nil attribute for <t> tag caused Excel 2007 to fail to open workbook
          */
+
         [Test]
         public void Test47278()
         {
@@ -122,6 +125,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(0, sst.Count);
             Assert.AreEqual(CellType.Blank, cell_1.CellType);
         }
+
         [Test]
         public void TestFormulaString()
         {
@@ -161,6 +165,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Bug 47889: problems when calling XSSFCell.StringCellValue on a workbook Created in Gnumeric
          */
+
         [Test]
         public void Test47889()
         {
@@ -207,8 +212,8 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.IsTrue(cell5.IsMergedCell);
             Assert.IsTrue(cell6.IsMergedCell);
             Assert.IsFalse(cell8.IsMergedCell);
-
         }
+
         [Test]
         public void TestMissingRAttribute()
         {
@@ -262,6 +267,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(a5.GetReference(), "E1");
             Assert.AreEqual(a6.GetReference(), "F1");
         }
+
         [Test]
         public void TestMissingRAttributeBug54288()
         {
@@ -301,7 +307,6 @@ namespace Npoi.Core.XSSF.UserModel
                         String val = formater.FormatCellValue(cell);
                         Assert.AreEqual(valRef, val);
                     }
-
                 }
             }
         }
@@ -450,6 +455,7 @@ namespace Npoi.Core.XSSF.UserModel
                 wb.Close();
             }
         }
+
         [Test]
         public void TestEncodingbeloAscii()
         {
@@ -466,7 +472,7 @@ namespace Npoi.Core.XSSF.UserModel
             int pos = 0;
             while (pos < strAll.Length)
             {
-                String str = strAll.Substring(pos, Math.Min(strAll.Length, pos + SpreadsheetVersion.EXCEL2007.MaxTextLength)- pos);
+                String str = strAll.Substring(pos, Math.Min(strAll.Length, pos + SpreadsheetVersion.EXCEL2007.MaxTextLength) - pos);
 
                 IWorkbook wb = HSSFITestDataProvider.Instance.CreateWorkbook();
                 ICell cell = wb.CreateSheet().CreateRow(0).CreateCell(0);
@@ -498,5 +504,4 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
     }
-
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Npoi.Core.OpenXml4Net.OPC
 {
@@ -10,9 +8,9 @@ namespace Npoi.Core.OpenXml4Net.OPC
      *
      * @author CDubettier define some constants, Julien Chable
      */
+
     public class ContentTypes
     {
-
         /*
          * Open Packaging Convention (Annex F : Standard Namespaces and Content
          * Types)

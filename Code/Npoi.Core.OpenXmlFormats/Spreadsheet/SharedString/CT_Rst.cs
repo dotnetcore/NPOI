@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Npoi.Core.OpenXml4Net.Util;
+using System;
 using System.Collections.Generic;
 using System.IO;
-
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using Npoi.Core.OpenXml4Net.Util;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
@@ -14,14 +13,13 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_Rst
     {
-
         private string tField = null; // optional field -> initialize as null so that it is not serialized by default.
 
-        private List<CT_RElt> rField = null; // optional field 
+        private List<CT_RElt> rField = null; // optional field
 
-        private List<CT_PhoneticRun> rPhField = null; // optional field 
+        private List<CT_PhoneticRun> rPhField = null; // optional field
 
-        private CT_PhoneticPr phoneticPrField = null; // optional field 
+        private CT_PhoneticPr phoneticPrField = null; // optional field
 
         public void Set(CT_Rst o)
         {
@@ -30,9 +28,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.rPhField = o.rPhField;
             this.phoneticPrField = o.phoneticPrField;
         }
-      
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -40,8 +35,8 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             if (this.t != null)
             {
                 //TODO: diff has-space case and no-space case
-                 sw.Write(string.Format("<t xml:space=\"preserve\">{0}</t>", 
-                      XmlHelper.ExcelEncodeString(XmlHelper.EncodeXml(t))));
+                sw.Write(string.Format("<t xml:space=\"preserve\">{0}</t>",
+                     XmlHelper.ExcelEncodeString(XmlHelper.EncodeXml(t))));
             }
             if (this.r != null)
             {
@@ -62,16 +57,18 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             sw.Write(string.Format("</{0}>", nodeName));
         }
 
-
         #region t
+
         public bool IsSetT()
         {
             return this.tField != null;
         }
+
         public void unsetT()
         {
             this.tField = null;
         }
+
         [XmlElement("t", DataType = "string")]
         public string t
         {
@@ -84,9 +81,11 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.tField = value;
             }
         }
+
         #endregion t
 
         #region r
+
         /// <summary>
         /// Rich Text Run
         /// </summary>
@@ -102,17 +101,19 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.rField = value;
             }
         }
+
         private string xmltext;
+
         [XmlIgnore]
         public string XmlText
         {
-            get {
+            get
+            {
                 StringBuilder sb = new StringBuilder();
                 using (StringWriter sw = new StringWriter(sb))
                 {
                     if (rField != null && rField.Count > 0)
                     {
-
                         foreach (CT_RElt r in rField)
                         {
                             sw.Write("<r>");
@@ -164,7 +165,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                             if (r.t != null)
                             {
                                 sw.Write("<t");
-                                if(r.t.IndexOf(' ')>=0)
+                                if (r.t.IndexOf(' ') >= 0)
                                     sw.Write(" xml:space=\"preserve\"");
                                 sw.Write(">");
                                 sw.Write(XmlHelper.EncodeXml(r.t));
@@ -185,10 +186,11 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                     }
                     xmltext = sb.ToString();
                 }
-                return xmltext; 
+                return xmltext;
             }
             set { xmltext = value; }
         }
+
         public CT_RElt AddNewR()
         {
             if (null == rField) { rField = new List<CT_RElt>(); }
@@ -196,14 +198,17 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.rField.Add(r);
             return r;
         }
+
         public int sizeOfRArray()
         {
             return (null == rField) ? 0 : r.Count;
         }
+
         public CT_RElt GetRArray(int index)
         {
             return (null == rField) ? null : this.rField[index];
         }
+
         #endregion r
 
         /// <summary>
@@ -221,6 +226,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.rPhField = value;
             }
         }
+
         /// <summary>
         /// Phonetic Properties
         /// </summary>
@@ -236,7 +242,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.phoneticPrField = value;
             }
         }
-
 
         public static CT_Rst Parse(XElement node, XmlNamespaceManager namespaceManager)
         {

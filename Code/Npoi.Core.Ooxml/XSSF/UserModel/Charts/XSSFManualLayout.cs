@@ -15,20 +15,19 @@
    limitations under the License.
    ==================================================================== */
 
-using Npoi.Core.SS.UserModel.Charts;
 using Npoi.Core.OpenXmlFormats.Dml.Chart;
+using Npoi.Core.SS.UserModel.Charts;
 using System;
+
 namespace Npoi.Core.XSSF.UserModel.Charts
 {
-
-
     /**
      * Represents a SpreadsheetML manual layout.
      * @author Roman Kashitsyn
      */
+
     public class XSSFManualLayout : IManualLayout
     {
-
         /**
          * Underlaying CTManualLayout bean.
          */
@@ -41,6 +40,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
          * Create a new SpreadsheetML manual layout.
          * @param layout a Spreadsheet ML layout that should be used as base.
          */
+
         public XSSFManualLayout(CT_Layout ctLayout)
         {
             InitLayout(ctLayout);
@@ -50,6 +50,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
          * Create a new SpreadsheetML manual layout for chart.
          * @param chart a chart to create layout for.
          */
+
         public XSSFManualLayout(XSSFChart chart)
         {
             CT_PlotArea ctPlotArea = chart.GetCTChart().plotArea;
@@ -64,6 +65,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
          *
          * @return the underlying CTManualLayout bean.
          */
+
         public CT_ManualLayout GetCTManualLayout()
         {
             return layout;

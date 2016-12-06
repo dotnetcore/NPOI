@@ -1,17 +1,13 @@
-﻿using System;
+﻿using Npoi.Core.OpenXml4Net.Util;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
-using System.Xml;
-using Npoi.Core.OpenXml4Net.Util;
 using System.IO;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot("pivotTableDefinition", Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = false)]
     public partial class CT_PivotTableDefinition
@@ -186,8 +182,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw)
         {
             sw.Write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>");
@@ -299,6 +293,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.extLst.Write(sw, "extLst");
             sw.Write(string.Format("</pivotTableDefinition>"));
         }
+
         public void Save(Stream stream)
         {
             using (StreamWriter sw = new StreamWriter(stream))
@@ -306,6 +301,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.Write(sw);
             }
         }
+
         private CT_Location locationField;
 
         private CT_PivotFields pivotFieldsField;
@@ -1818,7 +1814,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
 
-
         public CT_PivotTableStyle AddNewPivotTableStyleInfo()
         {
             this.pivotTableStyleInfoField = new CT_PivotTableStyle();
@@ -1862,9 +1857,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_Location
@@ -1887,8 +1879,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 ctObj.colPageCount = XmlHelper.ReadUInt(node.Attribute("colPageCount"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -2002,9 +1992,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_PivotFields
@@ -2024,8 +2011,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -2121,9 +2106,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_PivotField
@@ -2237,8 +2219,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3222,9 +3202,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_Items
@@ -3244,8 +3221,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3329,9 +3304,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_Item
@@ -3364,8 +3336,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 ctObj.e = XmlHelper.ReadBool(node.Attribute("e"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3588,13 +3558,10 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = false)]
     public enum ST_ItemType
     {
-
         /// <remarks/>
         data,
 
@@ -3641,9 +3608,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         blank,
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_AutoSortScope
@@ -3660,8 +3624,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3693,13 +3655,10 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = false)]
     public enum ST_FieldSortType
     {
-
         /// <remarks/>
         manual,
 
@@ -3710,9 +3669,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         descending,
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_RowFields
@@ -3732,8 +3688,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3810,9 +3764,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_Field
@@ -3826,8 +3777,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 ctObj.x = XmlHelper.ReadInt(node.Attribute("x"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3853,9 +3802,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_rowItems
@@ -3875,8 +3821,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3944,9 +3888,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_I
@@ -3970,8 +3911,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -4062,9 +4001,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_ColFields
@@ -4084,8 +4020,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -4156,9 +4090,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_colItems
@@ -4178,8 +4109,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -4247,9 +4176,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_PageFields
@@ -4269,8 +4195,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -4354,9 +4278,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_PageField
@@ -4381,8 +4302,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -4524,9 +4443,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_DataFields
@@ -4546,8 +4462,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -4629,9 +4543,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_DataField
@@ -4661,8 +4572,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -4829,13 +4738,10 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = false)]
     public enum ST_ShowDataAs
     {
-
         /// <remarks/>
         normal,
 
@@ -4864,9 +4770,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         index,
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_Formats
@@ -4886,8 +4789,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -4942,9 +4843,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_Format
@@ -4967,8 +4865,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -5067,13 +4963,10 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = false)]
     public enum ST_FormatAction
     {
-
         /// <remarks/>
         blank,
 
@@ -5087,9 +4980,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         formula,
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_ConditionalFormats
@@ -5109,8 +4999,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -5165,9 +5053,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_ConditionalFormat
@@ -5192,8 +5077,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -5295,9 +5178,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_PivotAreas
@@ -5317,8 +5197,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -5386,13 +5264,10 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = false)]
     public enum ST_Scope
     {
-
         /// <remarks/>
         selection,
 
@@ -5403,13 +5278,10 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         field,
     }
 
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = false)]
     public enum ST_Type
     {
-
         /// <remarks/>
         none,
 
@@ -5423,9 +5295,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         column,
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_ChartFormats
@@ -5445,8 +5314,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -5501,9 +5368,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_ChartFormat
@@ -5526,8 +5390,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -5609,9 +5471,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_PivotHierarchies
@@ -5631,8 +5490,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -5700,9 +5557,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_PivotHierarchy
@@ -5745,8 +5599,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -6015,9 +5867,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_MemberProperties
@@ -6037,8 +5886,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -6106,9 +5953,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_MemberProperty
@@ -6137,8 +5981,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 ctObj.field = XmlHelper.ReadUInt(node.Attribute("field"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -6362,9 +6204,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_Members
@@ -6386,8 +6225,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -6486,9 +6323,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_Member
@@ -6501,8 +6335,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             ctObj.name = XmlHelper.ReadString(node.Attribute("name"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -6528,9 +6360,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_PivotTableStyle
@@ -6553,8 +6382,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 ctObj.showLastColumn = XmlHelper.ReadBool(node.Attribute("showLastColumn"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -6735,9 +6562,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_PivotFilters
@@ -6757,8 +6581,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -6813,9 +6635,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_PivotFilter
@@ -6852,8 +6671,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -7126,13 +6943,10 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = false)]
     public enum ST_PivotFilterType
     {
-
         /// <remarks/>
         unknown,
 
@@ -7332,9 +7146,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         M12,
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_RowHierarchiesUsage
@@ -7354,8 +7165,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -7423,9 +7232,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_HierarchyUsage
@@ -7439,8 +7245,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 ctObj.hierarchyUsage = XmlHelper.ReadInt(node.Attribute("hierarchyUsage"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -7466,9 +7270,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-    
-    
-    
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public partial class CT_ColHierarchiesUsage
@@ -7488,8 +7289,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -7556,5 +7355,4 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
-    
 }

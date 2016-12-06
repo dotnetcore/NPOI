@@ -6,12 +6,11 @@ using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+
 //using Npoi.Core.OpenXmlFormats.Shared;
 
 namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
-
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot("settings", Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = false)]
@@ -231,11 +230,9 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw)
         {
-           sw.Write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>");
+            sw.Write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>");
             sw.Write("<w:settings xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\" ");
             sw.Write("xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:sl=\"http://schemas.openxmlformats.org/schemaLibrary/2006/main\">");
             if (this.writeProtection != null)
@@ -666,7 +663,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         {
             this.listSeparatorField = new CT_String();
             this.listSeparator.val = ",";
-            
+
             this.decimalSymbolField = new CT_String();
             this.decimalSymbol.val = ".";
             //this.doNotEmbedSmartTagsField = new CT_OnOff();
@@ -2112,14 +2109,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_WriteProtection
     {
-
         private ST_OnOff recommendedField;
 
         private bool recommendedFieldSpecified;
@@ -2153,6 +2147,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private byte[] hashField;
 
         private byte[] saltField;
+
         public static CT_WriteProtection Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2177,8 +2172,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             ctObj.salt = XmlHelper.ReadBytes(node.Attribute("w:salt"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -2422,48 +2415,36 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_CryptProv
     {
-
-    
         rsaAES,
 
-    
         rsaFull,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_AlgClass
     {
-
-    
         hash,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_AlgType
     {
-
-    
         typeAny,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_View
     {
-
         private ST_View valField;
+
         public static CT_View Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2473,8 +2454,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.val = (ST_View)Enum.Parse(typeof(ST_View), node.Attribute("w:val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -2498,34 +2477,24 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_View
     {
-
-    
         none,
 
-    
         print,
 
-    
         outline,
 
-    
         masterPages,
 
-    
         normal,
 
-    
         web,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Zoom
@@ -2535,6 +2504,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             valField = ST_Zoom.none;
             percent = "100";
         }
+
         public static CT_Zoom Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2546,12 +2516,10 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
-            if (this.val!= ST_Zoom.none)
+            if (this.val != ST_Zoom.none)
                 XmlHelper.WriteAttribute(sw, "w:val", this.val.ToString());
             XmlHelper.WriteAttribute(sw, "w:percent", this.percent);
             sw.Write("/>");
@@ -2603,33 +2571,24 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_Zoom
     {
-
-    
         none,
 
-    
         fullPage,
 
-    
         bestFit,
 
-    
         textFit,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_WritingStyle
     {
-
         private string langField;
 
         private string vendorIDField;
@@ -2643,6 +2602,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private ST_OnOff checkStyleField;
 
         private string appNameField;
+
         public static CT_WritingStyle Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2658,8 +2618,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             ctObj.appName = XmlHelper.ReadString(node.Attribute("w:appName"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -2766,14 +2724,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Proof
     {
-
         private ST_Proof spellingField;
 
         private bool spellingFieldSpecified;
@@ -2781,6 +2736,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private ST_Proof grammarField;
 
         private bool grammarFieldSpecified;
+
         public static CT_Proof Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2792,8 +2748,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.grammar = (ST_Proof)Enum.Parse(typeof(ST_Proof), node.Attribute("w:grammar").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -2857,28 +2811,22 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_Proof
     {
-
-    
         clean,
 
-    
         dirty,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_DocType
     {
-
         private ST_DocType valField;
+
         public static CT_DocType Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2888,8 +2836,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.val = (ST_DocType)Enum.Parse(typeof(ST_DocType), node.Attribute("w:val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -2913,30 +2859,22 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_DocType
     {
-
-    
         notSpecified,
 
-    
         letter,
 
-    
         eMail,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_MailMerge
     {
-
         private CT_MailMergeDocType mainDocumentTypeField;
 
         private CT_OnOff linkToQueryField;
@@ -2968,6 +2906,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private CT_DecimalNumber checkErrorsField;
 
         private CT_Odso odsoField;
+
         public static CT_MailMerge Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -3010,8 +2949,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3281,15 +3218,13 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_MailMergeDocType
     {
-
         private ST_MailMergeDocType valField;
+
         public static CT_MailMergeDocType Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -3299,8 +3234,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.val = (ST_MailMergeDocType)Enum.Parse(typeof(ST_MailMergeDocType), node.Attribute("w:val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3324,40 +3257,30 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_MailMergeDocType
     {
-
-    
         catalog,
 
-    
         envelopes,
 
-    
         mailingLabels,
 
-    
         formLetters,
 
-    
         email,
 
-    
         fax,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_MailMergeDataType
     {
-
         private ST_MailMergeDataType valField;
+
         public static CT_MailMergeDataType Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -3367,8 +3290,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.val = (ST_MailMergeDataType)Enum.Parse(typeof(ST_MailMergeDataType), node.Attribute("w:val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3392,40 +3313,30 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_MailMergeDataType
     {
-
-    
         textFile,
 
-    
         database,
 
-    
         spreadsheet,
 
-    
         query,
 
-    
         odbc,
 
-    
         native,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_MailMergeDest
     {
-
         private ST_MailMergeDest valField;
+
         public static CT_MailMergeDest Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -3435,8 +3346,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.val = (ST_MailMergeDest)Enum.Parse(typeof(ST_MailMergeDest), node.Attribute("w:val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3460,33 +3369,24 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_MailMergeDest
     {
-
-    
         newDocument,
 
-    
         printer,
 
-    
         email,
 
-    
         fax,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Odso
     {
-
         private CT_String udlField;
 
         private CT_String tableField;
@@ -3514,6 +3414,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             //this.tableField = new CT_String();
             //this.udlField = new CT_String();
         }
+
         public static CT_Odso Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -3542,8 +3443,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3577,7 +3476,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
 
         [XmlElement(Order = 0)]
         public CT_String udl
@@ -3684,15 +3582,13 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_MailMergeSourceType
     {
-
         private ST_MailMergeSourceType valField;
+
         public static CT_MailMergeSourceType Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -3702,8 +3598,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.val = (ST_MailMergeSourceType)Enum.Parse(typeof(ST_MailMergeSourceType), node.Attribute("w:val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3727,48 +3621,34 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_MailMergeSourceType
     {
-
-    
         database,
 
-    
         addressBook,
 
-    
         document1,
 
-    
         document2,
 
-    
         text,
 
-    
         email,
 
-    
         native,
 
-    
         legacy,
 
-    
         master,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_OdsoFieldMapData
     {
-
         private CT_MailMergeOdsoFMDFieldType typeField;
 
         private CT_String nameField;
@@ -3780,6 +3660,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private CT_Lang lidField;
 
         private CT_OnOff dynamicAddressField;
+
         public static CT_OdsoFieldMapData Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -3802,8 +3683,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3913,15 +3792,13 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_MailMergeOdsoFMDFieldType
     {
-
         private ST_MailMergeOdsoFMDFieldType valField;
+
         public static CT_MailMergeOdsoFMDFieldType Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -3931,8 +3808,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.val = (ST_MailMergeOdsoFMDFieldType)Enum.Parse(typeof(ST_MailMergeOdsoFMDFieldType), node.Attribute("w:val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -3956,30 +3831,20 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_MailMergeOdsoFMDFieldType
     {
-
-    
         @null,
 
-    
         dbColumn,
     }
 
-
-
-
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_TrackChangesView
     {
-
         private ST_OnOff markupField;
 
         private bool markupFieldSpecified;
@@ -3999,6 +3864,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private ST_OnOff inkAnnotationsField;
 
         private bool inkAnnotationsFieldSpecified;
+
         public static CT_TrackChangesView Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -4016,8 +3882,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.inkAnnotations = (ST_OnOff)Enum.Parse(typeof(ST_OnOff), node.Attribute("w:inkAnnotations").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -4162,14 +4026,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_DocProtect
     {
-
         private ST_DocProtect editField;
 
         private bool editFieldSpecified;
@@ -4211,6 +4072,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private string hashField;
 
         private string saltField;
+
         public static CT_DocProtect Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -4239,8 +4101,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             ctObj.salt = XmlHelper.ReadString(node.Attribute("w:salt"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -4539,39 +4399,28 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_DocProtect
     {
-
-    
         none,
 
-    
         readOnly,
 
-    
         comments,
 
-    
         trackedChanges,
 
-    
         forms,
     }
 
-
-
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_CharacterSpacing
     {
-
         private ST_CharacterSpacing valField;
+
         public static CT_CharacterSpacing Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -4581,8 +4430,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.val = (ST_CharacterSpacing)Enum.Parse(typeof(ST_CharacterSpacing), node.Attribute("w:val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -4605,33 +4452,26 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_CharacterSpacing
     {
-
-    
         doNotCompress,
 
-    
         compressPunctuation,
 
-    
         compressPunctuationAndJapaneseKana,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Kinsoku
     {
-
         private string langField;
 
         private string valField;
+
         public static CT_Kinsoku Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -4641,8 +4481,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             ctObj.val = XmlHelper.ReadString(node.Attribute("w:val"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -4680,17 +4518,15 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SaveThroughXslt
     {
-
         private string idField;
 
         private string solutionIDField;
+
         public static CT_SaveThroughXslt Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -4700,8 +4536,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             ctObj.solutionID = XmlHelper.ReadString(node.Attribute("w:solutionID"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -4739,14 +4573,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Compat
     {
-
         private CT_OnOff useSingleBorderforContiguousCellsField;
 
         private CT_OnOff wpJustificationField;
@@ -4876,6 +4707,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private CT_OnOff useAnsiKerningPairsField;
 
         private CT_OnOff cachedColBalanceField;
+
         public static CT_Compat Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -5016,8 +4848,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -6071,17 +5901,15 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_DocVar
     {
-
         private string nameField;
 
         private string valField;
+
         public static CT_DocVar Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -6091,8 +5919,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             ctObj.val = XmlHelper.ReadString(node.Attribute("w:val"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -6130,14 +5956,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_DocRsids
     {
-
         private CT_LongHexNumber rsidRootField;
 
         private List<CT_LongHexNumber> rsidField;
@@ -6147,6 +5970,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             //this.rsidField = new List<CT_LongHexNumber>();
             //this.rsidRootField = new CT_LongHexNumber();
         }
+
         public static CT_DocRsids Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -6162,8 +5986,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -6208,17 +6030,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
-
-
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_ColorSchemeMapping
     {
-
         private ST_ColorSchemeIndex bg1Field;
 
         private bool bg1FieldSpecified;
@@ -6266,6 +6082,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private ST_ColorSchemeIndex followedHyperlinkField;
 
         private bool followedHyperlinkFieldSpecified;
+
         public static CT_ColorSchemeMapping Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -6297,8 +6114,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.followedHyperlink = (ST_ColorSchemeIndex)Enum.Parse(typeof(ST_ColorSchemeIndex), node.Attribute("w:followedHyperlink").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -6631,59 +6446,40 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_ColorSchemeIndex
     {
-
-    
         dark1,
 
-    
         light1,
 
-    
         dark2,
 
-    
         light2,
 
-    
         accent1,
 
-    
         accent2,
 
-    
         accent3,
 
-    
         accent4,
 
-    
         accent5,
 
-    
         accent6,
 
-    
         hyperlink,
 
-    
         followedHyperlink,
     }
 
-
-
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Captions
     {
-
         private List<CT_Caption> captionField;
 
         private List<CT_AutoCaption> autoCaptionsField;
@@ -6693,6 +6489,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             //this.autoCaptionsField = new List<CT_AutoCaption>();
             //this.captionField = new List<CT_Caption>();
         }
+
         public static CT_Captions Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -6709,8 +6506,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -6761,14 +6556,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Caption
     {
-
         private string nameField;
 
         private ST_CaptionPos posField;
@@ -6792,6 +6584,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private ST_ChapterSep sepField;
 
         private bool sepFieldSpecified;
+
         public static CT_Caption Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -6811,8 +6604,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.sep = (ST_ChapterSep)Enum.Parse(typeof(ST_ChapterSep), node.Attribute("w:sep").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -6985,36 +6776,28 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_CaptionPos
     {
-
-    
         above,
 
-    
         below,
 
-    
         left,
 
-    
         right,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_AutoCaption
     {
-
         private string nameField;
 
         private string captionField;
+
         public static CT_AutoCaption Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -7024,8 +6807,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             ctObj.caption = XmlHelper.ReadString(node.Attribute("w:caption"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -7063,14 +6844,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_ReadingModeInkLockDown
     {
-
         private ST_OnOff actualPgField;
 
         private ulong wField;
@@ -7078,6 +6856,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private ulong hField;
 
         private string fontSzField;
+
         public static CT_ReadingModeInkLockDown Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -7090,8 +6869,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             ctObj.fontSz = XmlHelper.ReadString(node.Attribute("w:fontSz"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -7157,19 +6934,17 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SmartTagType
     {
-
         private string namespaceuriField;
 
         private string nameField;
 
         private string urlField;
+
         public static CT_SmartTagType Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -7180,8 +6955,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             ctObj.url = XmlHelper.ReadString(node.Attribute("w:url"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -7233,14 +7006,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot("webSettings", Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = false)]
     public class CT_WebSettings
     {
-
         private CT_Frameset framesetField;
 
         private CT_Divs divsField;
@@ -7455,12 +7225,10 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_ShapeDefaults
     {
-
         private XElement[] itemsField;
 
         public CT_ShapeDefaults()
@@ -7482,14 +7250,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_AutoCaptions
     {
-
         private List<CT_AutoCaption> autoCaptionField;
 
         public CT_AutoCaptions()
@@ -7510,5 +7275,4 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
         }
     }
-
 }

@@ -14,10 +14,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using System;
 
     public class XWPFLatentStyles
     {
@@ -51,6 +52,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * checks whether specific LatentStyleID is a latentStyle
         */
+
         public bool IsLatentStyle(String latentStyleID)
         {
             foreach (CT_LsdException lsd in latentStyles.lsdException)
@@ -61,5 +63,4 @@ namespace Npoi.Core.XWPF.UserModel
             return false;
         }
     }
-
 }

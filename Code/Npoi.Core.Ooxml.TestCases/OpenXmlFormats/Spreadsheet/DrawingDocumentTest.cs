@@ -31,7 +31,7 @@
 //        }
 
 //        #region Additional test attributes
-//        // 
+//        //
 //        //You can use the following additional attributes as you write your tests:
 //        //
 //        //Use ClassInitialize to run code before running the first test in the class
@@ -60,7 +60,6 @@
 //        //
 //        #endregion
 
-
 //        /// <summary>
 //        ///A test for the Serialization of CT_Drawing.
 //        ///</summary>
@@ -68,7 +67,7 @@
 //        public void SerializeDrawingDocumentTest()
 //        {
 //            var drawing = new Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing();
-            
+
 //            using (StringWriter stream = new StringWriter())
 //            {
 //                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing_Accessor.serializer.Serialize(stream, drawing, Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing_Accessor.namespaces);
@@ -141,8 +140,6 @@
 //            Assert.AreEqual(0, anchor.from.col);
 //        }
 
-
-
 //        /// <summary>
 //        ///A test for Deserialize
 //        ///</summary>
@@ -210,7 +207,6 @@
 //            var anchor = result.TwoCellAnchors[0];
 //            Assert.AreEqual(2, anchor.from.col);
 //        }
-
 
 //    }
 //}

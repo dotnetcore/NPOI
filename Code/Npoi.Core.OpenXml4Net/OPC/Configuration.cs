@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Text;
-using System.IO;
 
 namespace Npoi.Core.OpenXml4Net.OPC
 {
@@ -11,13 +9,14 @@ namespace Npoi.Core.OpenXml4Net.OPC
      * @author CDubettier, Julen Chable
      * @version 1.0
      */
+
     public class Configuration
     {
         // TODO configuration by default. should be clearly stated that it should be
         // changed to match installation path
         // as schemas dir is needed in runtime
         static private String pathForXmlSchema = System.AppContext.BaseDirectory
-				+ @"\" + "src" + @"\" + "schemas";
+                + @"\" + "src" + @"\" + "schemas";
 
         public static String PathForXmlSchema
         {
@@ -25,9 +24,9 @@ namespace Npoi.Core.OpenXml4Net.OPC
             {
                 return pathForXmlSchema;
             }
-            set 
+            set
             {
-                Configuration.pathForXmlSchema = value; 
+                Configuration.pathForXmlSchema = value;
             }
         }
     }

@@ -17,15 +17,14 @@
 
 namespace Npoi.Core.XSSF.UserModel
 {
-    using System;
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.XSSF;
     using NUnit.Framework;
+    using System;
 
     [TestFixture]
     public class TestXSSFSheetRowGrouping
     {
-
         private static int ROWS_NUMBER = 200;
         private static int GROUP_SIZE = 5;
 
@@ -42,7 +41,6 @@ namespace Npoi.Core.XSSF.UserModel
             //System.out.Println("Number of groups: " + o_groupsNumber);
             //System.out.Println("Execution time: " + (System.CurrentTimeMillis()-startTime) + " ms");
         }
-
 
         private void FillData(IWorkbook p_wb)
         {
@@ -127,100 +125,97 @@ namespace Npoi.Core.XSSF.UserModel
             WriteToFile(wb);
         }
 
-
         [Test]
         public void Test55640_VerifyCases()
         {
             // NOTE: This is currently based on current behavior of POI, somehow
-            // what POI returns in the calls to collapsed/hidden is not fully matching 
+            // what POI returns in the calls to collapsed/hidden is not fully matching
             // the examples in the spec or I did not fully understand how POI stores the data internally...
 
             // all expanded
             verifyGroupCollapsed(
-                // level1, level2, level3
+                    // level1, level2, level3
                     false, false, false,
-                // collapsed:
+                    // collapsed:
                     new Boolean[] { false, false, false, false, false },
-                // hidden:
+                    // hidden:
                     new bool[] { false, false, false, false, false },
-                // outlineLevel
+                    // outlineLevel
                     new int[] { 1, 2, 3, 3, 3 }
                     );
 
-
-            // Level 1 collapsed, others expanded, should only have 4 rows, all hidden: 
+            // Level 1 collapsed, others expanded, should only have 4 rows, all hidden:
             verifyGroupCollapsed(
-                // level1, level2, level3
+                    // level1, level2, level3
                     true, false, false,
-                // collapsed:
+                    // collapsed:
                     new Boolean[] { false, false, false, false, false },
-                // hidden:
+                    // hidden:
                     new bool[] { true, true, true, true, true },
-                // outlineLevel
+                    // outlineLevel
                     new int[] { 1, 2, 3, 3, 3 }
                     );
 
-            // Level 1 and 2 collapsed, Level 3 expanded, 
+            // Level 1 and 2 collapsed, Level 3 expanded,
             verifyGroupCollapsed(
-                // level1, level2, level3
+                    // level1, level2, level3
                     true, true, false,
-                // collapsed:
+                    // collapsed:
                     new Boolean[] { false, false, false, false, true, false },
-                // hidden:
+                    // hidden:
                     new bool[] { true, true, true, true, true, false },
-                // outlineLevel
+                    // outlineLevel
                     new int[] { 1, 2, 3, 3, 3, 0 }
                     );
 
-            // Level 1 collapsed, Level 2 expanded, Level 3 collapsed 
+            // Level 1 collapsed, Level 2 expanded, Level 3 collapsed
             verifyGroupCollapsed(
-                // level1, level2, level3
+                    // level1, level2, level3
                     true, false, true,
-                // collapsed:
+                    // collapsed:
                     new Boolean[] { false, false, false, false, false, true },
-                // hidden:
+                    // hidden:
                     new bool[] { true, true, true, true, true, false },
-                // outlineLevel
+                    // outlineLevel
                     new int[] { 1, 2, 3, 3, 3, 0 }
                     );
 
             // Level 2 collapsed, others expanded:
             verifyGroupCollapsed(
-                // level1, level2, level3
+                    // level1, level2, level3
                     false, true, false,
-                // collapsed:
+                    // collapsed:
                     new Boolean[] { false, false, false, false, false, false },
-                // hidden:
+                    // hidden:
                     new bool[] { false, true, true, true, true, false },
-                // outlineLevel
+                    // outlineLevel
                     new int[] { 1, 2, 3, 3, 3, 0 }
                     );
 
-            // Level 3 collapsed, others expanded 
+            // Level 3 collapsed, others expanded
             verifyGroupCollapsed(
-                // level1, level2, level3
+                    // level1, level2, level3
                     false, false, true,
-                // collapsed:
+                    // collapsed:
                     new Boolean[] { false, false, false, false, false, true },
-                // hidden:
+                    // hidden:
                     new bool[] { false, false, true, true, true, false },
-                // outlineLevel
+                    // outlineLevel
                     new int[] { 1, 2, 3, 3, 3, 0 }
                     );
 
-            // All collapsed 
+            // All collapsed
             verifyGroupCollapsed(
-                // level1, level2, level3
+                    // level1, level2, level3
                     true, true, true,
-                // collapsed:
+                    // collapsed:
                     new Boolean[] { false, false, false, false, true, true },
-                // hidden:
+                    // hidden:
                     new bool[] { true, true, true, true, true, false },
-                // outlineLevel
+                    // outlineLevel
                     new int[] { 1, 2, 3, 3, 3, 0 }
                     );
         }
-
 
         private void verifyGroupCollapsed(bool level1, bool level2, bool level3,
                 Boolean[] collapsed, bool[] hidden, int[] outlineLevel)
@@ -248,52 +243,51 @@ namespace Npoi.Core.XSSF.UserModel
         public void Test55640_VerifyCasesSpec()
         {
             // NOTE: This is currently based on current behavior of POI, somehow
-            // what POI returns in the calls to collapsed/hidden is not fully matching 
+            // what POI returns in the calls to collapsed/hidden is not fully matching
             // the examples in the spec or I did not fully understand how POI stores the data internally...
 
             // all expanded
             verifyGroupCollapsedSpec(
-                // level3, level2, level1
+                    // level3, level2, level1
                     false, false, false,
-                // collapsed:
+                    // collapsed:
                     new Boolean[] { false, false, false, false },
-                // hidden:
+                    // hidden:
                     new bool[] { false, false, false, false },
-                // outlineLevel
+                    // outlineLevel
                     new int[] { 3, 3, 2, 1 }
                     );
 
-
             verifyGroupCollapsedSpec(
-                // level3, level2, level1
+                    // level3, level2, level1
                     false, false, true,
-                // collapsed:
+                    // collapsed:
                     new Boolean[] { false, false, false, true },
-                // hidden:
+                    // hidden:
                     new bool[] { true, true, true, false },
-                // outlineLevel
+                    // outlineLevel
                     new int[] { 3, 3, 2, 1 }
                     );
 
             verifyGroupCollapsedSpec(
-                // level3, level2, level1
+                    // level3, level2, level1
                     false, true, false,
-                // collapsed:
+                    // collapsed:
                     new Boolean[] { false, false, true, false },
-                // hidden:
+                    // hidden:
                     new bool[] { true, true, true, false },
-                // outlineLevel
+                    // outlineLevel
                     new int[] { 3, 3, 2, 1 }
                     );
 
             verifyGroupCollapsedSpec(
-                // level3, level2, level1
+                    // level3, level2, level1
                     false, true, true,
-                // collapsed:
+                    // collapsed:
                     new Boolean[] { false, false, true, true },
-                // hidden:
+                    // hidden:
                     new bool[] { true, true, true, false },
-                // outlineLevel
+                    // outlineLevel
                     new int[] { 3, 3, 2, 1 }
                     );
         }
@@ -347,6 +341,7 @@ namespace Npoi.Core.XSSF.UserModel
 
             WriteToFile(wb);
         }
+
         private void CheckWorkbookGrouping(IWorkbook wb, bool?[] collapsed, bool[] hidden, int[] outlineLevel)
         {
             printWorkbook(wb);
@@ -407,13 +402,13 @@ namespace Npoi.Core.XSSF.UserModel
         {
             // disable all output for now...
             //        ISheet sheet = wb.GetSheetAt(0);
-            //        
+            //
             //        for(Iterator<Row> it = sheet.RowIterator();it.HasNext();) {
             //            XSSFRow row = (XSSFRow) it.Next();
             //            bool collapsed = row.CTRow.Collapsed;
             //            bool hidden = row.CTRow.Hidden;
             //            short level = row.CTRow.OutlineLevel;
-            //            
+            //
             //            System.out.Println("Row: " + row.RowNum + ": Level: " + level + " Collapsed: " + collapsed + " Hidden: " + hidden);
             //        }
         }
@@ -426,33 +421,33 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(31, wb.GetSheetAt(0).LastRowNum);
 
             // NOTE: This is currently based on current behavior of POI, somehow
-            // what POI returns in the calls to collapsed/hidden is not fully matching 
+            // what POI returns in the calls to collapsed/hidden is not fully matching
             // the examples in the spec or I did not fully understand how POI stores the data internally...
             CheckWorkbookGrouping(wb,
                     new bool?[] {
                     // 0-4
-                    false, false, false, false, false, null, null, 
+                    false, false, false, false, false, null, null,
                     // 7-11
-                    false, false, true, true, true, null, null, 
+                    false, false, true, true, true, null, null,
                     // 14-18
                     false, false, true, false, false, null,
                     // 20-24
-                    false, false, true, true, false, null, null, 
+                    false, false, true, true, false, null, null,
                     // 27-31
                     false, false, false, true, false },
-                    new bool[] { 
+                    new bool[] {
                     // 0-4
-                    false, false, false, false, false, false, false,  
+                    false, false, false, false, false, false, false,
                     // 7-11
-                    true,  true, true, true, false, false, false, 
+                    true,  true, true, true, false, false, false,
                     // 14-18
-                    true, true, false, false, false, false,  
+                    true, true, false, false, false, false,
                     // 20-24
-                    true, true, true, false, false, false, false, 
+                    true, true, true, false, false, false, false,
                     // 27-31
                     true, true, true, true, false },
-                // outlineLevel
-                    new int[] { 
+                    // outlineLevel
+                    new int[] {
                     // 0-4
                     3, 3, 2, 1, 0, 0, 0,
                     // 7-11
@@ -460,7 +455,7 @@ namespace Npoi.Core.XSSF.UserModel
                     // 14-18
                     3, 3, 2, 1, 0, 0,
                     // 20-24
-                    3, 3, 2, 1, 0, 0, 0, 
+                    3, 3, 2, 1, 0, 0, 0,
                     // 27-31
                     3, 3, 2, 1, 0,
                 }

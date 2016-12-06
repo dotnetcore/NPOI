@@ -18,15 +18,12 @@
 //using System.IO;
 //namespace Npoi.Core.Util
 //{
-
-
 ///**
 // * Build a 'lite' version of the ooxml-schemas.jar
 // *
 // * @author Yegor Kozlov
 // */
 //public class OOXMLLite {
-
 //    private static Field _classes;
 //    static OOXMLLite(){
 //            //_classes = ClassLoader.class.GetDeclaredField("classes");
@@ -49,7 +46,6 @@
 //     */
 //    private Stream _ooxmlJar;
 
-
 //    OOXMLLite(String dest, String test, String ooxmlJar) {
 //        _destDest = new FileStream(dest);
 //        _testDir = new FileStream(test);
@@ -57,7 +53,6 @@
 //    }
 
 //    public static void main(String[] args)  {
-
 //        String dest = null, test = null, ooxml = null;
 
 //        for (int i = 0; i < args.Length; i++) {
@@ -70,7 +65,6 @@
 //    }
 
 //    void build() {
-
 //        List<String> lst = new List<object><String>();
 //        //collect unit tests
 //        Console.WriteLine("Collecting unit tests from " + _testDir);
@@ -150,7 +144,7 @@
 
 //    /**
 //     *
-//     * @param ptrn the pattern to filter output 
+//     * @param ptrn the pattern to filter output
 //     * @return the classes loaded by the system class loader keyed by class name
 //     */
 //    @SuppressWarnings("unChecked")

@@ -22,8 +22,6 @@
 //using System.Text;
 //namespace Npoi.Core.XSSF.Extractor
 //{
-
-
 //    /**
 //     * Implementation of a text extractor from OOXML Excel
 //     *  files that uses SAX event based parsing.
@@ -40,12 +38,10 @@
 //        public XSSFEventBasedExcelExtractor(String path)
 //            : this(OPCPackage.Open(path))
 //        {
-
 //        }
 //        public XSSFEventBasedExcelExtractor(OPCPackage Container)
 //            : base(null)
 //        {
-
 //            this.container = Container;
 
 //            properties = new POIXMLProperties(Container);
@@ -115,7 +111,6 @@
 //                ReadOnlySharedStringsTable strings,
 //                InputStream sheetInputStream)
 //        {
-
 //            DataFormatter formatter;
 //            if (locale == null)
 //            {
@@ -232,4 +227,3 @@
 //        }
 //    }
 //}
-

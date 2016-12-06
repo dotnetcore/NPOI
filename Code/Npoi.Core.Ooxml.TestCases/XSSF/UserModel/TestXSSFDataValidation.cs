@@ -14,24 +14,25 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using TestCases.SS.UserModel;
+
 using Npoi.Core.SS.UserModel;
-using System.Collections.Generic;
-using NUnit.Framework;
 using Npoi.Core.SS.Util;
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Text;
+using TestCases.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
     [TestFixture]
     public class TestXSSFDataValidation : BaseTestDataValidation
     {
-
         public TestXSSFDataValidation()
             : base(XSSFITestDataProvider.instance)
         {
-
         }
+
         [Test]
         public void TestAddValidations()
         {
@@ -42,16 +43,16 @@ namespace Npoi.Core.XSSF.UserModel
             /**
              * 		For each validation type, there are two cells with the same validation. This Tests
              * 		application of a single validation defInition to multiple cells.
-             * 		
+             *
              * 		For list ( 3 validations for explicit and 3 for formula )
-             * 			- one validation that allows blank. 
+             * 			- one validation that allows blank.
              * 			- one that does not allow blank.
              * 			- one that does not show the drop down arrow.
              * 		= 2
-             * 
+             *
              * 		For number validations ( integer/decimal and text length ) with 8 different types of operators.
-             *		= 50  
-             * 
+             *		= 50
+             *
              * 		= 52 ( Total )
              */
             Assert.AreEqual(52, dataValidations.Count);
@@ -131,10 +132,8 @@ namespace Npoi.Core.XSSF.UserModel
 
                     ICell cell_13 = row1.CreateCell(3);
 
-
                     cell_13.SetCellType(CellType.Numeric);
                     cell_13.SetCellValue(validationType == ValidationType.DECIMAL ? dvalue : (double)value);
-
 
                     //First create value based validation;
                     IDataValidationConstraint constraint = dataValidationHelper.CreateNumericConstraint(validationType, operatorType, value.ToString(), null);
@@ -199,7 +198,6 @@ namespace Npoi.Core.XSSF.UserModel
                     ICell cell_13 = row1.CreateCell(3);
                     ICell cell_14 = row1.CreateCell(4);
 
-
                     String value1String = validationType == ValidationType.DECIMAL ? dvalue.ToString() : value.ToString();
                     cell_13.SetCellType(CellType.Numeric);
                     cell_13.SetCellValue(validationType == ValidationType.DECIMAL ? dvalue : (int)value);
@@ -207,7 +205,6 @@ namespace Npoi.Core.XSSF.UserModel
                     String value2String = validationType == ValidationType.DECIMAL ? dvalue2.ToString() : value2.ToString();
                     cell_14.SetCellType(CellType.Numeric);
                     cell_14.SetCellValue(validationType == ValidationType.DECIMAL ? dvalue2 : (int)value2);
-
 
                     //First create value based validation;
                     IDataValidationConstraint constraint = dataValidationHelper.CreateNumericConstraint(validationType, operatorType, value1String, value2String);
@@ -217,7 +214,6 @@ namespace Npoi.Core.XSSF.UserModel
                     SetOtherValidationParameters(validation);
                     sheet.AddValidationData(validation);
                     Assert.AreEqual(++lastKnownNumValidations, ((XSSFSheet)sheet).GetDataValidations().Count);
-
 
                     //Now create real formula based validation.
                     String formula1 = new CellReference(cell_13.RowIndex, cell_13.ColumnIndex).FormatAsString();
@@ -248,10 +244,10 @@ namespace Npoi.Core.XSSF.UserModel
             validation.CreatePromptBox("Prompt", "Enter some value");
             validation.SuppressDropDownArrow = yesNo;
         }
+
         [Test]
         public void Test53965()
         {
-
             XSSFWorkbook wb = new XSSFWorkbook();
             try
             {
@@ -354,8 +350,5 @@ namespace Npoi.Core.XSSF.UserModel
             XSSFDataValidation validation = (XSSFDataValidation)dataValidationHelper.CreateValidation(constraint, new CellRangeAddressList(0, 0, 0, 0));
             return validation;
         }
-
     }
 }
-
-

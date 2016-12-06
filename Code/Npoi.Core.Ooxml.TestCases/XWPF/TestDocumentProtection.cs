@@ -14,21 +14,20 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF
 {
-    using System.IO;
-    using NUnit.Framework;
     using Npoi.Core.Util;
     using Npoi.Core.XWPF.UserModel;
+    using NUnit.Framework;
+    using System.IO;
 
     [TestFixture]
     public class TestDocumentProtection
     {
-
         [Test]
         public void TestShouldReadEnforcementProperties()
         {
-
             XWPFDocument documentWithoutDocumentProtectionTag = XWPFTestDataSamples.OpenSampleDocument("documentProtection_no_protection.docx");
             Assert.IsFalse(documentWithoutDocumentProtectionTag.IsEnforcedReadonlyProtection());
             Assert.IsFalse(documentWithoutDocumentProtectionTag.IsEnforcedFillingFormsProtection());
@@ -64,7 +63,6 @@ namespace Npoi.Core.XWPF
             Assert.IsFalse(documentWithTrackedChangesEnforcement.IsEnforcedReadonlyProtection());
             Assert.IsFalse(documentWithTrackedChangesEnforcement.IsEnforcedCommentsProtection());
             Assert.IsTrue(documentWithTrackedChangesEnforcement.IsEnforcedTrackedChangesProtection());
-
         }
 
         [Test]
@@ -148,6 +146,7 @@ namespace Npoi.Core.XWPF
 
             Assert.IsTrue(document.IsEnforcedCommentsProtection());
         }
+
         [Test]
         public void TestUpdateFields()
         {
@@ -157,5 +156,4 @@ namespace Npoi.Core.XWPF
             Assert.IsTrue(doc.IsEnforcedUpdateFields());
         }
     }
-
 }

@@ -17,10 +17,8 @@
 
 namespace Npoi.Core.XSSF.Util
 {
-
     public class NumericRanges
     {
-
         public const int NO_OVERLAPS = -1;
         public const int OVERLAPS_1_MINOR = 0;
         public const int OVERLAPS_2_MINOR = 1;
@@ -72,8 +70,6 @@ namespace Npoi.Core.XSSF.Util
                 return OVERLAPS_2_MINOR;
             }
             return NO_OVERLAPS;
-
         }
-
     }
 }

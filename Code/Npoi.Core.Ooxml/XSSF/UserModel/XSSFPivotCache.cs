@@ -19,24 +19,20 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.XSSF.UserModel
 {
-    using System;
     using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXmlFormats.Spreadsheet;
     using System.IO;
     using System.Xml;
-    using Npoi.Core.OpenXmlFormats.Spreadsheet;
 
     public class XSSFPivotCache : POIXMLDocumentPart
     {
-
         private CT_PivotCache ctPivotCache;
-
 
         public XSSFPivotCache()
             : base()
         {
             ctPivotCache = new CT_PivotCache();
         }
-
 
         public XSSFPivotCache(CT_PivotCache ctPivotCache)
             : base()
@@ -55,10 +51,8 @@ namespace Npoi.Core.XSSF.UserModel
         protected XSSFPivotCache(PackagePart part, PackageRelationship rel)
             : base(part, rel)
         {
-
             ReadFrom(part.GetInputStream());
         }
-
 
         protected void ReadFrom(Stream is1)
         {
@@ -75,7 +69,6 @@ namespace Npoi.Core.XSSF.UserModel
                 throw new IOException(e.Message);
             }
         }
-
 
         public CT_PivotCache GetCTPivotCache()
         {

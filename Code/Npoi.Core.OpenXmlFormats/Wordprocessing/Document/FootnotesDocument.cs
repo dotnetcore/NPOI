@@ -1,29 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
     public class FootnotesDocument
     {
-        CT_Footnotes footnotes = null;
+        private CT_Footnotes footnotes = null;
+
         public FootnotesDocument()
         {
             footnotes = new CT_Footnotes();
         }
+
         public static FootnotesDocument Parse(XDocument doc, XmlNamespaceManager namespaceMgr)
         {
             CT_Footnotes obj = CT_Footnotes.Parse(doc.Document.Root, namespaceMgr);
             return new FootnotesDocument(obj);
         }
+
         public FootnotesDocument(CT_Footnotes footnotes)
         {
             this.footnotes = footnotes;
         }
+
         public CT_Footnotes Footnotes
         {
             get
@@ -31,6 +31,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return this.footnotes;
             }
         }
+
         public void Save(Stream stream)
         {
             using (StreamWriter sw = new StreamWriter(stream))
@@ -39,5 +40,4 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
         }
     }
-    
 }

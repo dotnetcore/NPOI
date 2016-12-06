@@ -1,8 +1,6 @@
-﻿using System.Diagnostics;
-using System.IO;
+﻿using System.IO;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
@@ -30,10 +28,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             this.stylesheet = new CT_Stylesheet();
         }
+
         public CT_Stylesheet GetStyleSheet()
         {
             return this.stylesheet;
         }
+
         public void Save(Stream stream)
         {
             using (StreamWriter sw1 = new StreamWriter(stream))

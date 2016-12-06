@@ -17,28 +17,29 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
     /**
      * 9 Jan 2010
      * @author Philipp Epp
      *
      */
+
     public interface IBodyElement
     {
         IBody Body
         {
             get;
         }
+
         POIXMLDocumentPart Part
         {
             get;
         }
+
         BodyType PartType { get; }
+
         BodyElementType ElementType
         {
             get;
         }
     }
-
 }

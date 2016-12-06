@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -18,9 +17,9 @@ namespace Npoi.Core.OpenXmlFormats
         {
             propertyField = new List<CT_Property>();
         }
+
         private List<CT_Property> propertyField;
 
-    
         [XmlElement("property")]
         public List<CT_Property> property
         {
@@ -33,24 +32,29 @@ namespace Npoi.Core.OpenXmlFormats
                 this.propertyField = value;
             }
         }
+
         public int sizeOfPropertyArray()
         {
             return this.propertyField.Count;
         }
+
         public CT_Property AddNewProperty()
         {
             CT_Property p = new CT_Property();
             propertyField.Add(p);
             return p;
         }
+
         public CT_Property GetPropertyArray(int index)
         {
             return this.propertyField[index];
         }
+
         public List<CT_Property> GetPropertyList()
         {
             return propertyField;
         }
+
         public CT_Property GetProperty(string name)
         {
             for (int i = 0; i < propertyField.Count; i++)
@@ -62,6 +66,7 @@ namespace Npoi.Core.OpenXmlFormats
             }
             return null;
         }
+
         public CT_CustomProperties Copy()
         {
             CT_CustomProperties prop = new CT_CustomProperties();
@@ -72,8 +77,7 @@ namespace Npoi.Core.OpenXmlFormats
             }
             return prop;
         }
-     }
-
+    }
 
     [Serializable]
     [DebuggerStepThrough]
@@ -82,7 +86,6 @@ namespace Npoi.Core.OpenXmlFormats
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/custom-properties", IsNullable = true)]
     public class CT_Property
     {
-
         private object itemField;
 
         private ItemChoiceType itemElementNameField;
@@ -95,7 +98,6 @@ namespace Npoi.Core.OpenXmlFormats
 
         private string linkTargetField;
 
-    
         [XmlElement("array", typeof(CT_Array), Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes")]
         [XmlElement("blob", typeof(byte[]), Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes", DataType = "base64Binary")]
         [XmlElement("bool", typeof(bool), Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes")]
@@ -143,7 +145,6 @@ namespace Npoi.Core.OpenXmlFormats
             }
         }
 
-    
         [XmlIgnore]
         public ItemChoiceType ItemElementName
         {
@@ -157,7 +158,6 @@ namespace Npoi.Core.OpenXmlFormats
             }
         }
 
-    
         [XmlAttribute]
         public string fmtid
         {
@@ -171,7 +171,6 @@ namespace Npoi.Core.OpenXmlFormats
             }
         }
 
-    
         [XmlAttribute]
         public int pid
         {
@@ -185,7 +184,6 @@ namespace Npoi.Core.OpenXmlFormats
             }
         }
 
-    
         [XmlAttribute]
         public string name
         {
@@ -199,7 +197,6 @@ namespace Npoi.Core.OpenXmlFormats
             }
         }
 
-    
         [XmlAttribute]
         public string linkTarget
         {
@@ -212,6 +209,7 @@ namespace Npoi.Core.OpenXmlFormats
                 this.linkTargetField = value;
             }
         }
+
         public override bool Equals(object obj)
         {
             if (!(obj is CT_Property))
@@ -219,85 +217,68 @@ namespace Npoi.Core.OpenXmlFormats
 
             CT_Property a = (CT_Property)obj;
             if (a.fmtidField != this.fmtidField
-                ||a.itemElementNameField!=this.itemElementNameField
-                ||a.itemField!=this.itemField
-                ||a.linkTargetField!=this.linkTargetField
-                ||a.nameField!=this.nameField
-                ||a.pidField!=this.pidField)
+                || a.itemElementNameField != this.itemElementNameField
+                || a.itemField != this.itemField
+                || a.linkTargetField != this.linkTargetField
+                || a.nameField != this.nameField
+                || a.pidField != this.pidField)
                 return false;
 
             return true;
         }
+
         public override int GetHashCode()
         {
             return this.pidField.GetHashCode();
         }
+
         public override string ToString()
         {
             return String.Format("[CT_Property][pid={0},name={1}]", pidField, nameField);
         }
+
         public bool IsSetLpwstr()
         {
             throw new NotImplementedException();
         }
     }
 
-
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes")]
     public enum ST_ArrayBaseType
     {
-
-    
         variant,
 
-    
         i1,
 
-    
         i2,
 
-    
         i4,
 
-    
         @int,
 
-    
         ui1,
 
-    
         ui2,
 
-    
         ui4,
 
-    
         @uint,
 
-    
         r4,
 
-    
         r8,
 
-    
         @decimal,
 
-    
         bstr,
 
-    
         date,
 
-    
         @bool,
 
-    
         cy,
 
-    
         error,
     }
 
@@ -305,140 +286,105 @@ namespace Npoi.Core.OpenXmlFormats
     [XmlType(Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes", IncludeInSchema = false)]
     public enum ItemChoiceType
     {
-
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:array")]
         array,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:blob")]
         blob,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:bool")]
         @bool,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:bstr")]
         bstr,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:cf")]
         cf,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:clsid")]
         clsid,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:cy")]
         cy,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:date")]
         date,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:decimal")]
         @decimal,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:empty")]
         empty,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:error")]
         error,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:filetime")]
         filetime,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:i1")]
         i1,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:i2")]
         i2,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:i4")]
         i4,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:i8")]
         i8,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:int")]
         @int,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:lpstr")]
         lpstr,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:lpwstr")]
         lpwstr,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:null")]
         @null,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:oblob")]
         oblob,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:ostorage")]
         ostorage,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:ostream")]
         ostream,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:r4")]
         r4,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:r8")]
         r8,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:storage")]
         storage,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:stream")]
         stream,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:ui1")]
         ui1,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:ui2")]
         ui2,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:ui4")]
         ui4,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:ui8")]
         ui8,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:uint")]
         @uint,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:vector")]
         vector,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes:vstream")]
         vstream,
     }

@@ -14,29 +14,25 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
-
-
-
     /**
      * Specifies the Set of possible restart locations which may be used as to
      * determine the next available line when a break's type attribute has a value
      * of textWrapping.
-     * 
+     *
      * @author Gisella Bronzetti
      */
+
     public enum BreakClear
     {
-
         /**
          * Specifies that the text wrapping break shall advance the text to the next
          * line in the WordProcessingML document, regardless of its position left to
          * right or the presence of any floating objects which intersect with the
          * line,
-         * 
+         *
          * This is the Setting for a typical line break in a document.
          */
 
@@ -111,5 +107,4 @@ namespace Npoi.Core.XWPF.UserModel
         //   return bType;
         //}
     }
-
 }

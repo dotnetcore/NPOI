@@ -15,21 +15,20 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
-using NUnit.Framework;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.UserModel.Charts;
+using NUnit.Framework;
+
 namespace Npoi.Core.XSSF.UserModel.Charts
 {
-
     [TestFixture]
     public class TestXSSFManualLayout
     {
-
         /*
          * Accessor methods are not trivial. They use lazy underlying bean
          * Initialization so there can be some errors (NPE, for example).
          */
+
         [Test]
         public void TestAccessorMethods()
         {
@@ -66,13 +65,13 @@ namespace Npoi.Core.XSSF.UserModel.Charts
 
             layout.SetTarget(nonDefaultTarget);
             Assert.IsTrue(layout.GetTarget() == nonDefaultTarget);
-
         }
 
         /*
          * Layout must have reasonable default values and must not throw
          * any exceptions.
          */
+
         [Test]
         public void TestDefaultValues()
         {
@@ -104,6 +103,4 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             return legend.GetManualLayout();
         }
     }
-
-
 }

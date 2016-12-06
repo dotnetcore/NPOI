@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
     [Serializable]
@@ -22,12 +22,13 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             //this.mruColorsField = new List<CT_Color>();
             //this.indexedColorsField = new List<CT_RgbColor>();
         }
+
         public static CT_Colors Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
                 return null;
             CT_Colors ctObj = new CT_Colors();
-            
+
             foreach (XElement childNode in node.ChildElements())
             {
                 if (childNode.Name.LocalName == "indexedColors")
@@ -49,8 +50,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -104,6 +103,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_RgbColor
@@ -116,8 +116,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             ctObj.rgb = XmlHelper.ReadBytes(node.Attribute("rgb"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -143,7 +141,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     [XmlRoot("color", Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
@@ -160,8 +157,8 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 
         private double tintField;
 
-
         #region auto
+
         [XmlAttribute]
         public bool auto
         {
@@ -175,7 +172,9 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.autoSpecified = true;
             }
         }
-        bool autoSpecifiedField = false;
+
+        private bool autoSpecifiedField = false;
+
         [XmlIgnore]
         // do not remove this field or change the name, because it is automatically used by the XmlSerializer to decide if the auto attribute should be printed or not.
         public bool autoSpecified
@@ -183,6 +182,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             get { return autoSpecifiedField; }
             set { autoSpecifiedField = value; }
         }
+
         public bool IsSetAuto()
         {
             return autoSpecifiedField;
@@ -191,6 +191,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         #endregion auto
 
         #region indexed
+
         [XmlAttribute]
         public uint indexed
         {
@@ -204,20 +205,25 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.indexedSpecifiedField = true;
             }
         }
-        bool indexedSpecifiedField = false;
+
+        private bool indexedSpecifiedField = false;
+
         [XmlIgnore]
         public bool indexedSpecified
         {
             get { return indexedSpecifiedField; }
             set { indexedSpecifiedField = value; }
         }
+
         public bool IsSetIndexed()
         {
             return indexedSpecified;
         }
+
         #endregion indexed
 
         #region rgb
+
         [XmlAttribute(DataType = "hexBinary")]
         // Type ST_UnsignedIntHex is base on xsd:hexBinary
         public byte[] rgb
@@ -232,13 +238,16 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.rgbSpecified = true;
             }
         }
-        bool rgbSpecifiedField = false;
+
+        private bool rgbSpecifiedField = false;
+
         [XmlIgnore]
         public bool rgbSpecified
         {
             get { return rgbSpecifiedField; }
             set { rgbSpecifiedField = value; }
         }
+
         public void SetRgb(byte R, byte G, byte B)
         {
             this.rgbField = new byte[4];
@@ -248,16 +257,19 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.rgbField[3] = B;
             rgbSpecified = true;
         }
+
         public bool IsSetRgb()
         {
             return rgbSpecified;
         }
+
         public void SetRgb(byte[] rgb)
         {
             rgbField = new byte[rgb.Length];
             Array.Copy(rgb, this.rgbField, rgb.Length);
             this.rgbSpecified = true;
         }
+
         public byte[] GetRgb()
         {
             if (rgbField == null) return null;
@@ -265,9 +277,11 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             Array.Copy(rgbField, retVal, rgbField.Length);
             return retVal;
         }
+
         #endregion rgb
 
         #region theme
+
         [XmlAttribute]
         public uint theme
         {
@@ -281,21 +295,25 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.themeSpecifiedField = true;
             }
         }
-        bool themeSpecifiedField;
+
+        private bool themeSpecifiedField;
+
         [XmlIgnore]
         public bool themeSpecified
         {
             get { return themeSpecifiedField; }
             set { themeSpecifiedField = value; }
-
         }
+
         public bool IsSetTheme()
         {
             return themeSpecified;
         }
+
         #endregion theme
 
         #region tint
+
         [DefaultValue(0.0D)]
         [XmlAttribute]
         public double tint
@@ -310,18 +328,21 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.tintSpecified = true;
             }
         }
-        bool tintSpecifiedField = false;
+
+        private bool tintSpecifiedField = false;
+
         [XmlIgnore]
         public bool tintSpecified
         {
             get { return tintSpecifiedField; }
             set { tintSpecifiedField = value; }
-
         }
+
         public bool IsSetTint()
         {
             return tintSpecified;
         }
+
         #endregion tint
 
         //internal static XmlSerializer serializer = new XmlSerializer(typeof(CT_Color));
@@ -354,20 +375,17 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
-            XmlHelper.WriteAttribute(sw, "auto", this.auto,false);
+            XmlHelper.WriteAttribute(sw, "auto", this.auto, false);
             if (indexedSpecified)
                 XmlHelper.WriteAttribute(sw, "indexed", this.indexed, true);
-            if(rgbSpecified)
+            if (rgbSpecified)
                 XmlHelper.WriteAttribute(sw, "rgb", this.rgb);
             if (themeSpecified)
                 XmlHelper.WriteAttribute(sw, "theme", this.theme, true);
-            if(tintSpecified)
+            if (tintSpecified)
                 XmlHelper.WriteAttribute(sw, "tint", this.tint);
             sw.Write("/>");
         }
@@ -388,5 +406,4 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return res;
         }
     }
-
 }

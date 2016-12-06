@@ -14,20 +14,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF
 {
-    using System;
-
-
-
-
-    using NUnit.Framework;
-
     using Npoi.Core.HSSF.Record.Crypto;
     using Npoi.Core.POIFS.FileSystem;
     using Npoi.Core.XWPF.UserModel;
-    using TestCases;
+    using NUnit.Framework;
     using System.IO;
+    using TestCases;
 
     [TestFixture]
     public class TestXWPFBugs
@@ -36,6 +31,7 @@ namespace Npoi.Core.XWPF
          * A word document that's encrypted with non-standard
          *  Encryption options, and no cspname section. See bug 53475
          */
+
         [Ignore("encryption function need re port from poi")]
         [Test]
         public void Test53475()
@@ -44,28 +40,28 @@ namespace Npoi.Core.XWPF
             {
                 Biff8EncryptionKey.CurrentUserPassword = (/*setter*/"solrcell");
                 FileStream file = POIDataSamples.GetDocumentInstance().GetFile("bug53475-password-is-solrcell.docx");
-                NPOIFSFileSystem filesystem = new NPOIFSFileSystem(file,null, true, true);
-/*
-                // Check the encryption details
-                EncryptionInfo info = new EncryptionInfo(filesystem);
-                Assert.AreEqual(128, info.Header.KeySize);
-                Assert.AreEqual(EncryptionHeader.ALGORITHM_AES_128, info.Header.Algorithm);
-                Assert.AreEqual(EncryptionHeader.HASH_SHA1, info.Header.HashAlgorithm);
+                NPOIFSFileSystem filesystem = new NPOIFSFileSystem(file, null, true, true);
+                /*
+                                // Check the encryption details
+                                EncryptionInfo info = new EncryptionInfo(filesystem);
+                                Assert.AreEqual(128, info.Header.KeySize);
+                                Assert.AreEqual(EncryptionHeader.ALGORITHM_AES_128, info.Header.Algorithm);
+                                Assert.AreEqual(EncryptionHeader.HASH_SHA1, info.Header.HashAlgorithm);
 
-                // Check it can be decoded
-                Decryptor d = Decryptor.GetInstance(info);
-                Assert.IsTrue("Unable to Process: document is encrypted", d.VerifyPassword("solrcell"));
+                                // Check it can be decoded
+                                Decryptor d = Decryptor.GetInstance(info);
+                                Assert.IsTrue("Unable to Process: document is encrypted", d.VerifyPassword("solrcell"));
 
-                // Check we can read the word document in that
-                InputStream dataStream = d.GetDataStream(filesystem);
-                OPCPackage opc = OPCPackage.Open(dataStream);
-                XWPFDocument doc = new XWPFDocument(opc);
-                XWPFWordExtractor ex = new XWPFWordExtractor(doc);
-                String text = ex.Text;
-                Assert.IsNotNull(text);
-                Assert.AreEqual("This is password protected Word document.", text.Trim());
-                ex.Close();
- */
+                                // Check we can read the word document in that
+                                InputStream dataStream = d.GetDataStream(filesystem);
+                                OPCPackage opc = OPCPackage.Open(dataStream);
+                                XWPFDocument doc = new XWPFDocument(opc);
+                                XWPFWordExtractor ex = new XWPFWordExtractor(doc);
+                                String text = ex.Text;
+                                Assert.IsNotNull(text);
+                                Assert.AreEqual("This is password protected Word document.", text.Trim());
+                                ex.Close();
+                 */
                 filesystem.Close();
             }
             finally
@@ -73,6 +69,7 @@ namespace Npoi.Core.XWPF
                 Biff8EncryptionKey.CurrentUserPassword = (/*setter*/null);
             }
         }
+
         [Test]
         public void Bug57312_NullPointException()
         {
@@ -89,7 +86,6 @@ namespace Npoi.Core.XWPF
 
                     foreach (IRunElement iRunElem in paragraph.IRuns)
                     {
-
                         if (iRunElem is XWPFRun)
                         {
                             XWPFRun RunElement = (XWPFRun)iRunElem;
@@ -114,6 +110,7 @@ namespace Npoi.Core.XWPF
         /**
          * Removing a run needs to remove it from both Runs and IRuns
          */
+
         [Test]
         public void Test57829()
         {
@@ -127,7 +124,5 @@ namespace Npoi.Core.XWPF
                 Assert.IsNotNull(paragraph.Text);
             }
         }
-
     }
 }
-

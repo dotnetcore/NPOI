@@ -14,24 +14,20 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
-
-
-
     /**
      * Specifies possible values for the alignment of the contents of this run in
      * relation to the default appearance of the Run's text. This allows the text to
      * be repositioned as subscript or superscript without altering the font size of
      * the run properties.
-     * 
+     *
      * @author Gisella Bronzetti
      */
+
     public enum VerticalAlign
     {
-
         /**
          * Specifies that the text in the parent run shall be located at the
          * baseline and presented in the same size as surrounding text.
@@ -76,4 +72,3 @@ namespace Npoi.Core.XWPF.UserModel
         //}
     }
 }
-

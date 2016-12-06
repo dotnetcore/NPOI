@@ -3,24 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Dml.Chart
 {
-
-
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_ScatterSer
     {
-
         private CT_UnsignedInt idxField;
 
         private CT_UnsignedInt orderField;
@@ -49,8 +43,8 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
 
         public CT_ScatterSer()
         {
-
         }
+
         public static CT_ScatterSer Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -91,8 +85,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -147,28 +139,29 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             sw.Write(string.Format("</c:{0}>", nodeName));
         }
 
-
         public CT_UnsignedInt AddNewIdx()
         {
             this.idxField = new CT_UnsignedInt();
             return idxField;
         }
+
         public CT_UnsignedInt AddNewOrder()
         {
             this.orderField = new CT_UnsignedInt();
             return orderField;
         }
+
         public CT_AxDataSource AddNewXVal()
         {
             this.xValField = new CT_AxDataSource();
             return this.xValField;
         }
+
         public CT_NumDataSource AddNewYVal()
         {
             this.yValField = new CT_NumDataSource();
             return this.yValField;
         }
-
 
         [XmlElement(Order = 0)]
         public CT_UnsignedInt idx
@@ -340,9 +333,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
@@ -357,8 +348,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
                 ctObj.val = (ST_ScatterStyle)Enum.Parse(typeof(ST_ScatterStyle), node.Attribute("val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -390,12 +379,10 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     public enum ST_ScatterStyle
     {
-
         /// <remarks/>
         none,
 
@@ -415,15 +402,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         smoothMarker,
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_ScatterChart
     {
-
         private CT_ScatterStyle scatterStyleField;
 
         private CT_Boolean varyColorsField;
@@ -442,6 +426,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             //this.dLblsField = new CT_DLbls();
             //this.varyColorsField = new CT_Boolean();
         }
+
         public static CT_ScatterChart Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -467,8 +452,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -509,6 +492,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             this.scatterStyleField = new CT_ScatterStyle();
             return scatterStyleField;
         }
+
         public CT_UnsignedInt AddNewAxId()
         {
             if (this.axIdField == null)
@@ -517,6 +501,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             this.axIdField.Add(axIdItem);
             return axIdItem;
         }
+
         public CT_ScatterSer AddNewSer()
         {
             if (this.serField == null)
@@ -525,6 +510,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             this.serField.Add(ser);
             return ser;
         }
+
         [XmlElement(Order = 0)]
         public CT_ScatterStyle scatterStyle
         {
@@ -603,6 +589,4 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
         }
     }
-
-
 }

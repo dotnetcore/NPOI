@@ -15,10 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-using System.Collections.Generic;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.XSSF.Util;
+using System.Collections.Generic;
+
 namespace Npoi.Core.XSSF.UserModel.Helpers
 {
     /**
@@ -27,18 +28,18 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
      * Note - within POI, we use 0 based column indexes, but
      *  the column defInitions in the XML are 1 based!
      */
+
     public class ColumnHelper
     {
-
         private CT_Worksheet worksheet;
         private CT_Cols newCols;
 
         public ColumnHelper(CT_Worksheet worksheet)
         {
-
             this.worksheet = worksheet;
             CleanColumns();
         }
+
         public void CleanColumns()
         {
             this.newCols = new CT_Cols();
@@ -71,7 +72,6 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             worksheet.AddNewCols();
             worksheet.SetColsArray(0, newCols);
         }
-        
 
         //YK: GetXYZArray() array accessors are deprecated in xmlbeans with JDK 1.5 support
         public static void SortColumns(CT_Cols newCols)
@@ -93,15 +93,18 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
         /**
          * Returns the Column at the given 0 based index
          */
+
         public CT_Col GetColumn(long index, bool splitColumns)
         {
             return GetColumn1Based(index + 1, splitColumns);
         }
+
         /**
          * Returns the Column at the given 1 based index.
          * POI default is 0 based, but the file stores
          *  as 1 based.
          */
+
         public CT_Col GetColumn1Based(long index1, bool splitColumns)
         {
             CT_Cols colsArray = worksheet.GetColsArray(0);
@@ -135,6 +138,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             }
             return null;
         }
+
         public CT_Cols AddCleanColIntoCols(CT_Cols cols, CT_Col col)
         {
             CT_Cols newCols = new CT_Cols();
@@ -151,13 +155,16 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             cols.SetColArray(colArray);
             return returnCols;
         }
+
         public class TreeSet<T>
         {
             private SortedList<T, object> innerObj;
+
             public TreeSet(IComparer<T> comparer)
             {
                 innerObj = new SortedList<T, object>(comparer);
             }
+
             public T First()
             {
                 IEnumerator<T> enumerator = this.innerObj.Keys.GetEnumerator();
@@ -165,6 +172,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
                     return enumerator.Current;
                 return default(T);
             }
+
             public T Higher(T element)
             {
                 IEnumerator<T> enumerator = this.innerObj.Keys.GetEnumerator();
@@ -175,21 +183,25 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
                 }
                 return default(T);
             }
+
             public void Add(T item)
             {
-                if(!this.innerObj.ContainsKey(item))
-                    this.innerObj.Add(item,null);
+                if (!this.innerObj.ContainsKey(item))
+                    this.innerObj.Add(item, null);
             }
+
             public bool Remove(T item)
             {
                 return this.innerObj.Remove(item);
             }
+
             public int Count
             {
                 get { return this.innerObj.Count; }
             }
+
             public void CopyTo(T[] target)
-            { 
+            {
                 for (int i = 0; i < this.innerObj.Count; i++)
                 {
                     target[i] = (T)this.innerObj.Keys[i];
@@ -201,9 +213,11 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
                 return this.innerObj.Keys.GetEnumerator();
             }
         }
+
         /**
          * @see <a href="http://en.wikipedia.org/wiki/Sweep_line_algorithm">Sweep line algorithm</a>
          */
+
         private void SweepCleanColumns(CT_Cols cols, CT_Col[] flattenedColsArray, CT_Col overrideColumn)
         {
             List<CT_Col> flattenedCols = new List<CT_Col>(flattenedColsArray);
@@ -219,13 +233,13 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             {
                 //CTCol col = flIter.next();
                 pos++;
-                CT_Col col = flattenedCols[pos]; 
-                
+                CT_Col col = flattenedCols[pos];
+
                 long currentIndex = col.min;
                 long colMax = col.max;
                 long nextIndex = (colMax > currentMax) ? colMax : currentMax;
                 //if (flIter.hasNext()) {
-                if((pos+1)<flattenedCols.Count)
+                if ((pos + 1) < flattenedCols.Count)
                 {
                     //nextIndex = flIter.next().getMin();
                     nextIndex = flattenedCols[pos + 1].min;
@@ -236,9 +250,9 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
                 while (iter.MoveNext())
                 {
                     CT_Col elem = iter.Current;
-                    if (currentIndex <= elem.max) 
+                    if (currentIndex <= elem.max)
                         break; // all passed elements have been purged
-                    
+
                     toRemove.Add(elem);
                 }
 
@@ -246,7 +260,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
                 {
                     currentElements.Remove(rc);
                 }
-                
+
                 if (!(currentElements.Count == 0) && lastMaxIndex < currentIndex)
                 {
                     // we need to process previous elements first
@@ -311,7 +325,6 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
                         lastMaxIndex = currentIndex;
                         currentIndex = nextIndex + 1;
                     }
-
                 }
             }
             SortColumns(cols);
@@ -336,7 +349,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
         //        // overlapping types
         //        if (overlappingType == NumericRanges.OVERLAPS_1_MINOR)
         //        {
-        //            // move the max border of the ithCol 
+        //            // move the max border of the ithCol
         //            // and insert a new column within the overlappingRange with merged column attributes
         //            ithCol.max = (uint)(overlappingRange[0] - 1);
         //            insertCol(cols, overlappingRange[0],
@@ -348,7 +361,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
         //        }
         //        else if (overlappingType == NumericRanges.OVERLAPS_2_MINOR)
         //        {
-        //            // move the min border of the ithCol 
+        //            // move the min border of the ithCol
         //            // and insert a new column within the overlappingRange with merged column attributes
         //            ithCol.min = (uint)(overlappingRange[1] + 1);
         //            insertCol(cols, overlappingRange[0],
@@ -362,7 +375,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
         //        {
         //            // merge column attributes, no new column is needed
         //            SetColumnAttributes(col, ithCol);
-                    
+
         //        }
         //        else if (overlappingType == NumericRanges.OVERLAPS_1_WRAPS)
         //        {
@@ -428,11 +441,13 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
          * Insert a new CT_Col at position 0 into cols, Setting min=min, max=max and
          * copying all the colsWithAttributes array cols attributes into newCol
          */
+
         private CT_Col insertCol(CT_Cols cols, long min, long max,
             CT_Col[] colsWithAttributes)
         {
             return insertCol(cols, min, max, colsWithAttributes, false, null);
         }
+
         private CT_Col insertCol(CT_Cols cols, long min, long max,
         CT_Col[] colsWithAttributes, bool ignoreExistsCheck, CT_Col overrideColumn)
         {
@@ -450,14 +465,17 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             }
             return null;
         }
+
         /**
          * Does the column at the given 0 based index exist
          *  in the supplied list of column defInitions?
          */
+
         public bool columnExists(CT_Cols cols, long index)
         {
             return columnExists1Based(cols, index + 1);
         }
+
         private bool columnExists1Based(CT_Cols cols, long index1)
         {
             for (int i = 0; i < cols.sizeOfColArray(); i++)
@@ -472,7 +490,6 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
 
         public void SetColumnAttributes(CT_Col fromCol, CT_Col toCol)
         {
-
             if (fromCol.IsSetBestFit())
             {
                 toCol.bestFit = (fromCol.bestFit);
@@ -481,7 +498,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             {
                 toCol.customWidth = (fromCol.customWidth);
             }
-            if (fromCol.IsSetHidden()) 
+            if (fromCol.IsSetHidden())
             {
                 toCol.hidden = (fromCol.hidden);
             }
@@ -518,6 +535,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             CT_Col col = GetOrCreateColumn1Based(index + 1, false);
             col.bestFit = (bestFit);
         }
+
         public void SetCustomWidth(long index, bool width)
         {
             CT_Col col = GetOrCreateColumn1Based(index + 1, true);
@@ -540,6 +558,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
          * Return the CT_Col at the given (0 based) column index,
          *  creating it if required.
          */
+
         internal CT_Col GetOrCreateColumn1Based(long index1, bool splitColumns)
         {
             CT_Col col = GetColumn1Based(index1, splitColumns);
@@ -597,5 +616,4 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             return -1;
         }
     }
-
 }

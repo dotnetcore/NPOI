@@ -17,17 +17,13 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
-
-
-
     /**
      * Specifies all types of alignment which are available to be applied to objects in a
      * WordProcessingML document
      *
      * @author Yegor Kozlov
      */
+
     public enum ParagraphAlignment
     {
         //YK: TODO document each alignment option
@@ -65,6 +61,5 @@ namespace Npoi.Core.XWPF.UserModel
         //    if(err == null) throw new ArgumentException("Unknown paragraph alignment: " + type);
         //    return err;
         //}
-
     }
 }

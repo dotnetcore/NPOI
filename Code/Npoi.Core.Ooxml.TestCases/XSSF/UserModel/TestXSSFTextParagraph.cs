@@ -14,12 +14,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XSSF.UserModel
 {
-    using System;
     using NUnit.Framework;
-    using System.Drawing;
     using System.Collections.Generic;
+    using System.Drawing;
 
     [TestFixture]
     public class TestXSSFTextParagraph
@@ -178,11 +178,10 @@ namespace Npoi.Core.XSSF.UserModel
                 text.SetBullet(ListAutoNumber.CIRCLE_NUM_DB_PLAIN);
                 Assert.IsTrue(text.IsBullet);
                 Assert.IsTrue(text.IsBulletAutoNumber);
-                
+
                 //Assert.AreEqual(0, text.BulletAutoNumberStart);
                 //This value should be 1, see CT_TextAutonumberBullet.startAt, default value is 1;
                 Assert.AreEqual(1, text.BulletAutoNumberStart);
-
 
                 Assert.AreEqual(ListAutoNumber.CIRCLE_NUM_DB_PLAIN, text.BulletAutoNumberScheme);
                 text.IsBullet = (false);
@@ -194,7 +193,6 @@ namespace Npoi.Core.XSSF.UserModel
                 Assert.AreEqual(10, text.BulletAutoNumberStart);
                 Assert.AreEqual(ListAutoNumber.CIRCLE_NUM_WD_BLACK_PLAIN, text.BulletAutoNumberScheme);
 
-
                 Assert.IsNotNull(text.ToString());
 
                 new XSSFTextParagraph(text.GetXmlObject(), shape.GetCTShape());
@@ -205,5 +203,4 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
     }
-
 }

@@ -15,16 +15,17 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
 using NUnit.Framework;
+using System;
+
 namespace Npoi.Core.XSSF.UserModel.Helpers
 {
-
     /**
      * Test the header and footer helper.
      * As we go through XmlBeans, should always use &,
      *  and not &amp;
      */
+
     [TestFixture]
     public class TestHeaderFooterHelper
     {
@@ -41,6 +42,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             Assert.AreEqual("The left one", helper.GetLeftSection(headerFooter));
             Assert.AreEqual("And the right one", helper.GetRightSection(headerFooter));
         }
+
         [Test]
         public void TestSetCenterLeftRightSection()
         {
@@ -63,6 +65,5 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             Assert.AreEqual("First right&", helper.GetRightSection(headerFooter));
             Assert.AreEqual("&CFirst Added center section&LFirst left&RFirst right&", headerFooter);
         }
-
     }
 }

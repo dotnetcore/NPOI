@@ -10,9 +10,9 @@ namespace Npoi.Core.OpenXml4Net.OPC
      * @author Julien Chable
      * @version 0.1
      */
+
     public class PackagePartCollection : SortedList<PackagePartName, PackagePart>
     {
-
         private static long serialVersionUID = 2515031135957635515L;
 
         /**
@@ -20,7 +20,6 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * M1.11 optimized checking.
          */
         private List<String> registerPartNameStr = new List<String>();
-
 
         /**
          * Check rule [M1.11]: a package implementer shall neither create nor
@@ -31,6 +30,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *                Throws if you try to add a part with a name derived from
          *                another part name.
          */
+
         public PackagePart Put(PackagePartName partName, PackagePart part)
         {
             String[] segments = partName.URI.OriginalString.Split(
@@ -57,5 +57,4 @@ namespace Npoi.Core.OpenXml4Net.OPC
             base.Remove(key);
         }
     }
-
 }

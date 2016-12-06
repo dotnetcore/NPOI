@@ -19,18 +19,18 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
-    using System.Collections.Generic;
     using Npoi.Core.OpenXml4Net.OPC;
-    using System.IO;
-    using Npoi.Core.Util;
-    using System.Text;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.Util;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text;
 
     /**
      * Parent of XWPF headers and footers
      */
+
     public abstract class XWPFHeaderFooter : POIXMLDocumentPart, IBody
     {
         protected List<XWPFParagraph> paragraphs = new List<XWPFParagraph>(1);
@@ -55,7 +55,6 @@ namespace Npoi.Core.XWPF.UserModel
 
         protected XWPFHeaderFooter()
         {
-
             //headerFooter = new CT_HdrFtr();
             //ReadHdrFtr();
         }
@@ -72,7 +71,6 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
 
-
         internal override void OnDocumentRead()
         {
             foreach (POIXMLDocumentPart poixmlDocumentPart in GetRelations())
@@ -85,7 +83,6 @@ namespace Npoi.Core.XWPF.UserModel
                 }
             }
         }
-
 
         public CT_HdrFtr _getHdrFtr()
         {
@@ -104,9 +101,10 @@ namespace Npoi.Core.XWPF.UserModel
          * Returns the paragraph(s) that holds
          *  the text of the header or footer.
          * Normally there is only the one paragraph, but
-         *  there could be more in certain cases, or 
+         *  there could be more in certain cases, or
          *  a table.
          */
+
         public IList<XWPFParagraph> Paragraphs
         {
             get
@@ -115,15 +113,15 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
 
-
         /**
          * Return the table(s) that holds the text
          *  of the header or footer, for complex cases
          *  where a paragraph isn't used.
          * Normally there's just one paragraph, but some
          *  complex headers/footers have a table or two
-         *  in Addition. 
+         *  in Addition.
          */
+
         public IList<XWPFTable> Tables
         {
             get
@@ -132,12 +130,11 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
 
-
-
         /**
          * Returns the textual content of the header/footer,
          *  by flattening out the text of its paragraph(s)
          */
+
         public String Text
         {
             get
@@ -181,6 +178,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * Set a new headerFooter
          */
+
         public void SetHeaderFooter(CT_HdrFtr headerFooter)
         {
             this.headerFooter = headerFooter;
@@ -190,9 +188,10 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * if there is a corresponding {@link XWPFTable} of the parameter ctTable in the tableList of this header
          * the method will return this table
-         * if there is no corresponding {@link XWPFTable} the method will return null 
+         * if there is no corresponding {@link XWPFTable} the method will return null
          * @param ctTable
          */
+
         public XWPFTable GetTable(CT_Tbl ctTable)
         {
             foreach (XWPFTable table in tables)
@@ -208,11 +207,12 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * if there is a corresponding {@link XWPFParagraph} of the parameter ctTable in the paragraphList of this header or footer
          * the method will return this paragraph
-         * if there is no corresponding {@link XWPFParagraph} the method will return null 
+         * if there is no corresponding {@link XWPFParagraph} the method will return null
          * @param p is instance of CTP and is searching for an XWPFParagraph
          * @return null if there is no XWPFParagraph with an corresponding CTPparagraph in the paragraphList of this header or footer
          * 		   XWPFParagraph with the correspondig CTP p
          */
+
         public XWPFParagraph GetParagraph(CT_P p)
         {
             foreach (XWPFParagraph paragraph in paragraphs)
@@ -227,16 +227,17 @@ namespace Npoi.Core.XWPF.UserModel
          * Returns the paragraph that holds
          *  the text of the header or footer.
          */
+
         public XWPFParagraph GetParagraphArray(int pos)
         {
-
             return paragraphs[(pos)];
         }
 
         /**
          * Get a List of all Paragraphs
-         * @return a list of {@link XWPFParagraph} 
+         * @return a list of {@link XWPFParagraph}
          */
+
         public List<XWPFParagraph> GetListParagraph()
         {
             return paragraphs;
@@ -254,6 +255,7 @@ namespace Npoi.Core.XWPF.UserModel
          * Get all Pictures in this package
          * @return all Pictures in this package
          */
+
         public IList<XWPFPictureData> AllPackagePictures
         {
             get
@@ -269,8 +271,9 @@ namespace Npoi.Core.XWPF.UserModel
          * @param format            The format of the picture.
          *
          * @return the index to this picture (0 based), the Added picture can be obtained from {@link #getAllPictures()} .
-         * @throws InvalidFormatException 
+         * @throws InvalidFormatException
          */
+
         public String AddPictureData(byte[] pictureData, int format)
         {
             XWPFPictureData xwpfPicData = document.FindPackagePictureData(pictureData, format);
@@ -342,9 +345,10 @@ namespace Npoi.Core.XWPF.UserModel
          * @param format            The format of the picture.
          *
          * @return the index to this picture (0 based), the Added picture can be obtained from {@link #getAllPictures()} .
-         * @throws InvalidFormatException 
-         * @ 
+         * @throws InvalidFormatException
+         * @
          */
+
         public String AddPictureData(Stream is1, int format)
         {
             byte[] data = IOUtils.ToByteArray(is1);
@@ -355,8 +359,9 @@ namespace Npoi.Core.XWPF.UserModel
          * returns the PictureData by blipID
          * @param blipID
          * @return XWPFPictureData of a specificID
-         * @throws Exception 
+         * @throws Exception
          */
+
         public XWPFPictureData GetPictureDataByID(String blipID)
         {
             POIXMLDocumentPart relatedPart = GetRelationById(blipID);
@@ -412,9 +417,8 @@ namespace Npoi.Core.XWPF.UserModel
             return null;
         }*/
 
-
         /**
-         * 
+         *
          * @param cursor
          * @return the inserted table
          */
@@ -474,7 +478,6 @@ namespace Npoi.Core.XWPF.UserModel
             return false;
         }*/
 
-
         public POIXMLDocumentPart Owner
         {
             get
@@ -487,9 +490,9 @@ namespace Npoi.Core.XWPF.UserModel
          * Returns the table at position pos
          * @see Npoi.Core.XWPF.UserModel.IBody#getTableArray(int)
          */
+
         public XWPFTable GetTableArray(int pos)
         {
-
             if (pos > 0 && pos < tables.Count)
             {
                 return tables[(pos)];
@@ -502,6 +505,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @param pos
          * @param table
          */
+
         public void InsertTable(int pos, XWPFTable table)
         {
             bodyElements.Insert(pos, table);
@@ -564,6 +568,7 @@ namespace Npoi.Core.XWPF.UserModel
          * Get the TableCell which belongs to the TableCell
          * @param cell
          */
+
         public XWPFTableCell GetTableCell(CT_Tc cell)
         {
             /*XmlCursor cursor = cell.NewCursor();
@@ -596,6 +601,7 @@ namespace Npoi.Core.XWPF.UserModel
         {
             document = doc;
         }
+
         public XWPFDocument GetXWPFDocument()
         {
             if (document != null)
@@ -612,6 +618,7 @@ namespace Npoi.Core.XWPF.UserModel
          * returns the Part, to which the body belongs, which you need for Adding relationship to other parts
          * @see Npoi.Core.XWPF.UserModel.IBody#getPart()
          */
+
         public POIXMLDocumentPart Part
         {
             get
@@ -621,7 +628,6 @@ namespace Npoi.Core.XWPF.UserModel
         }
 
         #region IBody 成员
-
 
         public virtual BodyType PartType
         {
@@ -641,7 +647,6 @@ namespace Npoi.Core.XWPF.UserModel
             throw new NotImplementedException();
         }
 
-        #endregion
+        #endregion IBody 成员
     }//end class
-
 }

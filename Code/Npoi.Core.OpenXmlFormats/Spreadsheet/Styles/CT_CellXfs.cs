@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -13,12 +12,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_CellXfs
     {
-
         private List<CT_Xf> xfField;
 
         private uint countField;
 
         private bool countFieldSpecified;
+
         public static CT_CellXfs Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -33,8 +32,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -55,6 +52,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             //this.xfField = new List<CT_Xf>();
         }
+
         public CT_Xf AddNewXf()
         {
             if (this.xfField == null)
@@ -63,6 +61,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.xfField.Add(xf);
             return xf;
         }
+
         [XmlElement]
         public List<CT_Xf> xf
         {
@@ -75,6 +74,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.xfField = value;
             }
         }
+
         [XmlAttribute]
         public uint count
         {

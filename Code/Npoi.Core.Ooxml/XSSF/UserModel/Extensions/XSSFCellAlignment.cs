@@ -14,18 +14,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS.UserModel;
-using System;
+
 namespace Npoi.Core.XSSF.UserModel.Extensions
 {
-
     /**
      * Cell Settings avaiable in the Format/Alignment tab
      */
+
     public class XSSFCellAlignment
     {
-
         private CT_CellAlignment cellAlignement;
 
         /**
@@ -33,6 +33,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          *
          * @param cellAlignment
          */
+
         public XSSFCellAlignment(CT_CellAlignment cellAlignment)
         {
             this.cellAlignement = cellAlignment;
@@ -44,6 +45,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          * @return the type of aligment
          * @see VerticalAlignment
          */
+
         public VerticalAlignment Vertical
         {
             get
@@ -51,10 +53,10 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
                 ST_VerticalAlignment align = cellAlignement.vertical;
                 return (VerticalAlignment)((int)align);
             }
-            set 
+            set
             {
                 cellAlignement.vertical = (ST_VerticalAlignment)((int)value);
-                cellAlignement.verticalSpecified = true;            
+                cellAlignement.verticalSpecified = true;
             }
         }
 
@@ -64,6 +66,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          * @return the type of aligment
          * @see HorizontalAlignment
          */
+
         public HorizontalAlignment Horizontal
         {
             get
@@ -71,7 +74,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
                 ST_HorizontalAlignment align = cellAlignement.horizontal;
                 return (HorizontalAlignment)align;
             }
-            set 
+            set
             {
                 cellAlignement.horizontal = ((ST_HorizontalAlignment)value);
                 cellAlignement.horizontalSpecified = true;
@@ -83,16 +86,17 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          *
          * @return indent - number of spaces
          */
+
         public long Indent
         {
             get
             {
                 return cellAlignement.indent;
             }
-            set 
+            set
             {
                 cellAlignement.indent = value;
-                cellAlignement.indentSpecified = true;            
+                cellAlignement.indentSpecified = true;
             }
         }
 
@@ -110,6 +114,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          *
          * @return rotation degrees (between 0 and 180 degrees)
          */
+
         public long TextRotation
         {
             get
@@ -119,7 +124,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
             set
             {
                 cellAlignement.textRotation = value;
-                cellAlignement.textRotationSpecified = true;            
+                cellAlignement.textRotationSpecified = true;
             }
         }
 
@@ -128,16 +133,17 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          *
          * @return a bool value indicating if the text in a cell should be line-wrapped within the cell.
          */
+
         public bool WrapText
         {
             get
             {
                 return cellAlignement.wrapText;
             }
-            set 
+            set
             {
                 cellAlignement.wrapText = value;
-                cellAlignement.wrapTextSpecified = true;            
+                cellAlignement.wrapTextSpecified = true;
             }
         }
 
@@ -160,6 +166,4 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
             return cellAlignement;
         }
     }
-
 }
-

@@ -1,15 +1,12 @@
 ﻿using Npoi.Core.OpenXml4Net.Util;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
@@ -41,8 +38,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -51,7 +46,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 XmlHelper.WriteAttribute(sw, "w:val", this.valField, true);
             sw.Write("/>");
         }
-
 
         private bool valField;
 
@@ -95,6 +89,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return this.valFieldSpecified;
         }
     }
+
     /// <summary>
     /// On/Off Value
     /// </summary>
@@ -106,10 +101,12 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         /// False
         /// </summary>
         off,
+
         /// <summary>
         /// True
         /// </summary>
         on,
+
         ///// <summary>
         ///// False
         ///// </summary>
@@ -134,6 +131,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         [XmlEnum("false")]
         False,
     }
+
     /// <summary>
     /// Long Hexadecimal Number
     /// </summary>
@@ -151,8 +149,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -160,8 +156,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             sw.Write("/>");
         }
 
-
         private byte[] valField;
+
         /// <summary>
         /// Four Digit Hexadecimal Number Value
         /// </summary>
@@ -188,6 +184,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     public class CT_ShortHexNumber
     {
         private byte[] valField;
+
         public static CT_ShortHexNumber Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -196,8 +193,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             ctObj.val = XmlHelper.ReadBytes(node.Attribute("w:val"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -268,15 +263,12 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "w:val", this.val, true);
             sw.Write("/>");
         }
-
 
         private string valField;
 
@@ -305,8 +297,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_TwipsMeasure
     {
-
         private ulong valField;
+
         public static CT_TwipsMeasure Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -315,8 +307,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             ctObj.val = XmlHelper.ReadULong(node.Attribute("w:val"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -350,7 +340,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_SignedTwipsMeasure
     {
-
         public static CT_SignedTwipsMeasure Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -360,8 +349,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -370,8 +357,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
 
-
         private string valField;
+
         /// <summary>
         /// Signed Measurement in Twentieths of a Point
         /// </summary>
@@ -397,7 +384,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_PixelsMeasure
     {
-
         private ulong valField;
 
         /// <summary>
@@ -434,15 +420,12 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "w:val", this.val, true);
             sw.Write("/>");
         }
-
 
         private ulong valField;
 
@@ -462,6 +445,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
         }
     }
+
     /// <summary>
     /// Signed Measurement in Half-Points
     /// </summary>
@@ -479,8 +463,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -488,7 +470,9 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             sw.Write(">");
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
+
         private string valField;
+
         /// <summary>
         /// Signed Measurement in Half-Points
         /// </summary>
@@ -514,8 +498,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_MacroName
     {
-
         private string valField;
+
         /// <summary>
         /// Script Subroutine Name Value
         /// </summary>
@@ -566,8 +550,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -575,8 +557,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             sw.Write("/>");
         }
 
-
         private string valField;
+
         /// <summary>
         /// String Value
         /// </summary>
@@ -611,8 +593,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -622,6 +602,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
 
         private string valField;
+
         /// <summary>
         /// Language Code
         /// </summary>
@@ -639,7 +620,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     //<xsd:pattern value="\{[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}\}" />
     /// <summary>
     /// 128-Bit GUID
@@ -649,8 +629,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Guid
     {
-
         private string valField;
+
         /// <summary>
         /// GUID Value
         /// </summary>

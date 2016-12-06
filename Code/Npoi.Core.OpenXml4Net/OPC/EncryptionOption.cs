@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Npoi.Core.OpenXml4Net.OPC
+﻿namespace Npoi.Core.OpenXml4Net.OPC
 {
     /**
      * Specifies the encryption option for parts in a Package.
@@ -10,6 +6,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
      * @author Julien Chable
      * @version 0.1
      */
+
     public enum EncryptionOption
     {
         /** No encryption. */

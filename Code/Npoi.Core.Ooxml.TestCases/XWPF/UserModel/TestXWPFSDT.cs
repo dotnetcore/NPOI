@@ -15,19 +15,20 @@
    limitations under the License.
 ==================================================================== */
 
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
+
 namespace Npoi.Core.XWPF.UserModel
 {
     [TestFixture]
     public class TestXWPFSDT
     {
-
         /**
          * Test simple tag and title extraction from SDT
          * @throws Exception
          */
+
         [Test]
         public void TestTagTitle()
         {
@@ -67,27 +68,28 @@ namespace Npoi.Core.XWPF.UserModel
                 "Footer_rich_text",
                 "Footnote_sdt",
                 "Endnote_sdt"
-
         };
             XWPFDocument doc = XWPFTestDataSamples.OpenSampleDocument("Bug54849.docx");
             List<AbstractXWPFSDT> sdts = ExtractAllSDTs(doc);
 
             Assert.AreEqual(contents.Length, sdts.Count, "number of sdts");
 
-            for (int i = 0; i <contents.Length; i++)
+            for (int i = 0; i < contents.Length; i++)
             {//contents.Length; i++){
                 AbstractXWPFSDT sdt = sdts[i];
 
                 Assert.AreEqual(contents[i], sdt.Content.ToString(), i + ": " + contents[i]);
             }
         }
+
         /**
          * POI-54771 and TIKA-1317
          */
+
         [Test]
         public void TestSDTAsCell()
         {
-            //Bug54771a.docx and Bug54771b.docx test slightly 
+            //Bug54771a.docx and Bug54771b.docx test slightly
             //different recursion patterns. Keep both!
             XWPFDocument doc = XWPFTestDataSamples.OpenSampleDocument("Bug54771a.docx");
             List<AbstractXWPFSDT> sdts = ExtractAllSDTs(doc);
@@ -107,11 +109,12 @@ namespace Npoi.Core.XWPF.UserModel
 
             Assert.IsTrue(sdts[(1)].Content.Text.IndexOf("Test Subtitle") > -1);
             Assert.IsTrue(sdts[(2)].Content.Text.IndexOf("Test User") > -1);
-
         }
+
         /**
          * POI-55142 and Tika 1130
          */
+
         [Test]
         public void TestNewLinesBetweenRuns()
         {
@@ -137,10 +140,8 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
 
-
         private List<AbstractXWPFSDT> ExtractAllSDTs(XWPFDocument doc)
         {
-
             List<AbstractXWPFSDT> sdts = new List<AbstractXWPFSDT>();
 
             IList<XWPFHeader> headers = doc.HeaderList;
@@ -179,7 +180,6 @@ namespace Npoi.Core.XWPF.UserModel
                 }
                 else if (e is XWPFParagraph)
                 {
-
                     XWPFParagraph p = (XWPFParagraph)e;
                     foreach (IRunElement e2 in p.IRuns)
                     {
@@ -201,7 +201,6 @@ namespace Npoi.Core.XWPF.UserModel
 
         private List<AbstractXWPFSDT> ExtractSDTsFromTable(XWPFTable table)
         {
-
             List<AbstractXWPFSDT> sdts = new List<AbstractXWPFSDT>();
             foreach (XWPFTableRow r in table.Rows)
             {
@@ -220,5 +219,4 @@ namespace Npoi.Core.XWPF.UserModel
             return sdts;
         }
     }
-
 }

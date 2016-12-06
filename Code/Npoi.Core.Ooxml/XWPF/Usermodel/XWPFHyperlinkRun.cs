@@ -14,15 +14,17 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using System;
 
     /**
      * A run of text with a Hyperlink applied to it.
      * Any given Hyperlink may be made up of multiple of these.
      */
+
     public class XWPFHyperlinkRun : XWPFRun
     {
         private CT_Hyperlink1 hyperlink;
@@ -46,10 +48,12 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * Returns the ID of the hyperlink, if one is Set.
          */
+
         public String GetHyperlinkId()
         {
             return hyperlink.id;
         }
+
         public void SetHyperlinkId(String id)
         {
             hyperlink.id = (id);
@@ -59,6 +63,7 @@ namespace Npoi.Core.XWPF.UserModel
          * If this Hyperlink is an external reference hyperlink,
          *  return the object for it.
          */
+
         public XWPFHyperlink GetHyperlink(XWPFDocument document)
         {
             String id = GetHyperlinkId();
@@ -68,5 +73,4 @@ namespace Npoi.Core.XWPF.UserModel
             return document.GetHyperlinkByID(id);
         }
     }
-
 }

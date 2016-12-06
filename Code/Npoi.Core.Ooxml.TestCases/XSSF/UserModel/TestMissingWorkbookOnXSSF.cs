@@ -17,18 +17,15 @@
 
 namespace Npoi.Core.XSSF.UserModel
 {
-    using System;
-
-    using Npoi.Core.HSSF;
-    using Npoi.Core.SS.Formula;
     using Npoi.Core.XSSF;
-    using TestCases.SS.Formula;
     using NUnit.Framework;
     using TestCases.HSSF;
+    using TestCases.SS.Formula;
 
     /**
      * XSSF Specific version of the Missing Workbooks test
      */
+
     [TestFixture]
     public class TestMissingWorkbookOnXSSF : TestMissingWorkbook
     {

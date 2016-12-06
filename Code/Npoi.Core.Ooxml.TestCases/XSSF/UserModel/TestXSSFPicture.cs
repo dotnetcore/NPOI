@@ -15,29 +15,29 @@
    limitations under the License.
 ==================================================================== */
 
-using TestCases.SS.UserModel;
-using NUnit.Framework;
-using System.Collections.Generic;
+using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.Util;
-using System.Text;
-using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+using TestCases.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * @author Yegor Kozlov
      */
+
     [TestFixture]
     public class TestXSSFPicture : BaseTestPicture
     {
-
         public TestXSSFPicture()
             : base(XSSFITestDataProvider.instance)
         {
-
         }
+
         [Test]
         public void Resize()
         {
@@ -50,7 +50,6 @@ namespace Npoi.Core.XSSF.UserModel
             BaseTestResize(inpPic, cmpPic, 2.0, 2.0);
             wb.Close();
         }
-
 
         [Test]
         public void Create()
@@ -89,6 +88,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * See Bugzilla 50458
          */
+
         [Test]
         public void IncrementShapeId()
         {
@@ -112,6 +112,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
      * same image refrerred by mulitple sheets
      */
+
         [Test]
         public void multiRelationShips()
         {
@@ -155,8 +156,6 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.IsTrue(Arrays.Equals(shape3.PictureData.Data, shape33.PictureData.Data));
             XSSFPicture shape44 = (XSSFPicture)drawing2.GetShapes()[1];
             Assert.IsTrue(Arrays.Equals(shape4.PictureData.Data, shape44.PictureData.Data));
-
         }
     }
 }
-

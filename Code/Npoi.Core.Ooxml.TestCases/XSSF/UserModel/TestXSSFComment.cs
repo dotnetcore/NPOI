@@ -15,7 +15,6 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
 using Npoi.Core.HSSF.UserModel;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.OpenXmlFormats.Vml;
@@ -23,27 +22,29 @@ using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.Util;
 using Npoi.Core.XSSF.Model;
 using NUnit.Framework;
+using System;
 using TestCases.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * @author Yegor Kozlov
      */
+
     [TestFixture]
     public class TestXSSFComment : BaseTestCellComment
     {
-
         private static String TEST_RICHTEXTSTRING = "test richtextstring";
 
         public TestXSSFComment()
             : base(XSSFITestDataProvider.instance)
         {
-
         }
 
         /**
          * Test properties of a newly constructed comment
          */
+
         [Test]
         public void Constructor()
         {
@@ -63,6 +64,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual("", comment.Author);
             Assert.AreEqual(false, comment.Visible);
         }
+
         [Test]
         public void GetSetCol()
         {
@@ -82,6 +84,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(5, new CellReference(ctComment.@ref).Col);
             Assert.AreEqual(5, vmlShape.GetClientDataArray(0).GetColumnArray(0));
         }
+
         [Test]
         public void GetSetRow()
         {
@@ -101,6 +104,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(5, new CellReference(ctComment.@ref).Row);
             Assert.AreEqual(5, vmlShape.GetClientDataArray(0).GetRowArray(0));
         }
+
         [Test]
         public void SetString()
         {
@@ -127,7 +131,7 @@ namespace Npoi.Core.XSSF.UserModel
             comment.SetString(TEST_RICHTEXTSTRING);
 
             CT_Comment ctComment = comment.GetCTComment();
-          //  Assert.Fail("TODO test case incomplete!?");
+            //  Assert.Fail("TODO test case incomplete!?");
             //XmlObject[] obj = ctComment.selectPath(
             //        "declare namespace w='http://schemas.Openxmlformats.org/spreadsheetml/2006/main' .//w:text");
             //Assert.AreEqual(1, obj.Length);
@@ -159,6 +163,7 @@ namespace Npoi.Core.XSSF.UserModel
 
             Assert.IsNotNull(XSSFTestDataSamples.WriteOutAndReadBack(wb));
         }
+
         [Test]
         public void Author()
         {
@@ -178,7 +183,4 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(2, sheetComments.GetNumberOfAuthors());
         }
     }
-
-
-
 }

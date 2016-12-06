@@ -17,7 +17,6 @@
 //==================================================================== */
 //namespace Npoi.Core
 //{
-
 //    using junit.framework.TestCase;
 
 //    using org.apache.poi.Openxml4j.opc.OPCPackage;
@@ -127,4 +126,3 @@
 //    }
 
 //}
-

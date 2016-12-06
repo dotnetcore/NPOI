@@ -17,12 +17,9 @@
 
 namespace Npoi.Core.XSSF.Model
 {
-    using System;
-
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.XSSF.UserModel;
     using NUnit.Framework;
-
 
     [TestFixture]
     public class TestExternalLinksTable
@@ -94,7 +91,8 @@ namespace Npoi.Core.XSSF.Model
         }
 
         [Test]
-        public void readWithReferencesToTwoExternalBooks() {
+        public void readWithReferencesToTwoExternalBooks()
+        {
             XSSFWorkbook wb = XSSFTestDataSamples.OpenSampleWorkbook("ref2-56737.xlsx");
 
             Assert.IsNotNull(wb.ExternalLinksTable);
@@ -124,7 +122,6 @@ namespace Npoi.Core.XSSF.Model
             Assert.AreEqual("Defines", name.SheetName);
             Assert.AreEqual("'Defines'!$A$1", name.RefersToFormula);
 
-
             // Check the second one, links to 56737.xls, slightly differently
             links = wb.ExternalLinksTable[1];
             Assert.AreEqual("56737.xls", links.LinkedFileName);
@@ -147,5 +144,4 @@ namespace Npoi.Core.XSSF.Model
             Assert.AreEqual("'Defines'!$A$1", name.RefersToFormula);
         }
     }
-
 }

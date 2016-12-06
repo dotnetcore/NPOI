@@ -15,20 +15,20 @@
    limitations under the License.
 ==================================================================== */
 
+using Npoi.Core.OpenXmlFormats.Dml.Chart;
 using Npoi.Core.SS.UserModel.Charts;
 using System;
-using Npoi.Core.OpenXmlFormats.Dml.Chart;
+
 namespace Npoi.Core.XSSF.UserModel.Charts
 {
-
     /**
      * Base class for all axis types.
      *
      * @author Roman Kashitsyn
      */
+
     public abstract class XSSFChartAxis : IChartAxis
     {
-
         protected XSSFChart chart;
 
         private static double Min_LOG_BASE = 2.0;
@@ -38,7 +38,9 @@ namespace Npoi.Core.XSSF.UserModel.Charts
         {
             this.chart = chart;
         }
-        public abstract long Id { get;}
+
+        public abstract long Id { get; }
+
         public abstract void CrossAxis(IChartAxis axis);
 
         public AxisPosition Position
@@ -208,6 +210,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
                 GetCTCrosses().val = fromAxisCrosses(value);
             }
         }
+
         public bool IsVisible
         {
             get
@@ -245,11 +248,17 @@ namespace Npoi.Core.XSSF.UserModel.Charts
         }
 
         protected abstract CT_AxPos GetCTAxPos();
+
         protected abstract CT_NumFmt GetCTNumFmt();
+
         protected abstract CT_Scaling GetCTScaling();
+
         protected abstract CT_Crosses GetCTCrosses();
+
         protected abstract CT_Boolean GetDelete();
+
         protected abstract CT_TickMark GetMajorCTTickMark();
+
         protected abstract CT_TickMark GetMinorCTTickMark();
 
         private static ST_Orientation fromAxisOrientation(AxisOrientation orientation)
@@ -322,6 +331,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
                 default: return AxisPosition.Bottom;
             }
         }
+
         private static ST_TickMark fromAxisTickMark(AxisTickMark tickMark)
         {
             switch (tickMark)
@@ -347,5 +357,4 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             }
         }
     }
-
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Npoi.Core.OpenXml4Net.OPC
+﻿namespace Npoi.Core.OpenXml4Net.OPC
 {
     /**
      * Specifies whether the target of a PackageRelationship is inside or outside a
@@ -11,6 +7,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
      * @author Julien Chable
      * @version 1.0
      */
+
     public enum TargetMode
     {
         /** The relationship references a resource that is external to the package. */

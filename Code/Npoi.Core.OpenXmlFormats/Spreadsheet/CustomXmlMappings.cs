@@ -8,7 +8,6 @@ using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
-
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -18,7 +17,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     {
         //  TODO the initial elements of schemaField and mapField must be ensured somewhere else - or is there a save default!?
 
-        private List<CT_Schema> schemaField = new List<CT_Schema>(); // 1..* 
+        private List<CT_Schema> schemaField = new List<CT_Schema>(); // 1..*
 
         private List<CT_Map> mapField = new List<CT_Map>(); // 1..*
 
@@ -107,7 +106,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
 
-
         [XmlAttribute]
         public string SchemaRef
         {
@@ -120,12 +118,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.schemaRefField = value;
             }
         }
+
         [XmlIgnore]
         public bool SchemaRefSpecified
         {
             get { return null != this.schemaRefField; }
         }
-
 
         [XmlAttribute]
         public string Namespace
@@ -139,6 +137,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.namespaceField = value;
             }
         }
+
         [XmlIgnore]
         public bool NamespaceSpecified
         {
@@ -147,7 +146,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 
         public string InnerXml;
     }
-
 
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
@@ -189,12 +187,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.dataBindingField = value;
             }
         }
+
         [XmlIgnore]
         public bool DataBindingSpecified
         {
             get { return (null != dataBindingField); }
         }
-
 
         [XmlAttribute]
         public uint ID
@@ -209,7 +207,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
 
-
         [XmlAttribute]
         public string Name
         {
@@ -222,7 +219,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.nameField = value;
             }
         }
-
 
         [XmlAttribute]
         public string RootElement
@@ -237,7 +233,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
 
-
         [XmlAttribute]
         public string SchemaID
         {
@@ -250,7 +245,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.schemaIDField = value;
             }
         }
-
 
         [XmlAttribute]
         public bool ShowImportExportValidationErrors
@@ -265,7 +259,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
 
-
         [XmlAttribute]
         public bool AutoFit
         {
@@ -278,7 +271,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.autoFitField = value;
             }
         }
-
 
         [XmlAttribute]
         public bool Append
@@ -293,7 +285,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
 
-
         [XmlAttribute]
         public bool PreserveSortAFLayout
         {
@@ -306,7 +297,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.preserveSortAFLayoutField = value;
             }
         }
-
 
         [XmlAttribute]
         public bool PreserveFormat
@@ -322,14 +312,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         }
     }
 
-
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public partial class CT_DataBinding
     {
-
         private XElement anyField; // 1..1 element
 
         // now attributes
@@ -344,7 +332,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 
         private uint dataBindingLoadModeField = 0; // 1..1 - default value not defined in xsd
 
-
         [XmlAnyElement]
         public XElement Any
         {
@@ -352,19 +339,18 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             set { this.anyField = value; }
         }
 
-
         [XmlAttribute]
         public string DataBindingName
         {
             get { return this.dataBindingNameField; }
             set { this.dataBindingNameField = value; }
         }
+
         [XmlIgnore]
         public bool outlineSpecified
         {
             get { return (null != dataBindingNameField); }
         }
-
 
         [XmlAttribute]
         public bool FileBinding
@@ -372,12 +358,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             get { return null == this.fileBindingField ? false : (bool)this.fileBindingField; } // default value not defined in xsd
             set { this.fileBindingField = value; }
         }
+
         [XmlIgnore]
         public bool FileBindingSpecified
         {
             get { return (null != fileBindingField); }
         }
-
 
         [XmlAttribute]
         public uint ConnectionID
@@ -392,19 +378,18 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             get { return (null != connectionIDField); }
         }
 
-
         [XmlAttribute]
         public string FileBindingName
         {
             get { return this.fileBindingNameField; }
             set { this.fileBindingNameField = value; }
         }
+
         [XmlIgnore]
         public bool FileBindingNameSpecified
         {
             get { return (null != fileBindingNameField); }
         }
-
 
         [XmlAttribute]
         public uint DataBindingLoadMode

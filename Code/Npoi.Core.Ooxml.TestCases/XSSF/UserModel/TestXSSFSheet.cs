@@ -15,30 +15,25 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.XSSF.UserModel;
-using NUnit.Framework;
-using Npoi.Core.XSSF.UserModel.Helpers;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.Util;
 using Npoi.Core.XSSF.Model;
-using System.Collections.Generic;
+using Npoi.Core.XSSF.UserModel.Helpers;
+using NUnit.Framework;
 using System;
-using Npoi.Core.XSSF;
-using Npoi.Core.Util;
-using Npoi.Core.HSSF.Record;
-using TestCases.SS.UserModel;
+using System.Collections.Generic;
 using TestCases.HSSF;
+using TestCases.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
     [TestFixture]
     public class TestXSSFSheet : BaseTestSheet
     {
-
         public TestXSSFSheet()
             : base(XSSFITestDataProvider.instance)
         {
-
         }
 
         //[Test]
@@ -47,11 +42,13 @@ namespace Npoi.Core.XSSF.UserModel
         {
             base.TestDefaultColumnStyle();
         }
+
         [Test]
         public void TestTestGetSetMargin()
         {
             BaseTestGetSetMargin(new double[] { 0.7, 0.7, 0.75, 0.75, 0.3, 0.3 });
         }
+
         [Test]
         public void TestExistingHeaderFooter()
         {
@@ -109,6 +106,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual("", ftr.Center);
             Assert.AreEqual("", ftr.Right);
         }
+
         [Test]
         public void TestGetAllHeadersFooters()
         {
@@ -149,6 +147,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual("odd footer left", sheet.Footer.Left);
             Assert.AreEqual("odd header center", sheet.Header.Center);
         }
+
         [Test]
         public void TestAutoSizeColumn()
         {
@@ -163,7 +162,6 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.IsTrue(col.bestFit);
         }
 
-        
         [Test]
         public void TestSetCellComment()
         {
@@ -182,6 +180,7 @@ namespace Npoi.Core.XSSF.UserModel
             comment.Author = ("test A1 author");
             Assert.AreEqual("test A1 author", comments.GetAuthor((int)ctComments.commentList.GetCommentArray(0).authorId));
         }
+
         [Test]
         public void TestGetActiveCell()
         {
@@ -190,8 +189,8 @@ namespace Npoi.Core.XSSF.UserModel
             sheet.SetActiveCell("R5");
 
             Assert.AreEqual("R5", sheet.ActiveCell);
-
         }
+
         [Test]
         public void TestCreateFreezePane_XSSF()
         {
@@ -234,6 +233,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.IsNull(sheet.GetCTWorksheet().mergeCells, " CTMergeCells should be deleted After removing the last merged " +
                     "region on the sheet.");
         }
+
         [Test]
         public void TestSetDefaultColumnStyle()
         {
@@ -330,7 +330,6 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(2, ctrow.outlineLevel);
             Assert.AreEqual(2, sheet.GetCTWorksheet().sheetFormatPr.outlineLevelRow);
 
-
             sheet.UngroupRow(8, 10);
             Assert.AreEqual(4, sheet.PhysicalNumberOfRows);
             Assert.AreEqual(1, sheet.GetCTWorksheet().sheetFormatPr.outlineLevelRow);
@@ -340,6 +339,7 @@ namespace Npoi.Core.XSSF.UserModel
 
             Assert.AreEqual(1, sheet.GetCTWorksheet().sheetFormatPr.outlineLevelRow);
         }
+
         [Test]
         public void TestSetZoom()
         {
@@ -370,6 +370,7 @@ namespace Npoi.Core.XSSF.UserModel
          *  be doing... Someone who understands the goals a little
          *  better should really review this!
          */
+
         [Test]
         public void TestSetColumnGroupCollapsed()
         {
@@ -438,7 +439,6 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(13, cols.GetColArray(4).min); // 1 based
             Assert.AreEqual(13, cols.GetColArray(4).max); // 1 based
 
-
             // expand columns - 1
             sheet1.SetColumnGroupCollapsed((short)5, false);
 
@@ -462,7 +462,6 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(true, cols.GetColArray(4).IsSetCollapsed());
             Assert.AreEqual(13, cols.GetColArray(4).min); // 1 based
             Assert.AreEqual(13, cols.GetColArray(4).max); // 1 based
-
 
             //collapse - 2
             sheet1.SetColumnGroupCollapsed((short)9, true);
@@ -491,7 +490,6 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(true, cols.GetColArray(5).IsSetCollapsed());
             Assert.AreEqual(14, cols.GetColArray(5).min); // 1 based
             Assert.AreEqual(14, cols.GetColArray(5).max); // 1 based
-
 
             //expand - 2
             sheet1.SetColumnGroupCollapsed((short)9, false);
@@ -556,7 +554,6 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(14, cols.GetColArray(5).min); // 1 based
             Assert.AreEqual(14, cols.GetColArray(5).max); // 1 based
 
-
             //expand - 3
             sheet1.SetColumnGroupCollapsed((short)10, false);
             Assert.AreEqual(6, cols.sizeOfColArray());
@@ -594,7 +591,6 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(false, cols.GetColArray(5).IsSetCollapsed());
             Assert.AreEqual(14, cols.GetColArray(5).min); // 1 based
             Assert.AreEqual(14, cols.GetColArray(5).max); // 1 based
-
         }
 
         /**
@@ -603,6 +599,7 @@ namespace Npoi.Core.XSSF.UserModel
          *  be doing... Someone who understands the goals a little
          *  better should really review this!
          */
+
         [Test]
         public void TestSetRowGroupCollapsed()
         {
@@ -659,7 +656,6 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(false, ((XSSFRow)sheet1.GetRow(18)).GetCTRow().IsSetCollapsed());
             Assert.AreEqual(false, ((XSSFRow)sheet1.GetRow(18)).GetCTRow().IsSetHidden());
 
-
             // Save and re-load
             wb = XSSFTestDataSamples.WriteOutAndReadBack(wb);
             sheet1 = (XSSFSheet)wb.GetSheetAt(0);
@@ -681,6 +677,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Get / Set column width and check the actual values of the underlying XML beans
          */
+
         [Test]
         public void TestColumnWidth_lowlevel()
         {
@@ -730,6 +727,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Setting width of a column included in a column span
          */
+
         [Test]
         public void Test47862()
         {
@@ -792,6 +790,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Hiding a column included in a column span
          */
+
         [Test]
         public void Test47804()
         {
@@ -860,6 +859,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.IsFalse(sheet.IsColumnHidden(4));
             Assert.IsFalse(sheet.IsColumnHidden(5));
         }
+
         [Test]
         public void TestCommentsTable()
         {
@@ -901,6 +901,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Rows and cells can be Created in random order,
          * but CTRows are kept in ascending order
          */
+
         [Test]
         public new void TestCreateRow()
         {
@@ -924,7 +925,6 @@ namespace Npoi.Core.XSSF.UserModel
             row3.CreateCell(0);
             row3.CreateCell(2);
             row3.CreateCell(5);
-
 
             List<CT_Row> xrow = sheetData.row;
             Assert.AreEqual(3, xrow.Count);
@@ -971,14 +971,13 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual("D1", xcell[2].r);
             Assert.AreEqual("F1", xcell[3].r);
 
-
             Assert.AreEqual(0, xrow[1].SizeOfCArray());
             Assert.AreEqual(2u, xrow[1].r);
 
             Assert.AreEqual(2, xrow[2].SizeOfCArray());
             Assert.AreEqual(3u, xrow[2].r);
-
         }
+
         [Test]
         public void TestSetAutoFilter()
         {
@@ -997,10 +996,10 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual("_xlnm._FilterDatabase", nm.GetCTName().name);
             Assert.AreEqual("'new sheet'!$A$1:$D$100", nm.GetCTName().Value);
         }
+
         //[Test]
         //public void TestProtectSheet_lowlevel()
         //{
-
         //    XSSFWorkbook wb = new XSSFWorkbook();
         //    XSSFSheet sheet = (XSSFSheet)wb.CreateSheet();
         //    CT_SheetProtection pr = sheet.GetCTWorksheet().sheetProtection;
@@ -1033,7 +1032,7 @@ namespace Npoi.Core.XSSF.UserModel
             sheet.RemoveRow(row);
             Assert.AreEqual(0, calcChain.GetCTCalcChain().SizeOfCArray(), "XSSFSheet#RemoveRow did not clear calcChain entries");
 
-            //calcChain should be gone 
+            //calcChain should be gone
             wb = (XSSFWorkbook)XSSFTestDataSamples.WriteOutAndReadBack(wb);
             Assert.IsNull(wb.GetCalculationChain());
         }
@@ -1041,6 +1040,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * See bug #50829
          */
+
         [Test]
         public void TestTables()
         {
@@ -1070,6 +1070,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
      * Test to trigger OOXML-LITE generating to include org.openxmlformats.schemas.spreadsheetml.x2006.main.CTSheetCalcPr
      */
+
         [Test]
         public void TestSetForceFormulaRecalculation()
         {
@@ -1092,12 +1093,12 @@ namespace Npoi.Core.XSSF.UserModel
             sheet.ForceFormulaRecalculation = (false);
             Assert.AreEqual(false, sheet.ForceFormulaRecalculation);
 
-
             // Save, re-load, and re-check
             workbook = (XSSFWorkbook)XSSFTestDataSamples.WriteOutAndReadBack(workbook);
             sheet = (XSSFSheet)workbook.GetSheet("Sheet 1");
             Assert.AreEqual(false, sheet.ForceFormulaRecalculation);
         }
+
         [Test]
         public void Bug54607()
         {
@@ -1382,6 +1383,5 @@ namespace Npoi.Core.XSSF.UserModel
             XSSFSheet sheet = wb.CreateSheet() as XSSFSheet;
             Assert.IsNotNull(sheet.CreateComment());
         }
-
     }
 }

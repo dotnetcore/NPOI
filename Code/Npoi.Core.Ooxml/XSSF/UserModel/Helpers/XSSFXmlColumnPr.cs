@@ -15,24 +15,22 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.XSSF.UserModel;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using System;
+
 namespace Npoi.Core.XSSF.UserModel.Helpers
 {
-
-
     /**
-     * 
+     *
      * This class is a wrapper around the CT_XmlColumnPr (Open Office XML Part 4:
      * chapter 3.5.1.7)
-     * 
+     *
      *
      * @author Roberto Manicardi
      */
+
     public class XSSFXmlColumnPr
     {
-
         private XSSFTable table;
         private CT_TableColumn ctTableColumn;
         private CT_XmlColumnPr ctXmlColumnPr;
@@ -52,23 +50,24 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
         public String GetXPath()
         {
             return ctXmlColumnPr.xpath;
-            
         }
+
         /**
          * (see Open Office XML Part 4: chapter 3.5.1.3)
-         * @return An integer representing the unique identifier of this column. 
+         * @return An integer representing the unique identifier of this column.
          */
+
         public long GetId()
         {
             return ctTableColumn.id;
         }
 
-
         /**
          * If the XPath is, for example, /Node1/Node2/Node3 and /Node1/Node2 is the common XPath for the table, the local XPath is /Node3
-         * 	
-         * @return the local XPath 
+         *
+         * @return the local XPath
          */
+
         public String GetLocalXPath()
         {
             String localXPath = "";
@@ -84,11 +83,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
 
         public ST_XmlDataType GetXmlDataType()
         {
-
             return ctXmlColumnPr.xmlDataType;
         }
     }
-
 }
-
-

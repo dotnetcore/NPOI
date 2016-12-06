@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Npoi.Core.OpenXml4Net.Util;
+using System;
 using System.ComponentModel;
-
-using System.Text;
-using System.Xml.Serialization;
 using System.IO;
-using Npoi.Core.OpenXml4Net.Util;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
@@ -15,7 +12,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_SheetPr
     {
-
         private CT_Color tabColorField;
 
         private CT_OutlinePr outlinePrField;
@@ -66,8 +62,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
@@ -78,7 +72,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             XmlHelper.WriteAttribute(sw, "transitionEntry", this.transitionEntry, false);
             XmlHelper.WriteAttribute(sw, "published", this.published, false);
             XmlHelper.WriteAttribute(sw, "codeName", this.codeName);
-            XmlHelper.WriteAttribute(sw, "filterMode", this.filterMode,false);
+            XmlHelper.WriteAttribute(sw, "filterMode", this.filterMode, false);
             XmlHelper.WriteAttribute(sw, "enableFormatConditionsCalculation", this.enableFormatConditionsCalculation, false);
             sw.Write(">");
             if (this.tabColor != null)
@@ -89,7 +83,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.pageSetUpPr.Write(sw, "pageSetUpPr");
             sw.Write(string.Format("</{0}>", nodeName));
         }
-
 
         public CT_SheetPr()
         {
@@ -104,25 +97,28 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.filterModeField = false;
             this.enableFormatConditionsCalculationField = true;
         }
+
         public bool IsSetOutlinePr()
         {
             return this.outlinePrField != null;
         }
+
         public bool IsSetPageSetUpPr()
         {
             return this.pageSetUpPrField != null;
         }
+
         public CT_PageSetUpPr AddNewPageSetUpPr()
         {
             this.pageSetUpPrField = new CT_PageSetUpPr();
             return this.pageSetUpPrField;
         }
+
         public CT_OutlinePr AddNewOutlinePr()
         {
             this.outlinePrField = new CT_OutlinePr();
             return this.outlinePrField;
         }
-
 
         public CT_Color tabColor
         {
@@ -280,5 +276,4 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return this.tabColor != null;
         }
     }
-
 }

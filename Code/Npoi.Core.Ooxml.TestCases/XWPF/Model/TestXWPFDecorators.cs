@@ -17,24 +17,21 @@
 
 namespace Npoi.Core.XWPF.Model
 {
-    using System;
-
-
-
-    using NUnit.Framework;
-
     using Npoi.Core.XWPF;
     using Npoi.Core.XWPF.UserModel;
+    using NUnit.Framework;
 
     /**
      * Tests for the various XWPF decorators
      */
+
     [TestFixture]
     public class TestXWPFDecorators
     {
         private XWPFDocument simple;
         private XWPFDocument hyperlink;
         private XWPFDocument comments;
+
         [SetUp]
         public void SetUp()
         {
@@ -60,7 +57,6 @@ namespace Npoi.Core.XWPF.Model
             Assert.AreEqual("We have a hyperlink here, and another.", ph.ParagraphText);
             Assert.AreEqual(3, ph.Runs.Count);
 
-
             // The proper way to do hyperlinks(!)
             Assert.IsFalse(ps.Runs[(0)] is XWPFHyperlinkRun);
             Assert.IsFalse(ph.Runs[(0)] is XWPFHyperlinkRun);
@@ -69,7 +65,6 @@ namespace Npoi.Core.XWPF.Model
 
             XWPFHyperlinkRun link = (XWPFHyperlinkRun)ph.Runs[(1)];
             Assert.AreEqual("http://poi.apache.org/", link.GetHyperlink(hyperlink).URL);
-
 
             // Test the old style decorator
             // You probably don't want to still be using it...
@@ -108,5 +103,4 @@ namespace Npoi.Core.XWPF.Model
             Assert.AreEqual(3, numComments);
         }
     }
-
 }

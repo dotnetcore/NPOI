@@ -15,27 +15,30 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
-using System.IO;
 using Npoi.Core.HSSF.UserModel;
 using Npoi.Core.OpenXml4Net.OPC;
 using Npoi.Core.POIFS.FileSystem;
 using Npoi.Core.Util;
 using Npoi.Core.XSSF.UserModel;
+using System;
+using System.IO;
 
 namespace Npoi.Core.SS.UserModel
 {
     public enum ImportOption
     {
         NONE,
+
         /// <summary>
         /// Only Text and Formulas are imported. Pictures, Drawing, Styles etc. are all ignored.
         /// </summary>
         SheetContentOnly,
+
         /// <summary>
         /// Only Text, Comments and Formulas are imported. Pictures, Drawing, Styles etc. are all ignored.
         /// </summary>
         TextOnly,
+
         /// <summary>
         /// Everything is imported - this is the same as NONE.
         /// </summary>
@@ -59,6 +62,7 @@ namespace Npoi.Core.SS.UserModel
         /**
          * Creates an HSSFWorkbook from the given NPOIFSFileSystem
          */
+
         public static IWorkbook Create(NPOIFSFileSystem fs)
         {
             return new HSSFWorkbook(fs.Root, true);
@@ -99,12 +103,14 @@ namespace Npoi.Core.SS.UserModel
             }
             throw new ArgumentException("Your stream was neither an OLE2 stream, nor an OOXML stream.");
         }
+
         /**
         * Creates the appropriate HSSFWorkbook / XSSFWorkbook from
         *  the given File, which must exist and be readable.
         * <p>Note that for Workbooks opened this way, it is not possible
         *  to explicitly close the underlying File resource.
         */
+
         public static IWorkbook Create(string file)
         {
             if (!File.Exists(file))
@@ -139,7 +145,7 @@ namespace Npoi.Core.SS.UserModel
                 }
                 catch (ArgumentException ioe)
                 {
-                    // ensure that file handles are closed (use revert() to not re-write the file) 
+                    // ensure that file handles are closed (use revert() to not re-write the file)
                     pkg.Revert();
                     //pkg.close();
 
@@ -148,6 +154,7 @@ namespace Npoi.Core.SS.UserModel
                 }
             }
         }
+
         /// <summary>
         /// Creates the appropriate HSSFWorkbook / XSSFWorkbook from
         /// the given InputStream. The Stream is wraped inside a PushbackInputStream.
@@ -294,7 +301,5 @@ namespace Npoi.Core.SS.UserModel
                 XSSFRelation.AddRelation(XSSFRelation.PRINTER_SETTINGS);
             }
         }
-
     }
-
 }

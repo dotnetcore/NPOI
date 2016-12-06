@@ -15,42 +15,38 @@
    limitations under the License.
 ==================================================================== */
 
-using System.Xml;
-using System.IO;
 using Npoi.Core.OpenXml4Net.OPC;
-using Npoi.Core.XSSF.UserModel.Helpers;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using System.Collections.Generic;
 using Npoi.Core.XSSF.UserModel;
+using Npoi.Core.XSSF.UserModel.Helpers;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml;
+
 namespace Npoi.Core.XSSF.Model
 {
-
-
     /**
-     * 
+     *
      * This class : the Single Cell Tables Part (Open Office XML Part 4:
      * chapter 3.5.2)
-     * 
+     *
      *
      * @author Roberto Manicardi
      */
+
     public class SingleXmlCells : POIXMLDocumentPart
     {
-
-
         private CT_SingleXmlCells SingleXMLCells;
 
         public SingleXmlCells()
             : base()
         {
-
             SingleXMLCells = new CT_SingleXmlCells();
         }
 
         internal SingleXmlCells(PackagePart part, PackageRelationship rel)
             : base(part, rel)
         {
-
             ReadFrom(part.GetInputStream());
         }
 
@@ -79,7 +75,6 @@ namespace Npoi.Core.XSSF.Model
             doc.Save(out1);
         }
 
-
         protected internal override void Commit()
         {
             PackagePart part = GetPackagePart();
@@ -94,9 +89,10 @@ namespace Npoi.Core.XSSF.Model
         }
 
         /**
-         * 
+         *
          * @return all the SimpleXmlCell Contained in this SingleXmlCells element
          */
+
         public List<XSSFSingleXmlCell> GetAllSimpleXmlCell()
         {
             List<XSSFSingleXmlCell> list = new List<XSSFSingleXmlCell>();
@@ -109,9 +105,3 @@ namespace Npoi.Core.XSSF.Model
         }
     }
 }
-
-
-
-
-
-

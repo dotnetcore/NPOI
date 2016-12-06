@@ -15,9 +15,9 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
-using System;
 using Npoi.Core.OpenXmlFormats.Dml;
+using System;
+
 namespace Npoi.Core.XSSF.UserModel
 {
     public class XSSFChildAnchor : XSSFAnchor
@@ -43,7 +43,6 @@ namespace Npoi.Core.XSSF.UserModel
             this.t2d = t2d;
         }
 
-
         public CT_Transform2D GetCTTransform2D()
         {
             return t2d;
@@ -54,9 +53,8 @@ namespace Npoi.Core.XSSF.UserModel
             get
             {
                 return (int)t2d.off.x;
-
             }
-            set 
+            set
             {
                 t2d.off.y = (value);
             }
@@ -68,7 +66,7 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 return (int)t2d.off.y;
             }
-            set 
+            set
             {
                 t2d.off.y = (value);
             }
@@ -80,12 +78,11 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 return (int)(Dy1 + t2d.ext.cy);
             }
-            set 
+            set
             {
                 t2d.ext.cy = (value - Dy1);
             }
         }
-
 
         public override int Dx2
         {
@@ -93,13 +90,10 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 return (int)(Dx1 + t2d.ext.cx);
             }
-            set 
+            set
             {
                 t2d.ext.cx = (value - Dx1);
             }
         }
     }
-
-
-
 }

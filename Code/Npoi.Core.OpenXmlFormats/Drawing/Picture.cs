@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -13,11 +12,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Picture
     // draw-pic:pic
     public class CT_Picture
     {
-        private CT_PictureNonVisual nvPicPrField = new CT_PictureNonVisual();        //  draw-pic 1..1 
+        private CT_PictureNonVisual nvPicPrField = new CT_PictureNonVisual();        //  draw-pic 1..1
 
-        private CT_BlipFillProperties blipFillField = new CT_BlipFillProperties();   //  draw-pic: 1..1 
+        private CT_BlipFillProperties blipFillField = new CT_BlipFillProperties();   //  draw-pic: 1..1
 
-        private CT_ShapeProperties spPrField = new CT_ShapeProperties();             //  draw-pic: 1..1 
+        private CT_ShapeProperties spPrField = new CT_ShapeProperties();             //  draw-pic: 1..1
 
         [XmlElement(Order = 0)]
         public CT_PictureNonVisual nvPicPr
@@ -57,6 +56,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Picture
             spPrField = new CT_ShapeProperties();
             return this.spPrField;
         }
+
         public void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0} xmlns:pic=\"{1}\">", nodeName, "http://schemas.openxmlformats.org/drawingml/2006/picture"));
@@ -72,9 +72,8 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Picture
             {
                 this.spPr.Write(sw, "pic:spPr");
             }
-            sw.Write(string.Format("</{0}>",nodeName));
+            sw.Write(string.Format("</{0}>", nodeName));
         }
-
     }
 
     // see same class in different name space in SpeedsheetDrawing.cs
@@ -84,7 +83,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Picture
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/picture")]
     public class CT_PictureNonVisual
     {
-
         private CT_NonVisualDrawingProps cNvPrField = new CT_NonVisualDrawingProps(); // 1..1
         private CT_NonVisualPictureProperties cNvPicPrField = new CT_NonVisualPictureProperties(); // 1..1
 
@@ -93,6 +91,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Picture
             this.cNvPrField = new CT_NonVisualDrawingProps();
             return this.cNvPrField;
         }
+
         public CT_NonVisualPictureProperties AddNewCNvPicPr()
         {
             this.cNvPicPrField = new CT_NonVisualPictureProperties();
@@ -106,7 +105,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Picture
             set { this.cNvPrField = value; }
         }
 
-
         [XmlElement(Order = 1)]
         public CT_NonVisualPictureProperties cNvPicPr
         {
@@ -116,8 +114,8 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Picture
 
         internal void Write(StreamWriter sw, string p)
         {
-            sw.Write(string.Format("<{0}>",p));
-            if (this.cNvPr!=null)
+            sw.Write(string.Format("<{0}>", p));
+            if (this.cNvPr != null)
             {
                 this.cNvPr.Write(sw, "cNvPr");
             }
@@ -128,5 +126,4 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Picture
             sw.Write(string.Format("</{0}>", p));
         }
     }
-
 }

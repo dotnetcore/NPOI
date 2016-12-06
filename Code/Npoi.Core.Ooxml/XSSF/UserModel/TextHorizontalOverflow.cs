@@ -16,11 +16,13 @@
  *    limitations under the License.
  * ====================================================================
  */
+
 namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * Text Horizontal Overflow
      */
+
     public enum TextHorizontalOverflow
     {
         None,
@@ -36,5 +38,4 @@ namespace Npoi.Core.XSSF.UserModel
          */
         CLIP
     }
-
 }

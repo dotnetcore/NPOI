@@ -15,25 +15,27 @@
    limitations under the License.
    ==================================================================== */
 
-using Npoi.Core.SS.Util;
 using Npoi.Core.SS.UserModel;
-using System;
-using NUnit.Framework;
 using Npoi.Core.SS.UserModel.Charts;
+using Npoi.Core.SS.Util;
+using NUnit.Framework;
+using System;
+
 namespace Npoi.Core.XSSF.UserModel.Charts
 {
     /**
      * Tests for XSSFScatterChartData.
      * @author Roman Kashitsyn
      */
+
     [TestFixture]
     public class TestXSSFScatterChartData
     {
-
         private static Object[][] plotData = new Object[][] {
             new object[] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"},
             new object[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
             };
+
         [Test]
         public void TestOneSeriePlot()
         {
@@ -60,7 +62,5 @@ namespace Npoi.Core.XSSF.UserModel.Charts
 
             chart.Plot(scatterChartData, bottomAxis, leftAxis);
         }
-
     }
 }
-

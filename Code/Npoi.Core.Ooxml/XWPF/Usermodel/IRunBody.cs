@@ -14,12 +14,14 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
     /**
      * Simple interface describing both {@link XWPFParagraph}
      * and {@link XWPFSDT}
      */
+
     public interface IRunBody
     {
         XWPFDocument Document { get; }

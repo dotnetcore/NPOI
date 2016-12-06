@@ -17,29 +17,27 @@
 
 namespace Npoi.Core.OOXML
 {
-    using System;
-    using Npoi.Core.Util;
-    using System.Collections.Generic;
-    using NUnit.Framework;
-    using System.IO;
-    using Npoi.Core.OpenXml4Net.OPC;
     using Npoi.Core;
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.Util;
+    using NUnit.Framework;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
     using TestCases;
 
     /**
      * Test recursive read and write of OPC namespaces
      */
-    [TestFixture]
-    public class TestPOIXMLDocument 
-    {
 
+    [TestFixture]
+    public class TestPOIXMLDocument
+    {
         private class OPCParser : POIXMLDocument
         {
-
             public OPCParser(OPCPackage pkg)
                 : base(pkg)
             {
-
             }
 
             public override List<PackagePart> GetAllEmbedds()
@@ -55,11 +53,11 @@ namespace Npoi.Core.OOXML
 
         private class TestFactory : POIXMLFactory
         {
-
             public TestFactory()
             {
                 //
             }
+
             public override POIXMLDocumentPart CreateDocumentPart(POIXMLDocumentPart parent, PackageRelationship rel, PackagePart part)
             {
                 return new POIXMLDocumentPart(part, rel);
@@ -69,12 +67,12 @@ namespace Npoi.Core.OOXML
             {
                 throw new NotSupportedException();
             }
-
         }
 
         /**
          * Recursively Traverse a OOXML document and assert that same logical parts have the same physical instances
          */
+
         private void Traverse(POIXMLDocumentPart part, Dictionary<String, POIXMLDocumentPart> context)
         {
             context[part.GetPackageRelationship().TargetUri.ToString()] = part;
@@ -96,7 +94,6 @@ namespace Npoi.Core.OOXML
 
         public void AssertReadWrite(OPCPackage pkg1)
         {
-
             OPCParser doc = new OPCParser(pkg1);
             doc.Parse(new TestFactory());
 
@@ -151,6 +148,7 @@ namespace Npoi.Core.OOXML
                     PackageHelper.Open(POIDataSamples.GetSlideShowInstance().OpenResourceAsStream("PPTWithAttachments.pptm"))
             );
         }
+
         [Test]
         public void TestXLSX()
         {
@@ -158,6 +156,7 @@ namespace Npoi.Core.OOXML
                     PackageHelper.Open(POIDataSamples.GetSpreadSheetInstance().OpenResourceAsStream("ExcelWithAttachments.xlsm"))
                     );
         }
+
         [Test]
         public void TestDOCX()
         {
@@ -165,6 +164,7 @@ namespace Npoi.Core.OOXML
                     PackageHelper.Open(POIDataSamples.GetDocumentInstance().OpenResourceAsStream("WordWithAttachments.docx"))
                     );
         }
+
         [Test]
         public void TestRelationOrder()
         {
@@ -177,7 +177,6 @@ namespace Npoi.Core.OOXML
                 //TODO finish me
                 Assert.IsNotNull(rel);
             }
-
         }
 
         [Test]
@@ -198,6 +197,3 @@ namespace Npoi.Core.OOXML
         }
     }
 }
-
-
-

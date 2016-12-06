@@ -23,6 +23,7 @@ namespace Npoi.Core.XSSF.UserModel
      * Text Capitalization that is to be applied to the text Run. This is a render-only
      * modification and does not affect the actual characters stored in the text Run.
      */
+
     public enum TextCap
     {
         NONE,

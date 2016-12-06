@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
@@ -13,7 +11,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlRoot(ElementName = "sst", Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
     public class CT_Sst
     {
-
         private List<CT_Rst> siField;
 
         private CT_ExtensionList extLstField;
@@ -44,6 +41,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.siField = value;
             }
         }
+
         [XmlElement]
         public CT_ExtensionList extLst
         {
@@ -56,6 +54,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.extLstField = value;
             }
         }
+
         [XmlAttribute]
         public int count
         {
@@ -69,11 +68,13 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.countFieldSpecified = true;
             }
         }
+
         public bool countSpecified
         {
             get { return this.countFieldSpecified; }
             set { this.countFieldSpecified = value; }
         }
+
         [XmlAttribute]
         public int uniqueCount
         {
@@ -87,11 +88,11 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.uniqueCountFieldSpecified = true;
             }
         }
+
         public bool uniqueCountSpecified
         {
             get { return this.uniqueCountFieldSpecified; }
             set { this.uniqueCountFieldSpecified = value; }
         }
-
     }
 }

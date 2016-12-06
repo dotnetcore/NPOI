@@ -14,21 +14,22 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using Npoi.Core.Util;
-using System.Collections.Generic;
-using System;
+
 using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.Util;
 using Npoi.Core.XSSF.Model;
+using System;
+using System.Collections.Generic;
 using System.IO;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      *
      */
+
     public class XSSFRelation : POIXMLRelation
     {
-
         private static POILogger log = POILogFactory.GetLogger(typeof(XSSFRelation));
 
         /**
@@ -36,31 +37,34 @@ namespace Npoi.Core.XSSF.UserModel
          */
         protected static Dictionary<String, XSSFRelation> _table = new Dictionary<String, XSSFRelation>();
 
-
         public static XSSFRelation WORKBOOK = new XSSFRelation(
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml",
                 "http://schemas.openxmlformats.org/officeDocument/2006/relationships/workbook",
                 "/xl/workbook.xml",
                 null
         );
+
         public static XSSFRelation MACROS_WORKBOOK = new XSSFRelation(
                 "application/vnd.ms-excel.sheet.macroEnabled.main+xml",
                 PackageRelationshipTypes.CORE_DOCUMENT,
                 "/xl/workbook.xml",
                 null
         );
+
         public static XSSFRelation TEMPLATE_WORKBOOK = new XSSFRelation(
                   "application/vnd.openxmlformats-officedocument.spreadsheetml.template.main+xml",
                   PackageRelationshipTypes.CORE_DOCUMENT,
                   "/xl/workbook.xml",
                   null
         );
+
         public static XSSFRelation MACRO_TEMPLATE_WORKBOOK = new XSSFRelation(
                   "application/vnd.ms-excel.template.macroEnabled.main+xml",
                   PackageRelationshipTypes.CORE_DOCUMENT,
                   "/xl/workbook.xml",
                   null
         );
+
         public static XSSFRelation MACRO_ADDIN_WORKBOOK = new XSSFRelation(
                   "application/vnd.ms-excel.Addin.macroEnabled.main+xml",
                   PackageRelationshipTypes.CORE_DOCUMENT,
@@ -74,42 +78,49 @@ namespace Npoi.Core.XSSF.UserModel
             "/xl/workbook.bin",
             null
         );
+
         public static XSSFRelation WORKSHEET = new XSSFRelation(
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml",
                 "http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet",
                 "/xl/worksheets/sheet#.xml",
                 typeof(XSSFSheet)
         );
+
         public static XSSFRelation CHARTSHEET = new XSSFRelation(
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.chartsheet+xml",
                 "http://schemas.openxmlformats.org/officeDocument/2006/relationships/chartsheet",
                 "/xl/chartsheets/sheet#.xml",
                 typeof(XSSFChartSheet)
         );
+
         public static XSSFRelation SHARED_STRINGS = new XSSFRelation(
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.sharedStrings+xml",
                 "http://schemas.openxmlformats.org/officeDocument/2006/relationships/sharedStrings",
                 "/xl/sharedStrings.xml",
                 typeof(SharedStringsTable)
         );
+
         public static XSSFRelation STYLES = new XSSFRelation(
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml",
                 PackageRelationshipTypes.STYLE_PART,
                 "/xl/styles.xml",
                  typeof(StylesTable)
         );
+
         public static XSSFRelation DRAWINGS = new XSSFRelation(
                 "application/vnd.openxmlformats-officedocument.drawing+xml",
                 "http://schemas.openxmlformats.org/officeDocument/2006/relationships/drawing",
                 "/xl/drawings/drawing#.xml",
                 typeof(XSSFDrawing)
         );
+
         public static XSSFRelation VML_DRAWINGS = new XSSFRelation(
                 "application/vnd.openxmlformats-officedocument.vmlDrawing",
                 "http://schemas.openxmlformats.org/officeDocument/2006/relationships/vmlDrawing",
                 "/xl/drawings/vmlDrawing#.vml",
                 typeof(XSSFVMLDrawing)
         );
+
         public static XSSFRelation CHART = new XSSFRelation(
                 "application/vnd.openxmlformats-officedocument.drawingml.chart+xml",
                 "http://schemas.openxmlformats.org/officeDocument/2006/relationships/chart",
@@ -144,42 +155,49 @@ namespace Npoi.Core.XSSF.UserModel
                 null,
                 typeof(XSSFPictureData)
         );
+
         public static XSSFRelation IMAGE_EMF = new XSSFRelation(
                 "image/x-emf",
                 PackageRelationshipTypes.IMAGE_PART,
                 "/xl/media/image#.emf",
                 typeof(XSSFPictureData)
         );
+
         public static XSSFRelation IMAGE_WMF = new XSSFRelation(
                 "image/x-wmf",
                 PackageRelationshipTypes.IMAGE_PART,
                 "/xl/media/image#.wmf",
                 typeof(XSSFPictureData)
         );
+
         public static XSSFRelation IMAGE_PICT = new XSSFRelation(
                 "image/pict",
                 PackageRelationshipTypes.IMAGE_PART,
                 "/xl/media/image#.pict",
                 typeof(XSSFPictureData)
         );
+
         public static XSSFRelation IMAGE_JPEG = new XSSFRelation(
                 "image/jpeg",
                 PackageRelationshipTypes.IMAGE_PART,
                 "/xl/media/image#.jpeg",
                 typeof(XSSFPictureData)
         );
+
         public static XSSFRelation IMAGE_PNG = new XSSFRelation(
                 "image/png",
                 PackageRelationshipTypes.IMAGE_PART,
                 "/xl/media/image#.png",
                 typeof(XSSFPictureData)
         );
+
         public static XSSFRelation IMAGE_DIB = new XSSFRelation(
                 "image/dib",
                 PackageRelationshipTypes.IMAGE_PART,
                 "/xl/media/image#.dib",
                 typeof(XSSFPictureData)
         );
+
         public static XSSFRelation IMAGE_GIF = new XSSFRelation(
             "image/gif",
             PackageRelationshipTypes.IMAGE_PART,
@@ -193,42 +211,49 @@ namespace Npoi.Core.XSSF.UserModel
                 "/xl/media/image#.tiff",
                 typeof(XSSFPictureData)
         );
+
         public static XSSFRelation IMAGE_EPS = new XSSFRelation(
                 "image/x-eps",
                 PackageRelationshipTypes.IMAGE_PART,
                 "/xl/media/image#.eps",
                 typeof(XSSFPictureData)
         );
+
         public static XSSFRelation IMAGE_BMP = new XSSFRelation(
                 "image/x-ms-bmp",
                 PackageRelationshipTypes.IMAGE_PART,
                 "/xl/media/image#.bmp",
                 typeof(XSSFPictureData)
         );
+
         public static XSSFRelation IMAGE_WPG = new XSSFRelation(
                 "image/x-wpg",
                 PackageRelationshipTypes.IMAGE_PART,
                 "/xl/media/image#.wpg",
                 typeof(XSSFPictureData)
         );
+
         public static XSSFRelation SHEET_COMMENTS = new XSSFRelation(
                   "application/vnd.openxmlformats-officedocument.spreadsheetml.comments+xml",
                   "http://schemas.openxmlformats.org/officeDocument/2006/relationships/comments",
                   "/xl/comments#.xml",
                   typeof(CommentsTable)
           );
+
         public static XSSFRelation SHEET_HYPERLINKS = new XSSFRelation(
                 null,
                 PackageRelationshipTypes.HYPERLINK_PART,
                 null,
                 null
         );
+
         public static XSSFRelation OLEEMBEDDINGS = new XSSFRelation(
                 null,
                 POIXMLDocument.OLE_OBJECT_REL_TYPE,
                 null,
                 null
         );
+
         public static XSSFRelation PACKEMBEDDINGS = new XSSFRelation(
                 null,
                 POIXMLDocument.PACK_OBJECT_REL_TYPE,
@@ -242,24 +267,28 @@ namespace Npoi.Core.XSSF.UserModel
                 "/xl/vbaProject.bin",
                 null
         );
+
         public static XSSFRelation ACTIVEX_CONTROLS = new XSSFRelation(
                 "application/vnd.ms-office.activeX+xml",
                 "http://schemas.openxmlformats.org/officeDocument/2006/relationships/control",
                 "/xl/activeX/activeX#.xml",
                 null
         );
+
         public static XSSFRelation ACTIVEX_BINS = new XSSFRelation(
                 "application/vnd.ms-office.activeX",
                 "http://schemas.microsoft.com/office/2006/relationships/activeXControlBinary",
                 "/xl/activeX/activeX#.bin",
                 null
         );
+
         public static XSSFRelation THEME = new XSSFRelation(
                 "application/vnd.openxmlformats-officedocument.theme+xml",
                 "http://schemas.openxmlformats.org/officeDocument/2006/relationships/theme",
                 "/xl/theme/theme#.xml",
                 typeof(ThemesTable)
         );
+
         public static XSSFRelation CALC_CHAIN = new XSSFRelation(
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.calcChain+xml",
                 "http://schemas.openxmlformats.org/officeDocument/2006/relationships/calcChain",
@@ -281,19 +310,21 @@ namespace Npoi.Core.XSSF.UserModel
               null
        );
 
-        public static  XSSFRelation PIVOT_TABLE = new XSSFRelation(
+        public static XSSFRelation PIVOT_TABLE = new XSSFRelation(
             "application/vnd.openxmlformats-officedocument.spreadsheetml.pivotTable+xml",
             "http://schemas.openxmlformats.org/officeDocument/2006/relationships/pivotTable",
             "/xl/pivotTables/pivotTable#.xml",
             typeof(XSSFPivotTable)
         );
-        public static  XSSFRelation PIVOT_CACHE_DEFINITION = new XSSFRelation(
+
+        public static XSSFRelation PIVOT_CACHE_DEFINITION = new XSSFRelation(
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.pivotCacheDefinition+xml",
                 "http://schemas.openxmlformats.org/officeDocument/2006/relationships/pivotCacheDefinition",
                 "/xl/pivotCache/pivotCacheDefinition#.xml",
                 typeof(XSSFPivotCacheDefinition)
         );
-        public static  XSSFRelation PIVOT_CACHE_RECORDS = new XSSFRelation(
+
+        public static XSSFRelation PIVOT_CACHE_RECORDS = new XSSFRelation(
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.pivotCacheRecords+xml",
                 "http://schemas.openxmlformats.org/officeDocument/2006/relationships/pivotCacheRecords",
                 "/xl/pivotCache/pivotCacheRecords#.xml",
@@ -312,6 +343,7 @@ namespace Npoi.Core.XSSF.UserModel
          *  of the specified core part, for which we are defined
          *  as a suitable relationship
          */
+
         public Stream GetContents(PackagePart corePart)
         {
             PackageRelationshipCollection prc =
@@ -328,7 +360,6 @@ namespace Npoi.Core.XSSF.UserModel
             return null;
         }
 
-
         /**
          * Get POIXMLRelation by relation type
          *
@@ -336,6 +367,7 @@ namespace Npoi.Core.XSSF.UserModel
          *    <code>http://schemas.openxmlformats.org/officeDocument/2006/relationships/image</code>
          * @return registered POIXMLRelation or null if not found
          */
+
         public static XSSFRelation GetInstance(String rel)
         {
             if (_table.ContainsKey(rel))
@@ -371,5 +403,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-
-

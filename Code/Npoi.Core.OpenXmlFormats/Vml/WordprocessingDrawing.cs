@@ -8,20 +8,19 @@ using System.Xml.Serialization;
 namespace Npoi.Core.OpenXmlFormats.Vml.Wordprocessing
 {
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:word")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:word", IsNullable=true)]
-    public class CT_Border {
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:word")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:word", IsNullable = true)]
+    public class CT_Border
+    {
         private ST_BorderType typeField;
-        
+
         private bool typeFieldSpecified;
-        
+
         private string widthField;
-        
+
         private ST_BorderShadow shadowField;
-        
+
         private bool shadowFieldSpecified;
 
         public static CT_Border Parse(XElement node, XmlNamespaceManager namespaceManager)
@@ -40,7 +39,7 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Wordprocessing
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
-            if(this.type!= ST_BorderType.none)
+            if (this.type != ST_BorderType.none)
                 XmlHelper.WriteAttribute(sw, "type", this.type.ToString());
             XmlHelper.WriteAttribute(sw, "width", this.width);
             Npoi.Core.OpenXmlFormats.Util.XmlHelper.WriteAttribute(sw, "shadow", this.shadow);
@@ -49,189 +48,165 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Wordprocessing
         }
 
         [XmlAttribute]
-        public ST_BorderType type {
-            get {
+        public ST_BorderType type
+        {
+            get
+            {
                 return this.typeField;
             }
-            set {
+            set
+            {
                 this.typeField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool typeSpecified {
-            get {
+        public bool typeSpecified
+        {
+            get
+            {
                 return this.typeFieldSpecified;
             }
-            set {
+            set
+            {
                 this.typeFieldSpecified = value;
             }
         }
-        
-    
-        [XmlAttribute(DataType="positiveInteger")]
-        public string width {
-            get {
+
+        [XmlAttribute(DataType = "positiveInteger")]
+        public string width
+        {
+            get
+            {
                 return this.widthField;
             }
-            set {
+            set
+            {
                 this.widthField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_BorderShadow shadow {
-            get {
+        public ST_BorderShadow shadow
+        {
+            get
+            {
                 return this.shadowField;
             }
-            set {
+            set
+            {
                 this.shadowField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool shadowSpecified {
-            get {
+        public bool shadowSpecified
+        {
+            get
+            {
                 return this.shadowFieldSpecified;
             }
-            set {
+            set
+            {
                 this.shadowFieldSpecified = value;
             }
         }
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:word")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:word", IsNullable=false)]
-    public enum ST_BorderType {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:word")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:word", IsNullable = false)]
+    public enum ST_BorderType
+    {
         none,
-        
-    
+
         single,
-        
-    
+
         thick,
-        
-    
+
         @double,
-        
-    
+
         hairline,
-        
-    
+
         dot,
-        
-    
+
         dash,
-        
-    
+
         dotDash,
-        
-    
+
         dashDotDot,
-        
-    
+
         triple,
-        
-    
+
         thinThickSmall,
-        
-    
+
         thickThinSmall,
-        
-    
+
         thickBetweenThinSmall,
-        
-    
+
         thinThick,
-        
-    
+
         thickThin,
-        
-    
+
         thickBetweenThin,
-        
-    
+
         thinThickLarge,
-        
-    
+
         thickThinLarge,
-        
-    
+
         thickBetweenThinLarge,
-        
-    
+
         wave,
-        
-    
+
         doubleWave,
-        
-    
+
         dashedSmall,
-        
-    
+
         dashDotStroked,
-        
-    
+
         threeDEmboss,
-        
-    
+
         threeDEngrave,
-        
-    
+
         HTMLOutset,
-        
-    
+
         HTMLInset,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:word")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:word", IsNullable=false)]
-    public enum ST_BorderShadow {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:word")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:word", IsNullable = false)]
+    public enum ST_BorderShadow
+    {
         t,
-        
-    
+
         @true,
-        
-    
+
         f,
-        
-    
+
         @false,
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:word")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:word", IsNullable=true)]
-    public class CT_Wrap {
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:word")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:word", IsNullable = true)]
+    public class CT_Wrap
+    {
         private ST_WrapType typeField;
-        
+
         private bool typeFieldSpecified;
-        
+
         private ST_WrapSide sideField;
-        
+
         private bool sideFieldSpecified;
-        
+
         private ST_HorizontalAnchor anchorxField;
-        
+
         private bool anchorxFieldSpecified;
-        
+
         private ST_VerticalAnchor anchoryField;
-        
+
         private bool anchoryFieldSpecified;
 
         public static CT_Wrap Parse(XElement node, XmlNamespaceManager namespaceManager)
@@ -250,12 +225,10 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
-            if(this.type!=ST_WrapType.none)
+            if (this.type != ST_WrapType.none)
                 XmlHelper.WriteAttribute(sw, "type", this.type.ToString());
             XmlHelper.WriteAttribute(sw, "side", this.side.ToString());
             XmlHelper.WriteAttribute(sw, "anchorx", this.anchorx.ToString());
@@ -265,178 +238,173 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Wordprocessing
         }
 
         [XmlAttribute]
-        public ST_WrapType type {
-            get {
+        public ST_WrapType type
+        {
+            get
+            {
                 return this.typeField;
             }
-            set {
+            set
+            {
                 this.typeField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool typeSpecified {
-            get {
+        public bool typeSpecified
+        {
+            get
+            {
                 return this.typeFieldSpecified;
             }
-            set {
+            set
+            {
                 this.typeFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_WrapSide side {
-            get {
+        public ST_WrapSide side
+        {
+            get
+            {
                 return this.sideField;
             }
-            set {
+            set
+            {
                 this.sideField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool sideSpecified {
-            get {
+        public bool sideSpecified
+        {
+            get
+            {
                 return this.sideFieldSpecified;
             }
-            set {
+            set
+            {
                 this.sideFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_HorizontalAnchor anchorx {
-            get {
+        public ST_HorizontalAnchor anchorx
+        {
+            get
+            {
                 return this.anchorxField;
             }
-            set {
+            set
+            {
                 this.anchorxField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool anchorxSpecified {
-            get {
+        public bool anchorxSpecified
+        {
+            get
+            {
                 return this.anchorxFieldSpecified;
             }
-            set {
+            set
+            {
                 this.anchorxFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_VerticalAnchor anchory {
-            get {
+        public ST_VerticalAnchor anchory
+        {
+            get
+            {
                 return this.anchoryField;
             }
-            set {
+            set
+            {
                 this.anchoryField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool anchorySpecified {
-            get {
+        public bool anchorySpecified
+        {
+            get
+            {
                 return this.anchoryFieldSpecified;
             }
-            set {
+            set
+            {
                 this.anchoryFieldSpecified = value;
             }
         }
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:word")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:word", IsNullable=false)]
-    public enum ST_WrapType {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:word")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:word", IsNullable = false)]
+    public enum ST_WrapType
+    {
         topAndBottom,
-        
-    
+
         square,
-        
-    
+
         none,
-        
-    
+
         tight,
-        
-    
+
         through,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:word")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:word", IsNullable=false)]
-    public enum ST_WrapSide {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:word")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:word", IsNullable = false)]
+    public enum ST_WrapSide
+    {
         both,
-        
-    
+
         left,
-        
-    
+
         right,
-        
-    
+
         largest,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:word")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:word", IsNullable=false)]
-    public enum ST_HorizontalAnchor {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:word")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:word", IsNullable = false)]
+    public enum ST_HorizontalAnchor
+    {
         margin,
-        
-    
+
         page,
-        
-    
+
         text,
-        
-    
+
         @char,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:word")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:word", IsNullable=false)]
-    public enum ST_VerticalAnchor {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:word")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:word", IsNullable = false)]
+    public enum ST_VerticalAnchor
+    {
         margin,
-        
-    
+
         page,
-        
-    
+
         text,
-        
-    
+
         line,
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:word")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:word", IsNullable=true)]
-    public class CT_AnchorLock {
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:word")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:word", IsNullable = true)]
+    public class CT_AnchorLock
+    {
     }
 }

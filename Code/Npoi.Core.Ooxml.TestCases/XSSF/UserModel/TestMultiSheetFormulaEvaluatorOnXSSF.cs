@@ -17,20 +17,20 @@
 
 namespace Npoi.Core.XSSF.UserModel
 {
-    using System;
-    using System.IO;
     using Npoi.Core.OpenXml4Net.OPC;
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.Util;
     using NUnit.Framework;
+    using System;
+    using System.IO;
     using TestCases.HSSF;
     using TestCases.SS.Formula.Eval;
     using TestCases.SS.Formula.Functions;
 
-
     /**
      * Tests formulas for multi sheet reference (i.e. SUM(Sheet1:Sheet5!A1))
      */
+
     [TestFixture]
     public class TestMultiSheetFormulaEvaluatorOnXSSF
     {
@@ -46,9 +46,9 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * This class defines constants for navigating around the test data spreadsheet used for these tests.
          */
+
         private static class SS
         {
-
             /**
              * Name of the test spreadsheet (found in the standard test data folder)
              */
@@ -86,9 +86,11 @@ namespace Npoi.Core.XSSF.UserModel
 
         private XSSFWorkbook workbook;
         private ISheet sheet;
+
         // Note - multiple failures are aggregated before ending.
         // If one or more functions fail, a single AssertFailedException is thrown at the end
         private int _functionFailureCount;
+
         private int _functionSuccessCount;
         private int _EvaluationFailureCount;
         private int _EvaluationSuccessCount;
@@ -109,10 +111,12 @@ namespace Npoi.Core.XSSF.UserModel
                 case CellType.Blank:
                     Assert.AreEqual(CellType.Blank, actual.CellType, msg);
                     break;
+
                 case CellType.Boolean:
                     Assert.AreEqual(CellType.Boolean, actual.CellType);
                     Assert.AreEqual(expected.BooleanCellValue, actual.BooleanValue, msg);
                     break;
+
                 case CellType.Error:
                     Assert.AreEqual(CellType.Error, actual.CellType, msg);
                     if (false)
@@ -120,6 +124,7 @@ namespace Npoi.Core.XSSF.UserModel
                         Assert.AreEqual(expected.ErrorCellValue, actual.ErrorValue, msg);
                     }
                     break;
+
                 case CellType.Formula: // will never be used, since we will call method After formula Evaluation
                     throw new AssertionException("Cannot expect formula as result of formula Evaluation: " + msg);
                 case CellType.Numeric:
@@ -129,6 +134,7 @@ namespace Npoi.Core.XSSF.UserModel
                     //				double pctExpected = Math.Abs(0.00001*expected.NumericCellValue);
                     //				Assert.IsTrue(msg, delta <= pctExpected);
                     break;
+
                 case CellType.String:
                     Assert.AreEqual(CellType.String, actual.CellType, msg);
                     Assert.AreEqual(expected.RichStringCellValue.String, actual.StringValue, msg);
@@ -155,7 +161,6 @@ namespace Npoi.Core.XSSF.UserModel
         [Test]
         public void TestFunctionsFromTestSpreadsheet()
         {
-
             ProcessFunctionGroup(SS.START_FUNCTIONS_ROW_INDEX, null);
 
             // confirm results
@@ -176,6 +181,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param testFocusFunctionName name of a single function/operator to test alone.
          * Typically pass <code>null</code> to test all functions
          */
+
         private void ProcessFunctionGroup(int startRowIndex, String testFocusFunctionName)
         {
             IFormulaEvaluator evaluator = new XSSFFormulaEvaluator(workbook);
@@ -203,7 +209,6 @@ namespace Npoi.Core.XSSF.UserModel
                     }
                     if (testFocusFunctionName == null || targetFunctionName.Equals(testFocusFunctionName, StringComparison.CurrentCultureIgnoreCase))
                     {
-
                         // expected results are on the row below
                         ICell expectedValueCell = r.GetCell(SS.COLUMN_INDEX_EXPECTED_VALUE);
                         if (expectedValueCell == null)
@@ -234,10 +239,10 @@ namespace Npoi.Core.XSSF.UserModel
          * @return a constant from the local Result class denoting whether there were any Evaluation
          * cases, and whether they all succeeded.
          */
+
         private int ProcessFunctionRow(IFormulaEvaluator Evaluator, String targetFunctionName,
                 String targetTestName, IRow formulasRow, ICell expectedValueCell)
         {
-
             int result = Result.NO_EVALUATIONS_FOUND; // so far
 
             ICell c = formulasRow.GetCell(SS.COLUMN_INDEX_ACTUAL_VALUE);
@@ -273,6 +278,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Useful to keep output concise when expecting many failures to be reported by this test case
          */
+
         private static void printshortStackTrace(TextWriter ps, AssertionException e)
         {
             //StackTraceElement[] stes = e.StackTrace;
@@ -313,6 +319,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return <code>null</code> if cell is missing, empty or blank
          */
+
         private static String GetTargetFunctionName(IRow r)
         {
             if (r == null)
@@ -338,9 +345,11 @@ namespace Npoi.Core.XSSF.UserModel
             throw new AssertionException("Bad cell type for 'function name' column: ("
                     + cell.CellType + ") row (" + (r.RowNum + 1) + ")");
         }
+
         /**
          * @return <code>null</code> if cell is missing, empty or blank
          */
+
         private static String GetTargetTestName(IRow r)
         {
             if (r == null)
@@ -366,7 +375,5 @@ namespace Npoi.Core.XSSF.UserModel
             throw new AssertionException("Bad cell type for 'test name' column: ("
                     + cell.CellType + ") row (" + (r.RowNum + 1) + ")");
         }
-
     }
-
 }

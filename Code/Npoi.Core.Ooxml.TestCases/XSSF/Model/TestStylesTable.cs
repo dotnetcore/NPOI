@@ -15,15 +15,17 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
-using NUnit.Framework;
 using Npoi.Core.XSSF.UserModel;
+using NUnit.Framework;
+using System;
+
 namespace Npoi.Core.XSSF.Model
 {
     [TestFixture]
     public class TestStylesTable
     {
         private String testFile = "Formatting.xlsx";
+
         [Test]
         public void TestCreateNew()
         {
@@ -35,6 +37,7 @@ namespace Npoi.Core.XSSF.Model
             Assert.AreEqual(1, st.StyleXfsSize);
             Assert.AreEqual(0, st.NumberFormatSize);
         }
+
         [Test]
         public void TestCreateSaveLoad()
         {
@@ -55,6 +58,7 @@ namespace Npoi.Core.XSSF.Model
 
             Assert.IsNotNull(XSSFTestDataSamples.WriteOutAndReadBack(wb));
         }
+
         [Test]
         public void TestLoadExisting()
         {
@@ -67,6 +71,7 @@ namespace Npoi.Core.XSSF.Model
 
             Assert.IsNotNull(XSSFTestDataSamples.WriteOutAndReadBack(workbook));
         }
+
         [Test]
         public void TestLoadSaveLoad()
         {
@@ -79,6 +84,7 @@ namespace Npoi.Core.XSSF.Model
             st = ((XSSFWorkbook)XSSFTestDataSamples.WriteOutAndReadBack(workbook)).GetStylesSource();
             doTestExisting(st);
         }
+
         public void doTestExisting(StylesTable st)
         {
             // Check contents
@@ -105,6 +111,7 @@ namespace Npoi.Core.XSSF.Model
 
             Assert.AreEqual("yyyy/mm/dd", st.GetStyleAt(3).GetDataFormatString());
         }
+
         [Test]
         public void TestPopulateNew()
         {
@@ -136,6 +143,7 @@ namespace Npoi.Core.XSSF.Model
 
             Assert.IsNotNull(XSSFTestDataSamples.WriteOutAndReadBack(wb));
         }
+
         [Test]
         public void TestPopulateExisting()
         {

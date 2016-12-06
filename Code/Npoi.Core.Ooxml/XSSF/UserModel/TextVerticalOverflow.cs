@@ -16,11 +16,13 @@
  *    limitations under the License.
  * ====================================================================
  */
+
 namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * Text Vertical Overflow
      */
+
     public enum TextVerticalOverflow
     {
         None,
@@ -31,7 +33,7 @@ namespace Npoi.Core.XSSF.UserModel
 
         /**
          * Pay attention to top and bottom barriers. Use an
-         * ellipsis to denote that there is text which is not visible.     
+         * ellipsis to denote that there is text which is not visible.
          */
         ELLIPSIS,
 
@@ -41,5 +43,4 @@ namespace Npoi.Core.XSSF.UserModel
          */
         CLIP
     }
-
 }

@@ -17,18 +17,18 @@
 
 namespace Npoi.Core
 {
-
-    using System;
-    using NUnit.Framework;
-    using Npoi.Core.XSSF.UserModel;
     using Npoi.Core.OpenXmlFormats;
     using Npoi.Core.XSSF;
-    using Npoi.Core.XWPF.UserModel;
+    using Npoi.Core.XSSF.UserModel;
     using Npoi.Core.XWPF;
+    using Npoi.Core.XWPF.UserModel;
+    using NUnit.Framework;
+    using System;
 
     /**
      * Test Setting extended and custom OOXML properties
      */
+
     [TestFixture]
     public class TestPOIXMLProperties
     {
@@ -43,6 +43,7 @@ namespace Npoi.Core
             _coreProperties = _props.CoreProperties;
             Assert.IsNotNull(_props);
         }
+
         [Test]
         public void TestWorkbookExtendedProperties()
         {
@@ -55,7 +56,6 @@ namespace Npoi.Core
 
             CT_ExtendedProperties
                     ctProps = properties.GetUnderlyingProperties();
-
 
             String appVersion = "3.5 beta";
             String application = "POI";
@@ -72,7 +72,6 @@ namespace Npoi.Core
 
             Assert.IsTrue(workbook != newWorkbook);
 
-
             POIXMLProperties newProps = newWorkbook.GetProperties();
             Assert.IsNotNull(newProps);
             ExtendedProperties newProperties =
@@ -80,21 +79,18 @@ namespace Npoi.Core
 
             Assert.AreEqual(application, newProperties.Application);
             Assert.AreEqual(appVersion, newProperties.AppVersion);
-        
 
             CT_ExtendedProperties
                     newCtProps = newProperties.GetUnderlyingProperties();
 
             Assert.AreEqual(application, newCtProps.Application);
             Assert.AreEqual(appVersion, newCtProps.AppVersion);
-
-
         }
-
 
         /**
          * Test usermodel API for Setting custom properties
          */
+
         [Test]
         public void TestCustomProperties()
         {
@@ -156,6 +152,7 @@ namespace Npoi.Core
             //Assert.AreEqual("2.0.9", p.Item);
             //Assert.AreEqual(7, p.pid);
         }
+
         [Ignore("No explanation provided")]
         public void TestDocumentProperties()
         {
@@ -188,8 +185,8 @@ namespace Npoi.Core
             cp = doc.GetProperties().CoreProperties;
             DateTime? dt3 = cp.Created;
             Assert.AreEqual(dateCreated.ToString(), dt3.ToString());
-
         }
+
         [Ignore("No explanation provided")]
         public void TestGetSetRevision()
         {
@@ -221,5 +218,3 @@ namespace Npoi.Core
         }
     }
 }
-
-

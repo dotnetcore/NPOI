@@ -8,13 +8,11 @@ using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_FFTextType
     {
-
         private ST_FFTextType valField;
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
@@ -47,39 +45,28 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_FFTextType
     {
-
-    
         regular,
 
-    
         number,
 
-    
         date,
 
-    
         currentTime,
 
-    
         currentDate,
 
-    
         calculated,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_FFName
     {
-
         private string valField;
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
@@ -104,8 +91,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -114,14 +99,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_FldChar
     {
-
         private object itemField;
 
         private ST_FldCharType fldCharTypeField;
@@ -135,23 +117,29 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private bool dirtyFieldSpecified;
 
         private CT_FFData ffDataField;
+
         public CT_FFData ffData
         {
             get { return this.ffDataField; }
             set { this.ffDataField = value; }
         }
+
         private CT_Text fldDataField;
+
         public CT_Text fldData
         {
             get { return this.fldDataField; }
             set { this.fldDataField = value; }
         }
+
         private CT_TrackChangeNumbering numberingChangeField;
+
         public CT_TrackChangeNumbering numberingChange
         {
             get { return this.numberingChangeField; }
             set { this.numberingChangeField = value; }
         }
+
         [XmlElement("ffData", typeof(CT_FFData), Order = 0)]
         [XmlElement("fldData", typeof(CT_Text), Order = 0)]
         [XmlElement("numberingChange", typeof(CT_TrackChangeNumbering), Order = 0)]
@@ -166,6 +154,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.itemField = value;
             }
         }
+
         public static CT_FldChar Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -194,8 +183,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -284,14 +271,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_FFData
     {
-
         private List<object> itemsField;
 
         private List<FFDataItemsType> itemsElementNameField;
@@ -351,11 +335,10 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             {
                 if (childNode.Name.LocalName == "name")
                 {
-                    ctObj.AddNewObject(CT_FFName.Parse(childNode, namespaceManager) ,FFDataItemsType.name);
+                    ctObj.AddNewObject(CT_FFName.Parse(childNode, namespaceManager), FFDataItemsType.name);
                 }
                 //else if (childNode.Name.LocalName == "tabIndex")
                 //{
-
                 //}
                 else if (childNode.Name.LocalName == "enabled")
                 {
@@ -396,11 +379,12 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
+
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
 
-            for (int i=0;i<this.itemsElementNameField.Count;i++)
+            for (int i = 0; i < this.itemsElementNameField.Count; i++)
             {
                 if (this.itemsElementNameField[i] == FFDataItemsType.name)
                     (this.itemsField[i] as CT_FFName).Write(sw, "name");
@@ -426,9 +410,10 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 
             sw.Write(string.Format("</{0}>", nodeName));
         }
+
         private void AddNewObject(object obj, FFDataItemsType type)
         {
-            lock(this)
+            lock (this)
             {
                 this.itemsElementNameField.Add(type);
                 this.itemsField.Add(obj);
@@ -450,6 +435,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return list;
             }
         }
+
         private int SizeOfObjectArray(FFDataItemsType type)
         {
             lock (this)
@@ -463,6 +449,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return size;
             }
         }
+
         private T GetObjectArray<T>(int p, FFDataItemsType type) where T : class
         {
             lock (this)
@@ -473,6 +460,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return itemsField[pos] as T;
             }
         }
+
         private T InsertNewObject<T>(FFDataItemsType type, int p) where T : class, new()
         {
             T t = new T();
@@ -484,6 +472,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return t;
         }
+
         private T AddNewObject<T>(FFDataItemsType type) where T : class, new()
         {
             T t = new T();
@@ -494,6 +483,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return t;
         }
+
         private void SetObjectArray<T>(FFDataItemsType type, int p, T obj) where T : class
         {
             lock (this)
@@ -508,6 +498,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                         pos, this.itemsField[pos].GetType().Name, typeof(T).Name));
             }
         }
+
         private int GetObjectIndex(FFDataItemsType type, int p)
         {
             int index = -1;
@@ -528,6 +519,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return index;
         }
+
         private void RemoveObject(FFDataItemsType type, int p)
         {
             lock (this)
@@ -539,7 +531,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 itemsField.RemoveAt(pos);
             }
         }
-        #endregion
+
+        #endregion Generic methods for object operation
 
         public List<CT_FFCheckBox> GetCheckBoxList()
         {
@@ -547,14 +540,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_FFCheckBox
     {
-
         private object itemField;
 
         private CT_OnOff defaultField;
@@ -634,8 +624,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}>", nodeName));
@@ -654,14 +642,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_FFDDList
     {
-
         private CT_DecimalNumber resultField;
 
         private CT_DecimalNumber defaultField;
@@ -737,8 +722,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}>", nodeName));
@@ -754,14 +737,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_FFHelpText
     {
-
         private ST_InfoTextType typeField;
 
         private bool typeFieldSpecified;
@@ -833,27 +813,20 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_InfoTextType
     {
-
-    
         text,
 
-    
         autoText,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_FFStatusText
     {
-
         private ST_InfoTextType typeField;
 
         private bool typeFieldSpecified;
@@ -925,14 +898,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_FFTextInput
     {
-
         private CT_FFTextType typeField;
 
         private CT_String defaultField;
@@ -1028,8 +998,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -1041,62 +1009,44 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.formatField.Write(sw, "w:format");
             if (this.maxLengthField != null)
                 this.maxLengthField.Write(sw, "w:maxLength");
-            
+
             sw.Write(string.Format("</{0}>", nodeName));
         }
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IncludeInSchema = false)]
     public enum FFDataItemsType
     {
-
-    
         calcOnExit,
 
-    
         checkBox,
 
-    
         ddList,
 
-    
         enabled,
 
-    
         entryMacro,
 
-    
         exitMacro,
 
-    
         helpText,
 
-    
         name,
 
-    
         statusText,
 
-    
         textInput,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_FldCharType
     {
-
-    
         begin,
 
-    
         separate,
 
-    
         end,
     }
-
 }

@@ -13,7 +13,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Tabs
     {
-
         private List<CT_TabStop> tabField;
 
         public CT_Tabs()
@@ -46,60 +45,43 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_TabJc
     {
-
-    
         clear,
 
-    
         left,
 
-    
         center,
 
-    
         right,
 
-    
         @decimal,
 
-    
         bar,
 
-    
         num,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_TabTlc
     {
-
-    
         none,
 
-    
         dot,
 
-    
         hyphen,
 
-    
         underscore,
 
-    
         heavy,
 
-    
         middleDot,
     }
-    [Serializable]
 
+    [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_TabStop
     {
-
         private ST_TabJc valField;
 
         private ST_TabTlc leaderField;
@@ -107,6 +89,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         private bool leaderFieldSpecified;
 
         private string posField;
+
         public static CT_TabStop Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -120,18 +103,15 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "w:val", this.val.ToString());
-            if(this.leader!= ST_TabTlc.none)
+            if (this.leader != ST_TabTlc.none)
                 XmlHelper.WriteAttribute(sw, "w:leader", this.leader.ToString());
             XmlHelper.WriteAttribute(sw, "w:pos", this.pos, true);
             sw.Write("/>");
         }
-
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
         public ST_TabJc val
@@ -187,17 +167,16 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_PTab
     {
-
         private ST_PTabAlignment alignmentField;
 
         private ST_PTabRelativeTo relativeToField;
 
         private ST_PTabLeader leaderField;
+
         public static CT_PTab Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -211,8 +190,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.leader = (ST_PTabLeader)Enum.Parse(typeof(ST_PTabLeader), node.Attribute("w:leader").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -264,55 +241,38 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_PTabAlignment
     {
-
-    
         left,
 
-    
         center,
 
-    
         right,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_PTabRelativeTo
     {
-
-    
         margin,
 
-    
         indent,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_PTabLeader
     {
-
-    
         none,
 
-    
         dot,
 
-    
         hyphen,
 
-    
         underscore,
 
-    
         middleDot,
     }
-
 }

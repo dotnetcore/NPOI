@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-
-using System.Text;
-using System.Xml.Serialization;
-using System.Xml;
 using System.IO;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_Cols
     {
-
         private List<CT_Col> colField = new List<CT_Col>(); // required
 
         //public CT_Cols()
@@ -25,18 +21,21 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             colField = array;
         }
+
         public CT_Col AddNewCol()
         {
             CT_Col newCol = new CT_Col();
             this.colField.Add(newCol);
             return newCol;
         }
+
         public CT_Col InsertNewCol(int index)
         {
             CT_Col newCol = new CT_Col();
             this.colField.Insert(index, newCol);
             return newCol;
         }
+
         public void RemoveCol(int index)
         {
             this.colField.RemoveAt(index);
@@ -46,16 +45,17 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             return col.Count;
         }
+
         public CT_Col GetColArray(int index)
         {
             return colField[index];
         }
 
-
         public List<CT_Col> GetColList()
         {
             return colField;
         }
+
         [XmlElement]
         public List<CT_Col> col
         {
@@ -83,8 +83,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
@@ -98,8 +96,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             sw.Write(string.Format("</{0}>", nodeName));
         }
-
-
 
         public void SetColArray(CT_Col[] colArray)
         {

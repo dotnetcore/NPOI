@@ -1,9 +1,7 @@
 ﻿using Npoi.Core.OpenXml4Net.Util;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -39,16 +37,16 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         private bool applyAlignmentField = false;
         private bool applyProtectionField = false;
 
-        bool numFmtIdSpecifiedField = false;
-        bool fontIdSpecifiedField = false;
-        bool fillIdSpecifiedField = false;
-        bool borderIdSpecifiedField = false;
-        bool xfIdSpecifiedField = false;
+        private bool numFmtIdSpecifiedField = false;
+        private bool fontIdSpecifiedField = false;
+        private bool fillIdSpecifiedField = false;
+        private bool borderIdSpecifiedField = false;
+        private bool xfIdSpecifiedField = false;
 
         public CT_Xf Copy()
         {
             CT_Xf obj = new CT_Xf();
-            if (this.alignment!=null)
+            if (this.alignment != null)
                 obj.alignment = this.alignment.Copy();
             obj.protection = this.protection;
             obj.extLstField = null == extLstField ? null : this.extLstField.Copy();
@@ -99,8 +97,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
@@ -109,17 +105,17 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             XmlHelper.WriteAttribute(sw, "fillId", this.fillId, true);
             XmlHelper.WriteAttribute(sw, "borderId", this.borderId, true);
             XmlHelper.WriteAttribute(sw, "xfId", this.xfId, true);
-            XmlHelper.WriteAttribute(sw, "quotePrefix", this.quotePrefix,false);
+            XmlHelper.WriteAttribute(sw, "quotePrefix", this.quotePrefix, false);
             XmlHelper.WriteAttribute(sw, "pivotButton", this.pivotButton, false);
-            if(this.applyNumberFormat)
+            if (this.applyNumberFormat)
                 XmlHelper.WriteAttribute(sw, "applyNumberFormat", this.applyNumberFormat);
             XmlHelper.WriteAttribute(sw, "applyFont", this.applyFont, false);
             if (this.applyBorder)
                 XmlHelper.WriteAttribute(sw, "applyBorder", this.applyBorder, true);
-            if(this.applyFill)
+            if (this.applyFill)
                 XmlHelper.WriteAttribute(sw, "applyFill", this.applyFill);
             XmlHelper.WriteAttribute(sw, "applyAlignment", this.applyAlignment, true);
-            if(this.applyProtection)
+            if (this.applyProtection)
                 XmlHelper.WriteAttribute(sw, "applyProtection", this.applyProtection, true);
             if (this.alignment == null && this.protection == null && this.extLst == null)
             {
@@ -151,10 +147,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             return this.fontIdSpecifiedField;
         }
+
         public bool IsSetAlignment()
         {
             return alignmentField != null;
         }
+
         public void UnsetAlignment()
         {
             this.alignmentField = null;
@@ -164,6 +162,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             return this.extLst == null;
         }
+
         public void UnsetExtLst()
         {
             this.extLst = null;
@@ -173,15 +172,18 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             return this.protection != null;
         }
+
         public void UnsetProtection()
         {
             this.protection = null;
         }
+
         public bool IsSetLocked()
         {
             // first guess:
-            return IsSetProtection() &&  (protectionField.locked == true);
+            return IsSetProtection() && (protectionField.locked == true);
         }
+
         public CT_CellProtection AddNewProtection()
         {
             this.protectionField = new CT_CellProtection();
@@ -194,7 +196,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             get { return this.alignmentField; }
             set { this.alignmentField = value; }
         }
-
 
         [XmlElement]
         public CT_CellProtection protection
@@ -209,6 +210,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             get { return this.extLstField; }
             set { this.extLstField = value; }
         }
+
         [XmlAttribute]
         public uint numFmtId
         {
@@ -273,6 +275,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 borderIdSpecifiedField = true;
             }
         }
+
         [XmlIgnore]
         public bool borderIdSpecified
         {
@@ -290,6 +293,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.xfIdSpecifiedField = true;
             }
         }
+
         [XmlIgnore]
         public bool xfIdSpecified
         {
@@ -339,6 +343,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             get { return this.applyFillField; }
             set { this.applyFillField = value; }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool applyBorder
@@ -346,6 +351,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             get { return this.applyBorderField; }
             set { this.applyBorderField = value; }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool applyAlignment

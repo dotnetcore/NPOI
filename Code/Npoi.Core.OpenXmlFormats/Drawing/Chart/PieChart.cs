@@ -3,23 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Dml.Chart
 {
-
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_Pie3DChart
     {
-
         private CT_Boolean varyColorsField;
 
         private List<CT_PieSer> serField;
@@ -31,6 +26,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         public CT_Pie3DChart()
         {
         }
+
         public static CT_Pie3DChart Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -51,8 +47,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -78,7 +72,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             sw.Write(string.Format("</c:{0}>", nodeName));
         }
-
 
         [XmlElement(Order = 0)]
         public CT_Boolean varyColors
@@ -133,15 +126,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_PieChart
     {
-
         private CT_Boolean varyColorsField;
 
         private List<CT_PieSer> serField;
@@ -155,6 +145,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         public CT_PieChart()
         {
         }
+
         public static CT_PieChart Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -177,8 +168,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -274,13 +263,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
     }
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_PieSer
     {
-
         private CT_UnsignedInt idxField;
 
         private CT_UnsignedInt orderField;
@@ -303,8 +290,8 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
 
         public CT_PieSer()
         {
-
         }
+
         public static CT_PieSer Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -337,8 +324,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -509,23 +494,19 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
-
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_HoleSize
     {
-
         private byte valField;
 
         public CT_HoleSize()
         {
             this.valField = ((byte)(10));
         }
+
         public static CT_HoleSize Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -535,8 +516,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
                 ctObj.val = XmlHelper.ReadByte(node.Attribute("val"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -561,21 +540,19 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_FirstSliceAng
     {
-
         private ushort valField;
 
         public CT_FirstSliceAng()
         {
             this.valField = ((ushort)(0));
         }
+
         public static CT_FirstSliceAng Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -585,8 +562,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
                 ctObj.val = XmlHelper.ReadUShort(node.Attribute("val"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -611,15 +586,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_DoughnutChart
     {
-
         private CT_Boolean varyColorsField;
 
         private List<CT_PieSer> serField;
@@ -635,6 +607,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         public CT_DoughnutChart()
         {
         }
+
         public static CT_DoughnutChart Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -659,8 +632,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -772,19 +743,18 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
     }
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_OfPieType
     {
-
         private ST_OfPieType valField;
 
         public CT_OfPieType()
         {
             this.valField = ST_OfPieType.pie;
         }
+
         public static CT_OfPieType Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -794,8 +764,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
                 ctObj.val = (ST_OfPieType)Enum.Parse(typeof(ST_OfPieType), node.Attribute("val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -820,12 +788,10 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     public enum ST_OfPieType
     {
-
         /// <remarks/>
         pie,
 
@@ -833,15 +799,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         bar,
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_OfPieChart
     {
-
         private CT_OfPieType ofPieTypeField;
 
         private CT_Boolean varyColorsField;
@@ -904,8 +867,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -1100,5 +1061,4 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
         }
     }
-
 }

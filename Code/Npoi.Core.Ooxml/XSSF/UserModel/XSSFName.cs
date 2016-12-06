@@ -14,15 +14,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using System;
-using Npoi.Core.SS.Util;
-using Npoi.Core.SS.Formula.PTG;
-using Npoi.Core.SS.Formula;
-using Npoi.Core.SS.UserModel;
+
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.Formula;
+using Npoi.Core.SS.Formula.PTG;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.Util;
+using System;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Represents a defined named range in a SpreadsheetML workbook.
      * <p>
@@ -51,9 +52,9 @@ namespace Npoi.Core.XSSF.UserModel
      * @author Nick Burch
      * @author Yegor Kozlov
      */
+
     public class XSSFName : IName
     {
-
         /**
          * A built-in defined name that specifies the workbook's print area
          */
@@ -70,7 +71,6 @@ namespace Npoi.Core.XSSF.UserModel
          * to be used in Applying an advanced filter to a range of data
          */
         public static String BUILTIN_CRITERIA = "_xlnm.Criteria:";
-
 
         /**
          * this defined name refers to the range Containing the filtered
@@ -113,6 +113,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param workbook - the workbook object associated with the name
          * @see Npoi.Core.XSSF.usermodel.XSSFWorkbook#CreateName()
          */
+
         public XSSFName(CT_DefinedName name, XSSFWorkbook workbook)
         {
             _workbook = workbook;
@@ -122,6 +123,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Returns the underlying named range object
          */
+
         internal CT_DefinedName GetCTName()
         {
             return _ctName;
@@ -132,6 +134,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return text name of this defined name
          */
+
         public String NameName
         {
             get
@@ -150,7 +153,7 @@ namespace Npoi.Core.XSSF.UserModel
                     IName nm = _workbook.GetNameAt(i);
                     if (nm != this)
                     {
-                        if (value.Equals(nm.NameName, StringComparison.OrdinalIgnoreCase) 
+                        if (value.Equals(nm.NameName, StringComparison.OrdinalIgnoreCase)
                             && sheetIndex == nm.SheetIndex)
                         {
                             String msg = "The " + (sheetIndex == -1 ? "workbook" : "sheet") + " already contains this name: " + value;
@@ -173,15 +176,16 @@ namespace Npoi.Core.XSSF.UserModel
                 }
                 return result;
             }
-            set 
+            set
             {
                 XSSFEvaluationWorkbook fpb = XSSFEvaluationWorkbook.Create(_workbook);
                 //validate through the FormulaParser
                 FormulaParser.Parse(value, fpb, FormulaType.NamedRange, SheetIndex);
 
-                _ctName.Value = value;   
+                _ctName.Value = value;
             }
         }
+
         public bool IsDeleted
         {
             get
@@ -202,13 +206,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the sheet index this name applies to, -1 if this name applies to the entire workbook
          */
+
         public int SheetIndex
         {
             get
             {
                 return _ctName.IsSetLocalSheetId() ? (int)_ctName.localSheetId : -1;
             }
-            set 
+            set
             {
                 int lastSheetIx = _workbook.NumberOfSheets - 1;
                 if (value < -1 || value > lastSheetIx)
@@ -235,13 +240,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return <code>true</code> indicates the name refers to a function.
          */
+
         public bool Function
         {
             get
             {
                 return _ctName.function;
             }
-            set 
+            set
             {
                 _ctName.function = value;
             }
@@ -259,13 +265,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the function group index that defines the general category for the function
          */
+
         public int FunctionGroupId
         {
             get
             {
                 return (int)_ctName.functionGroupId;
             }
-            set 
+            set
             {
                 _ctName.functionGroupId = (uint)value;
             }
@@ -277,6 +284,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return sheet name, which this named range referred to.
          * Empty string if the referenced sheet name weas not found.
          */
+
         public String SheetName
         {
             get
@@ -298,6 +306,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return <code>true</code> if this name refers to a user-defined function
          */
+
         public bool IsFunctionName
         {
             get
@@ -311,19 +320,18 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the user comment for this named range
          */
+
         public String Comment
         {
             get
             {
                 return _ctName.comment;
             }
-            set 
+            set
             {
                 _ctName.comment = value;
             }
         }
-
-
 
         public override int GetHashCode()
         {

@@ -14,16 +14,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 using Npoi.Core.SS.UserModel;
-using System;
 using Npoi.Core.XSSF.Model;
+using System;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Handles data formats for XSSF.
-     * 
+     *
      */
+
     public class XSSFDataFormat : IDataFormat
     {
         private StylesTable stylesSource;
@@ -41,6 +43,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param format string matching a built in format
          * @return index of format.
          */
+
         public short GetFormat(String format)
         {
             int idx = BuiltinFormats.GetBuiltinFormat(format);
@@ -53,15 +56,18 @@ namespace Npoi.Core.XSSF.UserModel
          * @param index of a format
          * @return string represented at index of format or null if there is not a  format at that index
          */
+
         public String GetFormat(short index)
         {
             return GetFormat(index & 0xffff);
         }
+
         /**
          * get the format string that matches the given format index
          * @param index of a format
          * @return string represented at index of format or null if there is not a  format at that index
          */
+
         public String GetFormat(int index)
         {
             String fmt = stylesSource.GetNumberFormatAt(index);
@@ -70,5 +76,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-
-

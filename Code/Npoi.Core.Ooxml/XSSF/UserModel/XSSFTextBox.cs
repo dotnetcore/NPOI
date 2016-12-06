@@ -15,25 +15,21 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.OpenXmlFormats.Dml;
 using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
-using Npoi.Core.SS.UserModel;
 
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Represents a text box in a SpreadsheetML Drawing.
      *
      * @author Yegor Kozlov
      */
+
     public class XSSFTextBox : XSSFSimpleShape //, ITextbox
     {
-
         internal XSSFTextBox(XSSFDrawing drawing, CT_Shape ctShape)
             : base(drawing, ctShape)
         {
-
         }
 
         //public short HorizontalAlignment
@@ -172,5 +168,3 @@ namespace Npoi.Core.XSSF.UserModel
         //}
     }
 }
-
-

@@ -15,12 +15,12 @@
    limitations under the License.
 ==================================================================== */
 
-using NUnit.Framework;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using System.Collections.Generic;
-using System;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.XSSF.Model;
+using NUnit.Framework;
+using System;
+
 namespace Npoi.Core.XSSF.UserModel
 {
     /**
@@ -28,14 +28,13 @@ namespace Npoi.Core.XSSF.UserModel
      *
      * @author Yegor Kozlov
      */
+
     [TestFixture]
     public class TestXSSFRichTextString
     {
-
         [Test]
         public void TestCreate()
         {
-
             XSSFRichTextString rt = new XSSFRichTextString("Apache POI");
             Assert.AreEqual("Apache POI", rt.String);
 
@@ -49,6 +48,7 @@ namespace Npoi.Core.XSSF.UserModel
 
             Assert.AreEqual("Apache POI is cool stuff", rt.String);
         }
+
         [Test]
         public void TestEmpty()
         {
@@ -61,7 +61,6 @@ namespace Npoi.Core.XSSF.UserModel
         [Test]
         public void TestApplyFont()
         {
-
             XSSFRichTextString rt = new XSSFRichTextString();
             rt.Append("123");
             rt.Append("4567");
@@ -92,7 +91,6 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(-1, rt.GetIndexOfFormattingRun(9999));
             Assert.AreEqual(-1, rt.GetLengthOfFormattingRun(9999));
             Assert.IsNull(rt.GetFontAtIndex(9999));
-
         }
 
         [Test]
@@ -170,7 +168,6 @@ namespace Npoi.Core.XSSF.UserModel
         [Test]
         public void TestClearFormatting()
         {
-
             XSSFRichTextString rt = new XSSFRichTextString("Apache POI");
             Assert.AreEqual("Apache POI", rt.String);
 
@@ -190,10 +187,10 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual("Apache POI", rt.String);
             Assert.AreEqual(0, rt.NumFormattingRuns);
         }
+
         [Test]
         public void TestGetFonts()
         {
-
             XSSFRichTextString rt = new XSSFRichTextString();
 
             XSSFFont font1 = new XSSFFont();
@@ -214,6 +211,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(font2.IsBold, font2FR.IsBold);
             Assert.AreEqual(font2.FontName, font2FR.FontName);
         }
+
         [Test]
         /**
          * make sure we insert xml:space="preserve" attribute
@@ -223,8 +221,8 @@ namespace Npoi.Core.XSSF.UserModel
         {
             XSSFRichTextString rt = new XSSFRichTextString("Apache");
             CT_Rst ct = rt.GetCTRst();
-            string t=ct.t;
-            
+            string t = ct.t;
+
             Assert.AreEqual("<t>Apache</t>", ct.XmlText);
             rt.String = "  Apache";
             Assert.AreEqual("<t xml:space=\"preserve\">  Apache</t>", ct.XmlText);
@@ -239,6 +237,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Test that unicode representation_ xHHHH_ is properly Processed
          */
+
         [Test]
         public void TestUtfDecode()
         {
@@ -247,8 +246,8 @@ namespace Npoi.Core.XSSF.UserModel
             XSSFRichTextString rt = new XSSFRichTextString(st);
             //_x000D_ is Converted into carriage return
             Assert.AreEqual("abc\r2ef\r", rt.String);
-
         }
+
         [Test]
         public void TestApplyFont_lowlevel()
         {
@@ -366,6 +365,7 @@ namespace Npoi.Core.XSSF.UserModel
 
             Assert.Fail("implement STXString");
         }
+
         [Test]
         public void TestApplyFont_usermodel()
         {
@@ -394,10 +394,10 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual("Apache", str.GetCTRst().GetRArray(0).t);
             Assert.AreEqual(" Software Foundation", str.GetCTRst().GetRArray(1).t);
         }
+
         [Ignore("No explanation provided")]
         public void TestLineBreaks_bug48877()
         {
-
             //XSSFFont font = new XSSFFont();
             //font.Boldweight = (short)FontBoldWeight.Bold;
             //font.FontHeightInPoints = ((short)14);
@@ -473,7 +473,6 @@ namespace Npoi.Core.XSSF.UserModel
 
                         for (int cellIdx = row.FirstCellNum; cellIdx <= lastCell; cellIdx++)
                         {
-
                             XSSFCell cell = row.GetCell(cellIdx) as XSSFCell;
                             if (cell != null)
                             {
@@ -502,7 +501,7 @@ namespace Npoi.Core.XSSF.UserModel
             ISheet sheet = wb.GetSheetAt(0);
             IRow row = sheet.GetRow(0);
 
-            // verify the values to ensure future Changes keep the returned information equal 
+            // verify the values to ensure future Changes keep the returned information equal
             XSSFRichTextString rt = (XSSFRichTextString)row.GetCell(0).RichStringCellValue;
             Assert.AreEqual(0, rt.NumFormattingRuns);
             Assert.IsNull(rt.GetFontOfFormattingRun(0));
@@ -533,7 +532,6 @@ namespace Npoi.Core.XSSF.UserModel
 
             Assert.IsNotNull(rt.GetFontOfFormattingRun(2));
             Assert.AreEqual(9, rt.GetLengthOfFormattingRun(2));
-
         }
 
         [Test]
@@ -546,6 +544,5 @@ namespace Npoi.Core.XSSF.UserModel
             rt = new XSSFRichTextString();
             Assert.IsNull(rt.ToString());
         }
-
     }
 }

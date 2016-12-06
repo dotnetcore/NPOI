@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ICSharpCode.SharpZipLib.Zip;
 using System.Collections;
-using System.Text;
 using System.IO;
-using ICSharpCode.SharpZipLib.Zip;
 
 namespace Npoi.Core.OpenXml4Net.Util
 {
@@ -12,9 +9,11 @@ namespace Npoi.Core.OpenXml4Net.Util
      * Should be as low in terms of memory as a
      *  normal ZipFile implementation is.
      */
+
     public class ZipFileZipEntrySource : ZipEntrySource
     {
         private ZipFile zipArchive;
+
         public ZipFileZipEntrySource(ZipFile zipFile)
         {
             this.zipArchive = zipFile;
@@ -35,7 +34,6 @@ namespace Npoi.Core.OpenXml4Net.Util
                 if (zipArchive == null)
                     throw new InvalidDataException("Zip File is closed");
                 return zipArchive.GetEnumerator();
-
             }
         }
 

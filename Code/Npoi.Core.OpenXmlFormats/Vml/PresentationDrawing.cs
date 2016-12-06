@@ -7,33 +7,31 @@ using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Vml.Presentation
 {
-    
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:powerpoint")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:powerpoint", IsNullable=true)]
-    public class CT_Empty {
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:powerpoint")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:powerpoint", IsNullable = true)]
+    public class CT_Empty
+    {
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:powerpoint")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:powerpoint", IsNullable=true)]
-    public class CT_Rel {
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:powerpoint")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:powerpoint", IsNullable = true)]
+    public class CT_Rel
+    {
         private string idField;
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/relationships")]
         public string id
         {
-            get {
+            get
+            {
                 return this.idField;
             }
-            set {
+            set
+            {
                 this.idField = value;
             }
         }
@@ -47,8 +45,6 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Presentation
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<p:{0}", nodeName));
@@ -56,6 +52,5 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Presentation
             sw.Write(">");
             sw.Write(string.Format("</p:{0}>", nodeName));
         }
-
     }
 }

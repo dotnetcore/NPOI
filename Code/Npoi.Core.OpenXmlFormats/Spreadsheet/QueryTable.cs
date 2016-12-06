@@ -6,79 +6,77 @@ using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
-    
-    
-
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategory("code")]
-    [XmlType(Namespace="http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
-    [XmlRoot(Namespace="http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable=true)]
-    public partial class CT_QueryTable {
-        
+    [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
+    [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
+    public partial class CT_QueryTable
+    {
         private CT_QueryTableRefresh queryTableRefreshField;
-        
+
         private CT_ExtensionList extLstField;
-        
+
         private string nameField;
-        
+
         private bool headersField;
-        
+
         private bool rowNumbersField;
-        
+
         private bool disableRefreshField;
-        
+
         private bool backgroundRefreshField;
-        
+
         private bool firstBackgroundRefreshField;
-        
+
         private bool refreshOnLoadField;
-        
+
         private ST_GrowShrinkType growShrinkTypeField;
-        
+
         private bool fillFormulasField;
-        
+
         private bool removeDataOnSaveField;
-        
+
         private bool disableEditField;
-        
+
         private bool preserveFormattingField;
-        
+
         private bool adjustColumnWidthField;
-        
+
         private bool intermediateField;
-        
+
         private uint connectionIdField;
-        
+
         private uint autoFormatIdField;
-        
+
         private bool autoFormatIdFieldSpecified;
-        
+
         private bool applyNumberFormatsField;
-        
+
         private bool applyNumberFormatsFieldSpecified;
-        
+
         private bool applyBorderFormatsField;
-        
+
         private bool applyBorderFormatsFieldSpecified;
-        
+
         private bool applyFontFormatsField;
-        
+
         private bool applyFontFormatsFieldSpecified;
-        
+
         private bool applyPatternFormatsField;
-        
+
         private bool applyPatternFormatsFieldSpecified;
-        
+
         private bool applyAlignmentFormatsField;
-        
+
         private bool applyAlignmentFormatsFieldSpecified;
-        
+
         private bool applyWidthHeightFormatsField;
-        
+
         private bool applyWidthHeightFormatsFieldSpecified;
-        
-        public CT_QueryTable() {
+
+        public CT_QueryTable()
+        {
             this.headersField = true;
             this.rowNumbersField = false;
             this.disableRefreshField = false;
@@ -93,391 +91,453 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.adjustColumnWidthField = true;
             this.intermediateField = false;
         }
-        
-    
-        public CT_QueryTableRefresh queryTableRefresh {
-            get {
+
+        public CT_QueryTableRefresh queryTableRefresh
+        {
+            get
+            {
                 return this.queryTableRefreshField;
             }
-            set {
+            set
+            {
                 this.queryTableRefreshField = value;
             }
         }
-        
-    
-        public CT_ExtensionList extLst {
-            get {
+
+        public CT_ExtensionList extLst
+        {
+            get
+            {
                 return this.extLstField;
             }
-            set {
+            set
+            {
                 this.extLstField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string name {
-            get {
+        public string name
+        {
+            get
+            {
                 return this.nameField;
             }
-            set {
+            set
+            {
                 this.nameField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(true)]
-        public bool headers {
-            get {
+        public bool headers
+        {
+            get
+            {
                 return this.headersField;
             }
-            set {
+            set
+            {
                 this.headersField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(false)]
-        public bool rowNumbers {
-            get {
+        public bool rowNumbers
+        {
+            get
+            {
                 return this.rowNumbersField;
             }
-            set {
+            set
+            {
                 this.rowNumbersField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(false)]
-        public bool disableRefresh {
-            get {
+        public bool disableRefresh
+        {
+            get
+            {
                 return this.disableRefreshField;
             }
-            set {
+            set
+            {
                 this.disableRefreshField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(true)]
-        public bool backgroundRefresh {
-            get {
+        public bool backgroundRefresh
+        {
+            get
+            {
                 return this.backgroundRefreshField;
             }
-            set {
+            set
+            {
                 this.backgroundRefreshField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(false)]
-        public bool firstBackgroundRefresh {
-            get {
+        public bool firstBackgroundRefresh
+        {
+            get
+            {
                 return this.firstBackgroundRefreshField;
             }
-            set {
+            set
+            {
                 this.firstBackgroundRefreshField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(false)]
-        public bool refreshOnLoad {
-            get {
+        public bool refreshOnLoad
+        {
+            get
+            {
                 return this.refreshOnLoadField;
             }
-            set {
+            set
+            {
                 this.refreshOnLoadField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(ST_GrowShrinkType.insertDelete)]
-        public ST_GrowShrinkType growShrinkType {
-            get {
+        public ST_GrowShrinkType growShrinkType
+        {
+            get
+            {
                 return this.growShrinkTypeField;
             }
-            set {
+            set
+            {
                 this.growShrinkTypeField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(false)]
-        public bool fillFormulas {
-            get {
+        public bool fillFormulas
+        {
+            get
+            {
                 return this.fillFormulasField;
             }
-            set {
+            set
+            {
                 this.fillFormulasField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(false)]
-        public bool removeDataOnSave {
-            get {
+        public bool removeDataOnSave
+        {
+            get
+            {
                 return this.removeDataOnSaveField;
             }
-            set {
+            set
+            {
                 this.removeDataOnSaveField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(false)]
-        public bool disableEdit {
-            get {
+        public bool disableEdit
+        {
+            get
+            {
                 return this.disableEditField;
             }
-            set {
+            set
+            {
                 this.disableEditField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(true)]
-        public bool preserveFormatting {
-            get {
+        public bool preserveFormatting
+        {
+            get
+            {
                 return this.preserveFormattingField;
             }
-            set {
+            set
+            {
                 this.preserveFormattingField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(true)]
-        public bool adjustColumnWidth {
-            get {
+        public bool adjustColumnWidth
+        {
+            get
+            {
                 return this.adjustColumnWidthField;
             }
-            set {
+            set
+            {
                 this.adjustColumnWidthField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(false)]
-        public bool intermediate {
-            get {
+        public bool intermediate
+        {
+            get
+            {
                 return this.intermediateField;
             }
-            set {
+            set
+            {
                 this.intermediateField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public uint connectionId {
-            get {
+        public uint connectionId
+        {
+            get
+            {
                 return this.connectionIdField;
             }
-            set {
+            set
+            {
                 this.connectionIdField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public uint autoFormatId {
-            get {
+        public uint autoFormatId
+        {
+            get
+            {
                 return this.autoFormatIdField;
             }
-            set {
+            set
+            {
                 this.autoFormatIdField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool autoFormatIdSpecified {
-            get {
+        public bool autoFormatIdSpecified
+        {
+            get
+            {
                 return this.autoFormatIdFieldSpecified;
             }
-            set {
+            set
+            {
                 this.autoFormatIdFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public bool applyNumberFormats {
-            get {
+        public bool applyNumberFormats
+        {
+            get
+            {
                 return this.applyNumberFormatsField;
             }
-            set {
+            set
+            {
                 this.applyNumberFormatsField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool applyNumberFormatsSpecified {
-            get {
+        public bool applyNumberFormatsSpecified
+        {
+            get
+            {
                 return this.applyNumberFormatsFieldSpecified;
             }
-            set {
+            set
+            {
                 this.applyNumberFormatsFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public bool applyBorderFormats {
-            get {
+        public bool applyBorderFormats
+        {
+            get
+            {
                 return this.applyBorderFormatsField;
             }
-            set {
+            set
+            {
                 this.applyBorderFormatsField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool applyBorderFormatsSpecified {
-            get {
+        public bool applyBorderFormatsSpecified
+        {
+            get
+            {
                 return this.applyBorderFormatsFieldSpecified;
             }
-            set {
+            set
+            {
                 this.applyBorderFormatsFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public bool applyFontFormats {
-            get {
+        public bool applyFontFormats
+        {
+            get
+            {
                 return this.applyFontFormatsField;
             }
-            set {
+            set
+            {
                 this.applyFontFormatsField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool applyFontFormatsSpecified {
-            get {
+        public bool applyFontFormatsSpecified
+        {
+            get
+            {
                 return this.applyFontFormatsFieldSpecified;
             }
-            set {
+            set
+            {
                 this.applyFontFormatsFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public bool applyPatternFormats {
-            get {
+        public bool applyPatternFormats
+        {
+            get
+            {
                 return this.applyPatternFormatsField;
             }
-            set {
+            set
+            {
                 this.applyPatternFormatsField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool applyPatternFormatsSpecified {
-            get {
+        public bool applyPatternFormatsSpecified
+        {
+            get
+            {
                 return this.applyPatternFormatsFieldSpecified;
             }
-            set {
+            set
+            {
                 this.applyPatternFormatsFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public bool applyAlignmentFormats {
-            get {
+        public bool applyAlignmentFormats
+        {
+            get
+            {
                 return this.applyAlignmentFormatsField;
             }
-            set {
+            set
+            {
                 this.applyAlignmentFormatsField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool applyAlignmentFormatsSpecified {
-            get {
+        public bool applyAlignmentFormatsSpecified
+        {
+            get
+            {
                 return this.applyAlignmentFormatsFieldSpecified;
             }
-            set {
+            set
+            {
                 this.applyAlignmentFormatsFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public bool applyWidthHeightFormats {
-            get {
+        public bool applyWidthHeightFormats
+        {
+            get
+            {
                 return this.applyWidthHeightFormatsField;
             }
-            set {
+            set
+            {
                 this.applyWidthHeightFormatsField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool applyWidthHeightFormatsSpecified {
-            get {
+        public bool applyWidthHeightFormatsSpecified
+        {
+            get
+            {
                 return this.applyWidthHeightFormatsFieldSpecified;
             }
-            set {
+            set
+            {
                 this.applyWidthHeightFormatsFieldSpecified = value;
             }
         }
     }
-    
 
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategory("code")]
-    [XmlType(Namespace="http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
-    [XmlRoot(Namespace="http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable=true)]
-    public partial class CT_QueryTableRefresh {
-        
+    [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
+    [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
+    public partial class CT_QueryTableRefresh
+    {
         private CT_QueryTableFields queryTableFieldsField;
-        
+
         private CT_QueryTableDeletedFields queryTableDeletedFieldsField;
-        
+
         private CT_SortState sortStateField;
-        
+
         private CT_ExtensionList extLstField;
-        
+
         private bool preserveSortFilterLayoutField;
-        
+
         private bool fieldIdWrappedField;
-        
+
         private bool headersInLastRefreshField;
-        
+
         private byte minimumVersionField;
-        
+
         private uint nextIdField;
-        
+
         private uint unboundColumnsLeftField;
-        
+
         private uint unboundColumnsRightField;
-        
-        public CT_QueryTableRefresh() {
+
+        public CT_QueryTableRefresh()
+        {
             this.preserveSortFilterLayoutField = true;
             this.fieldIdWrappedField = false;
             this.headersInLastRefreshField = true;
@@ -486,382 +546,425 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.unboundColumnsLeftField = ((uint)(0));
             this.unboundColumnsRightField = ((uint)(0));
         }
-        
-    
-        public CT_QueryTableFields queryTableFields {
-            get {
+
+        public CT_QueryTableFields queryTableFields
+        {
+            get
+            {
                 return this.queryTableFieldsField;
             }
-            set {
+            set
+            {
                 this.queryTableFieldsField = value;
             }
         }
-        
-    
-        public CT_QueryTableDeletedFields queryTableDeletedFields {
-            get {
+
+        public CT_QueryTableDeletedFields queryTableDeletedFields
+        {
+            get
+            {
                 return this.queryTableDeletedFieldsField;
             }
-            set {
+            set
+            {
                 this.queryTableDeletedFieldsField = value;
             }
         }
-        
-    
-        public CT_SortState sortState {
-            get {
+
+        public CT_SortState sortState
+        {
+            get
+            {
                 return this.sortStateField;
             }
-            set {
+            set
+            {
                 this.sortStateField = value;
             }
         }
-        
-    
-        public CT_ExtensionList extLst {
-            get {
+
+        public CT_ExtensionList extLst
+        {
+            get
+            {
                 return this.extLstField;
             }
-            set {
+            set
+            {
                 this.extLstField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(true)]
-        public bool preserveSortFilterLayout {
-            get {
+        public bool preserveSortFilterLayout
+        {
+            get
+            {
                 return this.preserveSortFilterLayoutField;
             }
-            set {
+            set
+            {
                 this.preserveSortFilterLayoutField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(false)]
-        public bool fieldIdWrapped {
-            get {
+        public bool fieldIdWrapped
+        {
+            get
+            {
                 return this.fieldIdWrappedField;
             }
-            set {
+            set
+            {
                 this.fieldIdWrappedField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(true)]
-        public bool headersInLastRefresh {
-            get {
+        public bool headersInLastRefresh
+        {
+            get
+            {
                 return this.headersInLastRefreshField;
             }
-            set {
+            set
+            {
                 this.headersInLastRefreshField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(typeof(byte), "0")]
-        public byte minimumVersion {
-            get {
+        public byte minimumVersion
+        {
+            get
+            {
                 return this.minimumVersionField;
             }
-            set {
+            set
+            {
                 this.minimumVersionField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(typeof(uint), "1")]
-        public uint nextId {
-            get {
+        public uint nextId
+        {
+            get
+            {
                 return this.nextIdField;
             }
-            set {
+            set
+            {
                 this.nextIdField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(typeof(uint), "0")]
-        public uint unboundColumnsLeft {
-            get {
+        public uint unboundColumnsLeft
+        {
+            get
+            {
                 return this.unboundColumnsLeftField;
             }
-            set {
+            set
+            {
                 this.unboundColumnsLeftField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(typeof(uint), "0")]
-        public uint unboundColumnsRight {
-            get {
+        public uint unboundColumnsRight
+        {
+            get
+            {
                 return this.unboundColumnsRightField;
             }
-            set {
+            set
+            {
                 this.unboundColumnsRightField = value;
             }
         }
     }
-    
 
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategory("code")]
-    [XmlType(Namespace="http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
-    [XmlRoot(Namespace="http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable=true)]
-    public partial class CT_QueryTableFields {
-        
+    [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
+    [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
+    public partial class CT_QueryTableFields
+    {
         private List<CT_QueryTableField> queryTableFieldField;
-        
+
         private uint countField;
-        
-        public CT_QueryTableFields() {
+
+        public CT_QueryTableFields()
+        {
             this.countField = ((uint)(0));
             this.queryTableFieldField = new List<CT_QueryTableField>();
         }
-        
-    
+
         [XmlElement("queryTableField")]
         public List<CT_QueryTableField> queryTableField
         {
-            get {
+            get
+            {
                 return this.queryTableFieldField;
             }
-            set {
+            set
+            {
                 this.queryTableFieldField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(typeof(uint), "0")]
-        public uint count {
-            get {
+        public uint count
+        {
+            get
+            {
                 return this.countField;
             }
-            set {
+            set
+            {
                 this.countField = value;
             }
         }
     }
-    
 
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategory("code")]
-    [XmlType(Namespace="http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
-    [XmlRoot(Namespace="http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable=true)]
-    public partial class CT_QueryTableField {
-        
+    [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
+    [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
+    public partial class CT_QueryTableField
+    {
         private CT_ExtensionList extLstField;
-        
+
         private uint idField;
-        
+
         private string nameField;
-        
+
         private bool dataBoundField;
-        
+
         private bool rowNumbersField;
-        
+
         private bool fillFormulasField;
-        
+
         private bool clippedField;
-        
+
         private uint tableColumnIdField;
-        
-        public CT_QueryTableField() {
+
+        public CT_QueryTableField()
+        {
             this.dataBoundField = true;
             this.rowNumbersField = false;
             this.fillFormulasField = false;
             this.clippedField = false;
             this.tableColumnIdField = ((uint)(0));
         }
-        
-    
-        public CT_ExtensionList extLst {
-            get {
+
+        public CT_ExtensionList extLst
+        {
+            get
+            {
                 return this.extLstField;
             }
-            set {
+            set
+            {
                 this.extLstField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public uint id {
-            get {
+        public uint id
+        {
+            get
+            {
                 return this.idField;
             }
-            set {
+            set
+            {
                 this.idField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string name {
-            get {
+        public string name
+        {
+            get
+            {
                 return this.nameField;
             }
-            set {
+            set
+            {
                 this.nameField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(true)]
-        public bool dataBound {
-            get {
+        public bool dataBound
+        {
+            get
+            {
                 return this.dataBoundField;
             }
-            set {
+            set
+            {
                 this.dataBoundField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(false)]
-        public bool rowNumbers {
-            get {
+        public bool rowNumbers
+        {
+            get
+            {
                 return this.rowNumbersField;
             }
-            set {
+            set
+            {
                 this.rowNumbersField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(false)]
-        public bool fillFormulas {
-            get {
+        public bool fillFormulas
+        {
+            get
+            {
                 return this.fillFormulasField;
             }
-            set {
+            set
+            {
                 this.fillFormulasField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(false)]
-        public bool clipped {
-            get {
+        public bool clipped
+        {
+            get
+            {
                 return this.clippedField;
             }
-            set {
+            set
+            {
                 this.clippedField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValueAttribute(typeof(uint), "0")]
-        public uint tableColumnId {
-            get {
+        public uint tableColumnId
+        {
+            get
+            {
                 return this.tableColumnIdField;
             }
-            set {
+            set
+            {
                 this.tableColumnIdField = value;
             }
         }
     }
 
-
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategory("code")]
-    [XmlType(Namespace="http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
-    [XmlRoot(Namespace="http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable=true)]
-    public partial class CT_QueryTableDeletedFields {
-        
+    [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
+    [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
+    public partial class CT_QueryTableDeletedFields
+    {
         private CT_DeletedField[] deletedFieldField;
-        
+
         private uint countField;
-        
+
         private bool countFieldSpecified;
-        
-    
+
         [XmlElement("deletedField")]
-        public CT_DeletedField[] deletedField {
-            get {
+        public CT_DeletedField[] deletedField
+        {
+            get
+            {
                 return this.deletedFieldField;
             }
-            set {
+            set
+            {
                 this.deletedFieldField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public uint count {
-            get {
+        public uint count
+        {
+            get
+            {
                 return this.countField;
             }
-            set {
+            set
+            {
                 this.countField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool countSpecified {
-            get {
+        public bool countSpecified
+        {
+            get
+            {
                 return this.countFieldSpecified;
             }
-            set {
+            set
+            {
                 this.countFieldSpecified = value;
             }
         }
     }
-    
 
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategory("code")]
-    [XmlType(Namespace="http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
-    [XmlRoot(Namespace="http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable=true)]
-    public partial class CT_DeletedField {
-        
+    [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
+    [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = true)]
+    public partial class CT_DeletedField
+    {
         private string nameField;
-        
-    
+
         [XmlAttribute]
-        public string name {
-            get {
+        public string name
+        {
+            get
+            {
                 return this.nameField;
             }
-            set {
+            set
+            {
                 this.nameField = value;
             }
         }
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
-    [XmlRoot(Namespace="http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable=false)]
-    public enum ST_GrowShrinkType {
-        
-    
+    [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
+    [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", IsNullable = false)]
+    public enum ST_GrowShrinkType
+    {
         insertDelete,
-        
-    
+
         insertClear,
-        
-    
+
         overwriteClear,
     }
 }

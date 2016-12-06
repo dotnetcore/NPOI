@@ -16,11 +16,13 @@
  *    limitations under the License.
  * ====================================================================
  */
+
 namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * Specified a list of text alignment types
      */
+
     public enum TextAlign
     {
         None,
@@ -48,5 +50,4 @@ namespace Npoi.Core.XSSF.UserModel
         DIST,
         THAI_DIST
     }
-
 }

@@ -3,66 +3,52 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
-
     public enum ST_TargetScreenSize
     {
-
-
         [XmlEnum("544x376")]
         Item544x376,
-
 
         [XmlEnum("640x480")]
         Item640x480,
 
-
         [XmlEnum("720x512")]
         Item720x512,
-
 
         [XmlEnum("800x600")]
         Item800x600,
 
-
         [XmlEnum("1024x768")]
         Item1024x768,
-
 
         [XmlEnum("1152x882")]
         Item1152x882,
 
-
         [XmlEnum("1152x900")]
         Item1152x900,
-
 
         [XmlEnum("1280x1024")]
         Item1280x1024,
 
-
         [XmlEnum("1600x1200")]
         Item1600x1200,
-
 
         [XmlEnum("1800x1440")]
         Item1800x1440,
 
-
         [XmlEnum("1920x1200")]
         Item1920x1200,
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_WebPublishing
     {
-
         private bool cssField;
 
         private bool thicketField;
@@ -80,6 +66,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         private uint codePageField;
 
         private bool codePageFieldSpecified;
+
         public static CT_WebPublishing Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -96,8 +83,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             ctObj.codePage = XmlHelper.ReadUInt(node.Attribute("codePage"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -241,11 +226,11 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_WebPublishObject
     {
-
         private uint idField;
 
         private string divIdField;
@@ -262,6 +247,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             this.autoRepublishField = false;
         }
+
         public static CT_WebPublishObject Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -276,8 +262,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
@@ -290,6 +274,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             sw.Write(">");
             sw.Write(string.Format("</{0}>", nodeName));
         }
+
         [XmlAnyAttribute]
         public uint id
         {
@@ -302,6 +287,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.idField = value;
             }
         }
+
         [XmlAnyAttribute]
         public string divId
         {
@@ -314,6 +300,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.divIdField = value;
             }
         }
+
         [XmlAnyAttribute]
         public string sourceObject
         {
@@ -326,6 +313,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.sourceObjectField = value;
             }
         }
+
         [XmlAnyAttribute]
         public string destinationFile
         {
@@ -338,6 +326,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.destinationFileField = value;
             }
         }
+
         [XmlAnyAttribute]
         public string title
         {
@@ -350,6 +339,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.titleField = value;
             }
         }
+
         [XmlAnyAttribute]
         [DefaultValue(false)]
         public bool autoRepublish
@@ -369,12 +359,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_WebPublishObjects
     {
-
         private List<CT_WebPublishObject> webPublishObjectField;
 
         private uint countField;
 
         private bool countFieldSpecified;
+
         public static CT_WebPublishObjects Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -390,8 +380,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -412,6 +400,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             //this.webPublishObjectField = new List<CT_WebPublishObject>();
         }
+
         [XmlElement]
         public List<CT_WebPublishObject> webPublishObject
         {
@@ -424,6 +413,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.webPublishObjectField = value;
             }
         }
+
         [XmlAttribute]
         public uint count
         {

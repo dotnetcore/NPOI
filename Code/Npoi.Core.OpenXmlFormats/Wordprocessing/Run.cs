@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml;
-using System.Xml.Serialization;
-using Npoi.Core.OpenXmlFormats.Shared;
-using System.IO;
-using Npoi.Core.OpenXml4Net.Util;
-using System.Collections;
-using System.Xml.Linq;
-using Npoi.Core;
+﻿using Npoi.Core.OpenXml4Net.Util;
 using Npoi.Core.OpenXmlFormats.Dml.WordProcessing;
+using Npoi.Core.OpenXmlFormats.Shared;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
-
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_R
     {
-
         private CT_RPr rPrField;
 
         private List<object> itemsField;
@@ -94,7 +88,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             set
             {
-               this.itemsField = new List<object>();
+                this.itemsField = new List<object>();
             }
         }
 
@@ -108,7 +102,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             set
             {
-               this.itemsElementNameField = new List<RunItemsChoiceType>();
+                this.itemsElementNameField = new List<RunItemsChoiceType>();
             }
         }
 
@@ -155,6 +149,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         {
             return AddNewObject<CT_Text>(RunItemsChoiceType.t);
         }
+
         public void RemoveT(int pos)
         {
             RemoveObject(RunItemsChoiceType.t, pos);
@@ -231,6 +226,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         {
             return AddNewObject<CT_Picture>(RunItemsChoiceType.pict);
         }
+
         #region Generic methods for object operation
 
         private List<T> GetObjectList<T>(RunItemsChoiceType type) where T : class
@@ -246,6 +242,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return list;
             }
         }
+
         private int SizeOfArray(RunItemsChoiceType type)
         {
             lock (this)
@@ -259,6 +256,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return size;
             }
         }
+
         private T GetObjectArray<T>(int p, RunItemsChoiceType type) where T : class
         {
             lock (this)
@@ -269,6 +267,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return itemsField[pos] as T;
             }
         }
+
         private T InsertNewObject<T>(RunItemsChoiceType type, int p) where T : class, new()
         {
             T t = new T();
@@ -280,6 +279,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return t;
         }
+
         private T AddNewObject<T>(RunItemsChoiceType type) where T : class, new()
         {
             T t = new T();
@@ -290,6 +290,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return t;
         }
+
         private void SetObject<T>(RunItemsChoiceType type, int p, T obj) where T : class
         {
             lock (this)
@@ -304,6 +305,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                         pos, this.itemsField[pos].GetType().Name, typeof(T).Name));
             }
         }
+
         private int GetObjectIndex(RunItemsChoiceType type, int p)
         {
             int index = -1;
@@ -323,6 +325,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return index;
         }
+
         private void RemoveObject(RunItemsChoiceType type, int p)
         {
             lock (this)
@@ -334,7 +337,8 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 itemsField.RemoveAt(pos);
             }
         }
-        #endregion
+
+        #endregion Generic methods for object operation
 
         public CT_Drawing GetDrawingArray(int p)
         {
@@ -604,15 +608,14 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                     ((CT_Sym)o).Write(sw, "sym");
                 else if ((o is CT_Text) && this.ItemsElementName[i] == RunItemsChoiceType.t)
                     ((CT_Text)o).Write(sw, "t");
-                else if (o is CT_Empty&& this.ItemsElementName[i]== RunItemsChoiceType.tab)
+                else if (o is CT_Empty && this.ItemsElementName[i] == RunItemsChoiceType.tab)
                     sw.Write("<w:tab/>");
-                else if (o is CT_Empty&& this.ItemsElementName[i]== RunItemsChoiceType.yearShort)
+                else if (o is CT_Empty && this.ItemsElementName[i] == RunItemsChoiceType.yearShort)
                     sw.Write("<w:yearShort/>");
                 i++;
             }
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
 
         public int SizeOfTabArray()
         {
@@ -625,118 +628,82 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IncludeInSchema = false)]
     public enum RunItemsChoiceType
     {
-
-    
         annotationRef,
 
-    
         br,
 
-    
         commentReference,
 
-    
         continuationSeparator,
 
-    
         cr,
 
-    
         dayLong,
 
-    
         dayShort,
 
-    
         delInstrText,
 
-    
         delText,
 
-    
         drawing,
 
-    
         endnoteRef,
 
-    
         endnoteReference,
 
-    
         fldChar,
 
-    
         footnoteRef,
 
-    
         footnoteReference,
 
-    
         instrText,
 
-    
         lastRenderedPageBreak,
 
-    
         monthLong,
 
-    
         monthShort,
 
-    
         noBreakHyphen,
 
-    
         @object,
 
-    
         pgNum,
 
-    
         pict,
 
-    
         ptab,
 
-    
         ruby,
 
-    
         separator,
 
-    
         softHyphen,
 
-    
         sym,
 
-    
         t,
 
-    
         tab,
 
-    
         yearLong,
 
-    
         yearShort,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_RubyAlign
     {
-
         private ST_RubyAlign valField;
+
         public static CT_RubyAlign Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -746,8 +713,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.val = (ST_RubyAlign)Enum.Parse(typeof(ST_RubyAlign), node.Attribute("w:val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -771,39 +736,28 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_RubyAlign
     {
-
-    
         center,
 
-    
         distributeLetter,
 
-    
         distributeSpace,
 
-    
         left,
 
-    
         right,
 
-    
         rightVertical,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_RubyPr
     {
-
         private CT_RubyAlign rubyAlignField;
 
         private CT_HpsMeasure hpsField;
@@ -825,6 +779,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             //this.hpsField = new CT_HpsMeasure();
             //this.rubyAlignField = new CT_RubyAlign();
         }
+
         public static CT_RubyPr Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -847,8 +802,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -948,14 +901,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_RubyContent
     {
-
         private List<object> itemsField;
 
         private List<ItemsChoiceType16> itemsElementNameField;
@@ -1179,7 +1129,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                     ((CT_MoveBookmark)o).Write(sw, "moveToRangeStart");
                 else if (o is CT_MarkupRange && this.itemsElementNameField[i] == ItemsChoiceType16.moveToRangeEnd)
                     ((CT_MarkupRange)o).Write(sw, "moveToRangeEnd");
-                else if (o is CT_RunTrackChange&& this.itemsElementNameField[i]== ItemsChoiceType16.moveTo)
+                else if (o is CT_RunTrackChange && this.itemsElementNameField[i] == ItemsChoiceType16.moveTo)
                     ((CT_RunTrackChange)o).Write(sw, "moveTo");
                 else if (o is CT_RunTrackChange && this.itemsElementNameField[i] == ItemsChoiceType16.moveFrom)
                     ((CT_RunTrackChange)o).Write(sw, "moveFrom");
@@ -1223,103 +1173,72 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IncludeInSchema = false)]
     public enum ItemsChoiceType16
     {
-
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:oMath")]
         oMath,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:oMathPara")]
         oMathPara,
 
-    
         bookmarkEnd,
 
-    
         bookmarkStart,
 
-    
         commentRangeEnd,
 
-    
         commentRangeStart,
 
-    
         customXmlDelRangeEnd,
 
-    
         customXmlDelRangeStart,
 
-    
         customXmlInsRangeEnd,
 
-    
         customXmlInsRangeStart,
 
-    
         customXmlMoveFromRangeEnd,
 
-    
         customXmlMoveFromRangeStart,
 
-    
         customXmlMoveToRangeEnd,
 
-    
         customXmlMoveToRangeStart,
 
-    
         del,
 
-    
         ins,
 
-    
         moveFrom,
 
-    
         moveFromRangeEnd,
 
-    
         moveFromRangeStart,
 
-    
         moveTo,
 
-    
         moveToRangeEnd,
 
-    
         moveToRangeStart,
 
-    
         permEnd,
 
-    
         permStart,
 
-    
         proofErr,
 
-    
         r,
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Ruby
     {
-
         private CT_RubyPr rubyPrField;
 
         private CT_RubyContent rtField;
@@ -1349,8 +1268,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -1406,7 +1323,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Jc
@@ -1421,15 +1337,12 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "w:val", this.val.ToString());
             sw.Write("/>");
         }
-
 
         private ST_Jc valField;
 
@@ -1447,45 +1360,32 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_Jc
     {
-    
         left,
 
-    
         center,
 
-    
         right,
 
-    
         both,
 
-    
         mediumKashida,
 
-    
         distribute,
 
-    
         numTab,
 
-    
         highKashida,
 
-    
         lowKashida,
 
-    
         thaiDistribute,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_TextDirection
@@ -1500,8 +1400,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -1509,7 +1407,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             sw.Write(">");
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
 
         private ST_TextDirection valField;
 
@@ -1527,34 +1424,24 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_TextDirection
     {
-
-    
         lrTb,
 
-    
         tbRl,
 
-    
         btLr,
 
-    
         lrTbV,
 
-    
         tbRlV,
 
-    
         tbLrV,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_TextAlignment
@@ -1569,15 +1456,12 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "w:val", this.val.ToString());
             sw.Write("/>");
         }
-
 
         private ST_TextAlignment valField;
 
@@ -1595,31 +1479,22 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_TextAlignment
     {
-
-    
         top,
 
-    
         center,
 
-    
         baseline,
 
-    
         bottom,
 
-    
         auto,
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_TextboxTightWrap
@@ -1633,8 +1508,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.val = (ST_TextboxTightWrap)Enum.Parse(typeof(ST_TextboxTightWrap), node.Attribute("w:val").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -1660,32 +1533,22 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_TextboxTightWrap
     {
-
-    
         none,
 
-    
         allLines,
 
-    
         firstAndLastLine,
 
-    
         firstLineOnly,
 
-    
         lastLineOnly,
     }
 
-
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_VerticalAlignRun
@@ -1700,8 +1563,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -1709,7 +1570,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             sw.Write(">");
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
 
         private ST_VerticalAlignRun valField;
 
@@ -1727,150 +1587,101 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_VerticalAlignRun
     {
-
-    
         baseline,
 
-    
         superscript,
 
-    
         subscript,
     }
-
-
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IncludeInSchema = false)]
     public enum ItemsChoiceType5
     {
-
-    
         b,
 
-    
         bCs,
 
-    
         bdr,
 
-    
         caps,
 
-    
         color,
 
-    
         cs,
 
-    
         dstrike,
 
-    
         eastAsianLayout,
 
-    
         effect,
 
-    
         em,
 
-    
         emboss,
 
-    
         fitText,
 
-    
         highlight,
 
-    
         i,
 
-    
         iCs,
 
-    
         imprint,
 
-    
         kern,
 
-    
         lang,
 
-    
         noProof,
 
-    
         oMath,
 
-    
         outline,
 
-    
         position,
 
-    
         rFonts,
 
-    
         rStyle,
 
-    
         rtl,
 
-    
         shadow,
 
-    
         shd,
 
-    
         smallCaps,
 
-    
         snapToGrid,
 
-    
         spacing,
 
-    
         specVanish,
 
-    
         strike,
 
-    
         sz,
 
-    
         szCs,
 
-    
         u,
 
-    
         vanish,
 
-    
         vertAlign,
 
-    
         w,
 
-    
         webHidden,
     }
 
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_RunTrackChange : CT_TrackChange
@@ -1884,6 +1695,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             this.itemsElementNameField = new List<ItemsChoiceType6>();
             this.itemsField = new List<object>();
         }
+
         public new static CT_RunTrackChange Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2306,7 +2118,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             set
             {
-                    this.itemsField = value;
+                this.itemsField = value;
             }
         }
 
@@ -2328,6 +2140,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         {
             return GetObjectList<CT_R>(ItemsChoiceType6.r);
         }
+
         #region Generic methods for object operation
 
         private List<T> GetObjectList<T>(ItemsChoiceType6 type) where T : class
@@ -2343,6 +2156,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return list;
             }
         }
+
         private int SizeOfArray(ItemsChoiceType6 type)
         {
             lock (this)
@@ -2356,6 +2170,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return size;
             }
         }
+
         private T GetObjectArray<T>(int p, ItemsChoiceType6 type) where T : class
         {
             lock (this)
@@ -2366,6 +2181,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return itemsField[pos] as T;
             }
         }
+
         private T InsertNewObject<T>(ItemsChoiceType6 type, int p) where T : class, new()
         {
             T t = new T();
@@ -2377,6 +2193,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return t;
         }
+
         private T AddNewObject<T>(ItemsChoiceType6 type) where T : class, new()
         {
             T t = new T();
@@ -2387,6 +2204,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return t;
         }
+
         private void SetObject<T>(ItemsChoiceType6 type, int p, T obj) where T : class
         {
             lock (this)
@@ -2401,6 +2219,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                         pos, this.itemsField[pos].GetType().Name, typeof(T).Name));
             }
         }
+
         private int GetObjectIndex(ItemsChoiceType6 type, int p)
         {
             int index = -1;
@@ -2420,6 +2239,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             }
             return index;
         }
+
         private void RemoveObject(ItemsChoiceType6 type, int p)
         {
             lock (this)
@@ -2431,183 +2251,133 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 itemsField.RemoveAt(pos);
             }
         }
-        #endregion
+
+        #endregion Generic methods for object operation
     }
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IncludeInSchema = false)]
     public enum ItemsChoiceType6
     {
-
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:acc")]
         acc,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:bar")]
         bar,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:borderBox")]
         borderBox,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:box")]
         box,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:d")]
         d,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:eqArr")]
         eqArr,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:f")]
         f,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:func")]
         func,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:groupChr")]
         groupChr,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:limLow")]
         limLow,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:limUpp")]
         limUpp,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:m")]
         m,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:nary")]
         nary,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:oMath")]
         oMath,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:oMathPara")]
         oMathPara,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:phant")]
         phant,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:r")]
         r,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:rad")]
         rad,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:sPre")]
         sPre,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:sSub")]
         sSub,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:sSubSup")]
         sSubSup,
 
-    
         [XmlEnum("http://schemas.openxmlformats.org/officeDocument/2006/math:sSup")]
         sSup,
 
-    
         bookmarkEnd,
 
-    
         bookmarkStart,
 
-    
         commentRangeEnd,
 
-    
         commentRangeStart,
 
-    
         customXml,
 
-    
         customXmlDelRangeEnd,
 
-    
         customXmlDelRangeStart,
 
-    
         customXmlInsRangeEnd,
 
-    
         customXmlInsRangeStart,
 
-    
         customXmlMoveFromRangeEnd,
 
-    
         customXmlMoveFromRangeStart,
 
-    
         customXmlMoveToRangeEnd,
 
-    
         customXmlMoveToRangeStart,
 
-    
         del,
 
-    
         ins,
 
-    
         moveFrom,
 
-    
         moveFromRangeEnd,
 
-    
         moveFromRangeStart,
 
-    
         moveTo,
 
-    
         moveToRangeEnd,
 
-    
         moveToRangeStart,
 
-    
         permEnd,
 
-    
         permStart,
 
-    
         proofErr,
 
-    
         [XmlEnum("r")]
         r1,
 
-    
         sdt,
 
-    
         smartTag,
     }
-    
 }

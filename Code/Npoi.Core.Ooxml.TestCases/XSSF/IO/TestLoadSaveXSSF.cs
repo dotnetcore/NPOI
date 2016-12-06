@@ -15,15 +15,14 @@
    limitations under the License.
 ==================================================================== */
 
-using TestCases;
+using Npoi.Core.SS.UserModel;
 using Npoi.Core.XSSF.UserModel;
 using NUnit.Framework;
-using Npoi.Core.SS.UserModel;
-using System.Collections.Generic;
 using System.Collections;
+using TestCases;
+
 namespace Npoi.Core.XSSF.IO
 {
-
     [TestFixture]
     public class TestLoadSaveXSSF
     {
@@ -66,5 +65,3 @@ namespace Npoi.Core.XSSF.IO
         }
     }
 }
-
-

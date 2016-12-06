@@ -17,18 +17,16 @@
 
 namespace Npoi.Core.XSSF.UserModel
 {
-    using System;
-    using System.Collections.Generic;
     using Npoi.Core.OpenXmlFormats.Spreadsheet;
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.XSSF;
     using NUnit.Framework;
-
+    using System;
+    using System.Collections.Generic;
 
     [TestFixture]
     public class TestXSSFTable
     {
-
         [Test]
         public void Bug56274()
         {
@@ -64,6 +62,5 @@ namespace Npoi.Core.XSSF.UserModel
             }
             //Assert.IsTrue(outputFile.Delete());
         }
-
     }
 }

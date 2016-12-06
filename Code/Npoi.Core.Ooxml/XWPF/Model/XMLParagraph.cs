@@ -14,17 +14,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.Model
 {
-    using System;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
 
     /**
      * Base class for XWPF paragraphs
      *
      * @author Yury Batrakov (batrakov at gmail.com)
-     * 
+     *
      */
+
     public class XMLParagraph
     {
         protected CT_P paragraph;

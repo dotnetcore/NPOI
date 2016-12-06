@@ -15,28 +15,25 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
-using System.IO;
 using Npoi.Core.OpenXml4Net.OPC;
 using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet; // http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing
 using Npoi.Core.SS.UserModel;
-using Npoi.Core.XSSF.Model;
-using System.Collections.Generic;
-using System.Xml;
-using System.Xml.Linq;
-using Npoi.Core.OpenXmlFormats.Dml;
 using Npoi.Core.SS.Util;
 using Npoi.Core.Util;
-
+using Npoi.Core.XSSF.Model;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml.Linq;
 
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Represents a SpreadsheetML Drawing
      *
      * @author Yegor Kozlov
      */
+
     public class XSSFDrawing : POIXMLDocumentPart, IDrawing
     {
         public const String NAMESPACE_A = "http://schemas.openxmlformats.org/drawingml/2006/main";
@@ -46,7 +43,8 @@ namespace Npoi.Core.XSSF.UserModel
          * Root element of the SpreadsheetML Drawing part
          */
         private Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing drawing = NewDrawing();
-       // private bool isNew = true; not used so far
+
+        // private bool isNew = true; not used so far
         private long numOfGraphicFrames = 0L;
 
         /**
@@ -54,11 +52,13 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @see Npoi.Core.xssf.usermodel.XSSFSheet#CreateDrawingPatriarch()
          */
+
         public XSSFDrawing()
             : base()
         {
             drawing = NewDrawing();
         }
+
         /**
          * Construct a SpreadsheetML Drawing from a namespace part
          *
@@ -67,6 +67,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param rel  the namespace relationship holding this Drawing,
          * the relationship type must be http://schemas.openxmlformats.org/officeDocument/2006/relationships/drawing
          */
+
         internal XSSFDrawing(PackagePart part, PackageRelationship rel)
             : base(part, rel)
         {
@@ -79,6 +80,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return a new CT_Drawing bean
          */
+
         private static Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_Drawing NewDrawing()
         {
             return new CT_Drawing();
@@ -89,11 +91,11 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the underlying CT_Drawing bean
          */
+
         public CT_Drawing GetCTDrawing()
         {
             return drawing;
         }
-
 
         protected internal override void Commit()
         {
@@ -116,17 +118,17 @@ namespace Npoi.Core.XSSF.UserModel
          *                  to the sheet.
          * @return      the newly Created textbox.
          */
+
         public XSSFTextBox CreateTextbox(IClientAnchor anchor)
         {
             long shapeId = newShapeId();
             CT_TwoCellAnchor ctAnchor = CreateTwoCellAnchor(anchor);
             CT_Shape ctShape = ctAnchor.AddNewSp();
             ctShape.Set(XSSFSimpleShape.GetPrototype());
-            ctShape.nvSpPr.cNvPr.id=(uint)shapeId;
+            ctShape.nvSpPr.cNvPr.id = (uint)shapeId;
             XSSFTextBox shape = new XSSFTextBox(this, ctShape);
             shape.anchor = (XSSFClientAnchor)anchor;
             return shape;
-
         }
 
         /**
@@ -138,6 +140,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return  the newly Created picture shape.
          */
+
         public IPicture CreatePicture(XSSFClientAnchor anchor, int pictureIndex)
         {
             PackageRelationship rel = AddPictureReference(pictureIndex);
@@ -160,6 +163,7 @@ namespace Npoi.Core.XSSF.UserModel
         {
             return CreatePicture((XSSFClientAnchor)anchor, pictureIndex);
         }
+
         /// <summary>
         /// Creates a chart.
         /// </summary>
@@ -191,6 +195,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param pictureIndex the index of the picture in the workbook collection of pictures,
          *   {@link Npoi.Core.xssf.usermodel.XSSFWorkbook#getAllPictures()} .
          */
+
         internal PackageRelationship AddPictureReference(int pictureIndex)
         {
             XSSFWorkbook wb = (XSSFWorkbook)GetParent().GetParent();
@@ -209,13 +214,14 @@ namespace Npoi.Core.XSSF.UserModel
          *                  to the sheet.
          * @return  the newly Created shape.
          */
+
         public XSSFSimpleShape CreateSimpleShape(XSSFClientAnchor anchor)
         {
             long shapeId = newShapeId();
             CT_TwoCellAnchor ctAnchor = CreateTwoCellAnchor(anchor);
             CT_Shape ctShape = ctAnchor.AddNewSp();
             ctShape.Set(XSSFSimpleShape.GetPrototype());
-            ctShape.nvSpPr.cNvPr.id=(uint)(shapeId);
+            ctShape.nvSpPr.cNvPr.id = (uint)(shapeId);
             XSSFSimpleShape shape = new XSSFSimpleShape(this, ctShape);
             shape.anchor = anchor;
             return shape;
@@ -229,6 +235,7 @@ namespace Npoi.Core.XSSF.UserModel
          *                  to the sheet.
          * @return  the newly Created shape.
          */
+
         public XSSFConnector CreateConnector(XSSFClientAnchor anchor)
         {
             CT_TwoCellAnchor ctAnchor = CreateTwoCellAnchor(anchor);
@@ -248,6 +255,7 @@ namespace Npoi.Core.XSSF.UserModel
          *                  to the sheet.
          * @return  the newly Created shape.
          */
+
         public XSSFShapeGroup CreateGroup(XSSFClientAnchor anchor)
         {
             CT_TwoCellAnchor ctAnchor = CreateTwoCellAnchor(anchor);
@@ -265,6 +273,7 @@ namespace Npoi.Core.XSSF.UserModel
          *               to the sheet.
          * @return the newly Created comment.
          */
+
         public IComment CreateCellComment(IClientAnchor anchor)
         {
             XSSFClientAnchor ca = (XSSFClientAnchor)anchor;
@@ -305,6 +314,7 @@ namespace Npoi.Core.XSSF.UserModel
          *                  to the sheet
          * @return  the newly Created graphic frame
          */
+
         private XSSFGraphicFrame CreateGraphicFrame(XSSFClientAnchor anchor)
         {
             CT_TwoCellAnchor ctAnchor = CreateTwoCellAnchor(anchor);
@@ -322,6 +332,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Returns all charts in this Drawing.
          */
+
         public List<XSSFChart> GetCharts()
         {
             List<XSSFChart> charts = new List<XSSFChart>();
@@ -340,6 +351,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return a new CT_TwoCellAnchor
          */
+
         private CT_TwoCellAnchor CreateTwoCellAnchor(IClientAnchor anchor)
         {
             CT_TwoCellAnchor ctAnchor = drawing.AddNewTwoCellAnchor();
@@ -352,13 +364,13 @@ namespace Npoi.Core.XSSF.UserModel
             ST_EditAs aditAs;
             switch (anchor.AnchorType)
             {
-                case AnchorType.DontMoveAndResize: 
+                case AnchorType.DontMoveAndResize:
                     aditAs = ST_EditAs.absolute; break;
-                case AnchorType.MoveAndResize: 
+                case AnchorType.MoveAndResize:
                     aditAs = ST_EditAs.twoCell; break;
-                case AnchorType.MoveDontResize: 
+                case AnchorType.MoveDontResize:
                     aditAs = ST_EditAs.oneCell; break;
-                default: 
+                default:
                     aditAs = ST_EditAs.oneCell;
                     break;
             }
@@ -379,12 +391,13 @@ namespace Npoi.Core.XSSF.UserModel
             throw new NotImplementedException();
         }
 
-        #endregion
+        #endregion IDrawing Members
 
         /**
      *
      * @return list of shapes in this drawing
      */
+
         public List<XSSFShape> GetShapes()
         {
             List<XSSFShape> lst = new List<XSSFShape>();
@@ -409,7 +422,7 @@ namespace Npoi.Core.XSSF.UserModel
                 }
                 else if (anchor.sp != null)
                 {
-                   shape = new XSSFSimpleShape(this, anchor.sp);
+                    shape = new XSSFSimpleShape(this, anchor.sp);
                 }
                 if (shape != null)
                 {
@@ -442,9 +455,10 @@ namespace Npoi.Core.XSSF.UserModel
             //}
             return lst;
         }
+
         private XSSFAnchor GetAnchorFromIEGAnchor(IEG_Anchor ctAnchor)
         {
-            CT_Marker ctFrom=null, ctTo=null;
+            CT_Marker ctFrom = null, ctTo = null;
             if (ctAnchor is CT_TwoCellAnchor)
             {
                 ctFrom = ((CT_TwoCellAnchor)ctAnchor).from;
@@ -457,6 +471,7 @@ namespace Npoi.Core.XSSF.UserModel
             XSSFAnchor anchor = new XSSFClientAnchor(ctFrom, ctTo);
             return anchor;
         }
+
         //private XSSFAnchor GetAnchorFromParent(XmlNode obj)
         //{
         //    XSSFAnchor anchor = null;
@@ -476,4 +491,3 @@ namespace Npoi.Core.XSSF.UserModel
         //}
     }
 }
-

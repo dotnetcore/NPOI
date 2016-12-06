@@ -14,14 +14,14 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XSSF.UserModel
 {
-    using System;
     using Npoi.Core.OpenXmlFormats.Spreadsheet;
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.SS.Util;
     using NUnit.Framework;
-
+    using System;
 
     [TestFixture]
     public class TestXSSFPivotTable
@@ -73,6 +73,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Verify that when creating a row label it's  Created on the correct row
          * and the count is increased by one.
          */
+
         [Test]
         public void TestAddRowLabelToPivotTable()
         {
@@ -94,9 +95,11 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(0, (int)pivotTable.GetRowLabelColumns()[(0)]);
             Assert.AreEqual(1, (int)pivotTable.GetRowLabelColumns()[(1)]);
         }
+
         /**
          * Verify that it's not possible to create a row label outside of the referenced area.
          */
+
         [Test]
         public void TestAddRowLabelOutOfRangeThrowsException()
         {
@@ -116,6 +119,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Verify that when creating one column label, no col fields are being Created.
          */
+
         [Test]
         public void TestAddOneColumnLabelToPivotTableDoesNotCreateColField()
         {
@@ -130,6 +134,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Verify that it's possible to create three column labels with different DataConsolidateFunction
          */
+
         [Test]
         public void TestAddThreeDifferentColumnLabelsToPivotTable()
         {
@@ -145,10 +150,10 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(defintion.dataFields.dataField.Count, 3);
         }
 
-
         /**
          * Verify that it's possible to create three column labels with the same DataConsolidateFunction
          */
+
         [Test]
         public void TestAddThreeSametColumnLabelsToPivotTable()
         {
@@ -167,6 +172,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Verify that when creating two column labels, a col field is being Created and X is Set to -2.
          */
+
         [Test]
         public void TestAddTwoColumnLabelsToPivotTable()
         {
@@ -183,6 +189,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Verify that a data field is Created when creating a data column
          */
+
         [Test]
         public void TestColumnLabelCreatesDataField()
         {
@@ -200,6 +207,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Verify that it's possible to Set a custom name when creating a data column
          */
+
         [Test]
         public void TestColumnLabelSetCustomName()
         {
@@ -218,6 +226,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Verify that it's not possible to create a column label outside of the referenced area.
          */
+
         [Test]
         public void TestAddColumnLabelOutOfRangeThrowsException()
         {
@@ -238,6 +247,7 @@ namespace Npoi.Core.XSSF.UserModel
         * Verify when creating a data column Set to a data field, the data field with the corresponding
         * column index will be Set to true.
         */
+
         [Test]
         public void TestAddDataColumn()
         {
@@ -252,6 +262,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Verify that it's not possible to create a data column outside of the referenced area.
          */
+
         [Test]
         public void TestAddDataColumnOutOfRangeThrowsException()
         {
@@ -272,6 +283,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
         * Verify that it's possible to create a new filter
         */
+
         [Test]
         public void TestAddReportFilter()
         {
@@ -288,6 +300,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
         * Verify that it's not possible to create a new filter outside of the referenced area.
         */
+
         [Test]
         public void TestAddReportFilterOutOfRangeThrowsException()
         {

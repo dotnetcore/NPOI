@@ -1,8 +1,6 @@
-﻿using System;
+﻿using ICSharpCode.SharpZipLib.Zip;
 using System.Collections;
-using System.Text;
 using System.IO;
-using ICSharpCode.SharpZipLib.Zip;
 
 namespace Npoi.Core.OpenXml4Net.Util
 {
@@ -13,6 +11,7 @@ namespace Npoi.Core.OpenXml4Net.Util
      *  needing to worry about ZipFile vs ZipInputStream
      *  being annoyingly very different.
      */
+
     public interface ZipEntrySource
     {
         /**
@@ -21,15 +20,17 @@ namespace Npoi.Core.OpenXml4Net.Util
         IEnumerator Entries { get; }
 
         /**
-         * Returns an InputStream of the decompressed 
+         * Returns an InputStream of the decompressed
          *  data that makes up the entry
          */
+
         Stream GetInputStream(ZipEntry entry);
 
         /**
-         * Indicates we are done with reading, and 
+         * Indicates we are done with reading, and
          *  resources may be freed
          */
+
         void Close();
     }
 }

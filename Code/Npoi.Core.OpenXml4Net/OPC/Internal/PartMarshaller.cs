@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 
 namespace Npoi.Core.OpenXml4Net.OPC.Internal
 {
@@ -12,9 +10,10 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
      * @author Julien Chable
      * @version 0.1
      */
-    public interface PartMarshaller {
 
-	    /**
+    public interface PartMarshaller
+    {
+        /**
 	     * Save the content of the package in the stream
 	     *
 	     * @param part
@@ -26,6 +25,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
 	     *             Throws only if any other exceptions are thrown by inner
 	     *             methods.
 	     */
+
         bool Marshall(PackagePart part, Stream out1);
     }
 }

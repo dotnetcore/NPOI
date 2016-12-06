@@ -14,11 +14,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
-
     /**
      * Experimental interface to offer rudimentary Read-only Processing of
      * of the contentblock of an SDT/ContentControl.
@@ -27,13 +25,11 @@ namespace Npoi.Core.XWPF.UserModel
      * <p/>
      * WARNING - APIs expected to change rapidly
      */
+
     public interface ISDTContent
     {
-
         string Text { get; }
 
         string ToString();
-
     }
-
 }

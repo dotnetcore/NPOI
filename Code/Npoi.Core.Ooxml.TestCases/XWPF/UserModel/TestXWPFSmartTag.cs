@@ -14,6 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
     using Npoi.Core.XWPF;
@@ -24,6 +25,7 @@ namespace Npoi.Core.XWPF.UserModel
      *
      * @author  Fabian Lange
      */
+
     [TestFixture]
     public class TestXWPFSmartTag
     {
@@ -39,5 +41,4 @@ namespace Npoi.Core.XWPF.UserModel
             Assert.IsTrue(p.Text.Contains("Alice's Adventures"));
         }
     }
-
 }

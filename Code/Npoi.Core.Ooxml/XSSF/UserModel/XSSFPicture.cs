@@ -15,27 +15,25 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
-using System.Drawing;
-using System.IO;
 using Npoi.Core.OpenXml4Net.OPC;
 using Npoi.Core.OpenXmlFormats.Dml;
 using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
-using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS.UserModel;
-using Npoi.Core.Util;
-using System.Xml;
-using System.Xml.Linq;
 using Npoi.Core.SS.Util;
+using Npoi.Core.Util;
+using System;
+using System.Drawing;
+using System.IO;
+using System.Xml.Linq;
 
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Represents a picture shape in a SpreadsheetML Drawing.
      *
      * @author Yegor Kozlov
      */
+
     public class XSSFPicture : XSSFShape, IPicture
     {
         private static POILogger logger = POILogFactory.GetLogger(typeof(XSSFPicture));
@@ -65,6 +63,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param Drawing the XSSFDrawing that owns this picture
          */
+
         public XSSFPicture(XSSFDrawing drawing, CT_Picture ctPicture)
         {
             this.drawing = drawing;
@@ -76,46 +75,44 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return a prototype that is used to construct new shapes
          */
+
         public XSSFPicture(XSSFDrawing drawing, XElement ctPicture)
         {
             this.drawing = drawing;
-            this.ctPicture =CT_Picture.Parse(ctPicture, POIXMLDocumentPart.NamespaceManager);
+            this.ctPicture = CT_Picture.Parse(ctPicture, POIXMLDocumentPart.NamespaceManager);
         }
 
         internal static CT_Picture Prototype()
         {
+            CT_Picture pic = new CT_Picture();
+            CT_PictureNonVisual nvpr = pic.AddNewNvPicPr();
+            Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_NonVisualDrawingProps nvProps = nvpr.AddNewCNvPr();
+            nvProps.id = (1);
+            nvProps.name = ("Picture 1");
+            nvProps.descr = ("Picture");
+            Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_NonVisualPictureProperties nvPicProps = nvpr.AddNewCNvPicPr();
+            nvPicProps.AddNewPicLocks().noChangeAspect = true;
 
-                CT_Picture pic = new CT_Picture();
-                CT_PictureNonVisual nvpr = pic.AddNewNvPicPr();
-                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_NonVisualDrawingProps nvProps = nvpr.AddNewCNvPr();
-                nvProps.id = (1);
-                nvProps.name = ("Picture 1");
-                nvProps.descr = ("Picture");
-                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_NonVisualPictureProperties nvPicProps = nvpr.AddNewCNvPicPr();
-                nvPicProps.AddNewPicLocks().noChangeAspect = true;
+            Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_BlipFillProperties blip = pic.AddNewBlipFill();
+            blip.AddNewBlip().embed = "";
+            blip.AddNewStretch().AddNewFillRect();
 
+            Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties sppr = pic.AddNewSpPr();
+            CT_Transform2D t2d = sppr.AddNewXfrm();
+            CT_PositiveSize2D ext = t2d.AddNewExt();
+            //should be original picture width and height expressed in EMUs
+            ext.cx = (0);
+            ext.cy = (0);
 
+            CT_Point2D off = t2d.AddNewOff();
+            off.x = (0);
+            off.y = (0);
 
-                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_BlipFillProperties blip = pic.AddNewBlipFill();
-                blip.AddNewBlip().embed = "";
-                blip.AddNewStretch().AddNewFillRect();
+            CT_PresetGeometry2D prstGeom = sppr.AddNewPrstGeom();
+            prstGeom.prst = (ST_ShapeType.rect);
+            prstGeom.AddNewAvLst();
 
-                Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties sppr = pic.AddNewSpPr();
-                CT_Transform2D t2d = sppr.AddNewXfrm();
-                CT_PositiveSize2D ext = t2d.AddNewExt();
-                //should be original picture width and height expressed in EMUs
-                ext.cx = (0);
-                ext.cy = (0);
-
-                CT_Point2D off = t2d.AddNewOff();
-                off.x=(0);
-                off.y=(0);
-
-                CT_PresetGeometry2D prstGeom = sppr.AddNewPrstGeom();
-                prstGeom.prst = (ST_ShapeType.rect);
-                prstGeom.AddNewAvLst();
-
-                prototype = pic;
+            prototype = pic;
             return prototype;
         }
 
@@ -124,6 +121,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param rel relationship referring the picture data
          */
+
         internal void SetPictureReference(PackageRelationship rel)
         {
             ctPicture.blipFill.blip.embed = rel.Id;
@@ -149,19 +147,23 @@ namespace Npoi.Core.XSSF.UserModel
          * If the default font is Changed the resized image can be streched vertically or horizontally.
          * </p>
          */
+
         public void Resize()
         {
             Resize(double.MaxValue);
         }
+
         /**
          * Resize the image proportionally.
          *
          * @see #resize(double, double)
          */
+
         public void Resize(double scale)
         {
             Resize(scale, scale);
         }
+
         /**
          * Resize the image relatively to its current size.
          * <p>
@@ -173,7 +175,7 @@ namespace Npoi.Core.XSSF.UserModel
          * <code>resize(1.0,1.0)</code> keeps the original size,<br/>
          * <code>resize(0.5,0.5)</code> resize to 50% of the original,<br/>
          * <code>resize(2.0,2.0)</code> resizes to 200% of the original.<br/>
-         * <code>resize({@link Double#MAX_VALUE},{@link Double#MAX_VALUE})</code> resizes to the dimension of the embedded image. 
+         * <code>resize({@link Double#MAX_VALUE},{@link Double#MAX_VALUE})</code> resizes to the dimension of the embedded image.
          * </p>
          *
          * @param scaleX the amount by which the image width is multiplied relative to the original width,
@@ -181,6 +183,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param scaleY the amount by which the image height is multiplied relative to the original height,
          *  when set to {@link java.lang.Double#MAX_VALUE} the height of the embedded image is used
          */
+
         public void Resize(double scaleX, double scaleY)
         {
             IClientAnchor anchor = (XSSFClientAnchor)GetAnchor();
@@ -190,13 +193,13 @@ namespace Npoi.Core.XSSF.UserModel
             int row2 = anchor.Row1 + (pref.Row2 - pref.Row1);
             int col2 = anchor.Col1 + (pref.Col2 - pref.Col1);
 
-            anchor.Col2=(col2);
+            anchor.Col2 = (col2);
             //anchor.Dx1=(0);
-            anchor.Dx2=(pref.Dx2);
+            anchor.Dx2 = (pref.Dx2);
 
-            anchor.Row2=(row2);
+            anchor.Row2 = (row2);
             //anchor.Dy1=(0);
-            anchor.Dy2=(pref.Dy2);
+            anchor.Dy2 = (pref.Dy2);
         }
 
         /**
@@ -204,6 +207,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return XSSFClientAnchor with the preferred size for this image
          */
+
         public IClientAnchor GetPreferredSize()
         {
             return GetPreferredSize(1);
@@ -215,11 +219,11 @@ namespace Npoi.Core.XSSF.UserModel
          * @param scale the amount by which image dimensions are multiplied relative to the original size.
          * @return XSSFClientAnchor with the preferred size for this image
          */
+
         public IClientAnchor GetPreferredSize(double scale)
         {
             return GetPreferredSize(scale, scale);
         }
-
 
         /**
          * Calculate the preferred size for this picture.
@@ -228,6 +232,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param scaleY the amount by which image height is multiplied relative to the original height.
          * @return XSSFClientAnchor with the preferred size for this image
          */
+
         public IClientAnchor GetPreferredSize(double scaleX, double scaleY)
         {
             Size dim = ImageUtils.SetPreferredSize(this, scaleX, scaleY);
@@ -236,6 +241,7 @@ namespace Npoi.Core.XSSF.UserModel
             size2d.cy = (dim.Height);
             return ClientAnchor;
         }
+
         /**
          * Return the dimension of this image
          *
@@ -245,6 +251,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return image dimension in pixels
          */
+
         protected static Size GetImageDimension(PackagePart part, PictureType type)
         {
             try
@@ -261,11 +268,13 @@ namespace Npoi.Core.XSSF.UserModel
                 return new Size();
             }
         }
+
         /**
          * Return the dimension of the embedded image in pixel
          *
          * @return image dimension in pixels
          */
+
         public Size GetImageDimension()
         {
             XSSFPictureData picData = PictureData as XSSFPictureData;
@@ -276,7 +285,6 @@ namespace Npoi.Core.XSSF.UserModel
         {
             return ctPicture.spPr;
         }
-
 
         #region IShape Members
 
@@ -331,8 +339,7 @@ namespace Npoi.Core.XSSF.UserModel
             throw new NotImplementedException();
         }
 
-        #endregion
-
+        #endregion IShape Members
 
         public IPictureData PictureData
         {
@@ -369,4 +376,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-

@@ -14,24 +14,23 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using Npoi.Core.XSSF.UserModel;
+
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.XSSF.UserModel;
 using NUnit.Framework;
-using System.Xml;
+
 namespace Npoi.Core.XSSF.Model
 {
-
     /**
      * @author Roberto Manicardi
      */
+
     [TestFixture]
     public class TestMapInfo
     {
-
         [Test]
         public void TestMapInfoExists()
         {
-
             XSSFWorkbook wb = XSSFTestDataSamples.OpenSampleWorkbook("CustomXMLMappings.xlsx");
 
             MapInfo mapInfo = null;
@@ -39,12 +38,9 @@ namespace Npoi.Core.XSSF.Model
 
             foreach (POIXMLDocumentPart p in wb.GetRelations())
             {
-
-
                 if (p is MapInfo)
                 {
                     mapInfo = (MapInfo)p;
-
 
                     CT_MapInfo ctMapInfo = mapInfo.GetCTMapInfo();
 
@@ -64,12 +60,10 @@ namespace Npoi.Core.XSSF.Model
 
             foreach (POIXMLDocumentPart p in sheet1.GetRelations())
             {
-
                 if (p is SingleXmlCells)
                 {
                     SingleXMLCells = (SingleXmlCells)p;
                 }
-
             }
             Assert.IsNotNull(mapInfo);
             Assert.IsNotNull(SingleXMLCells);

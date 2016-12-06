@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats
 {
@@ -11,15 +8,15 @@ namespace Npoi.Core.OpenXmlFormats
     {
         //string _id;
         public ST_RelationshipId()
-        { 
-            
-        }
-        public static string NamespaceURI
-        { 
-            get{
-                return "http://schemas.openxmlformats.org/officeDocument/2006/relationships";
-           }
+        {
         }
 
+        public static string NamespaceURI
+        {
+            get
+            {
+                return "http://schemas.openxmlformats.org/officeDocument/2006/relationships";
+            }
+        }
     }
 }

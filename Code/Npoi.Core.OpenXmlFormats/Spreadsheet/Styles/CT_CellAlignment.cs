@@ -1,9 +1,7 @@
 ﻿using Npoi.Core.OpenXml4Net.Util;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -35,7 +33,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_CellAlignment
     {
-
         private ST_HorizontalAlignment horizontalField;
 
         private bool horizontalFieldSpecified;
@@ -71,6 +68,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         private long readingOrderField;
 
         private bool readingOrderFieldSpecified;
+
         public static CT_CellAlignment Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -90,23 +88,21 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
-            if(this.horizontal != ST_HorizontalAlignment.general)
+            if (this.horizontal != ST_HorizontalAlignment.general)
                 XmlHelper.WriteAttribute(sw, "horizontal", this.horizontal.ToString());
             if (this.vertical != ST_VerticalAlignment.bottom)
                 XmlHelper.WriteAttribute(sw, "vertical", this.vertical.ToString());
             XmlHelper.WriteAttribute(sw, "textRotation", this.textRotation);
-            if(this.wrapText)
+            if (this.wrapText)
                 XmlHelper.WriteAttribute(sw, "wrapText", this.wrapText);
             XmlHelper.WriteAttribute(sw, "indent", this.indent);
             XmlHelper.WriteAttribute(sw, "relativeIndent", this.relativeIndent);
             if (justifyLastLine)
                 XmlHelper.WriteAttribute(sw, "justifyLastLine", this.justifyLastLine);
-            if(shrinkToFit)
+            if (shrinkToFit)
                 XmlHelper.WriteAttribute(sw, "shrinkToFit", this.shrinkToFit);
             XmlHelper.WriteAttribute(sw, "readingOrder", this.readingOrder);
             sw.Write("/>");
@@ -116,6 +112,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             return this.horizontalFieldSpecified;
         }
+
         public bool IsSetVertical()
         {
             return this.verticalFieldSpecified;
@@ -135,6 +132,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.horizontalFieldSpecified = true;
             }
         }
+
         [XmlIgnore]
         public bool horizontalSpecified
         {
@@ -147,6 +145,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.horizontalFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(ST_VerticalAlignment.bottom)]
         public ST_VerticalAlignment vertical
@@ -174,6 +173,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.verticalFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public long textRotation
         {
@@ -200,6 +200,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.textRotationFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public bool wrapText
         {
@@ -226,6 +227,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.wrapTextFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public long indent
         {
@@ -252,6 +254,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.indentFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public int relativeIndent
         {
@@ -278,6 +281,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.relativeIndentFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public bool justifyLastLine
         {
@@ -304,6 +308,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.justifyLastLineFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public bool shrinkToFit
         {
@@ -330,6 +335,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.shrinkToFitFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public long readingOrder
         {

@@ -17,28 +17,25 @@
 
 namespace Npoi.Core.XWPF.Extractor
 {
-    using System;
-
-
-
     using Npoi.Core.XWPF;
     using Npoi.Core.XWPF.UserModel;
-    using Npoi.Core.XWPF.Extractor;
     using NUnit.Framework;
+    using System;
     using System.Diagnostics;
     using System.Text.RegularExpressions;
 
     /**
      * Tests for HXFWordExtractor
      */
+
     [TestFixture]
     public class TestXWPFWordExtractor
     {
-
         /**
          * Get text out of the simple file
-         * @throws IOException 
+         * @throws IOException
          */
+
         [Test]
         public void TestGetSimpleText()
         {
@@ -71,8 +68,9 @@ namespace Npoi.Core.XWPF.Extractor
 
         /**
          * Tests Getting the text out of a complex file
-         * @throws IOException 
+         * @throws IOException
          */
+
         [Test]
         public void TestGetComplexText()
         {
@@ -191,7 +189,6 @@ namespace Npoi.Core.XWPF.Extractor
             Assert.IsTrue(text.Contains("Eto ochen prostoy[footnoteRef:1] text so snoskoy"));
         }
 
-
         [Test]
         public void TestTableFootnotes()
         {
@@ -246,8 +243,9 @@ namespace Npoi.Core.XWPF.Extractor
         /**
          * Test that we can open and process .docm
          *  (macro enabled) docx files (bug #45690)
-         * @throws IOException 
+         * @throws IOException
          */
+
         [Test]
         public void TestDOCMFiles()
         {
@@ -263,8 +261,9 @@ namespace Npoi.Core.XWPF.Extractor
          * Test that we handle things like tabs and
          *  carriage returns properly in the text that
          *  we're extracting (bug #49189)
-         * @throws IOException 
+         * @throws IOException
          */
+
         [Test]
         public void TestDocTabs()
         {
@@ -283,8 +282,9 @@ namespace Npoi.Core.XWPF.Extractor
         /**
          * The output should not contain field codes, e.g. those specified in the
          * w:instrText tag (spec sec. 17.16.23)
-         * @throws IOException 
+         * @throws IOException
          */
+
         [Test]
         public void TestNoFieldCodes()
         {
@@ -299,8 +299,9 @@ namespace Npoi.Core.XWPF.Extractor
         /**
          * The output should contain the values of simple fields, those specified
          * with the fldSimple element (spec sec. 17.16.19)
-         * @throws IOException 
+         * @throws IOException
          */
+
         [Test]
         public void TestFldSimpleContent()
         {
@@ -315,6 +316,7 @@ namespace Npoi.Core.XWPF.Extractor
          * Test for parsing document with Drawings to prevent
          * NoClassDefFoundError for CTAnchor in XWPFRun
          */
+
         [Test]
         public void TestDrawings()
         {
@@ -328,6 +330,7 @@ namespace Npoi.Core.XWPF.Extractor
          * Test for basic extraction of SDT content
          * @throws IOException
          */
+
         [Test]
         public void TestSimpleControlContent()
         {
@@ -401,10 +404,10 @@ namespace Npoi.Core.XWPF.Extractor
             }
             Assert.AreEqual(2, hit, "test<N>");
             ex.Close();
-
         }
 
         /** No Header or Footer in document */
+
         [Test]
         public void TestBug55733()
         {
@@ -430,6 +433,5 @@ namespace Npoi.Core.XWPF.Extractor
                          "In Sequence:\n|X||_||X|\n", extractor.Text);
             extractor.Close();
         }
-
     }
 }

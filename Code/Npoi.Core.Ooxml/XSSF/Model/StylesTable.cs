@@ -15,28 +15,27 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Xml;
 using Npoi.Core.OpenXml4Net.OPC;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.XSSF.UserModel;
 using Npoi.Core.XSSF.UserModel.Extensions;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Xml;
 using System.Xml.Linq;
-using Npoi.Core.SS;
 
 namespace Npoi.Core.XSSF.Model
 {
-
-
     /**
      * Table of styles shared across all sheets in a workbook.
      *
      * @author ugo
      */
+
     public class StylesTable : POIXMLDocumentPart
     {
         private Dictionary<int, String> numberFormats = new Dictionary<int, String>();
@@ -61,10 +60,10 @@ namespace Npoi.Core.XSSF.Model
         /**
          * Create a new, empty StylesTable
          */
+
         public StylesTable()
             : base()
         {
-
             doc = new StyleSheetDocument();
             doc.AddNewStyleSheet();
             // Initialization required in order to make the document Readable by MSExcel
@@ -87,7 +86,7 @@ namespace Npoi.Core.XSSF.Model
         {
             this.theme = theme;
 
-            // Pass the themes table along to things which need to 
+            // Pass the themes table along to things which need to
             //  know about it, but have already been Created by now
             foreach (XSSFFont font in fonts)
             {
@@ -110,7 +109,6 @@ namespace Npoi.Core.XSSF.Model
         {
             try
             {
-                
                 doc = StyleSheetDocument.Parse(xmldoc, NamespaceManager);
 
                 CT_Stylesheet styleSheet = doc.GetStyleSheet();
@@ -168,7 +166,6 @@ namespace Npoi.Core.XSSF.Model
                 CT_Dxfs styleDxfs = styleSheet.dxfs;
                 if (styleDxfs != null)
                     dxfs.AddRange(styleDxfs.dxf);
-
             }
             catch (XmlException e)
             {
@@ -233,6 +230,7 @@ namespace Npoi.Core.XSSF.Model
          * Note - End Users probably want to call
          *  {@link XSSFFont#registerTo(StylesTable)}
          */
+
         public int PutFont(XSSFFont font, bool forceRegistration)
         {
             int idx = -1;
@@ -250,6 +248,7 @@ namespace Npoi.Core.XSSF.Model
             fonts.Add(font);
             return idx;
         }
+
         public int PutFont(XSSFFont font)
         {
             return PutFont(font, false);
@@ -267,6 +266,7 @@ namespace Npoi.Core.XSSF.Model
 
             return new XSSFCellStyle(idx, styleXfId, this, theme);
         }
+
         public int PutStyle(XSSFCellStyle style)
         {
             CT_Xf mainXF = style.GetCoreXf();
@@ -335,11 +335,13 @@ namespace Npoi.Core.XSSF.Model
         {
             return xfs[idx];
         }
+
         internal int PutCellXf(CT_Xf cellXf)
         {
             xfs.Add(cellXf);
             return xfs.Count;
         }
+
         internal void ReplaceCellXfAt(int idx, CT_Xf cellXf)
         {
             xfs[idx] = cellXf;
@@ -351,11 +353,13 @@ namespace Npoi.Core.XSSF.Model
                 return null;
             return styleXfs[idx];
         }
+
         internal int PutCellStyleXf(CT_Xf cellStyleXf)
         {
             styleXfs.Add(cellStyleXf);
             return styleXfs.Count;
         }
+
         internal void ReplaceCellStyleXfAt(int idx, CT_Xf cellStyleXf)
         {
             styleXfs[idx] = cellStyleXf;
@@ -364,6 +368,7 @@ namespace Npoi.Core.XSSF.Model
         /**
          * get the size of cell styles
          */
+
         public int NumCellStyles
         {
             get
@@ -377,6 +382,7 @@ namespace Npoi.Core.XSSF.Model
         /**
          * For unit testing only
          */
+
         internal int NumberFormatSize
         {
             get
@@ -388,6 +394,7 @@ namespace Npoi.Core.XSSF.Model
         /**
          * For unit testing only
          */
+
         internal int XfsSize
         {
             get
@@ -395,9 +402,11 @@ namespace Npoi.Core.XSSF.Model
                 return xfs.Count;
             }
         }
+
         /**
          * For unit testing only
          */
+
         internal int StyleXfsSize
         {
             get
@@ -405,13 +414,16 @@ namespace Npoi.Core.XSSF.Model
                 return styleXfs.Count;
             }
         }
+
         /**
          * For unit testing only!
          */
+
         internal CT_Stylesheet GetCTStylesheet()
         {
             return doc.GetStyleSheet();
         }
+
         internal int DXfsSize
         {
             get
@@ -420,16 +432,15 @@ namespace Npoi.Core.XSSF.Model
             }
         }
 
-
         /**
          * Write this table out as XML.
          *
          * @param out The stream to write to.
          * @throws IOException if an error occurs while writing.
          */
+
         public void WriteTo(Stream out1)
         {
-
             // Work on the current one
             // Need to do this, as we don't handle
             //  all the possible entries yet
@@ -451,7 +462,7 @@ namespace Npoi.Core.XSSF.Model
                 }
             }
 
-            if (ctFormats.count>0)
+            if (ctFormats.count > 0)
                 styleSheet.numFmts = ctFormats;
 
             // Fonts
@@ -476,9 +487,9 @@ namespace Npoi.Core.XSSF.Model
             }
             ctFills.count = (uint)fills.Count;
             List<CT_Fill> ctf = new List<CT_Fill>(fills.Count);
-            
+
             foreach (XSSFCellFill f in fills)
-                ctf.Add( f.GetCTFill());
+                ctf.Add(f.GetCTFill());
             ctFills.SetFillArray(ctf);
             if (ctFills.count > 0)
                 ctFills.countSpecified = true;
@@ -492,9 +503,9 @@ namespace Npoi.Core.XSSF.Model
             }
             ctBorders.count = (uint)borders.Count;
             List<CT_Border> ctb = new List<CT_Border>(borders.Count);
-            foreach (XSSFCellBorder b in borders) 
+            foreach (XSSFCellBorder b in borders)
                 ctb.Add(b.GetCTBorder());
-            
+
             ctBorders.SetBorderArray(ctb);
             styleSheet.borders = ctBorders;
 
@@ -550,7 +561,6 @@ namespace Npoi.Core.XSSF.Model
             doc.Save(out1);
         }
 
-
         protected internal override void Commit()
         {
             PackagePart part = GetPackagePart();
@@ -588,6 +598,7 @@ namespace Npoi.Core.XSSF.Model
             ctXf.borderId = 0;
             return ctXf;
         }
+
         private static CT_Border CreateDefaultBorder()
         {
             CT_Border ctBorder = new CT_Border();
@@ -598,7 +609,6 @@ namespace Npoi.Core.XSSF.Model
             ctBorder.AddNewDiagonal();
             return ctBorder;
         }
-
 
         private static CT_Fill[] CreateDefaultFills()
         {
@@ -637,14 +647,14 @@ namespace Npoi.Core.XSSF.Model
             if (xfSize > MAXIMUM_STYLE_ID)
                 throw new InvalidOperationException("The maximum number of Cell Styles was exceeded. " +
                           "You can define up to " + MAXIMUM_STYLE_ID + " style in a .xlsx Workbook");
-        
+
             CT_Xf ctXf = new CT_Xf();
             ctXf.numFmtId = 0;
             ctXf.fontId = 0;
             ctXf.fillId = 0;
             ctXf.borderId = 0;
             ctXf.xfId = 0;
-            
+
             int indexXf = PutCellXf(ctXf);
             return new XSSFCellStyle(indexXf - 1, xfSize - 1, this, theme);
         }
@@ -652,7 +662,8 @@ namespace Npoi.Core.XSSF.Model
         /**
          * Finds a font that matches the one with the supplied attributes
          */
-        public XSSFFont FindFont(short boldWeight, short color, short fontHeight, String name, bool italic, bool strikeout, FontSuperScript typeOffset,FontUnderlineType underline)
+
+        public XSSFFont FindFont(short boldWeight, short color, short fontHeight, String name, bool italic, bool strikeout, FontSuperScript typeOffset, FontUnderlineType underline)
         {
             foreach (XSSFFont font in fonts)
             {
@@ -672,8 +683,3 @@ namespace Npoi.Core.XSSF.Model
         }
     }
 }
-
-
-
-
-

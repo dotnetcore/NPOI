@@ -15,17 +15,16 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.SS.Formula;
-using Npoi.Core.XSSF.UserModel;
-using System;
-using Npoi.Core.SS.UserModel;
 using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.SS.Formula;
 using Npoi.Core.SS.Formula.Eval;
 using Npoi.Core.SS.Formula.Udf;
+using Npoi.Core.SS.UserModel;
+using System;
 using System.Collections.Generic;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Evaluates formula cells.<p/>
      *
@@ -36,15 +35,16 @@ namespace Npoi.Core.XSSF.UserModel
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
      * @author Josh Micich
      */
+
     public class XSSFFormulaEvaluator : IFormulaEvaluator, IWorkbookEvaluatorProvider
     {
-
         private WorkbookEvaluator _bookEvaluator;
         private XSSFWorkbook _book;
 
         public XSSFFormulaEvaluator(IWorkbook workbook)
             : this(workbook as XSSFWorkbook, null, null)
         { }
+
         public XSSFFormulaEvaluator(XSSFWorkbook workbook)
             : this(workbook, null, null)
         { }
@@ -61,6 +61,7 @@ namespace Npoi.Core.XSSF.UserModel
             _bookEvaluator = new WorkbookEvaluator(XSSFEvaluationWorkbook.Create(workbook), stabilityClassifier, null);
             _book = workbook;
         }
+
         private XSSFFormulaEvaluator(XSSFWorkbook workbook, IStabilityClassifier stabilityClassifier, UDFFinder udfFinder)
         {
             _bookEvaluator = new WorkbookEvaluator(XSSFEvaluationWorkbook.Create(workbook), stabilityClassifier, udfFinder);
@@ -73,11 +74,11 @@ namespace Npoi.Core.XSSF.UserModel
          * Evaluation begins.
          * @param udfFinder pass <code>null</code> for default (AnalysisToolPak only)
          */
+
         public static XSSFFormulaEvaluator Create(XSSFWorkbook workbook, IStabilityClassifier stabilityClassifier, UDFFinder udfFinder)
         {
             return new XSSFFormulaEvaluator(workbook, stabilityClassifier, udfFinder);
         }
-
 
         /**
          * Should be called whenever there are major Changes (e.g. moving sheets) to input cells
@@ -85,18 +86,22 @@ namespace Npoi.Core.XSSF.UserModel
          * Failure to call this method After changing cell values will cause incorrect behaviour
          * of the Evaluate~ methods of this class
          */
+
         public void ClearAllCachedResultValues()
         {
             _bookEvaluator.ClearAllCachedResultValues();
         }
+
         public void NotifySetFormula(ICell cell)
         {
             _bookEvaluator.NotifyUpdateCell(new XSSFEvaluationCell((XSSFCell)cell));
         }
+
         public void NotifyDeleteCell(ICell cell)
         {
             _bookEvaluator.NotifyDeleteCell(new XSSFEvaluationCell((XSSFCell)cell));
         }
+
         public void NotifyUpdateCell(ICell cell)
         {
             _bookEvaluator.NotifyUpdateCell(new XSSFEvaluationCell((XSSFCell)cell));
@@ -110,6 +115,7 @@ namespace Npoi.Core.XSSF.UserModel
          * original cell.
          * @param cell
          */
+
         public CellValue Evaluate(ICell cell)
         {
             if (cell == null)
@@ -121,20 +127,24 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 case CellType.Boolean:
                     return CellValue.ValueOf(cell.BooleanCellValue);
+
                 case CellType.Error:
                     return CellValue.GetError(cell.ErrorCellValue);
+
                 case CellType.Formula:
                     return EvaluateFormulaCellValue(cell);
+
                 case CellType.Numeric:
                     return new CellValue(cell.NumericCellValue);
+
                 case CellType.String:
                     return new CellValue(cell.RichStringCellValue.String);
+
                 case CellType.Blank:
                     return null;
             }
             throw new InvalidOperationException("Bad cell type (" + cell.CellType + ")");
         }
-
 
         /**
          * If cell Contains formula, it Evaluates the formula,
@@ -154,6 +164,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param cell The cell to Evaluate
          * @return The type of the formula result (the cell's type remains as HSSFCell.CELL_TYPE_FORMULA however)
          */
+
         public CellType EvaluateFormulaCell(ICell cell)
         {
             if (cell == null || cell.CellType != CellType.Formula)
@@ -182,6 +193,7 @@ namespace Npoi.Core.XSSF.UserModel
          *  value computed for you, use {@link #EvaluateFormulaCell(Npoi.Core.ss.usermodel.Cell)} }
          * @param cell
          */
+
         public ICell EvaluateInCell(ICell cell)
         {
             if (cell == null)
@@ -197,6 +209,7 @@ namespace Npoi.Core.XSSF.UserModel
             }
             return result;
         }
+
         private static void SetCellType(ICell cell, CellValue cv)
         {
             CellType cellType = cv.CellType;
@@ -208,10 +221,11 @@ namespace Npoi.Core.XSSF.UserModel
                 case CellType.String:
                     cell.SetCellType(cellType);
                     return;
+
                 case CellType.Blank:
                 // never happens - blanks eventually Get translated to zero
                 case CellType.Formula:
-                // this will never happen, we have already Evaluated the formula
+                    // this will never happen, we have already Evaluated the formula
                     break;
             }
             throw new InvalidOperationException("Unexpected cell value type (" + cellType + ")");
@@ -225,15 +239,19 @@ namespace Npoi.Core.XSSF.UserModel
                 case CellType.Boolean:
                     cell.SetCellValue(cv.BooleanValue);
                     break;
+
                 case CellType.Error:
                     cell.SetCellErrorValue((byte)cv.ErrorValue);
                     break;
+
                 case CellType.Numeric:
                     cell.SetCellValue(cv.NumberValue);
                     break;
+
                 case CellType.String:
                     cell.SetCellValue(new XSSFRichTextString(cv.StringValue));
                     break;
+
                 case CellType.Blank:
                 // never happens - blanks eventually Get translated to zero
                 case CellType.Formula:
@@ -254,10 +272,12 @@ namespace Npoi.Core.XSSF.UserModel
          * This is a helpful wrapper around looping over all
          *  cells, and calling EvaluateFormulaCell on each one.
          */
+
         public static void EvaluateAllFormulaCells(IWorkbook wb)
         {
             HSSFFormulaEvaluator.EvaluateAllFormulaCells(wb);
         }
+
         /**
          * Loops over all cells in all sheets of the supplied
          *  workbook.
@@ -269,6 +289,7 @@ namespace Npoi.Core.XSSF.UserModel
          * This is a helpful wrapper around looping over all
          *  cells, and calling EvaluateFormulaCell on each one.
          */
+
         public void EvaluateAll()
         {
             HSSFFormulaEvaluator.EvaluateAllFormulaCells(_book);
@@ -277,6 +298,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Returns a CellValue wrapper around the supplied ValueEval instance.
          */
+
         private CellValue EvaluateFormulaCellValue(ICell cell)
         {
             if (!(cell is XSSFCell))
@@ -329,9 +351,10 @@ namespace Npoi.Core.XSSF.UserModel
                 _bookEvaluator.IgnoreMissingWorkbooks = value;
             }
         }
+
         public bool DebugEvaluationOutputForNextEval
         {
-            get 
+            get
             {
                 return _bookEvaluator.DebugEvaluationOutputForNextEval;
             }
@@ -341,6 +364,4 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
     }
-
-
 }

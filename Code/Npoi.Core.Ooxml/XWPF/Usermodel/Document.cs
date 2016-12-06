@@ -14,9 +14,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
     public enum PictureType
     {
         /** Extended windows meta file */
@@ -49,7 +49,6 @@ namespace Npoi.Core.XWPF.UserModel
          */
         EPS = 10,
 
-
         /**
          * Windows Bitmap (.bmp)
          */
@@ -60,8 +59,8 @@ namespace Npoi.Core.XWPF.UserModel
          */
         WPG = 12
     }
+
     public interface Document
     {
     }
-
 }

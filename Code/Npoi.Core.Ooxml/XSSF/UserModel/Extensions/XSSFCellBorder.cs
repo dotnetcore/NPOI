@@ -17,15 +17,16 @@
 
 namespace Npoi.Core.XSSF.UserModel.Extensions
 {
-
     using Npoi.Core.OpenXmlFormats.Spreadsheet;
-    using System;
-    using Npoi.Core.XSSF.UserModel;
-    using Npoi.Core.XSSF.Model;
     using Npoi.Core.SS.UserModel;
+    using Npoi.Core.XSSF.Model;
+    using Npoi.Core.XSSF.UserModel;
+    using System;
+
     /**
  * The enumeration value indicating the side being used for a cell border.
  */
+
     public enum BorderSide
     {
         TOP, RIGHT, BOTTOM, LEFT, DIAGONAL
@@ -36,6 +37,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
      * for cells in the workbook.
      * Color is optional.
      */
+
     public class XSSFCellBorder
     {
         private ThemesTable _theme;
@@ -44,16 +46,17 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
         /**
          * Creates a Cell Border from the supplied XML defInition
          */
+
         public XSSFCellBorder(CT_Border border, ThemesTable theme)
             : this(border)
         {
-
             this._theme = theme;
         }
 
         /**
          * Creates a Cell Border from the supplied XML defInition
          */
+
         public XSSFCellBorder(CT_Border border)
         {
             this.border = border;
@@ -63,6 +66,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          * Creates a new, empty Cell Border.
          * You need to attach this to the Styles Table
          */
+
         public XSSFCellBorder()
         {
             border = new CT_Border();
@@ -73,11 +77,11 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          *  the current font, used when looking up theme
          *  based colours and properties.
          */
+
         public void SetThemesTable(ThemesTable themes)
         {
             this._theme = themes;
         }
-
 
         /**
          * Returns the underlying XML bean.
@@ -97,6 +101,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          * @return borderstyle - the type of border to use. default value is NONE if border style is not Set.
          * @see BorderStyle
          */
+
         public BorderStyle GetBorderStyle(BorderSide side)
         {
             CT_BorderPr ctborder = GetBorder(side);
@@ -111,6 +116,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          * @param style - border style
          * @see BorderStyle
          */
+
         public void SetBorderStyle(BorderSide side, BorderStyle style)
         {
             GetBorder(side, true).style = (ST_BorderStyle)Enum.GetValues(typeof(ST_BorderStyle)).GetValue((int)style + 1);
@@ -122,6 +128,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          * @param side - where to apply the color defInition
          * @return color - color to use as XSSFColor. null if color is not set
          */
+
         public XSSFColor GetBorderColor(BorderSide side)
         {
             CT_BorderPr borderPr = GetBorder(side);
@@ -148,6 +155,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          * @param side  - where to apply the color defInition
          * @param color - the color to use
          */
+
         public void SetBorderColor(BorderSide side, XSSFColor color)
         {
             CT_BorderPr borderPr = GetBorder(side, true);
@@ -161,7 +169,6 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
             return GetBorder(side, false);
         }
 
-
         private CT_BorderPr GetBorder(BorderSide side, bool ensure)
         {
             CT_BorderPr borderPr;
@@ -171,28 +178,32 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
                     borderPr = border.top;
                     if (ensure && borderPr == null) borderPr = border.AddNewTop();
                     break;
+
                 case BorderSide.RIGHT:
                     borderPr = border.right;
                     if (ensure && borderPr == null) borderPr = border.AddNewRight();
                     break;
+
                 case BorderSide.BOTTOM:
                     borderPr = border.bottom;
                     if (ensure && borderPr == null) borderPr = border.AddNewBottom();
                     break;
+
                 case BorderSide.LEFT:
                     borderPr = border.left;
                     if (ensure && borderPr == null) borderPr = border.AddNewLeft();
                     break;
+
                 case BorderSide.DIAGONAL:
                     borderPr = border.diagonal;
                     if (ensure && borderPr == null) borderPr = border.AddNewDiagonal();
                     break;
+
                 default:
                     throw new ArgumentException("No suitable side specified for the border");
             }
             return borderPr;
         }
-
 
         public override int GetHashCode()
         {
@@ -209,5 +220,3 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
         }
     }
 }
-
-

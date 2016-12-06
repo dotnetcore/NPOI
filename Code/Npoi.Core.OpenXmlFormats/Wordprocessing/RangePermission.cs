@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Npoi.Core.OpenXml4Net.Util;
+using System;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using Npoi.Core.OpenXml4Net.Util;
-
 
 namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
@@ -14,34 +13,27 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_ProofErr
     {
-
-    
         spellStart,
 
-    
         spellEnd,
 
-    
         gramStart,
 
-    
         gramEnd,
     }
 
     [XmlInclude(typeof(CT_PermStart))]
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_Perm
     {
-
         private string idField;
 
         private ST_DisplacedByCustomXml displacedByCustomXmlField;
 
         private bool displacedByCustomXmlFieldSpecified;
+
         public static CT_Perm Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -52,8 +44,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 ctObj.displacedByCustomXml = (ST_DisplacedByCustomXml)Enum.Parse(typeof(ST_DisplacedByCustomXml), node.Attribute("w:displacedByCustomXml").Value);
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -104,14 +94,11 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
         }
     }
 
-
     [Serializable]
-
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", IsNullable = true)]
     public class CT_PermStart : CT_Perm
     {
-
         private ST_EdGrp edGrpField;
 
         private bool edGrpFieldSpecified;
@@ -186,6 +173,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 this.colLastField = value;
             }
         }
+
         public static new CT_PermStart Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -202,8 +190,6 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             return ctObj;
         }
 
-
-
         internal new void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<w:{0}", nodeName));
@@ -216,36 +202,26 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
             sw.Write(">");
             sw.Write(string.Format("</w:{0}>", nodeName));
         }
-
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main")]
     public enum ST_EdGrp
     {
-
-    
         none,
 
-    
         everyone,
 
-    
         administrators,
 
-    
         contributors,
 
-    
         editors,
 
-    
         owners,
 
-    
         current,
     }
-    #endregion
 
+    #endregion Range Permission
 }

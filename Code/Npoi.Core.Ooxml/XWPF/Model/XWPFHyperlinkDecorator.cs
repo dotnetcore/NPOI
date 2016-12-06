@@ -14,22 +14,23 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.Model
 {
-    using System;
-
-    using Npoi.Core.XWPF.UserModel;
-    using System.Text;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using Npoi.Core.XWPF.UserModel;
+    using System;
+    using System.Text;
 
     /**
-     * Decorator class for XWPFParagraph allowing to add hyperlinks 
+     * Decorator class for XWPFParagraph allowing to add hyperlinks
      *  found in paragraph to its text.
-     *  
+     *
      * Note - Adds the hyperlink at the end, not in the right place...
-     *  
+     *
      * @deprecated Use {@link XWPFHyperlinkRun} instead
      */
+
     public class XWPFHyperlinkDecorator : XWPFParagraphDecorator
     {
         private StringBuilder hyperlinkText;
@@ -38,6 +39,7 @@ namespace Npoi.Core.XWPF.Model
          * @param nextDecorator The next decorator to use
          * @param outputHyperlinkUrls Should we output the links too, or just the link text?
          */
+
         public XWPFHyperlinkDecorator(XWPFParagraphDecorator nextDecorator, bool outputHyperlinkUrls) :
             this(nextDecorator.paragraph, nextDecorator, outputHyperlinkUrls)
         {
@@ -47,6 +49,7 @@ namespace Npoi.Core.XWPF.Model
          * @param prgrph The paragraph of text to work on
          * @param outputHyperlinkUrls Should we output the links too, or just the link text?
          */
+
         public XWPFHyperlinkDecorator(XWPFParagraph prgrph, XWPFParagraphDecorator nextDecorator, bool outputHyperlinkUrls)
             : base(prgrph, nextDecorator)
         {
@@ -78,5 +81,4 @@ namespace Npoi.Core.XWPF.Model
             }
         }
     }
-
 }

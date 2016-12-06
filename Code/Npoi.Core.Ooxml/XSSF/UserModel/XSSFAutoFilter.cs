@@ -16,15 +16,15 @@
 ==================================================================== */
 
 using Npoi.Core.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
-
     /**
      * Represents autofiltering for the specified worksheet.
      *
      * @author Yegor Kozlov
      */
+
     public class XSSFAutoFilter : IAutoFilter
     {
         private XSSFSheet _sheet;
@@ -33,8 +33,5 @@ namespace Npoi.Core.XSSF.UserModel
         {
             _sheet = sheet;
         }
-
     }
 }
-
-

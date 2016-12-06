@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
     public class HdrDocument
     {
+        private CT_Hdr hdr = null;
 
-        CT_Hdr hdr = null;
         public HdrDocument()
         {
             hdr = new CT_Hdr();
         }
+
         public static HdrDocument Parse(XDocument doc, XmlNamespaceManager namespaceMgr)
         {
             CT_Hdr obj = CT_Hdr.Parse(doc.Document.Root, namespaceMgr);
@@ -29,10 +26,12 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 hdr.Write(sw);
             }
         }
+
         public HdrDocument(CT_Hdr hdr)
         {
             this.hdr = hdr;
         }
+
         public CT_Hdr Hdr
         {
             get

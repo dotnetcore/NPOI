@@ -15,24 +15,23 @@
    limitations under the License.
 ==================================================================== */
 
-using TestCases.SS.UserModel;
-using NUnit.Framework;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.Util;
+using NUnit.Framework;
+using TestCases.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * @author Yegor Kozlov
      */
+
     [TestFixture]
     public class TestXSSFName : BaseTestNamedRange
     {
-
         public TestXSSFName()
             : base(XSSFITestDataProvider.instance)
         {
-
         }
 
         //TODO combine TestRepeatingRowsAndColums() for HSSF and XSSF
@@ -45,8 +44,6 @@ namespace Npoi.Core.XSSF.UserModel
             XSSFSheet sheet1 = (XSSFSheet)wb.CreateSheet("First Sheet");
             sheet1.RepeatingRows = (null);
             sheet1.RepeatingColumns = (null);
-
-
 
             // Set repeating rows and columns twice for the first sheet
             for (int i = 0; i < 2; i++)
@@ -69,7 +66,7 @@ namespace Npoi.Core.XSSF.UserModel
             sheet1.RepeatingColumns = (CellRangeAddress.ValueOf("A:A"));
 
             //remove the rows part
-            sheet1.RepeatingRows=(null);
+            sheet1.RepeatingRows = (null);
             Assert.AreEqual("'First Sheet'!$A:$A", nr1.RefersToFormula);
 
             //revert
@@ -101,4 +98,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-

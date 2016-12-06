@@ -14,27 +14,30 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using System;
+
 using Npoi.Core.OpenXmlFormats.Wordprocessing;
-using System.Text;
+using System;
 using System.Collections.Generic;
+using System.Text;
+
 namespace Npoi.Core.XWPF.UserModel
 {
     /**
-     * Experimental class to offer rudimentary Read-only Processing of 
+     * Experimental class to offer rudimentary Read-only Processing of
      *  of the contentblock of an SDT/ContentControl.
-     *  
+     *
      *
      *
      * WARNING - APIs expected to change rapidly
-     * 
+     *
      */
+
     public class XWPFSDTContent : ISDTContent
     {
-
         // private IBody part;
         // private XWPFDocument document;
         private List<XWPFParagraph> paragraphs = new List<XWPFParagraph>();
+
         private List<XWPFTable> tables = new List<XWPFTable>();
         private List<XWPFRun> runs = new List<XWPFRun>();
         private List<XWPFSDT> contentControls = new List<XWPFSDT>();
@@ -49,9 +52,9 @@ namespace Npoi.Core.XWPF.UserModel
                 bodyElements.Add(run);
             }
         }
+
         public XWPFSDTContent(CT_SdtContentBlock block, IBody part, IRunBody parent)
         {
-            
             foreach (object o in block.Items)
             {
                 if (o is CT_P)
@@ -110,7 +113,7 @@ namespace Npoi.Core.XWPF.UserModel
                         text.Append(((XWPFRun)o).ToString());
                         addNewLine = false;
                     }
-                    if (addNewLine && i < bodyElements.Count-1)
+                    if (addNewLine && i < bodyElements.Count - 1)
                     {
                         text.Append("\n");
                     }
@@ -153,11 +156,9 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
 
-
         public override String ToString()
         {
             return this.Text;
         }
     }
-
 }

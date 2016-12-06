@@ -15,29 +15,29 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.Util;
 using NUnit.Framework;
+using System;
 using TestCases.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * @author Yegor Kozlov
      */
+
     [TestFixture]
     public class TestXSSFSheetShiftRows : BaseTestSheetShiftRows
     {
-
         public TestXSSFSheetShiftRows()
             : base(XSSFITestDataProvider.instance)
         {
-
         }
 
-         [Test]
-        public override void TestShiftRowBreaks() { // disabled test from superclass
+        [Test]
+        public override void TestShiftRowBreaks()
+        { // disabled test from superclass
             // TODO - support shifting of page breaks
         }
 
@@ -55,31 +55,32 @@ namespace Npoi.Core.XSSF.UserModel
             cell = CellUtil.GetCell(sheet.GetRow(3), 0);
             Assert.AreEqual("X", cell.StringCellValue);
         }
+
         [Test]
         public void TestBug53798()
         {
-            // NOTE that for HSSF (.xls) negative shifts combined with positive ones do work as expected  
+            // NOTE that for HSSF (.xls) negative shifts combined with positive ones do work as expected
             IWorkbook wb = XSSFTestDataSamples.OpenSampleWorkbook("53798.xlsx");
 
             ISheet testSheet = wb.GetSheetAt(0);
-            // 1) corrupted xlsx (unreadable data in the first row of a shifted group) already comes about  
+            // 1) corrupted xlsx (unreadable data in the first row of a shifted group) already comes about
             // when shifted by less than -1 negative amount (try -2)
             testSheet.ShiftRows(3, 3, -2);
 
             IRow newRow = null; ICell newCell = null;
-            // 2) attempt to create a new row IN PLACE of a removed row by a negative shift causes corrupted 
-            // xlsx file with  unreadable data in the negative shifted row. 
+            // 2) attempt to create a new row IN PLACE of a removed row by a negative shift causes corrupted
+            // xlsx file with  unreadable data in the negative shifted row.
             // NOTE it's ok to create any other row.
             newRow = testSheet.CreateRow(3);
             newCell = newRow.CreateCell(0);
             newCell.SetCellValue("new Cell in row " + newRow.RowNum);
 
-            // 3) once a negative shift has been made any attempt to shift another group of rows 
-            // (note: outside of previously negative shifted rows) by a POSITIVE amount causes POI exception: 
+            // 3) once a negative shift has been made any attempt to shift another group of rows
+            // (note: outside of previously negative shifted rows) by a POSITIVE amount causes POI exception:
             // org.apache.xmlbeans.impl.values.XmlValueDisconnectedException.
-            // NOTE: another negative shift on another group of rows is successful, provided no new rows in  
+            // NOTE: another negative shift on another group of rows is successful, provided no new rows in
             // place of previously shifted rows were attempted to be created as explained above.
-            testSheet.ShiftRows(6, 7, 1);	// -- CHANGE the shift to positive once the behaviour of  
+            testSheet.ShiftRows(6, 7, 1);	// -- CHANGE the shift to positive once the behaviour of
             // the above has been tested
 
             //saveReport(wb, new File("/tmp/53798.xlsx"));
@@ -116,6 +117,7 @@ namespace Npoi.Core.XSSF.UserModel
                 Assert.AreEqual(expect, readCell.StringCellValue);
             }
         }
+
         [Test]
         public void TestBug53798a()
         {
@@ -391,7 +393,5 @@ namespace Npoi.Core.XSSF.UserModel
 
             wb.Close();
         }
-
     }
 }
-

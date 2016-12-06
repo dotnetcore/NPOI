@@ -1,18 +1,15 @@
+using Npoi.Core.OpenXml4Net.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Xml.Serialization;
 using System.Diagnostics;
-using System.Xml;
-using Npoi.Core.OpenXml4Net.Util;
 using System.IO;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Dml
 {
-
-
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     public enum ST_ShapeType : int
@@ -21,695 +18,465 @@ namespace Npoi.Core.OpenXmlFormats.Dml
 
         line,
 
-
         lineInv,
-
 
         triangle,
 
-
         rtTriangle,
-
 
         rect,
 
-
         diamond,
-
 
         parallelogram,
 
-
         trapezoid,
-
 
         nonIsoscelesTrapezoid,
 
-
         pentagon,
-
 
         hexagon,
 
-
         heptagon,
-
 
         octagon,
 
-
         decagon,
-
 
         dodecagon,
 
-
         star4,
-
 
         star5,
 
-
         star6,
-
 
         star7,
 
-
         star8,
-
 
         star10,
 
-
         star12,
-
 
         star16,
 
-
         star24,
-
 
         star32,
 
-
         roundRect,
-
 
         round1Rect,
 
-
         round2SameRect,
-
 
         round2DiagRect,
 
-
         snipRoundRect,
-
 
         snip1Rect,
 
-
         snip2SameRect,
-
 
         snip2DiagRect,
 
-
         plaque,
-
 
         ellipse,
 
-
         teardrop,
-
 
         homePlate,
 
-
         chevron,
-
 
         pieWedge,
 
-
         pie,
-
 
         blockArc,
 
-
         donut,
-
 
         noSmoking,
 
-
         rightArrow,
-
 
         leftArrow,
 
-
         upArrow,
-
 
         downArrow,
 
-
         stripedRightArrow,
-
 
         notchedRightArrow,
 
-
         bentUpArrow,
-
 
         leftRightArrow,
 
-
         upDownArrow,
-
 
         leftUpArrow,
 
-
         leftRightUpArrow,
-
 
         quadArrow,
 
-
         leftArrowCallout,
-
 
         rightArrowCallout,
 
-
         upArrowCallout,
-
 
         downArrowCallout,
 
-
         leftRightArrowCallout,
-
 
         upDownArrowCallout,
 
-
         quadArrowCallout,
-
 
         bentArrow,
 
-
         uturnArrow,
-
 
         circularArrow,
 
-
         leftCircularArrow,
-
 
         leftRightCircularArrow,
 
-
         curvedRightArrow,
-
 
         curvedLeftArrow,
 
-
         curvedUpArrow,
-
 
         curvedDownArrow,
 
-
         swooshArrow,
-
 
         cube,
 
-
         can,
-
 
         lightningBolt,
 
-
         heart,
-
 
         sun,
 
-
         moon,
-
 
         smileyFace,
 
-
         irregularSeal1,
-
 
         irregularSeal2,
 
-
         foldedCorner,
-
 
         bevel,
 
-
         frame,
-
 
         halfFrame,
 
-
         corner,
-
 
         diagStripe,
 
-
         chord,
-
 
         arc,
 
-
         leftBracket,
-
 
         rightBracket,
 
-
         leftBrace,
-
 
         rightBrace,
 
-
         bracketPair,
-
 
         bracePair,
 
-
         straightConnector1,
-
 
         bentConnector2,
 
-
         bentConnector3,
-
 
         bentConnector4,
 
-
         bentConnector5,
-
 
         curvedConnector2,
 
-
         curvedConnector3,
-
 
         curvedConnector4,
 
-
         curvedConnector5,
-
 
         callout1,
 
-
         callout2,
-
 
         callout3,
 
-
         accentCallout1,
-
 
         accentCallout2,
 
-
         accentCallout3,
-
 
         borderCallout1,
 
-
         borderCallout2,
-
 
         borderCallout3,
 
-
         accentBorderCallout1,
-
 
         accentBorderCallout2,
 
-
         accentBorderCallout3,
-
 
         wedgeRectCallout,
 
-
         wedgeRoundRectCallout,
-
 
         wedgeEllipseCallout,
 
-
         cloudCallout,
-
 
         cloud,
 
-
         ribbon,
-
 
         ribbon2,
 
-
         ellipseRibbon,
-
 
         ellipseRibbon2,
 
-
         leftRightRibbon,
-
 
         verticalScroll,
 
-
         horizontalScroll,
-
 
         wave,
 
-
         doubleWave,
-
 
         plus,
 
-
         flowChartProcess,
-
 
         flowChartDecision,
 
-
         flowChartInputOutput,
-
 
         flowChartPredefinedProcess,
 
-
         flowChartInternalStorage,
-
 
         flowChartDocument,
 
-
         flowChartMultidocument,
-
 
         flowChartTerminator,
 
-
         flowChartPreparation,
-
 
         flowChartManualInput,
 
-
         flowChartManualOperation,
-
 
         flowChartConnector,
 
-
         flowChartPunchedCard,
-
 
         flowChartPunchedTape,
 
-
         flowChartSummingJunction,
-
 
         flowChartOr,
 
-
         flowChartCollate,
-
 
         flowChartSort,
 
-
         flowChartExtract,
-
 
         flowChartMerge,
 
-
         flowChartOfflineStorage,
-
 
         flowChartOnlineStorage,
 
-
         flowChartMagneticTape,
-
 
         flowChartMagneticDisk,
 
-
         flowChartMagneticDrum,
-
 
         flowChartDisplay,
 
-
         flowChartDelay,
-
 
         flowChartAlternateProcess,
 
-
         flowChartOffpageConnector,
-
 
         actionButtonBlank,
 
-
         actionButtonHome,
-
 
         actionButtonHelp,
 
-
         actionButtonInformation,
-
 
         actionButtonForwardNext,
 
-
         actionButtonBackPrevious,
-
 
         actionButtonEnd,
 
-
         actionButtonBeginning,
-
 
         actionButtonReturn,
 
-
         actionButtonDocument,
-
 
         actionButtonSound,
 
-
         actionButtonMovie,
-
 
         gear6,
 
-
         gear9,
-
 
         funnel,
 
-
         mathPlus,
-
 
         mathMinus,
 
-
         mathMultiply,
-
 
         mathDivide,
 
-
         mathEqual,
-
 
         mathNotEqual,
 
-
         cornerTabs,
-
 
         squareTabs,
 
-
         plaqueTabs,
-
 
         chartX,
 
-
         chartStar,
-
 
         chartPlus,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     public enum ST_TextShapeType
     {
-
-
         textNoShape,
-
 
         textPlain,
 
-
         textStop,
-
 
         textTriangle,
 
-
         textTriangleInverted,
-
 
         textChevron,
 
-
         textChevronInverted,
-
 
         textRingInside,
 
-
         textRingOutside,
-
 
         textArchUp,
 
-
         textArchDown,
-
 
         textCircle,
 
-
         textButton,
-
 
         textArchUpPour,
 
-
         textArchDownPour,
-
 
         textCirclePour,
 
-
         textButtonPour,
-
 
         textCurveUp,
 
-
         textCurveDown,
-
 
         textCanUp,
 
-
         textCanDown,
-
 
         textWave1,
 
-
         textWave2,
-
 
         textDoubleWave1,
 
-
         textWave4,
-
 
         textInflate,
 
-
         textDeflate,
-
 
         textInflateBottom,
 
-
         textDeflateBottom,
-
 
         textInflateTop,
 
-
         textDeflateTop,
-
 
         textDeflateInflate,
 
-
         textDeflateInflateDeflate,
-
 
         textFadeRight,
 
-
         textFadeLeft,
-
 
         textFadeUp,
 
-
         textFadeDown,
-
 
         textSlantUp,
 
-
         textSlantDown,
-
 
         textCascadeUp,
 
-
         textCascadeDown,
     }
-
 
     [Serializable]
     [DebuggerStepThrough]
@@ -718,7 +485,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_GeomGuide
     {
-
         private string nameField;
 
         private string fmlaField;
@@ -732,8 +498,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             ctObj.fmla = XmlHelper.ReadString(node.Attribute("fmla"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -756,7 +520,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         public string fmla
         {
@@ -771,7 +534,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -779,9 +541,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_Path2DCubicBezierTo
     {
-
         private CT_AdjPoint2D[] ptField;
-
 
         [XmlElement("pt", Order = 0)]
         public CT_AdjPoint2D[] pt
@@ -797,7 +557,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -805,7 +564,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_AdjPoint2D
     {
-
         private string xField;
 
         private string yField;
@@ -819,8 +577,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             ctObj.y = XmlHelper.ReadString(node.Attribute("y"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -844,7 +600,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         public string y
         {
@@ -859,7 +614,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -867,9 +621,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_Path2DQuadBezierTo
     {
-
         private CT_AdjPoint2D[] ptField;
-
 
         [XmlElement("pt", Order = 0)]
         public CT_AdjPoint2D[] pt
@@ -885,7 +637,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -893,9 +644,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_GeomGuideList
     {
-
         private List<CT_GeomGuide> gdField;
-
 
         [XmlElement("gd", Order = 0)]
         public List<CT_GeomGuide> gd
@@ -925,8 +674,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return avLst;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write("<a:{0}>", nodeName);
@@ -938,10 +685,8 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 }
             }
             sw.Write("</a:{0}>", nodeName);
-
         }
     }
-
 
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
@@ -950,7 +695,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_GeomRect
     {
-
         private string lField;
 
         private string tField;
@@ -970,8 +714,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             ctObj.b = XmlHelper.ReadString(node.Attribute("b"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -996,7 +738,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         public string t
         {
@@ -1010,7 +751,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         public string r
         {
@@ -1023,7 +763,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.rField = value;
             }
         }
-
 
         [XmlAttribute]
         public string b
@@ -1039,7 +778,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -1047,7 +785,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_XYAdjustHandle
     {
-
         private CT_AdjPoint2D posField;
 
         private string gdRefXField;
@@ -1075,7 +812,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute(DataType = "token")]
         public string gdRefX
         {
@@ -1088,7 +824,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.gdRefXField = value;
             }
         }
-
 
         [XmlAttribute]
         public string minX
@@ -1103,7 +838,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         public string maxX
         {
@@ -1116,7 +850,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.maxXField = value;
             }
         }
-
 
         [XmlAttribute(DataType = "token")]
         public string gdRefY
@@ -1131,7 +864,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         public string minY
         {
@@ -1144,7 +876,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.minYField = value;
             }
         }
-
 
         [XmlAttribute]
         public string maxY
@@ -1160,7 +891,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -1168,7 +898,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_PolarAdjustHandle
     {
-
         private CT_AdjPoint2D posField;
 
         private string gdRefRField;
@@ -1196,7 +925,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute(DataType = "token")]
         public string gdRefR
         {
@@ -1209,7 +937,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.gdRefRField = value;
             }
         }
-
 
         [XmlAttribute]
         public string minR
@@ -1224,7 +951,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         public string maxR
         {
@@ -1237,7 +963,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.maxRField = value;
             }
         }
-
 
         [XmlAttribute(DataType = "token")]
         public string gdRefAng
@@ -1252,7 +977,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         public string minAng
         {
@@ -1265,7 +989,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.minAngField = value;
             }
         }
-
 
         [XmlAttribute]
         public string maxAng
@@ -1281,7 +1004,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -1289,10 +1011,10 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_ConnectionSite
     {
-
         private CT_AdjPoint2D posField;
 
         private string angField;
+
         public static CT_ConnectionSite Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1306,8 +1028,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -1332,7 +1052,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         public string ang
         {
@@ -1347,7 +1066,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -1355,9 +1073,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_AdjustHandleList
     {
-
         private object[] itemsField;
-
 
         [XmlElement("ahPolar", typeof(CT_PolarAdjustHandle), Order = 0)]
         [XmlElement("ahXY", typeof(CT_XYAdjustHandle), Order = 0)]
@@ -1374,7 +1090,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -1382,9 +1097,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_ConnectionSiteList
     {
-
         private List<CT_ConnectionSite> cxnField;
-
 
         //[XmlElement("cxn", Order = 0)]
         public List<CT_ConnectionSite> cxn
@@ -1398,6 +1111,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.cxnField = value;
             }
         }
+
         internal static CT_ConnectionSiteList Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             CT_ConnectionSiteList cxnLst = new CT_ConnectionSiteList();
@@ -1410,8 +1124,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return cxnLst;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write("<a:{0}>", nodeName);
@@ -1423,10 +1135,8 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 }
             }
             sw.Write("</a:{0}>", nodeName);
-
         }
     }
-
 
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
@@ -1435,10 +1145,10 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_Connection
     {
-
         private uint idField;
 
         private uint idxField;
+
         public static CT_Connection Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1449,8 +1159,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0}", nodeName));
@@ -1458,7 +1166,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             XmlHelper.WriteAttribute(sw, "idx", this.idx);
             sw.Write("/>");
         }
-
 
         [XmlAttribute]
         public uint id
@@ -1472,7 +1179,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.idField = value;
             }
         }
-
 
         [XmlAttribute]
         public uint idx
@@ -1488,7 +1194,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -1496,12 +1201,13 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_Path2DMoveTo
     {
-
         private CT_AdjPoint2D ptField;
+
         public CT_Path2DMoveTo()
         {
             this.ptField = new CT_AdjPoint2D();
         }
+
         [XmlElement(Order = 0)]
         public CT_AdjPoint2D pt
         {
@@ -1516,7 +1222,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -1524,7 +1229,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_Path2DLineTo
     {
-
         private CT_AdjPoint2D ptField;
 
         public CT_Path2DLineTo()
@@ -1546,7 +1250,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -1554,7 +1257,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_Path2DArcTo
     {
-
         private string wrField;
 
         private string hrField;
@@ -1562,7 +1264,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private string stAngField;
 
         private string swAngField;
-
 
         [XmlAttribute]
         public string wR
@@ -1577,7 +1278,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         public string hR
         {
@@ -1591,7 +1291,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         public string stAng
         {
@@ -1604,7 +1303,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.stAngField = value;
             }
         }
-
 
         [XmlAttribute]
         public string swAng
@@ -1620,7 +1318,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -1630,31 +1327,22 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     {
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main")]
     public enum ST_PathFillMode
     {
-
-
         none,
-
 
         norm,
 
-
         lighten,
-
 
         lightenLess,
 
-
         darken,
-
 
         darkenLess,
     }
-
 
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
@@ -1663,7 +1351,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_Path2D
     {
-
         //private object[] itemsField;
 
         //private ItemsChoiceType[] itemsElementNameField;
@@ -1677,6 +1364,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private bool strokeField;
 
         private bool extrusionOkField;
+
         public static CT_Path2D Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1695,8 +1383,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             //}
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -1721,7 +1407,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             this.extrusionOkField = true;
         }
 
-
         //[XmlElement("arcTo", typeof(CT_Path2DArcTo))]
         //[XmlElement("close", typeof(CT_Path2DClose))]
         //[XmlElement("cubicBezTo", typeof(CT_Path2DCubicBezierTo))]
@@ -1741,7 +1426,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         //    }
         //}
 
-
         //[XmlElement("ItemsElementName")]
         //[XmlIgnore]
         //public ItemsChoiceType[] ItemsElementName
@@ -1755,7 +1439,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         //        this.itemsElementNameField = value;
         //    }
         //}
-
 
         [XmlAttribute]
         [DefaultValue(typeof(long), "0")]
@@ -1771,7 +1454,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         [DefaultValue(typeof(long), "0")]
         public long h
@@ -1785,7 +1467,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.hField = value;
             }
         }
-
 
         [XmlAttribute]
         [DefaultValue(ST_PathFillMode.norm)]
@@ -1801,7 +1482,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         [DefaultValue(true)]
         public bool stroke
@@ -1815,7 +1495,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.strokeField = value;
             }
         }
-
 
         [XmlAttribute]
         [DefaultValue(true)]
@@ -1832,31 +1511,22 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IncludeInSchema = false)]
     public enum ItemsChoiceType
     {
-
-
         arcTo,
-
 
         close,
 
-
         cubicBezTo,
-
 
         lnTo,
 
-
         moveTo,
-
 
         quadBezTo,
     }
-
 
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
@@ -1865,9 +1535,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_Path2DList
     {
-
         private List<CT_Path2D> pathField;
-
 
         //[XmlElement("path", Order = 0)]
         public List<CT_Path2D> path
@@ -1894,8 +1562,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return pathList;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write("<a:{0}>", nodeName);
@@ -1907,10 +1573,8 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 }
             }
             sw.Write("</a:{0}>", nodeName);
-
         }
     }
-
 
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
@@ -1919,7 +1583,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_PresetGeometry2D
     {
-
         private CT_GeomGuideList avLstField;
 
         private ST_ShapeType prstField;
@@ -1950,8 +1613,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0}", nodeName));
@@ -1964,8 +1625,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             sw.Write(string.Format("</a:{0}>", nodeName));
         }
 
-
-
         [XmlElement(Order = 0)]
         public CT_GeomGuideList avLst
         {
@@ -1975,10 +1634,9 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             set
             {
-                this.avLstField =value;
+                this.avLstField = value;
             }
         }
-
 
         [XmlAttribute]
         public ST_ShapeType prst
@@ -1993,7 +1651,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
     }
-
 
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
@@ -2017,8 +1674,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -2053,7 +1708,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         public ST_TextShapeType prst
         {
@@ -2068,7 +1722,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -2076,7 +1729,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_CustomGeometry2D
     {
-
         private CT_GeomGuideList avLstField;
 
         private CT_GeomGuideList gdLstField;
@@ -2088,6 +1740,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private CT_GeomRect rectField;
 
         private CT_Path2DList pathLstField;
+
         public static CT_CustomGeometry2D Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2111,8 +1764,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {

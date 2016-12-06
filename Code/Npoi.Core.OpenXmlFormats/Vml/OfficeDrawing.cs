@@ -1,323 +1,350 @@
-using System;
-using System.ComponentModel;
-using System.Xml.Serialization;
-using Npoi.Core.OpenXmlFormats.Vml.Spreadsheet;
-using System.Collections.Generic;
-using System.Xml;
-using System.IO;
-using System.Text;
-using System.Xml.Linq;
 using Npoi.Core.OpenXml4Net.Util;
+using Npoi.Core.OpenXmlFormats.Vml.Spreadsheet;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Vml.Office
 {
-    
-    
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=true)]
-    public class CT_ShapeDefaults {
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
+    public class CT_ShapeDefaults
+    {
         private CT_Fill fillField;
-        
+
         private CT_Stroke strokeField;
-        
+
         private CT_Textbox textboxField;
-        
+
         private CT_Shadow shadowField;
-        
+
         private CT_Skew skewField;
-        
+
         private CT_Extrusion extrusionField;
-        
+
         private CT_Callout calloutField;
-        
+
         private CT_Lock lockField;
-        
+
         private CT_ColorMru colormruField;
-        
+
         private CT_ColorMenu colormenuField;
-        
+
         private ST_Ext extField = ST_Ext.NONE;
-        
-        
-        
+
         private string spidmaxField;
-        
+
         private string styleField;
-        
+
         private ST_TrueFalse fill1Field;
-        
+
         private bool fill1FieldSpecified;
-        
+
         private string fillcolorField;
-        
+
         private ST_TrueFalse stroke1Field;
-        
+
         private bool stroke1FieldSpecified;
-        
+
         private string strokecolorField;
-        
+
         private ST_TrueFalse allowincellField;
-        
+
         private bool allowincellFieldSpecified;
-        
-    
-        [XmlElement(Namespace="urn:schemas-microsoft-com:vml")]
-        public CT_Fill fill {
-            get {
+
+        [XmlElement(Namespace = "urn:schemas-microsoft-com:vml")]
+        public CT_Fill fill
+        {
+            get
+            {
                 return this.fillField;
             }
-            set {
+            set
+            {
                 this.fillField = value;
             }
         }
-        
-    
-        [XmlElement(Namespace="urn:schemas-microsoft-com:vml")]
-        public CT_Stroke stroke {
-            get {
+
+        [XmlElement(Namespace = "urn:schemas-microsoft-com:vml")]
+        public CT_Stroke stroke
+        {
+            get
+            {
                 return this.strokeField;
             }
-            set {
+            set
+            {
                 this.strokeField = value;
             }
         }
-        
-    
-        [XmlElement(Namespace="urn:schemas-microsoft-com:vml")]
-        public CT_Textbox textbox {
-            get {
+
+        [XmlElement(Namespace = "urn:schemas-microsoft-com:vml")]
+        public CT_Textbox textbox
+        {
+            get
+            {
                 return this.textboxField;
             }
-            set {
+            set
+            {
                 this.textboxField = value;
             }
         }
-        
-    
-        [XmlElement(Namespace="urn:schemas-microsoft-com:vml")]
-        public CT_Shadow shadow {
-            get {
+
+        [XmlElement(Namespace = "urn:schemas-microsoft-com:vml")]
+        public CT_Shadow shadow
+        {
+            get
+            {
                 return this.shadowField;
             }
-            set {
+            set
+            {
                 this.shadowField = value;
             }
         }
-        
-    
-        public CT_Skew skew {
-            get {
+
+        public CT_Skew skew
+        {
+            get
+            {
                 return this.skewField;
             }
-            set {
+            set
+            {
                 this.skewField = value;
             }
         }
-        
-    
-        public CT_Extrusion extrusion {
-            get {
+
+        public CT_Extrusion extrusion
+        {
+            get
+            {
                 return this.extrusionField;
             }
-            set {
+            set
+            {
                 this.extrusionField = value;
             }
         }
-        
-    
-        public CT_Callout callout {
-            get {
+
+        public CT_Callout callout
+        {
+            get
+            {
                 return this.calloutField;
             }
-            set {
+            set
+            {
                 this.calloutField = value;
             }
         }
-        
-    
-        public CT_Lock @lock {
-            get {
+
+        public CT_Lock @lock
+        {
+            get
+            {
                 return this.lockField;
             }
-            set {
+            set
+            {
                 this.lockField = value;
             }
         }
-        
-    
-        public CT_ColorMru colormru {
-            get {
+
+        public CT_ColorMru colormru
+        {
+            get
+            {
                 return this.colormruField;
             }
-            set {
+            set
+            {
                 this.colormruField = value;
             }
         }
-        
-    
-        public CT_ColorMenu colormenu {
-            get {
+
+        public CT_ColorMenu colormenu
+        {
+            get
+            {
                 return this.colormenuField;
             }
-            set {
+            set
+            {
                 this.colormenuField = value;
             }
         }
 
-
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "urn:schemas-microsoft-com:vml")]
         public ST_Ext ext
         {
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
             get { return ST_Ext.NONE != this.extField; }
-        }        
-    
-        [XmlAttribute(DataType="integer")]
-        public string spidmax {
-            get {
+        }
+
+        [XmlAttribute(DataType = "integer")]
+        public string spidmax
+        {
+            get
+            {
                 return this.spidmaxField;
             }
-            set {
+            set
+            {
                 this.spidmaxField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string style {
-            get {
+        public string style
+        {
+            get
+            {
                 return this.styleField;
             }
-            set {
+            set
+            {
                 this.styleField = value;
             }
         }
-        
-    
+
         [XmlAttribute("fill")]
-        public ST_TrueFalse fill1 {
-            get {
+        public ST_TrueFalse fill1
+        {
+            get
+            {
                 return this.fill1Field;
             }
-            set {
+            set
+            {
                 this.fill1Field = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool fill1Specified {
-            get {
+        public bool fill1Specified
+        {
+            get
+            {
                 return this.fill1FieldSpecified;
             }
-            set {
+            set
+            {
                 this.fill1FieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string fillcolor {
-            get {
+        public string fillcolor
+        {
+            get
+            {
                 return this.fillcolorField;
             }
-            set {
+            set
+            {
                 this.fillcolorField = value;
             }
         }
-        
-    
+
         [XmlAttribute("stroke")]
-        public ST_TrueFalse stroke1 {
-            get {
+        public ST_TrueFalse stroke1
+        {
+            get
+            {
                 return this.stroke1Field;
             }
-            set {
+            set
+            {
                 this.stroke1Field = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool stroke1Specified {
-            get {
+        public bool stroke1Specified
+        {
+            get
+            {
                 return this.stroke1FieldSpecified;
             }
-            set {
+            set
+            {
                 this.stroke1FieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string strokecolor {
-            get {
+        public string strokecolor
+        {
+            get
+            {
                 return this.strokecolorField;
             }
-            set {
+            set
+            {
                 this.strokecolorField = value;
             }
         }
-        
-    
-        [XmlAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
-        public ST_TrueFalse allowincell {
-            get {
+
+        [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+        public ST_TrueFalse allowincell
+        {
+            get
+            {
                 return this.allowincellField;
             }
-            set {
+            set
+            {
                 this.allowincellField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool allowincellSpecified {
-            get {
+        public bool allowincellSpecified
+        {
+            get
+            {
                 return this.allowincellFieldSpecified;
             }
-            set {
+            set
+            {
                 this.allowincellFieldSpecified = value;
             }
         }
     }
-    
-
-
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=true)]
-    public class CT_Skew {
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
+    public class CT_Skew
+    {
         private ST_Ext extField = ST_Ext.NONE;
-        
-        
-        
-        private string idField;
-        
-        private ST_TrueFalse onField;
-        
-        private bool onFieldSpecified;
-        
-        private string offsetField;
-        
-        private string originField;
-        
-        private string matrixField;
 
+        private string idField;
+
+        private ST_TrueFalse onField;
+
+        private bool onFieldSpecified;
+
+        private string offsetField;
+
+        private string originField;
+
+        private string matrixField;
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "urn:schemas-microsoft-com:vml")]
         public ST_Ext ext
@@ -325,6 +352,7 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
@@ -334,185 +362,193 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
         [XmlAttribute]
         public string id
         {
-            get {
+            get
+            {
                 return this.idField;
             }
-            set {
+            set
+            {
                 this.idField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse on {
-            get {
+        public ST_TrueFalse on
+        {
+            get
+            {
                 return this.onField;
             }
-            set {
+            set
+            {
                 this.onField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool onSpecified {
-            get {
+        public bool onSpecified
+        {
+            get
+            {
                 return this.onFieldSpecified;
             }
-            set {
+            set
+            {
                 this.onFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string offset {
-            get {
+        public string offset
+        {
+            get
+            {
                 return this.offsetField;
             }
-            set {
+            set
+            {
                 this.offsetField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string origin {
-            get {
+        public string origin
+        {
+            get
+            {
                 return this.originField;
             }
-            set {
+            set
+            {
                 this.originField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string matrix {
-            get {
+        public string matrix
+        {
+            get
+            {
                 return this.matrixField;
             }
-            set {
+            set
+            {
                 this.matrixField = value;
             }
         }
     }
-        
 
     [Serializable]
-    [XmlType(TypeName="ST_TrueFalse", Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot("ST_TrueFalse", Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_TrueFalse {
+    [XmlType(TypeName = "ST_TrueFalse", Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot("ST_TrueFalse", Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_TrueFalse
+    {
         f,
         t,
         @true,
         @false,
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=true)]
-    public class CT_Extrusion {
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
+    public class CT_Extrusion
+    {
         private ST_Ext extField = ST_Ext.NONE;
-        
-        
-        
+
         private ST_TrueFalse onField;
-        
+
         private bool onFieldSpecified;
-        
+
         private ST_ExtrusionType typeField;
-        
+
         private ST_ExtrusionRender renderField;
-        
+
         private string viewpointoriginField;
-        
+
         private string viewpointField;
-        
+
         private ST_ExtrusionPlane planeField;
-        
+
         private float skewangleField;
-        
+
         private bool skewangleFieldSpecified;
-        
+
         private string skewamtField;
-        
+
         private string foredepthField;
-        
+
         private string backdepthField;
-        
+
         private string orientationField;
-        
+
         private float orientationangleField;
-        
+
         private bool orientationangleFieldSpecified;
-        
+
         private ST_TrueFalse lockrotationcenterField;
-        
+
         private bool lockrotationcenterFieldSpecified;
-        
+
         private ST_TrueFalse autorotationcenterField;
-        
+
         private bool autorotationcenterFieldSpecified;
-        
+
         private string rotationcenterField;
-        
+
         private string rotationangleField;
-        
+
         private ST_ColorMode colormodeField;
-        
+
         private bool colormodeFieldSpecified;
-        
+
         private string colorField;
-        
+
         private float shininessField;
-        
+
         private bool shininessFieldSpecified;
-        
+
         private string specularityField;
-        
+
         private string diffusityField;
-        
+
         private ST_TrueFalse metalField;
-        
+
         private bool metalFieldSpecified;
-        
+
         private string edgeField;
-        
+
         private string facetField;
-        
+
         private ST_TrueFalse lightfaceField;
-        
+
         private bool lightfaceFieldSpecified;
-        
+
         private string brightnessField;
-        
+
         private string lightpositionField;
-        
+
         private string lightlevelField;
-        
+
         private ST_TrueFalse lightharshField;
-        
+
         private bool lightharshFieldSpecified;
-        
+
         private string lightposition2Field;
-        
+
         private string lightlevel2Field;
-        
+
         private ST_TrueFalse lightharsh2Field;
-        
+
         private bool lightharsh2FieldSpecified;
-        
-        public CT_Extrusion() {
+
+        public CT_Extrusion()
+        {
             this.typeField = ST_ExtrusionType.parallel;
             this.renderField = ST_ExtrusionRender.solid;
             this.planeField = ST_ExtrusionPlane.XY;
         }
-
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "urn:schemas-microsoft-com:vml")]
         public ST_Ext ext
@@ -520,599 +556,670 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
             get { return ST_Ext.NONE != this.extField; }
-        }        
-    
+        }
+
         [XmlAttribute]
-        public ST_TrueFalse on {
-            get {
+        public ST_TrueFalse on
+        {
+            get
+            {
                 return this.onField;
             }
-            set {
+            set
+            {
                 this.onField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool onSpecified {
-            get {
+        public bool onSpecified
+        {
+            get
+            {
                 return this.onFieldSpecified;
             }
-            set {
+            set
+            {
                 this.onFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValue(ST_ExtrusionType.parallel)]
-        public ST_ExtrusionType type {
-            get {
+        public ST_ExtrusionType type
+        {
+            get
+            {
                 return this.typeField;
             }
-            set {
+            set
+            {
                 this.typeField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValue(ST_ExtrusionRender.solid)]
-        public ST_ExtrusionRender render {
-            get {
+        public ST_ExtrusionRender render
+        {
+            get
+            {
                 return this.renderField;
             }
-            set {
+            set
+            {
                 this.renderField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string viewpointorigin {
-            get {
+        public string viewpointorigin
+        {
+            get
+            {
                 return this.viewpointoriginField;
             }
-            set {
+            set
+            {
                 this.viewpointoriginField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string viewpoint {
-            get {
+        public string viewpoint
+        {
+            get
+            {
                 return this.viewpointField;
             }
-            set {
+            set
+            {
                 this.viewpointField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValue(ST_ExtrusionPlane.XY)]
-        public ST_ExtrusionPlane plane {
-            get {
+        public ST_ExtrusionPlane plane
+        {
+            get
+            {
                 return this.planeField;
             }
-            set {
+            set
+            {
                 this.planeField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public float skewangle {
-            get {
+        public float skewangle
+        {
+            get
+            {
                 return this.skewangleField;
             }
-            set {
+            set
+            {
                 this.skewangleField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool skewangleSpecified {
-            get {
+        public bool skewangleSpecified
+        {
+            get
+            {
                 return this.skewangleFieldSpecified;
             }
-            set {
+            set
+            {
                 this.skewangleFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string skewamt {
-            get {
+        public string skewamt
+        {
+            get
+            {
                 return this.skewamtField;
             }
-            set {
+            set
+            {
                 this.skewamtField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string foredepth {
-            get {
+        public string foredepth
+        {
+            get
+            {
                 return this.foredepthField;
             }
-            set {
+            set
+            {
                 this.foredepthField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string backdepth {
-            get {
+        public string backdepth
+        {
+            get
+            {
                 return this.backdepthField;
             }
-            set {
+            set
+            {
                 this.backdepthField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string orientation {
-            get {
+        public string orientation
+        {
+            get
+            {
                 return this.orientationField;
             }
-            set {
+            set
+            {
                 this.orientationField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public float orientationangle {
-            get {
+        public float orientationangle
+        {
+            get
+            {
                 return this.orientationangleField;
             }
-            set {
+            set
+            {
                 this.orientationangleField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool orientationangleSpecified {
-            get {
+        public bool orientationangleSpecified
+        {
+            get
+            {
                 return this.orientationangleFieldSpecified;
             }
-            set {
+            set
+            {
                 this.orientationangleFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse lockrotationcenter {
-            get {
+        public ST_TrueFalse lockrotationcenter
+        {
+            get
+            {
                 return this.lockrotationcenterField;
             }
-            set {
+            set
+            {
                 this.lockrotationcenterField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool lockrotationcenterSpecified {
-            get {
+        public bool lockrotationcenterSpecified
+        {
+            get
+            {
                 return this.lockrotationcenterFieldSpecified;
             }
-            set {
+            set
+            {
                 this.lockrotationcenterFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse autorotationcenter {
-            get {
+        public ST_TrueFalse autorotationcenter
+        {
+            get
+            {
                 return this.autorotationcenterField;
             }
-            set {
+            set
+            {
                 this.autorotationcenterField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool autorotationcenterSpecified {
-            get {
+        public bool autorotationcenterSpecified
+        {
+            get
+            {
                 return this.autorotationcenterFieldSpecified;
             }
-            set {
+            set
+            {
                 this.autorotationcenterFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string rotationcenter {
-            get {
+        public string rotationcenter
+        {
+            get
+            {
                 return this.rotationcenterField;
             }
-            set {
+            set
+            {
                 this.rotationcenterField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string rotationangle {
-            get {
+        public string rotationangle
+        {
+            get
+            {
                 return this.rotationangleField;
             }
-            set {
+            set
+            {
                 this.rotationangleField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_ColorMode colormode {
-            get {
+        public ST_ColorMode colormode
+        {
+            get
+            {
                 return this.colormodeField;
             }
-            set {
+            set
+            {
                 this.colormodeField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool colormodeSpecified {
-            get {
+        public bool colormodeSpecified
+        {
+            get
+            {
                 return this.colormodeFieldSpecified;
             }
-            set {
+            set
+            {
                 this.colormodeFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string color {
-            get {
+        public string color
+        {
+            get
+            {
                 return this.colorField;
             }
-            set {
+            set
+            {
                 this.colorField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public float shininess {
-            get {
+        public float shininess
+        {
+            get
+            {
                 return this.shininessField;
             }
-            set {
+            set
+            {
                 this.shininessField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool shininessSpecified {
-            get {
+        public bool shininessSpecified
+        {
+            get
+            {
                 return this.shininessFieldSpecified;
             }
-            set {
+            set
+            {
                 this.shininessFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string specularity {
-            get {
+        public string specularity
+        {
+            get
+            {
                 return this.specularityField;
             }
-            set {
+            set
+            {
                 this.specularityField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string diffusity {
-            get {
+        public string diffusity
+        {
+            get
+            {
                 return this.diffusityField;
             }
-            set {
+            set
+            {
                 this.diffusityField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse metal {
-            get {
+        public ST_TrueFalse metal
+        {
+            get
+            {
                 return this.metalField;
             }
-            set {
+            set
+            {
                 this.metalField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool metalSpecified {
-            get {
+        public bool metalSpecified
+        {
+            get
+            {
                 return this.metalFieldSpecified;
             }
-            set {
+            set
+            {
                 this.metalFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string edge {
-            get {
+        public string edge
+        {
+            get
+            {
                 return this.edgeField;
             }
-            set {
+            set
+            {
                 this.edgeField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string facet {
-            get {
+        public string facet
+        {
+            get
+            {
                 return this.facetField;
             }
-            set {
+            set
+            {
                 this.facetField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse lightface {
-            get {
+        public ST_TrueFalse lightface
+        {
+            get
+            {
                 return this.lightfaceField;
             }
-            set {
+            set
+            {
                 this.lightfaceField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool lightfaceSpecified {
-            get {
+        public bool lightfaceSpecified
+        {
+            get
+            {
                 return this.lightfaceFieldSpecified;
             }
-            set {
+            set
+            {
                 this.lightfaceFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string brightness {
-            get {
+        public string brightness
+        {
+            get
+            {
                 return this.brightnessField;
             }
-            set {
+            set
+            {
                 this.brightnessField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string lightposition {
-            get {
+        public string lightposition
+        {
+            get
+            {
                 return this.lightpositionField;
             }
-            set {
+            set
+            {
                 this.lightpositionField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string lightlevel {
-            get {
+        public string lightlevel
+        {
+            get
+            {
                 return this.lightlevelField;
             }
-            set {
+            set
+            {
                 this.lightlevelField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse lightharsh {
-            get {
+        public ST_TrueFalse lightharsh
+        {
+            get
+            {
                 return this.lightharshField;
             }
-            set {
+            set
+            {
                 this.lightharshField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool lightharshSpecified {
-            get {
+        public bool lightharshSpecified
+        {
+            get
+            {
                 return this.lightharshFieldSpecified;
             }
-            set {
+            set
+            {
                 this.lightharshFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string lightposition2 {
-            get {
+        public string lightposition2
+        {
+            get
+            {
                 return this.lightposition2Field;
             }
-            set {
+            set
+            {
                 this.lightposition2Field = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string lightlevel2 {
-            get {
+        public string lightlevel2
+        {
+            get
+            {
                 return this.lightlevel2Field;
             }
-            set {
+            set
+            {
                 this.lightlevel2Field = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse lightharsh2 {
-            get {
+        public ST_TrueFalse lightharsh2
+        {
+            get
+            {
                 return this.lightharsh2Field;
             }
-            set {
+            set
+            {
                 this.lightharsh2Field = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool lightharsh2Specified {
-            get {
+        public bool lightharsh2Specified
+        {
+            get
+            {
                 return this.lightharsh2FieldSpecified;
             }
-            set {
+            set
+            {
                 this.lightharsh2FieldSpecified = value;
             }
         }
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_ExtrusionType {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_ExtrusionType
+    {
         perspective,
-        
-    
+
         parallel,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_ExtrusionRender {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_ExtrusionRender
+    {
         solid,
-        
-    
+
         wireFrame,
-        
-    
+
         boundingCube,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_ExtrusionPlane {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_ExtrusionPlane
+    {
         XY,
-        
-    
+
         ZX,
-        
-    
+
         YZ,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_ColorMode {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_ColorMode
+    {
         auto,
-        
-    
+
         custom,
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=true)]
-    public class CT_Callout {
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
+    public class CT_Callout
+    {
         private ST_Ext extField = ST_Ext.NONE;
-        
-        
-        
+
         private ST_TrueFalse onField;
-        
+
         private bool onFieldSpecified;
-        
+
         private string typeField;
-        
+
         private string gapField;
-        
+
         private ST_Angle angleField;
-        
+
         private bool angleFieldSpecified;
-        
+
         private ST_TrueFalse dropautoField;
-        
+
         private bool dropautoFieldSpecified;
-        
+
         private string dropField;
-        
+
         private string distanceField;
-        
+
         private ST_TrueFalse lengthspecifiedField;
-        
+
         private string lengthField;
-        
+
         private ST_TrueFalse accentbarField;
-        
+
         private bool accentbarFieldSpecified;
-        
+
         private ST_TrueFalse textborderField;
-        
+
         private bool textborderFieldSpecified;
-        
+
         private ST_TrueFalse minusxField;
-        
+
         private bool minusxFieldSpecified;
-        
+
         private ST_TrueFalse minusyField;
-        
+
         private bool minusyFieldSpecified;
-        
-        public CT_Callout() {
+
+        public CT_Callout()
+        {
             this.lengthspecifiedField = ST_TrueFalse.f;
         }
 
@@ -1122,316 +1229,347 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
             get { return ST_Ext.NONE != this.extField; }
         }
-    
+
         [XmlAttribute]
-        public ST_TrueFalse on {
-            get {
+        public ST_TrueFalse on
+        {
+            get
+            {
                 return this.onField;
             }
-            set {
+            set
+            {
                 this.onField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool onSpecified {
-            get {
+        public bool onSpecified
+        {
+            get
+            {
                 return this.onFieldSpecified;
             }
-            set {
+            set
+            {
                 this.onFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string type {
-            get {
+        public string type
+        {
+            get
+            {
                 return this.typeField;
             }
-            set {
+            set
+            {
                 this.typeField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string gap {
-            get {
+        public string gap
+        {
+            get
+            {
                 return this.gapField;
             }
-            set {
+            set
+            {
                 this.gapField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_Angle angle {
-            get {
+        public ST_Angle angle
+        {
+            get
+            {
                 return this.angleField;
             }
-            set {
+            set
+            {
                 this.angleField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool angleSpecified {
-            get {
+        public bool angleSpecified
+        {
+            get
+            {
                 return this.angleFieldSpecified;
             }
-            set {
+            set
+            {
                 this.angleFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse dropauto {
-            get {
+        public ST_TrueFalse dropauto
+        {
+            get
+            {
                 return this.dropautoField;
             }
-            set {
+            set
+            {
                 this.dropautoField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool dropautoSpecified {
-            get {
+        public bool dropautoSpecified
+        {
+            get
+            {
                 return this.dropautoFieldSpecified;
             }
-            set {
+            set
+            {
                 this.dropautoFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string drop {
-            get {
+        public string drop
+        {
+            get
+            {
                 return this.dropField;
             }
-            set {
+            set
+            {
                 this.dropField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string distance {
-            get {
+        public string distance
+        {
+            get
+            {
                 return this.distanceField;
             }
-            set {
+            set
+            {
                 this.distanceField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
         [DefaultValue(ST_TrueFalse.f)]
-        public ST_TrueFalse lengthspecified {
-            get {
+        public ST_TrueFalse lengthspecified
+        {
+            get
+            {
                 return this.lengthspecifiedField;
             }
-            set {
+            set
+            {
                 this.lengthspecifiedField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string length {
-            get {
+        public string length
+        {
+            get
+            {
                 return this.lengthField;
             }
-            set {
+            set
+            {
                 this.lengthField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse accentbar {
-            get {
+        public ST_TrueFalse accentbar
+        {
+            get
+            {
                 return this.accentbarField;
             }
-            set {
+            set
+            {
                 this.accentbarField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool accentbarSpecified {
-            get {
+        public bool accentbarSpecified
+        {
+            get
+            {
                 return this.accentbarFieldSpecified;
             }
-            set {
+            set
+            {
                 this.accentbarFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse textborder {
-            get {
+        public ST_TrueFalse textborder
+        {
+            get
+            {
                 return this.textborderField;
             }
-            set {
+            set
+            {
                 this.textborderField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool textborderSpecified {
-            get {
+        public bool textborderSpecified
+        {
+            get
+            {
                 return this.textborderFieldSpecified;
             }
-            set {
+            set
+            {
                 this.textborderFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse minusx {
-            get {
+        public ST_TrueFalse minusx
+        {
+            get
+            {
                 return this.minusxField;
             }
-            set {
+            set
+            {
                 this.minusxField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool minusxSpecified {
-            get {
+        public bool minusxSpecified
+        {
+            get
+            {
                 return this.minusxFieldSpecified;
             }
-            set {
+            set
+            {
                 this.minusxFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse minusy {
-            get {
+        public ST_TrueFalse minusy
+        {
+            get
+            {
                 return this.minusyField;
             }
-            set {
+            set
+            {
                 this.minusyField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool minusySpecified {
-            get {
+        public bool minusySpecified
+        {
+            get
+            {
                 return this.minusyFieldSpecified;
             }
-            set {
+            set
+            {
                 this.minusyFieldSpecified = value;
             }
         }
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_Angle {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_Angle
+    {
         any,
-        
-    
+
         [XmlEnum("30")]
         Item30,
-        
-    
+
         [XmlEnum("45")]
         Item45,
-        
-    
+
         [XmlEnum("60")]
         Item60,
-        
-    
+
         [XmlEnum("90")]
         Item90,
-        
-    
+
         auto,
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=true)]
-    public class CT_Lock {
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
+    public class CT_Lock
+    {
         private ST_Ext extField = ST_Ext.NONE;
-        
-        
-        
+
         private ST_TrueFalse positionField;
-        
+
         private bool positionFieldSpecified;
-        
+
         private ST_TrueFalse selectionField;
-        
+
         private bool selectionFieldSpecified;
-        
+
         private ST_TrueFalse groupingField;
-        
+
         private bool groupingFieldSpecified;
-        
+
         private ST_TrueFalse ungroupingField;
-        
+
         private bool ungroupingFieldSpecified;
-        
+
         private ST_TrueFalse rotationField;
-        
+
         private bool rotationFieldSpecified;
-        
+
         private ST_TrueFalse croppingField;
-        
+
         private bool croppingFieldSpecified;
-        
+
         private ST_TrueFalse verticiesField;
-        
+
         private bool verticiesFieldSpecified;
-        
+
         private ST_TrueFalse adjusthandlesField;
-        
+
         private bool adjusthandlesFieldSpecified;
-        
+
         private ST_TrueFalse textField;
-        
+
         private bool textFieldSpecified;
-        
+
         private ST_TrueFalse aspectratioField;
-        
+
         private bool aspectratioFieldSpecified;
-        
+
         private ST_TrueFalse shapetypeField;
-        
+
         private bool shapetypeFieldSpecified;
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "urn:schemas-microsoft-com:vml")]
@@ -1440,249 +1578,295 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
             get { return ST_Ext.NONE != this.extField; }
         }
-    
+
         [XmlAttribute]
-        public ST_TrueFalse position {
-            get {
+        public ST_TrueFalse position
+        {
+            get
+            {
                 return this.positionField;
             }
-            set {
+            set
+            {
                 this.positionField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool positionSpecified {
-            get {
+        public bool positionSpecified
+        {
+            get
+            {
                 return this.positionFieldSpecified;
             }
-            set {
+            set
+            {
                 this.positionFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse selection {
-            get {
+        public ST_TrueFalse selection
+        {
+            get
+            {
                 return this.selectionField;
             }
-            set {
+            set
+            {
                 this.selectionField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool selectionSpecified {
-            get {
+        public bool selectionSpecified
+        {
+            get
+            {
                 return this.selectionFieldSpecified;
             }
-            set {
+            set
+            {
                 this.selectionFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse grouping {
-            get {
+        public ST_TrueFalse grouping
+        {
+            get
+            {
                 return this.groupingField;
             }
-            set {
+            set
+            {
                 this.groupingField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool groupingSpecified {
-            get {
+        public bool groupingSpecified
+        {
+            get
+            {
                 return this.groupingFieldSpecified;
             }
-            set {
+            set
+            {
                 this.groupingFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse ungrouping {
-            get {
+        public ST_TrueFalse ungrouping
+        {
+            get
+            {
                 return this.ungroupingField;
             }
-            set {
+            set
+            {
                 this.ungroupingField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool ungroupingSpecified {
-            get {
+        public bool ungroupingSpecified
+        {
+            get
+            {
                 return this.ungroupingFieldSpecified;
             }
-            set {
+            set
+            {
                 this.ungroupingFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse rotation {
-            get {
+        public ST_TrueFalse rotation
+        {
+            get
+            {
                 return this.rotationField;
             }
-            set {
+            set
+            {
                 this.rotationField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool rotationSpecified {
-            get {
+        public bool rotationSpecified
+        {
+            get
+            {
                 return this.rotationFieldSpecified;
             }
-            set {
+            set
+            {
                 this.rotationFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse cropping {
-            get {
+        public ST_TrueFalse cropping
+        {
+            get
+            {
                 return this.croppingField;
             }
-            set {
+            set
+            {
                 this.croppingField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool croppingSpecified {
-            get {
+        public bool croppingSpecified
+        {
+            get
+            {
                 return this.croppingFieldSpecified;
             }
-            set {
+            set
+            {
                 this.croppingFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse verticies {
-            get {
+        public ST_TrueFalse verticies
+        {
+            get
+            {
                 return this.verticiesField;
             }
-            set {
+            set
+            {
                 this.verticiesField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool verticiesSpecified {
-            get {
+        public bool verticiesSpecified
+        {
+            get
+            {
                 return this.verticiesFieldSpecified;
             }
-            set {
+            set
+            {
                 this.verticiesFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse adjusthandles {
-            get {
+        public ST_TrueFalse adjusthandles
+        {
+            get
+            {
                 return this.adjusthandlesField;
             }
-            set {
+            set
+            {
                 this.adjusthandlesField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool adjusthandlesSpecified {
-            get {
+        public bool adjusthandlesSpecified
+        {
+            get
+            {
                 return this.adjusthandlesFieldSpecified;
             }
-            set {
+            set
+            {
                 this.adjusthandlesFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse text {
-            get {
+        public ST_TrueFalse text
+        {
+            get
+            {
                 return this.textField;
             }
-            set {
+            set
+            {
                 this.textField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool textSpecified {
-            get {
+        public bool textSpecified
+        {
+            get
+            {
                 return this.textFieldSpecified;
             }
-            set {
+            set
+            {
                 this.textFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse aspectratio {
-            get {
+        public ST_TrueFalse aspectratio
+        {
+            get
+            {
                 return this.aspectratioField;
             }
-            set {
+            set
+            {
                 this.aspectratioField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool aspectratioSpecified {
-            get {
+        public bool aspectratioSpecified
+        {
+            get
+            {
                 return this.aspectratioFieldSpecified;
             }
-            set {
+            set
+            {
                 this.aspectratioFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse shapetype {
-            get {
+        public ST_TrueFalse shapetype
+        {
+            get
+            {
                 return this.shapetypeField;
             }
-            set {
+            set
+            {
                 this.shapetypeField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool shapetypeSpecified {
-            get {
+        public bool shapetypeSpecified
+        {
+            get
+            {
                 return this.shapetypeFieldSpecified;
             }
-            set {
+            set
+            {
                 this.shapetypeFieldSpecified = value;
             }
         }
@@ -1719,12 +1903,10 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<o:{0}", nodeName));
-            if(this.ext != ST_Ext.NONE)
+            if (this.ext != ST_Ext.NONE)
                 XmlHelper.WriteAttribute(sw, "v:ext", this.ext.ToString());
             Npoi.Core.OpenXmlFormats.Util.XmlHelper.WriteAttribute(sw, "position", this.position);
             Npoi.Core.OpenXmlFormats.Util.XmlHelper.WriteAttribute(sw, "selection", this.selection);
@@ -1740,19 +1922,15 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             sw.Write("/>");
         }
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=true)]
-    public class CT_ColorMru {
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
+    public class CT_ColorMru
+    {
         private ST_Ext extField = ST_Ext.NONE;
-        
-        
-        
+
         private string colorsField;
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "urn:schemas-microsoft-com:vml")]
@@ -1761,41 +1939,41 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
             get { return ST_Ext.NONE != this.extField; }
         }
-    
+
         [XmlAttribute]
-        public string colors {
-            get {
+        public string colors
+        {
+            get
+            {
                 return this.colorsField;
             }
-            set {
+            set
+            {
                 this.colorsField = value;
             }
         }
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=true)]
-    public class CT_ColorMenu {
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
+    public class CT_ColorMenu
+    {
         private ST_Ext extField = ST_Ext.NONE;
-        
-        
-        
+
         private string strokecolorField;
-        
+
         private string fillcolorField;
-        
+
         private string shadowcolorField;
-        
+
         private string extrusioncolorField;
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "urn:schemas-microsoft-com:vml")]
@@ -1804,146 +1982,156 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
             get { return ST_Ext.NONE != this.extField; }
         }
-    
+
         [XmlAttribute]
-        public string strokecolor {
-            get {
+        public string strokecolor
+        {
+            get
+            {
                 return this.strokecolorField;
             }
-            set {
+            set
+            {
                 this.strokecolorField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string fillcolor {
-            get {
+        public string fillcolor
+        {
+            get
+            {
                 return this.fillcolorField;
             }
-            set {
+            set
+            {
                 this.fillcolorField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string shadowcolor {
-            get {
+        public string shadowcolor
+        {
+            get
+            {
                 return this.shadowcolorField;
             }
-            set {
+            set
+            {
                 this.shadowcolorField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string extrusioncolor {
-            get {
+        public string extrusioncolor
+        {
+            get
+            {
                 return this.extrusioncolorField;
             }
-            set {
+            set
+            {
                 this.extrusioncolorField = value;
             }
         }
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=true)]
-    public class CT_Ink {
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
+    public class CT_Ink
+    {
         private byte[] iField;
-        
+
         private ST_TrueFalse annotationField;
-        
+
         private bool annotationFieldSpecified;
-        
-    
-        [XmlAttribute(DataType="base64Binary")]
-        public byte[] i {
-            get {
+
+        [XmlAttribute(DataType = "base64Binary")]
+        public byte[] i
+        {
+            get
+            {
                 return this.iField;
             }
-            set {
+            set
+            {
                 this.iField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse annotation {
-            get {
+        public ST_TrueFalse annotation
+        {
+            get
+            {
                 return this.annotationField;
             }
-            set {
+            set
+            {
                 this.annotationField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool annotationSpecified {
-            get {
+        public bool annotationSpecified
+        {
+            get
+            {
                 return this.annotationFieldSpecified;
             }
-            set {
+            set
+            {
                 this.annotationFieldSpecified = value;
             }
         }
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=true)]
-    public class CT_SignatureLine {
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
+    public class CT_SignatureLine
+    {
         private ST_Ext extField = ST_Ext.NONE;
-        
-        
-        
+
         private ST_TrueFalse issignaturelineField;
-        
+
         private bool issignaturelineFieldSpecified;
-        
+
         private string idField;
-        
+
         private string providField;
-        
+
         private ST_TrueFalse signinginstructionssetField;
-        
+
         private bool signinginstructionssetFieldSpecified;
-        
+
         private ST_TrueFalse allowcommentsField;
-        
+
         private bool allowcommentsFieldSpecified;
-        
+
         private ST_TrueFalse showsigndateField;
-        
+
         private bool showsigndateFieldSpecified;
-        
+
         private string suggestedsignerField;
-        
+
         private string suggestedsigner2Field;
-        
+
         private string suggestedsigneremailField;
-        
+
         private string signinginstructionsField;
-        
+
         private string addlxmlField;
-        
+
         private string sigprovurlField;
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "urn:schemas-microsoft-com:vml")]
@@ -1952,194 +2140,226 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
             get { return ST_Ext.NONE != this.extField; }
         }
-    
+
         [XmlAttribute]
-        public ST_TrueFalse issignatureline {
-            get {
+        public ST_TrueFalse issignatureline
+        {
+            get
+            {
                 return this.issignaturelineField;
             }
-            set {
+            set
+            {
                 this.issignaturelineField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool issignaturelineSpecified {
-            get {
+        public bool issignaturelineSpecified
+        {
+            get
+            {
                 return this.issignaturelineFieldSpecified;
             }
-            set {
+            set
+            {
                 this.issignaturelineFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute(DataType = "token")]
-        public string id {
-            get {
+        public string id
+        {
+            get
+            {
                 return this.idField;
             }
-            set {
+            set
+            {
                 this.idField = value;
             }
         }
-        
-    
-        [XmlAttribute(DataType="token")]
-        public string provid {
-            get {
+
+        [XmlAttribute(DataType = "token")]
+        public string provid
+        {
+            get
+            {
                 return this.providField;
             }
-            set {
+            set
+            {
                 this.providField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse signinginstructionsset {
-            get {
+        public ST_TrueFalse signinginstructionsset
+        {
+            get
+            {
                 return this.signinginstructionssetField;
             }
-            set {
+            set
+            {
                 this.signinginstructionssetField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool signinginstructionssetSpecified {
-            get {
+        public bool signinginstructionssetSpecified
+        {
+            get
+            {
                 return this.signinginstructionssetFieldSpecified;
             }
-            set {
+            set
+            {
                 this.signinginstructionssetFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse allowcomments {
-            get {
+        public ST_TrueFalse allowcomments
+        {
+            get
+            {
                 return this.allowcommentsField;
             }
-            set {
+            set
+            {
                 this.allowcommentsField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool allowcommentsSpecified {
-            get {
+        public bool allowcommentsSpecified
+        {
+            get
+            {
                 return this.allowcommentsFieldSpecified;
             }
-            set {
+            set
+            {
                 this.allowcommentsFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse showsigndate {
-            get {
+        public ST_TrueFalse showsigndate
+        {
+            get
+            {
                 return this.showsigndateField;
             }
-            set {
+            set
+            {
                 this.showsigndateField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool showsigndateSpecified {
-            get {
+        public bool showsigndateSpecified
+        {
+            get
+            {
                 return this.showsigndateFieldSpecified;
             }
-            set {
+            set
+            {
                 this.showsigndateFieldSpecified = value;
             }
         }
-        
-    
-        [XmlAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
-        public string suggestedsigner {
-            get {
+
+        [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+        public string suggestedsigner
+        {
+            get
+            {
                 return this.suggestedsignerField;
             }
-            set {
+            set
+            {
                 this.suggestedsignerField = value;
             }
         }
-        
-    
-        [XmlAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
-        public string suggestedsigner2 {
-            get {
+
+        [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+        public string suggestedsigner2
+        {
+            get
+            {
                 return this.suggestedsigner2Field;
             }
-            set {
+            set
+            {
                 this.suggestedsigner2Field = value;
             }
         }
-        
-    
-        [XmlAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
-        public string suggestedsigneremail {
-            get {
+
+        [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+        public string suggestedsigneremail
+        {
+            get
+            {
                 return this.suggestedsigneremailField;
             }
-            set {
+            set
+            {
                 this.suggestedsigneremailField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string signinginstructions {
-            get {
+        public string signinginstructions
+        {
+            get
+            {
                 return this.signinginstructionsField;
             }
-            set {
+            set
+            {
                 this.signinginstructionsField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string addlxml {
-            get {
+        public string addlxml
+        {
+            get
+            {
                 return this.addlxmlField;
             }
-            set {
+            set
+            {
                 this.addlxmlField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string sigprovurl {
-            get {
+        public string sigprovurl
+        {
+            get
+            {
                 return this.sigprovurlField;
             }
-            set {
+            set
+            {
                 this.sigprovurlField = value;
             }
         }
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
     [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
-    [XmlRoot("shapelayout",Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
+    [XmlRoot("shapelayout", Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
     public class CT_ShapeLayout
     {
         private CT_IdMap idmapField = null;
@@ -2182,18 +2402,19 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             set { this.rulesField = value; }
         }
 
-
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "urn:schemas-microsoft-com:vml")]
         public ST_Ext ext
         {
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
             get { return ST_Ext.NONE != this.extField; }
         }
+
         //internal static XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces(new XmlQualifiedName[] {
         //    new XmlQualifiedName("o", "urn:schemas-microsoft-com:office:office"),
         //    new XmlQualifiedName("x", "urn:schemas-microsoft-com:office:excel"),
@@ -2235,8 +2456,6 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             return ctObj;
         }
 
-
-
         public void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<o:{0}", nodeName));
@@ -2250,12 +2469,9 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
                 this.rules.Write(sw, "rules");
             sw.Write(string.Format("</o:{0}>", nodeName));
         }
-
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
     [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
     [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
@@ -2270,6 +2486,7 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
@@ -2282,6 +2499,7 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.dataField; }
             set { this.dataField = value; }
         }
+
         [XmlIgnore]
         public bool dataSpecified
         {
@@ -2306,12 +2524,9 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             XmlHelper.WriteAttribute(sw, "data", this.data);
             sw.Write("/>");
         }
-
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
     [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
     [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
@@ -2333,8 +2548,6 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<o:{0}", nodeName));
@@ -2349,7 +2562,6 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             }
             sw.Write(string.Format("</o:{0}>", nodeName));
         }
-
 
         private List<CT_Entry> entryField = null; // 0..*
         private ST_Ext extField = ST_Ext.NONE;
@@ -2367,16 +2579,15 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
             get { return ST_Ext.NONE != this.extField; }
         }
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
     [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
     [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
@@ -2391,6 +2602,7 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return (int)this.newField; }
             set { this.newField = value; }
         }
+
         [XmlIgnore]
         public bool newSpecified
         {
@@ -2403,11 +2615,13 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return (int)this.oldField; }
             set { this.oldField = value; }
         }
+
         [XmlIgnore]
         public bool oldSpecified
         {
             get { return null != this.oldField; }
         }
+
         public static CT_Entry Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -2420,8 +2634,6 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<o:{0}", nodeName));
@@ -2430,12 +2642,9 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             sw.Write(">");
             sw.Write(string.Format("</o:{0}>", nodeName));
         }
-
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
     [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
     [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
@@ -2443,7 +2652,6 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
     {
         private List<CT_R> rField = null; // 0..*
         private ST_Ext extField = ST_Ext.NONE;
-
 
         [XmlElement("r")]
         public List<CT_R> r
@@ -2458,6 +2666,7 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
@@ -2480,12 +2689,10 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<o:{0}", nodeName));
-            if(this.ext!= ST_Ext.NONE)
+            if (this.ext != ST_Ext.NONE)
                 XmlHelper.WriteAttribute(sw, "v:ext", this.ext.ToString());
             sw.Write(">");
             if (this.r != null)
@@ -2497,19 +2704,15 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             }
             sw.Write(string.Format("</o:{0}>", nodeName));
         }
-
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
     [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
     [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
     public class CT_R
     {
-
-        private List<CT_Proxy> proxyField = null; // 0..*       
+        private List<CT_Proxy> proxyField = null; // 0..*
         private string idField = string.Empty; // 1..1
         private ST_RType typeField = ST_RType.NONE; // others optional
         private ST_How howField = ST_How.NONE;
@@ -2535,6 +2738,7 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.typeField; }
             set { this.typeField = value; }
         }
+
         [XmlIgnore]
         public bool typeSpecified
         {
@@ -2547,6 +2751,7 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.howField; }
             set { this.howField = value; }
         }
+
         [XmlIgnore]
         public bool howSpecified
         {
@@ -2559,6 +2764,7 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.idrefField; }
             set { this.idrefField = value; }
         }
+
         [XmlIgnore]
         public bool idrefSpecified
         {
@@ -2585,13 +2791,11 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<o:{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "id", this.id);
-            if(this.type!=ST_RType.NONE)
+            if (this.type != ST_RType.NONE)
                 XmlHelper.WriteAttribute(sw, "type", this.type.ToString());
             if (this.how != ST_How.NONE)
                 XmlHelper.WriteAttribute(sw, "how", this.how.ToString());
@@ -2608,15 +2812,12 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
         }
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
     [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
     [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
     public class CT_Proxy
     {
-
         private ST_TrueFalseBlank startField = ST_TrueFalseBlank.NONE;
         private ST_TrueFalseBlank endField = ST_TrueFalseBlank.NONE;
         private string idrefField = null;
@@ -2629,6 +2830,7 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.startField; }
             set { this.startField = value; }
         }
+
         [XmlIgnore]
         public bool startSpecified
         {
@@ -2642,6 +2844,7 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.endField; }
             set { this.endField = value; }
         }
+
         [XmlIgnore]
         public bool endSpecified
         {
@@ -2654,6 +2857,7 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.idrefField; }
             set { this.idrefField = value; }
         }
+
         [XmlIgnore]
         public bool idrefSpecified
         {
@@ -2666,6 +2870,7 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return (int)this.connectlocField; }
             set { this.connectlocField = value; }
         }
+
         [XmlIgnore]
         public bool connectlocSpecified
         {
@@ -2700,10 +2905,7 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             sw.Write(">");
             sw.Write(string.Format("</o:{0}>", nodeName));
         }
-
-
     }
-
 
     [Serializable]
     [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
@@ -2716,7 +2918,6 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
         connector,
         align,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
@@ -2731,258 +2932,273 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
         center,
         right,
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=true)]
-    public class CT_Diagram {
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
+    public class CT_Diagram
+    {
         private CT_RelationTable relationtableField;
-        
+
         private ST_Ext extField = ST_Ext.NONE;
-        
-        
-        
+
         private string dgmstyleField;
-        
+
         private ST_TrueFalse autoformatField;
-        
+
         private bool autoformatFieldSpecified;
-        
+
         private ST_TrueFalse reverseField;
-        
+
         private bool reverseFieldSpecified;
-        
+
         private ST_TrueFalse autolayoutField;
-        
+
         private bool autolayoutFieldSpecified;
-        
+
         private string dgmscalexField;
-        
+
         private string dgmscaleyField;
-        
+
         private string dgmfontsizeField;
-        
+
         private string constrainboundsField;
-        
+
         private string dgmbasetextscaleField;
-        
-    
-        public CT_RelationTable relationtable {
-            get {
+
+        public CT_RelationTable relationtable
+        {
+            get
+            {
                 return this.relationtableField;
             }
-            set {
+            set
+            {
                 this.relationtableField = value;
             }
         }
 
-
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "urn:schemas-microsoft-com:vml")]
         public ST_Ext ext
         {
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
             get { return ST_Ext.NONE != this.extField; }
         }
-        
-    
-        [XmlAttribute(DataType="integer")]
-        public string dgmstyle {
-            get {
+
+        [XmlAttribute(DataType = "integer")]
+        public string dgmstyle
+        {
+            get
+            {
                 return this.dgmstyleField;
             }
-            set {
+            set
+            {
                 this.dgmstyleField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse autoformat {
-            get {
+        public ST_TrueFalse autoformat
+        {
+            get
+            {
                 return this.autoformatField;
             }
-            set {
+            set
+            {
                 this.autoformatField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool autoformatSpecified {
-            get {
+        public bool autoformatSpecified
+        {
+            get
+            {
                 return this.autoformatFieldSpecified;
             }
-            set {
+            set
+            {
                 this.autoformatFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse reverse {
-            get {
+        public ST_TrueFalse reverse
+        {
+            get
+            {
                 return this.reverseField;
             }
-            set {
+            set
+            {
                 this.reverseField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool reverseSpecified {
-            get {
+        public bool reverseSpecified
+        {
+            get
+            {
                 return this.reverseFieldSpecified;
             }
-            set {
+            set
+            {
                 this.reverseFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse autolayout {
-            get {
+        public ST_TrueFalse autolayout
+        {
+            get
+            {
                 return this.autolayoutField;
             }
-            set {
+            set
+            {
                 this.autolayoutField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool autolayoutSpecified {
-            get {
+        public bool autolayoutSpecified
+        {
+            get
+            {
                 return this.autolayoutFieldSpecified;
             }
-            set {
+            set
+            {
                 this.autolayoutFieldSpecified = value;
             }
         }
-        
-    
-        [XmlAttribute(DataType="integer")]
-        public string dgmscalex {
-            get {
+
+        [XmlAttribute(DataType = "integer")]
+        public string dgmscalex
+        {
+            get
+            {
                 return this.dgmscalexField;
             }
-            set {
+            set
+            {
                 this.dgmscalexField = value;
             }
         }
-        
-    
-        [XmlAttribute(DataType="integer")]
-        public string dgmscaley {
-            get {
+
+        [XmlAttribute(DataType = "integer")]
+        public string dgmscaley
+        {
+            get
+            {
                 return this.dgmscaleyField;
             }
-            set {
+            set
+            {
                 this.dgmscaleyField = value;
             }
         }
-        
-    
-        [XmlAttribute(DataType="integer")]
-        public string dgmfontsize {
-            get {
+
+        [XmlAttribute(DataType = "integer")]
+        public string dgmfontsize
+        {
+            get
+            {
                 return this.dgmfontsizeField;
             }
-            set {
+            set
+            {
                 this.dgmfontsizeField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string constrainbounds {
-            get {
+        public string constrainbounds
+        {
+            get
+            {
                 return this.constrainboundsField;
             }
-            set {
+            set
+            {
                 this.constrainboundsField = value;
             }
         }
-        
-    
-        [XmlAttribute(DataType="integer")]
-        public string dgmbasetextscale {
-            get {
+
+        [XmlAttribute(DataType = "integer")]
+        public string dgmbasetextscale
+        {
+            get
+            {
                 return this.dgmbasetextscaleField;
             }
-            set {
+            set
+            {
                 this.dgmbasetextscaleField = value;
             }
         }
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=true)]
-    public class CT_RelationTable {
-        
-        private  List<CT_Relation> relField;
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
+    public class CT_RelationTable
+    {
+        private List<CT_Relation> relField;
+
         private ST_Ext extField = ST_Ext.NONE;
-        
-        
-        
-    
+
         [XmlElement("rel")]
-        public  List<CT_Relation> rel {
-            get {
+        public List<CT_Relation> rel
+        {
+            get
+            {
                 return this.relField;
             }
-            set {
+            set
+            {
                 this.relField = value;
             }
         }
 
-
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "urn:schemas-microsoft-com:vml")]
         public ST_Ext ext
         {
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
             get { return ST_Ext.NONE != this.extField; }
         }
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=true)]
-    public class CT_Relation {
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
+    public class CT_Relation
+    {
         private ST_Ext extField = ST_Ext.NONE;
-        
-        
-        
-        private string idsrcField;
-        
-        private string iddestField;
-        
-        private string idcntrField;
 
+        private string idsrcField;
+
+        private string iddestField;
+
+        private string idcntrField;
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "urn:schemas-microsoft-com:vml")]
         public ST_Ext ext
@@ -2990,315 +3206,331 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
             get { return ST_Ext.NONE != this.extField; }
-        }       
-    
+        }
+
         [XmlAttribute]
-        public string idsrc {
-            get {
+        public string idsrc
+        {
+            get
+            {
                 return this.idsrcField;
             }
-            set {
+            set
+            {
                 this.idsrcField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string iddest {
-            get {
+        public string iddest
+        {
+            get
+            {
                 return this.iddestField;
             }
-            set {
+            set
+            {
                 this.iddestField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string idcntr {
-            get {
+        public string idcntr
+        {
+            get
+            {
                 return this.idcntrField;
             }
-            set {
+            set
+            {
                 this.idcntrField = value;
             }
         }
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=true)]
-    public class CT_OLEObject {
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
+    public class CT_OLEObject
+    {
         private ST_OLELinkType linkTypeField;
-        
+
         private bool linkTypeFieldSpecified;
-        
+
         private ST_TrueFalseBlank lockedFieldField;
-        
+
         private bool lockedFieldFieldSpecified;
-        
+
         private string fieldCodesField;
-        
+
         private ST_OLEType typeField;
-        
+
         private bool typeFieldSpecified;
-        
+
         private string progIDField;
-        
+
         private string shapeIDField;
-        
+
         private ST_OLEDrawAspect drawAspectField;
-        
+
         private bool drawAspectFieldSpecified;
-        
+
         private string objectIDField;
-        
+
         private string idField;
-        
+
         private ST_OLEUpdateMode updateModeField;
-        
+
         private bool updateModeFieldSpecified;
-        
-    
-        public ST_OLELinkType LinkType {
-            get {
+
+        public ST_OLELinkType LinkType
+        {
+            get
+            {
                 return this.linkTypeField;
             }
-            set {
+            set
+            {
                 this.linkTypeField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool LinkTypeSpecified {
-            get {
+        public bool LinkTypeSpecified
+        {
+            get
+            {
                 return this.linkTypeFieldSpecified;
             }
-            set {
+            set
+            {
                 this.linkTypeFieldSpecified = value;
             }
         }
-        
-    
-        public ST_TrueFalseBlank LockedField {
-            get {
+
+        public ST_TrueFalseBlank LockedField
+        {
+            get
+            {
                 return this.lockedFieldField;
             }
-            set {
+            set
+            {
                 this.lockedFieldField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool LockedFieldSpecified {
-            get {
+        public bool LockedFieldSpecified
+        {
+            get
+            {
                 return this.lockedFieldFieldSpecified;
             }
-            set {
+            set
+            {
                 this.lockedFieldFieldSpecified = value;
             }
         }
-        
-    
-        public string FieldCodes {
-            get {
+
+        public string FieldCodes
+        {
+            get
+            {
                 return this.fieldCodesField;
             }
-            set {
+            set
+            {
                 this.fieldCodesField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_OLEType Type {
-            get {
+        public ST_OLEType Type
+        {
+            get
+            {
                 return this.typeField;
             }
-            set {
+            set
+            {
                 this.typeField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool TypeSpecified {
-            get {
+        public bool TypeSpecified
+        {
+            get
+            {
                 return this.typeFieldSpecified;
             }
-            set {
+            set
+            {
                 this.typeFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string ProgID {
-            get {
+        public string ProgID
+        {
+            get
+            {
                 return this.progIDField;
             }
-            set {
+            set
+            {
                 this.progIDField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string ShapeID {
-            get {
+        public string ShapeID
+        {
+            get
+            {
                 return this.shapeIDField;
             }
-            set {
+            set
+            {
                 this.shapeIDField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_OLEDrawAspect DrawAspect {
-            get {
+        public ST_OLEDrawAspect DrawAspect
+        {
+            get
+            {
                 return this.drawAspectField;
             }
-            set {
+            set
+            {
                 this.drawAspectField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool DrawAspectSpecified {
-            get {
+        public bool DrawAspectSpecified
+        {
+            get
+            {
                 return this.drawAspectFieldSpecified;
             }
-            set {
+            set
+            {
                 this.drawAspectFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string ObjectID {
-            get {
+        public string ObjectID
+        {
+            get
+            {
                 return this.objectIDField;
             }
-            set {
+            set
+            {
                 this.objectIDField = value;
             }
         }
 
-
         [XmlAttribute]
         public string id
         {
-            get {
+            get
+            {
                 return this.idField;
             }
-            set {
+            set
+            {
                 this.idField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_OLEUpdateMode UpdateMode {
-            get {
+        public ST_OLEUpdateMode UpdateMode
+        {
+            get
+            {
                 return this.updateModeField;
             }
-            set {
+            set
+            {
                 this.updateModeField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool UpdateModeSpecified {
-            get {
+        public bool UpdateModeSpecified
+        {
+            get
+            {
                 return this.updateModeFieldSpecified;
             }
-            set {
+            set
+            {
                 this.updateModeFieldSpecified = value;
             }
         }
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_OLELinkType {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_OLELinkType
+    {
         Picture,
-        
-    
+
         Bitmap,
-        
-    
+
         EnhancedMetaFile,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_OLEType {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_OLEType
+    {
         Embed,
-        
-    
+
         Link,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_OLEDrawAspect {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_OLEDrawAspect
+    {
         Content,
-        
-    
+
         Icon,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_OLEUpdateMode {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_OLEUpdateMode
+    {
         Always,
-        
-    
+
         OnCall,
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
     [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
     [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
     public class CT_Complex
     {
-
         private ST_Ext extField = ST_Ext.NONE;
-
-        
-
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "urn:schemas-microsoft-com:vml")]
         public ST_Ext ext
@@ -3306,108 +3538,105 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
             get { return ST_Ext.NONE != this.extField; }
         }
-    }    
+    }
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=true)]
-    public class CT_StrokeChild {
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
+    public class CT_StrokeChild
+    {
         private ST_Ext extField = ST_Ext.NONE;
-        
-        
-        
-        private ST_TrueFalse onField;
-        
-        private bool onFieldSpecified;
-        
-        private string weightField;
-        
-        private string colorField;
-        
-        private string color2Field;
-        
-        private string opacityField;
-        
-        private ST_StrokeLineStyle linestyleField;
-        
-        private bool linestyleFieldSpecified;
-        
-        private decimal miterlimitField;
-        
-        private bool miterlimitFieldSpecified;
-        
-        private ST_StrokeJoinStyle joinstyleField;
-        
-        private bool joinstyleFieldSpecified;
-        
-        private ST_StrokeEndCap endcapField;
-        
-        private bool endcapFieldSpecified;
-        
-        private string dashstyleField;
-        
-        private ST_TrueFalse insetpenField;
-        
-        private bool insetpenFieldSpecified;
-        
-        private ST_FillType filltypeField;
-        
-        private bool filltypeFieldSpecified;
-        
-        private string srcField;
-        
-        private ST_ImageAspect imageaspectField;
-        
-        private bool imageaspectFieldSpecified;
-        
-        private string imagesizeField;
-        
-        private ST_TrueFalse imagealignshapeField;
-        
-        private bool imagealignshapeFieldSpecified;
-        
-        private ST_StrokeArrowType startarrowField;
-        
-        private bool startarrowFieldSpecified;
-        
-        private ST_StrokeArrowWidth startarrowwidthField;
-        
-        private bool startarrowwidthFieldSpecified;
-        
-        private ST_StrokeArrowLength startarrowlengthField;
-        
-        private bool startarrowlengthFieldSpecified;
-        
-        private ST_StrokeArrowType endarrowField;
-        
-        private bool endarrowFieldSpecified;
-        
-        private ST_StrokeArrowWidth endarrowwidthField;
-        
-        private bool endarrowwidthFieldSpecified;
-        
-        private ST_StrokeArrowLength endarrowlengthField;
-        
-        private bool endarrowlengthFieldSpecified;
-        
-        private string hrefField;
-        
-        private string althrefField;
-        
-        private string titleField;
-        
-        private ST_TrueFalse forcedashField;
-        
-        private bool forcedashFieldSpecified;
 
+        private ST_TrueFalse onField;
+
+        private bool onFieldSpecified;
+
+        private string weightField;
+
+        private string colorField;
+
+        private string color2Field;
+
+        private string opacityField;
+
+        private ST_StrokeLineStyle linestyleField;
+
+        private bool linestyleFieldSpecified;
+
+        private decimal miterlimitField;
+
+        private bool miterlimitFieldSpecified;
+
+        private ST_StrokeJoinStyle joinstyleField;
+
+        private bool joinstyleFieldSpecified;
+
+        private ST_StrokeEndCap endcapField;
+
+        private bool endcapFieldSpecified;
+
+        private string dashstyleField;
+
+        private ST_TrueFalse insetpenField;
+
+        private bool insetpenFieldSpecified;
+
+        private ST_FillType filltypeField;
+
+        private bool filltypeFieldSpecified;
+
+        private string srcField;
+
+        private ST_ImageAspect imageaspectField;
+
+        private bool imageaspectFieldSpecified;
+
+        private string imagesizeField;
+
+        private ST_TrueFalse imagealignshapeField;
+
+        private bool imagealignshapeFieldSpecified;
+
+        private ST_StrokeArrowType startarrowField;
+
+        private bool startarrowFieldSpecified;
+
+        private ST_StrokeArrowWidth startarrowwidthField;
+
+        private bool startarrowwidthFieldSpecified;
+
+        private ST_StrokeArrowLength startarrowlengthField;
+
+        private bool startarrowlengthFieldSpecified;
+
+        private ST_StrokeArrowType endarrowField;
+
+        private bool endarrowFieldSpecified;
+
+        private ST_StrokeArrowWidth endarrowwidthField;
+
+        private bool endarrowwidthFieldSpecified;
+
+        private ST_StrokeArrowLength endarrowlengthField;
+
+        private bool endarrowlengthFieldSpecified;
+
+        private string hrefField;
+
+        private string althrefField;
+
+        private string titleField;
+
+        private ST_TrueFalse forcedashField;
+
+        private bool forcedashFieldSpecified;
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "urn:schemas-microsoft-com:vml")]
         public ST_Ext ext
@@ -3415,512 +3644,593 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
             get { return ST_Ext.NONE != this.extField; }
-        }       
-    
+        }
+
         [XmlAttribute]
-        public ST_TrueFalse on {
-            get {
+        public ST_TrueFalse on
+        {
+            get
+            {
                 return this.onField;
             }
-            set {
+            set
+            {
                 this.onField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool onSpecified {
-            get {
+        public bool onSpecified
+        {
+            get
+            {
                 return this.onFieldSpecified;
             }
-            set {
+            set
+            {
                 this.onFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string weight {
-            get {
+        public string weight
+        {
+            get
+            {
                 return this.weightField;
             }
-            set {
+            set
+            {
                 this.weightField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string color {
-            get {
+        public string color
+        {
+            get
+            {
                 return this.colorField;
             }
-            set {
+            set
+            {
                 this.colorField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string color2 {
-            get {
+        public string color2
+        {
+            get
+            {
                 return this.color2Field;
             }
-            set {
+            set
+            {
                 this.color2Field = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string opacity {
-            get {
+        public string opacity
+        {
+            get
+            {
                 return this.opacityField;
             }
-            set {
+            set
+            {
                 this.opacityField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_StrokeLineStyle linestyle {
-            get {
+        public ST_StrokeLineStyle linestyle
+        {
+            get
+            {
                 return this.linestyleField;
             }
-            set {
+            set
+            {
                 this.linestyleField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool linestyleSpecified {
-            get {
+        public bool linestyleSpecified
+        {
+            get
+            {
                 return this.linestyleFieldSpecified;
             }
-            set {
+            set
+            {
                 this.linestyleFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public decimal miterlimit {
-            get {
+        public decimal miterlimit
+        {
+            get
+            {
                 return this.miterlimitField;
             }
-            set {
+            set
+            {
                 this.miterlimitField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool miterlimitSpecified {
-            get {
+        public bool miterlimitSpecified
+        {
+            get
+            {
                 return this.miterlimitFieldSpecified;
             }
-            set {
+            set
+            {
                 this.miterlimitFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_StrokeJoinStyle joinstyle {
-            get {
+        public ST_StrokeJoinStyle joinstyle
+        {
+            get
+            {
                 return this.joinstyleField;
             }
-            set {
+            set
+            {
                 this.joinstyleField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool joinstyleSpecified {
-            get {
+        public bool joinstyleSpecified
+        {
+            get
+            {
                 return this.joinstyleFieldSpecified;
             }
-            set {
+            set
+            {
                 this.joinstyleFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_StrokeEndCap endcap {
-            get {
+        public ST_StrokeEndCap endcap
+        {
+            get
+            {
                 return this.endcapField;
             }
-            set {
+            set
+            {
                 this.endcapField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool endcapSpecified {
-            get {
+        public bool endcapSpecified
+        {
+            get
+            {
                 return this.endcapFieldSpecified;
             }
-            set {
+            set
+            {
                 this.endcapFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string dashstyle {
-            get {
+        public string dashstyle
+        {
+            get
+            {
                 return this.dashstyleField;
             }
-            set {
+            set
+            {
                 this.dashstyleField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse insetpen {
-            get {
+        public ST_TrueFalse insetpen
+        {
+            get
+            {
                 return this.insetpenField;
             }
-            set {
+            set
+            {
                 this.insetpenField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool insetpenSpecified {
-            get {
+        public bool insetpenSpecified
+        {
+            get
+            {
                 return this.insetpenFieldSpecified;
             }
-            set {
+            set
+            {
                 this.insetpenFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_FillType filltype {
-            get {
+        public ST_FillType filltype
+        {
+            get
+            {
                 return this.filltypeField;
             }
-            set {
+            set
+            {
                 this.filltypeField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool filltypeSpecified {
-            get {
+        public bool filltypeSpecified
+        {
+            get
+            {
                 return this.filltypeFieldSpecified;
             }
-            set {
+            set
+            {
                 this.filltypeFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string src {
-            get {
+        public string src
+        {
+            get
+            {
                 return this.srcField;
             }
-            set {
+            set
+            {
                 this.srcField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_ImageAspect imageaspect {
-            get {
+        public ST_ImageAspect imageaspect
+        {
+            get
+            {
                 return this.imageaspectField;
             }
-            set {
+            set
+            {
                 this.imageaspectField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool imageaspectSpecified {
-            get {
+        public bool imageaspectSpecified
+        {
+            get
+            {
                 return this.imageaspectFieldSpecified;
             }
-            set {
+            set
+            {
                 this.imageaspectFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public string imagesize {
-            get {
+        public string imagesize
+        {
+            get
+            {
                 return this.imagesizeField;
             }
-            set {
+            set
+            {
                 this.imagesizeField = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_TrueFalse imagealignshape {
-            get {
+        public ST_TrueFalse imagealignshape
+        {
+            get
+            {
                 return this.imagealignshapeField;
             }
-            set {
+            set
+            {
                 this.imagealignshapeField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool imagealignshapeSpecified {
-            get {
+        public bool imagealignshapeSpecified
+        {
+            get
+            {
                 return this.imagealignshapeFieldSpecified;
             }
-            set {
+            set
+            {
                 this.imagealignshapeFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_StrokeArrowType startarrow {
-            get {
+        public ST_StrokeArrowType startarrow
+        {
+            get
+            {
                 return this.startarrowField;
             }
-            set {
+            set
+            {
                 this.startarrowField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool startarrowSpecified {
-            get {
+        public bool startarrowSpecified
+        {
+            get
+            {
                 return this.startarrowFieldSpecified;
             }
-            set {
+            set
+            {
                 this.startarrowFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_StrokeArrowWidth startarrowwidth {
-            get {
+        public ST_StrokeArrowWidth startarrowwidth
+        {
+            get
+            {
                 return this.startarrowwidthField;
             }
-            set {
+            set
+            {
                 this.startarrowwidthField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool startarrowwidthSpecified {
-            get {
+        public bool startarrowwidthSpecified
+        {
+            get
+            {
                 return this.startarrowwidthFieldSpecified;
             }
-            set {
+            set
+            {
                 this.startarrowwidthFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_StrokeArrowLength startarrowlength {
-            get {
+        public ST_StrokeArrowLength startarrowlength
+        {
+            get
+            {
                 return this.startarrowlengthField;
             }
-            set {
+            set
+            {
                 this.startarrowlengthField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool startarrowlengthSpecified {
-            get {
+        public bool startarrowlengthSpecified
+        {
+            get
+            {
                 return this.startarrowlengthFieldSpecified;
             }
-            set {
+            set
+            {
                 this.startarrowlengthFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_StrokeArrowType endarrow {
-            get {
+        public ST_StrokeArrowType endarrow
+        {
+            get
+            {
                 return this.endarrowField;
             }
-            set {
+            set
+            {
                 this.endarrowField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool endarrowSpecified {
-            get {
+        public bool endarrowSpecified
+        {
+            get
+            {
                 return this.endarrowFieldSpecified;
             }
-            set {
+            set
+            {
                 this.endarrowFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_StrokeArrowWidth endarrowwidth {
-            get {
+        public ST_StrokeArrowWidth endarrowwidth
+        {
+            get
+            {
                 return this.endarrowwidthField;
             }
-            set {
+            set
+            {
                 this.endarrowwidthField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool endarrowwidthSpecified {
-            get {
+        public bool endarrowwidthSpecified
+        {
+            get
+            {
                 return this.endarrowwidthFieldSpecified;
             }
-            set {
+            set
+            {
                 this.endarrowwidthFieldSpecified = value;
             }
         }
-        
-    
+
         [XmlAttribute]
-        public ST_StrokeArrowLength endarrowlength {
-            get {
+        public ST_StrokeArrowLength endarrowlength
+        {
+            get
+            {
                 return this.endarrowlengthField;
             }
-            set {
+            set
+            {
                 this.endarrowlengthField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool endarrowlengthSpecified {
-            get {
+        public bool endarrowlengthSpecified
+        {
+            get
+            {
                 return this.endarrowlengthFieldSpecified;
             }
-            set {
+            set
+            {
                 this.endarrowlengthFieldSpecified = value;
             }
         }
-        
-    
-        [XmlAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
-        public string href {
-            get {
+
+        [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+        public string href
+        {
+            get
+            {
                 return this.hrefField;
             }
-            set {
+            set
+            {
                 this.hrefField = value;
             }
         }
-        
-    
-        [XmlAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
-        public string althref {
-            get {
+
+        [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+        public string althref
+        {
+            get
+            {
                 return this.althrefField;
             }
-            set {
+            set
+            {
                 this.althrefField = value;
             }
         }
-        
-    
-        [XmlAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
-        public string title {
-            get {
+
+        [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+        public string title
+        {
+            get
+            {
                 return this.titleField;
             }
-            set {
+            set
+            {
                 this.titleField = value;
             }
         }
-        
-    
-        [XmlAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
-        public ST_TrueFalse forcedash {
-            get {
+
+        [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+        public ST_TrueFalse forcedash
+        {
+            get
+            {
                 return this.forcedashField;
             }
-            set {
+            set
+            {
                 this.forcedashField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool forcedashSpecified {
-            get {
+        public bool forcedashSpecified
+        {
+            get
+            {
                 return this.forcedashFieldSpecified;
             }
-            set {
+            set
+            {
                 this.forcedashFieldSpecified = value;
             }
         }
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=true)]
-    public class CT_ClipPath {
-        
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
+    public class CT_ClipPath
+    {
         private string vField;
-        
-    
-        [XmlAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
-        public string v {
-            get {
+
+        [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified)]
+        public string v
+        {
+            get
+            {
                 return this.vField;
             }
-            set {
+            set
+            {
                 this.vField = value;
             }
         }
     }
-    
 
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
-    [XmlType(TypeName="CT_Fill", Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot("CT_Fill", Namespace="urn:schemas-microsoft-com:office:office", IsNullable=true)]
-    public class CT_Fill {
-        
+    [XmlType(TypeName = "CT_Fill", Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot("CT_Fill", Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = true)]
+    public class CT_Fill
+    {
         private ST_Ext extField = ST_Ext.NONE;
-        
-        
-        
-        private ST_FillType1 typeField;
-        
-        private bool typeFieldSpecified;
 
+        private ST_FillType1 typeField;
+
+        private bool typeFieldSpecified;
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "urn:schemas-microsoft-com:vml")]
         public ST_Ext ext
@@ -3928,221 +4238,178 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Office
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         [XmlIgnore]
         public bool extSpecified
         {
             get { return ST_Ext.NONE != this.extField; }
-        }       
-    
+        }
+
         [XmlAttribute]
-        public ST_FillType1 type {
-            get {
+        public ST_FillType1 type
+        {
+            get
+            {
                 return this.typeField;
             }
-            set {
+            set
+            {
                 this.typeField = value;
             }
         }
-        
-    
+
         [XmlIgnore]
-        public bool typeSpecified {
-            get {
+        public bool typeSpecified
+        {
+            get
+            {
                 return this.typeFieldSpecified;
             }
-            set {
+            set
+            {
                 this.typeFieldSpecified = value;
             }
         }
     }
-    
 
     [Serializable]
-    [XmlType(TypeName="ST_FillType", Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot("ST_FillType", Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_FillType1 {
-        
-    
+    [XmlType(TypeName = "ST_FillType", Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot("ST_FillType", Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_FillType1
+    {
         gradientCenter,
-        
-    
+
         solid,
-        
-    
+
         pattern,
-        
-    
+
         tile,
-        
-    
+
         frame,
-        
-    
+
         gradientUnscaled,
-        
-    
+
         gradientRadial,
-        
-    
+
         gradient,
-        
-    
+
         background,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_BWMode {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_BWMode
+    {
         color,
-        
-    
+
         auto,
-        
-    
+
         grayScale,
-        
-    
+
         lightGrayscale,
-        
-    
+
         inverseGray,
-        
-    
+
         grayOutline,
-        
-    
+
         highContrast,
-        
-    
+
         black,
-        
-    
+
         white,
-        
-    
+
         hide,
-        
-    
+
         undrawn,
-        
-    
+
         blackTextAndLines,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_ScreenSize {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_ScreenSize
+    {
         [XmlEnum("544,376")]
         Item544376,
-        
-    
+
         [XmlEnum("640,480")]
         Item640480,
-        
-    
+
         [XmlEnum("720,512")]
         Item720512,
-        
-    
+
         [XmlEnum("800,600")]
         Item800600,
-        
-    
+
         [XmlEnum("1024,768")]
         Item1024768,
-        
-    
+
         [XmlEnum("1152,862")]
         Item1152862,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_InsetMode {
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_InsetMode
+    {
         auto,
         custom,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_CalloutPlacement {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_CalloutPlacement
+    {
         top,
-        
-    
+
         center,
-        
-    
+
         bottom,
-        
-    
+
         user,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_ConnectorType {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_ConnectorType
+    {
         none,
-        
-    
+
         straight,
-        
-    
+
         elbow,
-        
-    
+
         curved,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_HrAlign {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_HrAlign
+    {
         left,
-        
-    
+
         right,
-        
-    
+
         center,
     }
-    
 
     [Serializable]
-    [XmlType(Namespace="urn:schemas-microsoft-com:office:office")]
-    [XmlRoot(Namespace="urn:schemas-microsoft-com:office:office", IsNullable=false)]
-    public enum ST_ConnectType {
-        
-    
+    [XmlType(Namespace = "urn:schemas-microsoft-com:office:office")]
+    [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:office", IsNullable = false)]
+    public enum ST_ConnectType
+    {
         none,
-        
-    
+
         rect,
-        
-    
+
         segments,
-        
-    
+
         custom,
     }
 }

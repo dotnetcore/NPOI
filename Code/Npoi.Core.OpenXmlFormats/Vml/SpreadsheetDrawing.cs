@@ -1,18 +1,15 @@
-﻿using System;
+﻿using Npoi.Core.OpenXml4Net.Util;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
 using System.ComponentModel;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
-using Npoi.Core.OpenXml4Net.Util;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Vml.Spreadsheet
 {
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategory("code")]
     [XmlType(Namespace = "urn:schemas-microsoft-com:office:excel")]
     [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:excel", IsNullable = true)]
@@ -23,13 +20,13 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Spreadsheet
             this.rowField = new List<int>();
             this.columnField = new List<int>();
         }
+
         //private List<object> itemsField;
 
         //private ItemsChoiceType[] itemsElementNameField;
 
         private ST_ObjectType objectTypeField;
 
-    
         //[XmlElement("Accel", typeof(string), DataType = "integer")]
         //[XmlElement("Accel2", typeof(string), DataType = "integer")]
         //[XmlElement("Anchor", typeof(string))]
@@ -125,11 +122,11 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Spreadsheet
                 else if (childNode.Name.LocalName == "AutoFill")
                     ctObj.autoFill = Npoi.Core.OpenXmlFormats.Util.XmlHelper.ReadTrueFalseBlank(childNode.Value);
                 else if (childNode.Name.LocalName == "Visible")
-                    ctObj.visible =Npoi.Core.OpenXmlFormats.Util.XmlHelper.ReadTrueFalseBlank(childNode.Value);
+                    ctObj.visible = Npoi.Core.OpenXmlFormats.Util.XmlHelper.ReadTrueFalseBlank(childNode.Value);
                 else if (childNode.Name.LocalName == "MoveWithCells")
-                    ctObj.moveWithCells =Npoi.Core.OpenXmlFormats.Util.XmlHelper.ReadTrueFalseBlank(childNode.Value);
+                    ctObj.moveWithCells = Npoi.Core.OpenXmlFormats.Util.XmlHelper.ReadTrueFalseBlank(childNode.Value);
                 else if (childNode.Name.LocalName == "SizeWithCells")
-                    ctObj.sizeWithCells =Npoi.Core.OpenXmlFormats.Util.XmlHelper.ReadTrueFalseBlank(childNode.Value);
+                    ctObj.sizeWithCells = Npoi.Core.OpenXmlFormats.Util.XmlHelper.ReadTrueFalseBlank(childNode.Value);
                 else if (childNode.Name.LocalName == "Column")
                     ctObj.column.Add(Int32.Parse(childNode.Value));
                 else if (childNode.Name.LocalName == "Row")
@@ -137,8 +134,6 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -172,7 +167,6 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Spreadsheet
             sw.Write(string.Format("</x:{0}>", nodeName));
         }
 
-
         public void AddNewRow(int rowNum)
         {
             if (rowField != null)
@@ -180,12 +174,13 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Spreadsheet
                 rowField.Add(rowNum);
             }
         }
+
         public void AddNewColumn(int columnNum)
         {
             if (columnField != null)
             {
                 columnField.Add(columnNum);
-            }        
+            }
         }
 
         public void AddNewMoveWithCells()
@@ -193,12 +188,15 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Spreadsheet
             this.moveWithCellsField = ST_TrueFalseBlank.t;
             this.moveWithCellsFieldSpecified = true;
         }
+
         public void AddNewSizeWithCells()
         {
             this.sizeWithCellsField = ST_TrueFalseBlank.t;
             this.sizeWithCellsFieldSpecified = true;
         }
+
         private string anchorField;
+
         [XmlElement(ElementName = "Anchor")]
         public string anchor
         {
@@ -217,8 +215,8 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Spreadsheet
             this.autoFillFieldSpecified = true;
         }
 
-        ST_TrueFalseBlank autoFillField = ST_TrueFalseBlank.NONE;
-        bool autoFillFieldSpecified = false;
+        private ST_TrueFalseBlank autoFillField = ST_TrueFalseBlank.NONE;
+        private bool autoFillFieldSpecified = false;
 
         [XmlElement(ElementName = "AutoFill")]
         [DefaultValue(ST_TrueFalseBlank.NONE)]
@@ -227,6 +225,7 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Spreadsheet
             get { return this.autoFillField; }
             set { this.autoFillField = value; }
         }
+
         [XmlIgnore]
         public bool autoFillSpecified
         {
@@ -234,8 +233,8 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Spreadsheet
             set { this.autoFillFieldSpecified = value; }
         }
 
-        ST_TrueFalseBlank visibleField = ST_TrueFalseBlank.NONE;
-        bool visibleFieldSpecified = false;
+        private ST_TrueFalseBlank visibleField = ST_TrueFalseBlank.NONE;
+        private bool visibleFieldSpecified = false;
 
         [XmlElement(ElementName = "Visible")]
         [DefaultValue(ST_TrueFalseBlank.NONE)]
@@ -244,6 +243,7 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Spreadsheet
             get { return this.visibleField; }
             set { this.visibleField = value; }
         }
+
         [XmlIgnore]
         public bool visibleSpecified
         {
@@ -251,32 +251,36 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Spreadsheet
             set { this.visibleFieldSpecified = value; }
         }
 
-        ST_TrueFalseBlank moveWithCellsField= ST_TrueFalseBlank.NONE;
-        bool moveWithCellsFieldSpecified = false;
+        private ST_TrueFalseBlank moveWithCellsField = ST_TrueFalseBlank.NONE;
+        private bool moveWithCellsFieldSpecified = false;
 
-        [XmlElement(ElementName="MoveWithCells")]
+        [XmlElement(ElementName = "MoveWithCells")]
         [DefaultValue(ST_TrueFalseBlank.NONE)]
         public ST_TrueFalseBlank moveWithCells
         {
             get { return this.moveWithCellsField; }
             set { this.moveWithCellsField = value; }
         }
+
         [XmlIgnore]
         public bool moveWithCellsSpecified
         {
             get { return this.moveWithCellsFieldSpecified; }
             set { this.moveWithCellsFieldSpecified = value; }
         }
+
         public int SizeOfMoveWithCellsArray()
         {
-            return moveWithCellsSpecified?1:0;
+            return moveWithCellsSpecified ? 1 : 0;
         }
+
         public int SizeOfSizeWithCellsArray()
         {
-            return sizeWithCellsFieldSpecified?1:0;
+            return sizeWithCellsFieldSpecified ? 1 : 0;
         }
-        ST_TrueFalseBlank sizeWithCellsField = ST_TrueFalseBlank.NONE;
-        bool sizeWithCellsFieldSpecified = false;
+
+        private ST_TrueFalseBlank sizeWithCellsField = ST_TrueFalseBlank.NONE;
+        private bool sizeWithCellsFieldSpecified = false;
 
         [XmlElement(ElementName = "SizeWithCells")]
         [DefaultValue(ST_TrueFalseBlank.NONE)]
@@ -285,40 +289,46 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Spreadsheet
             get { return this.sizeWithCellsField; }
             set { this.sizeWithCellsField = value; }
         }
+
         [XmlIgnore]
         public bool sizeWithCellsSpecified
         {
             get { return this.sizeWithCellsFieldSpecified; }
             set { this.sizeWithCellsFieldSpecified = value; }
         }
-        
 
         private List<int> columnField;
+
         [XmlElement(ElementName = "Column")]
         public List<int> column
         {
             get { return this.columnField; }
             set { this.columnField = value; }
         }
+
         public int GetColumnArray(int index)
         {
             return this.columnField[index];
         }
+
         public void SetColumnArray(int index, int value)
         {
-            this.columnField[index]= value;
+            this.columnField[index] = value;
         }
+
         public void SetRowArray(int index, int value)
         {
             this.rowField[index] = value;
         }
+
         public void SetAnchorArray(int index, string value)
         {
             AddNewAnchor(value);
         }
+
         private List<int> rowField;
 
-        [XmlElement(ElementName="Row")]
+        [XmlElement(ElementName = "Row")]
         public List<int> row
         {
             get { return this.rowField; }
@@ -329,7 +339,7 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Spreadsheet
         {
             return this.rowField[index];
         }
-    
+
         [XmlAttribute]
         public ST_ObjectType ObjectType
         {
@@ -349,323 +359,223 @@ namespace Npoi.Core.OpenXmlFormats.Vml.Spreadsheet
         }
     }
 
-
     [Serializable]
     [XmlType(Namespace = "urn:schemas-microsoft-com:office:excel")]
     [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:excel", IsNullable = false)]
     public enum ST_TrueFalseBlank
     {
         NONE,
+
         [XmlEnum("True")]
         @true,
 
-    
         t,
 
         [XmlEnum("False")]
         @false,
 
-    
         f,
 
-    
         //[XmlEnum("")]
         //Item,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "urn:schemas-microsoft-com:office:excel")]
     [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:excel", IsNullable = false)]
     public enum ST_CF
     {
-
-    
         PictOld,
 
-    
         Pict,
 
-    
         Bitmap,
 
-    
         PictPrint,
 
-    
         PictScreen,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "urn:schemas-microsoft-com:office:excel", IncludeInSchema = false)]
     public enum ItemsChoiceType
     {
-
-    
         Accel,
 
-    
         Accel2,
 
-    
         Anchor,
 
-    
         AutoFill,
 
-    
         AutoLine,
 
-    
         AutoPict,
 
-    
         AutoScale,
 
-    
         CF,
 
-    
         Camera,
 
-    
         Cancel,
 
-    
         Checked,
 
-    
         ColHidden,
 
-    
         Colored,
 
-    
         Column,
 
-    
         DDE,
 
-    
         Default,
 
-    
         DefaultSize,
 
-    
         Disabled,
 
-    
         Dismiss,
 
-    
         DropLines,
 
-    
         DropStyle,
 
-    
         Dx,
 
-    
         FirstButton,
 
-    
         FmlaGroup,
 
-    
         FmlaLink,
 
-    
         FmlaMacro,
 
-    
         FmlaPict,
 
-    
         FmlaRange,
 
-    
         FmlaTxbx,
 
-    
         Help,
 
-    
         Horiz,
 
-    
         Inc,
 
-    
         JustLastX,
 
-    
         LCT,
 
-    
         ListItem,
 
-    
         LockText,
 
-    
         Locked,
 
-    
         MapOCX,
 
-    
         Max,
 
-    
         Min,
 
-    
         MoveWithCells,
 
-    
         MultiLine,
 
-    
         MultiSel,
 
-    
         NoThreeD,
 
-    
         NoThreeD2,
 
-    
         Page,
 
-    
         PrintObject,
 
-    
         RecalcAlways,
 
-    
         Row,
 
-    
         RowHidden,
 
-    
         ScriptExtended,
 
-    
         ScriptLanguage,
 
-    
         ScriptLocation,
 
-    
         ScriptText,
 
-    
         SecretEdit,
 
-    
         Sel,
 
-    
         SelType,
 
-    
         SizeWithCells,
 
-    
         TextHAlign,
 
-    
         TextVAlign,
 
-    
         UIObj,
 
-    
         VScroll,
 
-    
         VTEdit,
 
-    
         Val,
 
-    
         ValidIds,
 
-    
         Visible,
 
-    
         WidthMin,
     }
-
 
     [Serializable]
     [XmlType(Namespace = "urn:schemas-microsoft-com:office:excel")]
     [XmlRoot(Namespace = "urn:schemas-microsoft-com:office:excel", IsNullable = false)]
     public enum ST_ObjectType
     {
-
-    
         Button,
 
-    
         Checkbox,
 
-    
         Dialog,
 
-    
         Drop,
 
-    
         Edit,
 
-    
         GBox,
 
-    
         Label,
 
-    
         LineA,
 
-    
         List,
 
-    
         Movie,
 
-    
         Note,
 
-    
         Pict,
 
-    
         Radio,
 
-    
         RectA,
 
-    
         Scroll,
 
-    
         Spin,
 
-    
         Shape,
 
-    
         Group,
 
-    
         Rect,
     }
 }

@@ -1,25 +1,23 @@
-﻿using System;
+﻿using Npoi.Core.OpenXml4Net.Exceptions;
+using Npoi.Core.Util;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Npoi.Core.OpenXml4Net.Exceptions;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
-using Npoi.Core;
-using Npoi.Core.Util;
 
 namespace Npoi.Core.OpenXml4Net.OPC.Internal
 {
     /**
      * Manage package content types ([Content_Types].xml part).
-     * 
+     *
      * @author Julien Chable
      * @version 1.0
      */
+
     public abstract class ContentTypeManager
     {
-
         /**
          * Content type part name.
          */
@@ -61,13 +59,14 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
 
         /**
          * Constructor. Parses the content of the specified input stream.
-         * 
+         *
          * @param in
          *            If different of <i>null</i> then the content types part is
          *            retrieve and parse.
          * @throws InvalidFormatException
          *             If the content types part content is not valid.
          */
+
         public ContentTypeManager(Stream in1, OPCPackage pkg)
         {
             this.container = pkg;
@@ -122,6 +121,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * Types stream.
          * </p>
          */
+
         public void AddContentType(PackagePartName partName, String contentType)
         {
             bool defaultCTExists = false;
@@ -136,12 +136,13 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
 
         /**
          * Add an override content type for a specific part.
-         * 
+         *
          * @param partName
          *            Name of the part.
          * @param contentType
          *            Content type of the part.
          */
+
         private void AddOverrideContentType(PackagePartName partName,
                 String contentType)
         {
@@ -156,12 +157,13 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
 
         /**
          * Add a content type associated with the specified extension.
-         * 
+         *
          * @param extension
          *            The part name extension to bind to a content type.
          * @param contentType
          *            The content type associated with the specified extension.
          */
+
         private void AddDefaultContentType(String extension, String contentType)
         {
             // Remark : Originally the latest parameter was :
@@ -188,6 +190,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @exception InvalidOperationException
          *                Throws if
          */
+
         public void RemoveContentType(PackagePartName partName)
         {
             if (partName == null)
@@ -260,12 +263,13 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
 
         /**
          * Check if the specified content type is already register.
-         * 
+         *
          * @param contentType
          *            The content type to check.
          * @return <code>true</code> if the specified content type is already
          *         register, then <code>false</code>.
          */
+
         public bool IsContentTypeRegister(String contentType)
         {
             if (contentType == null)
@@ -309,11 +313,12 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @return The content type associated with the URI (in case of an override
          *         content type) or the extension (in case of default content type),
          *         else <code>null</code>.
-         * 
+         *
          * @exception OpenXml4NetRuntimeException
          *                Throws if the content type manager is not able to find the
          *                content from an existing part.
          */
+
         public String GetContentType(PackagePartName partName)
         {
             if (partName == null)
@@ -348,6 +353,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
         /**
          * Clear all content types.
          */
+
         public void ClearAll()
         {
             this.defaultContentType.Clear();
@@ -357,8 +363,9 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
 
         /**
          * Clear all override content types.
-         * 
+         *
          */
+
         public void ClearOverrideContentTypes()
         {
             if (this.overrideContentType != null)
@@ -367,16 +374,16 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
 
         /**
          * Parse the content types part.
-         * 
+         *
          * @throws InvalidFormatException
          *             Throws if the content type doesn't exist or the XML format is
          *             invalid.
          */
+
         private void ParseContentTypesFile(Stream in1)
         {
             try
             {
-
                 //in1.Position = 0;
                 XPathDocument xpathdoc = DocumentHelper.ReadDocument(in1);
                 XPathNavigator xpathnav = xpathdoc.CreateNavigator();
@@ -396,7 +403,6 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
 
                 while (iterator.MoveNext())
                 {
-
                     // Overriden content types
                     //iterator.Current.MoveToNext();
                     Uri uri = PackagingUriHelper.ParseUri(iterator.Current.GetAttribute(PART_NAME_ATTRIBUTE_NAME, xpathnav.NamespaceURI), UriKind.RelativeOrAbsolute);
@@ -414,12 +420,13 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
 
         /**
          * Save the contents type part.
-         * 
+         *
          * @param outStream
          *            The output stream use to save the XML content of the content
          *            types part.
          * @return <b>true</b> if the operation success, else <b>false</b>.
          */
+
         public bool Save(Stream outStream)
         {
             var xmlOutDoc = new XDocument();
@@ -450,7 +457,6 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
             // Adding specific types if any exist
             if (overrideContentType != null)
             {
-
                 IEnumerator<KeyValuePair<PackagePartName, string>> overrideContentTypes = overrideContentType.GetEnumerator();
                 while (overrideContentTypes.MoveNext())
                 {
@@ -462,18 +468,18 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
 
             // Save content in the specified output stream
             return this.SaveImpl(xmlOutDoc, outStream);
-
         }
 
         /**
          * Use to Append specific type XML elements, use by the save() method.
-         * 
+         *
          * @param root
          *            XML parent element use to Append this override type element.
          * @param entry
          *            The values to Append.
          * @see #save(java.io.OutputStream)
          */
+
         private void AppendSpecificTypes(XDocument xmldoc, XElement root,
                 KeyValuePair<PackagePartName, String> entry)
         {
@@ -487,13 +493,14 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
 
         /**
          * Use to Append default types XML elements, use by the save() metid.
-         * 
+         *
          * @param root
          *            XML parent element use to Append this default type element.
          * @param entry
          *            The values to Append.
          * @see #save(java.io.OutputStream)
          */
+
         private void AppendDefaultType(XDocument xmldoc, XElement root, KeyValuePair<String, String> entry)
         {
             XNamespace ns = PackageNamespaces.CONTENT_TYPES;
@@ -506,11 +513,11 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
         /**
          * Specific implementation of the save method. Call by the save() method,
          * call before exiting.
-         * 
+         *
          * @param out
          *            The output stream use to write the content type XML.
          */
+
         public abstract bool SaveImpl(XDocument content, Stream out1);
     }
-
 }

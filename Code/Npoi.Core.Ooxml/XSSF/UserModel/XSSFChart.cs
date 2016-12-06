@@ -15,32 +15,26 @@
    limitations under the License.
 ==================================================================== */
 
-using System.Xml;
 using System.Xml.Linq;
 
 namespace Npoi.Core.XSSF.UserModel
 {
-    using Npoi.Core.SS.UserModel;
-    using Npoi.Core.OpenXmlFormats.Dml.Chart;
-    using System.Collections.Generic;
     using Npoi.Core.OpenXml4Net.OPC;
-    using System;
-    using Npoi.Core.OpenXmlFormats;
-    using System.IO;
-    using System.Text;
+    using Npoi.Core.OpenXmlFormats.Dml;
+    using Npoi.Core.OpenXmlFormats.Dml.Chart;
+    using Npoi.Core.SS.UserModel;
     using Npoi.Core.SS.UserModel.Charts;
     using Npoi.Core.XSSF.UserModel.Charts;
-    using System.Xml.Serialization;
-    using Npoi.Core.OpenXmlFormats.Dml;
+    using System.Collections.Generic;
 
     /**
      * Represents a SpreadsheetML Chart
      * @author Nick Burch
      * @author Roman Kashitsyn
      */
+
     public class XSSFChart : POIXMLDocumentPart, IChart, IChartAxisFactory
     {
-
         /**
          * Parent graphic frame.
          */
@@ -55,11 +49,12 @@ namespace Npoi.Core.XSSF.UserModel
          */
         private CT_Chart chart;
 
-        List<IChartAxis> axis = new List<IChartAxis>();
+        private List<IChartAxis> axis = new List<IChartAxis>();
 
         /**
          * Create a new SpreadsheetML chart
          */
+
         public XSSFChart()
             : base()
         {
@@ -74,10 +69,10 @@ namespace Npoi.Core.XSSF.UserModel
          * @param rel  the namespace relationship holding this chart,
          * the relationship type must be http://schemas.Openxmlformats.org/officeDocument/2006/relationships/chart
          */
+
         protected XSSFChart(PackagePart part, PackageRelationship rel)
             : base(part, rel)
         {
-
             XDocument doc = ConvertStreamToXml(part.GetInputStream());
             chartSpaceDocument = ChartSpaceDocument.Parse(doc, NamespaceManager);
             chart = chartSpaceDocument.GetChartSpace().chart;
@@ -89,6 +84,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return a new CTChartSpace bean
          */
+
         private void CreateChart()
         {
             chartSpaceDocument = new ChartSpaceDocument();
@@ -132,7 +128,6 @@ namespace Npoi.Core.XSSF.UserModel
             return chart;
         }
 
-
         protected internal override void Commit()
         {
             //XmlOptions xmlOptions = new XmlOptions(DEFAULT_XML_OPTIONS);
@@ -144,14 +139,15 @@ namespace Npoi.Core.XSSF.UserModel
                   xmlns:a="http://schemas.Openxmlformats.org/drawingml/2006/main"
                   xmlns:r="http://schemas.Openxmlformats.org/officeDocument/2006/relationships">
              */
-            PackagePart part = GetPackagePart();            
-            chartSpaceDocument.Save(part.GetOutputStream());            
+            PackagePart part = GetPackagePart();
+            chartSpaceDocument.Save(part.GetOutputStream());
         }
 
         /**
          * Returns the parent graphic frame.
          * @return the graphic frame this chart belongs to
          */
+
         public XSSFGraphicFrame GetGraphicFrame()
         {
             return frame;
@@ -160,6 +156,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Sets the parent graphic frame.
          */
+
         internal void SetGraphicFrame(XSSFGraphicFrame frame)
         {
             this.frame = frame;
@@ -199,6 +196,7 @@ namespace Npoi.Core.XSSF.UserModel
             axis.Add(valueAxis);
             return valueAxis;
         }
+
         public IChartAxis CreateCategoryAxis(AxisPosition pos)
         {
             long id = axis.Count + 1;
@@ -212,6 +210,7 @@ namespace Npoi.Core.XSSF.UserModel
             axis.Add(categoryAxis);
             return categoryAxis;
         }
+
         public List<IChartAxis> GetAxis()
         {
             if (axis.Count == 0 && HasAxis())
@@ -230,23 +229,26 @@ namespace Npoi.Core.XSSF.UserModel
          * @return true if only visible cells will be present on the chart,
          *         false otherwise
          */
+
         public bool IsPlotOnlyVisibleCells()
         {
-            return chart.plotVisOnly.val==1?true:false;
+            return chart.plotVisOnly.val == 1 ? true : false;
         }
 
         /**
          * @param plotVisOnly a flag specifying if only visible cells should be
          *        present on the chart
          */
+
         public void SetPlotOnlyVisibleCells(bool plotVisOnly)
         {
-            chart.plotVisOnly.val = plotVisOnly?1:0;
+            chart.plotVisOnly.val = plotVisOnly ? 1 : 0;
         }
 
         /**
          * Returns the title, or null if none is Set
          */
+
         public XSSFRichTextString Title
         {
             get
@@ -258,9 +260,9 @@ namespace Npoi.Core.XSSF.UserModel
 
                 CT_Title title = chart.title;
 
-                if (title.tx==null)
+                if (title.tx == null)
                     return null;
-                if(title.tx.rich==null)
+                if (title.tx.rich == null)
                     return null;
                 return new XSSFRichTextString(title.tx.rich.ToString());
             }
@@ -295,6 +297,7 @@ namespace Npoi.Core.XSSF.UserModel
             ParseCategoryAxis();
             ParseValueAxis();
         }
+
         private void ParseCategoryAxis()
         {
             if (chart.plotArea.catAx == null)
@@ -304,6 +307,7 @@ namespace Npoi.Core.XSSF.UserModel
                 axis.Add(new XSSFCategoryAxis(this, catAx));
             }
         }
+
         private void ParseValueAxis()
         {
             if (chart.plotArea.valAx == null)
@@ -313,9 +317,5 @@ namespace Npoi.Core.XSSF.UserModel
                 axis.Add(new XSSFValueAxis(this, valAx));
             }
         }
-
     }
 }
-
-
-

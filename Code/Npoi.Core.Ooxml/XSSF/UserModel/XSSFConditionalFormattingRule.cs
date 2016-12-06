@@ -21,18 +21,20 @@ using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.XSSF.Model;
 using System;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * @author Yegor Kozlov
      */
+
     public class XSSFConditionalFormattingRule : IConditionalFormattingRule
     {
         private CT_CfRule _cfRule;
         private XSSFSheet _sh;
 
         /*package*/
+
         public XSSFConditionalFormattingRule(XSSFSheet sh)
         {
             _cfRule = new CT_CfRule();
@@ -40,6 +42,7 @@ namespace Npoi.Core.XSSF.UserModel
         }
 
         /*package*/
+
         internal XSSFConditionalFormattingRule(XSSFSheet sh, CT_CfRule cfRule)
         {
             _cfRule = cfRule;
@@ -47,12 +50,14 @@ namespace Npoi.Core.XSSF.UserModel
         }
 
         /*package*/
+
         internal CT_CfRule GetCTCfRule()
         {
             return _cfRule;
         }
 
         /*package*/
+
         internal CT_Dxf GetDxf(bool create)
         {
             StylesTable styles = ((XSSFWorkbook)_sh.Workbook).GetStylesSource();
@@ -77,6 +82,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return - border formatting object, never returns <code>null</code>.
          */
+
         public IBorderFormatting CreateBorderFormatting()
         {
             CT_Dxf dxf = GetDxf(true);
@@ -96,6 +102,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return - border formatting object  if defined,  <code>null</code> otherwise
          */
+
         public IBorderFormatting GetBorderFormatting()
         {
             CT_Dxf dxf = GetDxf(false);
@@ -110,6 +117,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return - font formatting object, never returns <code>null</code>.
          */
+
         public IFontFormatting CreateFontFormatting()
         {
             CT_Dxf dxf = GetDxf(true);
@@ -129,6 +137,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return - font formatting object  if defined,  <code>null</code> otherwise
          */
+
         public IFontFormatting GetFontFormatting()
         {
             CT_Dxf dxf = GetDxf(false);
@@ -143,6 +152,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return - pattern formatting object, never returns <code>null</code>.
          */
+
         public IPatternFormatting CreatePatternFormatting()
         {
             CT_Dxf dxf = GetDxf(true);
@@ -162,6 +172,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return - pattern formatting object  if defined,  <code>null</code> otherwise
          */
+
         public IPatternFormatting GetPatternFormatting()
         {
             CT_Dxf dxf = GetDxf(false);
@@ -179,6 +190,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the type of condition
          */
+
         public ConditionType ConditionType
         {
             get
@@ -201,12 +213,13 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the conditional format operator
          */
+
         public ComparisonOperator ComparisonOperation
         {
             get
             {
                 ST_ConditionalFormattingOperator? op = _cfRule.@operator;
-                if (op == null) 
+                if (op == null)
                     return ComparisonOperator.NoComparison;
 
                 switch (op)
@@ -238,6 +251,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return  the first formula
          */
+
         public String Formula1
         {
             get
@@ -253,6 +267,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return  the second formula
          */
+
         public String Formula2
         {
             get
@@ -262,5 +277,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-
-

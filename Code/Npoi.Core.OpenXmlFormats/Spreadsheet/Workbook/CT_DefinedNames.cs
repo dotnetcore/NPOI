@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -14,7 +13,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_DefinedName
     {
-
         private string nameField;
 
         private string commentField;
@@ -50,6 +48,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         private bool workbookParameterField;
 
         private string valueField;
+
         public static CT_DefinedName Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -75,8 +74,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
@@ -88,13 +85,13 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             XmlHelper.WriteAttribute(sw, "statusBar", this.statusBar);
             if (localSheetIdFieldSpecified)
                 XmlHelper.WriteAttribute(sw, "localSheetId", this.localSheetId, true);
-            if(hidden)
+            if (hidden)
                 XmlHelper.WriteAttribute(sw, "hidden", this.hidden);
             if (function)
                 XmlHelper.WriteAttribute(sw, "function", this.function);
             if (vbProcedure)
                 XmlHelper.WriteAttribute(sw, "vbProcedure", this.vbProcedure);
-            if(xlm)
+            if (xlm)
                 XmlHelper.WriteAttribute(sw, "xlm", this.xlm);
             XmlHelper.WriteAttribute(sw, "functionGroupId", this.functionGroupId);
             XmlHelper.WriteAttribute(sw, "shortcutKey", this.shortcutKey);
@@ -129,6 +126,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.nameField = value;
             }
         }
+
         [XmlAttribute]
         public string comment
         {
@@ -141,6 +139,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.commentField = value;
             }
         }
+
         [XmlAttribute]
         public string customMenu
         {
@@ -153,6 +152,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.customMenuField = value;
             }
         }
+
         [XmlAttribute]
         public string description
         {
@@ -165,6 +165,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.descriptionField = value;
             }
         }
+
         [XmlAttribute]
         public string help
         {
@@ -177,6 +178,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.helpField = value;
             }
         }
+
         [XmlAttribute]
         public string statusBar
         {
@@ -189,14 +191,17 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.statusBarField = value;
             }
         }
+
         public bool IsSetLocalSheetId()
         {
             return localSheetIdFieldSpecified;
         }
+
         public void UnsetLocalSheetId()
         {
             localSheetIdFieldSpecified = false;
         }
+
         [XmlAttribute]
         public uint localSheetId
         {
@@ -223,6 +228,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.localSheetIdFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool hidden
@@ -236,6 +242,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.hiddenField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool function
@@ -249,6 +256,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.functionField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool vbProcedure
@@ -262,6 +270,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.vbProcedureField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool xlm
@@ -275,6 +284,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.xlmField = value;
             }
         }
+
         [XmlAttribute]
         public uint functionGroupId
         {
@@ -300,6 +310,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.functionGroupIdFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public string shortcutKey
         {
@@ -312,6 +323,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.shortcutKeyField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool publishToServer
@@ -325,6 +337,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.publishToServerField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool workbookParameter
@@ -352,16 +365,17 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_DefinedNames
     {
-
         private List<CT_DefinedName> definedNameField;
 
         public CT_DefinedNames()
         {
         }
+
         public static CT_DefinedNames Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -375,8 +389,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -405,6 +417,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             this.definedNameField = array;
         }
+
         [XmlElement]
         public List<CT_DefinedName> definedName
         {

@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -12,21 +11,17 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
     public enum ST_Comments
     {
-
-
         commNone,
-
 
         commIndicator,
 
-
         commIndAndComment,
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_BookView
     {
-
         private CT_ExtensionList extLstField = null;
 
         private ST_Visibility visibilityField;
@@ -76,6 +71,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.activeTabField = ((uint)(0));
             this.autoFilterDateGroupingField = true;
         }
+
         public static CT_BookView Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -103,19 +99,17 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
-            if(this.visibility!= ST_Visibility.visible)
+            if (this.visibility != ST_Visibility.visible)
                 XmlHelper.WriteAttribute(sw, "visibility", this.visibility.ToString());
             XmlHelper.WriteAttribute(sw, "minimized", this.minimized, false);
             if (!this.showHorizontalScroll)
                 XmlHelper.WriteAttribute(sw, "showHorizontalScroll", this.showHorizontalScroll);
             if (!this.showVerticalScroll)
                 XmlHelper.WriteAttribute(sw, "showVerticalScroll", this.showVerticalScroll);
-            if(!this.showSheetTabs)
+            if (!this.showSheetTabs)
                 XmlHelper.WriteAttribute(sw, "showSheetTabs", this.showSheetTabs);
             XmlHelper.WriteAttribute(sw, "xWindow", this.xWindow);
             XmlHelper.WriteAttribute(sw, "yWindow", this.yWindow);
@@ -144,6 +138,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.extLstField = value;
             }
         }
+
         [XmlIgnore]
         public bool extLstSpecified
         {
@@ -384,13 +379,14 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
+
     [Serializable]
     [System.ComponentModel.DesignerCategory("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_BookViews
     {
-
         private List<CT_BookView> workbookViewField;
+
         public static CT_BookViews Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -404,8 +400,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -425,6 +419,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             //this.workbookViewField = new List<CT_BookView>();
         }
+
         public CT_BookView AddNewWorkbookView()
         {
             if (this.workbookViewField == null)
@@ -433,6 +428,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.workbookViewField.Add(bv);
             return bv;
         }
+
         public CT_BookView GetWorkbookViewArray(int index)
         {
             if (this.workbookViewField == null)
@@ -458,7 +454,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_CustomWorkbookView
     {
-
         private CT_ExtensionList extLstField;
 
         private string nameField;
@@ -533,6 +528,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.showCommentsField = ST_Comments.commIndicator;
             this.showObjectsField = ST_Objects.all;
         }
+
         public static CT_CustomWorkbookView Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -572,8 +568,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -620,6 +614,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.extLstField = value;
             }
         }
+
         [XmlAttribute]
         public string name
         {
@@ -632,6 +627,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.nameField = value;
             }
         }
+
         [XmlAttribute]
         public string guid
         {
@@ -644,6 +640,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.guidField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool autoUpdate
@@ -657,6 +654,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.autoUpdateField = value;
             }
         }
+
         [XmlAttribute]
         public uint mergeInterval
         {
@@ -682,6 +680,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.mergeIntervalFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool changesSavedWin
@@ -695,6 +694,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.changesSavedWinField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool onlySync
@@ -708,6 +708,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.onlySyncField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool personalView
@@ -721,6 +722,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.personalViewField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(true)]
         public bool includePrintSettings
@@ -734,6 +736,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.includePrintSettingsField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(true)]
         public bool includeHiddenRowCol
@@ -747,6 +750,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.includeHiddenRowColField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool maximized
@@ -760,6 +764,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.maximizedField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool minimized
@@ -773,6 +778,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.minimizedField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(true)]
         public bool showHorizontalScroll
@@ -786,6 +792,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.showHorizontalScrollField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(true)]
         public bool showVerticalScroll
@@ -799,6 +806,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.showVerticalScrollField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(true)]
         public bool showSheetTabs
@@ -812,6 +820,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.showSheetTabsField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(0)]
         public int xWindow
@@ -825,6 +834,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.xWindowField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(0)]
         public int yWindow
@@ -838,6 +848,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.yWindowField = value;
             }
         }
+
         [XmlAttribute]
         public uint windowWidth
         {
@@ -850,6 +861,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.windowWidthField = value;
             }
         }
+
         [XmlAttribute]
         public uint windowHeight
         {
@@ -862,6 +874,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.windowHeightField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(typeof(uint), "600")]
         public uint tabRatio
@@ -875,6 +888,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.tabRatioField = value;
             }
         }
+
         [XmlAttribute]
         public uint activeSheetId
         {
@@ -887,6 +901,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.activeSheetIdField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(true)]
         public bool showFormulaBar
@@ -900,6 +915,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.showFormulaBarField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(true)]
         public bool showStatusbar
@@ -913,6 +929,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.showStatusbarField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(ST_Comments.commIndicator)]
         public ST_Comments showComments
@@ -926,6 +943,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.showCommentsField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(ST_Objects.all)]
         public ST_Objects showObjects
@@ -940,12 +958,13 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_CustomWorkbookViews
     {
-
         private List<CT_CustomWorkbookView> customWorkbookViewField;
+
         public static CT_CustomWorkbookViews Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -959,8 +978,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -980,6 +997,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             //this.customWorkbookViewField = new List<CT_CustomWorkbookView>();
         }
+
         [XmlElement]
         public List<CT_CustomWorkbookView> customWorkbookView
         {

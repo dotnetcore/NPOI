@@ -14,18 +14,21 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
+using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.SS.UserModel;
 using Npoi.Core.XSSF.UserModel;
 using System;
-using Npoi.Core.OpenXml4Net.OPC;
-using System.Text;
-using Npoi.Core.SS.UserModel;
 using System.Collections;
 using System.Globalization;
+using System.Text;
+
 namespace Npoi.Core.XSSF.Extractor
 {
     /**
      * Helper class to extract text from an OOXML Excel file
      */
+
     public class XSSFExcelExtractor : POIXMLTextExtractor, Npoi.Core.SS.Extractor.IExcelExtractor
     {
         public static XSSFRelation[] SUPPORTED_TYPES = new XSSFRelation[] {
@@ -43,19 +46,19 @@ namespace Npoi.Core.XSSF.Extractor
         public XSSFExcelExtractor(String path)
             : this(new XSSFWorkbook(path))
         {
-
         }
+
         public XSSFExcelExtractor(OPCPackage Container)
             : this(new XSSFWorkbook(Container))
         {
-
         }
+
         public XSSFExcelExtractor(XSSFWorkbook workbook)
             : base(workbook)
         {
-
             this.workbook = workbook;
         }
+
         /// <summary>
         ///  Should header and footer be included? Default is true
         /// </summary>
@@ -70,6 +73,7 @@ namespace Npoi.Core.XSSF.Extractor
                 this.includeHeadersFooters = value;
             }
         }
+
         /// <summary>
         /// Should sheet names be included? Default is true
         /// </summary>
@@ -85,6 +89,7 @@ namespace Npoi.Core.XSSF.Extractor
                 this.includeSheetNames = value;
             }
         }
+
         /// <summary>
         /// Should we return the formula itself, and not
         /// the result it produces? Default is false
@@ -101,6 +106,7 @@ namespace Npoi.Core.XSSF.Extractor
                 this.formulasNotResults = value;
             }
         }
+
         /// <summary>
         /// Should cell comments be included? Default is false
         /// </summary>
@@ -116,43 +122,54 @@ namespace Npoi.Core.XSSF.Extractor
                 this.includeCellComments = value;
             }
         }
+
         /**
          * Should sheet names be included? Default is true
          */
+
         public void SetIncludeSheetNames(bool includeSheetNames)
         {
             this.includeSheetNames = includeSheetNames;
         }
+
         /**
          * Should we return the formula itself, and not
          *  the result it produces? Default is false
          */
+
         public void SetFormulasNotResults(bool formulasNotResults)
         {
             this.formulasNotResults = formulasNotResults;
         }
+
         /**
          * Should cell comments be included? Default is false
          */
+
         public void SetIncludeCellComments(bool includeCellComments)
         {
             this.includeCellComments = includeCellComments;
         }
+
         /**
          * Should headers and footers be included? Default is true
          */
+
         public void SetIncludeHeadersFooters(bool includeHeadersFooters)
         {
             this.includeHeadersFooters = includeHeadersFooters;
         }
-        public void SetLocale(CultureInfo locale) {
+
+        public void SetLocale(CultureInfo locale)
+        {
             this.locale = locale;
         }
 
-        private CultureInfo locale=null;
+        private CultureInfo locale = null;
         /**
          * Retreives the text contents of the file
          */
+
         public override String Text
         {
             get
@@ -174,7 +191,7 @@ namespace Npoi.Core.XSSF.Extractor
                     XSSFSheet sheet = (XSSFSheet)workbook.GetSheetAt(i);
                     if (includeSheetNames)
                     {
-                        text.Append(workbook.GetSheetName(i)+"\n");
+                        text.Append(workbook.GetSheetName(i) + "\n");
                     }
 
                     // Header(s), if present
@@ -195,8 +212,8 @@ namespace Npoi.Core.XSSF.Extractor
                     foreach (Object rawR in sheet)
                     {
                         IRow row = (IRow)rawR;
-                        IEnumerator ri =row.GetEnumerator();
-                        bool firsttime=true;
+                        IEnumerator ri = row.GetEnumerator();
+                        bool firsttime = true;
                         while (ri.MoveNext())
                         {
                             if (!firsttime)
@@ -227,7 +244,6 @@ namespace Npoi.Core.XSSF.Extractor
                                         HandleNonStringCell(text, cell, formatter);
                                     }
                                 }
-
                             }
                             else if (cell.CellType == CellType.String)
                             {
@@ -247,7 +263,6 @@ namespace Npoi.Core.XSSF.Extractor
                                 String commentText = comment.String.String.Replace('\n', ' ');
                                 text.Append(" Comment by ").Append(comment.Author).Append(": ").Append(commentText);
                             }
-                            
                         }
                         text.Append("\n");
                     }
@@ -270,10 +285,12 @@ namespace Npoi.Core.XSSF.Extractor
                 return text.ToString();
             }
         }
+
         private void HandleStringCell(StringBuilder text, ICell cell)
         {
             text.Append(cell.RichStringCellValue.String);
         }
+
         private void HandleNonStringCell(StringBuilder text, ICell cell, DataFormatter formatter)
         {
             CellType type = cell.CellType;
@@ -286,7 +303,7 @@ namespace Npoi.Core.XSSF.Extractor
             {
                 ICellStyle cs = cell.CellStyle;
 
-                if (cs.GetDataFormatString()!= null)
+                if (cs.GetDataFormatString() != null)
                 {
                     text.Append(formatter.FormatRawCellContents(
                           cell.NumericCellValue, cs.DataFormat, cs.GetDataFormatString()
@@ -299,10 +316,10 @@ namespace Npoi.Core.XSSF.Extractor
             XSSFCell xcell = (XSSFCell)cell;
             text.Append(xcell.GetRawValue());
         }
+
         private String ExtractHeaderFooter(IHeaderFooter hf)
         {
             return Npoi.Core.HSSF.Extractor.ExcelExtractor.ExtractHeaderFooter(hf);
         }
     }
-
 }

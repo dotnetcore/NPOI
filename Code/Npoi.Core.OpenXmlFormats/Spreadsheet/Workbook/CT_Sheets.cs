@@ -1,9 +1,6 @@
-﻿using Npoi.Core.OpenXml4Net.Util;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -22,6 +19,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             this.sheetField = new List<CT_Sheet>();
         }
+
         public static CT_Sheets Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -35,8 +33,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -60,12 +56,14 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.sheetField.Add(newsheet);
             return newsheet;
         }
+
         public void RemoveSheet(int index)
         {
             if (sheetField == null)
                 return;
             sheetField.RemoveAt(index);
         }
+
         public CT_Sheet InsertNewSheet(int index)
         {
             if (this.sheetField == null)
@@ -74,6 +72,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.sheetField.Insert(index, newsheet);
             return newsheet;
         }
+
         public CT_Sheet GetSheetArray(int index)
         {
             if (this.sheetField == null)
@@ -81,6 +80,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 
             return this.sheetField[index];
         }
+
         [XmlElement("sheet")]
         public List<CT_Sheet> sheet
         {

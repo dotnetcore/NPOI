@@ -1,8 +1,6 @@
 ﻿using Npoi.Core.OpenXml4Net.Util;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -13,7 +11,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_CellStyle
     {
-
         private CT_ExtensionList extLstField;
 
         private string nameField;
@@ -38,8 +35,9 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 
         public CT_CellStyle()
         {
-           // this.extLstField = new CT_ExtensionList();
+            // this.extLstField = new CT_ExtensionList();
         }
+
         public static CT_CellStyle Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -59,14 +57,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "name", this.name);
             XmlHelper.WriteAttribute(sw, "xfId", this.xfId, true);
-            XmlHelper.WriteAttribute(sw, "builtinId", this.builtinId,true);
+            XmlHelper.WriteAttribute(sw, "builtinId", this.builtinId, true);
             XmlHelper.WriteAttribute(sw, "iLevel", this.iLevel);
             XmlHelper.WriteAttribute(sw, "hidden", this.hidden, false);
             XmlHelper.WriteAttribute(sw, "customBuiltin", this.customBuiltin, false);
@@ -94,6 +90,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.extLstField = value;
             }
         }
+
         [XmlAttribute]
         public string name
         {
@@ -106,6 +103,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.nameField = value;
             }
         }
+
         [XmlAttribute]
         public uint xfId
         {
@@ -118,6 +116,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.xfIdField = value;
             }
         }
+
         [XmlAttribute]
         public uint builtinId
         {
@@ -143,6 +142,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.builtinIdFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public uint iLevel
         {
@@ -168,6 +168,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.iLevelFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public bool hidden
         {
@@ -193,6 +194,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.hiddenFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public bool customBuiltin
         {
@@ -219,6 +221,4 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
-
-
 }

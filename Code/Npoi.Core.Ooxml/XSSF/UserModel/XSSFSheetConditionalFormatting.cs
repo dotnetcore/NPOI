@@ -17,28 +17,25 @@
  * ====================================================================
  */
 
-using System;
+using Npoi.Core.HSSF.Record.CF;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.Util;
-using Npoi.Core.HSSF.Record.CF;
-using System.Collections.Generic;
-using Npoi.Core.SS;
+using System;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
-
-
-
-
     /**
      * @author Yegor Kozlov
      */
+
     public class XSSFSheetConditionalFormatting : ISheetConditionalFormatting
     {
         private XSSFSheet _sheet;
 
         /* namespace */
+
         internal XSSFSheetConditionalFormatting(XSSFSheet sheet)
         {
             _sheet = sheet;
@@ -67,12 +64,12 @@ namespace Npoi.Core.XSSF.UserModel
          * {@link Npoi.Core.ss.usermodel.ComparisonOperator#BETWEEN}) and
          * {@link Npoi.Core.ss.usermodel.ComparisonOperator#NOT_BETWEEN} operations)
          */
+
         public IConditionalFormattingRule CreateConditionalFormattingRule(
                 ComparisonOperator comparisonOperation,
                 String formula1,
                 String formula2)
         {
-
             XSSFConditionalFormattingRule rule = new XSSFConditionalFormattingRule(_sheet);
             CT_CfRule cfRule = rule.GetCTCfRule();
             cfRule.AddFormula(formula1);
@@ -81,23 +78,23 @@ namespace Npoi.Core.XSSF.UserModel
             ST_ConditionalFormattingOperator operator1;
             switch (comparisonOperation)
             {
-                case ComparisonOperator.Between: 
+                case ComparisonOperator.Between:
                     operator1 = ST_ConditionalFormattingOperator.between; break;
-                case ComparisonOperator.NotBetween: 
+                case ComparisonOperator.NotBetween:
                     operator1 = ST_ConditionalFormattingOperator.notBetween; break;
-                case ComparisonOperator.LessThan: 
+                case ComparisonOperator.LessThan:
                     operator1 = ST_ConditionalFormattingOperator.lessThan; break;
-                case ComparisonOperator.LessThanOrEqual: 
+                case ComparisonOperator.LessThanOrEqual:
                     operator1 = ST_ConditionalFormattingOperator.lessThanOrEqual; break;
-                case ComparisonOperator.GreaterThan: 
+                case ComparisonOperator.GreaterThan:
                     operator1 = ST_ConditionalFormattingOperator.greaterThan; break;
-                case ComparisonOperator.GreaterThanOrEqual: 
+                case ComparisonOperator.GreaterThanOrEqual:
                     operator1 = ST_ConditionalFormattingOperator.greaterThanOrEqual; break;
-                case ComparisonOperator.Equal: 
+                case ComparisonOperator.Equal:
                     operator1 = ST_ConditionalFormattingOperator.equal; break;
-                case ComparisonOperator.NotEqual: 
+                case ComparisonOperator.NotEqual:
                     operator1 = ST_ConditionalFormattingOperator.notEqual; break;
-                default: 
+                default:
                     throw new ArgumentException("Unknown comparison operator: " + comparisonOperation);
             }
             cfRule.@operator = (operator1);
@@ -109,7 +106,6 @@ namespace Npoi.Core.XSSF.UserModel
                 ComparisonOperator comparisonOperation,
                 String formula)
         {
-
             return CreateConditionalFormattingRule(comparisonOperation, formula, null);
         }
 
@@ -118,6 +114,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param formula - formula for the valued, Compared with the cell
          */
+
         public IConditionalFormattingRule CreateConditionalFormattingRule(String formula)
         {
             XSSFConditionalFormattingRule rule = new XSSFConditionalFormattingRule(_sheet);
@@ -156,7 +153,7 @@ namespace Npoi.Core.XSSF.UserModel
                 if (refs.Length == 0)
                     refs = a.FormatAsString();
                 else
-                    refs += " " +a.FormatAsString() ;
+                    refs += " " + a.FormatAsString();
             }
             cf.sqref = refs;
 
@@ -206,6 +203,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param cf HSSFConditionalFormatting object
          * @return index of the new Conditional Formatting object
          */
+
         public int AddConditionalFormatting(IConditionalFormatting cf)
         {
             XSSFConditionalFormatting xcf = (XSSFConditionalFormatting)cf;
@@ -221,6 +219,7 @@ namespace Npoi.Core.XSSF.UserModel
         *			of the Conditional Formatting object to fetch
         * @return Conditional Formatting object
         */
+
         public IConditionalFormatting GetConditionalFormattingAt(int index)
         {
             CheckIndex(index);
@@ -231,6 +230,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
         * @return number of Conditional Formatting objects of the sheet
         */
+
         public int NumConditionalFormattings
         {
             get
@@ -243,6 +243,7 @@ namespace Npoi.Core.XSSF.UserModel
         * Removes a Conditional Formatting object by index
         * @param index of a Conditional Formatting object to remove
         */
+
         public void RemoveConditionalFormatting(int index)
         {
             CheckIndex(index);
@@ -258,7 +259,5 @@ namespace Npoi.Core.XSSF.UserModel
                         + " is outside the allowable range (0.." + (cnt - 1) + ")");
             }
         }
-
     }
-
 }

@@ -19,14 +19,14 @@ using System.Xml.Linq;
 
 namespace Npoi.Core
 {
-    using Npoi.Core.Util;
+    using Npoi.Core.OpenXml4Net.Exceptions;
     using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXml4Net.OPC.Internal;
+    using Npoi.Core.Util;
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using Npoi.Core.OpenXml4Net.Exceptions;
-using System.Xml;
-    using Npoi.Core.OpenXml4Net.OPC.Internal;
+    using System.Xml;
 
     /**
      * Represents an entry of a OOXML namespace.
@@ -37,11 +37,11 @@ using System.Xml;
      *
      * @author Yegor Kozlov
      */
+
     public class POIXMLDocumentPart
     {
         private static POILogger logger = POILogFactory.GetLogger(typeof(POIXMLDocumentPart));
 
- 
         private PackagePart packagePart;
         private PackageRelationship packageRel;
         private POIXMLDocumentPart parent;
@@ -53,19 +53,19 @@ using System.Xml;
          */
         private int relationCounter = 0;
 
-        int IncrementRelationCounter()
+        private int IncrementRelationCounter()
         {
             relationCounter++;
             return relationCounter;
         }
 
-        int DecrementRelationCounter()
+        private int DecrementRelationCounter()
         {
             relationCounter--;
             return relationCounter;
         }
 
-        int GetRelationCounter()
+        private int GetRelationCounter()
         {
             return relationCounter;
         }
@@ -73,6 +73,7 @@ using System.Xml;
         /**
          * Construct POIXMLDocumentPart representing a "core document" namespace part.
          */
+
         public POIXMLDocumentPart(OPCPackage pkg)
         {
             PackageRelationship coreRel = pkg.GetRelationshipsByType(PackageRelationshipTypes.CORE_DOCUMENT).GetRelationship(0);
@@ -97,6 +98,7 @@ using System.Xml;
          *
          * @see #CreateRelationship(POIXMLRelation, POIXMLFactory, int, bool)
          */
+
         public POIXMLDocumentPart()
         {
         }
@@ -107,8 +109,9 @@ using System.Xml;
          *
          * @param part - The namespace part that holds xml data represenring this sheet.
          * @param rel - the relationship of the given namespace part
-         * @see #read(POIXMLFactory, java.util.Map) 
+         * @see #read(POIXMLFactory, java.util.Map)
          */
+
         public POIXMLDocumentPart(PackagePart part, PackageRelationship rel)
         {
             this.packagePart = part;
@@ -124,6 +127,7 @@ using System.Xml;
          * @param rel - the relationship of the given namespace part
          * @see #read(POIXMLFactory, java.util.Map)
          */
+
         public POIXMLDocumentPart(POIXMLDocumentPart parent, PackagePart part, PackageRelationship rel)
         {
             this.packagePart = part;
@@ -134,8 +138,9 @@ using System.Xml;
         /**
          * When you open something like a theme, call this to
          *  re-base the XML Document onto the core child of the
-         *  current core document 
+         *  current core document
          */
+
         protected void Rebase(OPCPackage pkg)
         {
             PackageRelationshipCollection cores =
@@ -150,18 +155,22 @@ using System.Xml;
             packageRel = cores.GetRelationship(0);
             packagePart = packagePart.GetRelatedPart(packageRel);
         }
-        static XmlNamespaceManager nsm = null;
+
+        private static XmlNamespaceManager nsm = null;
+
         public static XmlNamespaceManager NamespaceManager
         {
-            get {
+            get
+            {
                 if (nsm == null)
                     nsm = CreateDefaultNSM();
                 return nsm;
             }
         }
+
         internal static XmlNamespaceManager CreateDefaultNSM()
         {
-            //  Create a NamespaceManager to handle the default namespace, 
+            //  Create a NamespaceManager to handle the default namespace,
             //  and create a prefix for the default namespace:
             NameTable nt = new NameTable();
             XmlNamespaceManager ns = new XmlNamespaceManager(nt);
@@ -172,20 +181,20 @@ using System.Xml;
             ns.AddNamespace("r", PackageNamespaces.SCHEMA_RELATIONSHIPS);
             ns.AddNamespace("c", PackageNamespaces.SCHEMA_CHART);
             ns.AddNamespace("vt", PackageNamespaces.SCHEMA_VT);
-            ns.AddNamespace("w", "http://schemas.openxmlformats.org/wordprocessingml/2006/main"); 
+            ns.AddNamespace("w", "http://schemas.openxmlformats.org/wordprocessingml/2006/main");
             ns.AddNamespace("wp", "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing");
             ns.AddNamespace("m", "http://schemas.openxmlformats.org/officeDocument/2006/math");
             ns.AddNamespace("ve", "http://schemas.openxmlformats.org/markup-compatibility/2006");
             ns.AddNamespace("o", "urn:schemas-microsoft-com:office:office");
             ns.AddNamespace("v", "urn:schemas-microsoft-com:vml");
-            ns.AddNamespace("wne","http://schemas.microsoft.com/office/word/2006/wordml");
+            ns.AddNamespace("wne", "http://schemas.microsoft.com/office/word/2006/wordml");
             // extended properties (app.xml)
             ns.AddNamespace("xp", PackageRelationshipTypes.EXTENDED_PROPERTIES);
             // custom properties
             ns.AddNamespace("ctp", PackageRelationshipTypes.CUSTOM_PROPERTIES);
             // core properties
             ns.AddNamespace("cp", PackagePropertiesPart.NAMESPACE_CP_URI);
-            // core property namespaces 
+            // core property namespaces
             ns.AddNamespace("dc", PackagePropertiesPart.NAMESPACE_DC_URI);
             ns.AddNamespace("dcterms", PackagePropertiesPart.NAMESPACE_DCTERMS_URI);
             ns.AddNamespace("dcmitype", PackageNamespaces.DCMITYPE);
@@ -194,11 +203,13 @@ using System.Xml;
             ns.AddNamespace("xsd", "http://www.w3.org/2001/XMLSchema");
             return ns;
         }
+
         /**
          * Provides access to the underlying PackagePart
          *
          * @return the underlying PackagePart
          */
+
         public PackagePart GetPackagePart()
         {
             return packagePart;
@@ -206,7 +217,7 @@ using System.Xml;
 
         public static XDocument ConvertStreamToXml(Stream xmlStream)
         {
-	        return XDocument.Load(xmlStream);
+            return XDocument.Load(xmlStream);
         }
 
         /**
@@ -214,6 +225,7 @@ using System.Xml;
          *
          * @return the PackageRelationship that identifies this POIXMLDocumentPart
          */
+
         public PackageRelationship GetPackageRelationship()
         {
             return packageRel;
@@ -224,6 +236,7 @@ using System.Xml;
          *
          * @return child relations
          */
+
         public List<POIXMLDocumentPart> GetRelations()
         {
             return new List<POIXMLDocumentPart>(relations.Values);
@@ -235,11 +248,12 @@ using System.Xml;
          * {@link POIXMLDocumentPart} to the {@link PackagePart} of the target
          * {@link POIXMLDocumentPart} with a {@link PackageRelationship#GetId()}
          * matching the given parameter value.
-         * 
+         *
          * @param id
          *            The relation id to look for
          * @return the target part of the relation, or null, if none exists
          */
+
         public POIXMLDocumentPart GetRelationById(String id)
         {
             if (string.IsNullOrEmpty(id))
@@ -252,13 +266,14 @@ using System.Xml;
          * {@link PackageRelationship}, that sources from the {@link PackagePart} of
          * this {@link POIXMLDocumentPart} to the {@link PackagePart} of the given
          * parameter value.
-         * 
+         *
          * @param part
          *            The {@link POIXMLDocumentPart} for which the according
          *            relation-id shall be found.
          * @return The value of the {@link PackageRelationship#GetId()} or null, if
          *         parts are not related.
          */
+
         public String GetRelationId(POIXMLDocumentPart part)
         {
             foreach (KeyValuePair<String, POIXMLDocumentPart> entry in relations)
@@ -276,6 +291,7 @@ using System.Xml;
          *
          * @param part the child to add
          */
+
         public void AddRelation(String id, POIXMLDocumentPart part)
         {
             relations[id] = part;
@@ -286,6 +302,7 @@ using System.Xml;
          * Remove the relation to the specified part in this namespace and remove the
          * part, if it is no longer needed.
          */
+
         protected internal void RemoveRelation(POIXMLDocumentPart part)
         {
             RemoveRelation(part, true);
@@ -294,13 +311,14 @@ using System.Xml;
         /**
          * Remove the relation to the specified part in this namespace and remove the
          * part, if it is no longer needed and flag is set to true.
-         * 
+         *
          * @param part
          *            The related part, to which the relation shall be Removed.
          * @param RemoveUnusedParts
          *            true, if the part shall be Removed from the namespace if not
          *            needed any longer.
          */
+
         protected internal bool RemoveRelation(POIXMLDocumentPart part, bool RemoveUnusedParts)
         {
             String id = GetRelationId(part);
@@ -340,6 +358,7 @@ using System.Xml;
          *
          * @return the parent POIXMLDocumentPart or <code>null</code> for the root element.
          */
+
         public POIXMLDocumentPart GetParent()
         {
             return parent;
@@ -368,9 +387,9 @@ using System.Xml;
          *  </code></pre>
          *
          */
+
         protected internal virtual void Commit()
         {
-
         }
 
         /**
@@ -379,6 +398,7 @@ using System.Xml;
          *
          * @param alreadySaved    context set Containing already visited nodes
          */
+
         protected internal void OnSave(List<PackagePart> alreadySaved)
         {
             // this usually clears out previous content in the part...
@@ -394,13 +414,15 @@ using System.Xml;
                 }
             }
         }
+
         /**
-         * Ensure that a memory based package part does not have lingering data from previous 
-         * commit() calls. 
-         * 
-         * Note: This is overwritten for some objects, as *PictureData seem to store the actual content 
+         * Ensure that a memory based package part does not have lingering data from previous
+         * commit() calls.
+         *
+         * Note: This is overwritten for some objects, as *PictureData seem to store the actual content
          * in the part directly without keeping a copy like all others therefore we need to handle them differently.
          */
+
         protected internal virtual void PrepareForCommit()
         {
             PackagePart part = this.GetPackagePart();
@@ -409,6 +431,7 @@ using System.Xml;
                 part.Clear();
             }
         }
+
         /**
          * Create a new child POIXMLDocumentPart
          *
@@ -416,6 +439,7 @@ using System.Xml;
          * @param factory the factory that will create an instance of the requested relation
          * @return the Created child POIXMLDocumentPart
          */
+
         public POIXMLDocumentPart CreateRelationship(POIXMLRelation descriptor, POIXMLFactory factory)
         {
             return CreateRelationship(descriptor, factory, -1, false);
@@ -435,6 +459,7 @@ using System.Xml;
          * @param noRelation if true, then no relationship is Added.
          * @return the Created child POIXMLDocumentPart
          */
+
         protected POIXMLDocumentPart CreateRelationship(POIXMLRelation descriptor, POIXMLFactory factory, int idx, bool noRelation)
         {
             try
@@ -478,6 +503,7 @@ using System.Xml;
          * @param factory   the factory object that Creates POIXMLFactory instances
          * @param context   context map Containing already visited noted keyed by tarGetURI
          */
+
         protected void Read(POIXMLFactory factory, Dictionary<PackagePart, POIXMLDocumentPart> context)
         {
             try
@@ -490,8 +516,8 @@ using System.Xml;
                         Uri uri = rel.TargetUri;
 
                         PackagePart p;
-                        
-                        if (uri.OriginalString.IndexOf('#')>=0)
+
+                        if (uri.OriginalString.IndexOf('#') >= 0)
                         {
                             /*
                              * For internal references (e.g. '#Sheet1!A1') the namespace part is null
@@ -537,6 +563,7 @@ using System.Xml;
                 throw;
             }
         }
+
         /**
          * Get the PackagePart that is the target of a relationship.
          *
@@ -544,40 +571,34 @@ using System.Xml;
          * @return The target part
          * @throws InvalidFormatException
          */
+
         protected PackagePart GetTargetPart(PackageRelationship rel)
         {
             return GetPackagePart().GetRelatedPart(rel);
         }
+
         /**
          * Fired when a new namespace part is Created
          */
+
         internal virtual void OnDocumentCreate()
         {
-
         }
 
         /**
          * Fired when a namespace part is read
          */
+
         internal virtual void OnDocumentRead()
         {
-
         }
-
-
 
         /**
          * Fired when a namespace part is about to be Removed from the namespace
          */
+
         protected virtual void onDocumentRemove()
         {
-
         }
     }
 }
-
-
-
-
-
-

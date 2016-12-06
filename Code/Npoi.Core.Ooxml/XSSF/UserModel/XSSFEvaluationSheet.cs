@@ -17,17 +17,17 @@
 
 using Npoi.Core.SS.Formula;
 using Npoi.Core.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * XSSF wrapper for a sheet under Evaluation
-     * 
+     *
      * @author Josh Micich
      */
+
     public class XSSFEvaluationSheet : IEvaluationSheet
     {
-
         private XSSFSheet _xs;
 
         public XSSFEvaluationSheet(ISheet sheet)
@@ -39,6 +39,7 @@ namespace Npoi.Core.XSSF.UserModel
         {
             return _xs;
         }
+
         public IEvaluationCell GetCell(int rowIndex, int columnIndex)
         {
             IRow row = _xs.GetRow(rowIndex);
@@ -55,4 +56,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-

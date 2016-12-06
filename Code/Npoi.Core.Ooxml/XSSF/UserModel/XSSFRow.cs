@@ -16,21 +16,21 @@
 ==================================================================== */
 
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using System;
-using Npoi.Core.XSSF.Model;
-using Npoi.Core.XSSF.UserModel;
-using Npoi.Core.SS.Util;
-using Npoi.Core.SS.UserModel;
-using System.Collections.Generic;
-using Npoi.Core.Util;
 using Npoi.Core.SS;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.Util;
+using Npoi.Core.Util;
+using Npoi.Core.XSSF.Model;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * High level representation of a row of a spreadsheet.
      */
+
     public class XSSFRow : IRow, IComparable<XSSFRow>
     {
         private static POILogger _logger = POILogFactory.GetLogger(typeof(XSSFRow));
@@ -57,6 +57,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param row the xml bean Containing all cell defInitions for this row.
          * @param sheet the parent sheet.
          */
+
         public XSSFRow(CT_Row row, XSSFSheet sheet)
         {
             _row = row;
@@ -67,7 +68,7 @@ namespace Npoi.Core.XSSF.UserModel
                 foreach (CT_Cell c in row.c)
                 {
                     XSSFCell cell = new XSSFCell(this, c);
-                    _cells.Add(cell.ColumnIndex,cell);
+                    _cells.Add(cell.ColumnIndex, cell);
                     sheet.OnReadCell(cell);
                 }
             }
@@ -78,6 +79,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the XSSFSheet that owns this row
          */
+
         public ISheet Sheet
         {
             get
@@ -97,6 +99,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return an iterator over cells in this row.
          */
+
         public SortedDictionary<int, ICell>.ValueCollection.Enumerator CellIterator()
         {
             return _cells.Values.GetEnumerator();
@@ -112,6 +115,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return an iterator over cells in this row.
          */
+
         public IEnumerator<ICell> GetEnumerator()
         {
             return CellIterator();
@@ -130,10 +134,11 @@ namespace Npoi.Core.XSSF.UserModel
          * 		 greater than the row number of the argument <code>XSSFRow</code>.
          * @throws ArgumentException if the argument row belongs to a different worksheet
          */
+
         public int CompareTo(XSSFRow row)
         {
             int thisVal = this.RowNum;
-            if (row.Sheet != Sheet) 
+            if (row.Sheet != Sheet)
                 throw new ArgumentException("The Compared rows must belong to the same XSSFSheet");
 
             int anotherVal = row.RowNum;
@@ -151,6 +156,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @throws ArgumentException if columnIndex < 0 or greater than 16384,
          *   the maximum number of columns supported by the SpreadsheetML format (.xlsx)
          */
+
         public ICell CreateCell(int columnIndex)
         {
             return CreateCell(columnIndex, CellType.Blank);
@@ -171,6 +177,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @see Cell#CELL_TYPE_NUMERIC
          * @see Cell#CELL_TYPE_STRING
          */
+
         public ICell CreateCell(int columnIndex, CellType type)
         {
             CT_Cell ctCell;
@@ -200,10 +207,12 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the cell at the given (0 based) index
          */
+
         public ICell GetCell(int cellnum)
         {
             return GetCell(cellnum, _sheet.Workbook.MissingCellPolicy);
         }
+
         /// <summary>
         /// Get the hssfcell representing a given column (logical cell)
         /// 0-based. If you ask for a cell that is not defined, then
@@ -219,6 +228,7 @@ namespace Npoi.Core.XSSF.UserModel
             //if (cellnum < 0 || cellnum >= cells.Count) return null;
             return _cells[cellnum];
         }
+
         /**
          * Returns the cell at the given (0 based) index, with the specified {@link Npoi.Core.SS.usermodel.Row.MissingCellPolicy}
          *
@@ -228,6 +238,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @see Row#RETURN_BLANK_AS_NULL
          * @see Row#CREATE_NULL_AS_BLANK
          */
+
         public ICell GetCell(int cellnum, MissingCellPolicy policy)
         {
             if (cellnum < 0) throw new ArgumentException("Cell index must be >= 0");
@@ -256,7 +267,8 @@ namespace Npoi.Core.XSSF.UserModel
             }
             throw new ArgumentException("Illegal policy " + policy + " (" + policy.id + ")");
         }
-        int GetFirstKey(SortedDictionary<int, ICell>.KeyCollection keys)
+
+        private int GetFirstKey(SortedDictionary<int, ICell>.KeyCollection keys)
         {
             int i = 0;
             foreach (int key in keys)
@@ -266,7 +278,8 @@ namespace Npoi.Core.XSSF.UserModel
             }
             throw new ArgumentOutOfRangeException();
         }
-        int GetLastKey(SortedDictionary<int, ICell>.KeyCollection keys)
+
+        private int GetLastKey(SortedDictionary<int, ICell>.KeyCollection keys)
         {
             int i = 0;
             foreach (int key in keys)
@@ -277,12 +290,14 @@ namespace Npoi.Core.XSSF.UserModel
             }
             throw new ArgumentOutOfRangeException();
         }
+
         /**
          * Get the number of the first cell Contained in this row.
          *
          * @return short representing the first logical cell in the row,
          *  or -1 if the row does not contain any cells.
          */
+
         public short FirstCellNum
         {
             get
@@ -310,6 +325,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return short representing the last logical cell in the row <b>PLUS ONE</b>,
          *   or -1 if the row does not contain any cells.
          */
+
         public short LastCellNum
         {
             get
@@ -324,13 +340,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return row height measured in twips (1/20th of a point)
          */
+
         public short Height
         {
             get
             {
                 return (short)(HeightInPoints * 20);
             }
-            set 
+            set
             {
                 if (value < 0)
                 {
@@ -341,7 +358,6 @@ namespace Npoi.Core.XSSF.UserModel
                 {
                     _row.ht = ((double)value / 20);
                     _row.customHeight = (true);
-
                 }
             }
         }
@@ -353,6 +369,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return row height measured in point size
          * @see Npoi.Core.XSSF.usermodel.XSSFSheet#GetDefaultRowHeightInPoints()
          */
+
         public float HeightInPoints
         {
             get
@@ -363,13 +380,11 @@ namespace Npoi.Core.XSSF.UserModel
                 }
                 return _sheet.DefaultRowHeightInPoints;
             }
-            set 
+            set
             {
                 this.Height = (short)(value == -1 ? -1 : (value * 20));
             }
         }
-
-
 
         /**
          * Gets the number of defined cells (NOT number of cells in the actual row!).
@@ -377,6 +392,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return int representing the number of defined cells in the row.
          */
+
         public int PhysicalNumberOfCells
         {
             get
@@ -390,13 +406,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the row number (0 based)
          */
+
         public int RowNum
         {
             get
             {
-                return (int)_row.r-1;
+                return (int)_row.r - 1;
             }
-            set 
+            set
             {
                 int maxrow = SpreadsheetVersion.EXCEL2007.LastRowIndex;
                 if (value < 0 || value > maxrow)
@@ -404,34 +421,34 @@ namespace Npoi.Core.XSSF.UserModel
                     throw new ArgumentException("Invalid row number (" + value
                             + ") outside allowable range (0.." + maxrow + ")");
                 }
-                _row.r = (uint)(value+1);
+                _row.r = (uint)(value + 1);
             }
         }
-
 
         /**
          * Get whether or not to display this row with 0 height
          *
          * @return - height is zero or not.
          */
+
         public bool ZeroHeight
         {
             get
             {
                 return (bool)this._row.hidden;
             }
-            set 
+            set
             {
-                this._row.hidden = value;                
+                this._row.hidden = value;
             }
         }
-
 
         /**
          * Is this row formatted? Most aren't, but some rows
          *  do have whole-row styles. For those that do, you
          *  can get the formatting from {@link #GetRowStyle()}
          */
+
         public bool IsFormatted
         {
             get
@@ -439,11 +456,13 @@ namespace Npoi.Core.XSSF.UserModel
                 return _row.IsSetS();
             }
         }
+
         /**
          * Returns the whole-row cell style. Most rows won't
          *  have one of these, so will return null. Call
          *  {@link #isFormatted()} to check first.
          */
+
         public ICellStyle RowStyle
         {
             get
@@ -460,7 +479,7 @@ namespace Npoi.Core.XSSF.UserModel
                     return null;
                 }
             }
-            set 
+            set
             {
                 if (value == null)
                 {
@@ -489,9 +508,9 @@ namespace Npoi.Core.XSSF.UserModel
          * If the value is null then the style information is Removed,
          *  causing the cell to used the default workbook style.
          */
+
         public void SetRowStyle(ICellStyle style)
         {
-
         }
 
         /**
@@ -499,6 +518,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param cell the cell to remove
          */
+
         public void RemoveCell(ICell cell)
         {
             if (cell.Row != this)
@@ -534,6 +554,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @see Npoi.Core.XSSF.usermodel.XSSFSheet#Write(java.io.OutputStream) ()
          */
+
         internal void OnDocumentWrite()
         {
             // check if cells in the CT_Row are ordered
@@ -583,6 +604,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @param n the number of rows to move
          */
+
         internal void Shift(int n)
         {
             int rownum = RowNum + n;
@@ -599,7 +621,7 @@ namespace Npoi.Core.XSSF.UserModel
                 }
 
                 //remove the reference in the calculation chain
-                if (calcChain != null) 
+                if (calcChain != null)
                     calcChain.RemoveItem(sheetId, cell.GetReference());
 
                 CT_Cell CT_Cell = cell.GetCTCell();
@@ -613,13 +635,15 @@ namespace Npoi.Core.XSSF.UserModel
 
         public List<ICell> Cells
         {
-            get {
+            get
+            {
                 List<ICell> cells = new List<ICell>();
                 foreach (ICell cell in _cells.Values)
                 {
                     cells.Add(cell);
                 }
-                return cells; }
+                return cells;
+            }
         }
 
         public void MoveCell(ICell cell, int newColumn)
@@ -641,6 +665,7 @@ namespace Npoi.Core.XSSF.UserModel
         {
             return GetEnumerator();
         }
+
         public int OutlineLevel
         {
             get
@@ -648,7 +673,7 @@ namespace Npoi.Core.XSSF.UserModel
                 return _row.outlineLevel;
             }
         }
-        #endregion
-    }
 
+        #endregion IRow Members
+    }
 }

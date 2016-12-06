@@ -14,25 +14,27 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System.Collections.Generic;
-    using System.IO;
-    using NUnit.Framework;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
     using Npoi.Core.XWPF;
     using Npoi.Core.XWPF.Model;
+    using NUnit.Framework;
     using System;
+    using System.Collections.Generic;
+    using System.IO;
 
     /**
      * Tests for XWPF Run
      */
+
     [TestFixture]
     public class TestXWPFRun
     {
-
         public CT_R ctRun;
         public XWPFParagraph p;
+
         [SetUp]
         public void SetUp()
         {
@@ -40,7 +42,6 @@ namespace Npoi.Core.XWPF.UserModel
             p = doc.CreateParagraph();
 
             this.ctRun = new CT_R();
-
         }
 
         [Test]
@@ -115,7 +116,6 @@ namespace Npoi.Core.XWPF.UserModel
             Assert.AreEqual(ST_Underline.none, rpr.u.val);
         }
 
-
         [Test]
         public void TestSetGetVAlign()
         {
@@ -128,7 +128,6 @@ namespace Npoi.Core.XWPF.UserModel
             run.Subscript = (VerticalAlign.BASELINE);
             Assert.AreEqual(ST_VerticalAlignRun.baseline, rpr.vertAlign.val);
         }
-
 
         [Test]
         public void TestSetGetFontFamily()
@@ -143,7 +142,6 @@ namespace Npoi.Core.XWPF.UserModel
             Assert.AreEqual("Verdana", rpr.rFonts.ascii);
         }
 
-
         [Test]
         public void TestSetGetFontSize()
         {
@@ -157,7 +155,6 @@ namespace Npoi.Core.XWPF.UserModel
             Assert.AreEqual(48, (int)rpr.sz.val);
         }
 
-
         [Test]
         public void TestSetGetTextForegroundBackground()
         {
@@ -170,6 +167,7 @@ namespace Npoi.Core.XWPF.UserModel
             run.SetTextPosition(2400);
             Assert.AreEqual(2400, int.Parse(rpr.position.val));
         }
+
         [Test]
         public void TestSetGetColor()
         {
@@ -178,10 +176,10 @@ namespace Npoi.Core.XWPF.UserModel
             String clr = run.GetColor();
             Assert.AreEqual("0F0F0F", clr);
         }
+
         [Test]
         public void TestAddCarriageReturn()
         {
-
             ctRun.AddNewT().Value = ("TEST STRING");
             ctRun.AddNewCr();
             ctRun.AddNewT().Value = ("TEST2 STRING");
@@ -197,13 +195,12 @@ namespace Npoi.Core.XWPF.UserModel
             run.AddCarriageReturn();
             Assert.AreEqual(3, run.GetCTR().GetCrList().Count);
             Assert.AreEqual("T1\n\nT2\n", run.ToString());
-
         }
 
         [Test]
         public void TestAddTabsAndLineBreaks()
         {
-            ctRun.AddNewT().Value=("TEST STRING");
+            ctRun.AddNewT().Value = ("TEST STRING");
             ctRun.AddNewCr();
             ctRun.AddNewT().Value = (/*setter*/"TEST2 STRING");
             ctRun.AddNewTab();
@@ -222,7 +219,6 @@ namespace Npoi.Core.XWPF.UserModel
 
             Assert.AreEqual("T1\nT2\tT3", run.ToString());
         }
-
 
         [Test]
         public void TestAddPageBreak()
@@ -246,15 +242,15 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * Test that on an existing document, we do the
          *  right thing with it
-         * @throws IOException 
+         * @throws IOException
          */
+
         [Test]
         public void TestExisting()
         {
             XWPFDocument doc = XWPFTestDataSamples.OpenSampleDocument("TestDocument.docx");
             XWPFParagraph p;
             XWPFRun run;
-
 
             // First paragraph is simple
             p = doc.GetParagraphArray(0);
@@ -275,7 +271,6 @@ namespace Npoi.Core.XWPF.UserModel
             Assert.AreEqual(false, run.IsStrike);
             Assert.AreEqual(null, run.GetCTR().rPr);
 
-
             // Next paragraph is all in one style, but a different one
             p = doc.GetParagraphArray(1);
             Assert.AreEqual("This bit is in bold and italic", p.Text);
@@ -289,7 +284,6 @@ namespace Npoi.Core.XWPF.UserModel
             Assert.AreEqual(true, run.GetCTR().rPr.IsSetB());
             Assert.AreEqual(false, run.GetCTR().rPr.b.IsSetVal());
 
-
             // Back to normal
             p = doc.GetParagraphArray(2);
             Assert.AreEqual("Back to normal", p.Text);
@@ -301,7 +295,6 @@ namespace Npoi.Core.XWPF.UserModel
             Assert.AreEqual(false, run.IsItalic);
             Assert.AreEqual(false, run.IsStrike);
             Assert.AreEqual(null, run.GetCTR().rPr);
-
 
             // Different styles in one paragraph
             p = doc.GetParagraphArray(3);
@@ -425,10 +418,12 @@ namespace Npoi.Core.XWPF.UserModel
             Assert.AreEqual(1, doc.AllPictures.Count);
             Assert.AreEqual(1, r.GetEmbeddedPictures().Count);
         }
+
         /**
      * Bugzilla #52288 - setting the font family on the
      *  run mustn't NPE
      */
+
         [Test]
         public void TestSetFontFamily_52288()
         {

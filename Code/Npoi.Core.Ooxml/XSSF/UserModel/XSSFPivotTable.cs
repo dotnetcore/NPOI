@@ -19,19 +19,17 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.XSSF.UserModel
 {
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXmlFormats.Spreadsheet;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Xml;
-    using Npoi.Core.OpenXml4Net.OPC;
-    using Npoi.Core.SS.UserModel;
-    using Npoi.Core.SS.Util;
-    using Npoi.Core.OpenXmlFormats.Spreadsheet;
-
 
     public class XSSFPivotTable : POIXMLDocumentPart
     {
-
         protected internal static short CREATED_VERSION = 3;
         protected internal static short MIN_REFRESHABLE_VERSION = 3;
         protected internal static short UPDATED_VERSION = 3;
@@ -42,7 +40,6 @@ namespace Npoi.Core.XSSF.UserModel
         private XSSFPivotCacheRecords pivotCacheRecords;
         private ISheet parentSheet;
         private ISheet dataSheet;
-
 
         public XSSFPivotTable()
             : base()
@@ -64,10 +61,8 @@ namespace Npoi.Core.XSSF.UserModel
         protected XSSFPivotTable(PackagePart part, PackageRelationship rel)
             : base(part, rel)
         {
-
             ReadFrom(part.GetInputStream());
         }
-
 
         public void ReadFrom(Stream is1)
         {
@@ -85,81 +80,65 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         public void SetPivotCache(XSSFPivotCache pivotCache)
         {
             this.pivotCache = pivotCache;
         }
-
 
         public XSSFPivotCache GetPivotCache()
         {
             return pivotCache;
         }
 
-
         public ISheet GetParentSheet()
         {
             return parentSheet;
         }
-
 
         public void SetParentSheet(XSSFSheet parentSheet)
         {
             this.parentSheet = parentSheet;
         }
 
-
-
         public CT_PivotTableDefinition GetCTPivotTableDefinition()
         {
             return pivotTableDefinition;
         }
-
-
 
         public void SetCTPivotTableDefinition(CT_PivotTableDefinition pivotTableDefinition)
         {
             this.pivotTableDefinition = pivotTableDefinition;
         }
 
-
         public XSSFPivotCacheDefinition GetPivotCacheDefinition()
         {
             return pivotCacheDefinition;
         }
-
 
         public void SetPivotCacheDefinition(XSSFPivotCacheDefinition pivotCacheDefinition)
         {
             this.pivotCacheDefinition = pivotCacheDefinition;
         }
 
-
         public XSSFPivotCacheRecords GetPivotCacheRecords()
         {
             return pivotCacheRecords;
         }
-
 
         public void SetPivotCacheRecords(XSSFPivotCacheRecords pivotCacheRecords)
         {
             this.pivotCacheRecords = pivotCacheRecords;
         }
 
-
         public ISheet GetDataSheet()
         {
             return dataSheet;
         }
 
-
         private void SetDataSheet(ISheet dataSheet)
         {
             this.dataSheet = dataSheet;
         }
-
-
 
         protected internal override void Commit()
         {
@@ -478,7 +457,6 @@ namespace Npoi.Core.XSSF.UserModel
             worksheetSource.@ref = (/*setter*/firstCell[2] + firstCell[1] + ':' + lastCell[2] + lastCell[1]);
         }
 
-
         protected internal void CreateDefaultDataColumns()
         {
             CT_PivotFields pivotFields;
@@ -503,5 +481,4 @@ namespace Npoi.Core.XSSF.UserModel
             pivotFields.count = (/*setter*/pivotFields.SizeOfPivotFieldArray());
         }
     }
-
 }

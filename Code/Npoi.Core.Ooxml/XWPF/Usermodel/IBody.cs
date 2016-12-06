@@ -19,10 +19,8 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Xml;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using System.Collections.Generic;
 
     /**
      * An IBody represents the different parts of the document which
@@ -32,6 +30,7 @@ namespace Npoi.Core.XWPF.UserModel
      *  the parts in it like XWPFHeader, XWPFFooter, XWPFTableCell
      *
      */
+
     public interface IBody
     {
         /**
@@ -40,6 +39,7 @@ namespace Npoi.Core.XWPF.UserModel
          * belongs.
          * @return the Part, to which the body belongs
          */
+
         POIXMLDocumentPart Part
         {
             get;
@@ -47,13 +47,13 @@ namespace Npoi.Core.XWPF.UserModel
 
         /**
          * Get the PartType of the body, for example
-         * DOCUMENT, HEADER, FOOTER,	FOOTNOTE, 
+         * DOCUMENT, HEADER, FOOTER,	FOOTNOTE,
          * @return the PartType of the body
          */
         BodyType PartType { get; }
 
         /**
-         * Returns an Iterator with paragraphs and tables, 
+         * Returns an Iterator with paragraphs and tables,
          *  in the order that they occur in the text.
          */
         IList<IBodyElement> BodyElements { get; }
@@ -74,41 +74,47 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * if there is a corresponding {@link XWPFParagraph} of the parameter ctTable in the paragraphList of this header or footer
          * the method will return this paragraph
-         * if there is no corresponding {@link XWPFParagraph} the method will return null 
+         * if there is no corresponding {@link XWPFParagraph} the method will return null
          * @param p is instance of CTP and is searching for an XWPFParagraph
          * @return null if there is no XWPFParagraph with an corresponding CTPparagraph in the paragraphList of this header or footer
          * 		   XWPFParagraph with the correspondig CTP p
          */
+
         XWPFParagraph GetParagraph(CT_P p);
 
         /**
          * if there is a corresponding {@link XWPFTable} of the parameter ctTable in the tableList of this header
          * the method will return this table
-         * if there is no corresponding {@link XWPFTable} the method will return null 
+         * if there is no corresponding {@link XWPFTable} the method will return null
          * @param ctTable
          */
+
         XWPFTable GetTable(CT_Tbl ctTable);
 
         /**
          * Returns the paragraph that of position pos
          */
+
         XWPFParagraph GetParagraphArray(int pos);
 
         /**
          * Returns the table at position pos
          */
+
         XWPFTable GetTableArray(int pos);
 
         /**
          *inserts a new paragraph at position of the cursor
          * @param cursor
          */
+
         XWPFParagraph InsertNewParagraph(XDocument cursor);
 
         /**
          * inserts a new Table at the cursor position.
          * @param cursor
          */
+
         XWPFTable InsertNewTbl(/*XmlCursor*/XDocument cursor);
 
         /**
@@ -116,20 +122,20 @@ namespace Npoi.Core.XWPF.UserModel
          * @param pos
          * @param table
          */
+
         void InsertTable(int pos, XWPFTable table);
 
         /**
          * returns the TableCell to which the Table belongs
          * @param cell
          */
+
         XWPFTableCell GetTableCell(CT_Tc cell);
 
         /**
          * Return XWPFDocument
          */
+
         XWPFDocument GetXWPFDocument();
-
     }
-
-
 }

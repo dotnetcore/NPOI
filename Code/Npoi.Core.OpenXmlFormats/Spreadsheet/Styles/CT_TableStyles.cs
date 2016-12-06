@@ -3,15 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
     public class CT_TableStyle
     {
-
         private List<CT_TableStyleElement> tableStyleElementField;
 
         private string nameField;
@@ -30,6 +29,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.pivotField = true;
             this.tableField = true;
         }
+
         public static CT_TableStyle Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -47,8 +47,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -80,6 +78,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.tableStyleElementField = value;
             }
         }
+
         [XmlAttribute]
         public string name
         {
@@ -92,6 +91,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.nameField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(true)]
         public bool pivot
@@ -105,6 +105,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.pivotField = value;
             }
         }
+
         [XmlAttribute]
         [DefaultValue(true)]
         public bool table
@@ -118,6 +119,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.tableField = value;
             }
         }
+
         [XmlAttribute]
         public uint count
         {
@@ -144,11 +146,11 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_TableStyleInfo
     {
-
         private string nameField;
 
         private bool showFirstColumnField;
@@ -184,8 +186,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
@@ -209,6 +209,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.nameField = value;
             }
         }
+
         [XmlAttribute]
         public bool showFirstColumn
         {
@@ -234,6 +235,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.showFirstColumnFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public bool showLastColumn
         {
@@ -259,6 +261,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.showLastColumnFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public bool showRowStripes
         {
@@ -284,6 +287,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.showRowStripesFieldSpecified = value;
             }
         }
+
         [XmlAttribute]
         public bool showColumnStripes
         {
@@ -310,9 +314,9 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
+
     public class CT_TableStyles
     {
-
         private List<CT_TableStyle> tableStyleField;
 
         private uint countField;
@@ -340,8 +344,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
@@ -363,6 +365,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             //this.tableStyleField = new List<CT_TableStyle>();
         }
+
         [XmlElement]
         public List<CT_TableStyle> tableStyle
         {
@@ -375,6 +378,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.tableStyleField = value;
             }
         }
+
         [XmlAttribute]
         public uint count
         {
@@ -425,97 +429,68 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
         }
     }
+
     public enum ST_TableStyleType
     {
-
-
         wholeTable,
-
 
         headerRow,
 
-
         totalRow,
-
 
         firstColumn,
 
-
         lastColumn,
-
 
         firstRowStripe,
 
-
         secondRowStripe,
-
 
         firstColumnStripe,
 
-
         secondColumnStripe,
-
 
         firstHeaderCell,
 
-
         lastHeaderCell,
-
 
         firstTotalCell,
 
-
         lastTotalCell,
-
 
         firstSubtotalColumn,
 
-
         secondSubtotalColumn,
-
 
         thirdSubtotalColumn,
 
-
         firstSubtotalRow,
-
 
         secondSubtotalRow,
 
-
         thirdSubtotalRow,
-
 
         blankRow,
 
-
         firstColumnSubheading,
-
 
         secondColumnSubheading,
 
-
         thirdColumnSubheading,
-
 
         firstRowSubheading,
 
-
         secondRowSubheading,
-
 
         thirdRowSubheading,
 
-
         pageFieldLabels,
-
 
         pageFieldValues,
     }
 
     public class CT_TableStyleElement
     {
-
         private ST_TableStyleType typeField;
 
         private uint sizeField;
@@ -528,6 +503,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             this.sizeField = (uint)(1);
         }
+
         public static CT_TableStyleElement Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -539,8 +515,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             ctObj.dxfId = XmlHelper.ReadUInt(node.Attribute("dxfId"));
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -577,6 +551,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.sizeField = value;
             }
         }
+
         [XmlAttribute]
         public uint dxfId
         {

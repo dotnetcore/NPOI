@@ -16,14 +16,16 @@
 ==================================================================== */
 
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using NUnit.Framework;
 using Npoi.Core.XSSF.Model;
+using NUnit.Framework;
+
 namespace Npoi.Core.XSSF.UserModel.Helpers
 {
     /**
      * Tests for {@link ColumnHelper}
      *
      */
+
     [TestFixture]
     public class TestColumnHelper
     {
@@ -61,6 +63,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             Assert.AreEqual(0.0, helper.GetColumn(1, false).width, 0.0);
             Assert.IsFalse(helper.GetColumn(1, false).hidden);
         }
+
         [Test]
         public void TestSortColumns()
         {
@@ -110,6 +113,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             Assert.AreEqual(25u, cols1.GetColArray(8).min);
             Assert.AreEqual(27u, cols1.GetColArray(8).max);
         }
+
         [Test]
         public void TestCloneCol()
         {
@@ -128,6 +132,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             Assert.IsTrue(newCol.hidden);
             Assert.AreEqual(13.4, newCol.width, 0.0);
         }
+
         [Test]
         public void TestAddCleanColIntoCols()
         {
@@ -188,6 +193,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             Assert.AreEqual(1u, cols1.GetColArray(0).min);
             Assert.AreEqual(16750u, cols1.GetColArray(11).max);
         }
+
         [Test]
         public void TestColumn()
         {
@@ -218,6 +224,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             Assert.IsNull(helper.GetColumn(99, false));
             Assert.IsNotNull(helper.GetColumn(5, false));
         }
+
         [Test]
         public void TestSetColumnAttributes()
         {
@@ -232,6 +239,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             Assert.AreEqual(12.0, newCol.width, 0.0);
             Assert.IsTrue(newCol.hidden);
         }
+
         [Test]
         public void TestGetOrCreateColumn()
         {
@@ -254,6 +262,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             Assert.IsNotNull(columnHelper.GetColumn1Based(30, false));
             Assert.IsNull(columnHelper.GetColumn(30, false));
         }
+
         [Test]
         public void TestGetSetColDefaultStyle()
         {
@@ -308,4 +317,3 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
         }
     }
 }
-

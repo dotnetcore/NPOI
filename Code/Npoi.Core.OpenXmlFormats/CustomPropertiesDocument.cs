@@ -7,17 +7,19 @@ namespace Npoi.Core.OpenXmlFormats
     public class CustomPropertiesDocument
     {
         internal static XmlSerializer serializer = new XmlSerializer(typeof(CT_CustomProperties));
+
         internal static XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces(new XmlQualifiedName[] {
             new XmlQualifiedName("", "http://schemas.openxmlformats.org/spreadsheetml/2006/main"),
             new XmlQualifiedName("vt", "http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes")
         });
 
-        CT_CustomProperties _props = null;
+        private CT_CustomProperties _props = null;
 
         public CustomPropertiesDocument(CT_CustomProperties prop)
         {
             this._props = prop;
         }
+
         public CustomPropertiesDocument()
         {
             //_props = new CT_Properties();

@@ -15,11 +15,12 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.XSSF.UserModel.Helpers;
-using System;
 using Npoi.Core.HSSF.UserModel;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS.UserModel;
+using Npoi.Core.XSSF.UserModel.Helpers;
+using System;
+
 namespace Npoi.Core.XSSF.UserModel.Extensions
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          *
          * @param headerFooter
          */
+
         public XSSFHeaderFooter(CT_HeaderFooter headerFooter)
         {
             this.headerFooter = headerFooter;
@@ -66,6 +68,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          * Are fields currently being stripped from the text that this
          * {@link XSSFHeaderFooter} returns? Default is false, but can be Changed
          */
+
         public bool AreFieldsStripped()
         {
             return stripFields;
@@ -77,6 +80,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          *
          * @param StripFields
          */
+
         public void SetAreFieldsStripped(bool stripFields)
         {
             this.stripFields = stripFields;
@@ -87,18 +91,22 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
             get;
             set;
         }
+
         /**
  * Removes any fields (eg macros, page markers etc) from the string.
  * Normally used to make some text suitable for showing to humans, and the
  * resultant text should not normally be saved back into the document!
  */
+
         public static String StripFields(String text)
         {
             return HeaderFooter.StripFields(text);
         }
+
         /**
          * get the text representing the center part of this element
          */
+
         public String Center
         {
             get
@@ -108,7 +116,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
                     return StripFields(text);
                 return text;
             }
-            set 
+            set
             {
                 this.Text = (helper.SetCenterSection(Text, value));
             }
@@ -117,6 +125,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
         /**
          * get the text representing the left part of this element
          */
+
         public String Left
         {
             get
@@ -126,7 +135,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
                     return StripFields(text);
                 return text;
             }
-            set 
+            set
             {
                 this.Text = helper.SetLeftSection(Text, value);
             }
@@ -135,6 +144,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
         /**
          * get the text representing the right part of this element
          */
+
         public String Right
         {
             get
@@ -144,12 +154,10 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
                     return StripFields(text);
                 return text;
             }
-            set 
+            set
             {
                 this.Text = (helper.SetRightSection(Text, value));
             }
         }
     }
 }
-
-

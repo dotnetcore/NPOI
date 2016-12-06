@@ -17,12 +17,12 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
-    using System.Text;
     using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.XSSF.UserModel;
     using NUnit.Framework;
+    using System;
+    using System.Text;
 
     [TestFixture]
     public class TestProper
@@ -87,5 +87,4 @@ namespace Npoi.Core.SS.Formula.Functions
             Assert.AreEqual(expectedResult, actualValue);
         }
     }
-
 }

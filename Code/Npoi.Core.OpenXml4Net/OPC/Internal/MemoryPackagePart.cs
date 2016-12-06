@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Npoi.Core.OpenXml4Net.OPC.Internal.Marshallers;
+using System;
 using System.IO;
-using Npoi.Core.OpenXml4Net.OPC.Internal.Marshallers;
-using Npoi.Core.OpenXml4Net.Exceptions;
-using Npoi.Core.Util;
 
 namespace Npoi.Core.OpenXml4Net.OPC.Internal
 {
@@ -17,7 +13,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
 
         /**
          * Constructor.
-         * 
+         *
          * @param pack
          *            The owner package.
          * @param partName
@@ -27,16 +23,16 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @throws InvalidFormatException
          *             If the specified URI is not OPC compliant.
          */
+
         public MemoryPackagePart(OPCPackage pack, PackagePartName partName,
                 String contentType)
             : base(pack, partName, contentType)
         {
-
         }
 
         /**
          * Constructor.
-         * 
+         *
          * @param pack
          *            The owner package.
          * @param partName
@@ -48,11 +44,11 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @throws InvalidFormatException
          *             If the specified URI is not OPC compliant.
          */
+
         public MemoryPackagePart(OPCPackage pack, PackagePartName partName,
                 String contentType, bool loadRelationships) :
             base(pack, partName, new ContentType(contentType), loadRelationships)
         {
-
         }
 
         protected override Stream GetInputStreamImpl()
@@ -83,6 +79,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
                 return data == null ? 0 : data.Length;
             }
         }
+
         public override void Clear()
         {
             data = null;

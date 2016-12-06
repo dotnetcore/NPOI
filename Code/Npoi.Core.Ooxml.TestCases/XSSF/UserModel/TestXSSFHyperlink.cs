@@ -15,11 +15,12 @@
    limitations under the License.
 ==================================================================== */
 
-using TestCases.SS.UserModel;
-using System;
-using NUnit.Framework;
-using Npoi.Core.SS.UserModel;
 using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.SS.UserModel;
+using NUnit.Framework;
+using System;
+using TestCases.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
     [TestFixture]
@@ -28,7 +29,6 @@ namespace Npoi.Core.XSSF.UserModel
         public TestXSSFHyperlink()
             : base(XSSFITestDataProvider.instance)
         {
-
         }
 
         [SetUp]
@@ -40,6 +40,7 @@ namespace Npoi.Core.XSSF.UserModel
                     "Npoi.Core.util.SystemOutLogger"
             );
         }
+
         [Test]
         public void TestLoadExisting()
         {
@@ -52,6 +53,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(4, sheet.NumHyperlinks);
             doTestHyperlinkContents(sheet);
         }
+
         [Test]
         public void TestCreate()
         {
@@ -70,10 +72,10 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 String s = urls[i];
                 XSSFHyperlink link = CreateHelper.CreateHyperlink(HyperlinkType.Url) as XSSFHyperlink;
-                link.Address=(s);
+                link.Address = (s);
 
                 XSSFCell cell = row.CreateCell(i) as XSSFCell;
-                cell.Hyperlink=(link);
+                cell.Hyperlink = (link);
             }
             workbook = XSSFTestDataSamples.WriteOutAndReadBack(workbook) as XSSFWorkbook;
             sheet = workbook.GetSheetAt(0) as XSSFSheet;
@@ -82,8 +84,8 @@ namespace Npoi.Core.XSSF.UserModel
             for (int i = 0; i < rels.Size; i++)
             {
                 PackageRelationship rel = rels.GetRelationship(i);
-                if (rel.TargetUri.IsAbsoluteUri&&rel.TargetUri.IsFile)
-                    Assert.AreEqual(urls[i].Replace("file:///","").Replace("/","\\"),rel.TargetUri.LocalPath);
+                if (rel.TargetUri.IsAbsoluteUri && rel.TargetUri.IsFile)
+                    Assert.AreEqual(urls[i].Replace("file:///", "").Replace("/", "\\"), rel.TargetUri.LocalPath);
                 else
                     // there should be a relationship for each URL
                     Assert.AreEqual(urls[i], rel.TargetUri.ToString());
@@ -104,6 +106,7 @@ namespace Npoi.Core.XSSF.UserModel
                     Assert.AreEqual(urls[i], rel.TargetUri.ToString());
             }
         }
+
         [Test]
         public void TestInvalidURLs()
         {
@@ -140,7 +143,6 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(4, sheet.NumHyperlinks);
             doTestHyperlinkContents(sheet);
 
-
             // Write out, and check
 
             // Load up again, check all links still there
@@ -152,11 +154,9 @@ namespace Npoi.Core.XSSF.UserModel
 
             sheet = (XSSFSheet)wb2.GetSheetAt(0);
 
-
             // Check hyperlinks again
             Assert.AreEqual(4, sheet.NumHyperlinks);
             doTestHyperlinkContents(sheet);
-
 
             // Add one more, and re-check
             IRow r17 = sheet.CreateRow(17);
@@ -165,7 +165,7 @@ namespace Npoi.Core.XSSF.UserModel
             IHyperlink hyperlink = CreateHelper.CreateHyperlink(HyperlinkType.Url);
             hyperlink.Address = ("http://poi.apache.org/spreadsheet/");
             hyperlink.Label = "POI SS Link";
-            r17c.Hyperlink=(hyperlink);
+            r17c.Hyperlink = (hyperlink);
 
             Assert.AreEqual(5, sheet.NumHyperlinks);
             doTestHyperlinkContents(sheet);
@@ -176,7 +176,6 @@ namespace Npoi.Core.XSSF.UserModel
                     sheet.GetRow(17).GetCell(2).Hyperlink.Label);
             Assert.AreEqual("http://poi.apache.org/spreadsheet/",
                     sheet.GetRow(17).GetCell(2).Hyperlink.Address);
-
 
             // Save and re-load once more
 
@@ -202,6 +201,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Only for WithMoreVariousData.xlsx !
          */
+
         private static void doTestHyperlinkContents(XSSFSheet sheet)
         {
             Assert.IsNotNull(sheet.GetRow(3).GetCell(2).Hyperlink);
@@ -241,6 +241,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual("mailto:dev@poi.apache.org?subject=XSSF Hyperlinks",
                     sheet.GetRow(16).GetCell(2).Hyperlink.Address);
         }
+
         [Test]
         public void Test52716()
         {
@@ -261,6 +262,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(HyperlinkType.Document, l2.Type);
             Assert.AreEqual("B1", l2.GetCellRef());
         }
+
         [Test]
         public void Test53734()
         {
@@ -272,6 +274,7 @@ namespace Npoi.Core.XSSF.UserModel
             link = wb.GetSheetAt(0).GetRow(0).GetCell(0).Hyperlink as XSSFHyperlink;
             Assert.AreEqual("javascript:///", link.Address);
         }
+
         [Test]
         public void Test53282()
         {
@@ -284,9 +287,5 @@ namespace Npoi.Core.XSSF.UserModel
             link = wb.GetSheetAt(0).GetRow(0).GetCell(14).Hyperlink as XSSFHyperlink;
             Assert.AreEqual("mailto:nobody@nowhere.uk%C2%A0", link.Address);
         }
-
     }
-
-
 }
-

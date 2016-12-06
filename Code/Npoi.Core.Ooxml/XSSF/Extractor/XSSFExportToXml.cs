@@ -15,22 +15,21 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
 using Npoi.Core.XSSF.UserModel;
-using System.Xml;
+using Npoi.Core.XSSF.UserModel.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Npoi.Core.XSSF.UserModel.Helpers;
-using System.Text.RegularExpressions;
-using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using Npoi.Core.SS.UserModel;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace Npoi.Core.XSSF.Extractor
 {
-
     /**
      *
      * Maps an XLSX to an XML according to one of the mapping defined.
@@ -49,9 +48,9 @@ namespace Npoi.Core.XSSF.Extractor
      * <li> no &lt;substitutionGroup&gt; in complex type/element declaration </li>
      * </ul>
      */
+
     public class XSSFExportToXml : IComparer<String>
     {
-
         private XSSFMap map;
 
         /**
@@ -59,6 +58,7 @@ namespace Npoi.Core.XSSF.Extractor
          *
          * @param map the mapping rule to be used
          */
+
         public XSSFExportToXml(XSSFMap map)
         {
             this.map = map;
@@ -71,9 +71,10 @@ namespace Npoi.Core.XSSF.Extractor
          * @param os OutputStream in which will contain the output XML
          * @param validate if true, validates the XML againts the XML Schema
          * @throws SAXException
-         * @throws TransformerException  
-         * @throws ParserConfigurationException 
+         * @throws TransformerException
+         * @throws ParserConfigurationException
          */
+
         public void ExportToXML(Stream os, bool validate)
         {
             ExportToXML(os, "UTF-8", validate);
@@ -91,10 +92,11 @@ namespace Npoi.Core.XSSF.Extractor
          * @param encoding the output charset encoding
          * @param validate if true, validates the XML againts the XML Schema
          * @throws SAXException
-         * @throws ParserConfigurationException 
-         * @throws TransformerException 
+         * @throws ParserConfigurationException
+         * @throws TransformerException
          * @throws InvalidFormatException
          */
+
         public void ExportToXML(Stream os, String encoding, bool validate)
         {
             List<XSSFSingleXmlCell> SingleXMLCells = map.GetRelatedSingleXMLCell();
@@ -103,7 +105,6 @@ namespace Npoi.Core.XSSF.Extractor
             String rootElement = map.GetCTMap().RootElement;
 
             XDocument doc = GetEmptyDocument();
-
 
             XElement root = null;
 
@@ -116,7 +117,6 @@ namespace Npoi.Core.XSSF.Extractor
                 root = doc.CreateElement(rootElement);
             }
             doc.AppendChild(root);
-
 
             List<String> xpaths = new List<String>();
             Dictionary<String, XSSFSingleXmlCell> SingleXmlCellsMappings = new Dictionary<String, XSSFSingleXmlCell>();
@@ -134,12 +134,10 @@ namespace Npoi.Core.XSSF.Extractor
                 tableMappings[commonXPath] = table;
             }
 
-
             xpaths.Sort();
 
             foreach (String xpath in xpaths)
             {
-
                 XSSFSingleXmlCell simpleXmlCell;
                 if (SingleXmlCellsMappings.ContainsKey(xpath))
                     simpleXmlCell = SingleXmlCellsMappings[xpath];
@@ -153,7 +151,6 @@ namespace Npoi.Core.XSSF.Extractor
 
                 if (!Regex.IsMatch(xpath, ".*\\[.*"))
                 {
-
                     // Exports elements and attributes mapped with simpleXmlCell
                     if (simpleXmlCell != null)
                     {
@@ -169,7 +166,6 @@ namespace Npoi.Core.XSSF.Extractor
                     // Exports elements and attributes mapped with tables
                     if (table != null)
                     {
-
                         List<XSSFXmlColumnPr> tableColumns = table.GetXmlColumnPrs();
 
                         XSSFSheet sheet = table.GetXSSFSheet();
@@ -197,14 +193,10 @@ namespace Npoi.Core.XSSF.Extractor
                                     XElement currentNode = GetNodeByXPath(localXPath, tableRootNode, doc, false);
                                     ST_XmlDataType dataType = pointer.GetXmlDataType();
 
-
                                     mapCellOnNode(cell, currentNode, dataType);
                                 }
-
                             }
-
                         }
-
                     }
                 }
                 else
@@ -219,11 +211,8 @@ namespace Npoi.Core.XSSF.Extractor
                 isValid = this.IsValid(doc);
             }
 
-
-
             if (isValid)
             {
-
                 /////////////////
                 //Output the XML
                 XmlWriterSettings settings = new XmlWriterSettings();
@@ -238,13 +227,13 @@ namespace Npoi.Core.XSSF.Extractor
             }
         }
 
-
         /**
          * Validate the generated XML against the XML Schema associated with the XSSFMap
          *
          * @param xml the XML to validate
          * @return
          */
+
         private bool IsValid(XDocument xml)
         {
             //bool isValid = false;
@@ -260,7 +249,6 @@ namespace Npoi.Core.XSSF.Extractor
             //    //if no exceptions where raised, the document is valid
             //    isValid = true;
 
-
             //}
             //catch (IOException e)
             //{
@@ -270,14 +258,11 @@ namespace Npoi.Core.XSSF.Extractor
             return true;
         }
 
-
         private void mapCellOnNode(XSSFCell cell, XElement node, ST_XmlDataType outputDataType)
         {
-
             String value = "";
             switch (cell.CellType)
             {
-
                 case CellType.String: value = cell.StringCellValue; break;
                 case CellType.Boolean: value += cell.BooleanCellValue; break;
                 case CellType.Error: value = cell.ErrorCellString; break;
@@ -302,24 +287,18 @@ namespace Npoi.Core.XSSF.Extractor
             return Regex.IsMatch(elementName, ".*:.*") ? elementName.Split(new char[] { ':' })[1] : elementName;
         }
 
-
-
         private XElement GetNodeByXPath(String xpath, XElement rootNode, XDocument doc, bool CreateMultipleInstances)
         {
             String[] xpathTokens = xpath.Split(new char[] { '/' });
-
 
             XElement currentNode = rootNode;
             // The first token is empty, the second is the root node
             for (int i = 2; i < xpathTokens.Length; i++)
             {
-
                 String axisName = RemoveNamespace(xpathTokens[i]);
-
 
                 if (!axisName.StartsWith("@"))
                 {
-
                     var list = currentNode.ChildElements().ToList();
 
                     XElement selectedNode = null;
@@ -386,7 +365,6 @@ namespace Npoi.Core.XSSF.Extractor
             return selectedNode;
         }
 
-
         private bool IsNamespaceDeclared()
         {
             String schemaNamespace = GetNamespace();
@@ -398,14 +376,13 @@ namespace Npoi.Core.XSSF.Extractor
             return map.GetCTSchema().Namespace;
         }
 
-
         /**
          * Compares two xpaths to define an ordering according to the XML Schema
          *
          */
+
         public int Compare(String leftXpath, String rightXpath)
         {
-
             int result = 0;
             string xmlSchema = map.GetSchema();
             XDocument doc = XDocument.Load(new StringReader(xmlSchema));
@@ -417,10 +394,8 @@ namespace Npoi.Core.XSSF.Extractor
 
             XElement localComplexTypeRootNode = doc.Document.Root;
 
-
             for (int i = 1; i < minLenght; i++)
             {
-
                 String leftElementName = leftTokens[i];
                 String rightElementName = rightTokens[i];
 
@@ -481,11 +456,8 @@ namespace Npoi.Core.XSSF.Extractor
 
             String elementNameWithoutNamespace = RemoveNamespace(elementName);
 
-
             var list = localComplexTypeRootNode.ChildElements().ToList();
             String complexTypeName = "";
-
-
 
             for (int i = 0; i < list.Count; i++)
             {
@@ -518,7 +490,6 @@ namespace Npoi.Core.XSSF.Extractor
                             var nameAttribute = node.Attribute("name");
                             if (nameAttribute.Value.Equals(complexTypeName))
                             {
-
                                 var complexTypeChildList = node.ChildElements().ToList();
                                 for (int j = 0; j < complexTypeChildList.Count; j++)
                                 {
@@ -537,7 +508,6 @@ namespace Npoi.Core.XSSF.Extractor
                                 {
                                     break;
                                 }
-
                             }
                         }
                     }

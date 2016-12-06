@@ -17,25 +17,24 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-    using NUnit.Framework;
-
-    using Npoi.Core.XWPF;
-    using System.Collections.Generic;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
     using Npoi.Core.Util;
+    using Npoi.Core.XWPF;
+    using NUnit.Framework;
+    using System.Collections.Generic;
 
     /**
      * Tests for XWPF Paragraphs
      */
+
     [TestFixture]
     public class TestXWPFParagraph
     {
-
         /**
          * Check that we Get the right paragraph from the header
-         * @throws IOException 
+         * @throws IOException
          */
+
         [Test]
         public void TestHeaderParagraph()
         {
@@ -54,8 +53,9 @@ namespace Npoi.Core.XWPF.UserModel
 
         /**
          * Check that we Get the right paragraphs from the document
-         * @throws IOException 
+         * @throws IOException
          */
+
         [Test]
         public void TestDocumentParagraph()
         {
@@ -123,7 +123,6 @@ namespace Npoi.Core.XWPF.UserModel
             p.Alignment = (ParagraphAlignment.BOTH);
             Assert.AreEqual((int)ST_Jc.both, (int)ppr.jc.val);
         }
-
 
         [Test]
         public void TestSetGetSpacing()
@@ -218,7 +217,6 @@ namespace Npoi.Core.XWPF.UserModel
             p.IsWordWrap = true;
             Assert.AreEqual(true, ppr.wordWrap.val);
         }
-
 
         [Test]
         public void TestSetGetPageBreak()
@@ -336,13 +334,12 @@ namespace Npoi.Core.XWPF.UserModel
             r = p.Runs[5];
             //Is there a bug about XmlSerializer? it can not Deserialize the tag which inner text is only one whitespace
             //e.g. <w:t> </w:t> to CT_Text;
-            //TODO 
+            //TODO
             Assert.AreEqual(" ", r.ToString());
             Assert.AreEqual(0, r.GetEmbeddedPictures().Count);
 
             // Final spacer
             Assert.AreEqual("", doc.Paragraphs[(6)].Text);
-
 
             // Look in detail at one
             r = p.Runs[4];
@@ -360,6 +357,7 @@ namespace Npoi.Core.XWPF.UserModel
             //PicDocument pd = new PicDocumentImpl(null);
             //assertTrue(pd.isNil());
         }
+
         [Test]
         public void TestTika792()
         {
@@ -516,6 +514,7 @@ namespace Npoi.Core.XWPF.UserModel
 
             Assert.IsTrue(p.RemoveRun(0));
         }
+
         [Test]
         public void TestRuns()
         {
@@ -530,7 +529,5 @@ namespace Npoi.Core.XWPF.UserModel
             Assert.IsNotNull(p.GetRun(run));
             Assert.IsNull(p.GetRun(null));
         }
-
     }
-
 }

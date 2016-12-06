@@ -17,13 +17,13 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
 
     /**
      * Default Paragraph style, from which other styles will override
      * TODO Share logic with {@link XWPFParagraph} which also uses CTPPr
      */
+
     public class XWPFDefaultParagraphStyle
     {
         private CT_PPr ppr;
@@ -48,5 +48,4 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
     }
-
 }

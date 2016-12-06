@@ -17,17 +17,16 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using System;
 
     /**
      * @author Philipp Epp
      *
      */
+
     public class XWPFStyle
     {
-
         private CT_Style ctStyle;
         protected XWPFStyles styles;
 
@@ -35,15 +34,18 @@ namespace Npoi.Core.XWPF.UserModel
          * constructor
          * @param style
          */
+
         public XWPFStyle(CT_Style style)
             : this(style, null)
         {
         }
+
         /**
          * constructor
          * @param style
          * @param styles
          */
+
         public XWPFStyle(CT_Style style, XWPFStyles styles)
         {
             this.ctStyle = style;
@@ -54,46 +56,51 @@ namespace Npoi.Core.XWPF.UserModel
          * Get StyleID of the style
          * @return styleID		StyleID of the style
          */
+
         public String StyleId
         {
-			get
-			{
-				return ctStyle.styleId;
-			}
-			set 
-			{
-				ctStyle.styleId =value;
-			}
+            get
+            {
+                return ctStyle.styleId;
+            }
+            set
+            {
+                ctStyle.styleId = value;
+            }
         }
 
         /**
          * Get Type of the Style
-         * @return	ctType 
+         * @return	ctType
          */
+
         public ST_StyleType StyleType
         {
-			get
-			{
-				return ctStyle.type;
-			}
-			set 
-			{
-				ctStyle.type = value;
-			}
+            get
+            {
+                return ctStyle.type;
+            }
+            set
+            {
+                ctStyle.type = value;
+            }
         }
 
         /**
          * Set style
-         * @param style		
+         * @param style
          */
+
         public void SetStyle(CT_Style style)
         {
             this.ctStyle = style;
         }
+
         /**
          * Get ctStyle
          * @return	ctStyle
          */
+
         public CT_Style GetCTStyle()
         {
             return this.ctStyle;
@@ -103,6 +110,7 @@ namespace Npoi.Core.XWPF.UserModel
          * Get styles
          * @return styles		the styles to which this style belongs
          */
+
         public XWPFStyles GetStyles()
         {
             return styles;
@@ -110,65 +118,65 @@ namespace Npoi.Core.XWPF.UserModel
 
         public String BasisStyleID
         {
-			get
-			{
-				if (ctStyle.basedOn != null)
-					return ctStyle.basedOn.val;
-				else
-					return null;
-			}
+            get
+            {
+                if (ctStyle.basedOn != null)
+                    return ctStyle.basedOn.val;
+                else
+                    return null;
+            }
         }
-
 
         /**
          * Get StyleID of the linked Style
          */
+
         public String LinkStyleID
         {
-			get
-			{
-				if (ctStyle.link != null)
-					return ctStyle.link.val;
-				else
-					return null;
-			}
+            get
+            {
+                if (ctStyle.link != null)
+                    return ctStyle.link.val;
+                else
+                    return null;
+            }
         }
 
         /**
          * Get StyleID of the next style
          */
+
         public String NextStyleID
         {
-			get
-			{
-				if (ctStyle.next != null)
-					return ctStyle.next.val;
-				else
-					return null;
-			}
+            get
+            {
+                if (ctStyle.next != null)
+                    return ctStyle.next.val;
+                else
+                    return null;
+            }
         }
 
         public String Name
         {
-			get
-			{
-				if (ctStyle.IsSetName())
-					return ctStyle.name.val;
-				return null;
-			}
+            get
+            {
+                if (ctStyle.IsSetName())
+                    return ctStyle.name.val;
+                return null;
+            }
         }
 
         /**
-         * Compares the names of the Styles 
+         * Compares the names of the Styles
          * @param compStyle
          */
+
         public bool HasSameName(XWPFStyle compStyle)
         {
             CT_Style ctCompStyle = compStyle.GetCTStyle();
             String name = ctCompStyle.name.val;
             return name.Equals(ctStyle.name.val);
         }
-
     }//end class
-
 }

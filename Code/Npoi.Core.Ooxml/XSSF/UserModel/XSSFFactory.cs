@@ -15,27 +15,25 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.Util;
-using Npoi.Core.XSSF.UserModel;
-using System;
-using System.Linq;
 using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.Util;
+using System;
 using System.Reflection;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Instantiates sub-classes of POIXMLDocumentPart depending on their relationship type
      *
      * @author Yegor Kozlov
      */
+
     public class XSSFFactory : POIXMLFactory
     {
         private static POILogger logger = POILogFactory.GetLogger(typeof(XSSFFactory));
 
         private XSSFFactory()
         {
-
         }
 
         private static XSSFFactory inst = new XSSFFactory();
@@ -44,7 +42,6 @@ namespace Npoi.Core.XSSF.UserModel
         {
             return inst;
         }
-
 
         public override POIXMLDocumentPart CreateDocumentPart(POIXMLDocumentPart parent, PackageRelationship rel, PackagePart part)
         {
@@ -67,7 +64,6 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         public override POIXMLDocumentPart CreateDocumentPart(POIXMLRelation descriptor)
         {
             try
@@ -82,8 +78,5 @@ namespace Npoi.Core.XSSF.UserModel
                 throw new POIXMLException(e);
             }
         }
-
     }
-
-
 }

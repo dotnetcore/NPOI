@@ -14,21 +14,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
-
-
-    using NUnit.Framework;
-
-    using Npoi.Core.XWPF;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
-
+    using Npoi.Core.XWPF;
+    using NUnit.Framework;
+    using System;
 
     /**
      * @author Paolo Mottadelli
      */
+
     [TestFixture]
     public class TestXWPFHeadings
     {
@@ -68,5 +65,4 @@ namespace Npoi.Core.XWPF.UserModel
             */
         }
     }
-
 }

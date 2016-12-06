@@ -17,18 +17,19 @@
 
 namespace TestCases.SS.UserModel
 {
-    using System;
-    using NUnit.Framework;
-    using TestCases.SS;
     using Npoi.Core.SS.UserModel;
+    using NUnit.Framework;
+    using System;
+    using TestCases.SS;
 
     /**
-     * Class for combined testing of XML-specific functionality of 
+     * Class for combined testing of XML-specific functionality of
      * {@link XSSFCell} and {@link SXSSFCell}.
-     * 
+     *
      *  Any test that is applicable for {@link HSSFCell} as well should go into
      *  the common base class {@link BaseTestCell}.
      */
+
     [TestFixture]
     public abstract class BaseTestXCell : BaseTestCell
     {
@@ -37,6 +38,7 @@ namespace TestCases.SS.UserModel
         {
             ;
         }
+
         [Test]
         public void TestXmlEncoding()
         {
@@ -53,5 +55,4 @@ namespace TestCases.SS.UserModel
             Assert.AreEqual("???<>\t\n\u00a0 &\"POI\'\u2122", wb.GetSheetAt(0).GetRow(0).GetCell(0).StringCellValue);
         }
     }
-
 }

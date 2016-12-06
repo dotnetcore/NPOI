@@ -17,9 +17,8 @@
 
 namespace Npoi.Core.XWPF
 {
-    using System;
-    using Npoi.Core.XWPF.UserModel;
     using Npoi.Core.OpenXmlFormats;
+    using Npoi.Core.XWPF.UserModel;
     using NUnit.Framework;
 
     /**
@@ -27,14 +26,15 @@ namespace Npoi.Core.XWPF
      * submitted because even though the
      * {@link PackageProperties#getKeywordsProperty()} had been present before, the
      * {@link CoreProperties#getKeywords()} had been missing.
-     * 
+     *
      * The author of this has Added {@link CoreProperties#getKeywords()} and
      * {@link CoreProperties#setKeywords(String)} and this test is supposed to test
      * them.
-     * 
+     *
      * @author Antoni Mylka
-     * 
+     *
      */
+
     [TestFixture]
     public class TestAllExtendedProperties
     {
@@ -102,5 +102,4 @@ namespace Npoi.Core.XWPF
             blob.blob = (new byte[] { 2, 6, 7, 2, 3, 4, 5, 1, 2, 3 });
         }
     }
-
 }

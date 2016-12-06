@@ -15,7 +15,6 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.SS.UserModel;
 using NUnit.Framework;
 
 namespace Npoi.Core.XSSF.UserModel
@@ -33,13 +32,13 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual("Chart1", wb.GetSheetName(2));
             Assert.IsTrue(wb.GetSheetAt(2) is XSSFChartSheet);
             Assert.AreEqual("Chart1", wb.GetSheetAt(2).SheetName);
-
         }
+
         [Test]
         public void TestGetAccessors()
         {
             XSSFWorkbook wb = XSSFTestDataSamples.OpenSampleWorkbook("chart_sheet.xlsx");
-            XSSFChartSheet sheet = (XSSFChartSheet) wb.GetSheetAt(2);
+            XSSFChartSheet sheet = (XSSFChartSheet)wb.GetSheetAt(2);
 
             //foreach (IRow row in sheet)
             //{
@@ -65,8 +64,8 @@ namespace Npoi.Core.XSSF.UserModel
         {
             XSSFWorkbook wb = XSSFTestDataSamples.OpenSampleWorkbook("chart_sheet.xlsx");
 
-            XSSFSheet ns = (XSSFSheet) wb.GetSheetAt(0);
-            XSSFChartSheet cs = (XSSFChartSheet) wb.GetSheetAt(2);
+            XSSFSheet ns = (XSSFSheet)wb.GetSheetAt(0);
+            XSSFChartSheet cs = (XSSFChartSheet)wb.GetSheetAt(2);
 
             Assert.AreEqual(0, (ns.CreateDrawingPatriarch() as XSSFDrawing).GetCharts().Count);
             Assert.AreEqual(1, (cs.CreateDrawingPatriarch() as XSSFDrawing).GetCharts().Count);

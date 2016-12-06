@@ -15,20 +15,15 @@
    limitations under the License.
 ==================================================================== */
 
+using Npoi.Core.OpenXml4Net.OPC;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.Util;
 using System.IO;
 using System.Xml;
-using System.Collections.Generic;
-using System;
 using System.Xml.Linq;
-using Npoi.Core.OpenXmlFormats;
-using Npoi.Core.Util;
-using Npoi.Core.OpenXml4Net.OPC;
-using Npoi.Core.OpenXmlFormats.Dml;
 
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * High level representation of Sheet Parts that are of type 'chartsheet'.
      * <p>
@@ -37,9 +32,9 @@ namespace Npoi.Core.XSSF.UserModel
      *
      * @author Yegor Kozlov
      */
+
     public class XSSFChartSheet : XSSFSheet
     {
-
         private static byte[] BLANK_WORKSHEET = blankWorksheet();
 
         protected CT_Chartsheet chartsheet;
@@ -47,7 +42,6 @@ namespace Npoi.Core.XSSF.UserModel
         protected XSSFChartSheet(PackagePart part, PackageRelationship rel)
             : base(part, rel)
         {
-
         }
 
         internal override void Read(Stream is1)
@@ -71,23 +65,21 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the CTChartsheet bean holding this sheet's data
          */
+
         public CT_Chartsheet GetCTChartsheet()
         {
             return chartsheet;
         }
-
 
         protected override Npoi.Core.OpenXmlFormats.Spreadsheet.CT_Drawing GetCTDrawing()
         {
             return chartsheet.drawing;
         }
 
-
         protected override Npoi.Core.OpenXmlFormats.Spreadsheet.CT_LegacyDrawing GetCTLegacyDrawing()
         {
             return chartsheet.legacyDrawing;
         }
-
 
         internal override void Write(Stream out1)
         {
@@ -108,6 +100,4 @@ namespace Npoi.Core.XSSF.UserModel
             return out1.ToArray();
         }
     }
-
-
 }

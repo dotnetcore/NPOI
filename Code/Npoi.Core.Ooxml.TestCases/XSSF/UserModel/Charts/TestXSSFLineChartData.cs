@@ -1,25 +1,26 @@
 ﻿namespace Npoi.Core.XSSF.UserModel.Charts
 {
-    using System;
-
-    using NUnit.Framework;
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.SS.UserModel.Charts;
     using Npoi.Core.SS.Util;
     using Npoi.Core.XSSF.UserModel;
+    using NUnit.Framework;
+    using System;
 
     /**
      * @author Martin Andersson
      */
+
     [TestFixture]
     public class TestXSSFLineChartData
     {
         [SetUp]
         public void Setup()
         {
-            plotData[0] = new string[] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
+            plotData[0] = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
             plotData[1] = new object[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         }
+
         private object[][] plotData = new object[2][];
 
         [Test]
@@ -48,5 +49,4 @@
             chart.Plot(lineChartData, bottomAxis, leftAxis);
         }
     }
-
 }

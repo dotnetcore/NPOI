@@ -17,11 +17,10 @@
 
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using NUnit.Framework;
-using Npoi.Core.Util;
 using System;
+
 namespace Npoi.Core.XSSF.Util
 {
-
     [TestFixture]
     public class TestCTColComparator
     {
@@ -44,6 +43,7 @@ namespace Npoi.Core.XSSF.Util
             o4.max = 80;
             Assert.AreEqual(-1, comparator.Compare(o3, o4));
         }
+
         [Test]
         public void TestArraysSort()
         {
@@ -76,4 +76,3 @@ namespace Npoi.Core.XSSF.Util
         }
     }
 }
-

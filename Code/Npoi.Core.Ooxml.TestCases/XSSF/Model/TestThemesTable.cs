@@ -22,8 +22,6 @@
 
 //using static org.junit.Assert;
 
-
-
 //using org.apache.Commons.codec.binary;
 //using Npoi.Core.SS.UserModel;
 //using Npoi.Core.SS.UserModel;
@@ -74,7 +72,7 @@
 //            }
 //            i++;
 //        }
-        
+
 //        if (CreateFile) {
 //            FileOutputStream fos = new FileOutputStream("foobaa.xlsx");
 //            workbook.Write(fos);

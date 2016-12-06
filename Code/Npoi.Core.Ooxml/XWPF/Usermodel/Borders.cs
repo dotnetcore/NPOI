@@ -17,11 +17,6 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
-
-
-
     /**
      * Specifies all types of borders which can be specified for WordProcessingML
      * objects which have a border. Borders can be Separated into two types:
@@ -38,9 +33,9 @@ namespace Npoi.Core.XWPF.UserModel
      * </ul>
      * @author Gisella Bronzetti
      */
+
     public enum Borders
     {
-
         Nil = (1),
 
         None = (2),
@@ -601,7 +596,6 @@ namespace Npoi.Core.XWPF.UserModel
         ZigZag = (190),
 
         ZigZagStitch = (191)
-
 
         //private int value;
 

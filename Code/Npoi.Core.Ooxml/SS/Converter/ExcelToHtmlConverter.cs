@@ -19,24 +19,24 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.SS.Converter
 {
+    using Npoi.Core.HPSF;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.SS;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
+    using Npoi.Core.XSSF.Model;
+    using Npoi.Core.XSSF.UserModel;
     using System;
     using System.Collections.Generic;
     using System.Text;
-    using System.Xml;
-    using Npoi.Core.SS.Util;
-    using Npoi.Core.SS.UserModel;
-    using Npoi.Core.SS.Formula.Eval;
-    using Npoi.Core.Util;
-    using Npoi.Core.HSSF.Util;
-    using Npoi.Core.SS;
-    using Npoi.Core.HSSF.UserModel;
-    using Npoi.Core.HPSF;
-    using Npoi.Core.XSSF.UserModel;
-    using Npoi.Core.XSSF.Model;
 
     public class ExcelToHtmlConverter
     {
-        POILogger logger = POILogFactory.GetLogger(typeof(ExcelToHtmlConverter));
+        private POILogger logger = POILogFactory.GetLogger(typeof(ExcelToHtmlConverter));
+
         public ExcelToHtmlConverter()
         {
             XDocument doc = new XDocument();
@@ -44,12 +44,15 @@ namespace Npoi.Core.SS.Converter
             cssClassTable = htmlDocumentFacade.GetOrCreateCssClass("table", "t",
                     "border-collapse:collapse;border-spacing:0;");
         }
+
         protected static int GetColumnWidth(ISheet sheet, int columnIndex)
         {
             return ExcelToHtmlUtils.GetColumnWidthInPx(sheet.GetColumnWidth(columnIndex));
         }
+
         //private HSSFDataFormatter _formatter = new HSSFDataFormatter();
         private DataFormatter _formatter = new DataFormatter();
+
         private string cssClassContainerCell = null;
 
         private string cssClassContainerDiv = null;
@@ -61,6 +64,7 @@ namespace Npoi.Core.SS.Converter
         private HtmlDocumentFacade htmlDocumentFacade;
 
         private bool outputColumnHeaders = true;
+
         /// <summary>
         /// 是否输出列头
         /// </summary>
@@ -69,7 +73,9 @@ namespace Npoi.Core.SS.Converter
             get { return outputColumnHeaders; }
             set { outputColumnHeaders = value; }
         }
+
         private bool outputHiddenColumns = false;
+
         /// <summary>
         /// 是否输出隐藏的列
         /// </summary>
@@ -78,7 +84,9 @@ namespace Npoi.Core.SS.Converter
             get { return outputHiddenColumns; }
             set { outputHiddenColumns = value; }
         }
+
         private bool outputHiddenRows = false;
+
         /// <summary>
         /// 是否输出隐藏的行
         /// </summary>
@@ -87,7 +95,9 @@ namespace Npoi.Core.SS.Converter
             get { return outputHiddenRows; }
             set { outputHiddenRows = value; }
         }
+
         private bool outputLeadingSpacesAsNonBreaking = true;
+
         /// <summary>
         /// 是否输出文本前的空格
         /// </summary>
@@ -96,7 +106,9 @@ namespace Npoi.Core.SS.Converter
             get { return outputLeadingSpacesAsNonBreaking; }
             set { outputLeadingSpacesAsNonBreaking = value; }
         }
+
         private bool outputRowNumbers = true;
+
         /// <summary>
         /// 是否输出行号
         /// </summary>
@@ -105,6 +117,7 @@ namespace Npoi.Core.SS.Converter
             get { return outputRowNumbers; }
             set { outputRowNumbers = value; }
         }
+
         private bool useDivsToSpan = false;
 
         /// <summary>
@@ -115,6 +128,7 @@ namespace Npoi.Core.SS.Converter
             get { return useDivsToSpan; }
             set { useDivsToSpan = value; }
         }
+
         public static XDocument Process(string excelFile)
         {
             IWorkbook workbook = WorkbookFactory.Create(excelFile);
@@ -122,6 +136,7 @@ namespace Npoi.Core.SS.Converter
             excelToHtmlConverter.ProcessWorkbook(workbook);
             return excelToHtmlConverter.Document;
         }
+
         public XDocument Document
         {
             get
@@ -129,11 +144,10 @@ namespace Npoi.Core.SS.Converter
                 return htmlDocumentFacade.Document;
             }
         }
+
         public void ProcessWorkbook(IWorkbook workbook)
         {
-
             ProcessDocumentInformation(workbook);
-
 
             if (UseDivsToSpan)
             {
@@ -246,9 +260,9 @@ namespace Npoi.Core.SS.Converter
                         htmlDocumentFacade.AddDescription(summaryInformation.Comments);
                 }
             }
-            else if(workbook is Npoi.Core.XSSF.UserModel.XSSFWorkbook)
+            else if (workbook is Npoi.Core.XSSF.UserModel.XSSFWorkbook)
             {
-                POIXMLProperties props=((Npoi.Core.XSSF.UserModel.XSSFWorkbook)workbook).GetProperties();
+                POIXMLProperties props = ((Npoi.Core.XSSF.UserModel.XSSFWorkbook)workbook).GetProperties();
                 if (!string.IsNullOrEmpty(props.CoreProperties.Title))
                 {
                     htmlDocumentFacade.Title = props.CoreProperties.Title;
@@ -263,9 +277,11 @@ namespace Npoi.Core.SS.Converter
                     htmlDocumentFacade.AddDescription(props.CoreProperties.Description);
             }
         }
+
         /**
      * @return maximum 1-base index of column that were rendered, zero if none
      */
+
         protected int ProcessRow(CellRangeAddress[][] mergedRanges, IRow row,
                 XElement tableRowElement)
         {
@@ -360,20 +376,24 @@ namespace Npoi.Core.SS.Converter
 
             return maxRenderedColumn + 1;
         }
+
         private string GetRowName(IRow row)
         {
             return (row.RowNum + 1).ToString();
         }
+
         protected void ProcessRowNumber(IRow row, XElement tableRowNumberCellElement)
         {
             tableRowNumberCellElement.SetAttributeValue("class", "rownumber");
             XText text = htmlDocumentFacade.CreateText(GetRowName(row));
             tableRowNumberCellElement.AppendChild(text);
         }
+
         /**
      * Creates COLGROUP element with width specified for all columns. (Except
      * first if <tt>{@link #isOutputRowNumbers()}==true</tt>)
      */
+
         protected void ProcessColumnWidths(ISheet sheet, int maxSheetColumns,
                 XElement table)
         {
@@ -394,6 +414,7 @@ namespace Npoi.Core.SS.Converter
             }
             table.AppendChild(columnGroup);
         }
+
         protected void ProcessColumnHeaders(ISheet sheet, int maxSheetColumns,
             XElement table)
         {
@@ -420,10 +441,12 @@ namespace Npoi.Core.SS.Converter
             }
             tableHeader.AppendChild(tr);
         }
+
         protected string GetColumnName(int columnIndex)
         {
             return (columnIndex + 1).ToString();
         }
+
         protected bool IsTextEmpty(ICell cell)
         {
             string value;
@@ -433,6 +456,7 @@ namespace Npoi.Core.SS.Converter
                     // XXX: enrich
                     value = cell.RichStringCellValue.String;
                     break;
+
                 case CellType.Formula:
                     switch (cell.CachedFormulaResultType)
                     {
@@ -443,6 +467,7 @@ namespace Npoi.Core.SS.Converter
 
                             value = str.ToString();
                             break;
+
                         case CellType.Numeric:
                             ICellStyle style = cell.CellStyle as ICellStyle;
                             if (style == null)
@@ -452,29 +477,37 @@ namespace Npoi.Core.SS.Converter
 
                             value = (_formatter.FormatRawCellContents(cell.NumericCellValue, style.DataFormat, style.GetDataFormatString()));
                             break;
+
                         case CellType.Boolean:
                             value = cell.BooleanCellValue.ToString();
                             break;
+
                         case CellType.Error:
                             value = ErrorEval.GetText(cell.ErrorCellValue);
                             break;
+
                         default:
                             value = string.Empty;
                             break;
                     }
                     break;
+
                 case CellType.Blank:
                     value = string.Empty;
                     break;
+
                 case CellType.Numeric:
                     value = _formatter.FormatCellValue(cell);
                     break;
+
                 case CellType.Boolean:
                     value = cell.BooleanCellValue.ToString();
                     break;
+
                 case CellType.Error:
                     value = ErrorEval.GetText(cell.ErrorCellValue);
                     break;
+
                 default:
                     return true;
             }
@@ -494,6 +527,7 @@ namespace Npoi.Core.SS.Converter
                     // XXX: enrich
                     value = cell.RichStringCellValue.String;
                     break;
+
                 case CellType.Formula:
                     switch (cell.CachedFormulaResultType)
                     {
@@ -508,6 +542,7 @@ namespace Npoi.Core.SS.Converter
                                 value = string.Empty;
                             }
                             break;
+
                         case CellType.Numeric:
                             ICellStyle style = cellStyle;
                             if (style == null)
@@ -519,30 +554,38 @@ namespace Npoi.Core.SS.Converter
                                 value = (_formatter.FormatRawCellContents(cell.NumericCellValue, style.DataFormat, style.GetDataFormatString()));
                             }
                             break;
+
                         case CellType.Boolean:
                             value = cell.BooleanCellValue.ToString();
                             break;
+
                         case CellType.Error:
                             value = ErrorEval.GetText(cell.ErrorCellValue);
                             break;
+
                         default:
                             logger.Log(POILogger.WARN, "Unexpected cell cachedFormulaResultType (" + cell.CachedFormulaResultType.ToString() + ")");
                             value = string.Empty;
                             break;
                     }
                     break;
+
                 case CellType.Blank:
                     value = string.Empty;
                     break;
+
                 case CellType.Numeric:
                     value = _formatter.FormatCellValue(cell);
                     break;
+
                 case CellType.Boolean:
                     value = cell.BooleanCellValue.ToString();
                     break;
+
                 case CellType.Error:
                     value = ErrorEval.GetText(cell.ErrorCellValue);
                     break;
+
                 default:
                     logger.Log(POILogger.WARN, "Unexpected cell type (" + cell.CellType.ToString() + ")");
                     return true;
@@ -633,7 +676,7 @@ namespace Npoi.Core.SS.Converter
         {
             short cellStyleKey = cellStyle.Index;
 
-            if(excelStyleToClass.ContainsKey(cellStyleKey))
+            if (excelStyleToClass.ContainsKey(cellStyleKey))
                 return excelStyleToClass[cellStyleKey];
 
             String cssStyle = BuildStyle(workbook, cellStyle);
@@ -685,19 +728,20 @@ namespace Npoi.Core.SS.Converter
                 else if (cellStyle.FillPattern == FillPattern.SolidForeground)
                 {
                     //cellStyle
-                    IndexedColors clr=IndexedColors.ValueOf(cellStyle.FillForegroundColor);
-                    string hexstring=null;
-                    if(clr!=null)
+                    IndexedColors clr = IndexedColors.ValueOf(cellStyle.FillForegroundColor);
+                    string hexstring = null;
+                    if (clr != null)
                     {
-                        hexstring=clr.HexString;
-                    }else
+                        hexstring = clr.HexString;
+                    }
+                    else
                     {
                         XSSFColor foregroundColor = (XSSFColor)cellStyle.FillForegroundColorColor;
                         if (foregroundColor != null)
-                        hexstring = ExcelToHtmlUtils.GetColor(foregroundColor);
+                            hexstring = ExcelToHtmlUtils.GetColor(foregroundColor);
                     }
                     if (hexstring != null)
-                        style.AppendFormat("background-color:{0}; ",hexstring);
+                        style.AppendFormat("background-color:{0}; ", hexstring);
                 }
                 else
                 {
@@ -710,13 +754,12 @@ namespace Npoi.Core.SS.Converter
                     else
                     {
                         XSSFColor backgroundColor = (XSSFColor)cellStyle.FillBackgroundColorColor;
-                        if(backgroundColor!=null)
+                        if (backgroundColor != null)
                             hexstring = ExcelToHtmlUtils.GetColor(backgroundColor);
                     }
                     if (hexstring != null)
                         style.AppendFormat("background-color:{0}; ", hexstring);
                 }
-
             }
 
             BuildStyle_Border(workbook, style, "top", cellStyle.BorderTop, cellStyle.TopBorderColor);
@@ -750,13 +793,13 @@ namespace Npoi.Core.SS.Converter
                     borderStyle.Append(ExcelToHtmlUtils.GetColor(color));
                 }
             }
-            else 
+            else
             {
                 IndexedColors clr = IndexedColors.ValueOf(borderColor);
                 if (clr != null)
                 {
-                   borderStyle.Append(' ');
-                   borderStyle.Append(clr.HexString);
+                    borderStyle.Append(' ');
+                    borderStyle.Append(clr.HexString);
                 }
                 else
                 {
@@ -768,10 +811,10 @@ namespace Npoi.Core.SS.Converter
                     }
                 }
             }
-            style.AppendFormat("border-{0}: {1}; ",type, borderStyle);
+            style.AppendFormat("border-{0}: {1}; ", type, borderStyle);
         }
 
-        void BuildStyle_Font(IWorkbook workbook, StringBuilder style,
+        private void BuildStyle_Font(IWorkbook workbook, StringBuilder style,
                 IFont font)
         {
             switch (font.Boldweight)
@@ -779,6 +822,7 @@ namespace Npoi.Core.SS.Converter
                 case (short)FontBoldWeight.Bold:
                     style.Append("font-weight: bold; ");
                     break;
+
                 case (short)FontBoldWeight.Normal:
                     // by default, not not increase HTML size
                     // style.Append( "font-weight: normal; " );
@@ -789,7 +833,7 @@ namespace Npoi.Core.SS.Converter
             {
                 HSSFColor fontColor = ((HSSFWorkbook)workbook).GetCustomPalette().GetColor(font.Color);
                 if (fontColor != null)
-                    style.AppendFormat("color:{0}; " ,ExcelToHtmlUtils.GetColor(fontColor) );
+                    style.AppendFormat("color:{0}; ", ExcelToHtmlUtils.GetColor(fontColor));
             }
             else
             {

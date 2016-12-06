@@ -14,8 +14,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 using NUnit.Framework;
 using System;
+
 namespace Npoi.Core.Util
 {
     [TestFixture]
@@ -31,6 +33,7 @@ namespace Npoi.Core.Util
             Assert.AreEqual(1L, manager.Reserve(0L));
             Assert.AreEqual(99L, manager.GetRemainingIdentifiers());
         }
+
         [Test]
         public void TestLongLimits()
         {
@@ -45,6 +48,7 @@ namespace Npoi.Core.Util
             manager.Release(max);
             manager.Release(min);
         }
+
         [Test]
         public void TestReserve()
         {
@@ -89,6 +93,7 @@ namespace Npoi.Core.Util
                 // expected
             }
         }
+
         [Test]
         public void TestReserveNew()
         {
@@ -106,6 +111,7 @@ namespace Npoi.Core.Util
                 // expected
             }
         }
+
         [Test]
         public void TestRelease()
         {
@@ -131,6 +137,4 @@ namespace Npoi.Core.Util
             Assert.IsTrue(manager.Release(12L));
         }
     }
-
-
 }

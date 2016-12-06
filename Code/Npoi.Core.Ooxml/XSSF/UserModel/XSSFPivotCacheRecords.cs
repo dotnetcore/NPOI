@@ -19,22 +19,18 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.XSSF.UserModel
 {
-    using System;
     using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXmlFormats.Spreadsheet;
     using System.IO;
     using System.Xml;
-    using Npoi.Core.OpenXmlFormats.Spreadsheet;
-
 
     public class XSSFPivotCacheRecords : POIXMLDocumentPart
     {
         private CT_PivotCacheRecords ctPivotCacheRecords;
 
-
         public XSSFPivotCacheRecords()
             : base()
         {
-
             ctPivotCacheRecords = new CT_PivotCacheRecords();
         }
 
@@ -52,7 +48,6 @@ namespace Npoi.Core.XSSF.UserModel
             ReadFrom(part.GetInputStream());
         }
 
-
         protected void ReadFrom(Stream is1)
         {
             try
@@ -69,14 +64,10 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
-
         public CT_PivotCacheRecords GetCtPivotCacheRecords()
         {
             return ctPivotCacheRecords;
         }
-
-
 
         protected internal override void Commit()
         {

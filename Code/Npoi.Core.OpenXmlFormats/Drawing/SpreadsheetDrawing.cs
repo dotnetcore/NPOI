@@ -1,14 +1,13 @@
-﻿using System;
-using System.IO;
-using System.Xml;
-using System.Xml.Schema;
-using System.Xml.Serialization;
+﻿using Npoi.Core.OpenXml4Net.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Text;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 using System.Xml.XPath;
-using Npoi.Core.OpenXml4Net.Util;
 
 namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
 {
@@ -37,8 +36,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -149,11 +146,13 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
                 this.descrField = value;
             }
         }
+
         [XmlIgnore]
         public bool descrSpecified
         {
             get { return (null != descrField); }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool hidden
@@ -174,12 +173,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             get { return (null != hiddenField); }
         }
     }
+
     [Serializable]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing")]
     public class CT_NonVisualGraphicFrameProperties
     {
-
         private CT_GraphicalObjectFrameLocking graphicFrameLocksField;
 
         private CT_OfficeArtExtensionList extLstField;
@@ -189,6 +188,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             //this.extLstField = new CT_OfficeArtExtensionList();
             //this.graphicFrameLocksField = new CT_GraphicalObjectFrameLocking();
         }
+
         public static CT_NonVisualGraphicFrameProperties Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -203,8 +203,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -243,13 +241,14 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             }
         }
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing")]
     public class CT_GraphicalObjectFrameNonVisual
     {
+        private CT_NonVisualDrawingProps cNvPrField;
+        private CT_NonVisualGraphicFrameProperties cNvGraphicFramePrField;
 
-        CT_NonVisualDrawingProps cNvPrField;
-        CT_NonVisualGraphicFrameProperties cNvGraphicFramePrField;
         public static CT_GraphicalObjectFrameNonVisual Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -264,8 +263,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -283,6 +280,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             this.cNvPrField = new CT_NonVisualDrawingProps();
             return this.cNvPrField;
         }
+
         public CT_NonVisualGraphicFrameProperties AddNewCNvGraphicFramePr()
         {
             this.cNvGraphicFramePrField = new CT_NonVisualGraphicFrameProperties();
@@ -294,12 +292,14 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             get { return cNvPrField; }
             set { cNvPrField = value; }
         }
+
         public CT_NonVisualGraphicFrameProperties cNvGraphicFramePr
         {
             get { return cNvGraphicFramePrField; }
             set { cNvGraphicFramePrField = value; }
         }
     }
+
     [Serializable]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing")]
@@ -321,12 +321,10 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<xdr:{0}", nodeName));
-            if(!preferRelativeResize)
+            if (!preferRelativeResize)
                 XmlHelper.WriteAttribute(sw, "preferRelativeResize", this.preferRelativeResize);
             sw.Write(">");
             if (this.picLocks != null)
@@ -391,12 +389,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             }
         }
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing", IsNullable = true)]
     public class CT_BlipFillProperties
     {
-
         private CT_Blip blipField = null;
 
         private CT_RelativeRect srcRectField = null;
@@ -445,13 +443,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<xdr:{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "dpi", this.dpi);
-            if(rotWithShape)
+            if (rotWithShape)
                 XmlHelper.WriteAttribute(sw, "rotWithShape", this.rotWithShape);
             sw.Write(">");
             if (this.blip != null)
@@ -529,6 +525,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
                 this.dpiField = value;
             }
         }
+
         [XmlIgnore]
         public bool dpiSpecified
         {
@@ -542,7 +539,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             }
         }
 
-
         [XmlAttribute]
         public bool rotWithShape
         {
@@ -555,6 +551,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
                 this.rotWithShapeField = value;
             }
         }
+
         [XmlIgnore]
         public bool rotWithShapeSpecified
         {
@@ -572,13 +569,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
         {
             return this.blipField != null;
         }
-
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing")]
     public class CT_ShapeProperties
     {
-
         private CT_Transform2D xfrmField = null;
 
         private CT_CustomGeometry2D custGeomField = null;
@@ -611,43 +607,50 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
 
         private ST_BlackWhiteMode bwModeField = ST_BlackWhiteMode.none;
 
-
         public CT_PresetGeometry2D AddNewPrstGeom()
         {
             this.prstGeomField = new CT_PresetGeometry2D();
             return this.prstGeomField;
         }
+
         public CT_Transform2D AddNewXfrm()
         {
             this.xfrmField = new CT_Transform2D();
             return this.xfrmField;
         }
+
         public CT_SolidColorFillProperties AddNewSolidFill()
         {
             this.solidFillField = new CT_SolidColorFillProperties();
             return this.solidFillField;
         }
+
         public bool IsSetPattFill()
         {
             return this.pattFillField != null;
         }
+
         public bool IsSetSolidFill()
         {
             return this.solidFillField != null;
         }
+
         public bool IsSetLn()
         {
             return this.lnField != null;
         }
+
         public CT_LineProperties AddNewLn()
         {
             this.lnField = new CT_LineProperties();
             return lnField;
         }
+
         public void unsetPattFill()
         {
             this.pattFill = null;
         }
+
         public void unsetSolidFill()
         {
             this.solidFill = null;
@@ -860,6 +863,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
                 this.bwModeField = value;
             }
         }
+
         [XmlIgnore]
         public bool bwModeSpecified
         {
@@ -909,12 +913,10 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<xdr:{0}", nodeName));
-            if(bwMode!= ST_BlackWhiteMode.none)
+            if (bwMode != ST_BlackWhiteMode.none)
                 XmlHelper.WriteAttribute(sw, "bwMode", this.bwMode.ToString());
             sw.Write(">");
             if (this.xfrm != null)
@@ -949,17 +951,15 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
                 this.extLst.Write(sw, "extLst");
             sw.Write(string.Format("</xdr:{0}>", nodeName));
         }
-
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing")]
     public class CT_GraphicalObjectFrame
     {
-        CT_GraphicalObjectFrameNonVisual nvGraphicFramePrField;
-        CT_Transform2D xfrmField;
-        CT_GraphicalObject graphicField;
+        private CT_GraphicalObjectFrameNonVisual nvGraphicFramePrField;
+        private CT_Transform2D xfrmField;
+        private CT_GraphicalObject graphicField;
         private string macroField;
         private bool fPublishedField;
 
@@ -977,6 +977,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             this.xfrmField = new CT_Transform2D();
             return this.xfrmField;
         }
+
         public CT_GraphicalObject AddNewGraphic()
         {
             this.graphicField = new CT_GraphicalObject();
@@ -988,24 +989,28 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             this.nvGraphicFramePr = new CT_GraphicalObjectFrameNonVisual();
             return this.nvGraphicFramePr;
         }
+
         [XmlElement]
         public CT_GraphicalObjectFrameNonVisual nvGraphicFramePr
         {
             get { return nvGraphicFramePrField; }
             set { nvGraphicFramePrField = value; }
         }
+
         [XmlElement]
         public CT_Transform2D xfrm
         {
             get { return xfrmField; }
             set { xfrmField = value; }
         }
+
         [XmlAttribute]
         public string macro
         {
             get { return macroField; }
             set { macroField = value; }
         }
+
         [XmlAttribute]
         [DefaultValue(false)]
         public bool fPublished
@@ -1013,12 +1018,14 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             get { return fPublishedField; }
             set { fPublishedField = value; }
         }
+
         [XmlElement]
         public CT_GraphicalObject graphic
         {
             get { return graphicField; }
             set { graphicField = value; }
         }
+
         public static CT_GraphicalObjectFrame Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1038,8 +1045,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<xdr:{0}", nodeName));
@@ -1054,10 +1059,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
                 this.graphic.Write(sw, "graphic");
             sw.Write(string.Format("</xdr:{0}>", nodeName));
         }
-
     }
-
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing")]
@@ -1077,17 +1079,18 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
                 this.cNvCxnSpPrField = value;
             }
         }
+
         public CT_NonVisualDrawingProps AddNewCNvPr()
         {
             this.cNvPr = new CT_NonVisualDrawingProps();
             return this.cNvPr;
         }
+
         public CT_NonVisualConnectorProperties AddNewCNvCxnSpPr()
         {
             this.cNvCxnSpPr = new CT_NonVisualConnectorProperties();
             return this.cNvCxnSpPr;
         }
-
 
         public CT_NonVisualDrawingProps cNvPr
         {
@@ -1100,6 +1103,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
                 this.cNvPrField = value;
             }
         }
+
         public static CT_ConnectorNonVisual Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1125,10 +1129,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
                 this.cNvCxnSpPr.Write(sw, "cNvCxnSpPr");
             sw.Write(string.Format("</xdr:{0}>", nodeName));
         }
-
-
     }
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing")]
@@ -1141,18 +1142,19 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
 
         public int col
         {
-            get 
+            get
             {
                 return _col;
             }
-            set 
+            set
             {
                 _col = value;
             }
         }
+
         public long colOff
         {
-            get 
+            get
             {
                 return _colOff;
             }
@@ -1161,11 +1163,13 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
                 _colOff = value;
             }
         }
+
         public int row
         {
             get { return _row; }
             set { _row = value; }
         }
+
         public long rowOff
         {
             get
@@ -1205,8 +1209,8 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
 
         public override string ToString()
         {
-            StringBuilder sb=new StringBuilder();
-            using(StringWriter sw =new StringWriter(sb))
+            StringBuilder sb = new StringBuilder();
+            using (StringWriter sw = new StringWriter(sb))
             {
                 sw.Write("<xdr:col>");
                 sw.Write(this.col.ToString());
@@ -1242,6 +1246,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             sw.Write(string.Format("</{0}>", nodeName));
         }
     }
+
     public enum ST_EditAs
     {
         NONE,
@@ -1254,7 +1259,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing")]
     public class CT_AnchorClientData
     {
-        
         public static CT_AnchorClientData Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1265,18 +1269,17 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<xdr:{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "fLocksWithSheet", this.fLocksWithSheet, false);
-            XmlHelper.WriteAttribute(sw, "fPrintsWithSheet", this.fPrintsWithSheet,false);
+            XmlHelper.WriteAttribute(sw, "fPrintsWithSheet", this.fPrintsWithSheet, false);
             sw.Write(">");
             sw.Write(string.Format("</xdr:{0}>", nodeName));
         }
-        bool _fLocksWithSheet;
-        bool _fPrintsWithSheet;
+
+        private bool _fLocksWithSheet;
+        private bool _fPrintsWithSheet;
 
         [XmlAttribute]
         public bool fLocksWithSheet
@@ -1290,6 +1293,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
                 _fLocksWithSheet = value;
             }
         }
+
         [XmlAttribute]
         public bool fPrintsWithSheet
         {
@@ -1303,8 +1307,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             }
         }
     }
-
-
 
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing")]
@@ -1320,6 +1322,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             cellAnchors.Add(anchor);
             return anchor;
         }
+
         public int SizeOfTwoCellAnchorArray()
         {
             int count = 0;
@@ -1413,11 +1416,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             return ctDrawing;
         }
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing")]
     public class CT_LegacyDrawing
     {
-
         private string idField;
 
         [XmlAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/relationships")]
@@ -1433,8 +1436,9 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             }
         }
     }
+
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing")]
-    public class CT_OneCellAnchor: IEG_Anchor
+    public class CT_OneCellAnchor : IEG_Anchor
     {
         private CT_Marker fromField = new CT_Marker();
         private CT_PositiveSize2D extField; //= new CT_PositiveSize2D();
@@ -1458,43 +1462,50 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         public CT_AnchorClientData AddNewClientData()
         {
             this.clientDataField = new CT_AnchorClientData();
             return this.clientDataField;
         }
+
         [XmlElement]
         public CT_AnchorClientData clientData
         {
             get { return clientDataField; }
             set { clientDataField = value; }
         }
+
         public CT_Shape sp
         {
             get { return shapeField; }
             set { shapeField = value; }
         }
+
         public CT_GroupShape groupShape
         {
             get { return groupShapeField; }
             set { groupShapeField = value; }
         }
+
         public CT_GraphicalObjectFrame graphicFrame
         {
             get { return graphicalObjectField; }
             set { graphicalObjectField = value; }
         }
+
         public CT_Connector connector
         {
             get { return connectorField; }
             set { connectorField = value; }
         }
+
         public CT_Picture picture
         {
             get { return pictureField; }
             set { pictureField = value; }
         }
-         
+
         public void Write(StreamWriter sw)
         {
             sw.Write("<xdr:oneCellAnchor>");
@@ -1565,18 +1576,21 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
         CT_Picture picture { get; set; }
         CT_GroupShape groupShape { get; set; }
         CT_AnchorClientData clientData { get; set; }
+
         void Write(StreamWriter sw);
     }
+
     public class CT_AbsoluteCellAnchor : IEG_Anchor
     {
-        CT_Point2D posField;
-        CT_PositiveSize2D extField;
-        CT_AnchorClientData clientDataField = new CT_AnchorClientData();
+        private CT_Point2D posField;
+        private CT_PositiveSize2D extField;
+        private CT_AnchorClientData clientDataField = new CT_AnchorClientData();
         private CT_Shape shapeField = null;
         private CT_GroupShape groupShapeField = null;
         private CT_GraphicalObjectFrame graphicalObjectField = null;
         private CT_Connector connectorField = null;
         private CT_Picture pictureField = null;
+
         public static CT_AbsoluteCellAnchor Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             CT_AbsoluteCellAnchor absCellAnchor = new CT_AbsoluteCellAnchor();
@@ -1641,45 +1655,53 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
                 this.posField = value;
             }
         }
+
         public CT_PositiveSize2D ext
         {
             get { return this.extField; }
             set { this.extField = value; }
         }
+
         public CT_AnchorClientData AddNewClientData()
         {
             this.clientDataField = new CT_AnchorClientData();
             return this.clientDataField;
         }
+
         public CT_Shape sp
         {
             get { return shapeField; }
             set { shapeField = value; }
         }
+
         public CT_GroupShape groupShape
         {
             get { return groupShapeField; }
             set { groupShapeField = value; }
         }
+
         public CT_GraphicalObjectFrame graphicFrame
         {
             get { return graphicalObjectField; }
             set { graphicalObjectField = value; }
         }
+
         public CT_Connector connector
         {
             get { return connectorField; }
             set { connectorField = value; }
         }
+
         public CT_Picture picture
         {
             get { return pictureField; }
             set { pictureField = value; }
         }
+
         public void Write(StreamWriter sw)
         {
             sw.Write("<xdr:absCellAnchor>");
-            if (this.pos!=null)
+            if (this.pos != null)
                 this.pos.Write(sw, "pos");
             if (this.sp != null)
                 sp.Write(sw, "sp");
@@ -1700,14 +1722,17 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             sw.Write("</xdr:absCellAnchor");
         }
     }
+
     [Serializable]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing")]
     public class CT_TwoCellAnchor : IEG_Anchor //- was empty interface
     {
         private CT_Marker fromField = new CT_Marker(); // 1..1 element
         private CT_Marker toField = new CT_Marker(); // 1..1 element
+
         // 1..1 element choice - one of CT_Shape, CT_GroupShape, CT_GraphicalObjectFrame, CT_Connector or CT_Picture
         private CT_Shape shapeField = null;
+
         private CT_GroupShape groupShapeField = null;
         private CT_GraphicalObjectFrame graphicalObjectField = null;
         private CT_Connector connectorField = null;
@@ -1757,19 +1782,23 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             this.clientDataField = new CT_AnchorClientData();
             return this.clientDataField;
         }
+
         [XmlElement]
         public CT_AnchorClientData clientData
         {
             get { return clientDataField; }
             set { clientDataField = value; }
         }
+
         [XmlAttribute]
         public ST_EditAs editAs
         {
             get { return editAsField; }
             set { editAsField = value; }
         }
-        bool editAsSpecifiedField = false;
+
+        private bool editAsSpecifiedField = false;
+
         [XmlIgnore]
         public bool editAsSpecified
         {
@@ -1799,6 +1828,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             get { return shapeField; }
             set { shapeField = value; }
         }
+
         [XmlElement]
         public CT_GroupShape groupShape
         {
@@ -1832,8 +1862,8 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
         public void Write(StreamWriter sw)
         {
             sw.Write("<xdr:twoCellAnchor");
-            if(this.editAsField!= ST_EditAs.NONE)
-                sw.Write(string.Format(" editAs=\"{0}\"",this.editAsField.ToString()));
+            if (this.editAsField != ST_EditAs.NONE)
+                sw.Write(string.Format(" editAs=\"{0}\"", this.editAsField.ToString()));
             sw.Write(">");
             this.from.Write(sw, "xdr:from");
             this.to.Write(sw, "xdr:to");
@@ -1860,7 +1890,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             if (node.Attribute("editAs") != null)
                 twoCellAnchor.editAs = (ST_EditAs)Enum.Parse(typeof(ST_EditAs), node.Attribute("editAs").Value);
 
-            foreach(XElement childNode in node.ChildElements())
+            foreach (XElement childNode in node.ChildElements())
             {
                 if (childNode.Name.LocalName == "from")
                 {
@@ -1903,16 +1933,18 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing")]
     public class CT_Connector // empty interface: EG_ObjectChoices
     {
-        string macroField;
-        bool fPublishedField;
+        private string macroField;
+        private bool fPublishedField;
         private CT_ShapeProperties spPrField;
         private CT_ShapeStyle styleField;
         private CT_ConnectorNonVisual nvCxnSpPrField;
+
         public CT_ConnectorNonVisual nvCxnSpPr
         {
             get { return nvCxnSpPrField; }
             set { nvCxnSpPrField = value; }
         }
+
         public static CT_Connector Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -1932,13 +1964,11 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<xdr:{0}", nodeName));
             XmlHelper.WriteAttribute(sw, "macro", this.macro, true);
-            XmlHelper.WriteAttribute(sw, "fPublished", this.fPublished,false);
+            XmlHelper.WriteAttribute(sw, "fPublished", this.fPublished, false);
             sw.Write(">");
             if (this.nvCxnSpPr != null)
                 this.nvCxnSpPr.Write(sw, "nvCxnSpPr");
@@ -1957,21 +1987,25 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             this.styleField = obj.style;
             this.nvCxnSpPrField = obj.nvCxnSpPr;
         }
+
         public CT_ConnectorNonVisual AddNewNvCxnSpPr()
         {
             this.nvCxnSpPr = new CT_ConnectorNonVisual();
             return nvCxnSpPr;
         }
+
         public CT_ShapeProperties AddNewSpPr()
         {
             this.spPrField = new CT_ShapeProperties();
             return spPrField;
         }
+
         public CT_ShapeStyle AddNewStyle()
         {
             this.styleField = new CT_ShapeStyle();
             return this.styleField;
         }
+
         public CT_ShapeProperties spPr
         {
             get
@@ -1983,6 +2017,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
                 this.spPrField = value;
             }
         }
+
         public CT_ShapeStyle style
         {
             get
@@ -1994,12 +2029,14 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
                 this.styleField = value;
             }
         }
+
         [XmlAttribute]
         public string macro
         {
             get { return this.macroField; }
             set { this.macroField = value; }
         }
+
         [XmlAttribute]
         public bool fPublished
         {
@@ -2007,7 +2044,4 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Spreadsheet
             set { this.fPublishedField = value; }
         }
     }
-
-    
-
 }

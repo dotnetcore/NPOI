@@ -14,15 +14,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-
-
     /**
      * Interface for anything that can be within an STD:
      *  {@link XWPFRun}, {@link XWPFTable}, {@link XWPFParagraph},
      *  {@link XWPFSDT} etc
      */
+
     public interface ISDTContents
     {
     }

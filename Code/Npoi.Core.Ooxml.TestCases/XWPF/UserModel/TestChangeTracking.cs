@@ -14,28 +14,25 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
     using Npoi.Core.XWPF;
     using NUnit.Framework;
+    using System;
     using System.IO;
 
     [TestFixture]
     public class TestChangeTracking
     {
-
         [Test]
         public void detection()
         {
-
             XWPFDocument documentWithoutChangeTracking = XWPFTestDataSamples.OpenSampleDocument("bug56075-ChangeTracking_off.docx");
             Assert.IsFalse(documentWithoutChangeTracking.IsTrackRevisions);
 
             XWPFDocument documentWithChangeTracking = XWPFTestDataSamples.OpenSampleDocument("bug56075-ChangeTracking_on.docx");
             Assert.IsTrue(documentWithChangeTracking.IsTrackRevisions);
-
         }
 
         [Test]
@@ -69,7 +66,5 @@ namespace Npoi.Core.XWPF.UserModel
 
             Assert.IsTrue(document.IsTrackRevisions);
         }
-
     }
 }
-

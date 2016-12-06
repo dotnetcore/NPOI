@@ -15,28 +15,28 @@
    limitations under the License.
 ==================================================================== */
 
-using TestCases.SS.UserModel;
-using NUnit.Framework;
 using Npoi.Core.SS.UserModel;
+using NUnit.Framework;
+using TestCases.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Tests for {@link XSSFDataFormat}
      */
+
     [TestFixture]
     public class TestXSSFDataFormat : BaseTestDataFormat
     {
-
         public TestXSSFDataFormat()
             : base(XSSFITestDataProvider.instance)
         {
-
         }
 
         /**
          * [Bug 49928] formatCellValue returns incorrect value for \u00a3 formatted cells
          */
+
         [Test]
         public override void Test49928()
         {
@@ -54,8 +54,4 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual("\u00a3##.00[Yellow]", dataFormat.GetFormat(customFmtIdx));
         }
     }
-
 }
-
-
-

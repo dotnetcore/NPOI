@@ -1,28 +1,21 @@
 ﻿using Npoi.Core.OpenXmlFormats.Dml.Chart;
 using Npoi.Core.SS.UserModel.Charts;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Npoi.Core.XSSF.UserModel.Charts
 {
-
     public class XSSFCategoryAxis : XSSFChartAxis
     {
-
         private CT_CatAx ctCatAx;
 
         public XSSFCategoryAxis(XSSFChart chart, long id, AxisPosition pos)
             : base(chart)
         {
-
             createAxis(id, pos);
         }
 
         public XSSFCategoryAxis(XSSFChart chart, CT_CatAx ctCatAx)
             : base(chart)
         {
-
             this.ctCatAx = ctCatAx;
         }
 
@@ -91,14 +84,12 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             ctCatAx.AddNewMajorTickMark();
             ctCatAx.AddNewMinorTickMark();
 
-            
-            this.Position=(pos);
-            this.Orientation=(AxisOrientation.MinToMax);
-            this.Crosses=(AxisCrosses.AutoZero);
+            this.Position = (pos);
+            this.Orientation = (AxisOrientation.MinToMax);
+            this.Crosses = (AxisCrosses.AutoZero);
             this.IsVisible = true;
-            this.MajorTickMark=(AxisTickMark.Cross);
-            this.MinorTickMark=(AxisTickMark.None);
+            this.MajorTickMark = (AxisTickMark.Cross);
+            this.MinorTickMark = (AxisTickMark.None);
         }
     }
 }
-

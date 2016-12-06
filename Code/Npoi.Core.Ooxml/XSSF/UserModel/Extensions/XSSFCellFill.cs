@@ -14,18 +14,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using Npoi.Core.OpenXmlFormats;
+
 namespace Npoi.Core.XSSF.UserModel.Extensions
 {
-
     /**
      * This element specifies fill formatting.
      * A cell fill consists of a background color, foreground color, and pattern to be applied across the cell.
      */
+
     public class XSSFCellFill
     {
-
         private CT_Fill _fill;
 
         /**
@@ -33,6 +33,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          *
          * @param fill - fill
          */
+
         public XSSFCellFill(CT_Fill fill)
         {
             _fill = fill;
@@ -41,6 +42,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
         /**
          * Creates an empty CellFill
          */
+
         public XSSFCellFill()
         {
             _fill = new CT_Fill();
@@ -51,6 +53,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          *
          * @return fill color, null if color is not set
          */
+
         public XSSFColor GetFillBackgroundColor()
         {
             CT_PatternFill ptrn = _fill.GetPatternFill();
@@ -65,13 +68,13 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          *
          * @param index
          */
+
         public void SetFillBackgroundColor(int index)
         {
             CT_PatternFill ptrn = EnsureCTPatternFill();
             CT_Color ctColor = ptrn.IsSetBgColor() ? ptrn.bgColor : ptrn.AddNewBgColor();
             ctColor.indexed = (uint)index;
             ctColor.indexedSpecified = true;
-
         }
 
         /**
@@ -79,6 +82,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          *
          * @param color
          */
+
         public void SetFillBackgroundColor(XSSFColor color)
         {
             CT_PatternFill ptrn = EnsureCTPatternFill();
@@ -90,6 +94,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          *
          * @return XSSFColor - foreground color. null if color is not set
          */
+
         public XSSFColor GetFillForegroundColor()
         {
             CT_PatternFill ptrn = _fill.GetPatternFill();
@@ -104,6 +109,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          *
          * @param index - the color to use
          */
+
         public void SetFillForegroundColor(int index)
         {
             CT_PatternFill ptrn = EnsureCTPatternFill();
@@ -116,6 +122,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          *
          * @param color - the color to use
          */
+
         public void SetFillForegroundColor(XSSFColor color)
         {
             CT_PatternFill ptrn = EnsureCTPatternFill();
@@ -127,6 +134,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          *
          * @return fill pattern type. null if fill pattern is not set
          */
+
         public ST_PatternType GetPatternType()
         {
             CT_PatternFill ptrn = _fill.GetPatternFill();
@@ -138,6 +146,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
          *
          * @param patternType fill pattern to use
          */
+
         public void SetPatternType(ST_PatternType patternType)
         {
             CT_PatternFill ptrn = EnsureCTPatternFill();
@@ -164,7 +173,6 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
         {
             return _fill;
         }
-
 
         public override int GetHashCode()
         {

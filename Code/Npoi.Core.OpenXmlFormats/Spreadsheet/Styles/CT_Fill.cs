@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.OpenXml4Net.OPC.Internal;
+using System;
 using System.IO;
-
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using Npoi.Core.OpenXml4Net.OPC;
-using Npoi.Core.OpenXml4Net.OPC.Internal;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
@@ -24,6 +21,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             get { return this.patternFillField; }
             set { this.patternFillField = value; }
         }
+
         [XmlElement]
         public CT_GradientFill gradientFill
         {
@@ -41,10 +39,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.patternFillField = new CT_PatternFill();
             return GetPatternFill();
         }
+
         public bool IsSetPatternFill()
         {
             return this.patternFillField != null;
         }
+
         public CT_Fill Copy()
         {
             //CT_Fill obj = new CT_Fill();
@@ -53,6 +53,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             //return obj;
             return Parse(this.ToString());
         }
+
         public static CT_Fill Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -67,8 +68,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -104,10 +103,11 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             var doc = XDocument.Load(new StringReader(p));
             return Parse(doc.Document.Root, CreateDefaultNSM());
         }
+
         //TODO: NPOI  duplication code, fix it.
         internal static XmlNamespaceManager CreateDefaultNSM()
         {
-            //  Create a NamespaceManager to handle the default namespace, 
+            //  Create a NamespaceManager to handle the default namespace,
             //  and create a prefix for the default namespace:
             NameTable nt = new NameTable();
             XmlNamespaceManager ns = new XmlNamespaceManager(nt);
@@ -131,7 +131,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             ns.AddNamespace("ctp", PackageRelationshipTypes.CUSTOM_PROPERTIES);
             // core properties
             ns.AddNamespace("cp", PackagePropertiesPart.NAMESPACE_CP_URI);
-            // core property namespaces 
+            // core property namespaces
             ns.AddNamespace("dc", PackagePropertiesPart.NAMESPACE_DC_URI);
             ns.AddNamespace("dcterms", PackagePropertiesPart.NAMESPACE_DCTERMS_URI);
             ns.AddNamespace("dcmitype", PackageNamespaces.DCMITYPE);
@@ -141,5 +141,4 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ns;
         }
     }
-
 }

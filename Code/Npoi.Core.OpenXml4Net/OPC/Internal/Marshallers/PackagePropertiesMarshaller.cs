@@ -45,6 +45,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Marshallers
          * Marshall package core properties to an XML document. Always return
          * <code>true</code>.
          */
+
         public virtual bool Marshall(PackagePart part, Stream out1)
         {
             if (!(part is PackagePropertiesPart))

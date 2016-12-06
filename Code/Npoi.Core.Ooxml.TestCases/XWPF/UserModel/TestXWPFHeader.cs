@@ -17,21 +17,16 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-
-
-
-    using NUnit.Framework;
-
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
     using Npoi.Core.XWPF;
     using Npoi.Core.XWPF.Model;
-    using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using NUnit.Framework;
+    using System;
     using System.Collections.Generic;
 
     [TestFixture]
     public class TestXWPFHeader
     {
-
         [Test]
         public void TestSimpleHeader()
         {
@@ -123,7 +118,6 @@ namespace Npoi.Core.XWPF.UserModel
 
             Assert.AreEqual(tText, headerD.Paragraphs[0].Text);
             Assert.AreEqual("", headerF.Paragraphs[0].Text);
-        
 
             // As an Additional Check, recover the defauls footer and
             // make sure that it Contains two paragraphs of text and that
@@ -136,7 +130,6 @@ namespace Npoi.Core.XWPF.UserModel
             Assert.AreEqual("First paragraph for the footer", paras[0].Text);
             Assert.AreEqual("Second paragraph for the footer", paras[1].Text);
 
-
             // Add some text to the empty header
             String fText1 = "New Text!";
             headerF.Paragraphs[0].InsertNewRun(0).SetText(fText1);
@@ -145,7 +138,6 @@ namespace Npoi.Core.XWPF.UserModel
             // Check it
             Assert.AreEqual(tText, headerD.Paragraphs[0].Text);
             Assert.AreEqual(fText1, headerF.Paragraphs[0].Text);
-
 
             // Save, re-open, ensure it's all still there
             XWPFDocument reopened = XWPFTestDataSamples.WriteOutAndReadBack(sampleDoc);
@@ -166,7 +158,6 @@ namespace Npoi.Core.XWPF.UserModel
             // Check the new footers have their new text too
             footer = policy.GetDefaultFooter();
             paras = new List<XWPFParagraph>(footer.Paragraphs).ToArray();
-        
 
             Assert.AreEqual(2, paras.Length);
             Assert.AreEqual("First paragraph for the footer", paras[0].Text);
@@ -198,7 +189,5 @@ namespace Npoi.Core.XWPF.UserModel
             Assert.IsNotNull(policy.GetFirstPageHeader());
             Assert.IsNotNull(policy.GetEvenPageHeader());
         }
-
     }
-
 }

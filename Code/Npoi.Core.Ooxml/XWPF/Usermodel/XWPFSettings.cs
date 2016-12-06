@@ -19,22 +19,18 @@ using System.Xml.Linq;
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-    using Npoi.Core.OpenXmlFormats.Wordprocessing;
     using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using System;
     using System.IO;
-    using System.Xml.Serialization;
-    using System.Xml;
 
     public class XWPFSettings : POIXMLDocumentPart
     {
-
         private CT_Settings ctSettings;
 
         public XWPFSettings(PackagePart part, PackageRelationship rel)
             : base(part, rel)
         {
-
         }
 
         public XWPFSettings()
@@ -42,7 +38,6 @@ namespace Npoi.Core.XWPF.UserModel
         {
             ctSettings = new CT_Settings();
         }
-
 
         internal override void OnDocumentRead()
         {
@@ -55,6 +50,7 @@ namespace Npoi.Core.XWPF.UserModel
          * it Sets the value of zoom
          * @return percentage as an integer of zoom level
          */
+
         public long GetZoomPercent()
         {
             CT_Zoom zoom = ctSettings.zoom;
@@ -75,8 +71,8 @@ namespace Npoi.Core.XWPF.UserModel
         /// </summary>
         /// <param name="zoomPercent"></param>
         /// <example>
-        /// sample snippet from Settings.xml 
-        /// 
+        /// sample snippet from Settings.xml
+        ///
         /// &lt;w:zoom w:percent="50" /&gt;
         /// </example>
         public void SetZoomPercent(long zoomPercent)
@@ -93,16 +89,17 @@ namespace Npoi.Core.XWPF.UserModel
          * Verifies the documentProtection tag inside Settings.xml file <br/>
          * if the protection is enforced (w:enforcement="1") <br/>
          * and if the kind of protection Equals to passed (STDocProtect.Enum editValue) <br/>
-         * 
+         *
          * <br/>
          * sample snippet from Settings.xml
          * <pre>
          *     &lt;w:settings  ... &gt;
          *         &lt;w:documentProtection w:edit=&quot;readOnly&quot; w:enforcement=&quot;1&quot;/&gt;
          * </pre>
-         * 
+         *
          * @return true if documentProtection is enforced with option ReadOnly
          */
+
         public bool IsEnforcedWith(ST_DocProtect editValue)
         {
             CT_DocProtect ctDocProtect = ctSettings.documentProtection;
@@ -128,6 +125,7 @@ namespace Npoi.Core.XWPF.UserModel
          *         &lt;w:documentProtection w:edit=&quot;[passed editValue]&quot; w:enforcement=&quot;1&quot;/&gt;
          * </pre>
          */
+
         public void SetEnforcementEditValue(ST_DocProtect editValue)
         {
             SafeGetDocumentProtection().enforcement = (ST_OnOff.on);
@@ -139,6 +137,7 @@ namespace Npoi.Core.XWPF.UserModel
          * In the documentProtection tag inside Settings.xml file <br/>
          * it Sets the value of enforcement to "0" (w:enforcement="0") <br/>
          */
+
         public void RemoveEnforcement()
         {
             SafeGetDocumentProtection().enforcement = (ST_OnOff.off);
@@ -148,19 +147,20 @@ namespace Npoi.Core.XWPF.UserModel
          * Enforces fields update on document open (in Word).
          * In the settings.xml file <br/>
          * sets the updateSettings value to true (w:updateSettings w:val="true")
-         * 
+         *
          *  NOTICES:
          *  <ul>
          *  	<li>Causing Word to ask on open: "This document contains fields that may refer to other files. Do you want to update the fields in this document?"
          *           (if "Update automatic links at open" is enabled)</li>
          *  	<li>Flag is removed after saving with changes in Word </li>
-         *  </ul> 
+         *  </ul>
          */
+
         public void SetUpdateFields()
         {
             CT_OnOff onOff = new CT_OnOff();
             onOff.val = true;
-            ctSettings.updateFields=(onOff);
+            ctSettings.updateFields = (onOff);
         }
 
         public bool IsUpdateFields()
@@ -171,6 +171,7 @@ namespace Npoi.Core.XWPF.UserModel
         /**
          * get or set revision tracking
          */
+
         public bool IsTrackRevisions
         {
             get
@@ -233,14 +234,12 @@ namespace Npoi.Core.XWPF.UserModel
             try
             {
                 XDocument xmldoc = ConvertStreamToXml(inputStream);
-                ctSettings = SettingsDocument.Parse(xmldoc,NamespaceManager).Settings;
+                ctSettings = SettingsDocument.Parse(xmldoc, NamespaceManager).Settings;
             }
             catch (Exception e)
             {
                 throw new Exception("SettingsDocument parse failed", e);
             }
         }
-
     }
-
 }

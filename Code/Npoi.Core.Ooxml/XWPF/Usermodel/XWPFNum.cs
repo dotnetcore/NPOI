@@ -14,15 +14,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
 
     /**
      * @author Philipp Epp
      *
      */
+
     public class XWPFNum
     {
         private CT_Num ctNum;

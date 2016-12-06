@@ -14,8 +14,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 using System;
 using System.Collections.Generic;
+
 namespace Npoi.Core.Util
 {
     /// <summary>
@@ -23,18 +25,17 @@ namespace Npoi.Core.Util
     /// </summary>
     public class IdentifierManager
     {
-
         public static long MAX_ID = long.MaxValue - 1;
 
         public static long MIN_ID = 0L;
 
         /**
-         * 
+         *
          */
         private long upperbound;
 
         /**
-         * 
+         *
          */
         private long lowerbound;
 
@@ -47,6 +48,7 @@ namespace Npoi.Core.Util
          * @param lowerbound the lower limit of the id-range to manage. Must be greater than or equal to {@link #MIN_ID}.
          * @param upperbound the upper limit of the id-range to manage. Must be less then or equal {@link #MAX_ID}.
          */
+
         public IdentifierManager(long lowerbound, long upperbound)
         {
             if (lowerbound > upperbound)
@@ -113,50 +115,50 @@ namespace Npoi.Core.Util
                 return ReserveNew();
             }
 
-            
             for (int i = 0; i < segments.Count; i++)
-            { 
-                    Segment segment = segments[i];
-                    if (segment.end < id)
-                    {
-                        continue;
-                    }
-                    else if (segment.start > id)
-                    {
-                        break;
-                    }
-                    else if (segment.start == id)
-                    {
-                        segment.start = id + 1;
-                        if (segment.end < segment.start)
-                        {
-                            segments.Remove(segment);
-                        }
-                        return id;
-                    }
-                    else if (segment.end == id)
-                    {
-                        segment.end = id - 1;
-                        if (segment.start > segment.end)
-                        {
-                            segments.Remove(segment);
-                        }
-                        return id;
-                    }
-                    else
-                    {
-                        segments.Add(new Segment(id + 1, segment.end));
-                        segment.end = id - 1;
-                        return id;
-                    }
+            {
+                Segment segment = segments[i];
+                if (segment.end < id)
+                {
+                    continue;
                 }
+                else if (segment.start > id)
+                {
+                    break;
+                }
+                else if (segment.start == id)
+                {
+                    segment.start = id + 1;
+                    if (segment.end < segment.start)
+                    {
+                        segments.Remove(segment);
+                    }
+                    return id;
+                }
+                else if (segment.end == id)
+                {
+                    segment.end = id - 1;
+                    if (segment.start > segment.end)
+                    {
+                        segments.Remove(segment);
+                    }
+                    return id;
+                }
+                else
+                {
+                    segments.Add(new Segment(id + 1, segment.end));
+                    segment.end = id - 1;
+                    return id;
+                }
+            }
             return ReserveNew();
         }
 
         /**
-         * @return a new identifier. 
+         * @return a new identifier.
          * @throws IllegalStateException if no more identifiers are available, then an Exception is raised.
          */
+
         public long ReserveNew()
         {
             VerifyIdentifiersLeft();
@@ -177,6 +179,7 @@ namespace Npoi.Core.Util
          * @return true, if the identifier was reserved and has been successfully
          * released, false, if the identifier was not reserved.
          */
+
         public bool Release(long id)
         {
             if (id < lowerbound || id > upperbound)
@@ -218,7 +221,7 @@ namespace Npoi.Core.Util
                 }
                 else
                 {
-                    segments.Insert(0,new Segment(lowerbound, lowerbound));
+                    segments.Insert(0, new Segment(lowerbound, lowerbound));
                     return true;
                 }
             }
@@ -228,7 +231,6 @@ namespace Npoi.Core.Util
 
             for (int i = 0; i < segments.Count; i++)
             {
-
                 Segment segment = segments[0];
                 if (segment.end < lower)
                 {
@@ -236,7 +238,7 @@ namespace Npoi.Core.Util
                 }
                 if (segment.start > higher)
                 {
-                    segments.Insert(i,new Segment(id, id));
+                    segments.Insert(i, new Segment(id, id));
                     return true;
                 }
                 if (segment.start == higher)
@@ -248,7 +250,7 @@ namespace Npoi.Core.Util
                 {
                     segment.end = id;
                     /* check if releasing this elements glues two segments into one */
-                    if (i+1<segments.Count)
+                    if (i + 1 < segments.Count)
                     {
                         Segment next = segments[i + 1];
                         if (next.start == segment.end + 1)
@@ -280,11 +282,12 @@ namespace Npoi.Core.Util
         }
 
         /**
-         * 
+         *
          */
+
         private void VerifyIdentifiersLeft()
         {
-            if (segments.Count==0)
+            if (segments.Count == 0)
             {
                 throw new InvalidOperationException("No identifiers left");
             }
@@ -292,7 +295,6 @@ namespace Npoi.Core.Util
 
         internal class Segment
         {
-
             public Segment(long start, long end)
             {
                 this.start = start;
@@ -304,14 +306,14 @@ namespace Npoi.Core.Util
 
             /*
              * (non-Javadoc)
-             * 
+             *
              * @see java.lang.Object#ToString()
              */
+
             public override String ToString()
             {
                 return "[" + start + "; " + end + "]";
             }
         }
     }
-
 }

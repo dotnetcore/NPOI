@@ -17,19 +17,16 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-    using NUnit.Framework;
     using Npoi.Core.OpenXml4Net.OPC;
-    using System.IO;
-    using System.Collections.Generic;
     using Npoi.Core.Util;
-    using System.Xml.Serialization;
-    using Npoi.Core.OpenXmlFormats.Wordprocessing;
+    using NUnit.Framework;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
 
     [TestFixture]
     public class TestXWPFDocument
     {
-
         [Test]
         public void TestContainsMainContentType()
         {
@@ -131,6 +128,7 @@ namespace Npoi.Core.XWPF.UserModel
             //Assert.AreSame(cP, doc.Paragraphs[(0)]);
             //Assert.AreEqual(5, doc.Paragraphs.Count);
         }
+
         [Test]
         public void TestAddPicture()
         {
@@ -145,6 +143,7 @@ namespace Npoi.Core.XWPF.UserModel
                 Assert.AreEqual(newJpeg[i], jpeg[i]);
             }
         }
+
         [Test]
         public void TestAllPictureFormats()
         {
@@ -166,8 +165,8 @@ namespace Npoi.Core.XWPF.UserModel
 
             doc = XWPFTestDataSamples.WriteOutAndReadBack(doc);
             Assert.AreEqual(11, doc.AllPictures.Count);
-
         }
+
         [Test]
         public void TestRemoveBodyElement()
         {
@@ -394,5 +393,4 @@ namespace Npoi.Core.XWPF.UserModel
             Assert.AreEqual(50, settings.GetZoomPercent());
         }
     }
-
 }

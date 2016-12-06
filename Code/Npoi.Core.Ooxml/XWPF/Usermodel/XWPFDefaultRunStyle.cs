@@ -17,13 +17,13 @@
 
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
     using Npoi.Core.OpenXmlFormats.Wordprocessing;
 
     /**
      * Default Character Run style, from which other styles will override
      * TODO Share logic with {@link XWPFRun} which also uses CTRPr
      */
+
     public class XWPFDefaultRunStyle
     {
         private CT_RPr rpr;
@@ -48,5 +48,4 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
     }
-
 }

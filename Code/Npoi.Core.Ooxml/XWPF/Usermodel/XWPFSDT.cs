@@ -14,21 +14,21 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using System;
+
 using Npoi.Core.OpenXmlFormats.Wordprocessing;
-using System.Collections.Generic;
+
 namespace Npoi.Core.XWPF.UserModel
 {
-
     /**
-     * Experimental class to offer rudimentary Read-only Processing of 
+     * Experimental class to offer rudimentary Read-only Processing of
      *  of StructuredDocumentTags/ContentControl
-     *  
+     *
      *
      *
      * WARNING - APIs expected to change rapidly
-     * 
+     *
      */
+
     public class XWPFSDT : AbstractXWPFSDT, IBodyElement, IRunBody, ISDTContents, IRunElement
     {
         private ISDTContent content;
@@ -37,8 +37,8 @@ namespace Npoi.Core.XWPF.UserModel
             : base(sdtRun.sdtPr, part)
         {
             this.content = new XWPFSDTContent(sdtRun.sdtContent, part, this);
-
         }
+
         public XWPFSDT(CT_SdtBlock block, IBody part)
             : base(block.sdtPr, part)
         {
@@ -78,5 +78,4 @@ namespace Npoi.Core.XWPF.UserModel
             get { return GetElementType(); }
         }
     }
-
 }

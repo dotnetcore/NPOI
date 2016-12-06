@@ -15,12 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
-using NUnit.Framework;
-using System;
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.Util;
+using NUnit.Framework;
+using System;
 using TestCases.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
     /**
@@ -29,13 +30,12 @@ namespace Npoi.Core.XSSF.UserModel
      * @author Yegor Kozlov
      * @author Josh Micich
      */
+
     [TestFixture]
     public class TestXSSFSheetUpdateArrayFormulas : BaseTestSheetUpdateArrayFormulas
     {
-
-        public TestXSSFSheetUpdateArrayFormulas():base(XSSFITestDataProvider.instance)
+        public TestXSSFSheetUpdateArrayFormulas() : base(XSSFITestDataProvider.instance)
         {
-            
         }
 
         // Test methods common with HSSF are in superclass
@@ -61,6 +61,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(range.FormatAsString(), firstCell.ArrayFormulaRange.FormatAsString());
             ConfirmArrayFormulaCell(firstCell, "C3", formula1, "C3");
         }
+
         [Test]
         public void TestXSSFSetArrayFormula_multiCell()
         {
@@ -93,6 +94,7 @@ namespace Npoi.Core.XSSF.UserModel
         {
             ConfirmArrayFormulaCell(c, cellRef, null, null);
         }
+
         private static void ConfirmArrayFormulaCell(ICell c, String cellRef, String formulaText, String arrayRangeRef)
         {
             if (c == null)
@@ -114,8 +116,5 @@ namespace Npoi.Core.XSSF.UserModel
                 Assert.AreEqual(ST_CellFormulaType.array, f.t);
             }
         }
-
     }
-
-
 }

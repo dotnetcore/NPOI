@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -14,7 +13,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     // not needed because it not used as a root [XmlRoot(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main", ElementName = "authors")]
     public class CT_Authors
     {
-
         private List<string> authorField = null; // optional field [0..*]
 
         //public CT_Authors()
@@ -25,20 +23,24 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             return (null == authorField) ? 0 : authorField.Count;
         }
+
         public string GetAuthorArray(int index)
         {
             return (null == authorField) ? null : authorField[index];
         }
+
         public void Insert(int index, string author)
         {
             if (null == authorField) { authorField = new List<string>(); }
             authorField.Insert(index, author);
         }
+
         public void AddAuthor(string name)
         {
             if (null == authorField) { authorField = new List<string>(); }
             authorField.Add(name);
         }
+
         //[XmlArray("authors", Order = 0)] // - encapsulates the following items, but the outer element already provides the container.
         //[XmlArrayItem("author")]
         [XmlElement("author")] // this is serialized into multiple author entries
@@ -53,6 +55,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.authorField = value;
             }
         }
+
         public static CT_Authors Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -67,8 +70,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}>", nodeName));
@@ -81,6 +82,5 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             sw.Write(string.Format("</{0}>", nodeName));
         }
-
     }
 }

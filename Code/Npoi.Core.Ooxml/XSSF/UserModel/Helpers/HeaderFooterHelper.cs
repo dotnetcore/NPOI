@@ -25,12 +25,14 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
         // Note - XmlBeans handles entity encoding for us,
         //  so these should be & forms, not the &amp; ones!
         private static String HeaderFooterEntity_L = "&L";
+
         private static String HeaderFooterEntity_C = "&C";
         private static String HeaderFooterEntity_R = "&R";
 
         // These are other entities that may be used in the
         //  left, center or right. Not exhaustive
         public static String HeaderFooterEntity_File = "&F";
+
         public static String HeaderFooterEntity_Date = "&D";
         public static String HeaderFooterEntity_Time = "&T";
 
@@ -38,10 +40,12 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
         {
             return GetParts(str)[0];
         }
+
         public String GetCenterSection(String str)
         {
             return GetParts(str)[1];
         }
+
         public String GetRightSection(String str)
         {
             return GetParts(str)[2];
@@ -53,12 +57,14 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             parts[0] = newLeft;
             return JoinParts(parts);
         }
+
         public String SetCenterSection(String str, String newCenter)
         {
             String[] parts = GetParts(str);
             parts[1] = newCenter;
             return JoinParts(parts);
         }
+
         public String SetRightSection(String str, String newRight)
         {
             String[] parts = GetParts(str);
@@ -69,6 +75,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
         /**
          * Split into left, center, right
          */
+
         private String[] GetParts(String str)
         {
             String[] parts = new String[] { "", "", "" };
@@ -110,10 +117,12 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
 
             return parts;
         }
+
         private String JoinParts(String[] parts)
         {
             return JoinParts(parts[0], parts[1], parts[2]);
         }
+
         private String JoinParts(String l, String c, String r)
         {
             StringBuilder ret = new StringBuilder();
@@ -138,6 +147,4 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             return ret.ToString();
         }
     }
-
-
 }

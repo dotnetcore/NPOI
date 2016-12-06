@@ -1,4 +1,5 @@
 using NUnit.Framework;
+
 /*
  *  ====================================================================
  *    Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,25 +18,27 @@ using NUnit.Framework;
  *    limitations under the License.
  * ====================================================================
  */
+
 using TestCases.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * @author Yegor Kozlov
      */
+
     [TestFixture]
     public class TestXSSFConditionalFormatting : BaseTestConditionalFormatting
     {
         public TestXSSFConditionalFormatting()
             : base(XSSFITestDataProvider.instance)
         {
-
         }
+
         [Test]
         public void TestRead()
         {
             this.TestRead("WithConditionalFormatting.xlsx");
         }
     }
-
 }

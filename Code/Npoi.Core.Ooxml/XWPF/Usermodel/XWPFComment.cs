@@ -14,18 +14,20 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
+    using Npoi.Core.OpenXmlFormats.Wordprocessing;
     using System;
     using System.Text;
-    using Npoi.Core.OpenXmlFormats.Wordprocessing;
 
     /**
      * Sketch of XWPF comment class
-     * 
+     *
     * @author Yury Batrakov (batrakov at gmail.com)
-     * 
+     *
      */
+
     public class XWPFComment
     {
         protected String id;
@@ -38,7 +40,7 @@ namespace Npoi.Core.XWPF.UserModel
             id = comment.id.ToString();
             author = comment.author;
 
-            foreach(CT_P ctp in comment.GetPList())
+            foreach (CT_P ctp in comment.GetPList())
             {
                 XWPFParagraph p = new XWPFParagraph(ctp, document);
                 text.Append(p.Text);
@@ -69,5 +71,4 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
     }
-
 }

@@ -1,11 +1,10 @@
-﻿using System;
-
-using System.Xml.Serialization;
-using System.Xml;
+﻿using Npoi.Core.OpenXml4Net.OPC;
 using Npoi.Core.OpenXml4Net.Util;
+using System;
 using System.IO;
+using System.Xml;
 using System.Xml.Linq;
-using Npoi.Core.OpenXml4Net.OPC;
+using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 {
@@ -13,7 +12,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class CT_Hyperlink
     {
-
         private string refField = null;
 
         private string idField = null; // this and the other ones are optional
@@ -102,8 +100,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<{0}", nodeName));
@@ -115,12 +111,5 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             sw.Write(">");
             sw.Write(string.Format("</{0}>", nodeName));
         }
-
-
-
-
-
-
-
     }
 }

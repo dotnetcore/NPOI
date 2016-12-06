@@ -14,28 +14,29 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using Npoi.Core.OpenXmlFormats;
+
+using Npoi.Core.HSSF.Util;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.Util;
 using System;
 using System.Drawing;
-using Npoi.Core.HSSF.Util;
 using System.Text;
-using Npoi.Core.Util;
-using Npoi.Core.SS.UserModel;
-using Npoi.Core.OpenXmlFormats.Spreadsheet;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Represents a color in SpreadsheetML
      */
+
     public class XSSFColor : IColor
     {
-
         private CT_Color ctColor;
 
         /**
          * Create an instance of XSSFColor from the supplied XML bean
          */
+
         public XSSFColor(CT_Color color)
         {
             this.ctColor = color;
@@ -44,6 +45,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Create an new instance of XSSFColor
          */
+
         public XSSFColor()
         {
             this.ctColor = new CT_Color();
@@ -52,14 +54,12 @@ namespace Npoi.Core.XSSF.UserModel
         public XSSFColor(Color clr)
             : this()
         {
-
             ctColor.SetRgb((byte)clr.R, (byte)clr.G, (byte)clr.B);
         }
 
         public XSSFColor(byte[] rgb)
             : this()
         {
-
             ctColor.SetRgb(rgb);
         }
 
@@ -72,39 +72,40 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 return ctColor.auto;
             }
-            set 
+            set
             {
                 ctColor.auto = value;
                 ctColor.autoSpecified = true;
             }
         }
 
-
         /**
          * Indexed ctColor value. Only used for backwards compatibility. References a ctColor in indexedColors.
          */
+
         public short Indexed
         {
             get
             {
                 return ctColor.indexedSpecified ? (short)ctColor.indexed : (short)0;
             }
-            set 
+            set
             {
                 ctColor.indexed = (uint)value;
                 ctColor.indexedSpecified = true;
             }
         }
 
-
         public byte[] GetRgb()
-        { 
+        {
             return this.RGB;
         }
+
         /**
          * Standard Red Green Blue ctColor value (RGB).
          * If there was an A (Alpha) value, it will be stripped.
          */
+
         public byte[] RGB
         {
             get
@@ -129,6 +130,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Standard Alpha Red Green Blue ctColor value (ARGB).
          */
+
         public byte[] GetARgb()
         {
             byte[] rgb = GetRGBOrARGB();
@@ -182,6 +184,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Standard Red Green Blue ctColor value (RGB) with applied tint.
          * Alpha values are ignored.
          */
+
         public byte[] GetRgbWithTint()
         {
             byte[] rgb = ctColor.GetRgb();
@@ -203,8 +206,9 @@ namespace Npoi.Core.XSSF.UserModel
 
         /**
          * Return the ARGB value in hex format, eg FF00FF00.
-         * Works for both regular and indexed colours. 
+         * Works for both regular and indexed colours.
          */
+
         public String GetARGBHex()
         {
             StringBuilder sb = new StringBuilder();
@@ -249,6 +253,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Standard Alpha Red Green Blue ctColor value (ARGB).
          */
+
         public void SetRgb(byte[] rgb)
         {
             // Correct it and save
@@ -259,18 +264,18 @@ namespace Npoi.Core.XSSF.UserModel
          * Index into the <clrScheme> collection, referencing a particular <sysClr> or
          *  <srgbClr> value expressed in the Theme part.
          */
+
         public int Theme
         {
             get
             {
                 return ctColor.themeSpecified ? (int)ctColor.theme : (int)0;
             }
-            set 
+            set
             {
                 ctColor.theme = (uint)value;
             }
         }
-
 
         /**
          * Specifies the tint value applied to the ctColor.
@@ -313,13 +318,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the tint value
          */
+
         public double Tint
         {
             get
             {
                 return ctColor.tint;
             }
-            set 
+            set
             {
                 ctColor.tint = value;
                 ctColor.tintSpecified = true;
@@ -392,6 +398,4 @@ namespace Npoi.Core.XSSF.UserModel
             return ctColor.ToString().Equals(cf.GetCTColor().ToString());
         }
     }
-
 }
-

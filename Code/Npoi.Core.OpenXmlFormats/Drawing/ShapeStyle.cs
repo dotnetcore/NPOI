@@ -1,4 +1,3 @@
-
 using Npoi.Core.OpenXml4Net.Util;
 using System;
 using System.IO;
@@ -6,12 +5,8 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-
 namespace Npoi.Core.OpenXmlFormats.Dml
 {
-
-
-
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -19,7 +14,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_StyleMatrixReference
     {
-
         private CT_ScRgbColor scrgbClrField;
 
         private CT_SRgbColor srgbClrField;
@@ -33,6 +27,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private CT_PresetColor prstClrField;
 
         private uint idxField;
+
         public static CT_StyleMatrixReference Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -56,8 +51,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -130,11 +123,13 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.sysClrField = value;
             }
         }
+
         public CT_SchemeColor AddNewSchemeClr()
         {
             this.schemeClrField = new CT_SchemeColor();
             return this.schemeClrField;
         }
+
         [XmlElement(Order = 4)]
         public CT_SchemeColor schemeClr
         {
@@ -161,7 +156,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         public uint idx
         {
@@ -176,9 +170,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
-
-
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -186,7 +177,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_FontReference
     {
-
         private CT_ScRgbColor scrgbClrField;
 
         private CT_SRgbColor srgbClrField;
@@ -200,6 +190,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private CT_PresetColor prstClrField;
 
         private ST_FontCollectionIndex idxField;
+
         public static CT_FontReference Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -225,8 +216,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<a:{0}", nodeName));
@@ -246,6 +235,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.prstClr.Write(sw, "prstClr");
             sw.Write(string.Format("</a:{0}>", nodeName));
         }
+
         [XmlElement(Order = 0)]
         public CT_ScRgbColor scrgbClr
         {
@@ -297,11 +287,13 @@ namespace Npoi.Core.OpenXmlFormats.Dml
                 this.sysClrField = value;
             }
         }
+
         public CT_SchemeColor AddNewSchemeClr()
         {
             this.schemeClrField = new CT_SchemeColor();
             return this.schemeClrField;
         }
+
         [XmlElement(Order = 4)]
         public CT_SchemeColor schemeClr
         {
@@ -328,7 +320,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
         }
 
-
         [XmlAttribute]
         public ST_FontCollectionIndex idx
         {
@@ -343,9 +334,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         }
     }
 
-
-
-
     [Serializable]
     [System.Diagnostics.DebuggerStepThrough]
     [System.ComponentModel.DesignerCategory("code")]
@@ -353,7 +341,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/main", IsNullable = true)]
     public class CT_ShapeStyle
     {
-
         private CT_StyleMatrixReference lnRefField;
 
         private CT_StyleMatrixReference fillRefField;
@@ -361,6 +348,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml
         private CT_StyleMatrixReference effectRefField;
 
         private CT_FontReference fontRefField;
+
         public static CT_ShapeStyle Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -379,8 +367,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -402,21 +388,25 @@ namespace Npoi.Core.OpenXmlFormats.Dml
             this.fillRefField = new CT_StyleMatrixReference();
             return this.fillRefField;
         }
+
         public CT_StyleMatrixReference AddNewLnRef()
         {
             this.lnRefField = new CT_StyleMatrixReference();
             return this.lnRefField;
         }
+
         public CT_FontReference AddNewFontRef()
         {
             this.fontRefField = new CT_FontReference();
             return this.fontRefField;
         }
+
         public CT_StyleMatrixReference AddNewEffectRef()
         {
             this.effectRefField = new CT_StyleMatrixReference();
             return this.effectRefField;
         }
+
         [XmlElement(Order = 0)]
         public CT_StyleMatrixReference lnRef
         {

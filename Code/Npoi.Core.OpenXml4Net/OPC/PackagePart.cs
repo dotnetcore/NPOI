@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
+﻿using Npoi.Core.OpenXml4Net.Exceptions;
 using Npoi.Core.OpenXml4Net.OPC.Internal;
-using Npoi.Core.OpenXml4Net.Exceptions;
-
+using System;
+using System.IO;
 
 namespace Npoi.Core.OpenXml4Net.OPC
 {
     /**
      * Provides a base class for parts stored in a Package.
-     * 
+     *
      * @author Julien Chable
      * @version 0.9
      */
+
     public abstract class PackagePart : RelationshipSource, IComparable<PackagePart>
     {
-
         /**
          * This part's container.
          */
@@ -49,7 +46,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Constructor.
-         * 
+         *
          * @param pack
          *            Parent package.
          * @param partName
@@ -59,16 +56,16 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @throws InvalidFormatException
          *             If the specified URI is not valid.
          */
+
         protected PackagePart(OPCPackage pack, PackagePartName partName,
                 ContentType contentType)
             : this(pack, partName, contentType, true)
         {
-
         }
 
         /**
          * Constructor.
-         * 
+         *
          * @param pack
          *            Parent package.
          * @param partName
@@ -80,6 +77,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @throws InvalidFormatException
          *             If the specified URI is not valid.
          */
+
         protected PackagePart(OPCPackage pack, PackagePartName partName,
                 ContentType contentType, bool loadRelationships)
         {
@@ -97,7 +95,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Constructor.
-         * 
+         *
          * @param pack
          *            Parent package.
          * @param partName
@@ -106,20 +104,20 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *            The Multipurpose Internet Mail Extensions (MIME) content type
          *            of the part's data stream.
          */
+
         public PackagePart(OPCPackage pack, PackagePartName partName,
                 String contentType)
             : this(pack, partName, new ContentType(contentType))
         {
-
         }
 
         /**
          * Adds an external relationship to a part (except relationships part).
-         * 
+         *
          * The targets of external relationships are not subject to the same
          * validity checks that internal ones are, as the contents is potentially
          * any file, URL or similar.
-         * 
+         *
          * @param target
          *            External target of the relationship
          * @param relationshipType
@@ -128,6 +126,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#addExternalRelationship(java.lang.String,
          *      java.lang.String)
          */
+
         public PackageRelationship AddExternalRelationship(String target,
                 String relationshipType)
         {
@@ -136,11 +135,11 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Adds an external relationship to a part (except relationships part).
-         * 
+         *
          * The targets of external relationships are not subject to the same
          * validity checks that internal ones are, as the contents is potentially
          * any file, URL or similar.
-         * 
+         *
          * @param target
          *            External target of the relationship
          * @param relationshipType
@@ -151,6 +150,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#addExternalRelationship(java.lang.String,
          *      java.lang.String)
          */
+
         public PackageRelationship AddExternalRelationship(String target,
                 String relationshipType, String id)
         {
@@ -171,7 +171,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
             Uri targetURI;
             try
             {
-                targetURI = PackagingUriHelper.ParseUri(target,UriKind.RelativeOrAbsolute);
+                targetURI = PackagingUriHelper.ParseUri(target, UriKind.RelativeOrAbsolute);
             }
             catch (UriFormatException e)
             {
@@ -184,7 +184,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Add a relationship to a part (except relationships part).
-         * 
+         *
          * @param targetPartName
          *            Name of the target part. This one must be relative to the
          *            source root directory of the part.
@@ -196,6 +196,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#AddRelationship(org.apache.poi.OpenXml4Net.opc.PackagePartName,
          *      org.apache.poi.OpenXml4Net.opc.TargetMode, java.lang.String)
          */
+
         public PackageRelationship AddRelationship(PackagePartName targetPartName,
                 TargetMode targetMode, String relationshipType)
         {
@@ -221,12 +222,13 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @param id
          *            Relationship unique id.
          * @return The newly created and added relationship
-         * 
+         *
          * @throws InvalidFormatException
          *             If the URI point to a relationship part URI.
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#AddRelationship(org.apache.poi.OpenXml4Net.opc.PackagePartName,
          *      org.apache.poi.OpenXml4Net.opc.TargetMode, java.lang.String, java.lang.String)
          */
+
         public PackageRelationship AddRelationship(PackagePartName targetPartName,
                 TargetMode targetMode, String relationshipType, String id)
         {
@@ -262,7 +264,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Add a relationship to a part (except relationships part).
-         * 
+         *
          * @param targetURI
          *            URI the target part. Must be relative to the source root
          *            directory of the part.
@@ -274,6 +276,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#AddRelationship(org.apache.poi.OpenXml4Net.opc.PackagePartName,
          *      org.apache.poi.OpenXml4Net.opc.TargetMode, java.lang.String)
          */
+
         public PackageRelationship AddRelationship(Uri targetURI,
                 TargetMode targetMode, String relationshipType)
         {
@@ -298,12 +301,13 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @param id
          *            Relationship unique id.
          * @return The newly created and added relationship
-         * 
+         *
          * @throws InvalidFormatException
          *             If the URI point to a relationship part URI.
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#AddRelationship(org.apache.poi.OpenXml4Net.opc.PackagePartName,
          *      org.apache.poi.OpenXml4Net.opc.TargetMode, java.lang.String, java.lang.String)
          */
+
         public PackageRelationship AddRelationship(Uri targetURI,
                 TargetMode targetMode, String relationshipType, String id)
         {
@@ -343,6 +347,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#clearRelationships()
          */
+
         public void ClearRelationships()
         {
             if (_relationships != null)
@@ -353,11 +358,12 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Delete the relationship specified by its id.
-         * 
+         *
          * @param id
          *            The ID identified the part to delete.
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#removeRelationship(java.lang.String)
          */
+
         public void RemoveRelationship(String id)
         {
             this._container.ThrowExceptionIfReadOnly();
@@ -367,11 +373,12 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Retrieve all the relationships attached to this part.
-         * 
+         *
          * @return This part's relationships.
          * @throws OpenXml4NetException
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#getRelationships()
          */
+
         public PackageRelationshipCollection Relationships
         {
             get
@@ -382,12 +389,13 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Retrieves a package relationship from its id.
-         * 
+         *
          * @param id
          *            ID of the package relationship to retrieve.
          * @return The package relationship
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#getRelationship(java.lang.String)
          */
+
         public PackageRelationship GetRelationship(String id)
         {
             return this._relationships.GetRelationshipByID(id);
@@ -396,7 +404,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * Retrieve all relationships attached to this part which have the specified
          * type.
-         * 
+         *
          * @param relationshipType
          *            Relationship type filter.
          * @return All relationships from this part that have the specified type.
@@ -406,6 +414,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *             If the package is open in write only mode.
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#getRelationshipsByType(java.lang.String)
          */
+
         public PackageRelationshipCollection GetRelationshipsByType(
                 String relationshipType)
         {
@@ -416,7 +425,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Implementation of the getRelationships method().
-         * 
+         *
          * @param filter
          *            Relationship type filter. If <i>null</i> then the filter is
          *            disabled and return all the relationships.
@@ -428,6 +437,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *             Throws if the package is open en write only mode.
          * @see #getRelationshipsByType(String)
          */
+
         private PackageRelationshipCollection GetRelationshipsCore(String filter)
         {
             this._container.ThrowExceptionIfWriteOnly();
@@ -441,11 +451,12 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Knows if the part have any relationships.
-         * 
+         *
          * @return <b>true</b> if the part have at least one relationship else
          *         <b>false</b>.
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#hasRelationships()
          */
+
         public bool HasRelationships
         {
             get
@@ -456,13 +467,14 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Checks if the specified relationship is part of this package part.
-         * 
+         *
          * @param rel
          *            The relationship to check.
          * @return <b>true</b> if the specified relationship exists in this part,
          *         else returns <b>false</b>
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#isRelationshipExists(org.apache.poi.OpenXml4Net.opc.PackageRelationship)
          */
+
         public bool IsRelationshipExists(PackageRelationship rel)
         {
             try
@@ -474,8 +486,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
                 }
             }
             catch (InvalidFormatException)
-            { 
-            
+            {
             }
             return false;
         }
@@ -483,9 +494,10 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
         * Get the PackagePart that is the target of a relationship.
         *
-        * @param rel A relationship from this part to another one 
+        * @param rel A relationship from this part to another one
         * @return The target part of the relationship
         */
+
         public PackagePart GetRelatedPart(PackageRelationship rel)
         {
             // Ensure this is one of ours
@@ -496,7 +508,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
             // Get the target URI, excluding any relative fragments
             Uri target = rel.TargetUri;
-            if (target.OriginalString.IndexOf('#') >=0)
+            if (target.OriginalString.IndexOf('#') >= 0)
             {
                 String t = target.ToString();
                 try
@@ -519,11 +531,11 @@ namespace Npoi.Core.OpenXml4Net.OPC
             return part;
         }
 
-
         public Stream GetStream(FileMode mode)
         {
             return this.GetStream(mode, FileAccess.Write);
         }
+
         public Stream GetStream(FileMode mode, FileAccess access)
         {
             if (mode == FileMode.Create && access == FileAccess.Write)
@@ -532,12 +544,14 @@ namespace Npoi.Core.OpenXml4Net.OPC
             }
             return this.GetInputStream();
         }
+
         /**
          * Get the input stream of this part to read its content.
-         * 
+         *
          * @return The input stream of the content of this part, else
          *         <code>null</code>.
          */
+
         public Stream GetInputStream()
         {
             Stream inStream = this.GetInputStreamImpl();
@@ -558,6 +572,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
  *
  * @see org.apache.poi.openxml4j.opc.internal.MemoryPackagePart
  */
+
         public Stream GetOutputStream()
         {
             Stream outStream;
@@ -587,13 +602,13 @@ namespace Npoi.Core.OpenXml4Net.OPC
             return outStream;
         }
 
-
         /**
          * Throws an exception if this package part is a relationship part.
-         * 
+         *
          * @throws InvalidOperationException
          *             If this part is a relationship part.
          */
+
         private void ThrowExceptionIfRelationship()
         {
             if (this.IsRelationshipPart)
@@ -603,10 +618,11 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         /**
          * Ensure the package relationships collection instance is built.
-         * 
+         *
          * @throws InvalidFormatException
          *             Throws if
          */
+
         private void LoadRelationships()
         {
             if (this._relationships == null && !this.IsRelationshipPart)
@@ -623,6 +639,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * @return the uri
          */
+
         public PackagePartName PartName
         {
             get
@@ -634,6 +651,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * @return the contentType
          */
+
         public String ContentType
         {
             get
@@ -649,9 +667,11 @@ namespace Npoi.Core.OpenXml4Net.OPC
                             "You can't change the content type of a part.");
             }
         }
+
         /**
          * @return The Content Type, including parameters, of the part
          */
+
         public ContentType ContentTypeDetails
         {
             get
@@ -659,6 +679,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
                 return _contentType;
             }
         }
+
         public OPCPackage Package
         {
             get
@@ -670,6 +691,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * @return true if this part is a relationship
          */
+
         public bool IsRelationshipPart
         {
             get
@@ -681,6 +703,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * @return true if this part has been logically deleted
          */
+
         public bool IsDeleted
         {
             get
@@ -689,9 +712,11 @@ namespace Npoi.Core.OpenXml4Net.OPC
             }
             set { this._isDeleted = value; }
         }
+
         /**
          * @return The length of the part in bytes, or -1 if not known
          */
+
         public virtual long Size
         {
             get
@@ -699,6 +724,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
                 return -1;
             }
         }
+
         public override String ToString()
         {
             return "Name: " + this._partName + " - Content Type: "
@@ -708,6 +734,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * Compare based on the package part name, using a natural sort order
          */
+
         public int CompareTo(PackagePart other)
         {
             // NOTE could also throw a NullPointerException() if desired
@@ -716,36 +743,41 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
             return PackagePartName.Compare(this._partName, other._partName);
         }
+
         /*-------------- Abstract methods ------------- */
 
         /**
          * Abtract method that get the input stream of this part.
-         * 
+         *
          * @exception IOException
          *                Throws if an IO Exception occur in the implementation
          *                method.
          */
+
         protected abstract Stream GetInputStreamImpl();
+
         /**
          * Abstract method that get the output stream of this part.
          */
+
         protected abstract Stream GetOutputStreamImpl();
 
         /**
          * Save the content of this part and the associated relationships part (if
          * this part own at least one relationship) into the specified output
          * stream.
-         * 
+         *
          * @param zos
          *            Output stream to save this part.
          * @throws OpenXml4NetException
          *             If any exception occur.
          */
+
         public abstract bool Save(Stream zos);
 
         /**
          * Load the content of this part.
-         * 
+         *
          * @param ios
          *            The input stream of the content to load.
          * @return <b>true</b> if the content has been successfully loaded, else
@@ -753,12 +785,14 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @throws InvalidFormatException
          *             Throws if the content format is invalid.
          */
+
         public abstract bool Load(Stream ios);
 
         /**
          * Close this part : flush this part, close the input stream and output
          * stream. After this method call, the part must be available for packaging.
          */
+
         public abstract void Close();
 
         /**
@@ -766,12 +800,15 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * as in a waiting state to read or write, the must to empty their
          * respective buffer.
          */
+
         public abstract void Flush();
 
         /**
          * Allows sub-classes to clean up before new data is added.
          */
-        public virtual void Clear() { }
-    }
 
+        public virtual void Clear()
+        {
+        }
+    }
 }

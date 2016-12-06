@@ -14,21 +14,20 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.Format
 {
-    using System;
-    using System.Text;
-    using System.Text.RegularExpressions;
-    using NUnit.Framework;
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.XSSF;
-    using TestCases.SS.Format;
+    using NUnit.Framework;
+    using System;
     using System.Globalization;
-
-
-
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using TestCases.SS.Format;
 
     /** Test the individual CellFormatPart types. */
+
     [TestFixture]
     public class TestCellFormatPart : CellFormatTestBase
     {
@@ -40,6 +39,7 @@ namespace Npoi.Core.SS.Format
             : base(XSSFITestDataProvider.instance)
         {
         }
+
         private class CellValue1 : CellValue
         {
             public override object GetValue(ICell cell)
@@ -53,11 +53,13 @@ namespace Npoi.Core.SS.Format
                     return cell.StringCellValue;
             }
         }
+
         [Test]
         public void TestGeneralFormat()
         {
             RunFormatTests("GeneralFormatTests.xlsx", new CellValue1());
         }
+
         private class CellValue2 : CellValue
         {
             public override object GetValue(ICell cell)
@@ -65,17 +67,20 @@ namespace Npoi.Core.SS.Format
                 return cell.NumericCellValue;
             }
         }
+
         [Test]
         public void TestNumberFormat()
         {
             RunFormatTests("NumberFormatTests.xlsx", new CellValue2());
         }
+
         private class CellValue3 : CellValue
         {
             public override object GetValue(ICell cell)
             {
                 return cell.NumericCellValue;
             }
+
             public override void Equivalent(String expected, String actual,
                    CellFormatPart format)
             {
@@ -87,19 +92,21 @@ namespace Npoi.Core.SS.Format
                         actual);
             }
         }
+
         [Test]
         public void TestNumberApproxFormat()
         {
             RunFormatTests("NumberFormatApproxTests.xlsx", new CellValue3());
         }
+
         private class CellValue4 : CellValue
         {
-
             public override object GetValue(ICell cell)
             {
                 return cell.DateCellValue;
             }
         }
+
         [Test]
         public void TestDateFormat()
         {
@@ -111,6 +118,7 @@ namespace Npoi.Core.SS.Format
         {
             RunFormatTests("ElapsedFormatTests.xlsx", new CellValue2());
         }
+
         private class CellValue6 : CellValue
         {
             public override object GetValue(ICell cell)
@@ -121,6 +129,7 @@ namespace Npoi.Core.SS.Format
                     return cell.StringCellValue;
             }
         }
+
         [Test]
         public void TestTextFormat()
         {

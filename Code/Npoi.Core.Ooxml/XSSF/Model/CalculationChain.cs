@@ -15,23 +15,22 @@
    limitations under the License.
 ==================================================================== */
 
+using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Npoi.Core.OpenXml4Net.OPC;
-using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using System.Xml;
 using System.Xml.Linq;
 
 namespace Npoi.Core.XSSF.Model
 {
-
     /**
      * The cells in a workbook can be calculated in different orders depending on various optimizations and
      * dependencies. The calculation chain object specifies the order in which the cells in a workbook were last calculated.
      *
      * @author Yegor Kozlov
      */
+
     public class CalculationChain : POIXMLDocumentPart
     {
         private CT_CalcChain chain;
@@ -39,7 +38,6 @@ namespace Npoi.Core.XSSF.Model
         public CalculationChain()
             : base()
         {
-
             chain = new CT_CalcChain();
         }
 
@@ -54,15 +52,14 @@ namespace Npoi.Core.XSSF.Model
         {
             CalcChainDocument doc = CalcChainDocument.Parse(xml, NamespaceManager);
             chain = doc.GetCalcChain();
-
         }
+
         public void WriteTo(Stream out1)
         {
             CalcChainDocument doc = new CalcChainDocument();
             doc.SetCalcChain(chain);
             doc.Save(out1);
         }
-
 
         protected internal override void Commit()
         {
@@ -72,7 +69,6 @@ namespace Npoi.Core.XSSF.Model
             out1.Dispose();
         }
 
-
         public CT_CalcChain GetCTCalcChain()
         {
             return chain;
@@ -80,11 +76,12 @@ namespace Npoi.Core.XSSF.Model
 
         /**
          * Remove a formula reference from the calculation chain
-         * 
+         *
          * @param sheetId  the sheet Id of a sheet the formula belongs to.
          * @param ref  A1 style reference to the cell Containing the formula.
          */
-        //  GetXYZArray() array accessors are deprecated 
+
+        //  GetXYZArray() array accessors are deprecated
         public void RemoveItem(int sheetId, String ref1)
         {
             //sheet Id of a sheet the cell belongs to

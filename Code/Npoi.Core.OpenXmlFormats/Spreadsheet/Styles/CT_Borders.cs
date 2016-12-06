@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -16,6 +15,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         private List<CT_Border> borderField;
         private uint countField = 0;
         private bool countFieldSpecified = false;
+
         public static CT_Borders Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -30,8 +30,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -52,6 +50,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
         {
             //this.borderField = new List<CT_Border>();
         }
+
         public CT_Border AddNewBorder()
         {
             if (this.borderField == null)
@@ -60,6 +59,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             this.borderField.Add(border);
             return border;
         }
+
         [XmlElement]
         public List<CT_Border> border
         {
@@ -72,10 +72,12 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.borderField = value;
             }
         }
+
         public void SetBorderArray(List<CT_Border> array)
         {
             borderField = array;
         }
+
         [XmlAttribute]
         public uint count
         {

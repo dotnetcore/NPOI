@@ -30,7 +30,7 @@
 //        }
 
 //        #region Additional test attributes
-//        // 
+//        //
 //        //You can use the following additional attributes as you write your tests:
 //        //
 //        //Use ClassInitialize to run code before running the first test in the class
@@ -58,7 +58,6 @@
 //        //}
 //        //
 //        #endregion
-
 
 //        /// <summary>
 //        ///A test for the Serialization of CT_CalcChain.
@@ -97,7 +96,6 @@
 //            }
 //        }
 
-
 //        /// <summary>
 //        ///A test for Deserialize
 //        ///</summary>
@@ -127,8 +125,6 @@
 //            Assert.AreEqual(0, result.c[2].i); // the default value
 //            Assert.AreEqual(false, result.c[2].iSpecified);
 //        }
-
-
 
 //    }
 //}

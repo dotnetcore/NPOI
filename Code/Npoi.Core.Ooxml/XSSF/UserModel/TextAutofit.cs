@@ -16,6 +16,7 @@
  *    limitations under the License.
  * ====================================================================
  */
+
 namespace Npoi.Core.XSSF.UserModel
 {
     /**
@@ -25,6 +26,7 @@ namespace Npoi.Core.XSSF.UserModel
      * Auto-fitting is when text within a shape is scaled in order to contain all the text inside
      * </p>
      */
+
     public enum TextAutofit
     {
         /**
@@ -56,5 +58,4 @@ namespace Npoi.Core.XSSF.UserModel
          */
         SHAPE
     }
-
 }

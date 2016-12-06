@@ -16,29 +16,28 @@
 ==================================================================== */
 
 using Npoi.Core.OpenXmlFormats.Spreadsheet;
-using System;
+using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.Util;
 using Npoi.Core.XSSF.Model;
-using Npoi.Core.SS.UserModel;
+using System;
+
 namespace Npoi.Core.XSSF.UserModel.Helpers
 {
-
     /**
-     * 
+     *
      * This class is a wrapper around the CTSingleXmlCell  (Open Office XML Part 4:
-     * chapter 3.5.2.1) 
-     * 
+     * chapter 3.5.2.1)
+     *
 
-     * 
+     *
      * @author Roberto Manicardi
      *
      */
+
     public class XSSFSingleXmlCell
     {
-
         private CT_SingleXmlCell SingleXmlCell;
         private SingleXmlCells parent;
-
 
         public XSSFSingleXmlCell(CT_SingleXmlCell SingleXmlCell, SingleXmlCells parent)
         {
@@ -50,10 +49,10 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
          * Gets the XSSFCell referenced by the R attribute or Creates a new one if cell doesn't exists
          * @return the referenced XSSFCell, null if the cell reference is invalid
          */
+
         public ICell GetReferencedCell()
         {
             ICell cell = null;
-
 
             CellReference cellReference = new CellReference(SingleXmlCell.r);
 
@@ -68,7 +67,6 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             {
                 cell = row.CreateCell(cellReference.Col);
             }
-
 
             return cell;
         }
@@ -92,8 +90,5 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
             CT_XmlPr xmlPr = xmlCellPr.xmlPr;
             return xmlPr.xmlDataType;
         }
-
     }
-
-
 }

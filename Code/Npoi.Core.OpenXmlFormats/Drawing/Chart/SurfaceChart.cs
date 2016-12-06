@@ -1,24 +1,18 @@
-﻿using Npoi.Core.OpenXml4Net.Util;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Dml.Chart
 {
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_Surface
     {
-
         private CT_UnsignedInt thicknessField;
 
         private CT_ShapeProperties spPrField;
@@ -30,6 +24,7 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         public CT_Surface()
         {
         }
+
         public static CT_Surface Parse(XElement node, XmlNamespaceManager namespaceManager)
         {
             if (node == null)
@@ -50,8 +45,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             return ctObj;
         }
 
-
-
         internal void Write(StreamWriter sw, string nodeName)
         {
             sw.Write(string.Format("<c:{0}", nodeName));
@@ -71,7 +64,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             sw.Write(string.Format("</c:{0}>", nodeName));
         }
-
 
         [XmlElement(Order = 0)]
         public CT_UnsignedInt thickness
@@ -126,15 +118,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_Surface3DChart
     {
-
         private CT_Boolean wireframeField;
 
         private List<CT_SurfaceSer> serField;
@@ -147,7 +136,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
 
         public CT_Surface3DChart()
         {
-
         }
 
         public static CT_Surface3DChart Parse(XElement node, XmlNamespaceManager namespaceManager)
@@ -174,8 +162,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {
@@ -280,15 +266,12 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
         }
     }
 
-
     [Serializable]
-
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart")]
     [XmlRoot(Namespace = "http://schemas.openxmlformats.org/drawingml/2006/chart", IsNullable = true)]
     public class CT_SurfaceSer
     {
-
         private CT_UnsignedInt idxField;
 
         private CT_UnsignedInt orderField;
@@ -305,7 +288,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
 
         public CT_SurfaceSer()
         {
-
         }
 
         public static CT_SurfaceSer Parse(XElement node, XmlNamespaceManager namespaceManager)
@@ -333,8 +315,6 @@ namespace Npoi.Core.OpenXmlFormats.Dml.Chart
             }
             return ctObj;
         }
-
-
 
         internal void Write(StreamWriter sw, string nodeName)
         {

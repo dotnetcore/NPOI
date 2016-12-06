@@ -17,53 +17,57 @@
 
 namespace Npoi.Core
 {
-
-    using System.Text;
     using Npoi.Core.OpenXml4Net.OPC.Internal;
+    using Npoi.Core.OpenXmlFormats;
     using System;
     using System.Collections.Generic;
-    using Npoi.Core.OpenXmlFormats;
+    using System.Text;
 
     /**
      * A {@link POITextExtractor} for returning the textual
      *  content of the OOXML file properties, eg author
      *  and title.
      */
+
     public class POIXMLPropertiesTextExtractor : POIXMLTextExtractor
     {
         /**
          * Creates a new POIXMLPropertiesTextExtractor for the
          *  given open document.
          */
+
         public POIXMLPropertiesTextExtractor(POIXMLDocument doc)
             : base(doc)
         {
-
         }
+
         /**
          * Creates a new POIXMLPropertiesTextExtractor, for the
          *  same file that another TextExtractor is already
          *  working on.
          */
+
         public POIXMLPropertiesTextExtractor(POIXMLTextExtractor otherExtractor)
             : base(otherExtractor.Document)
         {
-
         }
 
         private void AppendIfPresent(StringBuilder text, String thing, bool value)
         {
             AppendIfPresent(text, thing, value.ToString());
         }
+
         private void AppendIfPresent(StringBuilder text, String thing, int value)
         {
             AppendIfPresent(text, thing, value.ToString());
         }
+
         private void AppendIfPresent(StringBuilder text, String thing, DateTime? value)
         {
             if (value == null) { return; }
             AppendIfPresent(text, thing, value.ToString());
         }
+
         private void AppendIfPresent(StringBuilder text, String thing, String value)
         {
             if (value == null) { return; }
@@ -76,6 +80,7 @@ namespace Npoi.Core
         /**
          * Returns the core document properties, eg author
          */
+
         public String GetCorePropertiesText()
         {
             if (Document == null)
@@ -109,10 +114,12 @@ namespace Npoi.Core
 
             return text.ToString();
         }
+
         /**
          * Returns the extended document properties, eg
          *  application
          */
+
         public String GetExtendedPropertiesText()
         {
             if (Document == null)
@@ -141,10 +148,12 @@ namespace Npoi.Core
 
             return text.ToString();
         }
+
         /**
     * Returns the custom document properties, if
     *  there are any
     */
+
         public String GetCustomPropertiesText()
         {
             if (Document == null)
@@ -248,7 +257,7 @@ namespace Npoi.Core
 
                 //else if (property.IsSetArray())
                 //{
-                //    // TODO Fetch the array values and output 
+                //    // TODO Fetch the array values and output
                 //}
                 //else if (property.IsSetVector())
                 //{
@@ -297,10 +306,4 @@ namespace Npoi.Core
             }
         }
     }
-
-
-
-
-
 }
-

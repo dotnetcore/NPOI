@@ -14,19 +14,22 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
     using System;
 
     /**
      * Sketch of XWPF hyperlink class
-     * 
+     *
     * @author Yury Batrakov (batrakov at gmail.com)
-     * 
+     *
      */
+
     public class XWPFHyperlink
     {
-        String id, url;
+        private String id, url;
+
         public XWPFHyperlink(String id, String url)
         {
             this.id = id;
@@ -49,5 +52,4 @@ namespace Npoi.Core.XWPF.UserModel
             }
         }
     }
-
 }

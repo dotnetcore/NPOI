@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Npoi.Core.OpenXmlFormats.Wordprocessing
 {
-
     public class NumberingDocument
     {
-        CT_Numbering numbering = null;
+        private CT_Numbering numbering = null;
+
         public NumberingDocument()
         {
             numbering = new CT_Numbering();
         }
+
         public NumberingDocument(CT_Numbering numbering)
         {
             this.numbering = numbering;
         }
+
         public CT_Numbering Numbering
         {
             get
@@ -27,6 +25,7 @@ namespace Npoi.Core.OpenXmlFormats.Wordprocessing
                 return this.numbering;
             }
         }
+
         public void Save(Stream stream)
         {
             using (StreamWriter sw = new StreamWriter(stream))

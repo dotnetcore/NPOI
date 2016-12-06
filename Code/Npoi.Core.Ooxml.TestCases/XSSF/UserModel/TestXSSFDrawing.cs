@@ -14,21 +14,23 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using System.Collections.Generic;
+
+using Npoi.Core.OpenXml4Net.OPC;
+using Npoi.Core.OpenXmlFormats.Dml;
+using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.Util;
 using NUnit.Framework;
 using System;
-using Npoi.Core.OpenXml4Net.OPC;
-using Npoi.Core.SS.UserModel;
-using Npoi.Core.OpenXmlFormats.Dml;
-using Npoi.Core.Util;
+using System.Collections.Generic;
 using System.Drawing;
-using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
-using System.Text;
+
 namespace Npoi.Core.XSSF.UserModel
 {
     /**
      * @author Yegor Kozlov
      */
+
     [TestFixture]
     public class TestXSSFDrawing
     {
@@ -51,7 +53,6 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.IsTrue(sheet.GetCTWorksheet().IsSetDrawing());
             Assert.AreEqual(drawingId, sheet.GetCTWorksheet().drawing.id);
 
-
             List<XSSFShape> shapes = drawing.GetShapes();
             Assert.AreEqual(6, shapes.Count);
 
@@ -62,10 +63,11 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.IsTrue(shapes[(4)] is XSSFSimpleShape);
             Assert.IsTrue(shapes[(5)] is XSSFPicture);
 
-            foreach (XSSFShape sh in shapes) 
+            foreach (XSSFShape sh in shapes)
                 Assert.IsNotNull(sh.GetAnchor());
             Assert.IsNotNull(XSSFTestDataSamples.WriteOutAndReadBack(wb));
         }
+
         [Test]
         public void TestNew()
         {
@@ -115,7 +117,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.IsTrue(shapes[(0)] is XSSFConnector);
             Assert.IsTrue(shapes[(1)] is XSSFShapeGroup);
             Assert.IsTrue(shapes[(2)] is XSSFSimpleShape);
-            Assert.IsTrue(shapes[(3)] is XSSFSimpleShape); 
+            Assert.IsTrue(shapes[(3)] is XSSFSimpleShape);
 
             // Save and re-load it
             wb = XSSFTestDataSamples.WriteOutAndReadBack(wb) as XSSFWorkbook;
@@ -144,6 +146,7 @@ namespace Npoi.Core.XSSF.UserModel
 
             Assert.IsNotNull(XSSFTestDataSamples.WriteOutAndReadBack(wb));
         }
+
         [Test]
         public void TestMultipleDrawings()
         {
@@ -158,6 +161,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(3, pkg.GetPartsByContentType(XSSFRelation.DRAWINGS.ContentType).Count);
             Assert.IsNotNull(XSSFTestDataSamples.WriteOutAndReadBack(wb));
         }
+
         [Test]
         public void TestClone()
         {
@@ -201,6 +205,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * See Bugzilla 52219.
          */
+
         [Test]
         public void TestRichText()
         {
@@ -214,8 +219,8 @@ namespace Npoi.Core.XSSF.UserModel
             XSSFFont font = wb.CreateFont() as XSSFFont;
             font.SetColor(new XSSFColor(Color.FromArgb(0, 128, 128)));
             font.IsItalic = (true);
-            font.IsBold=(true);
-            font.Underline=FontUnderlineType.Single;
+            font.IsBold = (true);
+            font.Underline = FontUnderlineType.Single;
             rt.ApplyFont(font);
 
             shape.SetText(rt);
@@ -236,6 +241,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          *  Test that anchor is not null when Reading shapes from existing Drawings
          */
+
         [Test]
         public void TestReadAnchors()
         {
@@ -274,7 +280,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * See Bugzilla 54969.
          */
-        
+
         //[Test]
         //public void TestRichTextFontAndColor()
         //{
@@ -341,7 +347,7 @@ namespace Npoi.Core.XSSF.UserModel
         //}
 
         ///**
-        // * Test AddNewTextParagraph 
+        // * Test AddNewTextParagraph
         // */
         //[Test]
         //public void TestAddNewTextParagraph()
@@ -403,7 +409,7 @@ namespace Npoi.Core.XSSF.UserModel
         //    XSSFSimpleShape sshape = (XSSFSimpleShape)shapes.Get(0);
 
         //    List<XSSFTextParagraph> paras = sshape.TextParagraphs;
-        //    Assert.AreEqual(2, paras.Size());	// this should be 2 as XSSFSimpleShape Creates a default paragraph (no text), and then we add a string to that.  
+        //    Assert.AreEqual(2, paras.Size());	// this should be 2 as XSSFSimpleShape Creates a default paragraph (no text), and then we add a string to that.
 
         //    List<XSSFTextRun> Runs = para.TextRuns;
         //    Assert.AreEqual(3, Runs.Size());
@@ -417,7 +423,7 @@ namespace Npoi.Core.XSSF.UserModel
         //            new int[] { 0, 255, 255 },
         //            new int[] { clr.Red, clr.Green, clr.Blue }));
 
-        //    // second run properties        
+        //    // second run properties
         //    Assert.AreEqual("Rich Text", Runs.Get(1).Text);
         //    Assert.AreEqual(XSSFFont.DEFAULT_FONT_NAME, Runs.Get(1).FontFamily);
 
@@ -525,7 +531,6 @@ namespace Npoi.Core.XSSF.UserModel
         //    Assert.IsNotNull(XSSFTestDataSamples.WriteOutAndReadBack(wb));
         //}
 
-
         ///**
         // * Test Reading multiple paragraphs from a textbox in an existing file
         // */
@@ -593,7 +598,6 @@ namespace Npoi.Core.XSSF.UserModel
         //[Test]
         //public void TestAddBulletParagraphs()
         //{
-
         //    XSSFWorkbook wb = new XSSFWorkbook();
         //    XSSFSheet sheet = wb.CreateSheet();
         //    XSSFDrawing Drawing = sheet.CreateDrawingPatriarch();
@@ -748,7 +752,6 @@ namespace Npoi.Core.XSSF.UserModel
                     }*/
         }
 
-
         [Test]
         public void TestBug56835CellComment()
         {
@@ -778,7 +781,5 @@ namespace Npoi.Core.XSSF.UserModel
                 wb.Close();
             }
         }
-
     }
 }
-

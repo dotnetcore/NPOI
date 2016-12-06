@@ -16,26 +16,26 @@
 ==================================================================== */
 
 using Npoi.Core.SS.UserModel.Charts;
+
 namespace Npoi.Core.XSSF.UserModel.Charts
 {
-
     /**
      * @author Roman Kashitsyn
      */
+
     public class XSSFChartDataFactory : IChartDataFactory
     {
-
         private static XSSFChartDataFactory instance;
 
         private XSSFChartDataFactory()
             : base()
         {
-
         }
 
         /**
          * @return new scatter chart data instance
          */
+
         public IScatterChartData<Tx, Ty> CreateScatterChartData<Tx, Ty>()
         {
             return new XSSFScatterChartData<Tx, Ty>();
@@ -45,9 +45,11 @@ namespace Npoi.Core.XSSF.UserModel.Charts
         {
             return new XSSFLineChartData<Tx, Ty>();
         }
+
         /**
          * @return factory instance
          */
+
         public static XSSFChartDataFactory GetInstance()
         {
             if (instance == null)
@@ -56,7 +58,5 @@ namespace Npoi.Core.XSSF.UserModel.Charts
             }
             return instance;
         }
-
     }
-
 }

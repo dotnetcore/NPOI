@@ -17,17 +17,17 @@
 
 namespace Npoi.Core.XSSF
 {
-
-    using TestCases.SS;
-    using Npoi.Core.XSSF.UserModel;
-    using System;
     using Npoi.Core.SS;
     using Npoi.Core.SS.UserModel;
+    using Npoi.Core.XSSF.UserModel;
+    using System;
     using TestCases;
+    using TestCases.SS;
 
     /**
      * @author Yegor Kozlov
      */
+
     public class XSSFITestDataProvider : ITestDataProvider
     {
         public static XSSFITestDataProvider instance = new XSSFITestDataProvider();
@@ -36,10 +36,12 @@ namespace Npoi.Core.XSSF
         {
             // enforce Singleton
         }
+
         public IWorkbook OpenSampleWorkbook(String sampleFileName)
         {
             return XSSFTestDataSamples.OpenSampleWorkbook(sampleFileName);
         }
+
         public IWorkbook WriteOutAndReadBack(IWorkbook original)
         {
             if (!(original is XSSFWorkbook))
@@ -48,18 +50,22 @@ namespace Npoi.Core.XSSF
             }
             return XSSFTestDataSamples.WriteOutAndReadBack((XSSFWorkbook)original);
         }
+
         public IWorkbook CreateWorkbook()
         {
             return new XSSFWorkbook();
         }
+
         public byte[] GetTestDataFileContent(String fileName)
         {
             return POIDataSamples.GetSpreadSheetInstance().ReadFile(fileName);
         }
+
         public SpreadsheetVersion GetSpreadsheetVersion()
         {
             return SpreadsheetVersion.EXCEL2007;
         }
+
         public String StandardFileNameExtension
         {
             get
@@ -74,6 +80,3 @@ namespace Npoi.Core.XSSF
         }
     }
 }
-
-
-

@@ -14,16 +14,13 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using System.IO;
+
 using System;
 using System.Collections.Generic;
+using System.IO;
+
 namespace Npoi.Core.XSSF.Util
 {
-
-
-
-
-
     /**
      * This is a seriously sick fix for the fact that some .xlsx
      *  files contain raw bits of HTML, without being escaped
@@ -36,6 +33,7 @@ namespace Npoi.Core.XSSF.Util
      * It should only be used where experience Shows the problem
      *  can occur...
      */
+
     public class EvilUnclosedBRFixingInputStream : Stream
     {
         private Stream source;
@@ -59,13 +57,12 @@ namespace Npoi.Core.XSSF.Util
             return source.ReadByte();
         }
 
-
         public override int Read(byte[] b, int off, int len)
         {
             // Grab any data left from last time
             int readA = ReadFromSpare(b, off, len);
 
-            // Now read from the stream 
+            // Now read from the stream
             int readB = source.Read(b, off + readA, len - readA);
 
             // Figure out how much we've done
@@ -89,7 +86,6 @@ namespace Npoi.Core.XSSF.Util
             return read;
         }
 
-
         public int Read(byte[] b)
         {
             return this.Read(b, 0, b.Length);
@@ -98,6 +94,7 @@ namespace Npoi.Core.XSSF.Util
         /**
          * Reads into the buffer from the spare bytes
          */
+
         private int ReadFromSpare(byte[] b, int offset, int len)
         {
             if (spare == null) return 0;
@@ -121,6 +118,7 @@ namespace Npoi.Core.XSSF.Util
                 return len;
             }
         }
+
         private void AddToSpare(byte[] b, int offset, int len, bool atTheEnd)
         {
             if (spare == null)
@@ -263,7 +261,6 @@ namespace Npoi.Core.XSSF.Util
 
         public override void Flush()
         {
-            
         }
 
         public override long Length
@@ -299,5 +296,3 @@ namespace Npoi.Core.XSSF.Util
         }
     }
 }
-
-

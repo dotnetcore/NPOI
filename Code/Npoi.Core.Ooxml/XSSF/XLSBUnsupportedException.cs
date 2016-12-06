@@ -14,14 +14,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XSSF
 {
     using System;
 
-
     /**
      * We don't support .xlsb files, sorry
      */
+
     public class XLSBUnsupportedException : UnsupportedFileFormatException
     {
         public static String MESSAGE = ".XLSB Binary Workbooks are not supported";
@@ -29,7 +30,6 @@ namespace Npoi.Core.XSSF
         public XLSBUnsupportedException()
             : base(MESSAGE)
         {
-
         }
     }
 }

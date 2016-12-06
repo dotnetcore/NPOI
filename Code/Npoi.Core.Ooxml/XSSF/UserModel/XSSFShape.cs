@@ -16,17 +16,17 @@
 ==================================================================== */
 
 using Npoi.Core.OpenXmlFormats.Dml;
-using Npoi.Core.OpenXmlFormats.Dml.Spreadsheet;
 using Npoi.Core.SS.UserModel;
+
 namespace Npoi.Core.XSSF.UserModel
 {
-
     /**
      * Represents a shape in a SpreadsheetML Drawing.
      *
      * @author Yegor Kozlov
      */
-    public abstract class XSSFShape:IShape
+
+    public abstract class XSSFShape : IShape
     {
         public static int EMU_PER_PIXEL = 9525;
         public static int EMU_PER_POINT = 12700;
@@ -54,6 +54,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return the parent Drawing that owns this shape
          */
+
         public XSSFDrawing GetDrawing()
         {
             return drawing;
@@ -62,6 +63,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Gets the parent shape.
          */
+
         public IShape Parent
         {
             get
@@ -73,6 +75,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * @return  the anchor that is used by this shape.
          */
+
         public XSSFAnchor GetAnchor()
         {
             return anchor;
@@ -83,6 +86,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return xml bean with shape properties.
          */
+
         protected internal abstract Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties GetShapeProperties();
 
         /**
@@ -90,13 +94,14 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return true if this shape is not Filled with a color.
          */
+
         public bool IsNoFill
         {
             get
             {
                 return GetShapeProperties().noFill != null;
             }
-            set 
+            set
             {
                 Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties props = GetShapeProperties();
                 //unset solid and pattern Fills if they are Set
@@ -107,10 +112,10 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-
         /**
          * Sets the color used to fill this shape using the solid fill pattern.
          */
+
         public void SetFillColor(int red, int green, int blue)
         {
             Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties props = GetShapeProperties();
@@ -123,6 +128,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * The color applied to the lines of this shape.
          */
+
         public void SetLineStyleColor(int red, int green, int blue)
         {
             Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties props = GetShapeProperties();
@@ -132,8 +138,6 @@ namespace Npoi.Core.XSSF.UserModel
             rgb.val = (new byte[] { (byte)red, (byte)green, (byte)blue });
             fill.srgbClr = (rgb);
         }
-
-
 
         public int CountOfAllChildren
         {
@@ -180,7 +184,7 @@ namespace Npoi.Core.XSSF.UserModel
                 Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties props = GetShapeProperties();
                 if (props.IsSetLn())
                 {
-                    return props.ln.w*1.0 / EMU_PER_POINT;
+                    return props.ln.w * 1.0 / EMU_PER_POINT;
                 }
                 else
                 {
@@ -201,6 +205,3 @@ namespace Npoi.Core.XSSF.UserModel
         }
     }
 }
-
-
-

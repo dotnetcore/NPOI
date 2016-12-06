@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,21 +15,20 @@
    limitations under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core
 {
-
-    using TestCases;
+    using Npoi.Core.OpenXml4Net.OPC;
+    using Npoi.Core.Util;
     using Npoi.Core.XSSF.UserModel;
     using Npoi.Core.XWPF.UserModel;
     using NUnit.Framework;
-    using Npoi.Core.OpenXml4Net.OPC;
-    using Npoi.Core.Util;
+    using TestCases;
 
     /**
      * Class to Test that we handle embeded bits in
      *  OOXML files properly
      */
+
     [TestFixture]
     public class TestEmbeded
     {
@@ -42,6 +40,7 @@ namespace Npoi.Core
             );
             Test(doc, 4);
         }
+
         [Test]
         public void TestWord()
         {
@@ -50,6 +49,7 @@ namespace Npoi.Core
             );
             Test(doc, 5);
         }
+
         /*
         [Test]
         public void TestPowerPoint()
@@ -76,6 +76,3 @@ namespace Npoi.Core
         }
     }
 }
-
-
-

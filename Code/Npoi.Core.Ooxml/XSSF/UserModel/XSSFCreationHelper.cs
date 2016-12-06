@@ -14,9 +14,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 using Npoi.Core.SS.UserModel;
-using Npoi.Core.XSSF.UserModel;
 using System;
+
 namespace Npoi.Core.XSSF.UserModel
 {
     public class XSSFCreationHelper : ICreationHelper
@@ -31,6 +32,7 @@ namespace Npoi.Core.XSSF.UserModel
         /**
          * Creates a new XSSFRichTextString for you.
          */
+
         public IRichTextString CreateRichTextString(String text)
         {
             XSSFRichTextString rt = new XSSFRichTextString(text);
@@ -53,6 +55,7 @@ namespace Npoi.Core.XSSF.UserModel
          *
          * @return a XSSFFormulaEvaluator instance
          */
+
         public IFormulaEvaluator CreateFormulaEvaluator()
         {
             return new XSSFFormulaEvaluator(workbook);
@@ -65,11 +68,10 @@ namespace Npoi.Core.XSSF.UserModel
          * @return a XSSFClientAnchor instance
          * @see Npoi.Core.ss.usermodel.Drawing
          */
+
         public IClientAnchor CreateClientAnchor()
         {
             return new XSSFClientAnchor();
         }
     }
-
 }
-

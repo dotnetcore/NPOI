@@ -14,18 +14,19 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 using System;
+
 namespace Npoi.Core
 {
-
     /**
      * Represents a descriptor of a OOXML relation.
      *
      * @author Yegor Kozlov
      */
+
     public abstract class POIXMLRelation
     {
-
         /**
          * Describes the content stored in a part.
          */
@@ -54,6 +55,7 @@ namespace Npoi.Core
          * @param defaultName default item name
          * @param cls defines what object is used to construct instances of this relationship
          */
+
         public POIXMLRelation(String type, String rel, String defaultName, Type cls)
         {
             _type = type;
@@ -69,17 +71,19 @@ namespace Npoi.Core
          * @param rel  relationship
          * @param defaultName default item name
          */
+
         public POIXMLRelation(String type, String rel, String defaultName)
             : this(type, rel, defaultName, null)
         {
-
         }
+
         /**
          * Return the content type. Content types define a media type, a subtype, and an
          * optional set of parameters, as defined in RFC 2616.
          *
          * @return the content type
          */
+
         public String ContentType
         {
             get
@@ -95,6 +99,7 @@ namespace Npoi.Core
          *
          * @return the relationship
          */
+
         public String Relation
         {
             get
@@ -109,6 +114,7 @@ namespace Npoi.Core
          *
          * @return the default part name
          */
+
         public String DefaultFileName
         {
             get
@@ -121,6 +127,7 @@ namespace Npoi.Core
          * Returns the filename for the nth one of these,
          *  e.g. /xl/comments4.xml
          */
+
         public String GetFileName(int index)
         {
             if (_defaultName.IndexOf("#") == -1)
@@ -136,6 +143,7 @@ namespace Npoi.Core
          *
          * @return the class of the object used to construct instances of this relation
          */
+
         public Type RelationClass
         {
             get
@@ -145,9 +153,3 @@ namespace Npoi.Core
         }
     }
 }
-
-
-
-
-
-

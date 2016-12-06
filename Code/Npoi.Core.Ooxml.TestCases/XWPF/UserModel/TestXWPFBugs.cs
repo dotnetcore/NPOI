@@ -14,11 +14,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.XWPF.UserModel
 {
-    using System;
-    using NUnit.Framework;
     using Npoi.Core.XWPF;
+    using NUnit.Framework;
+    using System;
 
     [TestFixture]
     public class TestXWPFBugs
@@ -67,7 +68,6 @@ namespace Npoi.Core.XWPF.UserModel
 
                     foreach (IRunElement iRunElem in paragraph.IRuns)
                     {
-
                         if (iRunElem is XWPFRun)
                         {
                             XWPFRun RunElement = (XWPFRun)iRunElem;
@@ -81,7 +81,5 @@ namespace Npoi.Core.XWPF.UserModel
                 }
             }
         }
-
     }
-
 }
