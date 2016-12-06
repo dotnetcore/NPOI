@@ -12,7 +12,9 @@
 *.suo
 *.user
 *.userosscache
+*.nupkg
 *.sln.docstates
+*.nuspec
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

@@ -1,5 +1,5 @@
 ﻿{
-  "version": "1.0.2-*",
+  "version": "1.1.0-*",
   "buildOptions": {
     "emitEntryPoint": true
   },
@@ -9,7 +9,7 @@
       "type": "platform",
       "version": "1.1.0"
     },
-    "Npoi.Core.Ooxml": "1.0.2-*"
+    "Npoi.Core.Ooxml": "1.1.0-*"
   },
 
   "frameworks": {

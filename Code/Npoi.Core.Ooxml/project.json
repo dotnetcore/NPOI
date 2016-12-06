@@ -1,11 +1,11 @@
 {
-  "version": "1.0.2-*",
+  "version": "1.1.0-*",
 
   "dependencies": {
     "NETStandard.Library": "1.6.0",
-    "Npoi.Core": "1.0.2-*",
-    "Npoi.Core.OpenXml4Net": "1.0.2-*",
-    "Npoi.Core.OpenXmlFormats": "1.0.2-*"
+    "Npoi.Core": "1.1.0-*",
+    "Npoi.Core.OpenXml4Net": "1.1.0-*",
+    "Npoi.Core.OpenXmlFormats": "1.1.0-*"
   },
 
   "frameworks": {
