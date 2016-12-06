@@ -13,7 +13,7 @@ NPOI Core is a .NET Core version of the NPOI.
 
 #### Export Excel
 
-```
+```csharp
 
 var newFile = @"newbook.core.xlsx";
 
@@ -56,7 +56,7 @@ using (var fs = new FileStream(newFile, FileMode.Create, FileAccess.Write)) {
 
 #### Export Word
 
-```
+```csharp
 var newFile2 = @"newbook.core.docx";
 using (var fs = new FileStream(newFile2, FileMode.Create, FileAccess.Write)) {
     XWPFDocument doc = new XWPFDocument();
@@ -72,7 +72,7 @@ using (var fs = new FileStream(newFile2, FileMode.Create, FileAccess.Write)) {
     p1.Alignment = ParagraphAlignment.LEFT;
     p1.IndentationFirstLine = 500;
     XWPFRun r1 = p1.CreateRun();
-    r1.FontFamily = "·ÂËÎ";
+    r1.FontFamily = "Â·Ã‚Ã‹ÃŽ";
     r1.FontSize = 12;
     r1.IsBold = true;
     r1.SetText("This is content, content content content content content content content content content");
