@@ -17,38 +17,39 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-    
-    using Npoi.Core.SS.Util;
-    using Npoi.Core.SS.Formula;
-
-
 
     /**
-     * Title:        Reference 3D Ptg 
-     * Description:  Defined a cell in extern sheet. 
-     * REFERENCE:  
+     * Title:        Reference 3D Ptg
+     * Description:  Defined a cell in extern sheet.
+     * REFERENCE:
      * @author Libin Roman (Vista Portal LDT. Developer)
      * @author Jason Height (jheight at chariot dot net dot au)
      * @version 1.0-pre
      */
+
     public class Ref3DPtg : RefPtgBase, WorkbookDependentFormula, IExternSheetReferenceToken
     {
         public const byte sid = 0x3a;
         private const int SIZE = 7; // 6 + 1 for Ptg
         private int field_1_index_extern_sheet;
-        /** Field 2 
-         * - lower 8 bits is the zero based Unsigned byte column index 
+        /** Field 2
+         * - lower 8 bits is the zero based Unsigned byte column index
          * - bit 16 - IsRowRelative
-         * - bit 15 - IsColumnRelative 
+         * - bit 15 - IsColumnRelative
          */
         private BitField rowRelative = BitFieldFactory.GetInstance(0x8000);
         private BitField colRelative = BitFieldFactory.GetInstance(0x4000);
 
         /** Creates new AreaPtg */
-        public Ref3DPtg() { }
+
+        public Ref3DPtg()
+        {
+        }
 
         public Ref3DPtg(ILittleEndianInput in1)
         {
@@ -59,14 +60,14 @@ namespace Npoi.Core.SS.Formula.PTG
         public Ref3DPtg(String cellref, int externIdx)
         {
             CellReference c = new CellReference(cellref);
-            Row=c.Row;
-            Column=c.Col;
-            IsColRelative=!c.IsColAbsolute;
-            IsRowRelative=!c.IsRowAbsolute;
-            ExternSheetIndex=externIdx;
+            Row = c.Row;
+            Column = c.Col;
+            IsColRelative = !c.IsColAbsolute;
+            IsRowRelative = !c.IsRowAbsolute;
+            ExternSheetIndex = externIdx;
         }
 
-        public Ref3DPtg(CellReference cr, int externIdx):base(cr)
+        public Ref3DPtg(CellReference cr, int externIdx) : base(cr)
         {
             ExternSheetIndex = externIdx;
         }
@@ -86,7 +87,6 @@ namespace Npoi.Core.SS.Formula.PTG
 
         public override void Write(ILittleEndianOutput out1)
         {
-
             out1.WriteByte(sid + PtgClass);
             out1.WriteShort(ExternSheetIndex);
             WriteCoordinates(out1);
@@ -102,10 +102,12 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return field_1_index_extern_sheet; }
             set { field_1_index_extern_sheet = value; }
         }
+
         /**
-         * @return text representation of this cell reference that can be used in text 
+         * @return text representation of this cell reference that can be used in text
          * formulas. The sheet name will Get properly delimited if required.
          */
+
         public String ToFormulaString(IFormulaRenderingWorkbook book)
         {
             return ExternSheetNameResolver.PrependSheetName(book, field_1_index_extern_sheet, FormatReferenceAsString());

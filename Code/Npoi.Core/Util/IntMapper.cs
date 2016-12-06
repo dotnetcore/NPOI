@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,7 +15,6 @@
    limitations under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.Util
 {
     using System.Collections.Generic;
@@ -24,7 +22,7 @@ namespace Npoi.Core.Util
     /// <summary>
     /// A List of objects that are indexed AND keyed by an int; also allows for Getting
     /// the index of a value in the list
-    /// 
+    ///
     /// <p>I am happy is someone wants to re-implement this without using the
     /// internal list and hashmap. If so could you please make sure that
     /// you can add elements half way into the list and have the value-key mappings
@@ -72,6 +70,7 @@ namespace Npoi.Core.Util
             }
             return true;
         }
+
         /// <summary>
         /// Gets the size.
         /// </summary>
@@ -82,6 +81,7 @@ namespace Npoi.Core.Util
                 return elements.Count;
             }
         }
+
         /// <summary>
         /// Gets the T object at the specified index.
         /// </summary>
@@ -91,6 +91,7 @@ namespace Npoi.Core.Util
         {
             get { return elements[index]; }
         }
+
         /// <summary>
         /// Gets the index of T object.
         /// </summary>
@@ -107,6 +108,7 @@ namespace Npoi.Core.Util
                 return -1;
             return i;*/
         }
+
         /// <summary>
         /// Gets the enumerator.
         /// </summary>
@@ -122,6 +124,4 @@ namespace Npoi.Core.Util
             valueKeyMap.Clear();
         }
     }   // end public class IntMapper
-
-
 }

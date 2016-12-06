@@ -17,18 +17,19 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
-    using System.Text;
     using Npoi.Core.HSSF.Record.Common;
     using Npoi.Core.SS.Util;
     using Npoi.Core.Util;
+    using System;
+    using System.Text;
 
     /**
      * Title: Feat (Feature) Record
-     * 
+     *
      * This record specifies Shared Features data. It is normally paired
      *  up with a {@link FeatHdrRecord}.
      */
+
     public class FeatRecord : StandardRecord
     {
         private static POILogger logger = POILogFactory.GetLogger(typeof(FeatRecord));
@@ -49,7 +50,7 @@ namespace Npoi.Core.HSSF.Record
 
         /**
          * Contents depends on isf_sharedFeatureType :
-         *  ISFPROTECTION -> FeatProtection 
+         *  ISFPROTECTION -> FeatProtection
          *  ISFFEC2       -> FeatFormulaErr2
          *  ISFFACTOID    -> FeatSmartTag
          */
@@ -91,12 +92,15 @@ namespace Npoi.Core.HSSF.Record
                 case FeatHdrRecord.SHAREDFEATURES_ISFPROTECTION:
                     sharedFeature = new FeatProtection(in1);
                     break;
+
                 case FeatHdrRecord.SHAREDFEATURES_ISFFEC2:
                     sharedFeature = new FeatFormulaErr2(in1);
                     break;
+
                 case FeatHdrRecord.SHAREDFEATURES_ISFFACTOID:
                     sharedFeature = new FeatSmartTag(in1);
                     break;
+
                 default:
                     logger.Log(POILogger.ERROR, "Unknown Shared Feature " + isf_sharedFeatureType + " found!");
                     break;
@@ -163,7 +167,6 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         public CellRangeAddress[] CellRefs
         {
             get
@@ -175,7 +178,6 @@ namespace Npoi.Core.HSSF.Record
                 this.cellRefs = value;
             }
         }
-        
 
         public SharedFeature SharedFeature
         {
@@ -210,14 +212,11 @@ namespace Npoi.Core.HSSF.Record
                 }
             }
         }
-        
 
         //HACK: do a "cheat" Clone, see Record.java for more information
         public override Object Clone()
         {
             return CloneViaReserialise();
         }
-
-
     }
 }

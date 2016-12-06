@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * The data format record is used to index into a series.
@@ -32,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class DataFormatRecord
        : StandardRecord
     {
@@ -42,10 +39,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         private short field_4_formatFlags;
         private BitField useExcel4Colors = BitFieldFactory.GetInstance(0x1);
 
-
         public DataFormatRecord()
         {
-
         }
 
         /**
@@ -100,9 +95,10 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
-            get { return  2 + 2 + 2 + 2; }
+            get { return 2 + 2 + 2 + 2; }
         }
 
         public override short Sid
@@ -121,12 +117,10 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          * Get the point number field for the DataFormat record.
          */
+
         public short PointNumber
         {
             get
@@ -139,6 +133,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the series index field for the DataFormat record.
          */
+
         public short SeriesIndex
         {
             get
@@ -148,10 +143,10 @@ namespace Npoi.Core.HSSF.Record.Chart
             set { this.field_2_seriesIndex = value; }
         }
 
-
         /**
          * Get the series number field for the DataFormat record.
          */
+
         public short SeriesNumber
         {
             get
@@ -164,6 +159,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the format flags field for the DataFormat record.
          */
+
         public short FormatFlags
         {
             get { return field_4_formatFlags; }
@@ -174,6 +170,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * Set true to use excel 4 colors.
          * @return  the use excel 4 colors field value.
          */
+
         public bool UseExcel4Colors
         {
             get

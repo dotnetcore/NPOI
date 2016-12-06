@@ -17,13 +17,12 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS;
+    using Npoi.Core.SS.UserModel;
     using System;
     using System.Collections;
     using System.Collections.Generic;
-
-    using Npoi.Core.HSSF.Record;
-    using Npoi.Core.SS.UserModel;
-    using Npoi.Core.SS;
 
     /// <summary>
     /// High level representation of a row of a spReadsheet.
@@ -41,7 +40,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         private int rowNum;
         private SortedDictionary<int, ICell> cells = new SortedDictionary<int, ICell>();
-         
+
         /**
          * reference to low level representation
          */
@@ -74,9 +73,8 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="sheet">low-level Sheet object that Contains this Row</param>
         /// <param name="rowNum">the row number of this row (0 based)</param>
         ///<see cref="Npoi.Core.HSSF.UserModel.HSSFSheet.CreateRow(int)"/>
-        public HSSFRow(HSSFWorkbook book, HSSFSheet sheet, int rowNum):this(book, sheet, new RowRecord(rowNum))
+        public HSSFRow(HSSFWorkbook book, HSSFSheet sheet, int rowNum) : this(book, sheet, new RowRecord(rowNum))
         {
-
         }
 
         /// <summary>
@@ -93,16 +91,15 @@ namespace Npoi.Core.HSSF.UserModel
             this.sheet = sheet;
             row = record;
 
-            RowNum=(record.RowNumber);
-             // Don't trust colIx boundaries as read by other apps
+            RowNum = (record.RowNumber);
+            // Don't trust colIx boundaries as read by other apps
             // set the RowRecord empty for the moment
             record.SetEmpty();
-            
-
         }
+
         /// <summary>
         /// Use this to create new cells within the row and return it.
-        /// The cell that is returned is a CELL_TYPE_BLANK (<see cref="ICell"/>/<see cref="CellType.Blank"/>). 
+        /// The cell that is returned is a CELL_TYPE_BLANK (<see cref="ICell"/>/<see cref="CellType.Blank"/>).
         /// The type can be changed either through calling <c>SetCellValue</c> or <c>SetCellType</c>.
         /// </summary>
         /// <param name="column">the column number this cell represents</param>
@@ -133,14 +130,17 @@ namespace Npoi.Core.HSSF.UserModel
             sheet.Sheet.AddValueRecord(RowNum, ((HSSFCell)cell).CellValueRecord);
             return cell;
         }
+
         public IRow CopyRowTo(int targetIndex)
         {
             return this.sheet.CopyRow(this.RowNum, targetIndex);
         }
+
         public ICell CopyCell(int sourceIndex, int targetIndex)
         {
             return Npoi.Core.SS.Util.CellUtil.CopyCell(this, sourceIndex, targetIndex);
         }
+
         /// <summary>
         /// Remove the Cell from this row.
         /// </summary>
@@ -153,6 +153,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
             RemoveCell((HSSFCell)cell, true);
         }
+
         /// <summary>
         /// Removes the cell.
         /// </summary>
@@ -160,14 +161,13 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="alsoRemoveRecords">if set to <c>true</c> [also remove records].</param>
         private void RemoveCell(ICell cell, bool alsoRemoveRecords)
         {
-
             int column = cell.ColumnIndex;
             if (column < 0)
             {
                 throw new Exception("Negative cell indexes not allowed");
             }
             //if (column >= cells.Count || cell != cells[column])
-            if(!cells.ContainsKey(column)|| cell!=cells[column])
+            if (!cells.ContainsKey(column) || cell != cells[column])
             {
                 throw new Exception("Specified cell is not from this row");
             }
@@ -176,7 +176,6 @@ namespace Npoi.Core.HSSF.UserModel
                 ((HSSFCell)cell).NotifyArrayFormulaChanging();
             }
             cells.Remove(column);
-
 
             if (alsoRemoveRecords)
             {
@@ -193,10 +192,12 @@ namespace Npoi.Core.HSSF.UserModel
                 row.FirstCol = CalculateNewFirstCell(row.FirstCol);
             }
         }
+
         /**
          * used internally to refresh the "last cell plus one" when the last cell is removed.
          * @return 0 when row contains no cells
          */
+
         private int CalculateNewLastCellPlusOne(int lastcell)
         {
             int cellIx = lastcell - 1;
@@ -217,6 +218,7 @@ namespace Npoi.Core.HSSF.UserModel
          * used internally to refresh the "first cell" when the first cell is removed.
          * @return 0 when row contains no cells (also when first cell is occupied)
          */
+
         private int CalculateNewFirstCell(int firstcell)
         {
             int cellIx = firstcell + 1;
@@ -235,6 +237,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
             return cellIx;
         }
+
         /// <summary>
         /// Create a high level Cell object from an existing low level record.  Should
         /// only be called from HSSFSheet or HSSFRow itself.
@@ -249,8 +252,8 @@ namespace Npoi.Core.HSSF.UserModel
             int colIx = cell.Column;
             if (row.IsEmpty)
             {
-                row.FirstCol=(colIx);
-                row.LastCol=(colIx + 1);
+                row.FirstCol = (colIx);
+                row.LastCol = (colIx + 1);
             }
             else
             {
@@ -341,7 +344,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             // Ensure the destination is free
             //if (cells.Count > newColumn && cells[newColumn] != null)
-            if(cells.ContainsKey(newColumn))
+            if (cells.ContainsKey(newColumn))
             {
                 throw new ArgumentException("Asked to move cell to column " + newColumn + " but there's already a cell there");
             }
@@ -367,11 +370,13 @@ namespace Npoi.Core.HSSF.UserModel
             ((HSSFCell)cell).UpdateCellNum(newColumn);
             AddCell(cell);
         }
+
         /**
  * Returns the HSSFSheet this row belongs to
  *
  * @return the HSSFSheet that owns this row
  */
+
         public ISheet Sheet
         {
             get
@@ -379,13 +384,13 @@ namespace Npoi.Core.HSSF.UserModel
                 return sheet;
             }
         }
+
         /// <summary>
         /// used internally to Add a cell.
         /// </summary>
         /// <param name="cell">The cell.</param>
         private void AddCell(ICell cell)
         {
-
             int column = cell.ColumnIndex;
             // re-allocate cells array as required.
             //if (column >= cells.Count)
@@ -404,16 +409,16 @@ namespace Npoi.Core.HSSF.UserModel
                 cells.Remove(column);
             }
             cells.Add(column, cell);
-            
+
             // fix up firstCol and lastCol indexes
-            if (row.IsEmpty|| column < row.FirstCol)
+            if (row.IsEmpty || column < row.FirstCol)
             {
-                row.FirstCol=(column);
+                row.FirstCol = (column);
             }
 
             if (row.IsEmpty || column >= row.LastCol)
             {
-                row.LastCol=((short)(column + 1)); // +1 -> for one past the last index 
+                row.LastCol = ((short)(column + 1)); // +1 -> for one past the last index
             }
         }
 
@@ -438,7 +443,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// 0-based.  If you ask for a cell that is not defined then
         /// you get a null, unless you have set a different
         /// MissingCellPolicy on the base workbook.
-        /// 
+        ///
         /// Short method signature provided to retain binary
         /// compatibility.
         /// </summary>
@@ -546,7 +551,6 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-
         /// <summary>
         /// Gets the number of defined cells (NOT number of cells in the actual row!).
         /// That is to say if only columns 0,4,5 have values then there would be 3.
@@ -560,7 +564,6 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-
         /// <summary>
         /// Gets or sets  whether or not to Display this row with 0 height
         /// </summary>
@@ -571,9 +574,9 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return row.ZeroHeight;
             }
-            set 
+            set
             {
-                row.ZeroHeight=(value);
+                row.ZeroHeight = (value);
             }
         }
 
@@ -608,6 +611,7 @@ namespace Npoi.Core.HSSF.UserModel
                 }
             }
         }
+
         /// <summary>
         /// is this row formatted? Most aren't, but some rows
         /// do have whole-row styles. For those that do, you
@@ -623,6 +627,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return row.Formatted;
             }
         }
+
         /// <summary>
         /// Returns the whole-row cell styles. Most rows won't
         /// have one of these, so will return null. Call IsFormmated to check first
@@ -637,13 +642,13 @@ namespace Npoi.Core.HSSF.UserModel
                 ExtendedFormatRecord xf = book.Workbook.GetExFormatAt(styleIndex);
                 return new HSSFCellStyle(styleIndex, xf, book);
             }
-            set 
+            set
             {
-                row.Formatted=(true);
-                row.XFIndex=(value.Index);
-            
+                row.Formatted = (true);
+                row.XFIndex = (value.Index);
             }
         }
+
         /// <summary>
         /// Get the row's height or ff (-1) for Undefined/default-height in points (20*Height)
         /// </summary>
@@ -662,7 +667,6 @@ namespace Npoi.Core.HSSF.UserModel
                 }
                 else
                 {
-
                     row.BadFontHeight = (true);
                     row.Height = (short)(value * 20);
                 }
@@ -681,7 +685,6 @@ namespace Npoi.Core.HSSF.UserModel
                 return row;
             }
         }
-
 
         /// <summary>
         /// used internally to refresh the "first cell" when the first cell is Removed.
@@ -708,7 +711,8 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         public List<ICell> Cells
         {
-            get {
+            get
+            {
                 return new List<ICell>(this.cells.Values);
             }
         }
@@ -726,6 +730,7 @@ namespace Npoi.Core.HSSF.UserModel
             //return //new CellEnumerator(this.cells);
             return this.cells.Values.GetEnumerator();
         }
+
         ///// <summary>
         ///// Alias for {@link CellEnumerator} to allow
         ///// foreach loops
@@ -756,7 +761,6 @@ namespace Npoi.Core.HSSF.UserModel
 
         //    public bool MoveNext()
         //    {
-                
         //        FindNext();
         //        return nextId < cells.Length;
         //    }
@@ -860,7 +864,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <summary>
         /// Returns a hash code. In this case it is the number of the row.
         /// </summary>
-        public override int GetHashCode ()
+        public override int GetHashCode()
         {
             return RowNum;
         }

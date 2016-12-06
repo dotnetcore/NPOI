@@ -18,6 +18,7 @@
  * Created on May 30, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     using Npoi.Core.Util;
@@ -28,16 +29,18 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * Library for common statistics functions
      */
+
     public class StatsLib
     {
-
-        private StatsLib() { }
-
+        private StatsLib()
+        {
+        }
 
         /**
          * returns the mean of deviations from mean.
          * @param v
          */
+
         public static double avedev(double[] v)
         {
             double r = 0;
@@ -66,6 +69,7 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return r;
         }
+
         public static double var(double[] v)
         {
             double r = Double.NaN;
@@ -85,12 +89,14 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return r;
         }
+
         /**
          * if v Is zero Length or Contains no duplicates, return value
          * Is double.NaN. Else returns the value that occurs most times
-         * and if there Is a tie, returns the first such value. 
+         * and if there Is a tie, returns the first such value.
          * @param v
          */
+
         public static double mode(double[] v)
         {
             double r = double.NaN;
@@ -138,7 +144,6 @@ namespace Npoi.Core.SS.Formula.Functions
             return r;
         }
 
-
         public static double devsq(double[] v)
         {
             double r = double.NaN;
@@ -175,6 +180,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @param v
          * @param k
          */
+
         public static double kthLargest(double[] v, int k)
         {
             double r = double.NaN;
@@ -197,6 +203,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @param v
          * @param k
          */
+
         public static double kthSmallest(double[] v, int k)
         {
             double r = double.NaN;

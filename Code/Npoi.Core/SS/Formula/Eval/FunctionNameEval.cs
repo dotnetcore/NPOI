@@ -19,18 +19,21 @@ namespace Npoi.Core.SS.Formula.Eval
 {
     using System;
     using System.Text;
+
     /**
      * @author Josh Micich
      */
+
     public class FunctionNameEval : ValueEval
     {
-
         private String _functionName;
 
         /**
          * Creates a NameEval representing a function name
          */
-        public FunctionNameEval(String functionName) {
+
+        public FunctionNameEval(String functionName)
+        {
             _functionName = functionName;
         }
 

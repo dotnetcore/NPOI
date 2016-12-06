@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * The bar record is used to define a bar chart.
@@ -32,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class BarRecord
        : StandardRecord
     {
@@ -44,10 +41,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         private BitField DisplayAsPercentage = BitFieldFactory.GetInstance(0x4);
         private BitField shadow = BitFieldFactory.GetInstance(0x8);
 
-
         public BarRecord()
         {
-
         }
 
         /**
@@ -58,7 +53,6 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public BarRecord(RecordInputStream in1)
         {
-
             field_1_barSpace = in1.ReadShort();
             field_2_categorySpace = in1.ReadShort();
             field_3_formatFlags = in1.ReadShort();
@@ -100,6 +94,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 2 + 2 + 2; }
@@ -120,12 +115,10 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          *  the bar space field for the Bar record.
          */
+
         public short BarSpace
         {
             get { return field_1_barSpace; }
@@ -135,6 +128,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          *  the category space field for the Bar record.
          */
+
         public short CategorySpace
         {
             get { return field_2_categorySpace; }
@@ -144,6 +138,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          *  the format flags field for the Bar record.
          */
+
         public short FormatFlags
         {
             get { return field_3_formatFlags; }
@@ -154,6 +149,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * true to Display horizontal bar charts, false for vertical
          * @return  the horizontal field value.
          */
+
         public bool IsHorizontal
         {
             get { return horizontal.IsSet(field_3_formatFlags); }
@@ -164,17 +160,18 @@ namespace Npoi.Core.HSSF.Record.Chart
          * stack Displayed values
          * @return  the stacked field value.
          */
+
         public bool IsStacked
         {
             get { return stacked.IsSet(field_3_formatFlags); }
             set { field_3_formatFlags = stacked.SetShortBoolean(field_3_formatFlags, value); }
         }
 
-
         /**
          * Display chart values as a percentage
          * @return  the Display as percentage field value.
          */
+
         public bool IsDisplayAsPercentage
         {
             get { return DisplayAsPercentage.IsSet(field_3_formatFlags); }
@@ -185,16 +182,11 @@ namespace Npoi.Core.HSSF.Record.Chart
          * Display a shadow for the chart
          * @return  the shadow field value.
          */
+
         public bool IsShadow
         {
             get { return shadow.IsSet(field_3_formatFlags); }
             set { field_3_formatFlags = shadow.SetShortBoolean(field_3_formatFlags, value); }
         }
-
-
     }
 }
-
-
-
-

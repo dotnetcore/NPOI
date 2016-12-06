@@ -18,27 +18,29 @@
  * Created on May 15, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
+    using Npoi.Core.SS.Formula.Eval;
     using System;
     using System.Text;
-    using Npoi.Core.SS.Formula.Eval;
 
     /**
      * An implementation of the Replace function:
-     * Replaces part of a text string based on the number of Chars 
+     * Replaces part of a text string based on the number of Chars
      * you specify, with another text string.
      * @author Manda Wilson &lt; wilson at c bio dot msk cc dot org &gt;
      */
+
     public class Replace : TextFunction
     {
-
         /**
-         * Replaces part of a text string based on the number of Chars 
+         * Replaces part of a text string based on the number of Chars
          * you specify, with another text string.
-         * 
+         *
          * @see org.apache.poi.hssf.record.formula.eval.Eval
          */
+
         public override ValueEval EvaluateFunc(ValueEval[] args, int srcCellRow, int srcCellCol)
         {
             if (args.Length != 4)
@@ -72,6 +74,5 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return new StringEval(strBuff.ToString());
         }
-
     }
 }

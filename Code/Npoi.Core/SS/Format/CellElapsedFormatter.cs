@@ -14,17 +14,20 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.Format
 {
     using System;
-    using System.Text;
     using System.Collections.Generic;
+    using System.Text;
     using System.Text.RegularExpressions;
+
     /**
      * This class : printing out an elapsed time format.
      *
      * @author Ken Arnold, Industrious Media LLC
      */
+
     public class CellElapsedFormatter : CellFormatter
     {
         private List<TimeSpec> specs;
@@ -74,15 +77,16 @@ namespace Npoi.Core.SS.Format
             {
                 this._formatter = formatter;
             }
+
             // This is the one class that's directly using printf, so it can't use
             // the default handling for quoted strings and special characters.  The
             // only special character for this is '%', so we have to handle all the
             // quoting in this method ourselves.
             private CellElapsedFormatter _formatter;
+
             public String HandlePart(Match m, String part, CellFormatType type,
                     StringBuilder desc)
             {
-
                 int pos = desc.Length;
                 char firstCh = part[0];
                 switch (firstCh)
@@ -131,7 +135,6 @@ namespace Npoi.Core.SS.Format
                 //return PERCENTS.Replace(part, "%%");
                 return part;
             }
-
         }
 
         /**
@@ -139,6 +142,7 @@ namespace Npoi.Core.SS.Format
          *
          * @param pattern The pattern to Parse.
          */
+
         public CellElapsedFormatter(String pattern)
             : base(pattern)
         {
@@ -149,7 +153,7 @@ namespace Npoi.Core.SS.Format
 
             //ListIterator<TimeSpec> it = specs.ListIterator(specs.Count);
             //while (it.HasPrevious())
-            for(int i=specs.Count-1;i>=0;i--)
+            for (int i = specs.Count - 1; i >= 0; i--)
             {
                 //TimeSpec spec = it.Previous();
                 TimeSpec spec = specs[i];
@@ -178,12 +182,16 @@ namespace Npoi.Core.SS.Format
             {
                 case 'h':
                     return HOUR__FACTOR;
+
                 case 'm':
                     return MIN__FACTOR;
+
                 case 's':
                     return SEC__FACTOR;
+
                 case '0':
                     return SEC__FACTOR / Math.Pow(10, len);
+
                 default:
                     throw new ArgumentException(
                             "Uknown elapsed time spec: " + type);
@@ -196,12 +204,16 @@ namespace Npoi.Core.SS.Format
             {
                 case 'h':
                     return 24;
+
                 case 'm':
                     return 60;
+
                 case 's':
                     return 60;
+
                 case '0':
                     return Math.Pow(10, len);
+
                 default:
                     throw new ArgumentException(
                             "Uknown elapsed time spec: " + type);
@@ -209,6 +221,7 @@ namespace Npoi.Core.SS.Format
         }
 
         /** {@inheritDoc} */
+
         public override void FormatValue(StringBuilder toAppendTo, Object value)
         {
             double elapsed = ((double)value);
@@ -220,7 +233,7 @@ namespace Npoi.Core.SS.Format
             }
 
             long[] parts = new long[specs.Count];
-            
+
             for (int i = 0; i < specs.Count; i++)
             {
                 parts[i] = specs[(i)].ValueFor(elapsed);
@@ -262,6 +275,7 @@ namespace Npoi.Core.SS.Format
          * <p/>
          * For a date, this is <tt>"mm/d/y"</tt>.
          */
+
         public override void SimpleValue(StringBuilder toAppendTo, Object value)
         {
             FormatValue(toAppendTo, value);

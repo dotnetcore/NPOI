@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * The plot growth record specifies the scaling factors used when a font is scaled.
@@ -31,16 +28,15 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
-    public class PlotGrowthRecord: StandardRecord
+
+    public class PlotGrowthRecord : StandardRecord
     {
         public const short sid = 0x1064;
         private int field_1_horizontalScale;
         private int field_2_verticalScale;
 
-
         public PlotGrowthRecord()
         {
-
         }
 
         /**
@@ -82,6 +78,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 4 + 4; }
@@ -104,6 +101,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the horizontalScale field for the PlotGrowth record.
          */
+
         public int HorizontalScale
         {
             get
@@ -112,24 +110,24 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_1_horizontalScale =value;
+                this.field_1_horizontalScale = value;
             }
         }
+
         /**
          * Get the verticalScale field for the PlotGrowth record.
          */
+
         public int VerticalScale
         {
             get
             {
                 return field_2_verticalScale;
             }
-            set 
+            set
             {
                 this.field_2_verticalScale = value;
             }
         }
-
     }
 }
-

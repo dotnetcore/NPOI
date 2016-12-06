@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,8 +17,8 @@
 
 namespace Npoi.Core.DDF
 {
-    using System;
     using Npoi.Core.Util;
+    using System;
     using System.Collections.Generic;
     using System.Text;
 
@@ -39,8 +38,7 @@ namespace Npoi.Core.DDF
         /// <summary>
         /// Initializes a new instance of the <see cref="EscherRecord"/> class.
         /// </summary>
-        public EscherRecord()
-        {
+        public EscherRecord() {
         }
 
         /// <summary>
@@ -49,8 +47,7 @@ namespace Npoi.Core.DDF
         /// <param name="data">The data.</param>
         /// <param name="f">The f.</param>
         /// <returns></returns>
-        public int FillFields(byte[] data, IEscherRecordFactory f)
-        {
+        public int FillFields(byte[] data, IEscherRecordFactory f) {
             return FillFields(data, 0, f);
         }
 
@@ -62,21 +59,20 @@ namespace Npoi.Core.DDF
         /// records.</param>
         /// <param name="offset">The offset into the byte array.</param>
         /// <param name="recordFactory">A factory for creating new escher records.</param>
-        /// <returns>The number of bytes written.</returns>       
+        /// <returns>The number of bytes written.</returns>
         public abstract int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory);
 
         /// <summary>
-        /// Reads the 8 byte header information and populates the 
+        /// Reads the 8 byte header information and populates the
         /// <c>options</c>
-        /// and 
+        /// and
         /// <c>recordId</c>
         ///  records.
         /// </summary>
         /// <param name="data">the byte array to Read from</param>
         /// <param name="offset">the offset to start Reading from</param>
         /// <returns>the number of bytes remaining in this record.  This</returns>
-        protected int ReadHeader(byte[] data, int offset)
-        {
+        protected int ReadHeader(byte[] data, int offset) {
             //EscherRecordHeader header = EscherRecordHeader.ReadHeader(data, offset);
             //_options = header.Options;
             //_recordId = header.RecordId;
@@ -93,11 +89,11 @@ namespace Npoi.Core.DDF
         /// <param name="data">the byte array to read from</param>
         /// <param name="offset">the offset to start reading from</param>
         /// <returns>value of instance part of options field</returns>
-        protected static short ReadInstance( byte[] data, int offset )
-        {
-            short options = LittleEndian.GetShort( data, offset );
-            return fInstance.GetShortValue( options );
+        protected static short ReadInstance(byte[] data, int offset) {
+            short options = LittleEndian.GetShort(data, offset);
+            return fInstance.GetShortValue(options);
         }
+
         /// <summary>
         /// Determine whether this is a container record by inspecting the option
         /// field.
@@ -105,18 +101,15 @@ namespace Npoi.Core.DDF
         /// <value>
         /// 	<c>true</c> if this instance is container record; otherwise, <c>false</c>.
         /// </value>
-        public bool IsContainerRecord
-        {
+        public bool IsContainerRecord {
             get { return Version == (short)0x000f; }
         }
-
 
         /// <summary>
         /// Gets or sets the options field for this record.  All records have one
         /// </summary>
         /// <value>The options.</value>
-        internal virtual short Options
-        {
+        internal virtual short Options {
             get { return _options; }
             set
             {
@@ -131,13 +124,13 @@ namespace Npoi.Core.DDF
         /// Serialize(int, byte[]);
         /// </summary>
         /// <returns>the Serialized record.</returns>
-        public byte[] Serialize()
-        {
+        public byte[] Serialize() {
             byte[] retval = new byte[RecordSize];
 
-            int length=Serialize(0, retval);
+            int length = Serialize(0, retval);
             return retval;
         }
+
         /// <summary>
         /// Serializes to an existing byte array without serialization listener.
         /// This is done by delegating to Serialize(int, byte[], EscherSerializationListener).
@@ -145,8 +138,7 @@ namespace Npoi.Core.DDF
         /// <param name="offset">the offset within the data byte array.</param>
         /// <param name="data">the data array to Serialize to.</param>
         /// <returns>The number of bytes written.</returns>
-        public int Serialize(int offset, byte[] data)
-        {
+        public int Serialize(int offset, byte[] data) {
             return Serialize(offset, data, new NullEscherSerializationListener());
         }
 
@@ -163,7 +155,6 @@ namespace Npoi.Core.DDF
         /// <returns></returns>
         public abstract int Serialize(int offset, byte[] data, EscherSerializationListener listener);
 
-
         /// <summary>
         /// Subclasses should effeciently return the number of bytes required to
         /// Serialize the record.
@@ -175,19 +166,17 @@ namespace Npoi.Core.DDF
         /// Return the current record id.
         /// </summary>
         /// <value>The 16 bit record id.</value>
-        public virtual short RecordId
-        {
+        public virtual short RecordId {
             get { return _recordId; }
             set { this._recordId = value; }
         }
-        
+
         /// <summary>
         /// Gets or sets the child records.
         /// </summary>
         /// <value>Returns the children of this record.  By default this will
         /// be an empty list.  EscherCotainerRecord is the only record that may contain children.</value>
-        public virtual List<EscherRecord> ChildRecords
-        {
+        public virtual List<EscherRecord> ChildRecords {
             get { return new List<EscherRecord>(); }
             set { throw new ArgumentException("This record does not support child records."); }
         }
@@ -198,18 +187,16 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A new object that is a copy of this instance.
         /// </returns>
-        public object Clone()
-        {
+        public object Clone() {
             throw new Exception("The class " + this.GetType().Name + " needs to define a clone method");
         }
-        
+
         /// <summary>
         /// Returns the indexed child record.
         /// </summary>
         /// <param name="index">The index.</param>
         /// <returns></returns>
-        public EscherRecord GetChild(int index)
-        {
+        public EscherRecord GetChild(int index) {
             return (EscherRecord)ChildRecords[index];
         }
 
@@ -217,11 +204,9 @@ namespace Npoi.Core.DDF
         /// The display methods allows escher variables to print the record names
         /// according to their hierarchy.
         /// </summary>
-        /// <param name="indent">The current indent level.</param>  
-        public virtual void Display(int indent)
-        {
-            for (int i = 0; i < indent * 4; i++)
-            {
+        /// <param name="indent">The current indent level.</param>
+        public virtual void Display(int indent) {
+            for (int i = 0; i < indent * 4; i++) {
                 Console.Write(' ');
             }
             Console.WriteLine(RecordName);
@@ -233,7 +218,6 @@ namespace Npoi.Core.DDF
         /// <value>The name of the record.</value>
         public abstract String RecordName { get; }
 
-
         /// <summary>
         /// This class Reads the standard escher header.
         /// </summary>
@@ -243,8 +227,7 @@ namespace Npoi.Core.DDF
             private short recordId;
             private int remainingBytes;
 
-            private DeleteEscherRecordHeader()
-            {
+            private DeleteEscherRecordHeader() {
             }
 
             /// <summary>
@@ -253,8 +236,7 @@ namespace Npoi.Core.DDF
             /// <param name="data">The data.</param>
             /// <param name="offset">The off set.</param>
             /// <returns></returns>
-            public static DeleteEscherRecordHeader ReadHeader(byte[] data, int offset)
-            {
+            public static DeleteEscherRecordHeader ReadHeader(byte[] data, int offset) {
                 DeleteEscherRecordHeader header = new DeleteEscherRecordHeader();
                 header.options = LittleEndian.GetShort(data, offset);
                 header.recordId = LittleEndian.GetShort(data, offset + 2);
@@ -262,13 +244,11 @@ namespace Npoi.Core.DDF
                 return header;
             }
 
-
             /// <summary>
             /// Gets the options.
             /// </summary>
             /// <value>The options.</value>
-            public short Options
-            {
+            public short Options {
                 get { return options; }
             }
 
@@ -276,8 +256,7 @@ namespace Npoi.Core.DDF
             /// Gets the record id.
             /// </summary>
             /// <value>The record id.</value>
-            public virtual short RecordId
-            {
+            public virtual short RecordId {
                 get { return recordId; }
             }
 
@@ -285,8 +264,7 @@ namespace Npoi.Core.DDF
             /// Gets the remaining bytes.
             /// </summary>
             /// <value>The remaining bytes.</value>
-            public int RemainingBytes
-            {
+            public int RemainingBytes {
                 get { return remainingBytes; }
             }
 
@@ -296,8 +274,7 @@ namespace Npoi.Core.DDF
             /// <returns>
             /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
             /// </returns>
-            public override String ToString()
-            {
+            public override String ToString() {
                 return "EscherRecordHeader{" +
                         "options=" + options +
                         ", recordId=" + recordId +
@@ -309,19 +286,15 @@ namespace Npoi.Core.DDF
         /// <summary>
         /// Get or set the instance part of the option record.
         /// </summary>
-        public virtual short Instance
-        {
+        public virtual short Instance {
             get { return fInstance.GetShortValue(_options); }
             set { _options = fInstance.SetShortValue(_options, value); }
         }
 
-
-
         /// <summary>
         /// Get or set the version part of the option record.
         /// </summary>
-        public virtual short Version
-        {
+        public virtual short Version {
             get { return fVersion.GetShortValue(_options); }
             set { _options = fVersion.SetShortValue(_options, value); }
         }
@@ -330,8 +303,8 @@ namespace Npoi.Core.DDF
          * @param tab - each children must be a right of his parent
          * @return xml representation of this record
          */
-        public virtual String ToXml(String tab)
-        {
+
+        public virtual String ToXml(String tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append("<").Append(GetType().Name).Append(">\n")
                     .Append(tab).Append("\t").Append("<RecordId>0x").Append(HexDump.ToHex(_recordId)).Append("</RecordId>\n")
@@ -340,16 +313,14 @@ namespace Npoi.Core.DDF
             return builder.ToString();
         }
 
-        protected String FormatXmlRecordHeader(String className, String recordId, String version, String instance)
-        {
+        protected String FormatXmlRecordHeader(String className, String recordId, String version, String instance) {
             StringBuilder builder = new StringBuilder();
             builder.Append("<").Append(className).Append(" recordId=\"0x").Append(recordId).Append("\" version=\"0x")
                     .Append(version).Append("\" instance=\"0x").Append(instance).Append("\" size=\"").Append(RecordSize).Append("\">\n");
             return builder.ToString();
         }
 
-        public String ToXml()
-        {
+        public String ToXml() {
             return ToXml("");
         }
     }

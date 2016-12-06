@@ -1,6 +1,6 @@
 namespace System
 {
-	public class NonSerializedAttribute : Attribute
-	{
-	}
+    public class NonSerializedAttribute : Attribute
+    {
+    }
 }

@@ -17,17 +17,16 @@
 
 namespace Npoi.Core.HSSF.Record.PivotTable
 {
-    using System.Text;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
-
-
+    using System.Text;
 
     /**
      * SXVS - View Source (0x00E3)<br/>
-     * 
+     *
      * @author Patrick Cheng
      */
+
     public class ViewSourceRecord : StandardRecord
     {
         public const short sid = 0x00E3;
@@ -39,12 +38,10 @@ namespace Npoi.Core.HSSF.Record.PivotTable
             vs = in1.ReadShort();
         }
 
-
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(vs);
         }
-
 
         protected override int DataSize
         {
@@ -54,7 +51,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
             }
         }
 
-
         public override short Sid
         {
             get
@@ -62,7 +58,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
                 return sid;
             }
         }
-
 
         public override string ToString()
         {

@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -20,15 +19,12 @@ namespace Npoi.Core.DDF
 {
     public class NullEscherSerializationListener : EscherSerializationListener
     {
-        public void BeforeRecordSerialize(int offset, short recordId, EscherRecord record)
-        {
+        public void BeforeRecordSerialize(int offset, short recordId, EscherRecord record) {
             // do nothing
         }
 
-        public void AfterRecordSerialize(int offset, short recordId, int size, EscherRecord record)
-        {
+        public void AfterRecordSerialize(int offset, short recordId, int size, EscherRecord record) {
             // do nothing
         }
-
     }
 }

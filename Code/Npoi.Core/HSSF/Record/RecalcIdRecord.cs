@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title: Recalc Id Record
@@ -49,6 +45,7 @@ namespace Npoi.Core.HSSF.Record
 
         //private bool isNeeded = true;
         private int _reserved0;
+
         //private bool isNeeded = true;
         /**
      * An unsigned integer that specifies the recalculation engine identifier
@@ -58,6 +55,7 @@ namespace Npoi.Core.HSSF.Record
      * this workbook immediately after loading the file
      */
         private int _engineId;
+
         public RecalcIdRecord()
         {
             _reserved0 = 0;
@@ -72,8 +70,8 @@ namespace Npoi.Core.HSSF.Record
         public RecalcIdRecord(RecordInputStream in1)
         {
             in1.ReadUShort(); // field 'rt' should have value 0x01C1, but Excel doesn't care during reading
-    	_reserved0 = in1.ReadUShort();
-    	_engineId = in1.ReadInt();
+            _reserved0 = in1.ReadUShort();
+            _engineId = in1.ReadInt();
         }
 
         // /**
@@ -98,7 +96,7 @@ namespace Npoi.Core.HSSF.Record
 
         public bool IsNeeded
         {
-            get { return  true; }
+            get { return true; }
         }
 
         public override String ToString()
@@ -117,6 +115,7 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteShort(_reserved0);
             out1.WriteInt(_engineId);
         }
+
         public int EngineId
         {
             set
@@ -128,6 +127,7 @@ namespace Npoi.Core.HSSF.Record
                 return _engineId;
             }
         }
+
         protected override int DataSize
         {
             get

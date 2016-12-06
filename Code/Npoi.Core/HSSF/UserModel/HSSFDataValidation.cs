@@ -17,18 +17,17 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
-
     using Npoi.Core.HSSF.Record;
-    using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.SS.Util;
+    using System;
 
     /**
      *Utility class for creating data validation cells
-     * 
+     *
      * @author Dragos Buleandra (dragos.buleandra@trade2b.ro)
      */
+
     public class HSSFDataValidation : IDataValidation
     {
         private String _prompt_title;
@@ -47,8 +46,9 @@ namespace Npoi.Core.HSSF.UserModel
         /**
          * Constructor which Initializes the cell range on which this object will be
          * applied
-         * @param constraint 
+         * @param constraint
          */
+
         public HSSFDataValidation(CellRangeAddressList regions, IDataValidationConstraint constraint)
         {
             _regions = regions;
@@ -57,10 +57,10 @@ namespace Npoi.Core.HSSF.UserModel
             _constraint = (DVConstraint)constraint;
         }
 
-
         /* (non-Javadoc)
          * @see Npoi.Core.HSSF.UserModel.DataValidation#getConstraint()
          */
+
         public IDataValidationConstraint ValidationConstraint
         {
             get
@@ -84,15 +84,16 @@ namespace Npoi.Core.HSSF.UserModel
                 return _regions;
             }
         }
+
         public int ErrorStyle
         {
             get
             {
                 return _errorStyle;
             }
-            set 
-            { 
-                _errorStyle = value; 
+            set
+            {
+                _errorStyle = value;
             }
         }
 
@@ -123,6 +124,7 @@ namespace Npoi.Core.HSSF.UserModel
                 _suppress_dropdown_arrow = value;
             }
         }
+
         public bool ShowPromptBox
         {
             get
@@ -134,6 +136,7 @@ namespace Npoi.Core.HSSF.UserModel
                 _ShowPromptBox = value;
             }
         }
+
         public bool ShowErrorBox
         {
             get
@@ -146,11 +149,10 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-
-
         /* (non-Javadoc)
          * @see Npoi.Core.HSSF.UserModel.DataValidation#CreatePromptBox(java.lang.String, java.lang.String)
          */
+
         public void CreatePromptBox(String title, String text)
         {
             _prompt_title = title;
@@ -161,6 +163,7 @@ namespace Npoi.Core.HSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.HSSF.UserModel.DataValidation#getPromptBoxTitle()
          */
+
         public String PromptBoxTitle
         {
             get
@@ -172,6 +175,7 @@ namespace Npoi.Core.HSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.HSSF.UserModel.DataValidation#getPromptBoxText()
          */
+
         public String PromptBoxText
         {
             get
@@ -183,6 +187,7 @@ namespace Npoi.Core.HSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.HSSF.UserModel.DataValidation#CreateErrorBox(java.lang.String, java.lang.String)
          */
+
         public void CreateErrorBox(String title, String text)
         {
             _error_title = title;
@@ -193,6 +198,7 @@ namespace Npoi.Core.HSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.HSSF.UserModel.DataValidation#getErrorBoxTitle()
          */
+
         public String ErrorBoxTitle
         {
             get
@@ -204,6 +210,7 @@ namespace Npoi.Core.HSSF.UserModel
         /* (non-Javadoc)
          * @see Npoi.Core.HSSF.UserModel.DataValidation#getErrorBoxText()
          */
+
         public String ErrorBoxText
         {
             get
@@ -214,7 +221,6 @@ namespace Npoi.Core.HSSF.UserModel
 
         public DVRecord CreateDVRecord(HSSFSheet sheet)
         {
-
             Npoi.Core.HSSF.UserModel.DVConstraint.FormulaPair fp = _constraint.CreateFormulas(sheet);
 
             return new DVRecord(_constraint.GetValidationType(),
@@ -227,5 +233,4 @@ namespace Npoi.Core.HSSF.UserModel
                     _regions);
         }
     }
-
 }

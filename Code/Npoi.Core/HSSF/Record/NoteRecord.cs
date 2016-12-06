@@ -17,17 +17,17 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-    using System.Text;
-    using System;
     using Npoi.Core.Util;
+    using System;
     using System.Globalization;
-
+    using System.Text;
 
     /**
      * NOTE: Comment Associated with a Cell (1Ch)
      *
      * @author Yegor Kozlov
      */
+
     public class NoteRecord : StandardRecord
     {
         public static readonly NoteRecord[] EMPTY_ARRAY = { };
@@ -62,11 +62,12 @@ namespace Npoi.Core.HSSF.Record
          * Construct a new <c>NoteRecord</c> and
          * Fill its data with the default values
          */
+
         public NoteRecord()
         {
             field_6_author = "";
             field_3_flags = 0;
-            field_7_padding = DEFAULT_PADDING; // seems to be always present regardless of author text  
+            field_7_padding = DEFAULT_PADDING; // seems to be always present regardless of author text
         }
 
         /**
@@ -75,6 +76,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @param in the stream to Read from
          */
+
         public NoteRecord(RecordInputStream in1)
         {
             field_1_row = in1.ReadShort();
@@ -82,15 +84,19 @@ namespace Npoi.Core.HSSF.Record
             field_3_flags = in1.ReadShort();
             field_4_shapeid = in1.ReadUShort();
             int length = in1.ReadShort();
-		    field_5_hasMultibyte = in1.ReadByte() != 0x00;
-		    if (field_5_hasMultibyte) {
-			    field_6_author = StringUtil.ReadUnicodeLE(in1, length);
-		    } else {
-			    field_6_author = StringUtil.ReadCompressedUnicode(in1, length);
-		    }
- 		    if (in1.Available() == 1) {
-			    field_7_padding = (byte)in1.ReadByte();
-		    }
+            field_5_hasMultibyte = in1.ReadByte() != 0x00;
+            if (field_5_hasMultibyte)
+            {
+                field_6_author = StringUtil.ReadUnicodeLE(in1, length);
+            }
+            else
+            {
+                field_6_author = StringUtil.ReadCompressedUnicode(in1, length);
+            }
+            if (in1.Available() == 1)
+            {
+                field_7_padding = (byte)in1.ReadByte();
+            }
             else if (in1.Available() == 2 && length == 0)
             {
                 // If there's no author, may be double padded
@@ -102,6 +108,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return id of this record.
          */
+
         public override short Sid
         {
             get { return sid; }
@@ -115,28 +122,33 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return size of the record
          */
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(field_1_row);
-		    out1.WriteShort(field_2_col);
-		    out1.WriteShort(field_3_flags);
-		    out1.WriteShort(field_4_shapeid);
-		    out1.WriteShort(field_6_author.Length);
-		    out1.WriteByte(field_5_hasMultibyte ? 0x01 : 0x00);
-		    if (field_5_hasMultibyte) {
-			    StringUtil.PutUnicodeLE(field_6_author, out1);
-		    } else {
-			    StringUtil.PutCompressedUnicode(field_6_author, out1);
-		    }
-		    if (field_7_padding != null) {
-			    out1.WriteByte(Convert.ToInt32(field_7_padding, CultureInfo.InvariantCulture));
-		    }
-
+            out1.WriteShort(field_2_col);
+            out1.WriteShort(field_3_flags);
+            out1.WriteShort(field_4_shapeid);
+            out1.WriteShort(field_6_author.Length);
+            out1.WriteByte(field_5_hasMultibyte ? 0x01 : 0x00);
+            if (field_5_hasMultibyte)
+            {
+                StringUtil.PutUnicodeLE(field_6_author, out1);
+            }
+            else
+            {
+                StringUtil.PutCompressedUnicode(field_6_author, out1);
+            }
+            if (field_7_padding != null)
+            {
+                out1.WriteByte(Convert.ToInt32(field_7_padding, CultureInfo.InvariantCulture));
+            }
         }
 
         /**
          * Size of record
          */
+
         protected override int DataSize
         {
             get
@@ -151,6 +163,7 @@ namespace Npoi.Core.HSSF.Record
          * Convert this record to string.
          * Used by BiffViewer and other utulities.
          */
+
         public override String ToString()
         {
             StringBuilder buffer = new StringBuilder();
@@ -171,10 +184,11 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return the row that Contains the comment
          */
+
         public int Row
         {
-            get{return field_1_row;}
-            set{ field_1_row = value;}
+            get { return field_1_row; }
+            set { field_1_row = value; }
         }
 
         /**
@@ -182,6 +196,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return the column that Contains the comment
          */
+
         public int Column
         {
             get { return field_2_col; }
@@ -195,6 +210,7 @@ namespace Npoi.Core.HSSF.Record
          * @see #NOTE_VISIBLE
          * @see #NOTE_HIDDEN
          */
+
         public short Flags
         {
             get { return field_3_flags; }
@@ -204,18 +220,19 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Object id for OBJ record that Contains the comment
          */
+
         public int ShapeId
         {
             get { return field_4_shapeid; }
             set { field_4_shapeid = value; }
         }
 
-
         /**
          * Name of the original comment author
          *
          * @return the name of the original author of the comment
          */
+
         public String Author
         {
             get { return field_6_author; }
@@ -229,6 +246,7 @@ namespace Npoi.Core.HSSF.Record
         /**
  * For unit testing only!
  */
+
         internal bool AuthorIsMultibyte
         {
             get
@@ -247,6 +265,5 @@ namespace Npoi.Core.HSSF.Record
             rec.field_6_author = field_6_author;
             return rec;
         }
-
     }
 }

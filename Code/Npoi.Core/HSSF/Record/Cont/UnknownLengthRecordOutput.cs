@@ -17,17 +17,19 @@
 
 namespace Npoi.Core.HSSF.Record.Cont
 {
-    using System;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
+    using System;
+
     /**
      * Allows the writing of BIFF records when the 'ushort size' header field is not known in advance.
-     * When the client is finished writing data, it calls {@link #terminate()}, at which point this 
-     * class updates the 'ushort size' with its value. 
-     * 
+     * When the client is finished writing data, it calls {@link #terminate()}, at which point this
+     * class updates the 'ushort size' with its value.
+     *
      * @author Josh Micich
      */
-    class UnknownLengthRecordOutput : ILittleEndianOutput
+
+    internal class UnknownLengthRecordOutput : ILittleEndianOutput
     {
         private const int MAX_DATA_SIZE = RecordInputStream.MAX_RECORD_DATA_SIZE;
 
@@ -58,9 +60,11 @@ namespace Npoi.Core.HSSF.Record.Cont
                 _out = new LittleEndianByteArrayOutputStream(_byteBuffer, 0);
             }
         }
+
         /**
          * includes 4 byte header
          */
+
         public int TotalSize
         {
             get
@@ -68,6 +72,7 @@ namespace Npoi.Core.HSSF.Record.Cont
                 return 4 + _size;
             }
         }
+
         public int AvailableSpace
         {
             get
@@ -79,10 +84,12 @@ namespace Npoi.Core.HSSF.Record.Cont
                 return MAX_DATA_SIZE - _size;
             }
         }
+
         /**
          * Finishes writing the current record and updates 'ushort size' field.<br/>
          * After this method is called, only {@link #getTotalSize()} may be called.
          */
+
         public void Terminate()
         {
             if (_out == null)
@@ -104,31 +111,37 @@ namespace Npoi.Core.HSSF.Record.Cont
             _out.Write(b);
             _size += b.Length;
         }
+
         public void Write(byte[] b, int offset, int len)
         {
             _out.Write(b, offset, len);
             _size += len;
         }
+
         public void WriteByte(int v)
         {
             _out.WriteByte(v);
             _size += 1;
         }
+
         public void WriteDouble(double v)
         {
             _out.WriteDouble(v);
             _size += 8;
         }
+
         public void WriteInt(int v)
         {
             _out.WriteInt(v);
             _size += 4;
         }
+
         public void WriteLong(long v)
         {
             _out.WriteLong(v);
             _size += 8;
         }
+
         public void WriteShort(int v)
         {
             _out.WriteShort(v);

@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title:        Print Headers Record
@@ -35,6 +32,7 @@ namespace Npoi.Core.HSSF.Record
      */
 
     /* PrintRowCol record */
+
     public class PrintHeadersRecord
        : StandardRecord
     {
@@ -65,9 +63,9 @@ namespace Npoi.Core.HSSF.Record
             {
                 return (field_1_print_headers == 1);
             }
-            set 
+            set
             {
-                field_1_print_headers = (short)((value == true) ?1:0);
+                field_1_print_headers = (short)((value == true) ? 1 : 0);
             }
         }
 

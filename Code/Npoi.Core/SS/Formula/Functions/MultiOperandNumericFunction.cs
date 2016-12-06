@@ -17,9 +17,9 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
-    using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
@@ -27,9 +27,10 @@ namespace Npoi.Core.SS.Formula.Functions
      * classes that take variable number of operands, and
      * where the order of operands does not matter
      */
+
     public abstract class MultiOperandNumericFunction : Function
     {
-        static double[] EMPTY_DOUBLE_ARRAY = { };
+        private static double[] EMPTY_DOUBLE_ARRAY = { };
         private bool _isReferenceBoolCounted;
         private bool _isBlankCounted;
 
@@ -38,11 +39,11 @@ namespace Npoi.Core.SS.Formula.Functions
             _isReferenceBoolCounted = isReferenceBoolCounted;
             _isBlankCounted = isBlankCounted;
         }
+
         protected internal abstract double Evaluate(double[] values);
 
         public ValueEval Evaluate(ValueEval[] args, int srcCellRow, int srcCellCol)
         {
-
             double d;
             try
             {
@@ -115,6 +116,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * Maximum number of operands accepted by this function.
          * Subclasses may override to Change default value.
          */
+
         protected virtual int MaxNumOperands
         {
             get
@@ -122,9 +124,11 @@ namespace Npoi.Core.SS.Formula.Functions
                 return DEFAULT_MAX_NUM_OPERANDS;
             }
         }
+
         /**
      *  Whether to count nested subtotals.
      */
+
         public virtual bool IsSubtotalCounted
         {
             get
@@ -132,9 +136,11 @@ namespace Npoi.Core.SS.Formula.Functions
                 return true;
             }
         }
+
         /**
      * Collects values from a single argument
      */
+
         private void CollectValues(ValueEval operand, DoubleList temp)
         {
             if (operand is ThreeDEval)
@@ -183,6 +189,7 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             CollectValue((ValueEval)operand, false, temp);
         }
+
         private void CollectValue(ValueEval ve, bool isViaReference, DoubleList temp)
         {
             if (ve == null)
@@ -235,6 +242,7 @@ namespace Npoi.Core.SS.Formula.Functions
             throw new InvalidOperationException("Invalid ValueEval type passed for conversion: ("
                     + ve.GetType() + ")");
         }
+
         /**
          * Returns a double array that contains values for the numeric cells
          * from among the list of operands. Blanks and Blank equivalent cells
@@ -244,6 +252,7 @@ namespace Npoi.Core.SS.Formula.Functions
          *
          * @return never <c>null</c>
          */
+
         protected double[] GetNumberArray(ValueEval[] operands)
         {
             if (operands.Length > MaxNumOperands)
@@ -258,13 +267,14 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return retval.ToArray();
         }
+
         /**
          * Ensures that a two dimensional array has all sub-arrays present and the same Length
          * @return <c>false</c> if any sub-array Is missing, or Is of different Length
          */
+
         protected static bool AreSubArraysConsistent(double[][] values)
         {
-
             if (values == null || values.Length < 1)
             {
                 // TODO this doesn't seem right.  Fix or Add comment.
@@ -291,6 +301,5 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return true;
         }
-
     }
 }

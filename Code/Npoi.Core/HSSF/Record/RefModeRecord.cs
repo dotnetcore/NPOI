@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title:        RefMode Record
@@ -54,7 +51,6 @@ namespace Npoi.Core.HSSF.Record
         {
             field_1_mode = in1.ReadShort();
         }
-
 
         /**
          * Get the reference mode to use (HSSF uses/assumes A1)

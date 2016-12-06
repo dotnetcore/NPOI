@@ -17,17 +17,16 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-    
-    using Npoi.Core.Util;
     using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.Util;
+    using System;
 
     /**
      * @author Daniel Noll (daniel at nuix dot com dot au)
      */
+
     public class ErrPtg : ScalarConstantPtg
     {
-
         // convenient access to namespace
         //private static HSSFErrorConstants EC = null;
 
@@ -79,7 +78,6 @@ namespace Npoi.Core.SS.Formula.PTG
         public ErrPtg(ILittleEndianInput in1)
             : this(in1.ReadByte())
         {
-            
         }
 
         public override void Write(ILittleEndianOutput out1)

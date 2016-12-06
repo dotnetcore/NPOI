@@ -17,12 +17,12 @@
 
 namespace Npoi.Core.SS.UserModel.Charts
 {
-
     /**
      * Specifies the possible crossing points for an axis.
      *
      * @author Roman Kashitsyn
      */
+
     public enum AxisCrosses
     {
         /**
@@ -40,6 +40,4 @@ namespace Npoi.Core.SS.UserModel.Charts
          */
         Max
     }
-
-
 }

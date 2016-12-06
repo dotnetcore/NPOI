@@ -17,27 +17,31 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
+
     /**
  * Common interface for the matching criteria.
  */
+
     public interface IMatchPredicate
     {
         bool Matches(ValueEval x);
     }
+
     public interface I_MatchAreaPredicate : IMatchPredicate
     {
         bool Matches(TwoDEval x, int rowIndex, int columnIndex);
     }
+
     /**
      * Common logic for COUNT, COUNTA and COUNTIF
      *
-     * @author Josh Micich 
+     * @author Josh Micich
      */
-    class CountUtils
-    {
 
+    internal class CountUtils
+    {
         private CountUtils()
         {
             // no instances of this class
@@ -46,6 +50,7 @@ namespace Npoi.Core.SS.Formula.Functions
         /**
          * @return the number of evaluated cells in the range that match the specified criteria
          */
+
         public static int CountMatchingCellsInRef(RefEval refEval, IMatchPredicate criteriaPredicate)
         {
             int result = 0;
@@ -60,6 +65,7 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return result;
         }
+
         public static int CountArg(ValueEval eval, IMatchPredicate criteriaPredicate)
         {
             if (eval == null)
@@ -80,9 +86,11 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return criteriaPredicate.Matches(eval) ? 1 : 0;
         }
+
         /**
      * @return the number of evaluated cells in the range that match the specified criteria
      */
+
         public static int CountMatchingCellsInArea(ThreeDEval areaEval, IMatchPredicate criteriaPredicate)
         {
             int result = 0;

@@ -15,9 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
-using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.Formula.Eval;
+using Npoi.Core.SS.UserModel;
+using System;
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     /**
@@ -25,14 +26,12 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author Frank Taffelt
      */
+
     public class Now : Fixed0ArgFunction
     {
-
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex)
         {
             return new NumberEval(DateUtil.GetExcelDate(DateTime.Now));
         }
     }
 }
-
-

@@ -15,22 +15,19 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.DDF;
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
-    using System;
-    using System.Text;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
-
+    using System;
+    using System.Text;
 
     /*
      * CHARTFRTINFO - Chart Future Record Type Info (0x0850)<br/>
-     * 
+     *
      * @author Patrick Cheng
      */
+
     //
     /// <summary>
     /// The ChartFrtInfo record specifies the versions of the application that originally created and last saved the file.
@@ -56,6 +53,7 @@ namespace Npoi.Core.HSSF.Record.Chart
                 rtFirst = first;
                 rtLast = last;
             }
+
             public CFRTID(RecordInputStream in1)
             {
                 rtFirst = in1.ReadShort();
@@ -75,7 +73,7 @@ namespace Npoi.Core.HSSF.Record.Chart
                 return new CFRTID(this.rtFirst, this.rtLast);
             }
 
-            #endregion
+            #endregion ICloneable ��Ա
         }
 
         public ChartFRTInfoRecord()
@@ -107,7 +105,6 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
         }
 
-
         protected override int DataSize
         {
             get
@@ -115,7 +112,6 @@ namespace Npoi.Core.HSSF.Record.Chart
                 return 2 + 2 + 1 + 1 + 2 + rgCFRTID.Length * CFRTID.ENCODED_SIZE;
             }
         }
-
 
         public override short Sid
         {
@@ -125,10 +121,8 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
         }
 
-
         public override void Serialize(ILittleEndianOutput out1)
         {
-
             out1.WriteShort(rt);
             out1.WriteShort(grbitFrt);
             out1.WriteByte(verOriginator);

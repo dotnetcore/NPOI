@@ -17,14 +17,14 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    
-    using Npoi.Core.Util;
 
     /**
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class UnionPtg : OperationPtg
     {
         public const byte sid = 0x10;
@@ -56,8 +56,8 @@ namespace Npoi.Core.SS.Formula.PTG
             return ",";
         }
 
-
         /** implementation of method from OperationsPtg*/
+
         public override String ToFormulaString(String[] operands)
         {
             StringBuilder buffer = new StringBuilder();
@@ -72,6 +72,5 @@ namespace Npoi.Core.SS.Formula.PTG
         {
             get { return 2; }
         }
-
     }
 }

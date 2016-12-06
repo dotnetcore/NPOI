@@ -17,17 +17,17 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Npoi.Core.POIFS.Properties
 {
@@ -35,27 +35,27 @@ namespace Npoi.Core.POIFS.Properties
     /// Trivial extension of Property for POIFSDocuments
     /// @author Marc Johnson (mjohnson at apache dot org)
     /// </summary>
-    public class DirectoryProperty:Property,Parent
+    public class DirectoryProperty : Property, Parent
     {
         // List of Property instances
         private List<Property> _children;
 
         // Set of children's names
-        private List<string>  _children_names;
+        private List<string> _children_names;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DirectoryProperty"/> class.
         /// </summary>
         /// <param name="name">the name of the directory</param>
-        public DirectoryProperty(String name):base()
+        public DirectoryProperty(String name) : base()
         {
             _children = new List<Property>();
             _children_names = new List<string>();
-            Name=name;
-            Size=0;
-            PropertyType=PropertyConstants.DIRECTORY_TYPE;
-            StartBlock=0;
-            NodeColor=_NODE_BLACK;   // simplification
+            Name = name;
+            Size = 0;
+            PropertyType = PropertyConstants.DIRECTORY_TYPE;
+            StartBlock = 0;
+            NodeColor = _NODE_BLACK;   // simplification
         }
 
         /// <summary>
@@ -64,12 +64,11 @@ namespace Npoi.Core.POIFS.Properties
         /// <param name="index">index number</param>
         /// <param name="array">byte data</param>
         /// <param name="offset">offset into byte data</param>
-        public DirectoryProperty(int index, byte [] array,int offset):base(index, array, offset)
+        public DirectoryProperty(int index, byte[] array, int offset) : base(index, array, offset)
         {
             _children = new List<Property>();
             _children_names = new List<string>();
         }
-
 
         /// <summary>
         /// Change a Property's name
@@ -80,16 +79,15 @@ namespace Npoi.Core.POIFS.Properties
         public bool ChangeName(Property property, String newName)
         {
             bool result;
-            String  oldName = property.Name;
+            String oldName = property.Name;
 
-            property.Name=newName;
+            property.Name = newName;
             String cleanNewName = property.Name;
 
             if (_children_names.Contains(cleanNewName))
             {
-
                 // revert the Change
-                property.Name=oldName;
+                property.Name = oldName;
                 result = false;
             }
             else
@@ -108,7 +106,6 @@ namespace Npoi.Core.POIFS.Properties
         /// <returns>true if the Property could be Deleted, else false</returns>
         public bool DeleteChild(Property property)
         {
-
             bool result = _children.Remove(property);
             if (result)
             {
@@ -116,7 +113,6 @@ namespace Npoi.Core.POIFS.Properties
             }
 
             return result;
-
         }
 
         /// <summary>
@@ -124,7 +120,6 @@ namespace Npoi.Core.POIFS.Properties
         /// </summary>
         public class PropertyComparator : IComparer<Property>
         {
-
             /// <summary>
             /// Object equality, implemented as object identity
             /// </summary>
@@ -135,9 +130,9 @@ namespace Npoi.Core.POIFS.Properties
                 return this == o;
             }
 
-            public override int GetHashCode ()
+            public override int GetHashCode()
             {
-                return base.GetHashCode ();
+                return base.GetHashCode();
             }
 
             /// <summary>
@@ -200,7 +195,6 @@ namespace Npoi.Core.POIFS.Properties
                             num = String.Compare(name1, name2, StringComparison.OrdinalIgnoreCase);
                         }
                     }
-
                 }
                 return num;
             }
@@ -214,7 +208,7 @@ namespace Npoi.Core.POIFS.Properties
         /// </value>
         public override bool IsDirectory
         {
-            get{return true;}
+            get { return true; }
         }
 
         /// <summary>
@@ -231,33 +225,33 @@ namespace Npoi.Core.POIFS.Properties
                 Array.Sort(children, new PropertyComparator());
                 int midpoint = children.Length / 2;
 
-                this.ChildProperty=children[ midpoint ].Index;
-                children[ 0 ].PreviousChild=null;
-                children[ 0 ].NextChild=null;
+                this.ChildProperty = children[midpoint].Index;
+                children[0].PreviousChild = null;
+                children[0].NextChild = null;
                 for (int j = 1; j < midpoint; j++)
                 {
-                    children[ j ].PreviousChild=children[ j - 1 ];
-                    children[ j ].NextChild=null;
+                    children[j].PreviousChild = children[j - 1];
+                    children[j].NextChild = null;
                 }
                 if (midpoint != 0)
                 {
-                    children[ midpoint ]
-                        .PreviousChild=children[ midpoint - 1 ];
+                    children[midpoint]
+                        .PreviousChild = children[midpoint - 1];
                 }
                 if (midpoint != (children.Length - 1))
                 {
-                    children[ midpoint ].NextChild=children[ midpoint + 1 ];
+                    children[midpoint].NextChild = children[midpoint + 1];
                     for (int j = midpoint + 1; j < children.Length - 1; j++)
                     {
-                        children[ j ].PreviousChild=null;
-                        children[ j ].NextChild=children[ j + 1 ];
+                        children[j].PreviousChild = null;
+                        children[j].NextChild = children[j + 1];
                     }
-                    children[ children.Length - 1 ].PreviousChild=null;
-                    children[ children.Length - 1 ].NextChild=null;
+                    children[children.Length - 1].PreviousChild = null;
+                    children[children.Length - 1].NextChild = null;
                 }
                 else
                 {
-                    children[ midpoint ].NextChild=null;
+                    children[midpoint].NextChild = null;
                 }
             }
         }
@@ -269,7 +263,7 @@ namespace Npoi.Core.POIFS.Properties
         /// <value>Iterator of children; may refer to an empty collection</value>
         public IEnumerator<Property> Children
         {
-            get{return _children.GetEnumerator();}
+            get { return _children.GetEnumerator(); }
         }
 
         /// <summary>

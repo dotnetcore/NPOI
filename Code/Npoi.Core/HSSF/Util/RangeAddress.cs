@@ -15,40 +15,40 @@
    limitations Under the License.
 ==================================================================== */
 
-
 using System;
-using System.Text;
 using System.Globalization;
+using System.Text;
 
 namespace Npoi.Core.HSSF.Util
 {
-
-
     /**
-     * Title:        Range Address 
+     * Title:        Range Address
      * Description:  provides connectivity utilities for ranges
      *
      *
-     * REFERENCE:  
+     * REFERENCE:
      * @author IgOr KaTz &amp; EuGeNe BuMaGiN (Tal Moshaiov) (VistaPortal LDT.)
     @version 1.0
      */
 
     public class RangeAddress
     {
-        const int WRONG_POS = -1;
-        const int MAX_HEIGHT = 66666;
+        private const int WRONG_POS = -1;
+        private const int MAX_HEIGHT = 66666;
+
         //static char SO_FORMNAME_ENCLOSURE =  '\'';
-        String m_sheetName;
-        String m_cellFrom;
-        String m_cellTo;
+        private String m_sheetName;
+
+        private String m_cellFrom;
+        private String m_cellTo;
 
         /**
          * Accepts an external reference from excel.
-         * 
+         *
          * i.e. Sheet1!$A$4:$B$9
          * @param _url
          */
+
         public RangeAddress(String _url)
         {
             init(_url);
@@ -61,9 +61,10 @@ namespace Npoi.Core.HSSF.Util
         }
 
         /**
-         * 
+         *
          * @return String <b>note: </b> All absolute references are Removed
          */
+
         public String Address
         {
             get
@@ -80,7 +81,6 @@ namespace Npoi.Core.HSSF.Util
                 return result;
             }
         }
-
 
         public String SheetName
         {
@@ -121,7 +121,6 @@ namespace Npoi.Core.HSSF.Util
 
         public bool IsSheetNameOk()
         {
-
             return IsSheetNameOk(m_sheetName);
         }
 
@@ -150,7 +149,6 @@ namespace Npoi.Core.HSSF.Util
                 res = true;
             return res;
         }
-
 
         public String FromCell
         {
@@ -247,7 +245,6 @@ namespace Npoi.Core.HSSF.Util
 
         private void init(String _url)
         {
-
             _url = RemoveString(_url, "$");
             _url = RemoveString(_url, "'");
 
@@ -264,8 +261,6 @@ namespace Npoi.Core.HSSF.Util
 
             //Removing noneeds Chars
             m_cellTo = RemoveString(m_cellTo, ".");
-
-
         }
 
         private String[] ParseURL(String _url)
@@ -329,7 +324,6 @@ namespace Npoi.Core.HSSF.Util
                 }
                 catch (Exception)
                 {
-
                     result = WRONG_POS;
                 }
             }
@@ -472,6 +466,5 @@ namespace Npoi.Core.HSSF.Util
         {
             return ReplaceString(_source, _match, "");
         }
-
     }
 }

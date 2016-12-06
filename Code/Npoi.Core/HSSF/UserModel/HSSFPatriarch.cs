@@ -17,16 +17,16 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
+    using Npoi.Core.DDF;
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
     using System;
     using System.Collections;
-    using Npoi.Core.DDF;
-    using Npoi.Core.HSSF.Record;
-    using Npoi.Core.Util;
-    using Npoi.Core.SS.UserModel;
     using System.Collections.Generic;
-    using Npoi.Core.HSSF.Model;
-    using Npoi.Core.SS.Util;
-    using Npoi.Core.POIFS.FileSystem;
     using System.IO;
 
     /// <summary>
@@ -37,7 +37,8 @@ namespace Npoi.Core.HSSF.UserModel
     public class HSSFPatriarch : HSSFShapeContainer, IDrawing
     {
         //private static POILogger log = POILogFactory.GetLogger(typeof(HSSFPatriarch));
-        List<HSSFShape> _shapes = new List<HSSFShape>();
+        private List<HSSFShape> _shapes = new List<HSSFShape>();
+
         private HSSFSheet _sheet;
         private EscherSpgrRecord _spgrRecord;
         private EscherContainerRecord _mainSpgrContainer;
@@ -65,7 +66,6 @@ namespace Npoi.Core.HSSF.UserModel
             BuildShapeTree();
         }
 
-
         public static HSSFPatriarch CreatePatriarch(HSSFPatriarch patriarch, HSSFSheet sheet)
         {
             HSSFPatriarch newPatriarch = new HSSFPatriarch(sheet, new EscherAggregate(true));
@@ -91,13 +91,14 @@ namespace Npoi.Core.HSSF.UserModel
      * check if any shapes contain wrong data
      * At now(13.08.2010) check if patriarch contains 2 or more comments with same coordinates
      */
+
         protected internal void PreSerialize()
         {
             Dictionary<int, NoteRecord> tailRecords = _boundAggregate.TailRecords;
             /*
              * contains coordinates of comments we iterate over
              */
-            Dictionary<object,object> coordinates = new Dictionary<object,object>(tailRecords.Count);
+            Dictionary<object, object> coordinates = new Dictionary<object, object>(tailRecords.Count);
             foreach (NoteRecord rec in tailRecords.Values)
             {
                 String noteRef = new CellReference(rec.Row, rec.Column).FormatAsString(); // A1-style notation
@@ -116,6 +117,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @param shape to be removed
          * @return true of shape is removed
          */
+
         public bool RemoveShape(HSSFShape shape)
         {
             bool isRemoved = _mainSpgrContainer.RemoveChildRecord(shape.GetEscherContainer());
@@ -154,9 +156,9 @@ namespace Npoi.Core.HSSF.UserModel
         /// <summary>
         /// Creates a simple shape.  This includes such shapes as lines, rectangles,
         /// and ovals.
-        /// Note: Microsoft Excel seems to sometimes disallow 
-        /// higher y1 than y2 or higher x1 than x2 in the anchor, you might need to 
-        /// reverse them and draw shapes vertically or horizontally flipped! 
+        /// Note: Microsoft Excel seems to sometimes disallow
+        /// higher y1 than y2 or higher x1 than x2 in the anchor, you might need to
+        /// reverse them and draw shapes vertically or horizontally flipped!
         /// </summary>
         /// <param name="anchor">the client anchor describes how this Group is attached
         /// to the sheet.</param>
@@ -201,8 +203,8 @@ namespace Npoi.Core.HSSF.UserModel
         }
 
         /**
-     * Adds a new OLE Package Shape 
-     * 
+     * Adds a new OLE Package Shape
+     *
      * @param anchor       the client anchor describes how this picture is
      *                     attached to the sheet.
      * @param storageId    the storageId returned by {@Link HSSFWorkbook.AddOlePackage}
@@ -211,6 +213,7 @@ namespace Npoi.Core.HSSF.UserModel
      *
      * @return newly Created shape
      */
+
         public HSSFObjectData CreateObjectData(HSSFClientAnchor anchor, int storageId, int pictureIndex)
         {
             ObjRecord obj = new ObjRecord();
@@ -227,16 +230,17 @@ namespace Npoi.Core.HSSF.UserModel
             ftCmo.Reserved3 = (/*setter*/0);
             obj.AddSubRecord(ftCmo);
 
-            // FtCf (pictFormat) 
+            // FtCf (pictFormat)
             FtCfSubRecord ftCf = new FtCfSubRecord();
             HSSFPictureData pictData = Sheet.Workbook.GetAllPictures()[(pictureIndex - 1)] as HSSFPictureData;
             switch ((PictureType)pictData.Format)
             {
                 case PictureType.WMF:
                 case PictureType.EMF:
-                    // this needs patch #49658 to be applied to actually work 
+                    // this needs patch #49658 to be applied to actually work
                     ftCf.Flags = (/*setter*/FtCfSubRecord.METAFILE_BIT);
                     break;
+
                 case PictureType.DIB:
                 case PictureType.PNG:
                 case PictureType.JPEG:
@@ -282,7 +286,6 @@ namespace Npoi.Core.HSSF.UserModel
             AddShape(oleShape);
             OnCreate(oleShape);
 
-
             return oleShape;
         }
 
@@ -313,6 +316,7 @@ namespace Npoi.Core.HSSF.UserModel
             OnCreate(shape);
             return shape;
         }
+
         /**
          * Constructs a cell comment.
          *
@@ -320,6 +324,7 @@ namespace Npoi.Core.HSSF.UserModel
          *                  to the sheet.
          * @return      the newly created comment.
          */
+
         public HSSFComment CreateComment(HSSFAnchor anchor)
         {
             HSSFComment shape = new HSSFComment(null, anchor);
@@ -327,11 +332,13 @@ namespace Npoi.Core.HSSF.UserModel
             OnCreate(shape);
             return shape;
         }
+
         /**
          * YK: used to create autofilters
          *
          * @see org.apache.poi.hssf.usermodel.HSSFSheet#setAutoFilter(int, int, int, int)
          */
+
         public HSSFSimpleShape CreateComboBox(HSSFAnchor anchor)
         {
             HSSFCombobox shape = new HSSFCombobox(null, anchor);
@@ -351,9 +358,6 @@ namespace Npoi.Core.HSSF.UserModel
             return CreateComment((HSSFAnchor)anchor);
         }
 
-
-
-
         private void SetFlipFlags(HSSFShape shape)
         {
             EscherSpRecord sp = (EscherSpRecord)shape.GetEscherContainer().GetChildById(EscherSpRecord.RECORD_ID);
@@ -366,6 +370,7 @@ namespace Npoi.Core.HSSF.UserModel
                 sp.Flags = (sp.Flags | EscherSpRecord.FLAG_FLIPVERT);
             }
         }
+
         /// <summary>
         /// Returns a list of all shapes contained by the patriarch.
         /// </summary>
@@ -378,6 +383,7 @@ namespace Npoi.Core.HSSF.UserModel
         /**
          * add a shape to this drawing
          */
+
         public void AddShape(HSSFShape shape)
         {
             shape.Patriarch = this;
@@ -397,6 +403,7 @@ namespace Npoi.Core.HSSF.UserModel
             shape.AfterInsert(this);
             SetFlipFlags(shape);
         }
+
         /// <summary>
         /// Total count of all children and their children's children.
         /// </summary>
@@ -406,7 +413,7 @@ namespace Npoi.Core.HSSF.UserModel
             get
             {
                 int count = _shapes.Count;
-                for (IEnumerator iterator = _shapes.GetEnumerator(); iterator.MoveNext(); )
+                for (IEnumerator iterator = _shapes.GetEnumerator(); iterator.MoveNext();)
                 {
                     HSSFShape shape = (HSSFShape)iterator.Current;
                     count += shape.CountOfAllChildren;
@@ -414,6 +421,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return count;
             }
         }
+
         /// <summary>
         /// Sets the coordinate space of this Group.  All children are contrained
         /// to these coordinates.
@@ -447,6 +455,7 @@ namespace Npoi.Core.HSSF.UserModel
             short drawingGroupId = dg.DrawingGroupId;
             return dm.AllocateShapeId(drawingGroupId, dg);
         }
+
         /// <summary>
         /// Does this HSSFPatriarch contain a chart?
         /// (Technically a reference to a chart, since they
@@ -470,7 +479,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return false;
             }
 
-            for (IEnumerator it = optRecord.EscherProperties.GetEnumerator(); it.MoveNext(); )
+            for (IEnumerator it = optRecord.EscherProperties.GetEnumerator(); it.MoveNext();)
             {
                 EscherProperty prop = (EscherProperty)it.Current;
                 if (prop.PropertyNumber == 896 && prop.IsComplex)
@@ -532,6 +541,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             return _boundAggregate;
         }
+
         /**
          * Creates a new client anchor and sets the top-left and bottom-right
          * coordinates of the anchor.
@@ -546,6 +556,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @param row2 the row (0 based) of the second cell.
          * @return the newly created client anchor
          */
+
         public IClientAnchor CreateAnchor(int dx1, int dy1, int dx2, int dy2, int col1, int row1, int col2, int row2)
         {
             return new HSSFClientAnchor(dx1, dy1, dx2, dy2, (short)col1, row1, (short)col2, row2);
@@ -555,9 +566,11 @@ namespace Npoi.Core.HSSF.UserModel
         {
             throw new RuntimeException("NotImplemented");
         }
+
         /**
      * create shape tree from existing escher records tree
      */
+
         public void BuildShapeTree()
         {
             EscherContainerRecord dgContainer = _boundAggregate.GetEscherContainer();
@@ -582,14 +595,17 @@ namespace Npoi.Core.HSSF.UserModel
         {
             return _shapes;
         }
+
         public IEnumerator<HSSFShape> GetEnumerator()
         {
             return _shapes.GetEnumerator();
         }
+
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _shapes.GetEnumerator();
         }
+
         protected internal HSSFSheet Sheet
         {
             get

@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
+using Npoi.Core.SS.Util;
 using System;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Npoi.Core.SS.Util;
 
 namespace Npoi.Core.SS.UserModel
 {
@@ -31,6 +31,7 @@ namespace Npoi.Core.SS.UserModel
      * of elapsed time, eg rendering 1 day 2 hours
      * as 26 hours.
      */
+
     public class ExcelStyleDateFormatter : SimpleDateFormat
     {
         public const char MMMMM_START_SYMBOL = '\ue001';
@@ -69,9 +70,7 @@ namespace Npoi.Core.SS.UserModel
         public ExcelStyleDateFormatter(String pattern)
             : base(ProcessFormatPattern(pattern))
         {
-
         }
-
 
         //public ExcelStyleDateFormatter(String pattern,
         //                           DateFormatSymbols formatSymbols)
@@ -87,10 +86,12 @@ namespace Npoi.Core.SS.UserModel
         {
             return match.Groups[1].Value;
         }
+
         /**
          * Takes a format String, and Replaces Excel specific bits
          * with our detection sequences
          */
+
         private static String ProcessFormatPattern(String f)
         {
             String t = f.Replace("MMMMM", MMMMM_START_SYMBOL + "MMM" + MMMMM_TRUNCATE_SYMBOL);
@@ -116,10 +117,12 @@ namespace Npoi.Core.SS.UserModel
          * may wish to use when handling elapsed
          * times.
          */
+
         public void SetDateToBeFormatted(double date)
         {
             this.dateToBeFormatted = date;
         }
+
         public override string Format(object obj, CultureInfo culture)
         {
             return this.Format((DateTime)obj, new StringBuilder(), culture).ToString();
@@ -212,5 +215,4 @@ namespace Npoi.Core.SS.UserModel
             return new StringBuilder(s);
         }
     }
-
 }

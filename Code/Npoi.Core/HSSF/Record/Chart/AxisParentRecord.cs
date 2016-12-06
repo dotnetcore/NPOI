@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * The axis size and location
@@ -32,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class AxisParentRecord
        : StandardRecord
     {
@@ -44,10 +41,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         private int field_4_width;
         private int field_5_height;
 
-
         public AxisParentRecord()
         {
-
         }
 
         /**
@@ -58,7 +53,6 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public AxisParentRecord(RecordInputStream in1)
         {
-
             field_1_axisType = in1.ReadShort();
             field_2_x = in1.ReadInt();
             field_3_y = in1.ReadInt();
@@ -108,9 +102,10 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
-            get { return  2 + 4 + 4 + 4 + 4; }
+            get { return 2 + 4 + 4 + 4 + 4; }
         }
 
         public override short Sid
@@ -130,16 +125,14 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          *  the axis type field for the AxisParent record.
          *
-         * @return  One of 
+         * @return  One of
          *        AXIS_TYPE_MAIN
          *        AXIS_TYPE_SECONDARY
          */
+
         public short AxisType
         {
             get { return field_1_axisType; }
@@ -149,6 +142,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          *  the x field for the AxisParent record.
          */
+
         public int X
         {
             get { return field_2_x; }
@@ -158,6 +152,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          *  the y field for the AxisParent record.
          */
+
         public int Y
         {
             get { return field_3_y; }
@@ -167,6 +162,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          *  the width field for the AxisParent record.
          */
+
         public int Width
         {
             get { return field_4_width; }
@@ -176,13 +172,11 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          *  the height field for the AxisParent record.
          */
+
         public int Height
         {
             get { return field_5_height; }
             set { this.field_5_height = value; }
         }
-
     }
 }
-
-

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Text;
-using Npoi.Core.Util;
-using Npoi.Core.HSSF.Record;
-
+﻿using Npoi.Core.HSSF.Record;
 using Npoi.Core.SS.Formula;
+using Npoi.Core.Util;
+using System;
+using System.Text;
 
 namespace Npoi.Core.SS.Util
 {
@@ -12,12 +11,13 @@ namespace Npoi.Core.SS.Util
         public const int ENCODED_SIZE = 8;
         /**
          * Creates new cell range. Indexes are zero-based.
-         * 
+         *
          * @param firstRow Index of first row
          * @param lastRow Index of last row (inclusive), must be equal to or larger than {@code firstRow}
          * @param firstCol Index of first column
          * @param lastCol Index of last column (inclusive), must be equal to or larger than {@code firstCol}
          */
+
         public CellRangeAddress(int firstRow, int lastRow, int firstCol, int lastCol)
             : base(firstRow, lastRow, firstCol, lastCol)
         {
@@ -28,7 +28,6 @@ namespace Npoi.Core.SS.Util
         public CellRangeAddress(RecordInputStream in1)
             : base(ReadUShortAndCheck(in1), in1.ReadUShort(), in1.ReadUShort(), in1.ReadUShort())
         {
-
         }
 
         private static int ReadUShortAndCheck(RecordInputStream in1)
@@ -48,13 +47,16 @@ namespace Npoi.Core.SS.Util
             out1.WriteShort(FirstColumn);
             out1.WriteShort(LastColumn);
         }
+
         public String FormatAsString()
         {
             return FormatAsString(null, false);
         }
+
         /**
          * @return the text format of this range using specified sheet name.
          */
+
         public String FormatAsString(String sheetName, bool useAbsoluteAddress)
         {
             StringBuilder sb = new StringBuilder();
@@ -80,6 +82,7 @@ namespace Npoi.Core.SS.Util
             }
             return sb.ToString();
         }
+
         public CellRangeAddress Copy()
         {
             return new CellRangeAddress(FirstRow, LastRow, FirstColumn, LastColumn);
@@ -94,9 +97,9 @@ namespace Npoi.Core.SS.Util
         /// Creates a CellRangeAddress from a cell range reference string.
         /// </summary>
         /// <param name="reference">
-        /// usually a standard area ref (e.g. "B1:D8").  May be a single 
-        /// cell ref (e.g. "B5") in which case the result is a 1 x 1 cell 
-        /// range. May also be a whole row range (e.g. "3:5"), or a whole 
+        /// usually a standard area ref (e.g. "B1:D8").  May be a single
+        /// cell ref (e.g. "B5") in which case the result is a 1 x 1 cell
+        /// range. May also be a whole row range (e.g. "3:5"), or a whole
         /// column range (e.g. "C:F")
         /// </param>
         /// <returns>a CellRangeAddress object</returns>

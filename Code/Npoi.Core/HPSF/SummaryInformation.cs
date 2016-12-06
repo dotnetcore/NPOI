@@ -17,24 +17,23 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF
 {
-    using System;
     using Npoi.Core.HPSF.Wellknown;
-
+    using System;
 
     /// <summary>
     /// Convenience class representing a Summary Information stream in a
     /// Microsoft Office document.
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
     /// @see DocumentSummaryInformation
     /// @since 2002-02-09
@@ -42,16 +41,13 @@ namespace Npoi.Core.HPSF
     [Serializable]
     public class SummaryInformation : SpecialPropertySet
     {
-
         /**
          * The document name a summary information stream usually has in a POIFS
          * filesystem.
          */
         public const String DEFAULT_STREAM_NAME = "\x0005SummaryInformation";
 
-
-        public override PropertyIDMap PropertySetIDMap
-        {
+        public override PropertyIDMap PropertySetIDMap {
             get
             {
                 return PropertyIDMap.SummaryInformationProperties;
@@ -63,22 +59,17 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="ps">A property Set which should be Created from a summary
         /// information stream.</param>
-        public SummaryInformation(PropertySet ps): base(ps)
-        {
-
+        public SummaryInformation(PropertySet ps) : base(ps) {
             if (!IsSummaryInformation)
                 throw new UnexpectedPropertySetTypeException("Not a "
                         + GetType().Name);
         }
 
-
-
         /// <summary>
         /// Gets or sets the title.
         /// </summary>
         /// <value>The title.</value>
-        public String Title
-        {
+        public String Title {
             get { return GetPropertyStringValue(PropertyIDMap.PID_TITLE); }
             set
             {
@@ -90,19 +81,16 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the title.
         /// </summary>
-        public void RemoveTitle()
-        {
+        public void RemoveTitle() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_TITLE);
         }
-
 
         /// <summary>
         /// Gets or sets the subject.
         /// </summary>
         /// <value>The subject.</value>
-        public String Subject
-        {
+        public String Subject {
             get { return GetPropertyStringValue(PropertyIDMap.PID_SUBJECT); }
             set
             {
@@ -114,19 +102,16 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the subject.
         /// </summary>
-        public void RemoveSubject()
-        {
+        public void RemoveSubject() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_SUBJECT);
         }
-
 
         /// <summary>
         /// Gets or sets the author.
         /// </summary>
         /// <value>The author.</value>
-        public String Author
-        {
+        public String Author {
             get { return GetPropertyStringValue(PropertyIDMap.PID_AUTHOR); }
             set
             {
@@ -138,19 +123,16 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the author.
         /// </summary>
-        public void RemoveAuthor()
-        {
+        public void RemoveAuthor() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_AUTHOR);
         }
-
 
         /// <summary>
         /// Gets or sets the keywords.
         /// </summary>
         /// <value>The keywords.</value>
-        public String Keywords
-        {
+        public String Keywords {
             get { return GetPropertyStringValue(PropertyIDMap.PID_KEYWORDS); }
             set
             {
@@ -162,20 +144,16 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the keywords.
         /// </summary>
-        public void RemoveKeywords()
-        {
+        public void RemoveKeywords() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_KEYWORDS);
         }
-
-
 
         /// <summary>
         /// Gets or sets the comments.
         /// </summary>
         /// <value>The comments.</value>
-        public String Comments
-        {
+        public String Comments {
             get { return GetPropertyStringValue(PropertyIDMap.PID_COMMENTS); }
             set
             {
@@ -187,8 +165,7 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the comments.
         /// </summary>
-        public void RemoveComments()
-        {
+        public void RemoveComments() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_COMMENTS);
         }
@@ -197,8 +174,7 @@ namespace Npoi.Core.HPSF
         /// Gets or sets the template.
         /// </summary>
         /// <value>The template.</value>
-        public String Template
-        {
+        public String Template {
             get { return GetPropertyStringValue(PropertyIDMap.PID_TEMPLATE); }
             set
             {
@@ -210,8 +186,7 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the template.
         /// </summary>
-        public void RemoveTemplate()
-        {
+        public void RemoveTemplate() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_TEMPLATE);
         }
@@ -220,9 +195,8 @@ namespace Npoi.Core.HPSF
         /// Gets or sets the last author.
         /// </summary>
         /// <value>The last author.</value>
-        public String LastAuthor
-        {
-            get{return GetPropertyStringValue(PropertyIDMap.PID_LASTAUTHOR);}
+        public String LastAuthor {
+            get { return GetPropertyStringValue(PropertyIDMap.PID_LASTAUTHOR); }
             set
             {
                 MutableSection s = (MutableSection)FirstSection;
@@ -233,19 +207,16 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the last author.
         /// </summary>
-        public void RemoveLastAuthor()
-        {
+        public void RemoveLastAuthor() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_LASTAUTHOR);
         }
-
 
         /// <summary>
         /// Gets or sets the rev number.
         /// </summary>
         /// <value>The rev number.</value>
-        public String RevNumber
-        {
+        public String RevNumber {
             get { return GetPropertyStringValue(PropertyIDMap.PID_REVNUMBER); }
             set
             {
@@ -257,27 +228,22 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the rev number.
         /// </summary>
-        public void RemoveRevNumber()
-        {
+        public void RemoveRevNumber() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_REVNUMBER);
         }
-
-
 
         /// <summary>
         /// Returns the Total time spent in editing the document (or 0).
         /// </summary>
         /// <value>The Total time spent in editing the document or 0 if the {@link
         /// SummaryInformation} does not contain this information.</value>
-        public long EditTime
-        {
+        public long EditTime {
             get
             {
                 if (GetProperty(PropertyIDMap.PID_EDITTIME) == null)
                     return 0;
-                else
-                {
+                else {
                     DateTime d = (DateTime)GetProperty(PropertyIDMap.PID_EDITTIME);
                     return Util.DateToFileTime(d);
                 }
@@ -290,27 +256,23 @@ namespace Npoi.Core.HPSF
             }
         }
 
-
         /// <summary>
         /// Removes the edit time.
         /// </summary>
-        public void RemoveEditTime()
-        {
+        public void RemoveEditTime() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_EDITTIME);
         }
-
-
 
         /// <summary>
         /// Gets or sets the last printed time
         /// </summary>
         /// <value>The last printed time</value>
         /// Returns the last printed time (or <c>null</c>).
-        public DateTime? LastPrinted
-        {
-            get { 
-                return (DateTime?)GetProperty(PropertyIDMap.PID_LASTPRINTED); 
+        public DateTime? LastPrinted {
+            get
+            {
+                return (DateTime?)GetProperty(PropertyIDMap.PID_LASTPRINTED);
             }
             set
             {
@@ -323,8 +285,7 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the last printed.
         /// </summary>
-        public void RemoveLastPrinted()
-        {
+        public void RemoveLastPrinted() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_LASTPRINTED);
         }
@@ -333,8 +294,7 @@ namespace Npoi.Core.HPSF
         /// Gets or sets the create date time.
         /// </summary>
         /// <value>The create date time.</value>
-        public DateTime? CreateDateTime
-        {
+        public DateTime? CreateDateTime {
             get { return (DateTime?)GetProperty(PropertyIDMap.PID_Create_DTM); }
             set
             {
@@ -347,19 +307,16 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the create date time.
         /// </summary>
-        public void RemoveCreateDateTime()
-        {
+        public void RemoveCreateDateTime() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_Create_DTM);
         }
-
 
         /// <summary>
         /// Gets or sets the last save date time.
         /// </summary>
         /// <value>The last save date time.</value>
-        public DateTime? LastSaveDateTime
-        {
+        public DateTime? LastSaveDateTime {
             get { return (DateTime?)GetProperty(PropertyIDMap.PID_LASTSAVE_DTM); }
             set
             {
@@ -372,13 +329,10 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the last save date time.
         /// </summary>
-        public void RemoveLastSaveDateTime()
-        {
+        public void RemoveLastSaveDateTime() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_LASTSAVE_DTM);
         }
-
-
 
         /// <summary>
         /// Gets or sets the page count or 0 if the {@link SummaryInformation} does
@@ -386,8 +340,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <value>The page count or 0 if the {@link SummaryInformation} does not
         /// contain a page count.</value>
-        public int PageCount
-        {
+        public int PageCount {
             get { return GetPropertyIntValue(PropertyIDMap.PID_PAGECOUNT); }
             set
             {
@@ -396,25 +349,20 @@ namespace Npoi.Core.HPSF
             }
         }
 
-
         /// <summary>
         /// Removes the page count.
         /// </summary>
-        public void RemovePageCount()
-        {
+        public void RemovePageCount() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_PAGECOUNT);
         }
-
-
 
         /// <summary>
         /// Gets or sets the word count or 0 if the {@link SummaryInformation} does
         /// not contain a word count.
         /// </summary>
         /// <value>The word count.</value>
-        public int WordCount
-        {
+        public int WordCount {
             get { return GetPropertyIntValue(PropertyIDMap.PID_WORDCOUNT); }
             set
             {
@@ -426,22 +374,18 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the word count.
         /// </summary>
-        public void RemoveWordCount()
-        {
+        public void RemoveWordCount() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_WORDCOUNT);
         }
-
-
 
         /// <summary>
         /// Gets or sets the character count or 0 if the {@link SummaryInformation}
         /// does not contain a char count.
         /// </summary>
         /// <value>The character count.</value>
-        public int CharCount
-        {
-            get{return GetPropertyIntValue(PropertyIDMap.PID_CHARCOUNT);}
+        public int CharCount {
+            get { return GetPropertyIntValue(PropertyIDMap.PID_CHARCOUNT); }
             set
             {
                 MutableSection s = (MutableSection)FirstSection;
@@ -452,12 +396,10 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the char count.
         /// </summary>
-        public void RemoveCharCount()
-        {
+        public void RemoveCharCount() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_CHARCOUNT);
         }
-
 
         /// <summary>
         /// Gets or sets the thumbnail (or <c>null</c>) <strong>when this
@@ -469,9 +411,8 @@ namespace Npoi.Core.HPSF
         /// instead just return a byte array.
         /// </summary>
         /// <value>The thumbnail.</value>
-        public byte[] Thumbnail
-        {
-            get{return (byte[])GetProperty(PropertyIDMap.PID_THUMBNAIL);}
+        public byte[] Thumbnail {
+            get { return (byte[])GetProperty(PropertyIDMap.PID_THUMBNAIL); }
             set
             {
                 MutableSection s = (MutableSection)FirstSection;
@@ -483,19 +424,16 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the thumbnail.
         /// </summary>
-        public void RemoveThumbnail()
-        {
+        public void RemoveThumbnail() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_THUMBNAIL);
         }
-
 
         /// <summary>
         /// Gets or sets the name of the application.
         /// </summary>
         /// <value>The name of the application.</value>
-        public String ApplicationName
-        {
+        public String ApplicationName {
             get { return GetPropertyStringValue(PropertyIDMap.PID_APPNAME); }
             set
             {
@@ -504,17 +442,13 @@ namespace Npoi.Core.HPSF
             }
         }
 
-
         /// <summary>
         /// Removes the name of the application.
         /// </summary>
-        public void RemoveApplicationName()
-        {
+        public void RemoveApplicationName() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_APPNAME);
         }
-
-
 
         /// <summary>
         /// Gets or sets a security code which is one of the following values:
@@ -530,8 +464,7 @@ namespace Npoi.Core.HPSF
         /// </ul>
         /// </summary>
         /// <value>The security code</value>
-        public int Security
-        {
+        public int Security {
             get { return GetPropertyIntValue(PropertyIDMap.PID_SECURITY); }
             set
             {
@@ -540,15 +473,12 @@ namespace Npoi.Core.HPSF
             }
         }
 
-
         /// <summary>
         /// Removes the security code.
         /// </summary>
-        public void RemoveSecurity()
-        {
+        public void RemoveSecurity() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_SECURITY);
         }
-
     }
 }

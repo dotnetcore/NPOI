@@ -17,10 +17,8 @@
 
 namespace Npoi.Core.HSSF.Model
 {
-    using System.Collections;
     using Npoi.Core.HSSF.Record;
     using System.Collections.Generic;
-
 
     /// <summary>
     /// List for records in Workbook
@@ -39,7 +37,6 @@ namespace Npoi.Core.HSSF.Model
         private int supbookpos = 0;   // holds the position of sup book
         private int externsheetPos = 0;// holds the position of the extern sheet
         private int palettepos = -1;   // hold the position of the palette, if applicable
-
 
         /// <summary>
         /// Gets or sets the records.
@@ -67,7 +64,6 @@ namespace Npoi.Core.HSSF.Model
         public Record this[int index]
         {
             get { return (Record)records[index]; }
-
         }
 
         /// <summary>
@@ -78,17 +74,18 @@ namespace Npoi.Core.HSSF.Model
         public void Add(int pos, Record r)
         {
             records.Insert(pos, r);
-            if (Protpos >= pos) Protpos=(protpos + 1);
-            if (Bspos >= pos) Bspos=(bspos + 1);
-            if (Tabpos >= pos) Tabpos=(tabpos + 1);
-            if (Fontpos >= pos) Fontpos=(fontpos + 1);
-            if (Xfpos >= pos) Xfpos=(xfpos + 1);
-            if (Backuppos >= pos) Backuppos=(backuppos + 1);
-            if (Namepos>= pos) Namepos=(namepos + 1);
-            if (Supbookpos >= pos) Supbookpos=(supbookpos + 1);
-            if ((Palettepos!= -1) && (Palettepos>= pos)) Palettepos=(palettepos + 1);
-            if (ExternsheetPos >= pos) ExternsheetPos=ExternsheetPos + 1;
+            if (Protpos >= pos) Protpos = (protpos + 1);
+            if (Bspos >= pos) Bspos = (bspos + 1);
+            if (Tabpos >= pos) Tabpos = (tabpos + 1);
+            if (Fontpos >= pos) Fontpos = (fontpos + 1);
+            if (Xfpos >= pos) Xfpos = (xfpos + 1);
+            if (Backuppos >= pos) Backuppos = (backuppos + 1);
+            if (Namepos >= pos) Namepos = (namepos + 1);
+            if (Supbookpos >= pos) Supbookpos = (supbookpos + 1);
+            if ((Palettepos != -1) && (Palettepos >= pos)) Palettepos = (palettepos + 1);
+            if (ExternsheetPos >= pos) ExternsheetPos = ExternsheetPos + 1;
         }
+
         public IEnumerator<Record> GetEnumerator()
         {
             return records.GetEnumerator();
@@ -111,16 +108,16 @@ namespace Npoi.Core.HSSF.Model
         public void Remove(int pos)
         {
             records.RemoveAt(pos);
-            if (Protpos >= pos) Protpos=protpos - 1;
-            if (Bspos >= pos) Bspos=bspos - 1;
-            if (Tabpos >= pos) Tabpos=tabpos - 1;
-            if (Fontpos >= pos) Fontpos=fontpos - 1;
-            if (Xfpos >= pos) Xfpos=xfpos - 1;
-            if (Backuppos >= pos) Backuppos=backuppos - 1;
-            if (Namepos >= pos) Namepos=Namepos - 1;
-            if (Supbookpos >= pos) Supbookpos=Supbookpos - 1;
-            if ((Palettepos != -1) && (Palettepos >= pos)) Palettepos=palettepos - 1;
-            if (ExternsheetPos >= pos) ExternsheetPos=ExternsheetPos- 1;
+            if (Protpos >= pos) Protpos = protpos - 1;
+            if (Bspos >= pos) Bspos = bspos - 1;
+            if (Tabpos >= pos) Tabpos = tabpos - 1;
+            if (Fontpos >= pos) Fontpos = fontpos - 1;
+            if (Xfpos >= pos) Xfpos = xfpos - 1;
+            if (Backuppos >= pos) Backuppos = backuppos - 1;
+            if (Namepos >= pos) Namepos = Namepos - 1;
+            if (Supbookpos >= pos) Supbookpos = Supbookpos - 1;
+            if ((Palettepos != -1) && (Palettepos >= pos)) Palettepos = palettepos - 1;
+            if (ExternsheetPos >= pos) ExternsheetPos = ExternsheetPos - 1;
         }
 
         /// <summary>
@@ -139,7 +136,7 @@ namespace Npoi.Core.HSSF.Model
         /// <value>The bspos.</value>
         public int Bspos
         {
-            get{return bspos;}
+            get { return bspos; }
             set { this.bspos = value; }
         }
 
@@ -150,7 +147,7 @@ namespace Npoi.Core.HSSF.Model
         public int Tabpos
         {
             get { return tabpos; }
-            set { this.tabpos =value; }
+            set { this.tabpos = value; }
         }
 
         /// <summary>
@@ -162,6 +159,7 @@ namespace Npoi.Core.HSSF.Model
             get { return fontpos; }
             set { this.fontpos = value; }
         }
+
         /// <summary>
         /// Gets or sets the xfpos.
         /// </summary>
@@ -178,7 +176,7 @@ namespace Npoi.Core.HSSF.Model
         /// <value>The backuppos.</value>
         public int Backuppos
         {
-            get{return backuppos;}
+            get { return backuppos; }
             set { this.backuppos = value; }
         }
 
@@ -188,10 +186,9 @@ namespace Npoi.Core.HSSF.Model
         /// <value>The palettepos.</value>
         public int Palettepos
         {
-            get{return palettepos;}
+            get { return palettepos; }
             set { this.palettepos = value; }
         }
-
 
         /// <summary>
         /// Gets or sets the namepos.
@@ -209,7 +206,7 @@ namespace Npoi.Core.HSSF.Model
         /// <value>The supbookpos.</value>
         public int Supbookpos
         {
-            get{return supbookpos;}
+            get { return supbookpos; }
             set { this.supbookpos = value; }
         }
 
@@ -222,6 +219,5 @@ namespace Npoi.Core.HSSF.Model
             get { return externsheetPos; }
             set { this.externsheetPos = value; }
         }
-
     }
 }

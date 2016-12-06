@@ -5,9 +5,9 @@
    The ASF licenses this file to You under the Apache License, Version 2.0
    (the "License"); you may not use this file except in compliance with
    the License.  You may obtain a copy of the License at
-   
+
    http://www.apache.org/licenses/LICENSE-2.0
-   
+
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,7 +17,6 @@
 
 namespace Npoi.Core.SS.Util.CellWalk
 {
-
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.SS.Util;
 
@@ -26,9 +25,9 @@ namespace Npoi.Core.SS.Util.CellWalk
      *
      * @author Roman Kashitsyn
      */
+
     public class CellWalk
     {
-
         private ISheet sheet;
         private CellRangeAddress range;
         private bool traverseEmptyCells;
@@ -46,6 +45,7 @@ namespace Npoi.Core.SS.Util.CellWalk
          * @return true if handler should be called on empty (blank)
          * cells, false otherwise.
          */
+
         public bool IsTraverseEmptyCells()
         {
             return traverseEmptyCells;
@@ -55,6 +55,7 @@ namespace Npoi.Core.SS.Util.CellWalk
          * Sets the traverseEmptyCells property.
          * @param traverseEmptyCells new property value
          */
+
         public void SetTraverseEmptyCells(bool traverseEmptyCells)
         {
             this.traverseEmptyCells = traverseEmptyCells;
@@ -64,6 +65,7 @@ namespace Npoi.Core.SS.Util.CellWalk
          * Traverse cell range from top left to bottom right cell.
          * @param handler handler to call on each appropriate cell
          */
+
         public void Traverse(ICellHandler handler)
         {
             int firstRow = range.FirstRow;
@@ -113,6 +115,7 @@ namespace Npoi.Core.SS.Util.CellWalk
          * Inner class to hold walk context.
          * @author Roman Kashitsyn
          */
+
         private class SimpleCellWalkContext : ICellWalkContext
         {
             public long ordinalNumber = 0;
@@ -144,5 +147,4 @@ namespace Npoi.Core.SS.Util.CellWalk
             }
         }
     }
-
 }

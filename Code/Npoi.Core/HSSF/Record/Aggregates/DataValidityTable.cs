@@ -17,10 +17,9 @@
 
 namespace Npoi.Core.HSSF.Record.Aggregates
 {
-    using System.Collections;
-
     using Npoi.Core.HSSF.Model;
     using Npoi.Core.HSSF.Record;
+    using System.Collections;
     using System.Collections.Generic;
 
     /// <summary>
@@ -30,7 +29,6 @@ namespace Npoi.Core.HSSF.Record.Aggregates
     /// </summary>
     public class DataValidityTable : RecordAggregate
     {
-
         private DVALRecord _headerRec;
         /**
          * The list of data validations for the current sheet.

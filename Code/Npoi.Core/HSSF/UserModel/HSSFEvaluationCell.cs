@@ -19,8 +19,8 @@ using Npoi.Core.SS.UserModel;
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
     using Npoi.Core.SS.Formula;
+    using System;
 
     /// <summary>
     /// HSSF wrapper for a cell under evaluation
@@ -28,7 +28,6 @@ namespace Npoi.Core.HSSF.UserModel
     /// </summary>
     public class HSSFEvaluationCell : IEvaluationCell
     {
-
         private IEvaluationSheet _evalSheet;
         private Npoi.Core.SS.UserModel.ICell _cell;
 
@@ -37,16 +36,19 @@ namespace Npoi.Core.HSSF.UserModel
             _cell = cell;
             _evalSheet = evalSheet;
         }
+
         public HSSFEvaluationCell(Npoi.Core.SS.UserModel.ICell cell)
         {
             _cell = cell;
             _evalSheet = new HSSFEvaluationSheet((HSSFSheet)cell.Sheet);
         }
+
         // Note -  hashCode and equals defined according to underlying cell
         public override int GetHashCode()
         {
             return _cell.GetHashCode();
         }
+
         public override bool Equals(Object obj)
         {
             Npoi.Core.SS.UserModel.ICell cellb = ((HSSFEvaluationCell)obj)._cell;
@@ -63,6 +65,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return _cell;
             }
         }
+
         public bool BooleanCellValue
         {
             get
@@ -70,6 +73,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return _cell.BooleanCellValue;
             }
         }
+
         public Npoi.Core.SS.UserModel.CellType CellType
         {
             get
@@ -77,6 +81,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return _cell.CellType;
             }
         }
+
         public int ColumnIndex
         {
             get
@@ -84,6 +89,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return _cell.ColumnIndex;
             }
         }
+
         public int ErrorCellValue
         {
             get
@@ -91,6 +97,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return _cell.ErrorCellValue;
             }
         }
+
         public double NumericCellValue
         {
             get
@@ -98,6 +105,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return _cell.NumericCellValue;
             }
         }
+
         public int RowIndex
         {
             get
@@ -105,6 +113,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return _cell.RowIndex;
             }
         }
+
         public IEvaluationSheet Sheet
         {
             get
@@ -112,6 +121,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return _evalSheet;
             }
         }
+
         public String StringCellValue
         {
             get
@@ -119,7 +129,6 @@ namespace Npoi.Core.HSSF.UserModel
                 return _cell.RichStringCellValue.String;
             }
         }
-
 
         public object IdentityKey
         {

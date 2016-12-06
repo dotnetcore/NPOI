@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,16 +15,15 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Aggregates
 {
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.Record.Chart;
+    using Npoi.Core.SS.Formula;
     using System;
     using System.Collections;
-    using Npoi.Core.HSSF.Record;
-    using Npoi.Core.SS.Formula;
-    using Npoi.Core.HSSF.Model;
     using System.Collections.Generic;
-    using Npoi.Core.HSSF.Record.Chart;
 
     /**
      *
@@ -37,16 +35,17 @@ namespace Npoi.Core.HSSF.Record.Aggregates
     {
         private int firstrow = -1;
         private int lastrow = -1;
-        private SortedList<object,object> _rowRecords;
+        private SortedList<object, object> _rowRecords;
+
         //private int size = 0;
         private ValueRecordsAggregate _valuesAgg;
+
         private List<Record> _unknownRecords;
         private SharedValueManager _sharedValueManager;
 
         // Cache values to speed up performance of
         // getStartRowNumberForBlock / getEndRowNumberForBlock, see Bugzilla 47405
         private RowRecord[] _rowRecordValues = null;
-
 
         /** Creates a new instance of ValueRecordsAggregate */
 
@@ -59,6 +58,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         {
             return _valuesAgg.GetValueRecords();
         }
+
         private RowRecordsAggregate(SharedValueManager svm)
         {
             _rowRecords = new SortedList<object, object>();
@@ -66,6 +66,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             _unknownRecords = new List<Record>();
             _sharedValueManager = svm;
         }
+
         private int VisitRowRecordsForBlock(int blockIndex, RecordVisitor rv)
         {
             int startIndex = blockIndex * DBCellRecord.BLOCK_SIZE;
@@ -92,7 +93,6 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         public override void VisitContainedRecords(RecordVisitor rv)
         {
-
             PositionTrackingVisitor stv = new PositionTrackingVisitor(rv, 0);
             //DBCells are serialized before row records.
             int blockCount = this.RowBlockCount;
@@ -134,10 +134,12 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 rv.VisitRecord((Record)_unknownRecords[i]);
             }
         }
+
         /**
          * @param rs record stream with all {@link SharedFormulaRecord}
          * {@link ArrayRecord}, {@link TableRecord} {@link MergeCellsRecord} Records removed
          */
+
         public RowRecordsAggregate(RecordStream rs, SharedValueManager svm)
             : this(svm)
         {
@@ -168,10 +170,11 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                     }
                     continue;
                 }
-       			if (rec is MulBlankRecord) {
-    			    _valuesAgg.AddMultipleBlanks((MulBlankRecord) rec);
-				    continue;
-			    }
+                if (rec is MulBlankRecord)
+                {
+                    _valuesAgg.AddMultipleBlanks((MulBlankRecord)rec);
+                    continue;
+                }
 
                 if (!(rec is CellValueRecordInterface))
                 {
@@ -183,14 +186,15 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                         continue;
                     }
                     throw new InvalidOperationException("Unexpected record type (" + rec.GetType().Name + ")");
-
                 }
                 _valuesAgg.Construct((CellValueRecordInterface)rec, rs, svm);
             }
         }
+
         /**
   * Handles UnknownRecords which appear within the row/cell records
   */
+
         private void AddUnknownRecord(Record rec)
         {
             // ony a few distinct record IDs are encountered by the existing POI test cases:
@@ -202,18 +206,18 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             // keep the unknown records for re-serialization
             _unknownRecords.Add(rec);
         }
+
         public void InsertRow(RowRecord row)
         {
             _rowRecords[row.RowNumber] = row;
             // Clear the cached values
-            _rowRecordValues = null; 
+            _rowRecordValues = null;
 
-
-            if (row.RowNumber < firstrow|| firstrow == -1)
+            if (row.RowNumber < firstrow || firstrow == -1)
             {
                 firstrow = row.RowNumber;
             }
-            if (row.RowNumber > lastrow|| lastrow == -1)
+            if (row.RowNumber > lastrow || lastrow == -1)
             {
                 lastrow = row.RowNumber;
             }
@@ -238,10 +242,12 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             // Clear the cached values
             _rowRecordValues = null;
         }
+
         public void InsertCell(CellValueRecordInterface cvRec)
         {
             _valuesAgg.InsertCell(cvRec);
         }
+
         public void RemoveCell(CellValueRecordInterface cvRec)
         {
             if (cvRec is FormulaRecordAggregate)
@@ -250,6 +256,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
             _valuesAgg.RemoveCell(cvRec);
         }
+
         public RowRecord GetRow(int rowIndex)
         {
             // Row must be between 0 and 65535
@@ -259,13 +266,15 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
             return (RowRecord)_rowRecords[rowIndex];
         }
+
         public FormulaRecordAggregate CreateFormula(int row, int col)
         {
             FormulaRecord fr = new FormulaRecord();
-            fr.Row=(row);
-            fr.Column=((short)col);
+            fr.Row = (row);
+            fr.Column = ((short)col);
             return new FormulaRecordAggregate(fr, null, _sharedValueManager);
         }
+
         public int PhysicalNumberOfRows
         {
             get
@@ -294,6 +303,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * <p/>The row blocks are goupings of rows that contain the DBCell record
          * after them
          */
+
         public int RowBlockCount
         {
             get
@@ -311,6 +321,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         }
 
         /** Returns the number of physical rows within a block*/
+
         public int GetRowCountForBlock(int block)
         {
             int startIndex = block * DBCellRecord.BLOCK_SIZE;
@@ -322,6 +333,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         }
 
         /** Returns the physical row number of the first row in a block*/
+
         public int GetStartRowNumberForBlock(int block)
         {
             //Given that we basically iterate through the rows in order,
@@ -329,13 +341,12 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             //an iterator and use that instance throughout, rather than recreating one and
             //having to move it to the right position.
 
-            
             int startIndex = block * DBCellRecord.BLOCK_SIZE;
 
             if (_rowRecordValues == null)
             {
-                _rowRecordValues=new RowRecord[_rowRecords.Count];
-                _rowRecords.Values.CopyTo(_rowRecordValues,0);
+                _rowRecordValues = new RowRecord[_rowRecords.Count];
+                _rowRecords.Values.CopyTo(_rowRecordValues, 0);
             }
             try
             {
@@ -348,6 +359,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         }
 
         /** Returns the physical row number of the end row in a block*/
+
         public int GetEndRowNumberForBlock(int block)
         {
             int endIndex = ((block + 1) * DBCellRecord.BLOCK_SIZE) - 1;
@@ -357,7 +369,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             if (_rowRecordValues == null)
             {
                 _rowRecordValues = new RowRecord[_rowRecords.Count];
-                _rowRecords.Values.CopyTo(_rowRecordValues,0);
+                _rowRecords.Values.CopyTo(_rowRecordValues, 0);
             }
 
             try
@@ -374,7 +386,6 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         {
             return _rowRecords.Values.GetEnumerator();
         }
-
 
         public int FindStartOfRowOutlineGroup(int row)
         {
@@ -422,7 +433,6 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         public void CollapseRow(int rowNumber)
         {
-
             // Find the start of the Group.
             int startRow = FindStartOfRowOutlineGroup(rowNumber);
             RowRecord rowRecord = GetRow(startRow);
@@ -442,12 +452,13 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 InsertRow(row);
             }
         }
+
         public DimensionsRecord CreateDimensions()
         {
             DimensionsRecord result = new DimensionsRecord();
-            result.FirstRow=(firstrow);
-            result.LastRow=(lastrow);
-            result.FirstCol =_valuesAgg.FirstCellNum;
+            result.FirstRow = (firstrow);
+            result.LastRow = (lastrow);
+            result.FirstCol = _valuesAgg.FirstCellNum;
             result.LastCol = _valuesAgg.LastCellNum;
             return result;
         }
@@ -459,6 +470,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * @return RowRecord Created for the passed in row number
          * @see org.apache.poi.hssf.record.RowRecord
          */
+
         public static RowRecord CreateRow(int rowNumber)
         {
             return new RowRecord(rowNumber);
@@ -467,8 +479,8 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         public IndexRecord CreateIndexRecord(int indexRecordOffset, int sizeOfInitialSheetRecords, int offsetDefaultColWidth)
         {
             IndexRecord result = new IndexRecord();
-            result.FirstRow= firstrow;
-            result.LastRowAdd1= lastrow+1;
+            result.FirstRow = firstrow;
+            result.LastRowAdd1 = lastrow + 1;
             // Calculate the size of the records from the end of the BOF
             // and up to the RowRecordsAggregate...
 
@@ -596,7 +608,5 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 return startHidden;
             }
         }
-
     }
-
 }

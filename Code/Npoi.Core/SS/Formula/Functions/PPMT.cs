@@ -23,16 +23,14 @@ namespace Npoi.Core.SS.Formula.Functions
 
     /**
       * Compute the interest portion of a payment.
-      * 
+      *
       * @author Mike Argyriou micharg@gmail.com
       */
+
     public class PPMT : NumericFunction
     {
-
-
         protected override double Eval(ValueEval[] args, int srcCellRow, int srcCellCol)
         {
-
             if (args.Length < 4)
                 throw new EvaluationException(ErrorEval.VALUE_INVALID);
 
@@ -54,9 +52,5 @@ namespace Npoi.Core.SS.Formula.Functions
 
             return result;
         }
-
-
-
     }
-
 }

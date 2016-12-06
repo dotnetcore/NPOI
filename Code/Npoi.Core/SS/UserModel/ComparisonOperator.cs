@@ -28,7 +28,8 @@ namespace Npoi.Core.SS.UserModel
      * @author Dmitriy Kumshayev
      * @author Yegor Kozlov
      */
-    public enum ComparisonOperator:byte
+
+    public enum ComparisonOperator : byte
     {
         NoComparison = 0,
 
@@ -72,5 +73,4 @@ namespace Npoi.Core.SS.UserModel
          */
         LessThanOrEqual = 8,
     }
-
 }

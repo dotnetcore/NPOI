@@ -25,6 +25,7 @@ namespace Npoi.Core.HSSF.Util
      * causes significantly more copying, which for a large number of byte arrays can cost
      * a large amount of time.
      */
+
     public class LazilyConcatenatedByteArray
     {
         private List<byte[]> arrays = new List<byte[]>(1);
@@ -32,6 +33,7 @@ namespace Npoi.Core.HSSF.Util
         /**
          * Clears the array (sets the concatenated length back to zero.
          */
+
         public void Clear()
         {
             arrays.Clear();
@@ -44,6 +46,7 @@ namespace Npoi.Core.HSSF.Util
          * @param array the array to concatenate.
          * @throws ArgumentException if {@code array} is {@code null}.
          */
+
         public void Concatenate(byte[] array)
         {
             if (array == null)
@@ -61,9 +64,10 @@ namespace Npoi.Core.HSSF.Util
          *
          * @return the byte array.  Returns {@code null} if no data has been placed into it.
          */
+
         public byte[] ToArray()
         {
-            if (arrays.Count==0)
+            if (arrays.Count == 0)
             {
                 return null;
             }
@@ -90,6 +94,4 @@ namespace Npoi.Core.HSSF.Util
             return arrays[(0)];
         }
     }
-
-
 }

@@ -15,9 +15,9 @@
    limitations Under the License.
 ==================================================================== */
 
-using System.Collections.Generic;
 using Npoi.Core.HSSF.Model;
 using Npoi.Core.HSSF.Record.Chart;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart
@@ -25,7 +25,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
     /// <summary>
     /// AXISPARENT = AxisParent Begin Pos [AXES] 1*4CRT End
     /// </summary>
-    public class AxisParentAggregate: ChartRecordAggregate
+    public class AxisParentAggregate : ChartRecordAggregate
     {
         private AxisParentRecord axisPraent = null;
         private PosRecord pos = null;

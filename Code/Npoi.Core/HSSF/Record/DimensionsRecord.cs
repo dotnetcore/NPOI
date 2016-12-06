@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
     using Npoi.Core.Util;
     using System;
     using System.Text;
-
 
     /**
      * Title:        Dimensions Record
@@ -69,7 +66,7 @@ namespace Npoi.Core.HSSF.Record
 
         public int FirstRow
         {
-            get{return field_1_first_row;}
+            get { return field_1_first_row; }
             set { field_1_first_row = value; }
         }
 
@@ -131,7 +128,7 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteInt(LastRow);
             out1.WriteShort(FirstCol);
             out1.WriteShort(LastCol);
-            out1.WriteShort(( short ) 0);
+            out1.WriteShort((short)0);
         }
 
         protected override int DataSize

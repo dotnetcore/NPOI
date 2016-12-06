@@ -1,5 +1,4 @@
-﻿
-/* ====================================================================
+﻿/* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
    this work for additional information regarding copyright ownership.
@@ -16,15 +15,14 @@
    limitations under the License.
 ==================================================================== */
 
-
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
@@ -39,7 +37,6 @@ namespace Npoi.Core.Util
     [Serializable]
     public class BitField
     {
-
         private int _mask;
         private int _shift_count;
 
@@ -66,6 +63,7 @@ namespace Npoi.Core.Util
             }
             this._shift_count = num;
         }
+
         /// <summary>
         /// Create a <see cref="BitField"/> instance
         /// </summary>
@@ -74,10 +72,10 @@ namespace Npoi.Core.Util
         /// BitField. Bits that are set in this mask are the
         /// bits that this BitField operates on
         /// </param>
-        public BitField(uint mask):this((int)mask)
+        public BitField(uint mask) : this((int)mask)
         {
-
         }
+
         /// <summary>
         /// Clear the bits.
         /// </summary>
@@ -147,7 +145,7 @@ namespace Npoi.Core.Util
         /// <returns>the selected bits, shifted right appropriately</returns>
         public int GetValue(int holder)
         {
-            return Operator.UnsignedRightShift(this.GetRawValue(holder) , this._shift_count);
+            return Operator.UnsignedRightShift(this.GetRawValue(holder), this._shift_count);
         }
 
         /// <summary>
@@ -208,7 +206,7 @@ namespace Npoi.Core.Util
         public short SetShort(short holder)
         {
             return (short)this.Set(holder);
-        }   
+        }
 
         /// <summary>
         /// Set a boolean BitField
@@ -257,6 +255,7 @@ namespace Npoi.Core.Util
         {
             return (!flag ? this.ClearByte(holder) : this.SetByte(holder));
         }
+
         /// <summary>
         /// Clears the bits.
         /// </summary>
@@ -266,6 +265,7 @@ namespace Npoi.Core.Util
         {
             return (byte)this.Clear(holder);
         }
+
         /// <summary>
         /// Set the bits.
         /// </summary>

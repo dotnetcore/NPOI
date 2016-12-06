@@ -17,7 +17,8 @@
 
 namespace Npoi.Core.HSSF.Record.Chart
 {
-    public enum ObjectKind : short {
+    public enum ObjectKind : short
+    {
         AxisGroup = 0,
         AttachedLabelRecord = 0x2,
         Axis = 0x4,

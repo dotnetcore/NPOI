@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,12 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Title:        Format Record
@@ -29,7 +27,7 @@ namespace Npoi.Core.HSSF.Record
      *
      * REFERENCE:  PG 317 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
      * @author Andrew C. Oliver (acoliver at apache dot org)
-     * @author Shawn M. Laubach (slaubach at apache dot org)  
+     * @author Shawn M. Laubach (slaubach at apache dot org)
      * @version 2.0-pre
      */
 
@@ -42,6 +40,7 @@ namespace Npoi.Core.HSSF.Record
         //private short field_3_unicode_len;      // Unicode string Length
         //private bool field_3_unicode_flag;     // it Is not Undocumented - it Is Unicode flag
         private bool field_3_hasMultibyte;
+
         private String field_4_formatstring;
 
         public FormatRecord(int indexCode, String fs)
@@ -73,7 +72,7 @@ namespace Npoi.Core.HSSF.Record
                 field_4_formatstring = in1.ReadCompressedUnicode(field_3_unicode_len);
             }
         }
-        
+
         /**
          * Get the format index code (for built in formats)
          *
@@ -131,6 +130,7 @@ namespace Npoi.Core.HSSF.Record
                 StringUtil.PutCompressedUnicode(formatString, out1);
             }
         }
+
         protected override int DataSize
         {
             get
@@ -144,6 +144,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get { return sid; }
         }
+
         public override Object Clone()
         {
             // immutable

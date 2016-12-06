@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,19 +15,17 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title:        Unknown Record (for debugging)
      * Description:  Unknown record just tells you the sid so you can figure out
      *               what records you are missing.  Also helps us Read/modify sheets we
-     *               don't know all the records to.  (HSSF leaves these alone!) 
+     *               don't know all the records to.  (HSSF leaves these alone!)
      * Company:      SuperLink Software, Inc.
      * @author Andrew C. Oliver (acoliver at apache dot org)
      * @author Jason Height (jheight at chariot dot net dot au)
@@ -43,19 +40,25 @@ namespace Npoi.Core.HSSF.Record
      */
         public const int PLS_004D = 0x004D;
         public const int SHEETPR_0081 = 0x0081;
-        public const int SORT_0090            = 0x0090;
+        public const int SORT_0090 = 0x0090;
         public const int STANDARDWIDTH_0099 = 0x0099;
+
         //public const int SCL_00A0 = 0x00A0;
         public const int BITMAP_00E9 = 0x00E9;
+
         public const int PHONETICPR_00EF = 0x00EF;
         public const int LABELRANGES_015F = 0x015F;
-      	//public const int USERSVIEWBEGIN_01AA  = 0x01AA;
-    	//public const int USERSVIEWEND_01AB    = 0x01AB;
+
+        //public const int USERSVIEWBEGIN_01AA  = 0x01AA;
+        //public const int USERSVIEWEND_01AB    = 0x01AB;
         public const int QUICKTIP_0800 = 0x0800;
+
         //public const int SHEETEXT_0862 = 0x0862; // OOO calls this SHEETLAYOUT
         public const int SHEETPROTECTION_0867 = 0x0867;
+
         //public const int RANGEPROTECTION_0868 = 0x0868;
-        public const int HEADER_FOOTER_089C   = 0x089C;
+        public const int HEADER_FOOTER_089C = 0x089C;
+
         public const int CODENAME_1BA = 0x01BA;
         public const int PLV_MAC = 0x08C8;
         private int _sid = 0;
@@ -69,12 +72,12 @@ namespace Npoi.Core.HSSF.Record
          * @param id    id of the record -not Validated, just stored for serialization
          * @param data  the data
          */
+
         public UnknownRecord(int id, byte[] data)
         {
             _sid = id & 0xFFFF;
             _rawData = data;
         }
-
 
         /**
          * construct an Unknown record.  No fields are interperated and the record will
@@ -96,13 +99,15 @@ namespace Npoi.Core.HSSF.Record
             //}
         }
 
-	/**
-	 * spit the record out AS IS. no interpretation or identification
-	 */
+        /**
+         * spit the record out AS IS. no interpretation or identification
+         */
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.Write(_rawData);
         }
+
         protected override int DataSize
         {
             get
@@ -132,7 +137,6 @@ namespace Npoi.Core.HSSF.Record
             }
             sb.Append("[/").Append(biffName).Append("]\n");
             return sb.ToString();
-
         }
 
         /**
@@ -140,6 +144,7 @@ namespace Npoi.Core.HSSF.Record
  *
  * @return the documented name of this BIFF record type, <code>null</code> if unknown to POI
  */
+
         public static String GetBiffName(int sid)
         {
             // Note to POI developers:
@@ -213,7 +218,6 @@ namespace Npoi.Core.HSSF.Record
                 case 0x08A6: return "RICHTEXTSTREAM";
 
                 case 0x08C8: return "PLV{Mac Excel}";
-
             }
             if (IsObservedButUnknown(sid))
             {
@@ -226,9 +230,11 @@ namespace Npoi.Core.HSSF.Record
 
             //return null;
         }
+
         /**
  * @return <c>true</c> if the unknown record id has been observed in POI unit tests
  */
+
         private static bool IsObservedButUnknown(int sid)
         {
             switch (sid)
@@ -309,8 +315,8 @@ namespace Npoi.Core.HSSF.Record
             get { return (short)_sid; }
         }
 
-
         /** Unlike the other Record.Clone methods this Is a shallow Clone*/
+
         public override Object Clone()
         {
             //UnknownRecord rec = new UnknownRecord();

@@ -18,6 +18,7 @@
 using Npoi.Core.HSSF.Model;
 using Npoi.Core.HSSF.Record.Chart;
 using System.Diagnostics;
+
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 {
     /// <summary>
@@ -30,6 +31,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
         private AreaFormatRecord areaFormat = null;
         private GelFrameAggregate gelFrame = null;
         private ShapePropsAggregate shapProps = null;
+
         public DropBarAggregate(RecordStream rs, ChartRecordAggregate container)
             : base(RuleName_DROPBAR, container)
         {

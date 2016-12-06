@@ -16,17 +16,17 @@
 ==================================================================== */
 
 using System;
+
 namespace Npoi.Core.SS.UserModel.Charts
 {
-
     /**
      * High level representation of chart axis.
      *
      * @author Roman Kashitsyn
      */
+
     public interface IChartAxis
     {
-
         /**
          * @return axis id
          */
@@ -60,7 +60,7 @@ namespace Npoi.Core.SS.UserModel.Charts
         bool IsSetMinimum { get; }
 
         /**
-         * get or set axis minimum 
+         * get or set axis minimum
          * 0.0 if not Set
          */
         double Minimum { get; set; }
@@ -71,7 +71,7 @@ namespace Npoi.Core.SS.UserModel.Charts
         bool IsSetMaximum { get; }
 
         /**
-         * get or set axis maximum 
+         * get or set axis maximum
          * 0.0 if not Set
          */
         double Maximum { get; set; }
@@ -90,6 +90,7 @@ namespace Npoi.Core.SS.UserModel.Charts
          * Declare this axis cross another axis.
          * @param axis that this axis should cross
          */
+
         void CrossAxis(IChartAxis axis);
 
         /**
@@ -107,6 +108,4 @@ namespace Npoi.Core.SS.UserModel.Charts
          */
         AxisTickMark MinorTickMark { get; set; }
     }
-
-
 }

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Npoi.Core.SS.UserModel.Drawing
 {
     public static class OfficeArtProperties
     {
         #region FillStyle
+
         public const int fillType = 0x180;
         public const int fillColor = 0x181;
         public const int fillOpacity = 0x182;
@@ -49,7 +48,8 @@ namespace Npoi.Core.SS.UserModel.Drawing
         public const int reserved423 = 0x1a7;
         public const int fillStyleBoolean = 0x1bf;
 
-        private static Dictionary<int, string> fillStyle = new Dictionary<int,string>();
+        private static Dictionary<int, string> fillStyle = new Dictionary<int, string>();
+
         private static void InitFillStyle()
         {
             fillStyle.Add(0x180, "fillType");
@@ -94,12 +94,14 @@ namespace Npoi.Core.SS.UserModel.Drawing
             fillStyle.Add(0x1a7, "reserved423");
             fillStyle.Add(0x1bf, "fillStyleBoolean");
         }
+
         public static string GetFillStyleName(int optionId)
         {
             if (fillStyle.ContainsKey(optionId))
                 return fillStyle[optionId];
             return "Unknown";
         }
-        #endregion
+
+        #endregion FillStyle
     }
 }

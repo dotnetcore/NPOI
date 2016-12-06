@@ -17,35 +17,35 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
-
 
 namespace Npoi.Core.Util
 {
     using System;
     using System.IO;
 
-	public class PushbackStream:Stream
-	{
-		private int buf = -1;
+    public class PushbackStream : Stream
+    {
+        private int buf = -1;
 
         private Stream s;
-		public PushbackStream(
-			Stream s)
-		{
+
+        public PushbackStream(
+            Stream s)
+        {
             this.s = s;
-		}
+        }
 
         protected override void Dispose(bool disposing)
         {
-			s?.Dispose();
-			this.s = null;
+            s?.Dispose();
+            this.s = null;
 
             base.Dispose(disposing);
         }
@@ -63,16 +63,16 @@ namespace Npoi.Core.Util
         /// Methods were called after the stream was closed.
         /// </exception>
 		public override int ReadByte()
-		{
-			if (buf != -1)
-			{
-				int tmp = buf;
-				buf = -1;
-				return tmp;
-			}
+        {
+            if (buf != -1)
+            {
+                int tmp = buf;
+                buf = -1;
+                return tmp;
+            }
 
-			return s.ReadByte();
-		}
+            return s.ReadByte();
+        }
 
         /// <summary>
         /// When overridden in a derived class, reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.
@@ -102,30 +102,31 @@ namespace Npoi.Core.Util
         /// Methods were called after the stream was closed.
         /// </exception>
 		public override int Read(byte[] buffer, int offset, int count)
-		{
-			if (buf != -1 && count > 0)
-			{
-				// TODO Can this case be made more efficient?
-				buffer[offset] = (byte) buf;
-				buf = -1;
-				return 1;
-			}
+        {
+            if (buf != -1 && count > 0)
+            {
+                // TODO Can this case be made more efficient?
+                buffer[offset] = (byte)buf;
+                buf = -1;
+                return 1;
+            }
 
-			return s.Read(buffer, offset, count);
-		}
+            return s.Read(buffer, offset, count);
+        }
 
         /// <summary>
         /// Unreads the specified b.
         /// </summary>
         /// <param name="b">The b.</param>
 		public virtual void Unread(int b)
-		{
-			if (buf != -1)
-				throw new InvalidOperationException("Can only push back one byte");
+        {
+            if (buf != -1)
+                throw new InvalidOperationException("Can only push back one byte");
 
-			buf = b & 0xFF;
+            buf = b & 0xFF;
             s.Position -= b;
-		}
+        }
+
         /// <summary>
         /// When overridden in a derived class, gets a value indicating whether the current stream supports reading.
         /// </summary>
@@ -136,6 +137,7 @@ namespace Npoi.Core.Util
         {
             get { return s.CanRead; }
         }
+
         /// <summary>
         /// When overridden in a derived class, gets a value indicating whether the current stream supports seeking.
         /// </summary>
@@ -146,6 +148,7 @@ namespace Npoi.Core.Util
         {
             get { return s.CanSeek; }
         }
+
         /// <summary>
         /// When overridden in a derived class, gets a value indicating whether the current stream supports writing.
         /// </summary>
@@ -156,6 +159,7 @@ namespace Npoi.Core.Util
         {
             get { return s.CanWrite; }
         }
+
         /// <summary>
         /// When overridden in a derived class, gets the length in bytes of the stream.
         /// </summary>
@@ -173,6 +177,7 @@ namespace Npoi.Core.Util
         {
             get { return s.Length; }
         }
+
         /// <summary>
         /// When overridden in a derived class, gets or sets the position within the current stream.
         /// </summary>
@@ -194,6 +199,7 @@ namespace Npoi.Core.Util
             get { return s.Position; }
             set { s.Position = value; }
         }
+
         /// <summary>
         /// When overridden in a derived class, clears all buffers for this stream and causes any buffered data to be written to the underlying device.
         /// </summary>
@@ -204,6 +210,7 @@ namespace Npoi.Core.Util
         {
             s.Flush();
         }
+
         /// <summary>
         /// When overridden in a derived class, sets the position within the current stream.
         /// </summary>
@@ -225,6 +232,7 @@ namespace Npoi.Core.Util
         {
             return s.Seek(offset, origin);
         }
+
         /// <summary>
         /// When overridden in a derived class, sets the length of the current stream.
         /// </summary>
@@ -242,6 +250,7 @@ namespace Npoi.Core.Util
         {
             s.SetLength(value);
         }
+
         /// <summary>
         /// When overridden in a derived class, writes a sequence of bytes to the current stream and advances the current position within this stream by the number of bytes written.
         /// </summary>
@@ -270,6 +279,7 @@ namespace Npoi.Core.Util
         {
             s.Write(buffer, offset, count);
         }
+
         /// <summary>
         /// Writes a byte to the current position in the stream and advances the position within the stream by one byte.
         /// </summary>
@@ -287,5 +297,5 @@ namespace Npoi.Core.Util
         {
             s.WriteByte(value);
         }
-	}
+    }
 }

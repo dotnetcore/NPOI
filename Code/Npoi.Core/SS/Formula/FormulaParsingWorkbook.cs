@@ -17,19 +17,18 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
-    using System;
-    using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.PTG;
     using Npoi.Core.SS.Util;
+    using System;
 
     /**
      * Abstracts a workbook for the purpose of formula parsing.<br/>
-     * 
+     *
      * For POI internal use only
-     * 
+     *
      * @author Josh Micich
      */
+
     public interface IFormulaParsingWorkbook
     {
         /// <summary>
@@ -37,7 +36,7 @@ namespace Npoi.Core.SS.Formula
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="sheetIndex">Index of the sheet.</param>
-        /// <returns></returns>        
+        /// <returns></returns>
         IEvaluationName GetName(String name, int sheetIndex);
 
         /// <summary>
@@ -70,6 +69,7 @@ namespace Npoi.Core.SS.Formula
         /// <param name="sheetName">Name of the sheet.</param>
         /// <returns></returns>
         int GetExternalSheetIndex(String sheetName);
+
         /// <summary>
         /// Gets the externSheet index for a sheet from an external workbook
         /// </summary>

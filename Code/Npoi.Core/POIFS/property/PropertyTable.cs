@@ -17,30 +17,29 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
-using System.IO;
-using System.Collections.Generic;
-
-using Npoi.Core.POIFS.Storage;
 using Npoi.Core.POIFS.Common;
+using Npoi.Core.POIFS.Storage;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Npoi.Core.POIFS.Properties
 {
     public class PropertyTable : PropertyTableBase, BlockWritable
     {
-
         private POIFSBigBlockSize _bigBigBlockSize;
         private BlockWritable[] _blocks;
         /**
          * Default constructor
          */
+
         public PropertyTable(HeaderBlock headerBlock) : base(headerBlock)
         {
             _bigBigBlockSize = headerBlock.BigBlockSize;
@@ -58,14 +57,14 @@ namespace Npoi.Core.POIFS.Properties
          * @exception IOException if anything goes wrong (which should be
          *            a result of the input being NFG)
          */
-        public PropertyTable(HeaderBlock headerBlock, 
+
+        public PropertyTable(HeaderBlock headerBlock,
                              RawDataBlockList blockList)
-            : base(headerBlock, 
-                    PropertyFactory.ConvertToProperties( blockList.FetchBlocks(headerBlock.PropertyStart, -1) ) )
+            : base(headerBlock,
+                    PropertyFactory.ConvertToProperties(blockList.FetchBlocks(headerBlock.PropertyStart, -1)))
         {
             _bigBigBlockSize = headerBlock.BigBlockSize;
-            _blocks      = null;
-
+            _blocks = null;
         }
 
         /**
@@ -74,17 +73,15 @@ namespace Npoi.Core.POIFS.Properties
 
         public void PreWrite()
         {
-
             List<Property> properties = new List<Property>(_properties.Count);
 
             for (int i = 0; i < _properties.Count; i++)
                 properties.Add(_properties[i]);
 
-
             // give each property its index
             for (int k = 0; k < properties.Count; k++)
             {
-                properties[ k ].Index = k;
+                properties[k].Index = k;
             }
 
             // allocate the blocks for the property table
@@ -93,11 +90,9 @@ namespace Npoi.Core.POIFS.Properties
             // prepare each property for writing
             for (int k = 0; k < properties.Count; k++)
             {
-                properties[ k ].PreWrite();
+                properties[k].PreWrite();
             }
         }
-
-
 
         /* ********** START implementation of BATManaged ********** */
 
@@ -128,7 +123,7 @@ namespace Npoi.Core.POIFS.Properties
             {
                 for (int j = 0; j < _blocks.Length; j++)
                 {
-                    _blocks[ j ].WriteBlocks(stream);
+                    _blocks[j].WriteBlocks(stream);
                 }
             }
         }

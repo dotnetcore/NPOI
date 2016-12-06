@@ -17,23 +17,23 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System.Collections.Generic;
 
 namespace Npoi.Core.HPSF
 {
-    using System;
-    using System.IO;
     using Npoi.Core.HPSF.Wellknown;
     using Npoi.Core.POIFS.FileSystem;
     using Npoi.Core.Util;
+    using System;
+    using System.IO;
     using System.Text;
 
     /// <summary>
@@ -59,7 +59,7 @@ namespace Npoi.Core.HPSF
     /// general {@link PropertySet}.  However, the current implementation
     /// went the other way round historically: the convenience classes came
     /// only late To my mind.
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// klute@rainer-klute.de
     /// @since 2002-02-09
     /// </summary>
@@ -70,7 +70,7 @@ namespace Npoi.Core.HPSF
      * The id to name mapping of the properties
      *  in this set.
      */
-        public abstract PropertyIDMap PropertySetIDMap{get;}
+        public abstract PropertyIDMap PropertySetIDMap { get; }
 
         /**
          * The "real" property Set <c>SpecialPropertySet</c>
@@ -78,46 +78,36 @@ namespace Npoi.Core.HPSF
          */
         private MutablePropertySet delegate1;
 
-
-
         /// <summary>
         /// Initializes a new instance of the <see cref="SpecialPropertySet"/> class.
         /// </summary>
         /// <param name="ps">The property Set To be encapsulated by the <c>SpecialPropertySet</c></param>
-        public SpecialPropertySet(PropertySet ps)
-        {
+        public SpecialPropertySet(PropertySet ps) {
             delegate1 = new MutablePropertySet(ps);
         }
-
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpecialPropertySet"/> class.
         /// </summary>
         /// <param name="ps">The mutable property Set To be encapsulated by the <c>SpecialPropertySet</c></param>
-        public SpecialPropertySet(MutablePropertySet ps)
-        {
+        public SpecialPropertySet(MutablePropertySet ps) {
             delegate1 = ps;
         }
-
 
         /// <summary>
         /// gets or sets the "byteOrder" property.
         /// </summary>
         /// <value>the byteOrder value To Set</value>
-        public override int ByteOrder
-        {
+        public override int ByteOrder {
             get { return delegate1.ByteOrder; }
             set { delegate1.ByteOrder = value; }
         }
-
 
         /// <summary>
         /// gets or sets the "format" property
         /// </summary>
         /// <value>the format value To Set</value>
-        public override int Format
-        {
+        public override int Format {
             get { return delegate1.Format; }
             set { delegate1.Format = value; }
         }
@@ -127,29 +117,23 @@ namespace Npoi.Core.HPSF
         /// field.
         /// </summary>
         /// <value>The property Set stream's low-level "class ID" field</value>
-        public override ClassID ClassID
-        {
+        public override ClassID ClassID {
             get { return delegate1.ClassID; }
             set { delegate1.ClassID = value; }
         }
-
 
         /// <summary>
         /// Returns the number of {@link Section}s in the property
         /// Set.
         /// </summary>
         /// <value>The number of {@link Section}s in the property Set.</value>
-        public override int SectionCount
-        {
+        public override int SectionCount {
             get { return delegate1.SectionCount; }
         }
 
-
-        public override List<Section> Sections
-        {
+        public override List<Section> Sections {
             get { return delegate1.Sections; }
         }
-
 
         /// <summary>
         /// Checks whether this {@link PropertySet} represents a Summary
@@ -159,13 +143,11 @@ namespace Npoi.Core.HPSF
         /// 	<c>true</c> Checks whether this {@link PropertySet} represents a Summary
         /// Information; otherwise, <c>false</c>.
         /// </value>
-        public override bool IsSummaryInformation
-        {
-            get{return delegate1.IsSummaryInformation;}
+        public override bool IsSummaryInformation {
+            get { return delegate1.IsSummaryInformation; }
         }
 
-        public override Stream ToInputStream() 
-        {
+        public override Stream ToInputStream() {
             return delegate1.ToInputStream();
         }
 
@@ -182,18 +164,15 @@ namespace Npoi.Core.HPSF
         /// if this {@link PropertySet}
         /// represents a Document Summary Information, else
         /// <c>false</c>
-        public override bool IsDocumentSummaryInformation
-        {
-            get{return delegate1.IsDocumentSummaryInformation;}
+        public override bool IsDocumentSummaryInformation {
+            get { return delegate1.IsDocumentSummaryInformation; }
         }
-
 
         /// <summary>
         /// Gets the PropertySet's first section.
         /// </summary>
         /// <value>The {@link PropertySet}'s first section.</value>
-        public override Section FirstSection
-        {
+        public override Section FirstSection {
             get { return delegate1.FirstSection; }
         }
 
@@ -203,28 +182,23 @@ namespace Npoi.Core.HPSF
         /// <param name="section">The {@link Section} To Add. It will be Appended
         /// after any sections that are alReady present in the property Set
         /// and thus become the last section.</param>
-        public override void AddSection(Section section)
-        {
+        public override void AddSection(Section section) {
             delegate1.AddSection(section);
         }
-
 
         /// <summary>
         /// Removes all sections from this property Set.
         /// </summary>
-        public override void ClearSections()
-        {
+        public override void ClearSections() {
             delegate1.ClearSections();
         }
-
 
         /// <summary>
         /// gets or sets the "osVersion" property
         /// </summary>
         /// <value> the osVersion value To Set</value>
-        public override int OSVersion
-        {
-            set { delegate1.OSVersion=value; }
+        public override int OSVersion {
+            set { delegate1.OSVersion = value; }
             get { return delegate1.OSVersion; }
         }
 
@@ -234,23 +208,17 @@ namespace Npoi.Core.HPSF
         /// <param name="dir">The directory in the POI filesystem To Write the document To</param>
         /// <param name="name">The document's name. If there is alReady a document with the
         /// same name in the directory the latter will be overwritten.</param>
-        public override void Write(DirectoryEntry dir, String name)
-        {
+        public override void Write(DirectoryEntry dir, String name) {
             delegate1.Write(dir, name);
         }
-
-
 
         /// <summary>
         /// Writes the property Set To an output stream.
         /// </summary>
         /// <param name="out1">the output stream To Write the section To</param>
-        public override void Write(Stream out1)
-        {
+        public override void Write(Stream out1) {
             delegate1.Write(out1);
         }
-
-
 
         /// <summary>
         /// Returns <c>true</c> if the <c>PropertySet</c> is equal
@@ -265,13 +233,9 @@ namespace Npoi.Core.HPSF
         /// <c>false</c>
         /// if not
         /// </returns>
-        public override bool Equals(Object o)
-        {
+        public override bool Equals(Object o) {
             return delegate1.Equals(o);
         }
-
-
-
 
         /// <summary>
         /// Convenience method returning the {@link Property} array
@@ -284,12 +248,9 @@ namespace Npoi.Core.HPSF
         /// The properties of the only {@link Section} of this
         /// {@link PropertySet}.
         /// </value>
-        public override Property[] Properties
-        {
+        public override Property[] Properties {
             get { return delegate1.Properties; }
         }
-
-
 
         /// <summary>
         /// Convenience method returning the value of the property with
@@ -299,11 +260,9 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="id">The property ID</param>
         /// <returns>The property value</returns>
-        public override Object GetProperty(int id)
-        {
+        public override Object GetProperty(int id) {
             return delegate1.GetProperty(id);
         }
-
 
         /// <summary>
         /// Convenience method returning the value of a bool property
@@ -315,12 +274,9 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="id">The property ID</param>
         /// <returns>The property value</returns>
-        public override bool GetPropertyBooleanValue(int id)
-        {
+        public override bool GetPropertyBooleanValue(int id) {
             return delegate1.GetPropertyBooleanValue(id);
         }
-
-
 
         /// <summary>
         /// Convenience method returning the value of the numeric
@@ -331,8 +287,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="id">The property ID</param>
         /// <returns>The propertyIntValue value</returns>
-        public override int GetPropertyIntValue(int id)
-        {
+        public override int GetPropertyIntValue(int id) {
             return delegate1.GetPropertyIntValue(id);
         }
 
@@ -341,35 +296,30 @@ namespace Npoi.Core.HPSF
          *  best to return it as a String
          * @return The property as a String, or null if unavailable
          */
-        protected String GetPropertyStringValue(int propertyId)
-        {
+
+        protected String GetPropertyStringValue(int propertyId) {
             Object propertyValue = GetProperty(propertyId);
             return GetPropertyStringValue(propertyValue);
         }
-        protected static String GetPropertyStringValue(Object propertyValue) 
-        {
+
+        protected static String GetPropertyStringValue(Object propertyValue) {
             // Normal cases
             if (propertyValue == null) return null;
             if (propertyValue is String) return (String)propertyValue;
 
             // Do our best with some edge cases
-            if (propertyValue is byte[])
-            {
+            if (propertyValue is byte[]) {
                 byte[] b = (byte[])propertyValue;
-                if (b.Length == 0)
-                {
+                if (b.Length == 0) {
                     return "";
                 }
-                if (b.Length == 1)
-                {
+                if (b.Length == 1) {
                     return b[0].ToString();
                 }
-                if (b.Length == 2)
-                {
+                if (b.Length == 2) {
                     return LittleEndian.GetUShort(b).ToString();
                 }
-                if (b.Length == 4)
-                {
+                if (b.Length == 4) {
                     return LittleEndian.GetUInt(b).ToString();
                 }
                 // Maybe it's a string? who knows!
@@ -384,12 +334,9 @@ namespace Npoi.Core.HPSF
         /// <returns>
         /// A hash code for the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override int GetHashCode()
-        {
+        public override int GetHashCode() {
             return delegate1.GetHashCode();
         }
-
-
 
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
@@ -397,12 +344,9 @@ namespace Npoi.Core.HPSF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override String ToString()
-        {
+        public override String ToString() {
             return delegate1.ToString();
         }
-
-
 
         /// <summary>
         /// Checks whether the property which the last call To {@link
@@ -418,10 +362,8 @@ namespace Npoi.Core.HPSF
         /// #GetPropertyIntValue} or {@link #GetProperty} tried To access a
         /// property that Was not available; otherwise, <c>false</c>.
         /// </value>
-        public override bool WasNull
-        {
+        public override bool WasNull {
             get { return delegate1.WasNull; }
         }
-
     }
 }

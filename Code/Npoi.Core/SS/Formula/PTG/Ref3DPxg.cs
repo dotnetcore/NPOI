@@ -17,20 +17,20 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-
     using Npoi.Core.SS.Util;
-    using System.Text;
     using Npoi.Core.Util;
+    using System;
+    using System.Text;
 
     /**
      * <p>Title:        XSSF 3D Reference</p>
      * <p>Description:  Defines a cell in an external or different sheet.</p>
      * <p>REFERENCE: </p>
-     * 
+     *
      * <p>This is XSSF only, as it stores the sheet / book references
      *  in String form. The HSSF equivalent using indexes is {@link Ref3DPtg}</p>
      */
+
     public class Ref3DPxg : RefPtgBase, Pxg3D
     {
         private int externalWorkbookNumber = -1;
@@ -40,8 +40,8 @@ namespace Npoi.Core.SS.Formula.PTG
         public Ref3DPxg(int externalWorkbookNumber, SheetIdentifier sheetName, String cellref)
             : this(externalWorkbookNumber, sheetName, new CellReference(cellref))
         {
-
         }
+
         public Ref3DPxg(int externalWorkbookNumber, SheetIdentifier sheetName, CellReference c)
             : base(c)
         {
@@ -60,12 +60,11 @@ namespace Npoi.Core.SS.Formula.PTG
         public Ref3DPxg(SheetIdentifier sheetName, String cellref)
             : this(sheetName, new CellReference(cellref))
         {
-
         }
+
         public Ref3DPxg(SheetIdentifier sheetName, CellReference c)
             : this(-1, sheetName, c)
         {
-
         }
 
         public override String ToString()
@@ -98,6 +97,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 return externalWorkbookNumber;
             }
         }
+
         public String SheetName
         {
             get
@@ -109,11 +109,13 @@ namespace Npoi.Core.SS.Formula.PTG
                 firstSheetName = value;
             }
         }
+
         public string LastSheetName
         {
             get { return lastSheetName; }
             set { lastSheetName = value; }
         }
+
         public String Format2DRefAsString()
         {
             return FormatReferenceAsString();
@@ -149,6 +151,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 return 1;
             }
         }
+
         public override void Write(ILittleEndianOutput out1)
         {
             throw new InvalidOperationException("XSSF-only Ptg, should not be serialised");

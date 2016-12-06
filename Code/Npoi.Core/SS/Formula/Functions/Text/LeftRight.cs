@@ -18,29 +18,34 @@
  * Created on May 15, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
      *
      */
+
     public class LeftRight : Var1or2ArgFunction
     {
         private static ValueEval DEFAULT_ARG1 = new NumberEval(1.0);
         private bool _isLeft;
+
         public LeftRight(bool isLeft)
         {
             _isLeft = isLeft;
         }
+
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0)
         {
             return Evaluate(srcRowIndex, srcColumnIndex, arg0, DEFAULT_ARG1);
         }
+
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0,
-				ValueEval arg1)
+                ValueEval arg1)
         {
             String arg;
             int index;

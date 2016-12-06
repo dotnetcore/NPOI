@@ -17,21 +17,18 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
-
-using System;
-using System.IO;
-
 
 using Npoi.Core.POIFS.Common;
 using Npoi.Core.Util;
-
+using System;
+using System.IO;
 
 namespace Npoi.Core.POIFS.Storage
 {
@@ -45,8 +42,8 @@ namespace Npoi.Core.POIFS.Storage
         /// create a document block from a raw data block
         /// </summary>
         /// <param name="block">The block.</param>
-        public DocumentBlock(RawDataBlock block) : 
-			base(block.BigBlockSize == POIFSConstants.SMALLER_BIG_BLOCK_SIZE ? 
+        public DocumentBlock(RawDataBlock block) :
+            base(block.BigBlockSize == POIFSConstants.SMALLER_BIG_BLOCK_SIZE ?
                     POIFSConstants.SMALLER_BIG_BLOCK_SIZE_DETAILS : POIFSConstants.LARGER_BIG_BLOCK_SIZE_DETAILS)
         {
             _data = block.Data;
@@ -62,11 +59,11 @@ namespace Npoi.Core.POIFS.Storage
             : this(bigBlockSize)
         {
             int count = IOUtils.ReadFully(stream, _data);
-            _bytes_Read = (count == -1) ? 0: count;
+            _bytes_Read = (count == -1) ? 0 : count;
         }
 
         public DocumentBlock(POIFSBigBlockSize bigBlockSize)
-            :base(bigBlockSize)
+            : base(bigBlockSize)
         {
             _data = new byte[POIFSConstants.BIG_BLOCK_SIZE];
             Arrays.Fill(_data, _default_value);
@@ -198,6 +195,7 @@ namespace Npoi.Core.POIFS.Storage
             int firstBlockOffset = offset & BLOCK_MASK;
             return new DataInputBlock(blocks[firstBlockIndex]._data, firstBlockOffset);
         }
+
         /// <summary>
         /// Write the storage to an OutputStream
         /// </summary>
@@ -207,6 +205,5 @@ namespace Npoi.Core.POIFS.Storage
         {
             WriteData(stream, _data);
         }
-
     }
 }

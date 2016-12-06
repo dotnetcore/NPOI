@@ -18,14 +18,16 @@
  * Created on May 15, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     public class Trunc : Var1or2ArgFunction
     {
         private static NumberEval TRUNC_ARG2_DEFAULT = new NumberEval(0);
+
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0)
         {
             return Evaluate(srcRowIndex, srcColumnIndex, arg0, TRUNC_ARG2_DEFAULT);
@@ -40,9 +42,9 @@ namespace Npoi.Core.SS.Formula.Functions
                 double d1 = NumericFunction.SingleOperandEvaluate(arg1, srcRowIndex, srcColumnIndex);
                 double multi = Math.Pow(10d, d1);
                 if (d0 < 0)
-                    result = -Math.Floor(-d0*multi)/multi;
+                    result = -Math.Floor(-d0 * multi) / multi;
                 else
-                    result = Math.Floor(d0*multi)/multi;
+                    result = Math.Floor(d0 * multi) / multi;
                 //result = Math.Floor(d0 * multi) / multi;
                 NumericFunction.CheckValue(result);
             }

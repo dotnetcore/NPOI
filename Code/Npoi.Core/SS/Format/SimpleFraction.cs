@@ -14,14 +14,14 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-using System;
+
 using Npoi.Core.Util;
+using System;
+
 namespace Npoi.Core.SS.Format
 {
     public class SimpleFraction
     {
-
-
         /** The denominator. */
         private int denominator;
 
@@ -29,11 +29,12 @@ namespace Npoi.Core.SS.Format
         private int numerator;
         /**
          * Create a fraction given a double value and a denominator.
-         * 
+         *
          * @param val double value of fraction
          * @param exactDenom the exact denominator
          * @return a SimpleFraction with the given values set.
          */
+
         public static SimpleFraction BuildFractionExactDenominator(double val, int exactDenom)
         {
             int num = (int)Math.Round(val * (double)exactDenom, MidpointRounding.AwayFromZero);
@@ -46,15 +47,17 @@ namespace Npoi.Core.SS.Format
          *
          * @param value the double value to convert to a fraction.
          * @param maxDenominator maximum denominator value allowed.
-         * 
+         *
          * @throws RuntimeException if the continued fraction failed to
          *      converge.
          * @throws IllegalArgumentException if value > Integer.MAX_VALUE
          */
+
         public static SimpleFraction BuildFractionMaxDenominator(double value, int maxDenominator)
         {
             return BuildFractionMaxDenominator(value, 0, maxDenominator, 100);
         }
+
         /**
          * Create a fraction given the double value and either the maximum error
          * allowed or the maximum number of denominator digits.
@@ -78,6 +81,7 @@ namespace Npoi.Core.SS.Format
          *         converge.
          * @throws IllegalArgumentException if value > Integer.MAX_VALUE
          */
+
         private static SimpleFraction BuildFractionMaxDenominator(double value, double epsilon, int maxDenominator, int maxIterations)
         {
             long overflow = long.MaxValue;
@@ -116,7 +120,6 @@ namespace Npoi.Core.SS.Format
                 if (epsilon == 0.0f && maxDenominator > 0 && Math.Abs(q2) > maxDenominator &&
                         Math.Abs(q1) < maxDenominator)
                 {
-
                     return new SimpleFraction((int)p1, (int)q1);
                 }
                 if ((p2 > overflow) || (q2 > overflow))
@@ -153,7 +156,6 @@ namespace Npoi.Core.SS.Format
             {
                 return new SimpleFraction((int)p1, (int)q1);
             }
-
         }
 
         /**
@@ -161,6 +163,7 @@ namespace Npoi.Core.SS.Format
          * @param numerator
          * @param denominator maxDenominator The maximum allowed value for denominator
          */
+
         public SimpleFraction(int numerator, int denominator)
         {
             this.numerator = numerator;
@@ -171,6 +174,7 @@ namespace Npoi.Core.SS.Format
          * Access the denominator.
          * @return the denominator.
          */
+
         public int Denominator
         {
             get
@@ -183,6 +187,7 @@ namespace Npoi.Core.SS.Format
          * Access the numerator.
          * @return the numerator.
          */
+
         public int Numerator
         {
             get
@@ -190,6 +195,5 @@ namespace Npoi.Core.SS.Format
                 return numerator;
             }
         }
-
     }
 }

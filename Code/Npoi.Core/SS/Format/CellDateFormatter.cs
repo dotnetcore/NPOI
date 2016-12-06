@@ -15,11 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
-using System.Text.RegularExpressions;
-using System.Text;
 using Npoi.Core.SS.Util;
+using System;
 using System.Globalization;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Npoi.Core.SS.Format
 {
@@ -28,6 +28,7 @@ namespace Npoi.Core.SS.Format
      *
      * @author Ken Arnold, Industrious Media LLC
      */
+
     public class CellDateFormatter : CellFormatter
     {
         private bool amPmUpper;
@@ -57,13 +58,14 @@ namespace Npoi.Core.SS.Format
             private int mLen;
             private int hStart = -1;
             private int hLen;
+
             public DatePartHandler(CellDateFormatter formatter)
             {
                 this._formatter = formatter;
             }
+
             public String HandlePart(Match m, String part, CellFormatType type, StringBuilder desc)
             {
-
                 int pos = desc.Length;
                 char firstCh = part[0];
                 switch (firstCh)
@@ -89,9 +91,9 @@ namespace Npoi.Core.SS.Format
                     case 'D':
                         mStart = -1;
                         //if (part.Length <= 2)
-                            return part.ToLower();
-                        //else
-                        //    return part.ToLower().Replace('d', 'E');
+                        return part.ToLower();
+                    //else
+                    //    return part.ToLower().Replace('d', 'E');
 
                     case 'm':
                     case 'M':
@@ -135,8 +137,9 @@ namespace Npoi.Core.SS.Format
                                 return "t";
                             //return "a";
                         }
-                    //noinspection fallthrough
+                        //noinspection fallthrough
                         return null;
+
                     default:
                         return null;
                 }
@@ -159,6 +162,7 @@ namespace Npoi.Core.SS.Format
          *
          * @param format The format.
          */
+
         public CellDateFormatter(String format)
             : base(format)
         {
@@ -167,7 +171,7 @@ namespace Npoi.Core.SS.Format
                     CellFormatType.DATE, partHandler);
             partHandler.Finish(descBuf);
             dateFmt = new SimpleDateFormat(descBuf.ToString());
-            
+
             // tweak the format pattern to pass tests on JDK 1.7,
             // See https://issues.apache.org/bugzilla/show_bug.cgi?id=53369
 
@@ -176,6 +180,7 @@ namespace Npoi.Core.SS.Format
         }
 
         /** {@inheritDoc} */
+
         public override void FormatValue(StringBuilder toAppendTo, Object value)
         {
             if (value == null)
@@ -205,7 +210,7 @@ namespace Npoi.Core.SS.Format
             }
 
             dateFmt.Format(newValue, toAppendTo, CultureInfo.CurrentCulture);
-            
+
             //throw new NotImplementedException();
             //AttributedCharacterIterator it = dateFmt.FormatToCharacterIterator(
             //        value);
@@ -264,6 +269,7 @@ namespace Npoi.Core.SS.Format
          * <p/>
          * For a date, this is <tt>"mm/d/y"</tt>.
          */
+
         public override void SimpleValue(StringBuilder toAppendTo, Object value)
         {
             SIMPLE_DATE.FormatValue(toAppendTo, value);

@@ -18,11 +18,13 @@
 namespace Npoi.Core.SS.UserModel
 {
     using System;
+
     /**
      * Contains raw Excel error codes (as defined in OOO's excelfileformat.pdf (2.5.6)
-     * 
+     *
      * @author  Michael Harhen
      */
+
     [Obsolete("Use FormulaError instead where possible")]
     public class ErrorConstants
     {
@@ -46,12 +48,12 @@ namespace Npoi.Core.SS.UserModel
         /** <b>#N/A</b> - Argument or function not available */
         public const int ERROR_NA = 0x2A;
 
-
         /**
-         * @return Standard Excel error literal for the specified error code. 
-         * @throws ArgumentException if the specified error code is not one of the 7 
+         * @return Standard Excel error literal for the specified error code.
+         * @throws ArgumentException if the specified error code is not one of the 7
          * standard error codes
          */
+
         public static String GetText(int errorCode)
         {
             switch (errorCode)
@@ -68,12 +70,13 @@ namespace Npoi.Core.SS.UserModel
         }
 
         /**
-         * @return <c>true</c> if the specified error code is a standard Excel error code. 
+         * @return <c>true</c> if the specified error code is a standard Excel error code.
          */
+
         public static bool IsValidCode(int errorCode)
         {
-            // This method exists because it would be bad to force clients to catch 
-            // ArgumentException if there were potential for passing an invalid error code.  
+            // This method exists because it would be bad to force clients to catch
+            // ArgumentException if there were potential for passing an invalid error code.
             switch (errorCode)
             {
                 case ERROR_NULL:
@@ -88,5 +91,4 @@ namespace Npoi.Core.SS.UserModel
             return false;
         }
     }
-
 }

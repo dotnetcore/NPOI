@@ -17,8 +17,8 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
     using Npoi.Core.Util;
+    using System;
 
     /**
      * bool (bool)
@@ -27,6 +27,7 @@ namespace Npoi.Core.SS.Formula.PTG
      * @author Andrew C. Oliver (acoliver at apache dot org)
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     public class BoolPtg : ScalarConstantPtg
     {
         public const int SIZE = 2;
@@ -37,7 +38,6 @@ namespace Npoi.Core.SS.Formula.PTG
         {
             field_1_value = (in1.ReadByte() == 1);
         }
-
 
         public BoolPtg(String formulaToken)
         {

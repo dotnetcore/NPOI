@@ -17,7 +17,6 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
     using Npoi.Core.Util;
     using System;
     using System.Text;
@@ -30,11 +29,11 @@ namespace Npoi.Core.HSSF.Record
      * @author Jason Height
      * @version 2.0-pre
      */
+
     public class DBCellRecord : StandardRecord
     {
         public const int BLOCK_SIZE = 32;
         public const short sid = 0xd7;
-
 
         public DBCellRecord()
         {
@@ -45,6 +44,7 @@ namespace Npoi.Core.HSSF.Record
          * Constructs a DBCellRecord and Sets its fields appropriately
          * @param in the RecordInputstream to Read the record from
          */
+
         public DBCellRecord(RecordInputStream in1)
         {
             field_1_row_offset = in1.ReadUShort();
@@ -60,11 +60,13 @@ namespace Npoi.Core.HSSF.Record
         private int field_1_row_offset;
         private short[] field_2_cell_offsets;
 
-           /**
-         * offset from the start of this DBCellRecord to the start of the first cell in
-         * the next DBCell block.
-         */
-        public DBCellRecord(int rowOffset, short[]cellOffsets) {
+        /**
+      * offset from the start of this DBCellRecord to the start of the first cell in
+      * the next DBCell block.
+      */
+
+        public DBCellRecord(int rowOffset, short[] cellOffsets)
+        {
             field_1_row_offset = rowOffset;
             field_2_cell_offsets = cellOffsets;
         }
@@ -93,6 +95,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return rowoffset to the start of the first cell in the next DBCell block
          */
+
         public int RowOffset
         {
             get { return field_1_row_offset; }
@@ -105,6 +108,7 @@ namespace Npoi.Core.HSSF.Record
          * @param index of the cell offset to retrieve
          * @return celloffset from the celloffset array
          */
+
         public short GetCellOffsetAt(int index)
         {
             return field_2_cell_offsets[index];
@@ -115,9 +119,10 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return number of cell offsets
          */
+
         public int NumCellOffsets
         {
-            get{return field_2_cell_offsets.Length;}
+            get { return field_2_cell_offsets.Length; }
         }
 
         public override String ToString()
@@ -135,6 +140,7 @@ namespace Npoi.Core.HSSF.Record
             buffer.Append("[/DBCELL]\n");
             return buffer.ToString();
         }
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteInt(field_1_row_offset);
@@ -153,6 +159,7 @@ namespace Npoi.Core.HSSF.Record
          *  @returns the size of the Group of <c>DBCellRecord</c>s needed to encode
          *  the specified number of blocks and rows
          */
+
         public static int CalculateSizeOfRecords(int nBlocks, int nRows)
         {
             // One DBCell per block.

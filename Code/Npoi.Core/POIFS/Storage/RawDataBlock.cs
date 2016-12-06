@@ -17,20 +17,18 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
-
-using System;
-using System.IO;
 
 using Npoi.Core.POIFS.Common;
 using Npoi.Core.Util;
-
+using System;
+using System.IO;
 
 namespace Npoi.Core.POIFS.Storage
 {
@@ -52,8 +50,8 @@ namespace Npoi.Core.POIFS.Storage
         public RawDataBlock(Stream stream)
             : this(stream, POIFSConstants.SMALLER_BIG_BLOCK_SIZE)
         {
-
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="RawDataBlock"/> class.
         /// </summary>
@@ -101,6 +99,7 @@ namespace Npoi.Core.POIFS.Storage
         {
             get { return _eof; }
         }
+
         /// <summary>
         /// Did we actually find any data to read? It's possible,
         /// in the event of a short last block, to both have hit

@@ -17,23 +17,22 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
-    using System;
-    using System.Text;
     using Npoi.Core.SS.Formula.PTG;
     using Npoi.Core.SS.Util;
     using Npoi.Core.Util;
+    using System;
+    using System.Text;
 
     /**
      * ARRAY (0x0221)<p/>
-     * 
+     *
      * Treated in a similar way to SharedFormulaRecord
-     * 
+     *
      * @author Josh Micich
      */
+
     public class ArrayRecord : SharedValueRecordBase
     {
-
         public const short sid = 0x0221;
         private const int OPT_ALWAYS_RECALCULATE = 0x0001;
         private const int OPT_CALCULATE_ON_OPEN = 0x0002;
@@ -45,19 +44,20 @@ namespace Npoi.Core.HSSF.Record
         public ArrayRecord(RecordInputStream in1)
             : base(in1)
         {
-
             _options = in1.ReadUShort();
             _field3notUsed = in1.ReadInt();
             int formulaTokenLen = in1.ReadUShort();
             int totalFormulaLen = in1.Available();
             _formula = Npoi.Core.SS.Formula.Formula.Read(formulaTokenLen, in1, totalFormulaLen);
         }
-        public ArrayRecord(Npoi.Core.SS.Formula.Formula formula, CellRangeAddress8Bit range):base(range)
+
+        public ArrayRecord(Npoi.Core.SS.Formula.Formula formula, CellRangeAddress8Bit range) : base(range)
         {
             _options = 0; //YK: Excel 2007 leaves this field unset
             _field3notUsed = 0;
             _formula = formula;
         }
+
         public bool IsAlwaysRecalculate
         {
             get
@@ -65,6 +65,7 @@ namespace Npoi.Core.HSSF.Record
                 return (_options & OPT_ALWAYS_RECALCULATE) != 0;
             }
         }
+
         public bool IsCalculateOnOpen
         {
             get
@@ -89,6 +90,7 @@ namespace Npoi.Core.HSSF.Record
                     + _formula.EncodedSize;
             }
         }
+
         protected override void SerializeExtraData(ILittleEndianOutput out1)
         {
             out1.WriteShort(_options);

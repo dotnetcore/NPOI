@@ -5,20 +5,22 @@ namespace Npoi.Core.Util
 {
     public class ByteArrayInputStream : Stream
     {
-
         public ByteArrayInputStream()
         {
         }
+
         protected byte[] buf;
         protected int pos;
         protected int mark = 0;
         protected int count;
+
         public ByteArrayInputStream(byte[] buf)
         {
             this.buf = buf;
             this.pos = 0;
             this.count = buf.Length;
         }
+
         public ByteArrayInputStream(byte[] buf, int offset, int length)
         {
             this.buf = buf;
@@ -26,7 +28,7 @@ namespace Npoi.Core.Util
             this.count = Math.Min(offset + length, buf.Length);
             this.mark = offset;
         }
-        
+
         public virtual int Read()
         {
             lock (this)
@@ -34,6 +36,7 @@ namespace Npoi.Core.Util
                 return (pos < count) ? (buf[pos++] & 0xff) : -1;
             }
         }
+
         public override int Read(byte[] b, int off, int len)
         {
             lock (this)
@@ -65,28 +68,31 @@ namespace Npoi.Core.Util
                 pos += len;
                 return len;
             }
-            
         }
+
         public virtual int Available()
         {
             return count - pos;
         }
+
         public virtual bool MarkSupported()
         {
             return true;
         }
+
         public virtual void Mark(int readAheadLimit)
         {
             mark = pos;
         }
+
         public virtual void Reset()
         {
             pos = mark;
         }
+
         protected override void Dispose(bool disposing)
         {
         }
-
 
         public override bool CanRead
         {
@@ -95,6 +101,7 @@ namespace Npoi.Core.Util
                 return true;
             }
         }
+
         public override bool CanWrite
         {
             get
@@ -102,6 +109,7 @@ namespace Npoi.Core.Util
                 return false;
             }
         }
+
         public override bool CanSeek
         {
             get
@@ -172,7 +180,5 @@ namespace Npoi.Core.Util
         {
             throw new NotImplementedException();
         }
-
-
     }
 }

@@ -17,17 +17,16 @@
 
 namespace Npoi.Core.HSSF.Record.PivotTable
 {
-    using System.Text;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
-
-
+    using System.Text;
 
     /**
      * SXIDSTM - Stream ID (0x00D5)<br/>
-     * 
+     *
      * @author Patrick Cheng
      */
+
     public class StreamIDRecord : StandardRecord
     {
         public const short sid = 0x00D5;
@@ -39,12 +38,10 @@ namespace Npoi.Core.HSSF.Record.PivotTable
             idstm = in1.ReadShort();
         }
 
-
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(idstm);
         }
-
 
         protected override int DataSize
         {
@@ -54,7 +51,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
             }
         }
 
-
         public override short Sid
         {
             get
@@ -62,7 +58,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
                 return sid;
             }
         }
-
 
         public override string ToString()
         {

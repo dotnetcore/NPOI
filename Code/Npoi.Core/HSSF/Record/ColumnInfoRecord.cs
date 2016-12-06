@@ -17,10 +17,9 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title: COLINFO Record<p/>
@@ -29,6 +28,7 @@ namespace Npoi.Core.HSSF.Record
      * @author Andrew C. Oliver (acoliver at apache dot org)
      * @version 2.0-pre
      */
+
     public class ColumnInfoRecord : StandardRecord
     {
         public const short sid = 0x7d;
@@ -40,6 +40,7 @@ namespace Npoi.Core.HSSF.Record
         private static BitField hidden = BitFieldFactory.GetInstance(0x01);
         private static BitField outlevel = BitFieldFactory.GetInstance(0x0700);
         private static BitField collapsed = BitFieldFactory.GetInstance(0x1000);
+
         // Excel seems Write values 2, 10, and 260, even though spec says "must be zero"
         private int field_6_reserved;
 
@@ -68,24 +69,29 @@ namespace Npoi.Core.HSSF.Record
                 case 2: // usual case
                     field_6_reserved = in1.ReadUShort();
                     break;
+
                 case 1:
                     // often COLINFO Gets encoded 1 byte short
                     // shouldn't matter because this field Is Unused
                     field_6_reserved = in1.ReadByte();
                     break;
+
                 case 0:
                     // According to bugzilla 48332,
                     // "SoftArtisans OfficeWriter for Excel" totally skips field 6
                     // Excel seems to be OK with this, and assumes zero.
                     field_6_reserved = 0;
                     break;
+
                 default:
                     throw new Exception("Unusual record size remaining=(" + in1.Remaining + ")");
             }
         }
+
         /**
          * @return true if the format, options and column width match
          */
+
         public bool FormatMatches(ColumnInfoRecord other)
         {
             if (_xf_index != other._xf_index)
@@ -110,7 +116,7 @@ namespace Npoi.Core.HSSF.Record
 
         public int FirstColumn
         {
-            get{return _first_col;}
+            get { return _first_col; }
             set { _first_col = value; }
         }
 
@@ -213,6 +219,7 @@ namespace Npoi.Core.HSSF.Record
         {
             return _first_col <= columnIndex && columnIndex <= _last_col;
         }
+
         public bool IsAdjacentBefore(ColumnInfoRecord other)
         {
             return _last_col == other._first_col - 1;
@@ -232,6 +239,7 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteShort(_options);
             out1.WriteShort(field_6_reserved);
         }
+
         public override String ToString()
         {
             StringBuilder buffer = new StringBuilder();
@@ -265,7 +273,5 @@ namespace Npoi.Core.HSSF.Record
             rec.field_6_reserved = field_6_reserved;
             return rec;
         }
-
-        
     }
 }

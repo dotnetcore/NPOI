@@ -17,27 +17,27 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
     using Npoi.Core.Util;
+    using System;
     using System.Text;
-
 
     /**
      * This structure appears as part of an Obj record that represents image display properties.
      */
+
     public class FtPioGrbitSubRecord : SubRecord
     {
         public const short sid = 0x08;
         public const short length = 0x02;
 
         /**
-         * A bit that specifies whether the picture's aspect ratio is preserved when rendered in 
+         * A bit that specifies whether the picture's aspect ratio is preserved when rendered in
          * different views (Normal view, Page Break Preview view, Page Layout view and printing).
          */
         public static int AUTO_PICT_BIT = 1 << 0;
 
         /**
-         * A bit that specifies whether the pictFmla field of the Obj record that Contains 
+         * A bit that specifies whether the pictFmla field of the Obj record that Contains
          * this FtPioGrbit specifies a DDE reference.
          */
         public static int DDE_BIT = 1 << 1;
@@ -82,13 +82,13 @@ namespace Npoi.Core.HSSF.Record
          */
         public static int AUTO_LOAD_BIT = 1 << 9;
 
-
         private short flags = 0;
 
         /**
          * Construct a new <code>FtPioGrbitSubRecord</code> and
          * fill its data with the default values
          */
+
         public FtPioGrbitSubRecord()
         {
         }
@@ -107,6 +107,7 @@ namespace Npoi.Core.HSSF.Record
          * @param bitmask
          * @param enabled
          */
+
         public void SetFlagByBit(int bitmask, bool enabled)
         {
             if (enabled)
@@ -128,6 +129,7 @@ namespace Npoi.Core.HSSF.Record
          * Convert this record to string.
          * Used by BiffViewer and other utilities.
          */
+
         public override String ToString()
         {
             StringBuilder buffer = new StringBuilder();
@@ -143,6 +145,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @param out the stream to serialize into
          */
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(sid);
@@ -161,6 +164,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return id of this record.
          */
+
         public override short Sid
         {
             get

@@ -17,8 +17,8 @@
 
 namespace Npoi.Core.POIFS.FileSystem
 {
-    using System.IO;
     using Npoi.Core.Util;
+    using System.IO;
 
     /**
      * This class provides a wrapper over an OutputStream so that Document
@@ -40,6 +40,7 @@ namespace Npoi.Core.POIFS.FileSystem
          *               read
          * @param limit the maximum number of bytes that can be written
          */
+
         public DocumentOutputStream(Stream stream, int limit)
         {
             _stream = stream;
@@ -59,6 +60,7 @@ namespace Npoi.Core.POIFS.FileSystem
          *                        output stream has been closed, or if the
          *                        Writer tries to write too much data.
          */
+
         public void Write(int b)
         {
             LimitCheck(1);
@@ -72,6 +74,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * @param b the data.
          * @exception IOException if an I/O error occurs.
          */
+
         public void Write(byte[] b)
         {
             Write(b, 0, b.Length);
@@ -93,9 +96,10 @@ namespace Npoi.Core.POIFS.FileSystem
             LimitCheck(len);
             _stream.Write(b, off, len);
         }
-       /// <summary>
+
+        /// <summary>
         /// Flushes this output stream and forces any buffered output bytes to be written out
-       /// </summary>
+        /// </summary>
         public override void Flush()
         {
             _stream.Flush();
@@ -109,12 +113,13 @@ namespace Npoi.Core.POIFS.FileSystem
          *
          * @exception IOException if an I/O error occurs.
          */
-	    protected override void Dispose(bool disposing)
-	    {
-			// ignore this call
-		}
 
-		/**
+        protected override void Dispose(bool disposing)
+        {
+            // ignore this call
+        }
+
+        /**
          * write the rest of the document's data (fill in at the end)
          *
          * @param totalLimit the actual number of bytes the corresponding
@@ -123,7 +128,8 @@ namespace Npoi.Core.POIFS.FileSystem
          *
          * @exception IOException on I/O error
          */
-		public void WriteFiller(int totalLimit, byte Fill)
+
+        public void WriteFiller(int totalLimit, byte Fill)
         {
             if (totalLimit > _written)
             {
@@ -143,5 +149,4 @@ namespace Npoi.Core.POIFS.FileSystem
             _written += toBeWritten;
         }
     }
-
 }

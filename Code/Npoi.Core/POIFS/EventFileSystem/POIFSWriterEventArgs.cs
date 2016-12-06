@@ -17,28 +17,25 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
-using System;
 using Npoi.Core.POIFS.FileSystem;
+using System;
 
 namespace Npoi.Core.POIFS.EventFileSystem
 {
-
-
     /// <summary>
     /// EventArgs for POIFSWriter
     /// author: Tony Qu
     /// </summary>
     public class POIFSWriterEventArgs : EventArgs
     {
-
         private string documentName;
         private int limit;
         private POIFSDocumentPath path;
@@ -58,6 +55,7 @@ namespace Npoi.Core.POIFS.EventFileSystem
             this.documentName = documentName;
             this.limit = limit;
         }
+
         /// <summary>
         /// Gets the limit on writing, in bytes
         /// </summary>

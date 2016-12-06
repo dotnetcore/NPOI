@@ -15,20 +15,20 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
 using Npoi.Core.SS.Formula.Eval;
 using Npoi.Core.Util;
+using System;
 
 namespace Npoi.Core.SS.Formula.Atp
 {
     /**
      * Parser for java dates.
-     * 
+     *
      * @author jfaenomoto@gmail.com
      */
+
     public class DateParser
     {
-
         public DateParser instance = new DateParser();
 
         private DateParser()
@@ -38,11 +38,12 @@ namespace Npoi.Core.SS.Formula.Atp
 
         /**
          * Parses a date from a string.
-         * 
+         *
          * @param strVal a string with a date pattern.
          * @return a date parsed from argument.
          * @throws EvaluationException exception upon parsing.
          */
+
         public static DateTime ParseDate(String strVal)
         {
             String[] parts = strVal.Split("-/".ToCharArray());// Pattern.compile("/").split(strVal);
@@ -96,6 +97,7 @@ namespace Npoi.Core.SS.Formula.Atp
         /**
          * @param month 1-based
          */
+
         private static DateTime MakeDate(int year, int month, int day)
         {
             if (month < 1 || month > 12)
@@ -112,7 +114,5 @@ namespace Npoi.Core.SS.Formula.Atp
             //cal.set(Calendar.DAY_OF_MONTH, day);
             return new DateTime(year, month, day);
         }
-
     }
-
 }

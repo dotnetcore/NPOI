@@ -14,15 +14,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 using Npoi.Core.POIFS.FileSystem;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System;
+
 namespace Npoi.Core.Util
 {
     public class POIUtils
     {
-
         /**
          * Copies an Entry into a target POIFS directory, recursively
          */
@@ -55,7 +56,7 @@ namespace Npoi.Core.Util
 
         /**
          * Copies nodes from one POIFS to the other minus the excepts
-         * 
+         *
          * @param source
          *            is the source POIFS to copy from
          * @param target
@@ -63,6 +64,7 @@ namespace Npoi.Core.Util
          * @param excepts
          *            is a list of Strings specifying what nodes NOT to copy
          */
+
         public static void CopyNodes(DirectoryEntry sourceRoot,
                 DirectoryEntry targetRoot, List<String> excepts)
         {
@@ -79,7 +81,7 @@ namespace Npoi.Core.Util
 
         /**
          * Copies nodes from one POIFS to the other minus the excepts
-         * 
+         *
          * @param source
          *            is the source POIFS to copy from
          * @param target
@@ -87,6 +89,7 @@ namespace Npoi.Core.Util
          * @param excepts
          *            is a list of Strings specifying what nodes NOT to copy
          */
+
         public static void CopyNodes(POIFSFileSystem source,
                 POIFSFileSystem target, List<String> excepts)
         {
@@ -94,5 +97,4 @@ namespace Npoi.Core.Util
             CopyNodes(source.Root, target.Root, excepts);
         }
     }
-
 }

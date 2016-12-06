@@ -15,14 +15,12 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Model
 {
-    using System;
-
-    using Npoi.Core.HSSF.Record;
     using Npoi.Core.DDF;
+    using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.UserModel;
+    using System;
 
     /// <summary>
     /// Represents a line shape and Creates all the line specific low level records.
@@ -40,8 +38,7 @@ namespace Npoi.Core.HSSF.Model
         /// </summary>
         /// <param name="hssfShape">The user model shape</param>
         /// <param name="shapeId">The identifier to use for this shape.</param>
-        public LineShape(HSSFSimpleShape hssfShape, int shapeId)
-        {
+        public LineShape(HSSFSimpleShape hssfShape, int shapeId) {
             spContainer = CreateSpContainer(hssfShape, shapeId);
             objRecord = CreateObjRecord(hssfShape, shapeId);
         }
@@ -52,8 +49,7 @@ namespace Npoi.Core.HSSF.Model
         /// <param name="hssfShape">The HSSF shape.</param>
         /// <param name="shapeId">The shape id.</param>
         /// <returns></returns>
-        private EscherContainerRecord CreateSpContainer(HSSFSimpleShape hssfShape, int shapeId)
-        {
+        private EscherContainerRecord CreateSpContainer(HSSFSimpleShape hssfShape, int shapeId) {
             HSSFShape shape = hssfShape;
 
             EscherContainerRecord spContainer = new EscherContainerRecord();
@@ -62,25 +58,25 @@ namespace Npoi.Core.HSSF.Model
             EscherRecord anchor = new EscherClientAnchorRecord();
             EscherClientDataRecord clientData = new EscherClientDataRecord();
 
-            spContainer.RecordId=EscherContainerRecord.SP_CONTAINER;
-            spContainer.Options=(short)0x000F;
-            sp.RecordId=EscherSpRecord.RECORD_ID;
-            sp.Options=(short)((EscherAggregate.ST_LINE << 4) | 0x2);
+            spContainer.RecordId = EscherContainerRecord.SP_CONTAINER;
+            spContainer.Options = (short)0x000F;
+            sp.RecordId = EscherSpRecord.RECORD_ID;
+            sp.Options = (short)((EscherAggregate.ST_LINE << 4) | 0x2);
 
-            sp.ShapeId=shapeId;
-            sp.Flags=EscherSpRecord.FLAG_HAVEANCHOR | EscherSpRecord.FLAG_HASSHAPETYPE;
-            opt.RecordId=EscherOptRecord.RECORD_ID;
+            sp.ShapeId = shapeId;
+            sp.Flags = EscherSpRecord.FLAG_HAVEANCHOR | EscherSpRecord.FLAG_HASSHAPETYPE;
+            opt.RecordId = EscherOptRecord.RECORD_ID;
             opt.AddEscherProperty(new EscherShapePathProperty(EscherProperties.GEOMETRY__SHAPEPATH, EscherShapePathProperty.COMPLEX));
             opt.AddEscherProperty(new EscherBoolProperty(EscherProperties.LINESTYLE__NOLINEDRAWDASH, 1048592));
             AddStandardOptions(shape, opt);
             HSSFAnchor userAnchor = shape.Anchor;
             if (userAnchor.IsHorizontallyFlipped)
-                sp.Flags=sp.Flags | EscherSpRecord.FLAG_FLIPHORIZ;
+                sp.Flags = sp.Flags | EscherSpRecord.FLAG_FLIPHORIZ;
             if (userAnchor.IsVerticallyFlipped)
-                sp.Flags=sp.Flags | EscherSpRecord.FLAG_FLIPVERT;
+                sp.Flags = sp.Flags | EscherSpRecord.FLAG_FLIPVERT;
             anchor = CreateAnchor(userAnchor);
-            clientData.RecordId=EscherClientDataRecord.RECORD_ID;
-            clientData.Options=((short)0x0000);
+            clientData.RecordId = EscherClientDataRecord.RECORD_ID;
+            clientData.Options = ((short)0x0000);
 
             spContainer.AddChildRecord(sp);
             spContainer.AddChildRecord(opt);
@@ -96,8 +92,7 @@ namespace Npoi.Core.HSSF.Model
         /// <param name="hssfShape">The HSSF shape.</param>
         /// <param name="shapeId">The shape id.</param>
         /// <returns></returns>
-        private ObjRecord CreateObjRecord(HSSFShape hssfShape, int shapeId)
-        {
+        private ObjRecord CreateObjRecord(HSSFShape hssfShape, int shapeId) {
             HSSFShape shape = hssfShape;
 
             ObjRecord obj = new ObjRecord();
@@ -121,19 +116,16 @@ namespace Npoi.Core.HSSF.Model
         /// shape.
         /// </summary>
         /// <value></value>
-        public override EscherContainerRecord SpContainer
-        {
-           get{ return spContainer;}
+        public override EscherContainerRecord SpContainer {
+            get { return spContainer; }
         }
 
         /// <summary>
         /// The object record that is associated with this shape.
         /// </summary>
         /// <value></value>
-        public override ObjRecord ObjRecord
-        {
+        public override ObjRecord ObjRecord {
             get { return objRecord; }
         }
-
     }
 }

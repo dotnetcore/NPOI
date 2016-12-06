@@ -17,49 +17,54 @@
 
 namespace Npoi.Core.SS.UserModel.Charts
 {
-
     /**
      * High level representation of chart element manual layout.
      *
      * @author Roman Kashitsyn
      */
+
     public interface IManualLayout
     {
-
         /**
          * Sets the layout target.
          * @param target new layout target.
          */
+
         void SetTarget(LayoutTarget target);
 
         /**
          * Returns current layout target.
          * @return current layout target
          */
+
         LayoutTarget GetTarget();
 
         /**
          * Sets the x-coordinate layout mode.
          * @param mode new x-coordinate layout mode.
          */
+
         void SetXMode(LayoutMode mode);
 
         /**
          * Returns current x-coordinnate layout mode.
          * @return current x-coordinate layout mode.
          */
+
         LayoutMode GetXMode();
 
         /**
          * Sets the y-coordinate layout mode.
          * @param mode new y-coordinate layout mode.
          */
+
         void SetYMode(LayoutMode mode);
 
         /**
          * Returns current y-coordinate layout mode.
          * @return current y-coordinate layout mode.
          */
+
         LayoutMode GetYMode();
 
         /**
@@ -67,6 +72,7 @@ namespace Npoi.Core.SS.UserModel.Charts
          * @return the x location (left) of the chart element or 0.0 if
          *         not Set.
          */
+
         double GetX();
 
         /**
@@ -75,14 +81,15 @@ namespace Npoi.Core.SS.UserModel.Charts
          * then the position is relative to the default position for the
          * chart element.
          */
-        void SetX(double x);
 
+        void SetX(double x);
 
         /**
          * Returns current y location of the chart element.
          * @return the y location (top) of the chart element or 0.0 if not
          *         Set.
          */
+
         double GetY();
 
         /**
@@ -91,21 +98,22 @@ namespace Npoi.Core.SS.UserModel.Charts
          * then the position is relative to the default position for the
          * chart element.
          */
-        void SetY(double y);
 
+        void SetY(double y);
 
         /**
          * Specifies how to interpret the Width element for this manual
          * layout.
          * @param mode new width layout mode of this manual layout.
          */
-        void SetWidthMode(LayoutMode mode);
 
+        void SetWidthMode(LayoutMode mode);
 
         /**
          * Returns current width mode of this manual layout.
          * @return width mode of this manual layout.
          */
+
         LayoutMode GetWidthMode();
 
         /**
@@ -113,12 +121,14 @@ namespace Npoi.Core.SS.UserModel.Charts
          * layout.
          * @param mode new height mode of this manual layout.
          */
+
         void SetHeightMode(LayoutMode mode);
 
         /**
-         * Returns current height mode of this 
+         * Returns current height mode of this
          * @return height mode of this manual layout.
          */
+
         LayoutMode GetHeightMode();
 
         /**
@@ -127,12 +137,14 @@ namespace Npoi.Core.SS.UserModel.Charts
          * width of the chart.
          * @param ratio a fraction of the width of the chart.
          */
+
         void SetWidthRatio(double ratio);
 
         /**
          * Returns current fraction of the width of the chart.
          * @return fraction of the width of the chart or 0.0 if not Set.
          */
+
         double GetWidthRatio();
 
         /**
@@ -141,15 +153,14 @@ namespace Npoi.Core.SS.UserModel.Charts
          * height of the chart.
          * @param ratio a fraction of the height of the chart.
          */
+
         void SetHeightRatio(double ratio);
 
         /**
          * Returns current fraction of the height of the chart.
          * @return fraction of the height of the chart or 0.0 if not Set.
          */
-        double GetHeightRatio();
 
+        double GetHeightRatio();
     }
 }
-
-

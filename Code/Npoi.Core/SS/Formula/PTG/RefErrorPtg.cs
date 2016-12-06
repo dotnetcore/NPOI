@@ -17,19 +17,17 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    
-    using Npoi.Core.Util;
-
 
     /**
      * RefError - handles deleted cell reference
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     public class RefErrorPtg : OperandPtg
     {
-
         private const int SIZE = 5;
         public const byte sid = 0x2a;
         private int field_1_reserved;
@@ -42,7 +40,6 @@ namespace Npoi.Core.SS.Formula.PTG
         public RefErrorPtg(ILittleEndianInput in1)
         {
             field_1_reserved = in1.ReadInt();
-
         }
 
         public override String ToString()
@@ -58,9 +55,10 @@ namespace Npoi.Core.SS.Formula.PTG
             out1.WriteByte(sid + PtgClass);
             out1.WriteInt(field_1_reserved);
         }
+
         public int Reserved
         {
-            get{return field_1_reserved;}
+            get { return field_1_reserved; }
             set { field_1_reserved = value; }
         }
 

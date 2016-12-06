@@ -32,5 +32,4 @@ namespace Npoi.Core.SS.UserModel.Charts
         /// <param name="axis">chart axis to use</param>
         void FillChart(IChart chart, params IChartAxis[] axis);
     }
-
 }

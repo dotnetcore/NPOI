@@ -14,19 +14,19 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-    
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
-
+    using System;
 
     /**
      *
      * @author  andy
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     public class UnknownPtg : Ptg
     {
         private short size = 1;
@@ -46,6 +46,7 @@ namespace Npoi.Core.SS.Formula.PTG
         {
             get { return true; }
         }
+
         public override void Write(ILittleEndianOutput out1)
         {
         }
@@ -59,6 +60,7 @@ namespace Npoi.Core.SS.Formula.PTG
         {
             return "UNKNOWN";
         }
+
         public override byte DefaultOperandClass
         {
             get { return Ptg.CLASS_VALUE; }

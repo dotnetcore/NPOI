@@ -18,6 +18,7 @@
  * Created on May 15, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     using Npoi.Core.SS.Formula.Eval;
@@ -26,15 +27,16 @@ namespace Npoi.Core.SS.Formula.Functions
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
      *
      */
+
     public class Mod : TwoArg
     {
-
-		public override double Evaluate(double d0, double d1) {
-			if (d1 == NumericFunction.ZERO) {
-				throw new EvaluationException(ErrorEval.DIV_ZERO);
-			}
-			return MathX.Mod(d0, d1);
-		}
-
+        public override double Evaluate(double d0, double d1)
+        {
+            if (d1 == NumericFunction.ZERO)
+            {
+                throw new EvaluationException(ErrorEval.DIV_ZERO);
+            }
+            return MathX.Mod(d0, d1);
+        }
     }
 }

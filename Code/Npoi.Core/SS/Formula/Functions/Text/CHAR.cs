@@ -1,5 +1,5 @@
-﻿using System;
-using Npoi.Core.SS.Formula.Eval;
+﻿using Npoi.Core.SS.Formula.Eval;
+using System;
 using System.Globalization;
 
 namespace Npoi.Core.SS.Formula.Functions
@@ -16,7 +16,6 @@ namespace Npoi.Core.SS.Formula.Functions
                 {
                     throw new EvaluationException(ErrorEval.VALUE_INVALID);
                 }
-
             }
             catch (EvaluationException e)
             {

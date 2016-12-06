@@ -44,7 +44,7 @@ namespace Npoi.Core.Util
             }
         }
 
-        Stream out1 = null;
+        private Stream out1 = null;
 
         public LittleEndianOutputStream(Stream out1)
         {
@@ -107,6 +107,7 @@ namespace Npoi.Core.Util
                 throw new RuntimeException(e);
             }
         }
+
         public void Write(byte[] b)
         {
             // suppress IOException for interface method
@@ -120,6 +121,7 @@ namespace Npoi.Core.Util
                 throw new RuntimeException(e);
             }
         }
+
         public void Write(byte[] b, int off, int len)
         {
             // suppress IOException for interface method

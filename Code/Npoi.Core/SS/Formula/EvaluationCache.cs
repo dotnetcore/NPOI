@@ -17,29 +17,27 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
-    using System;
-
     using Npoi.Core.SS.Formula.Eval;
-    
+    using System;
 
     /**
      * Performance optimisation for {@link HSSFFormulaEvaluator}. This class stores previously
-     * calculated values of already visited cells, To avoid unnecessary re-calculation when the 
+     * calculated values of already visited cells, To avoid unnecessary re-calculation when the
      * same cells are referenced multiple times
-     * 
-     * 
+     *
+     *
      * @author Josh Micich
      */
+
     public class EvaluationCache
     {
-
         private PlainCellCache _plainCellCache;
         private FormulaCellCache _formulaCellCache;
         /** only used for testing. <c>null</c> otherwise */
-        IEvaluationListener _evaluationListener;
+        private IEvaluationListener _evaluationListener;
 
         /* package */
+
         public EvaluationCache(IEvaluationListener evaluationListener)
         {
             _evaluationListener = evaluationListener;
@@ -136,9 +134,9 @@ namespace Npoi.Core.SS.Formula
 
         public class EntryOperation : IEntryOperation
         {
-            BookSheetKey bsk;
-            int rowIndex, columnIndex;
-            IEvaluationListener evaluationListener;
+            private BookSheetKey bsk;
+            private int rowIndex, columnIndex;
+            private IEvaluationListener evaluationListener;
 
             public EntryOperation(BookSheetKey bsk,
                 int rowIndex, int columnIndex, IEvaluationListener evaluationListener)
@@ -159,13 +157,12 @@ namespace Npoi.Core.SS.Formula
                 int rowIndex, int columnIndex)
         {
             BookSheetKey bsk = new BookSheetKey(bookIndex, sheetIndex);
-            _formulaCellCache.ApplyOperation(new EntryOperation(bsk,rowIndex,columnIndex,_evaluationListener));
+            _formulaCellCache.ApplyOperation(new EntryOperation(bsk, rowIndex, columnIndex, _evaluationListener));
         }
 
         public PlainValueCellCacheEntry GetPlainValueEntry(int bookIndex, int sheetIndex,
                 int rowIndex, int columnIndex, ValueEval value)
         {
-
             Loc loc = new Loc(bookIndex, sheetIndex, rowIndex, columnIndex);
             PlainValueCellCacheEntry result = _plainCellCache.Get(loc);
             if (result == null)
@@ -179,7 +176,7 @@ namespace Npoi.Core.SS.Formula
             }
             else
             {
-                // TODO - if we are confident that this sanity check is not required, we can Remove 'value' from plain value cache entry  
+                // TODO - if we are confident that this sanity check is not required, we can Remove 'value' from plain value cache entry
                 if (!AreValuesEqual(result.GetValue(), value))
                 {
                     throw new InvalidOperationException("value changed");
@@ -191,6 +188,7 @@ namespace Npoi.Core.SS.Formula
             }
             return result;
         }
+
         private bool AreValuesEqual(ValueEval a, ValueEval b)
         {
             if (a == null)
@@ -227,11 +225,10 @@ namespace Npoi.Core.SS.Formula
         }
 
         public FormulaCellCacheEntry GetOrCreateFormulaCellEntry(IEvaluationCell cell)
-        {            
+        {
             FormulaCellCacheEntry result = _formulaCellCache.Get(cell);
             if (result == null)
             {
-
                 result = new FormulaCellCacheEntry();
                 _formulaCellCache.Put(cell, result);
             }
@@ -241,6 +238,7 @@ namespace Npoi.Core.SS.Formula
         /**
          * Should be called whenever there are Changes To input cells in the evaluated workbook.
          */
+
         public void Clear()
         {
             if (_evaluationListener != null)
@@ -250,15 +248,15 @@ namespace Npoi.Core.SS.Formula
             _plainCellCache.Clear();
             _formulaCellCache.Clear();
         }
+
         public void NotifyDeleteCell(int bookIndex, int sheetIndex, IEvaluationCell cell)
         {
-
             if (cell.CellType == Npoi.Core.SS.UserModel.CellType.Formula)
             {
                 FormulaCellCacheEntry fcce = _formulaCellCache.Remove(cell);
                 if (fcce == null)
                 {
-                    // formula cell Has not been evaluated yet 
+                    // formula cell Has not been evaluated yet
                 }
                 else
                 {

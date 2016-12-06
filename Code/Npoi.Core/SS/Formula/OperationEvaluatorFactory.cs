@@ -17,23 +17,21 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
-    using System;
-    using System.Collections;
-    using System.Reflection;
-
     using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.Formula.Functions;
     using Npoi.Core.SS.Formula.PTG;
+    using System;
     using System.Collections.Generic;
+    using System.Reflection;
 
     /**
      * This class Creates <c>OperationEval</c> instances To help evaluate <c>OperationPtg</c>
      * formula Tokens.
-     * 
+     *
      * @author Josh Micich
      */
-    class OperationEvaluatorFactory
+
+    internal class OperationEvaluatorFactory
     {
         private static Type[] OPERATION_CONSTRUCTOR_CLASS_ARRAY = new Type[] { typeof(Ptg) };
 
@@ -81,11 +79,11 @@ namespace Npoi.Core.SS.Formula
             m[ptgKey] = instance;
         }
 
-
         /**
          * returns the OperationEval concrete impl instance corresponding
          * to the supplied operationPtg
          */
+
         public static ValueEval Evaluate(OperationPtg ptg, ValueEval[] args,
                 OperationEvaluationContext ec)
         {
@@ -108,6 +106,7 @@ namespace Npoi.Core.SS.Formula
                 {
                     case Npoi.Core.SS.Formula.Function.FunctionMetadataRegistry.FUNCTION_INDEX_INDIRECT:
                         return Indirect.instance.Evaluate(args, ec);
+
                     case Npoi.Core.SS.Formula.Function.FunctionMetadataRegistry.FUNCTION_INDEX_EXTERNAL:
                         return UserDefinedFunction.instance.Evaluate(args, ec);
                 }

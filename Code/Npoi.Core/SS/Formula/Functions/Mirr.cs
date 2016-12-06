@@ -15,11 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     /**
      * Calculates Modified internal rate of return. Syntax is MIRR(cash_flow_values, finance_rate, reinvest_rate)
@@ -43,14 +42,13 @@ namespace Npoi.Core.SS.Formula.Functions
      * @see <a href="http://office.microsoft.com/en-001/excel-help/mirr-HP005209180.aspx">Excel MIRR</a>
      * @see {@link Irr}
      */
+
     public class Mirr : MultiOperandNumericFunction
     {
-
         public Mirr()
             : base(false, false)
         {
         }
-
 
         protected override int MaxNumOperands
         {
@@ -60,10 +58,8 @@ namespace Npoi.Core.SS.Formula.Functions
             }
         }
 
-
         protected internal override double Evaluate(double[] values)
         {
-
             double financeRate = values[values.Length - 1];
             double reinvestRate = values[values.Length - 2];
 
@@ -124,5 +120,4 @@ namespace Npoi.Core.SS.Formula.Functions
             return value;
         }
     }
-
 }

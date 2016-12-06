@@ -17,22 +17,21 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
-using System.Text;
-using Npoi.Core.Util;
+    using System.Text;
 
+    /**
+     * The UserSViewBegin record specifies Settings for a custom view associated with the sheet.
+     * This record also marks the start of custom view records, which save custom view Settings.
+     * Records between {@link UserSViewBegin} and {@link UserSViewEnd} contain Settings for the custom view,
+     * not Settings for the sheet itself.
+     *
+     * @author Yegor Kozlov
+     */
 
-/**
- * The UserSViewBegin record specifies Settings for a custom view associated with the sheet.
- * This record also marks the start of custom view records, which save custom view Settings.
- * Records between {@link UserSViewBegin} and {@link UserSViewEnd} contain Settings for the custom view,
- * not Settings for the sheet itself.
- *
- * @author Yegor Kozlov
- */
     public class UserSViewBegin : StandardRecord
     {
-
         public const short sid = 0x01AA;
         private byte[] _rawData;
 
@@ -46,6 +45,7 @@ using Npoi.Core.Util;
          * be Serialized in its original form more or less
          * @param in the RecordInputstream to read the record from
          */
+
         public UserSViewBegin(RecordInputStream in1)
         {
             _rawData = in1.ReadRemainder();
@@ -54,6 +54,7 @@ using Npoi.Core.Util;
         /**
          * spit the record out AS IS. no interpretation or identification
          */
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.Write(_rawData);
@@ -78,6 +79,7 @@ using Npoi.Core.Util;
         /**
          * @return Globally unique identifier for the custom view
          */
+
         public byte[] Guid
         {
             get
@@ -106,4 +108,3 @@ using Npoi.Core.Util;
         }
     }
 }
-

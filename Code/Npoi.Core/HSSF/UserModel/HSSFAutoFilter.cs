@@ -1,9 +1,9 @@
-﻿using System;
-using Npoi.Core.HSSF.Record.AutoFilter;
-using Npoi.Core.HSSF.Model;
+﻿using Npoi.Core.HSSF.Model;
 using Npoi.Core.HSSF.Record;
+using Npoi.Core.HSSF.Record.AutoFilter;
 using Npoi.Core.SS.Formula.PTG;
 using Npoi.Core.SS.UserModel;
+using System;
 
 namespace Npoi.Core.HSSF.UserModel
 {
@@ -12,7 +12,7 @@ namespace Npoi.Core.HSSF.UserModel
         // fix warning CS0649: Field 'autofilterinfo' is never assigned to, and will always have its default value null
         // AutoFilterInfoRecord autofilterinfo;
         // fix warning CS0169 "never used": AutoFilterRecord autofilter;
-        FilterModeRecord filtermode;
+        private FilterModeRecord filtermode;
 
         private HSSFSheet _sheet;
 
@@ -21,7 +21,7 @@ namespace Npoi.Core.HSSF.UserModel
             _sheet = sheet;
         }
 
-        public HSSFAutoFilter(string formula,HSSFWorkbook workbook)
+        public HSSFAutoFilter(string formula, HSSFWorkbook workbook)
         {
             //this.workbook = workbook;
 
@@ -32,11 +32,11 @@ namespace Npoi.Core.HSSF.UserModel
             Area3DPtg ptg = (Area3DPtg)ptgs[0];
             HSSFSheet sheet = (HSSFSheet)workbook.GetSheetAt(ptg.ExternSheetIndex);
             //look for the prior record
-            int loc = sheet.Sheet.FindFirstRecordLocBySid(DefaultColWidthRecord.sid) ;
-            CreateFilterModeRecord(sheet, loc+1);
-            CreateAutoFilterInfoRecord(sheet, loc + 2,ptg);
+            int loc = sheet.Sheet.FindFirstRecordLocBySid(DefaultColWidthRecord.sid);
+            CreateFilterModeRecord(sheet, loc + 1);
+            CreateAutoFilterInfoRecord(sheet, loc + 2, ptg);
             //look for "_FilterDatabase" NameRecord of the sheet
-            NameRecord name = workbook.Workbook.GetSpecificBuiltinRecord(NameRecord.BUILTIN_FILTER_DB, ptg.ExternSheetIndex+1);
+            NameRecord name = workbook.Workbook.GetSpecificBuiltinRecord(NameRecord.BUILTIN_FILTER_DB, ptg.ExternSheetIndex + 1);
             if (name == null)
                 name = workbook.Workbook.CreateBuiltInName(NameRecord.BUILTIN_FILTER_DB, ptg.ExternSheetIndex + 1);
             name.IsHiddenName = true;
@@ -44,7 +44,7 @@ namespace Npoi.Core.HSSF.UserModel
             name.NameDefinition = ptgs;
         }
 
-        private void CreateFilterModeRecord(HSSFSheet sheet,int insertPos)
+        private void CreateFilterModeRecord(HSSFSheet sheet, int insertPos)
         {
             //look for the FilterModeRecord
             Npoi.Core.HSSF.Record.Record record = sheet.Sheet.FindFirstRecordBySid(FilterModeRecord.sid);
@@ -77,9 +77,10 @@ namespace Npoi.Core.HSSF.UserModel
 
         private void RemoveFilterModeRecord(HSSFSheet sheet)
         {
-            if(filtermode!=null)
+            if (filtermode != null)
                 sheet.Sheet.Records.Remove(filtermode);
         }
+
         // fix warning autofilterinfo "is never assigned":
         //private void RemoveAutoFilterInfoRecord(HSSFSheet sheet)
         //{

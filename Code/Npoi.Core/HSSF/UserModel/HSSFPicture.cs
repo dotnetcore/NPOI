@@ -19,16 +19,13 @@ using System.Drawing;
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
-    using System.Text;
-    using System.IO;
     using Npoi.Core.DDF;
-    using Npoi.Core.Util;
-    using Npoi.Core.SS.UserModel;
     using Npoi.Core.HSSF.Model;
     using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS.UserModel;
     using Npoi.Core.SS.Util;
-
+    using Npoi.Core.Util;
+    using System;
 
     /// <summary>
     /// Represents a escher picture.  Eg. A GIF, JPEG etc...
@@ -37,16 +34,16 @@ namespace Npoi.Core.HSSF.UserModel
     /// </summary>
     public class HSSFPicture : HSSFSimpleShape, IPicture
     {
-
         //int pictureIndex;
         //HSSFPatriarch patriarch;
 
         private static POILogger logger = POILogFactory.GetLogger(typeof(HSSFPicture));
+
         public HSSFPicture(EscherContainerRecord spContainer, ObjRecord objRecord)
             : base(spContainer, objRecord)
         {
-
         }
+
         /// <summary>
         /// Constructs a picture object.
         /// </summary>
@@ -59,6 +56,7 @@ namespace Npoi.Core.HSSF.UserModel
             CommonObjectDataSubRecord cod = (CommonObjectDataSubRecord)GetObjRecord().SubRecords[0];
             cod.ObjectType = CommonObjectType.Picture;
         }
+
         protected override EscherContainerRecord CreateSpContainer()
         {
             EscherContainerRecord spContainer = base.CreateSpContainer();
@@ -103,12 +101,13 @@ namespace Npoi.Core.HSSF.UserModel
      * <code>resize(1.0,1.0)</code> keeps the original size,<br/>
      * <code>resize(0.5,0.5)</code> resize to 50% of the original,<br/>
      * <code>resize(2.0,2.0)</code> resizes to 200% of the original.<br/>
-     * <code>resize({@link Double#MAX_VALUE},{@link Double#MAX_VALUE})</code> resizes to the dimension of the embedded image. 
+     * <code>resize({@link Double#MAX_VALUE},{@link Double#MAX_VALUE})</code> resizes to the dimension of the embedded image.
      * </p>
      *
      * @param scaleX the amount by which the image width is multiplied relative to the original width.
      * @param scaleY the amount by which the image height is multiplied relative to the original height.
      */
+
         public void Resize(double scaleX, double scaleY)
         {
             HSSFClientAnchor anchor = (HSSFClientAnchor)ClientAnchor;
@@ -119,14 +118,15 @@ namespace Npoi.Core.HSSF.UserModel
             int row2 = anchor.Row1 + (pref.Row2 - pref.Row1);
             int col2 = anchor.Col1 + (pref.Col2 - pref.Col1);
 
-            anchor.Col2=((short)col2);
+            anchor.Col2 = ((short)col2);
             // anchor.setDx1(0);
-            anchor.Dx2=(pref.Dx2);
+            anchor.Dx2 = (pref.Dx2);
 
             anchor.Row2 = (row2);
             // anchor.setDy1(0);
             anchor.Dy2 = (pref.Dy2);
         }
+
         /// <summary>
         /// Gets or sets the index of the picture.
         /// </summary>
@@ -147,6 +147,7 @@ namespace Npoi.Core.HSSF.UserModel
                 SetPropertyValue(new EscherSimpleProperty(EscherProperties.BLIP__BLIPTODISPLAY, false, true, value));
             }
         }
+
         /**
          * Calculate the preferred size for this picture.
          *
@@ -154,10 +155,12 @@ namespace Npoi.Core.HSSF.UserModel
          * @return HSSFClientAnchor with the preferred size for this image
          * @since POI 3.0.2
          */
+
         public IClientAnchor GetPreferredSize(double scale)
         {
             return GetPreferredSize(scale, scale);
         }
+
         /// <summary>
         /// Calculate the preferred size for this picture.
         /// </summary>
@@ -167,7 +170,7 @@ namespace Npoi.Core.HSSF.UserModel
         public IClientAnchor GetPreferredSize(double scaleX, double scaleY)
         {
             ImageUtils.SetPreferredSize(this, scaleX, scaleY);
-            return ClientAnchor;            
+            return ClientAnchor;
         }
 
         /// <summary>
@@ -179,50 +182,51 @@ namespace Npoi.Core.HSSF.UserModel
             return GetPreferredSize(1.0);
         }
 
+        ///// <summary>
+        ///// The metadata of PNG and JPEG can contain the width of a pixel in millimeters.
+        ///// Return the the "effective" dpi calculated as
+        ///// <c>25.4/HorizontalPixelSize</c>
+        ///// and
+        ///// <c>25.4/VerticalPixelSize</c>
+        ///// .  Where 25.4 is the number of mm in inch.
+        ///// </summary>
+        ///// <param name="r">The image.</param>
+        ///// <returns>the resolution</returns>
+        //protected Size GetResolution(Image r)
+        //{
+        //    //int hdpi = 96, vdpi = 96;
+        //    //double mm2inch = 25.4;
+        //    return new Size((int)r.HorizontalResolution, (int)r.VerticalResolution);
+        //}
 
-		///// <summary>
-		///// The metadata of PNG and JPEG can contain the width of a pixel in millimeters.
-		///// Return the the "effective" dpi calculated as 
-		///// <c>25.4/HorizontalPixelSize</c>
-		///// and 
-		///// <c>25.4/VerticalPixelSize</c>
-		///// .  Where 25.4 is the number of mm in inch.
-		///// </summary>
-		///// <param name="r">The image.</param>
-		///// <returns>the resolution</returns>
-		//protected Size GetResolution(Image r)
-		//{
-		//    //int hdpi = 96, vdpi = 96;
-		//    //double mm2inch = 25.4;
-		//    return new Size((int)r.HorizontalResolution, (int)r.VerticalResolution);
-		//}
+        /// <summary>
+        /// Return the dimension of the embedded image in pixel
+        /// </summary>
+        /// <returns>image dimension</returns>
+        public Size GetImageDimension()
+        {
+            throw new NotImplementedException();
+            //InternalWorkbook iwb = (_patriarch.Sheet.Workbook as HSSFWorkbook).Workbook;
+            //EscherBSERecord bse = iwb.GetBSERecord(PictureIndex);
+            //byte[] data = bse.BlipRecord.PictureData;
+            ////int type = bse.BlipTypeWin32;
 
-		/// <summary>
-		/// Return the dimension of the embedded image in pixel
-		/// </summary>
-		/// <returns>image dimension</returns>
-		public Size GetImageDimension()
-		{
-			throw new NotImplementedException();
-			//InternalWorkbook iwb = (_patriarch.Sheet.Workbook as HSSFWorkbook).Workbook;
-			//EscherBSERecord bse = iwb.GetBSERecord(PictureIndex);
-			//byte[] data = bse.BlipRecord.PictureData;
-			////int type = bse.BlipTypeWin32;
+            //using (MemoryStream ms = new MemoryStream(data))
+            //{
+            //	using (Image img = Image.FromStream(ms))
+            //	{
+            //		return img.Size;
+            //	}
+            //}
+        }
 
-			//using (MemoryStream ms = new MemoryStream(data))
-			//{
-			//	using (Image img = Image.FromStream(ms))
-			//	{
-			//		return img.Size;
-			//	}
-			//}
-		}
-		/**
+        /**
          * Return picture data for this shape
          *
          * @return picture data for this shape
          */
-		public IPictureData PictureData
+
+        public IPictureData PictureData
         {
             get
             {
@@ -232,7 +236,6 @@ namespace Npoi.Core.HSSF.UserModel
                 return new HSSFPictureData(blipRecord);
             }
         }
-
 
         internal override void AfterInsert(HSSFPatriarch patriarch)
         {
@@ -246,6 +249,7 @@ namespace Npoi.Core.HSSF.UserModel
         /**
          * The color applied to the lines of this shape.
          */
+
         public String FileName
         {
             get
@@ -256,12 +260,13 @@ namespace Npoi.Core.HSSF.UserModel
             }
             set
             {
-                // TODO: add trailing \u0000? 
+                // TODO: add trailing \u0000?
                 byte[] bytes = StringUtil.GetToUnicodeLE(value);
                 EscherComplexProperty prop = new EscherComplexProperty(EscherProperties.BLIP__BLIPFILENAME, true, bytes);
                 SetPropertyValue(prop);
             }
         }
+
         private String Trim(string value)
         {
             int end = value.Length;
@@ -289,7 +294,6 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-
         internal override HSSFShape CloneShape()
         {
             EscherContainerRecord spContainer = new EscherContainerRecord();
@@ -299,10 +303,10 @@ namespace Npoi.Core.HSSF.UserModel
             return new HSSFPicture(spContainer, obj);
         }
 
-
         /**
          * @return the anchor that is used by this picture.
          */
+
         public IClientAnchor ClientAnchor
         {
             get
@@ -312,10 +316,10 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-
         /**
          * @return the sheet which contains the picture shape
          */
+
         public ISheet Sheet
         {
             get

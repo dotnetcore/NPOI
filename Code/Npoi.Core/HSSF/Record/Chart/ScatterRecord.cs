@@ -18,7 +18,7 @@
 namespace Npoi.Core.HSSF.Record.Chart
 {
     /// <summary>
-    /// The Scatter record specifies that the chart group is a scatter chart group or 
+    /// The Scatter record specifies that the chart group is a scatter chart group or
     /// a bubble chart group, and specifies the chart group attributes.
     /// </summary>
     /// <remarks>
@@ -27,6 +27,7 @@ namespace Npoi.Core.HSSF.Record.Chart
     public class ScatterRecord : RowDataRecord
     {
         public const short sid = 0x101b;
+
         public ScatterRecord(RecordInputStream ris)
             : base(ris)
         {
@@ -39,6 +40,7 @@ namespace Npoi.Core.HSSF.Record.Chart
                 return base.DataSize;
             }
         }
+
         public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             base.Serialize(out1);

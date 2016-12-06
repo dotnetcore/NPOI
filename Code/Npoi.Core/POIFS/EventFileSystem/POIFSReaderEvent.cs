@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -15,20 +14,19 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-        
-using System;
 
 using Npoi.Core.POIFS.FileSystem;
+using System;
 
 namespace Npoi.Core.POIFS.EventFileSystem
 {
+    /**
+     * Class POIFSReaderEvent
+     *
+     * @author Marc Johnson (mjohnson at apache dot org)
+     * @version %I%, %G%
+     */
 
-/**
- * Class POIFSReaderEvent
- *
- * @author Marc Johnson (mjohnson at apache dot org)
- * @version %I%, %G%
- */
     public class POIFSReaderEvent
     {
         private DocumentInputStream stream;
@@ -78,5 +76,4 @@ namespace Npoi.Core.POIFS.EventFileSystem
             get { return documentName; }
         }
     }   // end public class POIFSReaderEvent
-
 }

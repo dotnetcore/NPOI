@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,7 +17,6 @@
 
 namespace Npoi.Core.POIFS.EventFileSystem
 {
-
     /**
      * Interface POIFSWriterListener
      *
@@ -28,7 +26,6 @@ namespace Npoi.Core.POIFS.EventFileSystem
 
     public interface POIFSWriterListener
     {
-
         /**
          * Process a POIFSWriterEvent that this listener had registered
          * for
@@ -38,10 +35,4 @@ namespace Npoi.Core.POIFS.EventFileSystem
 
         void ProcessPOIFSWriterEvent(POIFSWriterEvent event1);
     }   // end public interface POIFSWriterListener
-
-
 }
-
-
-
-

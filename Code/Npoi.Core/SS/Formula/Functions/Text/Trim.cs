@@ -14,10 +14,11 @@
 * See the License for the specific language governing permissions and
 * limitations Under the License.
 */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     /**
      * An implementation of the TRIM function:
@@ -25,9 +26,9 @@ namespace Npoi.Core.SS.Formula.Functions
      *  value Is string.
      * @author Manda Wilson &lt; wilson at c bio dot msk cc dot org &gt;
      */
+
     public class Trim : SingleArgTextFunc
     {
-
         public override ValueEval Evaluate(String arg)
         {
             return new StringEval(arg.Trim());

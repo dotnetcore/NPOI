@@ -17,35 +17,35 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
-
     using Npoi.Core.HSSF.Record.Common;
     using Npoi.Core.Util;
+    using System;
     using System.Text;
 
     /**
      * Title: FeatHdr (Feature Header) Record
-     * 
-     * This record specifies common information for Shared Features, and 
-     *  specifies the beginning of a collection of records to define them. 
-     * The collection of data (Globals Substream ABNF, macro sheet substream 
+     *
+     * This record specifies common information for Shared Features, and
+     *  specifies the beginning of a collection of records to define them.
+     * The collection of data (Globals Substream ABNF, macro sheet substream
      *  ABNF or worksheet substream ABNF) specifies Shared Feature data.
      */
+
     public class FeatHdrRecord : StandardRecord
     {
         /**
-         * Specifies the enhanced protection type. Used to protect a 
-         * shared workbook by restricting access to some areas of it 
+         * Specifies the enhanced protection type. Used to protect a
+         * shared workbook by restricting access to some areas of it
          */
         public const int SHAREDFEATURES_ISFPROTECTION = 0x02;
         /**
-         * Specifies that formula errors should be ignored 
+         * Specifies that formula errors should be ignored
          */
         public const int SHAREDFEATURES_ISFFEC2 = 0x03;
         /**
          * Specifies the smart tag type. Recognises certain
          * types of entries (proper names, dates/times etc) and
-         * flags them for action 
+         * flags them for action
          */
         public const int SHAREDFEATURES_ISFFACTOID = 0x04;
         /**
@@ -54,13 +54,12 @@ namespace Npoi.Core.HSSF.Record
          */
         public const int SHAREDFEATURES_ISFLIST = 0x05;
 
-
         public const short sid = 0x0867;
 
         private FtrHeader futureHeader;
         private int isf_sharedFeatureType; // See SHAREDFEATURES_
         private byte reserved; // Should always be one
-        /** 
+        /**
          * 0x00000000 = rgbHdrData not present
          * 0xffffffff = rgbHdrData present
          */
@@ -127,8 +126,5 @@ namespace Npoi.Core.HSSF.Record
         {
             return CloneViaReserialise();
         }
-
-
     }
 }
-

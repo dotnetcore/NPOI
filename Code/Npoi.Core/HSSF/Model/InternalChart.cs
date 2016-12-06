@@ -1,15 +1,13 @@
+using Npoi.Core.HSSF.Record;
+using Npoi.Core.HSSF.Record.Aggregates;
+using Npoi.Core.HSSF.Record.Chart;
+using Npoi.Core.SS.UserModel;
+using Npoi.Core.Util;
 using System;
 using System.Collections.Generic;
-using Npoi.Core.HPSF;
-using Npoi.Core.HSSF.Record;
-using Npoi.Core.HSSF.Record.Chart;
-using Npoi.Core.HSSF.Record.Aggregates;
-using Npoi.Core.Util;
-using Npoi.Core.SS.UserModel;
 
 namespace Npoi.Core.HSSF.Model
 {
-
     [Serializable]
     public class InternalChart
     {
@@ -21,6 +19,7 @@ namespace Npoi.Core.HSSF.Model
         private RightMarginRecord _rightMargin;
         private TopMarginRecord _topMargin;
         private BottomMarginRecord _bottomMargin;
+
         // fix warning CS0169 "never used": private Record _pls;
         private PrintSetupRecord printSetup;
 
@@ -32,73 +31,58 @@ namespace Npoi.Core.HSSF.Model
         private ProtectRecord _protect;
         private ChartFRTInfoRecord _chartFrtInfo;
         protected List<RecordBase> records = null;
-        public InternalChart(RecordStream rs)
-        {
+
+        public InternalChart(RecordStream rs) {
             _plsRecords = new List<PLSAggregate>();
             records = new List<RecordBase>(128);
 
-            if (rs.PeekNextSid() != BOFRecord.sid)
-            {
+            if (rs.PeekNextSid() != BOFRecord.sid) {
                 throw new Exception("BOF record expected");
             }
             BOFRecord bof = (BOFRecord)rs.GetNext();
-            if (bof.Type != BOFRecordType.Chart)
-            {
+            if (bof.Type != BOFRecordType.Chart) {
                 throw new RuntimeException("Bad BOF record type");
             }
 
             records.Add(bof);
-            while (rs.HasNext())
-            {
+            while (rs.HasNext()) {
                 int recSid = rs.PeekNextSid();
 
                 Record.Record rec = rs.GetNext();
-                if (recSid == EOFRecord.sid)
-                {
+                if (recSid == EOFRecord.sid) {
                     records.Add(rec);
                     break;
                 }
 
-                if (recSid == ChartRecord.sid)
-                {
-
+                if (recSid == ChartRecord.sid) {
                     continue;
                 }
 
-                if (recSid == ChartFRTInfoRecord.sid)
-                {
+                if (recSid == ChartFRTInfoRecord.sid) {
                     _chartFrtInfo = (ChartFRTInfoRecord)rec;
                 }
-                else if (recSid == HeaderRecord.sid)
-                {
+                else if (recSid == HeaderRecord.sid) {
                     header = (HeaderRecord)rec;
                 }
-                else if (recSid == FooterRecord.sid)
-                {
+                else if (recSid == FooterRecord.sid) {
                     footer = (FooterRecord)rec;
                 }
-                else if (recSid == HCenterRecord.sid)
-                {
+                else if (recSid == HCenterRecord.sid) {
                     _hCenter = (HCenterRecord)rec;
                 }
-                else if (recSid == VCenterRecord.sid)
-                {
+                else if (recSid == VCenterRecord.sid) {
                     _vCenter = (VCenterRecord)rec;
                 }
-                else if (recSid == LeftMarginRecord.sid)
-                {
+                else if (recSid == LeftMarginRecord.sid) {
                     _leftMargin = (LeftMarginRecord)rec;
                 }
-                else if (recSid == RightMarginRecord.sid)
-                {
+                else if (recSid == RightMarginRecord.sid) {
                     _rightMargin = (RightMarginRecord)rec;
                 }
-                else if (recSid == TopMarginRecord.sid)
-                {
+                else if (recSid == TopMarginRecord.sid) {
                     _topMargin = (TopMarginRecord)rec;
                 }
-                else if (recSid == BottomMarginRecord.sid)
-                {
+                else if (recSid == BottomMarginRecord.sid) {
                     _bottomMargin = (BottomMarginRecord)rec;
                 }
                 else if (recSid == UnknownRecord.PLS_004D) // PLS
@@ -110,63 +94,57 @@ namespace Npoi.Core.HSSF.Model
 
                     continue;
                 }
-                else if (recSid == PrintSetupRecord.sid)
-                {
+                else if (recSid == PrintSetupRecord.sid) {
                     printSetup = (PrintSetupRecord)rec;
                 }
-                else if (recSid == PrintSizeRecord.sid)
-                {
+                else if (recSid == PrintSizeRecord.sid) {
                     _printSize = (PrintSizeRecord)rec;
                 }
-                else if (recSid == HeaderFooterRecord.sid)
-                {
+                else if (recSid == HeaderFooterRecord.sid) {
                     HeaderFooterRecord hf = (HeaderFooterRecord)rec;
                     if (hf.IsCurrentSheet)
                         _headerFooter = hf;
                     else
                         _sviewHeaderFooters.Add(hf);
                 }
-                else if (recSid == ProtectRecord.sid)
-                {
+                else if (recSid == ProtectRecord.sid) {
                     _protect = (ProtectRecord)rec;
                 }
                 records.Add(rec);
             }
-            
         }
+
         private class PLSAggregateVisitor : RecordVisitor
         {
             private List<RecordBase> container;
-            public PLSAggregateVisitor(List<RecordBase> container)
-            {
+
+            public PLSAggregateVisitor(List<RecordBase> container) {
                 this.container = container;
             }
+
             #region RecordVisitor 成员
 
-            public void VisitRecord(Npoi.Core.HSSF.Record.Record r)
-            {
+            public void VisitRecord(Npoi.Core.HSSF.Record.Record r) {
                 container.Add((RecordBase)r);
             }
 
-            #endregion
+            #endregion RecordVisitor 成员
         }
-        private void CheckNotPresent(Record.Record rec)
-        {
-            if (rec != null)
-            {
+
+        private void CheckNotPresent(Record.Record rec) {
+            if (rec != null) {
                 throw new RecordFormatException("Duplicate PageSettingsBlock record (sid=0x"
                         + StringUtil.ToHexString(rec.Sid) + ")");
             }
         }
-        private InternalChart()
-        {
-        }
-        List<Record.Record> recores = null;
 
-        private IMargin GetMarginRec(MarginType margin)
-        {
-            switch (margin)
-            {
+        private InternalChart() {
+        }
+
+        private List<Record.Record> recores = null;
+
+        private IMargin GetMarginRec(MarginType margin) {
+            switch (margin) {
                 case MarginType.LeftMargin: return _leftMargin;
                 case MarginType.RightMargin: return _rightMargin;
                 case MarginType.TopMargin: return _topMargin;
@@ -176,29 +154,28 @@ namespace Npoi.Core.HSSF.Model
             }
         }
 
-
         /**
          * Gets the size of the margin in inches.
          * @param margin which margin to Get
          * @return the size of the margin
          */
-        public double GetMargin(MarginType margin)
-        {
+
+        public double GetMargin(MarginType margin) {
             IMargin m = GetMarginRec(margin);
-            if (m != null)
-            {
+            if (m != null) {
                 return m.Margin;
             }
-            else
-            {
-                switch (margin)
-                {
+            else {
+                switch (margin) {
                     case MarginType.LeftMargin:
                         return .7;
+
                     case MarginType.RightMargin:
                         return .7;
+
                     case MarginType.TopMargin:
                         return .75;
+
                     case MarginType.BottomMargin:
                         return .75;
                 }
@@ -211,29 +188,31 @@ namespace Npoi.Core.HSSF.Model
          * @param margin which margin to Get
          * @param size the size of the margin
          */
-        public void SetMargin(MarginType margin, double size)
-        {
+
+        public void SetMargin(MarginType margin, double size) {
             IMargin m = GetMarginRec(margin);
-            if (m == null)
-            {
-                switch (margin)
-                {
+            if (m == null) {
+                switch (margin) {
                     case MarginType.LeftMargin:
                         _leftMargin = new LeftMarginRecord();
                         m = _leftMargin;
                         break;
+
                     case MarginType.RightMargin:
                         _rightMargin = new RightMarginRecord();
                         m = _rightMargin;
                         break;
+
                     case MarginType.TopMargin:
                         _topMargin = new TopMarginRecord();
                         m = _topMargin;
                         break;
+
                     case MarginType.BottomMargin:
                         _bottomMargin = new BottomMarginRecord();
                         m = _bottomMargin;
                         break;
+
                     default:
                         throw new InvalidOperationException("Unknown margin constant:  " + margin);
                 }
@@ -243,8 +222,7 @@ namespace Npoi.Core.HSSF.Model
 
         #region Creation Method for creating a new chart
 
-        private static InternalChart CreateChartSheet()
-        {
+        private static InternalChart CreateChartSheet() {
             InternalChart retval = new InternalChart();
             List<Record.Record> records = new List<Record.Record>(30);
             retval.recores = records;
@@ -260,7 +238,7 @@ namespace Npoi.Core.HSSF.Model
             records.Add((TopMarginRecord)CreateMarginRecord(MarginType.TopMargin, 0.7));
             records.Add((BottomMarginRecord)CreateMarginRecord(MarginType.BottomMargin, 0.7));
             //ignore pls
-            
+
             records.Add(CreatePrintSetupRecord());
             records.Add(CreatePrintSizeRecord());
             records.Add(CreateFontBasisRecord1());
@@ -270,8 +248,8 @@ namespace Npoi.Core.HSSF.Model
             //records.Add(CreateDrawingRecord());
             records.Add(new UnitsRecord());
 
-            //CHARTFOMATS = Chart Begin *2FONTLIST Scl PlotGrowth [FRAME] *SERIESFORMAT *SS 
-            //ShtProps *2DFTTEXT AxesUsed 1*2AXISPARENT [CrtLayout12A] [DAT] *ATTACHEDLABEL 
+            //CHARTFOMATS = Chart Begin *2FONTLIST Scl PlotGrowth [FRAME] *SERIESFORMAT *SS
+            //ShtProps *2DFTTEXT AxesUsed 1*2AXISPARENT [CrtLayout12A] [DAT] *ATTACHEDLABEL
             //[CRTMLFRT] *([DataLabExt StartObject] ATTACHEDLABEL [EndObject]) [TEXTPROPS] *2CRTMLFRT End
             records.Add(CreateChartRecord(0, 0, 32341968, 14745600));
             records.Add(new BeginRecord());
@@ -305,40 +283,45 @@ namespace Npoi.Core.HSSF.Model
             records.Add(new EOFRecord());
             return retval;
         }
-        private static AxesUsedRecord CreateAxisUsedRecord(short numAxis)
-        {
+
+        private static AxesUsedRecord CreateAxisUsedRecord(short numAxis) {
             AxesUsedRecord r = new AxesUsedRecord();
             r.NumAxis = (numAxis);
             return r;
         }
+
         #region SERIESDATA
+
         /// <summary>
         /// SERIESDATA = Dimensions 3(SIIndex *(Number / BoolErr / Blank / Label))
         /// </summary>
         /// <param name="records"></param>
-        private static void CreateRuleSERIESDATA(List<Record.Record> records)
-        {
+        private static void CreateRuleSERIESDATA(List<Record.Record> records) {
             throw new NotImplementedException();
         }
-        #endregion
+
+        #endregion SERIESDATA
+
         #region AXES
+
         /// <summary>
         /// AXES = [IVAXIS DVAXIS [SERIESAXIS] / DVAXIS DVAXIS] *3ATTACHEDLABEL [PlotArea FRAME]
         /// </summary>
-        private static void CreateRuleAXES()
-        {
+        private static void CreateRuleAXES() {
         }
-        #endregion
+
+        #endregion AXES
+
         #region AXISPARENT
+
         /// <summary>
         /// AXISPARENT = AxisParent Begin Pos [AXES] 1*4CRT End
-        /// CRT = ChartFormat Begin (Bar / Line / (BopPop [BopPopCustom]) / Pie / Area / Scatter / Radar / RadarArea / Surf) 
+        /// CRT = ChartFormat Begin (Bar / Line / (BopPop [BopPopCustom]) / Pie / Area / Scatter / Radar / RadarArea / Surf)
         ///      CrtLink [SeriesList] [Chart3d] [LD] [2DROPBAR] *4(CrtLine LineFormat) *2DFTTEXT [DataLabExtContents] [SS] *4SHAPEPROPS End
         /// LD = Legend Begin Pos ATTACHEDLABEL [FRAME] [CrtLayout12] [TEXTPROPS] [CRTMLFRT] End
         /// </summary>
         /// <param name="records"></param>
-        private static void CreateRuleAXISPARENT(List<Record.Record> records)
-        {
+        private static void CreateRuleAXISPARENT(List<Record.Record> records) {
             records.Add(CreateAxisParentRecord());
             records.Add(new BeginRecord());
             records.Add(CreateAxisRecord(AxisRecord.AXIS_TYPE_CATEGORY_OR_X_AXIS));
@@ -376,8 +359,8 @@ namespace Npoi.Core.HSSF.Model
             records.Add(new EndRecord());
             records.Add(new EndRecord());
         }
-        private static AxisParentRecord CreateAxisParentRecord()
-        {
+
+        private static AxisParentRecord CreateAxisParentRecord() {
             AxisParentRecord r = new AxisParentRecord();
             r.AxisType = (AxisParentRecord.AXIS_TYPE_MAIN);
             r.X = (479);
@@ -386,22 +369,20 @@ namespace Npoi.Core.HSSF.Model
             r.Height = (2902);
             return r;
         }
-        private static AxisRecord CreateAxisRecord(short axisType)
-        {
+
+        private static AxisRecord CreateAxisRecord(short axisType) {
             AxisRecord r = new AxisRecord();
             r.AxisType = (axisType);
             return r;
         }
 
-        private static AxisLineRecord CreateAxisLineFormatRecord(short format)
-        {
+        private static AxisLineRecord CreateAxisLineFormatRecord(short format) {
             AxisLineRecord r = new AxisLineRecord();
             r.AxisType = (format);
             return r;
         }
 
-        private static ValueRangeRecord CreateValueRangeRecord()
-        {
+        private static ValueRangeRecord CreateValueRangeRecord() {
             ValueRangeRecord r = new ValueRangeRecord();
             r.MinimumAxisValue = (0.0);
             r.MaximumAxisValue = (0.0);
@@ -420,8 +401,7 @@ namespace Npoi.Core.HSSF.Model
             return r;
         }
 
-        private static TickRecord CreateTickRecord1()
-        {
+        private static TickRecord CreateTickRecord1() {
             TickRecord r = new TickRecord();
             r.MajorTickType = ((byte)2);
             r.MinorTickType = ((byte)0);
@@ -439,15 +419,13 @@ namespace Npoi.Core.HSSF.Model
             return r;
         }
 
-        private static TickRecord CreateTickRecord2()
-        {
+        private static TickRecord CreateTickRecord2() {
             TickRecord r = CreateTickRecord1();
             r.Zero3 = ((short)0);
             return r;
         }
 
-        private static AxcExtRecord CreateAxcExtRecord()
-        {
+        private static AxcExtRecord CreateAxcExtRecord() {
             AxcExtRecord r = new AxcExtRecord();
             r.MinimumDate = 0;
             r.MaximumDate = 0;
@@ -468,8 +446,7 @@ namespace Npoi.Core.HSSF.Model
             return r;
         }
 
-        private static CatSerRangeRecord CreateCatSerRangeRecord()
-        {
+        private static CatSerRangeRecord CreateCatSerRangeRecord() {
             CatSerRangeRecord r = new CatSerRangeRecord();
             r.CrossPoint = ((short)1);
             r.LabelInterval = ((short)1);
@@ -480,9 +457,7 @@ namespace Npoi.Core.HSSF.Model
             return r;
         }
 
-
-        private static LegendRecord CreateLegendRecord()
-        {
+        private static LegendRecord CreateLegendRecord() {
             LegendRecord r = new LegendRecord();
             r.XAxisUpperLeft = (3542);
             r.YAxisUpperLeft = (1566);
@@ -499,8 +474,7 @@ namespace Npoi.Core.HSSF.Model
             return r;
         }
 
-        private static BarRecord CreateBarRecord()
-        {
+        private static BarRecord CreateBarRecord() {
             BarRecord r = new BarRecord();
             r.BarSpace = ((short)0);
             r.CategorySpace = ((short)150);
@@ -511,8 +485,7 @@ namespace Npoi.Core.HSSF.Model
             return r;
         }
 
-        private static ChartFormatRecord CreateChartFormatRecord()
-        {
+        private static ChartFormatRecord CreateChartFormatRecord() {
             ChartFormatRecord r = new ChartFormatRecord();
             r.XPosition = (0);
             r.YPosition = (0);
@@ -522,21 +495,20 @@ namespace Npoi.Core.HSSF.Model
             return r;
         }
 
-        private static PlotAreaRecord CreatePlotAreaRecord()
-        {
+        private static PlotAreaRecord CreatePlotAreaRecord() {
             PlotAreaRecord r = new PlotAreaRecord();
             return r;
         }
 
-        #endregion
+        #endregion AXISPARENT
 
         #region DFTTEXT
+
         /// <summary>
         /// DFTTEXT = [DataLabExt StartObject] DefaultText ATTACHEDLABEL [EndObject]
         /// </summary>
         /// <param name="records"></param>
-        private static void CreateRuleDFTTEXT(List<Record.Record> records)
-        {
+        private static void CreateRuleDFTTEXT(List<Record.Record> records) {
             //[DataLabExt StartObject]
 
             records.Add(CreateDefaultTextRecord());
@@ -544,21 +516,21 @@ namespace Npoi.Core.HSSF.Model
             CreateRuleATTACHEDLABEL(records);
             //[EndObject]
         }
-        private static DefaultTextRecord CreateDefaultTextRecord()
-        {
+
+        private static DefaultTextRecord CreateDefaultTextRecord() {
             DefaultTextRecord r = new DefaultTextRecord();
             r.FormatType = TextFormatInfo.FontScaleNotSet;
             return r;
         }
-        
-        #endregion
+
+        #endregion DFTTEXT
 
         #region ATTACHEDLABEL
+
         /// <summary>
         /// ATTACHEDLABEL = Text Begin Pos [FontX] [AlRuns] AI [FRAME] [ObjectLink] [DataLabExtContents] [CrtLayout12] [TEXTPROPS] [CRTMLFRT] End
         /// </summary>
-        private static void CreateRuleATTACHEDLABEL(List<Record.Record> records)
-        {
+        private static void CreateRuleATTACHEDLABEL(List<Record.Record> records) {
             records.Add(CreateTextRecord());
             records.Add(new BeginRecord());
             records.Add(CreatePosRecord());
@@ -567,8 +539,7 @@ namespace Npoi.Core.HSSF.Model
             records.Add(new EndRecord());
         }
 
-        private static BRAIRecord CreateBRAIRecord()
-        {
+        private static BRAIRecord CreateBRAIRecord() {
             BRAIRecord r = new BRAIRecord();
             r.LinkType = 0;
             r.ReferenceType = 1;
@@ -578,8 +549,7 @@ namespace Npoi.Core.HSSF.Model
             return r;
         }
 
-        private static TextRecord CreateTextRecord()
-        {
+        private static TextRecord CreateTextRecord() {
             TextRecord r = new TextRecord();
             r.HorizontalAlignment = (TextRecord.HORIZONTAL_ALIGNMENT_CENTER);
             r.VerticalAlignment = (TextRecord.VERTICAL_ALIGNMENT_CENTER);
@@ -608,24 +578,23 @@ namespace Npoi.Core.HSSF.Model
             return r;
         }
 
-        private static PosRecord CreatePosRecord()
-        {
+        private static PosRecord CreatePosRecord() {
             PosRecord r = new PosRecord();
             r.MDTopLt = PositionMode.MDPARENT;
             r.MdBotRt = PositionMode.MDPARENT;
 
             return r;
         }
-        private static FontXRecord CreateFontXRecord(int index)
-        {
+
+        private static FontXRecord CreateFontXRecord(int index) {
             FontXRecord r = new FontXRecord();
             r.FontIndex = ((short)index);
             return r;
         }
-        #endregion
-        
-        private static ShtPropsRecord CreateShtPropsRecord()
-        {
+
+        #endregion ATTACHEDLABEL
+
+        private static ShtPropsRecord CreateShtPropsRecord() {
             ShtPropsRecord r = new ShtPropsRecord();
             r.Flags = 2;  //set bit fPlotVisOnly 1
             return r;
@@ -633,11 +602,9 @@ namespace Npoi.Core.HSSF.Model
 
         #region SERIESFORMAT
 
-        //SERIESFORMAT = Series Begin 4AI *SS (SerToCrt / (SerParent (SerAuxTrend / SerAuxErrBar))) 
+        //SERIESFORMAT = Series Begin 4AI *SS (SerToCrt / (SerParent (SerAuxTrend / SerAuxErrBar)))
         //*(LegendException [Begin ATTACHEDLABEL [TEXTPROPS] End]) End
-        private static void CreateRuleSERIESFORMAT(List<Record.Record> records)
-        {
-            
+        private static void CreateRuleSERIESFORMAT(List<Record.Record> records) {
             //Series
             records.Add(CreateSeriesRecord());
             records.Add(new BeginRecord());
@@ -651,8 +618,8 @@ namespace Npoi.Core.HSSF.Model
 
             records.Add(new EndRecord());  //end series
         }
-        private static SeriesRecord CreateSeriesRecord()
-        {
+
+        private static SeriesRecord CreateSeriesRecord() {
             SeriesRecord r = new SeriesRecord();
             r.CategoryDataType = (SeriesRecord.CATEGORY_DATA_TYPE_NUMERIC);
             r.ValuesDataType = (SeriesRecord.VALUES_DATA_TYPE_NUMERIC);
@@ -663,8 +630,7 @@ namespace Npoi.Core.HSSF.Model
             return r;
         }
 
-        private static DataFormatRecord CreateDataFormatRecord()
-        {
+        private static DataFormatRecord CreateDataFormatRecord() {
             DataFormatRecord r = new DataFormatRecord();
             r.PointNumber = ((short)-1);
             r.SeriesIndex = ((short)0);
@@ -672,11 +638,12 @@ namespace Npoi.Core.HSSF.Model
             r.UseExcel4Colors = (false);
             return r;
         }
+
         #region SS
-        //SS = DataFormat Begin [Chart3DBarShape] [LineFormat AreaFormat PieFormat] [SerFmt] 
+
+        //SS = DataFormat Begin [Chart3DBarShape] [LineFormat AreaFormat PieFormat] [SerFmt]
         //[GELFRAME] [MarkerFormat] [AttachedLabel] *2SHAPEPROPS [CRTMLFRT] End
-        private static void CreateRuleSS(List<Npoi.Core.HSSF.Record.Record> records)
-        {
+        private static void CreateRuleSS(List<Npoi.Core.HSSF.Record.Record> records) {
             records.Add(CreateDataFormatRecord());
             records.Add(new BeginRecord());
             //Chart3DBarShape
@@ -685,19 +652,18 @@ namespace Npoi.Core.HSSF.Model
             records.Add(new EndRecord());
         }
 
-        private static Chart3DBarShapeRecord CreateChart3DBarShapeRecord()
-        {
+        private static Chart3DBarShapeRecord CreateChart3DBarShapeRecord() {
             Chart3DBarShapeRecord r = new Chart3DBarShapeRecord();
             r.Riser = 0;
             r.Taper = 0;
             return r;
         }
-        #endregion
-        #endregion
-        
-        
-        private static DrawingRecord CreateDrawingRecord()
-        {
+
+        #endregion SS
+
+        #endregion SERIESFORMAT
+
+        private static DrawingRecord CreateDrawingRecord() {
             //throw new NotImplementedException();
             byte[] drawingData = HexRead.ReadFromString("0F 00 02 F0 48 00 00 00 30 00 08 F0 " +
                                             "08 00 00 00 01 00 00 00 00 0C 00 00 0F 00 03 F0 " +
@@ -711,27 +677,29 @@ namespace Npoi.Core.HSSF.Model
             return retval;
         }
 
-        private static HeaderFooterRecord CreateHeaderFooterRecord()
-        {
+        private static HeaderFooterRecord CreateHeaderFooterRecord() {
             throw new NotImplementedException();
         }
-        private static IMargin CreateMarginRecord(MarginType margin, double size)
-        {
+
+        private static IMargin CreateMarginRecord(MarginType margin, double size) {
             IMargin m;
-            switch (margin)
-            {
+            switch (margin) {
                 case MarginType.LeftMargin:
                     m = new LeftMarginRecord();
                     break;
+
                 case MarginType.RightMargin:
                     m = new RightMarginRecord();
                     break;
+
                 case MarginType.TopMargin:
                     m = new TopMarginRecord();
                     break;
+
                 case MarginType.BottomMargin:
                     m = new BottomMarginRecord();
                     break;
+
                 default:
                     throw new InvalidOperationException("Unknown margin constant:  " + margin);
             }
@@ -739,8 +707,7 @@ namespace Npoi.Core.HSSF.Model
             return m;
         }
 
-        private static PrintSetupRecord CreatePrintSetupRecord()
-        {
+        private static PrintSetupRecord CreatePrintSetupRecord() {
             PrintSetupRecord retval = new PrintSetupRecord();
 
             retval.PaperSize = ((short)0);
@@ -756,8 +723,8 @@ namespace Npoi.Core.HSSF.Model
             retval.Copies = ((short)1);
             return retval;
         }
-        private static BOFRecord CreateBOFRecord()
-        {
+
+        private static BOFRecord CreateBOFRecord() {
             BOFRecord retval = new BOFRecord();
             retval.Version = ((short)600);
             retval.Type = BOFRecordType.Chart;
@@ -767,40 +734,36 @@ namespace Npoi.Core.HSSF.Model
             retval.RequiredVersion = (106);
             return retval;
         }
-        private static PrintSizeRecord CreatePrintSizeRecord()
-        {
+
+        private static PrintSizeRecord CreatePrintSizeRecord() {
             PrintSizeRecord retval = new PrintSizeRecord();
             retval.PrintSize = 3;
             return retval;
         }
-        private static ChartFRTInfoRecord CreateChartFRTInfoRecord()
-        {
+
+        private static ChartFRTInfoRecord CreateChartFRTInfoRecord() {
             ChartFRTInfoRecord retval = new ChartFRTInfoRecord();
             return retval;
         }
 
-        private static FooterRecord CreateFooterRecord()
-        {
+        private static FooterRecord CreateFooterRecord() {
             FooterRecord retval = new FooterRecord(string.Empty);
             return retval;
         }
-        private static HCenterRecord CreateHCenterRecord()
-        {
+
+        private static HCenterRecord CreateHCenterRecord() {
             HCenterRecord r = new HCenterRecord();
             r.HCenter = (false);
             return r;
         }
 
-        private static VCenterRecord CreateVCenterRecord()
-        {
+        private static VCenterRecord CreateVCenterRecord() {
             VCenterRecord r = new VCenterRecord();
             r.VCenter = (false);
             return r;
         }
 
-        
-        private static FbiRecord CreateFontBasisRecord1()
-        {
+        private static FbiRecord CreateFontBasisRecord1() {
             FbiRecord r = new FbiRecord();
             r.XBasis = ((short)9720);
             r.YBasis = ((short)4350);
@@ -810,8 +773,7 @@ namespace Npoi.Core.HSSF.Model
             return r;
         }
 
-        private static FbiRecord CreateFontBasisRecord2()
-        {
+        private static FbiRecord CreateFontBasisRecord2() {
             FbiRecord r = CreateFontBasisRecord1();
             r.Scale = 1;
             r.IndexToFontTable = ((short)25);
@@ -820,8 +782,7 @@ namespace Npoi.Core.HSSF.Model
 
         //CHARTFORMATS
 
-        private static ChartRecord CreateChartRecord(int x, int y, int width, int height)
-        {
+        private static ChartRecord CreateChartRecord(int x, int y, int width, int height) {
             ChartRecord r = new ChartRecord();
             r.X = (x);
             r.Y = (y);
@@ -830,24 +791,21 @@ namespace Npoi.Core.HSSF.Model
             return r;
         }
 
-        private static PlotGrowthRecord CreatePlotGrowthRecord(int horizScale, int vertScale)
-        {
+        private static PlotGrowthRecord CreatePlotGrowthRecord(int horizScale, int vertScale) {
             PlotGrowthRecord r = new PlotGrowthRecord();
             r.HorizontalScale = (horizScale);
             r.VerticalScale = (vertScale);
             return r;
         }
 
-        private static SCLRecord CreateSCLRecord(short numerator, short denominator)
-        {
+        private static SCLRecord CreateSCLRecord(short numerator, short denominator) {
             SCLRecord r = new SCLRecord();
             r.Denominator = (denominator);
             r.Numerator = (numerator);
             return r;
         }
 
-        private static FrameRecord CreateFrameRecord1()
-        {
+        private static FrameRecord CreateFrameRecord1() {
             FrameRecord r = new FrameRecord();
             r.BorderType = (FrameRecord.BORDER_TYPE_REGULAR);
             r.IsAutoSize = (false);
@@ -855,8 +813,7 @@ namespace Npoi.Core.HSSF.Model
             return r;
         }
 
-        private static FrameRecord CreateFrameRecord2()
-        {
+        private static FrameRecord CreateFrameRecord2() {
             FrameRecord r = new FrameRecord();
             r.BorderType = (FrameRecord.BORDER_TYPE_REGULAR);
             r.IsAutoSize = (true);
@@ -864,8 +821,7 @@ namespace Npoi.Core.HSSF.Model
             return r;
         }
 
-        private static AreaFormatRecord CreateAreaFormatRecord1()
-        {
+        private static AreaFormatRecord CreateAreaFormatRecord1() {
             AreaFormatRecord r = new AreaFormatRecord();
             r.ForegroundColor = (16777215);	 // RGB Color
             r.BackgroundColor = (0);			// RGB Color
@@ -877,8 +833,7 @@ namespace Npoi.Core.HSSF.Model
             return r;
         }
 
-        private static AreaFormatRecord CreateAreaFormatRecord2()
-        {
+        private static AreaFormatRecord CreateAreaFormatRecord2() {
             AreaFormatRecord r = new AreaFormatRecord();
             r.ForegroundColor = (0x00c0c0c0);
             r.BackgroundColor = (0x00000000);
@@ -890,8 +845,7 @@ namespace Npoi.Core.HSSF.Model
             return r;
         }
 
-        private static LineFormatRecord CreateLineFormatRecord(bool drawTicks)
-        {
+        private static LineFormatRecord CreateLineFormatRecord(bool drawTicks) {
             LineFormatRecord r = new LineFormatRecord();
             r.LineColor = (0);
             r.LinePattern = (LineFormatRecord.LINE_PATTERN_SOLID);
@@ -902,8 +856,7 @@ namespace Npoi.Core.HSSF.Model
             return r;
         }
 
-        private static LineFormatRecord CreateLineFormatRecord2()
-        {
+        private static LineFormatRecord CreateLineFormatRecord2() {
             LineFormatRecord r = new LineFormatRecord();
             r.LineColor = (0x00808080);
             r.LinePattern = LineFormatRecord.LINE_PATTERN_SOLID;
@@ -914,6 +867,7 @@ namespace Npoi.Core.HSSF.Model
             r.ColourPaletteIndex = ((short)23);
             return r;
         }
-        #endregion
+
+        #endregion Creation Method for creating a new chart
     }
 }

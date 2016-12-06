@@ -1,5 +1,4 @@
-﻿
-/* ====================================================================
+﻿/* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
    this work for additional information regarding copyright ownership.
@@ -18,19 +17,17 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
-using System.Text;
 using System.Collections.Generic;
-
-
+using System.Text;
 
 namespace Npoi.Core.Util
 {
@@ -47,9 +44,10 @@ namespace Npoi.Core.Util
         private static Encoding ISO_8859_1 = Encoding.GetEncoding("ISO-8859-1");
         private static Encoding UTF16LE = Encoding.Unicode;
         private static Dictionary<int, int> msCodepointToUnicode;
-        /**     
-         *  Constructor for the StringUtil object     
+        /**
+         *  Constructor for the StringUtil object
          */
+
         private StringUtil()
         {
         }
@@ -64,7 +62,7 @@ namespace Npoi.Core.Util
         /// <param name="offset">the initial offset into the
         /// byte array. it is assumed that string[ offset ] and string[ offset + 1 ] contain the first 16-bit unicode character</param>
         /// <param name="len">the Length of the string</param>
-        /// <returns>the converted string</returns>                              
+        /// <returns>the converted string</returns>
         public static String GetFromUnicodeLE(
             byte[] str,
             int offset,
@@ -89,7 +87,7 @@ namespace Npoi.Core.Util
         ///{ 0x16, 0x00 } -0x16
         /// </summary>
         /// <param name="str">the byte array to be converted</param>
-        /// <returns>the converted string</returns>  
+        /// <returns>the converted string</returns>
         public static String GetFromUnicodeLE(byte[] str)
         {
             if (str.Length == 0) { return ""; }
@@ -102,6 +100,7 @@ namespace Npoi.Core.Util
          * @param string the string
          * @return the byte array of 16-bit unicode characters
          */
+
         public static byte[] GetToUnicodeLE(String string1)
         {
             return UTF16LE.GetBytes(string1);
@@ -148,7 +147,7 @@ namespace Npoi.Core.Util
         /// { 0x00, 0x16 } -0x16
         /// </summary>
         /// <param name="str">the byte array to be converted</param>
-        /// <returns>the converted string</returns>      
+        /// <returns>the converted string</returns>
         public static String GetFromUnicodeBE(byte[] str)
         {
             if (str.Length == 0) { return ""; }
@@ -173,7 +172,6 @@ namespace Npoi.Core.Util
             return ISO_8859_1.GetString(str, offset, len_to_use);
         }
 
-
         /// <summary>
         /// Takes a unicode (java) string, and returns it as 8 bit data (in IsO-8859-1
         /// codepage).
@@ -194,7 +192,6 @@ namespace Npoi.Core.Util
             out1.Write(bytes);
         }
 
-
         /// <summary>
         /// Takes a unicode string, and returns it as little endian (most
         /// important byte last) bytes in the supplied byte array.
@@ -208,13 +205,12 @@ namespace Npoi.Core.Util
             byte[] bytes = UTF16LE.GetBytes(input);
             Array.Copy(bytes, 0, output, offset, bytes.Length);
         }
+
         public static void PutUnicodeLE(String input, ILittleEndianOutput out1)
         {
             byte[] bytes = UTF16LE.GetBytes(input);
             out1.Write(bytes);
         }
-
-
 
         /// <summary>
         /// Takes a unicode string, and returns it as big endian (most
@@ -239,7 +235,6 @@ namespace Npoi.Core.Util
                 throw new InvalidOperationException(); /*unreachable*/
             }
         }
-
 
         /// <summary>
         /// Gets the preferred encoding.
@@ -274,6 +269,7 @@ namespace Npoi.Core.Util
             in1.ReadFully(buf);
             return ISO_8859_1.GetString(buf);
         }
+
         public static String ReadUnicodeLE(ILittleEndianInput in1, int nChars)
         {
             byte[] bytes = new byte[nChars * 2];
@@ -290,9 +286,9 @@ namespace Npoi.Core.Util
          * </ol>
          * For this encoding, the is16BitFlag is always present even if nChars==0.
          */
+
         public static String ReadUnicodeString(ILittleEndianInput in1)
         {
-
             int nChars = in1.ReadUShort();
             byte flag = (byte)in1.ReadByte();
             if ((flag & 0x01) == 0)
@@ -301,6 +297,7 @@ namespace Npoi.Core.Util
             }
             return ReadUnicodeLE(in1, nChars);
         }
+
         /**
          * InputStream <c>in</c> is expected to contain:
          * <ol>
@@ -309,10 +306,11 @@ namespace Npoi.Core.Util
          * </ol>
          * For this encoding, the is16BitFlag is always present even if nChars==0.
          * <br/>
-         * This method should be used when the nChars field is <em>not</em> stored 
-         * as a ushort immediately before the is16BitFlag. Otherwise, {@link 
-         * #readUnicodeString(LittleEndianInput)} can be used. 
+         * This method should be used when the nChars field is <em>not</em> stored
+         * as a ushort immediately before the is16BitFlag. Otherwise, {@link
+         * #readUnicodeString(LittleEndianInput)} can be used.
          */
+
         public static String ReadUnicodeString(ILittleEndianInput in1, int nChars)
         {
             byte is16Bit = (byte)in1.ReadByte();
@@ -322,6 +320,7 @@ namespace Npoi.Core.Util
             }
             return ReadUnicodeLE(in1, nChars);
         }
+
         /**
          * OutputStream <c>out</c> will get:
          * <ol>
@@ -331,9 +330,9 @@ namespace Npoi.Core.Util
          * </ol>
          * For this encoding, the is16BitFlag is always present even if nChars==0.
          */
+
         public static void WriteUnicodeString(ILittleEndianOutput out1, String value)
         {
-
             int nChars = value.Length;
             out1.WriteShort(nChars);
             bool is16Bit = HasMultibyte(value);
@@ -347,6 +346,7 @@ namespace Npoi.Core.Util
                 PutCompressedUnicode(value, out1);
             }
         }
+
         /**
          * OutputStream <c>out</c> will get:
          * <ol>
@@ -355,10 +355,11 @@ namespace Npoi.Core.Util
          * </ol>
          * For this encoding, the is16BitFlag is always present even if nChars==0.
          * <br/>
-         * This method should be used when the nChars field is <em>not</em> stored 
-         * as a ushort immediately before the is16BitFlag. Otherwise, {@link 
-         * #writeUnicodeString(LittleEndianOutput, String)} can be used. 
+         * This method should be used when the nChars field is <em>not</em> stored
+         * as a ushort immediately before the is16BitFlag. Otherwise, {@link
+         * #writeUnicodeString(LittleEndianOutput, String)} can be used.
          */
+
         public static void WriteUnicodeStringFlagAndData(ILittleEndianOutput out1, String value)
         {
             bool is16Bit = HasMultibyte(value);
@@ -372,6 +373,7 @@ namespace Npoi.Core.Util
                 PutCompressedUnicode(value, out1);
             }
         }
+
         /// <summary>
         /// Gets the number of bytes that would be written by WriteUnicodeString(LittleEndianOutput, String)
         /// </summary>
@@ -396,12 +398,13 @@ namespace Npoi.Core.Util
         {
             return !value.Equals(ISO_8859_1.GetString(ISO_8859_1.GetBytes(value)));
         }
-        /// <summary> 
-        /// Encodes non-US-ASCII characters in a string, good for encoding file names for download 
+
+        /// <summary>
+        /// Encodes non-US-ASCII characters in a string, good for encoding file names for download
         /// http://www.acriticsreview.com/List.aspx?listid=42
-        /// </summary> 
-        /// <param name="s"></param> 
-        /// <returns></returns> 
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static string ToHexString(string s)
         {
             char[] chars = s.ToCharArray();
@@ -422,11 +425,12 @@ namespace Npoi.Core.Util
 
             return builder.ToString();
         }
-        /// <summary> 
-        /// Encodes a non-US-ASCII character. 
-        /// </summary> 
-        /// <param name="chr"></param> 
-        /// <returns></returns> 
+
+        /// <summary>
+        /// Encodes a non-US-ASCII character.
+        /// </summary>
+        /// <param name="chr"></param>
+        /// <returns></returns>
         public static string ToHexString(char chr)
         {
             //UTF8Encoding utf8 = new UTF8Encoding();
@@ -442,40 +446,42 @@ namespace Npoi.Core.Util
             return Convert.ToString((int)chr, 16);
         }
 
-        /// <summary> 
-        /// Encodes a non-US-ASCII character. 
-        /// </summary> 
-        /// <param name="chr"></param> 
-        /// <returns></returns> 
+        /// <summary>
+        /// Encodes a non-US-ASCII character.
+        /// </summary>
+        /// <param name="chr"></param>
+        /// <returns></returns>
         public static string ToHexString(short chr)
         {
             return ToHexString((char)chr);
         }
 
-        /// <summary> 
-        /// Encodes a non-US-ASCII character. 
-        /// </summary> 
-        /// <param name="chr"></param> 
-        /// <returns></returns> 
+        /// <summary>
+        /// Encodes a non-US-ASCII character.
+        /// </summary>
+        /// <param name="chr"></param>
+        /// <returns></returns>
         public static string ToHexString(int chr)
         {
             return ToHexString((char)chr);
         }
-        /// <summary> 
-        /// Encodes a non-US-ASCII character. 
-        /// </summary> 
-        /// <param name="chr"></param> 
-        /// <returns></returns> 
+
+        /// <summary>
+        /// Encodes a non-US-ASCII character.
+        /// </summary>
+        /// <param name="chr"></param>
+        /// <returns></returns>
         public static string ToHexString(long chr)
         {
             return ToHexString((char)chr);
         }
-        /// <summary> 
-        /// Determines if the character needs to be encoded. 
+
+        /// <summary>
+        /// Determines if the character needs to be encoded.
         /// http://www.acriticsreview.com/List.aspx?listid=42
-        /// </summary> 
-        /// <param name="chr"></param> 
-        /// <returns></returns> 
+        /// </summary>
+        /// <param name="chr"></param>
+        /// <returns></returns>
         private static bool NeedToEncode(char chr)
         {
             string reservedChars = "$-_.+!*'(),@=&";
@@ -491,14 +497,15 @@ namespace Npoi.Core.Util
         /**
         * Some strings may contain encoded characters of the unicode private use area.
         * Currently the characters of the symbol fonts are mapped to the corresponding
-        * characters in the normal unicode range. 
+        * characters in the normal unicode range.
         *
-        * @param string the original string 
+        * @param string the original string
         * @return the string with mapped characters
-        * 
+        *
         * @see <a href="http://www.alanwood.net/unicode/private_use_area.html#symbol">Private Use Area (symbol)</a>
         * @see <a href="http://www.alanwood.net/demos/symbol.html">Symbol font - Unicode alternatives for Greek and special characters in HTML</a>
         */
+
         public static String mapMsCodepointString(String string1)
         {
             if (string1 == null || "".Equals(string1)) return string1;
@@ -507,9 +514,8 @@ namespace Npoi.Core.Util
             StringBuilder sb = new StringBuilder();
             int length = string1.Length;
             //char[] stringChars = string1.ToCharArray();
-            for (int offset = 0; offset < length; )
+            for (int offset = 0; offset < length;)
             {
-                
                 int msCodepoint = char.ConvertToUtf32(string1, offset);//codePointAt(stringChars, offset, string1.Length);
                 int uniCodepoint = msCodepointToUnicode[(msCodepoint)];
                 sb.Append(Char.ConvertFromUtf32(uniCodepoint == null ? msCodepoint : uniCodepoint));
@@ -518,6 +524,7 @@ namespace Npoi.Core.Util
 
             return sb.ToString();
         }
+
         /**
          * The minimum value of a
          * <a href="http://www.unicode.org/glossary/#high_surrogate_code_unit">
@@ -539,16 +546,16 @@ namespace Npoi.Core.Util
          * @since 1.5
          */
         public static char MAX_HIGH_SURROGATE = '\uDBFF';
-            /**
-         * The minimum value of a
-         * <a href="http://www.unicode.org/glossary/#low_surrogate_code_unit">
-         * Unicode low-surrogate code unit</a>
-         * in the UTF-16 encoding, constant {@code '\u005CuDC00'}.
-         * A low-surrogate is also known as a <i>trailing-surrogate</i>.
-         *
-         * @since 1.5
-         */
-        public static char MIN_LOW_SURROGATE  = '\uDC00';
+        /**
+     * The minimum value of a
+     * <a href="http://www.unicode.org/glossary/#low_surrogate_code_unit">
+     * Unicode low-surrogate code unit</a>
+     * in the UTF-16 encoding, constant {@code '\u005CuDC00'}.
+     * A low-surrogate is also known as a <i>trailing-surrogate</i>.
+     *
+     * @since 1.5
+     */
+        public static char MIN_LOW_SURROGATE = '\uDC00';
 
         /**
          * The maximum value of a
@@ -559,20 +566,22 @@ namespace Npoi.Core.Util
          *
          * @since 1.5
          */
-        public static char MAX_LOW_SURROGATE  = '\uDFFF';
-            /**
-         * Converts the specified surrogate pair to its supplementary code
-         * point value. This method does not validate the specified
-         * surrogate pair. The caller must validate it using {@link
-         * #isSurrogatePair(char, char) isSurrogatePair} if necessary.
-         *
-         * @param  high the high-surrogate code unit
-         * @param  low the low-surrogate code unit
-         * @return the supplementary code point composed from the
-         *         specified surrogate pair.
-         * @since  1.5
-         */
-        public static int toCodePoint(char high, char low) {
+        public static char MAX_LOW_SURROGATE = '\uDFFF';
+        /**
+     * Converts the specified surrogate pair to its supplementary code
+     * point value. This method does not validate the specified
+     * surrogate pair. The caller must validate it using {@link
+     * #isSurrogatePair(char, char) isSurrogatePair} if necessary.
+     *
+     * @param  high the high-surrogate code unit
+     * @param  low the low-surrogate code unit
+     * @return the supplementary code point composed from the
+     *         specified surrogate pair.
+     * @since  1.5
+     */
+
+        public static int toCodePoint(char high, char low)
+        {
             // Optimized form of:
             // return ((high - MIN_HIGH_SURROGATE) << 10)
             //         + (low - MIN_LOW_SURROGATE)
@@ -581,8 +590,9 @@ namespace Npoi.Core.Util
                                            - (MIN_HIGH_SURROGATE << 10)
                                            - MIN_LOW_SURROGATE);
         }
+
         // throws ArrayIndexOutOfBoundsException if index out of bounds
-        static int codePointAt(char[] a, int index, int limit)
+        private static int codePointAt(char[] a, int index, int limit)
         {
             char c1 = a[index];
             if (char.IsHighSurrogate(c1) && ++index < limit)
@@ -595,6 +605,7 @@ namespace Npoi.Core.Util
             }
             return c1;
         }
+
         public const int MIN_SUPPLEMENTARY_CODE_POINT = 0x010000;
         /**
          * Determines the number of {@code char} values needed to
@@ -612,10 +623,12 @@ namespace Npoi.Core.Util
          * @see     Character#isSupplementaryCodePoint(int)
          * @since   1.5
          */
+
         public static int CharCount(int codePoint)
         {
             return codePoint >= MIN_SUPPLEMENTARY_CODE_POINT ? 2 : 1;
         }
+
         public static void mapMsCodepoint(int msCodepoint, int unicodeCodepoint)
         {
             InitMsCodepointMap();
@@ -835,6 +848,5 @@ namespace Npoi.Core.Util
        9133, // 0xf0fe bracerightbt
        ' ', // 0xf0ff not defined
    };
-
     }
 }

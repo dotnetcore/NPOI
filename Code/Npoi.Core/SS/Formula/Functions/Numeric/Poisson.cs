@@ -14,9 +14,9 @@
          * @param mean The mean.
          * @return If a default value should be returned.
          */
+
         private bool IsDefaultResult(double x, double mean)
         {
-
             if (x == 0 && mean == 0)
             {
                 return true;
@@ -26,7 +26,6 @@
 
         private bool CheckArgument(double aDouble)
         {
-
             NumericFunction.CheckValue(aDouble);
 
             // make sure that the number is positive
@@ -54,6 +53,7 @@
         }
 
         /** All long-representable factorials */
+
         private long[] FACTORIALS = new long[] {
                            1L,                  1L,                   2L,
                            6L,                 24L,                 120L,
@@ -63,7 +63,6 @@
                1307674368000L,     20922789888000L,     355687428096000L,
             6402373705728000L, 121645100408832000L, 2432902008176640000L };
 
-
         public long Factorial(int n)
         {
             if (n < 0 || n > 20)
@@ -72,6 +71,7 @@
             }
             return FACTORIALS[n];
         }
+
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1, ValueEval arg2)
         {
             // arguments/result for this function
@@ -107,7 +107,6 @@
 
                 // check the result
                 NumericFunction.CheckValue(result);
-
             }
             catch (EvaluationException e)
             {

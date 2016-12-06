@@ -18,36 +18,39 @@
 namespace Npoi.Core.SS.UserModel
 {
     using System.Collections.Generic;
-    using System.Collections;
 
     /// <summary>
     /// Used to specify the different possible policies
     /// if for the case of null and blank cells
-    /// </summary>    
+    /// </summary>
     public class MissingCellPolicy
     {
         private static int NEXT_ID = 1;
         public int id;
+
         public MissingCellPolicy()
         {
             this.id = NEXT_ID++;
         }
+
         /// <summary>Missing cells are returned as null, Blank cells are returned as normal</summary>
         public static readonly MissingCellPolicy RETURN_NULL_AND_BLANK = new MissingCellPolicy();
+
         /// <summary>Missing cells are returned as null, as are blank cells</summary>
         public static readonly MissingCellPolicy RETURN_BLANK_AS_NULL = new MissingCellPolicy();
+
         /// <summary>A new, blank cell is Created for missing cells. Blank cells are returned as normal</summary>
         public static readonly MissingCellPolicy CREATE_NULL_AS_BLANK = new MissingCellPolicy();
     }
 
     /// <summary>
     /// High level representation of a row of a spreadsheet.
-    /// </summary>    
+    /// </summary>
     public interface IRow : IEnumerable<ICell>
     {
         /// <summary>
         /// Use this to create new cells within the row and return it.
-        /// 
+        ///
         /// The cell that is returned is a <see cref="ICell"/>/<see cref="CellType.Blank"/>.
         /// The type can be changed either through calling <c>SetCellValue</c> or <c>SetCellType</c>.
         /// </summary>
@@ -61,7 +64,7 @@ namespace Npoi.Core.SS.UserModel
 
         /// <summary>
         /// Use this to create new cells within the row and return it.
-        /// 
+        ///
         /// The cell that is returned is a <see cref="ICell"/>/<see cref="CellType.Blank"/>. The type can be changed
         /// either through calling <code>SetCellValue</code> or <code>SetCellType</code>.
         /// </summary>
@@ -81,7 +84,7 @@ namespace Npoi.Core.SS.UserModel
 
         /// <summary>
         /// Get row number this row represents
-        /// </summary>        
+        /// </summary>
         /// <returns>the row number (0 based)</returns>
         int RowNum { get; set; }
 
@@ -149,7 +152,7 @@ namespace Npoi.Core.SS.UserModel
         bool ZeroHeight { get; set; }
 
         /// <summary>
-        /// Get the row's height measured in twips (1/20th of a point). 
+        /// Get the row's height measured in twips (1/20th of a point).
         /// If the height is not set, the default worksheet value is returned,
         /// <see cref="ISheet.DefaultRowHeightInPoints"/>
         /// </summary>
@@ -157,7 +160,7 @@ namespace Npoi.Core.SS.UserModel
         short Height { get; set; }
 
         /// <summary>
-        /// Returns row height measured in point size. 
+        /// Returns row height measured in point size.
         /// If the height is not set, the default worksheet value is returned,
         /// <see cref="ISheet.DefaultRowHeightInPoints"/>
         /// </summary>
@@ -165,6 +168,7 @@ namespace Npoi.Core.SS.UserModel
         /// <see cref="ISheet.DefaultRowHeightInPoints"/>
         /// </returns>
         float HeightInPoints { get; set; }
+
         /// <summary>
         /// Is this row formatted? Most aren't, but some rows
         /// do have whole-row styles. For those that do, you
@@ -192,12 +196,14 @@ namespace Npoi.Core.SS.UserModel
         /// <param name="cell">The cell to move</param>
         /// <param name="newColumn">The new column number (0 based)</param>
         void MoveCell(ICell cell, int newColumn);
+
         /// <summary>
         /// Copy the current row to the target row
         /// </summary>
         /// <param name="targetIndex">row index of the target row</param>
         /// <returns>the new copied row object</returns>
         IRow CopyRowTo(int targetIndex);
+
         /// <summary>
         /// Copy the source cell to the target cell. If the target cell exists, the new copied cell will be inserted before the existing one
         /// </summary>
@@ -205,6 +211,7 @@ namespace Npoi.Core.SS.UserModel
         /// <param name="targetIndex">index of the target cell</param>
         /// <returns>the new copied cell object</returns>
         ICell CopyCell(int sourceIndex, int targetIndex);
+
         /// <summary>
         /// Get cells in the row
         /// </summary>
@@ -218,4 +225,3 @@ namespace Npoi.Core.SS.UserModel
         int OutlineLevel { get; }
     }
 }
-

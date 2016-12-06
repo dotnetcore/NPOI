@@ -14,6 +14,7 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
+
 namespace Npoi.Core.HPSF
 {
     public class VersionedStream
@@ -21,14 +22,12 @@ namespace Npoi.Core.HPSF
         private GUID _versionGuid;
         private IndirectPropertyName _streamName;
 
-        public VersionedStream(byte[] data, int offset)
-        {
+        public VersionedStream(byte[] data, int offset) {
             _versionGuid = new GUID(data, offset);
             _streamName = new IndirectPropertyName(data, offset + GUID.SIZE);
         }
 
-        public int Size
-        {
+        public int Size {
             get { return GUID.SIZE + _streamName.Size; }
         }
     }

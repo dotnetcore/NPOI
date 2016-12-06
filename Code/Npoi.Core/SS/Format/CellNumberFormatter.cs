@@ -14,21 +14,22 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.Format
 {
-    using System;
-    using System.Text.RegularExpressions;
-    using System.Text;
-    using System.Collections.Generic;
     using Npoi.Core.SS.Util;
+    using System;
     using System.Collections;
-
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Text.RegularExpressions;
 
     /**
      * This class : printing out a value using a number format.
      *
      * @author Ken Arnold, Industrious Media LLC
      */
+
     public class CellNumberFormatter : CellFormatter
     {
         private String desc;
@@ -69,8 +70,8 @@ namespace Npoi.Core.SS.Format
             public SimpleNumberCellFormatter(string format)
                 : base(format)
             {
-
             }
+
             public override void FormatValue(StringBuilder toAppendTo, Object value)
             {
                 if (value == null)
@@ -90,6 +91,7 @@ namespace Npoi.Core.SS.Format
                     CellTextFormatter.SIMPLE_TEXT.FormatValue(toAppendTo, value);
                 }
             }
+
             public override void SimpleValue(StringBuilder toAppendTo, Object value)
             {
                 FormatValue(toAppendTo, value);
@@ -104,6 +106,7 @@ namespace Npoi.Core.SS.Format
          * This class is used to mark where the special characters in the format
          * are, as opposed to the other characters that are simply printed.
          */
+
         internal class Special
         {
             internal char ch;
@@ -114,7 +117,6 @@ namespace Npoi.Core.SS.Format
                 this.ch = ch;
                 this.pos = pos;
             }
-
 
             public override String ToString()
             {
@@ -131,6 +133,7 @@ namespace Npoi.Core.SS.Format
          * modifications that need to be made.  Finally, we go through and apply
          * them all, dealing with overlapping modifications.
          */
+
         internal class StringMod : IComparable<StringMod>
         {
             internal Special special;
@@ -178,7 +181,6 @@ namespace Npoi.Core.SS.Format
                     return op - that.op;
             }
 
-
             public override bool Equals(Object that)
             {
                 try
@@ -192,7 +194,6 @@ namespace Npoi.Core.SS.Format
                 }
             }
 
-
             public override int GetHashCode()
             {
                 return special.GetHashCode() + op;
@@ -202,11 +203,13 @@ namespace Npoi.Core.SS.Format
         private class NumPartHandler : CellFormatPart.IPartHandler
         {
             private char insertSignForExponent;
-            CellNumberFormatter formatter;
+            private CellNumberFormatter formatter;
+
             public NumPartHandler(CellNumberFormatter formatter)
             {
                 this.formatter = formatter;
             }
+
             public String HandlePart(Match m, String part, CellFormatType type,
                     StringBuilder desc)
             {
@@ -273,11 +276,13 @@ namespace Npoi.Core.SS.Format
                 return part;
             }
         }
+
         /**
          * Creates a new cell number formatter.
          *
          * @param format The format to Parse.
          */
+
         public CellNumberFormatter(String format)
             : base(format)
         {
@@ -443,22 +448,20 @@ namespace Npoi.Core.SS.Format
             return null;
         }
 
-        static StringMod insertMod(Special special, string toAdd, int where)
+        private static StringMod insertMod(Special special, string toAdd, int where)
         {
             return new StringMod(special, toAdd, where);
         }
 
-        static StringMod deleteMod(Special start, bool startInclusive,
+        private static StringMod deleteMod(Special start, bool startInclusive,
                 Special end, bool endInclusive)
         {
-
             return new StringMod(start, startInclusive, end, endInclusive);
         }
 
-        static StringMod ReplaceMod(Special start, bool startInclusive,
+        private static StringMod ReplaceMod(Special start, bool startInclusive,
                 Special end, bool endInclusive, char withChar)
         {
-
             return new StringMod(start, startInclusive, end, endInclusive,
                     withChar);
         }
@@ -674,6 +677,7 @@ namespace Npoi.Core.SS.Format
         }
 
         /** {@inheritDoc} */
+
         public override void FormatValue(StringBuilder toAppendTo, Object valueObject)
         {
             double value = ((double)valueObject);
@@ -834,11 +838,10 @@ namespace Npoi.Core.SS.Format
         private void WriteScientific(double value, StringBuilder output,
                 SortedList<StringMod, object> mods)
         {
-
             StringBuilder result = new StringBuilder();
             //FieldPosition fractionPos = new FieldPosition(DecimalFormat.FRACTION_FIELD;
             //decimalFmt.Format(value, result, fractionPos);
-            
+
             //
             string pattern = decimalFmt.Pattern;
             int pos = 0;
@@ -854,7 +857,7 @@ namespace Npoi.Core.SS.Format
             int integerNum = pos;
             if (pattern[0] == '#')
                 integerNum--;
-            if (integerNum >= 6&& value>1)
+            if (integerNum >= 6 && value > 1)
             {
                 pattern = pattern.Substring(1);
                 result.Append(value.ToString(pattern));
@@ -905,7 +908,7 @@ namespace Npoi.Core.SS.Format
 
             // (2) Determine the result's sign.
             string tmp = result.ToString();
-            int ePos =tmp.IndexOf("E");// fractionPos.EndIndex;
+            int ePos = tmp.IndexOf("E");// fractionPos.EndIndex;
             int signPos = ePos + 1;
             char expSignRes = result[signPos];
 
@@ -943,7 +946,6 @@ namespace Npoi.Core.SS.Format
         private void WriteFraction(double value, StringBuilder result,
                 double fractional, StringBuilder output, SortedList<StringMod, object> mods)
         {
-
             // Figure out if we are to suppress either the integer or fractional part.
             // With # the suppressed part is Removed; with ? it is Replaced with spaces.
             if (!improperFraction)
@@ -1036,6 +1038,7 @@ namespace Npoi.Core.SS.Format
                 System.Console.WriteLine(ignored.StackTrace);
             }
         }
+
         //private static bool HasChar(char ch, List<Special> s1, List<Special> s2, List<Special> s3)
         //{
         //    return HasChar(ch, s1) || HasChar(ch, s2) || HasChar(ch, s3);
@@ -1077,7 +1080,6 @@ namespace Npoi.Core.SS.Format
         private void WriteSingleint(String fmt, int num, StringBuilder output,
                 List<Special> numSpecials, SortedList<StringMod, object> mods)
         {
-
             StringBuilder sb = new StringBuilder();
             //Formatter formatter = new Formatter(sb);
             //formatter.Format(LOCALE, fmt, num);
@@ -1089,7 +1091,6 @@ namespace Npoi.Core.SS.Format
                 List<Special> numSpecials, SortedList<StringMod, object> mods,
                 bool ShowCommas)
         {
-
             int pos = result.ToString().IndexOf(".") - 1;
             if (pos < 0)
             {
@@ -1199,6 +1200,7 @@ namespace Npoi.Core.SS.Format
          * For a number, this is <tt>"#"</tt> for integer values, and <tt>"#.#"</tt>
          * for floating-point values.
          */
+
         public override void SimpleValue(StringBuilder toAppendTo, Object value)
         {
             SIMPLE_NUMBER.FormatValue(toAppendTo, value);

@@ -18,6 +18,7 @@
  * Created on May 8, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Eval
 {
     using Npoi.Core.SS.Formula;
@@ -25,9 +26,9 @@ namespace Npoi.Core.SS.Formula.Eval
     /**
      * Evaluation of 2D (Row+Column) and 3D (Sheet+Row+Column) areas
      */
+
     public interface AreaEval : TwoDEval, ThreeDEval
     {
-
         /**
          * returns the 0-based index of the first row in
          * this area.
@@ -52,44 +53,51 @@ namespace Npoi.Core.SS.Formula.Eval
          */
         int LastColumn { get; }
 
-
         /**
-         * returns true if the cell at row and col specified 
-         * as absolute indexes in the sheet is contained in 
+         * returns true if the cell at row and col specified
+         * as absolute indexes in the sheet is contained in
          * this area.
          * @param row
          * @param col
          */
+
         bool Contains(int row, int col);
 
         /**
          * returns true if the specified col is in range
          * @param col
          */
+
         bool ContainsColumn(int col);
 
         /**
          * returns true if the specified row is in range
          * @param row
          */
+
         bool ContainsRow(int row);
+
         /**
  * @return the ValueEval from within this area at the specified row and col index. Never
  * <code>null</code> (possibly {@link BlankEval}).  The specified indexes should be absolute
  * indexes in the sheet and not relative indexes within the area.
  */
+
         ValueEval GetAbsoluteValue(int row, int col);
+
         /**
-         * @return the ValueEval from within this area at the specified relativeRowIndex and 
+         * @return the ValueEval from within this area at the specified relativeRowIndex and
          * relativeColumnIndex. Never <c>null</c> (possibly {@link BlankEval}). The
-         * specified indexes should relative to the top left corner of this area.  
+         * specified indexes should relative to the top left corner of this area.
          */
+
         ValueEval GetRelativeValue(int relativeRowIndex, int relativeColumnIndex);
 
         /**
          * Creates an {@link AreaEval} offset by a relative amount from from the upper left cell
          * of this area
          */
+
         AreaEval Offset(int relFirstRowIx, int relLastRowIx, int relFirstColIx, int relLastColIx);
     }
 }

@@ -17,12 +17,11 @@
 
 namespace Npoi.Core.WP.UserModel
 {
-    using System;
-
     /**
      * This class represents a paragraph, made up of one or more
      *  Runs of text.
      */
+
     public interface IParagraph
     {
         // Tables work very differently between the formats
@@ -128,7 +127,7 @@ namespace Npoi.Core.WP.UserModel
         /**
          * Returns number of tabs stops defined for paragraph. Must be >= 0 and <=
          * 64.
-         * 
+         *
          * @return number of tabs stops defined for paragraph. Must be >= 0 and <=
          *         64
          */
@@ -136,10 +135,9 @@ namespace Npoi.Core.WP.UserModel
 
         /**
          * Returns array of positions of itbdMac tab stops
-         * 
+         *
          * @return array of positions of itbdMac tab stops
          */
         //    int[] GetTabStopsPositions();
     }
-
 }

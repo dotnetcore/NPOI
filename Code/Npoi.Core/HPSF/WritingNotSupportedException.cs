@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF
@@ -34,24 +34,20 @@ namespace Npoi.Core.HPSF
     /// type.
     /// @see ReadingNotSupportedException
     /// @see UnsupportedVariantTypeException
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
     /// @since 2003-08-08
     /// </summary>
     [Serializable]
     public class WritingNotSupportedException : UnsupportedVariantTypeException
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="WritingNotSupportedException"/> class.
         /// </summary>
         /// <param name="variantType">The unsupported variant type.</param>
         /// <param name="value">The value</param>
-        public WritingNotSupportedException(long variantType,Object value)
-            :base(variantType, value)
-        {
-            
+        public WritingNotSupportedException(long variantType, Object value)
+            : base(variantType, value) {
         }
-
     }
 }

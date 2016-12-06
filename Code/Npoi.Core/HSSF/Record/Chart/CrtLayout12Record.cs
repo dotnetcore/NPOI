@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Npoi.Core.Util;
+using System;
 using System.Text;
-using Npoi.Core.Util;
 
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
     /// <summary>
-    /// The CrtLayout12Mode specifies a layout mode. Each layout mode specifies a different 
+    /// The CrtLayout12Mode specifies a layout mode. Each layout mode specifies a different
     /// meaning of the x, y, dx, and dy fields of CrtLayout12 and CrtLayout12A.
     /// </summary>
     public enum CrtLayout12Mode : short
@@ -15,24 +14,26 @@ namespace Npoi.Core.HSSF.Record.Chart
         /// Position and dimension (2) are determined by the application. x, y, dx and dy MUST be ignored.
         /// </summary>
         L12MAUTO = 0,
+
         /// <summary>
-        /// x and y specify the offset of the top left corner, relative to its default position, 
-        /// as a fraction of the chart area. MUST be greater than or equal to -1.0 and MUST be 
-        /// less than or equal to 1.0. dx and dy specify the width and height, as a fraction of 
+        /// x and y specify the offset of the top left corner, relative to its default position,
+        /// as a fraction of the chart area. MUST be greater than or equal to -1.0 and MUST be
+        /// less than or equal to 1.0. dx and dy specify the width and height, as a fraction of
         /// the chart area, MUST be greater than or equal to 0.0, and MUST be less than or equal to 1.0.
         /// </summary>
         L12MFACTOR = 1,
+
         /// <summary>
-        /// x and y specify the offset of the upper-left corner; dx and dy specify the offset of the bottom-right corner. 
-        /// x, y, dx and dy are specified relative to the upper-left corner of the chart area as a fraction of the chart area. 
+        /// x and y specify the offset of the upper-left corner; dx and dy specify the offset of the bottom-right corner.
+        /// x, y, dx and dy are specified relative to the upper-left corner of the chart area as a fraction of the chart area.
         /// x, y, dx and dy MUST be greater than or equal to 0.0, and MUST be less than or equal to 1.0.
         /// </summary>
         L12MEDGE = 2
     }
 
     /// <summary>
-    /// The CrtLayout12 record specifies the layout information for attached label, when contained 
-    /// in the sequence of records that conforms to the ATTACHEDLABEL rule, 
+    /// The CrtLayout12 record specifies the layout information for attached label, when contained
+    /// in the sequence of records that conforms to the ATTACHEDLABEL rule,
     /// or legend, when contained in the sequence of records that conforms to the LD rule.
     /// </summary>
     public class CrtLayout12Record : StandardRecord
@@ -41,8 +42,10 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         private short field_1_frtHeader_rt;
         private short field_2_frtHeader_grbitFrt;
+
         //private long field_3_frtHeader_reserved;
         private int field_5_dwCheckSum;
+
         private short field_6_option;
         private short field_7_wXMode;
         private short field_8_wYMode;
@@ -83,7 +86,8 @@ namespace Npoi.Core.HSSF.Record.Chart
 
             return buffer.ToString();
         }
-        BitField autolayouttype = BitFieldFactory.GetInstance(0x1E);
+
+        private BitField autolayouttype = BitFieldFactory.GetInstance(0x1E);
 
         //private short field_15_reserved2;
 
@@ -162,10 +166,10 @@ namespace Npoi.Core.HSSF.Record.Chart
             record.YMode = this.YMode;
             return record;
         }
-        
+
         /// <summary>
-        /// automatic layout type of the legend. 
-        /// MUST be ignored when this record is in the sequence of records that conforms to the ATTACHEDLABEL rule. 
+        /// automatic layout type of the legend.
+        /// MUST be ignored when this record is in the sequence of records that conforms to the ATTACHEDLABEL rule.
         /// MUST be a value from the following table:
         /// 0x0  Align to the bottom
         /// 0x1  Align to top right corner
@@ -178,6 +182,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return autolayouttype.GetValue(field_6_option); }
             set { field_6_option = autolayouttype.SetShortValue(field_6_option, (short)value); }
         }
+
         /// <summary>
         /// specifies the checksum of the values in the order as follows,
         /// </summary>
@@ -186,6 +191,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_5_dwCheckSum; }
             set { field_5_dwCheckSum = value; }
         }
+
         /// <summary>
         /// A CrtLayout12Mode structure that specifies the meaning of x.
         /// </summary>
@@ -194,6 +200,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return (CrtLayout12Mode)field_7_wXMode; }
             set { field_7_wXMode = (short)value; }
         }
+
         /// <summary>
         /// A CrtLayout12Mode structure that specifies the meaning of y.
         /// </summary>
@@ -202,6 +209,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return (CrtLayout12Mode)field_8_wYMode; }
             set { field_8_wYMode = (short)value; }
         }
+
         /// <summary>
         /// A CrtLayout12Mode structure that specifies the meaning of dx.
         /// </summary>
@@ -210,6 +218,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return (CrtLayout12Mode)field_9_wWidthMode; }
             set { field_9_wWidthMode = (short)value; }
         }
+
         /// <summary>
         /// A CrtLayout12Mode structure that specifies the meaning of dy.
         /// </summary>
@@ -218,6 +227,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return (CrtLayout12Mode)field_10_wHeightMode; }
             set { field_10_wHeightMode = (short)value; }
         }
+
         /// <summary>
         /// An Xnum (section 2.5.342) value that specifies a horizontal offset. The meaning is determined by wXMode.
         /// </summary>
@@ -226,6 +236,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_11_x; }
             set { field_11_x = value; }
         }
+
         /// <summary>
         /// An Xnum value that specifies a vertical offset. The meaning is determined by wYMode.
         /// </summary>
@@ -234,6 +245,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_12_y; }
             set { field_12_y = value; }
         }
+
         /// <summary>
         /// An Xnum value that specifies a width or an horizontal offset. The meaning is determined by wWidthMode.
         /// </summary>
@@ -242,6 +254,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_13_dx; }
             set { field_13_dx = value; }
         }
+
         /// <summary>
         /// An Xnum value that specifies a height or an vertical offset. The meaning is determined by wHeightMode.
         /// </summary>

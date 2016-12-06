@@ -1,5 +1,4 @@
-﻿
-/* ====================================================================
+﻿/* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
    this work for additional information regarding copyright ownership.
@@ -18,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
@@ -32,12 +31,12 @@ using System.IO;
 namespace Npoi.Core.Util
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     [Obsolete]
     public class ULongField
     {
-        private ulong      _value;
+        private ulong _value;
         private int _offset;
 
         /// <summary>
@@ -59,9 +58,9 @@ namespace Npoi.Core.Util
         /// </summary>
         /// <param name="offset">offset of the field within its byte array</param>
         /// <param name="value">the initial value</param>
-        public ULongField(int offset, ulong value):this(offset)
+        public ULongField(int offset, ulong value) : this(offset)
         {
-            this.Value=value;
+            this.Value = value;
         }
 
         /// <summary>
@@ -70,9 +69,9 @@ namespace Npoi.Core.Util
         /// </summary>
         /// <param name="offset">The offset of the field within its byte array</param>
         /// <param name="data">the byte array to read the value from</param>
-        public ULongField(int offset, byte [] data)
+        public ULongField(int offset, byte[] data)
         {
-            this._offset=offset;
+            this._offset = offset;
             ReadFromBytes(data);
         }
 
@@ -84,9 +83,9 @@ namespace Npoi.Core.Util
         /// <param name="offset">offset of the field within its byte array</param>
         /// <param name="value">the initial value</param>
         /// <param name="data">the byte array to write the value to</param>
-        public ULongField(int offset, ulong value, byte [] data)
+        public ULongField(int offset, ulong value, byte[] data)
         {
-            this._offset=offset;
+            this._offset = offset;
             Set(value, data);
         }
 
@@ -96,8 +95,8 @@ namespace Npoi.Core.Util
         /// <value>The current value</value>
         public ulong Value
         {
-            get{return _value;}
-            set{_value = value;}
+            get { return _value; }
+            set { _value = value; }
         }
 
         /// <summary>
@@ -105,7 +104,7 @@ namespace Npoi.Core.Util
         /// </summary>
         /// <param name="value">value to be set</param>
         /// <param name="data">the byte array to write the value to</param>
-        public void Set(ulong value, byte [] data)
+        public void Set(ulong value, byte[] data)
         {
             this._value = value;
             WriteToBytes(data);
@@ -115,7 +114,7 @@ namespace Npoi.Core.Util
         /// set the value from its offset into an array of bytes
         /// </summary>
         /// <param name="data">the byte array from which the value is to be read</param>
-        public void ReadFromBytes(byte [] data)
+        public void ReadFromBytes(byte[] data)
         {
             _value = LittleEndian.GetULong(data, _offset);
         }
@@ -133,7 +132,7 @@ namespace Npoi.Core.Util
         /// write the value out to an array of bytes at the appropriate offset
         /// </summary>
         /// <param name="data">the array of bytes to which the value is to be written</param>
-        public void WriteToBytes(byte [] data)
+        public void WriteToBytes(byte[] data)
         {
             LittleEndian.PutULong(data, _offset, _value);
         }

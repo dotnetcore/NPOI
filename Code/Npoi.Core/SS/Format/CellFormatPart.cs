@@ -19,14 +19,13 @@ using System.Reflection;
 
 namespace Npoi.Core.SS.Format
 {
-    using System;
-
     using Npoi.Core.HSSF.Util;
+    using System;
     using System.Collections.Generic;
     using System.Drawing;
-    using System.Collections;
-    using System.Text.RegularExpressions;
     using System.Text;
+    using System.Text.RegularExpressions;
+
     //using System.Windows.Forms;
 
     /**
@@ -45,6 +44,7 @@ namespace Npoi.Core.SS.Format
      *
      * @author Ken Arnold, Industrious Media LLC
      */
+
     public class CellFormatPart
     {
         private Color color;
@@ -52,14 +52,14 @@ namespace Npoi.Core.SS.Format
         private CellFormatter format;
         private CellFormatType type;
         private static Dictionary<String, Color> NAMED_COLORS;
+
         public static IEqualityComparer<String> CASE_INSENSITIVE_ORDER
                                              = new CaseInsensitiveComparator();
+
         private class CaseInsensitiveComparator : IEqualityComparer<String>
         {
             // use serialVersionUID from JDK 1.2.2 for interoperability
             //private const long serialVersionUID = 8575799808933029326L;
-
-
 
             #region IEqualityComparer<string> 成员
 
@@ -73,13 +73,14 @@ namespace Npoi.Core.SS.Format
                 return obj.GetHashCode();
             }
 
-            #endregion
+            #endregion IEqualityComparer<string> 成员
         }
+
         static CellFormatPart()
         {
             NAMED_COLORS = new Dictionary<String, Color>(CASE_INSENSITIVE_ORDER);
 
-            Dictionary<object,object> colors = HSSFColor.GetIndexHash();
+            Dictionary<object, object> colors = HSSFColor.GetIndexHash();
             foreach (object v in colors.Values)
             {
                 HSSFColor hc = (HSSFColor)v;
@@ -185,7 +186,6 @@ namespace Npoi.Core.SS.Format
          */
         public static int SPECIFICATION_GROUP;
 
-
         public interface IPartHandler
         {
             String HandlePart(Match m, String part, CellFormatType type,
@@ -197,6 +197,7 @@ namespace Npoi.Core.SS.Format
          *
          * @param desc The string to Parse.
          */
+
         public CellFormatPart(String desc)
         {
             Match m = FORMAT_PAT.Match(desc);
@@ -220,6 +221,7 @@ namespace Npoi.Core.SS.Format
          *
          * @return <tt>true</tt> if this format part applies to the given value.
          */
+
         public bool Applies(Object valueObject)
         {
             if (condition == null || !(valueObject.GetType().GetTypeInfo().IsPrimitive))
@@ -247,6 +249,7 @@ namespace Npoi.Core.SS.Format
          *
          * @throws ArgumentException No group matches the marker.
          */
+
         private static int FindGroup(Regex pat, String str, String marker)
         {
             Match m = pat.Match(str);
@@ -272,6 +275,7 @@ namespace Npoi.Core.SS.Format
          *
          * @return The color specification or <tt>null</tt>.
          */
+
         private static Color GetColor(Match m)
         {
             String cdesc = m.Groups[(COLOR_GROUP)].Value.ToUpper();
@@ -293,6 +297,7 @@ namespace Npoi.Core.SS.Format
          *
          * @return The condition specification or <tt>null</tt>.
          */
+
         private CellFormatCondition GetCondition(Match m)
         {
             String mdesc = m.Groups[(CONDITION_OPERATOR_GROUP)].Value;
@@ -301,6 +306,7 @@ namespace Npoi.Core.SS.Format
             return CellFormatCondition.GetInstance(m.Groups[(
                     CONDITION_OPERATOR_GROUP)].Value, m.Groups[(CONDITION_VALUE_GROUP)].Value);
         }
+
         /**
          * Returns the CellFormatType object implied by the format specification for
          * the format part.
@@ -309,11 +315,13 @@ namespace Npoi.Core.SS.Format
          *
          * @return The CellFormatType.
          */
+
         private CellFormatType GetCellFormatType(Match matcher)
         {
             String fdesc = matcher.Groups[SPECIFICATION_GROUP].Value;
             return formatType(fdesc);
         }
+
         /**
          * Returns the formatter object implied by the format specification for the
          * format part.
@@ -322,6 +330,7 @@ namespace Npoi.Core.SS.Format
          *
          * @return The formatter.
          */
+
         private CellFormatter GetFormatter(Match matcher)
         {
             String fdesc = matcher.Groups[(SPECIFICATION_GROUP)].Value;
@@ -336,6 +345,7 @@ namespace Npoi.Core.SS.Format
          *
          * @return The type of format.
          */
+
         private CellFormatType formatType(String fdesc)
         {
             fdesc = fdesc.Trim();
@@ -345,7 +355,7 @@ namespace Npoi.Core.SS.Format
             MatchCollection mc = SPECIFICATION_PAT.Matches(fdesc);
             bool couldBeDate = false;
             bool seenZero = false;
-            foreach(Match m in mc)
+            foreach (Match m in mc)
             //while (m.Success)
             {
                 String repl = m.Groups[(0)].Value;
@@ -355,11 +365,13 @@ namespace Npoi.Core.SS.Format
                     {
                         case '@':
                             return CellFormatType.TEXT;
+
                         case 'd':
                         case 'D':
                         case 'y':
                         case 'Y':
                             return CellFormatType.DATE;
+
                         case 'h':
                         case 'H':
                         case 'm':
@@ -369,12 +381,15 @@ namespace Npoi.Core.SS.Format
                             // These can be part of date, or elapsed
                             couldBeDate = true;
                             break;
+
                         case '0':
                             // This can be part of date, elapsed, or number
                             seenZero = true;
                             break;
+
                         case '[':
                             return CellFormatType.ELAPSED;
+
                         case '#':
                         case '?':
                             return CellFormatType.NUMBER;
@@ -402,7 +417,8 @@ namespace Npoi.Core.SS.Format
          *
          * @see CellFormatType#isSpecial(char)
          */
-        static String QuoteSpecial(String repl, CellFormatType type)
+
+        private static String QuoteSpecial(String repl, CellFormatType type)
         {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < repl.Length; i++)
@@ -433,6 +449,7 @@ namespace Npoi.Core.SS.Format
          * @return A {@link CellFormatResult} object Containing the results of
          *         Applying the format to the value.
          */
+
         public CellFormatResult Apply(Object value)
         {
             bool applies = Applies(value);
@@ -476,6 +493,7 @@ namespace Npoi.Core.SS.Format
          *
          * @return The CellFormatType.
          */
+
         internal CellFormatType CellFormatType
         {
             get
@@ -489,6 +507,7 @@ namespace Npoi.Core.SS.Format
          *
          * @return <tt>true</tt> if this format part has a condition.
          */
+
         internal bool HasCondition
         {
             get
@@ -496,10 +515,10 @@ namespace Npoi.Core.SS.Format
                 return condition != null;
             }
         }
+
         public static StringBuilder ParseFormat(String fdesc, CellFormatType type,
                 IPartHandler partHandler)
         {
-
             // Quoting is very awkward.  In the Java classes, quoting is done
             // between ' chars, with '' meaning a single ' char. The problem is that
             // in Excel, it is legal to have two adjacent escaped strings.  For
@@ -520,7 +539,7 @@ namespace Npoi.Core.SS.Format
             StringBuilder fmt = new StringBuilder();
             Match lastMatch = null;
             //while (m.Find())
-            foreach(Match m in mc)
+            foreach (Match m in mc)
             {
                 String part = Group(m, 0);
                 if (part.Length > 0)
@@ -534,15 +553,19 @@ namespace Npoi.Core.SS.Format
                                 repl = QuoteSpecial(part.Substring(1,
                                         part.Length - 2), type);
                                 break;
+
                             case '\\':
                                 repl = QuoteSpecial(part.Substring(1), type);
                                 break;
+
                             case '_':
                                 repl = " ";
                                 break;
+
                             case '*': //!! We don't do this for real, we just Put in 3 of them
                                 repl = ExpandChar(part);
                                 break;
+
                             default:
                                 repl = part;
                                 break;
@@ -585,6 +608,7 @@ namespace Npoi.Core.SS.Format
 
             return fmt;
         }
+
         public static String QuoteReplacement(String s)
         {
             if ((s.IndexOf('\\') == -1) && (s.IndexOf('$') == -1))
@@ -601,6 +625,7 @@ namespace Npoi.Core.SS.Format
             }
             return sb.ToString();
         }
+
         /**
          * Expands a character. This is only partly done, because we don't have the
          * correct info.  In Excel, this would be expanded to fill the rest of the
@@ -611,6 +636,7 @@ namespace Npoi.Core.SS.Format
          *
          * @return The character repeated three times.
          */
+
         internal static String ExpandChar(String part)
         {
             String repl;
@@ -628,11 +654,13 @@ namespace Npoi.Core.SS.Format
          *
          * @return The group or <tt>""</tt>.
          */
+
         public static String Group(Match m, int g)
         {
             String str = m.Groups[(g)].Value;
             return (str == null ? "" : str);
         }
+
         public override string ToString()
         {
             return format.ToString();

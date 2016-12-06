@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     public enum DateUnit
     {
@@ -30,6 +27,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         Months = 1,
         Years = 2
     }
+
     /*
      * The axis options record provides Unit information and other various tidbits about the axis.
      * NOTE: This source is automatically generated please do not modify this file.  Either subclass or
@@ -37,9 +35,10 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Andrew C. Oliver(acoliver at apache.org)
      */
+
     //
     /// <summary>
-    /// The AxcExt record specifies additional extension properties of a date axis (section 2.2.3.6), 
+    /// The AxcExt record specifies additional extension properties of a date axis (section 2.2.3.6),
     /// along with a CatSerRange record (section 2.4.39).
     /// </summary>
     public class AxcExtRecord
@@ -64,10 +63,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         private BitField fAutoCross = BitFieldFactory.GetInstance(0x40);
         private BitField fAutoDate = BitFieldFactory.GetInstance(0x80);
 
-
         public AxcExtRecord()
         {
-
         }
 
         /*
@@ -87,9 +84,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             field_7_duBase = in1.ReadShort();
             field_8_catCrossDate = in1.ReadShort();
             field_9_options = in1.ReadShort();
-
         }
-
 
         public override String ToString()
         {
@@ -161,6 +156,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /*
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2; }
@@ -187,19 +183,17 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /*
          * Get the minimum category field for the AxisOptions record.
          */
+
         public short MinimumDate
         {
             get
             {
                 return field_1_catMin;
             }
-            set 
+            set
             {
                 this.field_1_catMin = value;
             }
@@ -208,13 +202,14 @@ namespace Npoi.Core.HSSF.Record.Chart
         /*
          * Get the maximum category field for the AxisOptions record.
          */
+
         public short MaximumDate
         {
             get
             {
                 return field_2_catMax;
             }
-            set 
+            set
             {
                 this.field_2_catMax = value;
             }
@@ -223,9 +218,10 @@ namespace Npoi.Core.HSSF.Record.Chart
         /*
          * Get the major Unit value field for the AxisOptions record.
          */
+
         //
         /// <summary>
-        /// specifies the interval at which the major tick marks are displayed on the axis (section 2.2.3.6), 
+        /// specifies the interval at which the major tick marks are displayed on the axis (section 2.2.3.6),
         /// in the unit defined by duMajor.
         /// </summary>
         public short MajorInterval
@@ -234,7 +230,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             {
                 return field_3_catMajor;
             }
-            set 
+            set
             {
                 this.field_3_catMajor = value;
             }
@@ -243,6 +239,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /*
          * Get the major Unit field for the AxisOptions record.
          */
+
         //
         /// <summary>
         /// specifies the unit of time to use for catMajor when the axis (section 2.2.3.6) is a date axis (section 2.2.3.6).
@@ -263,9 +260,10 @@ namespace Npoi.Core.HSSF.Record.Chart
         /*
          * Get the minor Unit value field for the AxisOptions record.
          */
+
         //
         /// <summary>
-        /// specifies the interval at which the minor tick marks are displayed on the axis (section 2.2.3.6), 
+        /// specifies the interval at which the minor tick marks are displayed on the axis (section 2.2.3.6),
         /// in a unit defined by duMinor.
         /// </summary>
         public short MinorInterval
@@ -283,22 +281,23 @@ namespace Npoi.Core.HSSF.Record.Chart
         /*
          * Get the minor Unit field for the AxisOptions record.
          */
+
         public DateUnit MinorUnit
         {
             get
             {
                 return (DateUnit)field_6_duMinor;
             }
-            set 
+            set
             {
                 this.field_6_duMinor = (short)value;
             }
         }
 
-
         /*
          * Get the base Unit field for the AxisOptions record.
          */
+
         //
         /// <summary>
         /// specifies the smallest unit of time used by the axis (section 2.2.3.6).
@@ -309,7 +308,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             {
                 return (DateUnit)field_7_duBase;
             }
-            set 
+            set
             {
                 this.field_7_duBase = (short)value;
             }
@@ -318,9 +317,10 @@ namespace Npoi.Core.HSSF.Record.Chart
         /*
          * Get the crossing point field for the AxisOptions record.
          */
+
         //
         /// <summary>
-        /// specifies at which date, as a date in the date system specified by the Date1904 record (section 2.4.77), 
+        /// specifies at which date, as a date in the date system specified by the Date1904 record (section 2.4.77),
         /// in the units defined by duBase, the value axis (section 2.2.3.6) crosses this axis (section 2.2.3.6).
         /// </summary>
         public short CrossDate
@@ -329,7 +329,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             {
                 return field_8_catCrossDate;
             }
-            set 
+            set
             {
                 this.field_8_catCrossDate = value;
             }
@@ -338,6 +338,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /*
          * Get the options field for the AxisOptions record.
          */
+
         public short Options
         {
             get { return field_9_options; }
@@ -348,6 +349,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * use the default minimum category
          * @return  the default minimum field value.
          */
+
         //
         /// <summary>
         /// specifies whether MinimumDate is calculated automatically.
@@ -360,10 +362,12 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set { field_9_options = fAutoMin.SetShortBoolean(field_9_options, value); }
         }
+
         /*
          * use the default maximum category
          * @return  the default maximum field value.
          */
+
         /// <summary>
         /// specifies whether MaximumDate is calculated automatically.
         /// </summary>
@@ -373,7 +377,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             {
                 return fAutoMax.IsSet(field_9_options);
             }
-            set 
+            set
             {
                 field_9_options = fAutoMax.SetShortBoolean(field_9_options, value);
             }
@@ -383,13 +387,14 @@ namespace Npoi.Core.HSSF.Record.Chart
          * use the default major Unit
          * @return  the default major field value.
          */
+
         public bool IsAutoMajor
         {
             get
             {
                 return fAutoMajor.IsSet(field_9_options);
             }
-            set 
+            set
             {
                 field_9_options = fAutoMajor.SetShortBoolean(field_9_options, value);
             }
@@ -399,6 +404,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * use the default minor Unit
          * @return  the default minor Unit field value.
          */
+
         public bool IsAutoMinor
         {
             get
@@ -408,18 +414,18 @@ namespace Npoi.Core.HSSF.Record.Chart
             set { field_9_options = fAutoMinor.SetShortBoolean(field_9_options, value); }
         }
 
-
         /*
          * this is a date axis
          * @return  the IsDate field value.
          */
+
         public bool IsDateAxis
         {
             get
             {
                 return fDateAxis.IsSet(field_9_options);
             }
-            set 
+            set
             {
                 field_9_options = fDateAxis.SetShortBoolean(field_9_options, value);
             }
@@ -429,6 +435,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * use the default base Unit
          * @return  the default base field value.
          */
+
         public bool IsAutoBase
         {
             get
@@ -442,21 +449,24 @@ namespace Npoi.Core.HSSF.Record.Chart
          * use the default crossing point
          * @return  the default cross field value.
          */
+
         public bool IsAutoCross
         {
             get
             {
                 return fAutoCross.IsSet(field_9_options);
             }
-            set 
+            set
             {
                 field_9_options = fAutoCross.SetShortBoolean(field_9_options, value);
             }
         }
+
         /*
          * use default date Setttings for this axis
          * @return  the default date Settings field value.
          */
+
         public bool IsAutoDate
         {
             get
@@ -465,9 +475,5 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set { field_9_options = fAutoDate.SetShortBoolean(field_9_options, value); }
         }
-
-
     }
 }
-
-

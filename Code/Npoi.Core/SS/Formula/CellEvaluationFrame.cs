@@ -17,20 +17,17 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
-    using System;
-    using System.Collections;
-    using System.Text;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
     using System.Collections.Generic;
-    using System.Linq;
+    using System.Text;
 
     /**
      * Stores details about the current evaluation of a cell.<br/>
      */
-    class CellEvaluationFrame
-    {
 
+    internal class CellEvaluationFrame
+    {
         private FormulaCellCacheEntry _cce;
         private List<CellCacheEntry> _sensitiveInputCells;
         private FormulaUsedBlankCellSet _usedBlankCellGroup;
@@ -40,6 +37,7 @@ namespace Npoi.Core.SS.Formula
             _cce = cce;
             _sensitiveInputCells = new List<CellCacheEntry>();
         }
+
         public CellCacheEntry GetCCE()
         {
             return _cce;
@@ -52,17 +50,21 @@ namespace Npoi.Core.SS.Formula
             sb.Append("]");
             return sb.ToString();
         }
+
         /**
          * @param inputCell a cell directly used by the formula of this evaluation frame
          */
+
         public void AddSensitiveInputCell(CellCacheEntry inputCell)
         {
             _sensitiveInputCells.Add(inputCell);
         }
+
         /**
-         * @return never <c>null</c>, (possibly empty) array of all cells directly used while 
+         * @return never <c>null</c>, (possibly empty) array of all cells directly used while
          * evaluating the formula of this frame.
          */
+
         private CellCacheEntry[] GetSensitiveInputCells()
         {
             int nItems = _sensitiveInputCells.Count;
@@ -74,6 +76,7 @@ namespace Npoi.Core.SS.Formula
             result = (CellCacheEntry[])_sensitiveInputCells.ToArray();
             return result;
         }
+
         public void AddUsedBlankCell(int bookIndex, int sheetIndex, int rowIndex, int columnIndex)
         {
             if (_usedBlankCellGroup == null)

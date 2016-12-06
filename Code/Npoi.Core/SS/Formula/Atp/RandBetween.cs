@@ -14,11 +14,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.Formula.Atp
 {
-
-    using Npoi.Core.SS.Formula.Functions;
     using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Functions;
     using System;
 
     /**
@@ -34,9 +34,9 @@ namespace Npoi.Core.SS.Formula.Atp
 
      * @author Brendan Nolan
      */
-    class RandBetween : FreeRefFunction
-    {
 
+    internal class RandBetween : FreeRefFunction
+    {
         public static FreeRefFunction Instance = new RandBetween();
 
         private RandBetween()
@@ -48,12 +48,12 @@ namespace Npoi.Core.SS.Formula.Atp
          * Evaluate for RANDBETWEEN(). Must be given two arguments. Bottom must be greater than top.
          * Bottom is rounded up and top value is rounded down. After rounding top has to be set greater
          * than top.
-         * 
+         *
          * @see org.apache.poi.ss.formula.functions.FreeRefFunction#evaluate(org.apache.poi.ss.formula.eval.ValueEval[], org.apache.poi.ss.formula.OperationEvaluationContext)
          */
+
         public ValueEval Evaluate(ValueEval[] args, OperationEvaluationContext ec)
         {
-
             double bottom, top;
 
             if (args.Length != 2)
@@ -85,7 +85,6 @@ namespace Npoi.Core.SS.Formula.Atp
             Random rnd = new Random();
 
             return new NumberEval((bottom + (int)(rnd.NextDouble() * ((top - bottom) + 1))));
-
         }
     }
 }

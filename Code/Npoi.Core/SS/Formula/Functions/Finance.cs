@@ -1,20 +1,19 @@
 ﻿using System;
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-
-
     /**
       * Implementation of the financial functions pmt, fv, ppmt, ipmt.
-      * 
+      *
       * @author Mike Argyriou micharg@gmail.com
       */
+
     public class Finance
     {
-
         /**
          * Emulates Excel/Calc's PMT(interest_rate, number_payments, PV, FV, Type)
          * function, which calculates the payments for a loan or the future value of an investment
-         * 
+         *
          * @param r
          *            - periodic interest rate represented as a decimal.
          * @param nper
@@ -27,6 +26,7 @@ namespace Npoi.Core.SS.Formula.Functions
          *            - when payment is made: beginning of period is 1; end, 0.
          * @return <code>double</code> representing periodic payment amount.
          */
+
         // http://arachnoid.com/lutusp/finance.html
         static public double PMT(double r, int nper, double pv, double fv, int type)
         {
@@ -34,12 +34,12 @@ namespace Npoi.Core.SS.Formula.Functions
             return pmt;
         }
 
-
         /**
          * Overloaded pmt() call omitting type, which defaults to 0.
-         * 
+         *
          * @see #pmt(double, int, double, double, int)
          */
+
         static public double PMT(double r, int nper, double pv, double fv)
         {
             return PMT(r, nper, pv, fv, 0);
@@ -47,20 +47,20 @@ namespace Npoi.Core.SS.Formula.Functions
 
         /**
          * Overloaded pmt() call omitting fv and type, which both default to 0.
-         * 
+         *
          * @see #pmt(double, int, double, double, int)
          */
+
         static public double PMT(double r, int nper, double pv)
         {
             return PMT(r, nper, pv, 0);
         }
 
-
         /**
          * Emulates Excel/Calc's IPMT(interest_rate, period, number_payments, PV,
          * FV, Type) function, which calculates the portion of the payment at a
          * given period that is the interest on previous balance.
-         * 
+         *
          * @param r
          *            - periodic interest rate represented as a decimal.
          * @param per
@@ -74,10 +74,11 @@ namespace Npoi.Core.SS.Formula.Functions
          * @param type
          *            - when payment is made: beginning of period is 1; end, 0.
          * @return <code>double</code> representing interest portion of payment.
-         * 
+         *
          * @see #pmt(double, int, double, double, int)
          * @see #fv(double, int, double, double, int)
          */
+
         // http://doc.optadata.com/en/dokumentation/application/expression/functions/financial.html
         static public double IPMT(double r, int per, int nper, double pv, double fv, int type)
         {
@@ -100,7 +101,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * Emulates Excel/Calc's PPMT(interest_rate, period, number_payments, PV,
          * FV, Type) function, which calculates the portion of the payment at a
          * given period that will apply to principal.
-         * 
+         *
          * @param r
          *            - periodic interest rate represented as a decimal.
          * @param per
@@ -114,10 +115,11 @@ namespace Npoi.Core.SS.Formula.Functions
          * @param type
          *            - when payment is made: beginning of period is 1; end, 0.
          * @return <code>double</code> representing principal portion of payment.
-         * 
+         *
          * @see #pmt(double, int, double, double, int)
          * @see #ipmt(double, int, int, double, double, bool)
          */
+
         static public double PPMT(double r, int per, int nper, double pv, double fv, int type)
         {
             return PMT(r, nper, pv, fv, type) - IPMT(r, per, nper, pv, fv, type);
@@ -136,7 +138,7 @@ namespace Npoi.Core.SS.Formula.Functions
         /**
          * Emulates Excel/Calc's FV(interest_rate, number_payments, payment, PV,
          * Type) function, which calculates future value or principal at period N.
-         * 
+         *
          * @param r
          *            - periodic interest rate represented as a decimal.
          * @param nper
@@ -149,6 +151,7 @@ namespace Npoi.Core.SS.Formula.Functions
          *            - when payment is made: beginning of period is 1; end, 0.
          * @return <code>double</code> representing future principal value.
          */
+
         //http://en.wikipedia.org/wiki/Future_value
         static public double FV(double r, int nper, double pmt, double pv, int type)
         {
@@ -158,14 +161,13 @@ namespace Npoi.Core.SS.Formula.Functions
 
         /**
          * Overloaded fv() call omitting type, which defaults to 0.
-         * 
+         *
          * @see #fv(double, int, double, double, int)
          */
+
         static public double FV(double r, int nper, double c, double pv)
         {
             return FV(r, nper, c, pv, 0);
         }
     }
-
-
 }

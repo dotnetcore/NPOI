@@ -14,9 +14,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.UserModel
 {
     using System;
+
     /**
      * An object that handles instantiating concrete
      *  classes of the various instances one needs for
@@ -29,22 +31,26 @@ namespace Npoi.Core.SS.UserModel
      *  about if you're dealing with HSSF or XSSF, despite
      *  Java being quite rubbish.
      */
+
     public interface ICreationHelper
     {
         /**
          * Creates a new RichTextString instance
          * @param text The text to Initialise the RichTextString with
          */
+
         IRichTextString CreateRichTextString(String text);
 
         /**
          * Creates a new DataFormat instance
          */
+
         IDataFormat CreateDataFormat();
 
         /**
          * Creates a new Hyperlink, of the given type
          */
+
         IHyperlink CreateHyperlink(HyperlinkType type);
 
         /**
@@ -52,6 +58,7 @@ namespace Npoi.Core.SS.UserModel
          *
          * @return a FormulaEvaluator instance
          */
+
         IFormulaEvaluator CreateFormulaEvaluator();
 
         IClientAnchor CreateClientAnchor();

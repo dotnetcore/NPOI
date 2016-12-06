@@ -64,10 +64,10 @@ namespace Npoi.Core.HSSF.UserModel
             }
             set
             {
-                patternFormatting.FillBackgroundColor=(value);
+                patternFormatting.FillBackgroundColor = (value);
                 if (value != 0)
                 {
-                    cfRuleRecord.IsPatternBackgroundColorModified=(true);
+                    cfRuleRecord.IsPatternBackgroundColorModified = (true);
                 }
             }
         }
@@ -84,10 +84,10 @@ namespace Npoi.Core.HSSF.UserModel
             }
             set
             {
-                patternFormatting.FillForegroundColor=(value);
+                patternFormatting.FillForegroundColor = (value);
                 if (value != 0)
                 {
-                    cfRuleRecord.IsPatternColorModified=(true);
+                    cfRuleRecord.IsPatternColorModified = (true);
                 }
             }
         }
@@ -98,10 +98,12 @@ namespace Npoi.Core.HSSF.UserModel
         /// <value>The fill pattern.</value>
         public short FillPattern
         {
-            get {
+            get
+            {
                 return (short)patternFormatting.FillPattern;
             }
-            set {
+            set
+            {
                 patternFormatting.FillPattern = (FillPattern)value;
                 if (value != 0)
                     cfRuleRecord.IsPatternStyleModified = true;

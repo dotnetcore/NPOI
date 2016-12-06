@@ -24,6 +24,7 @@ namespace Npoi.Core.SS.Formula.PTG
      * Greater than operator PTG ">"
      * @author  Cameron Riley (criley at ekmail.com)
      */
+
     public class GreaterThanPtg : ValueOperatorPtg
     {
         public const byte sid = 0x0D;
@@ -45,16 +46,18 @@ namespace Npoi.Core.SS.Formula.PTG
          * Get the number of operands for the Less than operator
          * @return int the number of operands
          */
+
         public override int NumberOfOperands
         {
             get { return 2; }
         }
 
-        /** 
+        /**
          * Implementation of method from OperationsPtg
          * @param operands a String array of operands
          * @return String the Formula as a String
          */
+
         public override String ToFormulaString(String[] operands)
         {
             StringBuilder buffer = new StringBuilder();

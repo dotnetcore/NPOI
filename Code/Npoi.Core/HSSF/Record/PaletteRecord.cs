@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,12 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
     using Npoi.Core.Util;
     using System;
-    using System.Text;
     using System.Collections.Generic;
+    using System.Text;
 
     /**
      * PaletteRecord - Supports custom palettes.
@@ -41,7 +38,6 @@ namespace Npoi.Core.HSSF.Record
         /** The byte index of the first color */
         public const short FIRST_COLOR_INDEX = (short)0x8;
 
-        
         private List<PColor> field_2_colors;
 
         public PaletteRecord()
@@ -68,7 +64,7 @@ namespace Npoi.Core.HSSF.Record
                 field_2_colors.Add(new PColor(in1));
             }
         }
-        
+
         public short NumColors
         {
             get { return (short)field_2_colors.Count; }
@@ -130,6 +126,7 @@ namespace Npoi.Core.HSSF.Record
          * @return the RGB triplet for the color, or null if the specified index
          * does not exist
          */
+
         public byte[] GetColor(short byteIndex)
         {
             int i = byteIndex - FIRST_COLOR_INDEX;
@@ -150,6 +147,7 @@ namespace Npoi.Core.HSSF.Record
          * @param byteIndex the index to Set; if this index Is less than 0x8 or greater than
          * 0x40, then no modification Is made
          */
+
         public void SetColor(short byteIndex, byte red, byte green, byte blue)
         {
             int i = byteIndex - FIRST_COLOR_INDEX;
@@ -170,6 +168,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @see org.apache.poi.hssf.model.Workbook#createPalette
          */
+
         private static PColor[] CreateDefaultPalette()
         {
             return new PColor[] {
@@ -241,12 +240,14 @@ namespace Npoi.Core.HSSF.Record
     /**
      * PColor - element in the list of colors - consider it a "struct"
      */
-    class PColor
+
+    internal class PColor
     {
         public const short ENCODED_SIZE = 4;
         public byte _red;
         public byte _green;
         public byte _blue;
+
         public PColor(int red, int green, int blue)
         {
             this._red = (byte)red;
@@ -254,14 +255,16 @@ namespace Npoi.Core.HSSF.Record
             this._blue = (byte)blue;
         }
 
-          public PColor(RecordInputStream in1) {
+        public PColor(RecordInputStream in1)
+        {
             _red = (byte)in1.ReadByte();
             _green = (byte)in1.ReadByte();
             _blue = (byte)in1.ReadByte();
             in1.ReadByte(); // unused
-          }
+        }
 
-        public void Serialize(ILittleEndianOutput out1) {
+        public void Serialize(ILittleEndianOutput out1)
+        {
             out1.WriteByte(_red);
             out1.WriteByte(_green);
             out1.WriteByte(_blue);

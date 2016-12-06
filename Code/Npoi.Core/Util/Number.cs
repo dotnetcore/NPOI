@@ -10,6 +10,7 @@ namespace Npoi.Core.Util
         private static Type IntPtrType = typeof(IntPtr);
         private static Type UIntPtrType = typeof(UIntPtr);
         private static Type DecimalType = typeof(decimal);
+
         public static bool IsNumber(object value)
         {
             if (value == null)
@@ -38,6 +39,7 @@ namespace Npoi.Core.Util
             //if (value is decimal) return true;
             return false;
         }
+
         public static bool IsInteger(object value)
         {
             if (value == null)

@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * The chart record is used to define the location and size of a chart.
@@ -31,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class ChartRecord
        : StandardRecord
     {
@@ -40,10 +38,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         private int field_3_width;
         private int field_4_height;
 
-
         public ChartRecord()
         {
-
         }
 
         /**
@@ -58,7 +54,6 @@ namespace Npoi.Core.HSSF.Record.Chart
             field_2_y = in1.ReadInt();
             field_3_width = in1.ReadInt();
             field_4_height = in1.ReadInt();
-
         }
 
         public override String ToString()
@@ -98,9 +93,10 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
-            get { return  4 + 4 + 4 + 4; }
+            get { return 4 + 4 + 4 + 4; }
         }
 
         public override short Sid
@@ -119,19 +115,17 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          * Get the x field for the Chart record.
          */
+
         public int X
         {
             get
             {
                 return field_1_x;
             }
-            set 
+            set
             {
                 this.field_1_x = value;
             }
@@ -140,13 +134,14 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the y field for the Chart record.
          */
+
         public int Y
         {
             get
             {
                 return field_2_y;
             }
-            set 
+            set
             {
                 this.field_2_y = value;
             }
@@ -155,23 +150,21 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the width field for the Chart record.
          */
+
         public int Width
         {
             get { return field_3_width; }
             set { this.field_3_width = value; }
         }
 
-
         /**
          * Get the height field for the Chart record.
          */
+
         public int Height
         {
-            get{return field_4_height;}
-            set{this.field_4_height = value;}
+            get { return field_4_height; }
+            set { this.field_4_height = value; }
         }
-
     }
 }
-
-

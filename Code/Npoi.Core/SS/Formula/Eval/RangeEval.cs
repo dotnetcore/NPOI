@@ -17,16 +17,16 @@
 
 namespace Npoi.Core.SS.Formula.Eval
 {
+    using Npoi.Core.SS.Formula.Functions;
     using System;
 
-    using Npoi.Core.SS.Formula.Functions;
     /**
-     * 
-     * @author Josh Micich 
+     *
+     * @author Josh Micich
      */
+
     public class RangeEval : Fixed2ArgFunction
     {
-
         public static Function instance = new RangeEval();
 
         private RangeEval()
@@ -77,5 +77,4 @@ namespace Npoi.Core.SS.Formula.Eval
             throw new ArgumentException("Unexpected ref arg class (" + arg.GetType().Name + ")");
         }
     }
-
 }

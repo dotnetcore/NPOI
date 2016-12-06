@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,9 +17,9 @@
 
 namespace Npoi.Core.DDF
 {
+    using Npoi.Core.Util;
     using System;
     using System.Collections;
-    using Npoi.Core.Util;
     using System.Collections.Generic;
 
     /// <summary>
@@ -35,16 +34,14 @@ namespace Npoi.Core.DDF
         /// <param name="data">The byte array containing the property</param>
         /// <param name="offset">The starting offset into the byte array</param>
         /// <param name="numProperties">The new properties</param>
-        /// <returns></returns>        
-        public List<EscherProperty> CreateProperties(byte[] data, int offset, short numProperties)
-        {
+        /// <returns></returns>
+        public List<EscherProperty> CreateProperties(byte[] data, int offset, short numProperties) {
             List<EscherProperty> results = new List<EscherProperty>();
 
             int pos = offset;
 
             //        while ( bytesRemaining >= 6 )
-            for (int i = 0; i < numProperties; i++)
-            {
+            for (int i = 0; i < numProperties; i++) {
                 short propId;
                 int propData;
                 propId = LittleEndian.GetShort(data, pos);
@@ -60,17 +57,14 @@ namespace Npoi.Core.DDF
                     results.Add(new EscherRGBProperty(propId, propData));
                 else if (propertyType == EscherPropertyMetaData.TYPE_SHAPEPATH)
                     results.Add(new EscherShapePathProperty(propId, propData));
-                else
-                {
+                else {
                     if (!isComplex)
                         results.Add(new EscherSimpleProperty(propId, propData));
-                    else
-                    {
+                    else {
                         if (propertyType == EscherPropertyMetaData.TYPE_ARRAY)
                             results.Add(new EscherArrayProperty(propId, new byte[propData]));
                         else
                             results.Add(new EscherComplexProperty(propId, new byte[propData]));
-
                     }
                 }
                 pos += 6;
@@ -78,17 +72,13 @@ namespace Npoi.Core.DDF
             }
 
             // Get complex data
-            for (IEnumerator iterator = results.GetEnumerator(); iterator.MoveNext(); )
-            {
+            for (IEnumerator iterator = results.GetEnumerator(); iterator.MoveNext();) {
                 EscherProperty p = (EscherProperty)iterator.Current;
-                if (p is EscherComplexProperty)
-                {
-                    if (p is EscherArrayProperty)
-                    {
+                if (p is EscherComplexProperty) {
+                    if (p is EscherArrayProperty) {
                         pos += ((EscherArrayProperty)p).SetArrayData(data, pos);
                     }
-                    else
-                    {
+                    else {
                         byte[] complexData = ((EscherComplexProperty)p).ComplexData;
                         Array.Copy(data, pos, complexData, 0, complexData.Length);
                         pos += complexData.Length;
@@ -98,7 +88,5 @@ namespace Npoi.Core.DDF
 
             return results;
         }
-
-
     }
 }

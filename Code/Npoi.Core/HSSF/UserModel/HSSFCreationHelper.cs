@@ -17,8 +17,8 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
     using Npoi.Core.SS.UserModel;
+    using System;
 
     public class HSSFCreationHelper : ICreationHelper
     {
@@ -53,6 +53,7 @@ namespace Npoi.Core.HSSF.UserModel
          *
          * @return a HSSFFormulaEvaluator instance
          */
+
         public Npoi.Core.SS.UserModel.IFormulaEvaluator CreateFormulaEvaluator()
         {
             return new HSSFFormulaEvaluator(workbook);
@@ -64,10 +65,10 @@ namespace Npoi.Core.HSSF.UserModel
          * @return a HSSFClientAnchor instance
          * @see Npoi.Core.SS.usermodel.Drawing
          */
+
         public Npoi.Core.SS.UserModel.IClientAnchor CreateClientAnchor()
         {
             return new HSSFClientAnchor();
         }
     }
 }
-

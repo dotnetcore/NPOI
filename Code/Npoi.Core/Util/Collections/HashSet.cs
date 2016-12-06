@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
@@ -34,27 +34,27 @@ namespace Npoi.Core.Util.Collections
     /// <summary>
     /// This class comes from Java
     /// </summary>
-	public class HashSet<T>: ICollection<T>
-	{
+	public class HashSet<T> : ICollection<T>
+    {
         private readonly Dictionary<T, object> impl = new Dictionary<T, object>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HashSet"/> class.
         /// </summary>
 		public HashSet()
-		{
-		}
+        {
+        }
 
         /// <summary>
         /// Adds the specified o.
         /// </summary>
         /// <param name="o">The o.</param>
 		public void Add(T o)
-		{
+        {
             if (IsReadOnly)
                 throw new InvalidOperationException("this hashset is readonly");
-			impl[o] = null;
-		}
+            impl[o] = null;
+        }
 
         /// <summary>
         /// Determines whether [contains] [the specified o].
@@ -64,11 +64,11 @@ namespace Npoi.Core.Util.Collections
         /// 	<c>true</c> if [contains] [the specified o]; otherwise, <c>false</c>.
         /// </returns>
 		public bool Contains(T o)
-		{
+        {
             if (o == null)
                 return false;
-			return impl.ContainsKey(o);
-		}
+            return impl.ContainsKey(o);
+        }
 
         /// <summary>
         /// Copies the elements of the <see cref="T:System.Collections.ICollection"/> to an <see cref="T:System.Array"/>, starting at a particular <see cref="T:System.Array"/> index.
@@ -92,9 +92,9 @@ namespace Npoi.Core.Util.Collections
         /// The type of the source <see cref="T:System.Collections.ICollection"/> cannot be cast automatically to the type of the destination <paramref name="array"/>.
         /// </exception>
 		public void CopyTo(T[] array, int index)
-		{
-			impl.Keys.CopyTo(array, index);
-		}
+        {
+            impl.Keys.CopyTo(array, index);
+        }
 
         /// <summary>
         /// Gets the number of elements contained in the <see cref="T:System.Collections.ICollection"/>.
@@ -104,20 +104,20 @@ namespace Npoi.Core.Util.Collections
         /// The number of elements contained in the <see cref="T:System.Collections.ICollection"/>.
         /// </returns>
 		public int Count
-		{
-			get { return impl.Count; }
-		}
-        
+        {
+            get { return impl.Count; }
+        }
+
         /// <summary>
         /// Returns an enumerator that iterates through a collection.
         /// </summary>
         /// <returns>
         /// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
         /// </returns>
-		public IEnumerator<T> GetEnumerator()
-		{
-			return impl.Keys.GetEnumerator();
-		}
+        public IEnumerator<T> GetEnumerator()
+        {
+            return impl.Keys.GetEnumerator();
+        }
 
         public bool IsReadOnly
         {
@@ -130,13 +130,12 @@ namespace Npoi.Core.Util.Collections
         /// </summary>
         /// <param name="o">The o.</param>
 		public bool Remove(T o)
-		{
+        {
             if (IsReadOnly)
                 throw new InvalidOperationException("this hashset is readonly");
-			impl.Remove(o);
+            impl.Remove(o);
             return true;
-		}
-
+        }
 
         /// <summary>
         /// Removes all of the elements from this set.
@@ -146,7 +145,6 @@ namespace Npoi.Core.Util.Collections
         {
             impl.Clear();
         }
-
 
         IEnumerator IEnumerable.GetEnumerator()
         {

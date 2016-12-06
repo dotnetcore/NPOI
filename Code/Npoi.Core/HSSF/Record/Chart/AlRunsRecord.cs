@@ -18,23 +18,22 @@
 /*
  * HSSF Chart Title Format Record Type
  */
+
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
-    using System;
-    using System.Collections;
-    using System.Text;
     using Npoi.Core.Util;
+    using System;
     using System.Collections.Generic;
-
+    using System.Text;
 
     /*
      * Describes the formatting runs associated with a chart title.
      */
+
     //
     /// <summary>
-    /// The AlRuns record specifies Rich Text Formatting within chart 
-    /// titles (section 2.2.3.3), trendline (section 2.2.3.12), and 
+    /// The AlRuns record specifies Rich Text Formatting within chart
+    /// titles (section 2.2.3.3), trendline (section 2.2.3.12), and
     /// data labels (section 2.2.3.11).
     /// </summary>
     public class AlRunsRecord : StandardRecord
@@ -65,10 +64,12 @@ namespace Npoi.Core.HSSF.Record.Chart
                     m_offset = value;
                 }
             }
+
             public short FontIndex
             {
                 get { return m_fontIndex; }
             }
+
             public void Serialize(ILittleEndianOutput out1)
             {
                 out1.WriteShort(m_offset);
@@ -81,7 +82,6 @@ namespace Npoi.Core.HSSF.Record.Chart
         public AlRunsRecord()
             : base()
         {
-
         }
 
         public AlRunsRecord(RecordInputStream in1)
@@ -99,6 +99,7 @@ namespace Npoi.Core.HSSF.Record.Chart
                 m_formats.Add(ctf);
             }
         }
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(m_formats.Count);

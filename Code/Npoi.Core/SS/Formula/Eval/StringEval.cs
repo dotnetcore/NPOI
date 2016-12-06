@@ -17,24 +17,23 @@
 
 namespace Npoi.Core.SS.Formula.Eval
 {
+    using Npoi.Core.SS.Formula.PTG;
     using System;
     using System.Text;
-    using Npoi.Core.SS.Formula.PTG;
-
 
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     *  
+     *
      */
+
     public class StringEval : StringValueEval
     {
         public static readonly StringEval EMPTY_INSTANCE = new StringEval("");
 
         private String value;
 
-        public StringEval(Ptg ptg):this(((StringPtg)ptg).Value)
+        public StringEval(Ptg ptg) : this(((StringPtg)ptg).Value)
         {
-            
         }
 
         public StringEval(String value)
@@ -50,6 +49,7 @@ namespace Npoi.Core.SS.Formula.Eval
         {
             get { return value; }
         }
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder(64);

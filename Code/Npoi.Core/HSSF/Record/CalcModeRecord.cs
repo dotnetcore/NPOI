@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,15 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
-
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title:        Calc Mode Record
@@ -73,9 +68,8 @@ namespace Npoi.Core.HSSF.Record
 
         public CalcModeRecord(RecordInputStream in1)
         {
-            field_1_calcmode = in1.ReadShort();           
+            field_1_calcmode = in1.ReadShort();
         }
-
 
         /**
          * Set the calc mode flag for formulas

@@ -17,12 +17,12 @@
 
 namespace Npoi.Core.SS.UserModel
 {
-
     /**
      * This enumeration value indicates the type of vertical alignment for a cell, i.e.,
      * whether it is aligned top, bottom, vertically centered, justified or distributed.
      */
-    public enum VerticalAlignment:int
+
+    public enum VerticalAlignment : int
     {
         None = -1,
         /**
@@ -55,7 +55,7 @@ namespace Npoi.Core.SS.UserModel
          */
         Justify = 3,
 
-        /** 
+        /**
          * <p>
          * When text direction is horizontal: the vertical alignment of lines of text is distributed vertically,
          * where each line of text inside the cell is evenly distributed across the height of the cell,
@@ -70,5 +70,4 @@ namespace Npoi.Core.SS.UserModel
          */
         Distributed = 4
     }
-
 }

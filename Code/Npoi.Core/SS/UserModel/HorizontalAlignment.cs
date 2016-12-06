@@ -17,12 +17,12 @@
 
 namespace Npoi.Core.SS.UserModel
 {
-
     /**
      * The enumeration value indicating horizontal alignment of a cell,
      * i.e., whether it is aligned general, left, right, horizontally centered, Filled (replicated),
      * justified, centered across multiple cells, or distributed.
      */
+
     public enum HorizontalAlignment
     {
         /**
@@ -30,7 +30,7 @@ namespace Npoi.Core.SS.UserModel
          * Numbers, dates, and times are rightaligned. Boolean types are centered.
          * Changing the alignment does not change the type of data.
          */
-        General=0,
+        General = 0,
 
         /**
          * The horizontal alignment is left-aligned, even in Rightto-Left mode.
@@ -71,9 +71,7 @@ namespace Npoi.Core.SS.UserModel
          * </ol>
          * </p>
          */
-        Fill =4 ,
-
-
+        Fill = 4,
 
         /**
          * The horizontal alignment is centered across multiple cells.
@@ -81,7 +79,7 @@ namespace Npoi.Core.SS.UserModel
          * in the row of the cell in question. For each cell that is spanned in the alignment,
          * a cell element needs to be written out, with the same style Id which references the centerContinuous alignment.
          */
-        CenterSelection= 6,
+        CenterSelection = 6,
 
         /**
          * Indicates that each 'word' in each line of text inside the cell is evenly distributed
@@ -93,7 +91,6 @@ namespace Npoi.Core.SS.UserModel
          * <p> A 'word' is a set of characters with no space character in them. </p>
          * <p> Two lines inside a cell are Separated by a carriage return. </p>
          */
-        Distributed=7
+        Distributed = 7
     }
-
 }

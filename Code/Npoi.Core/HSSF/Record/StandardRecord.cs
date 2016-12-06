@@ -17,20 +17,20 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
     using Npoi.Core.Util;
-
+    using System;
 
     /**
      * Subclasses of this class (the majority of BIFF records) are non-continuable.  This allows for
      * some simplification of serialization logic
-     * 
+     *
      * @author Josh Micich
      */
+
     public abstract class StandardRecord : Record
     {
+        protected abstract int DataSize { get; }
 
-        protected abstract int DataSize{get;}
         public override int RecordSize
         {
             get
@@ -66,12 +66,13 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Write the data content of this BIFF record.  The 'ushort sid' and 'ushort size' header fields
          * have already been written by the superclass.<br/>
-         * 
+         *
          * The number of bytes written must equal the record size reported by
          * {@link Record#getDataSize()} minus four
          * ( record header consiting of a 'ushort sid' and 'ushort reclength' has already been written
          * by thye superclass).
          */
+
         public abstract void Serialize(ILittleEndianOutput out1);
     }
 }

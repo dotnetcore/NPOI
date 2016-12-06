@@ -17,11 +17,9 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
     using Npoi.Core.DDF;
     using Npoi.Core.HSSF.Record;
-    using Npoi.Core.SS.UserModel;
-
+    using System;
 
     /// <summary>
     /// A textbox Is a shape that may hold a rich text string.
@@ -35,10 +33,9 @@ namespace Npoi.Core.HSSF.UserModel
         public HSSFTextbox(EscherContainerRecord spContainer, ObjRecord objRecord, TextObjectRecord textObjectRecord)
             : base(spContainer, objRecord, textObjectRecord)
         {
-
         }
 
-        HSSFRichTextString str = new HSSFRichTextString("");
+        private HSSFRichTextString str = new HSSFRichTextString("");
 
         /// <summary>
         /// Construct a new textbox with the given parent and anchor.
@@ -52,7 +49,6 @@ namespace Npoi.Core.HSSF.UserModel
             VerticalAlignment = VerticalTextAlignment.Top;
             this.String = (new HSSFRichTextString(""));
         }
-
 
         protected override ObjRecord CreateObjRecord()
         {
@@ -143,7 +139,6 @@ namespace Npoi.Core.HSSF.UserModel
             patriarch.GetBoundAggregate().RemoveShapeToObjRecord(GetEscherContainer().GetChildById(EscherTextboxRecord.RECORD_ID));
         }
 
-
         /// <summary>
         /// Gets or sets the left margin within the textbox.
         /// </summary>
@@ -157,7 +152,6 @@ namespace Npoi.Core.HSSF.UserModel
             }
             set { SetPropertyValue(new EscherSimpleProperty(EscherProperties.TEXT__TEXTLEFT, value)); }
         }
-
 
         /// <summary>
         /// Gets or sets the right margin within the textbox.
@@ -221,7 +215,6 @@ namespace Npoi.Core.HSSF.UserModel
             set { GetTextObjectRecord().VerticalTextAlignment = value; }
         }
 
-
         public override int ShapeType
         {
             get { return base.ShapeType; }
@@ -230,6 +223,5 @@ namespace Npoi.Core.HSSF.UserModel
                 throw new InvalidOperationException("Shape type can not be changed in " + this.GetType().Name);
             }
         }
-
     }
 }

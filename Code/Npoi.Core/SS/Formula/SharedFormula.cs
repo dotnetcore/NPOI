@@ -14,14 +14,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.Formula.PTG
 {
     /**
      *   Encapsulates logic to convert shared formulaa into non shared equivalent
      */
+
     public class SharedFormula
     {
-
         private int _columnWrappingMask;
         private int _rowWrappingMask;
 
@@ -40,9 +41,9 @@ namespace Npoi.Core.SS.Formula.PTG
          * @param formulaRow
          * @param formulaColumn
          */
+
         public Ptg[] ConvertSharedFormulas(Ptg[] ptgs, int formulaRow, int formulaColumn)
         {
-
             Ptg[] newPtgStack = new Ptg[ptgs.Length];
 
             for (int k = 0; k < ptgs.Length; k++)
@@ -107,6 +108,5 @@ namespace Npoi.Core.SS.Formula.PTG
             }
             return row;
         }
-
     }
 }

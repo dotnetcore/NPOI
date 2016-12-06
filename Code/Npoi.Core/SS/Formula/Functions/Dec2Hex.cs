@@ -17,9 +17,9 @@
 
 using Npoi.Core.SS.Formula.Eval;
 using System;
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-
     /**
      * Implementation for Excel DELTA() function.<p/>
      * <p/>
@@ -52,13 +52,13 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author cedric dot walter @ gmail dot com
      */
+
     public class Dec2Hex : Var1or2ArgFunction, FreeRefFunction
     {
         public static FreeRefFunction instance = new Dec2Hex();
         private static long MinValue = -549755813888;
         private static long MaxValue = 549755813887;
         private static int DEFAULT_PLACES_VALUE = 10;
-
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval number, ValueEval places)
         {
@@ -135,7 +135,6 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return new StringEval(hex.ToUpper());
         }
-
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0)
         {

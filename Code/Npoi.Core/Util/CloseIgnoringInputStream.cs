@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System.IO;
@@ -31,28 +31,32 @@ namespace Npoi.Core.Util
 {
     internal class CloseIgnoringInputStream : Stream
     {
-
         private Stream _is;
 
         public CloseIgnoringInputStream(Stream stream)
         {
             _is = stream;
         }
+
         public int Read()
         {
             return (int)_is.ReadByte();
         }
+
         public override int Read(byte[] b, int off, int len)
         {
             return _is.Read(b, off, len);
         }
+
         protected override void Dispose(bool disposing)
         {
             // do nothing
         }
+
         public override void Flush()
         {
         }
+
         public override long Seek(long offset, SeekOrigin origin)
         {
             return 0L;
@@ -61,6 +65,7 @@ namespace Npoi.Core.Util
         public override void SetLength(long value)
         {
         }
+
         // Properties
         public override bool CanRead
         {
@@ -105,6 +110,7 @@ namespace Npoi.Core.Util
                 this._is.Position = value;
             }
         }
+
         public override void Write(byte[] buffer, int offset, int count)
         {
         }

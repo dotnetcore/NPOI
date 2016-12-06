@@ -17,10 +17,9 @@
 
 namespace Npoi.Core.SS.Util
 {
+    using Npoi.Core.SS.UserModel;
     using System;
     using System.Collections.Generic;
-    using Npoi.Core.SS.UserModel;
-
 
     /**
      * Various utility functions that make working with a cells and rows easier. The various methods
@@ -32,6 +31,7 @@ namespace Npoi.Core.SS.Util
      *@author Eric Pugh epugh@upstate.com
      *@author (secondary) Avinash Kewalramani akewalramani@accelrys.com
      */
+
     public class CellUtil
     {
         public const string ALIGNMENT = "alignment";
@@ -63,7 +63,6 @@ namespace Npoi.Core.SS.Util
 
         private class UnicodeMapping
         {
-
             public String entityName;
             public String resolvedValue;
 
@@ -99,7 +98,7 @@ namespace Npoi.Core.SS.Util
             }
             else
             {
-                //TODO:shift cells                
+                //TODO:shift cells
             }
             // Copy style from old cell and apply to new cell
             if (oldCell.CellStyle != null)
@@ -127,24 +126,30 @@ namespace Npoi.Core.SS.Util
                 case CellType.Blank:
                     newCell.SetCellValue(oldCell.StringCellValue);
                     break;
+
                 case CellType.Boolean:
                     newCell.SetCellValue(oldCell.BooleanCellValue);
                     break;
+
                 case CellType.Error:
                     newCell.SetCellErrorValue(oldCell.ErrorCellValue);
                     break;
+
                 case CellType.Formula:
                     newCell.SetCellFormula(oldCell.CellFormula);
                     break;
+
                 case CellType.Numeric:
                     newCell.SetCellValue(oldCell.NumericCellValue);
                     break;
+
                 case CellType.String:
                     newCell.SetCellValue(oldCell.RichStringCellValue);
                     break;
             }
             return newCell;
         }
+
         /**
          * Get a row from the spreadsheet, and create it if it doesn't exist.
          *
@@ -152,6 +157,7 @@ namespace Npoi.Core.SS.Util
          *@param sheet The sheet that the row is part of.
          *@return The row indicated by the rowCounter
          */
+
         public static IRow GetRow(int rowIndex, ISheet sheet)
         {
             IRow row = sheet.GetRow(rowIndex);
@@ -169,6 +175,7 @@ namespace Npoi.Core.SS.Util
          *@param columnIndex The column index that the cell is in.
          *@return The cell indicated by the column.
          */
+
         public static ICell GetCell(IRow row, int columnIndex)
         {
             ICell cell = row.GetCell(columnIndex);
@@ -189,6 +196,7 @@ namespace Npoi.Core.SS.Util
          * @param  style   If the style is not null, then set
          * @return         A new Cell
          */
+
         public static ICell CreateCell(IRow row, int column, String value, ICellStyle style)
         {
             ICell cell = GetCell(row, column);
@@ -210,6 +218,7 @@ namespace Npoi.Core.SS.Util
          *@param  value   The value of the cell
          *@return         A new Cell.
          */
+
         public static ICell CreateCell(IRow row, int column, String value)
         {
             return CreateCell(row, column, value, null);
@@ -224,6 +233,7 @@ namespace Npoi.Core.SS.Util
          *
          * @see CellStyle for alignment options
          */
+
         public static void SetAlignment(ICell cell, IWorkbook workbook, short align)
         {
             SetCellStyleProperty(cell, workbook, ALIGNMENT, align);
@@ -236,6 +246,7 @@ namespace Npoi.Core.SS.Util
          *@param workbook The workbook that is being worked with.
          *@param font The Font that you want to set...
          */
+
         public static void SetFont(ICell cell, IWorkbook workbook, IFont font)
         {
             SetCellStyleProperty(cell, workbook, FONT, font.Index);
@@ -252,6 +263,7 @@ namespace Npoi.Core.SS.Util
          *@param propertyValue The value of the property that is to be changed.
          *@param cell The cell that needs it's style changes
          */
+
         public static void SetCellStyleProperty(ICell cell, IWorkbook workbook, String propertyName, Object propertyValue)
         {
             ICellStyle originalStyle = cell.CellStyle;
@@ -275,7 +287,7 @@ namespace Npoi.Core.SS.Util
                 if (values.Keys.Count != wbStyleMap.Keys.Count) continue;
 
                 bool found = true;
-                
+
                 foreach (string key in values.Keys)
                 {
                     if (!wbStyleMap.ContainsKey(key))
@@ -313,6 +325,7 @@ namespace Npoi.Core.SS.Util
          * @return map of format properties (String -> Object)
          * @see #setFormatProperties(org.apache.poi.ss.usermodel.CellStyle, org.apache.poi.ss.usermodel.Workbook, java.util.Map)
          */
+
         private static Dictionary<String, Object> GetFormatProperties(ICellStyle style)
         {
             Dictionary<String, Object> properties = new Dictionary<String, Object>();
@@ -351,6 +364,7 @@ namespace Npoi.Core.SS.Util
          * @param properties map of format properties (String -> Object)
          * @see #getFormatProperties(CellStyle)
          */
+
         private static void SetFormatProperties(ICellStyle style, IWorkbook workbook, Dictionary<String, Object> properties)
         {
             style.Alignment = (HorizontalAlignment)GetShort(properties, ALIGNMENT);
@@ -362,7 +376,7 @@ namespace Npoi.Core.SS.Util
             style.BorderRight = (BorderStyle)GetShort(properties, BORDER_RIGHT);
             style.BorderTop = (BorderStyle)GetShort(properties, BORDER_TOP);
             style.BottomBorderColor = GetShort(properties, BOTTOM_BORDER_COLOR);
-            style.DataFormat =GetShort(properties, DATA_FORMAT);
+            style.DataFormat = GetShort(properties, DATA_FORMAT);
             style.FillBackgroundColor = GetShort(properties, FILL_BACKGROUND_COLOR);
             style.FillForegroundColor = GetShort(properties, FILL_FOREGROUND_COLOR);
             style.FillPattern = (FillPattern)GetShort(properties, FILL_PATTERN);
@@ -387,6 +401,7 @@ namespace Npoi.Core.SS.Util
          * @param name property name
          * @return property value, or zero
          */
+
         private static short GetShort(Dictionary<String, Object> properties, String name)
         {
             Object value = properties[name];
@@ -404,6 +419,7 @@ namespace Npoi.Core.SS.Util
          * @param name property name
          * @return property value, or false
          */
+
         private static bool GetBoolean(Dictionary<String, Object> properties, String name)
         {
             Object value = properties[name];
@@ -421,6 +437,7 @@ namespace Npoi.Core.SS.Util
          * @param name property name
          * @param value property value
          */
+
         private static void PutShort(Dictionary<String, Object> properties, String name, short value)
         {
             if (properties.ContainsKey(name))
@@ -436,6 +453,7 @@ namespace Npoi.Core.SS.Util
          * @param name property name
          * @param value property value
          */
+
         private static void PutBoolean(Dictionary<String, Object> properties, String name, bool value)
         {
             if (properties.ContainsKey(name))
@@ -451,6 +469,7 @@ namespace Npoi.Core.SS.Util
          *@param  cell  The cell to check for unicode values
          *@return       translated to unicode
          */
+
         public static ICell TranslateUnicodeValues(ICell cell)
         {
             String s = cell.RichStringCellValue.String;
@@ -478,22 +497,22 @@ namespace Npoi.Core.SS.Util
         static CellUtil()
         {
             unicodeMappings = new UnicodeMapping[] {
-			um("alpha",   "\u03B1" ),
-			um("beta",    "\u03B2" ),
-			um("gamma",   "\u03B3" ),
-			um("delta",   "\u03B4" ),
-			um("epsilon", "\u03B5" ),
-			um("zeta",    "\u03B6" ),
-			um("eta",     "\u03B7" ),
-			um("theta",   "\u03B8" ),
-			um("iota",    "\u03B9" ),
-			um("kappa",   "\u03BA" ),
-			um("lambda",  "\u03BB" ),
-			um("mu",      "\u03BC" ),
-			um("nu",      "\u03BD" ),
-			um("xi",      "\u03BE" ),
-			um("omicron", "\u03BF" ),
-		};
+            um("alpha",   "\u03B1" ),
+            um("beta",    "\u03B2" ),
+            um("gamma",   "\u03B3" ),
+            um("delta",   "\u03B4" ),
+            um("epsilon", "\u03B5" ),
+            um("zeta",    "\u03B6" ),
+            um("eta",     "\u03B7" ),
+            um("theta",   "\u03B8" ),
+            um("iota",    "\u03B9" ),
+            um("kappa",   "\u03BA" ),
+            um("lambda",  "\u03BB" ),
+            um("mu",      "\u03BC" ),
+            um("nu",      "\u03BD" ),
+            um("xi",      "\u03BE" ),
+            um("omicron", "\u03BF" ),
+        };
         }
 
         private static UnicodeMapping um(String entityName, String resolvedValue)

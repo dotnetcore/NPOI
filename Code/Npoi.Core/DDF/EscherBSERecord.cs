@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,11 +17,10 @@
 
 namespace Npoi.Core.DDF
 {
+    using Npoi.Core.Util;
     using System;
     using System.IO;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /// <summary>
     /// The BSE record is related closely to the EscherBlipRecord and stores
@@ -69,8 +67,7 @@ namespace Npoi.Core.DDF
         /// <returns>The number of bytes Read from the byte array.</returns>
         public override int FillFields(byte[] data, int offset,
                                   IEscherRecordFactory recordFactory
-                                  )
-        {
+                                  ) {
             int bytesRemaining = ReadHeader(data, offset);
             int pos = offset + 8;
             field_1_blipTypeWin32 = data[pos];
@@ -87,8 +84,7 @@ namespace Npoi.Core.DDF
             field_11_unused3 = data[pos + 35];
             bytesRemaining -= 36;
             int bytesRead = 0;
-            if (bytesRemaining > 0)
-            {
+            if (bytesRemaining > 0) {
                 field_12_blipRecord = (EscherBlipRecord)recordFactory.CreateRecord(data, pos + 36);
                 bytesRead = field_12_blipRecord.FillFields(data, pos + 36, recordFactory);
             }
@@ -98,19 +94,17 @@ namespace Npoi.Core.DDF
             _remainingData = new byte[bytesRemaining];
             Array.Copy(data, pos, _remainingData, 0, bytesRemaining);
             return bytesRemaining + 8 + 36 + (field_12_blipRecord == null ? 0 : field_12_blipRecord.RecordSize);
-
         }
 
         /// <summary>
-        /// This method Serializes this escher record into a byte array.  
+        /// This method Serializes this escher record into a byte array.
         /// </summary>
-        /// <param name="offset">The offset into 
+        /// <param name="offset">The offset into
         /// data to start writing the record data to</param>
         /// <param name="data">The byte array to Serialize to.</param>
         /// <param name="listener">a listener for begin and end serialization events.</param>
         /// <returns>The number of bytes written.</returns>
-        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener)
-        {
+        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener) {
             listener.BeforeRecordSerialize(offset, RecordId, this);
 
             if (_remainingData == null)
@@ -136,8 +130,7 @@ namespace Npoi.Core.DDF
             data[offset + 42] = field_10_unused2;
             data[offset + 43] = field_11_unused3;
             int bytesWritten = 0;
-            if (field_12_blipRecord != null)
-            {
+            if (field_12_blipRecord != null) {
                 bytesWritten = field_12_blipRecord.Serialize(offset + 44, data);
             }
             if (_remainingData == null)
@@ -153,22 +146,19 @@ namespace Npoi.Core.DDF
         /// Returns the number of bytes that are required to Serialize this record.
         /// </summary>
         /// <value>Number of bytes</value>
-        public override int RecordSize
-        {
-            get 
+        public override int RecordSize {
+            get
             {
                 int field_12_size = 0;
-                if (field_12_blipRecord != null)
-                {
+                if (field_12_blipRecord != null) {
                     field_12_size = field_12_blipRecord.RecordSize;
                 }
                 int remaining_size = 0;
-                if (_remainingData != null)
-                {
+                if (_remainingData != null) {
                     remaining_size = _remainingData.Length;
                 }
                 return 8 + 1 + 1 + 16 + 2 + 4 + 4 + 4 + 1 + 1 +
-                    1 + 1 + field_12_size + remaining_size;            
+                    1 + 1 + field_12_size + remaining_size;
             }
         }
 
@@ -176,8 +166,7 @@ namespace Npoi.Core.DDF
         /// The short name for this record
         /// </summary>
         /// <value></value>
-        public override String RecordName
-        {
+        public override String RecordName {
             get { return "BSE"; }
         }
 
@@ -186,8 +175,7 @@ namespace Npoi.Core.DDF
         /// Excel converting to this format).
         /// </summary>
         /// <value>The blip type win32.</value>
-        public byte BlipTypeWin32
-        {
+        public byte BlipTypeWin32 {
             get { return field_1_blipTypeWin32; }
             set { field_1_blipTypeWin32 = value; }
         }
@@ -197,19 +185,16 @@ namespace Npoi.Core.DDF
         /// Excel converting to this format).
         /// </summary>
         /// <value>The blip type mac OS.</value>
-        public byte BlipTypeMacOS
-        {
+        public byte BlipTypeMacOS {
             get { return field_2_blipTypeMacOS; }
             set { field_2_blipTypeMacOS = value; }
         }
-
 
         /// <summary>
         /// Gets or sets 16 byte MD4 checksum.
         /// </summary>
         /// <value>The UID.</value>
-        public byte[] UID
-        {
+        public byte[] UID {
             get { return field_3_uid; }
             set { field_3_uid = value; }
         }
@@ -218,8 +203,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets the tag. (Unused)
         /// </summary>
         /// <value>The tag.</value>
-        public short Tag
-        {
+        public short Tag {
             get { return field_4_tag; }
             set { field_4_tag = value; }
         }
@@ -228,8 +212,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets Blip size in stream..
         /// </summary>
         /// <value>The size.</value>
-        public int Size
-        {
+        public int Size {
             get { return field_5_size; }
             set { field_5_size = value; }
         }
@@ -238,17 +221,16 @@ namespace Npoi.Core.DDF
         /// Gets or sets the reference count of this blip.
         /// </summary>
         /// <value>The ref.</value>
-        public int Ref
-        {
+        public int Ref {
             get { return field_6_ref; }
             set { field_6_ref = value; }
         }
+
         /// <summary>
         /// Gets or sets the offset in the delay stream..
         /// </summary>
         /// <value>The offset.</value>
-        public int Offset
-        {
+        public int Offset {
             get { return field_7_offset; }
             set { field_7_offset = value; }
         }
@@ -257,30 +239,25 @@ namespace Npoi.Core.DDF
         /// Defines the way this blip is used.
         /// </summary>
         /// <value>The usage.</value>
-        public byte Usage
-        {
+        public byte Usage {
             get { return field_8_usage; }
             set { field_8_usage = value; }
         }
-
 
         /// <summary>
         /// Gets or sets the blip name.
         /// </summary>
         /// <value>The name.</value>
-        public byte Name
-        {
+        public byte Name {
             get { return field_9_name; }
             set { field_9_name = value; }
         }
-
 
         /// <summary>
         /// Gets or sets the unused2.
         /// </summary>
         /// <value>The unused2.</value>
-        public byte Unused2
-        {
+        public byte Unused2 {
             get { return field_10_unused2; }
             set { field_10_unused2 = value; }
         }
@@ -289,8 +266,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets the unused3.
         /// </summary>
         /// <value>The unused3.</value>
-        public byte Unused3
-        {
+        public byte Unused3 {
             get { return field_11_unused3; }
             set { field_11_unused3 = value; }
         }
@@ -299,8 +275,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets the blip record.
         /// </summary>
         /// <value>The blip record.</value>
-        public EscherBlipRecord BlipRecord
-        {
+        public EscherBlipRecord BlipRecord {
             get { return field_12_blipRecord; }
             set { field_12_blipRecord = value; }
         }
@@ -309,32 +284,28 @@ namespace Npoi.Core.DDF
         /// Gets or sets any remaining data in this record.
         /// </summary>
         /// <value>The remaining data.</value>
-        public byte[] RemainingData
-        {
+        public byte[] RemainingData {
             get { return _remainingData; }
             set { _remainingData = value; }
         }
+
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </summary>
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override String ToString()
-        {
+        public override String ToString() {
             String nl = Environment.NewLine;
 
             String extraData;
-            using (MemoryStream b = new MemoryStream())
-            {
-                try
-                {
+            using (MemoryStream b = new MemoryStream()) {
+                try {
                     HexDump.Dump(this._remainingData, 0, b, 0);
                     //extraData = b.ToString();
                     extraData = Encoding.UTF8.GetString(b.ToArray());
                 }
-                catch (Exception e)
-                {
+                catch (Exception e) {
                     extraData = e.ToString();
                 }
                 return GetType().Name + ":" + nl +
@@ -356,8 +327,8 @@ namespace Npoi.Core.DDF
                         "  Extra Data:" + nl + extraData;
             }
         }
-        public override String ToXml(String tab)
-        {
+
+        public override String ToXml(String tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
                     .Append(tab).Append("\t").Append("<BlipTypeWin32>").Append(field_1_blipTypeWin32).Append("</BlipTypeWin32>\n")
@@ -374,31 +345,38 @@ namespace Npoi.Core.DDF
             builder.Append(tab).Append("</").Append(GetType().Name).Append(">\n");
             return builder.ToString();
         }
+
         /// <summary>
         /// Retrieve the string representation given a blip id.
         /// </summary>
         /// <param name="b">The b.</param>
         /// <returns></returns>
-        public String GetBlipType(byte b)
-        {
-            switch (b)
-            {
+        public String GetBlipType(byte b) {
+            switch (b) {
                 case BT_ERROR:
                     return " ERROR";
+
                 case BT_UNKNOWN:
                     return " UNKNOWN";
+
                 case BT_EMF:
                     return " EMF";
+
                 case BT_WMF:
                     return " WMF";
+
                 case BT_PICT:
                     return " PICT";
+
                 case BT_JPEG:
                     return " JPEG";
+
                 case BT_PNG:
                     return " PNG";
+
                 case BT_DIB:
                     return " DIB";
+
                 default:
                     if (b < 32)
                         return " NotKnown";
@@ -406,7 +384,5 @@ namespace Npoi.Core.DDF
                         return " Client";
             }
         }
-
-
     }
 }

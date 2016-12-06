@@ -17,10 +17,8 @@
 
 namespace Npoi.Core.HSSF.Record.Aggregates
 {
-    using System;
-
-
     using Npoi.Core.HSSF.Model;
+    using System;
     using System.Collections.Generic;
     using System.IO;
 
@@ -30,9 +28,9 @@ namespace Npoi.Core.HSSF.Record.Aggregates
      *
      * @author Josh Micich
      */
+
     public class ChartSubstreamRecordAggregate : RecordAggregate
     {
-
         private BOFRecord _bofRec;
         /**
          * All the records between BOF and EOF
@@ -76,7 +74,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         public override void VisitContainedRecords(RecordVisitor rv)
         {
-            if (_recs.Count==0)
+            if (_recs.Count == 0)
             {
                 return;
             }
@@ -95,8 +93,5 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
             rv.VisitRecord(EOFRecord.instance);
         }
-
     }
 }
-
-

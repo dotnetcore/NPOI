@@ -17,18 +17,16 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Text;
-    using System.Text.RegularExpressions;
     using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.SS.Formula.Constant;
     using Npoi.Core.SS.Formula.Function;
     using Npoi.Core.SS.Formula.PTG;
     using Npoi.Core.SS.Util;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Text;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Specific exception thrown when a supplied formula does not Parse properly.
@@ -44,9 +42,9 @@ namespace Npoi.Core.SS.Formula
         public FormulaParseException(String msg)
             : base(msg)
         {
-
         }
     }
+
     /*
      * This class Parses a formula string into a List of Tokens in RPN order.
      * Inspired by
@@ -57,6 +55,7 @@ namespace Npoi.Core.SS.Formula
      * <factor> ::= <number> | (<expression>) | <cellRef> | <function>
      * <function> ::= <functionName> ([expression [, expression]*])
      */
+
     public class FormulaParser
     {
         private String formulaString;
@@ -92,6 +91,7 @@ namespace Npoi.Core.SS.Formula
          *  model.Workbook, then use the convenience method on
          *  usermodel.HSSFFormulaEvaluator
          */
+
         public FormulaParser(String formula, IFormulaParsingWorkbook book, int sheetIndex)
         {
             formulaString = formula;
@@ -108,7 +108,6 @@ namespace Npoi.Core.SS.Formula
             return Parse(formula, book, FormulaType.Cell);
         }
 
-
         /**
          * Parse a formula into a array of tokens
          *
@@ -122,6 +121,7 @@ namespace Npoi.Core.SS.Formula
          * @return array of parsed tokens
          * @throws FormulaParseException if the formula is unparsable
          */
+
         public static Ptg[] Parse(String formula, IFormulaParsingWorkbook workbook, FormulaType formulaType, int sheetIndex)
         {
             FormulaParser fp = new FormulaParser(formula, workbook, sheetIndex);
@@ -135,6 +135,7 @@ namespace Npoi.Core.SS.Formula
         }
 
         /** Read New Character From Input Stream */
+
         private void GetChar()
         {
             // Check To see if we've walked off the end of the string.
@@ -157,6 +158,7 @@ namespace Npoi.Core.SS.Formula
         }
 
         /** Report What Was Expected */
+
         private Exception expected(String s)
         {
             String msg;
@@ -176,30 +178,35 @@ namespace Npoi.Core.SS.Formula
         }
 
         /** Recognize an Alpha Character */
+
         private static bool IsAlpha(char c)
         {
             return Char.IsLetter(c) || c == '$' || c == '_';
         }
 
         /** Recognize a Decimal Digit */
+
         private static bool IsDigit(char c)
         {
             return Char.IsDigit(c);
         }
 
         /** Recognize an Alphanumeric */
+
         private static bool IsAlNum(char c)
         {
             return IsAlpha(c) || IsDigit(c);
         }
 
         /** Recognize White Space */
+
         private static bool IsWhite(char c)
         {
             return c == ' ' || c == TAB || c == CR || c == LF;
         }
 
         /** Skip Over Leading White Space */
+
         private void SkipWhite()
         {
             while (IsWhite(look))
@@ -213,6 +220,7 @@ namespace Npoi.Core.SS.Formula
          *  unchecked exception. This method does <b>not</b> consume whitespace (before or after the
          *  matched character).
          */
+
         private void Match(char x)
         {
             if (look != x)
@@ -221,6 +229,7 @@ namespace Npoi.Core.SS.Formula
             }
             GetChar();
         }
+
         private String ParseUnquotedIdentifier()
         {
             if (look == '\'')
@@ -240,7 +249,9 @@ namespace Npoi.Core.SS.Formula
 
             return sb.ToString();
         }
+
         /** Get a Number */
+
         private String GetNum()
         {
             StringBuilder value = new StringBuilder();
@@ -280,6 +291,7 @@ namespace Npoi.Core.SS.Formula
             }
             return result;
         }
+
         private static ParseNode AugmentWithMemPtg(ParseNode root)
         {
             Ptg memPtg;
@@ -293,12 +305,14 @@ namespace Npoi.Core.SS.Formula
             }
             return new ParseNode(memPtg, root);
         }
+
         /**
          * From OOO doc: "Whenever one operand of the reference subexpression is a function,
          *  a defined name, a 3D reference, or an external reference (and no error occurs),
          *  a tMemFunc token is used"
          *
          */
+
         private static bool NeedsMemFunc(ParseNode root)
         {
             Ptg token = root.GetToken();
@@ -339,7 +353,6 @@ namespace Npoi.Core.SS.Formula
             return false;
         }
 
-
         private String ParseAsName()
         {
             StringBuilder sb = new StringBuilder();
@@ -363,6 +376,7 @@ namespace Npoi.Core.SS.Formula
          *
          * @return <c>true</c> if the specified character may be used in a defined name
          */
+
         private static bool IsValidDefinedNameChar(char ch)
         {
             if (Char.IsLetterOrDigit(ch))
@@ -379,9 +393,11 @@ namespace Npoi.Core.SS.Formula
             }
             return false;
         }
+
         /**
          * @param currentParsePosition used to format a potential error message
          */
+
         private void CheckValidRangeOperand(String sideName, int currentParsePosition, ParseNode pn)
         {
             if (!IsValidRangeOperand(pn))
@@ -391,10 +407,12 @@ namespace Npoi.Core.SS.Formula
                         + currentParsePosition + " is not a proper reference.");
             }
         }
+
         /**
           * @return false if sub-expression represented the specified ParseNode definitely
           * cannot appear on either side of the range (':') operator
           */
+
         private bool IsValidRangeOperand(ParseNode a)
         {
             Ptg tkn = a.GetToken();
@@ -438,9 +456,6 @@ namespace Npoi.Core.SS.Formula
             return false;
         }
 
-
-
-
         /**
          * Parses area refs (things which could be the operand of ':') and simple factors
          * Examples
@@ -467,6 +482,7 @@ namespace Npoi.Core.SS.Formula
          * </pre>
          *
          */
+
         private ParseNode ParseRangeable()
         {
             SkipWhite();
@@ -512,10 +528,6 @@ namespace Npoi.Core.SS.Formula
                 }
                 return ParseNonRange(savePointer);
             }
-
-
-
-
 
             bool whiteAfterPart1 = IsWhite(look);
             if (whiteAfterPart1)
@@ -583,7 +595,6 @@ namespace Npoi.Core.SS.Formula
                     return ParseNonRange(savePointer);
                 }
 
-
                 if (whiteAfterPart1 || whiteBeforePart2)
                 {
                     if (part1.IsRowOrColumn || part2.IsRowOrColumn)
@@ -637,6 +648,7 @@ namespace Npoi.Core.SS.Formula
           *   true
           * </pre>
           */
+
         private ParseNode ParseNonRange(int savePointer)
         {
             ResetPointer(savePointer);
@@ -708,6 +720,7 @@ namespace Npoi.Core.SS.Formula
          * @param part1
          * @param part2 may be <code>null</code>
          */
+
         private ParseNode CreateAreaRefParseNode(SheetIdentifier sheetIden, SimpleRangePart part1,
                 SimpleRangePart part2)
         {
@@ -739,6 +752,7 @@ namespace Npoi.Core.SS.Formula
             }
             return new ParseNode(ptg);
         }
+
         private static AreaReference CreateAreaRef(SimpleRangePart part1, SimpleRangePart part2)
         {
             if (!part1.IsCompatibleForArea(part2))
@@ -756,16 +770,15 @@ namespace Npoi.Core.SS.Formula
             }
             return new AreaReference(part1.CellReference, part2.CellReference);
         }
+
         private string CELL_REF_PATTERN = "(\\$?[A-Za-z]+)?(\\$?[0-9]+)?";
-
-
-
 
         /**
   * Parses out a potential LHS or RHS of a ':' intended to produce a plain AreaRef.  Normally these are
   * proper cell references but they could also be row or column refs like "$AC" or "10"
   * @return <code>null</code> (and leaves {@link #_pointer} unchanged if a proper range part does not parse out
   */
+
         private SimpleRangePart ParseSimpleRangePart()
         {
             int ptr = _pointer - 1; // TODO avoid StringIndexOutOfBounds
@@ -841,25 +854,23 @@ namespace Npoi.Core.SS.Formula
                 return null;
             }
 
-
             ResetPointer(ptr + 1); // stepping forward
             return new SimpleRangePart(rep, hasLetters, hasDigits);
         }
 
-
-
         /**
-         * 
-         * "A1", "B3" -> "A1:B3"   
+         *
+         * "A1", "B3" -> "A1:B3"
          * "sheet1!A1", "B3" -> "sheet1!A1:B3"
-         * 
+         *
          * @return <c>null</c> if the range expression cannot / shouldn't be reduced.
          */
+
         private static Ptg ReduceRangeExpression(Ptg ptgA, Ptg ptgB)
         {
             if (!(ptgB is RefPtg))
             {
-                // only when second ref is simple 2-D ref can the range 
+                // only when second ref is simple 2-D ref can the range
                 // expression be converted To an area ref
                 return null;
             }
@@ -878,13 +889,15 @@ namespace Npoi.Core.SS.Formula
                         refA.IsRowRelative, refB.IsRowRelative, refA.IsColRelative, refB.IsColRelative,
                         refA.ExternSheetIndex);
             }
-            // Note - other operand types (like AreaPtg) which probably can't evaluate 
+            // Note - other operand types (like AreaPtg) which probably can't evaluate
             // do not cause validation errors at Parse time
             return null;
         }
+
         /**
      * A1, $A1, A$1, $A$1, A, 1
      */
+
         private class SimpleRangePart
         {
             public enum PartType
@@ -930,7 +943,6 @@ namespace Npoi.Core.SS.Formula
                 }
             }
 
-
             public CellReference CellReference
             {
                 get
@@ -972,6 +984,7 @@ namespace Npoi.Core.SS.Formula
              * {@link AreaPtg} ( Note - the explicit range operator (:) may still be valid
              * when this method returns <c>false</c> )
              */
+
             public bool IsCompatibleForArea(SimpleRangePart part2)
             {
                 return _type == part2._type;
@@ -986,13 +999,14 @@ namespace Npoi.Core.SS.Formula
                 return sb.ToString();
             }
         }
+
         /**
          * Note - caller should reset {@link #_pointer} upon <code>null</code> result
          * @return The sheet name as an identifier <code>null</code> if '!' is not found in the right place
          */
+
         private SheetIdentifier ParseSheetName()
         {
-
             String bookName;
             if (look == '[')
             {
@@ -1079,9 +1093,10 @@ namespace Npoi.Core.SS.Formula
         }
 
         /**
-         * If we have something that looks like [book]Sheet1: or 
+         * If we have something that looks like [book]Sheet1: or
          *  Sheet1, see if it's actually a range eg Sheet1:Sheet2!
          */
+
         private SheetIdentifier ParseSheetRange(String bookname, NameIdentifier sheet1Name)
         {
             GetChar();
@@ -1092,9 +1107,11 @@ namespace Npoi.Core.SS.Formula
             }
             return null;
         }
+
         /**
           * very similar to {@link SheetNameFormatter#isSpecialChar(char)}
           */
+
         private bool IsUnquotedSheetNameChar(char ch)
         {
             if (Char.IsLetterOrDigit(ch))
@@ -1109,6 +1126,7 @@ namespace Npoi.Core.SS.Formula
             }
             return false;
         }
+
         private void ResetPointer(int ptr)
         {
             _pointer = ptr;
@@ -1127,6 +1145,7 @@ namespace Npoi.Core.SS.Formula
         /**
          * @return <c>true</c> if the specified name is a valid cell reference
          */
+
         private bool IsValidCellReference(String str)
         {
             //check range bounds against grid max
@@ -1155,7 +1174,6 @@ namespace Npoi.Core.SS.Formula
             return result;
         }
 
-
         /**
          * Note - Excel Function names are 'case aware but not case sensitive'.  This method may end
          * up creating a defined name record in the workbook if the specified name is not an internal
@@ -1163,6 +1181,7 @@ namespace Npoi.Core.SS.Formula
          *
          * @param name case preserved Function name (as it was entered/appeared in the formula).
          */
+
         private ParseNode Function(String name)
         {
             Ptg nameToken = null;
@@ -1180,7 +1199,6 @@ namespace Npoi.Core.SS.Formula
                 IEvaluationName hName = _book.GetName(name, _sheetIndex);
                 if (hName == null)
                 {
-
                     nameToken = _book.GetNameXPtg(name, null);
                     if (nameToken == null)
                     {
@@ -1211,14 +1229,14 @@ namespace Npoi.Core.SS.Formula
 
         /**
          * Generates the variable Function ptg for the formula.
-         * 
+         *
          * For IF Formulas, Additional PTGs are Added To the Tokens
      * @param name a {@link NamePtg} or {@link NameXPtg} or <code>null</code>
          * @return Ptg a null is returned if we're in an IF formula, it needs extreme manipulation and is handled in this Function
          */
+
         private ParseNode GetFunction(String name, Ptg namePtg, ParseNode[] args)
         {
-
             FunctionMetadata fm = FunctionMetadataRegistry.GetFunctionByName(name.ToUpper());
             int numArgs = args.Length;
             if (fm == null)
@@ -1240,12 +1258,13 @@ namespace Npoi.Core.SS.Formula
             }
             bool IsVarArgs = !fm.HasFixedArgsLength;
             int funcIx = fm.Index;
-        if (funcIx == FunctionMetadataRegistry.FUNCTION_INDEX_SUM && args.Length == 1) {
-            // Excel encodes the sum of a single argument as tAttrSum
-            // POI does the same for consistency, but this is not critical
-            return new ParseNode(AttrPtg.GetSumSingle(), args);
-            // The code below would encode tFuncVar(SUM) which seems to do no harm
-        }
+            if (funcIx == FunctionMetadataRegistry.FUNCTION_INDEX_SUM && args.Length == 1)
+            {
+                // Excel encodes the sum of a single argument as tAttrSum
+                // POI does the same for consistency, but this is not critical
+                return new ParseNode(AttrPtg.GetSumSingle(), args);
+                // The code below would encode tFuncVar(SUM) which seems to do no harm
+            }
             ValidateNumArgs(args.Length, fm);
 
             AbstractFunctionPtg retval;
@@ -1316,6 +1335,7 @@ namespace Npoi.Core.SS.Formula
         }
 
         /** Get arguments To a Function */
+
         private ParseNode[] Arguments()
         {
             //average 2 args per Function
@@ -1360,6 +1380,7 @@ namespace Npoi.Core.SS.Formula
         }
 
         /** Parse and Translate a Math Factor  */
+
         private ParseNode PowerFactor()
         {
             ParseNode result = PercentFactor();
@@ -1391,11 +1412,10 @@ namespace Npoi.Core.SS.Formula
             }
         }
 
-
-
         /**
          * factors (without ^ or % )
          */
+
         private ParseNode ParseSimpleFactor()
         {
             SkipWhite();
@@ -1403,19 +1423,24 @@ namespace Npoi.Core.SS.Formula
             {
                 case '#':
                     return new ParseNode(ErrPtg.ValueOf(ParseErrorLiteral()));
+
                 case '-':
                     Match('-');
                     return ParseUnary(false);
+
                 case '+':
                     Match('+');
                     return ParseUnary(true);
+
                 case '(':
                     Match('(');
                     ParseNode inside = ComparisonExpression();
                     Match(')');
                     return new ParseNode(ParenthesisPtg.instance, inside);
+
                 case '"':
                     return new ParseNode(new StringPtg(ParseStringLiteral()));
+
                 case '{':
                     Match('{');
                     ParseNode arrayNode = ParseArray();
@@ -1432,9 +1457,9 @@ namespace Npoi.Core.SS.Formula
             }
             throw expected("cell ref or constant literal");
         }
+
         private ParseNode ParseUnary(bool isPlus)
         {
-
             bool numberFollows = IsDigit(look) || look == '.';
             ParseNode factor = PowerFactor();
 
@@ -1492,6 +1517,7 @@ namespace Npoi.Core.SS.Formula
 
             return new ParseNode(new ArrayPtg(values2d));
         }
+
         private void CheckRowLengths(Object[][] values2d, int nColumns)
         {
             for (int i = 0; i < values2d.Length; i++)
@@ -1517,12 +1543,12 @@ namespace Npoi.Core.SS.Formula
                     case '}':
                     case ';':
                         break;
+
                     case ',':
                         Match(',');
                         continue;
                     default:
                         throw expected("'}' or ','");
-
                 }
                 break;
             }
@@ -1544,6 +1570,7 @@ namespace Npoi.Core.SS.Formula
                 case 'T':
                 case 't':
                     return ParseBooleanLiteral();
+
                 case '-':
                     Match('-');
                     SkipWhite();
@@ -1632,7 +1659,6 @@ namespace Npoi.Core.SS.Formula
             return GetNumberPtgFromString(number1, number2, exponent);
         }
 
-
         private int ParseErrorLiteral()
         {
             Match('#');
@@ -1691,16 +1717,15 @@ namespace Npoi.Core.SS.Formula
                         return HSSFErrorConstants.ERROR_NA;
                     }
                     throw expected("#NAME?, #NUM!, #NULL! or #N/A");
-
             }
             throw expected("#VALUE!, #REF!, #DIV/0!, #NAME?, #NUM!, #NULL! or #N/A");
         }
-
 
         /**
          * Get a PTG for an integer from its string representation.
          * return Int or Number Ptg based on size of input
          */
+
         private static Ptg GetNumberPtgFromString(String number1, String number2, String exponent)
         {
             StringBuilder number = new StringBuilder();
@@ -1753,7 +1778,6 @@ namespace Npoi.Core.SS.Formula
             return new NumberPtg(number.ToString());
         }
 
-
         private String ParseStringLiteral()
         {
             Match('"');
@@ -1776,6 +1800,7 @@ namespace Npoi.Core.SS.Formula
         }
 
         /** Parse and Translate a Math Term */
+
         private ParseNode Term()
         {
             ParseNode result = PowerFactor();
@@ -1789,10 +1814,12 @@ namespace Npoi.Core.SS.Formula
                         Match('*');
                         operator1 = MultiplyPtg.instance;
                         break;
+
                     case '/':
                         Match('/');
                         operator1 = DividePtg.instance;
                         break;
+
                     default:
                         return result; // finished with Term
                 }
@@ -1844,13 +1871,13 @@ namespace Npoi.Core.SS.Formula
                 case '=':
                     Match('=');
                     return LessEqualPtg.instance;
+
                 case '>':
                     Match('>');
                     return NotEqualPtg.instance;
             }
             return LessThanPtg.instance;
         }
-
 
         private ParseNode ConcatExpression()
         {
@@ -1869,8 +1896,8 @@ namespace Npoi.Core.SS.Formula
             return result;
         }
 
-
         /** Parse and Translate an Expression */
+
         private ParseNode AdditiveExpression()
         {
             ParseNode result = Term();
@@ -1884,10 +1911,12 @@ namespace Npoi.Core.SS.Formula
                         Match('+');
                         operator1 = AddPtg.instance;
                         break;
+
                     case '-':
                         Match('-');
                         operator1 = SubtractPtg.instance;
                         break;
+
                     default:
                         return result; // finished with Additive expression
                 }
@@ -1909,11 +1938,11 @@ namespace Npoi.Core.SS.Formula
     end;
          **/
 
-
         /**
          *  API call To execute the parsing of the formula
-         * 
+         *
          */
+
         private void Parse()
         {
             _pointer = 0;
@@ -1927,6 +1956,7 @@ namespace Npoi.Core.SS.Formula
                 throw new FormulaParseException(msg);
             }
         }
+
         private ParseNode UnionExpression()
         {
             ParseNode result = ComparisonExpression();
@@ -1950,7 +1980,6 @@ namespace Npoi.Core.SS.Formula
                 return result;
             }
         }
-
 
         private Ptg[] GetRPNPtg(FormulaType formulaType)
         {

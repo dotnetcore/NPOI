@@ -17,9 +17,6 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using Npoi.Core.DDF;
     using Npoi.Core.HSSF.Model;
     using Npoi.Core.HSSF.Record;
@@ -31,9 +28,10 @@ namespace Npoi.Core.HSSF.UserModel
     using Npoi.Core.SS.Formula.PTG;
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.SS.Util;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Globalization;
-
-
 
     /// <summary>
     /// High level representation of a worksheet.
@@ -107,6 +105,7 @@ namespace Npoi.Core.HSSF.UserModel
             this.book = _workbook.Workbook;
             SetPropertiesFromSheet(_sheet);
         }
+
         /// <summary>
         /// Clones the _sheet.
         /// </summary>
@@ -131,7 +130,6 @@ namespace Npoi.Core.HSSF.UserModel
             return sheet;
         }
 
-
         internal void PreSerialize()
         {
             if (_patriarch != null)
@@ -139,6 +137,7 @@ namespace Npoi.Core.HSSF.UserModel
                 _patriarch.PreSerialize();
             }
         }
+
         /// <summary>
         /// Copy one row to the target row
         /// </summary>
@@ -148,13 +147,13 @@ namespace Npoi.Core.HSSF.UserModel
         {
             return SheetUtil.CopyRow(this, sourceIndex, targetIndex);
         }
+
         /// <summary>
         /// used internally to Set the properties given a Sheet object
         /// </summary>
         /// <param name="sheet">The _sheet.</param>
         private void SetPropertiesFromSheet(InternalSheet sheet)
         {
-
             RowRecord row = sheet.NextRow;
             bool rowRecordsAlreadyPresent = row != null;
 
@@ -185,7 +184,7 @@ namespace Npoi.Core.HSSF.UserModel
                     hrow = (HSSFRow)GetRow(cval.Row);
                     if (hrow == null)
                     {
-                        // Some tools (like Perl module SpReadsheet::WriteExcel - bug 41187) skip the RowRecords 
+                        // Some tools (like Perl module SpReadsheet::WriteExcel - bug 41187) skip the RowRecords
                         // Excel, OpenOffice.org and GoogleDocs are all OK with this, so POI should be too.
                         if (rowRecordsAlreadyPresent)
                         {
@@ -227,12 +226,14 @@ namespace Npoi.Core.HSSF.UserModel
             //    log.Log(DEBUG, "total _sheet cell creation took ",
             //        DateTime.Now.Millisecond - timestart);
         }
+
         /**
          * Gets the flag indicating whether the window should show 0 (zero) in cells containing zero value.
          * When false, cells with zero value appear blank instead of showing the number zero.
          * In Excel 2003 this option can be changed in the Options dialog on the View tab.
          * @return whether all zero values on the worksheet are displayed
          */
+
         public bool DisplayZeros
         {
             get
@@ -475,13 +476,16 @@ namespace Npoi.Core.HSSF.UserModel
         {
             private List<IDataValidation> hssfValidations;
             private IWorkbook workbook;
+
             public RecordVisitor1(List<IDataValidation> hssfValidations, IWorkbook workbook)
             {
                 this.hssfValidations = hssfValidations;
                 this.workbook = workbook;
                 this.book = HSSFEvaluationWorkbook.Create(workbook);
             }
+
             private HSSFEvaluationWorkbook book;
+
             public void VisitRecord(Record r)
             {
                 if (!(r is DVRecord))
@@ -628,7 +632,6 @@ namespace Npoi.Core.HSSF.UserModel
             set { _sheet.IsGridsPrinted = (value); }
         }
 
-
         /// <summary>
         /// Adds a merged region of cells (hence those cells form one)
         /// </summary>
@@ -642,6 +645,7 @@ namespace Npoi.Core.HSSF.UserModel
                     region.RowTo,
                     region.ColumnTo);
         }
+
         /// <summary>
         /// adds a merged region of cells (hence those cells form one)
         /// </summary>
@@ -659,6 +663,7 @@ namespace Npoi.Core.HSSF.UserModel
                     region.LastRow,
                     region.LastColumn);
         }
+
         private void ValidateArrayFormulas(CellRangeAddress region)
         {
             int firstRow = region.FirstRow;
@@ -689,8 +694,8 @@ namespace Npoi.Core.HSSF.UserModel
                     }
                 }
             }
-
         }
+
         /// <summary>
         /// Whether a record must be Inserted or not at generation to indicate that
         /// formula must be recalculated when _workbook is opened.
@@ -721,7 +726,6 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-
         /// <summary>
         /// Determine whether printed output for this _sheet will be horizontally centered.
         /// </summary>
@@ -737,8 +741,6 @@ namespace Npoi.Core.HSSF.UserModel
                 _sheet.PageSettings.HCenter.HCenter = (value);
             }
         }
-
-
 
         /// <summary>
         /// Removes a merged region of cells (hence letting them free)
@@ -780,7 +782,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <returns>
         /// an iterator of the PHYSICAL rows.  Meaning the 3rd element may not
         /// be the third row if say for instance the second row is undefined.
-        /// Call <see cref="Npoi.Core.SS.UserModel.IRow.RowNum"/> on each row 
+        /// Call <see cref="Npoi.Core.SS.UserModel.IRow.RowNum"/> on each row
         /// if you care which one it is.
         /// </returns>
         public IEnumerator GetRowEnumerator()
@@ -794,7 +796,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <returns>
         /// an iterator of the PHYSICAL rows.  Meaning the 3rd element may not
         /// be the third row if say for instance the second row is undefined.
-        /// Call <see cref="Npoi.Core.SS.UserModel.IRow.RowNum"/> on each row 
+        /// Call <see cref="Npoi.Core.SS.UserModel.IRow.RowNum"/> on each row
         /// if you care which one it is.
         /// </returns>
         public IEnumerator GetEnumerator()
@@ -821,6 +823,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             this._sheet.SetActiveCellRange(row, row, column, column);
         }
+
         /// <summary>
         /// Sets the active cell range.
         /// </summary>
@@ -832,6 +835,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             this._sheet.SetActiveCellRange(firstRow, lastRow, firstColumn, lastColumn);
         }
+
         /// <summary>
         /// Sets the active cell range.
         /// </summary>
@@ -862,7 +866,6 @@ namespace Npoi.Core.HSSF.UserModel
                 WSBoolRecord record = (WSBoolRecord)_sheet.FindFirstRecordBySid(WSBoolRecord.sid);
 
                 record.AlternateExpression = value;
-
             }
         }
 
@@ -1086,7 +1089,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <summary>
         /// Sets whether sheet is selected.
         /// </summary>
-        /// <param name="sel">Whether to select the sheet or deselect the sheet.</param> 
+        /// <param name="sel">Whether to select the sheet or deselect the sheet.</param>
         public void SetActive(bool sel)
         {
             this.Sheet.WindowTwo.IsActive = sel;
@@ -1099,6 +1102,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return _sheet.ProtectionBlock;
             }
         }
+
         /// <summary>
         /// Answer whether protection is enabled or disabled
         /// </summary>
@@ -1143,6 +1147,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return ProtectionBlock.IsScenarioProtected;
             }
         }
+
         /// <summary>
         /// Sets the protection enabled as well as the password
         /// </summary>
@@ -1151,6 +1156,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             ProtectionBlock.ProtectSheet(password, true, true); //protect objs&scenarios(normal)
         }
+
         /// <summary>
         /// Sets the zoom magnication for the _sheet.  The zoom is expressed as a
         /// fraction.  For example to express a zoom of 75% use 3 for the numerator
@@ -1170,6 +1176,7 @@ namespace Npoi.Core.HSSF.UserModel
             sclRecord.Denominator = ((short)denominator);
             Sheet.SetSCLRecord(sclRecord);
         }
+
         /// <summary>
         /// Sets the enclosed border of region.
         /// </summary>
@@ -1187,6 +1194,7 @@ namespace Npoi.Core.HSSF.UserModel
             HSSFRegionUtil.SetBottomBorderColor(color, region, this, _workbook);
             HSSFRegionUtil.SetBorderBottom(borderType, region, this, _workbook);
         }
+
         /// <summary>
         /// Sets the right border of region.
         /// </summary>
@@ -1268,6 +1276,7 @@ namespace Npoi.Core.HSSF.UserModel
                 _sheet.LeftCol = value;
             }
         }
+
         /**
          * Sets desktop window pane display area, when the
          * file is first opened in a viewer.
@@ -1275,6 +1284,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @param toprow  the top row to show in desktop window pane
          * @param leftcol the left column to show in desktop window pane
          */
+
         public void ShowInPane(int toprow, int leftcol)
         {
             int maxrow = SpreadsheetVersion.EXCEL97.LastRowIndex;
@@ -1282,6 +1292,7 @@ namespace Npoi.Core.HSSF.UserModel
 
             ShowInPane((short)toprow, (short)leftcol);
         }
+
         /// <summary>
         /// Sets desktop window pane display area, when the
         /// file is first opened in a viewer.
@@ -1313,7 +1324,6 @@ namespace Npoi.Core.HSSF.UserModel
                 bool inStart = (merged.FirstRow >= startRow || merged.LastRow >= startRow);
                 bool inEnd = (merged.FirstRow <= endRow || merged.LastRow <= endRow);
 
-
                 //dont Check if it's not within the Shifted area
                 if (!(inStart && inEnd)) continue;
 
@@ -1328,9 +1338,7 @@ namespace Npoi.Core.HSSF.UserModel
                     ShiftedRegions.Add(merged);
                     this.RemoveMergedRegion(i);
                     i = i - 1; // we have to back up now since we Removed one
-
                 }
-
             }
 
             //Readd so it doesn't Get Shifted again
@@ -1341,8 +1349,8 @@ namespace Npoi.Core.HSSF.UserModel
 
                 this.AddMergedRegion(region);
             }
-
         }
+
         [Obsolete]
         private static bool ContainsCell(Npoi.Core.SS.Util.CellRangeAddress cr, int rowIx, int colIx)
         {
@@ -1353,6 +1361,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
             return false;
         }
+
         /// <summary>
         /// Shifts rows between startRow and endRow n number of rows.
         /// If you use a negative number, it will Shift rows up.
@@ -1368,6 +1377,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             ShiftRows(startRow, endRow, n, false, false);
         }
+
         /// <summary>
         /// Shifts rows between startRow and endRow n number of rows.
         /// If you use a negative number, it will shift rows up.
@@ -1385,6 +1395,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             ShiftRows(startRow, endRow, n, copyRowHeight, resetOriginalRowHeight, true);
         }
+
         /// <summary>
         /// Shifts rows between startRow and endRow n number of rows.
         /// If you use a negative number, it will Shift rows up.
@@ -1445,10 +1456,9 @@ namespace Npoi.Core.HSSF.UserModel
                 if (row2Replace == null)
                     row2Replace = (HSSFRow)CreateRow(rowNum + n);
 
-
                 // Remove all the old cells from the row we'll
-                //  be writing too, before we start overwriting 
-                //  any cells. This avoids issues with cells 
+                //  be writing too, before we start overwriting
+                //  any cells. This avoids issues with cells
                 //  changing type, and records not being correctly
                 //  overwritten
                 row2Replace.RemoveAllCells();
@@ -1456,7 +1466,6 @@ namespace Npoi.Core.HSSF.UserModel
                 // If this row doesn't exist, nothing needs to
                 //  be done for the now empty destination row
                 if (row == null) continue; // Nothing to do for this row
-
 
                 // Fix up row heights if required
                 if (copyRowHeight)
@@ -1563,7 +1572,7 @@ namespace Npoi.Core.HSSF.UserModel
             int sheetIndex = _workbook.GetSheetIndex(this);
             String sheetName = _workbook.GetSheetName(sheetIndex);
             int externSheetIndex = book.CheckExternSheet(sheetIndex);
-            FormulaShifter shifter = FormulaShifter.CreateForRowShift(externSheetIndex,sheetName, startRow, endRow, n);
+            FormulaShifter shifter = FormulaShifter.CreateForRowShift(externSheetIndex, sheetName, startRow, endRow, n);
             _sheet.UpdateFormulasAfterCellShift(shifter, externSheetIndex);
 
             int nSheets = _workbook.NumberOfSheets;
@@ -1589,6 +1598,7 @@ namespace Npoi.Core.HSSF.UserModel
             int window2Loc = _sheet.FindFirstRecordLocBySid(WindowTwoRecord.sid);
             _sheet.Records.InsertRange(window2Loc, records);
         }
+
         private void NotifyRowShifting(HSSFRow row)
         {
             String msg = "Row[rownum=" + row.RowNum + "] contains cell(s) included in a multi-cell array formula. " +
@@ -1602,6 +1612,7 @@ namespace Npoi.Core.HSSF.UserModel
                 }
             }
         }
+
         /// <summary>
         /// Creates a split (freezepane). Any existing freezepane or split pane is overwritten.
         /// </summary>
@@ -1666,7 +1677,6 @@ namespace Npoi.Core.HSSF.UserModel
             set { _sheet.DisplayGridlines = (value); }
         }
 
-
         /// <summary>
         /// Gets or sets a value indicating whether formulas are displayed.
         /// </summary>
@@ -1700,8 +1710,10 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 case MarginType.FooterMargin:
                     return _sheet.PageSettings.PrintSetup.FooterMargin;
+
                 case MarginType.HeaderMargin:
                     return _sheet.PageSettings.PrintSetup.HeaderMargin;
+
                 default:
                     return _sheet.PageSettings.GetMargin(margin);
             }
@@ -1719,9 +1731,11 @@ namespace Npoi.Core.HSSF.UserModel
                 case MarginType.FooterMargin:
                     _sheet.PageSettings.PrintSetup.FooterMargin = (size);
                     break;
+
                 case MarginType.HeaderMargin:
                     _sheet.PageSettings.PrintSetup.HeaderMargin = (size);
                     break;
+
                 default:
                     _sheet.PageSettings.SetMargin(margin, size);
                     break;
@@ -1744,7 +1758,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="row">The row.</param>
         /// <returns>
         /// 	<c>true</c> if [is row broken] [the specified row]; otherwise, <c>false</c>.
-        /// </returns>        
+        /// </returns>
         public bool IsRowBroken(int row)
         {
             return _sheet.PageSettings.IsRowBroken(row);
@@ -1784,7 +1798,6 @@ namespace Npoi.Core.HSSF.UserModel
                 return _sheet.PageSettings.ColumnBreaks;
             }
         }
-
 
         /// <summary>
         /// Sets a page break at the indicated column
@@ -1850,7 +1863,7 @@ namespace Npoi.Core.HSSF.UserModel
 
             EscherAggregate r = (EscherAggregate)Sheet.FindFirstRecordBySid(EscherAggregate.sid);
             IList escherRecords = r.EscherRecords;
-            for (IEnumerator iterator = escherRecords.GetEnumerator(); iterator.MoveNext(); )
+            for (IEnumerator iterator = escherRecords.GetEnumerator(); iterator.MoveNext();)
             {
                 EscherRecord escherRecord = (EscherRecord)iterator.Current;
                 if (fat)
@@ -1859,9 +1872,9 @@ namespace Npoi.Core.HSSF.UserModel
                     escherRecord.Display(0);
             }
         }
+
         [NonSerialized]
         private HSSFPatriarch _patriarch;
-
 
         /// <summary>
         /// Returns the agregate escher records for this _sheet,
@@ -1905,6 +1918,7 @@ namespace Npoi.Core.HSSF.UserModel
      *
      * @return the top-level drawing patriarch, if there is one, else returns null
      */
+
         public IDrawing DrawingPatriarch
         {
             get
@@ -1922,6 +1936,7 @@ namespace Npoi.Core.HSSF.UserModel
          *
          * @return The new patriarch.
          */
+
         public IDrawing CreateDrawingPatriarch()
         {
             _patriarch = GetPatriarch(true);
@@ -2113,7 +2128,6 @@ namespace Npoi.Core.HSSF.UserModel
             return cells;
         }
 
-
         /// <summary>
         /// Ungroups the row.
         /// </summary>
@@ -2208,6 +2222,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
             return false;
         }
+
         /// <summary>
         /// Gets the merged region at the specified index
         /// </summary>
@@ -2217,6 +2232,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             return _sheet.GetMergedRegionAt(index);
         }
+
         /// <summary>
         /// Convert HSSFFont to Font.
         /// </summary>
@@ -2249,6 +2265,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return new HSSFSheetConditionalFormatting(this);
             }
         }
+
         /// <summary>
         /// Get the DVRecords objects that are associated to this _sheet
         /// </summary>
@@ -2270,6 +2287,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return dvRecords;
             }
         }
+
         /// <summary>
         /// Provide a reference to the parent workbook.
         /// </summary>
@@ -2383,6 +2401,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
             return null;
         }
+
         public CellRangeAddress RepeatingRows
         {
             get
@@ -2396,7 +2415,6 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-
         public CellRangeAddress RepeatingColumns
         {
             get
@@ -2409,8 +2427,6 @@ namespace Npoi.Core.HSSF.UserModel
                 SetRepeatingRowsAndColumns(rowRangeRef, value);
             }
         }
-
-
 
         private void SetRepeatingRowsAndColumns(
             CellRangeAddress rowDef, CellRangeAddress colDef)
@@ -2518,7 +2534,6 @@ namespace Npoi.Core.HSSF.UserModel
 
             foreach (Ptg ptg in nameDefinition)
             {
-
                 if (ptg is Area3DPtg)
                 {
                     Area3DPtg areaPtg = (Area3DPtg)ptg;
@@ -2543,14 +2558,11 @@ namespace Npoi.Core.HSSF.UserModel
                             return columnRange;
                         }
                     }
-
                 }
-
             }
 
             return null;
         }
-
 
         private NameRecord GetBuiltinNameRecord(byte builtinCode)
         {
@@ -2580,7 +2592,7 @@ namespace Npoi.Core.HSSF.UserModel
         // That code was based on: http://www.coderanch.com/t/420958/open-source/Copying-sheet-excel-file-another
         // thanks to: Pierre Guilbert, 2011-04-14
         //
-        // Modified again on 2012-01-09 by Paul Kratt (Fixed copied sheet corruption in C# version, 
+        // Modified again on 2012-01-09 by Paul Kratt (Fixed copied sheet corruption in C# version,
         // added color palette merging, copy images, reassign merged colors. Color palette merge was necessary
         // for copying optimized sheets generated by MS SSRS 2008, because they only contain colors used in the document.)
         //
@@ -2588,14 +2600,16 @@ namespace Npoi.Core.HSSF.UserModel
         /*
          * @author jk
          * getted from http://jxls.cvs.sourceforge.net/jxls/jxls/src/java/org/jxls/util/Util.java?revision=1.8&view=markup
-         * by Leonid Vysochyn 
+         * by Leonid Vysochyn
          * and modified (adding styles copying)
          * modified by Philipp Lopmeier (replacing deprecated classes and methods, using generic types)
          */
+
         public ISheet CopySheet()
         {
             return CopySheet(string.Concat(SheetName, " - Copy"), true);
         }
+
         public ISheet CopySheet(Boolean CopyStyle)
         {
             return CopySheet(string.Concat(SheetName, " - Copy"), CopyStyle);
@@ -2605,7 +2619,6 @@ namespace Npoi.Core.HSSF.UserModel
         {
             return CopySheet(Name, true);
         }
-
 
         public ISheet CopySheet(String Name, Boolean copyStyle)
         {
@@ -2717,7 +2730,7 @@ namespace Npoi.Core.HSSF.UserModel
                 //Note: This logic assumes that no images are shared between sheets of the source document. If they
                 //are and you're copying multiple sheets, the file may be larger than expected due to duplicates.
                 IEnumerable<int> usedImages = FindUsedPictures(escher.EscherRecords);
-                Dictionary<int,int> remap = new Dictionary<int, int>();
+                Dictionary<int, int> remap = new Dictionary<int, int>();
                 IList pics = Workbook.GetAllPictures();
                 foreach (int imgId in usedImages)
                 {
@@ -2758,7 +2771,7 @@ namespace Npoi.Core.HSSF.UserModel
                         if (eprop.PropertyNumber == EscherProperties.BLIP__BLIPTODISPLAY)
                         {
                             //This is the picture ID property
-                            int pictureId = ((EscherSimpleProperty) eprop).PropertyValue;
+                            int pictureId = ((EscherSimpleProperty)eprop).PropertyValue;
                             if (!usedIds.Contains(pictureId))
                             {
                                 usedIds.Add(pictureId);
@@ -2777,7 +2790,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-        private void ApplyEscherRemap(EscherRecord parent, Dictionary<int,int> mappings)
+        private void ApplyEscherRemap(EscherRecord parent, Dictionary<int, int> mappings)
         {
             foreach (EscherRecord child in parent.ChildRecords)
             {
@@ -2792,7 +2805,7 @@ namespace Npoi.Core.HSSF.UserModel
                             int pictureId = ((EscherSimpleProperty)eprop).PropertyValue;
                             if (mappings.ContainsKey(pictureId))
                             {
-                                ((EscherSimpleProperty) eprop).PropertyValue = mappings[pictureId];
+                                ((EscherSimpleProperty)eprop).PropertyValue = mappings[pictureId];
                             }
                             break;
                         }
@@ -2808,7 +2821,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-        private static Dictionary<short,short> MergePalettes(HSSFWorkbook source, HSSFWorkbook dest)
+        private static Dictionary<short, short> MergePalettes(HSSFWorkbook source, HSSFWorkbook dest)
         {
             Dictionary<short, short> retval = new Dictionary<short, short>();
             //This is a slow way to accomplish this, but since the color limit is 56 it won't take long
@@ -2871,7 +2884,6 @@ namespace Npoi.Core.HSSF.UserModel
                 }
             }
         }
-
 
         public static CellRangeAddress GetMergedRegion(HSSFSheet sheet, int rowNum, short cellNum)
         {

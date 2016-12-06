@@ -15,7 +15,6 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.UserModel
 {
     using Npoi.Core.DDF;
@@ -46,9 +45,11 @@ namespace Npoi.Core.HSSF.UserModel
                 {
                     case EscherSpgrRecord.RECORD_ID:
                         break;
+
                     case EscherClientAnchorRecord.RECORD_ID:
                         anchor = new HSSFClientAnchor((EscherClientAnchorRecord)ch);
                         break;
+
                     case EscherChildAnchorRecord.RECORD_ID:
                         anchor = new HSSFChildAnchor((EscherChildAnchorRecord)ch);
                         break;
@@ -127,8 +128,6 @@ namespace Npoi.Core.HSSF.UserModel
             return obj;
         }
 
-
-
         internal override void AfterRemove(HSSFPatriarch patriarch)
         {
             patriarch.GetBoundAggregate().RemoveShapeToObjRecord(GetEscherContainer().ChildContainers[0]
@@ -141,6 +140,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
             shapes.Clear();
         }
+
         private void OnCreate(HSSFShape shape)
         {
             if (this.Patriarch != null)
@@ -162,6 +162,7 @@ namespace Npoi.Core.HSSF.UserModel
                 sp.Flags = sp.Flags | EscherSpRecord.FLAG_CHILD;
             }
         }
+
         /// <summary>
         /// Create another Group Under this Group.
         /// </summary>
@@ -176,12 +177,14 @@ namespace Npoi.Core.HSSF.UserModel
             OnCreate(group);
             return group;
         }
+
         public void AddShape(HSSFShape shape)
         {
             shape.Patriarch = (this.Patriarch);
             shape.Parent = (this);
             shapes.Add(shape);
         }
+
         /// <summary>
         /// Create a new simple shape Under this Group.
         /// </summary>
@@ -249,7 +252,7 @@ namespace Npoi.Core.HSSF.UserModel
             HSSFPicture shape = new HSSFPicture(this, anchor);
             shape.Parent = this;
             shape.Anchor = anchor;
-            shape.PictureIndex=pictureIndex;
+            shape.PictureIndex = pictureIndex;
             shapes.Add(shape);
             OnCreate(shape);
             EscherSpRecord sp = (EscherSpRecord)shape.GetEscherContainer().GetChildById(EscherSpRecord.RECORD_ID);
@@ -288,6 +291,7 @@ namespace Npoi.Core.HSSF.UserModel
             _spgrRecord.RectY1 = (y1);
             _spgrRecord.RectY2 = (y2);
         }
+
         public void Clear()
         {
             List<HSSFShape> copy = new List<HSSFShape>(shapes);
@@ -296,6 +300,7 @@ namespace Npoi.Core.HSSF.UserModel
                 RemoveShape(shape);
             }
         }
+
         /// <summary>
         /// Gets The top left x coordinate of this Group.
         /// </summary>
@@ -350,7 +355,7 @@ namespace Npoi.Core.HSSF.UserModel
             get
             {
                 int count = shapes.Count;
-                for (IEnumerator iterator = shapes.GetEnumerator(); iterator.MoveNext(); )
+                for (IEnumerator iterator = shapes.GetEnumerator(); iterator.MoveNext();)
                 {
                     HSSFShape shape = (HSSFShape)iterator.Current;
                     count += shape.CountOfAllChildren;
@@ -358,12 +363,14 @@ namespace Npoi.Core.HSSF.UserModel
                 return count;
             }
         }
+
         internal override void AfterInsert(HSSFPatriarch patriarch)
         {
             EscherAggregate agg = patriarch.GetBoundAggregate();
             EscherContainerRecord containerRecord = (EscherContainerRecord)GetEscherContainer().GetChildById(EscherContainerRecord.SP_CONTAINER);
             agg.AssociateShapeToObjRecord(containerRecord.GetChildById(EscherClientDataRecord.RECORD_ID), GetObjRecord());
         }
+
         public override int ShapeId
         {
             get
@@ -380,6 +387,7 @@ namespace Npoi.Core.HSSF.UserModel
                 cod.ObjectId = (short)(value % 1024);
             }
         }
+
         internal override HSSFShape CloneShape()
         {
             throw new NotImplementedException("Use method cloneShape(HSSFPatriarch patriarch)");
@@ -421,8 +429,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
             return group;
         }
-       
-        
+
         public bool RemoveShape(HSSFShape shape)
         {
             bool isRemoved = GetEscherContainer().RemoveChildRecord(shape.GetEscherContainer());
@@ -434,8 +441,6 @@ namespace Npoi.Core.HSSF.UserModel
             return isRemoved;
         }
 
-
-
         #region IEnumerable<HSSFShape> ��Ա
 
         public IEnumerator<HSSFShape> GetEnumerator()
@@ -443,7 +448,7 @@ namespace Npoi.Core.HSSF.UserModel
             return shapes.GetEnumerator();
         }
 
-        #endregion
+        #endregion IEnumerable<HSSFShape> ��Ա
 
         #region IEnumerable ��Ա
 
@@ -452,6 +457,6 @@ namespace Npoi.Core.HSSF.UserModel
             return shapes.GetEnumerator();
         }
 
-        #endregion
+        #endregion IEnumerable ��Ա
     }
 }

@@ -18,6 +18,7 @@
  * Created on May 6, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     using System;
@@ -26,9 +27,9 @@ namespace Npoi.Core.SS.Formula.Functions
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
      *
      */
+
     public class Int : OneArg
     {
-
         public override double Evaluate(double d)
         {
             if (d > 0)
@@ -36,6 +37,5 @@ namespace Npoi.Core.SS.Formula.Functions
             else
                 return Math.Round(d - 0.5);
         }
-
     }
 }

@@ -17,24 +17,20 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
-    using System;
-    using System.Collections;
-
-    using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.PTG;
+    using System;
     using System.Collections.Generic;
 
     /**
      * Common logic for rendering formulas.<br/>
-     * 
+     *
      * For POI internal use only
-     * 
+     *
      * @author Josh Micich
      */
+
     public class FormulaRenderer
     {
-
         /**
          * Static method To convert an array of {@link Ptg}s in RPN order
          * To a human readable string format in infix mode.
@@ -42,6 +38,7 @@ namespace Npoi.Core.SS.Formula
          * @param ptgs  must not be <c>null</c>
          * @return a human readable String
          */
+
         public static String ToFormulaString(IFormulaRenderingWorkbook book, Ptg[] ptgs)
         {
             if (ptgs == null || ptgs.Length == 0)

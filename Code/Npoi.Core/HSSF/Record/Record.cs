@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,10 +15,8 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
     using System;
     using System.IO;
 
@@ -34,10 +31,10 @@ namespace Npoi.Core.HSSF.Record
      * @author Jason Height (jheight at chariot dot net dot au)
      * @version 2.0-pre
      */
+
     [Serializable]
     public abstract class Record : RecordBase
     {
-
         /**
          * instantiates a blank record strictly for ID matching
          */
@@ -69,10 +66,9 @@ namespace Npoi.Core.HSSF.Record
 
         //public abstract int RecordSize { get; }
         //{
-
-            // this is kind od a stupid way to do it but for now we just Serialize
-            // the record and return the size of the byte array
-            //get { return Serialize().Length; }
+        // this is kind od a stupid way to do it but for now we just Serialize
+        // the record and return the size of the byte array
+        //get { return Serialize().Length; }
         //}
 
         // /**
@@ -93,19 +89,18 @@ namespace Npoi.Core.HSSF.Record
         //    get { return false; }
         //}
 
-
         /**
          * return the non static version of the id for this record.
          */
 
-        public abstract short Sid{get;}
+        public abstract short Sid { get; }
 
         public virtual Object Clone()
         {
             throw new Exception("The class " + this.GetType().Name + " needs to define a Clone method");
         }
 
-        public Record CloneViaReserialise() 
+        public Record CloneViaReserialise()
         {
             // Do it via a re-serialization
             // It's a cheat, but it works...

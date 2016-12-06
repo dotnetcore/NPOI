@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -15,23 +14,22 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
-        
 
 /*
  * BoolErrRecord.java
  *
  * Created on January 19, 2002, 9:30 AM
  */
+
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-    using Npoi.Core.SS.UserModel;
 
     /**
-     * Creates new BoolErrRecord. 
+     * Creates new BoolErrRecord.
      * REFERENCE:  PG ??? Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
      * @author Michael P. Harhen
      * @author Jason Height (jheight at chariot dot net dot au)
@@ -68,9 +66,11 @@ namespace Npoi.Core.HSSF.Record
                 case 2:
                     _value = in1.ReadByte();
                     break;
+
                 case 3:
                     _value = in1.ReadUShort();
                     break;
+
                 default:
                     throw new RecordFormatException("Unexpected size ("
                             + in1.Remaining + ") for BOOLERR record.");
@@ -81,15 +81,16 @@ namespace Npoi.Core.HSSF.Record
                 case 0:
                     _isError = false;
                     break;
+
                 case 1:
                     _isError = true;
                     break;
+
                 default:
                     throw new RecordFormatException("Unexpected isError flag ("
                             + flag + ") for BOOLERR record.");
             }
         }
-
 
         /**
          * Set the bool value for the cell
@@ -150,6 +151,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get { return (byte)_value; }
         }
+
         /**
      * Indicates whether the call holds a boolean value
      *
@@ -176,6 +178,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get { return "BOOLERR"; }
         }
+
         protected override void AppendValueText(StringBuilder buffer)
         {
             if (IsBoolean)
@@ -195,6 +198,7 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteByte(_value);
             out1.WriteByte(_isError ? 1 : 0);
         }
+
         protected override int ValueDataSize
         {
             get
@@ -207,7 +211,6 @@ namespace Npoi.Core.HSSF.Record
         {
             get { return sid; }
         }
-
 
         public override Object Clone()
         {

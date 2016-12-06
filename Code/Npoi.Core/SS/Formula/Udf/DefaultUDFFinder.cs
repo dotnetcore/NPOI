@@ -17,16 +17,16 @@
 
 namespace Npoi.Core.SS.Formula.Udf
 {
-
+    using Npoi.Core.SS.Formula.Functions;
     using System;
     using System.Collections.Generic;
-    using Npoi.Core.SS.Formula.Functions;
 
     /**
      * Default UDF Finder - for Adding your own user defined functions.
      *
      * @author PUdalau
      */
+
     public class DefaultUDFFinder : UDFFinder
     {
         private Dictionary<String, FreeRefFunction> _functionsByName;
@@ -42,7 +42,7 @@ namespace Npoi.Core.SS.Formula.Udf
             Dictionary<String, FreeRefFunction> m = new Dictionary<String, FreeRefFunction>(nFuncs * 3 / 2);
             for (int i = 0; i < functionImpls.Length; i++)
             {
-                m[functionNames[i].ToUpper()]= functionImpls[i];
+                m[functionNames[i].ToUpper()] = functionImpls[i];
             }
             _functionsByName = m;
         }
@@ -55,5 +55,4 @@ namespace Npoi.Core.SS.Formula.Udf
             return _functionsByName[name.ToUpper()];
         }
     }
-
 }

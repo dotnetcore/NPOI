@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,16 +15,15 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Title:        Write Protect Record
-     * Description:  Indicated that the sheet/workbook Is Write protected. 
+     * Description:  Indicated that the sheet/workbook Is Write protected.
      * REFERENCE:  PG 425 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
      * @version 3.0-pre
      */
@@ -46,7 +44,6 @@ namespace Npoi.Core.HSSF.Record
 
         public WriteProtectRecord(RecordInputStream in1)
         {
-
         }
 
         public override String ToString()
@@ -62,13 +59,13 @@ namespace Npoi.Core.HSSF.Record
         {
         }
 
-       protected override int DataSize
-       {
-           get
-           {
-               return 0;
-           }
-       }
+        protected override int DataSize
+        {
+            get
+            {
+                return 0;
+            }
+        }
 
         public override short Sid
         {

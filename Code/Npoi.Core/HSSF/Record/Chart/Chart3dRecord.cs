@@ -1,20 +1,19 @@
-﻿using System.Text;
-using Npoi.Core.Util;
+﻿using Npoi.Core.Util;
+using System.Text;
 
 namespace Npoi.Core.HSSF.Record.Chart
 {
     /// <summary>
-    /// The Chart3d record specifies that the plot area of the chart group is rendered in a 3-D scene 
-    /// and also specifies the attributes of the 3-D plot area. The preceding chart group type MUST be 
+    /// The Chart3d record specifies that the plot area of the chart group is rendered in a 3-D scene
+    /// and also specifies the attributes of the 3-D plot area. The preceding chart group type MUST be
     /// of type bar, pie, line, area, or surface.
     /// </summary>
     /// <remarks>
     /// author: Antony liu (antony.apollo at gmail.com)
     /// </remarks>
-    public class Chart3dRecord: StandardRecord
+    public class Chart3dRecord : StandardRecord
     {
         public const short sid = 0x103A;
-
 
         private short field_1_anRot;
         private short field_2_anElev;
@@ -29,7 +28,6 @@ namespace Npoi.Core.HSSF.Record.Chart
         private BitField reserved1 = BitFieldFactory.GetInstance(0x8);
         private BitField fNotPieChart = BitFieldFactory.GetInstance(0x10);
         private BitField fWalls2D = BitFieldFactory.GetInstance(0x20);
-
 
         public Chart3dRecord()
         {
@@ -66,25 +64,26 @@ namespace Npoi.Core.HSSF.Record.Chart
         {
             get { return sid; }
         }
+
         /// <summary>
-        /// A signed integer that specifies the clockwise rotation, in degrees, of the 3-D plot area 
-        /// around a vertical line through the center of the 3-D plot area. MUST be greater than or 
+        /// A signed integer that specifies the clockwise rotation, in degrees, of the 3-D plot area
+        /// around a vertical line through the center of the 3-D plot area. MUST be greater than or
         /// equal to 0 and MUST be less than or equal to 360.
         /// </summary>
         public int Rotation
         {
             get { return field_1_anRot; }
-            set 
+            set
             {
                 if (value < 0) value = 0;
                 if (value > 360) value = 360;
-                field_1_anRot = (short)value; 
+                field_1_anRot = (short)value;
             }
         }
 
         /// <summary>
-        /// A signed integer that specifies the rotation, in degrees, of the 3-D plot area around 
-        /// a horizontal line through the center of the 3-D plot area.MUST be greater than or equal 
+        /// A signed integer that specifies the rotation, in degrees, of the 3-D plot area around
+        /// a horizontal line through the center of the 3-D plot area.MUST be greater than or equal
         /// to -90 and MUST be less than or equal to 90.
         /// </summary>
         public int Elev
@@ -97,8 +96,9 @@ namespace Npoi.Core.HSSF.Record.Chart
                 field_2_anElev = (short)value;
             }
         }
+
         /// <summary>
-        /// A signed integer that specifies the field of view angle for the 3-D plot area. 
+        /// A signed integer that specifies the field of view angle for the 3-D plot area.
         /// MUST be greater than or equal to zero and less than 200.
         /// </summary>
         public int Dist
@@ -111,14 +111,16 @@ namespace Npoi.Core.HSSF.Record.Chart
                 field_3_pcDist = (short)value;
             }
         }
+
         /// <summary>
-        /// If fNotPieChart is 0, then this is an unsigned integer that specifies the thickness of the pie for a pie chart group. 
+        /// If fNotPieChart is 0, then this is an unsigned integer that specifies the thickness of the pie for a pie chart group.
         /// If fNotPieChart is 1, then this is a signed integer that specifies the height of the 3-D plot area as a percentage of its width.
         /// </summary>
         public int Height
         {
             get { return field_4_pcHeight; }
-            set {
+            set
+            {
                 field_4_pcHeight = (short)value;
             }
         }
@@ -134,9 +136,9 @@ namespace Npoi.Core.HSSF.Record.Chart
         }
 
         /// <summary>
-        /// An unsigned integer that specifies the width of the gap between the series and the front and 
-        /// back edges of the 3-D plot area as a percentage of the data point depth divided by 2. 
-        /// If fCluster is not 1 and chart group type is not a bar then pcGap also specifies distance 
+        /// An unsigned integer that specifies the width of the gap between the series and the front and
+        /// back edges of the 3-D plot area as a percentage of the data point depth divided by 2.
+        /// If fCluster is not 1 and chart group type is not a bar then pcGap also specifies distance
         /// between adjacent series as a percentage of the data point depth. MUST be less than or equal to 500.
         /// </summary>
         public int Gap
@@ -146,9 +148,9 @@ namespace Npoi.Core.HSSF.Record.Chart
         }
 
         /// <summary>
-        /// A bit that specifies whether the 3-D plot area is rendered with a vanishing point. 
-        /// If fNotPieChart is 0 the value MUST be 0. If fNotPieChart is 1 then the value 
-        /// MUST be a value from the following 
+        /// A bit that specifies whether the 3-D plot area is rendered with a vanishing point.
+        /// If fNotPieChart is 0 the value MUST be 0. If fNotPieChart is 1 then the value
+        /// MUST be a value from the following
         /// true   Perspective vanishing point applied based on value of pcDist.
         /// false  No vanishing point applied.
         /// </summary>
@@ -159,7 +161,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         }
 
         /// <summary>
-        /// specifies whether data points are clustered together in a bar chart group. 
+        /// specifies whether data points are clustered together in a bar chart group.
         /// If chart group type is not bar or pie, value MUST be ignored. If chart group type is pie,
         /// value MUST be 0. If chart group type is bar, then the value MUST be a value from the following
         /// true   Data points are clustered.
@@ -172,7 +174,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         }
 
         /// <summary>
-        /// A bit that specifies whether the height of the 3-D plot area is automatically determined. 
+        /// A bit that specifies whether the height of the 3-D plot area is automatically determined.
         /// If fNotPieChart is 0 then this MUST be 0. If fNotPieChart is 1 then the value MUST be a value from the following table:
         /// false The value of pcHeight is used to determine the height of the 3-D plot area
         /// true  The height of the 3-D plot area is automatically determined
@@ -182,6 +184,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return f3DScaling.IsSet(field_7_option); }
             set { field_7_option = f3DScaling.SetShortBoolean(field_7_option, value); }
         }
+
         /// <summary>
         /// A bit that specifies whether the chart group type is pie. MUST be a value from the following :
         /// false Chart group type MUST be pie.
@@ -194,10 +197,10 @@ namespace Npoi.Core.HSSF.Record.Chart
         }
 
         /// <summary>
-        /// Whether the walls are rendered in 2-D. If fPerspective is 1 then this MUST be ignored. 
-        /// If the chart group type is not bar, area or pie this MUST be ignored. 
-        /// If the chart group is of type bar and fCluster is 0, then this MUST be ignored. 
-        /// If the chart group type is pie this MUST be 0 and MUST be ignored. 
+        /// Whether the walls are rendered in 2-D. If fPerspective is 1 then this MUST be ignored.
+        /// If the chart group type is not bar, area or pie this MUST be ignored.
+        /// If the chart group is of type bar and fCluster is 0, then this MUST be ignored.
+        /// If the chart group type is pie this MUST be 0 and MUST be ignored.
         /// If the chart group type is bar or area, then the value MUST be a value from the following
         /// false  Chart walls and floor are rendered in 3D.
         /// true   Chart walls are rendered in 2D and the chart floor is not rendered.
@@ -225,6 +228,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
             return record;
         }
+
         public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();

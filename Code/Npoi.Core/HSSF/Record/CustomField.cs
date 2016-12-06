@@ -17,7 +17,6 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
     using System;
     using System.Text;
 
@@ -35,6 +34,7 @@ namespace Npoi.Core.HSSF.Record
          * Populates this fields data from the byte array passed in1.
          * @param in the RecordInputstream to Read the record from
          */
+
         int FillField(RecordInputStream in1);
 
         /**
@@ -43,6 +43,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @param str   The string buffer to Append to.
          */
+
         void ToString(StringBuilder str);
 
         /**
@@ -51,8 +52,7 @@ namespace Npoi.Core.HSSF.Record
          * @param data      The data array to Write to.
          * @return  The number of bytes written.
          */
+
         int SerializeField(int offset, byte[] data);
-
-
     }
 }

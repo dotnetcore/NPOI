@@ -1,6 +1,5 @@
 ﻿using Npoi.Core.SS.Formula.Eval;
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Npoi.Core.SS.Formula.Functions
@@ -22,13 +21,11 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author cedric dot walter @ gmail dot com
      */
+
     public class Rept : Fixed2ArgFunction
     {
-
-
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval text, ValueEval number_times)
         {
-
             ValueEval veText1;
             try
             {

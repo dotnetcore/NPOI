@@ -15,14 +15,13 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
     using Npoi.Core.Util;
+    using System;
 
     /**
-     * While formula tokens are stored in RPN order and thus do not need parenthesis for 
+     * While formula tokens are stored in RPN order and thus do not need parenthesis for
      * precedence reasons, Parenthesis tokens ARE written to Ensure that user entered
      * parenthesis are Displayed as-is on Reading back
      *
@@ -30,13 +29,14 @@ namespace Npoi.Core.SS.Formula.PTG
      * Andrew C. Oliver (acoliver at apache dot org)
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     public class ParenthesisPtg : ControlPtg
     {
-
         private const int SIZE = 1;
         public const byte sid = 0x15;
 
         public static ControlPtg instance = new ParenthesisPtg();
+
         private ParenthesisPtg()
         {
             // enforce singleton
@@ -56,7 +56,6 @@ namespace Npoi.Core.SS.Formula.PTG
         {
             return "()";
         }
-
 
         public String ToFormulaString(String[] operands)
         {

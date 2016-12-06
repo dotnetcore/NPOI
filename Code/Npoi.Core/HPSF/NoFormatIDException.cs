@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF
@@ -34,45 +34,35 @@ namespace Npoi.Core.HPSF
     /// but does not have a formatID Set (see {@link
     /// MutableSection#SetFormatID(ClassID)} or
     /// {@link org.apache.poi.hpsf.MutableSection#SetFormatID(byte[])}.
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
-    /// @since 2002-09-03 
+    /// @since 2002-09-03
     /// </summary>
     [Serializable]
     public class NoFormatIDException : HPSFRuntimeException
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="NoFormatIDException"/> class.
         /// </summary>
         public NoFormatIDException()
-            : base()
-        {
-
+            : base() {
         }
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NoFormatIDException"/> class.
         /// </summary>
         /// <param name="msg">The exception's message string</param>
         public NoFormatIDException(String msg)
-            : base(msg)
-        {
-
+            : base(msg) {
         }
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NoFormatIDException"/> class.
         /// </summary>
         /// <param name="reason">This exception's underlying reason</param>
         public NoFormatIDException(Exception reason)
-            : base(reason)
-        {
-
+            : base(reason) {
         }
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NoFormatIDException"/> class.
@@ -80,10 +70,7 @@ namespace Npoi.Core.HPSF
         /// <param name="msg">The exception's message string</param>
         /// <param name="reason">This exception's underlying reason</param>
         public NoFormatIDException(String msg, Exception reason)
-            : base(msg, reason)
-        {
-
+            : base(msg, reason) {
         }
-
     }
 }

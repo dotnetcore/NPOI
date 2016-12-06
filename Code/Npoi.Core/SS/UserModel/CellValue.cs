@@ -17,11 +17,10 @@
 
 namespace Npoi.Core.SS.UserModel
 {
-    using System;
-    using System.Text;
     using Npoi.Core.SS.Formula.Eval;
-    using Npoi.Core.SS.UserModel;
+    using System;
     using System.Globalization;
+    using System.Text;
 
     /**
      * Mimics the 'data view' of a cell. This allows formula Evaluator
@@ -29,6 +28,7 @@ namespace Npoi.Core.SS.UserModel
      * or Number or bool type.
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
      */
+
     public class CellValue
     {
         public static readonly CellValue TRUE = new CellValue(CellType.Boolean, 0.0, true, null, 0);
@@ -50,30 +50,30 @@ namespace Npoi.Core.SS.UserModel
             _errorCode = errorCode;
         }
 
-
         public CellValue(double numberValue)
             : this(CellType.Numeric, numberValue, false, null, 0)
         {
-
         }
+
         public static CellValue ValueOf(bool boolValue)
         {
             return boolValue ? TRUE : FALSE;
         }
+
         public CellValue(String stringValue)
             : this(CellType.String, 0.0, false, stringValue, 0)
         {
-
         }
+
         public static CellValue GetError(int errorCode)
         {
             return new CellValue(CellType.Error, 0.0, false, null, errorCode);
         }
 
-
         /**
          * @return Returns the boolValue.
          */
+
         public bool BooleanValue
         {
             get
@@ -81,9 +81,11 @@ namespace Npoi.Core.SS.UserModel
                 return _boolValue;
             }
         }
+
         /**
          * @return Returns the numberValue.
          */
+
         public double NumberValue
         {
             get
@@ -91,9 +93,11 @@ namespace Npoi.Core.SS.UserModel
                 return _numberValue;
             }
         }
+
         /**
          * @return Returns the stringValue.
          */
+
         public String StringValue
         {
             get
@@ -101,9 +105,11 @@ namespace Npoi.Core.SS.UserModel
                 return _textValue;
             }
         }
+
         /**
          * @return Returns the cellType.
          */
+
         public CellType CellType
         {
             get
@@ -111,9 +117,11 @@ namespace Npoi.Core.SS.UserModel
                 return _cellType;
             }
         }
+
         /**
          * @return Returns the errorValue.
          */
+
         //the return value should be sbyte? the byte in java is signed(-128~127) and is unsiged(0~255) in c#.
         //if use byte, the test Npoi.Core.SS.Formula.TestWorkbookEvaluator.TestResultOutsideRange failed.
         public sbyte ErrorValue
@@ -123,6 +131,7 @@ namespace Npoi.Core.SS.UserModel
                 return (sbyte)_errorCode;
             }
         }
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder(64);
@@ -141,10 +150,13 @@ namespace Npoi.Core.SS.UserModel
                     //if (result.IndexOf(".") < 0)
                     //    result = result + ".0";
                     return result;
+
                 case CellType.String:
                     return '"' + _textValue + '"';
+
                 case CellType.Boolean:
                     return _boolValue ? "TRUE" : "FALSE";
+
                 case CellType.Error:
                     return ErrorEval.GetText(_errorCode);
             }
@@ -152,4 +164,3 @@ namespace Npoi.Core.SS.UserModel
         }
     }
 }
-

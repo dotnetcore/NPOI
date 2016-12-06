@@ -1,5 +1,5 @@
-﻿using System;
-using Npoi.Core.Util;
+﻿using Npoi.Core.Util;
+using System;
 
 namespace Npoi.Core.HSSF.Record.AutoFilter
 {
@@ -25,8 +25,7 @@ namespace Npoi.Core.HSSF.Record.AutoFilter
         private bool rgch2_multibyte;
 
         public AutoFilterRecord()
-        { 
-        
+        {
         }
 
         public AutoFilterRecord(RecordInputStream in1)
@@ -35,7 +34,7 @@ namespace Npoi.Core.HSSF.Record.AutoFilter
             field_2_grbit = in1.ReadShort();
             field_3_doper1 = new DOPERRecord(in1);
             field_4_doper2 = new DOPERRecord(in1);
-            if (field_3_doper1.DataType == DOPERType.String&&field_3_doper1.LengthOfString>0)
+            if (field_3_doper1.DataType == DOPERType.String && field_3_doper1.LengthOfString > 0)
             {
                 rgch1_multibyte = (in1.ReadByte() != 0);
                 if (rgch1_multibyte)
@@ -71,10 +70,11 @@ namespace Npoi.Core.HSSF.Record.AutoFilter
             get { return field_1_iEntry; }
             set { field_1_iEntry = value; }
         }
+
         public short wJoin
         {
             get { return wJoinFlag.GetShortValue(field_2_grbit); }
-            set { field_2_grbit=wJoinFlag.SetShortValue(field_2_grbit, value); }
+            set { field_2_grbit = wJoinFlag.SetShortValue(field_2_grbit, value); }
         }
 
         public bool IsFirstConditionSimple
@@ -102,15 +102,17 @@ namespace Npoi.Core.HSSF.Record.AutoFilter
         public string Doper1RGCH
         {
             get { return field_5_rgch1; }
-            set {
+            set
+            {
                 if (field_5_rgch1.Length > 252)
                     throw new ArgumentOutOfRangeException("The length of string must be less than or equal to 252");
                 field_5_rgch1 = value;
                 field_3_doper1.DataType = DOPERType.String;
                 field_3_doper1.LengthOfString = (byte)field_5_rgch1.Length;
-                rgch1_multibyte=StringUtil.HasMultibyte(value);
+                rgch1_multibyte = StringUtil.HasMultibyte(value);
             }
         }
+
         public string Doper2RGCH
         {
             get { return field_6_rgch2; }
@@ -124,6 +126,7 @@ namespace Npoi.Core.HSSF.Record.AutoFilter
                 rgch2_multibyte = StringUtil.HasMultibyte(value);
             }
         }
+
         protected override int DataSize
         {
             get
@@ -132,8 +135,8 @@ namespace Npoi.Core.HSSF.Record.AutoFilter
                 if (field_3_doper1.LengthOfString > 0)
                     recSize += 1 + field_5_rgch1.Length;
 
-                if(field_4_doper2.LengthOfString > 0)
-                    recSize += 1+ field_6_rgch2.Length;
+                if (field_4_doper2.LengthOfString > 0)
+                    recSize += 1 + field_6_rgch2.Length;
                 return recSize;
             }
         }
@@ -163,7 +166,7 @@ namespace Npoi.Core.HSSF.Record.AutoFilter
             field_4_doper2.Serialize(out1);
             if (field_3_doper1.LengthOfString > 0)
             {
-                out1.WriteByte(rgch1_multibyte?1:0);
+                out1.WriteByte(rgch1_multibyte ? 1 : 0);
                 if (rgch1_multibyte)
                 {
                     StringUtil.PutUnicodeLE(field_5_rgch1, out1);
@@ -175,7 +178,7 @@ namespace Npoi.Core.HSSF.Record.AutoFilter
             }
             if (field_4_doper2.LengthOfString > 0)
             {
-                out1.WriteByte(rgch2_multibyte?1:0);
+                out1.WriteByte(rgch2_multibyte ? 1 : 0);
                 if (rgch2_multibyte)
                 {
                     StringUtil.PutUnicodeLE(field_6_rgch2, out1);

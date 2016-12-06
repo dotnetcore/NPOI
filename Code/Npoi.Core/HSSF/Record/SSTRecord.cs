@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,25 +15,22 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.HSSF.Record.Cont;
+    using Npoi.Core.Util;
     using System;
     using System.Collections;
     using System.Text;
-    using Npoi.Core.Util;
-    using Npoi.Core.HSSF.Record.Cont;
-
 
     /**
      * Title:        Static String Table Record
-     * 
+     *
      * Description:  This holds all the strings for LabelSSTRecords.
-     * 
+     *
      * REFERENCE:    PG 389 Microsoft Excel 97 Developer's Kit (ISBN:
      *               1-57231-498-2)
-     * 
+     *
      * @author Andrew C. Oliver (acoliver at apache dot org)
      * @author Marc Johnson (mjohnson at apache dot org)
      * @author Glen Stampoultzis (glens at apache.org)
@@ -52,10 +48,10 @@ namespace Npoi.Core.HSSF.Record
         public const int MAX_RECORD_SIZE = 8228;
 
         /** standard record overhead: two shorts (record id plus data space size)*/
-        public const int STD_RECORD_OVERHEAD =  2 * LittleEndianConsts.SHORT_SIZE;
+        public const int STD_RECORD_OVERHEAD = 2 * LittleEndianConsts.SHORT_SIZE;
 
         /** SST overhead: the standard record overhead, plus the number of strings and the number of Unique strings -- two ints */
-        public const int SST_RECORD_OVERHEAD =                (STD_RECORD_OVERHEAD + (2 * LittleEndianConsts.INT_SIZE));
+        public const int SST_RECORD_OVERHEAD = (STD_RECORD_OVERHEAD + (2 * LittleEndianConsts.INT_SIZE));
 
         /** how much data can we stuff into an SST record? That would be _max minus the standard SST record overhead */
         public const int MAX_DATA_SPACE = RecordInputStream.MAX_RECORD_DATA_SIZE - 8;//MAX_RECORD_SIZE - SST_RECORD_OVERHEAD;
@@ -73,13 +69,14 @@ namespace Npoi.Core.HSSF.Record
         private SSTDeserializer deserializer;
 
         /** Offsets from the beginning of the SST record (even across continuations) */
-        int[] bucketAbsoluteOffsets;
+        private int[] bucketAbsoluteOffsets;
         /** Offsets relative the start of the current SST or continue record */
-        int[] bucketRelativeOffsets;
+        private int[] bucketRelativeOffsets;
 
         /**
          * default constructor
          */
+
         public SSTRecord()
         {
             field_1_num_strings = 0;
@@ -204,6 +201,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return sid
          */
+
         public override short Sid
         {
             get { return sid; }
@@ -212,10 +210,11 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return hashcode
          */
+
         public override int GetHashCode()
-    {
-        return field_2_num_unique_strings;
-    }
+        {
+            return field_2_num_unique_strings;
+        }
 
         public override bool Equals(Object o)
         {
@@ -238,7 +237,7 @@ namespace Npoi.Core.HSSF.Record
 
         public IEnumerator GetStrings()
         {
-            return field_3_strings.GetEnumerator(); 
+            return field_3_strings.GetEnumerator();
         }
 
         /**
@@ -258,14 +257,15 @@ namespace Npoi.Core.HSSF.Record
          * @return size
          */
 
-    protected override void Serialize(ContinuableRecordOutput out1) {
-        SSTSerializer serializer = new SSTSerializer(field_3_strings, NumStrings, NumUniqueStrings );
-        serializer.Serialize(out1);
-        bucketAbsoluteOffsets = serializer.BucketAbsoluteOffsets;
-        bucketRelativeOffsets = serializer.BucketRelativeOffsets;
-    }
+        protected override void Serialize(ContinuableRecordOutput out1)
+        {
+            SSTSerializer serializer = new SSTSerializer(field_3_strings, NumStrings, NumUniqueStrings);
+            serializer.Serialize(out1);
+            bucketAbsoluteOffsets = serializer.BucketAbsoluteOffsets;
+            bucketRelativeOffsets = serializer.BucketRelativeOffsets;
+        }
 
-        SSTDeserializer GetDeserializer()
+        private SSTDeserializer GetDeserializer()
         {
             return deserializer;
         }
@@ -275,7 +275,7 @@ namespace Npoi.Core.HSSF.Record
          * the current SST record.  The offset within the stream to the SST record
          * Is required because the extended string record points directly to the
          * strings in the SST record.
-         * 
+         *
          * NOTE: THIS FUNCTION MUST ONLY BE CALLED AFTER THE SST RECORD HAS BEEN
          *       SERIALIZED.
          *
@@ -283,13 +283,14 @@ namespace Npoi.Core.HSSF.Record
          *                      SST record.
          * @return  The new SST record.
          */
+
         public ExtSSTRecord CreateExtSSTRecord(int sstOffset)
         {
             if (bucketAbsoluteOffsets == null || bucketAbsoluteOffsets == null)
                 throw new InvalidOperationException("SST record has not yet been Serialized.");
 
             ExtSSTRecord extSST = new ExtSSTRecord();
-            extSST.NumStringsPerBucket=((short)8);
+            extSST.NumStringsPerBucket = ((short)8);
             int[] absoluteOffsets = (int[])bucketAbsoluteOffsets.Clone();
             int[] relativeOffsets = (int[])bucketRelativeOffsets.Clone();
             for (int i = 0; i < absoluteOffsets.Length; i++)
@@ -304,6 +305,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return  The size of the ExtSST record in bytes.
          */
+
         public int CalcExtSSTRecordSize()
         {
             return ExtSSTRecord.GetRecordSizeForStrings(field_3_strings.Size);

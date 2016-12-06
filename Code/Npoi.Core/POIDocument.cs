@@ -17,13 +17,12 @@
 
 namespace Npoi.Core
 {
-    using System;
-    using System.IO;
-    using System.Collections;
-    using Npoi.Core.POIFS.FileSystem;
     using Npoi.Core.HPSF;
+    using Npoi.Core.POIFS.FileSystem;
+    using System;
+    using System.Collections;
     using System.Collections.Generic;
-
+    using System.IO;
 
     /// <summary>
     /// This holds the common functionality for all POI
@@ -51,6 +50,7 @@ namespace Npoi.Core
         {
             this.directory = dir;
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="POIDocument"/> class.
         /// </summary>
@@ -62,15 +62,16 @@ namespace Npoi.Core
             this.directory = dir;
             //POILogFactory.GetLogger(this.GetType());
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="POIDocument"/> class.
         /// </summary>
         /// <param name="fs">The fs.</param>
         public POIDocument(POIFSFileSystem fs)
-            : this(fs.Root) 
+            : this(fs.Root)
         {
-            
         }
+
         /**
      * Will create whichever of SummaryInformation
      *  and DocumentSummaryInformation (HPSF) properties
@@ -80,6 +81,7 @@ namespace Npoi.Core
      * If the information properties are already there,
      *  then nothing will happen.
      */
+
         public void CreateInformationProperties()
         {
             if (!initialized) ReadProperties();
@@ -92,6 +94,7 @@ namespace Npoi.Core
                 dsInf = PropertySetFactory.CreateDocumentSummaryInformation();
             }
         }
+
         // nothing to dispose
         //public virtual void Dispose()
         //{
@@ -108,7 +111,7 @@ namespace Npoi.Core
                 if (!initialized) ReadProperties();
                 return dsInf;
             }
-            set 
+            set
             {
                 dsInf = value;
             }
@@ -125,7 +128,7 @@ namespace Npoi.Core
                 if (!initialized) ReadProperties();
                 return sInf;
             }
-            set 
+            set
             {
                 sInf = value;
             }
@@ -217,6 +220,7 @@ namespace Npoi.Core
         {
             WriteProperties(outFS, null);
         }
+
         /// <summary>
         /// Writes out the standard Documment Information Properties (HPSF)
         /// </summary>
@@ -288,6 +292,7 @@ namespace Npoi.Core
         {
             EntryUtils.CopyNodes(source, target, excepts);
         }
+
         /// <summary>
         /// Copies nodes from one POIFS to the other minus the excepts
         /// </summary>

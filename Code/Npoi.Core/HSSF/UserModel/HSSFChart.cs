@@ -17,14 +17,13 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.Record.Chart;
     using Npoi.Core.SS.Formula.PTG;
     using Npoi.Core.SS.Util;
-
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
 
     public enum HSSFChartType : int
     {
@@ -35,11 +34,13 @@ namespace Npoi.Core.HSSF.UserModel
         Scatter = 0x101B,
         Unknown = 0
     }
+
     /**
      * Has methods for construction of a chart object.
      *
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class HSSFChart
     {
         private HSSFSheet sheet;
@@ -54,7 +55,6 @@ namespace Npoi.Core.HSSF.UserModel
 
         private List<HSSFSeries> series = new List<HSSFSeries>();
 
-
         private HSSFChart(HSSFSheet sheet, ChartRecord chartRecord)
         {
             this.chartRecord = chartRecord;
@@ -67,9 +67,9 @@ namespace Npoi.Core.HSSF.UserModel
          * NOTE:  Does not yet work...  checking it in just so others
          * can take a look.
          */
+
         public void CreateBarChart(HSSFWorkbook workbook, HSSFSheet sheet)
         {
-
             List<RecordBase> records = new List<RecordBase>();
             records.Add(CreateMSDrawingObjectRecord());
             records.Add(CreateOBJRecord());
@@ -79,7 +79,7 @@ namespace Npoi.Core.HSSF.UserModel
             records.Add(CreateHCenterRecord());
             records.Add(CreateVCenterRecord());
             records.Add(CreatePrintSetupRecord());
-            // unknown 33   
+            // unknown 33
             records.Add(CreateFontBasisRecord1());
             records.Add(CreateFontBasisRecord2());
             records.Add(new ProtectRecord(false));
@@ -129,18 +129,17 @@ namespace Npoi.Core.HSSF.UserModel
             records.Add(CreateSeriesIndexRecord(3));
             records.Add(EOFRecord.instance);
 
-
-
             sheet.InsertChartRecords(records);
             workbook.InsertChartRecord();
         }
 
         /**
          * Returns all the charts for the given sheet.
-         * 
+         *
          * NOTE: You won't be able to do very much with
          *  these charts yet, as this is very limited support
          */
+
         public static HSSFChart[] GetSheetCharts(HSSFSheet sheet)
         {
             List<HSSFChart> charts = new List<HSSFChart>();
@@ -150,7 +149,6 @@ namespace Npoi.Core.HSSF.UserModel
             IList records = sheet.Sheet.Records;
             foreach (RecordBase r in records)
             {
-
                 if (r is ChartRecord)
                 {
                     lastSeries = null;
@@ -228,6 +226,7 @@ namespace Npoi.Core.HSSF.UserModel
         }
 
         /** Get the X offset of the chart */
+
         public int ChartX
         {
             get
@@ -239,13 +238,17 @@ namespace Npoi.Core.HSSF.UserModel
                 chartRecord.X = value;
             }
         }
+
         /** Get the Y offset of the chart */
+
         public int ChartY
         {
             get { return chartRecord.Y; }
             set { chartRecord.Y = value; }
         }
+
         /** Get the width of the chart. {@link ChartRecord} */
+
         public int ChartWidth
         {
             get
@@ -257,7 +260,9 @@ namespace Npoi.Core.HSSF.UserModel
                 chartRecord.Width = value;
             }
         }
+
         /** Get the height of the chart. {@link ChartRecord} */
+
         public int ChartHeight
         {
             get
@@ -273,6 +278,7 @@ namespace Npoi.Core.HSSF.UserModel
         /**
          * Returns the series of the chart
          */
+
         public HSSFSeries[] Series
         {
             get
@@ -286,6 +292,7 @@ namespace Npoi.Core.HSSF.UserModel
          * Returns the chart's title, if there is one,
          *  or null if not
          */
+
         public String ChartTitle
         {
             get
@@ -310,13 +317,14 @@ namespace Npoi.Core.HSSF.UserModel
         }
 
         /**
-         * Set value range (basic Axis Options) 
+         * Set value range (basic Axis Options)
          * @param axisIndex 0 - primary axis, 1 - secondary axis
          * @param minimum minimum value; Double.NaN - automatic; null - no change
          * @param maximum maximum value; Double.NaN - automatic; null - no change
          * @param majorUnit major unit value; Double.NaN - automatic; null - no change
          * @param minorUnit minor unit value; Double.NaN - automatic; null - no change
          */
+
         public void SetValueRange(int axisIndex, Double? minimum, Double? maximum, Double? majorUnit, Double? minorUnit)
         {
             ValueRangeRecord valueRange = (ValueRangeRecord)valueRanges[axisIndex];
@@ -431,11 +439,11 @@ namespace Npoi.Core.HSSF.UserModel
         private UnknownRecord CreateOBJRecord()
         {
             byte[] data = {
-			(byte)0x15, (byte)0x00, (byte)0x12, (byte)0x00, (byte)0x05, (byte)0x00, (byte)0x02, (byte)0x00, 
+            (byte)0x15, (byte)0x00, (byte)0x12, (byte)0x00, (byte)0x05, (byte)0x00, (byte)0x02, (byte)0x00,
             (byte)0x11, (byte)0x60, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0xB8, (byte)0x03,
-			(byte)0x87, (byte)0x03, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, 
+            (byte)0x87, (byte)0x03, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00,
             (byte)0x00, (byte)0x00,
-		};
+        };
 
             return new UnknownRecord((short)0x005D, data);
         }
@@ -446,32 +454,32 @@ namespace Npoi.Core.HSSF.UserModel
             // form for the moment.
 
             byte[] data = {
-			    (byte)0x0F, (byte)0x00, (byte)0x02, (byte)0xF0, (byte)0xC0, (byte)0x00, (byte)0x00, (byte)0x00, 
+                (byte)0x0F, (byte)0x00, (byte)0x02, (byte)0xF0, (byte)0xC0, (byte)0x00, (byte)0x00, (byte)0x00,
                 (byte)0x10, (byte)0x00, (byte)0x08, (byte)0xF0, (byte)0x08, (byte)0x00, (byte)0x00, (byte)0x00,
-			    (byte)0x02, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x02, (byte)0x04, (byte)0x00, (byte)0x00, 
+                (byte)0x02, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x02, (byte)0x04, (byte)0x00, (byte)0x00,
                 (byte)0x0F, (byte)0x00, (byte)0x03, (byte)0xF0, (byte)0xA8, (byte)0x00, (byte)0x00, (byte)0x00,
-			    (byte)0x0F, (byte)0x00, (byte)0x04, (byte)0xF0, (byte)0x28, (byte)0x00, (byte)0x00, (byte)0x00, 
+                (byte)0x0F, (byte)0x00, (byte)0x04, (byte)0xF0, (byte)0x28, (byte)0x00, (byte)0x00, (byte)0x00,
                 (byte)0x01, (byte)0x00, (byte)0x09, (byte)0xF0, (byte)0x10, (byte)0x00, (byte)0x00, (byte)0x00,
-			    (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, 
                 (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00,
-			    (byte)0x02, (byte)0x00, (byte)0x0A, (byte)0xF0, (byte)0x08, (byte)0x00, (byte)0x00, (byte)0x00, 
+                (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00,
+                (byte)0x02, (byte)0x00, (byte)0x0A, (byte)0xF0, (byte)0x08, (byte)0x00, (byte)0x00, (byte)0x00,
                 (byte)0x00, (byte)0x04, (byte)0x00, (byte)0x00, (byte)0x05, (byte)0x00, (byte)0x00, (byte)0x00,
-			    (byte)0x0F, (byte)0x00, (byte)0x04, (byte)0xF0, (byte)0x70, (byte)0x00, (byte)0x00, (byte)0x00, 
+                (byte)0x0F, (byte)0x00, (byte)0x04, (byte)0xF0, (byte)0x70, (byte)0x00, (byte)0x00, (byte)0x00,
                 (byte)0x92, (byte)0x0C, (byte)0x0A, (byte)0xF0, (byte)0x08, (byte)0x00, (byte)0x00, (byte)0x00,
-			    (byte)0x02, (byte)0x04, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x0A, (byte)0x00, (byte)0x00, 
+                (byte)0x02, (byte)0x04, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x0A, (byte)0x00, (byte)0x00,
                 (byte)0x93, (byte)0x00, (byte)0x0B, (byte)0xF0, (byte)0x36, (byte)0x00, (byte)0x00, (byte)0x00,
-			    (byte)0x7F, (byte)0x00, (byte)0x04, (byte)0x01, (byte)0x04, (byte)0x01, (byte)0xBF, (byte)0x00, 
+                (byte)0x7F, (byte)0x00, (byte)0x04, (byte)0x01, (byte)0x04, (byte)0x01, (byte)0xBF, (byte)0x00,
                 (byte)0x08, (byte)0x00, (byte)0x08, (byte)0x00, (byte)0x81, (byte)0x01, (byte)0x4E, (byte)0x00,
-			    (byte)0x00, (byte)0x08, (byte)0x83, (byte)0x01, (byte)0x4D, (byte)0x00, (byte)0x00, (byte)0x08, 
+                (byte)0x00, (byte)0x08, (byte)0x83, (byte)0x01, (byte)0x4D, (byte)0x00, (byte)0x00, (byte)0x08,
                 (byte)0xBF, (byte)0x01, (byte)0x10, (byte)0x00, (byte)0x11, (byte)0x00, (byte)0xC0, (byte)0x01,
-			    (byte)0x4D, (byte)0x00, (byte)0x00, (byte)0x08, (byte)0xFF, (byte)0x01, (byte)0x08, (byte)0x00,
+                (byte)0x4D, (byte)0x00, (byte)0x00, (byte)0x08, (byte)0xFF, (byte)0x01, (byte)0x08, (byte)0x00,
                 (byte)0x08, (byte)0x00, (byte)0x3F, (byte)0x02, (byte)0x00, (byte)0x00, (byte)0x02, (byte)0x00,
-			    (byte)0xBF, (byte)0x03, (byte)0x00, (byte)0x00, (byte)0x08, (byte)0x00, (byte)0x00, (byte)0x00,
+                (byte)0xBF, (byte)0x03, (byte)0x00, (byte)0x00, (byte)0x08, (byte)0x00, (byte)0x00, (byte)0x00,
                 (byte)0x10, (byte)0xF0, (byte)0x12, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00,
-			    (byte)0x04, (byte)0x00, (byte)0xC0, (byte)0x02, (byte)0x0A, (byte)0x00, (byte)0xF4, (byte)0x00,
+                (byte)0x04, (byte)0x00, (byte)0xC0, (byte)0x02, (byte)0x0A, (byte)0x00, (byte)0xF4, (byte)0x00,
                 (byte)0x0E, (byte)0x00, (byte)0x66, (byte)0x01, (byte)0x20, (byte)0x00, (byte)0xE9, (byte)0x00,
-			    (byte)0x00, (byte)0x00, (byte)0x11, (byte)0xF0, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00
-		    };
+                (byte)0x00, (byte)0x00, (byte)0x11, (byte)0xF0, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00
+            };
 
             return new UnknownRecord((short)0x00EC, data);
         }
@@ -988,10 +996,10 @@ namespace Npoi.Core.HSSF.UserModel
             return r;
         }
 
-
         /**
          * A series in a chart
          */
+
         public class HSSFSeries
         {
             internal SeriesRecord series;
@@ -1002,6 +1010,7 @@ namespace Npoi.Core.HSSF.UserModel
             private BRAIRecord dataSecondaryCategoryLabels;
 
             /* package */
+
             public HSSFSeries(SeriesRecord series)
             {
                 this.series = series;
@@ -1011,13 +1020,20 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 switch (data.LinkType)
                 {
-                    case 0: dataName = data;
+                    case 0:
+                        dataName = data;
                         break;
-                    case 1: dataValues = data;
+
+                    case 1:
+                        dataValues = data;
                         break;
-                    case 2: dataCategoryLabels = data;
+
+                    case 2:
+                        dataCategoryLabels = data;
                         break;
-                    case 3: dataSecondaryCategoryLabels = data;
+
+                    case 3:
+                        dataSecondaryCategoryLabels = data;
                         break;
                 }
             }
@@ -1034,9 +1050,11 @@ namespace Npoi.Core.HSSF.UserModel
                     return series.NumValues;
                 }
             }
+
             /**
              * See {@link SeriesRecord}
              */
+
             public short ValueType
             {
                 get
@@ -1049,6 +1067,7 @@ namespace Npoi.Core.HSSF.UserModel
              * Returns the series' title, if there is one,
              *  or null if not
              */
+
             public String SeriesTitle
             {
                 get
@@ -1075,6 +1094,7 @@ namespace Npoi.Core.HSSF.UserModel
             /**
              * @return record with data names
              */
+
             public BRAIRecord GetDataName()
             {
                 return dataName;
@@ -1083,6 +1103,7 @@ namespace Npoi.Core.HSSF.UserModel
             /**
              * @return record with data values
              */
+
             public BRAIRecord GetDataValues()
             {
                 return dataValues;
@@ -1091,6 +1112,7 @@ namespace Npoi.Core.HSSF.UserModel
             /**
              * @return record with data category labels
              */
+
             public BRAIRecord GetDataCategoryLabels()
             {
                 return dataCategoryLabels;
@@ -1099,6 +1121,7 @@ namespace Npoi.Core.HSSF.UserModel
             /**
              * @return record with data secondary category labels
              */
+
             public BRAIRecord GetDataSecondaryCategoryLabels()
             {
                 return dataSecondaryCategoryLabels;
@@ -1107,6 +1130,7 @@ namespace Npoi.Core.HSSF.UserModel
             /**
              * @return record with series
              */
+
             public SeriesRecord GetSeries()
             {
                 return series;
@@ -1216,7 +1240,6 @@ namespace Npoi.Core.HSSF.UserModel
             /* store first series as template and find last series index */
             foreach (RecordBase record in records)
             {
-
                 idx++;
 
                 if (record is BeginRecord)
@@ -1282,7 +1305,6 @@ namespace Npoi.Core.HSSF.UserModel
             List<RecordBase> ClonedRecords = new List<RecordBase>();
             foreach (RecordBase record in seriesTemplate)
             {
-
                 Record newRecord = null;
 
                 if (record is BeginRecord)

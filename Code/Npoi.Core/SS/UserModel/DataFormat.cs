@@ -27,6 +27,7 @@ namespace Npoi.Core.SS.UserModel
          * @param format string matching a built in format
          * @return index of format.
          */
+
         short GetFormat(String format);
 
         /**
@@ -34,6 +35,7 @@ namespace Npoi.Core.SS.UserModel
          * @param index of a format
          * @return string represented at index of format or null if there is not a  format at that index
          */
+
         String GetFormat(short index);
     }
 }

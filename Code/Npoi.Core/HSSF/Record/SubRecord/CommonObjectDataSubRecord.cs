@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,15 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
-
 
     /**
      * The common object data record is used to store all common preferences for an excel object.
@@ -33,8 +28,9 @@ namespace Npoi.Core.HSSF.Record
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
-    public enum CommonObjectType:short
-    { 
+
+    public enum CommonObjectType : short
+    {
         Group = 0,
         Line = 1,
         Rectangle = 2,
@@ -84,10 +80,8 @@ namespace Npoi.Core.HSSF.Record
         private int field_5_reserved2;
         private int field_6_reserved3;
 
-
         public CommonObjectDataSubRecord()
         {
-
         }
 
         /**
@@ -109,7 +103,6 @@ namespace Npoi.Core.HSSF.Record
             field_5_reserved2 = in1.ReadInt();
             field_6_reserved3 = in1.ReadInt();
         }
-
 
         public override String ToString()
         {
@@ -165,9 +158,10 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Size of record (exluding 4 byte header)
          */
+
         public override int DataSize
         {
-            get { return  2 + 2 + 2 + 4 + 4 + 4; }
+            get { return 2 + 2 + 2 + 4 + 4 + 4; }
         }
 
         public override short Sid
@@ -188,10 +182,10 @@ namespace Npoi.Core.HSSF.Record
             return rec;
         }
 
-
         /**
          * Get the object type field for the CommonObjectData record.
          */
+
         public CommonObjectType ObjectType
         {
             get
@@ -200,9 +194,11 @@ namespace Npoi.Core.HSSF.Record
             }
             set { this.field_1_objectType = (short)value; }
         }
+
         /**
          * Get the object id field for the CommonObjectData record.
          */
+
         public int ObjectId
         {
             get
@@ -215,6 +211,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the option field for the CommonObjectData record.
          */
+
         public short Option
         {
             get
@@ -227,6 +224,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the reserved1 field for the CommonObjectData record.
          */
+
         public int Reserved1
         {
             get
@@ -239,6 +237,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the reserved2 field for the CommonObjectData record.
          */
+
         public int Reserved2
         {
             get
@@ -251,6 +250,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the reserved3 field for the CommonObjectData record.
          */
+
         public int Reserved3
         {
             get
@@ -264,6 +264,7 @@ namespace Npoi.Core.HSSF.Record
          * true if object is locked when sheet has been protected
          * @return  the locked field value.
          */
+
         public bool IsLocked
         {
             get
@@ -277,6 +278,7 @@ namespace Npoi.Core.HSSF.Record
          * object appears when printed
          * @return  the printable field value.
          */
+
         public bool IsPrintable
         {
             get
@@ -290,6 +292,7 @@ namespace Npoi.Core.HSSF.Record
          * whether object uses an automatic Fill style
          * @return  the autoFill field value.
          */
+
         public bool IsAutoFill
         {
             get
@@ -303,6 +306,7 @@ namespace Npoi.Core.HSSF.Record
          * whether object uses an automatic line style
          * @return  the autoline field value.
          */
+
         public bool IsAutoline
         {
             get
@@ -311,7 +315,5 @@ namespace Npoi.Core.HSSF.Record
             }
             set { field_3_option = autoline.SetShortBoolean(field_3_option, value); }
         }
-
-
     }
 }

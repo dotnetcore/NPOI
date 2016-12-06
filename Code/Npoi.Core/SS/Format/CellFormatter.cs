@@ -14,20 +14,19 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.Format
 {
     using System;
-    using System.Text;
     using System.Globalization;
-
-
-
+    using System.Text;
 
     /**
      * This is the abstract supertype for the various cell formatters.
      *
      * @author Ken Arnold, Industrious Media LLC
      */
+
     public abstract class CellFormatter
     {
         /** The original specified format. */
@@ -38,16 +37,18 @@ namespace Npoi.Core.SS.Format
          * work.
          */
 
-	    public static readonly CultureInfo LOCALE =
-		    CultureInfo.CurrentCulture;
-			//CultureShim.GetCultureInfo("en-US");
+        public static readonly CultureInfo LOCALE =
+            CultureInfo.CurrentCulture;
 
-		/**
+        //CultureShim.GetCultureInfo("en-US");
+
+        /**
          * Creates a new formatter object, storing the format in {@link #format}.
          *
          * @param format The format.
          */
-		public CellFormatter(String format)
+
+        public CellFormatter(String format)
         {
             this.format = format;
         }
@@ -61,6 +62,7 @@ namespace Npoi.Core.SS.Format
          * @param toAppendTo The buffer to append to.
          * @param value      The value to format.
          */
+
         public abstract void FormatValue(StringBuilder toAppendTo, Object value);
 
         /**
@@ -69,6 +71,7 @@ namespace Npoi.Core.SS.Format
          * @param toAppendTo The buffer to append to.
          * @param value      The value to format.
          */
+
         public abstract void SimpleValue(StringBuilder toAppendTo, Object value);
 
         /**
@@ -78,6 +81,7 @@ namespace Npoi.Core.SS.Format
          *
          * @return The value, formatted.
          */
+
         public String Format(Object value)
         {
             StringBuilder sb = new StringBuilder();
@@ -92,6 +96,7 @@ namespace Npoi.Core.SS.Format
          *
          * @return The value, formatted.
          */
+
         public String SimpleFormat(Object value)
         {
             StringBuilder sb = new StringBuilder();
@@ -106,7 +111,8 @@ namespace Npoi.Core.SS.Format
          *
          * @return The input string, surrounded by quotes.
          */
-        static String Quote(String str)
+
+        private static String Quote(String str)
         {
             return '"' + str + '"';
         }

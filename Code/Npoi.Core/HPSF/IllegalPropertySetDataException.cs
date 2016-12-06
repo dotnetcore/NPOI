@@ -17,17 +17,18 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF
 {
     using System;
+
     /// <summary>
     /// This exception is thrown when there is an illegal value Set in a
     /// {@link PropertySet}. For example, a {@link Variant#VT_BOOL} must
@@ -41,41 +42,28 @@ namespace Npoi.Core.HPSF
     [Serializable]
     public class IllegalPropertySetDataException : HPSFRuntimeException
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="IllegalPropertySetDataException"/> class.
         /// </summary>
         public IllegalPropertySetDataException()
-            : base()
-        {
-
+            : base() {
         }
-
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IllegalPropertySetDataException"/> class.
         /// </summary>
         /// <param name="msg">The exception's message string</param>
         public IllegalPropertySetDataException(String msg)
-            : base(msg)
-        {
-
+            : base(msg) {
         }
-
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IllegalPropertySetDataException"/> class.
         /// </summary>
         /// <param name="reason">This exception's underlying reason</param>
         public IllegalPropertySetDataException(Exception reason)
-            : base(reason)
-        {
-
+            : base(reason) {
         }
-
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IllegalPropertySetDataException"/> class.
@@ -84,10 +72,7 @@ namespace Npoi.Core.HPSF
         /// <param name="reason">This exception's underlying reason</param>
         public IllegalPropertySetDataException(String msg,
                                                Exception reason)
-            : base(msg, reason)
-        {
-
+            : base(msg, reason) {
         }
-
     }
 }

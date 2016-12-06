@@ -19,22 +19,21 @@ using System.Reflection;
 
 namespace Npoi.Core.SS.Formula.Function
 {
+    using Npoi.Core.SS.Formula.PTG;
     using System;
-    using System.Collections;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Text.RegularExpressions;
-    using Npoi.Core.SS.Formula.PTG;
-    using System.Globalization;
 
     /**
      * Converts the text meta-data file into a <c>FunctionMetadataRegistry</c>
-     * 
+     *
      * @author Josh Micich
      */
-    class FunctionMetadataReader
-    {
 
+    internal class FunctionMetadataReader
+    {
         private const String METADATA_FILE_NAME = "functionMetadata.txt";
 
         /** plain ASCII text metadata file uses three dots for ellipsis */
@@ -48,14 +47,14 @@ namespace Npoi.Core.SS.Formula.Function
 		// Digits at the end of a function might be due to a left-over footnote marker.
 		// except in these cases
 		"LOG10", "ATAN2", "DAYS360", "SUMXMY2", "SUMX2MY2", "SUMX2PY2",
-	};
-		private static List<string> DIGIT_ENDING_FUNCTION_NAMES_Set = new List<string> (DIGIT_ENDING_FUNCTION_NAMES);
+    };
+
+        private static List<string> DIGIT_ENDING_FUNCTION_NAMES_Set = new List<string>(DIGIT_ENDING_FUNCTION_NAMES);
 
         public static FunctionMetadataRegistry CreateRegistry()
         {
-            using (StreamReader br = new StreamReader (typeof (FunctionMetadataReader).GetTypeInfo().Assembly.GetManifestResourceStream (METADATA_FILE_NAME)))
+            using (StreamReader br = new StreamReader(typeof(FunctionMetadataReader).GetTypeInfo().Assembly.GetManifestResourceStream(METADATA_FILE_NAME)))
             {
-
                 FunctionDataBuilder fdb = new FunctionDataBuilder(400);
 
                 try
@@ -90,7 +89,6 @@ namespace Npoi.Core.SS.Formula.Function
 
         private static void ProcessLine(FunctionDataBuilder fdb, String line)
         {
-
             Regex regex = new Regex(TAB_DELIM_PATTERN);
             String[] parts = regex.Split(line);
             if (parts.Length != 8)
@@ -111,7 +109,6 @@ namespace Npoi.Core.SS.Formula.Function
             fdb.Add(functionIndex, functionName, minParams, maxParams,
                     returnClassCode, parameterClassCodes, hasNote);
         }
-
 
         private static byte ParseReturnTypeCode(String code)
         {
@@ -179,9 +176,10 @@ namespace Npoi.Core.SS.Formula.Function
         }
 
         /**
-         * Makes sure that footnote digits from the original OOO document have not been accidentally 
+         * Makes sure that footnote digits from the original OOO document have not been accidentally
          * left behind
          */
+
         private static void ValidateFunctionName(String functionName)
         {
             int len = functionName.Length;

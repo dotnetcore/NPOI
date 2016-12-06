@@ -17,15 +17,16 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
     using Npoi.Core.Util;
+    using System;
     using System.Text;
 
     /**
-     * Biff2 - Biff 4 Label Record (0x0004 / 0x0204) - read only support for 
+     * Biff2 - Biff 4 Label Record (0x0004 / 0x0204) - read only support for
      *  strings stored directly in the cell, from the older file formats that
      *  didn't use {@link LabelSSTRecord}
      */
+
     public class OldLabelRecord : OldCellRecord
     {
         private static POILogger logger = POILogFactory.GetLogger(typeof(OldLabelRecord));
@@ -40,6 +41,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @param in the RecordInputstream to read the record from
          */
+
         public OldLabelRecord(RecordInputStream in1)
             : base(in1, in1.Sid == biff2_sid)
         {
@@ -74,6 +76,7 @@ namespace Npoi.Core.HSSF.Record
          * Get the number of characters this string Contains
          * @return number of characters
          */
+
         public short StringLength
         {
             get
@@ -85,6 +88,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the String of the cell
          */
+
         public String Value
         {
             get
@@ -96,10 +100,12 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Not supported
          */
+
         public int Serialize(int offset, byte[] data)
         {
             throw new RecordFormatException("Old Label Records are supported READ ONLY");
         }
+
         public int RecordSize
         {
             get
@@ -122,5 +128,4 @@ namespace Npoi.Core.HSSF.Record
             }
         }
     }
-
 }

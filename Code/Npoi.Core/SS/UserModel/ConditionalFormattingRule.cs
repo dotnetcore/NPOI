@@ -27,6 +27,7 @@ namespace Npoi.Core.SS.UserModel
         /// Allow accessing the Initial value.
         /// </summary>
         None = 0,
+
         /**
          * This conditional formatting rule Compares a cell value
          * to a formula calculated result, using an operator
@@ -38,12 +39,14 @@ namespace Npoi.Core.SS.UserModel
          */
         Formula = 2
     }
+
     /**
      * Represents a description of a conditional formatting rule
      *
      * @author Dmitriy Kumshayev
      * @author Yegor Kozlov
      */
+
     public interface IConditionalFormattingRule
     {
         /**
@@ -52,11 +55,13 @@ namespace Npoi.Core.SS.UserModel
          *
          * @return - border formatting object, never returns <code>null</code>.
          */
+
         IBorderFormatting CreateBorderFormatting();
 
         /**
          * @return - border formatting object  if defined,  <code>null</code> otherwise
          */
+
         IBorderFormatting GetBorderFormatting();
 
         /**
@@ -65,11 +70,13 @@ namespace Npoi.Core.SS.UserModel
          *
          * @return - font formatting object, never returns <code>null</code>.
          */
+
         IFontFormatting CreateFontFormatting();
 
         /**
          * @return - font formatting object  if defined,  <code>null</code> otherwise
          */
+
         IFontFormatting GetFontFormatting();
 
         /**
@@ -78,11 +85,13 @@ namespace Npoi.Core.SS.UserModel
          *
          * @return - pattern formatting object, never returns <code>null</code>.
          */
+
         IPatternFormatting CreatePatternFormatting();
 
         /**
          * @return - pattern formatting object  if defined,  <code>null</code> otherwise
          */
+
         IPatternFormatting GetPatternFormatting();
 
         /**
@@ -131,5 +140,4 @@ namespace Npoi.Core.SS.UserModel
          */
         String Formula2 { get; }
     }
-
 }

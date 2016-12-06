@@ -19,10 +19,12 @@ namespace Npoi.Core.SS.Formula.PTG
 {
     using System;
     using System.Text;
+
     /**
      *
      * @author  andy
      */
+
     public class EqualPtg : ValueOperatorPtg
     {
         public const byte sid = 0x0b;
@@ -44,11 +46,9 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return 2; }
         }
 
-
         public override String ToFormulaString(String[] operands)
         {
             StringBuilder buffer = new StringBuilder();
-
 
             buffer.Append(operands[0]);
             buffer.Append("=");

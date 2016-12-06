@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -23,43 +22,41 @@ namespace Npoi.Core.HSSF.Record
 
     /**
      * VerticalPageBreak record that stores page breaks at columns
-     * 
+     *
      * This class Is just used so that SID Compares work properly in the RecordFactory
      * @see PageBreakRecord
-     * @author Danny Mui (dmui at apache dot org) 
+     * @author Danny Mui (dmui at apache dot org)
      */
+
     public class VerticalPageBreakRecord : PageBreakRecord
     {
-
-
         public new const short sid = 0x001A;
 
         /**
-         * 
+         *
          */
+
         public VerticalPageBreakRecord()
         {
-
         }
-
 
         /**
          * @param in the RecordInputstream to Read the record from
          */
+
         public VerticalPageBreakRecord(RecordInputStream in1)
             : base(in1)
         {
-
         }
 
         /* (non-Javadoc)
          * @see org.apache.poi.hssf.record.Record#Sid
          */
+
         public override short Sid
         {
             get { return sid; }
         }
-
 
         public override Object Clone()
         {

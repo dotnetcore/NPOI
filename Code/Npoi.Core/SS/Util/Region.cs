@@ -19,7 +19,6 @@ using System;
 
 namespace Npoi.Core.SS.Util
 {
-
     /**
      * Represents a from/to row/col square.  This is a object primitive
      * that can be used to represent row,col - row,col just as one would use String
@@ -27,6 +26,7 @@ namespace Npoi.Core.SS.Util
      *
      * @author  Andrew C. Oliver acoliver at apache dot org
      */
+
     [Obsolete]
     public class Region
     {
@@ -98,17 +98,19 @@ namespace Npoi.Core.SS.Util
             get { return rowTo; }
             set { rowTo = value; }
         }
+
         private static Region ConvertToRegion(CellRangeAddress cr)
         {
-
             return new Region(cr.FirstRow, cr.FirstColumn, cr.LastRow, cr.LastColumn);
         }
+
         /**
-         * Convert a List of CellRange objects to an array of regions 
-         *  
+         * Convert a List of CellRange objects to an array of regions
+         *
          * @param List of CellRange objects
          * @return regions
          */
+
         public static Region[] ConvertCellRangesToRegions(CellRangeAddress[] cellRanges)
         {
             int size = cellRanges.Length;
@@ -125,6 +127,7 @@ namespace Npoi.Core.SS.Util
             }
             return result;
         }
+
         public static CellRangeAddress[] ConvertRegionsToCellRanges(Region[] regions)
         {
             int size = regions.Length;
@@ -141,6 +144,7 @@ namespace Npoi.Core.SS.Util
             }
             return result;
         }
+
         public static CellRangeAddress ConvertToCellRangeAddress(Region r)
         {
             return new CellRangeAddress(r.RowFrom, r.RowTo, r.ColumnFrom, r.ColumnTo);

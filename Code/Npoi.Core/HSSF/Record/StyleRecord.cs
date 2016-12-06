@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title:        Style Record
@@ -38,24 +35,27 @@ namespace Npoi.Core.HSSF.Record
     {
         public const short sid = 0x293;
 
-	    private static BitField styleIndexMask = BitFieldFactory.GetInstance(0x0FFF);
-	    private static BitField isBuiltinFlag  = BitFieldFactory.GetInstance(0x8000);
+        private static BitField styleIndexMask = BitFieldFactory.GetInstance(0x0FFF);
+        private static BitField isBuiltinFlag = BitFieldFactory.GetInstance(0x8000);
 
         // shared by both user defined and builtin styles
         private int field_1_xf_index;   // TODO: bitfield candidate
 
         // only for built in styles
         private int field_2_builtin_style;
+
         private int field_3_outline_style_level;
 
         // only for user defined styles
         private bool field_3_stringHasMultibyte;
+
         private String field_4_name;
 
         public StyleRecord()
         {
             field_1_xf_index = isBuiltinFlag.Set(field_1_xf_index);
         }
+
         public bool IsBuiltin
         {
             get
@@ -63,6 +63,7 @@ namespace Npoi.Core.HSSF.Record
                 return isBuiltinFlag.IsSet(field_1_xf_index);
             }
         }
+
         /**
          * Constructs a Style record and Sets its fields appropriately.
          * @param in the RecordInputstream to Read the record from
@@ -82,7 +83,7 @@ namespace Npoi.Core.HSSF.Record
 
                 // Some files from Crystal Reports lack
                 //  the remaining fields, which Is naughty
-                if (in1.Remaining <1)
+                if (in1.Remaining < 1)
                 {
                     // Some files from Crystal Reports lack the is16BitUnicode byte
                     //  the remaining fields, which is naughty
@@ -95,14 +96,14 @@ namespace Npoi.Core.HSSF.Record
                 }
                 else
                 {
-				    field_3_stringHasMultibyte = in1.ReadByte() != 0x00;
-				    if (field_3_stringHasMultibyte)
+                    field_3_stringHasMultibyte = in1.ReadByte() != 0x00;
+                    if (field_3_stringHasMultibyte)
                     {
                         field_4_name = StringUtil.ReadUnicodeLE(in1, field_2_name_length);
                     }
                     else
                     {
-                        field_4_name = StringUtil.ReadCompressedUnicode(in1,field_2_name_length);
+                        field_4_name = StringUtil.ReadCompressedUnicode(in1, field_2_name_length);
                     }
                 }
             }
@@ -115,11 +116,13 @@ namespace Npoi.Core.HSSF.Record
          * @param  builtinStyleId style number (0-7)
          *
          */
+
         public void SetBuiltinStyle(int builtinStyleId)
         {
             field_1_xf_index = isBuiltinFlag.Set(field_1_xf_index);
             field_2_builtin_style = builtinStyleId;
         }
+
         // bitfields for field 1
 
         /**
@@ -145,7 +148,8 @@ namespace Npoi.Core.HSSF.Record
         public String Name
         {
             get { return field_4_name; }
-            set { 
+            set
+            {
                 field_4_name = value;
                 field_3_stringHasMultibyte = StringUtil.HasMultibyte(value);
                 field_1_xf_index = isBuiltinFlag.Clear(field_1_xf_index);
@@ -153,8 +157,7 @@ namespace Npoi.Core.HSSF.Record
         }
 
         // end user defined
- 
- 
+
         /**
          * Get the row or column level of the style (if builtin 1||2)
          */
@@ -177,7 +180,7 @@ namespace Npoi.Core.HSSF.Record
             buffer.Append("    .xf_index_raw    = ")
                 .Append(HexDump.ShortToHex(field_1_xf_index)).Append("\n");
             buffer.Append("        .type        = ")
-                .Append(IsBuiltin?"built-in":"user-defined").Append("\n");
+                .Append(IsBuiltin ? "built-in" : "user-defined").Append("\n");
             buffer.Append("        .xf_index    = ")
                 .Append(HexDump.ShortToHex(XFIndex)).Append("\n");
             if (IsBuiltin)
@@ -231,12 +234,11 @@ namespace Npoi.Core.HSSF.Record
                 {
                     return 4; // short, byte, byte
                 }
-                return 2 // short xf index 
-                    + 3 // str len + flag 
+                return 2 // short xf index
+                    + 3 // str len + flag
                     + field_4_name.Length * (field_3_stringHasMultibyte ? 2 : 1);
             }
         }
-
 
         public override short Sid
         {

@@ -17,15 +17,14 @@
 
 namespace Npoi.Core.SS.UserModel
 {
-
     /**
      * The enumeration value indicating the print orientation for a sheet.
      *
      * @author Gisella Bronzetti
      */
+
     public class PrintOrientation
     {
-
         /**
          * orientation not specified
          */
@@ -41,7 +40,7 @@ namespace Npoi.Core.SS.UserModel
         public static PrintOrientation LANDSCAPE;
 
         static PrintOrientation()
-        { 
+        {
             _table = new PrintOrientation[4];
             DEFAULT = new PrintOrientation(1);
             PORTRAIT = new PrintOrientation(2);
@@ -57,7 +56,6 @@ namespace Npoi.Core.SS.UserModel
             _table[this.Value] = this;
         }
 
-
         public int Value
         {
             get
@@ -65,7 +63,6 @@ namespace Npoi.Core.SS.UserModel
                 return orientation;
             }
         }
-
 
         private static PrintOrientation[] _table;
 

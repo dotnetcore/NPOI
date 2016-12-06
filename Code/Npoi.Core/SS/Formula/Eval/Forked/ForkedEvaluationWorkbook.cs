@@ -15,15 +15,14 @@
    limitations under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.SS.Formula.Eval.Forked
 {
-    using System;
-    using System.Collections.Generic;
     using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.PTG;
     using Npoi.Core.SS.Formula.Udf;
     using Npoi.Core.SS.UserModel;
+    using System;
+    using System.Collections.Generic;
 
     /**
      * Represents a workbook being used for forked Evaluation. Most operations are delegated to the
@@ -32,9 +31,9 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
      *
      * @author Josh Micich
      */
-    class ForkedEvaluationWorkbook : IEvaluationWorkbook
-    {
 
+    internal class ForkedEvaluationWorkbook : IEvaluationWorkbook
+    {
         private IEvaluationWorkbook _masterBook;
         private Dictionary<String, ForkedEvaluationSheet> _sharedSheetsByName;
 
@@ -60,7 +59,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
         private ForkedEvaluationSheet GetSharedSheet(String sheetName)
         {
             ForkedEvaluationSheet result = null;
-            if(_sharedSheetsByName.ContainsKey(sheetName))
+            if (_sharedSheetsByName.ContainsKey(sheetName))
                 result = _sharedSheetsByName[(sheetName)];
             if (result == null)
             {
@@ -105,10 +104,12 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
         {
             return _masterBook.GetExternalSheet(externSheetIndex);
         }
+
         public ExternalSheet GetExternalSheet(String firstSheetName, string lastSheetName, int externalWorkbookNumber)
         {
             return _masterBook.GetExternalSheet(firstSheetName, lastSheetName, externalWorkbookNumber);
         }
+
         public Ptg[] GetFormulaTokens(IEvaluationCell cell)
         {
             if (cell is ForkedEvaluationCell)
@@ -138,10 +139,12 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
         {
             return _masterBook.GetExternalName(externSheetIndex, externNameIndex);
         }
+
         public ExternalName GetExternalName(String nameName, String sheetName, int externalWorkbookNumber)
         {
             return _masterBook.GetExternalName(nameName, sheetName, externalWorkbookNumber);
         }
+
         public int GetSheetIndex(IEvaluationSheet sheet)
         {
             if (sheet is ForkedEvaluationSheet)
@@ -182,16 +185,16 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
                 _sheetName = sheetName;
                 _index = index;
             }
+
             public String GetSheetName()
             {
                 return _sheetName;
             }
+
             public int CompareTo(OrderedSheet o)
             {
                 return _index - o._index;
             }
         }
-
     }
-
 }

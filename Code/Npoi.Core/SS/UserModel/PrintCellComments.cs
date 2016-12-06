@@ -17,15 +17,14 @@
 
 namespace Npoi.Core.SS.UserModel
 {
-
     /**
      * These enumerations specify how cell comments shall be displayed for paper printing purposes.
      *
      * @author Gisella Bronzetti
      */
+
     public class PrintCellComments
     {
-
         /**
          * Do not print cell comments.
          */
@@ -39,10 +38,9 @@ namespace Npoi.Core.SS.UserModel
          */
         public static PrintCellComments AT_END;
 
-
         static PrintCellComments()
-        { 
-            _table= new PrintCellComments[4];
+        {
+            _table = new PrintCellComments[4];
             NONE = new PrintCellComments(1);
             AS_DISPLAYED = new PrintCellComments(2);
             AT_END = new PrintCellComments(3);
@@ -71,5 +69,4 @@ namespace Npoi.Core.SS.UserModel
             return _table[value];
         }
     }
-
 }

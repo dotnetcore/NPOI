@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Npoi.Core.SS.Formula.Eval;
+using System;
 using System.Text;
-using Npoi.Core.SS.Formula.Eval;
 
 namespace Npoi.Core.SS.Formula.Functions
 {
     public class Clean : SingleArgTextFunc
     {
-
         public override ValueEval Evaluate(String arg)
         {
             StringBuilder result = new StringBuilder();

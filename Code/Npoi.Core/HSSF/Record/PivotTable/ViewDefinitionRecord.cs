@@ -17,17 +17,17 @@
 
 namespace Npoi.Core.HSSF.Record.PivotTable
 {
-    using System;
-    using System.Text;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
-
+    using System;
+    using System.Text;
 
     /**
      * SXVIEW - View Definition (0x00B0)<br/>
-     * 
+     *
      * @author Patrick Cheng
      */
+
     public class ViewDefinitionRecord : StandardRecord
     {
         public const short sid = 0x00B0;
@@ -60,7 +60,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
         private String dataField;
         private String name;
 
-
         public ViewDefinitionRecord(RecordInputStream in1)
         {
             rwFirst = in1.ReadUShort();
@@ -89,7 +88,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
             name = StringUtil.ReadUnicodeString(in1, cchName);
             dataField = StringUtil.ReadUnicodeString(in1, cchData);
         }
-
 
         public override void Serialize(ILittleEndianOutput out1)
         {
@@ -120,7 +118,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
             StringUtil.WriteUnicodeStringFlagAndData(out1, dataField);
         }
 
-
         protected override int DataSize
         {
             get
@@ -130,7 +127,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
             }
         }
 
-
         public override short Sid
         {
             get
@@ -138,7 +134,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
                 return sid;
             }
         }
-
 
         public override string ToString()
         {

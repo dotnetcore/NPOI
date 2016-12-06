@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Links text to an object on the chart or identifies it as the title.
@@ -31,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Andrew C. Oliver (acoliver at apache.org)
      */
+
     public class ObjectLinkRecord
        : StandardRecord
     {
@@ -44,10 +42,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         private short field_2_link1;
         private short field_3_link2;
 
-
         public ObjectLinkRecord()
         {
-
         }
 
         /**
@@ -58,7 +54,6 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public ObjectLinkRecord(RecordInputStream in1)
         {
-
             field_1_anchorId = in1.ReadShort();
             field_2_link1 = in1.ReadShort();
             field_3_link2 = in1.ReadShort();
@@ -96,6 +91,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 2 + 2 + 2; }
@@ -116,49 +112,49 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          * Get the anchor id field for the ObjectLink record.
          *
-         * @return  One of 
+         * @return  One of
          *        ANCHOR_ID_CHART_TITLE
          *        ANCHOR_ID_Y_AXIS
          *        ANCHOR_ID_X_AXIS
          *        ANCHOR_ID_SERIES_OR_POINT
          *        ANCHOR_ID_Z_AXIS
          */
+
         public short AnchorId
         {
             get
             {
                 return field_1_anchorId;
             }
-            set {
-                this.field_1_anchorId =value;
+            set
+            {
+                this.field_1_anchorId = value;
             }
         }
 
         /**
          * Get the link 1 field for the ObjectLink record.
          */
+
         public short Link1
         {
             get
             {
                 return field_2_link1;
             }
-            set 
+            set
             {
                 field_2_link1 = value;
             }
         }
 
-
         /**
          * Get the link 2 field for the ObjectLink record.
          */
+
         public short Link2
         {
             get
@@ -166,7 +162,7 @@ namespace Npoi.Core.HSSF.Record.Chart
                 return field_3_link2;
             }
 
-            set 
+            set
             {
                 field_3_link2 = value;
             }

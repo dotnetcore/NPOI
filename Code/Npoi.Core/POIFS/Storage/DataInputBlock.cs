@@ -16,9 +16,9 @@
 ==================================================================== */
 
 using System;
+
 namespace Npoi.Core.POIFS.Storage
 {
-
     /**
      * Wraps a <c>byte</c> array and provides simple data input access.
      * Internally, this class maintains a buffer read index, so that for the most part, primitive
@@ -39,12 +39,12 @@ namespace Npoi.Core.POIFS.Storage
      *
      * @author Josh Micich
      */
+
     public class DataInputBlock
     {
-
         /**
          * Possibly any size (usually 512K or 64K).  Assumed to be at least 8 bytes for all blocks
-         * before the end of the stream.  The last block in the stream can be any size except zero. 
+         * before the end of the stream.  The last block in the stream can be any size except zero.
          */
         private byte[] _buf;
         private int _readIndex;
@@ -56,6 +56,7 @@ namespace Npoi.Core.POIFS.Storage
             _readIndex = startOffset;
             _maxIndex = _buf.Length;
         }
+
         public int Available()
         {
             return _maxIndex - _readIndex;
@@ -69,6 +70,7 @@ namespace Npoi.Core.POIFS.Storage
         /**
          * Reads a <c>short</c> which was encoded in <em>little endian</em> format.
          */
+
         public int ReadUshortLE()
         {
             int i = _readIndex;
@@ -82,6 +84,7 @@ namespace Npoi.Core.POIFS.Storage
         /**
          * Reads a <c>short</c> which spans the end of <c>prevBlock</c> and the start of this block.
          */
+
         public int ReadUshortLE(DataInputBlock prevBlock)
         {
             // simple case - will always be one byte in each block
@@ -95,6 +98,7 @@ namespace Npoi.Core.POIFS.Storage
         /**
          * Reads an <c>int</c> which was encoded in <em>little endian</em> format.
          */
+
         public int ReadIntLE()
         {
             int i = _readIndex;
@@ -110,6 +114,7 @@ namespace Npoi.Core.POIFS.Storage
         /**
          * Reads an <c>int</c> which spans the end of <c>prevBlock</c> and the start of this block.
          */
+
         public int ReadIntLE(DataInputBlock prevBlock, int prevBlockAvailable)
         {
             byte[] buf = new byte[4];
@@ -125,6 +130,7 @@ namespace Npoi.Core.POIFS.Storage
         /**
          * Reads a <c>long</c> which was encoded in <em>little endian</em> format.
          */
+
         public long ReadLongLE()
         {
             int i = _readIndex;
@@ -151,6 +157,7 @@ namespace Npoi.Core.POIFS.Storage
         /**
          * Reads a <c>long</c> which spans the end of <c>prevBlock</c> and the start of this block.
          */
+
         public long ReadLongLE(DataInputBlock prevBlock, int prevBlockAvailable)
         {
             byte[] buf = new byte[8];
@@ -176,11 +183,12 @@ namespace Npoi.Core.POIFS.Storage
         }
 
         /**
-         * Reads a small amount of data from across the boundary between two blocks.  
+         * Reads a small amount of data from across the boundary between two blocks.
          * The {@link #_readIndex} of this (the second) block is updated accordingly.
          * Note- this method (and other code) assumes that the second {@link DataInputBlock}
          * always is big enough to complete the read without being exhausted.
          */
+
         private void ReadSpanning(DataInputBlock prevBlock, int prevBlockAvailable, byte[] buf)
         {
             Array.Copy(prevBlock._buf, prevBlock._readIndex, buf, 0, prevBlockAvailable);
@@ -192,6 +200,7 @@ namespace Npoi.Core.POIFS.Storage
         /**
          * Reads <c>len</c> bytes from this block into the supplied buffer.
          */
+
         public void ReadFully(byte[] buf, int off, int len)
         {
             Array.Copy(_buf, _readIndex, buf, off, len);
@@ -199,4 +208,3 @@ namespace Npoi.Core.POIFS.Storage
         }
     }
 }
-

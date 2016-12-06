@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using Npoi.Core.Util;
@@ -35,7 +35,7 @@ namespace Npoi.Core.HPSF
     /// This exception is the superclass of all other unchecked
     /// exceptions thrown in this package. It supports a nested "reason"
     /// throwable, i.e. an exception that caused this one To be thrown.
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
     /// @since 2002-02-09
     /// </summary>
@@ -47,24 +47,16 @@ namespace Npoi.Core.HPSF
         /// Initializes a new instance of the <see cref="HPSFRuntimeException"/> class.
         /// </summary>
         public HPSFRuntimeException()
-            : base()
-        {
-
+            : base() {
         }
-
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HPSFRuntimeException"/> class.
         /// </summary>
         /// <param name="msg">The message string.</param>
         public HPSFRuntimeException(String msg)
-            : base(msg)
-        {
-
+            : base(msg) {
         }
-
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HPSFRuntimeException"/> class.
@@ -72,13 +64,8 @@ namespace Npoi.Core.HPSF
         /// <param name="reason">The reason, i.e. a throwable that indirectly
         /// caused this exception.</param>
         public HPSFRuntimeException(Exception reason)
-            : base(reason.Message,reason)
-        {
-
-             
+            : base(reason.Message, reason) {
         }
-
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HPSFRuntimeException"/> class.
@@ -87,9 +74,7 @@ namespace Npoi.Core.HPSF
         /// <param name="reason">The reason, i.e. a throwable that indirectly
         /// caused this exception.</param>
         public HPSFRuntimeException(String msg, Exception reason)
-            : base(msg,reason)
-        {
-
+            : base(msg, reason) {
         }
     }
 }

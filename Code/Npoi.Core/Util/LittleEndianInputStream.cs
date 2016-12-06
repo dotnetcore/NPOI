@@ -22,7 +22,7 @@ namespace Npoi.Core.Util
 
     /// <summary>
     /// Wraps an <see cref="T:System.IO.Stream"/> providing <see cref="T:Npoi.Core.Util.ILittleEndianInput"/><p/>
-    /// 
+    ///
     /// This class does not buffer any input, so the stream Read position maintained
     /// by this class is consistent with that of the inner stream.
     /// </summary>
@@ -31,7 +31,7 @@ namespace Npoi.Core.Util
     /// </remarks>
     public class LittleEndianInputStream : ILittleEndianInput
     {
-        Stream in1 = null;
+        private Stream in1 = null;
 
         public int Available()
         {
@@ -42,10 +42,12 @@ namespace Npoi.Core.Util
         {
             in1 = is1;
         }
+
         public int ReadByte()
         {
             return (byte)ReadUByte();
         }
+
         public int ReadUByte()
         {
             int ch;
@@ -60,10 +62,12 @@ namespace Npoi.Core.Util
             CheckEOF(ch);
             return ch;
         }
+
         public double ReadDouble()
         {
             return BitConverter.Int64BitsToDouble(ReadLong());
         }
+
         public int ReadInt()
         {
             int ch1;
@@ -84,6 +88,7 @@ namespace Npoi.Core.Util
             CheckEOF(ch1 | ch2 | ch3 | ch4);
             return (ch4 << 24) + (ch3 << 16) + (ch2 << 8) + (ch1 << 0);
         }
+
         public long ReadLong()
         {
             int b0;
@@ -119,10 +124,12 @@ namespace Npoi.Core.Util
                     (b1 << 8) +
                     (b0 << 0));
         }
+
         public short ReadShort()
         {
             return (short)ReadUShort();
         }
+
         public int ReadUShort()
         {
             int ch1;
@@ -139,6 +146,7 @@ namespace Npoi.Core.Util
             CheckEOF(ch1 | ch2);
             return (ch2 << 8) + (ch1 << 0);
         }
+
         private static void CheckEOF(int value)
         {
             if (value < 0)

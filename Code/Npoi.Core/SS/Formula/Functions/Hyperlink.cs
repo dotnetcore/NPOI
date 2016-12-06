@@ -19,7 +19,6 @@ using Npoi.Core.SS.Formula.Eval;
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-
     /**
      * Implementation of Excel HYPERLINK function.<p/>
      *
@@ -36,13 +35,14 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author Wayne Clingingsmith
      */
+
     public class Hyperlink : Var1or2ArgFunction
     {
-
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0)
         {
             return arg0;
         }
+
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1)
         {
             // note - if last arg is MissingArgEval, result will be NumberEval.ZERO,

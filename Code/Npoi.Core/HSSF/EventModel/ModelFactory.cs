@@ -17,7 +17,6 @@
 
 //namespace Npoi.Core.HSSF.EventModel
 //{
-
 //    using System;
 //    using System.IO;
 //    using System.Collections;
@@ -25,17 +24,15 @@
 //    using Npoi.Core.HSSF.Model;
 //    using Npoi.Core.HSSF.Record;
 
-
 //    /**
-//     * ModelFactory Creates workbook and sheet models based upon 
+//     * ModelFactory Creates workbook and sheet models based upon
 //     * events thrown by them there events from the EventRecordFactory.
-//     * 
+//     *
 //     * @see org.apache.poi.hssf.eventmodel.EventRecordFactory
 //     * @author Andrew C. Oliver acoliver@apache.org
 //     */
 //    public sealed class ModelFactory : ERFListener
 //    {
-
 //        Model currentmodel;
 //        bool lastEOF;
 //        public IList listeners;
@@ -50,7 +47,7 @@
 //        }
 
 //        /**
-//         * register a ModelFactoryListener so that it can receive 
+//         * register a ModelFactoryListener so that it can receive
 //         * Models as they are created.
 //         */
 //        public void RegisterListener(ModelFactoryListener listener)
@@ -105,11 +102,9 @@
 //                lastEOF = false;
 //            }
 
-
 //            return true;
 //        }
 
-        
 //        /**
 //         * Throws the model as an event to the listeners
 //         * @param model to be thrown
@@ -123,7 +118,6 @@
 //                mfl.Process(model);
 //            }
 //        }
-
 
 //    }
 //}

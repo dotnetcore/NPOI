@@ -19,14 +19,15 @@ namespace Npoi.Core.HSSF.UserModel
 {
     using Npoi.Core.DDF;
     using Npoi.Core.HSSF.Record;
-    using System;
     using Npoi.Core.SS.UserModel;
+    using System;
+
     /// <summary>
     /// Represents a simple shape such as a line, rectangle or oval.
     /// @author Glen Stampoultzis (glens at apache.org)
     /// </summary>
     [Serializable]
-    public class HSSFSimpleShape: HSSFShape
+    public class HSSFSimpleShape : HSSFShape
     {
         // The commented out ones haven't been tested yet or aren't supported
         // by HSSFSimpleShape.
@@ -35,10 +36,12 @@ namespace Npoi.Core.HSSF.UserModel
         public const short OBJECT_TYPE_RECTANGLE = (short)HSSFShapeTypes.Rectangle;
         public const short OBJECT_TYPE_OVAL = (short)HSSFShapeTypes.Ellipse;
         public const short OBJECT_TYPE_ARC = (short)HSSFShapeTypes.Arc;
+
         //    public static short       OBJECT_TYPE_CHART              = 5;
         //    public static short       OBJECT_TYPE_TEXT               = 6;
         //    public static short       OBJECT_TYPE_BUTTON             = 7;
         public const short OBJECT_TYPE_PICTURE = (short)HSSFShapeTypes.PictureFrame;
+
         //    public static short       OBJECT_TYPE_POLYGON            = 9;
         //    public static short       OBJECT_TYPE_CHECKBOX           = 11;
         //    public static short       OBJECT_TYPE_OPTION_BUTTON      = 12;
@@ -50,6 +53,7 @@ namespace Npoi.Core.HSSF.UserModel
         //    public static short       OBJECT_TYPE_LIST_BOX           = 18;
         //    public static short       OBJECT_TYPE_GROUP_BOX          = 19;
         public const short OBJECT_TYPE_COMBO_BOX = (short)HSSFShapeTypes.HostControl;
+
         public const short OBJECT_TYPE_COMMENT = (short)HSSFShapeTypes.TextBox;
         public const short OBJECT_TYPE_MICROSOFT_OFFICE_DRAWING = 30;
 
@@ -64,18 +68,19 @@ namespace Npoi.Core.HSSF.UserModel
         {
             this._textObjectRecord = textObjectRecord;
         }
+
         public HSSFSimpleShape(EscherContainerRecord spContainer, ObjRecord objRecord)
             : base(spContainer, objRecord)
         {
-            
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="HSSFSimpleShape"/> class.
         /// </summary>
         /// <param name="parent">The parent.</param>
         /// <param name="anchor">The anchor.</param>
         public HSSFSimpleShape(HSSFShape parent, HSSFAnchor anchor)
-            :base(parent, anchor)
+            : base(parent, anchor)
         {
             _textObjectRecord = CreateTextObjRecord();
         }
@@ -89,14 +94,14 @@ namespace Npoi.Core.HSSF.UserModel
         /// @see #OBJECT_TYPE_RECTANGLE
         /// @see #OBJECT_TYPE_PICTURE
         /// @see #OBJECT_TYPE_COMMENT
-        public virtual int ShapeType 
+        public virtual int ShapeType
         {
             get
             {
                 EscherSpRecord spRecord = (EscherSpRecord)GetEscherContainer().GetChildById(EscherSpRecord.RECORD_ID);
                 return spRecord.ShapeType;
             }
-            set 
+            set
             {
                 CommonObjectDataSubRecord cod = (CommonObjectDataSubRecord)GetObjRecord().SubRecords[0];
                 cod.ObjectType = CommonObjectType.MicrosoftOfficeDrawing;
@@ -104,6 +109,7 @@ namespace Npoi.Core.HSSF.UserModel
                 spRecord.ShapeType = ((short)value);
             }
         }
+
         public int WrapText
         {
             get
@@ -111,15 +117,17 @@ namespace Npoi.Core.HSSF.UserModel
                 EscherSimpleProperty property = (EscherSimpleProperty)GetOptRecord().Lookup(EscherProperties.TEXT__WRAPTEXT);
                 return null == property ? WRAP_SQUARE : property.PropertyValue;
             }
-            set 
+            set
             {
                 SetPropertyValue(new EscherSimpleProperty(EscherProperties.TEXT__WRAPTEXT, false, false, value));
             }
         }
+
         protected internal TextObjectRecord GetTextObjectRecord()
         {
             return _textObjectRecord;
         }
+
         protected virtual TextObjectRecord CreateTextObjRecord()
         {
             TextObjectRecord obj = new TextObjectRecord();
@@ -130,6 +138,7 @@ namespace Npoi.Core.HSSF.UserModel
             obj.Str = (new HSSFRichTextString(""));
             return obj;
         }
+
         /// <summary>
         /// Get or set the rich text string used by this object.
         /// </summary>
@@ -171,6 +180,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
             return new HSSFSimpleShape(spContainer, obj, txo);
         }
+
         internal override void AfterInsert(HSSFPatriarch patriarch)
         {
             EscherAggregate agg = patriarch.GetBoundAggregate();
@@ -181,6 +191,7 @@ namespace Npoi.Core.HSSF.UserModel
                 agg.AssociateShapeToObjRecord(GetEscherContainer().GetChildById(EscherTextboxRecord.RECORD_ID), GetTextObjectRecord());
             }
         }
+
         internal override void AfterRemove(HSSFPatriarch patriarch)
         {
             patriarch.GetBoundAggregate().RemoveShapeToObjRecord(GetEscherContainer().GetChildById(EscherClientDataRecord.RECORD_ID));
@@ -189,10 +200,11 @@ namespace Npoi.Core.HSSF.UserModel
                 patriarch.GetBoundAggregate().RemoveShapeToObjRecord(GetEscherContainer().GetChildById(EscherTextboxRecord.RECORD_ID));
             }
         }
+
         protected override EscherContainerRecord CreateSpContainer()
         {
             EscherContainerRecord spContainer = new EscherContainerRecord();
-            spContainer.RecordId=EscherContainerRecord.SP_CONTAINER;
+            spContainer.RecordId = EscherContainerRecord.SP_CONTAINER;
             spContainer.Options = ((short)0x000F);
 
             EscherSpRecord sp = new EscherSpRecord();
@@ -228,21 +240,21 @@ namespace Npoi.Core.HSSF.UserModel
             spContainer.AddChildRecord(escherTextbox);
             return spContainer;
         }
+
         protected override ObjRecord CreateObjRecord()
         {
             ObjRecord obj = new ObjRecord();
             CommonObjectDataSubRecord c = new CommonObjectDataSubRecord();
-            c.IsLocked=true;
+            c.IsLocked = true;
             c.IsPrintable = true;
-            c.IsAutoFill=true;
-            c.IsAutoline=true;
+            c.IsAutoFill = true;
+            c.IsAutoline = true;
             EndSubRecord e = new EndSubRecord();
 
             obj.AddSubRecord(c);
             obj.AddSubRecord(e);
             return obj;
         }
-
 
         private TextObjectRecord GetOrCreateTextObjRecord()
         {

@@ -15,14 +15,8 @@
    limitations Under the License.
 ==================================================================== */
 
-
-using Npoi.Core.HPSF;
-
 namespace Npoi.Core.HSSF.Model
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using Npoi.Core.DDF;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.Util;
@@ -30,16 +24,18 @@ namespace Npoi.Core.HSSF.Model
     using Npoi.Core.SS.Formula.PTG;
     using Npoi.Core.SS.Formula.Udf;
     using Npoi.Core.SS.UserModel;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Security;
-
 
     /**
      * Low level model implementation of a Workbook.  Provides creational methods
      * for Settings and objects contained in the workbook object.
-     * 
+     *
      * This file Contains the low level binary records starting at the workbook's BOF and
      * ending with the workbook's EOF.  Use HSSFWorkbook for a high level representation.
-     * 
+     *
      * The structures of the highlevel API use references to this to perform most of their
      * operations.  Its probably Unwise to use these low level structures directly Unless you
      * really know what you're doing.  I recommend you Read the Microsoft Excel 97 Developer's
@@ -57,6 +53,7 @@ namespace Npoi.Core.HSSF.Model
      * @see org.apache.poi.hssf.usermodel.HSSFWorkbook
      * @version 1.0-pre
      */
+
     [Serializable]
     public class InternalWorkbook
     {
@@ -80,6 +77,7 @@ namespace Npoi.Core.HSSF.Model
         /**
          * this Contains the Worksheet record objects
          */
+
         [NonSerialized]
         protected WorkbookRecordList records = new WorkbookRecordList();
 
@@ -87,9 +85,9 @@ namespace Npoi.Core.HSSF.Model
          * this Contains a reference to the SSTRecord so that new stings can be Added
          * to it.
          */
+
         [NonSerialized]
         protected SSTRecord sst = null;
-
 
         [NonSerialized]
         private LinkTable linkTable; // optionally occurs if there are  references in the document. (4.10.3)
@@ -98,7 +96,7 @@ namespace Npoi.Core.HSSF.Model
          * holds the "boundsheet" records (aka bundlesheet) so that they can have their
          * reference to their "BOF" marker
          */
-        protected List<BoundSheetRecord> boundsheets ;
+        protected List<BoundSheetRecord> boundsheets;
 
         protected List<FormatRecord> formats;
 
@@ -108,15 +106,21 @@ namespace Npoi.Core.HSSF.Model
         protected int numfonts = 0;   // hold the number of font records
         private int maxformatid = -1;  // holds the max format id
         private bool uses1904datewindowing = false;  // whether 1904 date windowing is being used
+
         [NonSerialized]
         private DrawingManager2 drawingManager;
-        private IList escherBSERecords ;  // EscherBSERecord
+
+        private IList escherBSERecords;  // EscherBSERecord
+
         [NonSerialized]
         private WindowOneRecord windowOne;
+
         [NonSerialized]
         private FileSharingRecord fileShare;
+
         [NonSerialized]
         private WriteAccessRecord writeAccess;
+
         [NonSerialized]
         private WriteProtectRecord writeProtect;
 
@@ -126,8 +130,8 @@ namespace Npoi.Core.HSSF.Model
          * Creates new Workbook with no intitialization --useless right now
          * @see #CreateWorkbook(List)
          */
-        public InternalWorkbook()
-        {
+
+        public InternalWorkbook() {
             records = new WorkbookRecordList();
 
             boundsheets = new List<BoundSheetRecord>();
@@ -153,30 +157,26 @@ namespace Npoi.Core.HSSF.Model
          * @param recs an array of Record objects
          * @return Workbook object
          */
-        public static InternalWorkbook CreateWorkbook(List<Record> recs)
-        {
+
+        public static InternalWorkbook CreateWorkbook(List<Record> recs) {
             //if (log.Check(POILogger.DEBUG))
             //    log.Log(DEBUG, "Workbook (Readfile) Created with reclen=",
             //           recs.Count);
             InternalWorkbook retval = new InternalWorkbook();
             List<Record> records = new List<Record>(recs.Count / 3);
-            retval.records.Records=records;
+            retval.records.Records = records;
 
             int k;
-            for (k = 0; k < recs.Count; k++)
-            {
+            for (k = 0; k < recs.Count; k++) {
                 Record rec = (Record)recs[k];
 
-                if (rec.Sid == EOFRecord.sid)
-                {
+                if (rec.Sid == EOFRecord.sid) {
                     records.Add(rec);
                     //if (log.Check(POILogger.DEBUG))
                     //    log.Log(DEBUG, "found workbook eof record at " + k);
                     break;
                 }
-                switch (rec.Sid)
-                {
-
+                switch (rec.Sid) {
                     case BoundSheetRecord.sid:
                         //if (log.Check(POILogger.DEBUG))
                         //    log.Log(DEBUG, "found boundsheet record at " + k);
@@ -221,6 +221,7 @@ namespace Npoi.Core.HSSF.Model
                         //    log.Log(DEBUG, "found backup record at " + k);
                         retval.records.Backuppos = k;
                         break;
+
                     case ExternSheetRecord.sid:
                         throw new Exception("Extern sheet is part of LinkTable");
                     case NameRecord.sid:
@@ -237,36 +238,43 @@ namespace Npoi.Core.HSSF.Model
                         retval.formats.Add((FormatRecord)rec);
                         retval.maxformatid = retval.maxformatid >= ((FormatRecord)rec).IndexCode ? retval.maxformatid : ((FormatRecord)rec).IndexCode;
                         break;
+
                     case DateWindow1904Record.sid:
                         //if (log.Check(POILogger.DEBUG))
                         //    log.Log(DEBUG, "found datewindow1904 record at " + k);
                         retval.uses1904datewindowing = ((DateWindow1904Record)rec).Windowing == 1;
                         break;
+
                     case PaletteRecord.sid:
                         //if (log.Check(POILogger.DEBUG))
                         //    log.Log(DEBUG, "found palette record at " + k);
                         retval.records.Palettepos = k;
                         break;
+
                     case WindowOneRecord.sid:
                         //if (log.Check(POILogger.DEBUG))
                         //    log.Log(DEBUG, "found WindowOneRecord at " + k);
                         retval.windowOne = (WindowOneRecord)rec;
                         break;
+
                     case WriteAccessRecord.sid:
                         //if (log.Check(POILogger.DEBUG))
                         //    log.Log(DEBUG, "found WriteAccess at " + k);
                         retval.writeAccess = (WriteAccessRecord)rec;
                         break;
+
                     case WriteProtectRecord.sid:
                         //if (log.Check(POILogger.DEBUG))
                         //    log.Log(DEBUG, "found WriteProtect at " + k);
                         retval.writeProtect = (WriteProtectRecord)rec;
                         break;
+
                     case FileSharingRecord.sid:
                         //if (log.Check(POILogger.DEBUG))
                         //    log.Log(DEBUG, "found FileSharing at " + k);
                         retval.fileShare = (FileSharingRecord)rec;
                         break;
+
                     case NameCommentRecord.sid:
                         NameCommentRecord ncr = (NameCommentRecord)rec;
                         retval.commentRecords[ncr.NameText] = ncr;
@@ -282,48 +290,46 @@ namespace Npoi.Core.HSSF.Model
 
             // Look for other interesting values that
             //  follow the EOFRecord
-            for (; k < recs.Count; k++)
-            {
+            for (; k < recs.Count; k++) {
                 Record rec = (Record)recs[k];
-                switch (rec.Sid)
-                {
+                switch (rec.Sid) {
                     case HyperlinkRecord.sid:
                         retval.hyperlinks.Add((HyperlinkRecord)rec);
                         break;
                 }
             }
 
-            if (retval.windowOne == null)
-            {
+            if (retval.windowOne == null) {
                 retval.windowOne = (WindowOneRecord)CreateWindowOne();
             }
             //if (log.Check(POILogger.DEBUG))
             //    log.Log(DEBUG, "exit Create workbook from existing file function");
             return retval;
         }
-        
-    /** gets the name comment record
-     * @param nameRecord name record who's comment is required.
-     * @return name comment record or <code>null</code> if there isn't one for the given name.
-     */
-        public NameCommentRecord GetNameCommentRecord(NameRecord nameRecord)
-        {
+
+        /** gets the name comment record
+         * @param nameRecord name record who's comment is required.
+         * @return name comment record or <code>null</code> if there isn't one for the given name.
+         */
+
+        public NameCommentRecord GetNameCommentRecord(NameRecord nameRecord) {
             if (commentRecords.ContainsKey(nameRecord.NameText))
                 return commentRecords[nameRecord.NameText];
             else
                 return null;
         }
+
         /**
          * Creates an empty workbook object with three blank sheets and all the empty
          * fields.  Use this to Create a workbook from scratch.
          */
-        public static InternalWorkbook CreateWorkbook()
-        {
+
+        public static InternalWorkbook CreateWorkbook() {
             //if (log.Check(POILogger.DEBUG))
             //    log.Log(DEBUG, "creating new workbook from scratch");
             InternalWorkbook retval = new InternalWorkbook();
             List<Record> records = new List<Record>(30);
-            retval.records.Records=records;
+            retval.records.Records = records;
             List<FormatRecord> formats = new List<FormatRecord>(8);
 
             records.Add(CreateBOF());
@@ -334,18 +340,18 @@ namespace Npoi.Core.HSSF.Model
             records.Add(CreateCodepage());
             records.Add(CreateDSF());
             records.Add(CreateTabId());
-            retval.records.Tabpos=records.Count - 1;
+            retval.records.Tabpos = records.Count - 1;
             records.Add(CreateFnGroupCount());
             records.Add(CreateWindowProtect());
             records.Add(CreateProtect());
-            retval.records.Protpos=records.Count - 1;
+            retval.records.Protpos = records.Count - 1;
             records.Add(CreatePassword());
             records.Add(CreateProtectionRev4());
             records.Add(CreatePasswordRev4());
             retval.windowOne = (WindowOneRecord)CreateWindowOne();
             records.Add(retval.windowOne);
             records.Add(CreateBackup());
-            retval.records.Backuppos=records.Count - 1;
+            retval.records.Backuppos = records.Count - 1;
             records.Add(CreateHideObj());
             records.Add(CreateDateWindow1904());
             records.Add(CreatePrecision());
@@ -355,12 +361,11 @@ namespace Npoi.Core.HSSF.Model
             records.Add(CreateFont());
             records.Add(CreateFont());
             records.Add(CreateFont());
-            retval.records.Fontpos=records.Count - 1;   // last font record postion
+            retval.records.Fontpos = records.Count - 1;   // last font record postion
             retval.numfonts = 4;
 
             // Set up format records
-            for (int i = 0; i <= 7; i++)
-            {
+            for (int i = 0; i <= 7; i++) {
                 Record rec = CreateFormat(i);
                 retval.maxformatid = retval.maxformatid >= ((FormatRecord)rec).IndexCode ? retval.maxformatid : ((FormatRecord)rec).IndexCode;
                 formats.Add((FormatRecord)rec);
@@ -368,33 +373,29 @@ namespace Npoi.Core.HSSF.Model
             }
             retval.formats = formats;
 
-            for (int k = 0; k < 21; k++)
-            {
+            for (int k = 0; k < 21; k++) {
                 records.Add(CreateExtendedFormat(k));
                 retval.numxfs++;
             }
-            retval.records.Xfpos=records.Count - 1;
-            for (int k = 0; k < 6; k++)
-            {
+            retval.records.Xfpos = records.Count - 1;
+            for (int k = 0; k < 6; k++) {
                 records.Add(CreateStyle(k));
             }
             records.Add(CreateUseSelFS());
 
             int nBoundSheets = 1; // now just do 1
-            for (int k = 0; k < nBoundSheets; k++)
-            {
+            for (int k = 0; k < nBoundSheets; k++) {
                 BoundSheetRecord bsr =
                         (BoundSheetRecord)CreateBoundSheet(k);
 
                 records.Add(bsr);
                 retval.boundsheets.Add(bsr);
-                retval.records.Bspos=records.Count - 1;
+                retval.records.Bspos = records.Count - 1;
             }
             //        retval.records.supbookpos = retval.records.bspos + 1;
             //        retval.records.namepos = retval.records.supbookpos + 2;
             records.Add(CreateCountry());
-            for (int k = 0; k < nBoundSheets; k++)
-            {
+            for (int k = 0; k < nBoundSheets; k++) {
                 retval.OrCreateLinkTable.CheckExternSheet(k);
             }
             retval.sst = new SSTRecord();
@@ -407,41 +408,38 @@ namespace Npoi.Core.HSSF.Model
             return retval;
         }
 
-
         /**Retrieves the Builtin NameRecord that matches the name and index
          * There shouldn't be too many names to make the sequential search too slow
          * @param name byte representation of the builtin name to match
          * @param sheetIndex Index to match
          * @return null if no builtin NameRecord matches
          */
-        public NameRecord GetSpecificBuiltinRecord(byte name, int sheetIndex)
-        {
+
+        public NameRecord GetSpecificBuiltinRecord(byte name, int sheetIndex) {
             return OrCreateLinkTable.GetSpecificBuiltinRecord(name, sheetIndex);
         }
 
-        public ExternalName GetExternalName(int externSheetIndex, int externNameIndex)
-        {
+        public ExternalName GetExternalName(int externSheetIndex, int externNameIndex) {
             String nameName = linkTable.ResolveNameXText(externSheetIndex, externNameIndex, this);
-            if (nameName == null)
-            {
+            if (nameName == null) {
                 return null;
             }
             int ix = linkTable.ResolveNameXIx(externSheetIndex, externNameIndex);
             return new ExternalName(nameName, externNameIndex, ix);
         }
+
         /**
          * Removes the specified Builtin NameRecord that matches the name and index
          * @param name byte representation of the builtin to match
          * @param sheetIndex zero-based sheet reference
          */
-        public void RemoveBuiltinRecord(byte name, int sheetIndex)
-        {
+
+        public void RemoveBuiltinRecord(byte name, int sheetIndex) {
             linkTable.RemoveBuiltinRecord(name, sheetIndex);
             // TODO - do we need "this.records.Remove(...);" similar to that in this.RemoveName(int namenum) {}?
         }
 
-        public int NumRecords
-        {
+        public int NumRecords {
             get
             {
                 return records.Count;
@@ -457,16 +455,13 @@ namespace Npoi.Core.HSSF.Model
          * @return FontRecord located at the given index
          */
 
-        public FontRecord GetFontRecordAt(int idx)
-        {
+        public FontRecord GetFontRecordAt(int idx) {
             int index = idx;
 
-            if (index > 4)
-            {
+            if (index > 4) {
                 index -= 1;   // adjust for "There is no 4"
             }
-            if (index > (numfonts - 1))
-            {
+            if (index > (numfonts - 1)) {
                 throw new IndexOutOfRangeException(
                 "There are only " + numfonts
                 + " font records, you asked for " + idx);
@@ -485,41 +480,36 @@ namespace Npoi.Core.HSSF.Model
          * @return FontRecord that was just Created
          */
 
-        public FontRecord CreateNewFont()
-        {
+        public FontRecord CreateNewFont() {
             FontRecord rec = (FontRecord)CreateFont();
 
             records.Add(records.Fontpos + 1, rec);
-            records.Fontpos=(records.Fontpos + 1);
+            records.Fontpos = (records.Fontpos + 1);
             numfonts++;
             return rec;
         }
 
-            /**
-     * Check if the cloned sheet has drawings. If yes, then allocate a new drawing group ID and
-     * re-generate shape IDs
-     *
-     * @param sheet the cloned sheet
-     */
-        public void CloneDrawings(InternalSheet sheet)
-        {
+        /**
+ * Check if the cloned sheet has drawings. If yes, then allocate a new drawing group ID and
+ * re-generate shape IDs
+ *
+ * @param sheet the cloned sheet
+ */
 
+        public void CloneDrawings(InternalSheet sheet) {
             FindDrawingGroup();
 
-            if (drawingManager == null)
-            {
+            if (drawingManager == null) {
                 //this workbook does not have drawings
                 return;
             }
 
             //check if the cloned sheet has drawings
             int aggLoc = sheet.AggregateDrawingRecords(drawingManager, false);
-            if (aggLoc != -1)
-            {
+            if (aggLoc != -1) {
                 EscherAggregate agg = (EscherAggregate)sheet.FindFirstRecordBySid(EscherAggregate.sid);
                 EscherContainerRecord escherContainer = agg.GetEscherContainer();
-                if (escherContainer == null)
-                {
+                if (escherContainer == null) {
                     return;
                 }
 
@@ -531,55 +521,44 @@ namespace Npoi.Core.HSSF.Model
                 dgg.DrawingsSaved = dgg.DrawingsSaved + 1;
 
                 EscherDgRecord dg = null;
-                for (IEnumerator it = escherContainer.ChildRecords.GetEnumerator(); it.MoveNext(); )
-                {
+                for (IEnumerator it = escherContainer.ChildRecords.GetEnumerator(); it.MoveNext();) {
                     Object er = it.Current;
-                    if (er is EscherDgRecord)
-                    {
+                    if (er is EscherDgRecord) {
                         dg = (EscherDgRecord)er;
                         //update id of the drawing in the cloned sheet
                         dg.Options = ((short)(dgId << 4));
                     }
-                    else if (er is EscherContainerRecord)
-                    {
+                    else if (er is EscherContainerRecord) {
                         //recursively find shape records and re-generate shapeId
                         List<object> spRecords = new List<object>();
                         EscherContainerRecord cp = (EscherContainerRecord)er;
-                        for (IEnumerator spIt = cp.ChildRecords.GetEnumerator(); spIt.MoveNext(); )
-                        {
+                        for (IEnumerator spIt = cp.ChildRecords.GetEnumerator(); spIt.MoveNext();) {
                             EscherContainerRecord shapeContainer = (EscherContainerRecord)spIt.Current;
 
-                            foreach (EscherRecord shapeChildRecord in shapeContainer.ChildRecords)
-                            {
+                            foreach (EscherRecord shapeChildRecord in shapeContainer.ChildRecords) {
                                 int recordId = shapeChildRecord.RecordId;
-                                if (recordId == EscherSpRecord.RECORD_ID)
-                                {
+                                if (recordId == EscherSpRecord.RECORD_ID) {
                                     EscherSpRecord sp = (EscherSpRecord)shapeChildRecord;
                                     int shapeId = drawingManager.AllocateShapeId((short)dgId, dg);
                                     //allocateShapeId increments the number of shapes. roll back to the previous value
                                     dg.NumShapes = (dg.NumShapes - 1);
                                     sp.ShapeId = (shapeId);
                                 }
-                                else if (recordId == EscherOptRecord.RECORD_ID)
-                                {
+                                else if (recordId == EscherOptRecord.RECORD_ID) {
                                     EscherOptRecord opt = (EscherOptRecord)shapeChildRecord;
                                     EscherSimpleProperty prop = (EscherSimpleProperty)opt.Lookup(
                                             EscherProperties.BLIP__BLIPTODISPLAY);
-                                    if (prop != null)
-                                    {
+                                    if (prop != null) {
                                         int pictureIndex = prop.PropertyValue;
                                         // increment reference count for pictures
                                         EscherBSERecord bse = GetBSERecord(pictureIndex);
                                         bse.Ref = bse.Ref + 1;
                                     }
-
                                 }
-
                             }
                         }
                     }
                 }
-
             }
         }
 
@@ -589,8 +568,7 @@ namespace Npoi.Core.HSSF.Model
          * @return   number of font records in the "font table"
          */
 
-        public int NumberOfFontRecords
-        {
+        public int NumberOfFontRecords {
             get
             {
                 return numfonts;
@@ -604,27 +582,24 @@ namespace Npoi.Core.HSSF.Model
          * @param pos the actual bof position
          */
 
-        public void SetSheetBof(int sheetIndex, int pos)
-        {
+        public void SetSheetBof(int sheetIndex, int pos) {
             //if (log.Check(POILogger.DEBUG))
             //    log.Log(DEBUG, "Setting bof for sheetnum =", sheetIndex,
             //        " at pos=",pos);
             CheckSheets(sheetIndex);
-            GetBoundSheetRec(sheetIndex).PositionOfBof=pos;
+            GetBoundSheetRec(sheetIndex).PositionOfBof = pos;
         }
 
         /**
          * Returns the position of the backup record.
          */
 
-        public BackupRecord BackupRecord
-        {
+        public BackupRecord BackupRecord {
             get
             {
                 return (BackupRecord)records[records.Backuppos];
             }
         }
-
 
         /**
          * Sets the name for a given sheet.  If the boundsheet record doesn't exist and
@@ -634,20 +609,19 @@ namespace Npoi.Core.HSSF.Model
          * @param sheetnum the sheet number (0 based)
          * @param sheetname the name for the sheet
          */
-        public void SetSheetName(int sheetnum, String sheetname)
-        {
+
+        public void SetSheetName(int sheetnum, String sheetname) {
             CheckSheets(sheetnum);
 
             // YK: Mimic Excel and silently truncate sheet names longer than 31 characters
-            if (sheetname.Length > 31) 
+            if (sheetname.Length > 31)
                 sheetname = sheetname.Substring(0, 31);
 
-            BoundSheetRecord sheet =boundsheets[sheetnum];
-            sheet.Sheetname=sheetname;
+            BoundSheetRecord sheet = boundsheets[sheetnum];
+            sheet.Sheetname = sheetname;
         }
 
-        private BoundSheetRecord GetBoundSheetRec(int sheetIndex)
-        {
+        private BoundSheetRecord GetBoundSheetRec(int sheetIndex) {
             return boundsheets[sheetIndex];
         }
 
@@ -658,27 +632,22 @@ namespace Npoi.Core.HSSF.Model
          * @param excludeSheetIdx the sheet to exclude from the Check or -1 to include all sheets in the Check.
          * @return true if the sheet Contains the name, false otherwise.
          */
-        public bool ContainsSheetName(String name, int excludeSheetIdx)
-        {
+
+        public bool ContainsSheetName(String name, int excludeSheetIdx) {
             String aName = name;
-            if (aName.Length > MAX_SENSITIVE_SHEET_NAME_LEN)
-            {
+            if (aName.Length > MAX_SENSITIVE_SHEET_NAME_LEN) {
                 aName = aName.Substring(0, MAX_SENSITIVE_SHEET_NAME_LEN);
             }
-            for (int i = 0; i < boundsheets.Count; i++)
-            {
+            for (int i = 0; i < boundsheets.Count; i++) {
                 BoundSheetRecord boundSheetRecord = GetBoundSheetRec(i);
-                if (excludeSheetIdx == i)
-                {
+                if (excludeSheetIdx == i) {
                     continue;
                 }
                 String bName = boundSheetRecord.Sheetname;
-                if (bName.Length > MAX_SENSITIVE_SHEET_NAME_LEN)
-                {
+                if (bName.Length > MAX_SENSITIVE_SHEET_NAME_LEN) {
                     bName = bName.Substring(0, MAX_SENSITIVE_SHEET_NAME_LEN);
                 }
-                if (aName.Equals(bName,StringComparison.OrdinalIgnoreCase))
-                {
+                if (aName.Equals(bName, StringComparison.OrdinalIgnoreCase)) {
                     return true;
                 }
             }
@@ -693,11 +662,11 @@ namespace Npoi.Core.HSSF.Model
          * @param sheetnum the sheet number (0 based)
          * @param sheetname the name for the sheet
          */
-        public void SetSheetName(int sheetnum, String sheetname, short encoding)
-        {
+
+        public void SetSheetName(int sheetnum, String sheetname, short encoding) {
             CheckSheets(sheetnum);
             BoundSheetRecord sheet = boundsheets[sheetnum];
-            sheet.Sheetname=(sheetname);
+            sheet.Sheetname = (sheetname);
         }
 
         /**
@@ -707,8 +676,7 @@ namespace Npoi.Core.HSSF.Model
          * @param pos the position that we want to Insert the sheet into (0 based)
          */
 
-        public void SetSheetOrder(String sheetname, int pos)
-        {
+        public void SetSheetOrder(String sheetname, int pos) {
             int sheetNumber = GetSheetIndex(sheetname);
             //Remove the sheet that needs to be reordered and place it in the spot we want
             BoundSheetRecord sheet = boundsheets[sheetNumber];
@@ -729,8 +697,7 @@ namespace Npoi.Core.HSSF.Model
          * @return sheetname the name for the sheet
          */
 
-        public String GetSheetName(int sheetIndex)
-        {
+        public String GetSheetName(int sheetIndex) {
             return GetBoundSheetRec(sheetIndex).Sheetname;
         }
 
@@ -741,83 +708,78 @@ namespace Npoi.Core.HSSF.Model
          * @return True if sheet is hidden
          */
 
-        public bool IsSheetHidden(int sheetnum)
-        {
+        public bool IsSheetHidden(int sheetnum) {
             return GetBoundSheetRec(sheetnum).IsHidden;
         }
+
         /**
          * Gets the hidden flag for a given sheet.
-         * Note that a sheet could instead be 
+         * Note that a sheet could instead be
          *  set to be very hidden, which is different
          *  ({@link #isSheetVeryHidden(int)})
          *
          * @param sheetnum the sheet number (0 based)
          * @return True if sheet is hidden
          */
-        public bool IsSheetVeryHidden(int sheetnum)
-        {
+
+        public bool IsSheetVeryHidden(int sheetnum) {
             return GetBoundSheetRec(sheetnum).IsVeryHidden;
         }
+
         /**
          * Hide or Unhide a sheet
-         * 
+         *
          * @param sheetnum The sheet number
          * @param hidden True to mark the sheet as hidden, false otherwise
          */
 
-        public void SetSheetHidden(int sheetnum, bool hidden)
-        {
+        public void SetSheetHidden(int sheetnum, bool hidden) {
             BoundSheetRecord bsr = boundsheets[sheetnum];
-            bsr.IsHidden=hidden;
+            bsr.IsHidden = hidden;
         }
+
         /**
  * Hide or unhide a sheet.
  *  0 = not hidden
  *  1 = hidden
  *  2 = very hidden.
- * 
+ *
  * @param sheetnum The sheet number
  * @param hidden 0 for not hidden, 1 for hidden, 2 for very hidden
  */
-        public void SetSheetHidden(int sheetnum, int hidden)
-        {
+
+        public void SetSheetHidden(int sheetnum, int hidden) {
             BoundSheetRecord bsr = GetBoundSheetRec(sheetnum);
             bool h = false;
             bool vh = false;
-            if (hidden == 0)
-            {
+            if (hidden == 0) {
             }
-            else if (hidden == 1)
-            {
+            else if (hidden == 1) {
                 h = true;
             }
-            else if (hidden == 2)
-            {
+            else if (hidden == 2) {
                 vh = true;
             }
-            else
-            {
+            else {
                 throw new ArgumentException("Invalid hidden flag " + hidden + " given, must be 0, 1 or 2");
             }
             bsr.IsHidden = (h);
             bsr.IsVeryHidden = (vh);
         }
+
         /**
          * Get the sheet's index
          * @param name  sheet name
          * @return sheet index or -1 if it was not found.
          */
 
-        public int GetSheetIndex(String name)
-        {
+        public int GetSheetIndex(String name) {
             int retval = -1;
 
-            for (int k = 0; k < boundsheets.Count; k++)
-            {
+            for (int k = 0; k < boundsheets.Count; k++) {
                 String sheet = GetSheetName(k);
 
-                if (sheet.Equals(name,StringComparison.OrdinalIgnoreCase))
-                {
+                if (sheet.Equals(name, StringComparison.OrdinalIgnoreCase)) {
                     retval = k;
                     break;
                 }
@@ -830,12 +792,9 @@ namespace Npoi.Core.HSSF.Model
          * trying to Address >1 more than we have throw an exception!
          */
 
-        private void CheckSheets(int sheetnum)
-        {
-            if ((boundsheets.Count) <= sheetnum)
-            {   // if we're short one Add another..
-                if ((boundsheets.Count + 1) <= sheetnum)
-                {
+        private void CheckSheets(int sheetnum) {
+            if ((boundsheets.Count) <= sheetnum) {   // if we're short one Add another..
+                if ((boundsheets.Count + 1) <= sheetnum) {
                     throw new Exception("Sheet number out of bounds!");
                 }
                 BoundSheetRecord bsr = (BoundSheetRecord)CreateBoundSheet(sheetnum);
@@ -861,10 +820,8 @@ namespace Npoi.Core.HSSF.Model
             //}
         }
 
-        public void RemoveSheet(int sheetIndex)
-        {
-            if (boundsheets.Count > sheetIndex)
-            {
+        public void RemoveSheet(int sheetIndex) {
+            if (boundsheets.Count > sheetIndex) {
                 records.Remove(records.Bspos - (boundsheets.Count - 1) + sheetIndex);
                 //            records.bspos--;
                 boundsheets.RemoveAt(sheetIndex);
@@ -874,34 +831,29 @@ namespace Npoi.Core.HSSF.Model
             // Within NameRecords, it's ok to have the formula
             //  part point at deleted sheets. It's also ok to
             //  have the ExternSheetNumber point at deleted
-            //  sheets. 
+            //  sheets.
             // However, the sheet index must be adjusted, or
             //  excel will break. (Sheet index is either 0 for
             //  global, or 1 based index to sheet)
             int sheetNum1Based = sheetIndex + 1;
-            for (int i = 0; i < NumNames; i++)
-            {
+            for (int i = 0; i < NumNames; i++) {
                 NameRecord nr = GetNameRecord(i);
 
-                if (nr.SheetNumber == sheetNum1Based)
-                {
+                if (nr.SheetNumber == sheetNum1Based) {
                     // Excel re-writes these to point to no sheet
                     nr.SheetNumber = (0);
                 }
-                else if (nr.SheetNumber > sheetNum1Based)
-                {
+                else if (nr.SheetNumber > sheetNum1Based) {
                     // Bump down by one, so still points
                     //  at the same sheet
                     nr.SheetNumber = (nr.SheetNumber - 1);
                     // also update the link-table as otherwise references might point at invalid sheets
                 }
             }
-            if (linkTable != null)
-            {
+            if (linkTable != null) {
                 // also tell the LinkTable about the removed sheet
                 // +1 because we already removed it from the count of sheets!
-                for (int i = sheetIndex + 1; i < NumSheets + 1; i++)
-                {
+                for (int i = sheetIndex + 1; i < NumSheets + 1; i++) {
                     linkTable.RemoveSheet(i);
                 }
             }
@@ -911,14 +863,12 @@ namespace Npoi.Core.HSSF.Model
         /// make the tabid record look like the current situation.
         /// </summary>
         /// <returns>number of bytes written in the TabIdRecord</returns>
-        private int FixTabIdRecord()
-        {
+        private int FixTabIdRecord() {
             TabIdRecord tir = (TabIdRecord)records[records.Tabpos];
             int sz = tir.RecordSize;
             short[] tia = new short[boundsheets.Count];
 
-            for (short k = 0; k < tia.Length; k++)
-            {
+            for (short k = 0; k < tia.Length; k++) {
                 tia[k] = k;
             }
             tir.SetTabIdArray(tia);
@@ -931,8 +881,7 @@ namespace Npoi.Core.HSSF.Model
          * @return number of BoundSheet records
          */
 
-        public int NumSheets
-        {
+        public int NumSheets {
             get
             {
                 //if (log.Check(POILogger.DEBUG))
@@ -947,8 +896,7 @@ namespace Npoi.Core.HSSF.Model
          * @return int count of ExtendedFormat records
          */
 
-        public int NumExFormats
-        {
+        public int NumExFormats {
             get
             {
                 //if (log.Check(POILogger.DEBUG))
@@ -956,20 +904,18 @@ namespace Npoi.Core.HSSF.Model
                 return numxfs;
             }
         }
+
         /**
  * Retrieves the index of the given font
  */
-        public int GetFontIndex(FontRecord font)
-        {
-            for (int i = 0; i <= numfonts; i++)
-            {
+
+        public int GetFontIndex(FontRecord font) {
+            for (int i = 0; i <= numfonts; i++) {
                 FontRecord thisFont =
                     (FontRecord)records[(records.Fontpos - (numfonts - 1)) + i];
-                if (thisFont == font)
-                {
+                if (thisFont == font) {
                     // There is no 4!
-                    if (i > 3)
-                    {
+                    if (i > 3) {
                         return (i + 1);
                     }
                     return i;
@@ -977,38 +923,35 @@ namespace Npoi.Core.HSSF.Model
             }
             throw new ArgumentException("Could not find that font!");
         }
+
         /**
  * Returns the StyleRecord for the given
  *  xfIndex, or null if that ExtendedFormat doesn't
  *  have a Style set.
  */
-        public StyleRecord GetStyleRecord(int xfIndex)
-        {
-            // Style records always follow after 
+
+        public StyleRecord GetStyleRecord(int xfIndex) {
+            // Style records always follow after
             //  the ExtendedFormat records
             bool done = false;
             for (int i = records.Xfpos; i < records.Count &&
-                    !done; i++)
-            {
+                    !done; i++) {
                 Record r = records[i];
-                if (r is ExtendedFormatRecord)
-                {
+                if (r is ExtendedFormatRecord) {
                 }
-                else if (r is StyleRecord)
-                {
+                else if (r is StyleRecord) {
                     StyleRecord sr = (StyleRecord)r;
-                    if (sr.XFIndex == xfIndex)
-                    {
+                    if (sr.XFIndex == xfIndex) {
                         return sr;
                     }
                 }
-                else
-                {
+                else {
                     done = true;
                 }
             }
             return null;
         }
+
         /**
          * Gets the ExtendedFormatRecord at the given 0-based index
          *
@@ -1016,8 +959,7 @@ namespace Npoi.Core.HSSF.Model
          * @return ExtendedFormatRecord at the given index
          */
 
-        public ExtendedFormatRecord GetExFormatAt(int index)
-        {
+        public ExtendedFormatRecord GetExFormatAt(int index) {
             int xfptr = records.Xfpos - (numxfs - 1);
 
             xfptr += index;
@@ -1034,11 +976,10 @@ namespace Npoi.Core.HSSF.Model
          * @return ExtendedFormatRecord that was Created
          */
 
-        public ExtendedFormatRecord CreateCellXF()
-        {
+        public ExtendedFormatRecord CreateCellXF() {
             ExtendedFormatRecord xf = CreateExtendedFormat();
             records.Add(records.Xfpos + 1, xf);
-            records.Xfpos=records.Xfpos + 1;
+            records.Xfpos = records.Xfpos + 1;
             numxfs++;
             return xf;
         }
@@ -1053,12 +994,10 @@ namespace Npoi.Core.HSSF.Model
          * @return index of the string within the SSTRecord
          */
 
-        public int AddSSTString(UnicodeString str)
-        {
+        public int AddSSTString(UnicodeString str) {
             //if (log.Check(POILogger.DEBUG))
             //    log.Log(DEBUG, "Insert to sst string='", str);
-            if (sst == null)
-            {
+            if (sst == null) {
                 InsertSST();
             }
             return sst.AddString(str);
@@ -1069,17 +1008,15 @@ namespace Npoi.Core.HSSF.Model
          * @return String containing the SST String
          */
 
-        public UnicodeString GetSSTString(int str)
-        {
-            if (sst == null)
-            {
+        public UnicodeString GetSSTString(int str) {
+            if (sst == null) {
                 InsertSST();
             }
             UnicodeString retval = sst.GetString(str);
 
             //if (log.Check(POILogger.DEBUG))
             //    log.Log(DEBUG, "Returning SST for index=", str,
-                    //" String= ", retval);
+            //" String= ", retval);
             return retval;
         }
 
@@ -1090,12 +1027,11 @@ namespace Npoi.Core.HSSF.Model
          * @see org.apache.poi.hssf.record.SSTRecord
          */
 
-        public void InsertSST()
-        {
+        public void InsertSST() {
             //if (log.Check(POILogger.DEBUG))
             //    log.Log(DEBUG, "creating new SST via InsertSST!");
             sst = new SSTRecord();
-            records.Add(records.Count- 1, CreateExtendedSST());
+            records.Add(records.Count - 1, CreateExtendedSST());
             records.Add(records.Count - 2, sst);
         }
 
@@ -1134,8 +1070,7 @@ namespace Npoi.Core.HSSF.Model
          * @param data array of bytes to Write this to
          */
 
-        public int Serialize(int offset, byte[] data)
-        {
+        public int Serialize(int offset, byte[] data) {
             //if (log.Check(POILogger.DEBUG))
             //    log.Log(DEBUG, "Serializing Workbook with offsets");
 
@@ -1144,37 +1079,28 @@ namespace Npoi.Core.HSSF.Model
             SSTRecord sst = null;
             int sstPos = 0;
             bool wroteBoundSheets = false;
-            for (int k = 0; k < records.Count; k++)
-            {
-
+            for (int k = 0; k < records.Count; k++) {
                 Record record = records[k];
                 // Let's skip RECALCID records, as they are only use for optimization
-                if (record.Sid != RecalcIdRecord.sid || ((RecalcIdRecord)record).IsNeeded)
-                {
+                if (record.Sid != RecalcIdRecord.sid || ((RecalcIdRecord)record).IsNeeded) {
                     int len = 0;
-                    if (record is SSTRecord)
-                    {
+                    if (record is SSTRecord) {
                         sst = (SSTRecord)record;
                         sstPos = pos;
                     }
-                    if (record.Sid == ExtSSTRecord.sid && sst != null)
-                    {
+                    if (record.Sid == ExtSSTRecord.sid && sst != null) {
                         record = sst.CreateExtSSTRecord(sstPos + offset);
                     }
-                    if (record is BoundSheetRecord)
-                    {
-                        if (!wroteBoundSheets)
-                        {
-                            for (int i = 0; i < boundsheets.Count; i++)
-                            {
+                    if (record is BoundSheetRecord) {
+                        if (!wroteBoundSheets) {
+                            for (int i = 0; i < boundsheets.Count; i++) {
                                 len += ((BoundSheetRecord)boundsheets[i])
                                                  .Serialize(pos + offset + len, data);
                             }
                             wroteBoundSheets = true;
                         }
                     }
-                    else
-                    {
+                    else {
                         len = record.Serialize(pos + offset, data);
                     }
                     /////  DEBUG BEGIN /////
@@ -1188,37 +1114,34 @@ namespace Npoi.Core.HSSF.Model
             //    log.Log(DEBUG, "Exiting Serialize workbook");
             return pos;
         }
+
         /**
          * Perform any work necessary before the workbook is about to be serialized.
          *
          * Include in it ant code that modifies the workbook record stream and affects its size.
          */
-        public void PreSerialize()
-        {
+
+        public void PreSerialize() {
             // Ensure we have enough tab IDs
             // Can be a few short if new sheets were added
-            if (records.Tabpos > 0)
-            {
+            if (records.Tabpos > 0) {
                 TabIdRecord tir = (TabIdRecord)records[(records.Tabpos)];
-                if (tir._tabids.Length < boundsheets.Count)
-                {
+                if (tir._tabids.Length < boundsheets.Count) {
                     FixTabIdRecord();
                 }
             }
         }
-        public int Size
-        {
+
+        public int Size {
             get
             {
                 int retval = 0;
 
                 SSTRecord sst = null;
-                for (int k = 0; k < records.Count; k++)
-                {
+                for (int k = 0; k < records.Count; k++) {
                     Record record = records[k];
                     // Let's skip RECALCID records, as they are only use for optimization
-                    if (record.Sid != RecalcIdRecord.sid || ((RecalcIdRecord)record).IsNeeded)
-                    {
+                    if (record.Sid != RecalcIdRecord.sid || ((RecalcIdRecord)record).IsNeeded) {
                         if (record is SSTRecord)
                             sst = (SSTRecord)record;
                         if (record.Sid == ExtSSTRecord.sid && sst != null)
@@ -1238,18 +1161,17 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a BOFRecord
          */
 
-        private static Record CreateBOF()
-        {
+        private static Record CreateBOF() {
             BOFRecord retval = new BOFRecord();
 
-            retval.Version=(short)0x600;
+            retval.Version = (short)0x600;
             retval.Type = BOFRecordType.Workbook;
-            retval.Build=(short)0x10d3;
+            retval.Build = (short)0x10d3;
 
             //        retval.Build=(short)0x0dbb;
-            retval.BuildYear=(short)1996;
-            retval.HistoryBitMask=0x41;   // was c1 before verify
-            retval.RequiredVersion=0x6;
+            retval.BuildYear = (short)1996;
+            retval.HistoryBitMask = 0x41;   // was c1 before verify
+            retval.RequiredVersion = 0x6;
             return retval;
         }
 
@@ -1259,9 +1181,9 @@ namespace Npoi.Core.HSSF.Model
          * @see org.apache.poi.hssf.record.Record
          * @return record containing a InterfaceHdrRecord
          */
+
         [Obsolete]
-        protected Record CreateInterfaceHdr()
-        {
+        protected Record CreateInterfaceHdr() {
             //InterfaceHdrRecord retval = new InterfaceHdrRecord(CODEPAGE);
 
             //retval.Codepage=CODEPAGE;
@@ -1276,12 +1198,11 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a MMSRecord
          */
 
-        private static Record CreateMMS()
-        {
+        private static Record CreateMMS() {
             MMSRecord retval = new MMSRecord();
 
-            retval.AddMenuCount=((byte)0);
-            retval.DelMenuCount=((byte)0);
+            retval.AddMenuCount = ((byte)0);
+            retval.DelMenuCount = ((byte)0);
             return retval;
         }
 
@@ -1291,9 +1212,9 @@ namespace Npoi.Core.HSSF.Model
          * @see org.apache.poi.hssf.record.Record
          * @return record containing a InterfaceEndRecord
          */
+
         [Obsolete]
-        protected Record CreateInterfaceEnd()
-        {
+        protected Record CreateInterfaceEnd() {
             //return new InterfaceEndRecord();
             return null;
         }
@@ -1305,20 +1226,17 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a WriteAccessRecord
          */
 
-        private static Record CreateWriteAccess()
-        {
+        private static Record CreateWriteAccess() {
             WriteAccessRecord retval = new WriteAccessRecord();
             String defaultUserName = "NPOI";
-            try
-            {
-	            String username = "";//(Environment.UserName);
+            try {
+                String username = "";//(Environment.UserName);
                 // Google App engine returns null for user.name, see Bug 53974
                 if (string.IsNullOrEmpty(username)) username = defaultUserName;
 
                 retval.Username = (username);
             }
-            catch (SecurityException)
-            {
+            catch (SecurityException) {
                 // AccessControlException can occur in a restricted context
                 // (client applet/jws application or restricted security server)
                 retval.Username = (defaultUserName);
@@ -1333,11 +1251,10 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a CodepageRecord
          */
 
-        private static Record CreateCodepage()
-        {
+        private static Record CreateCodepage() {
             CodepageRecord retval = new CodepageRecord();
 
-            retval.Codepage=(CODEPAGE);
+            retval.Codepage = (CODEPAGE);
             return retval;
         }
 
@@ -1348,8 +1265,7 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a DSFRecord
          */
 
-        private static Record CreateDSF()
-        {
+        private static Record CreateDSF() {
             return new DSFRecord(false); // we don't even support double stream files
         }
 
@@ -1361,8 +1277,7 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a TabIdRecord
          */
 
-        private static Record CreateTabId()
-        {
+        private static Record CreateTabId() {
             TabIdRecord retval = new TabIdRecord();
             short[] tabidarray = {
             0
@@ -1379,11 +1294,10 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a FnGroupCountRecord
          */
 
-        private static Record CreateFnGroupCount()
-        {
+        private static Record CreateFnGroupCount() {
             FnGroupCountRecord retval = new FnGroupCountRecord();
 
-            retval.Count=(short)14;
+            retval.Count = (short)14;
             return retval;
         }
 
@@ -1394,8 +1308,7 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a WindowProtectRecord
          */
 
-        private static Record CreateWindowProtect()
-        {
+        private static Record CreateWindowProtect() {
             // by default even when we support it we won't
             // want it to be protected
             return new WindowProtectRecord(false);
@@ -1408,8 +1321,7 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a ProtectRecord
          */
 
-        private static ProtectRecord CreateProtect()
-        {
+        private static ProtectRecord CreateProtect() {
             return new ProtectRecord(false);
         }
 
@@ -1420,8 +1332,7 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a PasswordRecord
          */
 
-        private static Record CreatePassword()
-        {
+        private static Record CreatePassword() {
             return new PasswordRecord(0x0000); // no password by default!
         }
 
@@ -1432,8 +1343,7 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a ProtectionRev4Record
          */
 
-        private static ProtectionRev4Record CreateProtectionRev4()
-        {
+        private static ProtectionRev4Record CreateProtectionRev4() {
             return new ProtectionRev4Record(false);
         }
 
@@ -1444,40 +1354,38 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a PasswordRev4Record
          */
 
-        private static Record CreatePasswordRev4()
-        {
+        private static Record CreatePasswordRev4() {
             return new PasswordRev4Record(0x0000);
         }
 
         /**
-         * Creates the WindowOne record with the following magic values: 
-         * horizontal hold - 0x168 
-         * vertical hold   - 0x10e 
-         * width           - 0x3a5c 
-         * height          - 0x23be 
-         * options         - 0x38 
-         * selected tab    - 0 
-         * Displayed tab   - 0 
-         * num selected tab- 0 
-         * tab width ratio - 0x258 
+         * Creates the WindowOne record with the following magic values:
+         * horizontal hold - 0x168
+         * vertical hold   - 0x10e
+         * width           - 0x3a5c
+         * height          - 0x23be
+         * options         - 0x38
+         * selected tab    - 0
+         * Displayed tab   - 0
+         * num selected tab- 0
+         * tab width ratio - 0x258
          * @see org.apache.poi.hssf.record.WindowOneRecord
          * @see org.apache.poi.hssf.record.Record
          * @return record containing a WindowOneRecord
          */
 
-        private static Record CreateWindowOne()
-        {
+        private static Record CreateWindowOne() {
             WindowOneRecord retval = new WindowOneRecord();
 
-            retval.HorizontalHold=(short)0x168;
-            retval.VerticalHold=(short)0x10e;
-            retval.Width=(short)0x3a5c;
-            retval.Height=(short)0x23be;
-            retval.Options=(short)0x38;
-            retval.ActiveSheetIndex=(short)0x0;
+            retval.HorizontalHold = (short)0x168;
+            retval.VerticalHold = (short)0x10e;
+            retval.Width = (short)0x3a5c;
+            retval.Height = (short)0x23be;
+            retval.Options = (short)0x38;
+            retval.ActiveSheetIndex = (short)0x0;
             retval.FirstVisibleTab = (short)0x0;
-            retval.NumSelectedTabs=(short)1;
-            retval.TabWidthRatio=(short)0x258;
+            retval.NumSelectedTabs = (short)1;
+            retval.TabWidthRatio = (short)0x258;
             return retval;
         }
 
@@ -1488,11 +1396,10 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a BackupRecord
          */
 
-        private static Record CreateBackup()
-        {
+        private static Record CreateBackup() {
             BackupRecord retval = new BackupRecord();
 
-            retval.Backup=(short)0;   // by default DONT save backups of files...just loose data
+            retval.Backup = (short)0;   // by default DONT save backups of files...just loose data
             return retval;
         }
 
@@ -1503,8 +1410,7 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a HideObjRecord
          */
 
-        private static Record CreateHideObj()
-        {
+        private static Record CreateHideObj() {
             HideObjRecord retval = new HideObjRecord();
 
             retval.SetHideObj((short)0);   // by default Set hide object off
@@ -1518,11 +1424,10 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a DateWindow1904Record
          */
 
-        private static Record CreateDateWindow1904()
-        {
+        private static Record CreateDateWindow1904() {
             DateWindow1904Record retval = new DateWindow1904Record();
 
-            retval.Windowing=((short)0);   // don't EVER use 1904 date windowing...tick tock..
+            retval.Windowing = ((short)0);   // don't EVER use 1904 date windowing...tick tock..
             return retval;
         }
 
@@ -1533,11 +1438,10 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a PrecisionRecord
          */
 
-        private static Record CreatePrecision()
-        {
+        private static Record CreatePrecision() {
             PrecisionRecord retval = new PrecisionRecord();
 
-            retval.FullPrecision=(true);   // always use real numbers in calculations!
+            retval.FullPrecision = (true);   // always use real numbers in calculations!
             return retval;
         }
 
@@ -1548,8 +1452,7 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a RefreshAllRecord
          */
 
-        private static Record CreateRefreshAll()
-        {
+        private static Record CreateRefreshAll() {
             return new RefreshAllRecord(false);
         }
 
@@ -1560,37 +1463,35 @@ namespace Npoi.Core.HSSF.Model
          * @return record containing a BookBoolRecord
          */
 
-        private static Record CreateBookBool()
-        {
+        private static Record CreateBookBool() {
             BookBoolRecord retval = new BookBoolRecord();
 
-            retval.SaveLinkValues=(short)0;
+            retval.SaveLinkValues = (short)0;
             return retval;
         }
 
         /**
-         * Creates a Font record with the following magic values: 
+         * Creates a Font record with the following magic values:
          * fontheight           = 0xc8
          * attributes           = 0x0
          * color palette index  = 0x7fff
          * bold weight          = 0x190
-         * Font Name Length     = 5 
-         * Font Name            = Arial 
+         * Font Name Length     = 5
+         * Font Name            = Arial
          *
          * @see org.apache.poi.hssf.record.FontRecord
          * @see org.apache.poi.hssf.record.Record
          * @return record containing a FontRecord
          */
 
-        private static Record CreateFont()
-        {
+        private static Record CreateFont() {
             FontRecord retval = new FontRecord();
 
-            retval.FontHeight=(short)0xc8;
-            retval.Attributes=(short)0x0;
-            retval.ColorPaletteIndex=(short)0x7fff;
-            retval.BoldWeight=(short)0x190;
-            retval.FontName="Arial";
+            retval.FontHeight = (short)0xc8;
+            retval.Attributes = (short)0x0;
+            retval.ColorPaletteIndex = (short)0x7fff;
+            retval.BoldWeight = (short)0x190;
+            retval.FontName = "Arial";
             return retval;
         }
 
@@ -1602,14 +1503,13 @@ namespace Npoi.Core.HSSF.Model
         // * @see org.apache.poi.hssf.record.FormatRecord
         // * @see org.apache.poi.hssf.record.Record
         // */
-        
+
         //protected Record CreateFormat(int id)
         //{   // we'll need multiple editions for
         //    FormatRecord retval = new FormatRecord();   // the differnt formats
 
         //    switch (id)
         //    {
-
         //        case 0:
         //            retval.SetIndexCode((short)5);
         //            retval.SetFormatStringLength((byte)0x17);
@@ -1676,326 +1576,323 @@ namespace Npoi.Core.HSSF.Model
          * @see org.apache.poi.hssf.record.Record
          */
 
-        private static Record CreateExtendedFormat(int id)
-        {   // we'll need multiple editions
+        private static Record CreateExtendedFormat(int id) {   // we'll need multiple editions
             ExtendedFormatRecord retval = new ExtendedFormatRecord();
 
-            switch (id)
-            {
-
+            switch (id) {
                 case 0:
-                    retval.FontIndex=(short)0;
-                    retval.FormatIndex=(short)0;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=(short)0;
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)0;
+                    retval.FormatIndex = (short)0;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = (short)0;
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 1:
-                    retval.FontIndex=(short)1;
-                    retval.FormatIndex=(short)0;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff400);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)1;
+                    retval.FormatIndex = (short)0;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff400);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 2:
-                    retval.FontIndex=(short)1;
-                    retval.FormatIndex=(short)0;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff400);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)1;
+                    retval.FormatIndex = (short)0;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff400);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 3:
-                    retval.FontIndex=(short)2;
-                    retval.FormatIndex=(short)0;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff400);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)2;
+                    retval.FormatIndex = (short)0;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff400);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 4:
-                    retval.FontIndex=(short)2;
-                    retval.FormatIndex=(short)0;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff400);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)2;
+                    retval.FormatIndex = (short)0;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff400);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 5:
-                    retval.FontIndex=(short)0;
-                    retval.FormatIndex=(short)0;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff400);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)0;
+                    retval.FormatIndex = (short)0;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff400);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 6:
-                    retval.FontIndex=(short)0;
-                    retval.FormatIndex=(short)0;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff400);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)0;
+                    retval.FormatIndex = (short)0;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff400);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 7:
-                    retval.FontIndex=(short)0;
-                    retval.FormatIndex=(short)0;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff400);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)0;
+                    retval.FormatIndex = (short)0;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff400);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 8:
-                    retval.FontIndex=(short)0;
-                    retval.FormatIndex=(short)0;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff400);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)0;
+                    retval.FormatIndex = (short)0;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff400);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 9:
-                    retval.FontIndex=(short)0;
-                    retval.FormatIndex=(short)0;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff400);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)0;
+                    retval.FormatIndex = (short)0;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff400);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 10:
-                    retval.FontIndex=(short)0;
-                    retval.FormatIndex=(short)0;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff400);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)0;
+                    retval.FormatIndex = (short)0;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff400);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 11:
-                    retval.FontIndex=(short)0;
-                    retval.FormatIndex=(short)0;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff400);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)0;
+                    retval.FormatIndex = (short)0;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff400);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 12:
-                    retval.FontIndex=(short)0;
-                    retval.FormatIndex=(short)0;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff400);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)0;
+                    retval.FormatIndex = (short)0;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff400);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 13:
-                    retval.FontIndex=(short)0;
-                    retval.FormatIndex=(short)0;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff400);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)0;
+                    retval.FormatIndex = (short)0;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff400);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 14:
-                    retval.FontIndex=(short)0;
-                    retval.FormatIndex=(short)0;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff400);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)0;
+                    retval.FormatIndex = (short)0;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff400);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 // cell records
                 case 15:
-                    retval.FontIndex=(short)0;
-                    retval.FormatIndex=(short)0;
-                    retval.CellOptions=(short)0x1;
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=(short)0x0;
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)0;
+                    retval.FormatIndex = (short)0;
+                    retval.CellOptions = (short)0x1;
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = (short)0x0;
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 // style
                 case 16:
-                    retval.FontIndex=(short)1;
-                    retval.FormatIndex=(short)0x2b;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff800);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)1;
+                    retval.FormatIndex = (short)0x2b;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff800);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 17:
-                    retval.FontIndex=(short)1;
-                    retval.FormatIndex=(short)0x29;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff800);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)1;
+                    retval.FormatIndex = (short)0x29;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff800);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 18:
-                    retval.FontIndex=(short)1;
-                    retval.FormatIndex=(short)0x2c;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff800);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)1;
+                    retval.FormatIndex = (short)0x2c;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff800);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 19:
-                    retval.FontIndex=(short)1;
-                    retval.FormatIndex=(short)0x2a;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff800);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)1;
+                    retval.FormatIndex = (short)0x2a;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff800);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 20:
-                    retval.FontIndex=(short)1;
-                    retval.FormatIndex=(short)0x9;
-                    retval.CellOptions=unchecked((short)0xfffffff5);
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=unchecked((short)0xfffff800);
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)1;
+                    retval.FormatIndex = (short)0x9;
+                    retval.CellOptions = unchecked((short)0xfffffff5);
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = unchecked((short)0xfffff800);
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 // Unused from this point down
                 case 21:
-                    retval.FontIndex=(short)5;
-                    retval.FormatIndex=(short)0x0;
-                    retval.CellOptions=(short)0x1;
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=(short)0x800;
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)5;
+                    retval.FormatIndex = (short)0x0;
+                    retval.CellOptions = (short)0x1;
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = (short)0x800;
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 22:
-                    retval.FontIndex=(short)6;
-                    retval.FormatIndex=(short)0x0;
-                    retval.CellOptions=(short)0x1;
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=(short)0x5c00;
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)6;
+                    retval.FormatIndex = (short)0x0;
+                    retval.CellOptions = (short)0x1;
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = (short)0x5c00;
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 23:
-                    retval.FontIndex=(short)0;
-                    retval.FormatIndex=(short)0x31;
-                    retval.CellOptions=(short)0x1;
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=(short)0x5c00;
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)0;
+                    retval.FormatIndex = (short)0x31;
+                    retval.CellOptions = (short)0x1;
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = (short)0x5c00;
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 24:
-                    retval.FontIndex=(short)0;
-                    retval.FormatIndex=(short)0x8;
-                    retval.CellOptions=(short)0x1;
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=(short)0x5c00;
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)0;
+                    retval.FormatIndex = (short)0x8;
+                    retval.CellOptions = (short)0x1;
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = (short)0x5c00;
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
 
                 case 25:
-                    retval.FontIndex=(short)6;
-                    retval.FormatIndex=(short)0x8;
-                    retval.CellOptions=(short)0x1;
-                    retval.AlignmentOptions=(short)0x20;
-                    retval.IndentionOptions=(short)0x5c00;
-                    retval.BorderOptions=(short)0;
-                    retval.PaletteOptions=(short)0;
-                    retval.AdtlPaletteOptions=(short)0;
-                    retval.FillPaletteOptions=(short)0x20c0;
+                    retval.FontIndex = (short)6;
+                    retval.FormatIndex = (short)0x8;
+                    retval.CellOptions = (short)0x1;
+                    retval.AlignmentOptions = (short)0x20;
+                    retval.IndentionOptions = (short)0x5c00;
+                    retval.BorderOptions = (short)0;
+                    retval.PaletteOptions = (short)0;
+                    retval.AdtlPaletteOptions = (short)0;
+                    retval.FillPaletteOptions = (short)0x20c0;
                     break;
             }
             return retval;
@@ -2006,23 +1903,22 @@ namespace Npoi.Core.HSSF.Model
          * @return ExtendedFormatRecord with intial defaults (cell-type)
          */
 
-        private static ExtendedFormatRecord CreateExtendedFormat()
-        {
+        private static ExtendedFormatRecord CreateExtendedFormat() {
             ExtendedFormatRecord retval = new ExtendedFormatRecord();
 
-            retval.FontIndex=(short)0;
-            retval.FormatIndex=(short)0x0;
-            retval.CellOptions=(short)0x1;
-            retval.AlignmentOptions=(short)0x20;
-            retval.IndentionOptions=(short)0;
-            retval.BorderOptions=(short)0;
-            retval.PaletteOptions=(short)0;
-            retval.AdtlPaletteOptions=(short)0;
-            retval.FillPaletteOptions=(short)0x20c0;
-            retval.TopBorderPaletteIdx=HSSFColor.Black.Index;
-            retval.BottomBorderPaletteIdx=HSSFColor.Black.Index;
-            retval.LeftBorderPaletteIdx=HSSFColor.Black.Index;
-            retval.RightBorderPaletteIdx=HSSFColor.Black.Index;
+            retval.FontIndex = (short)0;
+            retval.FormatIndex = (short)0x0;
+            retval.CellOptions = (short)0x1;
+            retval.AlignmentOptions = (short)0x20;
+            retval.IndentionOptions = (short)0;
+            retval.BorderOptions = (short)0;
+            retval.PaletteOptions = (short)0;
+            retval.AdtlPaletteOptions = (short)0;
+            retval.FillPaletteOptions = (short)0x20c0;
+            retval.TopBorderPaletteIdx = HSSFColor.Black.Index;
+            retval.BottomBorderPaletteIdx = HSSFColor.Black.Index;
+            retval.LeftBorderPaletteIdx = HSSFColor.Black.Index;
+            retval.RightBorderPaletteIdx = HSSFColor.Black.Index;
             return retval;
         }
 
@@ -2031,31 +1927,34 @@ namespace Npoi.Core.HSSF.Model
      *  Format index, and adds it onto the end of the
      *  records collection
      */
+
         public StyleRecord CreateStyleRecord(int xfIndex) {
-            // Style records always follow after 
+            // Style records always follow after
             //  the ExtendedFormat records
             StyleRecord newSR = new StyleRecord();
             newSR.XFIndex = (short)xfIndex;
-            
+
             // Find the spot
             int addAt = -1;
-            for(int i=records.Xfpos; i<records.Count &&
+            for (int i = records.Xfpos; i < records.Count &&
                     addAt == -1; i++) {
                 Record r = records[i];
-                if(r is ExtendedFormatRecord ||
+                if (r is ExtendedFormatRecord ||
                         r is StyleRecord) {
                     // Keep going
-                } else {
+                }
+                else {
                     addAt = i;
                 }
             }
-            if(addAt == -1) {
+            if (addAt == -1) {
                 throw new InvalidOperationException("No XF Records found!");
             }
             records.Add(addAt, newSR);
-            
+
             return newSR;
-      }
+        }
+
         /**
          * Creates a StyleRecord object
          * @param id        the number of the style record to Create (meaning its position in
@@ -2065,47 +1964,44 @@ namespace Npoi.Core.HSSF.Model
          * @see org.apache.poi.hssf.record.Record
          */
 
-        private static Record CreateStyle(int id)
-        {   // we'll need multiple editions
+        private static Record CreateStyle(int id) {   // we'll need multiple editions
             StyleRecord retval = new StyleRecord();
 
-            switch (id)
-            {
-
+            switch (id) {
                 case 0:
                     retval.XFIndex = (unchecked((short)0xffff8010));
                     retval.SetBuiltinStyle(3);
-                    retval.OutlineStyleLevel= (unchecked((byte)0xffffffff));
+                    retval.OutlineStyleLevel = (unchecked((byte)0xffffffff));
                     break;
 
                 case 1:
                     retval.XFIndex = (unchecked((short)0xffff8011));
                     retval.SetBuiltinStyle(6);
-                    retval.OutlineStyleLevel= (unchecked((byte)0xffffffff));
+                    retval.OutlineStyleLevel = (unchecked((byte)0xffffffff));
                     break;
 
                 case 2:
                     retval.XFIndex = (unchecked((short)0xffff8012));
                     retval.SetBuiltinStyle(4);
-                    retval.OutlineStyleLevel= (unchecked((byte)0xffffffff));
+                    retval.OutlineStyleLevel = (unchecked((byte)0xffffffff));
                     break;
 
                 case 3:
                     retval.XFIndex = (unchecked((short)0xffff8013));
                     retval.SetBuiltinStyle(7);
-                    retval.OutlineStyleLevel= (unchecked((byte)0xffffffff));
+                    retval.OutlineStyleLevel = (unchecked((byte)0xffffffff));
                     break;
 
                 case 4:
                     retval.XFIndex = (unchecked((short)0xffff8000));
                     retval.SetBuiltinStyle(0);
-                    retval.OutlineStyleLevel= (unchecked((byte)0xffffffff));
+                    retval.OutlineStyleLevel = (unchecked((byte)0xffffffff));
                     break;
 
                 case 5:
                     retval.XFIndex = (unchecked((short)0xffff8014));
                     retval.SetBuiltinStyle(5);
-                    retval.OutlineStyleLevel= (unchecked((byte)0xffffffff));
+                    retval.OutlineStyleLevel = (unchecked((byte)0xffffffff));
                     break;
             }
             return retval;
@@ -2116,8 +2012,8 @@ namespace Npoi.Core.HSSF.Model
          * @return a PaletteRecord instance populated with the default colors
          * @see org.apache.poi.hssf.record.PaletteRecord
          */
-        private static PaletteRecord CreatePalette()
-        {
+
+        private static PaletteRecord CreatePalette() {
             return new PaletteRecord();
         }
 
@@ -2128,8 +2024,7 @@ namespace Npoi.Core.HSSF.Model
          * @see org.apache.poi.hssf.record.Record
          */
 
-        private static UseSelFSRecord CreateUseSelFS()
-        {
+        private static UseSelFSRecord CreateUseSelFS() {
             return new UseSelFSRecord(false);
         }
 
@@ -2142,8 +2037,7 @@ namespace Npoi.Core.HSSF.Model
          * @see org.apache.poi.hssf.record.Record
          */
 
-        private static Record CreateBoundSheet(int id)
-        {   
+        private static Record CreateBoundSheet(int id) {
             return new BoundSheetRecord("Sheet" + (id + 1));
         }
 
@@ -2155,11 +2049,10 @@ namespace Npoi.Core.HSSF.Model
          * @see org.apache.poi.hssf.record.Record
          */
 
-        private static Record CreateCountry()
-        {   // what a novel idea, Create your own!
+        private static Record CreateCountry() {   // what a novel idea, Create your own!
             CountryRecord retval = new CountryRecord();
 
-            retval.DefaultCountry=((short)1);
+            retval.DefaultCountry = ((short)1);
 
             // from Russia with love ;)
             //if (System.Threading.CurrentThread.CurrentCulture.Name.Equals("ru_RU"))
@@ -2168,7 +2061,7 @@ namespace Npoi.Core.HSSF.Model
             //}
             //else
             //{
-                retval.CurrentCountry=((short)1);
+            retval.CurrentCountry = ((short)1);
             //}
 
             return retval;
@@ -2184,11 +2077,10 @@ namespace Npoi.Core.HSSF.Model
          * @see org.apache.poi.hssf.record.Record
          */
 
-        private static Record CreateExtendedSST()
-        {
+        private static Record CreateExtendedSST() {
             ExtSSTRecord retval = new ExtSSTRecord();
 
-            retval.NumStringsPerBucket=((short)0x8);
+            retval.NumStringsPerBucket = ((short)0x8);
             return retval;
         }
 
@@ -2196,84 +2088,74 @@ namespace Npoi.Core.HSSF.Model
          * lazy initialization
          * Note - creating the link table causes creation of 1 EXTERNALBOOK and 1 EXTERNALSHEET record
          */
-        private LinkTable OrCreateLinkTable
-        {
+
+        private LinkTable OrCreateLinkTable {
             get
             {
                 return GetOrCreateLinkTable();
             }
         }
 
-        private LinkTable GetOrCreateLinkTable()
-        {
-            if (linkTable == null)
-            {
+        private LinkTable GetOrCreateLinkTable() {
+            if (linkTable == null) {
                 linkTable = new LinkTable((short)NumSheets, records);
             }
             return linkTable;
         }
 
-        public int LinkExternalWorkbook(String name, IWorkbook externalWorkbook)
-        {
+        public int LinkExternalWorkbook(String name, IWorkbook externalWorkbook) {
             return GetOrCreateLinkTable().LinkExternalWorkbook(name, externalWorkbook);
         }
 
-        /** 
+        /**
          * Finds the first sheet name by his extern sheet index
          * @param externSheetIndex extern sheet index
          * @return first sheet name.
          */
-        public String FindSheetFirstNameFromExternSheet(int externSheetIndex)
-        {
+
+        public String FindSheetFirstNameFromExternSheet(int externSheetIndex) {
             int indexToSheet = linkTable.GetFirstInternalSheetIndexForExtIndex(externSheetIndex);
             return FindSheetNameFromIndex(indexToSheet);
         }
-        public String FindSheetLastNameFromExternSheet(int externSheetIndex)
-        {
+
+        public String FindSheetLastNameFromExternSheet(int externSheetIndex) {
             int indexToSheet = linkTable.GetLastInternalSheetIndexForExtIndex(externSheetIndex);
             return FindSheetNameFromIndex(indexToSheet);
         }
-        private String FindSheetNameFromIndex(int internalSheetIndex)
-        {
-            if (internalSheetIndex < 0)
-            {
+
+        private String FindSheetNameFromIndex(int internalSheetIndex) {
+            if (internalSheetIndex < 0) {
                 // TODO - what does '-1' mean here?
                 //error Check, bail out gracefully!
                 return "";
             }
-            if (internalSheetIndex >= boundsheets.Count)
-            {
+            if (internalSheetIndex >= boundsheets.Count) {
                 // Not sure if this can ever happen (See bug 45798)
                 return ""; // Seems to be what excel would do in this case
             }
             return GetSheetName(internalSheetIndex);
         }
 
-        public ExternalSheet GetExternalSheet(int externSheetIndex)
-        {
+        public ExternalSheet GetExternalSheet(int externSheetIndex) {
             String[] extNames = linkTable.GetExternalBookAndSheetName(externSheetIndex);
-            if (extNames == null)
-            {
+            if (extNames == null) {
                 return null;
             }
-            if (extNames.Length == 2)
-            {
+            if (extNames.Length == 2) {
                 return new ExternalSheet(extNames[0], extNames[1]);
             }
-            else
-            {
+            else {
                 return new ExternalSheetRange(extNames[0], extNames[1], extNames[2]);
             }
         }
-
 
         /**
          * Finds the (first) sheet index for a particular external sheet number.
          * @param externSheetNumber     The external sheet number to convert
          * @return  The index to the sheet found.
          */
-        public int GetFirstSheetIndexFromExternSheetIndex(int externSheetNumber)
-        {
+
+        public int GetFirstSheetIndexFromExternSheetIndex(int externSheetNumber) {
             return linkTable.GetFirstInternalSheetIndexForExtIndex(externSheetNumber);
         }
 
@@ -2283,55 +2165,56 @@ namespace Npoi.Core.HSSF.Model
          * @param externSheetNumber     The external sheet number to convert
          * @return  The index to the sheet found.
          */
-        public int GetLastSheetIndexFromExternSheetIndex(int externSheetNumber)
-        {
+
+        public int GetLastSheetIndexFromExternSheetIndex(int externSheetNumber) {
             return linkTable.GetLastInternalSheetIndexForExtIndex(externSheetNumber);
         }
 
-        /** 
+        /**
          * Returns the extern sheet number for specific sheet number.
          * If this sheet doesn't exist in extern sheet, add it
          * @param sheetNumber local sheet number
          * @return index to extern sheet
          */
-        public int CheckExternSheet(int sheetNumber)
-        {
+
+        public int CheckExternSheet(int sheetNumber) {
             return OrCreateLinkTable.CheckExternSheet(sheetNumber);
         }
-        /** 
+
+        /**
          * Returns the extern sheet number for specific range of sheets.
          * If this sheet range doesn't exist in extern sheet, add it
          * @param firstSheetNumber first local sheet number
          * @param lastSheetNumber last local sheet number
          * @return index to extern sheet
          */
-        public short checkExternSheet(int firstSheetNumber, int lastSheetNumber)
-        {
+
+        public short checkExternSheet(int firstSheetNumber, int lastSheetNumber) {
             return (short)OrCreateLinkTable.CheckExternSheet(firstSheetNumber, lastSheetNumber);
         }
 
-        public int GetExternalSheetIndex(String workbookName, String sheetName)
-        {
+        public int GetExternalSheetIndex(String workbookName, String sheetName) {
             return OrCreateLinkTable.GetExternalSheetIndex(workbookName, sheetName, sheetName);
         }
-        public int GetExternalSheetIndex(String workbookName, String firstSheetName, String lastSheetName)
-        {
+
+        public int GetExternalSheetIndex(String workbookName, String firstSheetName, String lastSheetName) {
             return OrCreateLinkTable.GetExternalSheetIndex(workbookName, firstSheetName, lastSheetName);
         }
+
         /** Gets the total number of names
          * @return number of names
          */
-        public int NumNames
-        {
+
+        public int NumNames {
             get
             {
-                if (linkTable == null)
-                {
+                if (linkTable == null) {
                     return 0;
                 }
                 return linkTable.NumNames;
             }
         }
+
         /**
          *
          * @param name the  name of an external function, typically a name of a UDF
@@ -2339,47 +2222,45 @@ namespace Npoi.Core.HSSF.Model
          * @param udf  locator of user-defiend functions to resolve names of VBA and Add-In functions
          * @return the external name or null
          */
-        public NameXPtg GetNameXPtg(String name, int sheetRefIndex, UDFFinder udf)
-        {
+
+        public NameXPtg GetNameXPtg(String name, int sheetRefIndex, UDFFinder udf) {
             LinkTable lnk = OrCreateLinkTable;
             NameXPtg xptg = lnk.GetNameXPtg(name, sheetRefIndex);
 
-            if (xptg == null && udf.FindFunction(name) != null)
-            {
+            if (xptg == null && udf.FindFunction(name) != null) {
                 // the name was not found in the list of external names
                 // check if the Workbook's UDFFinder is aware about it and register the name if it is
                 xptg = lnk.AddNameXPtg(name);
             }
             return xptg;
         }
-        public NameXPtg GetNameXPtg(String name, UDFFinder udf)
-        {
+
+        public NameXPtg GetNameXPtg(String name, UDFFinder udf) {
             return GetNameXPtg(name, -1, udf);
         }
+
         /** Gets the name record
          * @param index name index
          * @return name record
          */
-        public NameRecord GetNameRecord(int index)
-        {
+
+        public NameRecord GetNameRecord(int index) {
             return linkTable.GetNameRecord(index);
         }
 
         /** Creates new name
          * @return new name record
          */
-        public NameRecord CreateName()
-        {
+
+        public NameRecord CreateName() {
             return AddName(new NameRecord());
         }
-
 
         /** Creates new name
          * @return new name record
          */
-        public NameRecord AddName(NameRecord name)
-        {
 
+        public NameRecord AddName(NameRecord name) {
             OrCreateLinkTable.AddName(name);
 
             return name;
@@ -2388,8 +2269,8 @@ namespace Npoi.Core.HSSF.Model
         /**Generates a NameRecord to represent a built-in region
          * @return a new NameRecord Unless the index is invalid
          */
-        public NameRecord CreateBuiltInName(byte builtInName, int index)
-        {
+
+        public NameRecord CreateBuiltInName(byte builtInName, int index) {
             if (index == -1 || index + 1 > short.MaxValue)
                 throw new ArgumentException("Index is not valid [" + index + "]");
 
@@ -2400,34 +2281,28 @@ namespace Npoi.Core.HSSF.Model
             return name;
         }
 
-
         /** Removes the name
          * @param namenum name index
          */
-        public void RemoveName(int namenum)
-        {
 
-            if (linkTable.NumNames > namenum)
-            {
+        public void RemoveName(int namenum) {
+            if (linkTable.NumNames > namenum) {
                 int idx = FindFirstRecordLocBySid(NameRecord.sid);
                 records.Remove(idx + namenum);
                 linkTable.RemoveName(namenum);
             }
-
         }
+
         private Dictionary<String, NameCommentRecord> commentRecords;
         /**
          * If a {@link NameCommentRecord} is added or the name it references
          *  is renamed, then this will update the lookup cache for it.
          */
-        public void UpdateNameCommentRecordCache(NameCommentRecord commentRecord)
-        {
-            if (commentRecords.ContainsValue(commentRecord))
-            {
-                foreach (KeyValuePair<string, NameCommentRecord> entry in commentRecords)
-                {
-                    if (entry.Value.Equals(commentRecord))
-                    {
+
+        public void UpdateNameCommentRecordCache(NameCommentRecord commentRecord) {
+            if (commentRecords.ContainsValue(commentRecord)) {
+                foreach (KeyValuePair<string, NameCommentRecord> entry in commentRecords) {
+                    if (entry.Value.Equals(commentRecord)) {
                         commentRecords.Remove(entry.Key);
                         break;
                     }
@@ -2435,26 +2310,24 @@ namespace Npoi.Core.HSSF.Model
             }
             commentRecords[commentRecord.NameText] = commentRecord;
         }
+
         /**
          * Returns a format index that matches the passed in format.  It does not tie into HSSFDataFormat.
          * @param format the format string
          * @param CreateIfNotFound Creates a new format if format not found
          * @return the format id of a format that matches or -1 if none found and CreateIfNotFound
          */
-        public short GetFormat(String format, bool CreateIfNotFound)
-        {
+
+        public short GetFormat(String format, bool CreateIfNotFound) {
             IEnumerator iterator;
-            for (iterator = formats.GetEnumerator(); iterator.MoveNext(); )
-            {
+            for (iterator = formats.GetEnumerator(); iterator.MoveNext();) {
                 FormatRecord r = (FormatRecord)iterator.Current;
-                if (r.FormatString.Equals(format))
-                {
+                if (r.FormatString.Equals(format)) {
                     return (short)r.IndexCode;
                 }
             }
 
-            if (CreateIfNotFound)
-            {
+            if (CreateIfNotFound) {
                 return (short)CreateFormat(format);
             }
 
@@ -2465,8 +2338,8 @@ namespace Npoi.Core.HSSF.Model
          * Returns the list of FormatRecords in the workbook.
          * @return List<object> of FormatRecords in the notebook
          */
-        public List<FormatRecord> Formats
-        {
+
+        public List<FormatRecord> Formats {
             get
             {
                 return formats;
@@ -2480,8 +2353,8 @@ namespace Npoi.Core.HSSF.Model
          * @see org.apache.poi.hssf.record.FormatRecord
          * @see org.apache.poi.hssf.record.Record
          */
-        public int CreateFormat(String formatString)
-        {
+
+        public int CreateFormat(String formatString) {
             //        ++xfpos;	//These are to Ensure that positions are updated properly
             //        ++palettepos;
             //        ++bspos;
@@ -2502,14 +2375,12 @@ namespace Npoi.Core.HSSF.Model
      * @param id    the number of the format record to create (meaning its position in
      *        a file as M$ Excel would create it.)
      */
-        private static FormatRecord CreateFormat(int id)
-        {
+
+        private static FormatRecord CreateFormat(int id) {
             // we'll need multiple editions for
             // the different formats
 
-
-            switch (id)
-            {
+            switch (id) {
                 case 0: return new FormatRecord(5, BuiltinFormats.GetBuiltinFormat(5));
                 case 1: return new FormatRecord(6, BuiltinFormats.GetBuiltinFormat(6));
                 case 2: return new FormatRecord(7, BuiltinFormats.GetBuiltinFormat(7));
@@ -2525,14 +2396,12 @@ namespace Npoi.Core.HSSF.Model
         /**
          * Returns the first occurance of a record matching a particular sid.
          */
-        public Record FindFirstRecordBySid(short sid)
-        {
-            for (IEnumerator iterator = records.GetEnumerator(); iterator.MoveNext(); )
-            {
+
+        public Record FindFirstRecordBySid(short sid) {
+            for (IEnumerator iterator = records.GetEnumerator(); iterator.MoveNext();) {
                 Record record = (Record)iterator.Current;
 
-                if (record.Sid == sid)
-                {
+                if (record.Sid == sid) {
                     return record;
                 }
             }
@@ -2544,15 +2413,13 @@ namespace Npoi.Core.HSSF.Model
          * @param sid   The sid of the record to match
          * @return      The index of -1 if no match made.
          */
-        public int FindFirstRecordLocBySid(short sid)
-        {
+
+        public int FindFirstRecordLocBySid(short sid) {
             int index = 0;
-            for (IEnumerator iterator = records.GetEnumerator(); iterator.MoveNext(); )
-            {
+            for (IEnumerator iterator = records.GetEnumerator(); iterator.MoveNext();) {
                 Record record = (Record)iterator.Current;
 
-                if (record.Sid == sid)
-                {
+                if (record.Sid == sid) {
                     return index;
                 }
                 index++;
@@ -2563,15 +2430,13 @@ namespace Npoi.Core.HSSF.Model
         /**
          * Returns the next occurance of a record matching a particular sid.
          */
-        public Record FindNextRecordBySid(short sid, int pos)
-        {
+
+        public Record FindNextRecordBySid(short sid, int pos) {
             int matches = 0;
-            for (IEnumerator iterator = records.GetEnumerator(); iterator.MoveNext(); )
-            {
+            for (IEnumerator iterator = records.GetEnumerator(); iterator.MoveNext();) {
                 Record record = (Record)iterator.Current;
 
-                if (record.Sid == sid)
-                {
+                if (record.Sid == sid) {
                     if (matches++ == pos)
                         return record;
                 }
@@ -2579,14 +2444,12 @@ namespace Npoi.Core.HSSF.Model
             return null;
         }
 
-        public IList Hyperlinks
-        {
-            get{return hyperlinks;}
+        public IList Hyperlinks {
+            get { return hyperlinks; }
         }
 
-        public IList Records
-        {
-            get{return records.Records;}
+        public IList Records {
+            get { return records.Records; }
         }
 
         //    public void InsertChartRecords( List chartRecords )
@@ -2606,8 +2469,8 @@ namespace Npoi.Core.HSSF.Model
         *
         * @return true if using 1904 date windowing
         */
-        public bool IsUsing1904DateWindowing
-        {
+
+        public bool IsUsing1904DateWindowing {
             get { return uses1904datewindowing; }
         }
 
@@ -2615,23 +2478,20 @@ namespace Npoi.Core.HSSF.Model
          * Returns the custom palette in use for this workbook; if a custom palette record
          * does not exist, then it is Created.
          */
-        public PaletteRecord CustomPalette
-        {
+
+        public PaletteRecord CustomPalette {
             get
             {
                 PaletteRecord palette;
                 int palettePos = records.Palettepos;
-                if (palettePos != -1)
-                {
+                if (palettePos != -1) {
                     Record rec = records[palettePos];
-                    if (rec is PaletteRecord)
-                    {
+                    if (rec is PaletteRecord) {
                         palette = (PaletteRecord)rec;
                     }
                     else throw new Exception("InternalError: Expected PaletteRecord but got a '" + rec + "'");
                 }
-                else
-                {
+                else {
                     palette = CreatePalette();
                     //Add the palette record after the bof which is always the first record
                     records.Add(1, palette);
@@ -2644,54 +2504,44 @@ namespace Npoi.Core.HSSF.Model
         /**
          * Finds the primary drawing Group, if one already exists
          */
-        public DrawingManager2 FindDrawingGroup()
-        {
-            if (drawingManager != null)
-            {
+
+        public DrawingManager2 FindDrawingGroup() {
+            if (drawingManager != null) {
                 // We already have it!
                 return drawingManager;
             }
 
             // Need to Find a DrawingGroupRecord that
             //  Contains a EscherDggRecord
-            for (IEnumerator rit = records.GetEnumerator(); rit.MoveNext(); )
-            {
+            for (IEnumerator rit = records.GetEnumerator(); rit.MoveNext();) {
                 Record r = (Record)rit.Current;
 
-                if (r is DrawingGroupRecord)
-                {
+                if (r is DrawingGroupRecord) {
                     DrawingGroupRecord dg = (DrawingGroupRecord)r;
                     dg.ProcessChildRecords();
 
                     EscherContainerRecord cr =
                         dg.GetEscherContainer();
-                    if (cr == null)
-                    {
+                    if (cr == null) {
                         continue;
                     }
 
                     EscherDggRecord dgg = null;
                     EscherContainerRecord bStore = null;
-                    for (IEnumerator it = cr.ChildRecords.GetEnumerator(); it.MoveNext(); )
-                    {
+                    for (IEnumerator it = cr.ChildRecords.GetEnumerator(); it.MoveNext();) {
                         EscherRecord er = (EscherRecord)it.Current;
-                        if (er is EscherDggRecord)
-                        {
+                        if (er is EscherDggRecord) {
                             dgg = (EscherDggRecord)er;
                         }
-                        else if (er.RecordId == EscherContainerRecord.BSTORE_CONTAINER)
-                        {
+                        else if (er.RecordId == EscherContainerRecord.BSTORE_CONTAINER) {
                             bStore = (EscherContainerRecord)er;
                         }
                     }
 
-                    if (dgg != null)
-                    {
+                    if (dgg != null) {
                         drawingManager = new DrawingManager2(dgg);
-                        if (bStore != null)
-                        {
-                            foreach (EscherRecord bs in bStore.ChildRecords)
-                            {
+                        if (bStore != null) {
+                            foreach (EscherRecord bs in bStore.ChildRecords) {
                                 if (bs is EscherBSERecord)
                                     escherBSERecords.Add((EscherBSERecord)bs);
                             }
@@ -2705,33 +2555,26 @@ namespace Npoi.Core.HSSF.Model
             int dgLoc = FindFirstRecordLocBySid(DrawingGroupRecord.sid);
 
             // If there is one, does it have a EscherDggRecord?
-            if (dgLoc != -1)
-            {
+            if (dgLoc != -1) {
                 DrawingGroupRecord dg =
                     (DrawingGroupRecord)records[dgLoc];
                 EscherDggRecord dgg = null;
                 EscherContainerRecord bStore = null;
 
-                for (IEnumerator it = dg.EscherRecords.GetEnumerator(); it.MoveNext(); )
-                {
+                for (IEnumerator it = dg.EscherRecords.GetEnumerator(); it.MoveNext();) {
                     EscherRecord er = (EscherRecord)it.Current;
-                    if (er is EscherDggRecord)
-                    {
+                    if (er is EscherDggRecord) {
                         dgg = (EscherDggRecord)er;
                     }
-                    else if (er.RecordId == EscherContainerRecord.BSTORE_CONTAINER)
-                    {
+                    else if (er.RecordId == EscherContainerRecord.BSTORE_CONTAINER) {
                         bStore = (EscherContainerRecord)er;
                     }
                 }
 
-                if (dgg != null)
-                {
+                if (dgg != null) {
                     drawingManager = new DrawingManager2(dgg);
-                    if (bStore != null)
-                    {
-                        foreach (EscherRecord bs in bStore.ChildRecords)
-                        {
+                    if (bStore != null) {
+                        foreach (EscherRecord bs in bStore.ChildRecords) {
                             if (bs is EscherBSERecord)
                                 escherBSERecords.Add((EscherBSERecord)bs);
                         }
@@ -2742,50 +2585,47 @@ namespace Npoi.Core.HSSF.Model
         }
 
         /**
-         * Creates a primary drawing Group record.  If it already 
+         * Creates a primary drawing Group record.  If it already
          *  exists then it's modified.
          */
-        public void CreateDrawingGroup()
-        {
-            if (drawingManager == null)
-            {
+
+        public void CreateDrawingGroup() {
+            if (drawingManager == null) {
                 EscherContainerRecord dggContainer = new EscherContainerRecord();
                 EscherDggRecord dgg = new EscherDggRecord();
                 EscherOptRecord opt = new EscherOptRecord();
                 EscherSplitMenuColorsRecord splitMenuColors = new EscherSplitMenuColorsRecord();
 
-                dggContainer.RecordId=unchecked((short)0xF000);
-                dggContainer.Options=(short)0x000F;
-                dgg.RecordId=EscherDggRecord.RECORD_ID;
-                dgg.Options=(short)0x0000;
-                dgg.ShapeIdMax=1024;
-                dgg.NumShapesSaved=0;
-                dgg.DrawingsSaved=0;
-                dgg.FileIdClusters=new EscherDggRecord.FileIdCluster[] { };
+                dggContainer.RecordId = unchecked((short)0xF000);
+                dggContainer.Options = (short)0x000F;
+                dgg.RecordId = EscherDggRecord.RECORD_ID;
+                dgg.Options = (short)0x0000;
+                dgg.ShapeIdMax = 1024;
+                dgg.NumShapesSaved = 0;
+                dgg.DrawingsSaved = 0;
+                dgg.FileIdClusters = new EscherDggRecord.FileIdCluster[] { };
                 drawingManager = new DrawingManager2(dgg);
                 EscherContainerRecord bstoreContainer = null;
-                if (escherBSERecords.Count > 0)
-                {
+                if (escherBSERecords.Count > 0) {
                     bstoreContainer = new EscherContainerRecord();
-                    bstoreContainer.RecordId=EscherContainerRecord.BSTORE_CONTAINER;
-                    bstoreContainer.Options=(short)((escherBSERecords.Count << 4) | 0xF);
-                    for (IEnumerator iterator = escherBSERecords.GetEnumerator(); iterator.MoveNext(); )
-                    {
+                    bstoreContainer.RecordId = EscherContainerRecord.BSTORE_CONTAINER;
+                    bstoreContainer.Options = (short)((escherBSERecords.Count << 4) | 0xF);
+                    for (IEnumerator iterator = escherBSERecords.GetEnumerator(); iterator.MoveNext();) {
                         EscherRecord escherRecord = (EscherRecord)iterator.Current;
                         bstoreContainer.AddChildRecord(escherRecord);
                     }
                 }
-                opt.RecordId=unchecked((short)0xF00B);
-                opt.Options=(short)0x0033;
+                opt.RecordId = unchecked((short)0xF00B);
+                opt.Options = (short)0x0033;
                 opt.AddEscherProperty(new EscherBoolProperty(EscherProperties.TEXT__SIZE_TEXT_TO_FIT_SHAPE, 524296));
                 opt.AddEscherProperty(new EscherRGBProperty(EscherProperties.FILL__FILLCOLOR, 0x08000041));
                 opt.AddEscherProperty(new EscherRGBProperty(EscherProperties.LINESTYLE__COLOR, 134217792));
-                splitMenuColors.RecordId=unchecked((short)0xF11E);
-                splitMenuColors.Options=(short)0x0040;
-                splitMenuColors.Color1=0x0800000D;
-                splitMenuColors.Color2=0x0800000C;
-                splitMenuColors.Color3=0x08000017;
-                splitMenuColors.Color4=0x100000F7;
+                splitMenuColors.RecordId = unchecked((short)0xF11E);
+                splitMenuColors.Options = (short)0x0040;
+                splitMenuColors.Color1 = 0x0800000D;
+                splitMenuColors.Color2 = 0x0800000C;
+                splitMenuColors.Color3 = 0x08000017;
+                splitMenuColors.Color4 = 0x100000F7;
 
                 dggContainer.AddChildRecord(dgg);
                 if (bstoreContainer != null)
@@ -2794,26 +2634,22 @@ namespace Npoi.Core.HSSF.Model
                 dggContainer.AddChildRecord(splitMenuColors);
 
                 int dgLoc = FindFirstRecordLocBySid(DrawingGroupRecord.sid);
-                if (dgLoc == -1)
-                {
+                if (dgLoc == -1) {
                     DrawingGroupRecord drawingGroup = new DrawingGroupRecord();
                     drawingGroup.AddEscherRecord(dggContainer);
                     int loc = FindFirstRecordLocBySid(CountryRecord.sid);
 
                     Records.Insert(loc + 1, drawingGroup);
                 }
-                else
-                {
+                else {
                     DrawingGroupRecord drawingGroup = new DrawingGroupRecord();
                     drawingGroup.AddEscherRecord(dggContainer);
-                    Records[dgLoc]= drawingGroup;
+                    Records[dgLoc] = drawingGroup;
                 }
-
             }
         }
 
-        public WindowOneRecord WindowOne
-        {
+        public WindowOneRecord WindowOne {
             get
             {
                 return windowOne;
@@ -2822,23 +2658,24 @@ namespace Npoi.Core.HSSF.Model
 
         /**
          * Removes the given font record from the
-         *  file's list. This will make all 
+         *  file's list. This will make all
          *  subsequent font indicies drop by one,
          *  so you'll need to update those yourself!
          */
-        public void RemoveFontRecord(FontRecord rec)
-        {
+
+        public void RemoveFontRecord(FontRecord rec) {
             records.Remove(rec); // this updates FontPos for us
             numfonts--;
         }
+
         /**
  * Removes the given ExtendedFormatRecord record from the
- *  file's list. This will make all 
+ *  file's list. This will make all
  *  subsequent font indicies drop by one,
  *  so you'll need to update those yourself!
  */
-        public void RemoveExFormatRecord(ExtendedFormatRecord rec)
-        {
+
+        public void RemoveExFormatRecord(ExtendedFormatRecord rec) {
             records.Remove(rec); // this updates XfPos for us
             numxfs--;
         }
@@ -2848,19 +2685,17 @@ namespace Npoi.Core.HSSF.Model
         /// subsequent font indicies drop by one,so you'll need to update those yourself!
         /// </summary>
         /// <param name="index">index of the Extended format record (0-based)</param>
-        public void RemoveExFormatRecord(int index)
-        {
+        public void RemoveExFormatRecord(int index) {
             int xfptr = records.Xfpos - (numxfs - 1) + index;
             records.Remove(xfptr); // this updates XfPos for us
             numxfs--;
         }
-        public EscherBSERecord GetBSERecord(int pictureIndex)
-        {
+
+        public EscherBSERecord GetBSERecord(int pictureIndex) {
             return (EscherBSERecord)escherBSERecords[pictureIndex - 1];
         }
 
-        public int AddBSERecord(EscherBSERecord e)
-        {
+        public int AddBSERecord(EscherBSERecord e) {
             CreateDrawingGroup();
 
             // maybe we don't need that as an instance variable anymore
@@ -2871,48 +2706,41 @@ namespace Npoi.Core.HSSF.Model
 
             EscherContainerRecord dggContainer = (EscherContainerRecord)drawingGroup.GetEscherRecord(0);
             EscherContainerRecord bstoreContainer;
-            if (dggContainer.GetChild(1).RecordId == EscherContainerRecord.BSTORE_CONTAINER)
-            {
+            if (dggContainer.GetChild(1).RecordId == EscherContainerRecord.BSTORE_CONTAINER) {
                 bstoreContainer = (EscherContainerRecord)dggContainer.GetChild(1);
             }
-            else
-            {
+            else {
                 bstoreContainer = new EscherContainerRecord();
-                bstoreContainer.RecordId=EscherContainerRecord.BSTORE_CONTAINER;
+                bstoreContainer.RecordId = EscherContainerRecord.BSTORE_CONTAINER;
 
                 //dggContainer.ChildRecords.Insert(1, bstoreContainer);
                 List<EscherRecord> childRecords = dggContainer.ChildRecords;
                 childRecords.Insert(1, bstoreContainer);
                 dggContainer.ChildRecords = (childRecords);
-                
             }
-            bstoreContainer.Options=(short)((escherBSERecords.Count << 4) | 0xF);
+            bstoreContainer.Options = (short)((escherBSERecords.Count << 4) | 0xF);
 
             bstoreContainer.AddChildRecord(e);
 
             return escherBSERecords.Count;
         }
 
-        public DrawingManager2 DrawingManager
-        {
+        public DrawingManager2 DrawingManager {
             get
             {
                 return drawingManager;
             }
         }
 
-        public WriteProtectRecord WriteProtect
-        {
+        public WriteProtectRecord WriteProtect {
             get
             {
-                if (this.writeProtect == null)
-                {
+                if (this.writeProtect == null) {
                     this.writeProtect = new WriteProtectRecord();
                     int i = 0;
                     for (i = 0;
                          i < records.Count && !(records[i] is BOFRecord);
-                         i++)
-                    {
+                         i++) {
                     }
                     records.Add(i + 1, this.writeProtect);
                 }
@@ -2920,18 +2748,15 @@ namespace Npoi.Core.HSSF.Model
             }
         }
 
-        public WriteAccessRecord WriteAccess
-        {
+        public WriteAccessRecord WriteAccess {
             get
             {
-                if (this.writeAccess == null)
-                {
+                if (this.writeAccess == null) {
                     this.writeAccess = (WriteAccessRecord)CreateWriteAccess();
                     int i = 0;
                     for (i = 0;
                          i < records.Count && !(records[i] is InterfaceEndRecord);
-                         i++)
-                    {
+                         i++) {
                     }
                     records.Add(i + 1, this.writeAccess);
                 }
@@ -2939,18 +2764,15 @@ namespace Npoi.Core.HSSF.Model
             }
         }
 
-        public FileSharingRecord FileSharing
-        {
+        public FileSharingRecord FileSharing {
             get
             {
-                if (this.fileShare == null)
-                {
+                if (this.fileShare == null) {
                     this.fileShare = new FileSharingRecord();
                     int i = 0;
                     for (i = 0;
                          i < records.Count && !(records[i] is WriteAccessRecord);
-                         i++)
-                    {
+                         i++) {
                     }
                     records.Add(i + 1, this.fileShare);
                 }
@@ -2961,12 +2783,11 @@ namespace Npoi.Core.HSSF.Model
         /**
          * is the workbook protected with a password (not encrypted)?
          */
-        public bool IsWriteProtected
-        {
+
+        public bool IsWriteProtected {
             get
             {
-                if (this.fileShare == null)
-                {
+                if (this.fileShare == null) {
                     return false;
                 }
                 FileSharingRecord frec = FileSharing;
@@ -2979,21 +2800,21 @@ namespace Npoi.Core.HSSF.Model
          * flags and the password.
          * @param password to Set
          */
-        public void WriteProtectWorkbook(String password, String username)
-        {
+
+        public void WriteProtectWorkbook(String password, String username) {
             FileSharingRecord frec = FileSharing;
             WriteAccessRecord waccess = WriteAccess;
-            frec.ReadOnly=((short)1);
-            frec.Password=(FileSharingRecord.HashPassword(password));
-            frec.Username=(username);
-            waccess.Username=(username);
+            frec.ReadOnly = ((short)1);
+            frec.Password = (FileSharingRecord.HashPassword(password));
+            frec.Username = (username);
+            waccess.Username = (username);
         }
 
         /**
          * Removes the Write protect flag
          */
-        public void UnwriteProtectWorkbook()
-        {
+
+        public void UnwriteProtectWorkbook() {
             records.Remove(fileShare);
             records.Remove(WriteProtect);
             fileShare = null;
@@ -3005,28 +2826,24 @@ namespace Npoi.Core.HSSF.Model
          * @param definedNameIndex zero-based to DEFINEDNAME or EXTERNALNAME record
          * @return the string representation of the defined or external name
          */
-        public String ResolveNameXText(int reFindex, int definedNameIndex)
-        {
+
+        public String ResolveNameXText(int reFindex, int definedNameIndex) {
             return linkTable.ResolveNameXText(reFindex, definedNameIndex, this);
         }
 
-        public NameRecord CloneFilter(int filterDbNameIndex, int newSheetIndex)
-        {
+        public NameRecord CloneFilter(int filterDbNameIndex, int newSheetIndex) {
             NameRecord origNameRecord = GetNameRecord(filterDbNameIndex);
             // copy original formula but adjust 3D refs to the new external sheet index
             int newExtSheetIx = CheckExternSheet(newSheetIndex);
             Ptg[] ptgs = origNameRecord.NameDefinition;
-            for (int i = 0; i < ptgs.Length; i++)
-            {
+            for (int i = 0; i < ptgs.Length; i++) {
                 Ptg ptg = ptgs[i];
-                if (ptg is Area3DPtg)
-                {
+                if (ptg is Area3DPtg) {
                     Area3DPtg a3p = (Area3DPtg)((OperandPtg)ptg).Copy();
                     a3p.ExternSheetIndex = (newExtSheetIx);
                     ptgs[i] = a3p;
                 }
-                else if (ptg is Ref3DPtg)
-                {
+                else if (ptg is Ref3DPtg) {
                     Ref3DPtg r3p = (Ref3DPtg)((OperandPtg)ptg).Copy();
                     r3p.ExternSheetIndex = (newExtSheetIx);
                     ptgs[i] = r3p;
@@ -3041,30 +2858,28 @@ namespace Npoi.Core.HSSF.Model
         /**
  * Updates named ranges due to moving of cells
  */
-        public void UpdateNamesAfterCellShift(FormulaShifter shifter)
-        {
-            for (int i = 0; i < NumNames; ++i)
-            {
+
+        public void UpdateNamesAfterCellShift(FormulaShifter shifter) {
+            for (int i = 0; i < NumNames; ++i) {
                 NameRecord nr = GetNameRecord(i);
                 Ptg[] ptgs = nr.NameDefinition;
-                if (shifter.AdjustFormula(ptgs, nr.SheetNumber))
-                {
+                if (shifter.AdjustFormula(ptgs, nr.SheetNumber)) {
                     nr.NameDefinition = ptgs;
                 }
             }
         }
+
         /**
      * Get or create RecalcIdRecord
      *
      * @see org.apache.poi.hssf.usermodel.HSSFWorkbook#setForceFormulaRecalculation(boolean)
      */
-        public RecalcIdRecord RecalcId
-        {
+
+        public RecalcIdRecord RecalcId {
             get
             {
                 RecalcIdRecord record = (RecalcIdRecord)FindFirstRecordBySid(RecalcIdRecord.sid);
-                if (record == null)
-                {
+                if (record == null) {
                     record = new RecalcIdRecord();
                     // typically goes after the Country record
                     int pos = FindFirstRecordLocBySid(CountryRecord.sid);
@@ -3076,15 +2891,15 @@ namespace Npoi.Core.HSSF.Model
 
         /**
          * Changes an external referenced file to another file.
-         * A formular in Excel which refers a cell in another file is saved in two parts: 
+         * A formular in Excel which refers a cell in another file is saved in two parts:
          * The referenced file is stored in an reference table. the row/cell information is saved separate.
          * This method invokation will only change the reference in the lookup-table itself.
          * @param oldUrl The old URL to search for and which is to be replaced
          * @param newUrl The URL replacement
          * @return true if the oldUrl was found and replaced with newUrl. Otherwise false
          */
-        public bool ChangeExternalReference(String oldUrl, String newUrl)
-        {
+
+        public bool ChangeExternalReference(String oldUrl, String newUrl) {
             return linkTable.ChangeExternalReference(oldUrl, newUrl);
         }
     }

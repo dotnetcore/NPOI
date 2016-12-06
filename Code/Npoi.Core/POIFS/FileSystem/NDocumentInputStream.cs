@@ -15,23 +15,19 @@
    limitations under the License.
 ==================================================================== */
 
-
-
 using Npoi.Core.POIFS.Properties;
 using Npoi.Core.Util;
-using System.IO;
 using System;
 using System.Collections.Generic;
-
+using System.IO;
 
 namespace Npoi.Core.POIFS.FileSystem
 {
-
-
     /**
      * This class provides methods to read a DocumentEntry managed by a
      * {@link NPOIFSFileSystem} instance.
      */
+
     public class NDocumentInputStream : DocumentInputStream//DocumentReader
     {
         /** current offset into the Document */
@@ -56,16 +52,15 @@ namespace Npoi.Core.POIFS.FileSystem
         private IEnumerator<ByteBuffer> _data;
         private ByteBuffer _buffer;
 
-        
-
         /**
          * Create an InputStream from the specified DocumentEntry
-         * 
+         *
          * @param document the DocumentEntry to be read
-         * 
+         *
          * @exception IOException if the DocumentEntry cannot be opened (like, maybe it has
          *                been deleted?)
          */
+
         public NDocumentInputStream(DocumentEntry document)
         {
             if (!(document is DocumentNode))
@@ -90,9 +85,10 @@ namespace Npoi.Core.POIFS.FileSystem
 
         /**
          * Create an InputStream from the specified Document
-         * 
+         *
          * @param document the Document to be read
          */
+
         public NDocumentInputStream(NPOIFSDocument document)
         {
             _current_offset = 0;
@@ -105,7 +101,6 @@ namespace Npoi.Core.POIFS.FileSystem
             _data = _document.GetBlockIterator();
         }
 
-
         public override int Available()
         {
             if (_closed)
@@ -115,19 +110,16 @@ namespace Npoi.Core.POIFS.FileSystem
             return _document_size - _current_offset;
         }
 
-
         protected override void Dispose(bool disposing)
         {
             _closed = true;
         }
-
 
         public override void Mark(int ignoredReadlimit)
         {
             _marked_offset = _current_offset;
             _marked_offset_count = Math.Max(0, _current_block_count - 1);
         }
-
 
         public override int Read()
         {
@@ -148,7 +140,6 @@ namespace Npoi.Core.POIFS.FileSystem
             }
             return result;
         }
-
 
         public override int Read(byte[] b, int off, int len)
         {
@@ -224,7 +215,6 @@ namespace Npoi.Core.POIFS.FileSystem
             _current_offset = _marked_offset;
         }
 
-
         public override long Skip(long n)
         {
             DieIfClosed();
@@ -278,7 +268,6 @@ namespace Npoi.Core.POIFS.FileSystem
             }
         }
 
-
         public override void ReadFully(byte[] buf, int off, int len)
         {
             CheckAvaliable(len);
@@ -293,7 +282,6 @@ namespace Npoi.Core.POIFS.FileSystem
                     //_buffer = _data.next();
                     _data.MoveNext();
                     _buffer = _data.Current;
-
                 }
 
                 int limit = Math.Min(len - read, _buffer.Remain);
@@ -303,18 +291,15 @@ namespace Npoi.Core.POIFS.FileSystem
             }
         }
 
-
         public override int ReadByte()
         {
             return ReadUByte();
         }
 
-
         public override double ReadDouble()
         {
             return BitConverter.Int64BitsToDouble(ReadLong());
         }
-
 
         public override long ReadLong()
         {
@@ -329,7 +314,6 @@ namespace Npoi.Core.POIFS.FileSystem
             ReadFully(buf, 0, buf.Length);
         }
 
-
         public override short ReadShort()
         {
             CheckAvaliable(SIZE_SHORT);
@@ -337,7 +321,6 @@ namespace Npoi.Core.POIFS.FileSystem
             ReadFully(data, 0, SIZE_SHORT);
             return LittleEndian.GetShort(data);
         }
-
 
         public override int ReadInt()
         {
@@ -347,7 +330,6 @@ namespace Npoi.Core.POIFS.FileSystem
             return LittleEndian.GetInt(data);
         }
 
-
         public override int ReadUShort()
         {
             CheckAvaliable(SIZE_SHORT);
@@ -355,7 +337,6 @@ namespace Npoi.Core.POIFS.FileSystem
             ReadFully(data, 0, SIZE_SHORT);
             return LittleEndian.GetUShort(data);
         }
-
 
         public override int ReadUByte()
         {
@@ -400,7 +381,6 @@ namespace Npoi.Core.POIFS.FileSystem
             if (offset == 0)
             {
                 Reset();
-
             }
             else
             {

@@ -15,22 +15,22 @@
  * limitations under the License.
  */
 
-using Npoi.Core.SS.Util;
-using System.Text.RegularExpressions;
-using System;
-using System.Text;
-using System.Globalization;
 using Npoi.Core.SS.Format;
+using Npoi.Core.SS.Util;
+using System;
+using System.Globalization;
+using System.Text;
+using System.Text.RegularExpressions;
+
 namespace Npoi.Core.SS.UserModel
 {
-
     /**
      * <p>Format class that handles Excel style fractions, such as "# #/#" and "#/###"</p>
-     * 
+     *
      * <p>As of this writing, this is still not 100% accurate, but it does a reasonable job
      * of trying to mimic Excel's fraction calculations.  It does not currently
      * maintain Excel's spacing.</p>
-     * 
+     *
      * <p>This class relies on a method lifted nearly verbatim from org.apache.math.fraction.
      *  If further uses for Commons Math are found, we will consider Adding it as a dependency.
      *  For now, we have in-lined the one method to keep things simple.</p>
@@ -53,6 +53,7 @@ namespace Npoi.Core.SS.UserModel
         //a) an exact denominator is specified in the formatString
         //b) the maximum denominator can be calculated from the formatString
         private int exactDenom;
+
         private int maxDenom;
 
         private String wholePartFormatString;
@@ -60,6 +61,7 @@ namespace Npoi.Core.SS.UserModel
          * Single parameter ctor
          * @param denomFormatString The format string for the denominator
          */
+
         public FractionFormat(String wholePartFormatString, String denomFormatString)
         {
             this.wholePartFormatString = wholePartFormatString;
@@ -108,7 +110,6 @@ namespace Npoi.Core.SS.UserModel
 
         public String Format(string num)
         {
-
             double doubleValue = 0;
             double.TryParse(num, out doubleValue);
 
@@ -133,7 +134,6 @@ namespace Npoi.Core.SS.UserModel
             //stink1
             if (wholePart + (int)decPart == wholePart + decPart)
             {
-
                 StringBuilder sb = new StringBuilder();
                 if (isNeg)
                 {
@@ -177,7 +177,6 @@ namespace Npoi.Core.SS.UserModel
                 return sb1.ToString();
             }
 
-
             //short circuit if fraction is 0 or 1
             if (fract.Numerator == 0)
             {
@@ -212,7 +211,7 @@ namespace Npoi.Core.SS.UserModel
         {
             throw new NotImplementedException("Reverse parsing not supported");
         }
-       
+
         private class SimpleFractionException : Exception
         {
             public SimpleFractionException(String message) :
@@ -226,5 +225,4 @@ namespace Npoi.Core.SS.UserModel
             return toAppendTo.Append(Format(obj, culture));
         }
     }
-
 }

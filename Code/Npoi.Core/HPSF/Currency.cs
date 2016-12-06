@@ -14,6 +14,7 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
+
 using Npoi.Core.Util;
 
 namespace Npoi.Core.HPSF
@@ -24,8 +25,7 @@ namespace Npoi.Core.HPSF
 
         private byte[] _value;
 
-        public Currency(byte[] data, int offset)
-        {
+        public Currency(byte[] data, int offset) {
             _value = LittleEndian.GetByteArray(data, offset, SIZE);
         }
     }

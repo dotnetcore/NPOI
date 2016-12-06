@@ -17,15 +17,16 @@
 
 namespace Npoi.Core.POIFS.FileSystem
 {
+    using Npoi.Core.POIFS.Common;
+    using Npoi.Core.POIFS.Properties;
     using System;
     using System.IO;
-    using Npoi.Core.POIFS.Properties;
-    using Npoi.Core.POIFS.Common;
 
     /**
      * This class provides methods to write a DocumentEntry managed by a
      * {@link NPOIFSFileSystem} instance.
      */
+
     public class NDocumentOutputStream : MemoryStream
     {
         /** the Document's size */
@@ -41,6 +42,7 @@ namespace Npoi.Core.POIFS.FileSystem
         private DocumentProperty _property;
 
         /** our buffer, when null we're into normal blocks */
+
         private MemoryStream _buffer =
                 new MemoryStream(POIFSConstants.BIG_BLOCK_MINIMUM_DOCUMENT_SIZE);
 
@@ -50,9 +52,10 @@ namespace Npoi.Core.POIFS.FileSystem
         /**
          * Create an OutputStream from the specified DocumentEntry.
          * The specified entry will be emptied.
-         * 
+         *
          * @param document the DocumentEntry to be written
          */
+
         public NDocumentOutputStream(DocumentEntry document)
         {
             if (!(document is DocumentNode))
@@ -70,10 +73,11 @@ namespace Npoi.Core.POIFS.FileSystem
 
         /**
          * Create an OutputStream to create the specified new Entry
-         * 
+         *
          * @param parent Where to create the Entry
          * @param name Name of the new entry
          */
+
         public NDocumentOutputStream(DirectoryEntry parent, String name)
         {
             if (!(parent is DirectoryNode))
@@ -88,6 +92,7 @@ namespace Npoi.Core.POIFS.FileSystem
             _property = (DocumentProperty)((DocumentNode)doc).Property;
             _document = new NPOIFSDocument((DocumentNode)doc);
         }
+
         private void dieIfClosed()
         {
             if (_closed)
@@ -111,6 +116,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 // So far, mini stream will work, keep going
             }
         }
+
         public void Write(int b)
         {
             dieIfClosed();
@@ -162,11 +168,11 @@ namespace Npoi.Core.POIFS.FileSystem
             }
         }
 
-	    protected override void Dispose(bool disposing)
-	    {
-			base.Dispose(disposing);
-			// Do we have a pending buffer for the mini stream?
-			if (_buffer != null)
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            // Do we have a pending buffer for the mini stream?
+            if (_buffer != null)
             {
                 // It's not much data, so ask NPOIFSDocument to do it for us
                 _document.ReplaceContents(new MemoryStream(_buffer.ToArray()));
@@ -177,12 +183,11 @@ namespace Npoi.Core.POIFS.FileSystem
                 // Update the details on the property now
                 _stream_output.Dispose();
                 _property.UpdateSize(_document_size);
-                _property.StartBlock=(_stream.GetStartBlock());
+                _property.StartBlock = (_stream.GetStartBlock());
             }
 
             // No more!
             _closed = true;
         }
     }
-
 }

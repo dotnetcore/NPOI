@@ -30,7 +30,6 @@ namespace Npoi.Core.HSSF.Record
         public DrawingSelectionRecord(RecordInputStream in1)
             : base(in1)
         {
-
         }
 
         protected override String RecordName

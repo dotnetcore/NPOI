@@ -22,9 +22,9 @@
 //    using Npoi.Core.HSSF.Model;
 
 //    /**
-//     * ModelFactoryListener Is registered with the 
+//     * ModelFactoryListener Is registered with the
 //     * ModelFactory.  It receives Models.
-//     * 
+//     *
 //     * @author Andrew C. Oliver acoliver@apache.org
 //     */
 //    public interface ModelFactoryListener

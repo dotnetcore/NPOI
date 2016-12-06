@@ -17,20 +17,18 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF.Wellknown
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
-
 
     /// <summary>
     /// This is a dictionary which maps property ID values To property
@@ -40,13 +38,12 @@ namespace Npoi.Core.HPSF.Wellknown
     /// PropertyIDMap}s. An application that wants To extend these maps
     /// should treat them as unmodifiable, copy them and modifiy the
     /// copies.
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
     /// @since 2002-02-09
     /// </summary>
-    public class PropertyIDMap : Dictionary<object,object>
+    public class PropertyIDMap : Dictionary<object, object>
     {
-
         /*
          * The following definitions are for property IDs in the first
          * (and only) section of the Summary Information property Set.
@@ -113,7 +110,7 @@ namespace Npoi.Core.HPSF.Wellknown
         /** ID of the property that denotes whether Read/Write access To the
          * document is allowed or whether is should be opened as Read-only. It can
          * have the following values:
-         * 
+         *
          * <table>
          *  <tbody>
          *   <tr>
@@ -137,14 +134,12 @@ namespace Npoi.Core.HPSF.Wellknown
          */
         public const int PID_SECURITY = 19;
 
-
-
         /*
          * The following definitions are for property IDs in the first
          * section of the Document Summary Information property Set.
          */
 
-        /** 
+        /**
          * The entry is a dictionary.
          */
         public const int PID_DICTIONARY = 0;
@@ -154,61 +149,61 @@ namespace Npoi.Core.HPSF.Wellknown
          */
         public const int PID_CODEPAGE = 1;
 
-        /** 
+        /**
          * The entry is a string denoting the category the file belongs
          * To, e.g. review, memo, etc. This is useful To Find documents of
          * same type.
          */
         public const int PID_CATEGORY = 2;
 
-        /** 
+        /**
          * TarGet format for power point presentation, e.g. 35mm,
          * printer, video etc.
          */
         public const int PID_PRESFORMAT = 3;
 
-        /** 
+        /**
          * Number of bytes.
          */
         public const int PID_BYTECOUNT = 4;
 
-        /** 
+        /**
          * Number of lines.
          */
         public const int PID_LINECOUNT = 5;
 
-        /** 
+        /**
          * Number of paragraphs.
          */
         public const int PID_PARCOUNT = 6;
 
-        /** 
+        /**
          * Number of slides in a power point presentation.
          */
         public const int PID_SLIDECOUNT = 7;
 
-        /** 
+        /**
          * Number of slides with notes.
          */
         public const int PID_NOTECOUNT = 8;
 
-        /** 
+        /**
          * Number of hidden slides.
          */
         public const int PID_HIDDENCOUNT = 9;
 
-        /** 
+        /**
          * Number of multimedia clips, e.g. sound or video.
          */
         public const int PID_MMCLIPCOUNT = 10;
 
-        /** 
+        /**
          * This entry is Set To -1 when scaling of the thumbnail Is
          * desired. Otherwise the thumbnail should be cropped.
          */
         public const int PID_SCALE = 11;
 
-        /** 
+        /**
          * This entry denotes an internally used property. It is a
          * vector of variants consisting of pairs of a string (VT_LPSTR)
          * and a number (VT_I4). The string is a heading name, and the
@@ -217,24 +212,24 @@ namespace Npoi.Core.HPSF.Wellknown
          */
         public const int PID_HEADINGPAIR = 12;
 
-        /** 
+        /**
          * This entry Contains the names of document parts (word: names
          * of the documents in the master document, excel: sheet names,
          * power point: slide titles, binder: document names).
          */
         public const int PID_DOCPARTS = 13;
 
-        /** 
+        /**
          * This entry Contains the name of the project manager.
          */
         public const int PID_MANAGER = 14;
 
-        /** 
+        /**
          * This entry Contains the company name.
          */
         public const int PID_COMPANY = 15;
 
-        /** 
+        /**
          * If this entry is -1 the links are dirty and should be
          * re-evaluated.
          */
@@ -244,8 +239,6 @@ namespace Npoi.Core.HPSF.Wellknown
          * The highest well-known property ID. Applications are free To use higher values for custom purposes.
          */
         public const int PID_MAX = PID_LINKSDIRTY;
-
-
 
         /**
          * Contains the summary information property ID values and
@@ -261,31 +254,21 @@ namespace Npoi.Core.HPSF.Wellknown
          */
         private static PropertyIDMap documentSummaryInformationProperties;
 
-
-
         /// <summary>
         /// Initializes a new instance of the <see cref="PropertyIDMap"/> class.
         /// </summary>
         /// <param name="initialCapacity">initialCapacity The initial capacity as defined for
         /// {@link HashMap}</param>
         /// <param name="loadFactor">The load factor as defined for {@link HashMap}</param>
-        public PropertyIDMap(int initialCapacity):base(initialCapacity)
-        {
-            
+        public PropertyIDMap(int initialCapacity) : base(initialCapacity) {
         }
-
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PropertyIDMap"/> class.
         /// </summary>
         /// <param name="map">The instance To be Created is backed by this map.</param>
-        public PropertyIDMap(IDictionary<object,object> map):base(map)
-        {
-            
+        public PropertyIDMap(IDictionary<object, object> map) : base(map) {
         }
-
-
 
         /// <summary>
         /// Puts a ID string for an ID into the {@link
@@ -295,12 +278,9 @@ namespace Npoi.Core.HPSF.Wellknown
         /// <param name="idString">The id string.</param>
         /// <returns>As specified by the {@link java.util.Map} interface, this method
         /// returns the previous value associated with the specified id</returns>
-        public Object Put(long id, String idString)
-        {
-            return this[id]=idString;
+        public Object Put(long id, String idString) {
+            return this[id] = idString;
         }
-
-
 
         /// <summary>
         /// Gets the ID string for an ID from the {@link
@@ -308,23 +288,18 @@ namespace Npoi.Core.HPSF.Wellknown
         /// </summary>
         /// <param name="id">The ID.</param>
         /// <returns>The ID string associated with id</returns>
-        public Object Get(long id)
-        {
+        public Object Get(long id) {
             return this[id];
         }
-
-
 
         /// <summary>
         /// Gets the Summary Information properties singleton
         /// </summary>
         /// <returns></returns>
-        public static PropertyIDMap SummaryInformationProperties
-        {
+        public static PropertyIDMap SummaryInformationProperties {
             get
             {
-                if (summaryInformationProperties == null)
-                {
+                if (summaryInformationProperties == null) {
                     PropertyIDMap m = new PropertyIDMap(18);
                     m.Put(PID_TITLE, "PID_TITLE");
                     m.Put(PID_SUBJECT, "PID_SUBJECT");
@@ -351,19 +326,15 @@ namespace Npoi.Core.HPSF.Wellknown
             }
         }
 
-
-
         /// <summary>
         /// Gets the Document Summary Information properties
         /// singleton.
         /// </summary>
         /// <returns>The Document Summary Information properties singleton.</returns>
-        public static PropertyIDMap DocumentSummaryInformationProperties
-        {
+        public static PropertyIDMap DocumentSummaryInformationProperties {
             get
             {
-                if (documentSummaryInformationProperties == null)
-                {
+                if (documentSummaryInformationProperties == null) {
                     PropertyIDMap m = new PropertyIDMap(17);
                     m.Put(PID_DICTIONARY, "PID_DICTIONARY");
                     m.Put(PID_CODEPAGE, "PID_CODEPAGE");

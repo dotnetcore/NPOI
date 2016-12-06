@@ -17,31 +17,30 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
-    using Npoi.Core.SS.Formula.Eval;
-    
     using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using System;
     using System.Text;
 
     /**
      * Implementation for Excel function INDIRECT<p/>
-     * 
-     * INDIRECT() returns the cell or area reference denoted by the text argument.<p/> 
-     * 
+     *
+     * INDIRECT() returns the cell or area reference denoted by the text argument.<p/>
+     *
      * <b>Syntax</b>:<br/>
      * <b>INDIRECT</b>(<b>ref_text</b>,isA1Style)<p/>
-     * 
+     *
      * <b>ref_text</b> a string representation of the desired reference as it would normally be written
      * in a cell formula.<br/>
      * <b>isA1Style</b> (default TRUE) specifies whether the ref_text should be interpreted as A1-style
      * or R1C1-style.
-     * 
-     * 
+     *
+     *
      * @author Josh Micich
      */
+
     public class Indirect : FreeRefFunction
     {
-
         public static FreeRefFunction instance = new Indirect();
 
         private Indirect()
@@ -68,9 +67,11 @@ namespace Npoi.Core.SS.Formula.Functions
                     case 1:
                         isA1style = true;
                         break;
+
                     case 2:
                         isA1style = EvaluateBooleanArg(args[1], ec);
                         break;
+
                     default:
                         return ErrorEval.VALUE_INVALID;
                 }
@@ -145,6 +146,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * present.  First element may be null if sheetName is unqualified.
          * Returns <code>null</code> if text cannot be parsed.
          */
+
         private static String[] ParseWorkbookAndSheetName(string text)
         {
             int lastIx = text.Length - 1;
@@ -233,6 +235,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @return <code>null</code> if there is a syntax error in any escape sequence
          * (the typical syntax error is a single quote character not followed by another).
          */
+
         private static String UnescapeString(string text)
         {
             int len = text.Length;

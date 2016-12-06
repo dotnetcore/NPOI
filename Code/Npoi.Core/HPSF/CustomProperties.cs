@@ -17,22 +17,21 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF
 {
+    using Npoi.Core.HPSF.Wellknown;
     using System;
     using System.Collections;
-    using Npoi.Core.HPSF.Wellknown;
-    using System.Text;
     using System.Collections.Generic;
-
+    using System.Text;
 
     /// <summary>
     /// Maintains the instances of {@link CustomProperty} that belong To a
@@ -54,17 +53,16 @@ namespace Npoi.Core.HPSF
     /// unmodified) or whether one or more properties have been dropped.
     /// This class is not thRead-safe; concurrent access To instances of this
     /// class must be syncronized.
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
     /// @since 2006-02-09
     /// </summary>
-    public class CustomProperties : Dictionary<object,object>
+    public class CustomProperties : Dictionary<object, object>
     {
-
         /**
          * Maps property IDs To property names.
          */
-        private Dictionary<object,object> dictionaryIDToName = new Dictionary<object, object>();
+        private Dictionary<object, object> dictionaryIDToName = new Dictionary<object, object>();
 
         /**
          * Maps property names To property IDs.
@@ -76,8 +74,6 @@ namespace Npoi.Core.HPSF
          */
         private bool isPure = true;
 
-
-
         /// <summary>
         /// Puts a {@link CustomProperty} into this map. It is assumed that the
         /// {@link CustomProperty} alReady has a valid ID. Otherwise use
@@ -86,8 +82,7 @@ namespace Npoi.Core.HPSF
         /// <param name="name">The name.</param>
         /// <param name="cp">The custom property.</param>
         /// <returns></returns>
-        public CustomProperty Put(string name, CustomProperty cp)
-        {
+        public CustomProperty Put(string name, CustomProperty cp) {
             if (string.IsNullOrEmpty((string)name))     //tony qu changed the code
             {
                 /* Ignoring a property without a name. */
@@ -106,26 +101,26 @@ namespace Npoi.Core.HPSF
             /* Register name and ID in the dictionary. Mapping in both directions is possible. If there is alReady a  */
             long idKey = cp.ID;
             Object oldID = dictionaryNameToID[name];
-            if(oldID!=null)
+            if (oldID != null)
                 dictionaryIDToName.Remove(oldID);
-            dictionaryNameToID[name]=idKey;
-            dictionaryIDToName[idKey]= name;
+            dictionaryNameToID[name] = idKey;
+            dictionaryIDToName[idKey] = name;
 
             /* Put the custom property into this map. */
             if (oldID != null)
                 base.Remove(oldID);
 
-            base[idKey]= cp;
+            base[idKey] = cp;
             return cp;
         }
 
         /**
      * Returns a set of all the names of our
-     *  custom properties. Equivalent to 
+     *  custom properties. Equivalent to
      *  {@link #nameSet()}
      */
-        public ICollection KeySet()
-        {
+
+        public ICollection KeySet() {
             return dictionaryNameToID.Keys;
         }
 
@@ -133,8 +128,8 @@ namespace Npoi.Core.HPSF
          * Returns a set of all the names of our
          *  custom properties
          */
-        public ICollection NameSet()
-        {
+
+        public ICollection NameSet() {
             return dictionaryNameToID.Keys;
         }
 
@@ -142,8 +137,8 @@ namespace Npoi.Core.HPSF
          * Returns a set of all the IDs of our
          *  custom properties
          */
-        public ICollection IdSet()
-        {
+
+        public ICollection IdSet() {
             return dictionaryNameToID.Keys;
         }
 
@@ -158,21 +153,17 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="customProperty">The custom property.</param>
         /// <returns>If the was alReady a property with the same name, the</returns>
-        private Object Put(CustomProperty customProperty)
-        {
+        private Object Put(CustomProperty customProperty) {
             String name = customProperty.Name;
-            
+
             /* Check whether a property with this name is in the map alReady. */
             object oldId = dictionaryNameToID[(name)];
-            if (oldId!=null)
-            {
+            if (oldId != null) {
                 customProperty.ID = (long)oldId;
             }
-            else
-            {
+            else {
                 long max = 1;
-                for (IEnumerator i = dictionaryIDToName.Keys.GetEnumerator(); i.MoveNext(); )
-                {
+                for (IEnumerator i = dictionaryIDToName.Keys.GetEnumerator(); i.MoveNext();) {
                     long id = (long)i.Current;
                     if (id > max)
                         max = id;
@@ -182,17 +173,14 @@ namespace Npoi.Core.HPSF
             return this.Put(name, customProperty);
         }
 
-
-
         /// <summary>
         /// Removes a custom property.
         /// </summary>
         /// <param name="name">The name of the custom property To Remove</param>
-        /// <returns>The Removed property or 
+        /// <returns>The Removed property or
         /// <c>null</c>
         ///  if the specified property was not found.</returns>
-        public object Remove(String name)
-        {
+        public object Remove(String name) {
             if (dictionaryNameToID[name] == null)
                 return null;
             long id = (long)dictionaryNameToID[name];
@@ -211,12 +199,11 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(String name, String value)
-        {
+        public Object Put(String name, String value) {
             MutableProperty p = new MutableProperty();
-            p.ID=-1;
-            p.Type=Variant.VT_LPWSTR;
-            p.Value=value;
+            p.ID = -1;
+            p.Type = Variant.VT_LPWSTR;
+            p.Value = value;
             CustomProperty cp = new CustomProperty(p, name);
             return Put(cp);
         }
@@ -229,12 +216,11 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(String name, long value)
-        {
+        public Object Put(String name, long value) {
             MutableProperty p = new MutableProperty();
-            p.ID=-1;
-            p.Type=Variant.VT_I8;
-            p.Value=value;
+            p.ID = -1;
+            p.Type = Variant.VT_I8;
+            p.Value = value;
             CustomProperty cp = new CustomProperty(p, name);
             return Put(cp);
         }
@@ -247,12 +233,11 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(String name, Double value)
-        {
+        public Object Put(String name, Double value) {
             MutableProperty p = new MutableProperty();
-            p.ID=-1;
-            p.Type=Variant.VT_R8;
-            p.Value=value;
+            p.ID = -1;
+            p.Type = Variant.VT_R8;
+            p.Value = value;
             CustomProperty cp = new CustomProperty(p, name);
             return Put(cp);
         }
@@ -265,12 +250,11 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(String name, int value)
-        {
+        public Object Put(String name, int value) {
             MutableProperty p = new MutableProperty();
-            p.ID=-1;
-            p.Type=Variant.VT_I4;
-            p.Value=value;
+            p.ID = -1;
+            p.Type = Variant.VT_I4;
+            p.Value = value;
             CustomProperty cp = new CustomProperty(p, name);
             return Put(cp);
         }
@@ -283,16 +267,14 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(String name, bool value)
-        {
+        public Object Put(String name, bool value) {
             MutableProperty p = new MutableProperty();
-            p.ID=-1;
-            p.Type=Variant.VT_BOOL;
-            p.Value=value;
+            p.ID = -1;
+            p.Type = Variant.VT_BOOL;
+            p.Value = value;
             CustomProperty cp = new CustomProperty(p, name);
             return Put(cp);
         }
-
 
         /// <summary>
         /// Adds a named date property.
@@ -302,12 +284,11 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(String name,DateTime value)
-        {
+        public Object Put(String name, DateTime value) {
             MutableProperty p = new MutableProperty();
-            p.ID=-1;
-            p.Type=Variant.VT_FILETIME;
-            p.Value=value;
+            p.ID = -1;
+            p.Type = Variant.VT_FILETIME;
+            p.Value = value;
             CustomProperty cp = new CustomProperty(p, name);
             return Put(cp);
         }
@@ -315,33 +296,29 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Gets the <see cref="System.Object"/> with the specified name.
         /// </summary>
-        /// <value>the value or 
+        /// <value>the value or
         /// <c>null</c>
         ///  if a value with the specified
         /// name is not found in the custom properties.</value>
-        public Object this[string name]
-        {
+        public Object this[string name] {
             get
             {
                 object x = dictionaryNameToID[name];
                 //string.Equals seems not support Unicode string
-                if (x == null)
-                {
+                if (x == null) {
                     IEnumerator dic = dictionaryNameToID.GetEnumerator();
-                    while (dic.MoveNext())
-                    {
+                    while (dic.MoveNext()) {
                         string key = ((DictionaryEntry)dic.Current).Key as string;
 
                         int codepage = this.Codepage;
                         if (codepage < 0)
                             codepage = (int)Constants.CP_UNICODE;
-                        byte[] a= Encoding.GetEncoding(codepage).GetBytes(key);
+                        byte[] a = Encoding.GetEncoding(codepage).GetBytes(key);
                         byte[] b = Encoding.UTF8.GetBytes(name);
                         if (Npoi.Core.Util.Arrays.Equals(a, b))
                             x = ((DictionaryEntry)dic.Current).Value;
                     }
-                    if (x == null)
-                    {
+                    if (x == null) {
                         return null;
                     }
                 }
@@ -350,83 +327,78 @@ namespace Npoi.Core.HPSF
                 return cp != null ? cp.Value : null;
             }
         }
+
         /**
      * Checks against both String Name and Long ID
      //*/
-     //   public override bool ContainsKey(Object key)
-     //   {
-     //       if (key is long)
-     //       {
-     //           return base.ContainsKey((long)key);
-     //       }
-     //       if (key is String)
-     //       {
-     //           return base.ContainsKey((long)dictionaryNameToID[(key)]);
-     //       }
-     //       return false;
-     //   }
+        //   public override bool ContainsKey(Object key)
+        //   {
+        //       if (key is long)
+        //       {
+        //           return base.ContainsKey((long)key);
+        //       }
+        //       if (key is String)
+        //       {
+        //           return base.ContainsKey((long)dictionaryNameToID[(key)]);
+        //       }
+        //       return false;
+        //   }
 
-     //   /**
-     //    * Checks against both the property, and its values. 
-     //    */
-     //   public override bool ContainsValue(Object value)
-     //   {
-     //       if (value is CustomProperty)
-     //       {
-     //           return base.ContainsValue(value);
-     //       }
-     //       else
-     //       {
-     //           foreach (object cp in base.Values)
-     //           {
-     //               if ((cp as CustomProperty).Value == value)
-     //               {
-     //                   return true;
-     //               }
-     //           }
-     //       }
-     //       return false;
-     //   }
+        //   /**
+        //    * Checks against both the property, and its values.
+        //    */
+        //   public override bool ContainsValue(Object value)
+        //   {
+        //       if (value is CustomProperty)
+        //       {
+        //           return base.ContainsValue(value);
+        //       }
+        //       else
+        //       {
+        //           foreach (object cp in base.Values)
+        //           {
+        //               if ((cp as CustomProperty).Value == value)
+        //               {
+        //                   return true;
+        //               }
+        //           }
+        //       }
+        //       return false;
+        //   }
 
         /// <summary>
         /// Gets the dictionary which Contains IDs and names of the named custom
         /// properties.
         /// </summary>
         /// <value>The dictionary.</value>
-        public IDictionary Dictionary
-        {
+        public IDictionary Dictionary {
             get { return dictionaryIDToName; }
         }
-
 
         /// <summary>
         /// Gets or sets the codepage.
         /// </summary>
         /// <value>The codepage.</value>
-        public int Codepage
-        {
+        public int Codepage {
             get
             {
                 int codepage = -1;
-                for (IEnumerator i = this.Values.GetEnumerator(); codepage == -1 && i.MoveNext(); )
-                {
+                for (IEnumerator i = this.Values.GetEnumerator(); codepage == -1 && i.MoveNext();) {
                     CustomProperty cp = (CustomProperty)i.Current;
                     if (cp.ID == PropertyIDMap.PID_CODEPAGE)
                         codepage = (int)cp.Value;
                 }
                 return codepage;
             }
-            set 
+            set
             {
                 MutableProperty p = new MutableProperty();
-                p.ID=PropertyIDMap.PID_CODEPAGE;
-                p.Type=Variant.VT_I2;
-                p.Value=value;
+                p.ID = PropertyIDMap.PID_CODEPAGE;
+                p.Type = Variant.VT_I2;
+                p.Value = value;
                 Put(new CustomProperty(p));
             }
         }
-
-
 
         /// <summary>
         /// Tells whether this {@link CustomProperties} instance is pure or one or
@@ -434,11 +406,9 @@ namespace Npoi.Core.HPSF
         /// dropped.
         /// </summary>
         /// <value><c>true</c> if this instance is pure; otherwise, <c>false</c>.</value>
-        public bool IsPure
-        {
+        public bool IsPure {
             get { return isPure; }
             set { this.isPure = value; }
         }
-
     }
 }

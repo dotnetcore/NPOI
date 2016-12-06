@@ -17,10 +17,9 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * This ptg indicates a data table.
@@ -36,6 +35,7 @@ namespace Npoi.Core.SS.Formula.PTG
      *  not contain ptgTbl.
      * See page 811 of the june 08 binary docs.
      */
+
     public class TblPtg : ControlPtg
     {
         private const int SIZE = 5;
@@ -57,7 +57,6 @@ namespace Npoi.Core.SS.Formula.PTG
             out1.WriteShort(field_1_first_row);
             out1.WriteShort(field_2_first_col);
         }
-
 
         public override int Size
         {

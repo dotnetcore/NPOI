@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
-
 
     /**
      * The end record defines the end of a block of records for a (Graphing)
@@ -39,6 +35,7 @@ namespace Npoi.Core.HSSF.Record.Chart
     {
         public const short sid = 0x1034;
         public static EndRecord instance = new EndRecord();
+
         public EndRecord()
         {
         }
@@ -50,7 +47,6 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public EndRecord(RecordInputStream in1)
         {
-
         }
 
         public override String ToString()
@@ -75,6 +71,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         {
             get { return sid; }
         }
+
         public override Object Clone()
         {
             EndRecord er = new EndRecord();

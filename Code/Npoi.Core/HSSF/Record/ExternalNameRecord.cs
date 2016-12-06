@@ -17,40 +17,37 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Constant;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-    using Npoi.Core.SS.Formula;
-
-    using Npoi.Core.SS.Formula.PTG;
-    using Npoi.Core.SS.Formula.Constant;
-
 
     /**
      * EXTERNALNAME<p/>
-     * 
+     *
      * @author Josh Micich
      */
+
     public class ExternalNameRecord : StandardRecord
     {
-
         public const short sid = 0x23; // as per BIFF8. (some old versions used 0x223)
 
         private const int OPT_BUILTIN_NAME = 0x0001;
-        private const int OPT_AUTOMATIC_LINK = 0x0002; // m$ doc calls this fWantAdvise 
+        private const int OPT_AUTOMATIC_LINK = 0x0002; // m$ doc calls this fWantAdvise
         private const int OPT_PICTURE_LINK = 0x0004;
         private const int OPT_STD_DOCUMENT_NAME = 0x0008;
         private const int OPT_OLE_LINK = 0x0010;
+
         //	private const int OPT_CLIP_FORMAT_MASK      = 0x7FE0;
         private const int OPT_ICONIFIED_PICTURE_LINK = 0x8000;
-
 
         private short field_1_option_flag;
         private short field_2_ixals;
         private short field_3_not_used;
         private String field_4_name;
-        private Formula field_5_name_definition; 
+        private Formula field_5_name_definition;
 
         /**
          * 'rgoper' / 'Last received results of the DDE link'
@@ -66,10 +63,12 @@ namespace Npoi.Core.HSSF.Record
          * (logical) number of rows in the {@link #_ddeValues} array
          */
         private int _nRows;
+
         public ExternalNameRecord()
         {
             field_2_ixals = 0;
         }
+
         public ExternalNameRecord(RecordInputStream in1)
         {
             field_1_option_flag = in1.ReadShort();
@@ -110,6 +109,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Convenience Function to determine if the name Is a built-in name
          */
+
         public bool IsBuiltInName
         {
             get
@@ -117,35 +117,44 @@ namespace Npoi.Core.HSSF.Record
                 return (field_1_option_flag & OPT_BUILTIN_NAME) != 0;
             }
         }
+
         /**
          * For OLE and DDE, links can be either 'automatic' or 'manual'
          */
+
         public bool IsAutomaticLink
         {
             get { return (field_1_option_flag & OPT_AUTOMATIC_LINK) != 0; }
         }
+
         /**
          * only for OLE and DDE
          */
+
         public bool IsPicureLink
         {
             get { return (field_1_option_flag & OPT_PICTURE_LINK) != 0; }
         }
+
         /**
          * DDE links only. If <c>true</c>, this denotes the 'StdDocumentName'
          */
+
         public bool IsStdDocumentNameIdentifier
         {
             get { return (field_1_option_flag & OPT_STD_DOCUMENT_NAME) != 0; }
         }
+
         public bool IsOLELink
         {
             get { return (field_1_option_flag & OPT_OLE_LINK) != 0; }
         }
+
         public bool IsIconifiedPictureLink
         {
             get { return (field_1_option_flag & OPT_ICONIFIED_PICTURE_LINK) != 0; }
         }
+
         public short Ix
         {
             get
@@ -161,6 +170,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return the standard String representation of this name
          */
+
         public String Text
         {
             get { return field_4_name; }
@@ -171,16 +181,18 @@ namespace Npoi.Core.HSSF.Record
         {
             return Formula.GetTokens(field_5_name_definition);
         }
+
         public void SetParsedExpression(Ptg[] ptgs)
         {
             field_5_name_definition = Formula.Create(ptgs);
         }
+
         protected override int DataSize
         {
             get
             {
                 int result = 2 + 4;  // short and int
-                result += StringUtil.GetEncodedSize(field_4_name) - 1; //size is byte, not short 
+                result += StringUtil.GetEncodedSize(field_4_name) - 1; //size is byte, not short
 
                 if (!IsOLELink && !IsStdDocumentNameIdentifier)
                 {
@@ -247,16 +259,16 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         //public override int RecordSize
         //{
         //    get { return 4 + DataSize; }
         //}
 
         /*
-         * Makes better error messages (while HasFormula() Is not reliable) 
+         * Makes better error messages (while HasFormula() Is not reliable)
          * Remove this when HasFormula() Is stable.
          */
+
         private Exception ReadFail(String msg)
         {
             String fullMsg = msg + " fields: (option=" + field_1_option_flag + " index=" + field_2_ixals

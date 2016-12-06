@@ -1,7 +1,5 @@
 ﻿using Npoi.Core.SS.Util;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Npoi.Core.SS.UserModel.Charts
 {
@@ -18,6 +16,7 @@ namespace Npoi.Core.SS.UserModel.Charts
  *
  * @param title
  */
+
         void SetTitle(String title);
 
         /**
@@ -25,21 +24,25 @@ namespace Npoi.Core.SS.UserModel.Charts
          *
          * @param titleReference
          */
+
         void SetTitle(CellReference titleReference);
 
         /**
          * @return title as string literal.
          */
+
         String GetTitleString();
 
         /**
          * @return title as cell reference.
          */
+
         CellReference GetTitleCellReference();
 
         /**
          * @return title type.
          */
+
         TitleType? GetTitleType();
     }
 }

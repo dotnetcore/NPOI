@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,10 +17,10 @@
 
 namespace Npoi.Core.DDF
 {
-    using System;
-    using System.Reflection;
     using Npoi.Core.Util;
+    using System;
     using System.Collections.Generic;
+    using System.Reflection;
 
     /// <summary>
     /// Generates escher records when provided the byte array containing those records.
@@ -31,21 +30,19 @@ namespace Npoi.Core.DDF
     public class DefaultEscherRecordFactory : IEscherRecordFactory
     {
         private static Type[] escherRecordClasses = {
-            
             typeof(EscherBSERecord), typeof(EscherOptRecord), typeof(EscherTertiaryOptRecord),
-            typeof(EscherClientAnchorRecord), 
-            typeof(EscherDgRecord), typeof(EscherSpgrRecord), typeof(EscherSpRecord), 
+            typeof(EscherClientAnchorRecord),
+            typeof(EscherDgRecord), typeof(EscherSpgrRecord), typeof(EscherSpRecord),
             typeof(EscherClientDataRecord), typeof(EscherDggRecord),
             typeof(EscherSplitMenuColorsRecord), typeof(EscherChildAnchorRecord), typeof(EscherTextboxRecord)
         };
-        private static Dictionary<short,ConstructorInfo> recordsMap = RecordsToMap(escherRecordClasses);
+
+        private static Dictionary<short, ConstructorInfo> recordsMap = RecordsToMap(escherRecordClasses);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultEscherRecordFactory"/> class.
         /// </summary>
-        public DefaultEscherRecordFactory()
-        {
-
+        public DefaultEscherRecordFactory() {
         }
 
         /// <summary>
@@ -55,8 +52,7 @@ namespace Npoi.Core.DDF
         /// <param name="data">The byte array containing the records</param>
         /// <param name="offset">The starting offset into the byte array</param>
         /// <returns>The generated escher record</returns>
-        public virtual EscherRecord CreateRecord(byte[] data, int offset)
-        {
+        public virtual EscherRecord CreateRecord(byte[] data, int offset) {
             short options = LittleEndian.GetShort(data, offset);
             short recordId = LittleEndian.GetShort(data, offset + 2);
 
@@ -65,30 +61,25 @@ namespace Npoi.Core.DDF
             // However, EscherTextboxRecord are containers of records for the
             //  host application, not of other Escher records, so treat them
             //  differently
-            if (IsContainer(options, recordId))
-            {
+            if (IsContainer(options, recordId)) {
                 EscherContainerRecord r = new EscherContainerRecord();
                 r.RecordId = recordId;
                 r.Options = options;
                 return r;
             }
-            if (recordId >= EscherBlipRecord.RECORD_ID_START && recordId <= EscherBlipRecord.RECORD_ID_END)
-            {
+            if (recordId >= EscherBlipRecord.RECORD_ID_START && recordId <= EscherBlipRecord.RECORD_ID_END) {
                 EscherBlipRecord r;
                 if (recordId == EscherBitmapBlip.RECORD_ID_DIB ||
                         recordId == EscherBitmapBlip.RECORD_ID_JPEG ||
-                        recordId == EscherBitmapBlip.RECORD_ID_PNG)
-                {
+                        recordId == EscherBitmapBlip.RECORD_ID_PNG) {
                     r = new EscherBitmapBlip();
                 }
                 else if (recordId == EscherMetafileBlip.RECORD_ID_EMF ||
                         recordId == EscherMetafileBlip.RECORD_ID_WMF ||
-                        recordId == EscherMetafileBlip.RECORD_ID_PICT)
-                {
+                        recordId == EscherMetafileBlip.RECORD_ID_PICT) {
                     r = new EscherMetafileBlip();
                 }
-                else
-                {
+                else {
                     r = new EscherBlipRecord();
                 }
                 r.RecordId = recordId;
@@ -102,24 +93,20 @@ namespace Npoi.Core.DDF
                 recordConstructor = recordsMap[recordId];
 
             EscherRecord escherRecord = null;
-            if (recordConstructor == null)
-            {
+            if (recordConstructor == null) {
                 return new UnknownEscherRecord();
             }
 
-            try
-            {
+            try {
                 escherRecord = (EscherRecord)recordConstructor.Invoke(new object[] { });
                 //escherRecord = (EscherRecord)Activator.CreateInstance(recordConstructor);
             }
-            catch (Exception)
-            {
+            catch (Exception) {
                 return new UnknownEscherRecord();
             }
             escherRecord.RecordId = recordId;
             escherRecord.Options = options;
             return escherRecord;
-
         }
 
         /// <summary>
@@ -129,32 +116,26 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="records">The records to convert</param>
         /// <returns>The map containing the id/constructor pairs.</returns>
-        private static Dictionary<short, ConstructorInfo> RecordsToMap(Type[] records)
-        {
+        private static Dictionary<short, ConstructorInfo> RecordsToMap(Type[] records) {
             Dictionary<short, ConstructorInfo> result = new Dictionary<short, ConstructorInfo>();
             //ConstructorInfo constructor;
             Type[] EMPTY_CLASS_ARRAY = new Type[0];
-            for (int i = 0; i < records.Length; i++)
-            {
+            for (int i = 0; i < records.Length; i++) {
                 Type recordType = records[i];
                 short sid = 0;
 
-                try
-                {
+                try {
                     sid = (short)recordType.GetTypeInfo().GetField("RECORD_ID").GetValue(null);
                 }
-                catch (Exception)
-                {
+                catch (Exception) {
                     throw new RecordFormatException(
                             "Unable to determine record types");
                 }
                 ConstructorInfo ci;
-                try
-                {
+                try {
                     ci = recordType.GetTypeInfo().GetConstructor(EMPTY_CLASS_ARRAY);
                 }
-                catch(Exception e)
-                {
+                catch (Exception e) {
                     throw new RuntimeException(e);
                 }
                 //result[sid] = recordType;        //constructor;
@@ -163,25 +144,19 @@ namespace Npoi.Core.DDF
             return result;
         }
 
-        public static bool IsContainer(short options, short recordId)
-        {
+        public static bool IsContainer(short options, short recordId) {
             if (recordId >= EscherContainerRecord.DGG_CONTAINER && recordId
-                    <= EscherContainerRecord.SOLVER_CONTAINER)
-            {
+                    <= EscherContainerRecord.SOLVER_CONTAINER) {
                 return true;
             }
-            else
-            {
-                if (recordId == EscherTextboxRecord.RECORD_ID)
-                {
+            else {
+                if (recordId == EscherTextboxRecord.RECORD_ID) {
                     return false;
                 }
-                else
-                {
+                else {
                     return (options & (short)0x000F) == (short)0x000F;
                 }
             }
         }
-
     }
 }

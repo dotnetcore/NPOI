@@ -15,9 +15,9 @@
    limitations Under the License.
 ==================================================================== */
 
-using System.Collections.Generic;
 using Npoi.Core.HSSF.Model;
 using Npoi.Core.HSSF.Record.Chart;
+using System.Collections.Generic;
 
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 {
@@ -30,6 +30,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
         private ChartStartObjectRecord startObject = null;
         private Dictionary<FontRecord, FbiRecord> dicFonts = new Dictionary<FontRecord, FbiRecord>();
         private ChartEndObjectRecord endObject = null;
+
         public FontListAggregate(RecordStream rs, ChartRecordAggregate container)
             : base(RuleName_FONTLIST, container)
         {

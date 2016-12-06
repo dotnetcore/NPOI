@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.POIFS.FileSystem
@@ -39,6 +39,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// </summary>
         /// <value>count of BigBlock instances</value>
         int CountBlocks { get; }
+
         /// <summary>
         /// Sets the start block for this instance
         /// </summary>

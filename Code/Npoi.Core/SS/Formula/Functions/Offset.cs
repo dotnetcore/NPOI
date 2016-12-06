@@ -15,19 +15,18 @@
 * limitations Under the License.
 */
 
-
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
     using System.Text;
 
     /**
      * Implementation for Excel function OFFSet()<p/>
-     * 
-     * OFFSet returns an area reference that Is a specified number of rows and columns from a 
+     *
+     * OFFSet returns an area reference that Is a specified number of rows and columns from a
      * reference cell or area.<p/>
-     * 
+     *
      * <b>Syntax</b>:<br/>
      * <b>OFFSet</b>(<b>reference</b>, <b>rows</b>, <b>cols</b>, height, width)<p/>
      * <b>reference</b> Is the base reference.<br/>
@@ -35,20 +34,22 @@ namespace Npoi.Core.SS.Formula.Functions
      * <b>cols</b> Is the number of columns left or right from the base reference.<br/>
      * <b>height</b> (default same height as base reference) Is the row Count for the returned area reference.<br/>
      * <b>width</b> (default same width as base reference) Is the column Count for the returned area reference.<br/>
-     * 
+     *
      * @author Josh Micich
      */
+
     public class Offset : Function
     {
         // These values are specific to BIFF8
         private const int LAST_VALID_ROW_INDEX = 0xFFFF;
-        private const int LAST_VALID_COLUMN_INDEX = 0xFF;
 
+        private const int LAST_VALID_COLUMN_INDEX = 0xFF;
 
         /**
          * Exceptions are used within this class to help simplify flow control when error conditions
-         * are enCountered 
+         * are enCountered
          */
+
         [Serializable]
         private class EvalEx : Exception
         {
@@ -58,20 +59,21 @@ namespace Npoi.Core.SS.Formula.Functions
             {
                 _error = error;
             }
+
             public ErrorEval GetError()
             {
                 return _error;
             }
         }
 
-        /** 
+        /**
          * A one dimensional base + offset.  Represents either a row range or a column range.
          * Two instances of this class toGether specify an area range.
          */
         /* package */
+
         public class LinearOffsetRange
         {
-
             private int _offset;
             private int _Length;
 
@@ -93,6 +95,7 @@ namespace Npoi.Core.SS.Formula.Functions
                     return (short)_offset;
                 }
             }
+
             public short LastIndex
             {
                 get
@@ -100,18 +103,20 @@ namespace Npoi.Core.SS.Formula.Functions
                     return (short)(_offset + _Length - 1);
                 }
             }
+
             /**
              * Moves the range by the specified translation amount.<p/>
-             * 
-             * This method also 'normalises' the range: Excel specifies that the width and height 
+             *
+             * This method also 'normalises' the range: Excel specifies that the width and height
              * parameters (Length field here) cannot be negative.  However, OFFSet() does produce
              * sensible results in these cases.  That behavior Is replicated here. <p/>
-             * 
+             *
              * @param translationAmount may be zero negative or positive
-             * 
+             *
              * @return the equivalent <c>LinearOffsetRange</c> with a positive Length, moved by the
              * specified translationAmount.
              */
+
             public LinearOffsetRange NormaliseAndTranslate(int translationAmount)
             {
                 if (_Length > 0)
@@ -137,6 +142,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 }
                 return false;
             }
+
             public override String ToString()
             {
                 StringBuilder sb = new StringBuilder(64);
@@ -147,10 +153,10 @@ namespace Npoi.Core.SS.Formula.Functions
             }
         }
 
-
         /**
          * Encapsulates either an area or cell reference which may be 2d or 3d.
          */
+
         private class BaseRef
         {
             private const int INVALID_SHEET_INDEX = -1;
@@ -159,7 +165,7 @@ namespace Npoi.Core.SS.Formula.Functions
             private int _width;
             private int _height;
             private RefEval _refEval;
-		    private AreaEval _areaEval;
+            private AreaEval _areaEval;
 
             public BaseRef(RefEval re)
             {
@@ -212,7 +218,8 @@ namespace Npoi.Core.SS.Formula.Functions
                     return _firstColumnIndex;
                 }
             }
-            public AreaEval Offset(int relFirstRowIx, int relLastRowIx,int relFirstColIx, int relLastColIx)
+
+            public AreaEval Offset(int relFirstRowIx, int relLastRowIx, int relFirstColIx, int relLastColIx)
             {
                 if (_refEval == null)
                 {
@@ -224,7 +231,6 @@ namespace Npoi.Core.SS.Formula.Functions
 
         public ValueEval Evaluate(ValueEval[] args, int srcCellRow, int srcCellCol)
         {
-
             if (args.Length < 3 || args.Length > 5)
             {
                 return ErrorEval.VALUE_INVALID;
@@ -242,6 +248,7 @@ namespace Npoi.Core.SS.Formula.Functions
                     case 5:
                         width = EvaluateIntArg(args[4], srcCellRow, srcCellCol);
                         break;
+
                     case 4:
                         height = EvaluateIntArg(args[3], srcCellRow, srcCellCol);
                         break;
@@ -261,12 +268,9 @@ namespace Npoi.Core.SS.Formula.Functions
             }
         }
 
-
-
         private static AreaEval CreateOffset(BaseRef baseRef,
             LinearOffsetRange orRow, LinearOffsetRange orCol)
         {
-
             LinearOffsetRange absRows = orRow.NormaliseAndTranslate(baseRef.FirstRowIndex);
             LinearOffsetRange absCols = orCol.NormaliseAndTranslate(baseRef.FirstColumnIndex);
 
@@ -281,10 +285,8 @@ namespace Npoi.Core.SS.Formula.Functions
             return baseRef.Offset(orRow.FirstIndex, orRow.LastIndex, orCol.FirstIndex, orCol.LastIndex);
         }
 
-
         private static BaseRef EvaluateBaseRef(ValueEval eval)
         {
-
             if (eval is RefEval)
             {
                 return new BaseRef((RefEval)eval);
@@ -300,13 +302,12 @@ namespace Npoi.Core.SS.Formula.Functions
             throw new EvalEx(ErrorEval.VALUE_INVALID);
         }
 
-
         /**
          * OFFSet's numeric arguments (2..5) have similar Processing rules
          */
+
         public static int EvaluateIntArg(ValueEval eval, int srcCellRow, int srcCellCol)
         {
-
             double d = EvaluateDoubleArg(eval, srcCellRow, srcCellCol);
             return ConvertDoubleToInt(d);
         }
@@ -316,13 +317,13 @@ namespace Npoi.Core.SS.Formula.Functions
          * Truncation Is toward negative infinity.
          */
         /* package */
+
         public static int ConvertDoubleToInt(double d)
         {
             // Note - the standard java type conversion from double to int truncates toward zero.
             // but Math.floor() truncates toward negative infinity
             return (int)Math.Floor(d);
         }
-
 
         private static double EvaluateDoubleArg(ValueEval eval, int srcCellRow, int srcCellCol)
         {

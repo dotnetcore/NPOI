@@ -17,25 +17,25 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF
 {
-    using System.IO;
     using Npoi.Core.HPSF.Wellknown;
+    using Npoi.Core.POIFS.FileSystem;
     using System;
-using Npoi.Core.POIFS.FileSystem;
+    using System.IO;
 
     /// <summary>
     /// Factory class To Create instances of {@link SummaryInformation},
     /// {@link DocumentSummaryInformation} and {@link PropertySet}.
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
     /// @since 2002-02-09
     /// </summary>
@@ -45,7 +45,7 @@ using Npoi.Core.POIFS.FileSystem;
          * <p>Creates the most specific {@link PropertySet} from an entry
          *  in the specified POIFS Directory. This is preferrably a {@link
          * DocumentSummaryInformation} or a {@link SummaryInformation}. If
-         * the specified entry does not contain a property Set stream, an 
+         * the specified entry does not contain a property Set stream, an
          * exception is thrown. If no entry is found with the given name,
          * an exception is thrown.</p>
          *
@@ -59,21 +59,18 @@ using Npoi.Core.POIFS.FileSystem;
          * @exception EncoderFallbackException if the specified codepage is not
          * supported.
          */
-        public static PropertySet Create(DirectoryEntry dir, String name)
-        {
+
+        public static PropertySet Create(DirectoryEntry dir, String name) {
             Stream inp = null;
-            try
-            {
+            try {
                 DocumentEntry entry = (DocumentEntry)dir.GetEntry(name);
                 inp = new DocumentInputStream(entry);
-                try
-                {
+                try {
                     return Create(inp);
                 }
                 catch (MarkUnsupportedException) { return null; }
             }
-            finally
-            {
+            finally {
                 if (inp != null) inp.Dispose();
             }
         }
@@ -88,11 +85,9 @@ using Npoi.Core.POIFS.FileSystem;
         /// </summary>
         /// <param name="stream">Contains the property set stream's data.</param>
         /// <returns>The Created {@link PropertySet}.</returns>
-        public static PropertySet Create(Stream stream)
-        {
+        public static PropertySet Create(Stream stream) {
             PropertySet ps = new PropertySet(stream);
-            try
-            {
+            try {
                 if (ps.IsSummaryInformation)
                     return new SummaryInformation(ps);
                 else if (ps.IsDocumentSummaryInformation)
@@ -100,57 +95,45 @@ using Npoi.Core.POIFS.FileSystem;
                 else
                     return ps;
             }
-            catch (UnexpectedPropertySetTypeException ex)
-            {
+            catch (UnexpectedPropertySetTypeException ex) {
                 /* This exception will never be throws because we alReady checked
                  * explicitly for this case above. */
                 throw new InvalidOperationException(ex.Message, ex);
             }
         }
 
-
-
         /// <summary>
         /// Creates a new summary information
         /// </summary>
         /// <returns>the new summary information.</returns>
-        public static SummaryInformation CreateSummaryInformation()
-        {
+        public static SummaryInformation CreateSummaryInformation() {
             MutablePropertySet ps = new MutablePropertySet();
             MutableSection s = (MutableSection)ps.FirstSection;
             s.SetFormatID(SectionIDMap.SUMMARY_INFORMATION_ID);
-            try
-            {
+            try {
                 return new SummaryInformation(ps);
             }
-            catch (UnexpectedPropertySetTypeException ex)
-            {
+            catch (UnexpectedPropertySetTypeException ex) {
                 /* This should never happen. */
                 throw new HPSFRuntimeException(ex);
             }
         }
-
-
 
         /// <summary>
         /// Creates a new document summary information.
         /// </summary>
         /// <returns>the new document summary information.</returns>
-        public static DocumentSummaryInformation CreateDocumentSummaryInformation()
-        {
+        public static DocumentSummaryInformation CreateDocumentSummaryInformation() {
             MutablePropertySet ps = new MutablePropertySet();
             MutableSection s = (MutableSection)ps.FirstSection;
             s.SetFormatID(SectionIDMap.DOCUMENT_SUMMARY_INFORMATION_ID1);
-            try
-            {
+            try {
                 return new DocumentSummaryInformation(ps);
             }
-            catch (UnexpectedPropertySetTypeException ex)
-            {
+            catch (UnexpectedPropertySetTypeException ex) {
                 /* This should never happen. */
                 throw new HPSFRuntimeException(ex);
             }
         }
-
     }
 }

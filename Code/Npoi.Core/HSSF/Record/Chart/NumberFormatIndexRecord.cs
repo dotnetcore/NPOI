@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,11 +17,9 @@
 
 namespace Npoi.Core.HSSF.Record.Chart
 {
-    using System.Collections;
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * The number format index record indexes format table.  This applies to an axis.
@@ -31,16 +28,15 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class NumberFormatIndexRecord
        : StandardRecord
     {
         public const short sid = 0x104e;
         private short field_1_formatIndex;
 
-
         public NumberFormatIndexRecord()
         {
-
         }
 
         /**
@@ -52,7 +48,6 @@ namespace Npoi.Core.HSSF.Record.Chart
         public NumberFormatIndexRecord(RecordInputStream in1)
         {
             field_1_formatIndex = in1.ReadShort();
-
         }
 
         public override String ToString()
@@ -77,6 +72,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 2; }
@@ -95,21 +91,14 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          * Get the format index field for the NumberFormatIndex record.
          */
+
         public short FormatIndex
         {
             get { return field_1_formatIndex; }
             set { this.field_1_formatIndex = value; }
         }
-
-
     }
 }
-
-
-

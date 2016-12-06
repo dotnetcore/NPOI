@@ -17,22 +17,22 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System.Collections.Generic;
 
 namespace Npoi.Core.HPSF
 {
-    using System;
-    using System.IO;
-    using System.Globalization;
     using Npoi.Core.Util;
+    using System;
+    using System.Globalization;
+    using System.IO;
 
     /// <summary>
     /// Supports Reading and writing of variant data.
@@ -43,13 +43,12 @@ namespace Npoi.Core.HPSF
     /// actual data, because the variant type field is included.
     /// Reading Reads from a byte array while writing Writes To an byte array
     /// output stream.
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
     /// @since 2003-08-08
     /// </summary>
     public class VariantSupport : Variant
     {
-
         private static bool logUnsupportedTypes = false;
 
         /// <summary>
@@ -59,8 +58,7 @@ namespace Npoi.Core.HPSF
         /// <value>
         /// 	<c>true</c> if logging is turned on; otherwise, <c>false</c>.
         /// </value>
-        public static bool IsLogUnsupportedTypes
-        {
+        public static bool IsLogUnsupportedTypes {
             get
             {
                 return logUnsupportedTypes;
@@ -70,8 +68,6 @@ namespace Npoi.Core.HPSF
                 logUnsupportedTypes = value;
             }
         }
-
-
 
         /**
          * Keeps a list of the variant types an "unsupported" message has alReady
@@ -86,31 +82,26 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="ex">The exception To log</param>
         public static void WriteUnsupportedTypeMessage
-            (UnsupportedVariantTypeException ex)
-        {
-            if (IsLogUnsupportedTypes)
-            {
+            (UnsupportedVariantTypeException ex) {
+            if (IsLogUnsupportedTypes) {
                 if (unsupportedMessage == null)
                     unsupportedMessage = new List<long>();
                 long vt = ex.VariantType;
-                if (!unsupportedMessage.Contains(vt))
-                {
+                if (!unsupportedMessage.Contains(vt)) {
                     Console.Error.WriteLine(ex.Message);
                     unsupportedMessage.Add(vt);
                 }
             }
         }
 
-
         /**
          * HPSF is able To Read these {@link Variant} types.
          */
+
         static public int[] SUPPORTED_TYPES = { Variant.VT_EMPTY,
             Variant.VT_I2, Variant.VT_I4, Variant.VT_I8, Variant.VT_R8,
             Variant.VT_FILETIME, Variant.VT_LPSTR, Variant.VT_LPWSTR,
             Variant.VT_CF, Variant.VT_BOOL };
-
-
 
         /// <summary>
         /// Checks whether HPSF supports the specified variant type. Unsupported
@@ -121,14 +112,12 @@ namespace Npoi.Core.HPSF
         /// <returns>
         /// 	<c>true</c> if HPFS supports this type,otherwise, <c>false</c>.
         /// </returns>
-        public bool IsSupportedType(int variantType)
-        {
+        public bool IsSupportedType(int variantType) {
             for (int i = 0; i < SUPPORTED_TYPES.Length; i++)
                 if (variantType == SUPPORTED_TYPES[i])
                     return true;
             return false;
         }
-
 
         /// <summary>
         /// Reads a variant type from a byte array
@@ -142,25 +131,21 @@ namespace Npoi.Core.HPSF
         /// example, a VT_I4 is returned as a {@link long}, a VT_LPSTR as a
         /// {@link String}.</returns>
         public static Object Read(byte[] src, int offset,
-                int length, long type, int codepage)
-        {
+                int length, long type, int codepage) {
             TypedPropertyValue typedPropertyValue = new TypedPropertyValue(
                     (int)type, null);
             int unpadded;
-            try
-            {
+            try {
                 unpadded = typedPropertyValue.ReadValue(src, offset);
             }
-            catch (InvalidOperationException)
-            {
+            catch (InvalidOperationException) {
                 int propLength = Math.Min(length, src.Length - offset);
                 byte[] v = new byte[propLength];
                 System.Array.Copy(src, offset, v, 0, propLength);
                 throw new ReadingNotSupportedException(type, v);
             }
 
-            switch ((int)type)
-            {
+            switch ((int)type) {
                 case Variant.VT_EMPTY:
                 case Variant.VT_I4:
                 case Variant.VT_I8:
@@ -173,32 +158,27 @@ namespace Npoi.Core.HPSF
                      */
                     return typedPropertyValue.Value;
 
-                case Variant.VT_I2:
-                    {
+                case Variant.VT_I2: {
                         /*
                          * also for backward-compatibility with prev. versions of POI
                          * --sergey
                          */
                         return (short)typedPropertyValue.Value;
                     }
-                case Variant.VT_FILETIME:
-                    {
+                case Variant.VT_FILETIME: {
                         Filetime filetime = (Filetime)typedPropertyValue.Value;
                         return Util.FiletimeToDate((int)filetime.High,
                                 (int)filetime.Low);
                     }
-                case Variant.VT_LPSTR:
-                    {
+                case Variant.VT_LPSTR: {
                         CodePageString string1 = (CodePageString)typedPropertyValue.Value;
                         return string1.GetJavaValue(codepage);
                     }
-                case Variant.VT_LPWSTR:
-                    {
+                case Variant.VT_LPWSTR: {
                         UnicodeString string1 = (UnicodeString)typedPropertyValue.Value;
                         return string1.ToJavaString();
                     }
-                case Variant.VT_CF:
-                    {
+                case Variant.VT_CF: {
                         // if(l1 < 0) {
                         /*
                          * YK: reading the ClipboardData packet (VT_CF) is not quite
@@ -208,7 +188,7 @@ namespace Npoi.Core.HPSF
                          * 45583 clearly show that this approach does not always work. The
                          * workaround below attempts to gracefully handle such cases instead
                          * of throwing exceptions.
-                         * 
+                         *
                          * August 20, 2009
                          */
                         // l1 = LittleEndian.getInt(src, o1); o1 += LittleEndian.INT_SIZE;
@@ -221,14 +201,12 @@ namespace Npoi.Core.HPSF
                         return clipboardData.ToByteArray();
                     }
 
-                case Variant.VT_BOOL:
-                    {
+                case Variant.VT_BOOL: {
                         VariantBool bool1 = (VariantBool)typedPropertyValue.Value;
                         return (bool)bool1.Value;
                     }
 
-                default:
-                    {
+                default: {
                         /*
                          * it is not very good, but what can do without breaking current
                          * API? --sergey
@@ -254,8 +232,8 @@ namespace Npoi.Core.HPSF
          * @exception UnsupportedEncodingException if the specified codepage is
          * less than zero.
          */
-        public static String CodepageToEncoding(int codepage)
-        {
+
+        public static String CodepageToEncoding(int codepage) {
             return CodePageUtil.CodepageToEncoding(codepage);
         }
 
@@ -274,41 +252,33 @@ namespace Npoi.Core.HPSF
         /// <returns>The number of entities that have been written. In many cases an
         /// "entity" is a byte but this is not always the case.</returns>
         public static int Write(Stream out1, long type,
-                                Object value, int codepage)
-        {
+                                Object value, int codepage) {
             int length = 0;
-            switch ((int)type)
-            {
-                case Variant.VT_BOOL:
-                    {
+            switch ((int)type) {
+                case Variant.VT_BOOL: {
                         byte[] data = new byte[2];
-                        if ((bool)value)
-                        {
+                        if ((bool)value) {
                             out1.WriteByte(0xFF);
                             out1.WriteByte(0xFF);
                         }
-                        else
-                        {
+                        else {
                             out1.WriteByte(0x00);
                             out1.WriteByte(0x00);
                         }
                         length += 2;
                         break;
                     }
-                case Variant.VT_LPSTR:
-                    {
+                case Variant.VT_LPSTR: {
                         CodePageString codePageString = new CodePageString((String)value,
                         codepage);
                         length += codePageString.Write(out1);
                         break;
                     }
-                case Variant.VT_LPWSTR:
-                    {
+                case Variant.VT_LPWSTR: {
                         int nrOfChars = ((String)value).Length + 1;
                         length += TypeWriter.WriteUIntToStream(out1, (uint)nrOfChars);
                         char[] s = ((String)value).ToCharArray();
-                        for (int i = 0; i < s.Length; i++)
-                        {
+                        for (int i = 0; i < s.Length; i++) {
                             int high = ((s[i] & 0x0000ff00) >> 8);
                             int low = (s[i] & 0x000000ff);
                             byte highb = (byte)high;
@@ -323,37 +293,30 @@ namespace Npoi.Core.HPSF
                         length += 2;
                         break;
                     }
-                case Variant.VT_CF:
-                    {
+                case Variant.VT_CF: {
                         byte[] b = (byte[])value;
                         out1.Write(b, 0, b.Length);
                         length = b.Length;
                         break;
                     }
-                case Variant.VT_EMPTY:
-                    {
+                case Variant.VT_EMPTY: {
                         length += TypeWriter.WriteUIntToStream(out1, Variant.VT_EMPTY);
                         break;
                     }
-                case Variant.VT_I2:
-                    {
+                case Variant.VT_I2: {
                         short x;
-                        try
-                        {
+                        try {
                             x = Convert.ToInt16(value, CultureInfo.InvariantCulture);
                         }
-                        catch (OverflowException)
-                        {
+                        catch (OverflowException) {
                             x = (short)((int)value);
                         }
                         length += TypeWriter.WriteToStream(out1, x);
                         //length = LittleEndianConsts.SHORT_SIZE;
                         break;
                     }
-                case Variant.VT_I4:
-                    {
-                        if (!(value is int))
-                        {
+                case Variant.VT_I4: {
+                        if (!(value is int)) {
                             throw new Exception("Could not cast an object To "
                                     + "int" + ": "
                                     + value.GetType().Name + ", "
@@ -362,26 +325,21 @@ namespace Npoi.Core.HPSF
                         length += TypeWriter.WriteToStream(out1, (int)value);
                         break;
                     }
-                case Variant.VT_I8:
-                    {
+                case Variant.VT_I8: {
                         length += TypeWriter.WriteToStream(out1, Convert.ToInt64(value, CultureInfo.CurrentCulture));
                         break;
                     }
-                case Variant.VT_R8:
-                    {
+                case Variant.VT_R8: {
                         length += TypeWriter.WriteToStream(out1,
                                   (Double)value);
                         break;
                     }
-                case Variant.VT_FILETIME:
-                    {
+                case Variant.VT_FILETIME: {
                         long filetime;
-                        if (value != null)
-                        {
+                        if (value != null) {
                             filetime = Util.DateToFileTime((DateTime)value);
                         }
-                        else
-                        {
+                        else {
                             filetime = 0;
                         }
                         int high = (int)((filetime >> 32) & 0x00000000FFFFFFFFL);
@@ -395,12 +353,10 @@ namespace Npoi.Core.HPSF
 
                         break;
                     }
-                default:
-                    {
+                default: {
                         /* The variant type is not supported yet. However, if the value
                          * is a byte array we can Write it nevertheless. */
-                        if (value is byte[])
-                        {
+                        if (value is byte[]) {
                             byte[] b = (byte[])value;
                             out1.Write(b, 0, b.Length);
                             length = b.Length;
@@ -413,13 +369,11 @@ namespace Npoi.Core.HPSF
                     }
             }
             /* pad values to 4-bytes */
-            while ((length & 0x3) != 0)
-            {
+            while ((length & 0x3) != 0) {
                 out1.WriteByte(0x00);
                 length++;
             }
             return length;
         }
-
     }
 }

@@ -15,9 +15,9 @@
    limitations Under the License.
 ==================================================================== */
 
+using Npoi.Core.Util;
 using System;
 using System.Text;
-using Npoi.Core.Util;
 
 namespace Npoi.Core.HSSF.Record
 {
@@ -65,9 +65,9 @@ namespace Npoi.Core.HSSF.Record
  *
  * @author Niklas Rehfeld
  */
+
     public class DConRefRecord : StandardRecord
     {
-
         /**
          * The id of the record type,
          * <code>sid = {@value}</code>
@@ -108,6 +108,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @param data byte array containing a DConRef Record, including the header.
          */
+
         public DConRefRecord(byte[] data)
         {
             int offset = 0;
@@ -150,7 +151,6 @@ namespace Npoi.Core.HSSF.Record
              */
             if (path[0] == 0x02)
                 _unused = LittleEndian.GetByteArray(data, offset, (charType + 1));
-
         }
 
         /**
@@ -158,6 +158,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @param inStream RecordInputStream containing a DConRefRecord structure.
          */
+
         public DConRefRecord(RecordInputStream inStream)
         {
             if (inStream.Sid != sid)
@@ -179,13 +180,13 @@ namespace Npoi.Core.HSSF.Record
 
             if (path[0] == 0x02)
                 _unused = inStream.ReadRemainder();
-
         }
 
         /*
          * assuming this wants the number of bytes returned by {@link serialize(LittleEndianOutput)},
          * that is, (length - 4).
          */
+
         protected override int DataSize
         {
             get
@@ -218,6 +219,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return The first column of the range.
          */
+
         public int FirstColumn
         {
             get { return firstCol; }
@@ -226,6 +228,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return The first row of the range.
          */
+
         public int FirstRow
         {
             get { return firstRow; }
@@ -234,6 +237,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return The last column of the range.
          */
+
         public int LastColumn
         {
             get { return lastCol; }
@@ -242,6 +246,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return The last row of the range.
          */
+
         public int LastRow
         {
             get { return lastRow; }
@@ -269,6 +274,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return raw path byte array.
          */
+
         public byte[] GetPath()
         {
             return Arrays.CopyOf(path, path.Length);
@@ -278,6 +284,7 @@ namespace Npoi.Core.HSSF.Record
          * @return the link's path, with the special characters stripped/replaced. May be null.
          * See MS-XLS 2.5.277 (VirtualPath)
          */
+
         public String ReadablePath
         {
             get
@@ -306,6 +313,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return true iff this is an external reference.
          */
+
         public bool IsExternalRef
         {
             get

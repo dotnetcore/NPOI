@@ -17,17 +17,16 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
-using System;
-
 using Npoi.Core.POIFS.FileSystem;
+using System;
 
 namespace Npoi.Core.POIFS.Properties
 {
@@ -35,11 +34,10 @@ namespace Npoi.Core.POIFS.Properties
     /// Trivial extension of Property for POIFSDocuments
     /// @author Marc Johnson (mjohnson at apache dot org)
     /// </summary>
-    public class DocumentProperty:Property
+    public class DocumentProperty : Property
     {
-       // the POIFSDocument this property is associated with
+        // the POIFSDocument this property is associated with
         private POIFSDocument _document;
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentProperty"/> class.
@@ -50,21 +48,21 @@ namespace Npoi.Core.POIFS.Properties
             : base()
         {
             _document = null;
-            
-            this.Name=name;
-            this.Size=size;
-            this.NodeColor=_NODE_BLACK;   // simplification
-            this.PropertyType=PropertyConstants.DOCUMENT_TYPE;
+
+            this.Name = name;
+            this.Size = size;
+            this.NodeColor = _NODE_BLACK;   // simplification
+            this.PropertyType = PropertyConstants.DOCUMENT_TYPE;
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentProperty"/> class.
         /// </summary>
         /// <param name="index">index number</param>
         /// <param name="array">byte data</param>
-        /// <param name="offset">offset into byte data</param> 
-        public DocumentProperty(int index, byte [] array, int offset):base(index, array, offset)
+        /// <param name="offset">offset into byte data</param>
+        public DocumentProperty(int index, byte[] array, int offset) : base(index, array, offset)
         {
-            
             _document = null;
         }
 
@@ -75,7 +73,7 @@ namespace Npoi.Core.POIFS.Properties
         public POIFSDocument Document
         {
             set { _document = value; }
-            get{ return _document;}
+            get { return _document; }
         }
 
         /// <summary>
@@ -101,6 +99,7 @@ namespace Npoi.Core.POIFS.Properties
         /**
          * Update the size of the property's data
          */
+
         public void UpdateSize(int size)
         {
             Size = (size);

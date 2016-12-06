@@ -17,27 +17,25 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
     using Npoi.Core.Util;
-    
-
+    using System;
 
     /**
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class MemFuncPtg : OperandPtg
     {
-
         public const byte sid = 0x29;
         private int field_1_len_ref_subexpression;
 
         /**Creates new function pointer from a byte array
          * usually called while Reading an excel file.
          */
+
         public MemFuncPtg(ILittleEndianInput in1)
             : this(in1.ReadUShort())
         {
-
         }
 
         public MemFuncPtg(int subExprLen)

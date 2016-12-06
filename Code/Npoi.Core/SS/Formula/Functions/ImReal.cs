@@ -17,10 +17,9 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
-    using Npoi.Core.SS.Formula.Eval;
-
     using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     /**
      * Implementation for Excel ImReal() function.<p/>
@@ -39,9 +38,9 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author cedric dot walter @ gmail dot com
      */
+
     public class ImReal : Fixed1ArgFunction, FreeRefFunction
     {
-
         public static FreeRefFunction instance = new ImReal();
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval inumberVE)
@@ -109,5 +108,4 @@ namespace Npoi.Core.SS.Formula.Functions
             return Evaluate(ec.RowIndex, ec.ColumnIndex, args[0]);
         }
     }
-
 }

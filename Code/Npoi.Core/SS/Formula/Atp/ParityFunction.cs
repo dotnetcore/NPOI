@@ -17,18 +17,19 @@
 
 namespace Npoi.Core.SS.Formula.Atp
 {
-    using System;
+    using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.Formula.Functions;
-    using Npoi.Core.SS.Formula;
+    using System;
+
     /**
      * Implementation of Excel 'Analysis ToolPak' function ISEVEN() ISODD()<br/>
-     * 
+     *
      * @author Josh Micich
      */
+
     public class ParityFunction : FreeRefFunction
     {
-
         public static readonly FreeRefFunction IS_EVEN = new ParityFunction(0);
         public static readonly FreeRefFunction IS_ODD = new ParityFunction(1);
         private int _desiredParity;
@@ -37,7 +38,8 @@ namespace Npoi.Core.SS.Formula.Atp
         {
             _desiredParity = desiredParity;
         }
-        public ValueEval Evaluate(ValueEval[] args, OperationEvaluationContext ec) 
+
+        public ValueEval Evaluate(ValueEval[] args, OperationEvaluationContext ec)
         {
             if (args.Length != 1)
             {

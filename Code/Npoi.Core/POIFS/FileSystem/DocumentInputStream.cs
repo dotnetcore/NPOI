@@ -17,8 +17,8 @@
 
 namespace Npoi.Core.POIFS.FileSystem
 {
-    using System.IO;
     using Npoi.Core.Util;
+    using System.IO;
 
     /**
      * This class provides methods to read a DocumentEntry managed by a
@@ -26,6 +26,7 @@ namespace Npoi.Core.POIFS.FileSystem
      * It Creates the appropriate one, and delegates, allowing us to
      *  work transparently with the two.
      */
+
     public class DocumentInputStream : ByteArrayInputStream, ILittleEndianInput
     {
         /** returned by read operations if we're at end of document */
@@ -38,16 +39,20 @@ namespace Npoi.Core.POIFS.FileSystem
         private DocumentInputStream delegate1;
 
         /** For use by downstream implementations */
-        protected DocumentInputStream() { }
+
+        protected DocumentInputStream()
+        {
+        }
 
         /**
          * Create an InputStream from the specified DocumentEntry
-         * 
+         *
          * @param document the DocumentEntry to be read
-         * 
+         *
          * @exception IOException if the DocumentEntry cannot be opened (like, maybe it has
          *                been deleted?)
          */
+
         public DocumentInputStream(DocumentEntry document)
         {
             if (!(document is DocumentNode))
@@ -74,6 +79,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 throw new IOException("No FileSystem bound on the parent, can't read contents");
             }
         }
+
         public override long Seek(long offset, SeekOrigin origin)
         {
             return delegate1.Seek(offset, origin);
@@ -86,6 +92,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 return delegate1.Length;
             }
         }
+
         public override long Position
         {
             get
@@ -97,11 +104,13 @@ namespace Npoi.Core.POIFS.FileSystem
                 delegate1.Position = value;
             }
         }
+
         /**
          * Create an InputStream from the specified Document
-         * 
+         *
          * @param document the Document to be read
          */
+
         public DocumentInputStream(POIFSDocument document)
         {
             delegate1 = new ODocumentInputStream(document);
@@ -109,9 +118,10 @@ namespace Npoi.Core.POIFS.FileSystem
 
         /**
          * Create an InputStream from the specified Document
-         * 
+         *
          * @param document the Document to be read
          */
+
         public DocumentInputStream(NPOIFSDocument document)
         {
             delegate1 = new NDocumentInputStream(document);
@@ -134,9 +144,10 @@ namespace Npoi.Core.POIFS.FileSystem
 
         /**
          * Tests if this input stream supports the mark and reset methods.
-         * 
+         *
          * @return <code>true</code> always
          */
+
         public override bool MarkSupported()
         {
             return true;
@@ -162,6 +173,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * last called on this input stream. If mark() has not been called this
          * method repositions the stream to its beginning.
          */
+
         public override void Reset()
         {
             delegate1.Reset();
@@ -217,5 +229,4 @@ namespace Npoi.Core.POIFS.FileSystem
             return delegate1.ReadUByte();
         }
     }
-
 }

@@ -14,16 +14,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.UserModel
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-
-
-
-
-
 
     /**
      * Utility to identify built-in formats.  The following is a list of the formats as
@@ -75,6 +71,7 @@ namespace Npoi.Core.SS.UserModel
      * Modified 6/17/09 by Stanislav Shor - positive formats don't need starting '('
      *
      */
+
     public class BuiltinFormats
     {
         /**
@@ -104,6 +101,7 @@ namespace Npoi.Core.SS.UserModel
         16 Date D-MMM 48 Scientific ##0.0E+0
         17 Date MMM-YY 49 Text @
         * */
+
         static BuiltinFormats()
         {
             List<String> m = new List<String>();
@@ -155,6 +153,7 @@ namespace Npoi.Core.SS.UserModel
             String[] ss = m.ToArray();
             _formats = ss;
         }
+
         private static void PutFormat(List<String> m, int index, String value)
         {
             if (m.Count != index)
@@ -164,10 +163,10 @@ namespace Npoi.Core.SS.UserModel
             m.Add(value);
         }
 
-
         /**
          * @deprecated (May 2009) use {@link #getAll()}
          */
+
         [Obsolete]
         public static Dictionary<int, String> GetBuiltinFormats()
         {
@@ -182,6 +181,7 @@ namespace Npoi.Core.SS.UserModel
         /**
          * @return array of built-in data formats
          */
+
         public static String[] GetAll()
         {
             return (String[])_formats.Clone();
@@ -193,6 +193,7 @@ namespace Npoi.Core.SS.UserModel
          * @param index of a built in format
          * @return string represented at index of format or <code>null</code> if there is not a built-in format at that index
          */
+
         public static String GetBuiltinFormat(int index)
         {
             if (index < 0 || index >= _formats.Length)
@@ -204,13 +205,14 @@ namespace Npoi.Core.SS.UserModel
 
         /**
          * Get the format index that matches the given format string.
-         * 
+         *
          * <p>
          * Automatically converts "text" to excel's format string to represent text.
          * </p>
          * @param pFmt string matching a built-in format
          * @return index of format or -1 if undefined.
          */
+
         public static int GetBuiltinFormat(String pFmt)
         {
             String fmt;
@@ -233,5 +235,4 @@ namespace Npoi.Core.SS.UserModel
             return -1;
         }
     }
-
 }

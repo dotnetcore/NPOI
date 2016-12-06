@@ -16,9 +16,10 @@
  *    limitations under the License.
  * ====================================================================
  */
-using System;
+
 using Npoi.Core.SS.Formula.Eval;
 using Npoi.Core.SS.UserModel;
+using System;
 
 namespace Npoi.Core.SS.Formula.Functions
 {
@@ -27,10 +28,10 @@ namespace Npoi.Core.SS.Formula.Functions
  *
  * @author Thies Wellpott
  */
+
     public class WeekdayFunc : Function
     {
         //or:  extends Var1or2ArgFunction {
-
         public static Function instance = new WeekdayFunc();
 
         private WeekdayFunc()
@@ -47,7 +48,6 @@ namespace Npoi.Core.SS.Formula.Functions
         public ValueEval evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1) {
         }
         */
-
 
         /**
          * Perform WEEKDAY(date, returnOption) function.
@@ -71,6 +71,7 @@ namespace Npoi.Core.SS.Formula.Functions
             16	Die Zahlen 1 (Samstag) bis 7 (Freitag)
             17	Die Zahlen 1 (Sonntag) bis 7 (Samstag)
          */
+
         public ValueEval Evaluate(ValueEval[] args, int srcRowIndex, int srcColumnIndex)
         {
             try
@@ -133,7 +134,5 @@ namespace Npoi.Core.SS.Formula.Functions
                 return e.GetErrorEval();
             }
         } // evaluate()
-
     }
-
 }

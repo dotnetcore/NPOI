@@ -17,18 +17,17 @@
 
 namespace Npoi.Core.HSSF.Record.CF
 {
-    using System;
-    using System.Collections;
     using Npoi.Core.SS.Util;
+    using System;
     using System.Collections.Generic;
 
     /**
-     * 
+     *
      * @author Dmitriy Kumshayev
      */
+
     public class CellRangeUtil
     {
-
         private CellRangeUtil()
         {
             // no instance of this class
@@ -43,18 +42,18 @@ namespace Npoi.Core.HSSF.Record.CF
 
         /**
          * Intersect this range with the specified range.
-         * 
+         *
          * @param crB - the specified range
          * @return code which reflects how the specified range is related to this range.<br/>
-         * Possible return codes are:	
-         * 		NO_INTERSECTION - the specified range is outside of this range;<br/> 
+         * Possible return codes are:
+         * 		NO_INTERSECTION - the specified range is outside of this range;<br/>
          * 		OVERLAP - both ranges partially overlap;<br/>
          * 		INSIDE - the specified range is inside of this one<br/>
          * 		ENCLOSES - the specified range encloses (possibly exactly the same as) this range<br/>
          */
+
         public static int Intersect(CellRangeAddress crA, CellRangeAddress crB)
         {
-
             int firstRow = crB.FirstRow;
             int lastRow = crB.LastRow;
             int firstCol = crB.FirstColumn;
@@ -82,16 +81,16 @@ namespace Npoi.Core.HSSF.Record.CF
             {
                 return OVERLAP;
             }
-
         }
 
         /**
          * Do all possible cell merges between cells of the list so that:
-         * 	if a cell range is completely inside of another cell range, it s removed from the list 
+         * 	if a cell range is completely inside of another cell range, it s removed from the list
          * 	if two cells have a shared border, merge them into one bigger cell range
          * @param cellRangeList
          * @return updated List of cell ranges
          */
+
         public static CellRangeAddress[] MergeCellRanges(CellRangeAddress[] cellRanges)
         {
             if (cellRanges.Length < 1)
@@ -103,6 +102,7 @@ namespace Npoi.Core.HSSF.Record.CF
             List<CellRangeAddress> temp = MergeCellRanges(lst);
             return temp.ToArray();
         }
+
         private static List<CellRangeAddress> MergeCellRanges(List<CellRangeAddress> cellRangeList)
         {
             // loop until either only one item is left or we did not merge anything any more
@@ -124,7 +124,7 @@ namespace Npoi.Core.HSSF.Record.CF
                             continue;
                         }
                         somethingGotMerged = true;
-                        // overwrite range1 with first result 
+                        // overwrite range1 with first result
                         cellRangeList[i] = mergeResult[0];
                         // remove range2
                         cellRangeList.RemoveAt(j--);
@@ -142,35 +142,37 @@ namespace Npoi.Core.HSSF.Record.CF
                 }
             }
 
-
             return cellRangeList;
         }
 
         /**
          * @return the new range(s) to replace the supplied ones.  <c>null</c> if no merge is possible
          */
+
         private static CellRangeAddress[] MergeRanges(CellRangeAddress range1, CellRangeAddress range2)
         {
-
             int x = Intersect(range1, range2);
             switch (x)
             {
-                // nothing in common: at most they could be adjacent to each other and thus form a single bigger area  
+                // nothing in common: at most they could be adjacent to each other and thus form a single bigger area
                 case CellRangeUtil.NO_INTERSECTION:
                     if (HasExactSharedBorder(range1, range2))
                     {
                         return new CellRangeAddress[] { CreateEnclosingCellRange(range1, range2), };
                     }
-                    // else - No intersection and no shared border: do nothing 
+                    // else - No intersection and no shared border: do nothing
                     return null;
+
                 case CellRangeUtil.OVERLAP:
                     // commented out the cells overlap implementation, it caused endless loops, see Bug 55380
                     // disabled for now, the algorithm will not detect some border cases this way currently!
                     //return ResolveRangeOverlap(range1, range2);
                     return null;
+
                 case CellRangeUtil.INSIDE:
                     // Remove range2, since it is completely inside of range1
                     return new CellRangeAddress[] { range1 };
+
                 case CellRangeUtil.ENCLOSES:
                     // range2 encloses range1, so replace it with the enclosing one
                     return new CellRangeAddress[] { range2 };
@@ -181,7 +183,6 @@ namespace Npoi.Core.HSSF.Record.CF
         //// TODO - write junit test for this
         //static CellRangeAddress[] ResolveRangeOverlap(CellRangeAddress rangeA, CellRangeAddress rangeB)
         //{
-
         //    if (rangeA.IsFullColumnRange)
         //    {
         //        if (rangeA.IsFullRowRange)
@@ -213,12 +214,11 @@ namespace Npoi.Core.HSSF.Record.CF
 
         ///**
         // * @param crB never a full row or full column range
-        // * @return an array including <b>this</b> <c>CellRange</c> and all parts of <c>range</c> 
-        // * outside of this range  
+        // * @return an array including <b>this</b> <c>CellRange</c> and all parts of <c>range</c>
+        // * outside of this range
         // */
         //private static CellRangeAddress[] SliceUp(CellRangeAddress crA, CellRangeAddress crB)
         //{
-
         //    List<object> temp = new List<object>();
 
         //    // Chop up range horizontally and vertically
@@ -253,7 +253,6 @@ namespace Npoi.Core.HSSF.Record.CF
 
         //private static List<object> CutHorizontally(int cutRow, List<object> input)
         //{
-
         //    List<object> result = new List<object>();
         //    CellRangeAddress[] crs = ToArray(input);
         //    for (int i = 0; i < crs.Length; i++)
@@ -273,7 +272,6 @@ namespace Npoi.Core.HSSF.Record.CF
         //}
         //private static List<object> CutVertically(int cutColumn, List<object> input)
         //{
-
         //    List<object> result = new List<object>();
         //    CellRangeAddress[] crs = ToArray(input);
         //    for (int i = 0; i < crs.Length; i++)
@@ -292,7 +290,6 @@ namespace Npoi.Core.HSSF.Record.CF
         //    return result;
         //}
 
-
         private static CellRangeAddress[] ToArray(List<CellRangeAddress> temp)
         {
             CellRangeAddress[] result = new CellRangeAddress[temp.Count];
@@ -300,14 +297,13 @@ namespace Npoi.Core.HSSF.Record.CF
             return result;
         }
 
-
-
         /**
          *  Check if the specified range is located inside of this cell range.
-         *  
+         *
          * @param crB
          * @return true if this cell range Contains the argument range inside if it's area
          */
+
         public static bool Contains(CellRangeAddress crA, CellRangeAddress crB)
         {
             int firstRow = crB.FirstRow;
@@ -320,10 +316,11 @@ namespace Npoi.Core.HSSF.Record.CF
 
         /**
          * Check if the specified cell range has a shared border with the current range.
-         * 
+         *
          * @return <c>true</c> if the ranges have a complete shared border (i.e.
          * the two ranges toher make a simple rectangular region.
          */
+
         public static bool HasExactSharedBorder(CellRangeAddress crA, CellRangeAddress crB)
         {
             int oFirstRow = crB.FirstRow;
@@ -351,9 +348,10 @@ namespace Npoi.Core.HSSF.Record.CF
 
         /**
          * Create an enclosing CellRange for the two cell ranges.
-         * 
+         *
          * @return enclosing CellRange
          */
+
         public static CellRangeAddress CreateEnclosingCellRange(CellRangeAddress crA, CellRangeAddress crB)
         {
             if (crB == null)
@@ -368,12 +366,12 @@ namespace Npoi.Core.HSSF.Record.CF
                     lt(crB.FirstColumn, crA.FirstColumn) ? crB.FirstColumn : crA.FirstColumn,
                     gt(crB.LastColumn, crA.LastColumn) ? crB.LastColumn : crA.LastColumn
                 );
-
         }
 
         /**
          * @return true if a &lt; b
          */
+
         private static bool lt(int a, int b)
         {
             return a == -1 ? false : (b == -1 ? true : a < b);
@@ -382,6 +380,7 @@ namespace Npoi.Core.HSSF.Record.CF
         /**
          * @return true if a &lt;= b
          */
+
         private static bool le(int a, int b)
         {
             return a == b || lt(a, b);
@@ -390,6 +389,7 @@ namespace Npoi.Core.HSSF.Record.CF
         /**
          * @return true if a > b
          */
+
         private static bool gt(int a, int b)
         {
             return lt(b, a);
@@ -398,6 +398,7 @@ namespace Npoi.Core.HSSF.Record.CF
         /**
          * @return true if a >= b
          */
+
         private static bool ge(int a, int b)
         {
             return !lt(a, b);

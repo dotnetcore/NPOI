@@ -17,14 +17,16 @@
 
 namespace Npoi.Core.SS.Formula.Udf
 {
+    using Npoi.Core.SS.Formula.Functions;
     using System;
     using System.Collections.Generic;
-    using Npoi.Core.SS.Formula.Functions;
+
     /**
      * A UDFFinder that can retrieve functions both by name and by fake index.
      *
      * @author Yegor Kozlov
      */
+
     public class IndexedUDFFinder : AggregatingUDFFinder
     {
         private Dictionary<int, String> _funcMap;
@@ -32,7 +34,6 @@ namespace Npoi.Core.SS.Formula.Udf
         public IndexedUDFFinder(params UDFFinder[] usedToolPacks)
             : base(usedToolPacks)
         {
-
             _funcMap = new Dictionary<int, String>();
         }
 
@@ -58,8 +59,3 @@ namespace Npoi.Core.SS.Formula.Udf
         }
     }
 }
-
-
-
-
-

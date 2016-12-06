@@ -17,11 +17,9 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
-    using System;
-    using Npoi.Core.SS.Formula;
-    using Npoi.Core.SS.Formula.Udf;
     using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.Formula.Udf;
+    using System;
 
     public class ExternalSheet
     {
@@ -33,6 +31,7 @@ namespace Npoi.Core.SS.Formula
             _workbookName = workbookName;
             _sheetName = sheetName;
         }
+
         public String WorkbookName
         {
             get
@@ -40,6 +39,7 @@ namespace Npoi.Core.SS.Formula
                 return _workbookName;
             }
         }
+
         public String SheetName
         {
             get
@@ -52,6 +52,7 @@ namespace Npoi.Core.SS.Formula
     public class ExternalSheetRange : ExternalSheet
     {
         private String _lastSheetName;
+
         public ExternalSheetRange(String workbookName, String firstSheetName, String lastSheetName)
             : base(workbookName, firstSheetName)
         {
@@ -65,6 +66,7 @@ namespace Npoi.Core.SS.Formula
                 return SheetName;
             }
         }
+
         public String LastSheetName
         {
             get
@@ -76,18 +78,22 @@ namespace Npoi.Core.SS.Formula
 
     /**
      * Abstracts a workbook for the purpose of formula evaluation.<br/>
-     * 
+     *
      * For POI internal use only
-     * 
+     *
      * @author Josh Micich
      */
+
     public interface IEvaluationWorkbook
     {
         String GetSheetName(int sheetIndex);
+
         /**
          * @return -1 if the specified sheet is from a different book
          */
+
         int GetSheetIndex(IEvaluationSheet sheet);
+
         int GetSheetIndex(String sheetName);
 
         IEvaluationSheet GetSheet(int sheetIndex);
@@ -96,30 +102,43 @@ namespace Npoi.Core.SS.Formula
          * HSSF Only - fetch the external-style sheet details
          * <p>Return will have no workbook set if it's actually in our own workbook</p>
          */
+
         ExternalSheet GetExternalSheet(int externSheetIndex);
+
         /**
          * XSSF Only - fetch the external-style sheet details
          * <p>Return will have no workbook set if it's actually in our own workbook</p>
          */
+
         ExternalSheet GetExternalSheet(String firstSheetName, string lastSheetName, int externalWorkbookNumber);
+
         /**
          * HSSF Only - convert an external sheet index to an internal sheet index,
-         *  for an external-style reference to one of this workbook's own sheets 
+         *  for an external-style reference to one of this workbook's own sheets
          */
+
         int ConvertFromExternSheetIndex(int externSheetIndex);
+
         /**
          * HSSF Only - fetch the external-style name details
          */
+
         ExternalName GetExternalName(int externSheetIndex, int externNameIndex);
+
         /**
          * XSSF Only - fetch the external-style name details
          */
+
         ExternalName GetExternalName(String nameName, String sheetName, int externalWorkbookNumber);
-    
+
         IEvaluationName GetName(NamePtg namePtg);
+
         IEvaluationName GetName(String name, int sheetIndex);
+
         String ResolveNameXText(NameXPtg ptg);
+
         Ptg[] GetFormulaTokens(IEvaluationCell cell);
+
         UDFFinder GetUDFFinder();
     }
 
@@ -135,6 +154,7 @@ namespace Npoi.Core.SS.Formula
             _nameNumber = nameNumber;
             _ix = ix;
         }
+
         public String Name
         {
             get
@@ -142,6 +162,7 @@ namespace Npoi.Core.SS.Formula
                 return _nameName;
             }
         }
+
         public int Number
         {
             get
@@ -149,6 +170,7 @@ namespace Npoi.Core.SS.Formula
                 return _nameNumber;
             }
         }
+
         public int Ix
         {
             get

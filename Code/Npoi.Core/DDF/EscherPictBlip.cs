@@ -19,12 +19,12 @@ using System.Drawing;
 
 namespace Npoi.Core.DDF
 {
+    using ICSharpCode.SharpZipLib.Zip.Compression;
+    using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+    using Npoi.Core.Util;
     using System;
     using System.IO;
     using System.Text;
-    using Npoi.Core.Util;
-    using ICSharpCode.SharpZipLib.Zip.Compression;
-    using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 
     /// <summary>
     /// @author Daniel Noll
@@ -62,8 +62,7 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// The number of bytes Read from the byte array.
         /// </returns>
-        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory)
-        {
+        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory) {
             int bytesAfterHeader = ReadHeader(data, offset);
             int pos = offset + HEADER_SIZE;
 
@@ -85,12 +84,10 @@ namespace Npoi.Core.DDF
 
             // 0 means DEFLATE compression
             // 0xFE means no compression
-            if (field_6_fCompression == 0)
-            {
+            if (field_6_fCompression == 0) {
                 field_pictureData = InflatePictureData(raw_pictureData);
             }
-            else
-            {
+            else {
                 field_pictureData = raw_pictureData;
             }
 
@@ -104,8 +101,7 @@ namespace Npoi.Core.DDF
         /// <param name="data">the data array to Serialize to</param>
         /// <param name="listener">a listener for begin and end serialization events.</param>
         /// <returns>the number of bytes written.</returns>
-        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener)
-        {
+        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener) {
             listener.BeforeRecordSerialize(offset, RecordId, this);
 
             int pos = offset;
@@ -136,29 +132,22 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="data">the deflated picture data.</param>
         /// <returns>the inflated picture data.</returns>
-        private static byte[] InflatePictureData(byte[] data)
-        {
-            using (MemoryStream out1 = new MemoryStream())
-            {
-                try
-                {
-                    using (MemoryStream ms = new MemoryStream(data))
-                    {
+        private static byte[] InflatePictureData(byte[] data) {
+            using (MemoryStream out1 = new MemoryStream()) {
+                try {
+                    using (MemoryStream ms = new MemoryStream(data)) {
                         Inflater inflater = new Inflater(false);
-                        using (InflaterInputStream in1 = new InflaterInputStream(ms, inflater))
-                        {
+                        using (InflaterInputStream in1 = new InflaterInputStream(ms, inflater)) {
                             byte[] buf = new byte[4096];
                             int ReadBytes;
-                            while ((ReadBytes = in1.Read(buf, 0, buf.Length)) > 0)
-                            {
+                            while ((ReadBytes = in1.Read(buf, 0, buf.Length)) > 0) {
                                 out1.Write(buf, 0, ReadBytes);
                             }
                             return out1.ToArray();
                         }
                     }
                 }
-                catch (IOException e)
-                {
+                catch (IOException e) {
                     log.Log(POILogger.INFO, "Possibly corrupt compression or non-compressed data", e);
                     return data;
                 }
@@ -169,8 +158,7 @@ namespace Npoi.Core.DDF
         /// Returns the number of bytes that are required to Serialize this record.
         /// </summary>
         /// <value>Number of bytes</value>
-        public override int RecordSize
-        {
+        public override int RecordSize {
             get { return 8 + 50 + raw_pictureData.Length; }
         }
 
@@ -178,8 +166,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets the UID.
         /// </summary>
         /// <value>The UID.</value>
-        public byte[] UID
-        {
+        public byte[] UID {
             get { return field_1_UID; }
             set { this.field_1_UID = value; }
         }
@@ -188,8 +175,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets the size of the uncompressed.
         /// </summary>
         /// <value>The size of the uncompressed.</value>
-        public int UncompressedSize
-        {
+        public int UncompressedSize {
             get { return field_2_cb; }
             set { field_2_cb = value; }
         }
@@ -198,8 +184,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets the bounds.
         /// </summary>
         /// <value>The bounds.</value>
-        public Rectangle Bounds
-        {
+        public Rectangle Bounds {
             get
             {
                 return new Rectangle(field_3_rcBounds_x1,
@@ -220,8 +205,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets the size EMU.
         /// </summary>
         /// <value>The size EMU.</value>
-        public Size SizeEMU
-        {
+        public Size SizeEMU {
             get { return new Size(field_4_ptSize_w, field_4_ptSize_h); }
             set
             {
@@ -234,8 +218,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets the size of the compressed.
         /// </summary>
         /// <value>The size of the compressed.</value>
-        public int CompressedSize
-        {
+        public int CompressedSize {
             get { return field_5_cbSave; }
             set { field_5_cbSave = value; }
         }
@@ -246,12 +229,10 @@ namespace Npoi.Core.DDF
         /// <value>
         /// 	<c>true</c> if this instance is compressed; otherwise, <c>false</c>.
         /// </value>
-        public bool IsCompressed
-        {
+        public bool IsCompressed {
             get { return (field_6_fCompression == 0); }
-            set{field_6_fCompression = value ? (byte)0 : (byte)0xFE;}
+            set { field_6_fCompression = value ? (byte)0 : (byte)0xFE; }
         }
-
 
         // filtering is always 254 according to available docs, so no point giving it a Setter method.
 
@@ -261,20 +242,16 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override String ToString()
-        {
+        public override String ToString() {
             String nl = Environment.NewLine;
 
             String extraData;
-            using (MemoryStream b = new MemoryStream())
-            {
-                try
-                {
+            using (MemoryStream b = new MemoryStream()) {
+                try {
                     HexDump.Dump(this.field_pictureData, 0, b, 0);
                     extraData = b.ToString();
                 }
-                catch (Exception e)
-                {
+                catch (Exception e) {
                     extraData = e.ToString();
                 }
                 return GetType().Name + ":" + nl +
@@ -292,8 +269,7 @@ namespace Npoi.Core.DDF
             }
         }
 
-        public override String ToXml(String tab)
-        {
+        public override String ToXml(String tab) {
             String extraData = "";
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
@@ -308,7 +284,5 @@ namespace Npoi.Core.DDF
             builder.Append(tab).Append("</").Append(GetType().Name).Append(">\n");
             return builder.ToString();
         }
-
     }
-
 }

@@ -17,16 +17,16 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
     using Npoi.Core.Util;
+    using System;
     using System.Text;
-
 
     /**
      * TABLESTYLES (0x088E)<br/>
-     * 
+     *
      * @author Patrick Cheng
      */
+
     public class TableStylesRecord : StandardRecord
     {
         public const short sid = 0x088E;
@@ -38,7 +38,6 @@ namespace Npoi.Core.HSSF.Record
 
         private String rgchDefListStyle;
         private String rgchDefPivotStyle;
-
 
         public TableStylesRecord(RecordInputStream in1)
         {
@@ -66,7 +65,6 @@ namespace Npoi.Core.HSSF.Record
             StringUtil.PutUnicodeLE(rgchDefListStyle, out1);
             StringUtil.PutUnicodeLE(rgchDefPivotStyle, out1);
         }
-
 
         protected override int DataSize
         {
@@ -102,6 +100,3 @@ namespace Npoi.Core.HSSF.Record
         }
     }
 }
-
-
-

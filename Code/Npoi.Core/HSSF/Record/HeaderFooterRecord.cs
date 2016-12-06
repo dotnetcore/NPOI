@@ -27,9 +27,9 @@ namespace Npoi.Core.HSSF.Record
      *
      * @author Yegor Kozlov
      */
+
     public class HeaderFooterRecord : StandardRecord
     {
-
         private static byte[] BLANK_GUID = new byte[16];
 
         public const short sid = 0x089C;
@@ -45,6 +45,7 @@ namespace Npoi.Core.HSSF.Record
          * be Serialized in its original form more or less
          * @param in the RecordInputstream to read the record from
          */
+
         public HeaderFooterRecord(RecordInputStream in1)
         {
             _rawData = in1.ReadRemainder();
@@ -53,6 +54,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * spit the record out AS IS. no interpretation or identification
          */
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.Write(_rawData);
@@ -76,12 +78,13 @@ namespace Npoi.Core.HSSF.Record
 
         /**
          * If this header belongs to a specific sheet view , the sheet view?s GUID will be saved here.
-         * 
+         *
          * If it is zero, it means the current sheet. Otherwise, this field MUST match the guid field
          * of the preceding {@link UserSViewBegin} record.
          *
          * @return the sheet view's GUID
          */
+
         public byte[] Guid
         {
             get
@@ -93,8 +96,9 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /**
-         * @return whether this record belongs to the current sheet 
+         * @return whether this record belongs to the current sheet
          */
+
         public bool IsCurrentSheet
         {
             get
@@ -121,5 +125,3 @@ namespace Npoi.Core.HSSF.Record
         }
     }
 }
-
-

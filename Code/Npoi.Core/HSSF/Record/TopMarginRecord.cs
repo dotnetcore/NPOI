@@ -17,9 +17,9 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Record for the top margin.
@@ -27,23 +27,26 @@ namespace Npoi.Core.HSSF.Record
      *
      * @author Shawn Laubach (slaubach at apache dot org)
      */
+
     public class TopMarginRecord : StandardRecord, IMargin
     {
         public const short sid = 0x28;
         private double field_1_margin;
 
-        public TopMarginRecord() { }
+        public TopMarginRecord()
+        {
+        }
 
         /**
          * Constructs a TopMargin record and Sets its fields appropriately.
          *
          * @param in the RecordInputstream to Read the record from
          */
+
         public TopMarginRecord(RecordInputStream in1)
         {
             field_1_margin = in1.ReadDouble();
         }
-
 
         public override String ToString()
         {
@@ -59,13 +62,14 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteDouble(field_1_margin);
         }
 
-        protected override int DataSize { get { return  8; } }
+        protected override int DataSize { get { return 8; } }
 
         public override short Sid { get { return sid; } }
 
         /**
          * Get the margin field for the TopMargin record.
          */
+
         public double Margin
         {
             get { return field_1_margin; }

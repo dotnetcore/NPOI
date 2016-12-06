@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,13 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
     using System;
     using System.Text;
 
     /**
-     * Title:        Footer Record 
+     * Title:        Footer Record
      * Description:  Specifies the footer for a sheet
      * REFERENCE:  PG 317 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
      * @author Andrew C. Oliver (acoliver at apache dot org)
@@ -36,7 +34,8 @@ namespace Npoi.Core.HSSF.Record
        : HeaderFooterBase
     {
         public const short sid = 0x15;
-        public FooterRecord(string text):base(text)
+
+        public FooterRecord(string text) : base(text)
         {
         }
 
@@ -44,7 +43,7 @@ namespace Npoi.Core.HSSF.Record
         /// Initializes a new instance of the <see cref="FooterRecord"/> class.
         /// </summary>
         /// <param name="in1">the RecordInputstream to Read the record from</param>
-        public FooterRecord(RecordInputStream in1):base(in1)
+        public FooterRecord(RecordInputStream in1) : base(in1)
         {
         }
 
@@ -64,7 +63,6 @@ namespace Npoi.Core.HSSF.Record
             buffer.Append("[/FOOTER]\n");
             return buffer.ToString();
         }
-
 
         /// <summary>
         /// </summary>

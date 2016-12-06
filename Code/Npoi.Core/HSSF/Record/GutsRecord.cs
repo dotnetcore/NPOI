@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,16 +15,15 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
-     * Title:        Guts Record 
-     * Description:  Row/column gutter sizes 
+     * Title:        Guts Record
+     * Description:  Row/column gutter sizes
      * REFERENCE:  PG 320 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
      * @author Andrew C. Oliver (acoliver at apache dot org)
      * @author Jason Height (jheight at chariot dot net dot au)

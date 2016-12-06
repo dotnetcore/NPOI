@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,7 +15,6 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
     using Npoi.Core.Util;
@@ -27,9 +25,9 @@ namespace Npoi.Core.HSSF.Record
      * @author Glen Stampoultzis (glens at apache.org)
      * @author Jason Height (jheight at apache.org)
      */
+
     public class SSTDeserializer
     {
-
         private IntMapper<UnicodeString> strings;
 
         public SSTDeserializer(IntMapper<UnicodeString> strings)
@@ -42,6 +40,7 @@ namespace Npoi.Core.HSSF.Record
          * strings may span across multiple continuations. Read the SST record
          * carefully before beginning to hack.
          */
+
         public void ManufactureStrings(int stringCount, RecordInputStream in1)
         {
             for (int i = 0; i < stringCount; i++)

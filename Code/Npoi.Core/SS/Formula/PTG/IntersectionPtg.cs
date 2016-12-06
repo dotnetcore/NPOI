@@ -17,14 +17,14 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    
-    using Npoi.Core.Util;
 
     /**
      * @author Daniel Noll (daniel at nuix dot com dot au)
      */
+
     public class IntersectionPtg : OperationPtg
     {
         public const byte sid = 0x0f;
@@ -51,16 +51,15 @@ namespace Npoi.Core.SS.Formula.PTG
             out1.WriteByte(sid + PtgClass);
         }
 
-
-
         /** Implementation of method from Ptg */
+
         public override String ToFormulaString()
         {
             return " ";
         }
 
-
         /** implementation of method from OperationsPtg*/
+
         public override String ToFormulaString(String[] operands)
         {
             StringBuilder buffer = new StringBuilder();
@@ -75,6 +74,5 @@ namespace Npoi.Core.SS.Formula.PTG
         {
             get { return 2; }
         }
-
     }
 }

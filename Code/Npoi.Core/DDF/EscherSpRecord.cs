@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,10 +17,9 @@
 
 namespace Npoi.Core.DDF
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /// <summary>
     /// ToGether the the EscherOptRecord this record defines some of the basic
@@ -57,9 +55,8 @@ namespace Npoi.Core.DDF
         /// records.</param>
         /// <param name="offset">The offset into the byte array.</param>
         /// <param name="recordFactory">A factory for creating new escher records</param>
-        /// <returns>The number of bytes written.</returns>  
-        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory)
-        {
+        /// <returns>The number of bytes written.</returns>
+        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory) {
             int bytesRemaining = ReadHeader(data, offset);
             int pos = offset + 8;
             int size = 0;
@@ -79,10 +76,9 @@ namespace Npoi.Core.DDF
         /// <param name="data"> the data array to Serialize to.</param>
         /// <param name="listener">a listener for begin and end serialization events.</param>
         /// <returns>The number of bytes written.</returns>
-        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener)
-        {
+        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener) {
             listener.BeforeRecordSerialize(offset, RecordId, this);
-            
+
             LittleEndian.PutShort(data, offset, Options);
             LittleEndian.PutShort(data, offset + 2, RecordId);
             int remainingBytes = 8;
@@ -98,17 +94,15 @@ namespace Npoi.Core.DDF
         /// Returns the number of bytes that are required to Serialize this record.
         /// </summary>
         /// <value>Number of bytes</value>
-        public override  int RecordSize
-        {
-            get{return 8 + 8;}
+        public override int RecordSize {
+            get { return 8 + 8; }
         }
 
         /// <summary>
         /// @return  the 16 bit identifier for this record.
         /// </summary>
         /// <value></value>
-        public override short RecordId
-        {
+        public override short RecordId {
             get { return RECORD_ID; }
         }
 
@@ -116,8 +110,7 @@ namespace Npoi.Core.DDF
         /// The short name for this record
         /// </summary>
         /// <value></value>
-        public override String RecordName
-        {
+        public override String RecordName {
             get { return "Sp"; }
         }
 
@@ -127,8 +120,7 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override String ToString()
-        {
+        public override String ToString() {
             String nl = Environment.NewLine;
 
             return this.GetType().Name + ":" + nl +
@@ -137,10 +129,9 @@ namespace Npoi.Core.DDF
                     "  ShapeType: 0x" + HexDump.ToHex(ShapeType) + nl +
                     "  ShapeId: " + field_1_shapeId + nl +
                     "  Flags: " + DecodeFlags(field_2_flags) + " (0x" + HexDump.ToHex(field_2_flags) + ")" + nl;
-
         }
-        public override String ToXml(String tab)
-        {
+
+        public override String ToXml(String tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
                     .Append(tab).Append("\t").Append("<ShapeType>0x").Append(HexDump.ToHex(ShapeType)).Append("</ShapeType>\n")
@@ -149,13 +140,13 @@ namespace Npoi.Core.DDF
             builder.Append(tab).Append("</").Append(GetType().Name).Append(">\n");
             return builder.ToString();
         }
+
         /// <summary>
         /// Converts the shape flags into a more descriptive name.
         /// </summary>
         /// <param name="flags">The flags.</param>
         /// <returns></returns>
-        private String DecodeFlags(int flags)
-        {
+        private String DecodeFlags(int flags) {
             StringBuilder result = new StringBuilder();
             result.Append((flags & FLAG_GROUP) != 0 ? "|GROUP" : "");
             result.Append((flags & FLAG_CHILD) != 0 ? "|CHILD" : "");
@@ -171,9 +162,8 @@ namespace Npoi.Core.DDF
             result.Append((flags & FLAG_HASSHAPETYPE) != 0 ? "|HASSHAPETYPE" : "");
 
             //need to check, else blows up on some records - bug 34435
-            if (result.Length > 0)
-            {
-                result.Remove(0,1);
+            if (result.Length > 0) {
+                result.Remove(0, 1);
             }
             return result.ToString();
         }
@@ -182,8 +172,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets A number that identifies this shape
         /// </summary>
         /// <value>The shape id.</value>
-        public int ShapeId
-        {
+        public int ShapeId {
             get { return field_1_shapeId; }
             set { this.field_1_shapeId = value; }
         }
@@ -192,8 +181,7 @@ namespace Npoi.Core.DDF
         /// The flags that apply to this shape.
         /// </summary>
         /// <value>The flags.</value>
-        public int Flags
-        {
+        public int Flags {
             get { return field_2_flags; }
             set { this.field_2_flags = value; }
         }
@@ -201,8 +189,7 @@ namespace Npoi.Core.DDF
         /// <summary>
         /// Get or set shape type. Must be one of MSOSPT values (see [MS-ODRAW] for details).
         /// </summary>
-        public short ShapeType
-        {
+        public short ShapeType {
             get { return Instance; }
             set { Instance = (value); }
         }

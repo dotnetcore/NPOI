@@ -17,8 +17,8 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
     using System.Diagnostics;
 
     /**
@@ -37,9 +37,9 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author Josh Micich
      */
+
     public class Index : Function2Arg, Function3Arg, Function4Arg
     {
-
         public ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1)
         {
             //AreaEval reference = ConvertFirstArg(arg0);
@@ -83,6 +83,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return e.GetErrorEval();
             }
         }
+
         public ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1,
                 ValueEval arg2)
         {
@@ -112,6 +113,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return e.GetErrorEval();
             }
         }
+
         public ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1,
                 ValueEval arg2, ValueEval arg3)
         {
@@ -139,7 +141,6 @@ namespace Npoi.Core.SS.Formula.Functions
             // it seems like interface 'ArrayEval' does not even exIst yet
             throw new Exception("Incomplete code - cannot handle first arg of type ("
                     + firstArg.GetType().Name + ")");
-
         }
 
         public ValueEval Evaluate(ValueEval[] args, int srcRowIndex, int srcColumnIndex)
@@ -148,13 +149,16 @@ namespace Npoi.Core.SS.Formula.Functions
             {
                 case 2:
                     return Evaluate(srcRowIndex, srcColumnIndex, args[0], args[1]);
+
                 case 3:
                     return Evaluate(srcRowIndex, srcColumnIndex, args[0], args[1], args[2]);
+
                 case 4:
                     return Evaluate(srcRowIndex, srcColumnIndex, args[0], args[1], args[2], args[3]);
             }
             return ErrorEval.VALUE_INVALID;
         }
+
         private static ValueEval GetValueFromArea(TwoDEval ae, int pRowIx, int pColumnIx)
         {
             Debug.Assert(pRowIx >= 0);
@@ -193,6 +197,7 @@ namespace Npoi.Core.SS.Formula.Functions
          *            <c>true</c>.  ThIs parameter is needed because error codes are slightly
          *            different when only 2 args are passed.
          */
+
         [Obsolete]
         private static ValueEval GetValueFromArea(AreaEval ae, int pRowIx, int pColumnIx,
                 bool colArgWasPassed, int srcRowIx, int srcColIx)
@@ -292,15 +297,14 @@ namespace Npoi.Core.SS.Formula.Functions
             return ae.GetRelativeValue(rowIx, columnIx);
         }
 
-
         /**
          * @param arg a 1-based index.
          * @return the Resolved 1-based index. Zero if the arg was missing or blank
          * @throws EvaluationException if the arg Is an error value evaluates to a negative numeric value
          */
+
         private static int ResolveIndexArg(ValueEval arg, int srcCellRow, int srcCellCol)
         {
-
             ValueEval ev = OperandResolver.GetSingleValue(arg, srcCellRow, srcCellCol);
             if (ev == MissingArgEval.instance)
             {
@@ -318,5 +322,4 @@ namespace Npoi.Core.SS.Formula.Functions
             return result;
         }
     }
-
 }

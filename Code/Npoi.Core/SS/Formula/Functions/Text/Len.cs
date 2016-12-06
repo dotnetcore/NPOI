@@ -17,16 +17,16 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
      *
      */
+
     public class Len : SingleArgTextFunc
     {
-
         public override ValueEval Evaluate(String arg)
         {
             return new NumberEval(arg.Length);

@@ -17,37 +17,38 @@
 
 namespace Npoi.Core.HSSF.Record.PivotTable
 {
-    using System;
-    using System.Text;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
-
+    using System;
+    using System.Text;
 
     /**
      * SXVD - View Fields (0x00B1)<br/>
-     * 
+     *
      * @author Patrick Cheng
      */
+
     public class ViewFieldsRecord : StandardRecord
     {
         public const short sid = 0x00B1;
 
-		/**
+        /**
          * values for the {@link ViewFieldsRecord#sxaxis} field
          */
-		private enum Axis
-		{
-			NoAxis = 0,
-			Row = 1,
-			Column = 2,
-			Page = 4,
-			Data = 8
-		}
+
+        private enum Axis
+        {
+            NoAxis = 0,
+            Row = 1,
+            Column = 2,
+            Page = 4,
+            Data = 8
+        }
 
         /** the value of the <c>cchName</c> field when the name is not present */
         private const int STRING_NOT_PRESENT_LEN = 0xFFFF;
         /** 5 shorts */
-	    private const int BASE_SIZE = 10;
+        private const int BASE_SIZE = 10;
         private int sxaxis;
         private int cSub;
         private int grbitSub;
@@ -77,10 +78,8 @@ namespace Npoi.Core.HSSF.Record.PivotTable
             }
         }
 
-
         public override void Serialize(ILittleEndianOutput out1)
         {
-
             out1.WriteShort(sxaxis);
             out1.WriteShort(cSub);
             out1.WriteShort(grbitSub);
@@ -96,7 +95,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
             }
         }
 
-
         protected override int DataSize
         {
             get
@@ -105,11 +103,10 @@ namespace Npoi.Core.HSSF.Record.PivotTable
                 {
                     return BASE_SIZE;
                 }
-                return BASE_SIZE + 1 // unicode flag 
+                return BASE_SIZE + 1 // unicode flag
                         + _name.Length * (StringUtil.HasMultibyte(_name) ? 2 : 1);
             }
         }
-
 
         public override short Sid
         {
@@ -118,7 +115,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
                 return sid;
             }
         }
-
 
         public override string ToString()
         {

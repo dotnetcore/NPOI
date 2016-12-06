@@ -18,26 +18,26 @@
  * Created on May 8, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Eval
 {
-    using System;
     using Npoi.Core.SS.Formula.PTG;
     using Npoi.Core.SS.Util;
+    using System;
     using System.Globalization;
     using System.Text;
 
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     *  
+     *
      */
+
     public class NumberEval : NumericValueEval, StringValueEval
     {
-
         public static readonly NumberEval ZERO = new NumberEval(0);
 
         private double _value;
         private String _stringValue;
-
 
         public NumberEval(Ptg ptg)
         {
@@ -87,6 +87,7 @@ namespace Npoi.Core.SS.Formula.Eval
                 }
             }
         }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

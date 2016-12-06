@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * The frame record indicates whether there is a border around the Displayed text of a chart.
@@ -31,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class FrameRecord
        : StandardRecord
     {
@@ -42,10 +40,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         private BitField autoSize = BitFieldFactory.GetInstance(0x1);
         private BitField autoPosition = BitFieldFactory.GetInstance(0x2);
 
-
         public FrameRecord()
         {
-
         }
 
         /**
@@ -58,7 +54,6 @@ namespace Npoi.Core.HSSF.Record.Chart
         {
             field_1_borderType = in1.ReadShort();
             field_2_options = in1.ReadShort();
-
         }
 
         public override String ToString()
@@ -90,6 +85,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 2 + 2; }
@@ -109,30 +105,30 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          * Get the border type field for the Frame record.
          *
-         * @return  One of 
+         * @return  One of
          *        BORDER_TYPE_REGULAR
          *        BORDER_TYPE_SHADOW
          */
+
         public short BorderType
         {
             get
             {
                 return field_1_borderType;
             }
-            set 
+            set
             {
                 this.field_1_borderType = value;
             }
         }
+
         /**
          * Get the options field for the Frame record.
          */
+
         public short Options
         {
             get { return field_2_options; }
@@ -143,6 +139,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * excel calculates the size automatically if true
          * @return  the auto size field value.
          */
+
         public bool IsAutoSize
         {
             get
@@ -155,24 +152,21 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
         }
 
-
         /**
          * excel calculates the position automatically
          * @return  the auto position field value.
          */
+
         public bool IsAutoPosition
         {
             get
             {
                 return autoPosition.IsSet(field_2_options);
             }
-            set 
+            set
             {
                 field_2_options = autoPosition.SetShortBoolean(field_2_options, value);
             }
         }
-
-
     }
 }
-

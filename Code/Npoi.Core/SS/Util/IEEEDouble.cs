@@ -16,6 +16,7 @@
          * @param rawBits the 64 bit binary representation of the double value
          * @return the top 12 bits (sign and biased exponent value)
          */
+
         public static int GetBiasedExponent(long rawBits)
         {
             return (int)((rawBits & EXPONENT_MASK) >> EXPONENT_SHIFT);

@@ -17,7 +17,6 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-
     using Npoi.Core.SS.Formula.Eval;
 
     /**
@@ -26,15 +25,16 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author Josh Micich
      */
+
     public abstract class Var2or3ArgFunction : Function2Arg, Function3Arg
     {
-
         public ValueEval Evaluate(ValueEval[] args, int srcRowIndex, int srcColumnIndex)
         {
             switch (args.Length)
             {
                 case 2:
                     return Evaluate(srcRowIndex, srcColumnIndex, args[0], args[1]);
+
                 case 3:
                     return Evaluate(srcRowIndex, srcColumnIndex, args[0], args[1], args[2]);
             }

@@ -17,11 +17,9 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
+    using Npoi.Core.SS.Formula.Function;
     using System;
     using System.Text;
-
-    using Npoi.Core.SS.Formula.Function;
-
 
     /**
      * This class provides the base functionality for Excel sheet functions
@@ -30,10 +28,10 @@ namespace Npoi.Core.SS.Formula.PTG
      * @author  Avik Sengupta
      * @author Andrew C. Oliver (acoliver at apache dot org)
      */
+
     [Serializable]
     public abstract class AbstractFunctionPtg : OperationPtg
     {
-
         /**
          * The name of the IF function (i.e. "IF").  Extracted as a constant for clarity.
          */
@@ -77,6 +75,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 return _functionIndex;
             }
         }
+
         public override int NumberOfOperands
         {
             get
@@ -89,10 +88,12 @@ namespace Npoi.Core.SS.Formula.PTG
         {
             get { return LookupName(_functionIndex); }
         }
+
         /**
          * external functions Get some special Processing
          * @return <c>true</c> if this is an external function
          */
+
         public bool IsExternalFunction
         {
             get { return _functionIndex == FUNCTION_INDEX_EXTERNAL; }
@@ -136,16 +137,18 @@ namespace Npoi.Core.SS.Formula.PTG
 
         /**
          * Used to detect whether a function name found in a formula is one of the standard excel functions
-         * 
+         *
          * The name matching is case insensitive.
          * @return <c>true</c> if the name specifies a standard worksheet function,
          *  <c>false</c> if the name should be assumed to be an external function.
          */
+
         public static bool IsBuiltInFunctionName(String name)
         {
             short ix = FunctionMetadataRegistry.LookupIndexByName(name.ToUpper());
             return ix >= 0;
         }
+
         protected String LookupName(short index)
         {
             if (index == FunctionMetadataRegistry.FUNCTION_INDEX_EXTERNAL)
@@ -162,10 +165,11 @@ namespace Npoi.Core.SS.Formula.PTG
 
         /**
          * Resolves internal function names into function indexes.
-         * 
+         *
          * The name matching is case insensitive.
          * @return the standard worksheet function index if found, otherwise <c>FUNCTION_INDEX_EXTERNAL</c>
          */
+
         protected static short LookupIndex(String name)
         {
             short ix = FunctionMetadataRegistry.LookupIndexByName(name.ToUpper());
@@ -186,7 +190,7 @@ namespace Npoi.Core.SS.Formula.PTG
             if (index >= paramClass.Length)
             {
                 // For var-arg (and other?) functions, the metadata does not list all the parameter
-                // operand classes.  In these cases, all extra parameters are assumed to have the 
+                // operand classes.  In these cases, all extra parameters are assumed to have the
                 // same operand class as the last one specified.
                 return paramClass[paramClass.Length - 1];
             }

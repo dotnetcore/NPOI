@@ -17,16 +17,15 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-
     using Npoi.Core.SS.UserModel;
-    using System.Text;
     using Npoi.Core.Util;
-
+    using System;
+    using System.Text;
 
     /**
      * An XSSF only representation of a reference to a deleted area
      */
+
     public class Deleted3DPxg : OperandPtg, Pxg
     {
         private int externalWorkbookNumber = -1;
@@ -37,6 +36,7 @@ namespace Npoi.Core.SS.Formula.PTG
             this.externalWorkbookNumber = externalWorkbookNumber;
             this.sheetName = sheetName;
         }
+
         public Deleted3DPxg(String sheetName)
             : this(-1, sheetName)
         {
@@ -71,6 +71,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 return externalWorkbookNumber;
             }
         }
+
         public String SheetName
         {
             get
@@ -116,10 +117,10 @@ namespace Npoi.Core.SS.Formula.PTG
                 return 1;
             }
         }
+
         public override void Write(ILittleEndianOutput out1)
         {
             throw new InvalidOperationException("XSSF-only Ptg, should not be serialised");
         }
     }
-
 }

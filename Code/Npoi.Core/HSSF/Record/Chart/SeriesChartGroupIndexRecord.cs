@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * The series chart Group index record stores the index to the CHARTFORMAT record (0 based).
@@ -31,16 +28,15 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class SeriesChartGroupIndexRecord
        : StandardRecord
     {
         public static short sid = 0x1045;
         private short field_1_chartGroupIndex;
 
-
         public SeriesChartGroupIndexRecord()
         {
-
         }
 
         /**
@@ -51,7 +47,6 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public SeriesChartGroupIndexRecord(RecordInputStream in1)
         {
-
             field_1_chartGroupIndex = in1.ReadShort();
         }
 
@@ -77,6 +72,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get
@@ -98,15 +94,14 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
         /**
          * Get the chart Group index field for the SeriesChartGroupIndex record.
          */
+
         public short ChartGroupIndex
         {
             get { return field_1_chartGroupIndex; }
             set { this.field_1_chartGroupIndex = value; }
         }
-
     }
 }

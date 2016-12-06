@@ -17,23 +17,23 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System.Reflection;
 
 namespace Npoi.Core.HPSF
 {
-    using System;
-    using System.Text;
-    using System.Collections;
     using Npoi.Core.Util;
+    using System;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Text;
 
     /// <summary>
     /// A property in a {@link Section} of a {@link PropertySet}.
@@ -52,11 +52,11 @@ namespace Npoi.Core.HPSF
     /// over time but largely depends on your feedback so that the POI team knows
     /// which variant types are really needed. So please feel free To submit error
     /// reports or patches for the types you need.
-    /// Microsoft documentation: 
+    /// Microsoft documentation:
     /// <a href="http://msdn.microsoft.com/library/en-us/stg/stg/property_Set_display_name_dictionary.asp?frame=true">
     /// Property Set Display Name Dictionary</a>
     /// .
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
     /// @author Drew Varner (Drew.Varner InAndAround sc.edu)
     /// @see Section
@@ -65,56 +65,45 @@ namespace Npoi.Core.HPSF
     /// </summary>
     public class Property
     {
-
         /** The property's ID. */
         protected long id;
-
 
         /**
          * Returns the property's ID.
          *
          * @return The ID value
          */
-        public virtual long ID
-        {
+
+        public virtual long ID {
             get { return id; }
             set { id = value; }
         }
 
-
-
         /** The property's type. */
         protected long type;
-
 
         /**
          * Returns the property's type.
          *
          * @return The type value
          */
-        public virtual long Type
-        {
+
+        public virtual long Type {
             get { return type; }
             set { type = value; }
         }
 
-
-
         /** The property's value. */
         protected Object value;
-
 
         /// <summary>
         /// Gets the property's value.
         /// </summary>
         /// <value>The property's value</value>
-        public virtual object Value
-        {
+        public virtual object Value {
             get { return this.value; }
             set { this.value = value; }
         }
-
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Property"/> class.
@@ -123,14 +112,11 @@ namespace Npoi.Core.HPSF
         /// <param name="type">the property's type, see {@link Variant}.</param>
         /// <param name="value">the property's value. Only certain types are allowed, see
         /// {@link Variant}.</param>
-        public Property(long id, long type, Object value)
-        {
+        public Property(long id, long type, Object value) {
             this.id = id;
             this.type = type;
             this.value = value;
         }
-
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Property"/> class.
@@ -143,16 +129,14 @@ namespace Npoi.Core.HPSF
         /// <param name="codepage">The section's and thus the property's
         /// codepage. It is needed only when Reading string values</param>
         public Property(long id, byte[] src, long offset,
-                        int Length, int codepage)
-        {
+                        int Length, int codepage) {
             this.id = id;
 
             /*
              * ID 0 is a special case since it specifies a dictionary of
              * property IDs and property names.
              */
-            if (id == 0)
-            {
+            if (id == 0) {
                 value = ReadDictionary(src, offset, Length, codepage);
                 return;
             }
@@ -161,26 +145,19 @@ namespace Npoi.Core.HPSF
             type = LittleEndian.GetUInt(src, o);
             o += LittleEndianConsts.INT_SIZE;
 
-            try
-            {
+            try {
                 value = VariantSupport.Read(src, o, Length, (int)type, codepage);
             }
-            catch (UnsupportedVariantTypeException ex)
-            {
+            catch (UnsupportedVariantTypeException ex) {
                 VariantSupport.WriteUnsupportedTypeMessage(ex);
                 value = ex.Value;
             }
         }
 
-
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Property"/> class.
         /// </summary>
-        protected Property()
-        { }
-
-
+        protected Property() { }
 
         /// <summary>
         /// Reads the dictionary.
@@ -191,8 +168,7 @@ namespace Npoi.Core.HPSF
         /// <param name="codepage">The codepage of the string values.</param>
         /// <returns>The dictonary</returns>
         protected IDictionary ReadDictionary(byte[] src, long offset,
-                                     int Length, int codepage)
-        {
+                                     int Length, int codepage) {
             /* Check whether "offset" points into the "src" array". */
             if (offset < 0 || offset > src.Length)
                 throw new HPSFRuntimeException
@@ -206,12 +182,10 @@ namespace Npoi.Core.HPSF
             long nrEntries = LittleEndian.GetUInt(src, o);
             o += LittleEndianConsts.INT_SIZE;
 
-            Dictionary<object,object> m = new Dictionary<object,object>((int)nrEntries);
+            Dictionary<object, object> m = new Dictionary<object, object>((int)nrEntries);
 
-            try
-            {
-                for (int i = 0; i < nrEntries; i++)
-                {
+            try {
+                for (int i = 0; i < nrEntries; i++) {
                     /* The key. */
                     long id = LittleEndian.GetUInt(src, o);
                     o += LittleEndianConsts.INT_SIZE;
@@ -226,30 +200,25 @@ namespace Npoi.Core.HPSF
 
                     /* Read the string. */
                     StringBuilder b = new StringBuilder();
-                    switch (codepage)
-                    {
-                        case -1:
-                            {
+                    switch (codepage) {
+                        case -1: {
                                 /* Without a codepage the Length is equal To the number of
                                  * bytes. */
                                 b.Append(Encoding.UTF8.GetString(src, o, (int)sLength));
                                 break;
                             }
-                        case CodePageUtil.CP_UNICODE:
-                            {
+                        case CodePageUtil.CP_UNICODE: {
                                 /* The Length is the number of characters, i.e. the number
                                  * of bytes is twice the number of the characters. */
                                 int nrBytes = (int)(sLength * 2);
                                 byte[] h = new byte[nrBytes];
-                                for (int i2 = 0; i2 < nrBytes; i2++)
-                                {
+                                for (int i2 = 0; i2 < nrBytes; i2++) {
                                     h[i2] = src[o + i2];
                                 }
-                                b.Append(Encoding.GetEncoding(codepage).GetString(h, 0, nrBytes-2));
+                                b.Append(Encoding.GetEncoding(codepage).GetString(h, 0, nrBytes - 2));
                                 break;
                             }
-                        default:
-                            {
+                        default: {
                                 /* For encodings other than Unicode the Length is the number
                                  * of bytes. */
                                 b.Append(Encoding.GetEncoding(codepage).GetString(src, o, (int)sLength));
@@ -260,8 +229,7 @@ namespace Npoi.Core.HPSF
                     /* Strip 0x00 characters from the end of the string: */
                     while (b.Length > 0 && b[b.Length - 1] == 0x00)
                         b.Length = b.Length - 1;
-                    if (codepage == CodePageUtil.CP_UNICODE)
-                    {
+                    if (codepage == CodePageUtil.CP_UNICODE) {
                         if (sLength % 2 == 1)
                             sLength++;
                         o += (int)(sLength + sLength);
@@ -271,8 +239,7 @@ namespace Npoi.Core.HPSF
                     m[id] = b.ToString();
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 POILogger l = POILogFactory.GetLogger(typeof(Property));
                 l.Log(POILogger.WARN,
                         "The property Set's dictionary Contains bogus data. "
@@ -282,15 +249,12 @@ namespace Npoi.Core.HPSF
             return m;
         }
 
-
-
         /// <summary>
         /// Gets the property's size in bytes. This is always a multiple of
         /// 4.
         /// </summary>
         /// <value>the property's size in bytes</value>
-        public int Count
-        {
+        public int Count {
             get
             {
                 int Length = VariantSupport.GetVariantLength(type);
@@ -302,10 +266,8 @@ namespace Npoi.Core.HPSF
 
                 /* Variable Length: */
                 int PAddING = 4; /* Pad To multiples of 4. */
-                switch ((int)type)
-                {
-                    case Variant.VT_LPSTR:
-                        {
+                switch ((int)type) {
+                    case Variant.VT_LPSTR: {
                             int l = ((String)value).Length + 1;
                             int r = l % PAddING;
                             if (r > 0)
@@ -315,14 +277,13 @@ namespace Npoi.Core.HPSF
                         }
                     case Variant.VT_EMPTY:
                         break;
+
                     default:
                         throw new WritingNotSupportedException(type, value);
                 }
                 return Length;
             }
         }
-
-
 
         /// <summary>
         /// Compares two properties.
@@ -333,8 +294,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="o">The o.</param>
         /// <returns></returns>
-        public override bool Equals(Object o)
-        {
+        public override bool Equals(Object o) {
             if (!(o is Property))
                 return false;
             Property p = (Property)o;
@@ -360,16 +320,13 @@ namespace Npoi.Core.HPSF
             return value.Equals(pValue);
         }
 
-
-
         /// <summary>
         /// Typeses the are equal.
         /// </summary>
         /// <param name="t1">The t1.</param>
         /// <param name="t2">The t2.</param>
         /// <returns></returns>
-        private bool TypesAreEqual(long t1, long t2)
-        {
+        private bool TypesAreEqual(long t1, long t2) {
             if (t1 == t2 ||
                 (t1 == Variant.VT_LPSTR && t2 == Variant.VT_LPWSTR) ||
                 (t2 == Variant.VT_LPSTR && t1 == Variant.VT_LPWSTR))
@@ -378,15 +335,13 @@ namespace Npoi.Core.HPSF
                 return false;
         }
 
-
         /// <summary>
         /// Serves as a hash function for a particular type.
         /// </summary>
         /// <returns>
         /// A hash code for the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override int GetHashCode()
-        {
+        public override int GetHashCode() {
             long GetHashCode = 0;
             GetHashCode += id;
             GetHashCode += type;
@@ -394,7 +349,6 @@ namespace Npoi.Core.HPSF
                 GetHashCode += value.GetHashCode();
             int returnHashCode = (int)(GetHashCode & 0x0ffffffffL);
             return returnHashCode;
-
         }
 
         /// <summary>
@@ -403,8 +357,7 @@ namespace Npoi.Core.HPSF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override String ToString()
-        {
+        public override String ToString() {
             StringBuilder b = new StringBuilder();
             b.Append(this.GetType().Name);
             b.Append('[');
@@ -414,45 +367,38 @@ namespace Npoi.Core.HPSF
             b.Append(GetType());
             Object value = Value;
             b.Append(", value: ");
-            if (value is String)
-            {
+            if (value is String) {
                 b.Append(value.ToString());
                 String s = value.ToString();
                 int l = s.Length;
 
-                byte[] bytes = new byte[l*2];
-                for (int i = 0; i < l; i++)
-                {
+                byte[] bytes = new byte[l * 2];
+                for (int i = 0; i < l; i++) {
                     char c = s[i];
-                    byte high = (byte) ((c & 0x00ff00) >> 8);
-                    byte low = (byte) ((c & 0x0000ff) >> 0);
-                    bytes[i*2] = high;
-                    bytes[i*2 + 1] = low;
+                    byte high = (byte)((c & 0x00ff00) >> 8);
+                    byte low = (byte)((c & 0x0000ff) >> 0);
+                    bytes[i * 2] = high;
+                    bytes[i * 2 + 1] = low;
                 }
                 b.Append(" [");
-                if (bytes.Length > 0)
-                {
+                if (bytes.Length > 0) {
                     String hex = HexDump.Dump(bytes, 0L, 0);
                     b.Append(hex);
                 }
                 b.Append("]");
             }
-            else if (value is byte[])
-            {
-                byte[] bytes = (byte[]) value;
-                if (bytes.Length > 0)
-                {
+            else if (value is byte[]) {
+                byte[] bytes = (byte[])value;
+                if (bytes.Length > 0) {
                     String hex = HexDump.Dump(bytes, 0L, 0);
                     b.Append(hex);
                 }
             }
-            else
-            {
+            else {
                 b.Append(value.ToString());
             }
             b.Append(']');
             return b.ToString();
         }
-
     }
 }

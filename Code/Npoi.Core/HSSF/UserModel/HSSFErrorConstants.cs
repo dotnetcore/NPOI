@@ -45,7 +45,6 @@ namespace Npoi.Core.HSSF.UserModel
         /** <b>#N/A</b> - Argument or function not available */
         public const int ERROR_NA = 0x2A;
 
-
         /// <summary>
         /// Gets standard Excel error literal for the specified error code.
         /// @throws ArgumentException if the specified error code is not one of the 7
@@ -58,19 +57,24 @@ namespace Npoi.Core.HSSF.UserModel
             if (errorCode == ERROR_NULL)
             {
                 return "#NULL!";
-            }else if(errorCode == ERROR_DIV_0)
+            }
+            else if (errorCode == ERROR_DIV_0)
             {
                 return "#DIV/0!";
-            }else if(errorCode == ERROR_VALUE)
+            }
+            else if (errorCode == ERROR_VALUE)
             {
                 return "#VALUE!";
-            }else if(errorCode == ERROR_REF)
+            }
+            else if (errorCode == ERROR_REF)
             {
                 return "#REF!";
-            }else if(errorCode == ERROR_NAME)
+            }
+            else if (errorCode == ERROR_NAME)
             {
                 return "#NAME?";
-            }else if(errorCode == ERROR_NUM)
+            }
+            else if (errorCode == ERROR_NUM)
             {
                 return "#NUM!";
             }
@@ -90,7 +94,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </returns>
         public static bool IsValidCode(int errorCode)
         {
-            // This method exists because it would be bad to force clients to catch 
+            // This method exists because it would be bad to force clients to catch
             // ArgumentException if there were potential for passing an invalid error code.
 
             if (errorCode == ERROR_NULL
@@ -101,9 +105,9 @@ namespace Npoi.Core.HSSF.UserModel
                 || errorCode == ERROR_NUM
                 || errorCode == ERROR_NA
                 )
-                {
-                    return true;
-                }
+            {
+                return true;
+            }
 
             return false;
         }

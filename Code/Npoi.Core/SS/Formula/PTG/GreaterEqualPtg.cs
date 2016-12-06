@@ -15,7 +15,6 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.SS.Formula.PTG
 {
     using System;
@@ -26,6 +25,7 @@ namespace Npoi.Core.SS.Formula.PTG
      *
      * @author  fred at stsci dot edu
      */
+
     public class GreaterEqualPtg : ValueOperatorPtg
     {
         public const int SIZE = 1;

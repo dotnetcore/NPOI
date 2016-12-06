@@ -20,14 +20,12 @@
 // */
 //namespace Npoi.Core.SS.Formula.Eval
 //{
-
 //    /**
 //     * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
 //     *
 //     */
 //    public abstract class NumericOperationEval : OperationEval
 //    {
-
 //        protected abstract ValueEvalToNumericXlator Xlator { get; }
 
 //        protected ValueEval SingleOperandEvaluate(Eval eval, int srcRow, short srcCol)

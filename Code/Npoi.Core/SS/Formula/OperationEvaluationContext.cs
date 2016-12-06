@@ -2,13 +2,13 @@ using Npoi.Core.Util;
 
 namespace Npoi.Core.SS.Formula
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.Formula.Functions;
-    using Npoi.Core.SS.Util;
-    using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.Util;
+    using System;
     using System.Globalization;
+
     /**
      * Contains all the contextual information required to Evaluate an operation
      * within a formula
@@ -17,6 +17,7 @@ namespace Npoi.Core.SS.Formula
      *
      * @author Josh Micich
      */
+
     public class OperationEvaluationContext
     {
         public static readonly FreeRefFunction UDF = UserDefinedFunction.instance;
@@ -59,23 +60,24 @@ namespace Npoi.Core.SS.Formula
             }
         }
 
-        SheetRangeEvaluator CreateExternSheetRefEvaluator(IExternSheetReferenceToken ptg)
+        private SheetRangeEvaluator CreateExternSheetRefEvaluator(IExternSheetReferenceToken ptg)
         {
             return CreateExternSheetRefEvaluator(ptg.ExternSheetIndex);
         }
 
-        SheetRangeEvaluator CreateExternSheetRefEvaluator(String firstSheetName, String lastSheetName, int externalWorkbookNumber)
+        private SheetRangeEvaluator CreateExternSheetRefEvaluator(String firstSheetName, String lastSheetName, int externalWorkbookNumber)
         {
             ExternalSheet externalSheet = _workbook.GetExternalSheet(firstSheetName, lastSheetName, externalWorkbookNumber);
             return CreateExternSheetRefEvaluator(externalSheet);
         }
 
-        SheetRangeEvaluator CreateExternSheetRefEvaluator(int externSheetIndex)
+        private SheetRangeEvaluator CreateExternSheetRefEvaluator(int externSheetIndex)
         {
             ExternalSheet externalSheet = _workbook.GetExternalSheet(externSheetIndex);
             return CreateExternSheetRefEvaluator(externalSheet);
         }
-        SheetRangeEvaluator CreateExternSheetRefEvaluator(ExternalSheet externalSheet)
+
+        private SheetRangeEvaluator CreateExternSheetRefEvaluator(ExternalSheet externalSheet)
         {
             WorkbookEvaluator targetEvaluator;
             int otherFirstSheetIndex;
@@ -134,10 +136,10 @@ namespace Npoi.Core.SS.Formula
             return new SheetRangeEvaluator(otherFirstSheetIndex, otherLastSheetIndex, Evals);
         }
 
-
         /**
          * @return <code>null</code> if either workbook or sheet is not found
          */
+
         private SheetRefEvaluator CreateExternSheetRefEvaluator(String workbookName, String sheetName)
         {
             WorkbookEvaluator targetEvaluator;
@@ -174,8 +176,6 @@ namespace Npoi.Core.SS.Formula
             return new SheetRangeEvaluator(_sheetIndex, sre);
         }
 
-
-
         /**
          * Resolves a cell or area reference dynamically.
          * @param workbookName the name of the workbook Containing the reference.  If <code>null</code>
@@ -193,6 +193,7 @@ namespace Npoi.Core.SS.Formula
          * TODO - currently POI only supports 'A1' reference style
          * @return a {@link RefEval} or {@link AreaEval}
          */
+
         public ValueEval GetDynamicReference(String workbookName, String sheetName, String refStrPart1,
                 String refStrPart2, bool isA1Style)
         {
@@ -215,6 +216,7 @@ namespace Npoi.Core.SS.Formula
             {
                 case NameType.BadCellOrNamedRange:
                     return ErrorEval.REF_INVALID;
+
                 case NameType.NamedRange:
                     IEvaluationName nm = ((IFormulaParsingWorkbook)_workbook).GetName(refStrPart1, _sheetIndex);
                     if (!nm.IsRange)
@@ -231,6 +233,7 @@ namespace Npoi.Core.SS.Formula
                     case NameType.Column:
                     case NameType.Row:
                         return ErrorEval.REF_INVALID;
+
                     case NameType.Cell:
                         CellReference cr = new CellReference(refStrPart1);
                         return new LazyRefEval(cr.Row, cr.Col, sre);
@@ -242,6 +245,7 @@ namespace Npoi.Core.SS.Formula
             {
                 case NameType.BadCellOrNamedRange:
                     return ErrorEval.REF_INVALID;
+
                 case NameType.NamedRange:
                     throw new Exception("Cannot Evaluate '" + refStrPart1
                             + "'. Indirect Evaluation of defined names not supported yet");
@@ -270,6 +274,7 @@ namespace Npoi.Core.SS.Formula
                         lastCol = ParseColRef(refStrPart2);
                     }
                     break;
+
                 case NameType.Row:
                     // support of cell range in the form of integer:integer
                     firstCol = 0;
@@ -286,6 +291,7 @@ namespace Npoi.Core.SS.Formula
                         lastRow = ParseRowRef(refStrPart2);
                     }
                     break;
+
                 case NameType.Cell:
                     CellReference cr;
                     cr = new CellReference(refStrPart1);
@@ -295,6 +301,7 @@ namespace Npoi.Core.SS.Formula
                     lastRow = cr.Row;
                     lastCol = cr.Col;
                     break;
+
                 default:
                     throw new InvalidOperationException("Unexpected reference classification of '" + refStrPart1 + "'.");
             }
@@ -331,34 +338,40 @@ namespace Npoi.Core.SS.Formula
             SheetRangeEvaluator sre = GetRefEvaluatorForCurrentSheet();
             return new LazyRefEval(rowIndex, columnIndex, sre);
         }
+
         public ValueEval GetRef3DEval(Ref3DPtg rptg)
         {
             SheetRangeEvaluator sre = CreateExternSheetRefEvaluator(rptg.ExternSheetIndex);
             return new LazyRefEval(rptg.Row, rptg.Column, sre);
         }
+
         public ValueEval GetRef3DEval(Ref3DPxg rptg)
         {
             SheetRangeEvaluator sre = CreateExternSheetRefEvaluator(rptg.SheetName, rptg.LastSheetName, rptg.ExternalWorkbookNumber);
             return new LazyRefEval(rptg.Row, rptg.Column, sre);
         }
+
         public ValueEval GetAreaEval(int firstRowIndex, int firstColumnIndex,
                 int lastRowIndex, int lastColumnIndex)
         {
             SheetRangeEvaluator sre = GetRefEvaluatorForCurrentSheet();
             return new LazyAreaEval(firstRowIndex, firstColumnIndex, lastRowIndex, lastColumnIndex, sre);
         }
+
         public ValueEval GetArea3DEval(Area3DPtg aptg)
         {
             SheetRangeEvaluator sre = CreateExternSheetRefEvaluator(aptg.ExternSheetIndex);
             return new LazyAreaEval(aptg.FirstRow, aptg.FirstColumn,
                     aptg.LastRow, aptg.LastColumn, sre);
         }
+
         public ValueEval GetArea3DEval(Area3DPxg aptg)
         {
             SheetRangeEvaluator sre = CreateExternSheetRefEvaluator(aptg.SheetName, aptg.LastSheetName, aptg.ExternalWorkbookNumber);
             return new LazyAreaEval(aptg.FirstRow, aptg.FirstColumn,
                     aptg.LastRow, aptg.LastColumn, sre);
         }
+
         public ValueEval GetNameXEval(NameXPtg nameXPtg)
         {
             ExternalSheet externSheet = _workbook.GetExternalSheet(nameXPtg.SheetRefIndex);
@@ -375,6 +388,7 @@ namespace Npoi.Core.SS.Formula
             );
             return GetExternalNameXEval(externName, workbookName);
         }
+
         public ValueEval GetNameXEval(NameXPxg nameXPxg)
         {
             ExternalSheet externSheet = _workbook.GetExternalSheet(nameXPxg.SheetName, null, nameXPxg.ExternalWorkbookNumber);
@@ -393,6 +407,7 @@ namespace Npoi.Core.SS.Formula
             );
             return GetExternalNameXEval(externName, workbookName);
         }
+
         private ValueEval GetLocalNameXEval(NameXPxg nameXPxg)
         {
             // Look up the sheet, if present
@@ -416,6 +431,7 @@ namespace Npoi.Core.SS.Formula
                 return new FunctionNameEval(name);
             }
         }
+
         private ValueEval GetLocalNameXEval(NameXPtg nameXPtg)
         {
             String name = _workbook.ResolveNameXText(nameXPtg);
@@ -486,7 +502,6 @@ namespace Npoi.Core.SS.Formula
                         Area3DPxg area3D = (Area3DPxg)ptg;
                         return refWorkbookContext.GetArea3DEval(area3D);
                     }
-
                 }
                 return ErrorEval.REF_INVALID;
             }

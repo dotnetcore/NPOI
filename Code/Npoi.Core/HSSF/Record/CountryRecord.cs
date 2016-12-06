@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title:        Country Record (aka WIN.INI country)
@@ -41,6 +37,7 @@ namespace Npoi.Core.HSSF.Record
 
         // 1 for US
         private short field_1_default_country;
+
         private short field_2_current_country;
 
         public CountryRecord()

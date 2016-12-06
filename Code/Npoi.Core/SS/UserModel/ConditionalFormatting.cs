@@ -44,7 +44,7 @@ namespace Npoi.Core.SS.UserModel
      *  </UL>
      *
      * Use {@link Npoi.Core.HSSF.UserModel.Sheet#getSheetConditionalFormatting()} to Get access to an instance of this class.
-     * 
+     *
      * To create a new Conditional Formatting Set use the following approach:
      *
      * <PRE>
@@ -75,12 +75,13 @@ namespace Npoi.Core.SS.UserModel
      * @author Dmitriy Kumshayev
      * @author Yegor Kozlov
      */
+
     public interface IConditionalFormatting
     {
-
         /**
          * @return array of <c>CellRangeAddress</c>s. Never <code>null</code>
          */
+
         CellRangeAddress[] GetFormattingRanges();
 
         /**
@@ -91,6 +92,7 @@ namespace Npoi.Core.SS.UserModel
          * @param idx position of the rule. Should be between 0 and 2.
          * @param cfRule - Conditional Formatting rule
          */
+
         void SetRule(int idx, IConditionalFormattingRule cfRule);
 
         /**
@@ -99,19 +101,18 @@ namespace Npoi.Core.SS.UserModel
          *
          * @param cfRule - Conditional Formatting rule
          */
+
         void AddRule(IConditionalFormattingRule cfRule);
 
         /**
          * @return the Conditional Formatting rule at position idx.
          */
+
         IConditionalFormattingRule GetRule(int idx);
 
         /**
          * @return number of Conditional Formatting rules.
          */
         int NumberOfRules { get; }
-
-
     }
-
 }

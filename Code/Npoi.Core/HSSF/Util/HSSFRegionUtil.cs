@@ -17,10 +17,9 @@
 
 namespace Npoi.Core.HSSF.Util
 {
-    using System;
-
     using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.SS.Util;
+    using System;
 
     /// <summary>
     /// Various utility functions that make working with a region of cells easier.
@@ -28,17 +27,16 @@ namespace Npoi.Core.HSSF.Util
     /// </summary>
     public class HSSFRegionUtil
     {
-
         private HSSFRegionUtil()
         {
             // no instances of this class
         }
+
         /// <summary>
         /// For setting the same property on many cells to the same value
         /// </summary>
         private class CellPropertySetter
         {
-
             private HSSFWorkbook _workbook;
             private String _propertyName;
             private short _propertyValue;
@@ -49,12 +47,14 @@ namespace Npoi.Core.HSSF.Util
                 _propertyName = propertyName;
                 _propertyValue = (short)value;
             }
+
             public void SetProperty(Npoi.Core.SS.UserModel.IRow row, int column)
             {
                 Npoi.Core.SS.UserModel.ICell cell = HSSFCellUtil.GetCell(row, column);
                 HSSFCellUtil.SetCellStyleProperty(cell, _workbook, _propertyName, _propertyValue);
             }
         }
+
         [Obsolete]
         private static CellRangeAddress toCRA(Region region)
         {

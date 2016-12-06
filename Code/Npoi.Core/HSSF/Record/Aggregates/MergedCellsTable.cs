@@ -17,17 +17,17 @@
 
 namespace Npoi.Core.HSSF.Record.Aggregates
 {
-
-    using System;
-    using System.Collections.Generic;
     using Npoi.Core.HSSF.Model;
     using Npoi.Core.HSSF.Record;
-
     using Npoi.Core.SS.Util;
+    using System;
+    using System.Collections.Generic;
+
     /**
-     * 
+     *
      * @author Josh Micich
      */
+
     public class MergedCellsTable : RecordAggregate
     {
         private const int MAX_MERGED_REGIONS = 1027; // enforced by the 8224 byte limit
@@ -41,14 +41,14 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         {
             _mergedRegions = new List<CellRangeAddress>();
         }
-       
+
         /**
          * Reads zero or more consecutive {@link MergeCellsRecord}s
          * @param rs
          */
+
         public void Read(RecordStream rs)
         {
-            
             while (rs.PeekNextClass() == typeof(MergeCellsRecord))
             {
                 MergeCellsRecord mcr = (MergeCellsRecord)rs.GetNext();
@@ -106,6 +106,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 rv.VisitRecord(new MergeCellsRecord(cras, startIx, nLeftoverMergedRegions));
             }
         }
+
         public void AddRecords(MergeCellsRecord[] mcrs)
         {
             for (int i = 0; i < mcrs.Length; i++)
@@ -122,7 +123,6 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 _mergedRegions.Add(mcr.GetAreaAt(i));
             }
         }
-
 
         public List<CellRangeAddress> MergedRegions
         {

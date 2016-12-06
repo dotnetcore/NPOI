@@ -17,9 +17,8 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
-    using System;
     using Npoi.Core.Util;
+    using System;
     using System.Text;
 
     /**
@@ -27,9 +26,9 @@ namespace Npoi.Core.HSSF.Record
      *
      * @author Yegor Kozlov
      */
+
     public class UserSViewEnd : StandardRecord
     {
-
         public const short sid = 0x01AB;
         private byte[] _rawData;
 
@@ -43,6 +42,7 @@ namespace Npoi.Core.HSSF.Record
          * be Serialized in its original form more or less
          * @param in the RecordInputstream to read the record from
          */
+
         public UserSViewEnd(RecordInputStream in1)
         {
             _rawData = in1.ReadRemainder();
@@ -51,6 +51,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * spit the record out AS IS. no interpretation or identification
          */
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.Write(_rawData);
@@ -88,6 +89,5 @@ namespace Npoi.Core.HSSF.Record
         {
             return CloneViaReserialise();
         }
-
     }
 }

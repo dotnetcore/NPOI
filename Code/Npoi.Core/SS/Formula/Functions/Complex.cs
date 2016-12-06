@@ -1,6 +1,5 @@
 ﻿using Npoi.Core.SS.Formula.Eval;
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Npoi.Core.SS.Formula.Functions
@@ -33,9 +32,9 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author cedric dot walter @ gmail dot com
      */
+
     public class Complex : Var2or3ArgFunction, FreeRefFunction
     {
-
         public static FreeRefFunction Instance = new Complex();
 
         public static String DEFAULT_SUFFIX = "i";

@@ -17,6 +17,7 @@
 
 using Npoi.Core.HSSF.Model;
 using Npoi.Core.HSSF.Record.Chart;
+
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 {
     /// <summary>
@@ -35,9 +36,10 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             yMult = (YMultRecord)rs.GetNext();
             startObject = (ChartStartObjectRecord)rs.GetNext();
             attachedLabel = new AttachedLabelAggregate(rs, this);
-            
+
             endObject = (ChartEndObjectRecord)rs.GetNext();
         }
+
         public override void VisitContainedRecords(RecordVisitor rv)
         {
             WriteStartBlock(rv);//??

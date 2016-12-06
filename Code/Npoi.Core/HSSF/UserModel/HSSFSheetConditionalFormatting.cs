@@ -17,13 +17,11 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
-
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.Record.Aggregates;
-    using Npoi.Core.SS.Util;
     using Npoi.Core.SS.UserModel;
-
+    using Npoi.Core.SS.Util;
+    using System;
 
     /// <summary>
     /// The Conditional Formatting facet of HSSFSheet
@@ -31,12 +29,13 @@ namespace Npoi.Core.HSSF.UserModel
     /// </summary>
     public class HSSFSheetConditionalFormatting : ISheetConditionalFormatting
     {
-
         //private HSSFWorkbook _workbook;
         private HSSFSheet _sheet;
+
         private ConditionalFormattingTable _conditionalFormattingTable;
 
         /* package */
+
         //public HSSFSheetConditionalFormatting(HSSFWorkbook workbook, InternalSheet sheet)
         //{
         //    _workbook = workbook;
@@ -47,6 +46,7 @@ namespace Npoi.Core.HSSF.UserModel
             _sheet = sheet;
             _conditionalFormattingTable = sheet.Sheet.ConditionalFormattingTable;
         }
+
         /// <summary>
         /// A factory method allowing to Create a conditional formatting rule
         /// with a cell comparison operator
@@ -54,7 +54,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="comparisonOperation">a constant value from HSSFConditionalFormattingRule.ComparisonOperator</param>
         /// <param name="formula1">formula for the valued, Compared with the cell</param>
-        /// <param name="formula2">second formula (only used with HSSFConditionalFormattingRule#COMPARISON_OPERATOR_BETWEEN 
+        /// <param name="formula2">second formula (only used with HSSFConditionalFormattingRule#COMPARISON_OPERATOR_BETWEEN
         /// and HSSFConditionalFormattingRule#COMPARISON_OPERATOR_NOT_BETWEEN operations)</param>
         /// <returns></returns>
         public IConditionalFormattingRule CreateConditionalFormattingRule(
@@ -62,7 +62,6 @@ namespace Npoi.Core.HSSF.UserModel
                 String formula1,
                 String formula2)
         {
-
             HSSFWorkbook wb = (HSSFWorkbook)_sheet.Workbook;
             CFRuleRecord rr = CFRuleRecord.Create(_sheet, (byte)comparisonOperation, formula1, formula2);
             return new HSSFConditionalFormattingRule(wb, rr);
@@ -81,6 +80,7 @@ namespace Npoi.Core.HSSF.UserModel
             CFRuleRecord rr = CFRuleRecord.Create(_sheet, formula);
             return new HSSFConditionalFormattingRule(wb, rr);
         }
+
         public IConditionalFormattingRule CreateConditionalFormattingRule(
             ComparisonOperator comparisonOperation,
             String formula1)
@@ -89,6 +89,7 @@ namespace Npoi.Core.HSSF.UserModel
             CFRuleRecord rr = CFRuleRecord.Create(_sheet, (byte)comparisonOperation, formula1, null);
             return new HSSFConditionalFormattingRule(wb, rr);
         }
+
         /// <summary>
         /// Adds a copy of HSSFConditionalFormatting object to the sheet
         /// This method could be used to copy HSSFConditionalFormatting object
@@ -140,14 +141,15 @@ namespace Npoi.Core.HSSF.UserModel
             CFRecordsAggregate cfra = new CFRecordsAggregate(regions, rules);
             return _conditionalFormattingTable.Add(cfra);
         }
+
         public int AddConditionalFormatting(CellRangeAddress[] regions,
             HSSFConditionalFormattingRule rule1)
         {
             return AddConditionalFormatting(regions,
                     rule1 == null ? null : new HSSFConditionalFormattingRule[]
-				{
-					rule1
-				});
+                {
+                    rule1
+                });
         }
 
         /// <summary>
@@ -175,9 +177,9 @@ namespace Npoi.Core.HSSF.UserModel
         {
             return AddConditionalFormatting(regions,
                     new HSSFConditionalFormattingRule[]
-				{
-						(HSSFConditionalFormattingRule)rule1, (HSSFConditionalFormattingRule)rule2
-				});
+                {
+                        (HSSFConditionalFormattingRule)rule1, (HSSFConditionalFormattingRule)rule2
+                });
         }
 
         /// <summary>

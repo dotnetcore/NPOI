@@ -17,40 +17,40 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
-    using System;
-    using System.Text;
-
-    using Npoi.Core.Util;
-    using Npoi.Core.HSSF.Record;
-    using SSFormula=Npoi.Core.SS.Formula;
     using Npoi.Core.HSSF.Record.Cont;
     using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.Util;
+    using System;
+    using System.Text;
+    using SSFormula = Npoi.Core.SS.Formula;
 
     /**
-     * Title:        Name Record (aka Named Range) 
-     * Description:  Defines a named range within a workbook. 
-     * REFERENCE:  
+     * Title:        Name Record (aka Named Range)
+     * Description:  Defines a named range within a workbook.
+     * REFERENCE:
      * @author Libin Roman (Vista Portal LDT. Developer)
      * @author  Sergei Kozello (sergeikozello at mail.ru)
      * @author Glen Stampoultzis (glens at apache.org)
      * @version 1.0-pre
      */
+
     public class NameRecord : ContinuableRecord
     {
-        private enum Option:short {
-		    OPT_HIDDEN_NAME =   0x0001,
-		    OPT_FUNCTION_NAME = 0x0002,
+        private enum Option : short
+        {
+            OPT_HIDDEN_NAME = 0x0001,
+            OPT_FUNCTION_NAME = 0x0002,
             OPT_COMMAND_NAME = 0x0004,
             OPT_MACRO = 0x0008,
             OPT_COMPLEX = 0x0010,
             OPT_BUILTIN = 0x0020,
             OPT_BINDATA = 0x1000,
-	    }
+        }
 
-        public static bool IsFormula(int optValue) {
-			return (optValue & 0x0F) == 0;
-		}
+        public static bool IsFormula(int optValue)
+        {
+            return (optValue & 0x0F) == 0;
+        }
 
         /**
          */
@@ -67,7 +67,6 @@ namespace Npoi.Core.HSSF.Record
         /**Included for completeness sake, not implemented
          */
         public const byte BUILTIN_AUTO_CLOSE = (byte)2;
-
 
         public const byte BUILTIN_EXTRACT = (byte)3;
         /**Included for completeness sake, not implemented
@@ -103,7 +102,7 @@ namespace Npoi.Core.HSSF.Record
          */
         public const byte BUILTIN_SHEET_TITLE = (byte)12;
 
-        public const byte  BUILTIN_FILTER_DB             = 13;
+        public const byte BUILTIN_FILTER_DB = 13;
 
         //public const short OPT_HIDDEN_NAME = (short)0x0001;
         //public const short OPT_FUNCTION_NAME = (short)0x0002;
@@ -112,7 +111,6 @@ namespace Npoi.Core.HSSF.Record
         //public const short OPT_COMPLEX = (short)0x0010;
         //public const short OPT_BUILTIN = (short)0x0020;
         //public const short OPT_BINDATA = (short)0x1000;
-
 
         private short field_1_option_flag;
         private byte field_2_keyboard_shortcut;
@@ -124,12 +122,14 @@ namespace Npoi.Core.HSSF.Record
         private short field_5_externSheetIndex_plus1;
         /** the one based sheet number.  */
         private int field_6_sheetNumber;
+
         //private byte field_7_Length_custom_menu;
         //private byte field_8_Length_description_text;
         //private byte field_9_Length_help_topic_text;
         //private byte field_10_Length_status_bar_text;
         //private byte field_11_compressed_unicode_flag;   // not documented
         private bool field_11_nameIsMultibyte;
+
         private byte field_12_built_in_code;
         private String field_12_name_text;
         private SSFormula.Formula field_13_name_definition;
@@ -138,8 +138,8 @@ namespace Npoi.Core.HSSF.Record
         private String field_16_help_topic_text;
         private String field_17_status_bar_text;
 
-
         /** Creates new NameRecord */
+
         public NameRecord()
         {
             field_13_name_definition = SSFormula.Formula.Create(Ptg.EMPTY_PTG_ARRAY);
@@ -150,9 +150,11 @@ namespace Npoi.Core.HSSF.Record
             field_16_help_topic_text = "";
             field_17_status_bar_text = "";
         }
+
         protected int DataSize
         {
-            get {
+            get
+            {
                 return 13   // 3 shorts + 7 bytes
                         + NameRawSize
                         + field_14_custom_menu_text.Length
@@ -162,60 +164,67 @@ namespace Npoi.Core.HSSF.Record
                         + field_13_name_definition.EncodedSize;
             }
         }
+
         /**
          * Constructs a Name record and Sets its fields appropriately.
          *
          * @param in the RecordInputstream to Read the record from
          */
+
         public NameRecord(RecordInputStream ris)
         {
             byte[] remainder = ris.ReadAllContinuedRemainder();
             ILittleEndianInput in1 = new LittleEndianByteArrayInputStream(remainder);
-            field_1_option_flag                 = in1.ReadShort();
-		    field_2_keyboard_shortcut           = (byte)in1.ReadByte();
-		    int field_3_length_name_text        = in1.ReadByte();
-		    int field_4_length_name_definition  = in1.ReadShort();
-		    field_5_externSheetIndex_plus1      = in1.ReadShort();
-		    field_6_sheetNumber                 = in1.ReadUShort();
-		    int field_7_length_custom_menu      = in1.ReadUByte();
-		    int field_8_length_description_text = in1.ReadUByte();
-		    int field_9_length_help_topic_text  = in1.ReadUByte();
-		    int field_10_length_status_bar_text = in1.ReadUByte();
+            field_1_option_flag = in1.ReadShort();
+            field_2_keyboard_shortcut = (byte)in1.ReadByte();
+            int field_3_length_name_text = in1.ReadByte();
+            int field_4_length_name_definition = in1.ReadShort();
+            field_5_externSheetIndex_plus1 = in1.ReadShort();
+            field_6_sheetNumber = in1.ReadUShort();
+            int field_7_length_custom_menu = in1.ReadUByte();
+            int field_8_length_description_text = in1.ReadUByte();
+            int field_9_length_help_topic_text = in1.ReadUByte();
+            int field_10_length_status_bar_text = in1.ReadUByte();
 
-		    //store the name in byte form if it's a built-in name
-		    field_11_nameIsMultibyte = (in1.ReadByte() != 0);
-		    if (IsBuiltInName) {
-			    field_12_built_in_code = (byte)in1.ReadByte();
-		    } else {
-			    if (field_11_nameIsMultibyte) {
+            //store the name in byte form if it's a built-in name
+            field_11_nameIsMultibyte = (in1.ReadByte() != 0);
+            if (IsBuiltInName)
+            {
+                field_12_built_in_code = (byte)in1.ReadByte();
+            }
+            else
+            {
+                if (field_11_nameIsMultibyte)
+                {
                     field_12_name_text = StringUtil.ReadUnicodeLE(in1, field_3_length_name_text);
-			    } else {
+                }
+                else
+                {
                     field_12_name_text = StringUtil.ReadCompressedUnicode(in1, field_3_length_name_text);
-			    }
-		    }
-          int nBytesAvailable = in1.Available() - (field_7_length_custom_menu
-				+ field_8_length_description_text + field_9_length_help_topic_text + field_10_length_status_bar_text);
-		    field_13_name_definition = SSFormula.Formula.Read(field_4_length_name_definition, in1, nBytesAvailable);
+                }
+            }
+            int nBytesAvailable = in1.Available() - (field_7_length_custom_menu
+                  + field_8_length_description_text + field_9_length_help_topic_text + field_10_length_status_bar_text);
+            field_13_name_definition = SSFormula.Formula.Read(field_4_length_name_definition, in1, nBytesAvailable);
 
-		    //Who says that this can only ever be compressed unicode???
+            //Who says that this can only ever be compressed unicode???
             field_14_custom_menu_text = StringUtil.ReadCompressedUnicode(in1, field_7_length_custom_menu);
             field_15_description_text = StringUtil.ReadCompressedUnicode(in1, field_8_length_description_text);
             field_16_help_topic_text = StringUtil.ReadCompressedUnicode(in1, field_9_length_help_topic_text);
             field_17_status_bar_text = StringUtil.ReadCompressedUnicode(in1, field_10_length_status_bar_text);
-
         }
 
         /**
          * Constructor to Create a built-in named region
          * @param builtin Built-in byte representation for the name record, use the public constants
-         * @param index 
+         * @param index
          */
+
         public NameRecord(byte builtin, int sheetNumber)
             : this()
         {
-
             field_12_built_in_code = builtin;
-            OptionFlag=(short)(field_1_option_flag | (short)Option.OPT_BUILTIN);
+            OptionFlag = (short)(field_1_option_flag | (short)Option.OPT_BUILTIN);
             field_6_sheetNumber = sheetNumber; //the extern sheets are set through references
         }
 
@@ -223,6 +232,7 @@ namespace Npoi.Core.HSSF.Record
          * @return function Group
          * @see FnGroupCountRecord
          */
+
         public byte FnGroup
         {
             get
@@ -235,6 +245,7 @@ namespace Npoi.Core.HSSF.Record
         /** Gets the option flag
          * @return option flag
          */
+
         public short OptionFlag
         {
             get { return field_1_option_flag; }
@@ -244,13 +255,14 @@ namespace Npoi.Core.HSSF.Record
         /** returns the keyboard shortcut
          * @return keyboard shortcut
          */
+
         public byte KeyboardShortcut
         {
             get { return field_2_keyboard_shortcut; }
             set { field_2_keyboard_shortcut = value; }
         }
 
-        ///** 
+        ///**
         // * Gets the name Length, in Chars
         // * @return name Length
         // */
@@ -289,6 +301,7 @@ namespace Npoi.Core.HSSF.Record
 	 *
 	 * @param function <c>true</c> indicates the name refers to a function.
 	 */
+
         public void SetFunction(bool function)
         {
             if (function)
@@ -300,9 +313,11 @@ namespace Npoi.Core.HSSF.Record
                 field_1_option_flag &= (short)(~Option.OPT_FUNCTION_NAME);
             }
         }
+
         /**
  * @return <c>true</c> if name has a formula (named range or defined value)
  */
+
         public bool HasFormula
         {
             get
@@ -310,13 +325,15 @@ namespace Npoi.Core.HSSF.Record
                 return IsFormula(field_1_option_flag) && field_13_name_definition.EncodedTokenSize > 0;
             }
         }
+
         /**
          * @return true if name Is hidden
          */
+
         public bool IsHiddenName
         {
             get { return (field_1_option_flag & (short)Option.OPT_HIDDEN_NAME) != 0; }
-            set 
+            set
             {
                 if (value)
                 {
@@ -329,10 +346,10 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         /**
          * @return true if name Is a function
          */
+
         public bool IsFunctionName
         {
             get { return (field_1_option_flag & (short)Option.OPT_FUNCTION_NAME) != 0; }
@@ -352,6 +369,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return true if name Is a command
          */
+
         public bool IsCommandName
         {
             get { return (field_1_option_flag & (short)Option.OPT_COMMAND_NAME) != 0; }
@@ -360,6 +378,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return true if function macro or command macro
          */
+
         public bool IsMacro
         {
             get { return (field_1_option_flag & (short)Option.OPT_MACRO) != 0; }
@@ -368,23 +387,24 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return true if array formula or user defined
          */
+
         public bool IsComplexFunction
         {
             get { return (field_1_option_flag & (short)Option.OPT_COMPLEX) != 0; }
         }
 
-
         /**Convenience Function to determine if the name Is a built-in name
          */
+
         public bool IsBuiltInName
         {
             get { return ((this.OptionFlag & (short)Option.OPT_BUILTIN) != 0); }
         }
 
-
         /** Gets the name
          * @return name
          */
+
         public String NameText
         {
             get
@@ -401,23 +421,26 @@ namespace Npoi.Core.HSSF.Record
         /** Gets the Built In Name
          * @return the built in Name
          */
+
         public byte BuiltInName
         {
             get { return this.field_12_built_in_code; }
         }
 
-
         /** Gets the definition, reference (Formula)
          * @return definition -- can be null if we cant Parse ptgs
          */
+
         public Ptg[] NameDefinition
         {
             get { return field_13_name_definition.Tokens; }
             set { field_13_name_definition = SSFormula.Formula.Create(value); }
         }
+
         /** Get the custom menu text
          * @return custom menu text
          */
+
         public String CustomMenuText
         {
             get { return field_14_custom_menu_text; }
@@ -427,6 +450,7 @@ namespace Npoi.Core.HSSF.Record
         /** Gets the description text
          * @return description text
          */
+
         public String DescriptionText
         {
             get { return field_15_description_text; }
@@ -436,6 +460,7 @@ namespace Npoi.Core.HSSF.Record
         /** Get the help topic text
          * @return gelp topic text
          */
+
         public String HelpTopicText
         {
             get { return field_16_help_topic_text; }
@@ -445,15 +470,18 @@ namespace Npoi.Core.HSSF.Record
         /** Gets the status bar text
          * @return status bar text
          */
+
         public String StatusBarText
         {
             get { return field_17_status_bar_text; }
             set { field_17_status_bar_text = value; }
         }
+
         /**
  * For named ranges, and built-in names
- * @return the 1-based sheet number. 
+ * @return the 1-based sheet number.
  */
+
         public int SheetNumber
         {
             get
@@ -462,6 +490,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set { field_6_sheetNumber = value; }
         }
+
         /**
          * called by the class that Is responsible for writing this sucker.
          * Subclasses should implement this so that their data Is passed back in a
@@ -469,6 +498,7 @@ namespace Npoi.Core.HSSF.Record
          * @param data byte array containing instance data
          * @return number of bytes written
          */
+
         protected override void Serialize(ContinuableRecordOutput out1)
         {
             int field_7_length_custom_menu = field_14_custom_menu_text.Length;
@@ -500,7 +530,7 @@ namespace Npoi.Core.HSSF.Record
                 String nameText = field_12_name_text;
                 if (field_11_nameIsMultibyte)
                 {
-                    StringUtil.PutUnicodeLE(nameText,out1);
+                    StringUtil.PutUnicodeLE(nameText, out1);
                 }
                 else
                 {
@@ -510,7 +540,7 @@ namespace Npoi.Core.HSSF.Record
             field_13_name_definition.SerializeTokens(out1);
             field_13_name_definition.SerializeArrayConstantData(out1);
 
-            StringUtil.PutCompressedUnicode(CustomMenuText,out1);
+            StringUtil.PutCompressedUnicode(CustomMenuText, out1);
             StringUtil.PutCompressedUnicode(DescriptionText, out1);
             StringUtil.PutCompressedUnicode(HelpTopicText, out1);
             StringUtil.PutCompressedUnicode(StatusBarText, out1);
@@ -519,6 +549,7 @@ namespace Npoi.Core.HSSF.Record
         /** Gets the extern sheet number
          * @return extern sheet index
          */
+
         public int ExternSheetNumber
         {
             get
@@ -532,7 +563,6 @@ namespace Npoi.Core.HSSF.Record
                 if (ptg.GetType() == typeof(Area3DPtg))
                 {
                     return ((Area3DPtg)ptg).ExternSheetIndex;
-
                 }
                 else if (ptg.GetType() == typeof(Ref3DPtg))
                 {
@@ -543,7 +573,6 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         private Ptg CreateNewPtg()
         {
             return new Area3DPtg("A1:A1", 0); // TODO - change to not be partially initialised
@@ -552,64 +581,65 @@ namespace Npoi.Core.HSSF.Record
         /**
          * return the non static version of the id for this record.
          */
+
         public override short Sid
         {
             get { return sid; }
         }
+
         /*
-          20 00 
-          00 
-          01 
+          20 00
+          00
+          01
           1A 00 // sz = 0x1A = 26
-          00 00 
-          01 00 
-          00 
-          00 
-          00 
-          00 
+          00 00
+          01 00
+          00
+          00
+          00
+          00
           00 // Unicode flag
           07 // name
-      
+
           29 17 00 3B 00 00 00 00 FF FF 00 00 02 00 3B 00 //{ 26
           00 07 00 07 00 00 00 FF 00 10                   //  }
-      
-      
-      
-          20 00 
-          00 
-          01 
+
+          20 00
+          00
+          01
           0B 00 // sz = 0xB = 11
-          00 00 
-          01 00 
-          00 
-          00 
-          00 
-          00 
+          00 00
+          01 00
+          00
+          00
+          00
+          00
           00 // Unicode flag
           07 // name
-      
+
           3B 00 00 07 00 07 00 00 00 FF 00   // { 11 }
       */
         /*
-          18, 00, 
-          1B, 00, 
-      
-          20, 00, 
-          00, 
-          01, 
-          0B, 00, 
-          00, 
-          00, 
-          00, 
-          00, 
-          00, 
-          07, 
-          3B 00 00 07 00 07 00 00 00 FF 00 ]     
+          18, 00,
+          1B, 00,
+
+          20, 00,
+          00,
+          01,
+          0B, 00,
+          00,
+          00,
+          00,
+          00,
+          00,
+          07,
+          3B 00 00 07 00 07 00 00 00 FF 00 ]
          */
 
         /**
          * @see Object#ToString()
          */
+
         public override String ToString()
         {
             StringBuilder buffer = new StringBuilder();
@@ -661,6 +691,7 @@ namespace Npoi.Core.HSSF.Record
         /**Creates a human Readable name for built in types
          * @return Unknown if the built-in name cannot be translated
          */
+
         protected String TranslateBuiltInName(byte name)
         {
             switch (name)

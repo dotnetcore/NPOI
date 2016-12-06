@@ -17,9 +17,9 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using Npoi.Core.Util;
     using Npoi.Core.DDF;
     using Npoi.Core.HSSF.Record;
+    using Npoi.Core.Util;
 
     /// <summary>
     /// @author Glen Stampoultzis  (glens at baselinksoftware.com)
@@ -32,21 +32,17 @@ namespace Npoi.Core.HSSF.UserModel
         public HSSFPolygon(EscherContainerRecord spContainer, ObjRecord objRecord, TextObjectRecord _textObjectRecord)
             : base(spContainer, objRecord, _textObjectRecord)
         {
-
         }
 
         public HSSFPolygon(EscherContainerRecord spContainer, ObjRecord objRecord)
             : base(spContainer, objRecord)
         {
-
         }
 
         public HSSFPolygon(HSSFShape parent, HSSFAnchor anchor)
             : base(parent, anchor)
         {
-
         }
-
 
         protected override TextObjectRecord CreateTextObjRecord()
         {
@@ -56,6 +52,7 @@ namespace Npoi.Core.HSSF.UserModel
         /**
          * Generates the shape records for this shape.
          */
+
         protected override EscherContainerRecord CreateSpContainer()
         {
             EscherContainerRecord spContainer = new EscherContainerRecord();
@@ -110,6 +107,7 @@ namespace Npoi.Core.HSSF.UserModel
         /**
          * Creates the low level OBJ record for this shape.
          */
+
         protected override ObjRecord CreateObjRecord()
         {
             ObjRecord obj = new ObjRecord();
@@ -133,6 +131,7 @@ namespace Npoi.Core.HSSF.UserModel
         /**
          * @return array of x coordinates
          */
+
         public int[] XPoints
         {
             get
@@ -156,6 +155,7 @@ namespace Npoi.Core.HSSF.UserModel
         /**
          * @return array of y coordinates
          */
+
         public int[] YPoints
         {
             get
@@ -180,6 +180,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @param xPoints - array of x coordinates
          * @param yPoints - array of y coordinates
          */
+
         public void SetPoints(int[] xPoints, int[] yPoints)
         {
             if (xPoints.Length != yPoints.Length)
@@ -231,6 +232,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @param width
          * @param height
          */
+
         public void SetPolygonDrawArea(int width, int height)
         {
             SetPropertyValue(new EscherSimpleProperty(EscherProperties.GEOMETRY__RIGHT, width));
@@ -240,6 +242,7 @@ namespace Npoi.Core.HSSF.UserModel
         /**
          * @return shape width
          */
+
         public int DrawAreaWidth
         {
             get
@@ -252,6 +255,7 @@ namespace Npoi.Core.HSSF.UserModel
         /**
          * @return shape height
          */
+
         public int DrawAreaHeight
         {
             get

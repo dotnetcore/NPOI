@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,15 +15,12 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
-    using System.Text;
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.Util;
-
-
+    using System;
+    using System.Text;
 
     /**
      * Title:        Font Record - descrbes a font in the workbook (index = 0-3,5-infinity - skip 4)
@@ -47,12 +43,14 @@ namespace Npoi.Core.HSSF.Record
 
         // 2 0x04 - reserved bit must be 0
         static private BitField strikeout = BitFieldFactory.GetInstance(0x08);    //is this font has a line through the center
+
         static private BitField macoutline = BitFieldFactory.GetInstance(0x10);   // some weird macintosh thing....but who Understands those mac people anyhow
         static private BitField macshadow = BitFieldFactory.GetInstance(0x20);      // some weird macintosh thing....but who Understands those mac people anyhow
 
         // 7-6 - reserved bits must be 0
         // the rest Is Unused
         private short field_3_color_palette_index;
+
         private short field_4_bold_weight;
         private short field_5_base_sub_script;   // 00none/01base/02sub
         private byte field_6_underline;          // 00none/01single/02double/21singleaccounting/22doubleaccounting
@@ -104,9 +102,10 @@ namespace Npoi.Core.HSSF.Record
 
         /**
          * Clones all the font style information from another
-         *  FontRecord, onto this one. This 
+         *  FontRecord, onto this one. This
          *  will then hold all the same font style options.
          */
+
         public void CloneStyleFrom(FontRecord source)
         {
             field_1_font_height = source.field_1_font_height;
@@ -120,6 +119,7 @@ namespace Npoi.Core.HSSF.Record
             field_9_zero = source.field_9_zero;
             field_11_font_name = source.field_11_font_name;
         }
+
         // attributes bitfields
 
         /**
@@ -188,8 +188,8 @@ namespace Npoi.Core.HSSF.Record
 
         public FontUnderlineType Underline
         {
-            get { return (FontUnderlineType) field_6_underline; }
-            set { field_6_underline = (byte) value; }
+            get { return (FontUnderlineType)field_6_underline; }
+            set { field_6_underline = (byte)value; }
         }
 
         /**
@@ -285,9 +285,10 @@ namespace Npoi.Core.HSSF.Record
 
         public FontSuperScript SuperSubScript
         {
-            get { return (FontSuperScript) field_5_base_sub_script; }
-            set { field_5_base_sub_script = (short) value; }
+            get { return (FontSuperScript)field_5_base_sub_script; }
+            set { field_5_base_sub_script = (short)value; }
         }
+
         /**
  * Does this FontRecord have all the same font
  *  properties as the supplied FontRecord?
@@ -295,8 +296,9 @@ namespace Npoi.Core.HSSF.Record
  *  for exact objects, while this will check
  *  for exact contents, because normally the
  *  font record's position makes a big
- *  difference too.  
+ *  difference too.
  */
+
         public bool SameProperties(FontRecord other)
         {
             return
@@ -311,6 +313,7 @@ namespace Npoi.Core.HSSF.Record
             field_9_zero == other.field_9_zero &&
             field_11_font_name.Equals(other.field_11_font_name);
         }
+
         public override String ToString()
         {
             StringBuilder buffer = new StringBuilder();
@@ -333,9 +336,9 @@ namespace Npoi.Core.HSSF.Record
             buffer.Append("    .boldweight      = ")
                 .Append(StringUtil.ToHexString(BoldWeight)).Append("\n");
             buffer.Append("    .basesubscript  = ")
-                .Append(StringUtil.ToHexString((short) SuperSubScript)).Append("\n");
+                .Append(StringUtil.ToHexString((short)SuperSubScript)).Append("\n");
             buffer.Append("    .underline       = ")
-                .Append(StringUtil.ToHexString((short) Underline)).Append("\n");
+                .Append(StringUtil.ToHexString((short)Underline)).Append("\n");
             buffer.Append("    .family          = ")
                 .Append(StringUtil.ToHexString(Family)).Append("\n");
             buffer.Append("    .charset         = ")
@@ -352,8 +355,8 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteShort(Attributes);
             out1.WriteShort(ColorPaletteIndex);
             out1.WriteShort(BoldWeight);
-            out1.WriteShort((int) SuperSubScript);
-            out1.WriteByte((int) Underline);
+            out1.WriteShort((int)SuperSubScript);
+            out1.WriteByte((int)Underline);
             out1.WriteByte(Family);
             out1.WriteByte(Charset);
             out1.WriteByte(field_9_zero);
@@ -372,7 +375,6 @@ namespace Npoi.Core.HSSF.Record
                     StringUtil.PutCompressedUnicode(field_11_font_name, out1);
                 }
             }
-
         }
 
         protected override int DataSize
@@ -419,10 +421,11 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Only returns two for the same exact object -
          *  creating a second FontRecord with the same
-         *  properties won't be considered equal, as 
+         *  properties won't be considered equal, as
          *  the record's position in the record stream
          *  matters.
          */
+
         public override bool Equals(Object obj)
         {
             if (this == obj)

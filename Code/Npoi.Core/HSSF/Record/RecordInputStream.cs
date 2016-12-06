@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,19 +15,13 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
-    using Npoi.Core.Util;
-
-    using System;
-    using System.IO;
-
-
     using Npoi.Core.HSSF.Record.Crypto;
+    using Npoi.Core.Util;
+    using System;
     using System.Diagnostics;
-
+    using System.IO;
 
     [Serializable]
     public class LeftoverDataException : Exception
@@ -39,9 +32,9 @@ namespace Npoi.Core.HSSF.Record
         {
         }
     }
+
     internal class SimpleHeaderInput : BiffHeaderInput
     {
-
         private ILittleEndianInput _lei;
 
         internal static ILittleEndianInput GetLEI(Stream in1)
@@ -59,19 +52,23 @@ namespace Npoi.Core.HSSF.Record
         {
             _lei = GetLEI(in1);
         }
+
         public int Available()
         {
             return _lei.Available();
         }
+
         public int ReadDataSize()
         {
             return _lei.ReadUShort();
         }
+
         public int ReadRecordSID()
         {
             return _lei.ReadUShort();
         }
     }
+
     /**
      * Title:  Record Input Stream
      * Description:  Wraps a stream and provides helper methods for the construction of records.
@@ -93,6 +90,7 @@ namespace Npoi.Core.HSSF.Record
         protected int _currentDataLength = -1;
         protected int _nextSid = -1;
         private int _currentDataOffset = 0;
+
         // fix warning CS0169 "never used": private long _initialposition;
         private long pos = 0;
 
@@ -107,7 +105,6 @@ namespace Npoi.Core.HSSF.Record
         public RecordInputStream(Stream in1)
             : this(in1, null, 0)
         {
-
         }
 
         public RecordInputStream(Stream in1, Biff8EncryptionKey key, int initialOffset)
@@ -132,6 +129,7 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /** This method will Read a byte from the current record*/
+
         public int Read()
         {
             CheckRecordPosition(LittleEndianConsts.BYTE_SIZE);
@@ -141,9 +139,10 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /**
- * 
+ *
  * @return the sid of the next record or {@link #INVALID_SID_VALUE} if at end of stream
  */
+
         private int ReadNextSid()
         {
             int nAvailable = _bhi.Available();
@@ -246,9 +245,10 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /** Moves to the next record in the stream.
-         * 
+         *
          * <i>Note: The auto continue flag is Reset to true</i>
          */
+
         public void NextRecord()
         {
             if (_nextSid == INVALID_SID_VALUE)
@@ -290,6 +290,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Reads an 8 bit, signed value
          */
+
         public override int ReadByte()
         {
             CheckRecordPosition(LittleEndianConsts.BYTE_SIZE);
@@ -301,6 +302,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Reads a 16 bit, signed value
          */
+
         public short ReadShort()
         {
             CheckRecordPosition(LittleEndianConsts.SHORT_SIZE);
@@ -328,6 +330,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Reads an 8 bit, Unsigned value
          */
+
         public int ReadUByte()
         {
             int s = ReadByte();
@@ -342,6 +345,7 @@ namespace Npoi.Core.HSSF.Record
          * Reads a 16 bit,un- signed value.
          * @return
          */
+
         public int ReadUShort()
         {
             CheckRecordPosition(LittleEndianConsts.SHORT_SIZE);
@@ -367,6 +371,7 @@ namespace Npoi.Core.HSSF.Record
             pos += LittleEndianConsts.DOUBLE_SIZE;
             return result;
         }
+
         public void ReadFully(byte[] buf)
         {
             ReadFully(buf, 0, buf.Length);
@@ -414,18 +419,20 @@ namespace Npoi.Core.HSSF.Record
                 pos += nextChunk;
             }
         }
-        /**     
-         *  given a byte array of 16-bit Unicode Chars, compress to 8-bit and     
-         *  return a string     
-         *     
-         * { 0x16, 0x00 } -0x16     
-         *      
+
+        /**
+         *  given a byte array of 16-bit Unicode Chars, compress to 8-bit and
+         *  return a string
+         *
+         * { 0x16, 0x00 } -0x16
+         *
          * @param Length the Length of the string
          * @return                                     the Converted string
          * @exception  ArgumentException        if len is too large (i.e.,
-         *      there is not enough data in string to Create a String of that     
-         *      Length)     
+         *      there is not enough data in string to Create a String of that
+         *      Length)
          */
+
         public String ReadUnicodeLEString(int requestedLength)
         {
             return ReadStringCommon(requestedLength, false);
@@ -435,6 +442,7 @@ namespace Npoi.Core.HSSF.Record
         {
             return ReadStringCommon(requestedLength, true);
         }
+
         private String ReadStringCommon(int requestedLength, bool pIsCompressedEncoding)
         {
             // Sanity check to detect garbage string lengths
@@ -500,6 +508,7 @@ namespace Npoi.Core.HSSF.Record
                 isCompressedEncoding = (compressFlag == 0);
             }
         }
+
         public String ReadString()
         {
             int requestedLength = ReadUShort();
@@ -508,9 +517,10 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /** Returns the remaining bytes for the current record.
-         * 
+         *
          * @return The remaining bytes of the current record.
          */
+
         public byte[] ReadRemainder()
         {
             int size = Remaining;
@@ -525,17 +535,17 @@ namespace Npoi.Core.HSSF.Record
 
         /** Reads all byte data for the current record, including any
          *  that overlaps into any following continue records.
-         * 
+         *
          *  @deprecated Best to write a input stream that wraps this one where there Is
          *  special sub record that may overlap continue records.
          */
+
         public byte[] ReadAllContinuedRemainder()
         {
             //Using a ByteArrayOutputStream is just an easy way to Get a
             //growable array of the data.
             using (MemoryStream out1 = new MemoryStream(2 * MAX_RECORD_DATA_SIZE))
             {
-
                 while (true)
                 {
                     byte[] b = ReadRemainder();
@@ -552,9 +562,10 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /** The remaining number of bytes in the <i>current</i> record.
-         * 
+         *
          * @return The number of bytes remaining in the current record
          */
+
         public int Remaining
         {
             get
@@ -569,9 +580,10 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /** Returns true iif a Continue record is next in the excel stream _currentDataOffset
-         * 
+         *
          * @return True when a ContinueRecord is next.
          */
+
         public bool IsContinueNext
         {
             get
@@ -587,10 +599,9 @@ namespace Npoi.Core.HSSF.Record
                 // At what point are records continued?
                 //  - Often from within the char data of long strings (caller is within readStringCommon()).
                 //  - From UnicodeString construction (many different points - call via checkRecordPosition)
-                //  - During TextObjectRecord construction (just before the text, perhaps within the text, 
+                //  - During TextObjectRecord construction (just before the text, perhaps within the text,
                 //    and before the formatting run data)
                 return _nextSid == ContinueRecord.sid;
-
             }
         }
 
@@ -653,10 +664,10 @@ namespace Npoi.Core.HSSF.Record
             //return Math.Min(data.Length, b.Length);
         }
 
-
         /**
  @return sid of next record. Can be called after hasNextRecord()
  */
+
         public int GetNextSid()
         {
             return _nextSid;

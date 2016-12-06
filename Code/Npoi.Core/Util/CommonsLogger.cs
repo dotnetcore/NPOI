@@ -1,4 +1,3 @@
-
 ///* ====================================================================
 //   Licensed to the Apache Software Foundation (ASF) under one or more
 //   contributor license agreements.  See the NOTICE file distributed with
@@ -15,7 +14,6 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 //==================================================================== */
-
 
 //namespace Npoi.Core.Util
 //{
@@ -34,9 +32,7 @@
 
 //    public class CommonsLogger : POILogger
 //    {
-
 //        private POILogger logger = null;
-
 
 //        public void Initialize(String cat)
 //        {
@@ -143,8 +139,6 @@
 
 //        }
 
-
 //    }   // end package scope class POILogger
-
 
 //}

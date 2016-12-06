@@ -16,13 +16,11 @@
 ==================================================================== */
 
 using Npoi.Core.SS.Formula.Eval;
-using System;
 using Npoi.Core.SS.Util;
+using System;
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-
-
-
     /**
      * Implementation for Excel DELTA() function.<p/>
      * <p/>
@@ -39,12 +37,12 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author cedric dot walter @ gmail dot com
      */
+
     public class Delta : Fixed2ArgFunction, FreeRefFunction
     {
         public static FreeRefFunction instance = new Delta();
         private static NumberEval ONE = new NumberEval(1);
         private static NumberEval ZERO = new NumberEval(0);
-
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg1, ValueEval arg2)
         {
@@ -85,6 +83,7 @@ namespace Npoi.Core.SS.Formula.Functions
             int result = NumberComparer.Compare(number1, number2);
             return result == 0 ? ONE : ZERO;
         }
+
         public ValueEval Evaluate(ValueEval[] args, OperationEvaluationContext ec)
         {
             if (args.Length == 2)

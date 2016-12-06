@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.DDF
 {
     using System;
     using System.Text;
     using Util;
-
 
     /// <summary>
     /// Holds data from the parent application. Most commonly used to store
@@ -54,8 +51,8 @@ namespace Npoi.Core.DDF
          * @param recordFactory May be null since this is not a container record.
          * @return The number of bytes Read from the byte array.
          */
-        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory)
-        {
+
+        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory) {
             int bytesRemaining = ReadHeader(data, offset);
 
             // Save the data, Ready for the calling code to do something
@@ -72,8 +69,7 @@ namespace Npoi.Core.DDF
         /// <param name="data"></param>
         /// <param name="listener">a listener for begin and end serialization events.</param>
         /// <returns>the number of bytes written.</returns>
-        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener)
-        {
+        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener) {
             listener.BeforeRecordSerialize(offset, RecordId, this);
 
             LittleEndian.PutShort(data, offset, Options);
@@ -97,8 +93,7 @@ namespace Npoi.Core.DDF
         /// TextBytesAtom/TextCharsAtom
         /// </summary>
         /// <value>The data.</value>
-        public byte[] Data
-        {
+        public byte[] Data {
             get { return _thedata; }
         }
 
@@ -110,27 +105,24 @@ namespace Npoi.Core.DDF
         /// <param name="b">The b.</param>
         /// <param name="start">The start.</param>
         /// <param name="length">The length.</param>
-        public void SetData(byte[] b, int start, int length)
-        {
+        public void SetData(byte[] b, int start, int length) {
             _thedata = new byte[length];
             Array.Copy(b, start, _thedata, 0, length);
         }
+
         /// <summary>
         /// Sets the data.
         /// </summary>
         /// <param name="b">The b.</param>
-        public void SetData(byte[] b)
-        {
+        public void SetData(byte[] b) {
             SetData(b, 0, b.Length);
         }
-
 
         /// <summary>
         /// Returns the number of bytes that are required to serialize this record.
         /// </summary>
         /// <value>Number of bytes</value>
-        public override int RecordSize
-        {
+        public override int RecordSize {
             get { return 8 + _thedata.Length; }
         }
 
@@ -138,8 +130,7 @@ namespace Npoi.Core.DDF
         /// The short name for this record
         /// </summary>
         /// <value></value>
-        public override String RecordName
-        {
+        public override String RecordName {
             get { return "ClientTextbox"; }
         }
 
@@ -149,21 +140,17 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override String ToString()
-        {
+        public override String ToString() {
             String nl = Environment.NewLine;
 
             String theDumpHex = "";
-            try
-            {
-                if (_thedata.Length != 0)
-                {
+            try {
+                if (_thedata.Length != 0) {
                     theDumpHex = "  Extra Data:" + nl;
                     theDumpHex += HexDump.Dump(_thedata, 0, 0);
                 }
             }
-            catch (Exception)
-            {
+            catch (Exception) {
                 theDumpHex = "Error!!";
             }
 
@@ -174,18 +161,15 @@ namespace Npoi.Core.DDF
                     "  numchildren: " + ChildRecords.Count + nl +
                     theDumpHex;
         }
-        public override String ToXml(String tab)
-        {
+
+        public override String ToXml(String tab) {
             String theDumpHex = "";
-            try
-            {
-                if (_thedata.Length != 0)
-                {
+            try {
+                if (_thedata.Length != 0) {
                     theDumpHex += HexDump.Dump(_thedata, 0, 0);
                 }
             }
-            catch (Exception)
-            {
+            catch (Exception) {
                 theDumpHex = "Error!!";
             }
             StringBuilder builder = new StringBuilder();
@@ -195,6 +179,4 @@ namespace Npoi.Core.DDF
             return builder.ToString();
         }
     }
-
 }
-

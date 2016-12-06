@@ -19,9 +19,7 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.Eval;
-    using System;
 
     /**
      * Implementation of Excel function INTERCEPT()<p/>
@@ -34,9 +32,11 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author Johan Karlsteen
      */
+
     public class Intercept : Fixed2ArgFunction
     {
         private LinearRegressionFunction func;
+
         public Intercept()
         {
             func = new LinearRegressionFunction(LinearRegressionFunction.FUNCTION.INTERCEPT);

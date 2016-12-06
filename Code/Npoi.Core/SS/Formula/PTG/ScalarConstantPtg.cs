@@ -17,19 +17,20 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-
     /**
      * @author Josh Micich
      */
+
     public abstract class ScalarConstantPtg : Ptg
     {
         public override bool IsBaseToken
         {
             get { return true; }
         }
+
         public override byte DefaultOperandClass
         {
-            get{return Ptg.CLASS_VALUE;}
+            get { return Ptg.CLASS_VALUE; }
         }
     }
 }

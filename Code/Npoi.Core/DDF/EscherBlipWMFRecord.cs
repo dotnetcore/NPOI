@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,16 +15,14 @@
    limitations under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.DDF
 {
-    using System;
-    using System.Text;
-    using Npoi.Core.Util;
-    using System.IO;
     using ICSharpCode.SharpZipLib.Zip.Compression;
     using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
-
+    using Npoi.Core.Util;
+    using System;
+    using System.IO;
+    using System.Text;
 
     /// <summary>
     /// The blip record is used to hold details about large binary objects that occur in escher such
@@ -38,6 +35,7 @@ namespace Npoi.Core.DDF
         //    public const short  RECORD_ID_START    = (short) 0xF018;
         //    public const short  RECORD_ID_END      = (short) 0xF117;
         public new const String RECORD_DESCRIPTION = "msofbtBlip";
+
         private const int HEADER_SIZE = 8;
 
         private byte[] field_1_secondaryUID;
@@ -53,7 +51,6 @@ namespace Npoi.Core.DDF
         private byte field_11_filter;
         private byte[] field_12_data;
 
-
         /// <summary>
         /// This method deserializes the record from a byte array.
         /// </summary>
@@ -65,8 +62,7 @@ namespace Npoi.Core.DDF
         /// </returns>
         public override int FillFields(byte[] data, int offset,
                                   IEscherRecordFactory recordFactory
-                                  )
-        {
+                                  ) {
             int bytesAfterHeader = ReadHeader(data, offset);
             int pos = offset + HEADER_SIZE;
 
@@ -92,17 +88,15 @@ namespace Npoi.Core.DDF
             return HEADER_SIZE + size;
         }
 
-
         /// <summary>
         /// This method Serializes this escher record into a byte array.
-        /// @param offset   
+        /// @param offset
         /// </summary>
         /// <param name="offset">The offset into data to start writing the record data to.</param>
         /// <param name="data">the data array to Serialize to</param>
         /// <param name="listener">a listener for begin and end serialization events.</param>
         /// <returns>the number of bytes written.</returns>
-        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener)
-        {
+        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener) {
             listener.BeforeRecordSerialize(offset, RecordId, this);
 
             LittleEndian.PutShort(data, offset, Options);
@@ -132,8 +126,7 @@ namespace Npoi.Core.DDF
         /// Returns the number of bytes that are required to Serialize this record.
         /// </summary>
         /// <value>Number of bytes</value>
-        public override int RecordSize
-        {
+        public override int RecordSize {
             get { return 58 + field_12_data.Length; }
         }
 
@@ -141,8 +134,7 @@ namespace Npoi.Core.DDF
         /// The short name for this record
         /// </summary>
         /// <value></value>
-        public override String RecordName
-        {
+        public override String RecordName {
             get { return "Blip"; }
         }
 
@@ -150,19 +142,16 @@ namespace Npoi.Core.DDF
         /// Gets or sets the secondary UID.
         /// </summary>
         /// <value>The secondary UID.</value>
-        public byte[] SecondaryUID
-        {
+        public byte[] SecondaryUID {
             get { return field_1_secondaryUID; }
             set { this.field_1_secondaryUID = value; }
         }
-
 
         /// <summary>
         /// Gets or sets the size of the cache of.
         /// </summary>
         /// <value>The size of the cache of.</value>
-        public int CacheOfSize
-        {
+        public int CacheOfSize {
             get { return field_2_cacheOfSize; }
             set { this.field_2_cacheOfSize = value; }
         }
@@ -171,8 +160,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets the top boundary of the metafile drawing commands
         /// </summary>
         /// <value>The boundary top.</value>
-        public int BoundaryTop
-        {
+        public int BoundaryTop {
             get { return field_3_boundaryTop; }
             set { this.field_3_boundaryTop = value; }
         }
@@ -181,30 +169,25 @@ namespace Npoi.Core.DDF
         /// Gets or sets the left boundary of the metafile drawing commands
         /// </summary>
         /// <value>The boundary left.</value>
-        public int BoundaryLeft
-        {
+        public int BoundaryLeft {
             get { return field_4_boundaryLeft; }
             set { this.field_4_boundaryLeft = value; }
         }
-
 
         /// <summary>
         /// Gets or sets the boundary width of the metafile drawing commands
         /// </summary>
         /// <value>The width of the boundary.</value>
-        public int BoundaryWidth
-        {
+        public int BoundaryWidth {
             get { return field_5_boundaryWidth; }
             set { this.field_5_boundaryWidth = value; }
         }
-
 
         /// <summary>
         /// Gets or sets the boundary height of the metafile drawing commands
         /// </summary>
         /// <value>The height of the boundary.</value>
-        public int BoundaryHeight
-        {
+        public int BoundaryHeight {
             get { return field_6_boundaryHeight; }
             set { this.field_6_boundaryHeight = value; }
         }
@@ -213,8 +196,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets the width of the metafile in EMU's (English Metric Units).
         /// </summary>
         /// <value>The width.</value>
-        public int Width
-        {
+        public int Width {
             get { return field_7_width; }
             set { this.field_7_width = value; }
         }
@@ -223,8 +205,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets the height of the metafile in EMU's (English Metric Units).
         /// </summary>
         /// <value>The height.</value>
-        public int Height
-        {
+        public int Height {
             get { return field_8_height; }
             set { this.field_8_height = value; }
         }
@@ -233,9 +214,8 @@ namespace Npoi.Core.DDF
         /// Gets or sets the cache of the saved size
         /// </summary>
         /// <value>the cache of the saved size.</value>
-        public int CacheOfSavedSize
-        {
-            get{return field_9_cacheOfSavedSize;}
+        public int CacheOfSavedSize {
+            get { return field_9_cacheOfSavedSize; }
             set { this.field_9_cacheOfSavedSize = value; }
         }
 
@@ -243,8 +223,7 @@ namespace Npoi.Core.DDF
         /// Is the contents of the blip compressed?
         /// </summary>
         /// <value>The compression flag.</value>
-        public byte CompressionFlag
-        {
+        public byte CompressionFlag {
             get { return field_10_compressionFlag; }
             set { this.field_10_compressionFlag = value; }
         }
@@ -253,8 +232,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets the filter.
         /// </summary>
         /// <value>The filter.</value>
-        public byte Filter
-        {
+        public byte Filter {
             get { return field_11_filter; }
             set { this.field_11_filter = value; }
         }
@@ -263,12 +241,10 @@ namespace Npoi.Core.DDF
         /// Gets or sets The BLIP data
         /// </summary>
         /// <value>The data.</value>
-        public byte[] Data
-        {
+        public byte[] Data {
             get { return field_12_data; }
             set { this.field_12_data = value; }
         }
-
 
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
@@ -276,21 +252,17 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override String ToString()
-        {
+        public override String ToString() {
             String nl = Environment.NewLine;
 
             String extraData = string.Empty;
-            using (MemoryStream b = new MemoryStream())
-            {
-                try
-                {
+            using (MemoryStream b = new MemoryStream()) {
+                try {
                     HexDump.Dump(this.field_12_data, 0, b, 0);
                     //extraData = b.ToString();
                     extraData = Encoding.UTF8.GetString(b.ToArray());
                 }
-                catch (Exception e)
-                {
+                catch (Exception e) {
                     extraData = e.ToString();
                 }
                 return GetType().Name + ":" + nl +
@@ -307,22 +279,19 @@ namespace Npoi.Core.DDF
                         "  Y: " + field_8_height + nl +
                         "  CacheOfSavedSize: " + field_9_cacheOfSavedSize + nl +
                         "  CompressionFlag: " + field_10_compressionFlag + nl +
-                        "  Filter: " + field_11_filter + nl+
+                        "  Filter: " + field_11_filter + nl +
                         "  Data:" + nl + extraData;
             }
         }
-        public override String ToXml(String tab)
-        {
+
+        public override String ToXml(String tab) {
             String extraData;
-            using (MemoryStream b = new MemoryStream())
-            {
-                try
-                {
+            using (MemoryStream b = new MemoryStream()) {
+                try {
                     HexDump.Dump(this.field_12_data, 0, b, 0);
                     extraData = HexDump.ToHex(b.ToArray());
                 }
-                catch (Exception e)
-                {
+                catch (Exception e) {
                     extraData = e.ToString();
                 }
                 StringBuilder builder = new StringBuilder();
@@ -343,33 +312,28 @@ namespace Npoi.Core.DDF
                 return builder.ToString();
             }
         }
+
         /// <summary>
         /// Compress the contents of the provided array
         /// </summary>
         /// <param name="data">An uncompressed byte array</param>
         /// <returns></returns>
-        public static byte[] Compress(byte[] data)
-        {
-            using (MemoryStream out1 = new MemoryStream())
-            {
+        public static byte[] Compress(byte[] data) {
+            using (MemoryStream out1 = new MemoryStream()) {
                 Deflater deflater = new Deflater(0, false);
-                DeflaterOutputStream deflaterOutputStream = new DeflaterOutputStream(out1,deflater);
-                try
-                {
+                DeflaterOutputStream deflaterOutputStream = new DeflaterOutputStream(out1, deflater);
+                try {
                     //for (int i = 0; i < data.Length; i++)
                     //deflaterOutputStream.WriteByte(data[i]);
                     deflaterOutputStream.Write(data, 0, data.Length);   //Tony Qu changed the code
                     return out1.ToArray();
                 }
-                catch (IOException e)
-                {
+                catch (IOException e) {
                     throw new RecordFormatException(e.ToString());
                 }
-                finally
-                {
+                finally {
                     out1.Dispose();
-                    if (deflaterOutputStream != null)
-                    {
+                    if (deflaterOutputStream != null) {
                         deflaterOutputStream.Dispose();
                     }
                 }
@@ -383,33 +347,26 @@ namespace Npoi.Core.DDF
         /// <param name="pos">The starting position into the byte array.</param>
         /// <param name="Length">The number of compressed bytes to decompress.</param>
         /// <returns>An uncompressed byte array</returns>
-        public static byte[] Decompress(byte[] data, int pos, int Length)
-        {
+        public static byte[] Decompress(byte[] data, int pos, int Length) {
             byte[] compressedData = new byte[Length];
             Array.Copy(data, pos + 50, compressedData, 0, Length);
-            using (MemoryStream ms = new MemoryStream(compressedData))
-            {
+            using (MemoryStream ms = new MemoryStream(compressedData)) {
                 Inflater inflater = new Inflater(false);
 
-                using (InflaterInputStream zIn = new InflaterInputStream(ms, inflater))
-                {
-                    using (MemoryStream out1 = new MemoryStream())
-                    {
+                using (InflaterInputStream zIn = new InflaterInputStream(ms, inflater)) {
+                    using (MemoryStream out1 = new MemoryStream()) {
                         int c;
-                        try
-                        {
+                        try {
                             while ((c = zIn.ReadByte()) != -1)
                                 out1.WriteByte((byte)c);
                             return out1.ToArray();
                         }
-                        catch (IOException e)
-                        {
+                        catch (IOException e) {
                             throw new RecordFormatException(e.ToString());
                         }
                     }
                 }
             }
         }
-
     }
 }

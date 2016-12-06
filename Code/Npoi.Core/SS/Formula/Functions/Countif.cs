@@ -15,28 +15,28 @@
 * limitations Under the License.
 */
 
-
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
-    using System.Text;
-    using System.Text.RegularExpressions;
     using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.UserModel;
+    using System;
     using System.Globalization;
+    using System.Text;
+    using System.Text.RegularExpressions;
 
     /**
      * Implementation for the function COUNTIF<p/>
-     * 
+     *
      * Syntax: COUNTIF ( range, criteria )
      *    <table border="0" cellpAdding="1" cellspacing="0" summary="Parameter descriptions">
      *      <tr><th>range </th><td>is the range of cells to be Counted based on the criteria</td></tr>
      *      <tr><th>criteria</th><td>is used to determine which cells to Count</td></tr>
      *    </table>
      * <p/>
-     * 
+     *
      * @author Josh Micich
      */
+
     public class Countif : Fixed2ArgFunction
     {
         internal class CmpOp
@@ -63,14 +63,17 @@ namespace Npoi.Core.SS.Formula.Functions
             {
                 return new CmpOp(rep, code);
             }
+
             private CmpOp(String representation, int code)
             {
                 _representation = representation;
                 _code = code;
             }
+
             /**
              * @return number of characters used to represent this operator
              */
+
             public int Length
             {
                 get
@@ -78,6 +81,7 @@ namespace Npoi.Core.SS.Formula.Functions
                     return _representation.Length;
                 }
             }
+
             public int Code
             {
                 get
@@ -85,6 +89,7 @@ namespace Npoi.Core.SS.Formula.Functions
                     return _code;
                 }
             }
+
             public static CmpOp GetOperator(String value)
             {
                 int len = value.Length;
@@ -99,6 +104,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 {
                     case '=':
                         return OP_EQ;
+
                     case '>':
                         if (len > 1)
                         {
@@ -109,6 +115,7 @@ namespace Npoi.Core.SS.Formula.Functions
                             }
                         }
                         return OP_GT;
+
                     case '<':
                         if (len > 1)
                         {
@@ -116,6 +123,7 @@ namespace Npoi.Core.SS.Formula.Functions
                             {
                                 case '=':
                                     return OP_LE;
+
                                 case '>':
                                     return OP_NE;
                             }
@@ -124,6 +132,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 }
                 return OP_NONE;
             }
+
             public bool Evaluate(bool cmpResult)
             {
                 switch (_code)
@@ -131,12 +140,14 @@ namespace Npoi.Core.SS.Formula.Functions
                     case NONE:
                     case EQ:
                         return cmpResult;
+
                     case NE:
                         return !cmpResult;
                 }
                 throw new Exception("Cannot call bool Evaluate on non-equality operator '"
                         + _representation + "'");
             }
+
             public bool Evaluate(int cmpResult)
             {
                 switch (_code)
@@ -144,6 +155,7 @@ namespace Npoi.Core.SS.Formula.Functions
                     case NONE:
                     case EQ:
                         return cmpResult == 0;
+
                     case NE: return cmpResult != 0;
                     case LT: return cmpResult < 0;
                     case LE: return cmpResult <= 0;
@@ -153,6 +165,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 throw new Exception("Cannot call bool Evaluate on non-equality operator '"
                         + _representation + "'");
             }
+
             public override String ToString()
             {
                 StringBuilder sb = new StringBuilder(64);
@@ -160,6 +173,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 sb.Append(" [").Append(_representation).Append("]");
                 return sb.ToString();
             }
+
             public String Representation
             {
                 get
@@ -168,6 +182,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 }
             }
         }
+
         internal abstract class MatcherBase : IMatchPredicate
         {
             private CmpOp _operator;
@@ -176,6 +191,7 @@ namespace Npoi.Core.SS.Formula.Functions
             {
                 _operator = operator1;
             }
+
             protected int Code
             {
                 get
@@ -183,14 +199,17 @@ namespace Npoi.Core.SS.Formula.Functions
                     return _operator.Code;
                 }
             }
+
             protected bool Evaluate(int cmpResult)
             {
                 return _operator.Evaluate(cmpResult);
             }
+
             protected bool Evaluate(bool cmpResult)
             {
                 return _operator.Evaluate(cmpResult);
             }
+
             public override String ToString()
             {
                 StringBuilder sb = new StringBuilder(64);
@@ -200,6 +219,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 sb.Append("]");
                 return sb.ToString();
             }
+
             protected abstract String ValueText { get; }
 
             public abstract bool Matches(ValueEval x);
@@ -207,7 +227,6 @@ namespace Npoi.Core.SS.Formula.Functions
 
         private class ErrorMatcher : MatcherBase
         {
-
             private int _value;
 
             public ErrorMatcher(int errorCode, CmpOp operator1)
@@ -216,6 +235,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 ;
                 _value = errorCode;
             }
+
             protected override String ValueText
             {
                 get
@@ -234,9 +254,9 @@ namespace Npoi.Core.SS.Formula.Functions
                 return false;
             }
         }
+
         private class NumberMatcher : MatcherBase
         {
-
             private double _value;
 
             public NumberMatcher(double value, CmpOp optr)
@@ -257,10 +277,12 @@ namespace Npoi.Core.SS.Formula.Functions
                         case CmpOp.EQ:
                         case CmpOp.NONE:
                             break;
+
                         case CmpOp.NE:
                             // Always matches (inconsistent with above two cases).
                             // for example '<>123' matches '123', '4', 'abc', etc
                             return true;
+
                         default:
                             // never matches (also inconsistent with above three cases).
                             // for example '>5' does not match '6',
@@ -287,6 +309,7 @@ namespace Npoi.Core.SS.Formula.Functions
                         case CmpOp.NE:
                             // Excel counts blank values in range as not equal to any value. See Bugzilla 51498
                             return true;
+
                         default:
                             return false;
                     }
@@ -303,9 +326,9 @@ namespace Npoi.Core.SS.Formula.Functions
                 get { return _value.ToString(CultureInfo.InvariantCulture); }
             }
         }
+
         private class BooleanMatcher : MatcherBase
         {
-
             private int _value;
 
             public BooleanMatcher(bool value, CmpOp optr)
@@ -355,6 +378,7 @@ namespace Npoi.Core.SS.Formula.Functions
                         case CmpOp.NE:
                             // Excel counts blank values in range as not equal to any value. See Bugzilla 51498
                             return true;
+
                         default:
                             return false;
                     }
@@ -362,14 +386,15 @@ namespace Npoi.Core.SS.Formula.Functions
                 else if ((x is NumberEval))
                 {
                     switch (Code)
-                {
-                    case CmpOp.NE:
-                        // not-equals comparison of a number to boolean always returnes false
-                        return true;
-                    default:
-                        return false;
+                    {
+                        case CmpOp.NE:
+                            // not-equals comparison of a number to boolean always returnes false
+                            return true;
+
+                        default:
+                            return false;
+                    }
                 }
-            }
                 else
                 {
                     return false;
@@ -382,14 +407,14 @@ namespace Npoi.Core.SS.Formula.Functions
                 get { return _value == 1 ? "TRUE" : "FALSE"; }
             }
         }
+
         internal class StringMatcher : MatcherBase
         {
-
             private String _value;
             private CmpOp _operator;
             private Regex _pattern;
 
-            public StringMatcher(String value, CmpOp optr):base(optr)
+            public StringMatcher(String value, CmpOp optr) : base(optr)
             {
                 _value = value;
                 _operator = optr;
@@ -400,11 +425,13 @@ namespace Npoi.Core.SS.Formula.Functions
                     case CmpOp.NE:
                         _pattern = GetWildCardPattern(value);
                         break;
+
                     default:
                         _pattern = null;
                         break;
                 }
             }
+
             public override bool Matches(ValueEval x)
             {
                 if (x is BlankEval)
@@ -414,6 +441,7 @@ namespace Npoi.Core.SS.Formula.Functions
                         case CmpOp.NONE:
                         case CmpOp.EQ:
                             return _value.Length == 0;
+
                         case CmpOp.NE:
                             // pred '<>' matches empty string but not blank cell
                             // pred '<>ABC'  matches blank and 'not ABC'
@@ -501,7 +529,7 @@ namespace Npoi.Core.SS.Formula.Functions
                         case ']':
                         case '(':
                         case ')':
-                            // escape literal characters that would have special meaning in regex 
+                            // escape literal characters that would have special meaning in regex
                             sb.Append("\\").Append(ch);
                             continue;
                     }
@@ -528,10 +556,10 @@ namespace Npoi.Core.SS.Formula.Functions
             }
         }
 
-        
         /**
      * @return the number of evaluated cells in the range that match the specified criteria
      */
+
         private double CountMatchingCellsInArea(ValueEval rangeArg, IMatchPredicate criteriaPredicate)
         {
             if (rangeArg is RefEval)
@@ -547,12 +575,12 @@ namespace Npoi.Core.SS.Formula.Functions
                 throw new ArgumentException("Bad range arg type (" + rangeArg.GetType().Name + ")");
             }
         }
-        
-        
+
         /**
      *
      * @return the de-referenced criteria arg (possibly {@link ErrorEval})
      */
+
         private static ValueEval EvaluateCriteriaArg(ValueEval arg, int srcRowIndex, int srcColumnIndex)
         {
             try
@@ -564,9 +592,11 @@ namespace Npoi.Core.SS.Formula.Functions
                 return e.GetErrorEval();
             }
         }
+
         /**
      * When the second argument is a string, many things are possible
      */
+
         private static IMatchPredicate CreateGeneralMatchPredicate(StringEval stringEval)
         {
             String value = stringEval.StringValue;
@@ -593,13 +623,14 @@ namespace Npoi.Core.SS.Formula.Functions
             //else - just a plain string with no interpretation.
             return new StringMatcher(value, operator1);
         }
+
         /**
      * Creates a criteria predicate object for the supplied criteria arg
      * @return <code>null</code> if the arg evaluates to blank.
      */
+
         public static IMatchPredicate CreateCriteriaPredicate(ValueEval arg, int srcRowIndex, int srcColumnIndex)
         {
-
             ValueEval evaluatedCriteriaArg = EvaluateCriteriaArg(arg, srcRowIndex, srcColumnIndex);
 
             if (evaluatedCriteriaArg is NumberEval)
@@ -626,6 +657,7 @@ namespace Npoi.Core.SS.Formula.Functions
             throw new Exception("Unexpected type for criteria ("
                     + evaluatedCriteriaArg.GetType().Name + ")");
         }
+
         private static ErrorEval ParseError(String value)
         {
             if (value.Length < 4 || value[0] != '#')
@@ -642,10 +674,12 @@ namespace Npoi.Core.SS.Formula.Functions
 
             return null;
         }
+
         /**
-         * bool literals ('TRUE', 'FALSE') treated similarly but NOT same as numbers. 
+         * bool literals ('TRUE', 'FALSE') treated similarly but NOT same as numbers.
          */
         /* package */
+
         public static bool? ParseBoolean(String strRep)
         {
             if (strRep.Length < 1)
@@ -661,6 +695,7 @@ namespace Npoi.Core.SS.Formula.Functions
                         return true;
                     }
                     break;
+
                 case 'f':
                 case 'F':
                     if ("FALSE".Equals(strRep, StringComparison.OrdinalIgnoreCase))

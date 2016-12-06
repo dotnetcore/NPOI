@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * The axis record defines the type of an axis.
@@ -32,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class AxisRecord
        : StandardRecord
     {
@@ -45,10 +42,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         private int field_4_reserved3;
         private int field_5_reserved4;
 
-
         public AxisRecord()
         {
-
         }
 
         /**
@@ -64,7 +59,6 @@ namespace Npoi.Core.HSSF.Record.Chart
             field_3_reserved2 = in1.ReadInt();
             field_4_reserved3 = in1.ReadInt();
             field_5_reserved4 = in1.ReadInt();
-
         }
 
         public override String ToString()
@@ -98,7 +92,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         }
 
         public override void Serialize(ILittleEndianOutput out1)
-        {            
+        {
             out1.WriteShort(field_1_axisType);
             out1.WriteInt(field_2_reserved1);
             out1.WriteInt(field_3_reserved2);
@@ -109,6 +103,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 2 + 4 + 4 + 4 + 4; }
@@ -131,17 +126,15 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          * Get the axis type field for the Axis record.
          *
-         * @return  One of 
+         * @return  One of
          *        AXIS_TYPE_CATEGORY_OR_X_AXIS
          *        AXIS_TYPE_VALUE_AXIS
          *        AXIS_TYPE_SERIES_AXIS
          */
+
         public short AxisType
         {
             get { return field_1_axisType; }
@@ -151,6 +144,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the reserved1 field for the Axis record.
          */
+
         public int Reserved1
         {
             get { return field_2_reserved1; }
@@ -160,6 +154,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the reserved2 field for the Axis record.
          */
+
         public int Reserved2
         {
             get { return field_3_reserved2; }
@@ -169,6 +164,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the reserved3 field for the Axis record.
          */
+
         public int Reserved3
         {
             get { return field_4_reserved3; }
@@ -178,15 +174,11 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the reserved4 field for the Axis record.
          */
+
         public int Reserved4
         {
             get { return field_5_reserved4; }
             set { this.field_5_reserved4 = value; }
         }
-
-
     }
 }
-
-
-

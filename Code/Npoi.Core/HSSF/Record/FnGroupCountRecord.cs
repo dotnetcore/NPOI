@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,12 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Title: Function Group Count Record
@@ -57,6 +55,7 @@ namespace Npoi.Core.HSSF.Record
         {
             field_1_count = in1.ReadShort();
         }
+
         /**
          * Get the number of built-in functions
          *

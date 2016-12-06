@@ -22,6 +22,7 @@ namespace Npoi.Core.WP.UserModel
     /**
      * This class represents a run of text that share common properties.
      */
+
     public interface ICharacterRun
     {
         bool IsBold { get; set; }
@@ -73,10 +74,10 @@ namespace Npoi.Core.WP.UserModel
         /*
             bool IsFldVanished();
             public void SetFldVanish(bool fldVanish);
-    
+
             bool IsOutlined();
             public void SetOutline(bool outlined);
-    
+
             bool IsVanished();
             public void SetVanished(bool vanish);
 
@@ -87,5 +88,4 @@ namespace Npoi.Core.WP.UserModel
             public void markInserted(bool mark);
         */
     }
-
 }

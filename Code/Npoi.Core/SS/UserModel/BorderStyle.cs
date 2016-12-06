@@ -17,7 +17,6 @@
 
 namespace Npoi.Core.SS.UserModel
 {
-
     /// <summary>
     /// The enumeration value indicating the line style of a border in a cell
     /// </summary>

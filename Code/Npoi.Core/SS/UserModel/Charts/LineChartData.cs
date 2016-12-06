@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Npoi.Core.SS.UserModel.Charts
 {
@@ -16,6 +14,7 @@ namespace Npoi.Core.SS.UserModel.Charts
         /**
          * @return list of all series.
          */
+
         List<ILineChartSeries<Tx, Ty>> GetSeries();
     }
 }

@@ -223,6 +223,7 @@ namespace Npoi.Core.HSSF.UserModel
         HostControl = 201,
         TextBox = 202,
     }
+
     public interface IHSSFShapeTypes
     {
     }

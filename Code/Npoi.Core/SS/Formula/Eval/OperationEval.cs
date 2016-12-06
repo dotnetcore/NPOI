@@ -18,35 +18,36 @@
  * Created on May 8, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Eval
 {
-
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     *  
+     *
      */
+
     public interface OperationEval : Eval
     {
-
         /*
-         * Read this, this will make your work easier when coding 
+         * Read this, this will make your work easier when coding
          * an "Evaluate()"
-         * 
+         *
          * Things to note when implementing Evaluate():
          * 1. Check the Length of operands
          *    (use "switch(operands[x])" if possible)
-         * 
+         *
          * 2. The possible Evals that you can Get as args to Evaluate are one of:
          * NumericValueEval, StringValueEval, RefEval, AreaEval
          * 3. If it is RefEval, the innerValueEval could be one of:
          * NumericValueEval, StringValueEval, BlankEval
          * 4. If it is AreaEval, each of the values could be one of:
          * NumericValueEval, StringValueEval, BlankEval, RefEval
-         * 
+         *
          * 5. For numeric functions/operations, keep the result in double
          * till the end and before returning a new NumberEval, Check to see
-         * if the double is a NaN - if NaN, return ErrorEval.ERROR_503 
+         * if the double is a NaN - if NaN, return ErrorEval.ERROR_503
          */
+
         Eval Evaluate(Eval[] evals, int srcCellRow, short srcCellCol);
 
         int NumberOfOperands { get; }

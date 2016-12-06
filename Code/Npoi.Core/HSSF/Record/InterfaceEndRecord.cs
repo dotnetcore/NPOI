@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,12 +15,10 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
     using Npoi.Core.Util;
-
+    using System;
 
     /**
      * Title: Interface End Record
@@ -37,6 +34,7 @@ namespace Npoi.Core.HSSF.Record
     {
         public const short sid = 0xe2;
         public static InterfaceEndRecord Instance = new InterfaceEndRecord();
+
         private InterfaceEndRecord()
         {
             // enforce singleton
@@ -47,7 +45,6 @@ namespace Npoi.Core.HSSF.Record
          * @param in the RecordInputstream to Read the record from
          */
         //private byte[] _unknownData;
-
 
         //public InterfaceEndRecord(RecordInputStream in1)
         //{
@@ -62,6 +59,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 case 0:
                     return Instance;
+
                 case 2:
                     return new InterfaceHdrRecord(in1);
             }
@@ -84,6 +82,7 @@ namespace Npoi.Core.HSSF.Record
             //if(_unknownData != null) out1.Write(_unknownData);
             // no instance data
         }
+
         /// <summary>
         /// for test TestInterfaceEndRecord.TestCreate()
         /// </summary>
@@ -92,9 +91,10 @@ namespace Npoi.Core.HSSF.Record
         {
             return DataSize;
         }
+
         protected override int DataSize
         {
-            get 
+            get
             {
                 int size = 0;
                 //if (_unknownData != null) size += _unknownData.Length;

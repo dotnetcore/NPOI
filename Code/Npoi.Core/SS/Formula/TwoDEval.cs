@@ -16,21 +16,22 @@
 ==================================================================== */
 
 using Npoi.Core.SS.Formula.Eval;
+
 namespace Npoi.Core.SS.Formula
 {
-
     /**
      * Common interface of {@link AreaEval} and {@link org.apache.poi.ss.formula.eval.AreaEvalBase},
      * for 2D (row+column) evaluations
      */
+
     public interface TwoDEval : ValueEval
     {
-
         /**
          * @param rowIndex relative row index (zero based)
          * @param columnIndex relative column index (zero based)
          * @return element at the specified row and column position
          */
+
         ValueEval GetValue(int rowIndex, int columnIndex);
 
         int Width { get; }
@@ -52,24 +53,20 @@ namespace Npoi.Core.SS.Formula
          * @param rowIndex relative row index (zero based)
          * @return a single row {@link TwoDEval}
          */
+
         TwoDEval GetRow(int rowIndex);
+
         /**
          * @param columnIndex relative column index (zero based)
          * @return a single column {@link TwoDEval}
          */
-        TwoDEval GetColumn(int columnIndex);
 
+        TwoDEval GetColumn(int columnIndex);
 
         /**
          * @return true if the  cell at row and col is a subtotal
          */
+
         bool IsSubTotal(int rowIndex, int columnIndex);
-
     }
-
 }
-
-
-
-
-

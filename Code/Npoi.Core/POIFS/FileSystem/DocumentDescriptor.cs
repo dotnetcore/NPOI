@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
@@ -37,8 +37,8 @@ namespace Npoi.Core.POIFS.FileSystem
     public class DocumentDescriptor
     {
         private POIFSDocumentPath path;
-        private String            name;
-        private int               hashcode = 0;
+        private String name;
+        private int hashcode = 0;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentDescriptor"/> class.
@@ -55,7 +55,7 @@ namespace Npoi.Core.POIFS.FileSystem
             {
                 throw new NullReferenceException("name must not be null");
             }
-            if (name.Length== 0)
+            if (name.Length == 0)
             {
                 throw new ArgumentException("name cannot be empty");
             }
@@ -71,6 +71,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get { return this.path.ToString(); }
         }
+
         /// <summary>
         /// Gets the name.
         /// </summary>
@@ -90,7 +91,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             bool rval = false;
 
-            if ((o != null) && (o.GetType()== this.GetType()))
+            if ((o != null) && (o.GetType() == this.GetType()))
             {
                 if (this == o)
                 {
@@ -98,7 +99,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 }
                 else
                 {
-                    DocumentDescriptor descriptor = ( DocumentDescriptor ) o;
+                    DocumentDescriptor descriptor = (DocumentDescriptor)o;
 
                     rval = this.path.Equals(descriptor.path)
                            && this.name.Equals(descriptor.name);

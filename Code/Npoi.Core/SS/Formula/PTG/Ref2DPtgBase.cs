@@ -17,15 +17,15 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
-    using Npoi.Core.SS.Util;
 
     /**
      * @author Josh Micich
      */
+
     [Serializable]
     public abstract class Ref2DPtgBase : RefPtgBase
     {
@@ -35,14 +35,14 @@ namespace Npoi.Core.SS.Formula.PTG
          * Takes in a String representation of a cell reference and fills out the
          * numeric fields.
          */
+
         protected Ref2DPtgBase(String cellref)
             : base(cellref)
         {
-
         }
-        protected Ref2DPtgBase(CellReference cr):base(cr)
+
+        protected Ref2DPtgBase(CellReference cr) : base(cr)
         {
-            
         }
 
         protected Ref2DPtgBase(int row, int column, bool isRowRelative, bool isColumnRelative)
@@ -57,11 +57,13 @@ namespace Npoi.Core.SS.Formula.PTG
         {
             ReadCoordinates(in1);
         }
+
         public override void Write(ILittleEndianOutput out1)
         {
             out1.WriteByte(Sid + PtgClass);
             WriteCoordinates(out1);
         }
+
         public override String ToFormulaString()
         {
             return FormatReferenceAsString();
@@ -76,6 +78,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 return SIZE;
             }
         }
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder();

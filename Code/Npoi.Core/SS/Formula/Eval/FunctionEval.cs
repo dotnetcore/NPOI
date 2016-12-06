@@ -23,15 +23,15 @@ using Npoi.Core.SS.Formula.Atp;
 
 namespace Npoi.Core.SS.Formula.Eval
 {
-    using System;
-    using Npoi.Core.SS.Formula.Functions;
     using Npoi.Core.SS.Formula.Function;
+    using Npoi.Core.SS.Formula.Functions;
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
 
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     *  
+     *
      */
 
     public abstract class FunctionEval
@@ -57,7 +57,6 @@ namespace Npoi.Core.SS.Formula.Eval
 
         public abstract Eval Evaluate(Eval[] evals, int srcCellRow, short srcCellCol);
 
-
         protected static Function[] functions = ProduceFunctions();
 
         // fix warning CS0169 "never used": private static Dictionary<object,object> freeRefFunctionsByIdMap;
@@ -71,7 +70,6 @@ namespace Npoi.Core.SS.Formula.Eval
             }
             return _instance;
         }
-
 
         public static Function GetBasicFunction(int functionIndex)
         {

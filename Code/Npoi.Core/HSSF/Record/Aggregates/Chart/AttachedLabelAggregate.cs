@@ -41,6 +41,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
         private CrtMlFrtAggregate crtMlFrt = null;
 
         private bool _isFirst;
+
         public bool IsFirst
         {
             get { return _isFirst; }
@@ -101,6 +102,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             Record r = rs.GetNext();//EndRecord
             Debug.Assert(r.GetType() == typeof(EndRecord));
         }
+
         public override void VisitContainedRecords(RecordVisitor rv)
         {
             rv.VisitRecord(text);

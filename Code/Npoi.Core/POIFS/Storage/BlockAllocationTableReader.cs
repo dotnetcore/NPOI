@@ -17,20 +17,19 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
+using Npoi.Core.POIFS.Common;
+using Npoi.Core.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
-
-using Npoi.Core.Util;
-using Npoi.Core.POIFS.Common;
 
 namespace Npoi.Core.POIFS.Storage
 {
@@ -44,19 +43,19 @@ namespace Npoi.Core.POIFS.Storage
     /// Table. The entry that it finds in the Block Allocation Table is the
     /// index of the next block in the linked list of blocks making up a
     /// file, or it is set to -2: end of list.
-    /// 
+    ///
     /// @author Marc Johnson (mjohnson at apache dot org)
     /// </summary>
     public class BlockAllocationTableReader
     {
-
         private static POILogger _logger = POILogFactory.GetLogger(typeof(BlockAllocationTableReader));
 
         private const int MAX_BLOCK_COUNT = 65535;
-       
+
         private List<int> _entries;
 
         private POIFSBigBlockSize bigBlockSize;
+
         /// <summary>
         /// create a BlockAllocationTableReader for an existing filesystem. Side
         /// effect: when this method finishes, the BAT blocks will have
@@ -99,7 +98,6 @@ namespace Npoi.Core.POIFS.Storage
             }
             if (block_index < block_count)
             {
-
                 // must have extended blocks
                 if (xbat_index < 0)
                 {
@@ -149,7 +147,7 @@ namespace Npoi.Core.POIFS.Storage
         /// <param name="bigBlockSize"></param>
         /// <param name="blocks">the raw data</param>
         /// <param name="raw_block_list">the list holding the managed blocks</param>
-        public BlockAllocationTableReader(POIFSBigBlockSize bigBlockSize, ListManagedBlock[] blocks,  
+        public BlockAllocationTableReader(POIFSBigBlockSize bigBlockSize, ListManagedBlock[] blocks,
                                    BlockList raw_block_list)
             : this(bigBlockSize)
         {
@@ -190,7 +188,7 @@ namespace Npoi.Core.POIFS.Storage
                     currentBlock = _entries[currentBlock];
                     firstPass = false;
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     if (currentBlock == headerPropertiesStartBlock)
                     {
@@ -265,7 +263,6 @@ namespace Npoi.Core.POIFS.Storage
         private void SetEntries(ListManagedBlock[] blocks,
                                 BlockList raw_blocks)
         {
-
             int limit = bigBlockSize.GetBATEntriesPerBlock();
 
             for (int block_index = 0; block_index < blocks.Length; block_index++)
@@ -293,19 +290,18 @@ namespace Npoi.Core.POIFS.Storage
 
         public static void SanityCheckBlockCount(int block_count)
         {
-                if (block_count <= 0)
-                {
-                    throw new IOException("Illegal block count; minimum count is 1, got " 
-                                            + block_count + " instead");
-                }
+            if (block_count <= 0)
+            {
+                throw new IOException("Illegal block count; minimum count is 1, got "
+                                        + block_count + " instead");
+            }
 
-                if (block_count > MAX_BLOCK_COUNT)
-                {
-                    throw new IOException(
-                               "Block count " + block_count +
-                                " is too high. POI maximum is " + MAX_BLOCK_COUNT + ".");
-                }
-
+            if (block_count > MAX_BLOCK_COUNT)
+            {
+                throw new IOException(
+                           "Block count " + block_count +
+                            " is too high. POI maximum is " + MAX_BLOCK_COUNT + ".");
+            }
         }
     }
 }

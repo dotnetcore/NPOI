@@ -15,12 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-
+using Npoi.Core.POIFS.FileSystem;
+using Npoi.Core.POIFS.Storage;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Npoi.Core.POIFS.FileSystem;
-using Npoi.Core.POIFS.Storage;
 
 namespace Npoi.Core.POIFS.Properties
 {
@@ -98,14 +97,12 @@ namespace Npoi.Core.POIFS.Properties
                         children.Push(_properties[index]);
                     }
                 }
-
             }
             catch (IOException ex)
             {
                 throw ex;
             }
         }
-
 
         #region BATManaged Members
 
@@ -115,12 +112,11 @@ namespace Npoi.Core.POIFS.Properties
             set { _header_block.PropertyStart = value; }
         }
 
-
         public virtual int CountBlocks
         {
             get { throw new NotImplementedException(); }
         }
 
-        #endregion
+        #endregion BATManaged Members
     }
 }

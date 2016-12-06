@@ -16,10 +16,8 @@
 
 namespace Npoi.Core.HSSF.Util
 {
-
-    using Npoi.Core.Util;
-    using System.Collections;
     using Npoi.Core.HSSF.Record;
+    using Npoi.Core.Util;
     using System.Collections.Generic;
 
     /**
@@ -54,16 +52,16 @@ namespace Npoi.Core.HSSF.Util
 
         public HSSFCellRangeAddress()
         {
-
         }
 
         /**
          * Construct a new HSSFCellRangeAddress object and Sets its fields appropriately .
          * Even this Isn't an Excel record , I kept the same behavior for reading/writing
          * the object's data as for a regular record .
-         * 
+         *
          * @param in the RecordInputstream to read the record from
          */
+
         public HSSFCellRangeAddress(RecordInputStream in1)
         {
             this.FillFields(in1);
@@ -89,7 +87,7 @@ namespace Npoi.Core.HSSF.Util
                 else
                 {
                     // Ran out of data
-                    // For now, Issue a warning, finish, and 
+                    // For now, Issue a warning, finish, and
                     //  hope for the best....
                     logger.Log(POILogger.WARN, "Ran out of data reading cell references for DVRecord");
                     k = this.field_Addr_number;
@@ -107,6 +105,7 @@ namespace Npoi.Core.HSSF.Util
          * This Is the reason there Isn't a Set method for this field .
          * @return number of AddR structures
          */
+
         public short AddRStructureNumber
         {
             get { return this.field_Addr_number; }
@@ -120,6 +119,7 @@ namespace Npoi.Core.HSSF.Util
          * @param last_col  - the lower right hand corner's col
          * @return the index of this AddR structure
          */
+
         public int AddAddRStructure(short first_row, short first_col, short last_row, short last_col)
         {
             if (this.field_regions_list == null)
@@ -139,6 +139,7 @@ namespace Npoi.Core.HSSF.Util
          * Remove the AddR structure stored at the passed in index
          * @param index The AddR structure's index
          */
+
         public void RemoveAddRStructureAt(int index)
         {
             this.field_regions_list.Remove(index);
@@ -149,6 +150,7 @@ namespace Npoi.Core.HSSF.Util
          * return the AddR structure at the given index.
          * @return AddrStructure representing
          */
+
         public AddrStructure GetAddRStructureAt(int index)
         {
             return (AddrStructure)this.field_regions_list[index];
@@ -198,9 +200,10 @@ namespace Npoi.Core.HSSF.Util
              * Get the upper left hand corner column number
              * @return column number for the upper left hand corner
              */
+
             public short FirstColumn
             {
-                get{return this._first_col;}
+                get { return this._first_col; }
                 set { this._first_col = value; }
             }
 
@@ -208,9 +211,10 @@ namespace Npoi.Core.HSSF.Util
              * Get the upper left hand corner row number
              * @return row number for the upper left hand corner
              */
+
             public short FirstRow
             {
-                get{return this._first_row;}
+                get { return this._first_row; }
                 set { this._first_row = value; }
             }
 
@@ -218,9 +222,10 @@ namespace Npoi.Core.HSSF.Util
              * Get the lower right hand corner column number
              * @return column number for the lower right hand corner
              */
+
             public short LastColumn
             {
-                get{return this._last_col;}
+                get { return this._last_col; }
                 set { this._last_col = value; }
             }
 
@@ -228,14 +233,12 @@ namespace Npoi.Core.HSSF.Util
              * Get the lower right hand corner row number
              * @return row number for the lower right hand corner
              */
+
             public short LastRow
             {
                 get { return this._last_row; }
                 set { this._last_row = value; }
             }
-
-
         }
     }
-
 }

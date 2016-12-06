@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,15 +17,12 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
-    using System;
-    using System.Text;
-    using System.IO;
-
-    using Npoi.Core.Util;
-
     using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.Util;
+    using System;
     using System.Globalization;
+    using System.IO;
+    using System.Text;
 
     /**
      * A sub-record within the OBJ record which stores a reference to an object
@@ -34,6 +30,7 @@ namespace Npoi.Core.HSSF.Record
      *
      * @author Daniel Noll
      */
+
     public class EmbeddedObjectRefSubRecord
        : SubRecord
     {
@@ -45,13 +42,15 @@ namespace Npoi.Core.HSSF.Record
         /** either an area or a cell ref */
         private Ptg field_2_refPtg;
         private byte[] field_2_unknownFormulaData;
+
         // TODO: Consider making a utility class for these.  I've discovered the same field ordering
         //       in FormatRecord and StringRecord, it may be elsewhere too.
         public bool field_3_unicode_flag;                        // Flags whether the string is Unicode.
+
         private String field_4_ole_classname; // Classname of the embedded OLE document (e.g. Word.Document.8)
         /** Formulas often have a single non-zero trailing byte.
          * This is in a similar position to he pre-streamId padding
-         * It is unknown if the value is important (it seems to mirror a value a few bytes earlier) 
+         * It is unknown if the value is important (it seems to mirror a value a few bytes earlier)
          *  */
         private Byte? field_4_unknownByte;
         private int? field_5_stream_id; // ID of the OLE stream containing the actual data.
@@ -63,7 +62,6 @@ namespace Npoi.Core.HSSF.Record
             field_6_unknown = EMPTY_BYTE_ARRAY;
             field_4_ole_classname = null;
             field_4_unknownByte = null;
-
         }
 
         /**
@@ -71,6 +69,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @param in the record input stream.
          */
+
         public EmbeddedObjectRefSubRecord(ILittleEndianInput in1, int size)
         {
             // Much guess-work going on here due to lack of any documentation.
@@ -102,7 +101,6 @@ namespace Npoi.Core.HSSF.Record
                 field_2_unknownFormulaData = null;
             }
 
-
             int stringByteCount;
             if (remaining >= dataLenAfterFormula + 3)
             {
@@ -121,12 +119,12 @@ namespace Npoi.Core.HSSF.Record
                     stringByteCount += LittleEndianConsts.BYTE_SIZE;
                     if (field_3_unicode_flag)
                     {
-                        field_4_ole_classname = StringUtil.ReadUnicodeLE(in1,nChars);
+                        field_4_ole_classname = StringUtil.ReadUnicodeLE(in1, nChars);
                         stringByteCount += nChars * 2;
                     }
                     else
                     {
-                        field_4_ole_classname = StringUtil.ReadCompressedUnicode(in1,nChars);
+                        field_4_ole_classname = StringUtil.ReadCompressedUnicode(in1, nChars);
                         stringByteCount += nChars;
                     }
                 }
@@ -173,8 +171,6 @@ namespace Npoi.Core.HSSF.Record
 
             field_6_unknown = ReadRawData(in1, remaining);
         }
-
-
 
         public override short Sid
         {
@@ -251,7 +247,6 @@ namespace Npoi.Core.HSSF.Record
 
         private int GetDataSize(int idOffset)
         {
-
             int result = 2 + idOffset; // 2 for idOffset short field itself
             if (field_5_stream_id != null)
             {
@@ -259,6 +254,7 @@ namespace Npoi.Core.HSSF.Record
             }
             return result + field_6_unknown.Length;
         }
+
         public override int DataSize
         {
             get
@@ -274,7 +270,6 @@ namespace Npoi.Core.HSSF.Record
             int formulaSize = field_2_refPtg == null ? field_2_unknownFormulaData.Length : field_2_refPtg.Size;
             int idOffset = GetStreamIDOffset(formulaSize);
             int dataSize = GetDataSize(idOffset);
-
 
             out1.WriteShort(sid);
             out1.WriteShort(dataSize);
@@ -327,14 +322,16 @@ namespace Npoi.Core.HSSF.Record
             }
 
             // pad to next 2-byte boundary (requires 0 or 1 bytes)
-            switch (idOffset - (pos - 6 ))
+            switch (idOffset - (pos - 6))
             { // 6 for 3 shorts: sid, dataSize, idOffset
                 case 1:
                     out1.WriteByte(field_4_unknownByte == null ? 0x00 : (int)Convert.ToByte(field_4_unknownByte, CultureInfo.InvariantCulture));
                     pos++;
                     break;
+
                 case 0:
                     break;
+
                 default:
                     throw new InvalidOperationException("Bad padding calculation (" + idOffset + ", " + pos + ")");
             }
@@ -347,7 +344,6 @@ namespace Npoi.Core.HSSF.Record
             out1.Write(field_6_unknown);
         }
 
-
         /**
          * Gets the stream ID containing the actual data.  The data itself
          * can be found under a top-level directory entry in the OLE2 filesystem
@@ -356,6 +352,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return the data stream ID. Possibly <c>null</c>
          */
+
         public int? StreamId
         {
             get
@@ -384,7 +381,6 @@ namespace Npoi.Core.HSSF.Record
                 field_6_unknown = value;
             }
         }
-
 
         public override String ToString()
         {
@@ -419,10 +415,12 @@ namespace Npoi.Core.HSSF.Record
             sb.Append("[/ftPictFmla]");
             return sb.ToString();
         }
+
         public override Object Clone()
         {
             return this; // TODO proper clone
         }
+
         public void SetUnknownFormulaData(byte[] formularData)
         {
             field_2_unknownFormulaData = formularData;

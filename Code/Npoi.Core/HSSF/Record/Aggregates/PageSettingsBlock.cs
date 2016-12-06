@@ -17,26 +17,28 @@
 
 namespace Npoi.Core.HSSF.Record.Aggregates
 {
-
-    using System;
-    using System.Collections;
     using Npoi.Core.HSSF.Model;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.Util;
+    using System;
+    using System.Collections;
     using System.Collections.Generic;
+
     /**
      * Groups the page settings records for a worksheet.<p/>
-     * 
+     *
      * See OOO excelfileformat.pdf sec 4.4 'Page Settings Block'
-     * 
+     *
      * @author Josh Micich
      */
+
     public class PageSettingsBlock : RecordAggregate
     {
-        // Every one of these component records is optional 
-        // (The whole PageSettingsBlock may not be present) 
+        // Every one of these component records is optional
+        // (The whole PageSettingsBlock may not be present)
         private PageBreakRecord _rowBreaksRecord;
+
         private PageBreakRecord _columnBreaksRecord;
         private HeaderRecord header;
         private FooterRecord footer;
@@ -46,8 +48,10 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         private RightMarginRecord _rightMargin;
         private TopMarginRecord _topMargin;
         private BottomMarginRecord _bottomMargin;
+
         // fix warning CS0169 "never used": private Record _pls;
         private PrintSetupRecord printSetup;
+
         private Record _bitmap;
         private HeaderFooterRecord _headerFooter;
 
@@ -65,6 +69,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /**
          * Creates a PageSettingsBlock with default settings
          */
+
         public PageSettingsBlock()
         {
             _plsRecords = new List<PLSAggregate>();
@@ -76,10 +81,12 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             _vCenter = CreateVCenter();
             printSetup = CreatePrintSetup();
         }
+
         /**
-         * @return <c>true</c> if the specified Record sid is one belonging to the 
+         * @return <c>true</c> if the specified Record sid is one belonging to the
          * 'Page Settings Block'.
          */
+
         public static bool IsComponentRecord(int sid)
         {
             switch (sid)
@@ -113,57 +120,71 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                     CheckNotPresent(_rowBreaksRecord);
                     _rowBreaksRecord = (PageBreakRecord)rs.GetNext();
                     break;
+
                 case VerticalPageBreakRecord.sid:
                     CheckNotPresent(_columnBreaksRecord);
                     _columnBreaksRecord = (PageBreakRecord)rs.GetNext();
                     break;
+
                 case HeaderRecord.sid:
                     CheckNotPresent(header);
                     header = (HeaderRecord)rs.GetNext();
                     break;
+
                 case FooterRecord.sid:
                     CheckNotPresent(footer);
                     footer = (FooterRecord)rs.GetNext();
                     break;
+
                 case HCenterRecord.sid:
                     CheckNotPresent(_hCenter);
                     _hCenter = (HCenterRecord)rs.GetNext();
                     break;
+
                 case VCenterRecord.sid:
                     CheckNotPresent(_vCenter);
                     _vCenter = (VCenterRecord)rs.GetNext();
                     break;
+
                 case LeftMarginRecord.sid:
                     CheckNotPresent(_leftMargin);
                     _leftMargin = (LeftMarginRecord)rs.GetNext();
                     break;
+
                 case RightMarginRecord.sid:
                     CheckNotPresent(_rightMargin);
                     _rightMargin = (RightMarginRecord)rs.GetNext();
                     break;
+
                 case TopMarginRecord.sid:
                     CheckNotPresent(_topMargin);
                     _topMargin = (TopMarginRecord)rs.GetNext();
                     break;
+
                 case BottomMarginRecord.sid:
                     CheckNotPresent(_bottomMargin);
                     _bottomMargin = (BottomMarginRecord)rs.GetNext();
                     break;
+
                 case UnknownRecord.PLS_004D: // PLS
                     _plsRecords.Add(new PLSAggregate(rs));
                     break;
+
                 case PrintSetupRecord.sid:
                     CheckNotPresent(printSetup);
                     printSetup = (PrintSetupRecord)rs.GetNext();
                     break;
+
                 case UnknownRecord.BITMAP_00E9: // BITMAP
                     CheckNotPresent(_bitmap);
                     _bitmap = rs.GetNext();
                     break;
+
                 case PrintSizeRecord.sid:
                     CheckNotPresent(_printSize);
                     _printSize = rs.GetNext();
                     break;
+
                 case HeaderFooterRecord.sid:
                     HeaderFooterRecord hf = (HeaderFooterRecord)rs.GetNext();
                     if (hf.IsCurrentSheet)
@@ -171,12 +192,14 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                     else
                         _sviewHeaderFooters.Add(hf);
                     break;
+
                 default:
                     // all other record types are not part of the PageSettingsBlock
                     return false;
             }
             return true;
         }
+
         private void CheckNotPresent(Record rec)
         {
             if (rec != null)
@@ -185,6 +208,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                         + StringUtil.ToHexString(rec.Sid) + ")");
             }
         }
+
         private PageBreakRecord RowBreaksRecord
         {
             get
@@ -218,6 +242,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * Sets a page break at the indicated column
          *
          */
+
         public void SetColumnBreak(int column, int fromRow, int toRow)
         {
             this.ColumnBreaksRecord.AddBreak(column, fromRow, toRow);
@@ -227,6 +252,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * Removes a page break at the indicated column
          *
          */
+
         public void RemoveColumnBreak(int column)
         {
             this.ColumnBreaksRecord.RemoveBreak(column);
@@ -259,15 +285,17 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             VisitIfPresent(_rightMargin, rv);
             VisitIfPresent(_topMargin, rv);
             VisitIfPresent(_bottomMargin, rv);
-		    foreach (RecordAggregate pls in _plsRecords) {
-			    pls.VisitContainedRecords(rv);
-		    }
+            foreach (RecordAggregate pls in _plsRecords)
+            {
+                pls.VisitContainedRecords(rv);
+            }
             VisitIfPresent(printSetup, rv);
-            
+
             VisitIfPresent(_printSize, rv);
             VisitIfPresent(_headerFooter, rv);
             VisitIfPresent(_bitmap, rv);
         }
+
         private static void VisitIfPresent(Record r, RecordVisitor rv)
         {
             if (r != null)
@@ -275,6 +303,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 rv.VisitRecord(r);
             }
         }
+
         private static void VisitIfPresent(PageBreakRecord r, RecordVisitor rv)
         {
             if (r != null)
@@ -291,6 +320,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /**
          * Creates the HCenter Record and sets it to false (don't horizontally center)
          */
+
         private static HCenterRecord CreateHCenter()
         {
             HCenterRecord retval = new HCenterRecord();
@@ -302,6 +332,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /**
          * Creates the VCenter Record and sets it to false (don't horizontally center)
         */
+
         private static VCenterRecord CreateVCenter()
         {
             VCenterRecord retval = new VCenterRecord();
@@ -316,6 +347,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * @see org.apache.poi.hssf.record.Record
          * @return record containing a PrintSetupRecord
          */
+
         private static PrintSetupRecord CreatePrintSetup()
         {
             PrintSetupRecord retval = new PrintSetupRecord();
@@ -334,18 +366,18 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             return retval;
         }
 
-
         /**
          * Returns the HeaderRecord.
          * @return HeaderRecord for the sheet.
          */
+
         public HeaderRecord Header
         {
             get
             {
                 return header;
             }
-            set 
+            set
             {
                 header = value;
             }
@@ -355,6 +387,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * Returns the FooterRecord.
          * @return FooterRecord for the sheet.
          */
+
         public FooterRecord Footer
         {
             get
@@ -368,18 +401,18 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * Returns the PrintSetupRecord.
          * @return PrintSetupRecord for the sheet.
          */
+
         public PrintSetupRecord PrintSetup
         {
             get
             {
                 return printSetup;
             }
-            set 
+            set
             {
                 printSetup = value;
             }
         }
-
 
         private IMargin GetMarginRec(MarginType margin)
         {
@@ -394,12 +427,12 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
         }
 
-
         /**
          * Gets the size of the margin in inches.
          * @param margin which margin to Get
          * @return the size of the margin
          */
+
         public double GetMargin(MarginType margin)
         {
             IMargin m = GetMarginRec(margin);
@@ -413,10 +446,13 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 {
                     case MarginType.LeftMargin:
                         return .75;
+
                     case MarginType.RightMargin:
                         return .75;
+
                     case MarginType.TopMargin:
                         return 1.0;
+
                     case MarginType.BottomMargin:
                         return 1.0;
                 }
@@ -429,6 +465,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * @param margin which margin to Get
          * @param size the size of the margin
          */
+
         public void SetMargin(MarginType margin, double size)
         {
             IMargin m = GetMarginRec(margin);
@@ -440,23 +477,27 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                         _leftMargin = new LeftMarginRecord();
                         m = _leftMargin;
                         break;
+
                     case MarginType.RightMargin:
                         _rightMargin = new RightMarginRecord();
                         m = _rightMargin;
                         break;
+
                     case MarginType.TopMargin:
                         _topMargin = new TopMarginRecord();
                         m = _topMargin;
                         break;
+
                     case MarginType.BottomMargin:
                         _bottomMargin = new BottomMarginRecord();
                         m = _bottomMargin;
                         break;
+
                     default:
                         throw new InvalidOperationException("Unknown margin constant:  " + margin);
                 }
             }
-            m.Margin= size;
+            m.Margin = size;
         }
 
         /**
@@ -466,33 +507,35 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * @param stop Ending "main" value to shift breaks
          * @param count number of units (rows/columns) to shift by
          */
-        private static void ShiftBreaks(PageBreakRecord breaks, int start, int stop, int count) {
 
-		IEnumerator iterator = breaks.GetBreaksEnumerator();
-		IList shiftedBreak = new List<object>();
-		while(iterator.MoveNext())
-		{
-			PageBreakRecord.Break breakItem = (PageBreakRecord.Break)iterator.Current;
-			int breakLocation = breakItem.main;
-			bool inStart = (breakLocation >= start);
-			bool inEnd = (breakLocation <= stop);
-			if(inStart && inEnd)
-				shiftedBreak.Add(breakItem);
-		}
+        private static void ShiftBreaks(PageBreakRecord breaks, int start, int stop, int count)
+        {
+            IEnumerator iterator = breaks.GetBreaksEnumerator();
+            IList shiftedBreak = new List<object>();
+            while (iterator.MoveNext())
+            {
+                PageBreakRecord.Break breakItem = (PageBreakRecord.Break)iterator.Current;
+                int breakLocation = breakItem.main;
+                bool inStart = (breakLocation >= start);
+                bool inEnd = (breakLocation <= stop);
+                if (inStart && inEnd)
+                    shiftedBreak.Add(breakItem);
+            }
 
-		iterator = shiftedBreak.GetEnumerator();
-		while (iterator.MoveNext()) {
-			PageBreakRecord.Break breakItem = (PageBreakRecord.Break)iterator.Current;
-			breaks.RemoveBreak(breakItem.main);
-			breaks.AddBreak((short)(breakItem.main+count), breakItem.subFrom, breakItem.subTo);
-		}
-	}
-
+            iterator = shiftedBreak.GetEnumerator();
+            while (iterator.MoveNext())
+            {
+                PageBreakRecord.Break breakItem = (PageBreakRecord.Break)iterator.Current;
+                breaks.RemoveBreak(breakItem.main);
+                breaks.AddBreak((short)(breakItem.main + count), breakItem.subFrom, breakItem.subTo);
+            }
+        }
 
         /**
          * Sets a page break at the indicated row
          * @param row
          */
+
         public void SetRowBreak(int row, short fromCol, short toCol)
         {
             this.RowBreaksRecord.AddBreak((short)row, fromCol, toCol);
@@ -502,6 +545,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * Removes a page break at the indicated row
          * @param row
          */
+
         public void RemoveRowBreak(int row)
         {
             if (this.RowBreaksRecord.GetBreaks().Length < 1)
@@ -514,17 +558,18 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * @param row
          * @return true if the specified row has a page break
          */
+
         public bool IsRowBroken(int row)
         {
             return this.RowBreaksRecord.GetBreak(row) != null;
         }
-
 
         /**
          * Queries if the specified column has a page break
          *
          * @return <c>true</c> if the specified column has a page break
          */
+
         public bool IsColumnBroken(int column)
         {
             return this.ColumnBreaksRecord.GetBreak(column) != null;
@@ -536,6 +581,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * @param endingRow
          * @param count
          */
+
         public void ShiftRowBreaks(int startingRow, int endingRow, int count)
         {
             ShiftBreaks(this.RowBreaksRecord, startingRow, endingRow, count);
@@ -547,6 +593,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * @param endingCol
          * @param count
          */
+
         public void ShiftColumnBreaks(short startingCol, short endingCol, short count)
         {
             ShiftBreaks(this.ColumnBreaksRecord, startingCol, endingCol, count);
@@ -555,6 +602,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /**
          * @return all the horizontal page breaks, never <c>null</c>
          */
+
         public int[] RowBreaks
         {
             get
@@ -566,6 +614,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /**
          * @return the number of row page breaks
          */
+
         public int NumRowBreaks
         {
             get
@@ -577,6 +626,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /**
          * @return all the column page breaks, never <c>null</c>
          */
+
         public int[] ColumnBreaks
         {
             get
@@ -588,6 +638,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /**
          * @return the number of column page breaks
          */
+
         public int NumColumnBreaks
         {
             get
@@ -605,6 +656,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         {
             get { return _hCenter; }
         }
+
         /// <summary>
         ///  HEADERFOOTER is new in 2007.  Some apps seem to have scattered this record long after
         /// the PageSettingsBlock where it belongs.
@@ -623,12 +675,11 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             _headerFooter = rec;
         }
 
-
         /// <summary>
         /// This method reads PageSettingsBlock records from the supplied RecordStream until the first non-PageSettingsBlock record is encountered.
         /// As each record is read, it is incorporated into this PageSettingsBlock.
         /// </summary>
-        /// <param name="rs"></param> 
+        /// <param name="rs"></param>
         public void AddLateRecords(RecordStream rs)
         {
             while (true)
@@ -639,6 +690,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 }
             }
         }
+
         public void PositionRecords(List<RecordBase> sheetRecords)
         {
             // Take a copy to loop over, so we can update the real one
@@ -664,18 +716,20 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                     if (rb is CustomViewSettingsRecordAggregate)
                     {
                         CustomViewSettingsRecordAggregate cv = (CustomViewSettingsRecordAggregate)rb;
-                        cv.VisitContainedRecords(new CustomRecordVisitor1(cv,hf,_sviewHeaderFooters,hfGuidMap));
+                        cv.VisitContainedRecords(new CustomRecordVisitor1(cv, hf, _sviewHeaderFooters, hfGuidMap));
                     }
                 }
             }
         }
+
         private class CustomRecordVisitor1 : RecordVisitor
         {
-            CustomViewSettingsRecordAggregate _cv;
-            HeaderFooterRecord _hf;
-            List<HeaderFooterRecord> _sviewHeaderFooters;
-            Dictionary<String, HeaderFooterRecord> _hfGuidMap;
-            public CustomRecordVisitor1(CustomViewSettingsRecordAggregate cv, HeaderFooterRecord hf, 
+            private CustomViewSettingsRecordAggregate _cv;
+            private HeaderFooterRecord _hf;
+            private List<HeaderFooterRecord> _sviewHeaderFooters;
+            private Dictionary<String, HeaderFooterRecord> _hfGuidMap;
+
+            public CustomRecordVisitor1(CustomViewSettingsRecordAggregate cv, HeaderFooterRecord hf,
                 List<HeaderFooterRecord> sviewHeaderFooter, Dictionary<String, HeaderFooterRecord> hfGuidMap)
             {
                 this._cv = cv;
@@ -690,7 +744,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             {
                 if (r.Sid == UserSViewBegin.sid)
                 {
-                    String guid = HexDump.ToHex(((UserSViewBegin) r).Guid);
+                    String guid = HexDump.ToHex(((UserSViewBegin)r).Guid);
                     HeaderFooterRecord hf = _hfGuidMap[guid];
 
                     if (hf != null)
@@ -703,8 +757,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 }
             }
 
-            #endregion
+            #endregion RecordVisitor Members
         }
-
     }
 }

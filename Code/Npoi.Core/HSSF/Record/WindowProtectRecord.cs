@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,9 +17,9 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Title: Window Protect Record
@@ -33,9 +32,12 @@ namespace Npoi.Core.HSSF.Record
     public class WindowProtectRecord : StandardRecord
     {
         public const short sid = 0x19;
+
         //private short field_1_protect;
         private static BitField settingsProtectedFlag = BitFieldFactory.GetInstance(0x0001);
+
         private int _options;
+
         public WindowProtectRecord(int options)
         {
             _options = options;
@@ -50,11 +52,13 @@ namespace Npoi.Core.HSSF.Record
             : this(in1.ReadUShort())
         {
         }
+
         public WindowProtectRecord(bool protect)
-            :this(0)
+            : this(0)
         {
             Protect = (protect);
         }
+
         /**
          * Is this window protected or not
          *
@@ -97,6 +101,7 @@ namespace Npoi.Core.HSSF.Record
         {
             out1.WriteShort(_options);
         }
+
         protected override int DataSize
         {
             get
@@ -105,11 +110,9 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         public override short Sid
         {
             get { return sid; }
         }
     }
-
 }

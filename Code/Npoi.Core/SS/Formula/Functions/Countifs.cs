@@ -15,12 +15,11 @@
    limitations under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     /**
      * Implementation for the function COUNTIFS
@@ -40,7 +39,7 @@ namespace Npoi.Core.SS.Formula.Functions
             {
                 return ErrorEval.VALUE_INVALID;
             }
-            for (int i = 0; i < args.Length; )
+            for (int i = 0; i < args.Length;)
             {
                 ValueEval firstArg = args[i];
                 ValueEval secondArg = args[i + 1];
@@ -58,5 +57,4 @@ namespace Npoi.Core.SS.Formula.Functions
             return new NumberEval(double.IsNaN(result) ? 0 : result);
         }
     }
-
 }

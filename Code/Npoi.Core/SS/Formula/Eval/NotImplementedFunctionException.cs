@@ -16,13 +16,15 @@
 ==================================================================== */
 
 using System;
+
 namespace Npoi.Core.SS.Formula.Eval
 {
     /**
-     * An exception thrown by implementors of {@link FormulaEvaluator} when 
-     *  attempting to evaluate a formula which requires a function that POI 
+     * An exception thrown by implementors of {@link FormulaEvaluator} when
+     *  attempting to evaluate a formula which requires a function that POI
      *  does not (yet) support.
      */
+
     public class NotImplementedFunctionException : NotImplementedException
     {
         private String functionName;
@@ -32,8 +34,9 @@ namespace Npoi.Core.SS.Formula.Eval
         {
             this.functionName = functionName;
         }
+
         public NotImplementedFunctionException(string functionName, NotImplementedException cause)
-            : base(functionName,cause)
+            : base(functionName, cause)
         {
             this.functionName = functionName;
         }

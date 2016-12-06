@@ -17,9 +17,8 @@
 
 namespace Npoi.Core.SS.Formula.Atp
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
-
+    using System;
 
     /// <summary>
     /// Internal calculation methods for Excel 'Analysis ToolPak' function YEARFRAC()
@@ -27,7 +26,7 @@ namespace Npoi.Core.SS.Formula.Atp
     /// @author Josh Micich
     /// </summary>
     /// <remarks>
-    /// Date Count convention 
+    /// Date Count convention
     /// http://en.wikipedia.org/wiki/Day_count_convention
     /// </remarks>
     /// <remarks>
@@ -38,8 +37,10 @@ namespace Npoi.Core.SS.Formula.Atp
     public class YearFracCalculator
     {
         /** use UTC time-zone to avoid daylight savings issues */
+
         //private static readonly TimeZone UTC_TIME_ZONE = TimeZone.GetTimeZone("UTC");
         private const int MS_PER_HOUR = 60 * 60 * 1000;
+
         private const int MS_PER_DAY = 24 * MS_PER_HOUR;
         private const int DAYS_PER_NORMAL_YEAR = 365;
         private const int DAYS_PER_LEAP_YEAR = DAYS_PER_NORMAL_YEAR + 1;
@@ -51,7 +52,6 @@ namespace Npoi.Core.SS.Formula.Atp
         private const int SHORT_FEB_LEN = 28;
         private const int LONG_FEB_LEN = SHORT_FEB_LEN + 1;
 
-
         /// <summary>
         /// Calculates YEARFRAC()
         /// </summary>
@@ -61,7 +61,6 @@ namespace Npoi.Core.SS.Formula.Atp
         /// <returns></returns>
         public static double Calculate(double pStartDateVal, double pEndDateVal, int basis)
         {
-
             if (basis < 0 || basis >= 5)
             {
                 // if basis is invalid the result is #NUM!
@@ -75,7 +74,7 @@ namespace Npoi.Core.SS.Formula.Atp
             int endDateVal = (int)Math.Floor(pEndDateVal);
             if (startDateVal == endDateVal)
             {
-                // when dates are equal, result is zero 
+                // when dates are equal, result is zero
                 return 0;
             }
             // swap start and end if out of order
@@ -97,9 +96,8 @@ namespace Npoi.Core.SS.Formula.Atp
             throw new InvalidOperationException("cannot happen");
         }
 
-
         /// <summary>
-        /// Basis 0, 30/360 date convention 
+        /// Basis 0, 30/360 date convention
         /// </summary>
         /// <param name="startDateVal">The start date value assumed to be less than or equal to endDateVal.</param>
         /// <param name="endDateVal">The end date value assumed to be greater than or equal to startDateVal.</param>
@@ -111,7 +109,7 @@ namespace Npoi.Core.SS.Formula.Atp
             int date1day = startDate.day;
             int date2day = endDate.day;
 
-            // basis zero has funny adjustments to the day-of-month fields when at end-of-month 
+            // basis zero has funny adjustments to the day-of-month fields when at end-of-month
             if (date1day == LONG_MONTH_LEN && date2day == LONG_MONTH_LEN)
             {
                 date1day = SHORT_MONTH_LEN;
@@ -139,8 +137,9 @@ namespace Npoi.Core.SS.Formula.Atp
             }
             return CalculateAdjusted(startDate, endDate, date1day, date2day);
         }
+
         /// <summary>
-        /// Basis 1, Actual/Actual date convention 
+        /// Basis 1, Actual/Actual date convention
         /// </summary>
         /// <param name="startDateVal">The start date value assumed to be less than or equal to endDateVal.</param>
         /// <param name="endDateVal">The end date value assumed to be greater than or equal to startDateVal.</param>
@@ -166,7 +165,7 @@ namespace Npoi.Core.SS.Formula.Atp
         }
 
         /// <summary>
-        /// Basis 2, Actual/360 date convention 
+        /// Basis 2, Actual/360 date convention
         /// </summary>
         /// <param name="startDateVal">The start date value assumed to be less than or equal to endDateVal.</param>
         /// <param name="endDateVal">The end date value assumed to be greater than or equal to startDateVal.</param>
@@ -175,8 +174,9 @@ namespace Npoi.Core.SS.Formula.Atp
         {
             return (endDateVal - startDateVal) / 360.0;
         }
+
         /// <summary>
-        /// Basis 3, Actual/365 date convention 
+        /// Basis 3, Actual/365 date convention
         /// </summary>
         /// <param name="startDateVal">The start date value assumed to be less than or equal to endDateVal.</param>
         /// <param name="endDateVal">The end date value assumed to be greater than or equal to startDateVal.</param>
@@ -185,8 +185,9 @@ namespace Npoi.Core.SS.Formula.Atp
         {
             return (endDateVal - startDateVal) / 365.0;
         }
+
         /// <summary>
-        /// Basis 4, European 30/360 date convention 
+        /// Basis 4, European 30/360 date convention
         /// </summary>
         /// <param name="startDateVal">The start date value assumed to be less than or equal to endDateVal.</param>
         /// <param name="endDateVal">The end date value assumed to be greater than or equal to startDateVal.</param>
@@ -198,8 +199,7 @@ namespace Npoi.Core.SS.Formula.Atp
             int date1day = startDate.day;
             int date2day = endDate.day;
 
-
-            // basis four has funny adjustments to the day-of-month fields when at end-of-month 
+            // basis four has funny adjustments to the day-of-month fields when at end-of-month
             if (date1day == LONG_MONTH_LEN)
             {
                 date1day = SHORT_MONTH_LEN;
@@ -211,7 +211,6 @@ namespace Npoi.Core.SS.Formula.Atp
             // Note - no adjustments for end of Feb
             return CalculateAdjusted(startDate, endDate, date1day, date2day);
         }
-
 
         /// <summary>
         /// Calculates the adjusted.
@@ -264,6 +263,7 @@ namespace Npoi.Core.SS.Formula.Atp
                 case 10:
                 case 12:
                     return LONG_MONTH_LEN;
+
                 case 4:
                 case 6:
                 case 9:
@@ -314,8 +314,10 @@ namespace Npoi.Core.SS.Formula.Atp
                 {
                     case SimpleDate.JANUARY:
                         return false;
+
                     case SimpleDate.FEBRUARY:
                         break;
+
                     default:
                         return true;
                 }
@@ -430,7 +432,6 @@ namespace Npoi.Core.SS.Formula.Atp
         /// </summary>
         private class SimpleDate
         {
-
             public const int JANUARY = 1;
             public const int FEBRUARY = 2;
 

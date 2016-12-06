@@ -15,7 +15,6 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.UserModel
 {
     using Npoi.Core.DDF;
@@ -28,14 +27,17 @@ namespace Npoi.Core.HSSF.UserModel
          * create anchor from existing file
          * @param escherChildAnchorRecord
          */
+
         public HSSFChildAnchor(EscherChildAnchorRecord escherChildAnchorRecord)
         {
             this._escherChildAnchor = escherChildAnchorRecord;
         }
+
         public HSSFChildAnchor()
         {
             _escherChildAnchor = new EscherChildAnchorRecord();
         }
+
         /**
         * create anchor from scratch
         * @param dx1 x coordinate of the left up corner
@@ -43,6 +45,7 @@ namespace Npoi.Core.HSSF.UserModel
         * @param dx2 x coordinate of the right down corner
         * @param dy2 y coordinate of the right down corner
         */
+
         public HSSFChildAnchor(int dx1, int dy1, int dx2, int dy2)
             : base(Math.Min(dx1, dx2), Math.Min(dy1, dy2), Math.Max(dx1, dx2), Math.Max(dy1, dy2))
         {
@@ -55,12 +58,14 @@ namespace Npoi.Core.HSSF.UserModel
                 _isVerticallyFlipped = true;
             }
         }
+
         /**
          * @param dx1 x coordinate of the left up corner
          * @param dy1 y coordinate of the left up corner
          * @param dx2 x coordinate of the right down corner
          * @param dy2 y coordinate of the right down corner
          */
+
         public void SetAnchor(int dx1, int dy1, int dx2, int dy2)
         {
             this.Dx1 = Math.Min(dx1, dx2);
@@ -71,19 +76,20 @@ namespace Npoi.Core.HSSF.UserModel
 
         public override bool IsHorizontallyFlipped
         {
-            get 
-            { 
-                return _isHorizontallyFlipped; 
+            get
+            {
+                return _isHorizontallyFlipped;
             }
         }
 
         public override bool IsVerticallyFlipped
         {
-            get 
-            { 
-                return _isVerticallyFlipped; 
+            get
+            {
+                return _isVerticallyFlipped;
             }
         }
+
         public override int Dx1
         {
             get
@@ -95,6 +101,7 @@ namespace Npoi.Core.HSSF.UserModel
                 _escherChildAnchor.Dx1 = (short)value;
             }
         }
+
         public override int Dx2
         {
             get
@@ -106,6 +113,7 @@ namespace Npoi.Core.HSSF.UserModel
                 _escherChildAnchor.Dx2 = (short)value;
             }
         }
+
         public override int Dy1
         {
             get
@@ -117,6 +125,7 @@ namespace Npoi.Core.HSSF.UserModel
                 _escherChildAnchor.Dy1 = (short)value;
             }
         }
+
         public override int Dy2
         {
             get
@@ -128,6 +137,7 @@ namespace Npoi.Core.HSSF.UserModel
                 _escherChildAnchor.Dy2 = (short)value;
             }
         }
+
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -152,6 +162,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             return _escherChildAnchor;
         }
+
         protected override void CreateEscherAnchor()
         {
             _escherChildAnchor = new EscherChildAnchorRecord();

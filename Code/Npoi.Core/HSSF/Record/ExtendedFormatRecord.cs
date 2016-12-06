@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,12 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Title:        Extended Format Record
@@ -48,10 +46,12 @@ namespace Npoi.Core.HSSF.Record
 
         // xf type
         public const short XF_STYLE = 1;
+
         public const short XF_CELL = 0;
 
         // borders
         public const short NONE = 0x0;
+
         public const short THIN = 0x1;
         public const short MEDIUM = 0x2;
         public const short DASHED = 0x3;
@@ -68,6 +68,7 @@ namespace Npoi.Core.HSSF.Record
 
         // alignment
         public const short GENERAL = 0x0;
+
         public const short LEFT = 0x1;
         public const short CENTER = 0x2;
         public const short RIGHT = 0x3;
@@ -77,12 +78,14 @@ namespace Npoi.Core.HSSF.Record
 
         // vertical alignment
         public const short VERTICAL_TOP = 0x0;
+
         public const short VERTICAL_CENTER = 0x1;
         public const short VERTICAL_BOTTOM = 0x2;
         public const short VERTICAL_JUSTIFY = 0x3;
 
         // fill
         public const short NO_FILL = 0;
+
         public const short SOLID_FILL = 1;
         public const short FINE_DOTS = 2;
         public const short ALT_BARS = 3;
@@ -102,10 +105,12 @@ namespace Npoi.Core.HSSF.Record
 
         // fields in BOTH style and Cell XF records
         private short field_1_font_index;             // not bit-mapped
+
         private short field_2_format_index;           // not bit-mapped
 
         // field_3_cell_options bit map
         static private BitField _locked = BitFieldFactory.GetInstance(0x0001);
+
         static private BitField _hidden = BitFieldFactory.GetInstance(0x0002);
         static private BitField _xf_type = BitFieldFactory.GetInstance(0x0004);
         static private BitField _123_prefix = BitFieldFactory.GetInstance(0x0008);
@@ -114,6 +119,7 @@ namespace Npoi.Core.HSSF.Record
 
         // field_4_alignment_options bit map
         static private BitField _alignment = BitFieldFactory.GetInstance(0x0007);
+
         static private BitField _wrap_text = BitFieldFactory.GetInstance(0x0008);
         static private BitField _vertical_alignment = BitFieldFactory.GetInstance(0x0070);
         static private BitField _justify_last = BitFieldFactory.GetInstance(0x0080);
@@ -123,30 +129,40 @@ namespace Npoi.Core.HSSF.Record
         // field_5_indention_options
         static private BitField _indent =
             BitFieldFactory.GetInstance(0x000F);
+
         static private BitField _shrink_to_fit =
             BitFieldFactory.GetInstance(0x0010);
+
         static private BitField _merge_cells =
             BitFieldFactory.GetInstance(0x0020);
+
         static private BitField _Reading_order =
             BitFieldFactory.GetInstance(0x00C0);
 
         // apparently bits 8 and 9 are Unused
         static private BitField _indent_not_parent_format =
             BitFieldFactory.GetInstance(0x0400);
+
         static private BitField _indent_not_parent_font =
             BitFieldFactory.GetInstance(0x0800);
+
         static private BitField _indent_not_parent_alignment =
             BitFieldFactory.GetInstance(0x1000);
+
         static private BitField _indent_not_parent_border =
             BitFieldFactory.GetInstance(0x2000);
+
         static private BitField _indent_not_parent_pattern =
             BitFieldFactory.GetInstance(0x4000);
+
         static private BitField _indent_not_parent_cell_options =
             BitFieldFactory.GetInstance(0x8000);
+
         private short field_5_indention_options;
 
         // field_6_border_options bit map
         static private BitField _border_left = BitFieldFactory.GetInstance(0x000F);
+
         static private BitField _border_right = BitFieldFactory.GetInstance(0x00F0);
         static private BitField _border_top = BitFieldFactory.GetInstance(0x0F00);
         static private BitField _border_bottom = BitFieldFactory.GetInstance(0xF000);
@@ -156,30 +172,38 @@ namespace Npoi.Core.HSSF.Record
         // field_7_palette_options bit map
         static private BitField _left_border_palette_idx =
             BitFieldFactory.GetInstance(0x007F);
+
         static private BitField _right_border_palette_idx =
             BitFieldFactory.GetInstance(0x3F80);
+
         static private BitField _diag =
             BitFieldFactory.GetInstance(0xC000);
+
         private short field_7_palette_options;
 
         // field_8_adtl_palette_options bit map
         static private BitField _top_border_palette_idx =
             BitFieldFactory.GetInstance(0x0000007F);
+
         static private BitField _bottom_border_palette_idx =
             BitFieldFactory.GetInstance(0x00003F80);
+
         //is this used for diagional border color?
         static private BitField _adtl_diag_border_palette_idx =
             BitFieldFactory.GetInstance(0x001fc000);
+
         static private BitField _adtl_diag_line_style =
             BitFieldFactory.GetInstance(0x01e00000);
 
         // apparently bit 25 Is Unused
         static private BitField _adtl_fill_pattern =
             BitFieldFactory.GetInstance(unchecked((int)0xfc000000));
+
         private int field_8_adtl_palette_options;   // Additional to avoid 2
 
         // field_9_fill_palette_options bit map
         static private BitField _fill_foreground = BitFieldFactory.GetInstance(0x007F);
+
         static private BitField _fill_background = BitFieldFactory.GetInstance(0x3f80);
 
         // apparently bits 15 and 14 are Unused
@@ -215,13 +239,14 @@ namespace Npoi.Core.HSSF.Record
 
         /**
  * Clones all the style information from another
- *  ExtendedFormatRecord, onto this one. This 
+ *  ExtendedFormatRecord, onto this one. This
  *  will then hold all the same style options.
- *  
+ *
  * If The source ExtendedFormatRecord comes from
  *  a different Workbook, you will need to sort
  *  out the font and format indicies yourself!
  */
+
         public void CloneStyleFrom(ExtendedFormatRecord source)
         {
             field_1_font_index = source.field_1_font_index;
@@ -235,7 +260,6 @@ namespace Npoi.Core.HSSF.Record
             field_9_fill_palette_options = source.field_9_fill_palette_options;
         }
 
-
         /// <summary>
         /// Get the index to the FONT record (which font to use 0 based)
         /// </summary>
@@ -244,6 +268,7 @@ namespace Npoi.Core.HSSF.Record
             get { return field_1_font_index; }
             set { field_1_font_index = value; }
         }
+
         /// <summary>
         /// Get the index to the Format record (which FORMAT to use 0-based)
         /// </summary>
@@ -317,14 +342,14 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         /// <summary>
         /// Get some old holdover from lotus 123.  Who cares, its all over for Lotus.
         /// RIP Lotus.
         /// </summary>
         public bool _123Prefix
         {
-            get{
+            get
+            {
                 return _123_prefix.IsSet(field_3_cell_options);
             }
             set
@@ -333,6 +358,7 @@ namespace Npoi.Core.HSSF.Record
                     _123_prefix.SetShortBoolean(field_3_cell_options, value);
             }
         }
+
         /// <summary>
         /// for cell XF types this Is the parent style (usually 0/normal).  For
         /// style this should be NULL.
@@ -362,7 +388,6 @@ namespace Npoi.Core.HSSF.Record
             }
             set { field_4_alignment_options = value; }
         }
-
 
         /// <summary>
         /// Get the horizontal alignment of the cell.
@@ -412,7 +437,6 @@ namespace Npoi.Core.HSSF.Record
                                     value);
             }
         }
-
 
         /// <summary>
         /// Docs just say this Is for far east versions..  (I'm guessing it
@@ -476,7 +500,6 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         /// <summary>
         /// Get whether to shrink the text to fit
         /// </summary>
@@ -526,7 +549,6 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         /// <summary>
         /// Get whether or not to use the format in this XF instead of the parent XF.
         /// </summary>
@@ -542,7 +564,6 @@ namespace Npoi.Core.HSSF.Record
                     _indent_not_parent_format
                     .SetShortBoolean(field_5_indention_options, value);
             }
-
         }
 
         /// <summary>
@@ -567,7 +588,7 @@ namespace Npoi.Core.HSSF.Record
         /// </summary>
         public bool IsIndentNotParentAlignment
         {
-            get{return _indent_not_parent_alignment.IsSet(field_5_indention_options);}
+            get { return _indent_not_parent_alignment.IsSet(field_5_indention_options); }
             set
             {
                 field_5_indention_options =
@@ -590,7 +611,6 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        
         /// <summary>
         /// Get whether or not to use the pattern in this XF instead of the parent XF.
         /// (foregrount/background)
@@ -634,13 +654,12 @@ namespace Npoi.Core.HSSF.Record
             set { field_6_border_options = value; }
         }
 
-
         /// <summary>
         /// Get the borderline style for the left border
         /// </summary>
         public short BorderLeft
         {
-           get{return _border_left.GetShortValue(field_6_border_options);}
+            get { return _border_left.GetShortValue(field_6_border_options); }
             set
             {
                 field_6_border_options =
@@ -648,13 +667,12 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         /// <summary>
         /// Get the borderline style for the right border
         /// </summary>
         public short BorderRight
         {
-            get{return _border_right.GetShortValue(field_6_border_options);}
+            get { return _border_right.GetShortValue(field_6_border_options); }
             set
             {
                 field_6_border_options =
@@ -662,16 +680,15 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         /// <summary>
         /// Get the borderline style for the top border
         /// </summary>
         public short BorderTop
         {
-            get{return _border_top.GetShortValue(field_6_border_options);}
-            set {
-                field_6_border_options =_border_top.SetShortValue(field_6_border_options, value); 
-
+            get { return _border_top.GetShortValue(field_6_border_options); }
+            set
+            {
+                field_6_border_options = _border_top.SetShortValue(field_6_border_options, value);
             }
         }
 
@@ -680,18 +697,20 @@ namespace Npoi.Core.HSSF.Record
         /// </summary>
         public short BorderBottom
         {
-            get{return _border_bottom.GetShortValue(field_6_border_options);}
-            set {
-                field_6_border_options =_border_bottom.SetShortValue(field_6_border_options, value);
+            get { return _border_bottom.GetShortValue(field_6_border_options); }
+            set
+            {
+                field_6_border_options = _border_bottom.SetShortValue(field_6_border_options, value);
             }
         }
+
         /// <summary>
         /// Get the palette options bitmask (see the individual bit Getter methods that
-        /// reference this one) 
+        /// reference this one)
         /// </summary>
         public short PaletteOptions
         {
-            get{return field_7_palette_options;}
+            get { return field_7_palette_options; }
             set { field_7_palette_options = value; }
         }
 
@@ -700,23 +719,27 @@ namespace Npoi.Core.HSSF.Record
         /// </summary>
         public short LeftBorderPaletteIdx
         {
-            get{return _left_border_palette_idx
+            get
+            {
+                return _left_border_palette_idx
                 .GetShortValue(field_7_palette_options);
             }
-            set {
+            set
+            {
                 field_7_palette_options =
         _left_border_palette_idx.SetShortValue(field_7_palette_options,
                                                value);
             }
         }
 
-        
         /// <summary>
         /// Get the palette index for the right border color
         /// </summary>
         public short RightBorderPaletteIdx
         {
-            get{return _right_border_palette_idx
+            get
+            {
+                return _right_border_palette_idx
                 .GetShortValue(field_7_palette_options);
             }
             set
@@ -727,14 +750,13 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         /// <summary>
         /// Get the Additional palette options bitmask (see individual bit Getter methods
         /// that reference this method)
         /// </summary>
         public int AdtlPaletteOptions
         {
-            get{return field_8_adtl_palette_options;}
+            get { return field_8_adtl_palette_options; }
             set { field_8_adtl_palette_options = value; }
         }
 
@@ -743,8 +765,11 @@ namespace Npoi.Core.HSSF.Record
         /// </summary>
         public short TopBorderPaletteIdx
         {
-            get{return (short)_top_border_palette_idx
-                .GetValue(field_8_adtl_palette_options);}
+            get
+            {
+                return (short)_top_border_palette_idx
+                .GetValue(field_8_adtl_palette_options);
+            }
             set
             {
                 field_8_adtl_palette_options =
@@ -758,7 +783,9 @@ namespace Npoi.Core.HSSF.Record
         /// </summary>
         public short BottomBorderPaletteIdx
         {
-            get{return (short)_bottom_border_palette_idx
+            get
+            {
+                return (short)_bottom_border_palette_idx
                 .GetValue(field_8_adtl_palette_options);
             }
             set
@@ -774,7 +801,7 @@ namespace Npoi.Core.HSSF.Record
         /// </summary>
         public short AdtlDiagBorderPaletteIdx
         {
-            get{return (short)_adtl_diag_border_palette_idx.GetValue(field_8_adtl_palette_options);}
+            get { return (short)_adtl_diag_border_palette_idx.GetValue(field_8_adtl_palette_options); }
             set
             {
                 field_8_adtl_palette_options =
@@ -782,14 +809,16 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-         
         /// <summary>
         /// Get the diagonal border line style
         /// </summary>
         public short AdtlDiagLineStyle
         {
-            get{return (short)_adtl_diag_line_style
-                .GetValue(field_8_adtl_palette_options);}
+            get
+            {
+                return (short)_adtl_diag_line_style
+                .GetValue(field_8_adtl_palette_options);
+            }
             set
             {
                 field_8_adtl_palette_options =
@@ -797,6 +826,7 @@ namespace Npoi.Core.HSSF.Record
                                  value);
             }
         }
+
         /// <summary>
         /// Not sure what this Is for (maybe Fill lines?) 1 = down, 2 = up, 3 = both, 0 for none..
         /// </summary>
@@ -809,13 +839,17 @@ namespace Npoi.Core.HSSF.Record
                     value);
             }
         }
+
         /// <summary>
         /// Get the Additional Fill pattern
         /// </summary>
         public short AdtlFillPattern
         {
-            get{return (short)_adtl_fill_pattern
-                .GetValue(field_8_adtl_palette_options);}
+            get
+            {
+                return (short)_adtl_fill_pattern
+                .GetValue(field_8_adtl_palette_options);
+            }
             set
             {
                 field_8_adtl_palette_options =
@@ -829,7 +863,7 @@ namespace Npoi.Core.HSSF.Record
         /// </summary>
         public short FillPaletteOptions
         {
-            get{return field_9_fill_palette_options;}
+            get { return field_9_fill_palette_options; }
             set { field_9_fill_palette_options = value; }
         }
 
@@ -838,7 +872,7 @@ namespace Npoi.Core.HSSF.Record
         /// </summary>
         public short FillForeground
         {
-            get{return _fill_foreground.GetShortValue(field_9_fill_palette_options);}
+            get { return _fill_foreground.GetShortValue(field_9_fill_palette_options); }
             set
             {
                 field_9_fill_palette_options =
@@ -852,7 +886,7 @@ namespace Npoi.Core.HSSF.Record
         /// </summary>
         public short FillBackground
         {
-            get{return _fill_background.GetShortValue(field_9_fill_palette_options);}
+            get { return _fill_background.GetShortValue(field_9_fill_palette_options); }
             set
             {
                 field_9_fill_palette_options =
@@ -1012,6 +1046,7 @@ namespace Npoi.Core.HSSF.Record
          *  contents as Equals, as the various indexes
          *  that matter are embedded in the records
          */
+
         public override bool Equals(Object obj)
         {
             if (this == obj)

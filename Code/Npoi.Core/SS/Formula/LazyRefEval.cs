@@ -17,28 +17,25 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.Util;
     using System;
     using System.Text;
-    using Npoi.Core.SS.Formula;
-    using Npoi.Core.SS.Formula.Eval;
-    using Npoi.Core.SS.Util;
-    using Npoi.Core.SS.Formula.PTG;
 
     /**
      * Provides Lazy Evaluation to a 3D Reference
-     * 
+     *
      * TODO Provide access to multiple sheets where present
      */
+
     public class LazyRefEval : RefEvalBase
     {
-
         private SheetRangeEvaluator _evaluator;
 
         public LazyRefEval(int rowIndex, int columnIndex, SheetRangeEvaluator sre)
-            :base(sre, rowIndex, columnIndex)
+            : base(sre, rowIndex, columnIndex)
         {
-           
             if (sre == null)
             {
                 throw new ArgumentException("sre must not be null");
@@ -53,7 +50,6 @@ namespace Npoi.Core.SS.Formula
 
         public override AreaEval Offset(int relFirstRowIx, int relLastRowIx, int relFirstColIx, int relLastColIx)
         {
-
             AreaI area = new OffsetArea(Row, Column,
                     relFirstRowIx, relLastRowIx, relFirstColIx, relLastColIx);
 

@@ -17,8 +17,8 @@
 
 namespace Npoi.Core.SS.Util
 {
-    using System;
     using Npoi.Core.SS.UserModel;
+    using System;
 
     /**
      * Various utility functions that make working with a region of cells easier.
@@ -26,9 +26,9 @@ namespace Npoi.Core.SS.Util
      * @author Eric Pugh epugh@upstate.com
      * @author (secondary) Avinash Kewalramani akewalramani@accelrys.com
      */
+
     public class RegionUtil
     {
-
         private RegionUtil()
         {
             // no instances of this class
@@ -37,13 +37,12 @@ namespace Npoi.Core.SS.Util
         /**
          * For setting the same property on many cells to the same value
          */
+
         private class CellPropertySetter
         {
-
             private IWorkbook _workbook;
             private String _propertyName;
             private short _propertyValue;
-
 
             public CellPropertySetter(IWorkbook workbook, String propertyName, int value)
             {
@@ -51,7 +50,6 @@ namespace Npoi.Core.SS.Util
                 _propertyName = propertyName;
                 _propertyValue = (short)value;
             }
-
 
             public void SetProperty(IRow row, int column)
             {
@@ -69,6 +67,7 @@ namespace Npoi.Core.SS.Util
          * @param workbook The workbook that the region is on.
          * @param sheet The sheet that the region is on.
          */
+
         public static void SetBorderLeft(int border, CellRangeAddress region, ISheet sheet,
                 IWorkbook workbook)
         {
@@ -91,6 +90,7 @@ namespace Npoi.Core.SS.Util
          * @param workbook The workbook that the region is on.
          * @param sheet The sheet that the region is on.
          */
+
         public static void SetLeftBorderColor(int color, CellRangeAddress region, ISheet sheet,
                 IWorkbook workbook)
         {
@@ -114,6 +114,7 @@ namespace Npoi.Core.SS.Util
          * @param workbook The workbook that the region is on.
          * @param sheet The sheet that the region is on.
          */
+
         public static void SetBorderRight(int border, CellRangeAddress region, ISheet sheet,
                 IWorkbook workbook)
         {
@@ -136,6 +137,7 @@ namespace Npoi.Core.SS.Util
          * @param workbook The workbook that the region is on.
          * @param sheet The sheet that the region is on.
          */
+
         public static void SetRightBorderColor(int color, CellRangeAddress region, ISheet sheet,
                 IWorkbook workbook)
         {
@@ -159,6 +161,7 @@ namespace Npoi.Core.SS.Util
          * @param workbook The workbook that the region is on.
          * @param sheet The sheet that the region is on.
          */
+
         public static void SetBorderBottom(int border, CellRangeAddress region, ISheet sheet,
                 IWorkbook workbook)
         {
@@ -181,6 +184,7 @@ namespace Npoi.Core.SS.Util
          * @param workbook The workbook that the region is on.
          * @param sheet The sheet that the region is on.
          */
+
         public static void SetBottomBorderColor(int color, CellRangeAddress region, ISheet sheet,
                 IWorkbook workbook)
         {
@@ -204,6 +208,7 @@ namespace Npoi.Core.SS.Util
          * @param workbook The workbook that the region is on.
          * @param sheet The sheet that the region is on.
          */
+
         public static void SetBorderTop(int border, CellRangeAddress region, ISheet sheet,
                 IWorkbook workbook)
         {
@@ -226,6 +231,7 @@ namespace Npoi.Core.SS.Util
          * @param workbook The workbook that the region is on.
          * @param sheet The sheet that the region is on.
          */
+
         public static void SetTopBorderColor(int color, CellRangeAddress region, ISheet sheet,
                 IWorkbook workbook)
         {

@@ -17,14 +17,14 @@
 
 namespace Npoi.Core.SS.Formula
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
 
     /**
-     * Optional Extension to the likes of {@link AreaEval} and 
+     * Optional Extension to the likes of {@link AreaEval} and
      *  {@link Npoi.Core.SS.Formula.Eval.AreaEvalBase},
      *  which allows for looking up 3D (sheet+row+column) Evaluations
      */
+
     public interface ThreeDEval : TwoDEval, ISheetRange
     {
         /**
@@ -33,7 +33,7 @@ namespace Npoi.Core.SS.Formula
          * @param columnIndex relative column index (zero based)
          * @return element at the specified row and column position
          */
+
         ValueEval GetValue(int sheetIndex, int rowIndex, int columnIndex);
     }
-
 }

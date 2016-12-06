@@ -17,11 +17,9 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-
-    using Npoi.Core.Util;
-
     using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
+    using System;
     using System.Globalization;
 
     /**
@@ -31,6 +29,7 @@ namespace Npoi.Core.SS.Formula.PTG
      * @author  Avik Sengupta
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     public class NumberPtg : ScalarConstantPtg
     {
         public const int SIZE = 9;
@@ -38,19 +37,21 @@ namespace Npoi.Core.SS.Formula.PTG
         private double field_1_value;
 
         /** Create a NumberPtg from a byte array Read from disk */
+
         public NumberPtg(ILittleEndianInput in1)
         {
             field_1_value = in1.ReadDouble();
         }
+
         /** Create a NumberPtg from a string representation of  the number
          *  Number format is not checked, it is expected to be validated in the parser
-         *   that calls this method. 
+         *   that calls this method.
          *  @param value : String representation of a floating point number
          */
+
         public NumberPtg(String value)
             : this(Double.Parse(value, CultureInfo.InvariantCulture))
         {
-            
         }
 
         public NumberPtg(double value)

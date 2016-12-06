@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,11 +15,10 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
     using Npoi.Core.Util;
+    using System;
     using System.Text;
 
     /**
@@ -53,7 +51,6 @@ namespace Npoi.Core.HSSF.Record
         {
             field_1_hide_obj = in1.ReadShort();
         }
-
 
         /**
          * Set hide object options

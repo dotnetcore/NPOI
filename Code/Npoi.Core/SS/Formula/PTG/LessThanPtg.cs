@@ -21,11 +21,12 @@ namespace Npoi.Core.SS.Formula.PTG
     using System.Text;
 
     /**
-     * Less than operator PTG "&lt;". The SID is taken from the 
+     * Less than operator PTG "&lt;". The SID is taken from the
      * Openoffice.orgs Documentation of the Excel File Format,
      * Table 3.5.7
      * @author Cameron Riley (criley at ekmail.com)
      */
+
     public class LessThanPtg : ValueOperatorPtg
     {
         /** the sid for the less than operator as hex */
@@ -50,16 +51,18 @@ namespace Npoi.Core.SS.Formula.PTG
          * Get the number of operands for the Less than operator
          * @return int the number of operands
          */
+
         public override int NumberOfOperands
         {
             get { return 2; }
         }
 
-        /** 
+        /**
         * Implementation of method from OperationsPtg
         * @param operands a String array of operands
         * @return String the Formula as a String
         */
+
         public override String ToFormulaString(String[] operands)
         {
             StringBuilder buffer = new StringBuilder();

@@ -18,12 +18,14 @@
  * Created on May 22, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
      *
      */
+
     public class Fact : OneArg
     {
         public override double Evaluate(double d)

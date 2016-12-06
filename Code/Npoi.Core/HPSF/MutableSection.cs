@@ -17,24 +17,24 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF
 {
+    using Npoi.Core.HPSF.Wellknown;
+    using Npoi.Core.Util;
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Text;
-    using System.Collections;
-    using Npoi.Core.Util;
-    using Npoi.Core.HPSF.Wellknown;
-    using System.Globalization;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Adds writing capability To the {@link Section} class.
@@ -50,16 +50,12 @@ namespace Npoi.Core.HPSF
          */
         private bool dirty = true;
 
-
-
         /**
          * List To assemble the properties. Unfortunately a wrong
          * decision has been taken when specifying the "properties" field
          * as an Property[]. It should have been a {@link java.util.List}.
          */
         private List<object> preprops;
-
-
 
         /**
          * Contains the bytes making out the section. This byte array is
@@ -68,20 +64,15 @@ namespace Npoi.Core.HPSF
          */
         private byte[] sectionBytes;
 
-
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MutableSection"/> class.
         /// </summary>
-        public MutableSection()
-        {
+        public MutableSection() {
             dirty = true;
             formatID = null;
             offset = -1;
             preprops = new List<object>();
         }
-
-
 
         /// <summary>
         /// Constructs a <c>MutableSection</c> by doing a deep copy of an
@@ -90,54 +81,43 @@ namespace Npoi.Core.HPSF
         /// <c>MutableSection</c>.
         /// </summary>
         /// <param name="s">The section Set To copy</param>
-        public MutableSection(Section s)
-        {
+        public MutableSection(Section s) {
             SetFormatID(s.FormatID);
             Property[] pa = s.Properties;
             MutableProperty[] mpa = new MutableProperty[pa.Length];
             for (int i = 0; i < pa.Length; i++)
                 mpa[i] = new MutableProperty(pa[i]);
             SetProperties(mpa);
-            this.Dictionary=(s.Dictionary);
+            this.Dictionary = (s.Dictionary);
         }
-
-
 
         /// <summary>
         /// Sets the section's format ID.
         /// </summary>
         /// <param name="formatID">The section's format ID</param>
-        public void SetFormatID(ClassID formatID)
-        {
+        public void SetFormatID(ClassID formatID) {
             this.formatID = formatID;
         }
-
-
 
         /// <summary>
         /// Sets the section's format ID.
         /// </summary>
         /// <param name="formatID">The section's format ID as a byte array. It components
         /// are in big-endian format.</param>
-        public void SetFormatID(byte[] formatID)
-        {
+        public void SetFormatID(byte[] formatID) {
             ClassID fid = this.FormatID;
-            if (fid == null)
-            {
+            if (fid == null) {
                 fid = new ClassID();
                 SetFormatID(fid);
             }
-            fid.Bytes=formatID;
+            fid.Bytes = formatID;
         }
-
-
 
         /// <summary>
         /// Sets this section's properties. Any former values are overwritten.
         /// </summary>
         /// <param name="properties">This section's new properties.</param>
-        public void SetProperties(Property[] properties)
-        {
+        public void SetProperties(Property[] properties) {
             this.properties = properties;
             preprops = new List<object>();
             for (int i = 0; i < properties.Length; i++)
@@ -145,60 +125,46 @@ namespace Npoi.Core.HPSF
             dirty = true;
         }
 
-
-
         /// <summary>
         /// Sets the string value of the property with the specified ID.
         /// </summary>
         /// <param name="id">The property's ID</param>
         /// <param name="value">The property's value. It will be written as a Unicode
         /// string.</param>
-        public void SetProperty(int id, String value)
-        {
+        public void SetProperty(int id, String value) {
             SetProperty(id, Variant.VT_LPWSTR, value);
             dirty = true;
         }
-
-
 
         /// <summary>
         /// Sets the int value of the property with the specified ID.
         /// </summary>
         /// <param name="id">The property's ID</param>
         /// <param name="value">The property's value.</param>
-        public void SetProperty(int id, int value)
-        {
+        public void SetProperty(int id, int value) {
             SetProperty(id, Variant.VT_I4, value);
             dirty = true;
         }
-
-
 
         /// <summary>
         /// Sets the long value of the property with the specified ID.
         /// </summary>
         /// <param name="id">The property's ID</param>
         /// <param name="value">The property's value.</param>
-        public void SetProperty(int id, long value)
-        {
+        public void SetProperty(int id, long value) {
             SetProperty(id, Variant.VT_I8, value);
             dirty = true;
         }
-
-
 
         /// <summary>
         /// Sets the bool value of the property with the specified ID.
         /// </summary>
         /// <param name="id">The property's ID</param>
         /// <param name="value">The property's value.</param>
-        public void SetProperty(int id, bool value)
-        {
+        public void SetProperty(int id, bool value) {
             SetProperty(id, Variant.VT_BOOL, value);
             dirty = true;
         }
-
-
 
         /// <summary>
         /// Sets the value and the variant type of the property with the
@@ -211,48 +177,38 @@ namespace Npoi.Core.HPSF
         /// <param name="variantType">The property's variant type.</param>
         /// <param name="value">The property's value.</param>
         public void SetProperty(int id, long variantType,
-                                Object value)
-        {
+                                Object value) {
             MutableProperty p = new MutableProperty();
-            p.ID=id;
-            p.Type=variantType;
-            p.Value=value;
+            p.ID = id;
+            p.Type = variantType;
+            p.Value = value;
             SetProperty(p);
             dirty = true;
         }
-
-
 
         /// <summary>
         /// Sets the property.
         /// </summary>
         /// <param name="p">The property To be Set.</param>
-        public void SetProperty(Property p)
-        {
+        public void SetProperty(Property p) {
             long id = p.ID;
             RemoveProperty(id);
             preprops.Add(p);
             dirty = true;
         }
 
-
-
         /// <summary>
         /// Removes the property.
         /// </summary>
         /// <param name="id">The ID of the property To be Removed</param>
-        public void RemoveProperty(long id)
-        {
-            for (IEnumerator i = preprops.GetEnumerator(); i.MoveNext(); )
-                if (((Property)i.Current).ID == id)
-                {
+        public void RemoveProperty(long id) {
+            for (IEnumerator i = preprops.GetEnumerator(); i.MoveNext();)
+                if (((Property)i.Current).ID == id) {
                     preprops.Remove(i.Current);
                     break;
                 }
             dirty = true;
         }
-
-
 
         /// <summary>
         /// Sets the value of the bool property with the specified
@@ -260,30 +216,23 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="id">The property's ID</param>
         /// <param name="value">The property's value</param>
-        protected void SetPropertyBooleanValue(int id, bool value)
-        {
+        protected void SetPropertyBooleanValue(int id, bool value) {
             SetProperty(id, Variant.VT_BOOL, value);
         }
-
-
 
         /// <summary>
         /// Returns the section's size in bytes.
         /// </summary>
         /// <value>The section's size in bytes.</value>
-        public override int Size
-        {
+        public override int Size {
             get
             {
-                if (dirty)
-                {
-                    try
-                    {
+                if (dirty) {
+                    try {
                         size = CalcSize();
                         dirty = false;
                     }
-                    catch (Exception)
-                    {
+                    catch (Exception) {
                         throw;
                     }
                 }
@@ -291,18 +240,14 @@ namespace Npoi.Core.HPSF
             }
         }
 
-
-
         /// <summary>
         /// Calculates the section's size. It is the sum of the Lengths of the
         /// section's header (8), the properties list (16 times the number of
         /// properties) and the properties themselves.
         /// </summary>
         /// <returns>the section's Length in bytes.</returns>
-        private int CalcSize()
-        {
-            using (MemoryStream out1 = new MemoryStream())
-            {
+        private int CalcSize() {
+            using (MemoryStream out1 = new MemoryStream()) {
                 Write(out1);
                 /* Pad To multiple of 4 bytes so that even the Windows shell (explorer)
                  * shows custom properties. */
@@ -310,7 +255,6 @@ namespace Npoi.Core.HPSF
                 return sectionBytes.Length;
             }
         }
-
 
         private class PropertyComparer : IComparer<object>
         {
@@ -325,6 +269,7 @@ namespace Npoi.Core.HPSF
                     return 1;
             }
         }
+
         /// <summary>
         /// Writes this section into an output stream.
         /// Internally this is done by writing into three byte array output
@@ -334,28 +279,22 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="out1">The stream To Write into.</param>
         /// <returns>The number of bytes written, i.e. the section's size.</returns>
-        public int Write(Stream out1)
-        {
+        public int Write(Stream out1) {
             /* Check whether we have alReady generated the bytes making out the
              * section. */
-            if (!dirty && sectionBytes != null)
-            {
-                out1.Write(sectionBytes,0,sectionBytes.Length);
+            if (!dirty && sectionBytes != null) {
+                out1.Write(sectionBytes, 0, sectionBytes.Length);
                 return sectionBytes.Length;
             }
 
             /* The properties are written To this stream. */
             using (MemoryStream propertyStream =
-                new MemoryStream())
-            {
-
+                new MemoryStream()) {
                 /* The property list is established here. After each property that has
                  * been written To "propertyStream", a property list entry is written To
                  * "propertyListStream". */
                 using (MemoryStream propertyListStream =
-                     new MemoryStream())
-                {
-
+                     new MemoryStream()) {
                     /* Maintain the current position in the list. */
                     int position = 0;
 
@@ -368,11 +307,9 @@ namespace Npoi.Core.HPSF
                     /* Writing the section's dictionary it tricky. If there is a dictionary
                      * (property 0) the codepage property (property 1) must be Set, Too. */
                     int codepage = -1;
-                    if (GetProperty(PropertyIDMap.PID_DICTIONARY) != null)
-                    {
+                    if (GetProperty(PropertyIDMap.PID_DICTIONARY) != null) {
                         Object p1 = GetProperty(PropertyIDMap.PID_CODEPAGE);
-                        if (p1 != null)
-                        {
+                        if (p1 != null) {
                             if (!(p1 is int))
                                 throw new IllegalPropertySetDataException
                                     ("The codepage property (ID = 1) must be an " +
@@ -387,15 +324,12 @@ namespace Npoi.Core.HPSF
                         codepage = Codepage;
                     }
 
-
-
                     /* Sort the property list by their property IDs: */
                     preprops.Sort(new PropertyComparer());
 
                     /* Write the properties and the property list into their respective
                      * streams: */
-                    for (int i = 0; i < preprops.Count; i++)
-                    {
+                    for (int i = 0; i < preprops.Count; i++) {
                         MutableProperty p = (MutableProperty)preprops[i];
                         long id = p.ID;
 
@@ -407,14 +341,12 @@ namespace Npoi.Core.HPSF
                          * is fine. However, if it Equals 0 we have To Write the section's
                          * dictionary which has an implicit type only and an explicit
                          * value. */
-                        if (id != 0)
-                        {
+                        if (id != 0) {
                             /* Write the property and update the position To the next
                              * property. */
                             position += p.Write(propertyStream, Codepage);
                         }
-                        else
-                        {
+                        else {
                             if (codepage == -1)
                                 throw new IllegalPropertySetDataException
                                     ("Codepage (property 1) is undefined.");
@@ -448,8 +380,6 @@ namespace Npoi.Core.HPSF
             }
         }
 
-
-
         /// <summary>
         /// Writes the section's dictionary
         /// </summary>
@@ -461,19 +391,16 @@ namespace Npoi.Core.HPSF
         /// see MSDN KB: http://msdn.microsoft.com/en-us/library/aa380065(VS.85).aspx
         /// </remarks>
         private static int WriteDictionary(Stream out1,
-                                           IDictionary dictionary, int codepage)
-        {
+                                           IDictionary dictionary, int codepage) {
             int length = TypeWriter.WriteUIntToStream(out1, (uint)dictionary.Count);
-            for (IEnumerator i = dictionary.Keys.GetEnumerator(); i.MoveNext(); )
-            {
+            for (IEnumerator i = dictionary.Keys.GetEnumerator(); i.MoveNext();) {
                 long key = Convert.ToInt64(i.Current, CultureInfo.InvariantCulture);
                 String value = (String)dictionary[key];
                 //tony qu added: some key is int32 instead of int64
-                if(value==null)
+                if (value == null)
                     value = (String)dictionary[(int)key];
 
-                if (codepage == CodePageUtil.CP_UNICODE)
-                {
+                if (codepage == CodePageUtil.CP_UNICODE) {
                     /* Write the dictionary item in Unicode. */
                     int sLength = value.Length + 1;
                     if (sLength % 2 == 1)
@@ -482,39 +409,33 @@ namespace Npoi.Core.HPSF
                     length += TypeWriter.WriteUIntToStream(out1, (uint)sLength);
                     byte[] ca =
                         Encoding.GetEncoding(codepage).GetBytes(value);
-                    for (int j =0; j < ca.Length; j++)   
-                    {
+                    for (int j = 0; j < ca.Length; j++) {
                         out1.WriteByte(ca[j]);
-                        length ++;
+                        length++;
                     }
                     sLength -= value.Length;
-                    while (sLength > 0)
-                    {
+                    while (sLength > 0) {
                         out1.WriteByte(0x00);
                         out1.WriteByte(0x00);
                         length += 2;
                         sLength--;
                     }
                 }
-                else
-                {
+                else {
                     /* Write the dictionary item in another codepage than
                      * Unicode. */
                     length += TypeWriter.WriteUIntToStream(out1, (uint)key);
                     length += TypeWriter.WriteUIntToStream(out1, (uint)value.Length + 1);
 
-                    try
-                    {
+                    try {
                         byte[] ba =
                             Encoding.GetEncoding(codepage).GetBytes(value);
-                        for (int j = 0; j < ba.Length; j++)
-                        {
+                        for (int j = 0; j < ba.Length; j++) {
                             out1.WriteByte(ba[j]);
                             length++;
                         }
                     }
-                    catch (Exception ex)
-                    {
+                    catch (Exception ex) {
                         throw new IllegalPropertySetDataException(ex);
                     }
 
@@ -525,56 +446,46 @@ namespace Npoi.Core.HPSF
             return length;
         }
 
-
-
         /// <summary>
         /// OverWrites the base class' method To cope with a redundancy:
         /// the property count is maintained in a separate member variable, but
         /// shouldn't.
         /// </summary>
         /// <value>The number of properties in this section.</value>
-        public override int PropertyCount
-        {
+        public override int PropertyCount {
             get { return preprops.Count; }
         }
-
-
 
         /// <summary>
         /// Returns this section's properties.
         /// </summary>
         /// <value>This section's properties.</value>
-        public override Property[] Properties
-        {
+        public override Property[] Properties {
             get
             {
                 EnsureProperties();
                 return properties;
             }
         }
+
         /// <summary>
         /// Ensures the properties.
         /// </summary>
-        public void EnsureProperties()
-        {
+        public void EnsureProperties() {
             properties = (Property[])preprops.ToArray();
         }
-
 
         /// <summary>
         /// Gets a property.
         /// </summary>
         /// <param name="id">The ID of the property To Get</param>
         /// <returns>The property or null  if there is no such property</returns>
-        public override Object GetProperty(long id)
-        {
+        public override Object GetProperty(long id) {
             /* Calling Properties ensures that properties and preprops are in
              * sync. */
             EnsureProperties();
             return base.GetProperty(id);
         }
-
-
 
         /// <summary>
         /// Sets the section's dictionary. All keys in the dictionary must be
@@ -588,20 +499,19 @@ namespace Npoi.Core.HPSF
         /// <value>
         /// the dictionary
         /// </value>
-        public override IDictionary Dictionary
-        {
-            get {
+        public override IDictionary Dictionary {
+            get
+            {
                 return this.dictionary;
             }
             set
             {
-                if (value != null)
-                {
+                if (value != null) {
                     for (IEnumerator i = value.Keys.GetEnumerator();
-                         i.MoveNext(); )
+                         i.MoveNext();)
                         if (!(i.Current is Int64 || i.Current is Int32))
                             throw new IllegalPropertySetDataException
-                                ("Dictionary keys must be of type long. but it's " + i.Current + ","+i.Current.GetType().Name+" now");
+                                ("Dictionary keys must be of type long. but it's " + i.Current + "," + i.Current.GetType().Name + " now");
 
                     this.dictionary = value;
 
@@ -614,15 +524,12 @@ namespace Npoi.Core.HPSF
                      * values) used in the dictionary is not yet defined, Set it To
                      * Unicode. */
 
-                    if (GetProperty(PropertyIDMap.PID_CODEPAGE) == null)
-                    {
+                    if (GetProperty(PropertyIDMap.PID_CODEPAGE) == null) {
                         SetProperty(PropertyIDMap.PID_CODEPAGE, Variant.VT_I2,
                                     CodePageUtil.CP_UNICODE);
                     }
-
                 }
-                else
-                {
+                else {
                     /* Setting the dictionary To null means To Remove property 0.
                      * However, it does not mean To Remove property 1 (codepage). */
                     RemoveProperty(PropertyIDMap.PID_DICTIONARY);
@@ -630,16 +537,13 @@ namespace Npoi.Core.HPSF
             }
         }
 
-
-
         /// <summary>
         /// Sets the property.
         /// </summary>
         /// <param name="id">The property ID.</param>
         /// <param name="value">The property's value. The value's class must be one of those
         /// supported by HPSF.</param>
-        public void SetProperty(int id, Object value)
-        {
+        public void SetProperty(int id, Object value) {
             if (value is String)
                 SetProperty(id, (String)value);
             else if (value is long)
@@ -658,17 +562,13 @@ namespace Npoi.Core.HPSF
                         value.GetType().Name + ".");
         }
 
-
-
         /// <summary>
         /// Removes all properties from the section including 0 (dictionary) and
         /// 1 (codepage).
         /// </summary>
-        public void Clear()
-        {
+        public void Clear() {
             Property[] properties = Properties;
-            for (int i = 0; i < properties.Length; i++)
-            {
+            for (int i = 0; i < properties.Length; i++) {
                 Property p = properties[i];
                 RemoveProperty(p.ID);
             }
@@ -678,8 +578,7 @@ namespace Npoi.Core.HPSF
         /// Gets the section's codepage, if any.
         /// </summary>
         /// <value>The section's codepage if one is defined, else -1.</value>
-        public new int Codepage
-        {
+        public new int Codepage {
             get { return base.Codepage; }
             set
             {
@@ -687,6 +586,5 @@ namespace Npoi.Core.HPSF
                     value);
             }
         }
-
     }
 }

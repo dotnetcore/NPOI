@@ -1,17 +1,17 @@
-﻿using System;
-using Npoi.Core.SS.Formula.Eval;
+﻿using Npoi.Core.SS.Formula.Eval;
+using System;
 
 namespace Npoi.Core.SS.Formula.Functions
 {
     public class SearchFind : Var2or3ArgFunction
     {
-
         private bool _isCaseSensitive;
 
         public SearchFind(bool isCaseSensitive)
         {
             _isCaseSensitive = isCaseSensitive;
         }
+
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1)
         {
             try
@@ -25,6 +25,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return e.GetErrorEval();
             }
         }
+
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1,
                 ValueEval arg2)
         {
@@ -45,6 +46,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return e.GetErrorEval();
             }
         }
+
         private ValueEval Eval(String haystack, String needle, int startIndex)
         {
             int result;

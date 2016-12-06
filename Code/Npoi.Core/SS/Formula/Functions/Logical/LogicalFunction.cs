@@ -18,6 +18,7 @@
  * Created on Nov 25, 2006
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     using Npoi.Core.SS.Formula.Eval;
@@ -26,6 +27,7 @@ namespace Npoi.Core.SS.Formula.Functions
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
      *
      */
+
     public abstract class LogicalFunction : Fixed1ArgFunction
     {
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0)
@@ -47,11 +49,12 @@ namespace Npoi.Core.SS.Formula.Functions
                 ve = e.GetErrorEval();
             }
             return BoolEval.ValueOf(Evaluate(ve));
-
         }
+
         /**
          * @param arg any {@link ValueEval}, potentially {@link BlankEval} or {@link ErrorEval}.
          */
+
         protected abstract bool Evaluate(ValueEval arg);
 
         public static readonly Function ISLOGICAL = new Islogical();

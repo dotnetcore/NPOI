@@ -15,9 +15,8 @@
    limitations under the License.
 ==================================================================== */
 
-
-using System;
 using Npoi.Core.POIFS.Storage;
+using System;
 using System.IO;
 
 namespace Npoi.Core.POIFS.FileSystem
@@ -28,6 +27,7 @@ namespace Npoi.Core.POIFS.FileSystem
      *
      * @author Marc Johnson (mjohnson at apache dot org)
      */
+
     public class ODocumentInputStream : DocumentInputStream//DocumentReader
     {
         /** current offset into the Document */
@@ -50,12 +50,13 @@ namespace Npoi.Core.POIFS.FileSystem
 
         /**
          * Create an InputStream from the specified DocumentEntry
-         * 
+         *
          * @param document the DocumentEntry to be read
-         * 
+         *
          * @exception IOException if the DocumentEntry cannot be opened (like, maybe it has
          *                been deleted?)
          */
+
         public ODocumentInputStream(DocumentEntry document)
         {
             if (!(document is DocumentNode))
@@ -83,12 +84,13 @@ namespace Npoi.Core.POIFS.FileSystem
                 return _document_size;
             }
         }
-        
+
         /**
          * Create an InputStream from the specified Document
-         * 
+         *
          * @param document the Document to be read
          */
+
         public ODocumentInputStream(POIFSDocument document)
         {
             _current_offset = 0;
@@ -99,7 +101,6 @@ namespace Npoi.Core.POIFS.FileSystem
             _currentBlock = GetDataInputBlock(0);
         }
 
-
         public override int Available()
         {
             if (_closed)
@@ -109,11 +110,10 @@ namespace Npoi.Core.POIFS.FileSystem
             return _document_size - (int)_current_offset;
         }
 
-
-		protected override void Dispose(bool disposing)
-		{
-			_closed = true;
-		}
+        protected override void Dispose(bool disposing)
+        {
+            _closed = true;
+        }
 
         public override void Mark(int ignoredReadlimit)
         {
@@ -124,7 +124,6 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             return _document.GetDataInputBlock((int)offset);
         }
-
 
         public override int Read()
         {
@@ -141,7 +140,6 @@ namespace Npoi.Core.POIFS.FileSystem
             }
             return result;
         }
-
 
         public override int Read(byte[] b, int off, int len)
         {
@@ -179,7 +177,6 @@ namespace Npoi.Core.POIFS.FileSystem
             _currentBlock = GetDataInputBlock(_current_offset);
         }
 
-
         public override long Skip(long n)
         {
             dieIfClosed();
@@ -191,7 +188,6 @@ namespace Npoi.Core.POIFS.FileSystem
 
             if (new_offset < _current_offset)
             {
-
                 // wrap around in Converting a VERY large long to an int
                 new_offset = _document_size;
             }
@@ -232,24 +228,20 @@ namespace Npoi.Core.POIFS.FileSystem
             }
         }
 
-
         public override int ReadByte()
         {
             return ReadUByte();
         }
-
 
         public override double ReadDouble()
         {
             return BitConverter.Int64BitsToDouble(ReadLong());
         }
 
-
         public override short ReadShort()
         {
             return (short)ReadUShort();
         }
-
 
         public override void ReadFully(byte[] buf, int off, int len)
         {
@@ -298,7 +290,6 @@ namespace Npoi.Core.POIFS.FileSystem
             }
         }
 
-
         public override long ReadLong()
         {
             CheckAvaliable(SIZE_LONG);
@@ -324,7 +315,6 @@ namespace Npoi.Core.POIFS.FileSystem
             _current_offset += SIZE_LONG;
             return result;
         }
-
 
         public override int ReadInt()
         {
@@ -352,7 +342,6 @@ namespace Npoi.Core.POIFS.FileSystem
             return result;
         }
 
-
         public override int ReadUShort()
         {
             CheckAvaliable(SIZE_SHORT);
@@ -378,7 +367,6 @@ namespace Npoi.Core.POIFS.FileSystem
             _current_offset += SIZE_SHORT;
             return result;
         }
-
 
         public override int ReadUByte()
         {
@@ -433,10 +421,4 @@ namespace Npoi.Core.POIFS.FileSystem
             }
         }
     }
-
 }
-
-
-
-
-

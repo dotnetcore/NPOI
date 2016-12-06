@@ -18,20 +18,19 @@
  * Created on May 15, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
      *
      */
+
     public class Ceiling : TwoArg
     {
-
         public override double Evaluate(double d0, double d1)
         {
             return MathX.Ceiling(d0, d1);
         }
-
     }
 }

@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /*
      * The text record is used to define text stored on a chart.
@@ -31,31 +28,37 @@ namespace Npoi.Core.HSSF.Record
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     //
     /// <summary>
-    /// Section [2.4.324]. The Text record specifies the properties of an attached label and specifies the beginning of 
+    /// Section [2.4.324]. The Text record specifies the properties of an attached label and specifies the beginning of
     /// a collection of records as defined by the chart sheet substream ABNF. This collection of records specifies an attached label.
     /// </summary>
     public class TextRecord : StandardRecord
     {
         public const short sid = 0x1025;
         private byte field_1_horizontalAlignment;
+
         /// <summary>
         /// Left-alignment if iReadingOrder specifies left-to-right reading order; otherwise, right-alignment
         /// </summary>
         public const byte HORIZONTAL_ALIGNMENT_LEFT = 1;
+
         /// <summary>
         /// Center-alignment
         /// </summary>
         public const byte HORIZONTAL_ALIGNMENT_CENTER = 2;
+
         /// <summary>
         /// Right-alignment if iReadingOrder specifies left-to-right reading order; otherwise, left-alignment
         /// </summary>
         public const byte HORIZONTAL_ALIGNMENT_BOTTOM = 3;
+
         /// <summary>
         /// Justify-alignment
         /// </summary>
         public const byte HORIZONTAL_ALIGNMENT_JUSTIFY = 4;
+
         /// <summary>
         /// distributed alignment
         /// </summary>
@@ -66,20 +69,24 @@ namespace Npoi.Core.HSSF.Record
         public const byte VERTICAL_ALIGNMENT_CENTER = 2;
         public const byte VERTICAL_ALIGNMENT_BOTTOM = 3;
         public const byte VERTICAL_ALIGNMENT_JUSTIFY = 4;
+
         /// <summary>
         /// distributed alignment
         /// </summary>
         public const byte VERTICAL_ALIGNMENT_DISTRIBUTED = 7;
 
         private short field_3_DisplayMode;
+
         /// <summary>
         /// Transparent background
         /// </summary>
         public const short DISPLAY_MODE_TRANSPARENT = 1;
+
         /// <summary>
         /// Opaque background
         /// </summary>
         public const short DISPLAY_MODE_OPAQUE = 2;
+
         private int field_4_rgbColor;
         private int field_5_x;
         private int field_6_y;
@@ -95,8 +102,10 @@ namespace Npoi.Core.HSSF.Record
         private BitField generated = BitFieldFactory.GetInstance(0x20);
         private BitField autoLabelDeleted = BitFieldFactory.GetInstance(0x40);
         private BitField autoBackground = BitFieldFactory.GetInstance(0x80);
+
         //private BitField rotation = BitFieldFactory.GetInstance(0x0700); //unused2
         public const short ROTATION_NONE = 0;
+
         public const short ROTATION_TOP_TO_BOTTOM = 1;
         public const short ROTATION_ROTATED_90_DEGREES = 2;
         public const short ROTATION_ROTATED_90_DEGREES_CLOCKWISE = 3;
@@ -126,10 +135,8 @@ namespace Npoi.Core.HSSF.Record
 
         private short field_12_textRotation;
 
-
         public TextRecord()
         {
-
         }
 
         /**
@@ -246,9 +253,10 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
-            get { return  1 + 1 + 2 + 4 + 4 + 4 + 4 + 4 + 2 + 2 + 2 + 2; }
+            get { return 1 + 1 + 2 + 4 + 4 + 4 + 4 + 4 + 2 + 2 + 2 + 2; }
         }
 
         public override short Sid
@@ -275,18 +283,16 @@ namespace Npoi.Core.HSSF.Record
             return rec;
         }
 
-
-
-
         /**
          * Get the horizontal alignment field for the Text record.
          *
-         * @return  One of 
+         * @return  One of
          *        HORIZONTAL_ALIGNMENT_LEFT
          *        HORIZONTAL_ALIGNMENT_CENTER
          *        HORIZONTAL_ALIGNMENT_BOTTOM
          *        HORIZONTAL_ALIGNMENT_JUSTIFY
          */
+
         public byte HorizontalAlignment
         {
             get { return field_1_horizontalAlignment; }
@@ -296,12 +302,13 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the vertical alignment field for the Text record.
          *
-         * @return  One of 
+         * @return  One of
          *        VERTICAL_ALIGNMENT_TOP
          *        VERTICAL_ALIGNMENT_CENTER
          *        VERTICAL_ALIGNMENT_BOTTOM
          *        VERTICAL_ALIGNMENT_JUSTIFY
          */
+
         public byte VerticalAlignment
         {
             get { return field_2_verticalAlignment; }
@@ -311,10 +318,11 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the Display mode field for the Text record.
          *
-         * @return  One of 
+         * @return  One of
          *        DISPLAY_MODE_TRANSPARENT
          *        DISPLAY_MODE_OPAQUE
          */
+
         public short DisplayMode
         {
             get { return field_3_DisplayMode; }
@@ -324,6 +332,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the rgbColor field for the Text record.
          */
+
         public int RgbColor
         {
             get { return field_4_rgbColor; }
@@ -333,6 +342,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the x field for the Text record.
          */
+
         public int X
         {
             get { return field_5_x; }
@@ -342,16 +352,17 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the y field for the Text record.
          */
+
         public int Y
         {
             get { return field_6_y; }
             set { this.field_6_y = value; }
         }
 
-
         /**
          * Set the width field for the Text record.
          */
+
         public int Width
         {
             get { return field_7_width; }
@@ -361,6 +372,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the height field for the Text record.
          */
+
         public int Height
         {
             get { return field_8_height; }
@@ -370,6 +382,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the options1 field for the Text record.
          */
+
         public short Options1
         {
             get { return field_9_options1; }
@@ -379,6 +392,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the index of color value field for the Text record.
          */
+
         public short IndexOfColorValue
         {
             get { return field_10_IndexOfColorValue; }
@@ -388,6 +402,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the options2 field for the Text record.
          */
+
         public short Options2
         {
             get { return field_11_options2; }
@@ -397,6 +412,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the text rotation field for the Text record.
          */
+
         public short TextRotation
         {
             get { return field_12_textRotation; }
@@ -407,6 +423,7 @@ namespace Npoi.Core.HSSF.Record
          * true = automaticly selected colour, false = user-selected
          * @return  the auto color field value.
          */
+
         public bool IsAutoColor
         {
             get { return autoColor.IsSet(field_9_options1); }
@@ -417,6 +434,7 @@ namespace Npoi.Core.HSSF.Record
          * true = draw legend
          * @return  the show key field value.
          */
+
         public bool ShowKey
         {
             get { return showKey.IsSet(field_9_options1); }
@@ -427,6 +445,7 @@ namespace Npoi.Core.HSSF.Record
          * false = text is category label
          * @return  the show value field value.
          */
+
         public bool ShowValue
         {
             get { return showValue.IsSet(field_9_options1); }
@@ -444,9 +463,10 @@ namespace Npoi.Core.HSSF.Record
         }*/
 
         /**
-         * 
+         *
          * @return  the auto generated text field value.
          */
+
         public bool IsAutoGeneratedText
         {
             get { return autoText.IsSet(field_9_options1); }
@@ -454,9 +474,10 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /**
-         * 
+         *
          * @return  the generated field value.
          */
+
         public bool IsGenerated
         {
             get { return generated.IsSet(field_9_options1); }
@@ -464,9 +485,10 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /**
-         * 
+         *
          * @return  the auto label deleted field value.
          */
+
         public bool IsAutoLabelDeleted
         {
             get { return autoLabelDeleted.IsSet(field_9_options1); }
@@ -474,9 +496,10 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /**
-         * 
+         *
          * @return  the auto background field value.
          */
+
         public bool IsAutoBackground
         {
             get { return autoBackground.IsSet(field_9_options1); }
@@ -484,7 +507,7 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /*
-         * 
+         *
          * @return  the rotation field value.
          */
         /*public short Rotation
@@ -494,9 +517,10 @@ namespace Npoi.Core.HSSF.Record
         }*/
 
         /**
-         * 
+         *
          * @return  the show category label as percentage field value.
          */
+
         public bool ShowCategoryLabelAsPercentage
         {
             get { return showCategoryLabelAsPercentage.IsSet(field_9_options1); }
@@ -504,28 +528,32 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /**
-         * 
+         *
          * @return  the show value as percentage field value.
          */
+
         public bool ShowValueAsPercentage
         {
-            get{return showValueAsPercentage.IsSet(field_9_options1);}
+            get { return showValueAsPercentage.IsSet(field_9_options1); }
             set { field_9_options1 = showValueAsPercentage.SetShortBoolean(field_9_options1, value); }
         }
 
         /**
-         * 
+         *
          * @return  the show bubble sizes field value.
          */
+
         public bool ShowBubbleSizes
         {
             get { return showBubbleSizes.IsSet(field_9_options1); }
             set { field_9_options1 = showBubbleSizes.SetShortBoolean(field_9_options1, value); }
         }
+
         /**
-         * 
+         *
          * @return  the show label field value.
          */
+
         public bool ShowLabel
         {
             get { return showLabel.IsSet(field_9_options1); }
@@ -533,12 +561,13 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /**
-         * 
+         *
          * @return  the data label placement field value.
          */
+
         public short DataLabelPlacement
         {
-            get{return dataLabelPlacement.GetShortValue(field_11_options2);}
+            get { return dataLabelPlacement.GetShortValue(field_11_options2); }
             set { field_11_options2 = dataLabelPlacement.SetShortValue(field_11_options2, value); }
         }
 
@@ -549,6 +578,3 @@ namespace Npoi.Core.HSSF.Record
         }
     }
 }
-
-
-

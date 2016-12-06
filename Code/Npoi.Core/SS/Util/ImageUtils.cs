@@ -15,30 +15,28 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.DDF;
-
 namespace Npoi.Core.SS.Util
 {
-    using System;
-    using System.Drawing;
-    using System.IO;
     using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.Util;
+    using System;
+    using System.Drawing;
+    using System.IO;
 
     /**
      * @author Yegor Kozlov
      */
+
     public class ImageUtils
     {
         private static POILogger logger = POILogFactory.GetLogger(typeof(ImageUtils));
 
         public static int PIXEL_DPI = 96;
 
-
         public static Size GetImageDimension(Stream is1)
         {
-			throw new NotImplementedException();
+            throw new NotImplementedException();
             //using (Image img = Image.FromStream(is1))
             //{
             //    //return img.Size;
@@ -54,6 +52,7 @@ namespace Npoi.Core.SS.Util
             //    return size;
             //}
         }
+
         ///**
         // * Return the dimension of this image
         // *
@@ -87,15 +86,13 @@ namespace Npoi.Core.SS.Util
         //                size.Height = img.Height * PIXEL_DPI / dpi[1];
         //                return size;
         //            }
-                    
+
         //        default:
         //            logger.Log(POILogger.WARN, "Only JPEG, PNG and DIB pictures can be automatically sized");
         //            break;
         //    }
         //    return size;
         //}
-        
-    
 
         ///**
         // * The metadata of PNG and JPEG can contain the width of a pixel in millimeters.
@@ -117,6 +114,7 @@ namespace Npoi.Core.SS.Util
          * @param scaleY the amount by which image height is multiplied relative to the original height.
          * @return the new Dimensions of the scaled picture in EMUs
          */
+
         public static Size SetPreferredSize(IPicture picture, double scaleX, double scaleY)
         {
             IClientAnchor anchor = picture.ClientAnchor;
@@ -132,9 +130,9 @@ namespace Npoi.Core.SS.Util
             //    ? imgSize.Width : anchorSize.Width / Units.EMU_PER_PIXEL * scaleX;
             //double scaledHeight = (scaleY == Double.MaxValue)
             //    ? imgSize.Height : anchorSize.Height / Units.EMU_PER_PIXEL * scaleY;
-	        double scaledWidth = anchorSize.Width/Units.EMU_PER_PIXEL*scaleX;
-			double scaledHeight = anchorSize.Height/Units.EMU_PER_PIXEL*scaleY;
-			double w = 0;
+            double scaledWidth = anchorSize.Width / Units.EMU_PER_PIXEL * scaleX;
+            double scaledHeight = anchorSize.Height / Units.EMU_PER_PIXEL * scaleY;
+            double w = 0;
             int col2 = anchor.Col1;
             int dx2 = 0;
 
@@ -223,6 +221,7 @@ namespace Npoi.Core.SS.Util
          * @param picture the picture Containing the anchor
          * @return the dimensions in EMUs
          */
+
         public static Size GetDimensionFromAnchor(IPicture picture)
         {
             IClientAnchor anchor = picture.ClientAnchor;
@@ -287,7 +286,6 @@ namespace Npoi.Core.SS.Util
             return new Size((int)w * Units.EMU_PER_PIXEL, (int)h * Units.EMU_PER_PIXEL);
         }
 
-
         private static double GetRowHeightInPixels(ISheet sheet, int rowNum)
         {
             IRow r = sheet.GetRow(rowNum);
@@ -295,5 +293,4 @@ namespace Npoi.Core.SS.Util
             return Units.ToEMU(points) / Units.EMU_PER_PIXEL;
         }
     }
-
 }

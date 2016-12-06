@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
@@ -36,7 +36,7 @@ namespace Npoi.Core.POIFS.FileSystem
     /// @author Marc Johnson (mjohnson at apache dot org)
     /// </summary>
     [Obsolete]
-    public class POIFSDocumentReader:Stream
+    public class POIFSDocumentReader : Stream
     {
         private bool _closed;
         private int _current_offset;
@@ -61,6 +61,7 @@ namespace Npoi.Core.POIFS.FileSystem
             }
             this._document = ((DocumentNode)document).Document;
         }
+
         /// <summary>
         /// Create an InputStream from the specified Document
         /// </summary>
@@ -85,6 +86,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 return (this._current_offset == this._document_size);
             }
         }
+
         /// <summary>
         /// Returns the number of bytes that can be read (or skipped over)
         /// from this input stream without blocking by the next caller of a
@@ -95,10 +97,11 @@ namespace Npoi.Core.POIFS.FileSystem
         /// stream without blocking.</value>
         public int Available
         {
-            get {
+            get
+            {
                 if (_closed)
                     throw new IOException("This stream is closed");
-                return (int)(this.Length - this.Position); 
+                return (int)(this.Length - this.Position);
             }
         }
 
@@ -122,6 +125,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             throw new NotImplementedException();
         }
+
         /// <summary>
         /// Reads some number of bytes from the input stream and stores
         /// them into the buffer array b. The number of bytes actually read
@@ -151,6 +155,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             return this.Read(b, 0, b.Length);
         }
+
         /// <summary>
         /// Reads up to len bytes of data from the input stream into an
         /// array of bytes. An attempt is made to read as many as len
@@ -218,12 +223,13 @@ namespace Npoi.Core.POIFS.FileSystem
             this._current_offset += length;
             return length;
         }
+
         /// <summary>
         /// Reads the next byte of data from the input stream. The value
         /// byte is returned as an int in the range 0 to 255. If no byte is
         /// available because the end of the stream has been reached, the
         /// value -1 is returned. The definition of this method in
-        /// java.io.InputStream allows this method to block, but it won't.        
+        /// java.io.InputStream allows this method to block, but it won't.
         /// </summary>
         /// <returns>the next byte of data, or -1 if the end of the stream
         /// is reached.
@@ -270,9 +276,9 @@ namespace Npoi.Core.POIFS.FileSystem
                 case SeekOrigin.Begin:
                     if (0L > offset)
                     {
-                        throw new ArgumentOutOfRangeException("offset","offset must be positive");
+                        throw new ArgumentOutOfRangeException("offset", "offset must be positive");
                     }
-                    this.Position = offset<this.Length?offset:this.Length;
+                    this.Position = offset < this.Length ? offset : this.Length;
                     break;
 
                 case SeekOrigin.Current:
@@ -284,10 +290,9 @@ namespace Npoi.Core.POIFS.FileSystem
                     break;
 
                 default:
-                    throw new ArgumentException("incorrect SeekOrigin","origin");
+                    throw new ArgumentException("incorrect SeekOrigin", "origin");
             }
             return Position;
-
         }
 
         public override void SetLength(long value)
@@ -440,7 +445,5 @@ namespace Npoi.Core.POIFS.FileSystem
                 this._current_offset = Convert.ToInt32(value);
             }
         }
-
-
     }
 }

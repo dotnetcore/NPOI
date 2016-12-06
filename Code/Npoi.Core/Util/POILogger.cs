@@ -1,5 +1,4 @@
-﻿
-/* ====================================================================
+﻿/* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
    this work for additional information regarding copyright ownership.
@@ -18,28 +17,26 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
-using System.Text;
-using System.Collections;
-using System.Globalization;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
 
 namespace Npoi.Core.Util
 {
     public abstract class POILogger
     {
-
         public const int DEBUG = 1;
-        public const int INFO  = 3;
-        public const int WARN  = 5;
+        public const int INFO = 3;
+        public const int WARN = 5;
         public const int ERROR = 7;
         public const int FATAL = 9;
 
@@ -48,19 +45,21 @@ namespace Npoi.Core.Util
          * package. You need a POILogger? Go to the POILogFactory for one
          *
          */
+
         public POILogger()
-        {}
-        
+        { }
+
         abstract public void Initialize(String cat);
-        
+
         /**
          * Log a message
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
          * @param obj1 The object to Log.  This is converted to a string.
          */
+
         abstract public void Log(int level, Object obj1);
-        
+
         /**
          * Log a message
          *
@@ -68,15 +67,16 @@ namespace Npoi.Core.Util
          * @param obj1 The object to Log.  This is converted to a string.
          * @param exception An exception to be Logged
          */
+
         abstract public void Log(int level, Object obj1,
                         Exception exception);
-
 
         /**
          * Check if a Logger is enabled to Log at the specified level
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
          */
+
         abstract public bool Check(int level);
 
         /*
@@ -87,13 +87,13 @@ namespace Npoi.Core.Util
          * @param obj2 second object to place in the message
          */
 
-       /**
-         * Log a message. Lazily appends Object parameters together.
-         *
-         * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first object to place in the message
-         * @param obj2 second object to place in the message
-         */
+        /**
+          * Log a message. Lazily appends Object parameters together.
+          *
+          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+          * @param obj1 first object to place in the message
+          * @param obj2 second object to place in the message
+          */
 
         public virtual void Log(int level, Object obj1, Object obj2)
         {
@@ -115,8 +115,6 @@ namespace Npoi.Core.Util
         public virtual void Log(int level, Object obj1, Object obj2,
                         Object obj3)
         {
-            
-
             if (Check(level))
             {
                 Log(level,
@@ -138,8 +136,6 @@ namespace Npoi.Core.Util
         public virtual void Log(int level, Object obj1, Object obj2,
                         Object obj3, Object obj4)
         {
-            
-
             if (Check(level))
             {
                 Log(level,
@@ -162,8 +158,6 @@ namespace Npoi.Core.Util
         public virtual void Log(int level, Object obj1, Object obj2,
                         Object obj3, Object obj4, Object obj5)
         {
-            
-
             if (Check(level))
             {
                 Log(level,
@@ -188,11 +182,9 @@ namespace Npoi.Core.Util
                         Object obj3, Object obj4, Object obj5,
                         Object obj6)
         {
-            
-
             if (Check(level))
             {
-                Log(level ,
+                Log(level,
                         new StringBuilder(96).Append(obj1).Append(obj2)
                             .Append(obj3).Append(obj4).Append(obj5).Append(obj6));
             }
@@ -215,8 +207,6 @@ namespace Npoi.Core.Util
                         Object obj3, Object obj4, Object obj5,
                         Object obj6, Object obj7)
         {
-            
-
             if (Check(level))
             {
                 Log(level,
@@ -244,8 +234,6 @@ namespace Npoi.Core.Util
                         Object obj3, Object obj4, Object obj5,
                         Object obj6, Object obj7, Object obj8)
         {
-            
-
             if (Check(level))
             {
                 Log(level,
@@ -279,8 +267,6 @@ namespace Npoi.Core.Util
         public virtual void Log(int level, Object obj1, Object obj2,
                         Exception exception)
         {
-            
-
             if (Check(level))
             {
                 Log(level, new StringBuilder(32).Append(obj1).Append(obj2),
@@ -301,8 +287,6 @@ namespace Npoi.Core.Util
         public virtual void Log(int level, Object obj1, Object obj2,
                         Object obj3, Exception exception)
         {
-            
-
             if (Check(level))
             {
                 Log(level, new StringBuilder(48).Append(obj1).Append(obj2)
@@ -325,8 +309,6 @@ namespace Npoi.Core.Util
                         Object obj3, Object obj4,
                         Exception exception)
         {
-            
-
             if (Check(level))
             {
                 Log(level, new StringBuilder(64).Append(obj1).Append(obj2)
@@ -350,8 +332,6 @@ namespace Npoi.Core.Util
                         Object obj3, Object obj4, Object obj5,
                         Exception exception)
         {
-            
-
             if (Check(level))
             {
                 Log(level, new StringBuilder(80).Append(obj1).Append(obj2)
@@ -376,11 +356,9 @@ namespace Npoi.Core.Util
                         Object obj3, Object obj4, Object obj5,
                         Object obj6, Exception exception)
         {
-            
-
             if (Check(level))
             {
-                Log(level , new StringBuilder(96).Append(obj1)
+                Log(level, new StringBuilder(96).Append(obj1)
                     .Append(obj2).Append(obj3).Append(obj4).Append(obj5)
                     .Append(obj6), exception);
             }
@@ -405,8 +383,6 @@ namespace Npoi.Core.Util
                         Object obj6, Object obj7,
                         Exception exception)
         {
-            
-
             if (Check(level))
             {
                 Log(level, new StringBuilder(112).Append(obj1).Append(obj2)
@@ -435,8 +411,6 @@ namespace Npoi.Core.Util
                         Object obj6, Object obj7, Object obj8,
                         Exception exception)
         {
-            
-
             if (Check(level))
             {
                 Log(level, new StringBuilder(128).Append(obj1).Append(obj2)
@@ -590,18 +564,16 @@ namespace Npoi.Core.Util
         }
 
         private void CommonLogFormatted(int level, String message,
-                                        Object [] unflatParams)
+                                        Object[] unflatParams)
         {
-            
-
             if (Check(level))
             {
                 object[] params1 = (object[])FlattenArrays(unflatParams);
 
-                if (params1[ params1.Length - 1 ].GetType()==typeof(Exception))
+                if (params1[params1.Length - 1].GetType() == typeof(Exception))
                 {
                     Log(level, string.Format(CultureInfo.InvariantCulture, message, params1),
-                        ( Exception ) params1[ params1.Length - 1 ]);
+                        (Exception)params1[params1.Length - 1]);
                 }
                 else
                 {
@@ -614,13 +586,13 @@ namespace Npoi.Core.Util
          * Flattens any contained objects. Only tranverses one level deep.
          */
 
-        private Array FlattenArrays(Object [] objects)
+        private Array FlattenArrays(Object[] objects)
         {
             List<object> results = new List<object>();
 
             for (int i = 0; i < objects.Length; i++)
             {
-                results.AddRange(ObjectToObjectArray(objects[ i ]));
+                results.AddRange(ObjectToObjectArray(objects[i]));
             }
             return results.ToArray();
         }
@@ -629,76 +601,76 @@ namespace Npoi.Core.Util
         {
             List<object> results = new List<object>();
 
-            if (obj.GetType()==typeof(char[]))
+            if (obj.GetType() == typeof(char[]))
             {
-                byte[] array = ( byte [] ) obj;
+                byte[] array = (byte[])obj;
 
                 for (int j = 0; j < array.Length; j++)
                 {
                     results.Add((byte)array[j]);
                 }
             }
-            if (obj.GetType()==typeof(char[]))
+            if (obj.GetType() == typeof(char[]))
             {
-                char[] array = ( char [] ) obj;
+                char[] array = (char[])obj;
 
                 for (int j = 0; j < array.Length; j++)
                 {
-                    results.Add((char)(array[ j ]));
+                    results.Add((char)(array[j]));
                 }
             }
-            else if (obj.GetType()==typeof(short[]))
+            else if (obj.GetType() == typeof(short[]))
             {
-                short[] array = ( short [] ) obj;
+                short[] array = (short[])obj;
 
                 for (int j = 0; j < array.Length; j++)
                 {
-                    results.Add((short)array[ j ]);
+                    results.Add((short)array[j]);
                 }
             }
-            else if (obj.GetType()==typeof(int[]))
+            else if (obj.GetType() == typeof(int[]))
             {
-                int[] array = ( int [] ) obj;
+                int[] array = (int[])obj;
 
                 for (int j = 0; j < array.Length; j++)
                 {
-                    results.Add((int)array[ j ]);
+                    results.Add((int)array[j]);
                 }
             }
-            else if (obj.GetType()==typeof(long[]))
+            else if (obj.GetType() == typeof(long[]))
             {
-                long[] array = ( long [] ) obj;
+                long[] array = (long[])obj;
 
                 for (int j = 0; j < array.Length; j++)
                 {
-                    results.Add((long)array[ j ]);
+                    results.Add((long)array[j]);
                 }
             }
-            else if (obj.GetType()==typeof(float []))
+            else if (obj.GetType() == typeof(float[]))
             {
-                float[] array = ( float [] ) obj;
+                float[] array = (float[])obj;
 
                 for (int j = 0; j < array.Length; j++)
                 {
-                    results.Add((float)array[ j ]);
+                    results.Add((float)array[j]);
                 }
             }
-            else if (obj.GetType()==typeof(double []))
+            else if (obj.GetType() == typeof(double[]))
             {
-                double[] array = ( double [] ) obj;
+                double[] array = (double[])obj;
 
                 for (int j = 0; j < array.Length; j++)
                 {
-                    results.Add((double)array[ j ]);
+                    results.Add((double)array[j]);
                 }
             }
-            else if (obj.GetType()==typeof(object[]))
+            else if (obj.GetType() == typeof(object[]))
             {
-                object[] array = ( object[]) obj;
+                object[] array = (object[])obj;
 
                 for (int j = 0; j < array.Length; j++)
                 {
-                    results.Add(array[ j ]);
+                    results.Add(array[j]);
                 }
             }
             else
@@ -707,6 +679,5 @@ namespace Npoi.Core.Util
             }
             return results;
         }
-                                     
     }
 }

@@ -32,6 +32,7 @@ namespace Npoi.Core.SS.Formula.Functions
      * </p>
      * @author Josh Micich
      */
+
     public class Sumif : Var2or3ArgFunction
     {
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1)
@@ -48,7 +49,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return Eval(srcRowIndex, srcColumnIndex, arg1, aeRange, aeRange);
         }
 
-        public override  ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1,
+        public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1,
                 ValueEval arg2)
         {
             AreaEval aeRange;
@@ -68,12 +69,10 @@ namespace Npoi.Core.SS.Formula.Functions
         private static ValueEval Eval(int srcRowIndex, int srcColumnIndex, ValueEval arg1, AreaEval aeRange,
                 AreaEval aeSum)
         {
-
             // TODO - junit to prove last arg must be srcColumnIndex and not srcRowIndex
             IMatchPredicate mp = Countif.CreateCriteriaPredicate(arg1, srcRowIndex, srcColumnIndex);
             double result = SumMatchingCells(aeRange, mp, aeSum);
             return new NumberEval(result);
-
         }
 
         private static double SumMatchingCells(AreaEval aeRange, IMatchPredicate mp, AreaEval aeSum)
@@ -93,8 +92,6 @@ namespace Npoi.Core.SS.Formula.Functions
             return result;
         }
 
-
-
         private static double Accumulate(AreaEval aeRange, IMatchPredicate mp, AreaEval aeSum, int relRowIndex,
                 int relColIndex)
         {
@@ -112,8 +109,6 @@ namespace Npoi.Core.SS.Formula.Functions
             return 0.0;
         }
 
-
-
         /**
          * @return a range of the same dimensions as aeRange using eval to define the top left corner.
          * @throws EvaluationException if eval is not a reference
@@ -130,10 +125,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return ((RefEval)eval).Offset(0, aeRange.Height - 1, 0, aeRange.Width - 1);
             }
             throw new EvaluationException(ErrorEval.VALUE_INVALID);
-
         }
-
-
 
         private static AreaEval ConvertRangeArg(ValueEval eval)
         {
@@ -147,8 +139,6 @@ namespace Npoi.Core.SS.Formula.Functions
                 return ((RefEval)eval).Offset(0, 0, 0, 0);
             }
             throw new EvaluationException(ErrorEval.VALUE_INVALID);
-
         }
     }
-
 }

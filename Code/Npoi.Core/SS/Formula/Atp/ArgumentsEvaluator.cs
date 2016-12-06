@@ -15,20 +15,21 @@
    limitations under the License.
 ==================================================================== */
 
-using System.Collections.Generic;
 using Npoi.Core.SS.Formula.Eval;
-using System;
 using Npoi.Core.SS.UserModel;
+using System;
+using System.Collections.Generic;
+
 namespace Npoi.Core.SS.Formula.Atp
 {
     /**
      * Evaluator for formula arguments.
-     * 
+     *
      * @author jfaenomoto@gmail.com
      */
+
     internal class ArgumentsEvaluator
     {
-
         public static ArgumentsEvaluator instance = new ArgumentsEvaluator();
 
         private ArgumentsEvaluator()
@@ -38,13 +39,14 @@ namespace Npoi.Core.SS.Formula.Atp
 
         /**
          * Evaluate a generic {@link ValueEval} argument to a double value that represents a date in POI.
-         * 
+         *
          * @param arg {@link ValueEval} an argument.
          * @param srcCellRow number cell row.
          * @param srcCellCol number cell column.
          * @return a double representing a date in POI.
          * @throws EvaluationException exception upon argument evaluation.
          */
+
         public double EvaluateDateArg(ValueEval arg, int srcCellRow, int srcCellCol)
         {
             ValueEval ve = OperandResolver.GetSingleValue(arg, srcCellRow, (short)srcCellCol);
@@ -65,13 +67,14 @@ namespace Npoi.Core.SS.Formula.Atp
 
         /**
          * Evaluate a generic {@link ValueEval} argument to an array of double values that represents dates in POI.
-         * 
+         *
          * @param arg {@link ValueEval} an argument.
          * @param srcCellRow number cell row.
          * @param srcCellCol number cell column.
          * @return an array of doubles representing dates in POI.
          * @throws EvaluationException exception upon argument evaluation.
          */
+
         public double[] EvaluateDatesArg(ValueEval arg, int srcCellRow, int srcCellCol)
         {
             if (arg == null)
@@ -106,13 +109,14 @@ namespace Npoi.Core.SS.Formula.Atp
 
         /**
          * Evaluate a generic {@link ValueEval} argument to a double value.
-         * 
+         *
          * @param arg {@link ValueEval} an argument.
          * @param srcCellRow number cell row.
          * @param srcCellCol number cell column.
          * @return a double value.
          * @throws EvaluationException exception upon argument evaluation.
          */
+
         public double EvaluateNumberArg(ValueEval arg, int srcCellRow, int srcCellCol)
         {
             if (arg == null)
@@ -123,5 +127,4 @@ namespace Npoi.Core.SS.Formula.Atp
             return OperandResolver.CoerceValueToDouble(arg);
         }
     }
-
 }

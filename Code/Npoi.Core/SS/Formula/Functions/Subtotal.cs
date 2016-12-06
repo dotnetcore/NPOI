@@ -15,8 +15,9 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
 using Npoi.Core.SS.Formula.Eval;
+using System;
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     /**
@@ -51,9 +52,9 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author Paul Tomlin &lt; pault at bulk sms dot com &gt;
      */
+
     public class Subtotal : Function
     {
-
         private static Function FindFunction(int functionCode)
         {
             //Function func;

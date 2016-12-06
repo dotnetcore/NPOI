@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -19,7 +18,6 @@
 namespace Npoi.Core.DDF
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
 
     /// <summary>
@@ -29,8 +27,8 @@ namespace Npoi.Core.DDF
     /// </summary>
     public class EscherProperties
     {
-
         #region Property constants
+
         public const short TRANSFORM__ROTATION = 4;
         public const short PROTECTION__LOCKROTATION = 119;
         public const short PROTECTION__LOCKASPECTRATIO = 120;
@@ -290,14 +288,14 @@ namespace Npoi.Core.DDF
         public const short CALLOUT__DROPAUTO = 894;
         public const short CALLOUT__LENGTHSPECIFIED = 895;
 
-	    public const short GROUPSHAPE__SHAPENAME = 0x0380;
-	    public const short GROUPSHAPE__DESCRIPTION = 0x0381;
+        public const short GROUPSHAPE__SHAPENAME = 0x0380;
+        public const short GROUPSHAPE__DESCRIPTION = 0x0381;
         public const short GROUPSHAPE__HYPERLINK = 0x0382;
-	    public const short GROUPSHAPE__WRAPPOLYGONVERTICES = 0x0383;
-	    public const short GROUPSHAPE__WRAPDISTLEFT = 0x0384;
-	    public const short GROUPSHAPE__WRAPDISTTOP = 0x0385;
-	    public const short GROUPSHAPE__WRAPDISTRIGHT = 0x0386;
-	    public const short GROUPSHAPE__WRAPDISTBOTTOM = 0x0387;
+        public const short GROUPSHAPE__WRAPPOLYGONVERTICES = 0x0383;
+        public const short GROUPSHAPE__WRAPDISTLEFT = 0x0384;
+        public const short GROUPSHAPE__WRAPDISTTOP = 0x0385;
+        public const short GROUPSHAPE__WRAPDISTRIGHT = 0x0386;
+        public const short GROUPSHAPE__WRAPDISTBOTTOM = 0x0387;
         public const short GROUPSHAPE__REGROUPID = 0x0388;
         public const short GROUPSHAPE__UNUSED906 = 0x038A;
         public const short GROUPSHAPE__TOOLTIP = 0x038D;
@@ -322,25 +320,24 @@ namespace Npoi.Core.DDF
         public const short GROUPSHAPE__METROBLOB = 0x03A9;
         public const short GROUPSHAPE__ZORDER = 0x03AA;
         public const short GROUPSHAPE__FLAGS = 0x03BF;
-	    public const short GROUPSHAPE__EDITEDWRAP = 953;
-	    public const short GROUPSHAPE__BEHINDDOCUMENT = 954;
-	    public const short GROUPSHAPE__ONDBLCLICKNOTIFY = 955;
-	    public const short GROUPSHAPE__ISBUTTON = 956;
-	    public const short GROUPSHAPE__1DADJUSTMENT = 957;
-	    public const short GROUPSHAPE__HIDDEN = 958;
-	    public const short GROUPSHAPE__PRINT = 959;
-        #endregion
+        public const short GROUPSHAPE__EDITEDWRAP = 953;
+        public const short GROUPSHAPE__BEHINDDOCUMENT = 954;
+        public const short GROUPSHAPE__ONDBLCLICKNOTIFY = 955;
+        public const short GROUPSHAPE__ISBUTTON = 956;
+        public const short GROUPSHAPE__1DADJUSTMENT = 957;
+        public const short GROUPSHAPE__HIDDEN = 958;
+        public const short GROUPSHAPE__PRINT = 959;
 
-        private static Dictionary<object,object> properties;
+        #endregion Property constants
+
+        private static Dictionary<object, object> properties;
 
         /// <summary>
         /// Inits the props.
         /// </summary>
-        private static void InitProps()
-        {
-            if (properties == null)
-            {
-                properties = new Dictionary<object,object>();
+        private static void InitProps() {
+            if (properties == null) {
+                properties = new Dictionary<object, object>();
                 AddProp(TRANSFORM__ROTATION, GetData("transform.rotation"));
                 AddProp(PROTECTION__LOCKROTATION, GetData("protection.lockrotation"));
                 AddProp(PROTECTION__LOCKASPECTRATIO, GetData("protection.lockaspectratio"));
@@ -623,11 +620,9 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="s">The s.</param>
         /// <param name="data">The data.</param>
-        private static void AddProp(int s, EscherPropertyMetaData data)
-        {
-            properties[(short)s]= data;
+        private static void AddProp(int s, EscherPropertyMetaData data) {
+            properties[(short)s] = data;
         }
-
 
         /// <summary>
         /// Gets the data.
@@ -635,19 +630,16 @@ namespace Npoi.Core.DDF
         /// <param name="propName">Name of the prop.</param>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        private static EscherPropertyMetaData GetData(String propName, byte type)
-        {
+        private static EscherPropertyMetaData GetData(String propName, byte type) {
             return new EscherPropertyMetaData(propName, type);
         }
-
 
         /// <summary>
         /// Gets the data.
         /// </summary>
         /// <param name="propName">Name of the prop.</param>
         /// <returns></returns>
-        private static EscherPropertyMetaData GetData(String propName)
-        {
+        private static EscherPropertyMetaData GetData(String propName) {
             return new EscherPropertyMetaData(propName);
         }
 
@@ -656,8 +648,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="propertyId">The property id.</param>
         /// <returns></returns>
-        public static String GetPropertyName(short propertyId)
-        {
+        public static String GetPropertyName(short propertyId) {
             InitProps();
             EscherPropertyMetaData o = (EscherPropertyMetaData)properties[propertyId];
             return o == null ? "unknown" : o.Description;
@@ -668,13 +659,10 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="propertyId">The property id.</param>
         /// <returns></returns>
-        public static byte GetPropertyType(short propertyId)
-        {
+        public static byte GetPropertyType(short propertyId) {
             InitProps();
             EscherPropertyMetaData escherPropertyMetaData = (EscherPropertyMetaData)properties[propertyId];
             return escherPropertyMetaData == null ? (byte)0 : escherPropertyMetaData.Type;
         }
     }
 }
-
-

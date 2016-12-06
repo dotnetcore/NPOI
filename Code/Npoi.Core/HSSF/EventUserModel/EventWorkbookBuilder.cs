@@ -17,8 +17,6 @@
 
 namespace Npoi.Core.HSSF.EventUserModel
 {
-    using System.Collections;
-
     using Npoi.Core.HSSF.Model;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.UserModel;
@@ -56,31 +54,25 @@ namespace Npoi.Core.HSSF.EventUserModel
         /// <param name="sst">TThe SSTRecord in your file.</param>
         /// <returns>A stub Workbook suitable for use with HSSFFormulaParser</returns>
         public static InternalWorkbook CreateStubWorkbook(ExternSheetRecord[] externs,
-                BoundSheetRecord[] bounds, SSTRecord sst)
-        {
+                BoundSheetRecord[] bounds, SSTRecord sst) {
             List<Record> wbRecords = new List<Record>();
 
             // Core Workbook records go first
-            if (bounds != null)
-            {
-                for (int i = 0; i < bounds.Length; i++)
-                {
+            if (bounds != null) {
+                for (int i = 0; i < bounds.Length; i++) {
                     wbRecords.Add(bounds[i]);
                 }
             }
-            if (sst != null)
-            {
+            if (sst != null) {
                 wbRecords.Add(sst);
             }
 
             // Now we can have the ExternSheetRecords,
             //  preceded by a SupBookRecord
-            if (externs != null)
-            {
+            if (externs != null) {
                 wbRecords.Add(SupBookRecord.CreateInternalReferences(
                         (short)externs.Length));
-                for (int i = 0; i < externs.Length; i++)
-                {
+                for (int i = 0; i < externs.Length; i++) {
                     wbRecords.Add(externs[i]);
                 }
             }
@@ -99,11 +91,9 @@ namespace Npoi.Core.HSSF.EventUserModel
         /// <param name="bounds">A stub Workbook suitable for use with HSSFFormulaParser</param>
         /// <returns>A stub Workbook suitable for use with {@link HSSFFormulaParser}</returns>
         public static InternalWorkbook CreateStubWorkbook(ExternSheetRecord[] externs,
-                BoundSheetRecord[] bounds)
-        {
+                BoundSheetRecord[] bounds) {
             return CreateStubWorkbook(externs, bounds, null);
         }
-
 
         /// <summary>
         /// A wrapping HSSFListener which will collect
@@ -122,34 +112,31 @@ namespace Npoi.Core.HSSF.EventUserModel
             /// Initializes a new instance of the <see cref="SheetRecordCollectingListener"/> class.
             /// </summary>
             /// <param name="childListener">The child listener.</param>
-            public SheetRecordCollectingListener(IHSSFListener childListener)
-            {
+            public SheetRecordCollectingListener(IHSSFListener childListener) {
                 this.childListener = childListener;
             }
-
 
             /// <summary>
             /// Gets the bound sheet records.
             /// </summary>
             /// <returns></returns>
-            public BoundSheetRecord[] GetBoundSheetRecords()
-            {
+            public BoundSheetRecord[] GetBoundSheetRecords() {
                 return boundSheetRecords.ToArray();
             }
+
             /// <summary>
             /// Gets the extern sheet records.
             /// </summary>
             /// <returns></returns>
-            public ExternSheetRecord[] GetExternSheetRecords()
-            {
+            public ExternSheetRecord[] GetExternSheetRecords() {
                 return externSheetRecords.ToArray();
             }
+
             /// <summary>
             /// Gets the SST record.
             /// </summary>
             /// <returns></returns>
-            public SSTRecord GetSSTRecord()
-            {
+            public SSTRecord GetSSTRecord() {
                 return sstRecord;
             }
 
@@ -157,37 +144,34 @@ namespace Npoi.Core.HSSF.EventUserModel
             /// Gets the stub HSSF workbook.
             /// </summary>
             /// <returns></returns>
-            public HSSFWorkbook GetStubHSSFWorkbook()
-            {
-	            // Create a base workbook
-		            HSSFWorkbook wb = HSSFWorkbook.Create(GetStubWorkbook());
-		            // Stub the sheets, so sheet name lookups work
-		            foreach (BoundSheetRecord bsr in boundSheetRecords) {
-		                wb.CreateSheet(bsr.Sheetname);
-		            }
-		            // Ready for Formula use!
-		            return wb;
+            public HSSFWorkbook GetStubHSSFWorkbook() {
+                // Create a base workbook
+                HSSFWorkbook wb = HSSFWorkbook.Create(GetStubWorkbook());
+                // Stub the sheets, so sheet name lookups work
+                foreach (BoundSheetRecord bsr in boundSheetRecords) {
+                    wb.CreateSheet(bsr.Sheetname);
+                }
+                // Ready for Formula use!
+                return wb;
             }
+
             /// <summary>
             /// Gets the stub workbook.
             /// </summary>
             /// <returns></returns>
-            public InternalWorkbook GetStubWorkbook()
-            {
+            public InternalWorkbook GetStubWorkbook() {
                 return CreateStubWorkbook(
                         GetExternSheetRecords(), GetBoundSheetRecords(),
                         GetSSTRecord()
                 );
             }
 
-
             /// <summary>
             /// Process this record ourselves, and then
             /// pass it on to our child listener
             /// </summary>
             /// <param name="record">The record.</param>
-            public void ProcessRecord(Record record)
-            {
+            public void ProcessRecord(Record record) {
                 // Handle it ourselves
                 ProcessRecordInternally(record);
 
@@ -200,18 +184,14 @@ namespace Npoi.Core.HSSF.EventUserModel
             /// pass it on to the child Listener.
             /// </summary>
             /// <param name="record">The record.</param>
-            public void ProcessRecordInternally(Record record)
-            {
-                if (record is BoundSheetRecord)
-                {
+            public void ProcessRecordInternally(Record record) {
+                if (record is BoundSheetRecord) {
                     boundSheetRecords.Add((BoundSheetRecord)record);
                 }
-                else if (record is ExternSheetRecord)
-                {
+                else if (record is ExternSheetRecord) {
                     externSheetRecords.Add((ExternSheetRecord)record);
                 }
-                else if (record is SSTRecord)
-                {
+                else if (record is SSTRecord) {
                     sstRecord = (SSTRecord)record;
                 }
             }

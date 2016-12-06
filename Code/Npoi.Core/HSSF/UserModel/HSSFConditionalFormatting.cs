@@ -14,14 +14,14 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
+
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
-
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.Record.Aggregates;
-    using Npoi.Core.SS.Util;
     using Npoi.Core.SS.UserModel;
+    using Npoi.Core.SS.Util;
+    using System;
 
     /// <summary>
     /// HSSFConditionalFormatting class encapsulates all Settings of Conditional Formatting.
@@ -33,7 +33,7 @@ namespace Npoi.Core.HSSF.UserModel
     /// or to modify existing Conditional Formatting Settings (formatting regions and/or rules).
     /// Use {@link HSSFSheet#GetConditionalFormattingAt(int)} to Get access to an instance of this class.
     /// To Create a new Conditional Formatting Set use the following approach:
-    /// 
+    ///
     /// // Define a Conditional Formatting rule, which triggers formatting
     /// // when cell's value Is greater or equal than 100.0 and
     /// // applies patternFormatting defined below.
@@ -77,6 +77,7 @@ namespace Npoi.Core.HSSF.UserModel
             _workbook = workbook;
             this.cfAggregate = cfAggregate;
         }
+
         /// <summary>
         /// Gets the CF records aggregate.
         /// </summary>
@@ -99,6 +100,7 @@ namespace Npoi.Core.HSSF.UserModel
             CellRangeAddress[] cellRanges = GetFormattingRanges();
             return Region.ConvertCellRangesToRegions(cellRanges);
         }
+
         /// <summary>
         /// Gets array of CellRangeAddresses
         /// </summary>
@@ -107,6 +109,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             return cfAggregate.Header.CellRanges;
         }
+
         /// <summary>
         /// Replaces an existing Conditional Formatting rule at position idx.
         /// Excel allows to Create up to 3 Conditional Formatting rules.
@@ -118,10 +121,12 @@ namespace Npoi.Core.HSSF.UserModel
         {
             cfAggregate.SetRule(idx, cfRule.CfRuleRecord);
         }
+
         public void SetRule(int idx, IConditionalFormattingRule cfRule)
         {
             SetRule(idx, (HSSFConditionalFormattingRule)cfRule);
         }
+
         /// <summary>
         /// Add a Conditional Formatting rule.
         /// Excel allows to Create up to 3 Conditional Formatting rules.
@@ -131,10 +136,12 @@ namespace Npoi.Core.HSSF.UserModel
         {
             cfAggregate.AddRule(cfRule.CfRuleRecord);
         }
+
         public void AddRule(IConditionalFormattingRule cfRule)
         {
             AddRule((HSSFConditionalFormattingRule)cfRule);
         }
+
         /// <summary>
         /// Gets the Conditional Formatting rule at position idx
         /// </summary>
@@ -145,6 +152,7 @@ namespace Npoi.Core.HSSF.UserModel
             CFRuleRecord ruleRecord = cfAggregate.GetRule(idx);
             return new HSSFConditionalFormattingRule(_workbook, ruleRecord);
         }
+
         /// <summary>
         /// Gets the number of Conditional Formatting rules.
         /// </summary>

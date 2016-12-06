@@ -15,8 +15,8 @@
    limitations Under the License.
 ==================================================================== */
 
-using Npoi.Core.HSSF.Record.Chart;
 using Npoi.Core.HSSF.Model;
+using Npoi.Core.HSSF.Record.Chart;
 using System.Diagnostics;
 
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart

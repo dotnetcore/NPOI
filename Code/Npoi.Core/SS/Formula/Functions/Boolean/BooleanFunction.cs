@@ -17,9 +17,9 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
-    using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using System;
     using System.Globalization;
 
     /**
@@ -33,18 +33,18 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
      */
+
     public abstract class BooleanFunction : Function
     {
         protected abstract bool InitialResultValue { get; }
-        protected abstract bool PartialEvaluate(bool cumulativeResult, bool currentValue);
 
+        protected abstract bool PartialEvaluate(bool cumulativeResult, bool currentValue);
 
         private bool Calculate(ValueEval[] args)
         {
-
             bool result = InitialResultValue;
             bool atleastOneNonBlank = false;
-           
+
             /*
              * Note: no short-circuit bool loop exit because any ErrorEvals will override the result
              */
@@ -101,7 +101,6 @@ namespace Npoi.Core.SS.Formula.Functions
                 {
                     tempVe = OperandResolver.CoerceValueToBoolean(arg, false);
                 }
-
 
                 if (tempVe != null)
                 {

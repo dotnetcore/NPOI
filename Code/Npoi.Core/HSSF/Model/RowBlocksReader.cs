@@ -17,23 +17,23 @@
 
 namespace Npoi.Core.HSSF.Model
 {
-    using System;
-    //using System.Collections;
-    using System.Collections.Generic;
-    using Npoi.Core.SS.Util;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.Record.Aggregates;
-    using System.Collections;
+    using Npoi.Core.SS.Util;
+    using System;
+
+    //using System.Collections;
+    using System.Collections.Generic;
 
     /**
-     * Segregates the 'Row Blocks' section of a single sheet into plain row/cell records and 
+     * Segregates the 'Row Blocks' section of a single sheet into plain row/cell records and
      * shared formula records.
-     * 
+     *
      * @author Josh Micich
      */
+
     public class RowBlocksReader
     {
-
         private List<object> _plainRecords;
         private SharedValueManager _sfm;
         private MergeCellsRecord[] _mergedCellsRecords;
@@ -42,8 +42,8 @@ namespace Npoi.Core.HSSF.Model
          * Also collects any loose MergeCellRecords and puts them in the supplied
          * mergedCellsTable
          */
-        public RowBlocksReader(RecordStream rs)
-        {
+
+        public RowBlocksReader(RecordStream rs) {
             List<object> plainRecords = new List<object>();
             List<object> shFrmRecords = new List<object>();
             List<object> arrayRecords = new List<object>();
@@ -52,41 +52,41 @@ namespace Npoi.Core.HSSF.Model
             List<CellReference> firstCellRefs = new List<CellReference>();
             Record prevRec = null;
 
-            while (!RecordOrderer.IsEndOfRowBlock(rs.PeekNextSid()))
-            {
+            while (!RecordOrderer.IsEndOfRowBlock(rs.PeekNextSid())) {
                 // End of row/cell records for the current sheet
-                // Note - It is important that this code does not inadvertently add any sheet 
-                // records from a subsequent sheet.  For example, if SharedFormulaRecords 
+                // Note - It is important that this code does not inadvertently add any sheet
+                // records from a subsequent sheet.  For example, if SharedFormulaRecords
                 // are taken from the wrong sheet, this could cause bug 44449.
-                if (!rs.HasNext())
-                {
+                if (!rs.HasNext()) {
                     throw new InvalidOperationException("Failed to find end of row/cell records");
-
                 }
                 Record rec = rs.GetNext();
                 List<object> dest;
-                switch (rec.Sid)
-                {
+                switch (rec.Sid) {
                     case MergeCellsRecord.sid:
                         dest = mergeCellRecords;
                         break;
+
                     case SharedFormulaRecord.sid:
                         dest = shFrmRecords;
-                        if (!(prevRec is FormulaRecord))
-                        {
+                        if (!(prevRec is FormulaRecord)) {
                             throw new Exception("Shared formula record should follow a FormulaRecord");
                         }
                         FormulaRecord fr = (FormulaRecord)prevRec;
                         firstCellRefs.Add(new CellReference(fr.Row, fr.Column));
 
                         break;
+
                     case ArrayRecord.sid:
                         dest = arrayRecords;
                         break;
+
                     case TableRecord.sid:
                         dest = tableRecords;
                         break;
-                    default: dest = plainRecords;
+
+                    default:
+                        dest = plainRecords;
                         break;
                 }
                 dest.Add(rec);
@@ -98,42 +98,42 @@ namespace Npoi.Core.HSSF.Model
             sharedFormulaRecs = (SharedFormulaRecord[])shFrmRecords.ToArray();
 
             CellReference[] firstCells = new CellReference[firstCellRefs.Count];
-            firstCells=firstCellRefs.ToArray();
+            firstCells = firstCellRefs.ToArray();
             arrayRecs = new List<ArrayRecord>((ArrayRecord[])arrayRecords.ToArray());
             tableRecs = new List<TableRecord>((TableRecord[])tableRecords.ToArray());
 
             _plainRecords = plainRecords;
-            _sfm = SharedValueManager.Create(sharedFormulaRecs,firstCells, arrayRecs, tableRecs);
+            _sfm = SharedValueManager.Create(sharedFormulaRecs, firstCells, arrayRecs, tableRecs);
             _mergedCellsRecords = new MergeCellsRecord[mergeCellRecords.Count];
             _mergedCellsRecords = (MergeCellsRecord[])mergeCellRecords.ToArray();
         }
 
         /**
-         * Some unconventional apps place {@link MergeCellsRecord}s within the row block.  They 
+         * Some unconventional apps place {@link MergeCellsRecord}s within the row block.  They
          * actually should be in the {@link MergedCellsTable} which is much later (see bug 45699).
          * @return any loose  <c>MergeCellsRecord</c>s found
          */
-        public MergeCellsRecord[] LooseMergedCells
-        {
+
+        public MergeCellsRecord[] LooseMergedCells {
             get
             {
                 return _mergedCellsRecords;
             }
         }
 
-        public SharedValueManager SharedFormulaManager
-        {
+        public SharedValueManager SharedFormulaManager {
             get
             {
                 return _sfm;
             }
         }
+
         /**
-         * @return a {@link RecordStream} containing all the non-{@link SharedFormulaRecord} 
+         * @return a {@link RecordStream} containing all the non-{@link SharedFormulaRecord}
          * non-{@link ArrayRecord} and non-{@link TableRecord} Records.
          */
-        public RecordStream PlainRecordStream
-        {
+
+        public RecordStream PlainRecordStream {
             get
             {
                 return new RecordStream(_plainRecords, 0);

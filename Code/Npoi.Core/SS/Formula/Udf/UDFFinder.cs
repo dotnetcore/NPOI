@@ -17,15 +17,16 @@
 
 namespace Npoi.Core.SS.Formula.Udf
 {
-    using System;
     using Npoi.Core.SS.Formula.Atp;
     using Npoi.Core.SS.Formula.Functions;
+    using System;
 
     /**
      * Common interface for "Add-in" libraries and user defined function libraries.
      *
      * @author PUdalau
      */
+
     public abstract class UDFFinder
     {
         public static readonly UDFFinder DEFAULT = new AggregatingUDFFinder(AnalysisToolPak.instance);
@@ -36,6 +37,7 @@ namespace Npoi.Core.SS.Formula.Udf
          * @param name Name of function.
          * @return Function executor.
          */
+
         public abstract FreeRefFunction FindFunction(String name);
     }
 }

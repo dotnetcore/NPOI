@@ -30,6 +30,7 @@ namespace Npoi.Core.SS.Formula
             _name = name;
             _isQuoted = isQuoted;
         }
+
         public String Name
         {
             get
@@ -37,6 +38,7 @@ namespace Npoi.Core.SS.Formula
                 return _name;
             }
         }
+
         public bool IsQuoted
         {
             get
@@ -44,6 +46,7 @@ namespace Npoi.Core.SS.Formula
                 return _isQuoted;
             }
         }
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder(64);

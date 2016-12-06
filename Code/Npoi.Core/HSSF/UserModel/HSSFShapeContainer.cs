@@ -15,7 +15,6 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.UserModel
 {
     using System.Collections.Generic;
@@ -74,6 +73,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @param shape to be removed
          * @return true if shape is removed else return false
          */
+
         bool RemoveShape(HSSFShape shape);
     }
 }

@@ -27,7 +27,6 @@
 //     */
 //    public class ValueEvalToNumericXlator
 //    {
-
 //        public const int STRING_IS_PARSED = 0x0001;
 //        public const int BOOL_IS_PARSED = 0x0002;
 //        public const int BLANK_IS_PARSED = 0x0004; // => blanks are not ignored, Converted to 0
@@ -39,7 +38,6 @@
 //        public const int STRING_IS_INVALID_VALUE = 0x0800;
 
 //        private int flags;
-
 
 //        public ValueEvalToNumericXlator(int flags)
 //        {
@@ -75,7 +73,7 @@
 //                    : XlateBlankEval(BLANK_IS_PARSED);
 //            }
 
-//            // stringeval 
+//            // stringeval
 //            else if (eval is StringEval)
 //            {
 //                retval = XlateStringEval((StringEval)eval); // TODO: recursive call needed
@@ -108,7 +106,7 @@
 //        }
 
 //        /**
-//         * no args are required since BlankEval has only one 
+//         * no args are required since BlankEval has only one
 //         * instance. If flag is Set, a zero
 //         * valued numbereval is returned, else BlankEval.INSTANCE
 //         * is returned.
@@ -166,7 +164,6 @@
 //         */
 //        private ValueEval XlateStringEval(StringEval eval)
 //        {
-
 //            if ((flags & STRING_IS_PARSED) > 0)
 //            {
 //                String s = eval.StringValue;

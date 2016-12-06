@@ -16,7 +16,9 @@
  *    limitations under the License.
  * ====================================================================
  */
+
 using Npoi.Core.SS.Formula.Eval;
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     /**
@@ -40,6 +42,7 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author Yegor Kozlov
      */
+
     public class Sumifs : FreeRefFunction
     {
         public static FreeRefFunction instance = new Sumifs();
@@ -81,6 +84,7 @@ namespace Npoi.Core.SS.Formula.Functions
          *
          * @throws EvaluationException if
          */
+
         private void ValidateCriteriaRanges(AreaEval[] criteriaRanges, AreaEval sumRange)
         {
             foreach (AreaEval r in criteriaRanges)
@@ -101,6 +105,7 @@ namespace Npoi.Core.SS.Formula.Functions
          *
          * @return the computed value
          */
+
         private static double SumMatchingCells(AreaEval[] ranges, IMatchPredicate[] predicates, AreaEval aeSum)
         {
             int height = aeSum.Height;
@@ -111,7 +116,6 @@ namespace Npoi.Core.SS.Formula.Functions
             {
                 for (int c = 0; c < width; c++)
                 {
-
                     bool matches = true;
                     for (int i = 0; i < ranges.Length; i++)
                     {
@@ -123,7 +127,6 @@ namespace Npoi.Core.SS.Formula.Functions
                             matches = false;
                             break;
                         }
-
                     }
 
                     if (matches)
@@ -138,7 +141,6 @@ namespace Npoi.Core.SS.Formula.Functions
         private static double Accumulate(AreaEval aeSum, int relRowIndex,
                 int relColIndex)
         {
-
             ValueEval addend = aeSum.GetRelativeValue(relRowIndex, relColIndex);
             if (addend is NumberEval)
             {
@@ -160,7 +162,5 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             throw new EvaluationException(ErrorEval.VALUE_INVALID);
         }
-
     }
-
 }

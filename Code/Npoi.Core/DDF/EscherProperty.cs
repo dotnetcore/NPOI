@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -35,8 +34,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="id">The id is distinct from the actual property number.  The id includes the property number the blip id
         /// flag and an indicator whether the property is complex or not.</param>
-        public EscherProperty(short id)
-        {
+        public EscherProperty(short id) {
             this.id = id;
         }
 
@@ -46,9 +44,8 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="propertyNumber">The property number.</param>
         /// <param name="isComplex">if set to <c>true</c> [is complex].</param>
-        /// <param name="isBlipId">if set to <c>true</c> [is blip id].</param> 
-        public EscherProperty(short propertyNumber, bool isComplex, bool isBlipId)
-        {
+        /// <param name="isBlipId">if set to <c>true</c> [is blip id].</param>
+        public EscherProperty(short propertyNumber, bool isComplex, bool isBlipId) {
             this.id = (short)(propertyNumber +
                     (isComplex ? unchecked((short)0x8000) : (short)0x0) +
                     (isBlipId ? (short)0x4000 : (short)0x0));
@@ -58,8 +55,7 @@ namespace Npoi.Core.DDF
         /// Gets the id.
         /// </summary>
         /// <value>The id.</value>
-        public virtual  short Id
-        {
+        public virtual short Id {
             get { return id; }
         }
 
@@ -67,8 +63,7 @@ namespace Npoi.Core.DDF
         /// Gets the property number.
         /// </summary>
         /// <value>The property number.</value>
-        public virtual  short PropertyNumber
-        {
+        public virtual short PropertyNumber {
             get { return (short)(id & (short)0x3FFF); }
         }
 
@@ -78,8 +73,7 @@ namespace Npoi.Core.DDF
         /// <value>
         /// 	<c>true</c> if this instance is complex; otherwise, <c>false</c>.
         /// </value>
-        public virtual  bool IsComplex
-        {
+        public virtual bool IsComplex {
             get { return (id & unchecked((short)0x8000)) != 0; }
         }
 
@@ -89,8 +83,7 @@ namespace Npoi.Core.DDF
         /// <value>
         /// 	<c>true</c> if this instance is blip id; otherwise, <c>false</c>.
         /// </value>
-        public virtual  bool IsBlipId
-        {
+        public virtual bool IsBlipId {
             get { return (id & (short)0x4000) != 0; }
         }
 
@@ -98,8 +91,7 @@ namespace Npoi.Core.DDF
         /// Gets the name.
         /// </summary>
         /// <value>The name.</value>
-        public virtual String Name
-        {
+        public virtual String Name {
             get { return EscherProperties.GetPropertyName(PropertyNumber); }
         }
 
@@ -108,13 +100,11 @@ namespace Npoi.Core.DDF
         /// dealing with complex properties.
         /// </summary>
         /// <value>The size of the property.</value>
-        public virtual int PropertySize
-        {
+        public virtual int PropertySize {
             get { return 6; }
         }
 
-        public virtual String ToXml(String tab)
-        {
+        public virtual String ToXml(String tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab)
                    .Append("<")
@@ -136,6 +126,7 @@ namespace Npoi.Core.DDF
         /// <param name="pos">The pos.</param>
         /// <returns></returns>
         abstract public int SerializeSimplePart(byte[] data, int pos);
+
         /// <summary>
         /// Escher properties consist of a simple fixed Length part and a complex variable Length part.
         /// The fixed Length part is Serialized first.

@@ -17,11 +17,9 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-    
-
 
     /**
      * "Special Attributes"
@@ -30,6 +28,7 @@ namespace Npoi.Core.SS.Formula.PTG
      * @author  andy
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     public class AttrPtg : ControlPtg
     {
         public const byte sid = 0x19;
@@ -42,9 +41,10 @@ namespace Npoi.Core.SS.Formula.PTG
         /** only used for tAttrChoose: offset to the tFuncVar for CHOOSE() */
         private int _chooseFuncOffset;
 
-        // flags 'volatile' and 'space', can be combined.  
+        // flags 'volatile' and 'space', can be combined.
         // OOO spec says other combinations are theoretically possible but not likely to occur.
         private static BitField semiVolatile = BitFieldFactory.GetInstance(0x01);
+
         private static BitField optiIf = BitFieldFactory.GetInstance(0x02);
         private static BitField optiChoose = BitFieldFactory.GetInstance(0x04);
         private static BitField optiSkip = BitFieldFactory.GetInstance(0x08); // skip
@@ -80,7 +80,7 @@ namespace Npoi.Core.SS.Formula.PTG
 
         public AttrPtg(ILittleEndianInput in1)
         {
-            field_1_options =(byte)in1.ReadByte();
+            field_1_options = (byte)in1.ReadByte();
             field_2_data = in1.ReadShort();
             if (IsOptimizedChoose)
             {
@@ -98,8 +98,8 @@ namespace Npoi.Core.SS.Formula.PTG
                 _jumpTable = null;
                 _chooseFuncOffset = -1;
             }
-
         }
+
         private AttrPtg(int options, int data, int[] jt, int chooseFuncOffset)
         {
             field_1_options = (byte)options;
@@ -115,7 +115,7 @@ namespace Npoi.Core.SS.Formula.PTG
         /// <param name="count">The count.</param>
         public static AttrPtg CreateSpace(SpaceType type, int count)
         {
-            int data = ((int) type) & 0x00FF | (count << 8) & 0x00FFFF;
+            int data = ((int)type) & 0x00FF | (count << 8) & 0x00FFFF;
             return new AttrPtg(space.Set(0), data, null, -1);
         }
 
@@ -137,6 +137,7 @@ namespace Npoi.Core.SS.Formula.PTG
         {
             return new AttrPtg(optiSkip.Set(0), dist, null, -1);
         }
+
         public static AttrPtg GetSumSingle()
         {
             return new AttrPtg(optiSum.Set(0), 0, null, -1);
@@ -167,7 +168,7 @@ namespace Npoi.Core.SS.Formula.PTG
         // lets hope no one uses this anymore
         public bool IsBaxcel
         {
-            get{return baxcel.IsSet(field_1_options);}
+            get { return baxcel.IsSet(field_1_options); }
         }
 
         // biff3&4 only  shouldn't happen anymore
@@ -175,6 +176,7 @@ namespace Npoi.Core.SS.Formula.PTG
         {
             get { return space.IsSet(field_1_options); }
         }
+
         public bool IsSkip
         {
             get { return optiSkip.IsSet(field_1_options); }
@@ -185,6 +187,7 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return field_2_data; }
             set { field_2_data = value; }
         }
+
         public int[] JumpTable
         {
             get
@@ -192,6 +195,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 return (int[])_jumpTable.Clone();
             }
         }
+
         public int ChooseFuncOffset
         {
             get
@@ -203,6 +207,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 return _chooseFuncOffset;
             }
         }
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder(64);
@@ -256,10 +261,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 }
                 out1.WriteShort(_chooseFuncOffset);
             }
-
-
         }
-
 
         public override int Size
         {
@@ -269,7 +271,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 {
                     return SIZE + (_jumpTable.Length + 1) * LittleEndianConsts.SHORT_SIZE;
                 }
-               return SIZE;
+                return SIZE;
             }
         }
 
@@ -292,7 +294,6 @@ namespace Npoi.Core.SS.Formula.PTG
                 return ToFormulaString() + "(" + operands[0] + ")";
             }
         }
-
 
         public int NumberOfOperands
         {

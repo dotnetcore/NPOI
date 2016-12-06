@@ -1,5 +1,4 @@
-﻿
-namespace Npoi.Core.HSSF.Record.Chart
+﻿namespace Npoi.Core.HSSF.Record.Chart
 {
     /// <summary>
     /// The Fbi2 record specifies the font information at the time the scalable font is added to the chart.
@@ -10,6 +9,7 @@ namespace Npoi.Core.HSSF.Record.Chart
     public class Fbi2Record : RowDataRecord
     {
         public const short sid = 0x1068;
+
         public Fbi2Record(RecordInputStream ris)
             : base(ris)
         {
@@ -22,6 +22,7 @@ namespace Npoi.Core.HSSF.Record.Chart
                 return base.DataSize;
             }
         }
+
         public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             base.Serialize(out1);

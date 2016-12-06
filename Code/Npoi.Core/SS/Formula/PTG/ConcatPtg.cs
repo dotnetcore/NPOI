@@ -19,11 +19,13 @@ namespace Npoi.Core.SS.Formula.PTG
 {
     using System;
     using System.Text;
+
     /**
      *
      * @author  andy
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     public class ConcatPtg : ValueOperatorPtg
     {
         public const byte sid = 0x08;

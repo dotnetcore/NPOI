@@ -15,11 +15,8 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.SS.Util;
 namespace Npoi.Core.SS.UserModel.Charts
 {
-
-
     /**
      * Represents scatter charts serie.
      * @author Roman Kashitsyn
@@ -27,17 +24,16 @@ namespace Npoi.Core.SS.UserModel.Charts
 
     public interface IScatterChartSeries<Tx, Ty> : IChartSeries
     {
-
         /**
       * @return data source used for X axis values
       */
+
         IChartDataSource<Tx> GetXValues();
 
         /**
          * @return data source used for Y axis values
          */
+
         IChartDataSource<Ty> GetYValues();
-
     }
-
 }

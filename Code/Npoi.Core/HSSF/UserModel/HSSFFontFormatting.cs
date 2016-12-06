@@ -24,13 +24,13 @@ namespace Npoi.Core.HSSF.UserModel
     /**
      * High level representation for Font Formatting component
      * of Conditional Formatting Settings
-     * 
+     *
      * @author Dmitriy Kumshayev
      *
      */
+
     public class HSSFFontFormatting : IFontFormatting
     {
-
         private FontFormatting fontFormatting;
 
         public HSSFFontFormatting(CFRuleRecord cfRuleRecord)
@@ -48,6 +48,7 @@ namespace Npoi.Core.HSSF.UserModel
          *
          * @return base or subscript option
          */
+
         public FontSuperScript EscapementType
         {
             get
@@ -63,6 +64,7 @@ namespace Npoi.Core.HSSF.UserModel
                         fontFormatting.EscapementType = value;
                         fontFormatting.IsEscapementTypeModified = true;
                         break;
+
                     case FontSuperScript.None:
                         fontFormatting.EscapementType = value;
                         fontFormatting.IsEscapementTypeModified = false;
@@ -74,13 +76,14 @@ namespace Npoi.Core.HSSF.UserModel
         /**
          * @return font color index
          */
+
         public short FontColorIndex
         {
             get
             {
                 return fontFormatting.FontColorIndex;
             }
-            set { fontFormatting.FontColorIndex=(value); }
+            set { fontFormatting.FontColorIndex = (value); }
         }
 
         /**
@@ -88,10 +91,11 @@ namespace Npoi.Core.HSSF.UserModel
          *
          * @return fontheight (in points/20); or -1 if not modified
          */
+
         public int FontHeight
         {
             get { return fontFormatting.FontHeight; }
-            set { fontFormatting.FontHeight=(value); }
+            set { fontFormatting.FontHeight = (value); }
         }
 
         /**
@@ -110,6 +114,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @return
          * @see org.apache.poi.hssf.record.cf.FontFormatting#GetRawRecord()
          */
+
         protected byte[] GetRawRecord()
         {
             return fontFormatting.GetRawRecord();
@@ -126,6 +131,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @see #U_SINGLE_ACCOUNTING
          * @see #U_DOUBLE_ACCOUNTING
          */
+
         public FontUnderlineType UnderlineType
         {
             get
@@ -148,7 +154,6 @@ namespace Npoi.Core.HSSF.UserModel
                         fontFormatting.UnderlineType = value;
                         IsUnderlineTypeModified = false;
                         break;
-
                 }
             }
         }
@@ -158,6 +163,7 @@ namespace Npoi.Core.HSSF.UserModel
          *
          * @return bold - whether the font Is bold or not
          */
+
         public bool IsBold
         {
             get
@@ -167,66 +173,74 @@ namespace Npoi.Core.HSSF.UserModel
         }
 
         /**
-         * @return true if escapement type was modified from default   
+         * @return true if escapement type was modified from default
          */
+
         public bool IsEscapementTypeModified
         {
-            get{
+            get
+            {
                 return fontFormatting.IsEscapementTypeModified;
             }
-            set { fontFormatting.IsEscapementTypeModified=value; }
+            set { fontFormatting.IsEscapementTypeModified = value; }
         }
 
         /**
-         * @return true if font cancellation was modified from default   
+         * @return true if font cancellation was modified from default
          */
+
         public bool IsFontCancellationModified
         {
-            get{
-            return fontFormatting.IsFontCancellationModified;
+            get
+            {
+                return fontFormatting.IsFontCancellationModified;
             }
-            set { fontFormatting.IsFontCancellationModified=(value); }
+            set { fontFormatting.IsFontCancellationModified = (value); }
         }
 
         /**
-         * @return true if font outline type was modified from default   
+         * @return true if font outline type was modified from default
          */
+
         public bool IsFontOutlineModified
         {
             get
             {
                 return fontFormatting.IsFontOutlineModified;
             }
-            set { fontFormatting.IsFontOutlineModified=(value); }
+            set { fontFormatting.IsFontOutlineModified = (value); }
         }
 
         /**
-         * @return true if font shadow type was modified from default   
+         * @return true if font shadow type was modified from default
          */
+
         public bool IsFontShadowModified
         {
             get
             {
                 return fontFormatting.IsFontShadowModified;
             }
-            set { fontFormatting.IsFontShadowModified=value; }
+            set { fontFormatting.IsFontShadowModified = value; }
         }
 
         /**
-         * @return true if font style was modified from default   
+         * @return true if font style was modified from default
          */
+
         public bool IsFontStyleModified
         {
             get
             {
                 return fontFormatting.IsFontStyleModified;
             }
-            set { fontFormatting.IsFontStyleModified=value; }
+            set { fontFormatting.IsFontStyleModified = value; }
         }
 
         /**
-         * @return true if font style was Set to <i>italic</i> 
+         * @return true if font style was Set to <i>italic</i>
          */
+
         public bool IsItalic
         {
             get { return fontFormatting.IsFontStyleModified && fontFormatting.IsItalic; }
@@ -235,6 +249,7 @@ namespace Npoi.Core.HSSF.UserModel
         /**
          * @return true if font outline Is on
          */
+
         public bool IsOutlineOn
         {
             get
@@ -243,33 +258,34 @@ namespace Npoi.Core.HSSF.UserModel
             }
             set
             {
-                fontFormatting.IsOutlineOn=value;
-                fontFormatting.IsFontOutlineModified=value;
+                fontFormatting.IsOutlineOn = value;
+                fontFormatting.IsFontOutlineModified = value;
             }
         }
 
         /**
          * @return true if font shadow Is on
          */
+
         public bool IsShadowOn
         {
-            get{return fontFormatting.IsFontOutlineModified && fontFormatting.IsShadowOn;}
+            get { return fontFormatting.IsFontOutlineModified && fontFormatting.IsShadowOn; }
             set
             {
-                fontFormatting.IsShadowOn=value;
-                fontFormatting.IsFontShadowModified=value;
+                fontFormatting.IsShadowOn = value;
+                fontFormatting.IsFontShadowModified = value;
             }
         }
 
         /**
          * @return true if font strikeout Is on
          */
+
         public bool IsStrikeout
         {
             get
             {
                 return fontFormatting.IsFontCancellationModified && fontFormatting.IsStruckout;
-
             }
             set
             {
@@ -279,52 +295,50 @@ namespace Npoi.Core.HSSF.UserModel
         }
 
         /**
-         * @return true if font Underline type was modified from default   
+         * @return true if font Underline type was modified from default
          */
+
         public bool IsUnderlineTypeModified
         {
-            get{return fontFormatting.IsUnderlineTypeModified;}
-            set { fontFormatting.IsUnderlineTypeModified=value; }
+            get { return fontFormatting.IsUnderlineTypeModified; }
+            set { fontFormatting.IsUnderlineTypeModified = value; }
         }
 
         /**
-         * @return true if font weight was modified from default   
+         * @return true if font weight was modified from default
          */
+
         public bool IsFontWeightModified
         {
-            get{
+            get
+            {
                 return fontFormatting.IsFontWeightModified;
             }
-
         }
 
         /**
          * Set font style options.
-         * 
-         * @param italic - if true, Set posture style to italic, otherwise to normal 
+         *
+         * @param italic - if true, Set posture style to italic, otherwise to normal
          * @param bold- if true, Set font weight to bold, otherwise to normal
          */
 
         public void SetFontStyle(bool italic, bool bold)
         {
             bool modified = italic || bold;
-            fontFormatting.IsItalic=italic;
-            fontFormatting.IsBold=bold;
-            fontFormatting.IsFontStyleModified=modified;
-            fontFormatting.IsFontWeightModified=modified;
+            fontFormatting.IsItalic = italic;
+            fontFormatting.IsBold = bold;
+            fontFormatting.IsFontStyleModified = modified;
+            fontFormatting.IsFontWeightModified = modified;
         }
 
         /**
          * Set font style options to default values (non-italic, non-bold)
          */
+
         public void ResetFontStyle()
         {
             SetFontStyle(false, false);
         }
-
- 
-
-
-
     }
 }

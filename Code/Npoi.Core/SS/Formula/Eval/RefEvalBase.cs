@@ -1,5 +1,5 @@
-﻿
-using System;
+﻿using System;
+
 namespace Npoi.Core.SS.Formula.Eval
 {
     public abstract class RefEvalBase : RefEval
@@ -20,6 +20,7 @@ namespace Npoi.Core.SS.Formula.Eval
             _rowIndex = rowIndex;
             _columnIndex = columnIndex;
         }
+
         protected RefEvalBase(int firstSheetIndex, int lastSheetIndex, int rowIndex, int columnIndex)
         {
             _firstSheetIndex = firstSheetIndex;
@@ -27,6 +28,7 @@ namespace Npoi.Core.SS.Formula.Eval
             _rowIndex = rowIndex;
             _columnIndex = columnIndex;
         }
+
         protected RefEvalBase(int onlySheetIndex, int rowIndex, int columnIndex)
             : this(onlySheetIndex, onlySheetIndex, rowIndex, columnIndex)
         {
@@ -40,6 +42,7 @@ namespace Npoi.Core.SS.Formula.Eval
                 return _lastSheetIndex - _firstSheetIndex + 1;
             }
         }
+
         public int FirstSheetIndex
         {
             get
@@ -47,6 +50,7 @@ namespace Npoi.Core.SS.Formula.Eval
                 return _firstSheetIndex;
             }
         }
+
         public int LastSheetIndex
         {
             get
@@ -54,6 +58,7 @@ namespace Npoi.Core.SS.Formula.Eval
                 return _lastSheetIndex;
             }
         }
+
         public int Row
         {
             get
@@ -61,6 +66,7 @@ namespace Npoi.Core.SS.Formula.Eval
                 return _rowIndex;
             }
         }
+
         public int Column
         {
             get
@@ -68,6 +74,7 @@ namespace Npoi.Core.SS.Formula.Eval
                 return _columnIndex;
             }
         }
+
         public abstract ValueEval GetInnerValueEval(int sheetIndex);
 
         public abstract AreaEval Offset(int relFirstRowIx, int relLastRowIx, int relFirstColIx, int relLastColIx);

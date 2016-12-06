@@ -18,6 +18,7 @@
  * Created on May 15, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     using Npoi.Core.SS.Formula.Eval;
@@ -26,6 +27,7 @@ namespace Npoi.Core.SS.Formula.Functions
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
      *
      */
+
     public class Isref : Fixed1ArgFunction
     {
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0)

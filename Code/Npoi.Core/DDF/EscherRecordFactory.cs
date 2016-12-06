@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,7 +17,6 @@
 
 namespace Npoi.Core.DDF
 {
-
     /// <summary>
     /// The escher record factory interface allows for the creation of escher
     /// records from a pointer into a data array.

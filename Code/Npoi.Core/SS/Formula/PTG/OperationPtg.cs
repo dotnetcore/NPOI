@@ -18,10 +18,12 @@
 namespace Npoi.Core.SS.Formula.PTG
 {
     using System;
+
     /**
      * defines a Ptg that is an operation instead of an operand
      * @author  andy
      */
+
     [Serializable]
     public abstract class OperationPtg : Ptg
     {
@@ -31,10 +33,11 @@ namespace Npoi.Core.SS.Formula.PTG
 
         /**
          *  returns a string representation of the operations
-         *  the Length of the input array should equal the number returned by 
+         *  the Length of the input array should equal the number returned by
          *  @see #GetNumberOfOperands
-         *  
+         *
          */
+
         public abstract String ToFormulaString(String[] operands);
 
         /**

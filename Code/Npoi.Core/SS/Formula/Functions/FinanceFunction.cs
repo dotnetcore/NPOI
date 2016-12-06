@@ -17,15 +17,15 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
-
+    using System;
 
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
      * Super class for all Evals for financial function evaluation.
-     * 
+     *
      */
+
     public abstract class FinanceFunction : Function3Arg, Function4Arg
     {
         private static ValueEval DEFAULT_ARG3 = NumberEval.ZERO;
@@ -33,18 +33,20 @@ namespace Npoi.Core.SS.Formula.Functions
 
         protected FinanceFunction()
         {
-
         }
+
         public ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1,
         ValueEval arg2)
         {
             return Evaluate(srcRowIndex, srcColumnIndex, arg0, arg1, arg2, DEFAULT_ARG3);
         }
+
         public ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1,
                 ValueEval arg2, ValueEval arg3)
         {
             return Evaluate(srcRowIndex, srcColumnIndex, arg0, arg1, arg2, arg3, DEFAULT_ARG4);
         }
+
         public ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1,
                 ValueEval arg2, ValueEval arg3, ValueEval arg4)
         {
@@ -65,14 +67,17 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return new NumberEval(result);
         }
+
         public ValueEval Evaluate(ValueEval[] args, int srcRowIndex, int srcColumnIndex)
         {
             switch (args.Length)
             {
                 case 3:
                     return Evaluate(srcRowIndex, srcColumnIndex, args[0], args[1], args[2], DEFAULT_ARG3, DEFAULT_ARG4);
+
                 case 4:
                     return Evaluate(srcRowIndex, srcColumnIndex, args[0], args[1], args[2], args[3], DEFAULT_ARG4);
+
                 case 5:
                     return Evaluate(srcRowIndex, srcColumnIndex, args[0], args[1], args[2], args[3], args[4]);
             }
@@ -93,11 +98,14 @@ namespace Npoi.Core.SS.Formula.Functions
                 case 5:
                     arg4 = ds[4];
                     break;
+
                 case 4:
                     arg3 = ds[3];
                     break;
+
                 case 3:
                     break;
+
                 default:
                     throw new ArgumentException("Wrong number of arguments");
             }

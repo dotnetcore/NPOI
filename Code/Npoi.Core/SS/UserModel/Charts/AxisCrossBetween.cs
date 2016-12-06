@@ -17,12 +17,12 @@
 
 namespace Npoi.Core.SS.UserModel.Charts
 {
-
     /**
      *  Specifies the possible crossing states of an axis.
      *
      * @author Roman Kashitsyn
      */
+
     public enum AxisCrossBetween
     {
         /**
@@ -36,6 +36,4 @@ namespace Npoi.Core.SS.UserModel.Charts
          */
         MidpointCategory
     }
-
-
 }

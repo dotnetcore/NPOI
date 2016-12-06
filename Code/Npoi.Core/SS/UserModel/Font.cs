@@ -43,9 +43,8 @@ namespace Npoi.Core.SS.UserModel
         DoubleAccounting = 0x22
     }
 
-    public enum FontSuperScript:short
-    { 
-    
+    public enum FontSuperScript : short
+    {
         /**
          * no type Offsetting (not super or subscript)
          */
@@ -65,7 +64,7 @@ namespace Npoi.Core.SS.UserModel
         Sub = 2,
     }
 
-    public enum FontColor:short
+    public enum FontColor : short
     {
         /// <summary>
         /// Allow accessing the Initial value.
@@ -85,7 +84,7 @@ namespace Npoi.Core.SS.UserModel
         Red = 0xa,
     }
 
-    public enum FontBoldWeight:short
+    public enum FontBoldWeight : short
     {
         /// <summary>
         /// Allow accessing the Initial value.
@@ -105,10 +104,8 @@ namespace Npoi.Core.SS.UserModel
         Bold = 0x2bc,
     }
 
-
     public interface IFont
     {
-
         /**
          * get the name for the font (i.e. Arial)
          * @return String representing the name of the font to use
@@ -140,7 +137,6 @@ namespace Npoi.Core.SS.UserModel
 
         bool IsItalic { get; set; }
 
-
         /**
          * get whether to use a strikeout horizontal line through the text or not
          * @return strikeout or not
@@ -156,7 +152,6 @@ namespace Npoi.Core.SS.UserModel
          * @see Npoi.Core.HSSF.usermodel.HSSFPalette#GetColor(short)
          */
         short Color { get; set; }
-
 
         /**
          * get normal,super or subscript.
@@ -183,7 +178,7 @@ namespace Npoi.Core.SS.UserModel
 
         /**
          * get the index within the XSSFWorkbook (sequence within the collection of Font objects)
-         * 
+         *
          * @return unique index number of the underlying record this Font represents (probably you don't care
          *  unless you're comparing which one is which)
          */

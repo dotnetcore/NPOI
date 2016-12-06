@@ -15,16 +15,14 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
-    using System.Collections;
-
     using Npoi.Core.HSSF.Model;
     using Npoi.Core.HSSF.Record;
-    using System.Collections.Generic;
     using Npoi.Core.SS.UserModel;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
 
     /*
      * Identifies both built-in and user defined formats within a workbook.<p/>
@@ -41,6 +39,7 @@ namespace Npoi.Core.HSSF.UserModel
      * @author  Andrew C. Oliver (acoliver at apache dot org)
      * @author  Shawn M. Laubach (slaubach at apache dot org)
      */
+
     [Serializable]
     public class HSSFDataFormat : IDataFormat
     {
@@ -77,7 +76,6 @@ namespace Npoi.Core.HSSF.UserModel
                 formats[r.IndexCode] = r.FormatString;
             }
         }
-
 
         public static List<string> GetBuiltinFormats()
         {
@@ -220,10 +218,12 @@ namespace Npoi.Core.HSSF.UserModel
                 return builtinFormats.Count;
             }
         }
+
         /**
 	     * Ensures that the formats list can hold entries
 	     *  up to and including the entry with this index
 	     */
+
         private void EnsureFormatsSize(int index)
         {
             if (formats.Count <= index)

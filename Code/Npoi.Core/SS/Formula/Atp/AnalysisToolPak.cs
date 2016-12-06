@@ -15,18 +15,17 @@
    limitations under the License.
 ==================================================================== */
 
+using Npoi.Core.SS.Formula.Function;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Npoi.Core.SS.Formula.Function;
 
 namespace Npoi.Core.SS.Formula.Atp
 {
-    using System;
-    using System.Collections;
+    using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.Formula.Functions;
-    using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.Udf;
+    using System;
 
     public class NotImplemented : FreeRefFunction
     {
@@ -197,6 +196,7 @@ namespace Npoi.Core.SS.Formula.Atp
          * @return an array of supported functions
          * @since 3.8 beta6
          */
+
         public static ReadOnlyCollection<String> GetSupportedFunctionNames()
         {
             AnalysisToolPak inst = (AnalysisToolPak)instance;
@@ -218,6 +218,7 @@ namespace Npoi.Core.SS.Formula.Atp
          * @return an array of not supported functions
          * @since 3.8 beta6
          */
+
         public static ReadOnlyCollection<String> GetNotSupportedFunctionNames()
         {
             AnalysisToolPak inst = (AnalysisToolPak)instance;
@@ -241,6 +242,7 @@ namespace Npoi.Core.SS.Formula.Atp
          * @throws ArgumentException if the function is unknown or already  registered.
          * @since 3.8 beta6
          */
+
         public static void RegisterFunction(String name, FreeRefFunction func)
         {
             AnalysisToolPak inst = (AnalysisToolPak)instance;

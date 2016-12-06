@@ -22,12 +22,12 @@ namespace Npoi.Core.HSSF.UserModel
 
     /**
      * HSSF wrapper for a sheet under evaluation
-     * 
+     *
      * @author Josh Micich
      */
+
     public class HSSFEvaluationSheet : IEvaluationSheet
     {
-
         private HSSFSheet _hs;
 
         public HSSFEvaluationSheet(HSSFSheet hs)
@@ -42,6 +42,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return _hs;
             }
         }
+
         public IEvaluationCell GetCell(int rowIndex, int columnIndex)
         {
             HSSFRow row = (HSSFRow)_hs.GetRow(rowIndex);

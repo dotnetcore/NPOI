@@ -16,20 +16,21 @@
 ==================================================================== */
 
 using Npoi.Core.HSSF.Model;
-using System.Diagnostics;
 using Npoi.Core.HSSF.Record.Chart;
+using System.Diagnostics;
 
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 {
     /// <summary>
     /// SERIESAXIS = Axis Begin [CatSerRange] AXS [CRTMLFRT] End
     /// </summary>
-    public class SeriesAxisAggregate: ChartRecordAggregate
+    public class SeriesAxisAggregate : ChartRecordAggregate
     {
         private AxisRecord axis;
         private CatSerRangeRecord catSerRange;
         private AXSAggregate axs;
         private CrtMlFrtAggregate crtmlfrt;
+
         public SeriesAxisAggregate(RecordStream rs, ChartRecordAggregate container)
             : base("SERIESAXIS", container)
         {

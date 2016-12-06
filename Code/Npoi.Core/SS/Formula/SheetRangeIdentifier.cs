@@ -29,6 +29,7 @@ namespace Npoi.Core.SS.Formula
         {
             _lastSheetIdentifier = lastSheetIdentifier;
         }
+
         public NameIdentifier FirstSheetIdentifier
         {
             get
@@ -36,6 +37,7 @@ namespace Npoi.Core.SS.Formula
                 return base.SheetId;
             }
         }
+
         public NameIdentifier LastSheetIdentifier
         {
             get
@@ -43,6 +45,7 @@ namespace Npoi.Core.SS.Formula
                 return _lastSheetIdentifier;
             }
         }
+
         protected override void AsFormulaString(StringBuilder sb)
         {
             base.AsFormulaString(sb);

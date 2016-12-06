@@ -15,9 +15,9 @@
    limitations under the License.
 ==================================================================== */
 
-using System.IO;
-using System;
 using Npoi.Core.Util;
+using System;
+using System.IO;
 
 namespace Npoi.Core.POIFS.NIO
 {
@@ -28,16 +28,18 @@ namespace Npoi.Core.POIFS.NIO
     {
         private byte[] buffer;
         private long size;
-        
+
         public ByteArrayBackedDataSource(byte[] data, int size)
         {
             this.buffer = data;
             this.size = size;
         }
+
         public ByteArrayBackedDataSource(byte[] data)
             : this(data, data.Length)
         {
         }
+
         public override ByteBuffer Read(int length, long position)
         {
             if (position >= size)
@@ -50,9 +52,7 @@ namespace Npoi.Core.POIFS.NIO
 
             int toRead = (int)Math.Min(length, size - position);
             return ByteBuffer.CreateBuffer(buffer, (int)position, toRead);
-
         }
-
 
         public override void Write(ByteBuffer src, long position)
         {

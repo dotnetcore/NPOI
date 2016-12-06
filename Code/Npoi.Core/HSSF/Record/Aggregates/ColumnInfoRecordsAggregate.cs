@@ -17,31 +17,32 @@
 
 namespace Npoi.Core.HSSF.Record.Aggregates
 {
-
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
     using System;
     using System.Collections;
-    using Npoi.Core.HSSF.Record;
-    using Npoi.Core.HSSF.Model;
-    using System.Globalization;
     using System.Collections.Generic;
-
+    using System.Globalization;
 
     /// <summary>
     /// @author Glen Stampoultzis
     /// </summary>
     public class ColumnInfoRecordsAggregate : RecordAggregate
     {
-        private class CIRComparator: IComparer<object>
+        private class CIRComparator : IComparer<object>
         {
             public static IComparer<object> instance = new CIRComparator();
+
             private CIRComparator()
             {
                 // enforce singleton
             }
+
             public int Compare(Object a, Object b)
             {
                 return CompareColInfos((ColumnInfoRecord)a, (ColumnInfoRecord)b);
             }
+
             public static int CompareColInfos(ColumnInfoRecord a, ColumnInfoRecord b)
             {
                 return a.FirstColumn - b.FirstColumn;
@@ -49,7 +50,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         }
 
         //    int     size     = 0;
-        List<object> records = null;
+        private List<object> records = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ColumnInfoRecordsAggregate"/> class.
@@ -58,11 +59,12 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         {
             records = new List<object>();
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ColumnInfoRecordsAggregate"/> class.
         /// </summary>
         /// <param name="rs">The rs.</param>
-        public ColumnInfoRecordsAggregate(RecordStream rs): this()
+        public ColumnInfoRecordsAggregate(RecordStream rs) : this()
         {
             bool isInOrder = true;
             ColumnInfoRecord cirPrev = null;
@@ -85,11 +87,14 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 records.Sort(CIRComparator.instance);
             }
         }
+
         /** It's an aggregate... just made something up */
+
         public override short Sid
         {
             get { return -1012; }
         }
+
         /// <summary>
         /// Gets the num columns.
         /// </summary>
@@ -101,6 +106,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 return records.Count;
             }
         }
+
         /// <summary>
         /// Gets the size of the record.
         /// </summary>
@@ -110,7 +116,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             get
             {
                 int size = 0;
-                for (IEnumerator iterator = records.GetEnumerator(); iterator.MoveNext(); )
+                for (IEnumerator iterator = records.GetEnumerator(); iterator.MoveNext();)
                     size += ((ColumnInfoRecord)iterator.Current).RecordSize;
                 return size;
             }
@@ -124,6 +130,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /**
          * Performs a deep Clone of the record
          */
+
         public Object Clone()
         {
             ColumnInfoRecordsAggregate rec = new ColumnInfoRecordsAggregate();
@@ -131,7 +138,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             {
                 ColumnInfoRecord ci = (ColumnInfoRecord)records[k];
                 ci = (ColumnInfoRecord)ci.Clone();
-                rec.records.Add(ci);    
+                rec.records.Add(ci);
             }
             return rec;
         }
@@ -176,6 +183,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
             return pos - offset;
         }
+
         /// <summary>
         /// Visit each of the atomic BIFF records contained in this {@link RecordAggregate} in the order
         /// that they should be written to file.  Implementors may or may not return the actual
@@ -204,6 +212,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 cirPrev = cir;
             }
         }
+
         /// <summary>
         /// Finds the start of column outline group.
         /// </summary>
@@ -298,7 +307,6 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
             return nextColInfo.IsCollapsed;
         }
-
 
         /// <summary>
         /// Determines whether [is column group hidden by parent] [the specified idx].
@@ -408,6 +416,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /**
          * Sets all non null fields into the <c>ci</c> parameter.
          */
+
         private static void SetColumnInfoFields(ColumnInfoRecord ci, short? xfStyle, int? width,
                     int? level, Boolean? hidden, Boolean? collapsed)
         {
@@ -432,6 +441,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 ci.IsCollapsed = Convert.ToBoolean(collapsed, CultureInfo.InvariantCulture);
             }
         }
+
         /// <summary>
         /// Attempts to merge the col info record at the specified index
         /// with either or both of its neighbours
@@ -462,10 +472,12 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 }
             }
         }
+
         /**
     * merges two column info records (if they are adjacent and have the same formatting, etc)
     * @return <c>false</c> if the two column records could not be merged
     */
+
         private static bool MergeColInfoRecords(ColumnInfoRecord ciA, ColumnInfoRecord ciB)
         {
             if (ciA.IsAdjacentBefore(ciB) && ciA.FormatMatches(ciB))
@@ -507,6 +519,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
             return columnInfo.LastColumn;
         }
+
         /// <summary>
         /// Sets the column.
         /// </summary>
@@ -602,18 +615,19 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
                 ciStart.LastColumn = (targetColumnIx - 1);
 
-                ciMid.FirstColumn=(targetColumnIx);
-                ciMid.LastColumn=(targetColumnIx);
+                ciMid.FirstColumn = (targetColumnIx);
+                ciMid.LastColumn = (targetColumnIx);
                 SetColumnInfoFields(ciMid, xfIndex, width, level, hidden, collapsed);
                 InsertColumn(++k, ciMid);
 
                 ciEnd.FirstColumn = (targetColumnIx + 1);
                 ciEnd.LastColumn = (lastcolumn);
                 InsertColumn(++k, ciEnd);
-                // no need to attemptMergeColInfoRecords because we 
+                // no need to attemptMergeColInfoRecords because we
                 // know both on each side are different
             }
         }
+
         private ColumnInfoRecord CopyColInfo(ColumnInfoRecord ci)
         {
             return (ColumnInfoRecord)ci.Clone();
@@ -622,6 +636,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /**
          * Sets all non null fields into the <c>ci</c> parameter.
          */
+
         private void SetColumnInfoFields(ColumnInfoRecord ci, short xfStyle, short width, int level, bool hidden, bool collapsed)
         {
             ci.XFIndex = (xfStyle);
@@ -665,7 +680,6 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /// <param name="indent">if true the Group will be indented by one level;if false indenting will be Removed by one level.</param>
         public void GroupColumnRange(int fromColumnIx, int toColumnIx, bool indent)
         {
-
             int colInfoSearchStartIdx = 0; // optimization to speed up the search for col infos
             for (int i = fromColumnIx; i <= toColumnIx; i++)
             {
@@ -688,8 +702,8 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 }
                 SetColumn(i, null, null, level, null, null);
             }
-
         }
+
         /// <summary>
         /// Finds the ColumnInfoRecord
         ///  which contains the specified columnIndex
@@ -711,6 +725,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
             return null;
         }
+
         private int FindColInfoIdx(int columnIx, int fromColInfoIdx)
         {
             if (columnIx < 0)
@@ -736,6 +751,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
             return -1;
         }
+
         /// <summary>
         /// Gets the max outline level.
         /// </summary>

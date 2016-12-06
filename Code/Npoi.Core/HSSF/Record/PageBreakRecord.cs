@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,44 +17,46 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Collections;
-    using System.Text;
-    using Npoi.Core.Util;
     using System.Collections.Generic;
-
+    using System.Text;
 
     /**
      * Record that Contains the functionality page _breaks (horizontal and vertical)
-     * 
+     *
      * The other two classes just specifically Set the SIDS for record creation.
-     * 
+     *
      * REFERENCE:  Microsoft Excel SDK page 322 and 420
-     * 
+     *
      * @see HorizontalPageBreakRecord
      * @see VerticalPageBreakRecord
      * @author Danny Mui (dmui at apache dot org)
      */
+
     public class PageBreakRecord : StandardRecord
     {
         private const bool IS_EMPTY_RECORD_WRITTEN = false;
         private static readonly int[] EMPTY_INT_ARRAY = { };
 
         public short sid;
+
         // fix warning CS0169 "never used": private short numBreaks;
         private IList<Break> _breaks;
+
         private Dictionary<object, object> _breakMap;
 
         /**
-         * Since both records store 2byte integers (short), no point in 
+         * Since both records store 2byte integers (short), no point in
          * differentiating it in the records.
-         * 
+         *
          * The subs (rows or columns, don't seem to be able to Set but excel Sets
          * them automatically)
          */
+
         public class Break
         {
-
             public const int ENCODED_SIZE = 6;
             public int main;
             public int subFrom;
@@ -137,6 +138,7 @@ namespace Npoi.Core.HSSF.Record
                 _breaks[i].Serialize(out1);
             }
         }
+
         protected override int DataSize
         {
             get
@@ -200,6 +202,7 @@ namespace Npoi.Core.HSSF.Record
          * @param subFrom No user-interface to Set (defaults to minumum, 0)
          * @param subTo No user-interface to Set
          */
+
         public void AddBreak(int main, int subFrom, int subTo)
         {
             //if (_breaks == null)
@@ -227,6 +230,7 @@ namespace Npoi.Core.HSSF.Record
          * Removes the break indicated by the parameter
          * @param main (zero-based)
          */
+
         public void RemoveBreak(int main)
         {
             int rowKey = main;
@@ -237,7 +241,8 @@ namespace Npoi.Core.HSSF.Record
 
         public override int RecordSize
         {
-            get {
+            get
+            {
                 int nBreaks = _breaks.Count;
                 if (!IS_EMPTY_RECORD_WRITTEN && nBreaks < 1)
                 {
@@ -246,6 +251,7 @@ namespace Npoi.Core.HSSF.Record
                 return 4 + DataSize;
             }
         }
+
         public int NumBreaks
         {
             get
@@ -253,18 +259,21 @@ namespace Npoi.Core.HSSF.Record
                 return _breaks.Count;
             }
         }
+
         public bool IsEmpty
         {
             get
             {
-                return _breaks.Count==0;
+                return _breaks.Count == 0;
             }
         }
+
         /**
          * Retrieves the region at the row/column indicated
          * @param main FIXME: Document this!
          * @return The Break or null if no break exists at the row/col specified.
          */
+
         public Break GetBreak(int main)
         {
             //if (_breakMap == null)
@@ -272,6 +281,7 @@ namespace Npoi.Core.HSSF.Record
             //int rowKey = (int)main;
             return (Break)_breakMap[main];
         }
+
         public int[] GetBreaks()
         {
             int count = NumBreaks;

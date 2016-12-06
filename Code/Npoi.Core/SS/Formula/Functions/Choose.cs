@@ -22,9 +22,9 @@ namespace Npoi.Core.SS.Formula.Functions
     /**
      * @author Josh Micich
      */
+
     public class Choose : Function
     {
-
         public ValueEval Evaluate(ValueEval[] args, int srcRowIndex, int srcColumnIndex)
         {
             if (args.Length < 2)
@@ -59,4 +59,3 @@ namespace Npoi.Core.SS.Formula.Functions
         }
     }
 }
-

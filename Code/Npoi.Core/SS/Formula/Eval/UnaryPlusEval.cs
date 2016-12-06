@@ -18,17 +18,19 @@
 namespace Npoi.Core.SS.Formula.Eval
 {
     using Npoi.Core.SS.Formula.Functions;
+
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     *  
+     *
      */
+
     public class UnaryPlusEval : Fixed1ArgFunction
     {
-
         public static Function instance = new UnaryPlusEval();
-    	
-	    private UnaryPlusEval() {
-	    }
+
+        private UnaryPlusEval()
+        {
+        }
 
         public override ValueEval Evaluate(int srcCellRow, int srcCellCol, ValueEval arg0)
         {

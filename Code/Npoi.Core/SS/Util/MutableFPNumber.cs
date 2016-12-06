@@ -17,12 +17,11 @@
 
 namespace Npoi.Core.SS.Util
 {
-    using System;
     using Npoi.Core.Util;
+    using System;
+
     public class MutableFPNumber
     {
-
-
         // TODO - what about values between (10<sup>14</sup>-0.5) and (10<sup>14</sup>-0.05) ?
         /**
          * The minimum value in 'Base-10 normalised form'.<br/>
@@ -35,13 +34,16 @@ namespace Npoi.Core.SS.Util
          *
          *  This frac value rounds to '1' followed by fourteen zeros with an incremented decimal exponent
          */
+
         //private static BigInteger BI_MIN_BASE = new BigInteger("0B5E620F47FFFE666", 16);
         private static readonly BigInteger BI_MIN_BASE = new BigInteger(new int[] { -1243209484, 2147477094 }, 1);
+
         /**
          * For 'Base-10 normalised form'<br/>
          * The maximum {@link #_frac} value when {@link #_binaryExponent} == 49
          * (10^15-0.5) * 2^14
          */
+
         //private static BigInteger BI_MAX_BASE = new BigInteger("0E35FA9319FFFE000", 16);
         private static readonly BigInteger BI_MAX_BASE = new BigInteger(new int[] { -480270031, -1610620928 }, 1);
 
@@ -56,17 +58,18 @@ namespace Npoi.Core.SS.Util
         private const int MIN_PRECISION = 72;
         private BigInteger _significand;
         private int _binaryExponent;
+
         public MutableFPNumber(BigInteger frac, int binaryExponent)
         {
             _significand = frac;
             _binaryExponent = binaryExponent;
         }
 
-
         public MutableFPNumber Copy()
         {
             return new MutableFPNumber(_significand, _binaryExponent);
         }
+
         public void Normalise64bit()
         {
             int oldBitLen = _significand.BitLength();
@@ -83,7 +86,7 @@ namespace Npoi.Core.SS.Util
             if (sc > 32)
             {
                 int highShift = (sc - 1) & 0xFFFFE0;
-                _significand = _significand>>(highShift);
+                _significand = _significand >> (highShift);
                 sc -= highShift;
                 oldBitLen -= highShift;
             }
@@ -97,8 +100,9 @@ namespace Npoi.Core.SS.Util
                 sc++;
                 _binaryExponent++;
             }
-            _significand = _significand>>(sc);
+            _significand = _significand >> (sc);
         }
+
         public int Get64BitNormalisedExponent()
         {
             //return _binaryExponent + _significand.BitCount() - C_64;
@@ -111,20 +115,23 @@ namespace Npoi.Core.SS.Util
             //return _significand<(BI_MAX_BASE<<(sc));
             return _significand.CompareTo(BI_MAX_BASE.ShiftLeft(sc)) < 0;
         }
+
         public bool IsAboveMinRep()
         {
             int sc = _significand.BitLength() - C_64;
             return _significand.CompareTo(BI_MIN_BASE.ShiftLeft(sc)) > 0;
             //return _significand>(BI_MIN_BASE<<(sc));
         }
+
         public NormalisedDecimal CreateNormalisedDecimal(int pow10)
         {
             // missingUnderBits is (0..3)
             int missingUnderBits = _binaryExponent - 39;
             int fracPart = (_significand.IntValue() << missingUnderBits) & 0xFFFF80;
-            long wholePart = (_significand>>(C_64 - _binaryExponent - 1)).LongValue();
+            long wholePart = (_significand >> (C_64 - _binaryExponent - 1)).LongValue();
             return new NormalisedDecimal(wholePart, fracPart, pow10);
         }
+
         public void multiplyByPowerOfTen(int pow10)
         {
             TenPower tp = TenPower.GetInstance(Math.Abs(pow10));
@@ -137,9 +144,10 @@ namespace Npoi.Core.SS.Util
                 mulShift(tp._multiplicand, tp._multiplierShift);
             }
         }
+
         private void mulShift(BigInteger multiplicand, int multiplierShift)
         {
-            _significand = _significand*multiplicand;
+            _significand = _significand * multiplicand;
             _binaryExponent += multiplierShift;
             // check for too much precision
             int sc = (_significand.BitLength() - MIN_PRECISION) & unchecked((int)0xFFFFFFE0);
@@ -147,7 +155,7 @@ namespace Npoi.Core.SS.Util
             if (sc > 0)
             {
                 // no need to round because we have at least 8 bits of extra precision
-                _significand = _significand>>(sc);
+                _significand = _significand >> (sc);
                 _binaryExponent += sc;
             }
         }
@@ -167,22 +175,25 @@ namespace Npoi.Core.SS.Util
                 }
                 HALF_BITS = bis;
             }
+
             /**
              * @param nBits number of bits to shift right
              */
+
             public static BigInteger Round(BigInteger bi, int nBits)
             {
                 if (nBits < 1)
                 {
                     return bi;
                 }
-                return bi+(HALF_BITS[nBits]);
+                return bi + (HALF_BITS[nBits]);
             }
         }
 
         /**
          * Holds values for quick multiplication and division by 10
          */
+
         private class TenPower
         {
             private static readonly BigInteger FIVE = new BigInteger(5L);// new BigInteger("5",10);
@@ -201,7 +212,7 @@ namespace Npoi.Core.SS.Util
                 int px = 80 + bitsDueToFiveFactors;
                 BigInteger fx = (BigInteger.One << px) / (fivePowIndex);
                 int adj = fx.BitLength() - 80;
-                _divisor = fx>>(adj);
+                _divisor = fx >> (adj);
                 bitsDueToFiveFactors -= adj;
 
                 _divisorShift = -(bitsDueToFiveFactors + index + 80);
@@ -209,7 +220,7 @@ namespace Npoi.Core.SS.Util
                 if (sc > 0)
                 {
                     _multiplierShift = index + sc;
-                    _multiplicand = fivePowIndex>>(sc);
+                    _multiplicand = fivePowIndex >> (sc);
                 }
                 else
                 {
@@ -236,4 +247,3 @@ namespace Npoi.Core.SS.Util
         }
     }
 }
-

@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,9 +17,9 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Title:        Window1 Record
@@ -39,24 +38,32 @@ namespace Npoi.Core.HSSF.Record
 
         // our variable names stolen from old TV Sets.
         private short field_1_h_hold;                  // horizontal position
+
         private short field_2_v_hold;                  // vertical position
         private short field_3_width;
         private short field_4_height;
         private short field_5_options;
+
         static private BitField hidden =
             BitFieldFactory.GetInstance(0x01);                                        // Is this window Is hidden
+
         static private BitField iconic =
             BitFieldFactory.GetInstance(0x02);                                        // Is this window Is an icon
+
         static private BitField reserved = BitFieldFactory.GetInstance(0x04);   // reserved
+
         static private BitField hscroll =
             BitFieldFactory.GetInstance(0x08);                                        // Display horizontal scrollbar
+
         static private BitField vscroll =
             BitFieldFactory.GetInstance(0x10);                                        // Display vertical scrollbar
+
         static private BitField tabs =
             BitFieldFactory.GetInstance(0x20);                                        // Display tabs at the bottom
 
         // all the rest are "reserved"
         private int field_6_active_sheet;
+
         private int field_7_first_visible_tab;
         private short field_8_num_selected_tabs;
         private short field_9_tab_width_ratio;
@@ -170,7 +177,7 @@ namespace Npoi.Core.HSSF.Record
 
         public bool DisplayHorizontalScrollbar
         {
-            get{return hscroll.IsSet(field_5_options);}
+            get { return hscroll.IsSet(field_5_options); }
             set { field_5_options = hscroll.SetShortBoolean(field_5_options, value); }
         }
 
@@ -198,19 +205,21 @@ namespace Npoi.Core.HSSF.Record
 
         // end options bitfields
 
-
         /**
-         * @return the index of the currently Displayed sheet 
+         * @return the index of the currently Displayed sheet
          */
+
         public int ActiveSheetIndex
         {
             get { return field_6_active_sheet; }
             set { field_6_active_sheet = value; }
         }
+
         /**
          * deprecated May 2008
-         * @deprecated - Misleading name - use GetActiveSheetIndex() 
+         * @deprecated - Misleading name - use GetActiveSheetIndex()
          */
+
         [Obsolete]
         public short SelectedTab
         {
@@ -219,23 +228,26 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /**
-         * @return the first visible sheet in the worksheet tab-bar. 
+         * @return the first visible sheet in the worksheet tab-bar.
          * I.E. the scroll position of the tab-bar.
          */
+
         public int FirstVisibleTab
         {
             get { return field_7_first_visible_tab; }
             set { field_7_first_visible_tab = value; }
         }
+
         /**
          * deprecated May 2008
-         * @deprecated - Misleading name - use GetFirstVisibleTab() 
+         * @deprecated - Misleading name - use GetFirstVisibleTab()
          */
+
         [Obsolete]
         public short DisplayedTab
         {
             get { return (short)FirstVisibleTab; }
-            set { FirstVisibleTab=value; }
+            set { FirstVisibleTab = value; }
         }
 
         /**
@@ -256,7 +268,7 @@ namespace Npoi.Core.HSSF.Record
 
         public short TabWidthRatio
         {
-            get{return field_9_tab_width_ratio;}
+            get { return field_9_tab_width_ratio; }
             set { field_9_tab_width_ratio = value; }
         }
 
@@ -297,7 +309,6 @@ namespace Npoi.Core.HSSF.Record
             return buffer.ToString();
         }
 
-        
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(HorizontalHold);
@@ -318,6 +329,7 @@ namespace Npoi.Core.HSSF.Record
                 return 18;
             }
         }
+
         public override short Sid
         {
             get { return sid; }

@@ -17,14 +17,14 @@
 
 namespace Npoi.Core.SS.Formula.Eval
 {
-    using System;
     using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.PTG;
-
+    using System;
 
     /**
      * @author Josh Micich
      */
+
     public abstract class AreaEvalBase : AreaEval
     {
         private int _firstSheet;
@@ -57,24 +57,25 @@ namespace Npoi.Core.SS.Formula.Eval
                 _lastSheet = -1;
             }
         }
+
         protected AreaEvalBase(int firstRow, int firstColumn, int lastRow, int lastColumn)
             : this(null, firstRow, firstColumn, lastRow, lastColumn)
         {
         }
+
         protected AreaEvalBase(AreaI ptg)
             : this(ptg, null)
         {
-            
         }
+
         protected AreaEvalBase(AreaI ptg, ISheetRange sheets)
             : this(sheets, ptg.FirstRow, ptg.FirstColumn, ptg.LastRow, ptg.LastColumn)
         {
-            
         }
 
         public int FirstColumn
         {
-            get{return _firstColumn;}
+            get { return _firstColumn; }
         }
 
         public int FirstRow
@@ -99,6 +100,7 @@ namespace Npoi.Core.SS.Formula.Eval
                 return _firstSheet;
             }
         }
+
         public int LastSheetIndex
         {
             get
@@ -135,13 +137,14 @@ namespace Npoi.Core.SS.Formula.Eval
 
         public bool IsColumn
         {
-            get{return _firstColumn == _lastColumn;}
+            get { return _firstColumn == _lastColumn; }
         }
 
         public bool IsRow
         {
             get { return _firstRow == _lastRow; }
         }
+
         public ValueEval GetAbsoluteValue(int row, int col)
         {
             int rowOffsetIx = row - _firstRow;
@@ -159,7 +162,9 @@ namespace Npoi.Core.SS.Formula.Eval
             }
             return GetRelativeValue(rowOffsetIx, colOffsetIx);
         }
+
         public abstract ValueEval GetRelativeValue(int relativeRowIndex, int relativeColumnIndex);
+
         public abstract ValueEval GetRelativeValue(int sheetIndex, int relativeRowIndex, int relativeColumnIndex);
 
         public int Width
@@ -179,11 +184,14 @@ namespace Npoi.Core.SS.Formula.Eval
  * @return  whether cell at rowIndex and columnIndex is a subtotal.
  * By default return false which means 'don't care about subtotals'
 */
+
         public virtual bool IsSubTotal(int rowIndex, int columnIndex)
         {
             return false;
         }
+
         public abstract TwoDEval GetRow(int rowIndex);
+
         public abstract TwoDEval GetColumn(int columnIndex);
 
         public abstract AreaEval Offset(int relFirstRowIx, int relLastRowIx, int relFirstColIx, int relLastColIx);

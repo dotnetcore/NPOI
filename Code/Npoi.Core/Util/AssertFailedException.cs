@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Npoi.Core.Util
 {
@@ -9,7 +7,6 @@ namespace Npoi.Core.Util
         public AssertFailedException(string message)
             : base(message)
         {
-
         }
     }
 }

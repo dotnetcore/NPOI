@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF
@@ -30,7 +30,6 @@ namespace Npoi.Core.HPSF
     using System;
     using System.Collections;
     using System.Collections.Generic;
-
 
     /// <summary>
     /// The <em>Variant</em> types as defined by Microsoft's COM. I
@@ -46,7 +45,6 @@ namespace Npoi.Core.HPSF
     /// </summary>
     public class Variant
     {
-
         /**
          * [V][P] Nothing, i.e. not a single byte of data.
          */
@@ -353,8 +351,6 @@ namespace Npoi.Core.HPSF
          */
         public const int VT_TYPEMASK = 0xFFF;
 
-
-
         /**
          * Maps the numbers denoting the variant types To their corresponding
          * variant type names.
@@ -393,12 +389,9 @@ namespace Npoi.Core.HPSF
          */
         public const int Length_8 = 8;
 
-
-
-        static Variant()
-        {
+        static Variant() {
             /* Initialize the number-to-name map: */
-            Dictionary<object,object> tm1 = new Dictionary<object,object>();
+            Dictionary<object, object> tm1 = new Dictionary<object, object>();
             tm1[0] = "VT_EMPTY";
             tm1[1] = "VT_NULL";
             tm1[2] = "VT_I2";
@@ -443,7 +436,7 @@ namespace Npoi.Core.HPSF
             numberToName = tm1;
 
             /* Initialize the number-to-Length map: */
-            Dictionary<object,object> tm2 = new Dictionary<object,object>();
+            Dictionary<object, object> tm2 = new Dictionary<object, object>();
             tm2[0] = Length_0;
             tm2[1] = Length_UNKNOWN;
             tm2[2] = Length_2;
@@ -488,16 +481,13 @@ namespace Npoi.Core.HPSF
             numberToLength = tm2;
         }
 
-
-
         /// <summary>
         /// Returns the variant type name associated with a variant type
         /// number.
         /// </summary>
         /// <param name="variantType">The variant type number.</param>
         /// <returns>The variant type name or the string "unknown variant type"</returns>
-        public static String GetVariantName(long variantType)
-        {
+        public static String GetVariantName(long variantType) {
             String name = (String)numberToName[variantType];
             return name != null ? name : "unknown variant type";
         }
@@ -510,14 +500,12 @@ namespace Npoi.Core.HPSF
         /// variable, i.e. the Length of a string, -1 is returned. If HPSF does not
         /// know the Length, -2 is returned. The latter usually indicates an
         /// unsupported variant type.</returns>
-        public static int GetVariantLength(long variantType)
-        {
+        public static int GetVariantLength(long variantType) {
             long key = (int)variantType;
             if (numberToLength.Contains(key))
                 return -2;
             long Length = (long)numberToLength[key];
             return Convert.ToInt32(Length);
         }
-
     }
 }

@@ -17,10 +17,10 @@
 
 namespace Npoi.Core.HSSF.Model
 {
-    using System;
     using Npoi.Core.DDF;
-    using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -32,7 +32,6 @@ namespace Npoi.Core.HSSF.Model
     [Obsolete]
     public class CommentShape : TextboxShape
     {
-
         private NoteRecord note;
 
         /// <summary>
@@ -41,24 +40,19 @@ namespace Npoi.Core.HSSF.Model
         /// <param name="hssfShape">The highlevel shape.</param>
         /// <param name="shapeId">The shape id to use for this shape.</param>
         public CommentShape(HSSFComment hssfShape, int shapeId)
-            : base(hssfShape, shapeId)
-        {
-
-
+            : base(hssfShape, shapeId) {
             note = CreateNoteRecord(hssfShape, shapeId);
 
             ObjRecord obj = ObjRecord;
             List<SubRecord> records = obj.SubRecords;
             int cmoIdx = 0;
-            for (int i = 0; i < records.Count; i++)
-            {
+            for (int i = 0; i < records.Count; i++) {
                 Object r = records[i];
 
-                if (r is CommonObjectDataSubRecord)
-                {
+                if (r is CommonObjectDataSubRecord) {
                     //modify autoFill attribute inherited from <c>TextObjectRecord</c>
                     CommonObjectDataSubRecord cmo = (CommonObjectDataSubRecord)r;
-                    cmo.IsAutoFill=(false);
+                    cmo.IsAutoFill = (false);
                     cmoIdx = i;
                 }
             }
@@ -75,8 +69,7 @@ namespace Npoi.Core.HSSF.Model
         /// <param name="shape">The shape.</param>
         /// <param name="shapeId">The shape id.</param>
         /// <returns></returns>
-        private NoteRecord CreateNoteRecord(HSSFComment shape, int shapeId)
-        {
+        private NoteRecord CreateNoteRecord(HSSFComment shape, int shapeId) {
             NoteRecord note = new NoteRecord();
             note.Column = shape.Column;
             note.Row = shape.Row;
@@ -94,16 +87,13 @@ namespace Npoi.Core.HSSF.Model
         /// <param name="shape">The highlevel shape.</param>
         /// <param name="opt">The escher records holding the proerties</param>
         /// <returns>The number of escher options added</returns>
-        protected override int AddStandardOptions(HSSFShape shape, EscherOptRecord opt)
-        {
+        protected override int AddStandardOptions(HSSFShape shape, EscherOptRecord opt) {
             base.AddStandardOptions(shape, opt);
 
             //Remove Unnecessary properties inherited from TextboxShape
-            for (int i = 0; i < opt.EscherProperties.Count; i++ )
-            {
+            for (int i = 0; i < opt.EscherProperties.Count; i++) {
                 EscherProperty prop = opt.EscherProperties[i];
-                switch (prop.Id)
-                {
+                switch (prop.Id) {
                     case EscherProperties.TEXT__TEXTLEFT:
                     case EscherProperties.TEXT__TEXTRIGHT:
                     case EscherProperties.TEXT__TEXTTOP:
@@ -129,15 +119,14 @@ namespace Npoi.Core.HSSF.Model
         /// Gets the NoteRecord holding the comment attributes
         /// </summary>
         /// <value>The NoteRecord</value>
-        public NoteRecord NoteRecord
-        {
+        public NoteRecord NoteRecord {
             get
             {
                 return note;
             }
         }
-        protected override int GetCmoObjectId(int shapeId)
-        {
+
+        protected override int GetCmoObjectId(int shapeId) {
             return shapeId;
         }
     }

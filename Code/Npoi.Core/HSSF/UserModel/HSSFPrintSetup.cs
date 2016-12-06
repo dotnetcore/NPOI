@@ -15,7 +15,6 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.UserModel
 {
     using Npoi.Core.HSSF.Record;
@@ -24,9 +23,9 @@ namespace Npoi.Core.HSSF.UserModel
     /// Used to modify the print Setup.
     /// @author Shawn Laubach (slaubach at apache dot org)
     /// </summary>
-    public class HSSFPrintSetup :Npoi.Core.SS.UserModel.IPrintSetup
+    public class HSSFPrintSetup : Npoi.Core.SS.UserModel.IPrintSetup
     {
-        PrintSetupRecord printSetupRecord;
+        private PrintSetupRecord printSetupRecord;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HSSFPrintSetup"/> class.
@@ -47,7 +46,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return printSetupRecord.PaperSize;
             }
-            set 
+            set
             {
                 printSetupRecord.PaperSize = value;
             }
@@ -63,7 +62,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return printSetupRecord.Scale;
             }
-            set 
+            set
             {
                 printSetupRecord.Scale = value;
             }
@@ -79,9 +78,9 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return printSetupRecord.PageStart;
             }
-            set 
+            set
             {
-                printSetupRecord.PageStart=value;
+                printSetupRecord.PageStart = value;
             }
         }
 
@@ -95,7 +94,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return printSetupRecord.FitWidth;
             }
-            set 
+            set
             {
                 printSetupRecord.FitWidth = value;
             }
@@ -111,7 +110,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return printSetupRecord.FitHeight;
             }
-            set 
+            set
             {
                 printSetupRecord.FitHeight = value;
             }
@@ -124,7 +123,7 @@ namespace Npoi.Core.HSSF.UserModel
         public short Options
         {
             get { return printSetupRecord.Options; }
-            set { printSetupRecord.Options=(value); }
+            set { printSetupRecord.Options = (value); }
         }
 
         /// <summary>
@@ -137,7 +136,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return printSetupRecord.LeftToRight;
             }
-            set 
+            set
             {
                 printSetupRecord.LeftToRight = value;
             }
@@ -153,7 +152,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return !printSetupRecord.Landscape;
             }
-            set 
+            set
             {
                 printSetupRecord.Landscape = !value;
             }
@@ -169,7 +168,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return printSetupRecord.ValidSettings;
             }
-            set 
+            set
             {
                 printSetupRecord.ValidSettings = value;
             }
@@ -185,24 +184,25 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return printSetupRecord.NoColor;
             }
-            set 
+            set
             {
-                printSetupRecord.NoColor=value;
+                printSetupRecord.NoColor = value;
             }
         }
 
         public bool EndNote
         {
             get { return printSetupRecord.EndNote; }
-            set 
+            set
             {
                 printSetupRecord.EndNote = value;
             }
         }
+
         public Npoi.Core.SS.UserModel.DisplayCellErrorType CellError
         {
             get { return (Npoi.Core.SS.UserModel.DisplayCellErrorType)printSetupRecord.CellError; }
-            set { printSetupRecord.CellError=(short)value; }
+            set { printSetupRecord.CellError = (short)value; }
         }
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return printSetupRecord.Draft;
             }
-            set 
+            set
             {
                 printSetupRecord.Draft = value;
             }
@@ -231,7 +231,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return printSetupRecord.Notes;
             }
-            set 
+            set
             {
                 printSetupRecord.Notes = value;
             }
@@ -247,14 +247,14 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return printSetupRecord.NoOrientation;
             }
-            set 
+            set
             {
                 printSetupRecord.NoOrientation = value;
             }
         }
 
         /// <summary>
-        /// Gets or sets the use page numbers.  
+        /// Gets or sets the use page numbers.
         /// </summary>
         /// <value>use page numbers.  </value>
         public bool UsePage
@@ -263,7 +263,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return printSetupRecord.UsePage;
             }
-            set 
+            set
             {
                 printSetupRecord.UsePage = value;
             }
@@ -295,7 +295,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return printSetupRecord.VResolution;
             }
-            set 
+            set
             {
                 printSetupRecord.VResolution = value;
             }
@@ -313,7 +313,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
             set
             {
-                printSetupRecord.HeaderMargin=value;
+                printSetupRecord.HeaderMargin = value;
             }
         }
 
@@ -327,7 +327,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return printSetupRecord.FooterMargin;
             }
-            set 
+            set
             {
                 printSetupRecord.FooterMargin = value;
             }
@@ -343,7 +343,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return printSetupRecord.Copies;
             }
-            set 
+            set
             {
                 printSetupRecord.Copies = value;
             }

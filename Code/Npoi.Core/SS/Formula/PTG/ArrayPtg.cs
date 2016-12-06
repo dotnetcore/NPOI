@@ -17,32 +17,30 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-
+    using Npoi.Core.SS.Formula.Constant;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
-
-    using Npoi.Core.SS.Util;
-    using Npoi.Core.SS.Formula.Constant;
 
     /**
      * ArrayPtg - handles arrays
-     * 
+     *
      * The ArrayPtg is a little weird, the size of the Ptg when parsing initially only
      * includes the Ptg sid and the reserved bytes. The next Ptg in the expression then follows.
      * It is only after the "size" of all the Ptgs is met, that the ArrayPtg data is actually
-     * held after this. So Ptg.CreateParsedExpression keeps track of the number of 
+     * held after this. So Ptg.CreateParsedExpression keeps track of the number of
      * ArrayPtg elements and need to Parse the data upto the FORMULA record size.
-     *  
+     *
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     public class ArrayPtg : Ptg
     {
         public const byte sid = 0x20;
 
         private const int RESERVED_FIELD_LEN = 7;
-        /** 
+        /**
  * The size of the plain tArray token written within the standard formula tokens
  * (not including the data which comes after all formula tokens)
  */
@@ -52,15 +50,17 @@ namespace Npoi.Core.SS.Formula.PTG
 
         // 7 bytes of data (stored as an int, short and byte here)
         private int _reserved0Int;
+
         private int _reserved1Short;
         private int _reserved2Byte;
 
         // data from these fields comes after the Ptg data of all tokens in current formula
         private int _nColumns;
+
         private int _nRows;
         private Object[] _arrayValues;
 
-        ArrayPtg(int reserved0, int reserved1, int reserved2, int nColumns, int nRows, Object[] arrayValues)
+        private ArrayPtg(int reserved0, int reserved1, int reserved2, int nColumns, int nRows, Object[] arrayValues)
         {
             _reserved0Int = reserved0;
             _reserved1Short = reserved1;
@@ -69,9 +69,11 @@ namespace Npoi.Core.SS.Formula.PTG
             _nRows = nRows;
             _arrayValues = arrayValues;
         }
+
         /**
          * @param values2d array values arranged in rows
          */
+
         public ArrayPtg(Object[][] values2d)
         {
             int nColumns = values2d[0].Length;
@@ -95,6 +97,7 @@ namespace Npoi.Core.SS.Formula.PTG
             _reserved1Short = 0;
             _reserved2Byte = 0;
         }
+
         public Object[][] GetTokenArrayValues()
         {
             if (_arrayValues == null)
@@ -111,7 +114,6 @@ namespace Npoi.Core.SS.Formula.PTG
                 }
             }
             return result;
-
         }
 
         public override bool IsBaseToken
@@ -137,10 +139,11 @@ namespace Npoi.Core.SS.Formula.PTG
         }
 
         /**
-         * Note - (2D) array elements are stored column by column 
+         * Note - (2D) array elements are stored column by column
          * @return the index into the internal 1D array for the specified column and row
          */
         /* package */
+
         public int GetValueIndex(int colIx, int rowIx)
         {
             if (colIx < 0 || colIx >= _nColumns)
@@ -166,7 +169,6 @@ namespace Npoi.Core.SS.Formula.PTG
 
         public int WriteTokenValueBytes(ILittleEndianOutput out1)
         {
-
             out1.WriteByte(_nColumns - 1);
             out1.WriteShort(_nRows - 1);
             ConstantValueParser.Encode(out1, _arrayValues);
@@ -190,6 +192,7 @@ namespace Npoi.Core.SS.Formula.PTG
         }
 
         /** This size includes the size of the array Ptg plus the Array Ptg Token value size*/
+
         public override int Size
         {
             get
@@ -226,7 +229,6 @@ namespace Npoi.Core.SS.Formula.PTG
 
         private static String GetConstantText(Object o)
         {
-
             if (o == null)
             {
                 return ""; // TODO - how is 'empty value' represented in formulas?
@@ -255,13 +257,13 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return Ptg.CLASS_ARRAY; }
         }
 
-
         /**
  * Represents the initial plain tArray token (without the constant data that trails the whole
  * formula).  Objects of this class are only temporary and cannot be used as {@link Ptg}s.
  * These temporary objects get converted to {@link ArrayPtg} by the
  * {@link #finishReading(LittleEndianInput)} method.
  */
+
         public class Initial : Ptg
         {
             private int _reserved0;
@@ -274,10 +276,12 @@ namespace Npoi.Core.SS.Formula.PTG
                 _reserved1 = in1.ReadUShort();
                 _reserved2 = in1.ReadUByte();
             }
+
             private static Exception Invalid()
             {
                 throw new InvalidOperationException("This object is a partially initialised tArray, and cannot be used as a Ptg");
             }
+
             public override byte DefaultOperandClass
             {
                 get
@@ -285,6 +289,7 @@ namespace Npoi.Core.SS.Formula.PTG
                     throw Invalid();
                 }
             }
+
             public override int Size
             {
                 get
@@ -292,6 +297,7 @@ namespace Npoi.Core.SS.Formula.PTG
                     return PLAIN_TOKEN_SIZE;
                 }
             }
+
             public override bool IsBaseToken
             {
                 get
@@ -299,19 +305,23 @@ namespace Npoi.Core.SS.Formula.PTG
                     return false;
                 }
             }
+
             public override String ToFormulaString()
             {
                 throw Invalid();
             }
+
             public override void Write(ILittleEndianOutput out1)
             {
                 throw Invalid();
             }
+
             /**
              * Read in the actual token (array) values. This occurs
              * AFTER the last Ptg in the expression.
              * See page 304-305 of Excel97-2007BinaryFileFormat(xls)Specification.pdf
              */
+
             public ArrayPtg FinishReading(ILittleEndianInput in1)
             {
                 int nColumns = in1.ReadUByte();

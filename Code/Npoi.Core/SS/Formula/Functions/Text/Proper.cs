@@ -17,10 +17,9 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
     using System.Text;
-    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Implementation of the PROPER function:

@@ -22,11 +22,12 @@ namespace Npoi.Core.SS.Formula.Functions
     /**
      * Implementation of the DGet function:
      * Finds the value of a column in an area with given conditions.
-     * 
+     *
      * TODO:
      * - wildcards ? and * in string conditions
      * - functions as conditions
      */
+
     public class DGet : IDStarAlgorithm
     {
         private ValueEval result;
@@ -67,4 +68,3 @@ namespace Npoi.Core.SS.Formula.Functions
         }
     }
 }
-

@@ -17,9 +17,9 @@
 
 namespace Npoi.Core.HSSF.Record.Crypto
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Simple implementation of the alleged RC4 algorithm.
@@ -28,9 +28,9 @@ namespace Npoi.Core.HSSF.Record.Crypto
      *
      * @author Josh Micich
      */
+
     internal class RC4
     {
-
         private int _i, _j;
         private byte[] _s = new byte[256];
 
@@ -75,6 +75,7 @@ namespace Npoi.Core.HSSF.Record.Crypto
                 in1[i] = (byte)(in1[i] ^ Output());
             }
         }
+
         public void Encrypt(byte[] in1, int OffSet, int len)
         {
             int end = OffSet + len;
@@ -82,8 +83,8 @@ namespace Npoi.Core.HSSF.Record.Crypto
             {
                 in1[i] = (byte)(in1[i] ^ Output());
             }
-
         }
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -98,6 +99,4 @@ namespace Npoi.Core.HSSF.Record.Crypto
             return sb.ToString();
         }
     }
-
-
 }

@@ -17,13 +17,14 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
+
 using System;
 using System.IO;
 
@@ -35,7 +36,7 @@ namespace Npoi.Core.POIFS.FileSystem
     /// @author Marc Johnson (mjohnson at apache dot org)
     /// </summary>
     [Obsolete]
-    public class POIFSDocumentWriter:Stream
+    public class POIFSDocumentWriter : Stream
     {
         private int limit;
         private Stream stream;
@@ -52,6 +53,7 @@ namespace Npoi.Core.POIFS.FileSystem
             this.limit = limit;
             this.written = 0;
         }
+
         /// <summary>
         /// Closes this output stream and releases any system resources
         /// associated with this stream. The general contract of close is
@@ -62,6 +64,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             this.stream.Dispose();
         }
+
         /// <summary>
         /// Flushes this output stream and forces any buffered output bytes
         /// to be written out.
@@ -95,7 +98,6 @@ namespace Npoi.Core.POIFS.FileSystem
             throw new NotImplementedException();
         }
 
-
         public void Write(int b)
         {
             LimitCheck(1);
@@ -111,6 +113,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             this.Write(b, 0, b.Length);
         }
+
         /// <summary>
         /// Writes len bytes from the specified byte array starting at
         /// offset off to this output stream.  The general contract for
@@ -144,10 +147,11 @@ namespace Npoi.Core.POIFS.FileSystem
             this.LimitCheck(1);
             this.stream.WriteByte(b);
         }
+
         /// <summary>
         /// write the rest of the document's data (fill in at the end)
         /// </summary>
-        /// <param name="totalLimit">the actual number of bytes the corresponding         
+        /// <param name="totalLimit">the actual number of bytes the corresponding
         /// document must fill</param>
         /// <param name="fill">the byte to fill remaining space with</param>
         public virtual void WriteFiller(int totalLimit, byte fill)
@@ -253,6 +257,5 @@ namespace Npoi.Core.POIFS.FileSystem
                 this.stream.Position = value;
             }
         }
-
     }
 }

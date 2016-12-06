@@ -17,8 +17,8 @@
  * ====================================================================
  */
 
-using System;
 using Npoi.Core.SS.Formula.Eval;
+using System;
 
 namespace Npoi.Core.SS.Formula.Functions
 {
@@ -33,15 +33,14 @@ namespace Npoi.Core.SS.Formula.Functions
 
      * If order is 0 (zero) or omitted, Microsoft Excel ranks number as if ref were a list sorted in descending order.
      * If order is any nonzero value, Microsoft Excel ranks number as if ref were a list sorted in ascending order.
-     * 
+     *
      * @author Rubin Wang
      */
+
     public class Rank : Var2or3ArgFunction
     {
-
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1)
         {
-
             AreaEval aeRange;
             double result;
             try
@@ -63,7 +62,6 @@ namespace Npoi.Core.SS.Formula.Functions
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1, ValueEval arg2)
         {
-
             AreaEval aeRange;
             double result;
             bool order = false;
@@ -88,7 +86,6 @@ namespace Npoi.Core.SS.Formula.Functions
                     order = false;
                 }
                 else throw new EvaluationException(ErrorEval.NUM_ERROR);
-
             }
             catch (EvaluationException e)
             {
@@ -99,7 +96,6 @@ namespace Npoi.Core.SS.Formula.Functions
 
         private static ValueEval eval(int srcRowIndex, int srcColumnIndex, double arg0, AreaEval aeRange, bool descending_order)
         {
-
             int rank = 1;
             int height = aeRange.Height;
             int width = aeRange.Width;
@@ -107,7 +103,6 @@ namespace Npoi.Core.SS.Formula.Functions
             {
                 for (int c = 0; c < width; c++)
                 {
-
                     Double value = GetValue(aeRange, r, c);
                     if (Double.IsNaN(value)) continue;
                     if (descending_order && value > arg0 || !descending_order && value < arg0)
@@ -121,7 +116,6 @@ namespace Npoi.Core.SS.Formula.Functions
 
         private static Double GetValue(AreaEval aeRange, int relRowIndex, int relColIndex)
         {
-
             ValueEval addend = aeRange.GetRelativeValue(relRowIndex, relColIndex);
             if (addend is NumberEval)
             {
@@ -143,7 +137,5 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             throw new EvaluationException(ErrorEval.VALUE_INVALID);
         }
-
     }
-
 }

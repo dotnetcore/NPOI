@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
@@ -44,26 +44,28 @@ namespace Npoi.Core.POIFS.Dev
     public interface POIFSViewable
     {
         /// <summary>
-        /// Provides a short description of the object to be used when a 
+        /// Provides a short description of the object to be used when a
         /// POIFSViewable object has not provided its contents.
         /// </summary>
         /// <value><c>true</c> if [prefer array]; otherwise, <c>false</c>.</value>
         bool PreferArray { get; }
+
         /// <summary>
         /// Gets the short description.
         /// </summary>
         /// <value>The short description.</value>
         string ShortDescription { get; }
+
         /// <summary>
         /// Get an array of objects, some of which may implement POIFSViewable
         /// </summary>
         /// <value>The viewable array.</value>
         Array ViewableArray { get; }
+
         /// <summary>
         /// Give viewers a hint as to whether to call ViewableArray or ViewableIterator
         /// </summary>
         /// <value>The viewable iterator.</value>
         IEnumerator ViewableIterator { get; }
-
     }
 }

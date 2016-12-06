@@ -18,20 +18,21 @@
  * Created on May 6, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     using System;
 
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     *  
+     *
      */
+
     public class Power : TwoArg
     {
         public override double Evaluate(double d0, double d1)
         {
-            return Math.Pow(d0,d1);
+            return Math.Pow(d0, d1);
         }
-
     }
 }

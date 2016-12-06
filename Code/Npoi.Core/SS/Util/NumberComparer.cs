@@ -1,5 +1,5 @@
-﻿using System;
-using Npoi.Core.Util;
+﻿using Npoi.Core.Util;
+using System;
 
 namespace Npoi.Core.SS.Util
 {
@@ -33,6 +33,7 @@ namespace Npoi.Core.SS.Util
          * @return <code>negative, 0, or positive</code> according to the standard Excel comparison
          * of values <c>a</c> and <c>b</c>.
          */
+
         public static int Compare(double a, double b)
         {
             long rawBitsA = BitConverter.DoubleToInt64Bits(a);
@@ -75,7 +76,6 @@ namespace Npoi.Core.SS.Util
             if (absExpDiff == 1)
             {
                 // special case exponent differs by 1.  There is still a chance that with rounding the two quantities could end up the same
-
             }
             else
             {
@@ -118,6 +118,7 @@ namespace Npoi.Core.SS.Util
         /**
          * If both numbers are subnormal, Excel seems to use standard comparison rules
          */
+
         private static int CompareSubnormalNumbers(long fracA, long fracB, bool isNegative)
         {
             int cmp = fracA > fracB ? +1 : fracA < fracB ? -1 : 0;
@@ -125,14 +126,13 @@ namespace Npoi.Core.SS.Util
             return isNegative ? -cmp : cmp;
         }
 
-
-
         /**
          * Usually any normal number is greater (in magnitude) than any subnormal number.
          * However there are some anomalous cases around the threshold where Excel produces screwy results
          * @param isNegative both values are either negative or positive. This parameter affects the sign of the comparison result
          * @return usually <code>isNegative ? -1 : +1</code>
          */
+
         private static int CompareAcrossSubnormalThreshold(long normalRawBitsA, long subnormalRawBitsB, bool isNegative)
         {
             long fracB = subnormalRawBitsB & IEEEDouble.FRAC_MASK;
@@ -157,11 +157,10 @@ namespace Npoi.Core.SS.Util
             return isNegative ? -1 : +1;
         }
 
-
-
         /**
          * for formatting double values in error messages
          */
+
         private static String ToHex(double a)
         {
             return "0x" + StringUtil.ToHexString(BitConverter.DoubleToInt64Bits(a)).ToUpper();

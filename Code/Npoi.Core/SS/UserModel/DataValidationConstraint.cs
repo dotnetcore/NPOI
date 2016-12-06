@@ -14,30 +14,29 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.UserModel
 {
     using System;
 
-
     public interface IDataValidationConstraint
     {
-
         /**
          * @return data validation type of this constraint
          * @see ValidationType
          */
-        int GetValidationType();
 
+        int GetValidationType();
 
         /**
         * @return the operator used for this constraint
         * @see OperatorType
         */
+
         /// <summary>
         /// get or set then comparison operator for this constraint
         /// </summary>
         int Operator { get; set; }
-
 
         String[] ExplicitListValues { get; set; }
 
@@ -46,18 +45,16 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         string Formula1 { get; set; }
 
-
         /// <summary>
         /// get or set the formula for expression 2. May be <code>null</code>
         /// </summary>
         string Formula2 { get; set; }
-
-
-        
     }
+
     /**
          * ValidationType enum
          */
+
     public static class ValidationType
     {
         /** 'Any value' type - value not restricted */
@@ -77,12 +74,13 @@ namespace Npoi.Core.SS.UserModel
         /** Formula ( 'Custom' ) type */
         public const int FORMULA = 0x07;
     }
+
     /**
      * Condition operator enum
      */
+
     public static class OperatorType
     {
-       
         public const int BETWEEN = 0x00;
         public const int NOT_BETWEEN = 0x01;
         public const int EQUAL = 0x02;
@@ -95,6 +93,7 @@ namespace Npoi.Core.SS.UserModel
         public const int IGNORED = BETWEEN;
 
         /* package */
+
         public static void ValidateSecondArg(int comparisonOperator, String paramValue)
         {
             switch (comparisonOperator)
@@ -105,13 +104,14 @@ namespace Npoi.Core.SS.UserModel
                         throw new ArgumentException("expr2 must be supplied for 'between' comparisons");
                     }
                     break;
+
                 case NOT_BETWEEN:
                     if (paramValue == null)
                     {
                         throw new ArgumentException("expr2 must be supplied for 'between' comparisons");
                     }
                     break;
-                // all other operators don't need second arg
+                    // all other operators don't need second arg
             }
         }
     }

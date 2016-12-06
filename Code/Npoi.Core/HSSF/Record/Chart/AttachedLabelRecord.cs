@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * The series label record defines the type of label associated with the data format record.
@@ -31,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class AttachedLabelRecord
        : StandardRecord
     {
@@ -43,10 +41,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         private BitField showLabel = BitFieldFactory.GetInstance(0x10);
         private BitField showBubbleSizes = BitFieldFactory.GetInstance(0x20);
 
-
         public AttachedLabelRecord()
         {
-
         }
 
         /**
@@ -88,6 +84,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 2; }
@@ -106,12 +103,10 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          * Get the format flags field for the SeriesLabels record.
          */
+
         public short FormatFlags
         {
             get { return field_1_formatFlags; }
@@ -122,6 +117,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * show actual value of the data point
          * @return  the show actual field value.
          */
+
         public bool IsShowActual
         {
             get { return showActual.IsSet(field_1_formatFlags); }
@@ -132,6 +128,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * show value as percentage of total (pie charts only)
          * @return  the show percent field value.
          */
+
         public bool IsShowPercent
         {
             get { return showPercent.IsSet(field_1_formatFlags); }
@@ -142,6 +139,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * show category label/value as percentage (pie charts only)
          * @return  the label as percentage field value.
          */
+
         public bool IsLabelAsPercentage
         {
             get { return labelAsPercentage.IsSet(field_1_formatFlags); }
@@ -152,15 +150,18 @@ namespace Npoi.Core.HSSF.Record.Chart
          * show smooth line
          * @return  the smoothed line field value.
          */
+
         public bool IsSmoothedLine
         {
             get { return smoothedLine.IsSet(field_1_formatFlags); }
             set { field_1_formatFlags = smoothedLine.SetShortBoolean(field_1_formatFlags, value); }
         }
+
         /**
          * Display category label
          * @return  the show label field value.
          */
+
         public bool IsShowLabel
         {
             get { return showLabel.IsSet(field_1_formatFlags); }
@@ -171,12 +172,11 @@ namespace Npoi.Core.HSSF.Record.Chart
          * ??
          * @return  the show bubble sizes field value.
          */
+
         public bool IsShowBubbleSizes
         {
             get { return showBubbleSizes.IsSet(field_1_formatFlags); }
             set { field_1_formatFlags = showBubbleSizes.SetShortBoolean(field_1_formatFlags, value); }
         }
-
-
     }
 }

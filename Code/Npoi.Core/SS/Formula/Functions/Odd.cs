@@ -18,15 +18,16 @@
  * Created on May 6, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     *  
+     *
      */
+
     public class Odd : OneArg
     {
-
         private const long PARITY_MASK = unchecked((long)0xFFFFFFFFFFFFFFFEL);
 
         public override double Evaluate(double d)
@@ -57,6 +58,5 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return x + 1;
         }
-
     }
 }

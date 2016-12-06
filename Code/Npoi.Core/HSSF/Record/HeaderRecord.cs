@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,10 +15,8 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
     using System;
     using System.Text;
 
@@ -38,9 +35,8 @@ namespace Npoi.Core.HSSF.Record
     {
         public const short sid = 0x14;
 
-        public HeaderRecord(String text):base(text)
+        public HeaderRecord(String text) : base(text)
         {
-            
         }
 
         /**
@@ -48,7 +44,7 @@ namespace Npoi.Core.HSSF.Record
          * @param in the RecordInputstream to Read the record from
          */
 
-        public HeaderRecord(RecordInputStream in1):base(in1)
+        public HeaderRecord(RecordInputStream in1) : base(in1)
         {
         }
 

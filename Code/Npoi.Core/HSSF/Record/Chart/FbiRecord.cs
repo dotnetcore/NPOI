@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,12 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /*
      * The font basis record stores various font metrics.
@@ -30,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     //public class FontBasisRecord
     /// <summary>
     /// The Fbi record specifies the font information at the time the scalable font is added to the chart.
@@ -44,10 +43,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         private short field_4_scale;
         private short field_5_indexToFontTable;
 
-
         public FbiRecord()
         {
-
         }
 
         /**
@@ -58,7 +55,6 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public FbiRecord(RecordInputStream in1)
         {
-
             field_1_xBasis = in1.ReadShort();
             field_2_yBasis = in1.ReadShort();
             field_3_heightBasis = in1.ReadShort();
@@ -108,9 +104,10 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
-            get { return  2 + 2 + 2 + 2 + 2; }
+            get { return 2 + 2 + 2 + 2 + 2; }
         }
 
         public override short Sid
@@ -130,19 +127,17 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          * Get the x Basis field for the FontBasis record.
          */
+
         public short XBasis
         {
             get
             {
                 return field_1_xBasis;
             }
-            set 
+            set
             {
                 field_1_xBasis = value;
             }
@@ -151,13 +146,14 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the y Basis field for the FontBasis record.
          */
+
         public short YBasis
         {
             get
             {
                 return field_2_yBasis;
             }
-            set 
+            set
             {
                 field_2_yBasis = value;
             }
@@ -166,13 +162,14 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the height basis field for the FontBasis record.
          */
+
         public short HeightBasis
         {
             get
             {
                 return field_3_heightBasis;
             }
-            set 
+            set
             {
                 this.field_3_heightBasis = value;
             }
@@ -181,13 +178,14 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the scale field for the FontBasis record.
          */
+
         public short Scale
         {
             get
             {
                 return field_4_scale;
             }
-            set 
+            set
             {
                 field_4_scale = value;
             }
@@ -196,19 +194,17 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the index to font table field for the FontBasis record.
          */
+
         public short IndexToFontTable
         {
             get
             {
                 return field_5_indexToFontTable;
             }
-            set 
+            set
             {
                 this.field_5_indexToFontTable = value;
             }
         }
-
-
     }
-
 }

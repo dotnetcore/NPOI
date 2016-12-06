@@ -15,16 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
 using Npoi.Core.HSSF.UserModel;
-using Npoi.Core.SS.Formula;
-using Npoi.Core.SS.Formula.Eval;
 using Npoi.Core.SS.Formula.Udf;
 using Npoi.Core.SS.UserModel;
+using System;
+
 namespace Npoi.Core.SS.Formula.Eval.Forked
 {
-
-
     /**
      * An alternative workbook Evaluator that saves memory in situations where a single workbook is
      * concurrently and independently Evaluated many times.  With standard formula Evaluation, around
@@ -35,9 +32,9 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
      *
      * @author Josh Micich
      */
+
     public class ForkedEvaluator
     {
-
         private WorkbookEvaluator _evaluator;
         private ForkedEvaluationWorkbook _sewb;
 
@@ -46,6 +43,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
             _sewb = new ForkedEvaluationWorkbook(masterWorkbook);
             _evaluator = new WorkbookEvaluator(_sewb, stabilityClassifier, udfFinder);
         }
+
         private static IEvaluationWorkbook CreateEvaluationWorkbook(IWorkbook wb)
         {
             if (wb is HSSFWorkbook)
@@ -58,16 +56,20 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
             //		}
             throw new ArgumentException("Unexpected workbook type (" + wb.GetType().Name + ")");
         }
+
         /**
          * @deprecated (Sep 2009) (reduce overloading) use {@link #Create(Workbook, IStabilityClassifier, UDFFinder)}
          */
+
         public static ForkedEvaluator Create(IWorkbook wb, IStabilityClassifier stabilityClassifier)
         {
             return Create(wb, stabilityClassifier, null);
         }
+
         /**
          * @param udfFinder pass <code>null</code> for default (AnalysisToolPak only)
          */
+
         public static ForkedEvaluator Create(IWorkbook wb, IStabilityClassifier stabilityClassifier, UDFFinder udfFinder)
         {
             return new ForkedEvaluator(CreateEvaluationWorkbook(wb), stabilityClassifier, udfFinder);
@@ -79,19 +81,21 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
          * @param rowIndex zero based
          * @param columnIndex zero based
          */
+
         public void UpdateCell(String sheetName, int rowIndex, int columnIndex, ValueEval value)
         {
-
             ForkedEvaluationCell cell = _sewb.GetOrCreateUpdatableCell(sheetName, rowIndex, columnIndex);
             cell.SetValue(value);
             _evaluator.NotifyUpdateCell(cell);
         }
+
         /**
          * Copies the values of all updated cells (modified by calls to {@link
          * #updateCell(String, int, int, ValueEval)}) to the supplied <tt>workbook</tt>.<br/>
          * Typically, the supplied <tt>workbook</tt> is a writable copy of the 'master workbook',
          * but at the very least it must contain sheets with the same names.
          */
+
         public void CopyUpdatedCells(IWorkbook workbook)
         {
             _sewb.CopyUpdatedCells(workbook);
@@ -109,6 +113,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
          * @param columnIndex zero based
          * @return <code>null</code> if the supplied cell is <code>null</code> or blank
          */
+
         public ValueEval Evaluate(String sheetName, int rowIndex, int columnIndex)
         {
             IEvaluationCell cell = _sewb.GetEvaluationCell(sheetName, rowIndex, columnIndex);
@@ -117,19 +122,25 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
             {
                 case CellType.Boolean:
                     return BoolEval.ValueOf(cell.BooleanCellValue);
+
                 case CellType.Error:
                     return ErrorEval.ValueOf(cell.ErrorCellValue);
+
                 case CellType.Formula:
                     return _evaluator.Evaluate(cell);
+
                 case CellType.Numeric:
                     return new NumberEval(cell.NumericCellValue);
+
                 case CellType.String:
                     return new StringEval(cell.StringCellValue);
+
                 case CellType.Blank:
                     return null;
             }
             throw new InvalidOperationException("Bad cell type (" + cell.CellType + ")");
         }
+
         /**
          * Coordinates several formula Evaluators together so that formulas that involve external
          * references can be Evaluated.
@@ -137,6 +148,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
          * with external links (for example "MyData.xls" as used in a formula "[MyData.xls]Sheet1!A1")
          * @param Evaluators all Evaluators for the full Set of workbooks required by the formulas.
          */
+
         public static void SetupEnvironment(String[] workbookNames, ForkedEvaluator[] Evaluators)
         {
             WorkbookEvaluator[] wbEvals = new WorkbookEvaluator[Evaluators.Length];
@@ -147,5 +159,4 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
             CollaboratingWorkbooksEnvironment.Setup(workbookNames, wbEvals);
         }
     }
-
 }

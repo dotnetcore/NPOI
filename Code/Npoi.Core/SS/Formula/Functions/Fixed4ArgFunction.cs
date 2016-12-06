@@ -17,13 +17,14 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-
     using Npoi.Core.SS.Formula.Eval;
+
     /**
      * Convenience base class for functions that must take exactly four arguments.
      *
      * @author Josh Micich
      */
+
     public abstract class Fixed4ArgFunction : Function4Arg
     {
         public ValueEval Evaluate(ValueEval[] args, int srcRowIndex, int srcColumnIndex)
@@ -37,5 +38,4 @@ namespace Npoi.Core.SS.Formula.Functions
 
         public abstract ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1, ValueEval arg2, ValueEval arg3);
     }
-
 }

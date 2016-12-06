@@ -17,20 +17,19 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.SS.Formula.Constant;
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
-    using Npoi.Core.SS.Formula.Constant;
 
     /**
-     * Title:       CRN  
-     * Description: This record stores the contents of an external cell or cell range 
+     * Title:       CRN
+     * Description: This record stores the contents of an external cell or cell range
      * REFERENCE:  5.23
      *
      * @author josh micich
      */
+
     public class CRNRecord : StandardRecord
     {
         public const short sid = 0x5A;
@@ -54,7 +53,6 @@ namespace Npoi.Core.HSSF.Record
             field_4_constant_values = ConstantValueParser.Parse(in1, nValues);
         }
 
-
         public int NumberOfCRNs
         {
             get
@@ -62,7 +60,6 @@ namespace Npoi.Core.HSSF.Record
                 return field_1_last_column_index;
             }
         }
-
 
         public override String ToString()
         {
@@ -74,6 +71,7 @@ namespace Npoi.Core.HSSF.Record
             sb.Append("]");
             return sb.ToString();
         }
+
         protected override int DataSize
         {
             get
@@ -93,10 +91,10 @@ namespace Npoi.Core.HSSF.Record
         /**
          * return the non static version of the id for this record.
          */
+
         public override short Sid
         {
             get { return sid; }
         }
     }
-
 }

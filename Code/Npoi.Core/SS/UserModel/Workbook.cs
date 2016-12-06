@@ -17,11 +17,10 @@
 
 namespace Npoi.Core.SS.UserModel
 {
+    using Npoi.Core.SS.Formula.Udf;
     using System;
     using System.Collections;
     using System.IO;
-    using Npoi.Core.SS.Formula.Udf;
-    using System.Collections.Generic;
 
     public enum SheetState : int
     {
@@ -41,13 +40,13 @@ namespace Npoi.Core.SS.UserModel
         /// <remarks>
         /// In Excel this state is only available programmatically in VBA:
         /// ThisWorkbook.Sheets("MySheetName").Visible = xlSheetVeryHidden
-        /// 
+        ///
         /// </remarks>
         VeryHidden = 2
     }
 
     /// <summary>
-    /// High level interface of a Excel workbook.  This is the first object most users 
+    /// High level interface of a Excel workbook.  This is the first object most users
     /// will construct whether they are reading or writing a workbook.  It is also the
     /// top level object for creating new sheets/etc.
     /// This interface is shared between the implementation specific to xls and xlsx.
@@ -55,7 +54,6 @@ namespace Npoi.Core.SS.UserModel
     /// </summary>
     public interface IWorkbook
     {
-
         /// <summary>
         /// get the active sheet.  The active sheet is is the sheet
         /// which is currently displayed when the workbook is viewed in Excel.
@@ -103,7 +101,7 @@ namespace Npoi.Core.SS.UserModel
         /// <param name="sheet">sheet number (0 based)</param>
         /// <param name="name">sheet name</param>
         void SetSheetName(int sheet, String name);
-   
+
         /// <summary>
         /// Returns the index of the sheet by its name
         /// </summary>
@@ -140,9 +138,9 @@ namespace Npoi.Core.SS.UserModel
         /// <returns></returns>
         ISheet CloneSheet(int sheetNum);
 
-         /// <summary>
-         /// Get the number of spreadsheets in the workbook
-         /// </summary>
+        /// <summary>
+        /// Get the number of spreadsheets in the workbook
+        /// </summary>
         int NumberOfSheets { get; }
 
         /// <summary>
@@ -170,6 +168,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <returns></returns>
         IEnumerator GetEnumerator();
+
         /**
          * To set just repeating columns:
          *  workbook.SetRepeatingRowsAndColumns(0,0,1,-1-1);
@@ -178,6 +177,7 @@ namespace Npoi.Core.SS.UserModel
          * To remove all repeating rows and columns for a sheet.
          *  workbook.SetRepeatingRowsAndColumns(0,-1,-1,-1,-1);
          */
+
         /// <summary>
         /// Sets the repeating rows and columns for a sheet (as found in
         /// File->PageSetup->Sheet).  This is function is included in the workbook
@@ -191,7 +191,6 @@ namespace Npoi.Core.SS.UserModel
         /// <param name="endRow">0 based end of repeating rows.</param>
         [Obsolete("use Sheet#setRepeatingRows(CellRangeAddress) or Sheet#setRepeatingColumns(CellRangeAddress)")]
         void SetRepeatingRowsAndColumns(int sheetIndex, int startColumn, int endColumn, int startRow, int endRow);
-
 
         /// <summary>
         /// Create a new Font and add it to the workbook's font table
@@ -294,20 +293,19 @@ namespace Npoi.Core.SS.UserModel
         void RemoveName(String name);
 
         /// <summary>
-        /// Adds the linking required to allow formulas referencing the specified 
-        /// external workbook to be added to this one. In order for formulas 
-        /// such as "[MyOtherWorkbook]Sheet3!$A$5" to be added to the file, 
-        /// some linking information must first be recorded. Once a given external 
-        /// workbook has been linked, then formulas using it can added. Each workbook 
+        /// Adds the linking required to allow formulas referencing the specified
+        /// external workbook to be added to this one. In order for formulas
+        /// such as "[MyOtherWorkbook]Sheet3!$A$5" to be added to the file,
+        /// some linking information must first be recorded. Once a given external
+        /// workbook has been linked, then formulas using it can added. Each workbook
         /// needs linking only once. <br/>
-        /// This linking only applies for writing formulas. 
+        /// This linking only applies for writing formulas.
         /// To link things for evaluation, see {@link FormulaEvaluator#setupReferencedWorkbooks(java.util.Map)}
         /// </summary>
         /// <param name="name">The name the workbook will be referenced as in formulas</param>
         /// <param name="workbook">The open workbook to fetch the link required information from</param>
         /// <returns></returns>
         int LinkExternalWorkbook(String name, IWorkbook workbook);
-    
 
         /// <summary>
         /// Sets the printarea for the sheet provided
@@ -315,7 +313,6 @@ namespace Npoi.Core.SS.UserModel
         /// <param name="sheetIndex">Zero-based sheet index</param>
         /// <param name="reference">Valid name Reference for the Print Area</param>
         void SetPrintArea(int sheetIndex, String reference);
-
 
         /// <summary>
         /// Sets the printarea for the sheet provided
@@ -328,7 +325,7 @@ namespace Npoi.Core.SS.UserModel
         void SetPrintArea(int sheetIndex, int startColumn, int endColumn, int startRow, int endRow);
 
         /// <summary>
-        /// Retrieves the reference for the printarea of the specified sheet, 
+        /// Retrieves the reference for the printarea of the specified sheet,
         /// the sheet name is Appended to the reference even if it was not specified.
         /// </summary>
         /// <param name="sheetIndex">Zero-based sheet index</param>
@@ -367,7 +364,7 @@ namespace Npoi.Core.SS.UserModel
         IList GetAllPictures();
 
         /// <summary>
-        /// Return an object that handles instantiating concrete classes of 
+        /// Return an object that handles instantiating concrete classes of
         /// the various instances one needs for  HSSF and XSSF.
         /// </summary>
         /// <returns></returns>
@@ -394,6 +391,7 @@ namespace Npoi.Core.SS.UserModel
          * @param sheetIx sheet index to check
          * @return <code>true</code> if sheet is very hidden
          */
+
         bool IsSheetVeryHidden(int sheetIx);
 
         /**
@@ -402,6 +400,7 @@ namespace Npoi.Core.SS.UserModel
          * @param sheetIx the sheet index (0-based)
          * @param hidden True to mark the sheet as hidden, false otherwise
          */
+
         void SetSheetHidden(int sheetIx, SheetState hidden);
 
         /**
@@ -414,6 +413,7 @@ namespace Npoi.Core.SS.UserModel
          * @param sheetIx The sheet number
          * @param hidden 0 for not hidden, 1 for hidden, 2 for very hidden
          */
+
         void SetSheetHidden(int sheetIx, int hidden);
 
         /// <summary>

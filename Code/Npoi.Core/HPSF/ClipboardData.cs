@@ -1,5 +1,5 @@
-﻿using System.IO;
-using Npoi.Core.Util;
+﻿using Npoi.Core.Util;
+using System.IO;
 
 namespace Npoi.Core.HPSF
 {
@@ -11,12 +11,10 @@ namespace Npoi.Core.HPSF
         private int _format;
         private byte[] _value;
 
-        public ClipboardData(byte[] data, int offset)
-        {
+        public ClipboardData(byte[] data, int offset) {
             int size = LittleEndian.GetInt(data, offset);
 
-            if (size < 4)
-            {
+            if (size < 4) {
                 //logger.log( POILogger.WARN, "ClipboardData at offset ",
                 //        Integer.valueOf( offset ), " size less than 4 bytes "
                 //                + "(doesn't even have format field!). "
@@ -31,18 +29,15 @@ namespace Npoi.Core.HPSF
                     + LittleEndian.INT_SIZE * 2, size - LittleEndian.INT_SIZE);
         }
 
-        public int Size
-        {
-            get { return LittleEndian.INT_SIZE*2 + _value.Length; }
+        public int Size {
+            get { return LittleEndian.INT_SIZE * 2 + _value.Length; }
         }
 
-        public byte[] Value
-        {
+        public byte[] Value {
             get { return _value; }
         }
 
-        public byte[] ToByteArray()
-        {
+        public byte[] ToByteArray() {
             byte[] result = new byte[Size];
             LittleEndian.PutInt(result, 0 * LittleEndian.INT_SIZE,
                     LittleEndian.INT_SIZE + _value.Length);
@@ -52,8 +47,7 @@ namespace Npoi.Core.HPSF
             return result;
         }
 
-        public int Write(Stream out1)
-        {
+        public int Write(Stream out1) {
             LittleEndian.PutInt(LittleEndian.INT_SIZE + _value.Length, out1);
             LittleEndian.PutInt(_format, out1);
             out1.Write(_value, 0, _value.Length);

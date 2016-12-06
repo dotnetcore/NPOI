@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,16 +15,14 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
-     * Title:        Refresh All Record 
+     * Title:        Refresh All Record
      * Description:  Flag whether to refresh all external data when loading a sheet.
      *               (which hssf doesn't support anyhow so who really cares?)
      * REFERENCE:  PG 376 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
@@ -37,13 +34,15 @@ namespace Npoi.Core.HSSF.Record
        : StandardRecord
     {
         public const short sid = 0x1B7;
+
         //private short field_1_refreshall;
         private static BitField refreshFlag = BitFieldFactory.GetInstance(0x0001);
 
-    private int _options;
-    public RefreshAllRecord(int options)
-    {
-        _options = options;
+        private int _options;
+
+        public RefreshAllRecord(int options)
+        {
+            _options = options;
         }
 
         /**
@@ -55,11 +54,13 @@ namespace Npoi.Core.HSSF.Record
             : this(in1.ReadUShort())
         {
         }
+
         public RefreshAllRecord(bool refreshAll)
             : this(0)
         {
             RefreshAll = (refreshAll);
         }
+
         /**
          * Get whether to refresh all external data when loading a sheet
          * @return refreshall or not
@@ -102,6 +103,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get { return sid; }
         }
+
         public override Object Clone()
         {
             return new RefreshAllRecord(_options);

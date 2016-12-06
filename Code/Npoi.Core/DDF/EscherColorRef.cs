@@ -17,13 +17,12 @@
 
 namespace Npoi.Core.DDF
 {
-    using System;
     using Npoi.Core.Util;
     using System.Diagnostics;
+
     public class SysIndexSource
     {
-        internal static SysIndexSource[] Values()
-        {
+        internal static SysIndexSource[] Values() {
             return new SysIndexSource[] {
                 SysIndexSource.FILL_COLOR,
                 SysIndexSource.LINE_OR_FILL_COLOR,
@@ -34,37 +33,44 @@ namespace Npoi.Core.DDF
                 SysIndexSource.FILL_OR_LINE_COLOR
             };
         }
+
         /* Use the fill color of the shape. */
+
         public static SysIndexSource FILL_COLOR = new SysIndexSource(0xF0),
         /* If the shape Contains a line, use the line color of the shape. Otherwise, use the fill color. */
         LINE_OR_FILL_COLOR = new SysIndexSource(0xF1),
         /* Use the line color of the shape. */
         LINE_COLOR = new SysIndexSource(0xF2),
-            /* Use the shadow color of the shape. */
+        /* Use the shadow color of the shape. */
         SHADOW_COLOR = new SysIndexSource(0xF3),
-            /* Use the current, or last-used, color. */
+        /* Use the current, or last-used, color. */
         CURRENT_OR_LAST_COLOR = new SysIndexSource(0xF4),
-            /* Use the fill background color of the shape. */
+        /* Use the fill background color of the shape. */
         FILL_BACKGROUND_COLOR = new SysIndexSource(0xF5),
-            /* Use the line background color of the shape. */
+        /* Use the line background color of the shape. */
         LINE_BACKGROUND_COLOR = new SysIndexSource(0xF6),
-            /* If the shape Contains a Fill, use the fill color of the shape. Otherwise, use the line color. */
+        /* If the shape Contains a Fill, use the fill color of the shape. Otherwise, use the line color. */
         FILL_OR_LINE_COLOR = new SysIndexSource(0xF7)
         ;
+
         internal int value;
-        internal SysIndexSource(int value) { this.value = value; }
+
+        internal SysIndexSource(int value) {
+            this.value = value;
+        }
     }
+
     /**
          * The following enum specifies values that indicate special procedural properties that
          * are used to modify the color components of another color. These values are combined with
          * those of the {@link SysIndexSource} enum or with a user-specified color.
          * The first six values are mutually exclusive.
          */
+
     public class SysIndexProcedure
     {
-        internal static SysIndexProcedure[] Values()
-        {
-            return new SysIndexProcedure[] { 
+        internal static SysIndexProcedure[] Values() {
+            return new SysIndexProcedure[] {
                 SysIndexProcedure.DARKEN_COLOR,
                 SysIndexProcedure.LIGHTEN_COLOR,
                 SysIndexProcedure.ADD_GRAY_LEVEL,
@@ -75,68 +81,73 @@ namespace Npoi.Core.DDF
                 SysIndexProcedure.INVERT_HIGHBIT_AFTER
             };
         }
+
         /*
          * Darken the color by the value that is specified in the blue field.
          * A blue value of 0xFF specifies that the color is to be left unChanged,
          * whereas a blue value of 0x00 specifies that the color is to be completely darkened.
          */
+
         public static SysIndexProcedure DARKEN_COLOR = new SysIndexProcedure(0x01),
-            /*
-             * Lighten the color by the value that is specified in the blue field.
-             * A blue value of 0xFF specifies that the color is to be left unChanged,
-             * whereas a blue value of 0x00 specifies that the color is to be completely lightened.
-             */
+        /*
+         * Lighten the color by the value that is specified in the blue field.
+         * A blue value of 0xFF specifies that the color is to be left unChanged,
+         * whereas a blue value of 0x00 specifies that the color is to be completely lightened.
+         */
         LIGHTEN_COLOR = new SysIndexProcedure(0x02),
-            /*
-             * Add a gray level RGB value. The blue field Contains the gray level to Add:
-             * NewColor = SourceColor + gray
-             */
+        /*
+         * Add a gray level RGB value. The blue field Contains the gray level to Add:
+         * NewColor = SourceColor + gray
+         */
         ADD_GRAY_LEVEL = new SysIndexProcedure(0x03),
-            /*
-             * Subtract a gray level RGB value. The blue field Contains the gray level to subtract:
-             * NewColor = SourceColor - gray
-             */
+        /*
+         * Subtract a gray level RGB value. The blue field Contains the gray level to subtract:
+         * NewColor = SourceColor - gray
+         */
         SUB_GRAY_LEVEL = new SysIndexProcedure(0x04),
-            /*
-             * Reverse-subtract a gray level RGB value. The blue field Contains the gray level from
-             * which to subtract:
-             * NewColor = gray - SourceColor
-             */
+        /*
+         * Reverse-subtract a gray level RGB value. The blue field Contains the gray level from
+         * which to subtract:
+         * NewColor = gray - SourceColor
+         */
         REVERSE_GRAY_LEVEL = new SysIndexProcedure(0x05),
-            /*
-             * If the color component being modified is less than the parameter Contained in the blue
-             * field, Set it to the minimum intensity. If the color component being modified is greater
-             * than or equal to the parameter, Set it to the maximum intensity.
-             */
+        /*
+         * If the color component being modified is less than the parameter Contained in the blue
+         * field, Set it to the minimum intensity. If the color component being modified is greater
+         * than or equal to the parameter, Set it to the maximum intensity.
+         */
         THRESHOLD = new SysIndexProcedure(0x06),
-            /*
-             * After making other modifications, invert the color.
-             * This enum value is only for documentation and won't be directly returned.
-             */
+        /*
+         * After making other modifications, invert the color.
+         * This enum value is only for documentation and won't be directly returned.
+         */
         INVERT_AFTER = new SysIndexProcedure(0x20),
-            /*
-             * After making other modifications, invert the color by toggling just the high bit of each
-             * color channel.
-             * This enum value is only for documentation and won't be directly returned.
-             */
+        /*
+         * After making other modifications, invert the color by toggling just the high bit of each
+         * color channel.
+         * This enum value is only for documentation and won't be directly returned.
+         */
         INVERT_HIGHBIT_AFTER = new SysIndexProcedure(0x40)
         ;
+
         internal BitField mask;
-        internal SysIndexProcedure(int mask)
-        {
+
+        internal SysIndexProcedure(int mask) {
             this.mask = new BitField(mask);
         }
     }
+
     /**
      * An OfficeArtCOLORREF structure entry which also handles color extension opid data
      */
+
     public class EscherColorRef
     {
-        int opid = -1;
-        int colorRef = 0;
+        private int opid = -1;
+        private int colorRef = 0;
 
         /*
-         * A bit that specifies whether the system color scheme will be used to determine the color. 
+         * A bit that specifies whether the system color scheme will be used to determine the color.
          * A value of 0x1 specifies that green and red will be treated as an unsigned 16-bit index
          * into the system color table. Values less than 0x00F0 map directly to system colors.
          */
@@ -165,7 +176,7 @@ namespace Npoi.Core.DDF
 
         /*
          * A bit that specifies whether the current palette will be used to determine the color.
-         * A value of 0x1 specifies that green and red will be treated as an unsigned 16-bit index into 
+         * A value of 0x1 specifies that green and red will be treated as an unsigned 16-bit index into
          * the current color palette. This color MAY be dithered. If this value is 0x1, blue MUST be 0x00.
          */
         private static BitField FLAG_PALETTE_INDEX = new BitField(0x01000000);
@@ -188,76 +199,62 @@ namespace Npoi.Core.DDF
          */
         private static BitField FLAG_RED = new BitField(0x000000FF);
 
-        public EscherColorRef(int colorRef)
-        {
+        public EscherColorRef(int colorRef) {
             this.colorRef = colorRef;
         }
 
-        public EscherColorRef(byte[] source, int start, int len)
-        {
+        public EscherColorRef(byte[] source, int start, int len) {
             Debug.Assert(len == 4 || len == 6);
 
             int offset = start;
-            if (len == 6)
-            {
+            if (len == 6) {
                 opid = LittleEndian.GetUShort(source, offset);
                 offset += 2;
             }
             colorRef = LittleEndian.GetInt(source, offset);
         }
 
-        public bool HasSysIndexFlag()
-        {
+        public bool HasSysIndexFlag() {
             return FLAG_SYS_INDEX.IsSet(colorRef);
         }
 
-        public void SetSysIndexFlag(bool flag)
-        {
+        public void SetSysIndexFlag(bool flag) {
             FLAG_SYS_INDEX.SetBoolean(colorRef, flag);
         }
 
-        public bool HasSchemeIndexFlag()
-        {
+        public bool HasSchemeIndexFlag() {
             return FLAG_SCHEME_INDEX.IsSet(colorRef);
         }
 
-        public void SetSchemeIndexFlag(bool flag)
-        {
+        public void SetSchemeIndexFlag(bool flag) {
             FLAG_SCHEME_INDEX.SetBoolean(colorRef, flag);
         }
 
-        public bool HasSystemRGBFlag()
-        {
+        public bool HasSystemRGBFlag() {
             return FLAG_SYSTEM_RGB.IsSet(colorRef);
         }
 
-        public void SetSystemRGBFlag(bool flag)
-        {
+        public void SetSystemRGBFlag(bool flag) {
             FLAG_SYSTEM_RGB.SetBoolean(colorRef, flag);
         }
 
-        public bool HasPaletteRGBFlag()
-        {
+        public bool HasPaletteRGBFlag() {
             return FLAG_PALETTE_RGB.IsSet(colorRef);
         }
 
-        public void SetPaletteRGBFlag(bool flag)
-        {
+        public void SetPaletteRGBFlag(bool flag) {
             FLAG_PALETTE_RGB.SetBoolean(colorRef, flag);
         }
 
-        public bool HasPaletteIndexFlag()
-        {
+        public bool HasPaletteIndexFlag() {
             return FLAG_PALETTE_INDEX.IsSet(colorRef);
         }
 
-        public void SetPaletteIndexFlag(bool flag)
-        {
+        public void SetPaletteIndexFlag(bool flag) {
             FLAG_PALETTE_INDEX.SetBoolean(colorRef, flag);
         }
 
-        public int[] GetRGB()
-        {
+        public int[] GetRGB() {
             int[] rgb = {
             FLAG_RED.GetValue(colorRef),
             FLAG_GREEN.GetValue(colorRef),
@@ -269,12 +266,11 @@ namespace Npoi.Core.DDF
         /**
          * @return {@link SysIndexSource} if {@link #hasSysIndexFlag()} is {@code true}, otherwise null
          */
-        public SysIndexSource GetSysIndexSource()
-        {
+
+        public SysIndexSource GetSysIndexSource() {
             if (!HasSysIndexFlag()) return null;
             int val = FLAG_RED.GetValue(colorRef);
-            foreach (SysIndexSource sis in SysIndexSource.Values())
-            {
+            foreach (SysIndexSource sis in SysIndexSource.Values()) {
                 if (sis.value == val) return sis;
             }
             return null;
@@ -284,12 +280,11 @@ namespace Npoi.Core.DDF
          * Return the {@link SysIndexProcedure} - for invert flag use {@link #getSysIndexInvert()}
          * @return {@link SysIndexProcedure} if {@link #hasSysIndexFlag()} is {@code true}, otherwise null
          */
-        public SysIndexProcedure GetSysIndexProcedure()
-        {
+
+        public SysIndexProcedure GetSysIndexProcedure() {
             if (!HasSysIndexFlag()) return null;
             int val = FLAG_RED.GetValue(colorRef);
-            foreach (SysIndexProcedure sip in SysIndexProcedure.Values())
-            {
+            foreach (SysIndexProcedure sip in SysIndexProcedure.Values()) {
                 if (sip == SysIndexProcedure.INVERT_AFTER || sip == SysIndexProcedure.INVERT_HIGHBIT_AFTER) continue;
                 if (sip.mask.IsSet(val)) return sip;
             }
@@ -298,10 +293,10 @@ namespace Npoi.Core.DDF
 
         /**
          * @return 0 for no invert flag, 1 for {@link SysIndexProcedure#INVERT_AFTER} and
-         * 2 for {@link SysIndexProcedure#INVERT_HIGHBIT_AFTER} 
+         * 2 for {@link SysIndexProcedure#INVERT_HIGHBIT_AFTER}
          */
-        public int GetSysIndexInvert()
-        {
+
+        public int GetSysIndexInvert() {
             if (!HasSysIndexFlag()) return 0;
             int val = FLAG_GREEN.GetValue(colorRef);
             if ((SysIndexProcedure.INVERT_AFTER.mask.IsSet(val))) return 1;
@@ -311,11 +306,11 @@ namespace Npoi.Core.DDF
 
         /**
          * @return index of the scheme color or -1 if {@link #hasSchemeIndexFlag()} is {@code false}
-         * 
+         *
          * @see Npoi.Core.HSLF.Record.ColorSchemeAtom#getColor(int)
          */
-        public int GetSchemeIndex()
-        {
+
+        public int GetSchemeIndex() {
             if (!HasSchemeIndexFlag()) return -1;
             return FLAG_RED.GetValue(colorRef);
         }
@@ -323,11 +318,10 @@ namespace Npoi.Core.DDF
         /**
          * @return index of current palette (color) or -1 if {@link #hasPaletteIndexFlag()} is {@code false}
          */
-        public int GetPaletteIndex()
-        {
+
+        public int GetPaletteIndex() {
             if (!HasPaletteIndexFlag()) return -1;
             return (FLAG_GREEN.GetValue(colorRef) << 8) & FLAG_RED.GetValue(colorRef);
         }
     }
-    
 }

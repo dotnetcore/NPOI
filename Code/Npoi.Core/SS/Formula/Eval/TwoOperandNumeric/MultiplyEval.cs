@@ -19,8 +19,9 @@ namespace Npoi.Core.SS.Formula.Eval
 {
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     *  
+     *
      */
+
     public class MultiplyEval : TwoOperandNumericOperation
     {
         public override double Evaluate(double d0, double d1)

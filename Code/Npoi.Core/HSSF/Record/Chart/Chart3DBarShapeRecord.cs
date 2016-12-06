@@ -14,23 +14,22 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
+
+using Npoi.Core.Util;
 using System;
 using System.Text;
 
-using Npoi.Core.Util;
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
-    public class Chart3DBarShapeRecord:StandardRecord
+    public class Chart3DBarShapeRecord : StandardRecord
     {
         public const short sid = 4191;
 
-        byte field_1_riser = 0;
-        byte field_2_taper = 0;
+        private byte field_1_riser = 0;
+        private byte field_2_taper = 0;
 
         public Chart3DBarShapeRecord()
-        { 
-        
+        {
         }
 
         public Chart3DBarShapeRecord(RecordInputStream in1)
@@ -56,6 +55,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             buffer.Append("[/Chart3DBarShape]\n");
             return buffer.ToString();
         }
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteByte(field_1_riser);
@@ -79,8 +79,9 @@ namespace Npoi.Core.HSSF.Record.Chart
         {
             get { return sid; }
         }
+
         /// <summary>
-        /// the shape of the base of the data points in a bar or column chart group. 
+        /// the shape of the base of the data points in a bar or column chart group.
         /// MUST be a value from the following table
         /// 0x00      The base of the data point is a rectangle.
         /// 0x01      The base of the data point is an ellipse.
@@ -92,12 +93,12 @@ namespace Npoi.Core.HSSF.Record.Chart
         }
 
         /// <summary>
-        /// how the data points in a bar or column chart group taper from base to tip. 
+        /// how the data points in a bar or column chart group taper from base to tip.
         /// MUST be a value from the following
-        /// 0x00    The data points of the bar or column chart group do not taper. 
+        /// 0x00    The data points of the bar or column chart group do not taper.
         ///         The shape at the maximum value of the data point is the same as the shape at the base.:
         /// 0x01    The data points of the bar or column chart group taper to a point at the maximum value of each data point.
-        /// 0x02    The data points of the bar or column chart group taper towards a projected point at the position of 
+        /// 0x02    The data points of the bar or column chart group taper towards a projected point at the position of
         ///         the maximum value of all of the data points in the chart group, but are clipped at the value of each data point.
         /// </summary>
         public byte Taper

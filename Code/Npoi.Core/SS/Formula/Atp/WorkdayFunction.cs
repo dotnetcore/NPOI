@@ -15,10 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
 using Npoi.Core.SS.Formula.Eval;
 using Npoi.Core.SS.Formula.Functions;
 using Npoi.Core.SS.UserModel;
+using System;
 
 namespace Npoi.Core.SS.Formula.Atp
 {
@@ -30,12 +30,12 @@ namespace Npoi.Core.SS.Formula.Atp
  * <b>Syntax</b><br/>
  * <b>WORKDAY</b>(<b>startDate</b>, <b>days</b>, holidays)
  * <p/>
- * 
+ *
  * @author jfaenomoto@gmail.com
  */
-    class WorkdayFunction : FreeRefFunction
-    {
 
+    internal class WorkdayFunction : FreeRefFunction
+    {
         public static FreeRefFunction instance = new WorkdayFunction(ArgumentsEvaluator.instance);
 
         private ArgumentsEvaluator evaluator;
@@ -49,9 +49,10 @@ namespace Npoi.Core.SS.Formula.Atp
         /**
          * Evaluate for WORKDAY. Given a date, a number of days and a optional date or interval of holidays, determines which date it is past
          * number of parametrized workdays.
-         * 
+         *
          * @return {@link ValueEval} with date as its value.
          */
+
         public ValueEval Evaluate(ValueEval[] args, OperationEvaluationContext ec)
         {
             if (args.Length < 2 || args.Length > 3)
@@ -78,7 +79,5 @@ namespace Npoi.Core.SS.Formula.Atp
                 return ErrorEval.VALUE_INVALID;
             }
         }
-
     }
-
 }

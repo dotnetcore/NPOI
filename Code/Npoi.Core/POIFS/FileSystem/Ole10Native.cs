@@ -17,9 +17,9 @@
 
 namespace Npoi.Core.POIFS.FileSystem
 {
+    using Npoi.Core.Util;
     using System;
     using System.IO;
-    using Npoi.Core.Util;
     using System.Text;
 
     /**
@@ -28,6 +28,7 @@ namespace Npoi.Core.POIFS.FileSystem
      *
      * @author Rainer Schwarze
      */
+
     public class Ole10Native
     {
         public static String OLE10_NATIVE = "\x0001Ole10Native";
@@ -35,6 +36,7 @@ namespace Npoi.Core.POIFS.FileSystem
 
         // (the fields as they appear in the raw record:)
         private int totalSize;             // 4 bytes, total size of record not including this field
+
         private short flags1 = 2;          // 2 bytes, unknown, mostly [02 00]
         private String label;              // ASCIIZ, stored in this field without the terminating zero
         private String fileName;           // ASCIIZ, stored in this field without the terminating zero
@@ -46,8 +48,10 @@ namespace Npoi.Core.POIFS.FileSystem
 
         /**
          * the field encoding mode - merely a try-and-error guess ...
-         **/ 
-        private enum EncodingMode {
+         **/
+
+        private enum EncodingMode
+        {
             /**
              * the data is stored in parsed format - including label, command, etc.
              */
@@ -61,8 +65,9 @@ namespace Npoi.Core.POIFS.FileSystem
              */
             compact
         }
-    
+
         private EncodingMode mode;
+
         /// <summary>
         /// Creates an instance of this class from an embedded OLE Object. The OLE Object is expected
         /// to include a stream &quot;{01}Ole10Native&quot; which Contains the actual
@@ -91,15 +96,17 @@ namespace Npoi.Core.POIFS.FileSystem
 
             return new Ole10Native(data, 0);
         }
+
         /**
        * Creates an instance and fills the fields based on ... the fields
        */
+
         public Ole10Native(String label, String filename, String command, byte[] data)
         {
-            Label=(label);
-            FileName=(filename);
-            Command=(command);
-            DataBuffer=(data);
+            Label = (label);
+            FileName = (filename);
+            Command = (command);
+            DataBuffer = (data);
             mode = EncodingMode.parsed;
         }
 
@@ -111,12 +118,13 @@ namespace Npoi.Core.POIFS.FileSystem
          * @param plain as of POI 3.11 this parameter is ignored
          * @throws Ole10NativeException on invalid or unexcepted data format
          */
+
         [Obsolete("parameter plain is ignored, use {@link #Ole10Native(byte[],int)}")]
         public Ole10Native(byte[] data, int offset, bool plain)
             : this(data, offset)
         {
-
         }
+
         /**
          * Creates an instance and Fills the fields based on the data in the given buffer.
          *
@@ -124,6 +132,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * @param offset The start offset of the record in the buffer
          * @throws Ole10NativeException on invalid or unexcepted data format
          */
+
         public Ole10Native(byte[] data, int offset)
         {
             int ofs = offset;        // current offset, Initialized to start
@@ -186,25 +195,26 @@ namespace Npoi.Core.POIFS.FileSystem
                     }
 
                     break;
+
                 case EncodingMode.compact:
                     flags1 = LittleEndian.GetShort(data, ofs);
                     ofs += LittleEndianConsts.SHORT_SIZE;
                     dataSize = totalSize - LittleEndianConsts.SHORT_SIZE;
                     break;
+
                 case EncodingMode.unparsed:
                     dataSize = totalSize;
                     break;
-
             }
             dataBuffer = new byte[dataSize];
             Array.Copy(data, ofs, dataBuffer, 0, dataSize);
             ofs += dataSize;
-
         }
 
         /*
          * Helper - determine length of zero terminated string (ASCIIZ).
          */
+
         private static int GetStringLength(byte[] data, int ofs)
         {
             int len = 0;
@@ -222,6 +232,7 @@ namespace Npoi.Core.POIFS.FileSystem
          *
          * @return the totalSize
          */
+
         public int TotalSize
         {
             get
@@ -235,6 +246,7 @@ namespace Npoi.Core.POIFS.FileSystem
          *
          * @return the flags1
          */
+
         public short Flags1
         {
             get
@@ -250,6 +262,7 @@ namespace Npoi.Core.POIFS.FileSystem
          *
          * @return the label
          */
+
         public String Label
         {
             get
@@ -268,6 +281,7 @@ namespace Npoi.Core.POIFS.FileSystem
          *
          * @return the fileName
          */
+
         public String FileName
         {
             get
@@ -285,6 +299,7 @@ namespace Npoi.Core.POIFS.FileSystem
          *
          * @return the flags2
          */
+
         public short Flags2
         {
             get
@@ -302,6 +317,7 @@ namespace Npoi.Core.POIFS.FileSystem
          *
          * @return the unknown1
          */
+
         public short Unknown1
         {
             get
@@ -320,6 +336,7 @@ namespace Npoi.Core.POIFS.FileSystem
          *
          * @return the command
          */
+
         public String Command
         {
             get
@@ -336,10 +353,10 @@ namespace Npoi.Core.POIFS.FileSystem
          *
          * @return the dataSize
          */
+
         public int DataSize
         {
-            get{return dataBuffer.Length;}
-            
+            get { return dataBuffer.Length; }
         }
 
         /**
@@ -350,9 +367,10 @@ namespace Npoi.Core.POIFS.FileSystem
          *
          * @return the dataBuffer
          */
+
         public byte[] DataBuffer
         {
-            get{return dataBuffer;}
+            get { return dataBuffer; }
             set { dataBuffer = value; }
         }
 
@@ -361,6 +379,7 @@ namespace Npoi.Core.POIFS.FileSystem
          *
          * @return the flags3
          */
+
         public short Flags3
         {
             get
@@ -379,12 +398,13 @@ namespace Npoi.Core.POIFS.FileSystem
    * around, but non atom classes will just request the bytes from their
    * children, then chuck on their header and return)
    */
+
         public void WriteOut(Stream out1)
         {
             byte[] intbuf = new byte[LittleEndianConsts.INT_SIZE];
             byte[] shortbuf = new byte[LittleEndianConsts.SHORT_SIZE];
             byte[] zerobuf = { 0, 0, 0, 0 };
-            
+
             LittleEndianOutputStream leosOut = new LittleEndianOutputStream(out1);
 
             switch (mode)
@@ -419,20 +439,13 @@ namespace Npoi.Core.POIFS.FileSystem
                     leosOut.WriteShort(Flags1);
                     out1.Write(DataBuffer, 0, DataBuffer.Length);
                     break;
+
                 default:
                 case EncodingMode.unparsed:
                     leosOut.WriteInt(DataSize);
                     out1.Write(DataBuffer, 0, DataBuffer.Length);
                     break;
             }
-
         }
-
     }
-
 }
-
-
-
-
-

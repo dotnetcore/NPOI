@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -15,7 +14,6 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
-        
 
 /*
  * FontFormatting.java
@@ -23,20 +21,17 @@
  * Created on January 22, 2008, 10:05 PM
  */
 
-using Npoi.Core.DDF;
-
 namespace Npoi.Core.HSSF.Record.CF
 {
-    using System;
-    using System.Text;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.Util;
-
+    using System;
+    using System.Text;
 
     /**
      * Pattern Formatting Block of the Conditional Formatting Rule Record.
-     * 
+     *
      * @author Dmitriy Kumshayev
      */
 
@@ -49,6 +44,7 @@ namespace Npoi.Core.HSSF.Record.CF
         }
 
         /** Creates new FontFormatting */
+
         public PatternFormatting(RecordInputStream in1)
         {
             field_15_pattern_style = in1.ReadShort();
@@ -58,6 +54,7 @@ namespace Npoi.Core.HSSF.Record.CF
         // PATTERN FORMATING BLOCK
         // For Pattern Styles see constants at HSSFCellStyle (from NO_Fill to LEAST_DOTS)
         private short field_15_pattern_style;
+
         private static BitField FillPatternStyle = BitFieldFactory.GetInstance(0xFC00);
 
         private short field_16_pattern_color_indexes;
@@ -65,34 +62,38 @@ namespace Npoi.Core.HSSF.Record.CF
         private static BitField patternBackgroundColorIndex = BitFieldFactory.GetInstance(0x3F80);
 
         /**
-         * Get the Fill pattern 
+         * Get the Fill pattern
          * @return Fill pattern
          */
 
-        public FillPattern FillPattern {
-            get {
-                return (FillPattern) FillPatternStyle.GetShortValue (field_15_pattern_style);
+        public FillPattern FillPattern
+        {
+            get
+            {
+                return (FillPattern)FillPatternStyle.GetShortValue(field_15_pattern_style);
             }
-            set {
-                field_15_pattern_style = FillPatternStyle.SetShortValue (field_15_pattern_style, (short) value); 
+            set
+            {
+                field_15_pattern_style = FillPatternStyle.SetShortValue(field_15_pattern_style, (short)value);
             }
         }
-
 
         /**
          * Get the background Fill color
          * @see org.apache.poi.hssf.usermodel.HSSFPalette#GetColor(short)
          * @return Fill color
          */
+
         public short FillBackgroundColor
         {
             get
             {
                 return patternBackgroundColorIndex.GetShortValue(field_16_pattern_color_indexes);
             }
-            set { 
-                field_16_pattern_color_indexes = 
-                    patternBackgroundColorIndex.SetShortValue(field_16_pattern_color_indexes, value); 
+            set
+            {
+                field_16_pattern_color_indexes =
+                    patternBackgroundColorIndex.SetShortValue(field_16_pattern_color_indexes, value);
             }
         }
 
@@ -101,13 +102,14 @@ namespace Npoi.Core.HSSF.Record.CF
          * @see org.apache.poi.hssf.usermodel.HSSFPalette#GetColor(short)
          * @return Fill color
          */
+
         public short FillForegroundColor
         {
             get
             {
                 return patternColorIndex.GetShortValue(field_16_pattern_color_indexes);
             }
-            set 
+            set
             {
                 field_16_pattern_color_indexes = patternColorIndex.SetShortValue(field_16_pattern_color_indexes, value);
             }
@@ -117,7 +119,7 @@ namespace Npoi.Core.HSSF.Record.CF
         {
             StringBuilder buffer = new StringBuilder();
             buffer.Append("    [Pattern Formatting]\n");
-            buffer.Append("          .Fillpattern= ").Append(StringUtil.ToHexString((int) FillPattern)).Append("\n");
+            buffer.Append("          .Fillpattern= ").Append(StringUtil.ToHexString((int)FillPattern)).Append("\n");
             buffer.Append("          .fgcoloridx= ").Append(StringUtil.ToHexString(FillForegroundColor)).Append("\n");
             buffer.Append("          .bgcoloridx= ").Append(StringUtil.ToHexString(FillBackgroundColor)).Append("\n");
             buffer.Append("    [/Pattern Formatting]\n");

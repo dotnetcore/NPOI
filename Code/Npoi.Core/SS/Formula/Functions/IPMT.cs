@@ -25,7 +25,6 @@ namespace Npoi.Core.SS.Formula.Functions
     {
         protected override double Eval(ValueEval[] args, int srcCellRow, int srcCellCol)
         {
-
             if (args.Length != 4)
                 throw new EvaluationException(ErrorEval.VALUE_INVALID);
 

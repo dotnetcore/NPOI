@@ -17,15 +17,15 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-    using Npoi.Core.Util;
     using Npoi.Core.SS.Formula.Function;
-
+    using Npoi.Core.Util;
+    using System;
 
     /**
      *
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     public class FuncVarPtg : AbstractFunctionPtg
     {
         public const byte sid = 0x22;
@@ -39,12 +39,12 @@ namespace Npoi.Core.SS.Formula.PTG
         private FuncVarPtg(int functionIndex, int returnClass, byte[] paramClasses, int numArgs)
             : base(functionIndex, returnClass, paramClasses, numArgs)
         {
-
         }
 
         /**Creates new function pointer from a byte array
  * usually called while reading an excel file.
  */
+
         public static FuncVarPtg Create(ILittleEndianInput in1)
         {
             return Create(in1.ReadByte(), in1.ReadShort());
@@ -53,6 +53,7 @@ namespace Npoi.Core.SS.Formula.PTG
         /**
          * Create a function ptg from a string tokenised by the parser
          */
+
         public static FuncVarPtg Create(String pName, int numArgs)
         {
             return Create(numArgs, LookupIndex(pName));
@@ -68,7 +69,6 @@ namespace Npoi.Core.SS.Formula.PTG
             }
             return new FuncVarPtg(functionIndex, fm.ReturnClassCode, fm.ParameterClassCodes, numArgs);
         }
-
 
         public override void Write(ILittleEndianOutput out1)
         {

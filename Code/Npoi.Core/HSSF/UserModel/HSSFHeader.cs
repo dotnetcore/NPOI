@@ -17,10 +17,10 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
     using Npoi.Core.HSSF.Record;
-    using Npoi.Core.SS.UserModel;
     using Npoi.Core.HSSF.Record.Aggregates;
+    using Npoi.Core.SS.UserModel;
+    using System;
 
     /// <summary>
     /// Class to Read and manipulate the header.
@@ -32,7 +32,7 @@ namespace Npoi.Core.HSSF.UserModel
     /// fonts by using similar methods.
     /// @author Shawn Laubach (slaubach at apache dot org)
     /// </summary>
-    public class HSSFHeader : HeaderFooter,IHeader
+    public class HSSFHeader : HeaderFooter, IHeader
     {
         private PageSettingsBlock _psb;
 
@@ -44,7 +44,6 @@ namespace Npoi.Core.HSSF.UserModel
         {
             _psb = psb;
         }
-
 
         /// <summary>
         /// Gets the raw footer.
@@ -62,6 +61,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return hf.Text;
             }
         }
+
         protected override void SetHeaderFooterText(string text)
         {
             HeaderRecord hfr = _psb.Header;
@@ -72,7 +72,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
             else
             {
-                hfr.Text=(text);
+                hfr.Text = (text);
             }
         }
     }

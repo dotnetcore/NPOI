@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * The value range record defines the range of the value axis.
@@ -31,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class ValueRangeRecord
        : StandardRecord
     {
@@ -51,10 +49,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         private BitField crossCategoryAxisAtMaximum = BitFieldFactory.GetInstance(0x80);
         private BitField reserved = BitFieldFactory.GetInstance(0x100);
 
-
         public ValueRangeRecord()
         {
-
         }
 
         /**
@@ -71,7 +67,6 @@ namespace Npoi.Core.HSSF.Record.Chart
             field_4_minorIncrement = in1.ReadDouble();
             field_5_categoryAxisCross = in1.ReadDouble();
             field_6_options = in1.ReadShort();
-
         }
 
         public override String ToString()
@@ -125,6 +120,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 8 + 8 + 8 + 8 + 8 + 2; }
@@ -148,31 +144,30 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          * Get the minimum axis value field for the ValueRange record.
          */
+
         public double MinimumAxisValue
         {
-            get{return field_1_minimumAxisValue;}
+            get { return field_1_minimumAxisValue; }
             set { this.field_1_minimumAxisValue = value; }
         }
 
         /**
          * Get the maximum axis value field for the ValueRange record.
          */
+
         public double MaximumAxisValue
         {
-            get{return field_2_maximumAxisValue;}
+            get { return field_2_maximumAxisValue; }
             set { this.field_2_maximumAxisValue = value; }
         }
-
 
         /**
          * Get the major increment field for the ValueRange record.
          */
+
         public double MajorIncrement
         {
             get { return field_3_majorIncrement; }
@@ -182,16 +177,17 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the minor increment field for the ValueRange record.
          */
+
         public double MinorIncrement
         {
-            get{return field_4_minorIncrement;}
+            get { return field_4_minorIncrement; }
             set { this.field_4_minorIncrement = value; }
         }
-
 
         /**
          * Get the category axis cross field for the ValueRange record.
          */
+
         public double CategoryAxisCross
         {
             get
@@ -204,17 +200,18 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the options field for the ValueRange record.
          */
+
         public short Options
         {
-            get{return field_6_options;}
+            get { return field_6_options; }
             set { this.field_6_options = value; }
         }
-
 
         /**
          * automatic minimum value selected
          * @return  the automatic minimum field value.
          */
+
         public bool IsAutomaticMinimum
         {
             get
@@ -223,10 +220,12 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set { field_6_options = automaticMinimum.SetShortBoolean(field_6_options, value); }
         }
+
         /**
          * automatic maximum value selected
          * @return  the automatic maximum field value.
          */
+
         public bool IsAutomaticMaximum
         {
             get { return automaticMaximum.IsSet(field_6_options); }
@@ -237,6 +236,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * automatic major Unit selected
          * @return  the automatic major field value.
          */
+
         public bool IsAutomaticMajor
         {
             get { return automaticMajor.IsSet(field_6_options); }
@@ -247,9 +247,10 @@ namespace Npoi.Core.HSSF.Record.Chart
          * automatic minor Unit selected
          * @return  the automatic minor field value.
          */
+
         public bool IsAutomaticMinor
         {
-            get{return automaticMinor.IsSet(field_6_options);}
+            get { return automaticMinor.IsSet(field_6_options); }
             set { field_6_options = automaticMinor.SetShortBoolean(field_6_options, value); }
         }
 
@@ -257,6 +258,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * category crossing point is automatically selected
          * @return  the automatic category crossing field value.
          */
+
         public bool IsAutomaticCategoryCrossing
         {
             get { return automaticCategoryCrossing.IsSet(field_6_options); }
@@ -267,9 +269,10 @@ namespace Npoi.Core.HSSF.Record.Chart
          * use logarithmic scale
          * @return  the logarithmic scale field value.
          */
+
         public bool IsLogarithmicScale
         {
-            get{return logarithmicScale.IsSet(field_6_options);}
+            get { return logarithmicScale.IsSet(field_6_options); }
             set { field_6_options = logarithmicScale.SetShortBoolean(field_6_options, value); }
         }
 
@@ -277,6 +280,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * values are reverses in graph
          * @return  the values in reverse field value.
          */
+
         public bool IsValuesInReverse
         {
             get { return valuesInReverse.IsSet(field_6_options); }
@@ -287,6 +291,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * category axis to cross at maximum value
          * @return  the cross category axis at maximum field value.
          */
+
         public bool IsCrossCategoryAxisAtMaximum
         {
             get
@@ -296,17 +301,15 @@ namespace Npoi.Core.HSSF.Record.Chart
             set { field_6_options = crossCategoryAxisAtMaximum.SetShortBoolean(field_6_options, value); }
         }
 
-
         /**
          * reserved, must equal 1 (excel dev. guide says otherwise)
          * @return  the reserved field value.
          */
+
         public bool IsReserved
         {
-            get{return reserved.IsSet(field_6_options);}
+            get { return reserved.IsSet(field_6_options); }
             set { field_6_options = reserved.SetShortBoolean(field_6_options, value); }
         }
-
-
     }
 }

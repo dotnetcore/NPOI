@@ -17,29 +17,31 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Record for the left margin.
      * NOTE: This source was automatically generated.
      * @author Shawn Laubach (slaubach at apache dot org)
      */
+
     public class LeftMarginRecord : StandardRecord, IMargin
     {
         public const short sid = 0x26;
         private double field_1_margin;
 
-        public LeftMarginRecord() { }
+        public LeftMarginRecord()
+        {
+        }
 
         /**
          * Constructs a LeftMargin record and Sets its fields appropriately.
          *
          * @param in the RecordInputstream to Read the record from
          */
+
         public LeftMarginRecord(RecordInputStream in1)
         {
             field_1_margin = in1.ReadDouble();
@@ -75,12 +77,12 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the margin field for the LeftMargin record.
          */
+
         public double Margin
         {
             get { return field_1_margin; }
             set { this.field_1_margin = value; }
         }
-
 
         public override Object Clone()
         {

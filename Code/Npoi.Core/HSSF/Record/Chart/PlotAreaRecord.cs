@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * preceeds and identifies a frame as belonging to the plot area.
@@ -31,15 +28,14 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Andrew C. Oliver (acoliver at apache.org)
      */
+
     public class PlotAreaRecord
        : StandardRecord
     {
         public const short sid = 0x1035;
 
-
         public PlotAreaRecord()
         {
-
         }
 
         /**
@@ -69,6 +65,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 0; }
@@ -85,8 +82,5 @@ namespace Npoi.Core.HSSF.Record.Chart
 
             return rec;
         }
-
     }
 }
-
-

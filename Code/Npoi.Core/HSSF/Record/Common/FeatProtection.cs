@@ -17,19 +17,19 @@
 
 namespace Npoi.Core.HSSF.Record.Common
 {
-    using System;
-
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
+    using System;
     using System.Text;
 
     /**
      * Title: FeatProtection (Protection Shared Feature) common record part
-     * 
+     *
      * This record part specifies Protection data for a sheet, stored
      *  as part of a Shared Feature. It can be found in records such
      *  as {@link FeatRecord}
      */
+
     public class FeatProtection : SharedFeature
     {
         public const long NO_SELF_RELATIVE_SECURITY_FEATURE = 0;
@@ -39,7 +39,7 @@ namespace Npoi.Core.HSSF.Record.Common
 
         /**
          * 0 means no password. Otherwise indicates the
-         *  password verifier algorithm (same kind as 
+         *  password verifier algorithm (same kind as
          *   {@link PasswordRecord} and
          *   {@link PasswordRev4Record})
          */
@@ -95,6 +95,7 @@ namespace Npoi.Core.HSSF.Record.Common
         {
             return passwordVerifier;
         }
+
         public void SetPasswordVerifier(int passwordVerifier)
         {
             this.passwordVerifier = passwordVerifier;
@@ -104,6 +105,7 @@ namespace Npoi.Core.HSSF.Record.Common
         {
             return title;
         }
+
         public void SetTitle(String title)
         {
             this.title = title;

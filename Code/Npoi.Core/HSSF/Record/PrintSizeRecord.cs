@@ -1,19 +1,15 @@
-﻿
-namespace Npoi.Core.HSSF.Record
+﻿namespace Npoi.Core.HSSF.Record
 {
-    using System;
-    using System.Text;
     using Npoi.Core.Util;
 
-    public class PrintSizeRecord:StandardRecord
+    public class PrintSizeRecord : StandardRecord
     {
         public const short sid = 0x33;
 
         private short printSize;
 
         public PrintSizeRecord()
-        { 
-        
+        {
         }
 
         public PrintSizeRecord(RecordInputStream in1)
@@ -41,6 +37,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get { return sid; }
         }
+
         public override object Clone()
         {
             PrintSizeRecord pzr = new PrintSizeRecord();

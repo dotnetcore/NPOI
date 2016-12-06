@@ -5,22 +5,22 @@
    The ASF licenses this file to You under the Apache License, Version 2.0
    (the "License"); you may not use this file except in compliance with
    the License.  You may obtain a copy of the License at
-   
+
    http://www.apache.org/licenses/LICENSE-2.0
-   
+
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
    ==================================================================== */
-using System;
+
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.Util;
+using System;
 
 namespace Npoi.Core.SS.Util
 {
-
     /**
      * Class {@code SheetBuilder} provides an easy way of building workbook sheets
      * from 2D array of Objects. It can be used in test cases to improve code
@@ -28,13 +28,14 @@ namespace Npoi.Core.SS.Util
      *
      * @author Roman Kashitsyn
      */
+
     public class SheetBuilder
     {
-
         private IWorkbook workbook;
         private Object[][] cells;
         private bool shouldCreateEmptyCells = false;
         private String sheetName = null;
+
         public SheetBuilder(IWorkbook workbook, Object[][] cells)
         {
             this.workbook = workbook;
@@ -48,6 +49,7 @@ namespace Npoi.Core.SS.Util
          * @return {@code true} if null objects should be treated as empty cells
          *         and {@code false} otherwise
          */
+
         public bool GetCreateEmptyCells()
         {
             return shouldCreateEmptyCells;
@@ -60,22 +62,26 @@ namespace Npoi.Core.SS.Util
          *                               treated as empty cells
          * @return {@code this}
          */
+
         public SheetBuilder SetCreateEmptyCells(bool shouldCreateEmptyCells)
         {
             this.shouldCreateEmptyCells = shouldCreateEmptyCells;
             return this;
         }
+
         /**
          * Specifies name of the sheet to build. If not specified, default name (provided by
          * workbook) will be used instead.
          * @param sheetName sheet name to use
          * @return {@code this}
          */
+
         public SheetBuilder SetSheetName(String sheetName)
         {
             this.sheetName = sheetName;
             return this;
         }
+
         /**
           * Builds sheet from parent workbook and 2D array with cell
           * values. Creates rows anyway (even if row contains only null
@@ -95,6 +101,7 @@ namespace Npoi.Core.SS.Util
           *
           * @return newly created sheet
           */
+
         public ISheet Build()
         {
             ISheet sheet = (sheetName == null) ? workbook.CreateSheet() : workbook.CreateSheet(sheetName);
@@ -124,6 +131,7 @@ namespace Npoi.Core.SS.Util
          * @param cell cell to change
          * @param value value to set
          */
+
         private void SetCellValue(ICell cell, Object value)
         {
             if (value == null || cell == null)

@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
@@ -36,7 +36,7 @@ namespace Npoi.Core.Util
     /// type the {@link ClassID} is not just 16 bytes stored in the wrong
     /// order. Instead, it is a double word (4 bytes) followed by two
     /// words (2 bytes each) followed by 8 bytes.
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// <a href="mailto:klute@rainer-klute.de">klute@rainer-klute.de</a>
     /// @version $Id: ClassID.java 489730 2006-12-22 19:18:16Z bayard $
     /// @since 2002-02-09
@@ -47,20 +47,18 @@ namespace Npoi.Core.Util
         public static ClassID PPT_SHOW = new ClassID("{64818D10-4F9B-11CF-86EA-00AA00B929E8}");
         public static ClassID XLS_WORKBOOK = new ClassID("{00020841-0000-0000-C000-000000000046}");
         public static ClassID TXT_ONLY = new ClassID("{5e941d80-bf96-11cd-b579-08002b30bfeb}"); // ???
-        public static ClassID EXCEL97      = new ClassID("{00020820-0000-0000-C000-000000000046}");
-        public static ClassID EXCEL95      = new ClassID("{00020810-0000-0000-C000-000000000046}");
-        public static ClassID WORD97       = new ClassID("{00020906-0000-0000-C000-000000000046}");
-        public static ClassID WORD95       = new ClassID("{00020900-0000-0000-C000-000000000046}");
+        public static ClassID EXCEL97 = new ClassID("{00020820-0000-0000-C000-000000000046}");
+        public static ClassID EXCEL95 = new ClassID("{00020810-0000-0000-C000-000000000046}");
+        public static ClassID WORD97 = new ClassID("{00020906-0000-0000-C000-000000000046}");
+        public static ClassID WORD95 = new ClassID("{00020900-0000-0000-C000-000000000046}");
         public static ClassID POWERPOINT97 = new ClassID("{64818D10-4F9B-11CF-86EA-00AA00B929E8}");
         public static ClassID POWERPOINT95 = new ClassID("{EA7BAE70-FB3B-11CD-A903-00AA00510EA3}");
-        public static ClassID EQUATION30   = new ClassID("{0002CE02-0000-0000-C000-000000000046}");
+        public static ClassID EQUATION30 = new ClassID("{0002CE02-0000-0000-C000-000000000046}");
         /**
          * The bytes making out the class ID in correct order,
          * i.e. big-endian.
          */
         protected byte[] bytes;
-
-
 
         /// <summary>
         /// Creates a <see cref="ClassID"/> and Reads its value from a byte array.
@@ -71,7 +69,6 @@ namespace Npoi.Core.Util
         {
             Read(src, offset);
         }
-
 
         /// <summary>
         /// Creates a <see cref="ClassID"/> and initializes its value with 0x00 bytes.
@@ -84,11 +81,12 @@ namespace Npoi.Core.Util
         }
 
         /**
-         * <p>Creates a {@link ClassID} from a human-readable representation of the Class ID in standard 
+         * <p>Creates a {@link ClassID} from a human-readable representation of the Class ID in standard
          * format <code>"{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"</code>.</p>
-         * 
+         *
          * @param externalForm representation of the Class ID represented by this object.
          */
+
         public ClassID(String externalForm)
         {
             bytes = new byte[LENGTH];
@@ -111,8 +109,6 @@ namespace Npoi.Core.Util
         {
             get { return LENGTH; }
         }
-
-
 
         /// <summary>
         /// Gets or sets the bytes making out the class ID. They are returned in correct order, i.e. big-endian.
@@ -159,8 +155,6 @@ namespace Npoi.Core.Util
             return bytes;
         }
 
-
-
         /// <summary>
         /// Writes the class ID to a byte array in the little-endian format.
         /// </summary>
@@ -192,8 +186,6 @@ namespace Npoi.Core.Util
                 dst[i + offset] = bytes[i];
         }
 
-
-
         /// <summary>
         /// Checks whether this ClassID is equal to another
         /// object.
@@ -205,7 +197,7 @@ namespace Npoi.Core.Util
         {
             if (o == null || !(o is ClassID))
                 return false;
-            ClassID cid = (ClassID) o;
+            ClassID cid = (ClassID)o;
             if (bytes.Length != cid.bytes.Length)
                 return false;
             for (int i = 0; i < bytes.Length; i++)
@@ -213,8 +205,6 @@ namespace Npoi.Core.Util
                     return false;
             return true;
         }
-
-
 
         /// <summary>
         /// Serves as a hash function for a particular type.
@@ -226,8 +216,6 @@ namespace Npoi.Core.Util
         {
             return Encoding.UTF8.GetString(bytes).GetHashCode();
         }
-
-
 
         /// <summary>
         /// Returns a human-Readable representation of the Class ID in standard
@@ -249,6 +237,5 @@ namespace Npoi.Core.Util
             sbClassId.Append('}');
             return sbClassId.ToString();
         }
-
     }
 }

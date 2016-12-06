@@ -17,46 +17,49 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-    using System.Text;
-    using Npoi.Core.Util;
-    using Npoi.Core.HSSF.Record;
-    
     using Npoi.Core.SS.Formula.Function;
-
+    using Npoi.Core.Util;
+    using System;
 
     /**
      * @author aviks
      * @author Jason Height (jheight at chariot dot net dot au)
      * @author Danny Mui (dmui at apache dot org) (Leftover handling)
      */
+
     [Serializable]
     public class FuncPtg : AbstractFunctionPtg
     {
-
         public const byte sid = 0x21;
         public const int SIZE = 3;
+
         // not used: private int numParams = 0;
-    public static FuncPtg Create(ILittleEndianInput in1) {
-        return Create(in1.ReadUShort());
-    }
-    private FuncPtg(int funcIndex, FunctionMetadata fm):
-        base(funcIndex, fm.ReturnClassCode, fm.ParameterClassCodes, fm.MinParams)  // minParams same as max since these are not var-arg funcs {
-    {
-    }
-    public static FuncPtg Create(int functionIndex) {
-        FunctionMetadata fm = FunctionMetadataRegistry.GetFunctionByIndex(functionIndex);
-        if(fm == null) {
-            throw new Exception("Invalid built-in function index (" + functionIndex + ")");
+        public static FuncPtg Create(ILittleEndianInput in1)
+        {
+            return Create(in1.ReadUShort());
         }
-        return new FuncPtg(functionIndex, fm);
-    }
+
+        private FuncPtg(int funcIndex, FunctionMetadata fm) :
+            base(funcIndex, fm.ReturnClassCode, fm.ParameterClassCodes, fm.MinParams)  // minParams same as max since these are not var-arg funcs {
+        {
+        }
+
+        public static FuncPtg Create(int functionIndex)
+        {
+            FunctionMetadata fm = FunctionMetadataRegistry.GetFunctionByIndex(functionIndex);
+            if (fm == null)
+            {
+                throw new Exception("Invalid built-in function index (" + functionIndex + ")");
+            }
+            return new FuncPtg(functionIndex, fm);
+        }
 
         public override void Write(ILittleEndianOutput out1)
         {
             out1.WriteByte(sid + PtgClass);
             out1.WriteShort(_functionIndex);
         }
+
         public override int Size
         {
             get { return SIZE; }

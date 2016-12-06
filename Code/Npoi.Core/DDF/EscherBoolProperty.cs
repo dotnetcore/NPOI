@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,9 +17,9 @@
 
 namespace Npoi.Core.DDF
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /// <summary>
     /// Represents a bool property.  The actual utility of this property is in doubt because many
@@ -36,17 +35,14 @@ namespace Npoi.Core.DDF
         /// <param name="propertyNumber">The property number (or id)</param>
         /// <param name="value">The 32 bit value of this bool property</param>
         public EscherBoolProperty(short propertyNumber, int value)
-            : base(propertyNumber, value)
-        {
-
+            : base(propertyNumber, value) {
         }
 
         /// <summary>
         /// Whether this bool property is true
         /// </summary>
         /// <value><c>true</c> if this instance is true; otherwise, <c>false</c>.</value>
-        public bool IsTrue
-        {
+        public bool IsTrue {
             get { return propertyValue != 0; }
         }
 
@@ -54,8 +50,7 @@ namespace Npoi.Core.DDF
         /// Whether this bool property is false
         /// </summary>
         /// <value><c>true</c> if this instance is false; otherwise, <c>false</c>.</value>
-        public bool IsFalse
-        {
+        public bool IsFalse {
             get { return propertyValue == 0; }
         }
 
@@ -66,8 +61,7 @@ namespace Npoi.Core.DDF
         //            + ", blipId: " + IsBlipId
         //            + ", value: " + (Value != 0);
         //}
-        public override String ToXml(String tab)
-        {
+        public override String ToXml(String tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append("<").Append(GetType().Name).Append(" id=\"0x").Append(HexDump.ToHex(Id))
                     .Append("\" name=\"").Append(Name).Append("\" simpleValue=\"").Append(PropertyValue).Append("\" blipId=\"")

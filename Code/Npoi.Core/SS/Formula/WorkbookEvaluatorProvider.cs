@@ -17,12 +17,10 @@
 
 namespace Npoi.Core.SS.Formula
 {
-    using System;
-
     /**
      * Provides access to a {@link WorkbookEvaluator}, eg for use with
      *  {@link CollaboratingWorkbooksEnvironment}
-     * 
+     *
      * For POI internal use only
      */
 
@@ -31,7 +29,7 @@ namespace Npoi.Core.SS.Formula
         /**
          * Provide the underlying WorkbookEvaluator
          */
+
         WorkbookEvaluator GetWorkbookEvaluator();
     }
-
 }

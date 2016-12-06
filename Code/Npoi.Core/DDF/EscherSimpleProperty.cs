@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -20,8 +19,8 @@ using System.Text;
 
 namespace Npoi.Core.DDF
 {
-    using System;
     using Npoi.Core.Util;
+    using System;
 
     /// <summary>
     /// A simple property is of fixed Length and as a property number in Addition
@@ -39,8 +38,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="id">The id.</param>
         /// <param name="propertyValue">The property value.</param>
-        public EscherSimpleProperty(short id, int propertyValue):base(id)
-        {
+        public EscherSimpleProperty(short id, int propertyValue) : base(id) {
             this.propertyValue = propertyValue;
         }
 
@@ -52,9 +50,7 @@ namespace Npoi.Core.DDF
         /// <param name="isComplex">if set to <c>true</c> [is complex].</param>
         /// <param name="isBlipId">if set to <c>true</c> [is blip id].</param>
         /// <param name="propertyValue">The property value.</param>
-        public EscherSimpleProperty(short propertyNumber, bool isComplex, bool isBlipId, int propertyValue):base(propertyNumber, isComplex, isBlipId)
-        {
-            
+        public EscherSimpleProperty(short propertyNumber, bool isComplex, bool isBlipId, int propertyValue) : base(propertyNumber, isComplex, isBlipId) {
             this.propertyValue = propertyValue;
         }
 
@@ -64,8 +60,7 @@ namespace Npoi.Core.DDF
         /// <param name="data">The data.</param>
         /// <param name="offset">The off set.</param>
         /// <returns>the number of bytes Serialized.</returns>
-        public override int SerializeSimplePart(byte[] data, int offset)
-        {
+        public override int SerializeSimplePart(byte[] data, int offset) {
             LittleEndian.PutShort(data, offset, Id);
             LittleEndian.PutInt(data, offset + 2, propertyValue);
             return 6;
@@ -78,8 +73,7 @@ namespace Npoi.Core.DDF
         /// <param name="data"></param>
         /// <param name="pos"></param>
         /// <returns></returns>
-        public override int SerializeComplexPart(byte[] data, int pos)
-        {
+        public override int SerializeComplexPart(byte[] data, int pos) {
             return 0;
         }
 
@@ -87,8 +81,7 @@ namespace Npoi.Core.DDF
         /// Return the 32 bit value of this property.
         /// </summary>
         /// <value>The property value.</value>
-        public int PropertyValue
-        {
+        public int PropertyValue {
             get { return propertyValue; }
             internal set { propertyValue = value; }
         }
@@ -98,8 +91,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="o">The o.</param>
         /// <returns></returns>
-        public override bool Equals(Object o)
-        {
+        public override bool Equals(Object o) {
             if (this == o) return true;
             if (!(o is EscherSimpleProperty)) return false;
 
@@ -117,8 +109,7 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A hash code for the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override int GetHashCode()
-        {
+        public override int GetHashCode() {
             return propertyValue;
         }
 
@@ -128,8 +119,7 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override String ToString()
-        {
+        public override String ToString() {
             return "propNum: " + PropertyNumber
                     + ", RAW: 0x" + HexDump.ToHex(Id)
                     + ", propName: " + EscherProperties.GetPropertyName(PropertyNumber)
@@ -137,8 +127,8 @@ namespace Npoi.Core.DDF
                     + ", blipId: " + IsBlipId
                     + ", value: " + propertyValue + " (0x" + HexDump.ToHex(propertyValue) + ")";
         }
-        public override String ToXml(String tab)
-        {
+
+        public override String ToXml(String tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append("<").Append(GetType().Name).Append(" id=\"0x").Append(HexDump.ToHex(Id))
                     .Append("\" name=\"").Append(Name).Append("\" blipId=\"")

@@ -17,20 +17,19 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    
-    using Npoi.Core.Util;
-
 
     /**
      * String Stores a String value in a formula value stored in the format
      * &lt;Length 2 bytes&gt;char[]
-     * 
+     *
      * @author Werner Froidevaux
      * @author Jason Height (jheight at chariot dot net dot au)
      * @author Bernard Chesnoy
      */
+
     public class StringPtg : ScalarConstantPtg
     {
         public const byte sid = 0x17;
@@ -43,16 +42,17 @@ namespace Npoi.Core.SS.Formula.PTG
          * totally different, so don't look there!
          */
         private int field_1_Length;
-        private byte field_2_options;      
+        private byte field_2_options;
 
         private bool _is16bitUnicode;
         private String field_3_string;
 
         /** Create a StringPtg from a stream */
+
         public StringPtg(ILittleEndianInput in1)
         {
             int field_1_length = in1.ReadUByte();
-			field_2_options = (byte)in1.ReadByte();
+            field_2_options = (byte)in1.ReadByte();
             _is16bitUnicode = (field_2_options & 0x01) != 0;
             if (_is16bitUnicode)
             {
@@ -68,10 +68,11 @@ namespace Npoi.Core.SS.Formula.PTG
          * Create a StringPtg from a string representation of the number Number
          * format Is not Checked, it Is expected to be Validated in the Parser that
          * calls this method.
-         * 
+         *
          * @param value :
          *            String representation of a floating point number
          */
+
         public StringPtg(String value)
         {
             if (value.Length > 255)

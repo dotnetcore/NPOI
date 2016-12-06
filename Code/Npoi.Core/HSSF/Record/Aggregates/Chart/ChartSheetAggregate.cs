@@ -14,19 +14,20 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
+
+using Npoi.Core.HSSF.Model;
+using Npoi.Core.HSSF.Record.Chart;
 using System;
 using System.Collections.Generic;
-using Npoi.Core.HSSF.Model;
 using System.IO;
-using Npoi.Core.HSSF.Record.Chart;
 
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 {
     /// <summary>
     /// CHARTSHEET = BOF CHARTSHEETCONTENT
-    /// CHARTSHEETCONTENT = [WriteProtect] [SheetExt] [WebPub] *HFPicture PAGESETUP PrintSize 
+    /// CHARTSHEETCONTENT = [WriteProtect] [SheetExt] [WebPub] *HFPicture PAGESETUP PrintSize
     /// [HeaderFooter] [BACKGROUND] *Fbi *Fbi2 [ClrtClient] [PROTECTION] [Palette] [SXViewLink]
-    /// [PivotChartBits] [SBaseRef] [MsoDrawingGroup] OBJECTS Units CHARTFOMATS SERIESDATA 
+    /// [PivotChartBits] [SBaseRef] [MsoDrawingGroup] OBJECTS Units CHARTFOMATS SERIESDATA
     /// *WINDOW *CUSTOMVIEW [CodeName] [CRTMLFRT] EOF
     /// </summary>
     public class ChartSheetAggregate : ChartRecordAggregate
@@ -87,7 +88,9 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
                 throw new InvalidOperationException("Bad chart EOF");
             }
         }
+
         internal int AttachLabelCount = 0;
+
         public override void VisitContainedRecords(RecordVisitor rv)
         {
             if (_recs.Count == 0)

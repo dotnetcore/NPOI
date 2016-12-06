@@ -22,6 +22,7 @@ namespace Npoi.Core.SS.UserModel
     /**
      * @author Yegor Kozlov
      */
+
     public interface IPatternFormatting
     {
         short FillBackgroundColor { get; set; }
@@ -30,5 +31,4 @@ namespace Npoi.Core.SS.UserModel
 
         short FillPattern { get; set; }
     }
-
 }

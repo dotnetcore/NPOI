@@ -44,6 +44,4 @@ namespace Npoi.Core.SS.UserModel.Charts
             set;
         }
     }
-
-
 }

@@ -20,16 +20,15 @@ namespace Npoi.Core.HSSF.Record
     using Npoi.Core.SS.Util;
     using Npoi.Core.Util;
 
-
     /**
      * Common base class for {@link SharedFormulaRecord}, {@link ArrayRecord} and
      * {@link TableRecord} which are have similarities.
-     * 
+     *
      * @author Josh Micich
      */
+
     public abstract class SharedValueRecordBase : StandardRecord
     {
-
         private CellRangeAddress8Bit _range;
 
         protected SharedValueRecordBase(CellRangeAddress8Bit range)
@@ -40,12 +39,12 @@ namespace Npoi.Core.HSSF.Record
         protected SharedValueRecordBase()
             : this(new CellRangeAddress8Bit(0, 0, 0, 0))
         {
-
         }
 
         /**
          * reads only the range (1 {@link CellRangeAddress8Bit}) from the stream
          */
+
         public SharedValueRecordBase(RecordInputStream in1)
         {
             _range = new CellRangeAddress8Bit(in1);
@@ -90,6 +89,7 @@ namespace Npoi.Core.HSSF.Record
                 return (short)_range.LastColumn;
             }
         }
+
         protected override int DataSize
         {
             get
@@ -97,6 +97,7 @@ namespace Npoi.Core.HSSF.Record
                 return CellRangeAddress8Bit.ENCODED_SIZE + this.ExtraDataSize;
             }
         }
+
         protected abstract int ExtraDataSize { get; }
 
         protected abstract void SerializeExtraData(ILittleEndianOutput out1);
@@ -111,6 +112,7 @@ namespace Npoi.Core.HSSF.Record
          * @return <c>true</c> if (rowIx, colIx) is within the range ({@link #Range})
          * of this shared value object.
          */
+
         public bool IsInRange(int rowIx, int colIx)
         {
             CellRangeAddress8Bit r = _range;
@@ -119,10 +121,12 @@ namespace Npoi.Core.HSSF.Record
                 && r.FirstColumn <= colIx
                 && r.LastColumn >= colIx;
         }
+
         /**
-         * @return <c>true</c> if (rowIx, colIx) describes the first cell in this shared value 
+         * @return <c>true</c> if (rowIx, colIx) describes the first cell in this shared value
          * object's range ({@link #Range})
          */
+
         public bool IsFirstCell(int rowIx, int colIx)
         {
             CellRangeAddress8Bit r = Range;

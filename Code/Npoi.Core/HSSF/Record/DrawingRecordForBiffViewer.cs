@@ -24,6 +24,7 @@ namespace Npoi.Core.HSSF.Record
      * This Is purely for the biff viewer.  During normal operations we don't want
      * to be seeing this.
      */
+
     public class DrawingRecordForBiffViewer
            : AbstractEscherHolderRecord
     {
@@ -36,15 +37,14 @@ namespace Npoi.Core.HSSF.Record
         public DrawingRecordForBiffViewer(RecordInputStream in1)
             : base(in1)
         {
-
         }
 
         public DrawingRecordForBiffViewer(DrawingRecord r)
             : base(ConvertToInputStream(r))
         {
-
             ConvertRawBytesToEscherRecords();
         }
+
         private static RecordInputStream ConvertToInputStream(DrawingRecord r)
         {
             byte[] data = r.Serialize();

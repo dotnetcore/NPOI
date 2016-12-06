@@ -17,21 +17,21 @@
 
 namespace Npoi.Core.SS.Formula.Atp
 {
-    using System;
+    using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.Formula.Functions;
-    using Npoi.Core.SS.Formula;
+    using System;
 
     /**
      * Implementation of Excel 'Analysis ToolPak' function YEARFRAC()<br/>
-     * 
+     *
      * Returns the fraction of the year spanned by two dates.<p/>
-     * 
+     *
      * <b>Syntax</b><br/>
      * <b>YEARFRAC</b>(<b>startDate</b>, <b>endDate</b>, basis)<p/>
-     * 
+     *
      * The <b>basis</b> optionally specifies the behaviour of YEARFRAC as follows:
-     * 
+     *
      * <table border="0" cellpadding="1" cellspacing="0" summary="basis parameter description">
      *   <tr><th>Value</th><th>Days per Month</th><th>Days per Year</th></tr>
      *   <tr align='center'><td>0 (default)</td><td>30</td><td>360</td></tr>
@@ -40,11 +40,11 @@ namespace Npoi.Core.SS.Formula.Atp
      *   <tr align='center'><td>3</td><td>actual</td><td>365</td></tr>
      *   <tr align='center'><td>4</td><td>30</td><td>360</td></tr>
      * </table>
-     * 
+     *
      */
-    class YearFrac : FreeRefFunction
-    {
 
+    internal class YearFrac : FreeRefFunction
+    {
         public static FreeRefFunction instance = new YearFrac();
 
         private YearFrac()
@@ -65,9 +65,11 @@ namespace Npoi.Core.SS.Formula.Atp
                     case 3:
                         basis = EvaluateIntArg(args[2], srcCellRow, srcCellCol);
                         break;
+
                     case 2:
                         //basis = EvaluateIntArg(args[2], srcCellRow, srcCellCol);
                         break;
+
                     default:
                         return ErrorEval.VALUE_INVALID;
                 }
@@ -100,7 +102,6 @@ namespace Npoi.Core.SS.Formula.Atp
             }
             return OperandResolver.CoerceValueToDouble(ve);
         }
-
 
         private static int EvaluateIntArg(ValueEval arg, int srcCellRow, int srcCellCol)
         {

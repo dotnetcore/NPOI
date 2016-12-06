@@ -15,8 +15,8 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.SS.Formula.Functions;
 using Npoi.Core.SS.Formula.Eval;
+using Npoi.Core.SS.Formula.Functions;
 
 namespace Npoi.Core.SS.Formula.Atp
 {
@@ -28,21 +28,22 @@ namespace Npoi.Core.SS.Formula.Atp
      * <b>Syntax</b><br/>
      * <b>NETWORKDAYS</b>(<b>startDate</b>, <b>endDate</b>, holidays)
      * <p/>
-     * 
+     *
      * @author jfaenomoto@gmail.com
      */
+
     public class NetworkdaysFunction : FreeRefFunction
     {
-
         public static FreeRefFunction instance = new NetworkdaysFunction(ArgumentsEvaluator.instance);
 
         private ArgumentsEvaluator evaluator;
 
         /**
          * Constructor.
-         * 
+         *
          * @param anEvaluator an injected {@link ArgumentsEvaluator}.
          */
+
         private NetworkdaysFunction(ArgumentsEvaluator anEvaluator)
         {
             // enforces singleton
@@ -52,9 +53,10 @@ namespace Npoi.Core.SS.Formula.Atp
         /**
          * Evaluate for NETWORKDAYS. Given two dates and a optional date or interval of holidays, determines how many working days are there
          * between those dates.
-         * 
+         *
          * @return {@link ValueEval} for the number of days between two dates.
          */
+
         public ValueEval Evaluate(ValueEval[] args, OperationEvaluationContext ec)
         {
             if (args.Length < 2 || args.Length > 3)

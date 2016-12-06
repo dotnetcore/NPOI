@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,18 +15,17 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Title: Object Protect Record
-     * Description: Protect embedded object with the lamest "security" ever invented.  
-     * This record tells  "I want to protect my objects" with lame security.  It 
-     * appears in conjunction with the PASSWORD and PROTECT records as well as its 
+     * Description: Protect embedded object with the lamest "security" ever invented.
+     * This record tells  "I want to protect my objects" with lame security.  It
+     * appears in conjunction with the PASSWORD and PROTECT records as well as its
      * scenario protect cousin.
      * REFERENCE:  PG 368 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
      * @author Andrew C. Oliver (acoliver at apache dot org)
@@ -52,7 +50,6 @@ namespace Npoi.Core.HSSF.Record
         {
             field_1_protect = in1.ReadShort();
         }
-
 
         /**
          * Get whether the sheet Is protected or not
@@ -86,7 +83,6 @@ namespace Npoi.Core.HSSF.Record
             return buffer.ToString();
         }
 
-
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(field_1_protect);
@@ -99,6 +95,7 @@ namespace Npoi.Core.HSSF.Record
                 return 2;
             }
         }
+
         public override short Sid
         {
             get
@@ -106,6 +103,7 @@ namespace Npoi.Core.HSSF.Record
                 return sid;
             }
         }
+
         public override Object Clone()
         {
             ObjectProtectRecord rec = new ObjectProtectRecord();

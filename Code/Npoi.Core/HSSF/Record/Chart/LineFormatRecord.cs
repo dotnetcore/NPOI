@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Describes a line format record.  The line format record controls how a line on a chart appears.
@@ -32,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class LineFormatRecord
        : StandardRecord
     {
@@ -58,10 +55,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         private BitField Unknown = BitFieldFactory.GetInstance(0x8);
         private short field_5_colourPaletteIndex;
 
-
         public LineFormatRecord()
         {
-
         }
 
         /**
@@ -124,9 +119,10 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
-            get { return  4 + 2 + 2 + 2 + 2; }
+            get { return 4 + 2 + 2 + 2 + 2; }
         }
 
         public override short Sid
@@ -146,27 +142,26 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          * Get the line color field for the LineFormat record.
          */
+
         public int LineColor
         {
             get
             {
                 return field_1_lineColor;
             }
-            set 
+            set
             {
                 this.field_1_lineColor = value;
             }
         }
+
         /**
          * Get the line pattern field for the LineFormat record.
          *
-         * @return  One of 
+         * @return  One of
          *        LINE_PATTERN_SOLID
          *        LINE_PATTERN_DASH
          *        LINE_PATTERN_DOT
@@ -177,13 +172,14 @@ namespace Npoi.Core.HSSF.Record.Chart
          *        LINE_PATTERN_MEDIUM_GRAY_PATTERN
          *        LINE_PATTERN_LIGHT_GRAY_PATTERN
          */
+
         public short LinePattern
         {
             get
             {
                 return field_2_linePattern;
             }
-            set 
+            set
             {
                 this.field_2_linePattern = value;
                 if (value == LINE_PATTERN_NONE)
@@ -197,19 +193,20 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the weight field for the LineFormat record.
          * specifies the thickness of the line.
-         * @return  One of 
+         * @return  One of
          *        WEIGHT_HAIRLINE
          *        WEIGHT_NARROW
          *        WEIGHT_MEDIUM
          *        WEIGHT_WIDE
          */
+
         public short Weight
         {
             get
             {
                 return field_3_weight;
             }
-            set 
+            set
             {
                 this.field_3_weight = value;
             }
@@ -218,13 +215,14 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the format field for the LineFormat record.
          */
+
         public short Format
         {
             get
             {
                 return field_4_format;
             }
-            set 
+            set
             {
                 this.field_4_format = value;
             }
@@ -233,6 +231,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the colour palette index field for the LineFormat record.
          */
+
         public short ColourPaletteIndex
         {
             get
@@ -246,13 +245,14 @@ namespace Npoi.Core.HSSF.Record.Chart
          * automatic format
          * @return  the auto field value.
          */
+
         public bool IsAuto
         {
             get
             {
                 return auto.IsSet(field_4_format);
             }
-            set 
+            set
             {
                 field_4_format = auto.SetShortBoolean(field_4_format, value);
             }
@@ -262,13 +262,14 @@ namespace Npoi.Core.HSSF.Record.Chart
          * draw tick marks
          * @return  the draw ticks field value.
          */
+
         public bool IsDrawTicks
         {
             get
             {
                 return drawTicks.IsSet(field_4_format);
             }
-            set 
+            set
             {
                 field_4_format = drawTicks.SetShortBoolean(field_4_format, value);
             }
@@ -278,20 +279,17 @@ namespace Npoi.Core.HSSF.Record.Chart
          * book marks this as reserved = 0 but it seems to do something
          * @return  the Unknown field value.
          */
+
         public bool IsUnknown
         {
             get
             {
                 return Unknown.IsSet(field_4_format);
             }
-            set 
+            set
             {
                 field_4_format = Unknown.SetShortBoolean(field_4_format, value);
             }
         }
-
-
     }
 }
-
-

@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
@@ -41,7 +41,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// Get the name of the Entry
         /// </summary>
         /// <value>The name.</value>
-        String Name{get;}
+        String Name { get; }
 
         /// <summary>
         /// Is this a DirectoryEntry?
@@ -49,7 +49,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <value>
         /// 	<c>true</c> if the Entry Is a DirectoryEntry; otherwise, <c>false</c>.
         /// </value>
-        bool IsDirectoryEntry{get;}
+        bool IsDirectoryEntry { get; }
 
         /// <summary>
         /// Is this a DocumentEntry?
@@ -89,5 +89,4 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <returns>true if the operation succeeded, else false</returns>
         bool RenameTo(String newName);
     }
-
 }

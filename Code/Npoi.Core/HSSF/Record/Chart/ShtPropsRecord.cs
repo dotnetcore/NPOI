@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Describes a chart sheet properties record.
@@ -31,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     /// <summary>
     /// specifies properties of a chart as defined by the Chart Sheet Substream ABNF
     /// </summary>
@@ -51,10 +49,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         public const byte EMPTY_ZERO = 1;
         public const byte EMPTY_INTERPOLATED = 2;
 
-
         public ShtPropsRecord()
         {
-
         }
 
         /**
@@ -65,7 +61,6 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public ShtPropsRecord(RecordInputStream in1)
         {
-
             field_1_flags = in1.ReadShort();
             field_2_mdBlank = (byte)in1.ReadByte();
             field_3_reserved = (byte)in1.ReadByte();
@@ -104,6 +99,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 2 + 2; }
@@ -124,27 +120,25 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          * Get the flags field for the SheetProperties record.
          */
+
         public short Flags
         {
             get { return field_1_flags; }
             set { this.field_1_flags = value; }
         }
 
-
         /**
          * Get the empty field for the SheetProperties record.
          *
-         * @return  One of 
+         * @return  One of
          *        EMPTY_NOT_PLOTTED
          *        EMPTY_ZERO
          *        EMPTY_INTERPOLATED
          */
+
         /// <summary>
         /// specifies how the empty cells are plotted be a value from the following table:
         /// 0x00   Empty cells are not plotted.
@@ -156,7 +150,6 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_2_mdBlank; }
             set { this.field_2_mdBlank = value; }
         }
-
 
         /// <summary>
         /// whether series are automatically allocated for the chart.
@@ -186,7 +179,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         }
 
         /// <summary>
-        /// If fAlwaysAutoPlotArea is 1, then this field MUST be 1. 
+        /// If fAlwaysAutoPlotArea is 1, then this field MUST be 1.
         /// If fAlwaysAutoPlotArea is 0, then this field MUST be ignored.
         /// </summary>
         public bool IsManPlotArea
@@ -216,7 +209,5 @@ namespace Npoi.Core.HSSF.Record.Chart
                     IsManPlotArea = value;
             }
         }
-
-
     }
 }

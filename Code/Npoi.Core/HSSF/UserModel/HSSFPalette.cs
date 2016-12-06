@@ -17,12 +17,11 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
-    using System.Text;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.Util;
     using Npoi.Core.Util;
-
+    using System;
+    using System.Text;
 
     /// <summary>
     /// Represents a workbook color palette.
@@ -160,9 +159,8 @@ namespace Npoi.Core.HSSF.UserModel
             /// </summary>
             /// <param name="byteOffset">The byte offset.</param>
             /// <param name="colors">The colors.</param>
-            public CustomColor(short byteOffset, byte[] colors): this(byteOffset, colors[0], colors[1], colors[2])
+            public CustomColor(short byteOffset, byte[] colors) : this(byteOffset, colors[0], colors[1], colors[2])
             {
-               
             }
 
             /// <summary>
@@ -198,12 +196,12 @@ namespace Npoi.Core.HSSF.UserModel
             /// <value></value>
             public override byte[] GetTriplet()
             {
-                    return new byte[]
-                    {
+                return new byte[]
+                {
                         (byte)(red   & 0xff),
                         (byte)(green & 0xff),
                         (byte)(blue  & 0xff)
-                    };
+                };
             }
 
             /// <summary>
@@ -212,13 +210,13 @@ namespace Npoi.Core.HSSF.UserModel
             /// <value></value>
             public override String GetHexString()
             {
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append(GetGnumericPart(red));
-                    sb.Append(':');
-                    sb.Append(GetGnumericPart(green));
-                    sb.Append(':');
-                    sb.Append(GetGnumericPart(blue));
-                    return sb.ToString();
+                StringBuilder sb = new StringBuilder();
+                sb.Append(GetGnumericPart(red));
+                sb.Append(':');
+                sb.Append(GetGnumericPart(green));
+                sb.Append(':');
+                sb.Append(GetGnumericPart(blue));
+                return sb.ToString();
             }
 
             /// <summary>

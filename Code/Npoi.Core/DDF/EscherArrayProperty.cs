@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,17 +17,17 @@
 
 namespace Npoi.Core.DDF
 {
-    using System;
-    using System.Text;
-    using System.Collections.Generic;
     using Npoi.Core.Util;
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
 
     /// <summary>
     /// Escher array properties are the most wierd construction ever invented
     /// with all sorts of special cases.  I'm hopeful I've got them all.
     /// @author Glen Stampoultzis (glens at superlinksoftware.com)
     /// </summary>
-    public class EscherArrayProperty : EscherComplexProperty, IEnumerable<byte[]> 
+    public class EscherArrayProperty : EscherComplexProperty, IEnumerable<byte[]>
     {
         /**
          * The size of the header that goes at the
@@ -48,32 +47,25 @@ namespace Npoi.Core.DDF
         private bool emptyComplexPart = false;
 
         public EscherArrayProperty(short id, byte[] complexData)
-            : base(id, CheckComplexData(complexData))
-        {
-
+            : base(id, CheckComplexData(complexData)) {
             emptyComplexPart = complexData.Length == 0;
         }
 
         public EscherArrayProperty(short propertyNumber, bool isBlipId, byte[] complexData)
-            : base(propertyNumber, isBlipId, CheckComplexData(complexData))
-        {
-
+            : base(propertyNumber, isBlipId, CheckComplexData(complexData)) {
         }
 
-        private static byte[] CheckComplexData(byte[] complexData)
-        {
+        private static byte[] CheckComplexData(byte[] complexData) {
             if (complexData == null || complexData.Length == 0)
                 complexData = new byte[6];
 
             return complexData;
         }
 
-        public int NumberOfElementsInArray
-        {
+        public int NumberOfElementsInArray {
             get
             {
-                if (emptyComplexPart)
-                {
+                if (emptyComplexPart) {
                     return 0;
                 }
                 return LittleEndian.GetUShort(_complexData, 0);
@@ -81,8 +73,7 @@ namespace Npoi.Core.DDF
             set
             {
                 int expectedArraySize = value * GetActualSizeOfElements(SizeOfElements) + FIXED_SIZE;
-                if (expectedArraySize != _complexData.Length)
-                {
+                if (expectedArraySize != _complexData.Length) {
                     byte[] newArray = new byte[expectedArraySize];
                     Array.Copy(_complexData, 0, newArray, 0, _complexData.Length);
                     _complexData = newArray;
@@ -90,8 +81,8 @@ namespace Npoi.Core.DDF
                 LittleEndian.PutShort(_complexData, 0, (short)value);
             }
         }
-        public int NumberOfElementsInMemory
-        {
+
+        public int NumberOfElementsInMemory {
             get
             {
                 return LittleEndian.GetUShort(_complexData, 2);
@@ -99,8 +90,7 @@ namespace Npoi.Core.DDF
             set
             {
                 int expectedArraySize = value * GetActualSizeOfElements(this.SizeOfElements) + FIXED_SIZE;
-                if (expectedArraySize != _complexData.Length)
-                {
+                if (expectedArraySize != _complexData.Length) {
                     byte[] newArray = new byte[expectedArraySize];
                     Array.Copy(_complexData, 0, newArray, 0, expectedArraySize);
                     _complexData = newArray;
@@ -109,8 +99,7 @@ namespace Npoi.Core.DDF
             }
         }
 
-        public short SizeOfElements
-        {
+        public short SizeOfElements {
             get
             {
                 return LittleEndian.GetShort(_complexData, 4);
@@ -120,8 +109,7 @@ namespace Npoi.Core.DDF
                 LittleEndian.PutShort(_complexData, 4, (short)value);
 
                 int expectedArraySize = NumberOfElementsInArray * GetActualSizeOfElements(SizeOfElements) + FIXED_SIZE;
-                if (expectedArraySize != _complexData.Length)
-                {
+                if (expectedArraySize != _complexData.Length) {
                     // Keep just the first 6 bytes.  The rest is no good to us anyway.
                     byte[] newArray = new byte[expectedArraySize];
                     Array.Copy(_complexData, 0, newArray, 0, 6);
@@ -135,8 +123,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="index">The index.</param>
         /// <returns></returns>
-        public byte[] GetElement(int index)
-        {
+        public byte[] GetElement(int index) {
             int actualSize = GetActualSizeOfElements(SizeOfElements);
             byte[] result = new byte[actualSize];
             Array.Copy(_complexData, FIXED_SIZE + index * actualSize, result, 0, result.Length);
@@ -148,8 +135,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="index">The index.</param>
         /// <param name="element">The element.</param>
-        public void SetElement(int index, byte[] element)
-        {
+        public void SetElement(int index, byte[] element) {
             int actualSize = GetActualSizeOfElements(SizeOfElements);
             Array.Copy(element, 0, _complexData, FIXED_SIZE + index * actualSize, actualSize);
         }
@@ -158,8 +144,7 @@ namespace Npoi.Core.DDF
         /// Retrieves the string representation for this property.
         /// </summary>
         /// <returns></returns>
-        public override String ToString()
-        {
+        public override String ToString() {
             String nl = Environment.NewLine;
 
             StringBuilder results = new StringBuilder();
@@ -167,8 +152,7 @@ namespace Npoi.Core.DDF
             results.Append("     Num Elements: " + NumberOfElementsInArray + nl);
             results.Append("     Num Elements In Memory: " + NumberOfElementsInMemory + nl);
             results.Append("     Size of elements: " + SizeOfElements + nl);
-            for (int i = 0; i < NumberOfElementsInArray; i++)
-            {
+            for (int i = 0; i < NumberOfElementsInArray; i++) {
                 results.Append("     Element " + i + ": " + HexDump.ToHex(GetElement(i)) + nl);
             }
             results.Append("}" + nl);
@@ -179,19 +163,19 @@ namespace Npoi.Core.DDF
                     + ", blipId: " + IsBlipId
                     + ", data: " + nl + results.ToString();
         }
-        public override String ToXml(String tab)
-        {
+
+        public override String ToXml(String tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append("<").Append(GetType().Name).Append(" id=\"0x").Append(HexDump.ToHex(Id))
                     .Append("\" name=\"").Append(Name).Append("\" blipId=\"")
                     .Append(IsBlipId).Append("\">\n");
-            for (int i = 0; i < NumberOfElementsInArray; i++)
-            {
+            for (int i = 0; i < NumberOfElementsInArray; i++) {
                 builder.Append("\t").Append(tab).Append("<Element>").Append(HexDump.ToHex(GetElement(i))).Append("</Element>\n");
             }
             builder.Append(tab).Append("</").Append(GetType().Name).Append(">\n");
             return builder.ToString();
         }
+
         /// <summary>
         /// We have this method because the way in which arrays in escher works
         /// is screwed for seemly arbitary reasons.  While most properties are
@@ -201,21 +185,17 @@ namespace Npoi.Core.DDF
         /// <param name="data">The data array containing the escher array information</param>
         /// <param name="offset">The offset into the array to start Reading from.</param>
         /// <returns>the number of bytes used by this complex property.</returns>
-        public int SetArrayData(byte[] data, int offset)
-        {
-            if (emptyComplexPart)
-            {
+        public int SetArrayData(byte[] data, int offset) {
+            if (emptyComplexPart) {
                 _complexData = new byte[0];
             }
-            else
-            {
+            else {
                 short numElements = LittleEndian.GetShort(data, offset);
                 short numReserved = LittleEndian.GetShort(data, offset + 2);
                 short sizeOfElements = LittleEndian.GetShort(data, offset + 4);
 
                 int arraySize = GetActualSizeOfElements(sizeOfElements) * numElements;
-                if (arraySize == _complexData.Length)
-                {
+                if (arraySize == _complexData.Length) {
                     // The stored data size in the simple block excludes the header size
                     _complexData = new byte[arraySize + 6];
                     sizeIncludesHeaderSize = false;
@@ -233,12 +213,10 @@ namespace Npoi.Core.DDF
         /// <param name="data"></param>
         /// <param name="pos"></param>
         /// <returns></returns>
-        public override int SerializeSimplePart(byte[] data, int pos)
-        {
+        public override int SerializeSimplePart(byte[] data, int pos) {
             LittleEndian.PutShort(data, pos, Id);
             int recordSize = _complexData.Length;
-            if (!sizeIncludesHeaderSize)
-            {
+            if (!sizeIncludesHeaderSize) {
                 recordSize -= 6;
             }
             LittleEndian.PutInt(data, pos + 2, recordSize);
@@ -251,35 +229,32 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="sizeOfElements">The size of elements.</param>
         /// <returns></returns>
-        public static int GetActualSizeOfElements(short sizeOfElements)
-        {
+        public static int GetActualSizeOfElements(short sizeOfElements) {
             if (sizeOfElements < 0)
                 return (short)((-sizeOfElements) >> 2);
             else
                 return sizeOfElements;
         }
 
-
-        public IEnumerator<byte[]> GetEnumerator()
-        {
+        public IEnumerator<byte[]> GetEnumerator() {
             return new EscherArrayEnumerator(this);
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
             return this.GetEnumerator();
         }
 
         private class EscherArrayEnumerator : IEnumerator<byte[]>
         {
-            EscherArrayProperty dataHolder;
-            public EscherArrayEnumerator(EscherArrayProperty eap)
-            {
+            private EscherArrayProperty dataHolder;
+
+            public EscherArrayEnumerator(EscherArrayProperty eap) {
                 dataHolder = eap;
             }
+
             private int idx = -1;
-            public byte[] Current
-            {
+
+            public byte[] Current {
                 get
                 {
                     if (idx < 0 || idx > dataHolder.NumberOfElementsInArray)
@@ -288,24 +263,20 @@ namespace Npoi.Core.DDF
                 }
             }
 
-            public void Dispose()
-            {
+            public void Dispose() {
                 throw new NotImplementedException();
             }
 
-            object System.Collections.IEnumerator.Current
-            {
+            object System.Collections.IEnumerator.Current {
                 get { return this.Current; }
             }
 
-            public bool MoveNext()
-            {
+            public bool MoveNext() {
                 idx++;
                 return (idx < dataHolder.NumberOfElementsInArray);
             }
 
-            public void Reset()
-            {
+            public void Reset() {
                 throw new NotImplementedException();
             }
         }

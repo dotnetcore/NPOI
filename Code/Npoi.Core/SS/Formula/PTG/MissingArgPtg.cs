@@ -17,8 +17,8 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
     using Npoi.Core.Util;
+    using System;
 
     /**
      * Missing Function Arguments
@@ -26,13 +26,14 @@ namespace Npoi.Core.SS.Formula.PTG
      * Avik Sengupta &lt;avik at apache.org&gt;
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     public class MissingArgPtg : ScalarConstantPtg
     {
-
         private const int SIZE = 1;
         public const byte sid = 0x16;
 
         public static Ptg instance = new MissingArgPtg();
+
         private MissingArgPtg()
         {
         }

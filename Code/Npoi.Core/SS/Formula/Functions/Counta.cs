@@ -15,20 +15,20 @@
 * limitations Under the License.
 */
 
-
 namespace Npoi.Core.SS.Formula.Functions
 {
     using Npoi.Core.SS.Formula.Eval;
 
     /**
-     * Counts the number of cells that contain data within the list of arguments. 
+     * Counts the number of cells that contain data within the list of arguments.
      *
      * Excel Syntax
      * COUNTA(value1,value2,...)
      * Value1, value2, ...   are 1 to 30 arguments representing the values or ranges to be Counted.
-     * 
+     *
      * @author Josh Micich
      */
+
     public class Counta : Function
     {
         private IMatchPredicate _predicate;
@@ -42,6 +42,7 @@ namespace Npoi.Core.SS.Formula.Functions
         {
             _predicate = criteriaPredicate;
         }
+
         public ValueEval Evaluate(ValueEval[] args, int srcCellRow, int srcCellCol)
         {
             int nArgs = args.Length;
@@ -65,12 +66,12 @@ namespace Npoi.Core.SS.Formula.Functions
             for (int i = 0; i < nArgs; i++)
             {
                 temp += CountUtils.CountArg(args[i], _predicate);
-
             }
             return new NumberEval(temp);
         }
 
         private static IMatchPredicate defaultPredicate = new DefaultPredicate();
+
         public class DefaultPredicate : IMatchPredicate
         {
             public bool Matches(ValueEval valueEval)
@@ -87,7 +88,9 @@ namespace Npoi.Core.SS.Formula.Functions
                 return true;
             }
         }
+
         private static IMatchPredicate subtotalPredicate = new SubtotalPredicate();
+
         public class SubtotalPredicate : I_MatchAreaPredicate
         {
             public bool Matches(ValueEval valueEval)
@@ -98,12 +101,13 @@ namespace Npoi.Core.SS.Formula.Functions
             /**
              * don't count cells that are subtotals
              */
+
             public bool Matches(TwoDEval areEval, int rowIndex, int columnIndex)
             {
                 return !areEval.IsSubTotal(rowIndex, columnIndex);
             }
-
         }
+
         public static Counta SubtotalInstance()
         {
             return new Counta(subtotalPredicate);

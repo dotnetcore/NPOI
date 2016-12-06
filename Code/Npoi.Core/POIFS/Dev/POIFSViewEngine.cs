@@ -17,20 +17,20 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
-using System;
-using System.Text;
-using System.Collections;
-using System.IO;
 using Npoi.Core.POIFS.FileSystem;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace Npoi.Core.POIFS.Dev
 {
@@ -48,19 +48,19 @@ namespace Npoi.Core.POIFS.Dev
         /// <param name="indentLevel">how far in to indent each string</param>
         /// <param name="indentString">string to use for indenting</param>
         /// <returns>a List of Strings holding the content</returns>
-         public static IEnumerable<object> InspectViewable(Object viewable,
-                                       bool drilldown,
-                                       int indentLevel,
-                                       String indentString)
+        public static IEnumerable<object> InspectViewable(Object viewable,
+                                      bool drilldown,
+                                      int indentLevel,
+                                      String indentString)
         {
             var objects = new List<object>();
             if (viewable is DictionaryEntry)
             {
-                ProcessViewable(((DictionaryEntry)viewable).Value, drilldown, indentLevel,indentString, objects);
+                ProcessViewable(((DictionaryEntry)viewable).Value, drilldown, indentLevel, indentString, objects);
             }
             else if (viewable is POIFSViewable)
             {
-                ProcessViewable(viewable, drilldown, indentLevel,indentString, objects);
+                ProcessViewable(viewable, drilldown, indentLevel, indentString, objects);
             }
             else
             {
@@ -70,63 +70,62 @@ namespace Npoi.Core.POIFS.Dev
             return objects;
         }
 
-         internal static void ProcessViewable(object viewable,
-                                        bool drilldown,
-                                        int indentLevel,
-                                        String indentString,
-                                        IList objects)
-         {
+        internal static void ProcessViewable(object viewable,
+                                       bool drilldown,
+                                       int indentLevel,
+                                       String indentString,
+                                       IList objects)
+        {
+            POIFSViewable inspected = (POIFSViewable)viewable;
 
-             POIFSViewable inspected = (POIFSViewable)viewable;
+            objects.Add(Indent(indentLevel, indentString,
+                               inspected.ShortDescription));
+            if (drilldown)
+            {
+                if (inspected is POIFSDocument)
+                {
+                    ((List<object>)objects).AddRange(InspectViewable("POIFSDocument content is too long so ignored", drilldown,
+                                                      indentLevel + 1,
+                                                      indentString));
+                    return;
+                }
+                if (inspected.PreferArray)
+                {
+                    Array data = inspected.ViewableArray;
 
-             objects.Add(Indent(indentLevel, indentString,
-                                inspected.ShortDescription));
-             if (drilldown)
-             {
-                 if (inspected is POIFSDocument)
-                 {
-                     ((List<object>)objects).AddRange(InspectViewable("POIFSDocument content is too long so ignored", drilldown,
+                    for (int j = 0; j < data.Length; j++)
+                    {
+                        ((List<object>)objects).AddRange(InspectViewable(data.GetValue(j), drilldown,
                                                        indentLevel + 1,
                                                        indentString));
-                     return;
-                 }
-                 if (inspected.PreferArray)
-                 {
-                     Array data = inspected.ViewableArray;
+                    }
+                }
+                else
+                {
+                    IEnumerator iter = inspected.ViewableIterator;
 
-                     for (int j = 0; j < data.Length; j++)
-                     {
-                         ((List<object>)objects).AddRange(InspectViewable(data.GetValue(j), drilldown,
-                                                        indentLevel + 1,
-                                                        indentString));
-                     }
-                 }
-                 else
-                 {
-                     IEnumerator iter = inspected.ViewableIterator;
+                    while (iter.MoveNext())
+                    {
+                        ((List<object>)objects).AddRange(InspectViewable(iter.Current,
+                                                       drilldown,
+                                                       indentLevel + 1,
+                                                       indentString));
+                    }
+                }
+            }
+        }
 
-                     while (iter.MoveNext())
-                     {
-                         ((List<object>)objects).AddRange(InspectViewable(iter.Current,
-                                                        drilldown,
-                                                        indentLevel + 1,
-                                                        indentString));
-                     }
-                 }
-             }
-         }
-
-         /// <summary>
-         /// Indents the specified indent level.
-         /// </summary>
-         /// <param name="indentLevel">how far in to indent each string</param>
-         /// <param name="indentString">string to use for indenting</param>
-         /// <param name="data">The data.</param>
-         /// <returns></returns>
+        /// <summary>
+        /// Indents the specified indent level.
+        /// </summary>
+        /// <param name="indentLevel">how far in to indent each string</param>
+        /// <param name="indentString">string to use for indenting</param>
+        /// <param name="data">The data.</param>
+        /// <returns></returns>
         private static String Indent(int indentLevel,
                                      String indentString, String data)
         {
-            StringBuilder finalBuffer  = new StringBuilder();
+            StringBuilder finalBuffer = new StringBuilder();
             StringBuilder indentPrefix = new StringBuilder();
 
             for (int j = 0; j < indentLevel; j++)

@@ -17,25 +17,25 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF
 {
-    using System;
-    using System.Collections;
     using Npoi.Core.HPSF.Wellknown;
     using Npoi.Core.Util;
+    using System;
+    using System.Collections;
 
     /// <summary>
     /// Convenience class representing a DocumentSummary Information stream in a
     /// Microsoft Office document.
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// klute@rainer-klute.de
     /// @author Drew Varner (Drew.Varner cloSeto sc.edu)
     /// @author robert_flaherty@hyperion.com
@@ -44,15 +44,13 @@ namespace Npoi.Core.HPSF
     [Serializable]
     public class DocumentSummaryInformation : SpecialPropertySet
     {
-
         /**
          * The document name a document summary information stream
          * usually has in a POIFS filesystem.
          */
         public const string DEFAULT_STREAM_NAME = "\x0005DocumentSummaryInformation";
 
-        public override PropertyIDMap PropertySetIDMap
-        {
+        public override PropertyIDMap PropertySetIDMap {
             get
             {
                 return PropertyIDMap.DocumentSummaryInformationProperties;
@@ -64,21 +62,17 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="ps">A property Set which should be Created from a
         /// document summary information stream.</param>
-        public DocumentSummaryInformation(PropertySet ps): base(ps)
-        {
+        public DocumentSummaryInformation(PropertySet ps) : base(ps) {
             if (!IsDocumentSummaryInformation)
                 throw new UnexpectedPropertySetTypeException
                     ("Not a " + GetType().Name);
         }
 
-
-
         /// <summary>
         /// Gets or sets the category.
         /// </summary>
         /// <value>The category value</value>
-        public String Category
-        {
+        public String Category {
             get
             {
                 return GetPropertyStringValue(PropertyIDMap.PID_CATEGORY);
@@ -93,20 +87,16 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the category.
         /// </summary>
-        public void RemoveCategory()
-        {
+        public void RemoveCategory() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_CATEGORY);
         }
-
-
 
         /// <summary>
         /// Gets or sets the presentation format (or null).
         /// </summary>
         /// <value>The presentation format value</value>
-        public String PresentationFormat
-        {
+        public String PresentationFormat {
             get { return GetPropertyStringValue(PropertyIDMap.PID_PRESFORMAT); }
             set
             {
@@ -118,21 +108,17 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the presentation format.
         /// </summary>
-        public void RemovePresentationFormat()
-        {
+        public void RemovePresentationFormat() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_PRESFORMAT);
         }
-
-
 
         /// <summary>
         /// Gets or sets the byte count or 0 if the {@link
         /// DocumentSummaryInformation} does not contain a byte count.
         /// </summary>
         /// <value>The byteCount value</value>
-        public int ByteCount
-        {
+        public int ByteCount {
             get
             {
                 return GetPropertyIntValue(PropertyIDMap.PID_BYTECOUNT);
@@ -147,21 +133,17 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the byte count.
         /// </summary>
-        public void RemoveByteCount()
-        {
+        public void RemoveByteCount() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_BYTECOUNT);
         }
-
-
 
         /// <summary>
         /// Gets or sets the line count or 0 if the {@link
         /// DocumentSummaryInformation} does not contain a line count.
         /// </summary>
         /// <value>The line count value.</value>
-        public int LineCount
-        {
+        public int LineCount {
             get
             {
                 return GetPropertyIntValue(PropertyIDMap.PID_LINECOUNT);
@@ -173,25 +155,20 @@ namespace Npoi.Core.HPSF
             }
         }
 
-
         /// <summary>
         /// Removes the line count.
         /// </summary>
-        public void RemoveLineCount()
-        {
+        public void RemoveLineCount() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_LINECOUNT);
         }
-
-
 
         /// <summary>
         /// Gets or sets the par count or 0 if the {@link
         /// DocumentSummaryInformation} does not contain a par count.
         /// </summary>
         /// <value>The par count value</value>
-        public int ParCount
-        {
+        public int ParCount {
             get { return GetPropertyIntValue(PropertyIDMap.PID_PARCOUNT); }
             set
             {
@@ -200,25 +177,20 @@ namespace Npoi.Core.HPSF
             }
         }
 
-
         /// <summary>
         /// Removes the par count.
         /// </summary>
-        public void RemoveParCount()
-        {
+        public void RemoveParCount() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_PARCOUNT);
         }
-
-
 
         /// <summary>
         /// Gets or sets the slide count or 0 if the {@link
         /// DocumentSummaryInformation} does not contain a slide count.
         /// </summary>
         /// <value>The slide count value</value>
-        public int SlideCount
-        {
+        public int SlideCount {
             get { return GetPropertyIntValue(PropertyIDMap.PID_SLIDECOUNT); }
             set
             {
@@ -230,21 +202,17 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the slide count.
         /// </summary>
-        public void RemoveSlideCount()
-        {
+        public void RemoveSlideCount() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_SLIDECOUNT);
         }
-
-
 
         /// <summary>
         /// Gets or sets the note count or 0 if the {@link
         /// DocumentSummaryInformation} does not contain a note count
         /// </summary>
         /// <value>The note count value</value>
-        public int NoteCount
-        {
+        public int NoteCount {
             get { return GetPropertyIntValue(PropertyIDMap.PID_NOTECOUNT); }
             set
             {
@@ -256,13 +224,10 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the note count.
         /// </summary>
-        public void RemoveNoteCount()
-        {
+        public void RemoveNoteCount() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_NOTECOUNT);
         }
-
-
 
         /// <summary>
         /// Gets or sets the hidden count or 0 if the {@link
@@ -270,8 +235,7 @@ namespace Npoi.Core.HPSF
         /// count.
         /// </summary>
         /// <value>The hidden count value.</value>
-        public int HiddenCount
-        {
+        public int HiddenCount {
             get { return GetPropertyIntValue(PropertyIDMap.PID_HIDDENCOUNT); }
             set
             {
@@ -283,13 +247,10 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the hidden count.
         /// </summary>
-        public void RemoveHiddenCount()
-        {
+        public void RemoveHiddenCount() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_HIDDENCOUNT);
         }
-
-
 
         /// <summary>
         /// Returns the mmclip count or 0 if the {@link
@@ -297,8 +258,7 @@ namespace Npoi.Core.HPSF
         /// count.
         /// </summary>
         /// <value>The mmclip count value.</value>
-        public int MMClipCount
-        {
+        public int MMClipCount {
             get { return GetPropertyIntValue(PropertyIDMap.PID_MMCLIPCOUNT); }
             set
             {
@@ -310,20 +270,16 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the MMClip count.
         /// </summary>
-        public void RemoveMMClipCount()
-        {
+        public void RemoveMMClipCount() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_MMCLIPCOUNT);
         }
-
-
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="DocumentSummaryInformation"/> is scale.
         /// </summary>
         /// <value><c>true</c> if cropping is desired; otherwise, <c>false</c>.</value>
-        public bool Scale
-        {
+        public bool Scale {
             get { return GetPropertyBooleanValue(PropertyIDMap.PID_SCALE); }
             set
             {
@@ -335,25 +291,22 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the scale.
         /// </summary>
-        public void RemoveScale()
-        {
+        public void RemoveScale() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_SCALE);
         }
-
-
 
         /// <summary>
         /// Gets or sets the heading pair (or null)
         /// </summary>
         /// <value>The heading pair value.</value>
-        public byte[] HeadingPair
-        {
+        public byte[] HeadingPair {
             get
             {
                 return (byte[])GetProperty(PropertyIDMap.PID_HEADINGPAIR);
             }
-            set {
+            set
+            {
                 throw new NotImplementedException("Writing byte arrays ");
             }
         }
@@ -361,25 +314,21 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the heading pair.
         /// </summary>
-        public void RemoveHeadingPair()
-        {
+        public void RemoveHeadingPair() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_HEADINGPAIR);
         }
-
-
 
         /// <summary>
         /// Gets or sets the doc parts.
         /// </summary>
         /// <value>The doc parts value</value>
-        public byte[] Docparts
-        {
+        public byte[] Docparts {
             get
             {
                 return (byte[])GetProperty(PropertyIDMap.PID_DOCPARTS);
             }
-            set 
+            set
             {
                 throw new NotImplementedException("Writing byte arrays");
             }
@@ -388,20 +337,16 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the doc parts.
         /// </summary>
-        public void RemoveDocparts()
-        {
+        public void RemoveDocparts() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_DOCPARTS);
         }
-
-
 
         /// <summary>
         /// Gets or sets the manager (or <c>null</c>).
         /// </summary>
         /// <value>The manager value</value>
-        public String Manager
-        {
+        public String Manager {
             get { return GetPropertyStringValue(PropertyIDMap.PID_MANAGER); }
             set
             {
@@ -413,20 +358,16 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the manager.
         /// </summary>
-        public void RemoveManager()
-        {
+        public void RemoveManager() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_MANAGER);
         }
-
-
 
         /// <summary>
         /// Gets or sets the company (or <c>null</c>).
         /// </summary>
         /// <value>The company value</value>
-        public String Company
-        {
+        public String Company {
             get { return GetPropertyStringValue(PropertyIDMap.PID_COMPANY); }
             set
             {
@@ -438,20 +379,16 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the company.
         /// </summary>
-        public void RemoveCompany()
-        {
+        public void RemoveCompany() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_COMPANY);
         }
-
-
 
         /// <summary>
         /// Gets or sets a value indicating whether [links dirty].
         /// </summary>
         /// <value><c>true</c> if the custom links are dirty.; otherwise, <c>false</c>.</value>
-        public bool LinksDirty
-        {
+        public bool LinksDirty {
             get { return GetPropertyBooleanValue(PropertyIDMap.PID_LINKSDIRTY); }
             set
             {
@@ -463,36 +400,29 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Removes the links dirty.
         /// </summary>
-        public void RemoveLinksDirty()
-        {
+        public void RemoveLinksDirty() {
             MutableSection s = (MutableSection)FirstSection;
             s.RemoveProperty(PropertyIDMap.PID_LINKSDIRTY);
         }
-
-
 
         /// <summary>
         /// Gets or sets the custom properties.
         /// </summary>
         /// <value>The custom properties.</value>
-        public CustomProperties CustomProperties
-        {
+        public CustomProperties CustomProperties {
             get
             {
                 CustomProperties cps = null;
-                if (SectionCount >= 2)
-                {
+                if (SectionCount >= 2) {
                     cps = new CustomProperties();
                     Section section = (Section)Sections[1];
                     IDictionary dictionary = section.Dictionary;
                     Property[] properties = section.Properties;
                     int propertyCount = 0;
-                    for (int i = 0; i < properties.Length; i++)
-                    {
+                    for (int i = 0; i < properties.Length; i++) {
                         Property p = properties[i];
                         long id = p.ID;
-                        if (id != 0 && id != 1)
-                        {
+                        if (id != 0 && id != 1) {
                             propertyCount++;
                             CustomProperty cp = new CustomProperty(p,
                                     (string)dictionary[id]);
@@ -500,11 +430,11 @@ namespace Npoi.Core.HPSF
                         }
                     }
                     if (cps.Count != propertyCount)
-                        cps.IsPure=false;
+                        cps.IsPure = false;
                 }
                 return cps;
             }
-            set 
+            set
             {
                 EnsureSection2();
                 MutableSection section = (MutableSection)Sections[1];
@@ -519,44 +449,36 @@ namespace Npoi.Core.HPSF
                     cpCodepage = section.Codepage;
                 if (cpCodepage < 0)
                     cpCodepage = CodePageUtil.CP_UNICODE;
-                value.Codepage=cpCodepage;
-                section.Codepage=cpCodepage; //add codepage propertyset
-                section.Dictionary=dictionary; //generate dictionary propertyset
+                value.Codepage = cpCodepage;
+                section.Codepage = cpCodepage; //add codepage propertyset
+                section.Dictionary = dictionary; //generate dictionary propertyset
                 //generate MutableSections
-                for (IEnumerator i = value.Values.GetEnumerator(); i.MoveNext(); )
-                {
+                for (IEnumerator i = value.Values.GetEnumerator(); i.MoveNext();) {
                     Property p = (Property)i.Current;
                     section.SetProperty(p);
                 }
             }
         }
 
-
         /// <summary>
         /// Creates section 2 if it is not alReady present.
         /// </summary>
-        private void EnsureSection2()
-        {
-            if (SectionCount < 2)
-            {
+        private void EnsureSection2() {
+            if (SectionCount < 2) {
                 MutableSection s2 = new MutableSection();
                 s2.SetFormatID(SectionIDMap.DOCUMENT_SUMMARY_INFORMATION_ID2);
                 AddSection(s2);
             }
         }
 
-
-
         /// <summary>
         /// Removes the custom properties.
         /// </summary>
-        public void RemoveCustomProperties()
-        {
+        public void RemoveCustomProperties() {
             if (SectionCount >= 2)
                 Sections.RemoveAt(1);
             else
                 throw new HPSFRuntimeException("Illegal internal format of Document SummaryInformation stream: second section is missing.");
         }
-
     }
 }

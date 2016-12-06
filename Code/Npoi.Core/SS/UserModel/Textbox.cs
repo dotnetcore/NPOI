@@ -17,10 +17,8 @@
 
 namespace Npoi.Core.SS.UserModel
 {
-
     public interface ITextbox : IShape
     {
-
         //public const short OBJECT_TYPE_TEXT = 6;
 
         /**
@@ -28,18 +26,15 @@ namespace Npoi.Core.SS.UserModel
          */
         IRichTextString String { get; set; }
 
-
         /**
          * @return  Returns the left margin within the textbox.
          */
         int MarginLeft { get; set; }
 
-
         /**
          * @return    returns the right margin within the textbox.
          */
         int MarginRight { get; set; }
-
 
         /**
          * @return  returns the top margin within the textbox.

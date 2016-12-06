@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Title:        Iteration Record
@@ -41,8 +38,10 @@ namespace Npoi.Core.HSSF.Record
     {
         public const short sid = 0x11;
         private static BitField iterationOn = BitFieldFactory.GetInstance(0x0001);
+
         //private short field_1_iteration;
         private int _flags;
+
         public IterationRecord(bool iterateOn)
         {
             _flags = iterationOn.SetBoolean(0, iterateOn);

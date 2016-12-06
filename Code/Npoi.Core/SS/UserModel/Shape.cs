@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Npoi.Core.SS.UserModel
+﻿namespace Npoi.Core.SS.UserModel
 {
     public interface IShape
     {
         IShape Parent { get; }
 
         void SetLineStyleColor(int lineStyleColor);
+
         void SetLineStyleColor(int red, int green, int blue);
+
         void SetFillColor(int red, int green, int blue);
 
         int LineStyleColor { get; }

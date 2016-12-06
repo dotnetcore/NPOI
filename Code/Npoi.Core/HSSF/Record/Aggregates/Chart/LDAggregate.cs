@@ -33,8 +33,9 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
         private CrtLayout12Record crtLayout = null;
         private TextPropsAggregate textProps = null;
         private CrtMlFrtAggregate crtMlFrt = null;
+
         public LDAggregate(RecordStream rs, ChartRecordAggregate container)
-            :base(RuleName_LD, container)
+            : base(RuleName_LD, container)
         {
             legend = (LegendRecord)rs.GetNext();
             rs.GetNext();//BeginRecord
@@ -60,6 +61,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             Record r = rs.GetNext();//EndRecord
             Debug.Assert(r.GetType() == typeof(EndRecord));
         }
+
         public override void VisitContainedRecords(RecordVisitor rv)
         {
             rv.VisitRecord(legend);

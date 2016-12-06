@@ -18,66 +18,78 @@
 namespace Npoi.Core.SS.Format
 {
     using System;
+
     internal class GeneralCellFormatType : CellFormatType
     {
         public override CellFormatter Formatter(String pattern)
         {
             return new CellGeneralFormatter();
         }
+
         public override bool IsSpecial(char ch)
         {
             return false;
         }
     }
+
     internal class NumberCellFormatType : CellFormatType
     {
         public override CellFormatter Formatter(String pattern)
         {
             return new CellNumberFormatter(pattern);
         }
+
         public override bool IsSpecial(char ch)
         {
             return false;
         }
     }
+
     internal class DateCellFormatType : CellFormatType
     {
         public override bool IsSpecial(char ch)
         {
             return ch == '\'' || (ch <= '\u007f' && char.IsLetter(ch));
         }
+
         public override CellFormatter Formatter(String pattern)
         {
             return new CellDateFormatter(pattern);
         }
     }
+
     internal class ElapsedCellFormatType : CellFormatType
     {
         public override bool IsSpecial(char ch)
         {
             return false;
         }
+
         public override CellFormatter Formatter(String pattern)
         {
             return new CellElapsedFormatter(pattern);
         }
     }
+
     internal class TextCellFormatType : CellFormatType
     {
         public override bool IsSpecial(char ch)
         {
             return false;
         }
+
         public override CellFormatter Formatter(String pattern)
         {
             return new CellTextFormatter(pattern);
         }
     }
+
     /**
      * The different kinds of formats that the formatter understands.
      *
      * @author Ken Arnold, Industrious Media LLC
      */
+
     public abstract class CellFormatType
     {
         /** The general (default) format; also used for <tt>"General"</tt>. */
@@ -98,6 +110,7 @@ namespace Npoi.Core.SS.Format
          *
          * @return <tt>true</tt> if the format is special and needs to be quoted.
          */
+
         public abstract bool IsSpecial(char ch);
 
         /**
@@ -108,8 +121,7 @@ namespace Npoi.Core.SS.Format
          *
          * @return A new formatter of the appropriate type, for the given pattern.
          */
+
         public abstract CellFormatter Formatter(String pattern);
-
     }
-
 }

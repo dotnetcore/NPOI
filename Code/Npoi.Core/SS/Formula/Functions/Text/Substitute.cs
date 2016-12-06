@@ -18,26 +18,29 @@
  * Created on May 15, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
+    using Npoi.Core.SS.Formula.Eval;
     using System;
     using System.Text;
-    using Npoi.Core.SS.Formula.Eval;
 
     /**
      * An implementation of the SUBSTITUTE function:
      * Substitutes text in a text string with new text, some number of times.
      * @author Manda Wilson &lt; wilson at c bio dot msk cc dot org &gt;
      */
+
     public class Substitute : TextFunction
     {
         // fix warning CS0414 "never used": private static int Replace_ALL = -1;
 
         /**
          *Substitutes text in a text string with new text, some number of times.
-         * 
+         *
          * @see org.apache.poi.hssf.record.formula.eval.Eval
          */
+
         public override ValueEval EvaluateFunc(ValueEval[] args, int srcCellRow, int srcCellCol)
         {
             if (args.Length < 3 || args.Length > 4)
@@ -48,7 +51,6 @@ namespace Npoi.Core.SS.Formula.Functions
             String oldStr = EvaluateStringArg(args[0], srcCellRow, srcCellCol);
             String searchStr = EvaluateStringArg(args[1], srcCellRow, srcCellCol);
             String newStr = EvaluateStringArg(args[2], srcCellRow, srcCellCol);
-            
 
             String result;
 
@@ -62,12 +64,13 @@ namespace Npoi.Core.SS.Formula.Functions
                     }
                     result = ReplaceOneOccurrence(oldStr, searchStr, newStr, instanceNumber);
                     break;
+
                 case 3:
                     result = ReplaceAllOccurrences(oldStr, searchStr, newStr);
                     break;
+
                 default:
                     throw new InvalidOperationException("Cannot happen");
-
             }
 
             return new StringEval(result);

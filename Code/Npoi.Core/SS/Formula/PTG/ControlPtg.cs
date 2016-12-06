@@ -18,8 +18,9 @@
 namespace Npoi.Core.SS.Formula.PTG
 {
     using System;
+
     /**
-     * Common baseclass for 
+     * Common baseclass for
      * tExp
      * tTbl
      * tParen
@@ -28,16 +29,18 @@ namespace Npoi.Core.SS.Formula.PTG
      * tSheet
      * tEndSheet
      */
+
     public abstract class ControlPtg : Ptg
     {
-
         public override bool IsBaseToken
         {
             get { return true; }
         }
-        public override byte DefaultOperandClass 
+
+        public override byte DefaultOperandClass
         {
-            get {
+            get
+            {
                 throw new NotImplementedException("Control tokens are not classified");
             }
         }

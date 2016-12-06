@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,10 +17,9 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Title:        Calc Count Record
@@ -29,7 +27,7 @@ namespace Npoi.Core.HSSF.Record
      *               recalculation.  For instance: in the case a formula includes
      *               cells that are themselves a result of a formula and a value
      *               Changes.  This Is essentially a failsafe against an infinate
-     *               loop in the event the formulas are not independant. 
+     *               loop in the event the formulas are not independant.
      * REFERENCE:  PG 292 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
      * @author Andrew C. Oliver (acoliver at apache dot org)
      * @author Jason Height (jheight at chariot dot net dot au)

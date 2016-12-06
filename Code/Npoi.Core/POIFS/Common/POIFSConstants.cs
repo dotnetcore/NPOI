@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.POIFS.Common
@@ -38,25 +38,31 @@ namespace Npoi.Core.POIFS.Common
 
         public static readonly POIFSBigBlockSize SMALLER_BIG_BLOCK_SIZE_DETAILS =
        new POIFSBigBlockSize(SMALLER_BIG_BLOCK_SIZE, (short)9);
+
         /** Some use 4096 bytes */
         public const int LARGER_BIG_BLOCK_SIZE = 0x1000;
+
         public static readonly POIFSBigBlockSize LARGER_BIG_BLOCK_SIZE_DETAILS =
            new POIFSBigBlockSize(LARGER_BIG_BLOCK_SIZE, (short)12);
+
         /** Most files use 512 bytes as their big block size */
+
         //[Obsolete]
         public const int BIG_BLOCK_SIZE = 0x0200;
 
         /** Most files use 512 bytes as their big block size */
+
         //[Obsolete]
         public const int MINI_BLOCK_SIZE = 64;
+
         /** How big a block in the small block stream is. Fixed size */
         public const int SMALL_BLOCK_SIZE = 0x0040;
 
         /** How big a single property is */
         public const int PROPERTY_SIZE = 0x0080;
-        /** 
-         * The minimum size of a document before it's stored using 
-         *  Big Blocks (normal streams). Smaller documents go in the 
+        /**
+         * The minimum size of a document before it's stored using
+         *  Big Blocks (normal streams). Smaller documents go in the
          *  Mini Stream (SBAT / Small Blocks)
          */
         public const int BIG_BLOCK_MINIMUM_DOCUMENT_SIZE = 0x1000;
@@ -72,6 +78,7 @@ namespace Npoi.Core.POIFS.Common
         /** Indicates the sector is not used (0xFFFFFFFF) */
         public const int UNUSED_BLOCK = -1;
         /** The first 4 bytes of an OOXML file, used in detection */
+
         public static readonly byte[] OOXML_FILE_HEADER =
             new byte[] { 0x50, 0x4b, 0x03, 0x04 };
     }

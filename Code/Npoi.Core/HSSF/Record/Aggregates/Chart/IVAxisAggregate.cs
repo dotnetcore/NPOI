@@ -15,9 +15,9 @@
    limitations Under the License.
 ==================================================================== */
 
-using System.Collections.Generic;
 using Npoi.Core.HSSF.Model;
 using Npoi.Core.HSSF.Record.Chart;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart
@@ -25,16 +25,16 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
     /// <summary>
     /// IVAXIS = Axis Begin [CatSerRange] AxcExt [CatLab] AXS [CRTMLFRT] End
     /// </summary>
-    public class IVAxisAggregate: ChartRecordAggregate
+    public class IVAxisAggregate : ChartRecordAggregate
     {
         private AxisRecord axis;
         private CatSerRangeRecord catSerRange;
         private AxcExtRecord axcExt;
         private CatLabRecord catLab;
         private AXSAggregate axs;
+
         //more than one CrtMlFrtRecord?
         private List<CrtMlFrtAggregate> crtmlfrtList = new List<CrtMlFrtAggregate>();
-
 
         public IVAxisAggregate(RecordStream rs, ChartRecordAggregate container, AxisRecord axis)
             : base(RuleName_IVAXIS, container)

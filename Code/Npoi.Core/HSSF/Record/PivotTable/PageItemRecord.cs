@@ -17,17 +17,20 @@
 
 namespace Npoi.Core.HSSF.Record.PivotTable
 {
-    using System.Text;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
+    using System.Text;
+
     /**
      * SXPI - Page Item (0x00B6)<br/>
-     * 
+     *
      * @author Patrick Cheng
      */
+
     public class PageItemRecord : StandardRecord
     {
         public const short sid = 0x00B6;
+
         private class FieldInfo
         {
             public const int ENCODED_SIZE = 6;
@@ -62,7 +65,7 @@ namespace Npoi.Core.HSSF.Record.PivotTable
             }
         }
 
-	    private FieldInfo[] _fieldInfos;
+        private FieldInfo[] _fieldInfos;
 
         public PageItemRecord(RecordInputStream in1)
         {
@@ -82,7 +85,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
             _fieldInfos = fis;
         }
 
-
         public override void Serialize(ILittleEndianOutput out1)
         {
             for (int i = 0; i < _fieldInfos.Length; i++)
@@ -90,7 +92,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
                 _fieldInfos[i].Serialize(out1);
             }
         }
-
 
         protected override int DataSize
         {
@@ -100,7 +101,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
             }
         }
 
-
         public override short Sid
         {
             get
@@ -108,7 +108,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
                 return sid;
             }
         }
-
 
         public override string ToString()
         {

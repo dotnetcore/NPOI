@@ -19,22 +19,22 @@ using System.Drawing;
 
 namespace Npoi.Core.DDF
 {
+    using ICSharpCode.SharpZipLib.Zip.Compression;
+    using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+    using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.Util;
     using System;
     using System.IO;
     using System.Text;
-    using Npoi.Core.Util;
-    using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
-    using ICSharpCode.SharpZipLib.Zip.Compression;
-    using Npoi.Core.HSSF.UserModel;
 
     /// <summary>
     /// @author Daniel Noll
     /// </summary>
-    public class EscherMetafileBlip:EscherBlipRecord
+    public class EscherMetafileBlip : EscherBlipRecord
     {
         private static POILogger log = POILogFactory.GetLogger(typeof(EscherMetafileBlip));
 
-        public const short RECORD_ID_EMF = unchecked((short) 0xF018) + 2;
+        public const short RECORD_ID_EMF = unchecked((short)0xF018) + 2;
         public const short RECORD_ID_WMF = unchecked((short)0xF018) + 3;
         public const short RECORD_ID_PICT = unchecked((short)0xF018) + 4;
 
@@ -75,47 +75,43 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// The number of bytes Read from the byte array.
         /// </returns>
-        public override int FillFields( byte[] data, int offset, IEscherRecordFactory recordFactory )
-        {
-            int bytesAfterHeader = ReadHeader( data, offset );
+        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory) {
+            int bytesAfterHeader = ReadHeader(data, offset);
             int pos = offset + HEADER_SIZE;
 
             field_1_UID = new byte[16];
-            Array.Copy( data, pos, field_1_UID, 0, 16 ); pos += 16;
+            Array.Copy(data, pos, field_1_UID, 0, 16); pos += 16;
 
-            if((Options ^ Signature) == 0x10){
+            if ((Options ^ Signature) == 0x10) {
                 field_2_UID = new byte[16];
-                Array.Copy( data, pos, field_2_UID, 0, 16 ); pos += 16;
+                Array.Copy(data, pos, field_2_UID, 0, 16); pos += 16;
             }
 
-            field_2_cb = LittleEndian.GetInt( data, pos ); pos += 4;
-            field_3_rcBounds_x1 = LittleEndian.GetInt( data, pos ); pos += 4;
-            field_3_rcBounds_y1 = LittleEndian.GetInt( data, pos ); pos += 4;
-            field_3_rcBounds_x2 = LittleEndian.GetInt( data, pos ); pos += 4;
-            field_3_rcBounds_y2 = LittleEndian.GetInt( data, pos ); pos += 4;
-            field_4_ptSize_w = LittleEndian.GetInt( data, pos ); pos += 4;
-            field_4_ptSize_h = LittleEndian.GetInt( data, pos ); pos += 4;
-            field_5_cbSave = LittleEndian.GetInt( data, pos ); pos += 4;
+            field_2_cb = LittleEndian.GetInt(data, pos); pos += 4;
+            field_3_rcBounds_x1 = LittleEndian.GetInt(data, pos); pos += 4;
+            field_3_rcBounds_y1 = LittleEndian.GetInt(data, pos); pos += 4;
+            field_3_rcBounds_x2 = LittleEndian.GetInt(data, pos); pos += 4;
+            field_3_rcBounds_y2 = LittleEndian.GetInt(data, pos); pos += 4;
+            field_4_ptSize_w = LittleEndian.GetInt(data, pos); pos += 4;
+            field_4_ptSize_h = LittleEndian.GetInt(data, pos); pos += 4;
+            field_5_cbSave = LittleEndian.GetInt(data, pos); pos += 4;
             field_6_fCompression = data[pos]; pos++;
             field_7_fFilter = data[pos]; pos++;
 
             raw_pictureData = new byte[field_5_cbSave];
-            Array.Copy( data, pos, raw_pictureData, 0, field_5_cbSave );
+            Array.Copy(data, pos, raw_pictureData, 0, field_5_cbSave);
             pos += field_5_cbSave;
 
             // 0 means DEFLATE compression
             // 0xFE means no compression
-            if (field_6_fCompression == 0)
-            {
+            if (field_6_fCompression == 0) {
                 field_pictureData = InflatePictureData(raw_pictureData);
             }
-            else
-            {
+            else {
                 field_pictureData = raw_pictureData;
             }
             int remaining = bytesAfterHeader - pos + offset + HEADER_SIZE;
-            if (remaining > 0)
-            {
+            if (remaining > 0) {
                 remainingData = new byte[remaining];
                 Array.Copy(data, pos, remainingData, 0, remaining);
             }
@@ -129,35 +125,33 @@ namespace Npoi.Core.DDF
         /// <param name="data">the data array to Serialize to</param>
         /// <param name="listener">a listener for begin and end serialization events.</param>
         /// <returns>the number of bytes written.</returns>
-        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener)
-        {
+        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener) {
             listener.BeforeRecordSerialize(offset, RecordId, this);
 
             int pos = offset;
-            LittleEndian.PutShort( data, pos, Options ); pos += 2;
-            LittleEndian.PutShort( data, pos, RecordId ); pos += 2;
-            LittleEndian.PutInt( data, pos, RecordSize - HEADER_SIZE ); pos += 4;
+            LittleEndian.PutShort(data, pos, Options); pos += 2;
+            LittleEndian.PutShort(data, pos, RecordId); pos += 2;
+            LittleEndian.PutInt(data, pos, RecordSize - HEADER_SIZE); pos += 4;
 
-            Array.Copy( field_1_UID, 0, data, pos, field_1_UID.Length ); pos += field_1_UID.Length;
-            if((Options ^ Signature) == 0x10){
-                Array.Copy( field_2_UID, 0, data, pos, field_2_UID.Length ); pos += field_2_UID.Length;
+            Array.Copy(field_1_UID, 0, data, pos, field_1_UID.Length); pos += field_1_UID.Length;
+            if ((Options ^ Signature) == 0x10) {
+                Array.Copy(field_2_UID, 0, data, pos, field_2_UID.Length); pos += field_2_UID.Length;
             }
-            LittleEndian.PutInt( data, pos, field_2_cb ); pos += 4;
-            LittleEndian.PutInt( data, pos, field_3_rcBounds_x1 ); pos += 4;
-            LittleEndian.PutInt( data, pos, field_3_rcBounds_y1 ); pos += 4;
-            LittleEndian.PutInt( data, pos, field_3_rcBounds_x2 ); pos += 4;
-            LittleEndian.PutInt( data, pos, field_3_rcBounds_y2 ); pos += 4;
-            LittleEndian.PutInt( data, pos, field_4_ptSize_w ); pos += 4;
-            LittleEndian.PutInt( data, pos, field_4_ptSize_h ); pos += 4;
-            LittleEndian.PutInt( data, pos, field_5_cbSave ); pos += 4;
+            LittleEndian.PutInt(data, pos, field_2_cb); pos += 4;
+            LittleEndian.PutInt(data, pos, field_3_rcBounds_x1); pos += 4;
+            LittleEndian.PutInt(data, pos, field_3_rcBounds_y1); pos += 4;
+            LittleEndian.PutInt(data, pos, field_3_rcBounds_x2); pos += 4;
+            LittleEndian.PutInt(data, pos, field_3_rcBounds_y2); pos += 4;
+            LittleEndian.PutInt(data, pos, field_4_ptSize_w); pos += 4;
+            LittleEndian.PutInt(data, pos, field_4_ptSize_h); pos += 4;
+            LittleEndian.PutInt(data, pos, field_5_cbSave); pos += 4;
             data[pos] = field_6_fCompression; pos++;
             data[pos] = field_7_fFilter; pos++;
 
-            Array.Copy( raw_pictureData, 0, data, pos, raw_pictureData.Length );
+            Array.Copy(raw_pictureData, 0, data, pos, raw_pictureData.Length);
             pos += raw_pictureData.Length;
-            if (remainingData != null)
-            {
-                Array.Copy(remainingData, 0, data, pos, remainingData.Length); 
+            if (remainingData != null) {
+                Array.Copy(remainingData, 0, data, pos, remainingData.Length);
                 pos += remainingData.Length;
             }
             listener.AfterRecordSerialize(offset + RecordSize, RecordId, RecordSize, this);
@@ -169,28 +163,22 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="data">the deflated picture data.</param>
         /// <returns>the inflated picture data.</returns>
-        private static byte[] InflatePictureData(byte[] data)
-        {
-            using (MemoryStream in1 = new MemoryStream(data))
-            {
-                using (MemoryStream out1 = new MemoryStream())
-                {
+        private static byte[] InflatePictureData(byte[] data) {
+            using (MemoryStream in1 = new MemoryStream(data)) {
+                using (MemoryStream out1 = new MemoryStream()) {
                     InflaterInputStream zIn = null;
-                    try
-                    {
+                    try {
                         Inflater inflater = new Inflater(false);
                         zIn = new InflaterInputStream(in1, inflater);
 
                         byte[] buf = new byte[4096];
                         int ReadBytes;
-                        while ((ReadBytes = zIn.Read(buf, 0, buf.Length)) > 0)
-                        {
+                        while ((ReadBytes = zIn.Read(buf, 0, buf.Length)) > 0) {
                             out1.Write(buf, 0, ReadBytes);
                         }
                         return out1.ToArray();
                     }
-                    catch (IOException e)
-                    {
+                    catch (IOException e) {
                         log.Log(POILogger.WARN, "Possibly corrupt compression or non-compressed data", e);
                         return data;
                     }
@@ -202,14 +190,12 @@ namespace Npoi.Core.DDF
         /// Returns the number of bytes that are required to Serialize this record.
         /// </summary>
         /// <value>Number of bytes</value>
-        public override int RecordSize
-        {
+        public override int RecordSize {
             get
             {
                 int size = 8 + 50 + raw_pictureData.Length;
                 if (remainingData != null) size += remainingData.Length;
-                if ((Options ^ Signature) == 0x10)
-                {
+                if ((Options ^ Signature) == 0x10) {
                     size += field_2_UID.Length;
                 }
                 return size;
@@ -220,8 +206,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets the UID.
         /// </summary>
         /// <value>The UID.</value>
-        public byte[] UID
-        {
+        public byte[] UID {
             get { return field_1_UID; }
             set { this.field_1_UID = value; }
         }
@@ -230,19 +215,16 @@ namespace Npoi.Core.DDF
         /// Gets or sets the primary UID.
         /// </summary>
         /// <value>The primary UID.</value>
-        public byte[] PrimaryUID
-        {
-            get{return field_2_UID;}
+        public byte[] PrimaryUID {
+            get { return field_2_UID; }
             set { this.field_2_UID = value; }
         }
-
 
         /// <summary>
         /// Gets or sets the size of the uncompressed.
         /// </summary>
         /// <value>The size of the uncompressed.</value>
-        public int UncompressedSize
-        {
+        public int UncompressedSize {
             get { return field_2_cb; }
             set { field_2_cb = value; }
         }
@@ -251,14 +233,13 @@ namespace Npoi.Core.DDF
         /// Gets or sets the bounds.
         /// </summary>
         /// <value>The bounds.</value>
-        public Rectangle Bounds
-        {
-            get 
+        public Rectangle Bounds {
+            get
             {
                 return new Rectangle(field_3_rcBounds_x1,
                                      field_3_rcBounds_y1,
                                      field_3_rcBounds_x2 - field_3_rcBounds_x1,
-                                     field_3_rcBounds_y2 - field_3_rcBounds_y1);        
+                                     field_3_rcBounds_y2 - field_3_rcBounds_y1);
             }
             set
             {
@@ -273,12 +254,12 @@ namespace Npoi.Core.DDF
         /// Gets or sets the size EMU.
         /// </summary>
         /// <value>The size EMU.</value>
-        public Size SizeEMU
-        {
-            get{
+        public Size SizeEMU {
+            get
+            {
                 return new Size(field_4_ptSize_w, field_4_ptSize_h);
             }
-            set 
+            set
             {
                 field_4_ptSize_w = value.Width;
                 field_4_ptSize_h = value.Height;
@@ -289,10 +270,9 @@ namespace Npoi.Core.DDF
         /// Gets or sets the size of the compressed.
         /// </summary>
         /// <value>The size of the compressed.</value>
-        public int CompressedSize
-        {
-            get{return field_5_cbSave;}
-            set{field_5_cbSave=value;}
+        public int CompressedSize {
+            get { return field_5_cbSave; }
+            set { field_5_cbSave = value; }
         }
 
         /// <summary>
@@ -301,38 +281,34 @@ namespace Npoi.Core.DDF
         /// <value>
         /// 	<c>true</c> if this instance is compressed; otherwise, <c>false</c>.
         /// </value>
-        public bool IsCompressed
-        {
-            get{return (field_6_fCompression == 0);}
+        public bool IsCompressed {
+            get { return (field_6_fCompression == 0); }
             set { field_6_fCompression = value ? (byte)0 : (byte)0xFE; }
         }
-        public byte[] RemainingData
-        {
+
+        public byte[] RemainingData {
             get
             {
                 return remainingData;
             }
         }
+
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </summary>
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override String ToString()
-        {
+        public override String ToString() {
             String nl = Environment.NewLine;
 
             String extraData;
-            using (MemoryStream b = new MemoryStream())
-            {
-                try
-                {
+            using (MemoryStream b = new MemoryStream()) {
+                try {
                     HexDump.Dump(this.field_pictureData, 0, b, 0);
                     extraData = b.ToString();
                 }
-                catch (Exception e)
-                {
+                catch (Exception e) {
                     extraData = e.ToString();
                 }
                 return GetType().Name + ":" + nl +
@@ -352,8 +328,8 @@ namespace Npoi.Core.DDF
                         " Remaining Data: " + HexDump.ToHex(remainingData, 32)));
             }
         }
-        public override String ToXml(String tab)
-        {
+
+        public override String ToXml(String tab) {
             String extraData = "";
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
@@ -370,32 +346,35 @@ namespace Npoi.Core.DDF
             builder.Append(tab).Append("</").Append(GetType().Name).Append(">\n");
             return builder.ToString();
         }
+
         /// <summary>
         /// Return the blip signature
         /// </summary>
         /// <value>the blip signature</value>
-        public short Signature
-        {
-            get{
+        public short Signature {
+            get
+            {
                 short sig = 0;
-                switch(RecordId){
+                switch (RecordId) {
                     case RECORD_ID_EMF:
-                        sig = HSSFPictureData.MSOBI_EMF; 
+                        sig = HSSFPictureData.MSOBI_EMF;
                         break;
+
                     case RECORD_ID_WMF:
-                        sig = HSSFPictureData.MSOBI_WMF; 
+                        sig = HSSFPictureData.MSOBI_WMF;
                         break;
+
                     case RECORD_ID_PICT:
-                        sig = HSSFPictureData.MSOBI_PICT; 
+                        sig = HSSFPictureData.MSOBI_PICT;
                         break;
+
                     default: log.Log(POILogger.WARN, "Unknown metafile: " + RecordId); break;
                 }
                 return sig;
             }
         }
 
-        public void SetPictureData(byte[] pictureData)
-        {
+        public void SetPictureData(byte[] pictureData) {
             base.PictureData = (pictureData);
             UncompressedSize = (pictureData.Length);
 
@@ -403,25 +382,22 @@ namespace Npoi.Core.DDF
             // "... LZ compression algorithm in the format used by GNU Zip deflate/inflate with a 32k window ..."
             // not sure what to do, when lookup tables exceed 32k ...
 
-            try
-            {
+            try {
                 MemoryStream bos = new MemoryStream();
                 DeflaterOutputStream dos = new DeflaterOutputStream(bos);
                 dos.Write(pictureData, 0, pictureData.Length);
                 dos.Dispose();
                 raw_pictureData = bos.ToArray();
             }
-            catch (IOException e)
-            {
+            catch (IOException e) {
                 throw new RuntimeException("Can't compress metafile picture data", e);
             }
 
-            CompressedSize=(raw_pictureData.Length);
+            CompressedSize = (raw_pictureData.Length);
             IsCompressed = (true);
         }
 
-        public byte Filter
-        {
+        public byte Filter {
             get { return field_7_fFilter; }
             set
             {

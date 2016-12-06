@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Class ChartFormatRecord
@@ -40,10 +36,11 @@ namespace Npoi.Core.HSSF.Record
 
         // ignored?
         private int field1_x_position;   // lower left
+
         private int field2_y_position;   // lower left
         private int field3_width;
         private int field4_height;
-        
+
         private short field5_grbit;
         private BitField varyDisplayPattern = BitFieldFactory.GetInstance(0x01);
 
@@ -97,7 +94,6 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteShort(field6_icrt);
         }
 
-
         public override object Clone()
         {
             ChartFormatRecord r = new ChartFormatRecord();
@@ -138,7 +134,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return field2_y_position;
             }
-            set 
+            set
             {
                 this.field2_y_position = value;
             }
@@ -159,7 +155,7 @@ namespace Npoi.Core.HSSF.Record
         public short Icrt
         {
             get { return field6_icrt; }
-            set { this.field6_icrt=value; }
+            set { this.field6_icrt = value; }
         }
 
         public bool VaryDisplayPattern
@@ -168,10 +164,10 @@ namespace Npoi.Core.HSSF.Record
             {
                 return varyDisplayPattern.IsSet(field5_grbit);
             }
-            set 
+            set
             {
                 field5_grbit = varyDisplayPattern.SetShortBoolean(field5_grbit,
-                        value);           
+                        value);
             }
         }
     }

@@ -17,19 +17,19 @@
 
 namespace Npoi.Core.HSSF.Record.Common
 {
-    using System;
-
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
+    using System;
     using System.Text;
 
     /**
      * Title: FtrHeader (Future Record Header) common record part
-     * 
+     *
      * This record part specifies a header for a Ftr (Future)
      *  style record, which includes extra attributes above and
-     *  beyond those of a traditional record. 
+     *  beyond those of a traditional record.
      */
+
     public class FtrHeader
     {
         /** This MUST match the type on the Containing record */

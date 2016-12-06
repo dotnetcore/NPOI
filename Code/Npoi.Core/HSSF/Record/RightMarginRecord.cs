@@ -15,10 +15,8 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
     using Npoi.Core.Util;
 
     using System;
@@ -27,21 +25,24 @@ namespace Npoi.Core.HSSF.Record
     /**
      * Record for the right margin. * NOTE: This source was automatically generated. * @author Shawn Laubach (slaubach at apache dot org)
      */
+
     public class RightMarginRecord : StandardRecord, IMargin
     {
         public const short sid = 0x27;
         private double field_1_margin;
 
-        public RightMarginRecord() { }
+        public RightMarginRecord()
+        {
+        }
 
         /**
          * Constructs a RightMargin record and Sets its fields appropriately.     *     * @param id    id must be 0x27 or an exception     *              will be throw upon validation     * @param size  size the size of the data area of the record     * @param data  data of the record (should not contain sid/len)
          */
+
         public RightMarginRecord(RecordInputStream in1)
         {
             field_1_margin = in1.ReadDouble();
         }
-
 
         public override String ToString()
         {
@@ -52,12 +53,11 @@ namespace Npoi.Core.HSSF.Record
             return buffer.ToString();
         }
 
-        
-
-        public override short Sid 
-        { 
-            get { return sid; } 
+        public override short Sid
+        {
+            get { return sid; }
         }
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteDouble(field_1_margin);
@@ -70,9 +70,11 @@ namespace Npoi.Core.HSSF.Record
                 return 8;
             }
         }
+
         /**
          * Get the margin field for the RightMargin record.
          */
+
         public double Margin
         {
             get { return field_1_margin; }

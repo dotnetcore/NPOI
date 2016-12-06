@@ -17,19 +17,18 @@
 
 namespace Npoi.Core.HSSF.Record.Crypto
 {
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.Util;
     using System;
     using System.IO;
-    using Npoi.Core.Util;
-
-    using Npoi.Core.HSSF.Record;
 
     /**
      *
      * @author Josh Micich
      */
+
     public class Biff8DecryptingStream : BiffHeaderInput, ILittleEndianInput
     {
-
         private ILittleEndianInput _le;
         private Biff8RC4 _rc4;
 
@@ -57,6 +56,7 @@ namespace Npoi.Core.HSSF.Record.Crypto
         /**
          * Reads an unsigned short value without decrypting
          */
+
         public int ReadRecordSID()
         {
             int sid = _le.ReadUShort();
@@ -68,6 +68,7 @@ namespace Npoi.Core.HSSF.Record.Crypto
         /**
          * Reads an unsigned short value without decrypting
          */
+
         public int ReadDataSize()
         {
             int dataSize = _le.ReadUShort();
@@ -97,21 +98,21 @@ namespace Npoi.Core.HSSF.Record.Crypto
             _rc4.Xor(buf, off, len);
         }
 
-
         public int ReadUByte()
         {
             return _rc4.XorByte(_le.ReadUByte());
         }
+
         public int ReadByte()
         {
             return _rc4.XorByte(_le.ReadUByte());
         }
 
-
         public int ReadUShort()
         {
             return _rc4.Xorshort(_le.ReadUShort());
         }
+
         public short ReadShort()
         {
             return (short)_rc4.Xorshort(_le.ReadUShort());
@@ -128,4 +129,3 @@ namespace Npoi.Core.HSSF.Record.Crypto
         }
     }
 }
-

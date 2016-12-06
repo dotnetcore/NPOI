@@ -17,28 +17,29 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Title:        FILESHARING
-     * Description:  stores the encrypted Readonly for a workbook (Write protect) 
+     * Description:  stores the encrypted Readonly for a workbook (Write protect)
      * This functionality Is accessed from the options dialog box available when performing 'Save As'.<p/>
      * REFERENCE:  PG 314 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)<p/>
      * @author Andrew C. Oliver (acoliver at apache dot org)
      */
+
     public class FileSharingRecord : StandardRecord
     {
-
         public const short sid = 0x5b;
         private short field_1_Readonly;
         private short field_2_password;
         private byte field_3_username_unicode_options;
         private String field_3_username_value;
 
-        public FileSharingRecord() { }
-
+        public FileSharingRecord()
+        {
+        }
 
         /**
          * Constructs a FileSharing record and Sets its fields appropriately.
@@ -54,15 +55,15 @@ namespace Npoi.Core.HSSF.Record
 
             if (nameLen > 0)
             {
-                // TODO - Current examples(3) from junits only have zero Length username. 
+                // TODO - Current examples(3) from junits only have zero Length username.
                 field_3_username_unicode_options = (byte)in1.ReadByte();
                 field_3_username_value = in1.ReadCompressedUnicode(nameLen);
-                
+
                 if (field_3_username_value == null)
                 {
-                   // In some cases the user name can be null after reading from
-                   // the input stream so we make sure this has a value
-                   field_3_username_value = "";
+                    // In some cases the user name can be null after reading from
+                    // the input stream so we make sure this has a value
+                    field_3_username_value = "";
                 }
             }
             else
@@ -70,7 +71,6 @@ namespace Npoi.Core.HSSF.Record
                 field_3_username_value = "";
             }
         }
-
 
         //this Is the world's lamest "security".  thanks to Wouter van Vugt for making me
         //not have to try real hard.  -ACO
@@ -94,12 +94,12 @@ namespace Npoi.Core.HSSF.Record
             return (short)hash;
         }
 
-
         /**
          * Get the Readonly
          *
          * @return short  representing if this Is Read only (1 = true)
          */
+
         public short ReadOnly
         {
             get
@@ -112,6 +112,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @returns password hashed with hashPassword() (very lame)
          */
+
         public short Password
         {
             get
@@ -121,10 +122,10 @@ namespace Npoi.Core.HSSF.Record
             set { field_2_password = value; }
         }
 
-
         /**
          * @returns username of the user that Created the file
          */
+
         public String Username
         {
             get { return field_3_username_value; }
@@ -183,6 +184,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Clone this record.
          */
+
         public override Object Clone()
         {
             FileSharingRecord Clone = new FileSharingRecord();

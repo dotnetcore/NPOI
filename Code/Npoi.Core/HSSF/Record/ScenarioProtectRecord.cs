@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,20 +15,18 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Title: Scenario Protect Record
-     * Description:  I have no idea what a Scenario is or why on would want to 
+     * Description:  I have no idea what a Scenario is or why on would want to
      * protect it with the lamest "security" ever invented.  However this record tells
-     * excel "I want to protect my scenarios" (0xAF) with lame security.  It appears 
-     * in conjunction with the PASSWORD and PROTECT records as well as its object 
+     * excel "I want to protect my scenarios" (0xAF) with lame security.  It appears
+     * in conjunction with the PASSWORD and PROTECT records as well as its object
      * protect cousin.
      * REFERENCE:  PG 383 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
      * @author Andrew C. Oliver (acoliver at apache dot org)
@@ -75,6 +72,7 @@ namespace Npoi.Core.HSSF.Record
                 }
             }
         }
+
         public override short Sid
         {
             get
@@ -82,6 +80,7 @@ namespace Npoi.Core.HSSF.Record
                 return sid;
             }
         }
+
         public override String ToString()
         {
             StringBuilder buffer = new StringBuilder();

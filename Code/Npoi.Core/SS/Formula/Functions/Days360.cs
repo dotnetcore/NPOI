@@ -1,12 +1,11 @@
-﻿using System;
-using Npoi.Core.SS.Formula.Eval;
+﻿using Npoi.Core.SS.Formula.Eval;
 using Npoi.Core.SS.UserModel;
+using System;
 
 namespace Npoi.Core.SS.Formula.Functions
 {
     public class Days360 : Var2or3ArgFunction
     {
-
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1)
         {
             double result;
@@ -40,6 +39,7 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return new NumberEval(result);
         }
+
         private double Evaluate(double d0, double d1)
         {
             DateTime startingDate = GetStartingDate(d0);
@@ -49,10 +49,12 @@ namespace Npoi.Core.SS.Formula.Functions
                     + endingDate.Month * 30 + endingDate.Day;
             return endingDay - startingDay;
         }
+
         private DateTime GetDate(double date)
         {
             return DateUtil.GetJavaDate(date);
         }
+
         private DateTime GetStartingDate(double date)
         {
             DateTime startingDate = GetDate(date);
@@ -62,6 +64,7 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return startingDate;
         }
+
         private DateTime GetEndingDateAccordingToStartingDate(double date, DateTime startingDate)
         {
             DateTime endingDate = DateUtil.GetJavaDate(date, false);
@@ -74,10 +77,12 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return endingDate;
         }
+
         private bool IsLastDayOfMonth(DateTime date)
         {
             return date.AddDays(1).Month != date.Month;
         }
+
         private DateTime GetFirstDayOfNextMonth(DateTime date)
         {
             DateTime newDate;

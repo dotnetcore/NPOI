@@ -17,13 +17,15 @@
 
 namespace Npoi.Core.SS.Formula.Eval
 {
+    using Npoi.Core.SS.Formula.Functions;
     using System;
     using System.Text;
-    using Npoi.Core.SS.Formula.Functions;
+
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     *  
+     *
      */
+
     public class ConcatEval : Fixed2ArgFunction
     {
         public static Function instance = new ConcatEval();

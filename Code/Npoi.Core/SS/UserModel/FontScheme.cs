@@ -17,8 +17,6 @@
 
 namespace Npoi.Core.SS.UserModel
 {
-
-
     /**
      * Defines the font scheme to which this font belongs.
      * When a font defInition is part of a theme defInition, then the font is categorized as either a major or minor font scheme component.
@@ -28,6 +26,7 @@ namespace Npoi.Core.SS.UserModel
      *
      * @author Gisella Bronzetti
      */
+
     public class FontScheme
     {
         public static readonly FontScheme NONE = new FontScheme(1);
@@ -60,5 +59,4 @@ namespace Npoi.Core.SS.UserModel
             return NONE;
         }
     }
-
 }

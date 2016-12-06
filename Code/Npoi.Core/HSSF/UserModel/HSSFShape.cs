@@ -17,18 +17,19 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
-    using Npoi.Core.SS.UserModel;
     using Npoi.Core.DDF;
     using Npoi.Core.HSSF.Record;
-    using System.IO;
+    using Npoi.Core.SS.UserModel;
     using Npoi.Core.Util;
+    using System;
+    using System.IO;
+
     /// <summary>
     /// An abstract shape.
-    /// 
-    /// Note: Microsoft Excel seems to sometimes disallow 
-    /// higher y1 than y2 or higher x1 than x2 in the anchor, you might need to 
-    /// reverse them and draw shapes vertically or horizontally flipped! 
+    ///
+    /// Note: Microsoft Excel seems to sometimes disallow
+    /// higher y1 than y2 or higher x1 than x2 in the anchor, you might need to
+    /// reverse them and draw shapes vertically or horizontally flipped!
     /// </summary>
     [Serializable]
     public abstract class HSSFShape //: IShape
@@ -57,9 +58,11 @@ namespace Npoi.Core.HSSF.UserModel
         public const int NO_FILLHITTEST_TRUE = 0x00110000;
         public const int NO_FILLHITTEST_FALSE = 0x00010000;
 
-        HSSFShape parent;
+        private HSSFShape parent;
+
         [NonSerialized]
         protected HSSFAnchor anchor;
+
         [NonSerialized]
         protected internal HSSFPatriarch _patriarch;
 
@@ -77,6 +80,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @param spContainer
          * @param objRecord
          */
+
         public HSSFShape(EscherContainerRecord spContainer, ObjRecord objRecord)
         {
             this._escherContainer = spContainer;
@@ -98,10 +102,13 @@ namespace Npoi.Core.HSSF.UserModel
             _optRecord = (EscherOptRecord)_escherContainer.GetChildById(EscherOptRecord.RECORD_ID);
             _objRecord = CreateObjRecord();
         }
+
         protected abstract EscherContainerRecord CreateSpContainer();
 
         protected abstract ObjRecord CreateObjRecord();
+
         internal abstract void AfterRemove(HSSFPatriarch patriarch);
+
         internal abstract void AfterInsert(HSSFPatriarch patriarch);
 
         public virtual int ShapeId
@@ -118,6 +125,7 @@ namespace Npoi.Core.HSSF.UserModel
                 cod.ObjectId = (short)(value % 1024);
             }
         }
+
         /// <summary>
         /// Gets the parent shape.
         /// </summary>
@@ -212,10 +220,12 @@ namespace Npoi.Core.HSSF.UserModel
                 SetPropertyValue(new EscherRGBProperty(EscherProperties.LINESTYLE__COLOR, value));
             }
         }
+
         internal EscherContainerRecord GetEscherContainer()
         {
             return _escherContainer;
         }
+
         /// <summary>
         /// Sets the color applied to the lines of this shape
         /// </summary>
@@ -227,22 +237,24 @@ namespace Npoi.Core.HSSF.UserModel
             int lineStyleColor = ((blue) << 16) | ((green) << 8) | red;
             SetPropertyValue(new EscherRGBProperty(EscherProperties.LINESTYLE__COLOR, lineStyleColor));
         }
+
         protected void SetPropertyValue(EscherProperty property)
         {
             _optRecord.SetEscherProperty(property);
         }
+
         /// <summary>
         /// Gets or sets the color used to fill this shape.
         /// </summary>
         /// <value>The color of the fill.</value>
         public int FillColor
         {
-            get 
+            get
             {
                 EscherRGBProperty rgbProperty = (EscherRGBProperty)_optRecord.Lookup(EscherProperties.FILL__FILLCOLOR);
                 return rgbProperty == null ? FILL__FILLCOLOR_DEFAULT : rgbProperty.RgbColor;
             }
-            set 
+            set
             {
                 SetPropertyValue(new EscherRGBProperty(EscherProperties.FILL__FILLCOLOR, value));
             }
@@ -368,11 +380,11 @@ namespace Npoi.Core.HSSF.UserModel
                 EscherSpRecord sp = (EscherSpRecord)GetEscherContainer().GetChildById(EscherSpRecord.RECORD_ID);
                 if (value)
                 {
-                    sp.Flags=(sp.Flags | EscherSpRecord.FLAG_FLIPHORIZ);
+                    sp.Flags = (sp.Flags | EscherSpRecord.FLAG_FLIPHORIZ);
                 }
                 else
                 {
-                    sp.Flags=(sp.Flags & (int.MaxValue - EscherSpRecord.FLAG_FLIPHORIZ));
+                    sp.Flags = (sp.Flags & (int.MaxValue - EscherSpRecord.FLAG_FLIPHORIZ));
                 }
             }
         }

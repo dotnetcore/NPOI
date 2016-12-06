@@ -14,6 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.UserModel
 {
     public enum AnchorType : int
@@ -56,7 +57,6 @@ namespace Npoi.Core.SS.UserModel
          * </p>
          */
         DontMoveAndResize = 3
-
     }
 
     /**
@@ -65,9 +65,9 @@ namespace Npoi.Core.SS.UserModel
      *
      * @author Yegor Kozlov
      */
+
     public interface IClientAnchor
     {
-
         /**
          * Returns the column (0 based) of the first cell.
          *
@@ -89,14 +89,12 @@ namespace Npoi.Core.SS.UserModel
          */
         int Row1 { get; set; }
 
-
         /**
          * Returns the row (0 based) of the second cell.
          *
          * @return 0-based row of the second cell.
          */
         int Row2 { get; set; }
-
 
         /**
          * Returns the x coordinate within the first cell
@@ -105,14 +103,12 @@ namespace Npoi.Core.SS.UserModel
          */
         int Dx1 { get; set; }
 
-
         /**
          * Returns the y coordinate within the first cell
          *
          * @return the y coordinate within the first cell
          */
         int Dy1 { get; set; }
-
 
         /**
          * Sets the y coordinate within the second cell
@@ -128,7 +124,6 @@ namespace Npoi.Core.SS.UserModel
          */
         int Dx2 { get; set; }
 
-
         /**
          * s the anchor type
          * <p>
@@ -140,6 +135,5 @@ namespace Npoi.Core.SS.UserModel
          * @see #DONT_MOVE_AND_RESIZE
          */
         AnchorType AnchorType { get; set; }
-
     }
 }

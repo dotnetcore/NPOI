@@ -17,13 +17,13 @@
 
 namespace Npoi.Core.SS.UserModel
 {
-
     /**
      * The font family this font belongs to. A font family is a set of fonts having common stroke width and serif
      * characteristics. The font name overrides when there are conflicting values.
      *
      * @author Gisella Bronzetti
      */
+
     public class FontFamily
     {
         public static readonly FontFamily NOT_APPLICABLE = new FontFamily(0);
@@ -45,6 +45,7 @@ namespace Npoi.Core.SS.UserModel
          *
          * @return index of this font family
          */
+
         public int Value
         {
             get
@@ -55,7 +56,7 @@ namespace Npoi.Core.SS.UserModel
 
         public static FontFamily ValueOf(int family)
         {
-            switch(family)
+            switch (family)
             {
                 case 0: return NOT_APPLICABLE;
                 case 1: return ROMAN;
@@ -68,4 +69,3 @@ namespace Npoi.Core.SS.UserModel
         }
     }
 }
-

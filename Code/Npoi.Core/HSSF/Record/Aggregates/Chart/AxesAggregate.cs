@@ -14,10 +14,11 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
-using System;
-using System.Collections.Generic;
+
 using Npoi.Core.HSSF.Model;
 using Npoi.Core.HSSF.Record.Chart;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart

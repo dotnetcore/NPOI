@@ -17,16 +17,17 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
-using System.IO;
 using Npoi.Core.POIFS.Common;
+using System.IO;
+
 namespace Npoi.Core.POIFS.Storage
 {
     /// <summary>
@@ -39,7 +40,6 @@ namespace Npoi.Core.POIFS.Storage
     /// </summary>
     public abstract class BigBlock : BlockWritable
     {
-
         protected POIFSBigBlockSize bigBlockSize;
 
         protected BigBlock()
@@ -50,6 +50,7 @@ namespace Npoi.Core.POIFS.Storage
         {
             this.bigBlockSize = bigBlockSize;
         }
+
         /// <summary>
         /// Default implementation of write for extending classes that
         /// contain their data in a simple array of bytes.
@@ -60,6 +61,7 @@ namespace Npoi.Core.POIFS.Storage
         {
             stream.Write(data, 0, data.Length);
         }
+
         /// <summary>
         /// Write the block's data to an OutputStream
         /// </summary>
@@ -74,8 +76,5 @@ namespace Npoi.Core.POIFS.Storage
         /// </summary>
         /// <param name="stream">the OutputStream to which the stored data should be written </param>
         public abstract void WriteData(Stream stream);
-
     }
-
-
 }

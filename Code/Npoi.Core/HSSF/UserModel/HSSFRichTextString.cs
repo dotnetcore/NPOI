@@ -17,11 +17,9 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
-    using System.Collections;
-
-    using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -29,15 +27,16 @@ namespace Npoi.Core.HSSF.UserModel
     /// arbitary parts of the string.
     /// @author Glen Stampoultzis (glens at apache.org)
     /// @author Jason Height (jheight at apache.org)
-    /// </summary> 
+    /// </summary>
     [Serializable]
-    public class HSSFRichTextString : IComparable<HSSFRichTextString>,Npoi.Core.SS.UserModel.IRichTextString
+    public class HSSFRichTextString : IComparable<HSSFRichTextString>, Npoi.Core.SS.UserModel.IRichTextString
     {
         /** Place holder for indicating that NO_FONT has been applied here */
         public const short NO_FONT = 0;
 
         [NonSerialized]
         private UnicodeString _string;
+
         private InternalWorkbook _book;
         private LabelSSTRecord _record;
 
@@ -47,7 +46,6 @@ namespace Npoi.Core.HSSF.UserModel
         public HSSFRichTextString()
             : this("")
         {
-
         }
 
         /// <summary>
@@ -118,7 +116,6 @@ namespace Npoi.Core.HSSF.UserModel
                 _string = _book.GetSSTString(index);
             }
         }
-
 
         /// <summary>
         /// Applies a font to the specified Chars of a string.
@@ -210,6 +207,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             get { return _string.String; }
         }
+
         /// <summary>
         /// Returns the raw, probably shared Unicode String.
         /// Used when tweaking the styles, eg updating font
@@ -235,7 +233,6 @@ namespace Npoi.Core.HSSF.UserModel
             get { return CloneStringIfRequired(); }
             set { this._string = value; }
         }
-
 
         /// <summary>
         /// Gets the number of Chars in the font..
@@ -325,9 +322,9 @@ namespace Npoi.Core.HSSF.UserModel
             return false;
         }
 
-        public override int GetHashCode ()
+        public override int GetHashCode()
         {
-            return _string.GetHashCode ();
+            return _string.GetHashCode();
         }
 
         /// <summary>

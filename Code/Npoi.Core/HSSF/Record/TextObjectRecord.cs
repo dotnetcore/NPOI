@@ -17,20 +17,18 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
-    using System.Text;
-    using Npoi.Core.HSSF.Record;
-    using Npoi.Core.Util;
-    using Npoi.Core.HSSF.UserModel;
-
-    using Npoi.Core.SS.UserModel;
     using Npoi.Core.HSSF.Record.Cont;
+    using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.Util;
+    using System;
     using System.Globalization;
+    using System.Text;
 
     public class TextObjectRecord : ContinuableRecord
     {
-        Npoi.Core.SS.UserModel.IRichTextString _text;
+        private Npoi.Core.SS.UserModel.IRichTextString _text;
 
         public const short sid = 0x1B6;
 
@@ -49,7 +47,7 @@ namespace Npoi.Core.HSSF.Record
         /*
          * Note - the next three fields are very similar to those on
          * EmbededObjectRefSubRecord(ftPictFmla 0x0009)
-         * 
+         *
          * some observed values for the 4 bytes preceding the formula: C0 5E 86 03
          * C0 11 AC 02 80 F1 8A 03 D4 F0 8A 03
          */
@@ -57,18 +55,16 @@ namespace Npoi.Core.HSSF.Record
         /** expect tRef, tRef3D, tArea, tArea3D or tName */
         private OperandPtg _linkRefPtg;
         /**
-         * Not clear if needed .  Excel seems to be OK if this byte is not present. 
+         * Not clear if needed .  Excel seems to be OK if this byte is not present.
          * Value is often the same as the earlier firstColumn byte. */
         private Byte? _unknownPostFormulaByte;
 
         public TextObjectRecord()
         {
-
         }
 
         public TextObjectRecord(RecordInputStream in1)
         {
-
             field_1_options = in1.ReadUShort();
             field_2_textOrientation = in1.ReadUShort();
             field_3_reserved4 = in1.ReadUShort();
@@ -129,6 +125,7 @@ namespace Npoi.Core.HSSF.Record
                 ProcessFontRuns(in1, _text, field_7_formattingDataLength);
             }
         }
+
         private static void ProcessFontRuns(RecordInputStream in1, IRichTextString str,
             int formattingRunDataLength)
         {
@@ -163,7 +160,7 @@ namespace Npoi.Core.HSSF.Record
                     textBytesLength -= chunkSize;
 
                     encodedTextSize += 4;           // +4 for ContinueRecord sid+size
-                    encodedTextSize += 1 + chunkSize; // +1 for compressed unicode flag, 
+                    encodedTextSize += 1 + chunkSize; // +1 for compressed unicode flag,
                 }
 
                 int encodedFormatSize = (_text.NumFormattingRuns + 1) * FORMAT_RUN_ENCODED_SIZE
@@ -171,6 +168,7 @@ namespace Npoi.Core.HSSF.Record
                 return encodedTextSize + encodedFormatSize;
             }
         }
+
         private static byte[] CreateFormatData(IRichTextString str)
         {
             int nRuns = str.NumFormattingRuns;
@@ -199,7 +197,7 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteContinue();
             out1.WriteStringData(_text.String);
             out1.WriteContinue();
-            WriteFormatData(out1,_text);
+            WriteFormatData(out1, _text);
         }
 
         private void WriteFormatData(ContinuableRecordOutput out1, IRichTextString str)
@@ -217,14 +215,13 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteInt(0); // skip reserved
         }
 
-
         private int FormattingDataLength
         {
             get
             {
                 if (_text.Length < 1)
                 {
-                    // important - no formatting data if text is empty 
+                    // important - no formatting data if text is empty
                     return 0;
                 }
                 return (_text.NumFormattingRuns + 1) * FORMAT_RUN_ENCODED_SIZE;
@@ -256,7 +253,6 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         protected override void Serialize(ContinuableRecordOutput out1)
         {
             SerializeTXORecord(out1);
@@ -279,7 +275,6 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         private static String ReadRawString(RecordInputStream in1, int textLength)
         {
             byte compressByte = (byte)in1.ReadByte();
@@ -296,6 +291,7 @@ namespace Npoi.Core.HSSF.Record
             get { return _text; }
             set { this._text = value; }
         }
+
         public override short Sid
         {
             get
@@ -309,35 +305,42 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return a TextOrientation
          */
+
         public TextOrientation TextOrientation
         {
-            get { return (TextOrientation) field_2_textOrientation; }
-            set { this.field_2_textOrientation = (int) value; }
+            get { return (TextOrientation)field_2_textOrientation; }
+            set { this.field_2_textOrientation = (int)value; }
         }
-
 
         /**
  * @return the Horizontal text alignment field value.
  */
+
         public HorizontalTextAlignment HorizontalTextAlignment
         {
-            get {
+            get
+            {
                 return (HorizontalTextAlignment)_HorizontalTextAlignment.GetValue(field_1_options);
             }
-            set {
-                field_1_options = _HorizontalTextAlignment.SetValue(field_1_options, (int) value);
+            set
+            {
+                field_1_options = _HorizontalTextAlignment.SetValue(field_1_options, (int)value);
             }
         }
+
         /**
  * @return the Vertical text alignment field value.
  */
+
         public VerticalTextAlignment VerticalTextAlignment
         {
-            get {
+            get
+            {
                 return (VerticalTextAlignment)_VerticalTextAlignment.GetValue(field_1_options);
             }
-            set {
-                field_1_options = _VerticalTextAlignment.SetValue(field_1_options, (int) value);
+            set
+            {
+                field_1_options = _VerticalTextAlignment.SetValue(field_1_options, (int)value);
             }
         }
 
@@ -345,6 +348,7 @@ namespace Npoi.Core.HSSF.Record
          * Text has been locked
          * @return  the text locked field value.
          */
+
         public bool IsTextLocked
         {
             get { return textLocked.IsSet(field_1_options); }
@@ -358,6 +362,7 @@ namespace Npoi.Core.HSSF.Record
                 return _linkRefPtg;
             }
         }
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -367,7 +372,7 @@ namespace Npoi.Core.HSSF.Record
             sb.Append("         .IsHorizontal = ").Append(HorizontalTextAlignment).Append('\n');
             sb.Append("         .IsVertical   = ").Append(VerticalTextAlignment).Append('\n');
             sb.Append("         .textLocked   = ").Append(IsTextLocked).Append('\n');
-            sb.Append("    .textOrientation= ").Append(HexDump.ShortToHex((int) TextOrientation)).Append("\n");
+            sb.Append("    .textOrientation= ").Append(HexDump.ShortToHex((int)TextOrientation)).Append("\n");
             sb.Append("    .reserved4      = ").Append(HexDump.ShortToHex(field_3_reserved4)).Append("\n");
             sb.Append("    .reserved5      = ").Append(HexDump.ShortToHex(field_4_reserved5)).Append("\n");
             sb.Append("    .reserved6      = ").Append(HexDump.ShortToHex(field_5_reserved6)).Append("\n");
@@ -379,7 +384,6 @@ namespace Npoi.Core.HSSF.Record
             for (int i = 0; i < _text.NumFormattingRuns; i++)
             {
                 sb.Append("    .textrun = ").Append(((HSSFRichTextString)_text).GetFontOfFormattingRun(i)).Append('\n');
-
             }
             sb.Append("[/TXO]\n");
             return sb.ToString();
@@ -387,7 +391,6 @@ namespace Npoi.Core.HSSF.Record
 
         public override Object Clone()
         {
-
             TextObjectRecord rec = new TextObjectRecord();
             rec._text = _text;
 
@@ -408,6 +411,5 @@ namespace Npoi.Core.HSSF.Record
             }
             return rec;
         }
-
     }
 }

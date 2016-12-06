@@ -15,15 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
-using System.Collections.Generic;
-using Npoi.Core.SS.Formula;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.Util;
+using System;
+using System.Collections.Generic;
+
 namespace Npoi.Core.SS.Formula.Eval.Forked
 {
-
-
     /**
      * Represents a sheet being used for forked Evaluation.  Initially, objects of this class contain
      * only the cells from the master workbook. By calling {@link #getOrCreateUpdatableCell(int, int)},
@@ -32,9 +30,9 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
      *
      * @author Josh Micich
      */
-    class ForkedEvaluationSheet : IEvaluationSheet
-    {
 
+    internal class ForkedEvaluationSheet : IEvaluationSheet
+    {
         private IEvaluationSheet _masterSheet;
         /**
          * Only cells which have been split are Put in this map.  (This has been done to conserve memory).
@@ -138,6 +136,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
             {
                 return _rowIndex ^ _columnIndex;
             }
+
             public int CompareTo(RowColKey o)
             {
                 int cmp = _rowIndex - o._rowIndex;
@@ -147,6 +146,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
                 }
                 return _columnIndex - o._columnIndex;
             }
+
             public int RowIndex
             {
                 get
@@ -154,6 +154,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
                     return _rowIndex;
                 }
             }
+
             public int ColumnIndex
             {
                 get
@@ -163,5 +164,4 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
             }
         }
     }
-
 }

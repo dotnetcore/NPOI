@@ -19,9 +19,8 @@
 
 namespace Npoi.Core.SS.UserModel
 {
-    using System;
-
     using Npoi.Core.SS.Util;
+    using System;
 
     /**
      * The 'Conditional Formatting' facet of <c>Sheet</c>
@@ -30,6 +29,7 @@ namespace Npoi.Core.SS.UserModel
      * @author Yegor Kozlov
      * @since 3.8
      */
+
     public interface ISheetConditionalFormatting
     {
         /// <summary>
@@ -99,14 +99,14 @@ namespace Npoi.Core.SS.UserModel
          * @param formula2 - second formula (only used with
          * {@link ComparisonOperator#BETWEEN}) and {@link ComparisonOperator#NOT_BETWEEN} operations)
          */
+
         IConditionalFormattingRule CreateConditionalFormattingRule(
                 ComparisonOperator comparisonOperation,
                 String formula1,
                 String formula2);
 
-
         /// <summary>
-        /// Create a conditional formatting rule that Compares a cell value to a formula calculated result, using an operator 
+        /// Create a conditional formatting rule that Compares a cell value to a formula calculated result, using an operator
         /// </summary>
         /// <param name="comparisonOperation">MUST be a constant value from ComparisonOperator except  BETWEEN and NOT_BETWEEN</param>
         /// <param name="formula">the formula to determine if the conditional formatting is applied</param>
@@ -143,5 +143,4 @@ namespace Npoi.Core.SS.UserModel
         /// <exception cref="ArgumentException">throws ArgumentException if the index is  outside of the allowable range (0 ... numberOfFormats-1)</exception>
         void RemoveConditionalFormatting(int index);
     }
-
 }

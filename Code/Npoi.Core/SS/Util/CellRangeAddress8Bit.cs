@@ -2,8 +2,8 @@
 
 namespace Npoi.Core.SS.Util
 {
-    using Npoi.Core.Util;
     using Npoi.Core.HSSF.Record;
+    using Npoi.Core.Util;
 
     public class CellRangeAddress8Bit : CellRangeAddressBase
     {
@@ -12,13 +12,11 @@ namespace Npoi.Core.SS.Util
         public CellRangeAddress8Bit(int firstRow, int lastRow, int firstCol, int lastCol)
             : base(firstRow, lastRow, firstCol, lastCol)
         {
-
         }
 
         public CellRangeAddress8Bit(RecordInputStream in1)
             : base(ReadUShortAndCheck(in1), in1.ReadUShort(), in1.ReadUByte(), in1.ReadUByte())
         {
-
         }
 
         private static int ReadUShortAndCheck(RecordInputStream in1)
@@ -39,6 +37,7 @@ namespace Npoi.Core.SS.Util
             LittleEndian.PutByte(data, offset + 5, LastColumn);
             return ENCODED_SIZE;
         }
+
         public void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(FirstRow);
@@ -46,6 +45,7 @@ namespace Npoi.Core.SS.Util
             out1.WriteByte(FirstColumn);
             out1.WriteByte(LastColumn);
         }
+
         public CellRangeAddress8Bit Copy()
         {
             return new CellRangeAddress8Bit(FirstRow, LastRow, FirstColumn, LastColumn);

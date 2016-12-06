@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
     using Npoi.Core.Util;
     using System;
     using System.Text;
-
 
     /**
      * The end data record is used to denote the end of the subrecords.
@@ -32,6 +28,7 @@ namespace Npoi.Core.HSSF.Record
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class EndSubRecord
        : SubRecord
     {
@@ -40,7 +37,6 @@ namespace Npoi.Core.HSSF.Record
 
         public EndSubRecord()
         {
-
         }
 
         /**
@@ -55,7 +51,6 @@ namespace Npoi.Core.HSSF.Record
             { // mask out random crap in upper byte
                 throw new RecordFormatException("Unexpected size (" + size + ")");
             }
-
         }
 
         public override bool IsTerminating
@@ -65,6 +60,7 @@ namespace Npoi.Core.HSSF.Record
                 return true;
             }
         }
+
         public override String ToString()
         {
             StringBuilder buffer = new StringBuilder();
@@ -84,6 +80,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Size of record (exluding 4 byte header)
          */
+
         public override int DataSize
         {
             get { return ENCODED_SIZE; }
@@ -100,6 +97,5 @@ namespace Npoi.Core.HSSF.Record
 
             return rec;
         }
-
     }
 }

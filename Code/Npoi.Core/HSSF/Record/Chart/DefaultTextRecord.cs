@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,37 +15,37 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
-    using System.Text;
-    using System;
-
     using Npoi.Core.Util;
+    using System;
+    using System.Text;
 
     /// <summary>
-    /// specifies the text elements that are formatted using the position and appearance information 
+    /// specifies the text elements that are formatted using the position and appearance information
     /// specified by the Text record immediately following this record.
     /// </summary>
-    public enum TextFormatInfo:short
+    public enum TextFormatInfo : short
     {
         /// <summary>
         /// Format all Text records in the chart group where fShowPercent is equal to 0 or fShowValue is equal to 0.
         /// </summary>
         ShowPercentOrValueNotSet = 0,
+
         /// <summary>
         /// Format all Text records in the chart group where fShowPercent is equal to 1 or fShowValue is equal to 1.
         /// </summary>
-        ShowPercentOrValueSet =1,
+        ShowPercentOrValueSet = 1,
+
         /// <summary>
         /// Format all Text records in the chart where the value of fScaled of the associated FontInfo structure is equal to 0.
         /// </summary>
-        FontScaleNotSet =2,
+        FontScaleNotSet = 2,
+
         /// <summary>
         /// Format all Text records in the chart where the value of fScaled of the associated FontInfo structure is equal to 1.
         /// </summary>
-        FontScaleSet =3
+        FontScaleSet = 3
     }
 
     /*
@@ -56,6 +55,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     //
     /// <summary>
     /// specifies the text elements that are formatted using the information specified by
@@ -69,7 +69,6 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public DefaultTextRecord()
         {
-
         }
 
         /**
@@ -81,7 +80,6 @@ namespace Npoi.Core.HSSF.Record.Chart
         public DefaultTextRecord(RecordInputStream in1)
         {
             field_1_categoryDataType = in1.ReadShort();
-
         }
 
         public override String ToString()
@@ -106,6 +104,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 2; }
@@ -124,20 +123,18 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /*
          * Get the category data type field for the DefaultDataLabelTextProperties record.
          *
-         * @return  One of 
+         * @return  One of
          *        CATEGORY_DATA_TYPE_SHOW_LABELS_CharISTIC
          *        CATEGORY_DATA_TYPE_VALUE_AND_PERCENTAGE_CharISTIC
          *        CATEGORY_DATA_TYPE_ALL_TEXT_CharISTIC
          */
+
         //
         /// <summary>
-        /// specifies the text elements that are formatted using the position and appearance 
+        /// specifies the text elements that are formatted using the position and appearance
         /// information specified by the Text record immediately following this record.
         /// </summary>
         public TextFormatInfo FormatType
@@ -146,13 +143,10 @@ namespace Npoi.Core.HSSF.Record.Chart
             {
                 return (TextFormatInfo)field_1_categoryDataType;
             }
-            set 
+            set
             {
                 this.field_1_categoryDataType = (short)value;
             }
         }
-
-
     }
 }
-

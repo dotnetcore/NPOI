@@ -15,13 +15,13 @@
    limitations Under the License.
 ==================================================================== */
 
-using System.Text;
 using Npoi.Core.Util;
+using System.Text;
 
 namespace Npoi.Core.HSSF.Record.Chart
 {
     /// <summary>
-    /// The Pie record specifies that the chart group is a pie chart group or 
+    /// The Pie record specifies that the chart group is a pie chart group or
     /// a doughnut chart group, and specifies the chart group attributes.
     /// </summary>
     /// <remarks>
@@ -49,7 +49,6 @@ namespace Npoi.Core.HSSF.Record.Chart
             field_3_option = ris.ReadShort();
         }
 
-
         protected override int DataSize
         {
             get { return 2 + 2 + 2; }
@@ -66,6 +65,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         {
             get { return sid; }
         }
+
         public override object Clone()
         {
             PieRecord record = new PieRecord();
@@ -92,7 +92,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         }
 
         /// <summary>
-        /// An unsigned integer that specifies the starting angle of the first data point, 
+        /// An unsigned integer that specifies the starting angle of the first data point,
         /// clockwise from the top of the circle. MUST be less than or equal to 360.
         /// </summary>
         public int Start
@@ -102,7 +102,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         }
 
         /// <summary>
-        /// An unsigned integer that specifies the size of the center hole in a doughnut chart group 
+        /// An unsigned integer that specifies the size of the center hole in a doughnut chart group
         /// as a percentage of the plot area size. MUST be a value from the following table:
         /// 0          Pie chart group.
         /// 10 to 90   Doughnut chart group.

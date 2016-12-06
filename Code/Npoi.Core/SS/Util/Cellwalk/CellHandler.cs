@@ -5,9 +5,9 @@
    The ASF licenses this file to You under the Apache License, Version 2.0
    (the "License"); you may not use this file except in compliance with
    the License.  You may obtain a copy of the License at
-   
+
    http://www.apache.org/licenses/LICENSE-2.0
-   
+
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,17 +20,17 @@ namespace Npoi.Core.SS.Util.CellWalk
     using Npoi.Core.SS.UserModel;
 
     /**
-     * Represents callback for CellWalk traverse method.  
+     * Represents callback for CellWalk traverse method.
      * @author Roman Kashitsyn
      */
+
     public interface ICellHandler
     {
-
         /**
          * @param cell current cell
          * @param ctx information about invokation context
          */
-        void OnCell(ICell cell, ICellWalkContext ctx);
 
+        void OnCell(ICell cell, ICellWalkContext ctx);
     }
 }

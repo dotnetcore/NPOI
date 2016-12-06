@@ -17,28 +17,27 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
+    using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS.Formula.PTG;
     using System;
     using System.Text;
-
-    using Npoi.Core.HSSF.Record;
-    using Npoi.Core.HSSF.Model;
-    using Npoi.Core.SS.Formula.PTG;
-
 
     /// <summary>
     /// High Level Represantion of Named Range
     /// </summary>
     /// <remarks>@author Libin Roman (Vista Portal LDT. Developer)</remarks>
-    public class HSSFName:Npoi.Core.SS.UserModel.IName
+    public class HSSFName : Npoi.Core.SS.UserModel.IName
     {
         private HSSFWorkbook book;
         private NameRecord _definedNameRec;
         private NameCommentRecord _commentRec;
         /* package */
-        internal HSSFName(HSSFWorkbook book, NameRecord name):this(book, name, null)
+
+        internal HSSFName(HSSFWorkbook book, NameRecord name) : this(book, name, null)
         {
-            
         }
+
         /// <summary>
         /// Creates new HSSFName   - called by HSSFWorkbook to Create a sheet from
         /// scratch.
@@ -97,7 +96,7 @@ namespace Npoi.Core.HSSF.UserModel
                 int sheetNumber = _definedNameRec.SheetNumber;
 
                 //Check to Ensure no other names have the same case-insensitive name
-                for (int i = wb.NumNames- 1; i >= 0; i--)
+                for (int i = wb.NumNames - 1; i >= 0; i--)
                 {
                     NameRecord rec = wb.GetNameRecord(i);
                     if (rec != _definedNameRec)
@@ -114,11 +113,12 @@ namespace Npoi.Core.HSSF.UserModel
                 if (_commentRec != null)
                 {
                     String oldName = _commentRec.NameText;
-                    _commentRec.NameText=value;
+                    _commentRec.NameText = value;
                     book.Workbook.UpdateNameCommentRecordCache(_commentRec);
                 }
             }
         }
+
         private void ValidateName(String name)
         {
             if (name.Length == 0) throw new ArgumentException("Name cannot be blank");
@@ -152,18 +152,20 @@ namespace Npoi.Core.HSSF.UserModel
                 _definedNameRec.NameDefinition = ptgs;
             }
         }
+
         /**
          * Returns the sheet index this name applies to.
          *
          * @return the sheet index this name applies to, -1 if this name applies to the entire workbook
          */
+
         public int SheetIndex
         {
             get
             {
                 return _definedNameRec.SheetNumber - 1;
             }
-            set 
+            set
             {
                 int lastSheetIx = book.NumberOfSheets - 1;
                 if (value < -1 || value > lastSheetIx)
@@ -175,9 +177,10 @@ namespace Npoi.Core.HSSF.UserModel
                 _definedNameRec.SheetNumber = (value + 1);
             }
         }
+
         public string Comment
         {
-            get 
+            get
             {
                 if (_commentRec != null)
                 {
@@ -188,11 +191,10 @@ namespace Npoi.Core.HSSF.UserModel
                         return _commentRec.CommentText;
                     }
                 }
-                return _definedNameRec.DescriptionText; 
+                return _definedNameRec.DescriptionText;
             }
             set { _definedNameRec.DescriptionText = value; }
         }
-
 
         //
         /// <summary>
@@ -232,16 +234,19 @@ namespace Npoi.Core.HSSF.UserModel
                 return _definedNameRec.IsFunctionName;
             }
         }
+
         /**
      * Indicates that the defined name refers to a user-defined function.
      * This attribute is used when there is an add-in or other code project associated with the file.
      *
      * @param value <c>true</c> indicates the name refers to a function.
      */
+
         public void SetFunction(bool value)
         {
             _definedNameRec.SetFunction(value);
         }
+
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </summary>

@@ -1,5 +1,5 @@
-﻿using System;
-using Npoi.Core.SS.Util;
+﻿using Npoi.Core.SS.Util;
+using System;
 
 namespace Npoi.Core.SS
 {
@@ -12,6 +12,7 @@ namespace Npoi.Core.SS
      * @author Josh Micich
      * @author Yegor Kozlov
      */
+
     public class SpreadsheetVersion
     {
         /**
@@ -59,10 +60,11 @@ namespace Npoi.Core.SS
             _maxCellStyles = maxCellStyles;
             _maxTextLength = maxText;
         }
-        
+
         /**
          * @return the default file extension of spReadsheet
          */
+
         public string DefaultExtension
         {
             get
@@ -74,6 +76,7 @@ namespace Npoi.Core.SS
         /**
          * @return the maximum number of usable rows in each spReadsheet
          */
+
         public int MaxRows
         {
             get
@@ -85,6 +88,7 @@ namespace Npoi.Core.SS
         /**
          * @return the last (maximum) valid row index, equals to <code> GetMaxRows() - 1 </code>
          */
+
         public int LastRowIndex
         {
             get
@@ -96,6 +100,7 @@ namespace Npoi.Core.SS
         /**
          * @return the maximum number of usable columns in each spReadsheet
          */
+
         public int MaxColumns
         {
             get
@@ -107,6 +112,7 @@ namespace Npoi.Core.SS
         /**
          * @return the last (maximum) valid column index, equals to <code> GetMaxColumns() - 1 </code>
          */
+
         public int LastColumnIndex
         {
             get
@@ -118,6 +124,7 @@ namespace Npoi.Core.SS
         /**
          * @return the maximum number arguments that can be passed to a multi-arg function (e.g. COUNTIF)
          */
+
         public int MaxFunctionArgs
         {
             get
@@ -130,6 +137,7 @@ namespace Npoi.Core.SS
          *
          * @return the maximum number of conditional format conditions on a cell
          */
+
         public int MaxConditionalFormats
         {
             get
@@ -143,6 +151,7 @@ namespace Npoi.Core.SS
          * @return the last valid column index in a ALPHA-26 representation
          *  (<code>IV</code> or <code>XFD</code>).
          */
+
         public String LastColumnName
         {
             get
@@ -150,9 +159,11 @@ namespace Npoi.Core.SS
                 return CellReference.ConvertNumToColString(LastColumnIndex);
             }
         }
+
         /**
         * @return the maximum number of cell styles per spreadsheet
         */
+
         public int MaxCellStyles
         {
             get
@@ -160,9 +171,11 @@ namespace Npoi.Core.SS
                 return _maxCellStyles;
             }
         }
+
         /**
          * @return the maximum length of a text cell
          */
+
         public int MaxTextLength
         {
             get
@@ -170,7 +183,5 @@ namespace Npoi.Core.SS
                 return _maxTextLength;
             }
         }
-
     }
-
 }

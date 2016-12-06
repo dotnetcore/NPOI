@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.POIFS.Properties
@@ -39,7 +39,6 @@ namespace Npoi.Core.POIFS.Properties
         /// </summary>
         /// <value>The previous child.</value>
         Child PreviousChild { get; set; }
-
 
         /// <summary>
         /// Gets or sets the next child.

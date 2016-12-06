@@ -17,11 +17,9 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
     using Npoi.Core.Util;
-
-    using System.Text;
     using System;
+    using System.Text;
 
     /**
      * Title: NAMECMT Record (0x0894)
@@ -30,6 +28,7 @@ namespace Npoi.Core.HSSF.Record
      *
      * @author Andrew Shirley (aks at corefiling.co.uk)
      */
+
     public class NameCommentRecord : StandardRecord
     {
         public const short sid = 0x0894;
@@ -37,9 +36,11 @@ namespace Npoi.Core.HSSF.Record
         private short field_1_record_type;
         private short field_2_frt_cell_ref_flag;
         private long field_3_reserved;
+
         //private short             field_4_name_Length;
         //private short             field_5_comment_Length;
         private String field_6_name_text;
+
         private String field_7_comment_text;
 
         public NameCommentRecord(string name, String comment)
@@ -63,7 +64,7 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteShort(field_5_comment_length);
 
             out1.WriteByte(0);
-            StringUtil.PutCompressedUnicode(field_6_name_text,out1);
+            StringUtil.PutCompressedUnicode(field_6_name_text, out1);
             out1.WriteByte(0);
             StringUtil.PutCompressedUnicode(field_7_comment_text, out1);
         }
@@ -81,6 +82,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @param ris the RecordInputstream to read the record from
          */
+
         public NameCommentRecord(RecordInputStream ris)
         {
             ILittleEndianInput in1 = ris;
@@ -108,7 +110,6 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -129,27 +130,30 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return the name of the NameRecord to which this comment applies.
          */
+
         public String NameText
         {
             get
             {
                 return field_6_name_text;
             }
-            set 
+            set
             {
                 field_6_name_text = value;
             }
         }
+
         /**
          * @return the text of the comment.
          */
+
         public String CommentText
         {
             get
             {
                 return field_7_comment_text;
             }
-            set 
+            set
             {
                 field_7_comment_text = value;
             }
@@ -162,11 +166,5 @@ namespace Npoi.Core.HSSF.Record
                 return field_1_record_type;
             }
         }
-
     }
 }
-
-
-
-
-

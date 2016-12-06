@@ -25,6 +25,7 @@ namespace Npoi.Core.SS.Formula.PTG
      * @author  andy
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     public class SubtractPtg : ValueOperatorPtg
     {
         public const byte sid = 0x04;

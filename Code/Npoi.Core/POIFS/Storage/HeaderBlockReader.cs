@@ -17,37 +17,32 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
-
-
-using System;
-using System.IO;
-
-using Npoi.Core.Util;
 
 using Npoi.Core.POIFS.Common;
 using Npoi.Core.POIFS.FileSystem;
-
+using Npoi.Core.Util;
+using System;
+using System.IO;
 
 namespace Npoi.Core.POIFS.Storage
 {
-
     /// <summary>
     /// The block containing the archive header
     /// @author Marc Johnson (mjohnson at apache dot org)
     /// </summary>
     public class HeaderBlockReader
     {
-         /**
-         * What big block Size the file uses. Most files
-         *  use 512 bytes, but a few use 4096
-         */
+        /**
+        * What big block Size the file uses. Most files
+        *  use 512 bytes, but a few use 4096
+        */
         private POIFSBigBlockSize bigBlockSize;
 
         // number of big block allocation table blocks (int)
@@ -60,15 +55,18 @@ namespace Npoi.Core.POIFS.Storage
         // start of the small block allocation table (int index of small
         // block allocation table's first big block)
         private int _sbat_start;
-        	/**
-	 * Number of small block allocation table blocks (int)
-	 * (Number of MiniFAT Sectors in Microsoft parlance)
-	 */
-	private int _sbat_count;
+
+        /**
+ * Number of small block allocation table blocks (int)
+ * (Number of MiniFAT Sectors in Microsoft parlance)
+ */
+        private int _sbat_count;
+
         // big block index for extension to the big block allocation table
         private int _xbat_start;
+
         private int _xbat_count;
-        private byte[]       _data;
+        private byte[] _data;
 
         /// <summary>
         /// create a new HeaderBlockReader from an Stream
@@ -136,7 +134,6 @@ namespace Npoi.Core.POIFS.Storage
                 IOUtils.ReadFully(stream, tmp);
             }
         }
-	
 
         private byte[] ReadFirst512(Stream stream)
         {
@@ -150,21 +147,23 @@ namespace Npoi.Core.POIFS.Storage
             }
             return data;
         }
+
         private static String LongToHex(long value)
         {
             return new String(HexDump.LongToHex(value));
         }
+
         /// <summary>
         /// Alerts the short read.
         /// </summary>
         /// <param name="read">The read.</param>
         /// <param name="expectedReadSize">expected size to read</param>
-        private void AlertShortRead(int read,int expectedReadSize)
+        private void AlertShortRead(int read, int expectedReadSize)
         {
             if (read < 0)
-    		    //Cant have -1 bytes Read in the error message!
-    		    read = 0;
-            String type = " byte" + ((read == 1) ? (""): ("s"));
+                //Cant have -1 bytes Read in the error message!
+                read = 0;
+            String type = " byte" + ((read == 1) ? ("") : ("s"));
 
             throw new IOException("Unable to Read entire header; "
                                   + read + type + " Read; expected "
@@ -177,7 +176,7 @@ namespace Npoi.Core.POIFS.Storage
         /// <value>the index of the first block of the Property Table</value>
         public int PropertyStart
         {
-            get{return _property_start;}
+            get { return _property_start; }
         }
 
         /// <summary>
@@ -186,7 +185,7 @@ namespace Npoi.Core.POIFS.Storage
         /// <value>The SBAT start.</value>
         public int SBATStart
         {
-            get{return _sbat_start;}
+            get { return _sbat_start; }
         }
 
         /// <summary>
@@ -195,23 +194,24 @@ namespace Npoi.Core.POIFS.Storage
         /// <value>The BAT count.</value>
         public int BATCount
         {
-            get{return _bat_count;}
+            get { return _bat_count; }
         }
 
         /// <summary>
         /// Gets the BAT array.
         /// </summary>
         /// <value>The BAT array.</value>
-        public int [] BATArray
+        public int[] BATArray
         {
-            get{
+            get
+            {
                 int[] result = new int[HeaderBlockConstants._max_bats_in_header];
                 int offset = HeaderBlockConstants._bat_array_offset;
 
                 for (int j = 0; j < HeaderBlockConstants._max_bats_in_header; j++)
                 {
-                    result[ j ] = LittleEndian.GetInt(_data, offset);
-                    offset      += LittleEndianConsts.INT_SIZE;
+                    result[j] = LittleEndian.GetInt(_data, offset);
+                    offset += LittleEndianConsts.INT_SIZE;
                 }
                 return result;
             }
@@ -224,7 +224,7 @@ namespace Npoi.Core.POIFS.Storage
         /// @return XBAT count
         public int XBATCount
         {
-            get{return _xbat_count;}
+            get { return _xbat_count; }
         }
 
         /// <summary>
@@ -233,17 +233,17 @@ namespace Npoi.Core.POIFS.Storage
         /// <value>The index of the XBAT.</value>
         public int XBATIndex
         {
-            get{return _xbat_start;}
+            get { return _xbat_start; }
         }
-        
+
         /// <summary>
         /// Gets The Big Block Size, normally 512 bytes, sometimes 4096 bytes
         /// </summary>
         /// <value>The size of the big block.</value>
-        /// @return 
+        /// @return
         public POIFSBigBlockSize BigBlockSize
         {
-    	    get{return bigBlockSize;}
+            get { return bigBlockSize; }
         }
     }
 }

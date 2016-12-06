@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,20 +15,16 @@
    limitations Under the License.
 ==================================================================== */
 
-
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
-
 
     /**
      * Title:        Protection Revision 4 Record
      * Description:  describes whether this is a protected shared/tracked workbook
-     *  ( HSSF does not support encryption because we don't feel like going to jail ) 
+     *  ( HSSF does not support encryption because we don't feel like going to jail )
      * REFERENCE:  PG 373 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
      * @author Andrew C. Oliver (acoliver at apache dot org)
      * @version 2.0-pre
@@ -47,20 +42,20 @@ namespace Npoi.Core.HSSF.Record
         {
             _options = options;
         }
-        public ProtectionRev4Record(bool protect):this(0)
+
+        public ProtectionRev4Record(bool protect) : this(0)
         {
             Protect = protect;
         }
-       
+
         /**
          * Constructs a ProtectionRev4 record and Sets its fields appropriately.
          * @param in the RecordInputstream to Read the record from
          */
 
-        public ProtectionRev4Record(RecordInputStream in1):
+        public ProtectionRev4Record(RecordInputStream in1) :
             this(in1.ReadShort())
         {
-            
         }
 
         /**
@@ -73,7 +68,7 @@ namespace Npoi.Core.HSSF.Record
             get { return protectedFlag.IsSet(_options); }
             set
             {
-                _options=(short)protectedFlag.SetBoolean(_options, value);
+                _options = (short)protectedFlag.SetBoolean(_options, value);
             }
         }
 
@@ -88,7 +83,7 @@ namespace Npoi.Core.HSSF.Record
             return buffer.ToString();
         }
 
-        public override void Serialize(ILittleEndianOutput out1) 
+        public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(_options);
         }
@@ -103,5 +98,4 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
     }
-
 }

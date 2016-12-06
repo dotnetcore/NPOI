@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,17 +17,18 @@
 
 namespace Npoi.Core.HSSF.Record.CF
 {
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS.UserModel;
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.HSSF.Record;
-    using Npoi.Core.Util;
-    using Npoi.Core.SS.UserModel;
 
     /**
      * Font Formatting Block of the Conditional Formatting Rule Record.
-     * 
+     *
      * @author Dmitriy Kumshayev
      */
+
     public class FontFormatting
     {
         private byte[] _rawData;
@@ -46,15 +46,15 @@ namespace Npoi.Core.HSSF.Record.CF
         private const int OFFSET_FONT_WEIGHT_MODIFIED = 100;
         private const int OFFSET_NOT_USED1 = 104;
         private const int OFFSET_NOT_USED2 = 108;
-        private const int OFFSET_NOT_USED3 = 112; // for some reason Excel always Writes  0x7FFFFFFF at this offset   
+        private const int OFFSET_NOT_USED3 = 112; // for some reason Excel always Writes  0x7FFFFFFF at this offset
         private const int OFFSET_FONT_FORMATING_END = 116;
         private const int RAW_DATA_SIZE = 118;
-
 
         public const int FONT_CELL_HEIGHT_PRESERVED = unchecked((int)0xFFFFFFFF);
 
         // FONT OPTIONS MASKS
         private static BitField posture = BitFieldFactory.GetInstance(0x00000002);
+
         private static BitField outline = BitFieldFactory.GetInstance(0x00000008);
         private static BitField shadow = BitFieldFactory.GetInstance(0x00000010);
         private static BitField cancellation = BitFieldFactory.GetInstance(0x00000080);
@@ -79,27 +79,25 @@ namespace Npoi.Core.HSSF.Record.CF
             _rawData = rawData;
         }
 
-        public FontFormatting():this(new byte[RAW_DATA_SIZE])
+        public FontFormatting() : this(new byte[RAW_DATA_SIZE])
         {
-            
+            FontHeight = -1;
+            IsItalic = false;
+            IsFontWeightModified = false;
+            IsOutlineOn = false;
+            IsShadowOn = false;
+            IsStruckout = false;
+            EscapementType = (FontSuperScript)0;
+            UnderlineType = (FontUnderlineType)0;
+            FontColorIndex = (short)-1;
 
-            FontHeight=-1;
-            IsItalic=false;
-            IsFontWeightModified=false;
-            IsOutlineOn=false;
-            IsShadowOn=false;
-            IsStruckout=false;
-            EscapementType=(FontSuperScript)0;
-            UnderlineType=(FontUnderlineType)0;
-            FontColorIndex=(short)-1;
+            IsFontStyleModified = false;
+            IsFontOutlineModified = false;
+            IsFontShadowModified = false;
+            IsFontCancellationModified = false;
 
-            IsFontStyleModified=false;
-            IsFontOutlineModified=false;
-            IsFontShadowModified=false;
-            IsFontCancellationModified=false;
-
-            IsEscapementTypeModified=false;
-            IsUnderlineTypeModified=false;
+            IsEscapementTypeModified = false;
+            IsUnderlineTypeModified = false;
 
             SetShort(OFFSET_FONT_NAME, 0);
             SetInt(OFFSET_NOT_USED1, 0x00000001);
@@ -109,12 +107,12 @@ namespace Npoi.Core.HSSF.Record.CF
         }
 
         /** Creates new FontFormatting */
-        public FontFormatting(RecordInputStream in1):this(new byte[RAW_DATA_SIZE])
+
+        public FontFormatting(RecordInputStream in1) : this(new byte[RAW_DATA_SIZE])
         {
-            
             for (int i = 0; i < _rawData.Length; i++)
             {
-                _rawData[i] =(byte) in1.ReadByte();
+                _rawData[i] = (byte)in1.ReadByte();
             }
         }
 
@@ -122,14 +120,17 @@ namespace Npoi.Core.HSSF.Record.CF
         {
             return LittleEndian.GetShort(_rawData, offset);
         }
+
         private void SetShort(int offset, int value)
         {
             LittleEndian.PutShort(_rawData, offset, (short)value);
         }
+
         private int GetInt(int offset)
         {
             return LittleEndian.GetInt(_rawData, offset);
         }
+
         private void SetInt(int offset, int value)
         {
             LittleEndian.PutInt(_rawData, offset, value);
@@ -145,9 +146,10 @@ namespace Npoi.Core.HSSF.Record.CF
          *
          * @return fontheight (in points/20); or -1 if not modified
          */
+
         public int FontHeight
         {
-            get{return GetInt(OFFSET_FONT_HEIGHT);}
+            get { return GetInt(OFFSET_FONT_HEIGHT); }
             set { SetInt(OFFSET_FONT_HEIGHT, value); }
         }
 
@@ -163,7 +165,6 @@ namespace Npoi.Core.HSSF.Record.CF
             int options = GetInt(OFFSET_FONT_OPTIONS);
             return field.IsSet(options);
         }
-
 
         /**
          * Get whether the font Is to be italics or not
@@ -202,7 +203,6 @@ namespace Npoi.Core.HSSF.Record.CF
             set { SetFontOption(value, shadow); }
         }
 
-
         /**
          * Get whether the font Is to be stricken out or not
          *
@@ -219,9 +219,8 @@ namespace Npoi.Core.HSSF.Record.CF
             set { SetFontOption(value, cancellation); }
         }
 
-
         /// <summary>
-        /// Get or set the font weight for this font (100-1000dec or 0x64-0x3e8).  
+        /// Get or set the font weight for this font (100-1000dec or 0x64-0x3e8).
         /// Default Is 0x190 for normal and 0x2bc for bold
         /// </summary>
         public short FontWeight
@@ -236,9 +235,8 @@ namespace Npoi.Core.HSSF.Record.CF
             }
         }
 
-
         /// <summary>
-        ///Get or set whether the font weight is set to bold or not 
+        ///Get or set whether the font weight is set to bold or not
         /// </summary>
         public bool IsBold
         {
@@ -257,6 +255,7 @@ namespace Npoi.Core.HSSF.Record.CF
          * @see org.apache.poi.hssf.usermodel.HSSFFontFormatting#SS_SUPER
          * @see org.apache.poi.hssf.usermodel.HSSFFontFormatting#SS_SUB
          */
+
         public FontSuperScript EscapementType
         {
             get
@@ -281,8 +280,6 @@ namespace Npoi.Core.HSSF.Record.CF
             set { SetShort(OFFSET_UNDERLINE_TYPE, (short)value); }
         }
 
-
-
         public short FontColorIndex
         {
             get
@@ -291,7 +288,6 @@ namespace Npoi.Core.HSSF.Record.CF
             }
             set { SetInt(OFFSET_FONT_COLOR_INDEX, value); }
         }
-
 
         private bool GetOptionFlag(BitField field)
         {
@@ -307,7 +303,6 @@ namespace Npoi.Core.HSSF.Record.CF
             optionFlags = field.SetValue(optionFlags, value);
             SetInt(OFFSET_OPTION_FLAGS, optionFlags);
         }
-
 
         public bool IsFontStyleModified
         {
@@ -354,8 +349,8 @@ namespace Npoi.Core.HSSF.Record.CF
                 int underlineModified = GetInt(OFFSET_UNDERLINE_TYPE_MODIFIED);
                 return underlineModified == 0;
             }
-            set {
-
+            set
+            {
                 int value1 = value ? 0 : 1;
                 SetInt(OFFSET_UNDERLINE_TYPE_MODIFIED, value1);
             }

@@ -15,22 +15,20 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
-using Npoi.Core.SS.Formula;
-using Npoi.Core.SS.Formula.Eval;
 using Npoi.Core.SS.UserModel;
+using System;
+
 namespace Npoi.Core.SS.Formula.Eval.Forked
 {
-
     /**
      * Represents a cell being used for forked Evaluation that has had a value Set different from the
      * corresponding cell in the shared master workbook.
      *
      * @author Josh Micich
      */
-    class ForkedEvaluationCell : IEvaluationCell
-    {
 
+    internal class ForkedEvaluationCell : IEvaluationCell
+    {
         private IEvaluationSheet _sheet;
         /** corresponding cell from master workbook */
         private IEvaluationCell _masterCell;
@@ -91,6 +89,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
             }
             throw new ArgumentException("Unexpected value class (" + cls.Name + ")");
         }
+
         public void CopyValue(ICell destCell)
         {
             switch (_cellType)
@@ -111,6 +110,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
                 throw new Exception("Wrong data type (" + _cellType + ")");
             }
         }
+
         public CellType CellType
         {
             get
@@ -118,6 +118,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
                 return _cellType;
             }
         }
+
         public bool BooleanCellValue
         {
             get
@@ -126,6 +127,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
                 return _boolValue;
             }
         }
+
         public int ErrorCellValue
         {
             get
@@ -134,6 +136,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
                 return _errorValue;
             }
         }
+
         public double NumericCellValue
         {
             get
@@ -142,6 +145,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
                 return _numberValue;
             }
         }
+
         public String StringCellValue
         {
             get
@@ -150,6 +154,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
                 return _stringValue;
             }
         }
+
         public IEvaluationSheet Sheet
         {
             get
@@ -157,6 +162,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
                 return _sheet;
             }
         }
+
         public int RowIndex
         {
             get
@@ -164,6 +170,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
                 return _masterCell.RowIndex;
             }
         }
+
         public int ColumnIndex
         {
             get
@@ -171,6 +178,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
                 return _masterCell.ColumnIndex;
             }
         }
+
         public CellType CachedFormulaResultType
         {
             get { return _masterCell.CachedFormulaResultType; }

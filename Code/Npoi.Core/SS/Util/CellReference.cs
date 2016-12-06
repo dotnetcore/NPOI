@@ -15,23 +15,22 @@
    limitations Under the License.
 ==================================================================== */
 
-
-
 namespace Npoi.Core.SS.Util
 {
-    using System;
-    using System.Text;
-    using System.Text.RegularExpressions;
     using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.UserModel;
+    using System;
     using System.Globalization;
+    using System.Text;
+    using System.Text.RegularExpressions;
 
-    public enum NameType:int
+    public enum NameType : int
     {
         /// <summary>
         /// Allow accessing the Initial value.
         /// </summary>
         None = 0,
+
         Cell = 1,
         NamedRange = 2,
         Column = 3,
@@ -44,6 +43,7 @@ namespace Npoi.Core.SS.Util
      * @author  Avik Sengupta
      * @author  Dennis doubleday (patch to seperateRowColumns())
      */
+
     public class CellReference
     {
         /** The character ($) that signifies a row or column value is absolute instead of relative */
@@ -55,12 +55,12 @@ namespace Npoi.Core.SS.Util
 
         /**
          * Matches a run of one or more letters followed by a run of one or more digits.
-         * The run of letters is group 1 and the run of digits is group 2.  
+         * The run of letters is group 1 and the run of digits is group 2.
          * Each group may optionally be prefixed with a single '$'.
          */
         private const string CELL_REF_PATTERN = @"^\$?([A-Za-z]+)\$?([0-9]+)";
         /**
-         * Matches a run of one or more letters.  The run of letters is group 1.  
+         * Matches a run of one or more letters.  The run of letters is group 1.
          * The text may optionally be prefixed with a single '$'.
          */
         private const string COLUMN_REF_PATTERN = @"^\$?([A-Za-z]+)$";
@@ -79,7 +79,6 @@ namespace Npoi.Core.SS.Util
         //private static string BIFF8_LAST_ROW = (0x10000).ToString();
         //private static int BIFF8_LAST_ROW_TEXT_LEN = BIFF8_LAST_ROW.Length;
 
-
         private int _rowIndex;
         private int _colIndex;
         private String _sheetName;
@@ -90,6 +89,7 @@ namespace Npoi.Core.SS.Util
          * Create an cell ref from a string representation.  Sheet names containing special characters should be
          * delimited and escaped as per normal syntax rules for formulas.
          */
+
         public CellReference(String cellRef)
         {
             if (cellRef.EndsWith("#REF!", StringComparison.CurrentCulture))
@@ -117,7 +117,6 @@ namespace Npoi.Core.SS.Util
             {
                 _colIndex = ConvertColStringToIndex(colRef);
             }
-            
 
             String rowRef = parts[2];
             //if (rowRef.Length < 1)
@@ -139,25 +138,26 @@ namespace Npoi.Core.SS.Util
                 _rowIndex = int.Parse(rowRef, CultureInfo.InvariantCulture) - 1; // -1 to convert 1-based to zero-based
             }
         }
-        public CellReference(ICell cell):this(cell.RowIndex, cell.ColumnIndex, false, false)
+
+        public CellReference(ICell cell) : this(cell.RowIndex, cell.ColumnIndex, false, false)
         {
-            
         }
+
         public CellReference(int pRow, int pCol)
             : this(pRow, pCol, false, false)
         {
-
         }
+
         public CellReference(int pRow, short pCol)
             : this(pRow, pCol & 0xFFFF, false, false)
         {
-
         }
+
         public CellReference(int pRow, int pCol, bool pAbsRow, bool pAbsCol)
             : this(null, pRow, pCol, pAbsRow, pAbsCol)
         {
-
         }
+
         public CellReference(String pSheetName, int pRow, int pCol, bool pAbsRow, bool pAbsCol)
         {
             // TODO - "-1" is a special value being temporarily used for whole row and whole column area references.
@@ -181,6 +181,7 @@ namespace Npoi.Core.SS.Util
         {
             get { return _rowIndex; }
         }
+
         public short Col
         {
             get
@@ -188,18 +189,22 @@ namespace Npoi.Core.SS.Util
                 return (short)_colIndex;
             }
         }
+
         public bool IsRowAbsolute
         {
             get { return _isRowAbs; }
         }
+
         public bool IsColAbsolute
         {
             get { return _isColAbs; }
         }
+
         /**
           * @return possibly <c>null</c> if this is a 2D reference.  Special characters are not
           * escaped or delimited
           */
+
         public String SheetName
         {
             get { return _sheetName; }
@@ -214,6 +219,7 @@ namespace Npoi.Core.SS.Util
          * 'IV' -> 255
          * @return zero based column index
          */
+
         public static int ConvertColStringToIndex(String ref1)
         {
             int retval = 0;
@@ -235,10 +241,12 @@ namespace Npoi.Core.SS.Util
             }
             return retval - 1;
         }
+
         public static bool IsPartAbsolute(String part)
         {
             return part[0] == ABSOLUTE_REFERENCE_MARKER;
         }
+
         public static NameType ClassifyCellReference(String str, SpreadsheetVersion ssVersion)
         {
             int len = str.Length;
@@ -253,6 +261,7 @@ namespace Npoi.Core.SS.Util
                 case '.':
                 case '_':
                     break;
+
                 default:
                     if (!Char.IsLetter(firstChar) && !Char.IsDigit(firstChar))
                     {
@@ -291,6 +300,7 @@ namespace Npoi.Core.SS.Util
             }
             return NameType.NamedRange;
         }
+
         private static NameType ValidateNamedRangeName(String str, SpreadsheetVersion ssVersion)
         {
             Regex colMatcher = new Regex(COLUMN_REF_PATTERN);
@@ -318,11 +328,13 @@ namespace Npoi.Core.SS.Util
             }
             return NameType.NamedRange;
         }
+
         /**
          * Takes in a 0-based base-10 column and returns a ALPHA-26
          *  representation.
          * eg column #3 -> D
          */
+
         public static String ConvertNumToColString(int col)
         {
             // Excel counts column A as the 1st column, we
@@ -348,21 +360,20 @@ namespace Npoi.Core.SS.Util
 
         /**
          * Separates the row from the columns and returns an array of three Strings.  The first element
-         * is the sheet name. Only the first element may be null.  The second element in is the column 
+         * is the sheet name. Only the first element may be null.  The second element in is the column
          * name still in ALPHA-26 number format.  The third element is the row.
          */
+
         private static String[] SeparateRefParts(String reference)
         {
-
             int plingPos = reference.LastIndexOf(SHEET_NAME_DELIMITER);
             String sheetName = ParseSheetName(reference, plingPos);
             int start = plingPos + 1;
 
             int Length = reference.Length;
 
-
             int loc = start;
-            // skip initial dollars 
+            // skip initial dollars
             if (reference[loc] == ABSOLUTE_REFERENCE_MARKER)
             {
                 loc++;
@@ -402,10 +413,10 @@ namespace Npoi.Core.SS.Util
             }
 
             // TODO - refactor cell reference parsing logic to one place.
-            // Current known incarnations: 
+            // Current known incarnations:
             //   FormulaParser.Name
             //   CellReference.ParseSheetName() (here)
-            //   AreaReference.SeparateAreaRefs() 
+            //   AreaReference.SeparateAreaRefs()
             //   SheetNameFormatter.format() (inverse)
 
             StringBuilder sb = new StringBuilder(indexOfSheetNameDelimiter);
@@ -433,7 +444,6 @@ namespace Npoi.Core.SS.Util
             return sb.ToString();
         }
 
-
         /**
          *  Example return values:
          *    <table border="0" cellpAdding="1" cellspacing="0" summary="Example return values">
@@ -444,9 +454,9 @@ namespace Npoi.Core.SS.Util
          *    </table>
          * @return the text representation of this cell reference as it would appear in a formula.
          */
+
         public String FormatAsString()
         {
-
             StringBuilder sb = new StringBuilder(32);
             if (_sheetName != null)
             {
@@ -472,8 +482,9 @@ namespace Npoi.Core.SS.Util
          *  row number, and the A based column letter.
          * This will not include any markers for absolute
          *  references, so use {@link #formatAsString()}
-         *  to properly turn references into strings. 
+         *  to properly turn references into strings.
          */
+
         public String[] CellRefParts
         {
             get
@@ -491,6 +502,7 @@ namespace Npoi.Core.SS.Util
          * Sheet name is not included.
          */
         /* package */
+
         public void AppendCellReference(StringBuilder sb)
         {
             if (_colIndex != -1)
@@ -513,14 +525,14 @@ namespace Npoi.Core.SS.Util
         }
 
         /**
-         * Used to decide whether a name of the form "[A-Z]*[0-9]*" that appears in a formula can be 
+         * Used to decide whether a name of the form "[A-Z]*[0-9]*" that appears in a formula can be
          * interpreted as a cell reference.  Names of that form can be also used for sheets and/or
-         * named ranges, and in those circumstances, the question of whether the potential cell 
+         * named ranges, and in those circumstances, the question of whether the potential cell
          * reference is valid (in range) becomes important.
          * <p/>
          * Note - that the maximum sheet size varies across Excel versions:
          * <p/>
-         * <blockquote><table border="0" cellpadding="1" cellspacing="0" 
+         * <blockquote><table border="0" cellpadding="1" cellspacing="0"
          *                 summary="Notable cases.">
          *   <tr><th>Version </th><th>File Format </th>
          *   	<th>Last Column </th><th>Last Row</th></tr>
@@ -529,7 +541,7 @@ namespace Npoi.Core.SS.Util
          * </table></blockquote>
          * POI currently targets BIFF8 (Excel 97-2003), so the following behaviour can be observed for
          * this method:
-         * <blockquote><table border="0" cellpadding="1" cellspacing="0" 
+         * <blockquote><table border="0" cellpadding="1" cellspacing="0"
          *                 summary="Notable cases.">
          *   <tr><th>Input    </th>
          *       <th>Result </th></tr>
@@ -543,11 +555,12 @@ namespace Npoi.Core.SS.Util
          *   <tr><td>"a", "111"</td><td>true</td></tr>
          *   <tr><td>"Sheet", "1"</td><td>false</td></tr>
          * </table></blockquote>
-         * 
+         *
          * @param colStr a string of only letter characters
          * @param rowStr a string of only digit characters
          * @return <c>true</c> if the row and col parameters are within range of a BIFF8 spreadsheet.
          */
+
         public static bool CellReferenceIsWithinRange(String colStr, String rowStr, SpreadsheetVersion ssVersion)
         {
             if (!IsColumnWithnRange(colStr, ssVersion))
@@ -556,6 +569,7 @@ namespace Npoi.Core.SS.Util
             }
             return IsRowWithnRange(rowStr, ssVersion);
         }
+
         public static bool IsRowWithnRange(String rowStr, SpreadsheetVersion ssVersion)
         {
             int rowNum = Int32.Parse(rowStr, CultureInfo.InvariantCulture);
@@ -599,6 +613,7 @@ namespace Npoi.Core.SS.Util
             }
             return true;
         }
+
         public override bool Equals(Object o)
         {
             if (object.ReferenceEquals(this, o))
@@ -614,7 +629,7 @@ namespace Npoi.Core.SS.Util
                 && _isColAbs == cr._isColAbs;
         }
 
-        public override int GetHashCode ()
+        public override int GetHashCode()
         {
             int result = 17;
             result = 31 * result + _rowIndex;

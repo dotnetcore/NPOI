@@ -16,17 +16,12 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.SS.Util;
-
-    using Npoi.Core.Util;
-
-    using Npoi.Core.SS.Formula.PTG;
-    using Npoi.Core.SS.Formula;
-    
-
 
     /**
      * Title:        DATAVALIDATION Record (0x01BE)<p/>
@@ -37,10 +32,10 @@ namespace Npoi.Core.HSSF.Record
      * @author Dragos Buleandra (dragos.buleandra@trade2b.ro)
      * @version 2.0-pre
      */
+
     public class DVRecord : StandardRecord
     {
         private static readonly UnicodeString NULL_TEXT_STRING = new UnicodeString("\0");
-
 
         public const short sid = 0x01BE;
         /** Option flags */
@@ -64,7 +59,6 @@ namespace Npoi.Core.HSSF.Record
         /** Cell range address list with all affected ranges */
         private CellRangeAddressList _regions;
 
-
         public const int STRING_PROMPT_TITLE = 0;
         public const int STRING_ERROR_TITLE = 1;
         public const int STRING_PROMPT_TEXT = 2;
@@ -86,6 +80,7 @@ namespace Npoi.Core.HSSF.Record
         public DVRecord()
         {
         }
+
         public DVRecord(int validationType, int operator1, int errorStyle, bool emptyCellAllowed,
             bool suppressDropDownArrow, bool isExplicitList,
             bool showPromptBox, String promptTitle, String promptText,
@@ -93,7 +88,6 @@ namespace Npoi.Core.HSSF.Record
             Ptg[] formula1, Ptg[] formula2,
             CellRangeAddressList regions)
         {
-
             int flags = 0;
             flags = opt_data_type.SetValue(flags, validationType);
             flags = opt_condition_operator.SetValue(flags, operator1);
@@ -143,12 +137,14 @@ namespace Npoi.Core.HSSF.Record
             //read cell range address list with all affected ranges
             _regions = new CellRangeAddressList(in1);
         }
+
         /**
          * When entered via the UI, Excel translates empty string into "\0"
          * While it is possible to encode the title/text as empty string (Excel doesn't exactly crash),
-         * the resulting tool-tip text / message box looks wrong.  It is best to do the same as the 
-         * Excel UI and encode 'not present' as "\0". 
+         * the resulting tool-tip text / message box looks wrong.  It is best to do the same as the
+         * Excel UI and encode 'not present' as "\0".
          */
+
         private static UnicodeString ResolveTitleText(String str)
         {
             if (str == null || str.Length < 1)
@@ -171,11 +167,13 @@ namespace Npoi.Core.HSSF.Record
         {
             return new UnicodeString(in1);
         }
+
         /**
          * Get the condition data type
          * @return the condition data type
          * @see org.apache.poi.hssf.util.HSSFDataValidation utility class
          */
+
         public int DataType
         {
             get
@@ -185,13 +183,12 @@ namespace Npoi.Core.HSSF.Record
             set { this._option_flags = this.opt_data_type.SetValue(this._option_flags, value); }
         }
 
-
-
         /**
          * Get the condition error style
          * @return the condition error style
          * @see org.apache.poi.hssf.util.HSSFDataValidation utility class
          */
+
         public int ErrorStyle
         {
             get
@@ -201,12 +198,12 @@ namespace Npoi.Core.HSSF.Record
             set { this._option_flags = this.opt_error_style.SetValue(this._option_flags, value); }
         }
 
-
         /**
          * return true if in list validations the string list Is explicitly given in the formula, false otherwise
          * @return true if in list validations the string list Is explicitly given in the formula, false otherwise
          * @see org.apache.poi.hssf.util.HSSFDataValidation utility class
          */
+
         public bool ListExplicitFormula
         {
             get
@@ -216,13 +213,12 @@ namespace Npoi.Core.HSSF.Record
             set { this._option_flags = this.opt_string_list_formula.SetBoolean(this._option_flags, value); }
         }
 
-
-
         /**
          * return true if empty values are allowed in cells, false otherwise
          * @return if empty values are allowed in cells, false otherwise
          * @see org.apache.poi.hssf.util.HSSFDataValidation utility class
          */
+
         public bool EmptyCellAllowed
         {
             get
@@ -236,6 +232,7 @@ namespace Npoi.Core.HSSF.Record
           * @return <code>true</code> if drop down arrow should be suppressed when list validation is
           * used, <code>false</code> otherwise
          */
+
         public bool SuppressDropdownArrow
         {
             get
@@ -243,11 +240,13 @@ namespace Npoi.Core.HSSF.Record
                 return (opt_suppress_dropdown_arrow.IsSet(_option_flags));
             }
         }
+
         /**
          * return true if a prompt window should appear when cell Is selected, false otherwise
          * @return if a prompt window should appear when cell Is selected, false otherwise
          * @see org.apache.poi.hssf.util.HSSFDataValidation utility class
          */
+
         public bool ShowPromptOnCellSelected
         {
             get
@@ -256,12 +255,12 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         /**
          * return true if an error window should appear when an invalid value Is entered in the cell, false otherwise
          * @return if an error window should appear when an invalid value Is entered in the cell, false otherwise
          * @see org.apache.poi.hssf.util.HSSFDataValidation utility class
          */
+
         public bool ShowErrorOnInvalidValue
         {
             get
@@ -271,13 +270,12 @@ namespace Npoi.Core.HSSF.Record
             set { this._option_flags = this.opt_show_error_on_invalid_value.SetBoolean(this._option_flags, value); }
         }
 
-
-
         /**
          * Get the condition operator
          * @return the condition operator
          * @see org.apache.poi.hssf.util.HSSFDataValidation utility class
          */
+
         public int ConditionOperator
         {
             get
@@ -334,7 +332,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get
             {
-                return  Formula.GetTokens(_formula2);
+                return Formula.GetTokens(_formula2);
             }
         }
 
@@ -351,6 +349,7 @@ namespace Npoi.Core.HSSF.Record
          * Gets the option flags field.
          * @return options - the option flags field
          */
+
         public int OptionFlags
         {
             get
@@ -369,7 +368,6 @@ namespace Npoi.Core.HSSF.Record
 
         public override void Serialize(ILittleEndianOutput out1)
         {
-
             out1.WriteInt(_option_flags);
 
             SerializeUnicodeString(_promptTitle, out1);
@@ -386,6 +384,7 @@ namespace Npoi.Core.HSSF.Record
 
             _regions.Serialize(out1);
         }
+
         private static void SerializeUnicodeString(UnicodeString us, ILittleEndianOutput out1)
         {
             StringUtil.WriteUnicodeString(out1, us.String);
@@ -396,6 +395,7 @@ namespace Npoi.Core.HSSF.Record
             String str = us.String;
             return 3 + str.Length * (StringUtil.HasMultibyte(str) ? 2 : 1);
         }
+
         protected override int DataSize
         {
             get
@@ -421,6 +421,7 @@ namespace Npoi.Core.HSSF.Record
          * Clones the object. Uses serialisation, as the
          *  contents are somewhat complex
          */
+
         public override Object Clone()
         {
             return CloneViaReserialise();

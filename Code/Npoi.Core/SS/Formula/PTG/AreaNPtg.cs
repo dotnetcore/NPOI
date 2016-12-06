@@ -23,6 +23,7 @@ namespace Npoi.Core.SS.Formula.PTG
      * Specifies a rectangular area of cells A1:A4 for instance.
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     public class AreaNPtg : Area2DPtgBase
     {
         public const short sid = 0x2D;
@@ -30,12 +31,11 @@ namespace Npoi.Core.SS.Formula.PTG
         public AreaNPtg(ILittleEndianInput in1)
             : base(in1)
         {
-
         }
 
         protected override byte Sid
         {
-            get { return (byte) sid; }
+            get { return (byte)sid; }
         }
     }
 }

@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,12 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Title:        Window Two Record
@@ -36,17 +34,19 @@ namespace Npoi.Core.HSSF.Record
        : StandardRecord
     {
         public const short sid = 0x23e;
-        
 
         // bitfields
         private BitField displayFormulas = BitFieldFactory.GetInstance(0x01);
+
         private BitField displayGridlines = BitFieldFactory.GetInstance(0x02);
         private BitField displayRowColHeadings = BitFieldFactory.GetInstance(0x04);
         private BitField freezePanes = BitFieldFactory.GetInstance(0x08);
         private BitField displayZeros = BitFieldFactory.GetInstance(0x10);
+
         // if false use color in field 4 if true use default foreground for headers
-        private BitField defaultHeader =  BitFieldFactory.GetInstance(0x20);   
-        private BitField arabic = BitFieldFactory.GetInstance(0x40);   
+        private BitField defaultHeader = BitFieldFactory.GetInstance(0x20);
+
+        private BitField arabic = BitFieldFactory.GetInstance(0x40);
         private BitField displayGuts = BitFieldFactory.GetInstance(0x80);
         private BitField freezePanesNoSplit = BitFieldFactory.GetInstance(0x100);
         private BitField selected = BitFieldFactory.GetInstance(0x200);
@@ -91,7 +91,6 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         /**
          * Get the options bitmask or just use the bit Setters.
          * @return options
@@ -116,7 +115,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return displayFormulas.IsSet(field_1_options);
             }
-            set 
+            set
             {
                 field_1_options = displayFormulas.SetShortBoolean(field_1_options, value);
             }
@@ -133,7 +132,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return displayGridlines.IsSet(field_1_options);
             }
-            set 
+            set
             {
                 field_1_options = displayGridlines.SetShortBoolean(field_1_options, value);
             }
@@ -150,7 +149,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return displayRowColHeadings.IsSet(field_1_options);
             }
-            set 
+            set
             {
                 field_1_options = displayRowColHeadings.SetShortBoolean(field_1_options, value);
             }
@@ -167,7 +166,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return freezePanes.IsSet(field_1_options);
             }
-            set 
+            set
             {
                 field_1_options = freezePanes.SetShortBoolean(field_1_options, value);
             }
@@ -184,7 +183,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return displayZeros.IsSet(field_1_options);
             }
-            set 
+            set
             {
                 field_1_options = displayZeros.SetShortBoolean(field_1_options, value);
             }
@@ -201,7 +200,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return defaultHeader.IsSet(field_1_options);
             }
-            set 
+            set
             {
                 field_1_options = defaultHeader.SetShortBoolean(field_1_options, value);
             }
@@ -218,7 +217,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return arabic.IsSet(field_1_options);
             }
-            set 
+            set
             {
                 field_1_options = arabic.SetShortBoolean(field_1_options, value);
             }
@@ -235,9 +234,9 @@ namespace Npoi.Core.HSSF.Record
             {
                 return displayGuts.IsSet(field_1_options);
             }
-            set 
+            set
             {
-                field_1_options = displayGuts.SetShortBoolean(field_1_options, value); 
+                field_1_options = displayGuts.SetShortBoolean(field_1_options, value);
             }
         }
 
@@ -252,7 +251,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return freezePanesNoSplit.IsSet(field_1_options);
             }
-            set 
+            set
             {
                 field_1_options = freezePanesNoSplit.SetShortBoolean(field_1_options, value);
             }
@@ -269,7 +268,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return selected.IsSet(field_1_options);
             }
-            set 
+            set
             {
                 field_1_options = selected.SetShortBoolean(field_1_options, value);
             }
@@ -286,15 +285,17 @@ namespace Npoi.Core.HSSF.Record
             {
                 return active.IsSet(field_1_options);
             }
-            set 
-            { 
-                field_1_options = active.SetShortBoolean(field_1_options, value); 
+            set
+            {
+                field_1_options = active.SetShortBoolean(field_1_options, value);
             }
         }
+
         /**
          * deprecated May 2008
          * @deprecated use IsActive()
          */
+
         [Obsolete]
         public bool Paged
         {
@@ -302,7 +303,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return IsActive;
             }
-            set 
+            set
             {
                 IsActive = value;
             }
@@ -319,7 +320,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return savedInPageBreakPreview.IsSet(field_1_options);
             }
-            set 
+            set
             {
                 field_1_options = savedInPageBreakPreview.SetShortBoolean(field_1_options, value);
             }
@@ -338,7 +339,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return field_2_top_row;
             }
-            set 
+            set
             {
                 field_2_top_row = value;
             }
@@ -355,7 +356,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return field_3_left_col;
             }
-            set 
+            set
             {
                 field_3_left_col = value;
             }
@@ -372,7 +373,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return field_4_header_color;
             }
-            set 
+            set
             {
                 field_4_header_color = value;
             }
@@ -389,9 +390,9 @@ namespace Npoi.Core.HSSF.Record
             {
                 return field_5_page_break_zoom;
             }
-            set 
+            set
             {
-                field_5_page_break_zoom = value; 
+                field_5_page_break_zoom = value;
             }
         }
 
@@ -406,7 +407,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return field_6_normal_zoom;
             }
-            set 
+            set
             {
                 field_6_normal_zoom = value;
             }
@@ -488,6 +489,7 @@ namespace Npoi.Core.HSSF.Record
                 return 18;
             }
         }
+
         public override short Sid
         {
             get { return sid; }

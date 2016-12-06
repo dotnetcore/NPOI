@@ -15,9 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-using System.IO;
-using System;
 using Npoi.Core.Util;
+using System;
+using System.IO;
+
 //using System.IO.MemoryMappedFiles;
 namespace Npoi.Core.POIFS.NIO
 {
@@ -30,15 +31,18 @@ namespace Npoi.Core.POIFS.NIO
     public class FileBackedDataSource : DataSource
     {
         private MemoryStream fileStream;
+
         //private MemoryMappedFile mmFile;
         //private MemoryMappedViewStream mmViewStream;
         private FileInfo fileinfo;
+
         private bool writable;
+
         public FileBackedDataSource(FileInfo file)
             : this(file, false)
         {
-            
         }
+
         public FileBackedDataSource(FileInfo file, bool readOnly)
         {
             if (!file.Exists)
@@ -52,6 +56,7 @@ namespace Npoi.Core.POIFS.NIO
             this.writable = !readOnly;
             stream.Position = 0;
         }
+
         public FileBackedDataSource(FileStream stream, bool readOnly)
         {
             stream.Position = 0;
@@ -88,7 +93,7 @@ namespace Npoi.Core.POIFS.NIO
             Dispose(false);
         }
 
-        #endregion
+        #endregion IDisposable Members
 
         public bool IsWriteable
         {
@@ -132,7 +137,7 @@ namespace Npoi.Core.POIFS.NIO
                 worked = IOUtils.ReadFully(fileStream, dst.Buffer);
             }
             // Check
-            if(worked == -1)
+            if (worked == -1)
                 throw new ArgumentException("Position " + position + " past the end of the file");
 
             dst.Position = 0;
@@ -140,6 +145,7 @@ namespace Npoi.Core.POIFS.NIO
             // All done
             return dst;
         }
+
         /// <summary>
         /// Writes a sequence of bytes to this FileStream from the given Stream,
         /// starting at the given file position.
@@ -147,7 +153,7 @@ namespace Npoi.Core.POIFS.NIO
         /// <param name="src">The Stream from which bytes are to be transferred</param>
         /// <param name="position">The file position at which the transfer is to begin;
         /// must be non-negative</param>
-        public override void  Write(ByteBuffer src, long position)
+        public override void Write(ByteBuffer src, long position)
         {
             fileStream.Write(src.Buffer, (int)position, src.Length);
         }
@@ -157,11 +163,12 @@ namespace Npoi.Core.POIFS.NIO
             //byte[] tempBuffer = new byte[stream.Length];
             //fileStream.Read(tempBuffer, 0, tempBuffer.Length);
             byte[] tempBuffer = fileStream.ToArray();
-            stream.Write(tempBuffer, 0, tempBuffer.Length);        }
+            stream.Write(tempBuffer, 0, tempBuffer.Length);
+        }
 
         public override long Size
         {
-            get 
+            get
             {
                 if (fileStream != null)
                 {
@@ -180,8 +187,6 @@ namespace Npoi.Core.POIFS.NIO
             {
                 fileStream.Dispose();
             }
-            
         }
     }
-
 }

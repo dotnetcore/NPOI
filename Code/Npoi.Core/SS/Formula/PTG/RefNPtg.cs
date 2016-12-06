@@ -23,6 +23,7 @@ namespace Npoi.Core.SS.Formula.PTG
      * RefNPtg
      * @author Jason Height (jheight at apache dot com)
      */
+
     public class RefNPtg : Ref2DPtgBase
     {
         public const byte sid = 0x2C;
@@ -32,7 +33,6 @@ namespace Npoi.Core.SS.Formula.PTG
         public RefNPtg(ILittleEndianInput in1)
             : base(in1)
         {
-
         }
 
         protected override byte Sid

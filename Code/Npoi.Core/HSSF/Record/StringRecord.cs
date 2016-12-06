@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,24 +15,25 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.HSSF.Record.Cont;
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-    using Npoi.Core.HSSF.Record.Cont;
 
     /**
      * Supports the STRING record structure.
      *
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     [Serializable]
     public class StringRecord : ContinuableRecord
     {
         public const short sid = 0x207;
         private bool _is16bitUnicode;
+
         //int field_1_string_length;
         //private String field_3_string;
         private String _text;
@@ -47,6 +47,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @param in the RecordInputstream to Read the record from
          */
+
         public StringRecord(RecordInputStream in1)
         {
             int field_1_string_length = in1.ReadShort();
@@ -71,14 +72,15 @@ namespace Npoi.Core.HSSF.Record
          * @param data byte array containing instance data
          * @return number of bytes written
          */
+
         protected override void Serialize(ContinuableRecordOutput out1)
         {
             out1.WriteShort(this._text.Length);
             out1.WriteStringData(this._text);
         }
+
         //public void ProcessContinueRecord(byte[] data)
         //{
-
         //    if (!_is16bitUnicode)
         //    {
         //        field_3_string += StringUtil.GetFromUnicodeLE(data, 0, field_1_string_length - field_3_string.Length);
@@ -87,10 +89,11 @@ namespace Npoi.Core.HSSF.Record
         //    {
         //        field_3_string += StringUtil.GetFromCompressedUnicode(data, 0, field_1_string_length - field_3_string.Length);
         //    }
-        //} 
+        //}
         /**
          * return the non static version of the id for this record.
          */
+
         public override short Sid
         {
             get { return sid; }
@@ -99,6 +102,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return The string represented by this record.
          */
+
         public String String
         {
             get { return _text; }
@@ -108,7 +112,6 @@ namespace Npoi.Core.HSSF.Record
                 this._is16bitUnicode = StringUtil.HasMultibyte(value);
             }
         }
-
 
         public override String ToString()
         {
@@ -128,6 +131,5 @@ namespace Npoi.Core.HSSF.Record
             rec._text = this._text;
             return rec;
         }
-
     }
 }

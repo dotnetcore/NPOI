@@ -17,22 +17,25 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
     using Npoi.Core.Util;
+    using System;
+
     /**
      * @author Josh Micich
      */
+
     [Serializable]
     public abstract class OperandPtg : Ptg
     {
-
         /**
-         * All Operand <c>Ptg</c>s are classifed ('relative', 'value', 'array')  
+         * All Operand <c>Ptg</c>s are classifed ('relative', 'value', 'array')
          */
+
         public override bool IsBaseToken
         {
             get { return false; }
         }
+
         public OperandPtg Copy()
         {
             try
@@ -46,4 +49,3 @@ namespace Npoi.Core.SS.Formula.PTG
         }
     }
 }
-

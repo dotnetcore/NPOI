@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
-
 
     /**
      * The Units record describes Units.
@@ -32,16 +28,15 @@ namespace Npoi.Core.HSSF.Record
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class UnitsRecord
        : StandardRecord
     {
         public const short sid = 0x1001;
         private short field_1_units;
 
-
         public UnitsRecord()
         {
-
         }
 
         /**
@@ -49,10 +44,10 @@ namespace Npoi.Core.HSSF.Record
          *
          * @param in the RecordInputstream to Read the record from
          */
+
         public UnitsRecord(RecordInputStream in1)
         {
             field_1_units = in1.ReadShort();
-
         }
 
         public override String ToString()
@@ -77,6 +72,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 2; }
@@ -95,25 +91,20 @@ namespace Npoi.Core.HSSF.Record
             return rec;
         }
 
-
-
-
         /**
          * Get the Units field for the Units record.
          */
+
         public short Units
         {
             get
             {
                 return field_1_units;
             }
-            set 
+            set
             {
                 this.field_1_units = value;
             }
         }
-
-
     }
 }
-

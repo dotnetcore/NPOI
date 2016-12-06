@@ -1,22 +1,23 @@
-﻿
-namespace Npoi.Core.HSSF.Record
+﻿namespace Npoi.Core.HSSF.Record
 {
     /**
      * Common base class of {@link Record} and {@link RecordAggregate}
-     * 
+     *
      * @author Josh Micich
      */
+
     public abstract class RecordBase
     {
         /**
          * called by the class that is responsible for writing this sucker.
          * Subclasses should implement this so that their data is passed back in a
          * byte array.
-         * 
+         *
          * @param offset to begin writing at
          * @param data byte array containing instance data
          * @return number of bytes written
          */
+
         public abstract int Serialize(int offset, byte[] data);
 
         /**

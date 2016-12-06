@@ -24,24 +24,25 @@ namespace Npoi.Core.SS.Formula.Functions
             return values.Length > 0 ? MathX.Max(values) : 0;
         }
     }
+
     public class Mina : MinaMaxa
     {
-         protected internal override double Evaluate(double[] values)
+        protected internal override double Evaluate(double[] values)
         {
             return values.Length > 0 ? MathX.Min(values) : 0;
         }
     }
+
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     * 
+     *
      */
+
     public abstract class MinaMaxa : MultiOperandNumericFunction
     {
-
         protected MinaMaxa()
             : base(true, true)
         {
-
         }
 
         public static readonly Function MAXA = new Maxa();

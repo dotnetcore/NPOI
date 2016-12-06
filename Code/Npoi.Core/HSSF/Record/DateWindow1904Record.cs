@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,18 +15,16 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
-     * Title:        Date Window 1904 Flag record 
+     * Title:        Date Window 1904 Flag record
      * Description:  Flag specifying whether 1904 date windowing Is used.
-     *               (tick toc tick toc...BOOM!) 
+     *               (tick toc tick toc...BOOM!)
      * REFERENCE:  PG 280 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
      * @author Andrew C. Oliver (acoliver at apache dot org)
      * @version 2.0-pre
@@ -93,5 +90,4 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
     }
-
 }

@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,11 +17,10 @@
 
 namespace Npoi.Core.DDF
 {
+    using Npoi.Core.Util;
     using System;
     using System.IO;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /// <summary>
     /// The EscherClientDataRecord is used to store client specific data about the position of a
@@ -43,8 +41,7 @@ namespace Npoi.Core.DDF
         /// <param name="offset">The starting offset into data</param>
         /// <param name="recordFactory">May be null since this is not a container record.</param>
         /// <returns>The number of bytes Read from the byte array.</returns>
-        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory)
-        {
+        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory) {
             int bytesRemaining = ReadHeader(data, offset);
             int pos = offset + 8;
             remainingData = new byte[bytesRemaining];
@@ -61,8 +58,8 @@ namespace Npoi.Core.DDF
          * @return The number of bytes written.
          * @see NullEscherSerializationListener
          */
-        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener)
-        {
+
+        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener) {
             listener.BeforeRecordSerialize(offset, RecordId, this);
 
             if (remainingData == null) remainingData = new byte[0];
@@ -81,45 +78,42 @@ namespace Npoi.Core.DDF
          *
          * @return Number of bytes
          */
-        public override int RecordSize
-        {
+
+        public override int RecordSize {
             get { return 8 + (remainingData == null ? 0 : remainingData.Length); }
         }
 
         /**
          * Returns the identifier of this record.
          */
-        public override short RecordId
-        {
+
+        public override short RecordId {
             get { return RECORD_ID; }
         }
 
         /**
          * The short name for this record
          */
-        public override String RecordName
-        {
+
+        public override String RecordName {
             get { return "ClientData"; }
         }
 
         /**
          * Returns the string representation of this record.
          */
-        public override String ToString()
-        {
+
+        public override String ToString() {
             String nl = Environment.NewLine;
 
             String extraData;
-            using (MemoryStream b = new MemoryStream())
-            {
-                try
-                {
+            using (MemoryStream b = new MemoryStream()) {
+                try {
                     HexDump.Dump(this.remainingData, 0, b, 0);
                     //extraData = b.ToString();
                     extraData = Encoding.UTF8.GetString(b.ToArray());
                 }
-                catch (Exception)
-                {
+                catch (Exception) {
                     extraData = "error\n";
                 }
                 return GetType().Name + ":" + nl +
@@ -129,22 +123,18 @@ namespace Npoi.Core.DDF
                         "  Extra Data:" + nl + extraData;
             }
         }
-        public override String ToXml(String tab)
-        {
+
+        public override String ToXml(String tab) {
             String extraData;
-            using (MemoryStream b = new MemoryStream())
-            {
-                try
-                {
+            using (MemoryStream b = new MemoryStream()) {
+                try {
                     HexDump.Dump(this.remainingData, 0, b, 0);
                     extraData = HexDump.ToHex(b.ToArray());
                 }
-                catch (Exception)
-                {
+                catch (Exception) {
                     extraData = "error";
                 }
-                if (extraData.Contains("No Data"))
-                {
+                if (extraData.Contains("No Data")) {
                     extraData = "No Data";
                 }
                 StringBuilder builder = new StringBuilder();
@@ -160,8 +150,8 @@ namespace Npoi.Core.DDF
         /**
          * Any data recording this record.
          */
-        public byte[] RemainingData
-        {
+
+        public byte[] RemainingData {
             get { return remainingData; }
             set { this.remainingData = value; }
         }

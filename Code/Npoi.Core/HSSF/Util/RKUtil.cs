@@ -19,7 +19,6 @@ using System;
 
 namespace Npoi.Core.HSSF.Util
 {
-
     /**
      * Utility class for helping convert RK numbers.
      *
@@ -30,9 +29,9 @@ namespace Npoi.Core.HSSF.Util
      * @see org.apache.poi.hssf.record.MulRKRecord
      * @see org.apache.poi.hssf.record.RKRecord
      */
+
     public class RKUtil
     {
-
         /**
          * Do the dirty work of decoding; made a private static method to
          * facilitate testing the algorithm
@@ -55,7 +54,6 @@ namespace Npoi.Core.HSSF.Util
             }
             else
             {
-
                 // also trivial, but not as obvious ... left Shift the
                 // bits high and use that clever static method in double
                 // to convert the resulting bit image to a double
@@ -63,7 +61,6 @@ namespace Npoi.Core.HSSF.Util
             }
             if ((number & 0x01) == 0x01)
             {
-
                 // low-order bit says divide by 100, and so we do. Why?
                 // 'cause that's what the algorithm says. Can't fight city
                 // hall, especially if it's the city of Redmond
@@ -72,6 +69,5 @@ namespace Npoi.Core.HSSF.Util
 
             return rvalue;
         }
-
     }
 }

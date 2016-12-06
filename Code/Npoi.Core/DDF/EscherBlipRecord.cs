@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,10 +17,10 @@
 
 namespace Npoi.Core.DDF
 {
-    using System;
-    using System.Text;
     using Npoi.Core.Util;
+    using System;
     using System.IO;
+    using System.Text;
 
     /// <summary>
     /// @author Glen Stampoultzis
@@ -37,8 +36,7 @@ namespace Npoi.Core.DDF
 
         protected byte[] field_pictureData;
 
-        public EscherBlipRecord()
-        {
+        public EscherBlipRecord() {
         }
 
         /// <summary>
@@ -48,8 +46,7 @@ namespace Npoi.Core.DDF
         /// <param name="offset">The starting offset into </param>
         /// <param name="recordFactory">May be null since this is not a container record.</param>
         /// <returns>The number of bytes Read from the byte array.</returns>
-        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory)
-        {
+        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory) {
             int bytesAfterHeader = ReadHeader(data, offset);
             int pos = offset + HEADER_SIZE;
 
@@ -66,8 +63,7 @@ namespace Npoi.Core.DDF
         /// <param name="data">the data array to Serialize to</param>
         /// <param name="listener">a listener for begin and end serialization events.</param>
         /// <returns>the number of bytes written.</returns>
-        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener)
-        {
+        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener) {
             listener.BeforeRecordSerialize(offset, RecordId, this);
 
             LittleEndian.PutShort(data, offset, Options);
@@ -83,8 +79,7 @@ namespace Npoi.Core.DDF
         /// Returns the number of bytes that are required to Serialize this record.
         /// </summary>
         /// <value>Number of bytes</value>
-        public override int RecordSize
-        {
+        public override int RecordSize {
             get { return field_pictureData.Length + HEADER_SIZE; }
         }
 
@@ -92,8 +87,7 @@ namespace Npoi.Core.DDF
         /// The short name for this record
         /// </summary>
         /// <value></value>
-        public override String RecordName
-        {
+        public override String RecordName {
             get { return "Blip"; }
         }
 
@@ -101,12 +95,10 @@ namespace Npoi.Core.DDF
         /// Gets or sets the picture data.
         /// </summary>
         /// <value>The picture data.</value>
-        public byte[] PictureData
-        {
+        public byte[] PictureData {
             get { return field_pictureData; }
             set { field_pictureData = value; }
         }
-
 
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
@@ -114,20 +106,16 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override String ToString()
-        {
+        public override String ToString() {
             String nl = Environment.NewLine;
 
             String extraData = string.Empty;
-            using (MemoryStream b = new MemoryStream())
-            {
-                try
-                {
+            using (MemoryStream b = new MemoryStream()) {
+                try {
                     HexDump.Dump(this.field_pictureData, 0, b, 0);
                     extraData = HexDump.ToHex(b.ToArray());
                 }
-                catch (Exception e)
-                {
+                catch (Exception e) {
                     extraData = e.ToString();
                 }
                 return this.GetType().Name + ":" + nl +
@@ -139,8 +127,7 @@ namespace Npoi.Core.DDF
             }
         }
 
-        public override String ToXml(String tab)
-        {
+        public override String ToXml(String tab) {
             String extraData = HexDump.ToHex(field_pictureData, 32);
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))

@@ -35,21 +35,22 @@ namespace Npoi.Core.Util
             _ReadIndex = startOffset;
             _endIndex = startOffset + maxReadLen;
         }
+
         public LittleEndianByteArrayInputStream(byte[] buf, int startOffset) :
             this(buf, startOffset, buf.Length - startOffset)
         {
-
         }
+
         public LittleEndianByteArrayInputStream(byte[] buf) :
             this(buf, 0, buf.Length)
         {
-
         }
 
         public int Available()
         {
             return _endIndex - _ReadIndex;
         }
+
         private void CheckPosition(int i)
         {
             if (i > _endIndex - _ReadIndex)
@@ -62,6 +63,7 @@ namespace Npoi.Core.Util
         {
             return _ReadIndex;
         }
+
         public int ReadByte()
         {
             CheckPosition(1);
@@ -80,6 +82,7 @@ namespace Npoi.Core.Util
             _ReadIndex = i;
             return (b3 << 24) + (b2 << 16) + (b1 << 8) + (b0 << 0);
         }
+
         public long ReadLong()
         {
             CheckPosition(8);
@@ -103,15 +106,18 @@ namespace Npoi.Core.Util
                     (b1 << 8) +
                     (b0 << 0));
         }
+
         public short ReadShort()
         {
             return (short)ReadUShort();
         }
+
         public int ReadUByte()
         {
             CheckPosition(1);
             return _buf[_ReadIndex++] & 0xFF;
         }
+
         public int ReadUShort()
         {
             CheckPosition(2);
@@ -122,16 +128,19 @@ namespace Npoi.Core.Util
             _ReadIndex = i;
             return (b1 << 8) + (b0 << 0);
         }
+
         public void ReadFully(byte[] buf, int off, int len)
         {
             CheckPosition(len);
             System.Array.Copy(_buf, _ReadIndex, buf, off, len);
             _ReadIndex += len;
         }
+
         public void ReadFully(byte[] buf)
         {
             ReadFully(buf, 0, buf.Length);
         }
+
         public double ReadDouble()
         {
             return BitConverter.Int64BitsToDouble(ReadLong());

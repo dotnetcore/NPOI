@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -15,7 +14,6 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
-        
 
 /*
  * FormulaRecord.java
@@ -25,18 +23,18 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
-    using System.Text;
     using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.Formula.PTG;
     using Npoi.Core.Util;
-
+    using System;
+    using System.Text;
 
     /**
  * Manages the cached formula result values of other types besides numeric.
  * Excel encodes the same 8 bytes that would be field_4_value with various NaN
- * values that are decoded/encoded by this class. 
+ * values that are decoded/encoded by this class.
  */
+
     internal class SpecialCachedValue
     {
         /** deliberately chosen by Excel in order to encode other values within Double NaNs */
@@ -55,15 +53,17 @@ namespace Npoi.Core.HSSF.Record
         {
             _variableData = data;
         }
+
         public int GetTypeCode()
         {
             return _variableData[0];
         }
 
         /**
-         * @return <c>null</c> if the double value encoded by <c>valueLongBits</c> 
+         * @return <c>null</c> if the double value encoded by <c>valueLongBits</c>
          * is a normal (non NaN) double value.
          */
+
         public static SpecialCachedValue Create(long valueLongBits)
         {
             if ((BIT_MARKER & valueLongBits) != BIT_MARKER)
@@ -85,17 +85,20 @@ namespace Npoi.Core.HSSF.Record
                 case ERROR_CODE:
                 case EMPTY:
                     break;
+
                 default:
                     throw new RecordFormatException("Bad special value code (" + result[0] + ")");
             }
             return new SpecialCachedValue(result);
         }
+
         //public void Serialize(byte[] data, int offset)
         //{
         //    System.Array.Copy(_variableData, 0, data, offset, VARIABLE_DATA_LENGTH);
         //    LittleEndian.PutUShort(data, offset + VARIABLE_DATA_LENGTH, 0xFFFF);
         //}
-        public void Serialize(ILittleEndianOutput out1) {
+        public void Serialize(ILittleEndianOutput out1)
+        {
             out1.Write(_variableData);
             out1.WriteShort(0xFFFF);
         }
@@ -107,6 +110,7 @@ namespace Npoi.Core.HSSF.Record
                 return FormatValue + ' ' + HexDump.ToHex(_variableData);
             }
         }
+
         private String FormatValue
         {
             get
@@ -122,6 +126,7 @@ namespace Npoi.Core.HSSF.Record
                 return "#error(type=" + typeCode + ")#";
             }
         }
+
         private int DataValue
         {
             get
@@ -129,22 +134,27 @@ namespace Npoi.Core.HSSF.Record
                 return _variableData[DATA_INDEX];
             }
         }
+
         public static SpecialCachedValue CreateCachedEmptyValue()
         {
             return Create(EMPTY, 0);
         }
+
         public static SpecialCachedValue CreateForString()
         {
             return Create(STRING, 0);
         }
+
         public static SpecialCachedValue CreateCachedBoolean(bool b)
         {
             return Create(BOOLEAN, b ? 1 : 0);
         }
+
         public static SpecialCachedValue CreateCachedErrorCode(int errorCode)
         {
             return Create(ERROR_CODE, errorCode);
         }
+
         private static SpecialCachedValue Create(int code, int data)
         {
             byte[] vd = {
@@ -157,6 +167,7 @@ namespace Npoi.Core.HSSF.Record
             };
             return new SpecialCachedValue(vd);
         }
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder(64);
@@ -164,6 +175,7 @@ namespace Npoi.Core.HSSF.Record
             sb.Append('[').Append(FormatValue).Append(']');
             return sb.ToString();
         }
+
         public Npoi.Core.SS.UserModel.CellType GetValueType()
         {
             int typeCode = GetTypeCode();
@@ -176,6 +188,7 @@ namespace Npoi.Core.HSSF.Record
             }
             throw new InvalidOperationException("Unexpected type id (" + typeCode + ")");
         }
+
         public bool GetBooleanValue()
         {
             if (GetTypeCode() != BOOLEAN)
@@ -184,6 +197,7 @@ namespace Npoi.Core.HSSF.Record
             }
             return DataValue != 0;
         }
+
         public int GetErrorValue()
         {
             if (GetTypeCode() != ERROR_CODE)
@@ -201,13 +215,12 @@ namespace Npoi.Core.HSSF.Record
      * @author Jason Height (jheight at chariot dot net dot au)
      * @version 2.0-pre
      */
+
     [Serializable]
     public class FormulaRecord : CellRecord
     {
-
         public const short sid = 0x06;   // docs say 406...because of a bug Microsoft support site article #Q184647)
         private const int FIXED_SIZE = 14;
-
 
         private double field_4_value;
         private short field_5_options;
@@ -215,15 +228,16 @@ namespace Npoi.Core.HSSF.Record
         private BitField calcOnLoad = BitFieldFactory.GetInstance(0x0002);
         private BitField sharedFormula = BitFieldFactory.GetInstance(0x0008);
         private int field_6_zero;
+
         [NonSerialized]
         private Npoi.Core.SS.Formula.Formula field_8_parsed_expr;
 
         /**
         * Since the NaN support seems sketchy (different constants) we'll store and spit it out directly
         */
+
         [NonSerialized]
         private SpecialCachedValue specialCachedValue;
-
 
         /*
          * Since the NaN support seems sketchy (different constants) we'll store and spit it out directly
@@ -241,32 +255,35 @@ namespace Npoi.Core.HSSF.Record
 
         /**
          * Constructs a Formula record and Sets its fields appropriately.
-         * Note - id must be 0x06 (NOT 0x406 see MSKB #Q184647 for an 
+         * Note - id must be 0x06 (NOT 0x406 see MSKB #Q184647 for an
          * "explanation of this bug in the documentation) or an exception
          *  will be throw upon validation
          *
          * @param in the RecordInputstream to Read the record from
          */
 
-        public FormulaRecord(RecordInputStream in1):base(in1)
+        public FormulaRecord(RecordInputStream in1) : base(in1)
         {
-                long valueLongBits  = in1.ReadLong();
-                field_5_options = in1.ReadShort();
-                specialCachedValue = SpecialCachedValue.Create(valueLongBits);
-                if (specialCachedValue == null) {
-                    field_4_value = BitConverter.Int64BitsToDouble(valueLongBits);
-                }
+            long valueLongBits = in1.ReadLong();
+            field_5_options = in1.ReadShort();
+            specialCachedValue = SpecialCachedValue.Create(valueLongBits);
+            if (specialCachedValue == null)
+            {
+                field_4_value = BitConverter.Int64BitsToDouble(valueLongBits);
+            }
 
-                field_6_zero = in1.ReadInt();
-                int field_7_expression_len = in1.ReadShort();
+            field_6_zero = in1.ReadInt();
+            int field_7_expression_len = in1.ReadShort();
 
-                field_8_parsed_expr = Npoi.Core.SS.Formula.Formula.Read(field_7_expression_len, in1,in1.Available());
+            field_8_parsed_expr = Npoi.Core.SS.Formula.Formula.Read(field_7_expression_len, in1, in1.Available());
         }
+
         /**
  * @return <c>true</c> if this {@link FormulaRecord} is followed by a
  *  {@link StringRecord} representing the cached text result of the formula
  *  evaluation.
  */
+
         public bool HasCachedResultString
         {
             get
@@ -278,10 +295,12 @@ namespace Npoi.Core.HSSF.Record
                 return specialCachedValue.GetTypeCode() == SpecialCachedValue.STRING;
             }
         }
+
         public void SetParsedExpression(Ptg[] ptgs)
         {
             field_8_parsed_expr = Npoi.Core.SS.Formula.Formula.Create(ptgs);
         }
+
         public void SetSharedFormula(bool flag)
         {
             field_5_options =
@@ -293,11 +312,13 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return calculated value
          */
+
         public double Value
         {
             get { return field_4_value; }
-            set { 
-                field_4_value = value; 
+            set
+            {
+                field_4_value = value;
                 specialCachedValue = null;
             }
         }
@@ -307,6 +328,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return bitmask
          */
+
         public short Options
         {
             get { return field_5_options; }
@@ -347,7 +369,7 @@ namespace Npoi.Core.HSSF.Record
          * Get the stack as a list
          *
          * @return list of tokens (casts stack to a list and returns it!)
-         * this method can return null Is we are Unable to Create Ptgs from 
+         * this method can return null Is we are Unable to Create Ptgs from
          *     existing excel file
          * callers should Check for null!
          */
@@ -357,6 +379,7 @@ namespace Npoi.Core.HSSF.Record
             get { return (Ptg[])field_8_parsed_expr.Tokens; }
             set { field_8_parsed_expr = Npoi.Core.SS.Formula.Formula.Create(value); }
         }
+
         public Npoi.Core.SS.Formula.Formula Formula
         {
             get
@@ -373,7 +396,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        protected override int ValueDataSize 
+        protected override int ValueDataSize
         {
             get
             {
@@ -390,18 +413,22 @@ namespace Npoi.Core.HSSF.Record
         {
             specialCachedValue = SpecialCachedValue.CreateCachedEmptyValue();
         }
+
         public void SetCachedResultTypeString()
         {
             specialCachedValue = SpecialCachedValue.CreateForString();
         }
+
         public void SetCachedResultErrorCode(int errorCode)
         {
             specialCachedValue = SpecialCachedValue.CreateCachedErrorCode(errorCode);
         }
+
         public void SetCachedResultBoolean(bool value)
         {
             specialCachedValue = SpecialCachedValue.CreateCachedBoolean(value);
         }
+
         public bool CachedBooleanValue
         {
             get
@@ -409,6 +436,7 @@ namespace Npoi.Core.HSSF.Record
                 return specialCachedValue.GetBooleanValue();
             }
         }
+
         public int CachedErrorValue
         {
             get
@@ -445,7 +473,7 @@ namespace Npoi.Core.HSSF.Record
             return false;
         }
 
-        public override int GetHashCode ()
+        public override int GetHashCode()
         {
             return Row ^ Column;
         }
@@ -504,6 +532,5 @@ namespace Npoi.Core.HSSF.Record
             rec.specialCachedValue = specialCachedValue;
             return rec;
         }
-
     }
 }

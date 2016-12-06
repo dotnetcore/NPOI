@@ -20,13 +20,13 @@ namespace Npoi.Core.SS.Formula.PTG
     using System;
     using System.Text;
 
-
     /**
-     * Addition operator PTG the "+" binomial operator.  If you need more 
+     * Addition operator PTG the "+" binomial operator.  If you need more
      * explanation than that then well...We really can't help you here.
      * @author  Andrew C. Oliver (acoliver@apache.org)
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     public class AddPtg : ValueOperatorPtg
     {
         public const byte sid = 0x03;
@@ -51,6 +51,7 @@ namespace Npoi.Core.SS.Formula.PTG
         }
 
         /** implementation of method from OperationsPtg*/
+
         public override String ToFormulaString(String[] operands)
         {
             StringBuilder buffer = new StringBuilder();

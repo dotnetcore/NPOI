@@ -23,9 +23,10 @@ namespace Npoi.Core.SS.Formula.Function
 
     /**
      * Allows clients to Get <c>FunctionMetadata</c> instances for any built-in function of Excel.
-     * 
+     *
      * @author Josh Micich
      */
+
     public class FunctionMetadataRegistry
     {
         /**
@@ -36,12 +37,12 @@ namespace Npoi.Core.SS.Formula.Function
         public const int FUNCTION_INDEX_IF = 1;
         public const short FUNCTION_INDEX_SUM = 4;
         public const int FUNCTION_INDEX_CHOOSE = 100;
-	    public const short FUNCTION_INDEX_INDIRECT = 148;
+        public const short FUNCTION_INDEX_INDIRECT = 148;
         public const short FUNCTION_INDEX_EXTERNAL = 255;
         private static FunctionMetadataRegistry _instance;
 
         private FunctionMetadata[] _functionDataByIndex;
-        private Dictionary<object,object> _functionDataByName;
+        private Dictionary<object, object> _functionDataByName;
 
         private static FunctionMetadataRegistry GetInstance()
         {
@@ -53,6 +54,7 @@ namespace Npoi.Core.SS.Formula.Function
         }
 
         /* package */
+
         public FunctionMetadataRegistry(FunctionMetadata[] functionDataByIndex, Dictionary<object, object> functionDataByName)
         {
             _functionDataByIndex = functionDataByIndex;
@@ -60,11 +62,11 @@ namespace Npoi.Core.SS.Formula.Function
         }
 
         /* package */
+
         public ICollection GetAllFunctionNames()
         {
             return _functionDataByName.Keys;
         }
-
 
         public static FunctionMetadata GetFunctionByIndex(int index)
         {
@@ -75,12 +77,14 @@ namespace Npoi.Core.SS.Formula.Function
         {
             return _functionDataByIndex[index];
         }
+
         /**
-         * Resolves a built-in function index. 
+         * Resolves a built-in function index.
          * @param name uppercase function name
          * @return a negative value if the function name is not found.
          * This typically occurs for external functions.
          */
+
         public static short LookupIndexByName(String name)
         {
             FunctionMetadata fd = GetInstance().GetFunctionByNameInternal(name);
@@ -95,7 +99,6 @@ namespace Npoi.Core.SS.Formula.Function
         {
             return (FunctionMetadata)_functionDataByName[name];
         }
-
 
         public static FunctionMetadata GetFunctionByName(String name)
         {

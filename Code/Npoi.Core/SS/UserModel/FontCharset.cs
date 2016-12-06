@@ -17,14 +17,13 @@
 
 namespace Npoi.Core.SS.UserModel
 {
-
-
     /**
-     * Charset represents the basic set of characters associated with a font (that it can display), and 
-     * corresponds to the ANSI codepage (8-bit or DBCS) of that character set used by a given language. 
-     * 
+     * Charset represents the basic set of characters associated with a font (that it can display), and
+     * corresponds to the ANSI codepage (8-bit or DBCS) of that character set used by a given language.
+     *
      * @author Gisella Bronzetti
      */
+
     public class FontCharset
     {
         public static readonly FontCharset ANSI = new FontCharset(0);
@@ -47,7 +46,6 @@ namespace Npoi.Core.SS.UserModel
         public static readonly FontCharset EASTEUROPE = new FontCharset(238);
         public static readonly FontCharset OEM = new FontCharset(255);
 
-
         private int charset;
 
         private FontCharset(int value)
@@ -60,6 +58,7 @@ namespace Npoi.Core.SS.UserModel
          *
          * @return value of this charset
          */
+
         public int Value
         {
             get
@@ -99,7 +98,7 @@ namespace Npoi.Core.SS.UserModel
 
         public static FontCharset ValueOf(int value)
         {
-            if(value>=0&&value<=255)
+            if (value >= 0 && value <= 255)
                 return _table[value];
             return null;
         }

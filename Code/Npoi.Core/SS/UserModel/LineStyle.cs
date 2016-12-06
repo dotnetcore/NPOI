@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Npoi.Core.SS.UserModel
+﻿namespace Npoi.Core.SS.UserModel
 {
-    public enum LineStyle:int
+    public enum LineStyle : int
     {
         None = -1,
         Solid = 0, // Solid (continuous) pen

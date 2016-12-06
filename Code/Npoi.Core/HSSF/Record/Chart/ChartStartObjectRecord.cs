@@ -17,16 +17,16 @@
 
 namespace Npoi.Core.HSSF.Record.Chart
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * STARTOBJECT - Chart Future Record Type Start Object (0x0854)<br/>
-     * 
+     *
      * @author Patrick Cheng
      */
+
     public class ChartStartObjectRecord : StandardRecord
     {
         public const short sid = 0x0854;
@@ -76,7 +76,6 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public override String ToString()
         {
-
             StringBuilder buffer = new StringBuilder();
 
             buffer.Append("[STARTOBJECT]\n");

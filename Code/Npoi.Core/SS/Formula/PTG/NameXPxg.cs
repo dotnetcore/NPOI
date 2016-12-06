@@ -17,17 +17,18 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * A Name, be that a Named Range or a Function / User Defined
      *  Function, Addressed in the HSSF External Sheet style.
-     *  
+     *
      * <p>This is XSSF only, as it stores the sheet / book references
      *  in String form. The HSSF equivalent using indexes is {@link NameXPtg}</p>
      */
+
     [Serializable]
     public class NameXPxg : OperandPtg, Pxg
     {
@@ -41,6 +42,7 @@ namespace Npoi.Core.SS.Formula.PTG
             this.sheetName = sheetName;
             this.nameName = nameName;
         }
+
         public NameXPxg(String sheetName, String nameName)
             : this(-1, sheetName, nameName)
         {
@@ -75,6 +77,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 return externalWorkbookNumber;
             }
         }
+
         public String SheetName
         {
             get
@@ -86,6 +89,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 sheetName = value;
             }
         }
+
         public String NameName
         {
             get
@@ -133,10 +137,10 @@ namespace Npoi.Core.SS.Formula.PTG
                 return 1;
             }
         }
+
         public override void Write(ILittleEndianOutput out1)
         {
             throw new InvalidOperationException("XSSF-only Ptg, should not be serialised");
         }
     }
-
 }

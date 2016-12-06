@@ -18,25 +18,22 @@
 namespace Npoi.Core.HSSF.UserModel
 {
     using System;
-    using System.Collections;
-    using System.Text.RegularExpressions;
-    using System.Text;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Text;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Common class for HSSFHeader and HSSFFooter
     /// </summary>
-    public abstract class HeaderFooter:Npoi.Core.SS.UserModel.IHeaderFooter
+    public abstract class HeaderFooter : Npoi.Core.SS.UserModel.IHeaderFooter
     {
         protected bool stripFields = false;
 
-        /**
-         * @return the internal text representation (combining center, left and right parts).
-         * Possibly empty string if no header or footer is set.  Never <c>null</c>.
-         */
+        // @return the internal text representation(combining center, left and right parts).
+        // Possibly empty string if no header or footer is set.Never<c>null</c>.
         public abstract String RawText { get; }
-        
+
         private String[] SplitParts()
         {
             String text = RawText;
@@ -47,10 +44,10 @@ namespace Npoi.Core.HSSF.UserModel
 
             while (text.Length > 1)
             {
-                if (text[0] != '&') 
+                if (text[0] != '&')
                 {
-                        _center = text;
-                        break;
+                    _center = text;
+                    break;
                 }
                 int pos = text.Length;
                 switch (text[1])
@@ -67,6 +64,7 @@ namespace Npoi.Core.HSSF.UserModel
                         _left = text.Substring(2, pos - 2);
                         text = text.Substring(pos);
                         break;
+
                     case 'C':
                         if (text.IndexOf("&L", StringComparison.Ordinal) >= 0)
                         {
@@ -79,6 +77,7 @@ namespace Npoi.Core.HSSF.UserModel
                         _center = text.Substring(2, pos - 2);
                         text = text.Substring(pos);
                         break;
+
                     case 'R':
                         if (text.IndexOf("&C", StringComparison.Ordinal) >= 0)
                         {
@@ -91,6 +90,7 @@ namespace Npoi.Core.HSSF.UserModel
                         _right = text.Substring(2, pos - 2);
                         text = text.Substring(pos);
                         break;
+
                     default:
                         _center = text;
                         break;
@@ -98,12 +98,14 @@ namespace Npoi.Core.HSSF.UserModel
             }
             return new String[] { _left, _center, _right, };
         }
+
         private void UpdatePart(int partIndex, String newValue)
         {
             String[] parts = SplitParts();
             parts[partIndex] = newValue == null ? "" : newValue;
             UpdateHeaderFooterText(parts);
         }
+
         /// <summary>
         /// Creates the complete footer string based on the left, center, and middle
         /// strings.
@@ -130,10 +132,11 @@ namespace Npoi.Core.HSSF.UserModel
             String text = sb.ToString();
             SetHeaderFooterText(text);
         }
+
         protected HeaderFooter()
         {
-
         }
+
         /// <summary>
         /// Sets the header footer text.
         /// </summary>
@@ -145,17 +148,18 @@ namespace Npoi.Core.HSSF.UserModel
         /// Get the left side of the header or footer.
         /// </summary>
         /// <value>The string representing the left side.</value>
-        public String Left 
+        public String Left
         {
             get
             {
                 return SplitParts()[0];
             }
-            set 
+            set
             {
-                UpdatePart(0, value); 
+                UpdatePart(0, value);
             }
         }
+
         /// <summary>
         /// Get the center of the header or footer.
         /// </summary>
@@ -187,7 +191,6 @@ namespace Npoi.Core.HSSF.UserModel
                 UpdatePart(2, value);
             }
         }
-
 
         /// <summary>
         /// Returns the string that represents the change in font size.
@@ -266,7 +269,8 @@ namespace Npoi.Core.HSSF.UserModel
         /// <value>The special string for the file name.</value>
         public static String File
         {
-            get{
+            get
+            {
                 return FILE_FIELD.sequence;
             }
         }
@@ -355,7 +359,6 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-
         /// <summary>
         /// Removes any fields (eg macros, page markers etc)
         /// from the string.
@@ -375,7 +378,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return text;
             }
 
-            foreach(Field field in Fields.AllFields)
+            foreach (Field field in Fields.AllFields)
             {
                 String seq = field.sequence;
                 while ((pos = text.IndexOf(seq, StringComparison.CurrentCulture)) > -1)
@@ -388,13 +391,12 @@ namespace Npoi.Core.HSSF.UserModel
             // Now do the tricky, dynamic ones
             // These are things like font sizes and font names
 
-            text = Regex.Replace(text,@"\&\d+", "");
-            text = Regex.Replace(text,"\\&\".*?,.*?\"", "");
+            text = Regex.Replace(text, @"\&\d+", "");
+            text = Regex.Replace(text, "\\&\".*?,.*?\"", "");
 
             // All done
             return text;
         }
-
 
         /// <summary>
         /// Are fields currently being Stripped from
@@ -408,14 +410,15 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return stripFields;
             }
-            set 
+            set
             {
-                this.stripFields = value; 
+                this.stripFields = value;
             }
         }
 
         // this abstract class does not initialize the static field that are required for the the StripFields method.
         internal static Field SHEET_NAME_FIELD { get { return Fields.Instance.SHEET_NAME_FIELD; } }
+
         internal static Field DATE_FIELD { get { return Fields.Instance.DATE_FIELD; } }
         internal static Field FILE_FIELD { get { return Fields.Instance.FILE_FIELD; } }
         public static Field FULL_FILE_FIELD { get { return Fields.Instance.FULL_FILE_FIELD; } }
@@ -433,7 +436,6 @@ namespace Npoi.Core.HSSF.UserModel
         internal static PairField UNDERLINE_FIELD { get { return Fields.Instance.UNDERLINE_FIELD; } }
         internal static PairField DOUBLE_UNDERLINE_FIELD { get { return Fields.Instance.DOUBLE_UNDERLINE_FIELD; } }
 
-
         /// <summary>
         /// Represents a special field in a header or footer,
         /// eg the page number
@@ -445,14 +447,14 @@ namespace Npoi.Core.HSSF.UserModel
 
             /** The character sequence that marks this field */
             public String sequence;
+
             public Field(Fields fields, String sequence)
             {
                 this.sequence = sequence;
                 fields.Add(this);
             }
-
-
         }
+
         /// <summary>
         /// A special field that normally comes in a pair, eg
         /// turn on underline / turn off underline
@@ -462,10 +464,8 @@ namespace Npoi.Core.HSSF.UserModel
             public PairField(Fields fields, String sequence)
                 : base(fields, sequence)
             {
-
             }
         }
-
 
         public class Fields
         {
@@ -486,73 +486,84 @@ namespace Npoi.Core.HSSF.UserModel
             private PairField _superscriptfield;
             private PairField _underlinefield;
             private PairField _doubleunderlinefield;
+
             public Field SHEET_NAME_FIELD
             {
-                get{return _sheetnamefield;}
+                get { return _sheetnamefield; }
             }
+
             public Field DATE_FIELD
             {
-                get{return _datefield;}
+                get { return _datefield; }
             }
 
             public Field FILE_FIELD
             {
-                get{return _filefield;}
+                get { return _filefield; }
             }
+
             public Field FULL_FILE_FIELD
             {
-                get{return _fullfilefield;}
+                get { return _fullfilefield; }
             }
 
             public Field PAGE_FIELD
             {
-                get{return _pagefield;}
+                get { return _pagefield; }
             }
+
             public Field TIME_FIELD
             {
-                get{return _timefield;}
+                get { return _timefield; }
             }
+
             public Field NUM_PAGES_FIELD
             {
-                get{return _numpagesfield;}
+                get { return _numpagesfield; }
             }
 
             public Field PICTURE_FIELD
             {
-                get{return _picturefield;}
+                get { return _picturefield; }
             }
 
             public PairField BOLD_FIELD
             {
-                get{return _boldfield;}
+                get { return _boldfield; }
             }
+
             public PairField ITALIC_FIELD
             {
-                get{return _italicfield;}
+                get { return _italicfield; }
             }
+
             public PairField STRIKETHROUGH_FIELD
             {
-                get{return _strikethroughfield;}
+                get { return _strikethroughfield; }
             }
+
             public PairField SUBSCRIPT_FIELD
             {
-                get{return _subscriptfield;}
+                get { return _subscriptfield; }
             }
+
             public PairField SUPERSCRIPT_FIELD
             {
-                get{return _superscriptfield;}
+                get { return _superscriptfield; }
             }
+
             public PairField UNDERLINE_FIELD
             {
-                get{return _underlinefield;}
+                get { return _underlinefield; }
             }
+
             public PairField DOUBLE_UNDERLINE_FIELD
             {
-                get{return _doubleunderlinefield;}
+                get { return _doubleunderlinefield; }
             }
 
-
             #region Singleton Implementation
+
             /// <summary>
             /// Instance to this class.
             /// </summary>
@@ -571,8 +582,8 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 _sheetnamefield = new Field(this, "&A");
                 _datefield = new Field(this, "&D");
-                _filefield  = new Field(this, "&F");
-                _fullfilefield  = new Field(this, "&Z");
+                _filefield = new Field(this, "&F");
+                _fullfilefield = new Field(this, "&Z");
                 _pagefield = new Field(this, "&P");
                 _timefield = new Field(this, "&T");
                 _numpagesfield = new Field(this, "&N");
@@ -598,6 +609,7 @@ namespace Npoi.Core.HSSF.UserModel
                     return instance;
                 }
             }
+
             #endregion Singleton Implementation
 
             internal void Add(Field field)
@@ -605,7 +617,5 @@ namespace Npoi.Core.HSSF.UserModel
                 allFields.Add(field);
             }
         }
-
-
     }
 }

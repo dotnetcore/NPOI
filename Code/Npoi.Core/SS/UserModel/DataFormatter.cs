@@ -17,16 +17,13 @@
 
 namespace Npoi.Core.SS.UserModel
 {
+    using Npoi.Core.SS.Util;
     using System;
     using System.Collections;
+    using System.Collections.Generic;
+    using System.Globalization;
     using System.Text;
     using System.Text.RegularExpressions;
-
-    using Npoi.Core.SS.Util;
-    using System.Globalization;
-    using System.Collections.Generic;
-
-
 
     /**
      * HSSFDataFormatter contains methods for Formatting the value stored in an
@@ -34,7 +31,7 @@ namespace Npoi.Core.SS.UserModel
      * need to display data exactly as it appears in Excel. Supported Formats
      * include currency, SSN, percentages, decimals, dates, phone numbers, zip
      * codes, etc.
-     * 
+     *
      * Internally, Formats will be implemented using subclasses of <see cref="Npoi.Core.SS.Util.FormatBase"/>
      * such as <see cref="Npoi.Core.SS.Util.DecimalFormat"/> and <see cref="Npoi.Core.SS.Util.SimpleDateFormat"/>. Therefore the
      * Formats used by this class must obey the same pattern rules as these FormatBase
@@ -42,8 +39,8 @@ namespace Npoi.Core.SS.UserModel
      * ".", "," etc.) may appear in number formats. Other characters can be
      * inserted <em>before</em> or <em> after</em> the number pattern to form a
      * prefix or suffix.
-     * 
-     * 
+     *
+     *
      * For example the Excel pattern <c>"$#,##0.00 "USD"_);($#,##0.00 "USD")"
      * </c> will be correctly Formatted as "$1,000.00 USD" or "($1,000.00 USD)".
      * However the pattern <c>"00-00-00"</c> is incorrectly Formatted by
@@ -51,14 +48,14 @@ namespace Npoi.Core.SS.UserModel
      * DecimalFormat, you can provide your own custom {@link FormatBase} implementation
      * via <c>HSSFDataFormatter.AddFormat(String,FormatBase)</c>. The following
      * custom Formats are already provided by this class:
-     * 
+     *
      * <pre>
      * <ul><li>SSN "000-00-0000"</li>
      *     <li>Phone Number "(###) ###-####"</li>
      *     <li>Zip plus 4 "00000-0000"</li>
      * </ul>
      * </pre>
-     * 
+     *
      * If the Excel FormatBase pattern cannot be Parsed successfully, then a default
      * FormatBase will be used. The default number FormatBase will mimic the Excel General
      * FormatBase: "#" for whole numbers and "#.##########" for decimal numbers. You
@@ -70,6 +67,7 @@ namespace Npoi.Core.SS.UserModel
      * @author James May (james dot may at fmr dot com)
      *
      */
+
     public class DataFormatter
     {
         private static String defaultFractionWholePartFormat = "#";
@@ -83,8 +81,8 @@ namespace Npoi.Core.SS.UserModel
         /** Pattern to find "AM/PM" marker */
         private static string amPmPattern = "((A|P)[M/P]*)";
 
-        /** A regex to find patterns like [$$-1009] and [$�-452]. 
-         *  Note that we don't currently process these into locales 
+        /** A regex to find patterns like [$$-1009] and [$�-452].
+         *  Note that we don't currently process these into locales
          */
         private static string localePatternGroup = "(\\[\\$[^-\\]]*-[0-9A-Z]+\\])";
 
@@ -93,13 +91,14 @@ namespace Npoi.Core.SS.UserModel
      * Allowed colours are: Black, Blue, Cyan, Green,
      *  Magenta, Red, White, Yellow, "Color n" (1<=n<=56)
      */
+
         private static Regex colorPattern = new Regex("(\\[BLACK\\])|(\\[BLUE\\])|(\\[CYAN\\])|(\\[GREEN\\])|" +
             "(\\[MAGENTA\\])|(\\[RED\\])|(\\[WHITE\\])|(\\[YELLOW\\])|" +
             "(\\[COLOR\\s*\\d\\])|(\\[COLOR\\s*[0-5]\\d\\])", RegexOptions.IgnoreCase);
 
         /**
          * A regex to identify a fraction pattern.
-         * This requires that replaceAll("\\?", "#") has already been called 
+         * This requires that replaceAll("\\?", "#") has already been called
          */
         private static Regex fractionPattern = new Regex("(?:([#\\d]+)\\s+)?(#+)\\s*\\/\\s*([#\\d]+)");
 
@@ -112,12 +111,14 @@ namespace Npoi.Core.SS.UserModel
      *  show 255 pound signs ("#").
       */
         private static String invalidDateTimeString;
+
         static DataFormatter()
         {
             StringBuilder buf = new StringBuilder();
             for (int i = 0; i < 255; i++) buf.Append('#');
             invalidDateTimeString = buf.ToString();
         }
+
         /** <em>General</em> FormatBase for whole numbers. */
         private static DecimalFormat generalWholeNumFormat = new DecimalFormat("0");
 
@@ -131,22 +132,25 @@ namespace Npoi.Core.SS.UserModel
          * A map to cache formats.
          *  Map<String,FormatBase> Formats
          */
-        private Dictionary<object,object> formats;
+        private Dictionary<object, object> formats;
         private bool emulateCsv = false;
         /**
      * Creates a formatter using the {@link Locale#getDefault() default locale}.
      */
+
         public DataFormatter()
             : this(false)
         {
         }
+
         /**
          * Constructor
          */
+
         public DataFormatter(CultureInfo culture)
         {
             this.currentCulture = culture;
-            formats = new Dictionary<object,object>();
+            formats = new Dictionary<object, object>();
 
             // init built-in Formats
 
@@ -165,22 +169,25 @@ namespace Npoi.Core.SS.UserModel
             AddFormat("000\\-00\\-0000", ssnFormat);
             AddFormat("000-00-0000", ssnFormat);
         }
+
         public DataFormatter(bool emulateCsv)
             : this(CultureInfo.CurrentCulture)
         {
             this.emulateCsv = emulateCsv;
         }
+
         /**
          * Creates a formatter using the given locale.
          *
          * @param  emulateCsv whether to emulate CSV output.
          */
+
         public DataFormatter(CultureInfo locale, bool emulateCsv)
             : this(locale)
         {
-
             this.emulateCsv = emulateCsv;
         }
+
         /**
          * Return a FormatBase for the given cell if one exists, otherwise try to
          * Create one. This method will return <c>null</c> if the any of the
@@ -194,6 +201,7 @@ namespace Npoi.Core.SS.UserModel
          * @param cell The cell to retrieve a FormatBase for
          * @return A FormatBase for the FormatBase String
          */
+
         private FormatBase GetFormat(ICell cell)
         {
             if (cell.CellStyle == null)
@@ -215,7 +223,7 @@ namespace Npoi.Core.SS.UserModel
             //      // Might be better to separate out the n p and z formats, falling back to p when n and z are not set.
             //      // That however would require other code to be re factored.
             //      String[] formatBits = formatStrIn.split(";");
-            //      int i = cellValue > 0.0 ? 0 : cellValue < 0.0 ? 1 : 2; 
+            //      int i = cellValue > 0.0 ? 0 : cellValue < 0.0 ? 1 : 2;
             //      String formatStr = (i < formatBits.length) ? formatBits[i] : formatBits[0];
 
             String formatStr = formatStrIn;
@@ -284,9 +292,9 @@ namespace Npoi.Core.SS.UserModel
          * @param cell The Excel cell
          * @return A FormatBase representing the excel FormatBase. May return null.
          */
+
         public FormatBase CreateFormat(ICell cell)
         {
-
             int formatIndex = cell.CellStyle.DataFormat;
             String formatStr = cell.CellStyle.GetDataFormatString();
             return CreateFormat(cell.NumericCellValue, formatIndex, formatStr);
@@ -339,7 +347,6 @@ namespace Npoi.Core.SS.UserModel
                 return generalDecimalNumFormat;
             }
 
-
             if (DateUtil.IsADateFormat(formatIndex, formatStr) &&
                     DateUtil.IsValidExcelDate(cellValue))
             {
@@ -361,7 +368,7 @@ namespace Npoi.Core.SS.UserModel
                     //take the first match
                     if (fractionMatcher.Success)
                     {
-                        String wholePart = (fractionMatcher.Groups[1] == null||!fractionMatcher.Groups[1].Success) ? "" : defaultFractionWholePartFormat;
+                        String wholePart = (fractionMatcher.Groups[1] == null || !fractionMatcher.Groups[1].Success) ? "" : defaultFractionWholePartFormat;
                         return new FractionFormat(wholePart, fractionMatcher.Groups[3].Value);
                     }
                 }
@@ -371,7 +378,6 @@ namespace Npoi.Core.SS.UserModel
                 //System.out.println("formatStr: "+strippedFormatStr);
                 return new FractionFormat(defaultFractionWholePartFormat, defaultFractionFractionPartFormat);
             }
-
 
             if (Regex.IsMatch(formatStr, numPattern))
             {
@@ -384,6 +390,7 @@ namespace Npoi.Core.SS.UserModel
             // TODO - when does this occur?
             return null;
         }
+
         private int IndexOfFraction(String format)
         {
             int i = format.IndexOf("#/#");
@@ -397,6 +404,7 @@ namespace Npoi.Core.SS.UserModel
             int j = format.LastIndexOf("?/?");
             return i == -1 ? j : j == -1 ? i : Math.Max(i, j);
         }
+
         private FormatBase CreateDateFormat(String pformatStr, double cellValue)
         {
             String formatStr = pformatStr;
@@ -417,14 +425,12 @@ namespace Npoi.Core.SS.UserModel
             }
             formatStr = formatStr.Replace("@", "tt");
 
-
             MatchCollection match = Regex.Matches(formatStr, daysAsText);
             if (match.Count > 0)
             {
                 string replacement = match[0].Groups[0].Value.ToUpper().Replace("D", "E");
                 formatStr = Regex.Replace(formatStr, daysAsText, replacement);
             }
-
 
             // Convert excel date FormatBase to SimpleDateFormat.
             // Excel uses lower case 'm' for both minutes and months.
@@ -562,12 +568,10 @@ namespace Npoi.Core.SS.UserModel
             }
             catch (ArgumentException)
             {
-
                 // the pattern could not be Parsed correctly,
                 // so fall back to the default number FormatBase
                 return GetDefaultFormat(cellValue);
             }
-
         }
 
         private String cleanFormatForNumber(String formatStr)
@@ -644,7 +648,7 @@ namespace Npoi.Core.SS.UserModel
                 }
             }
 
-            // Now, handle the other aspects like 
+            // Now, handle the other aspects like
             //  quoting and scientific notation
             for (int i = 0; i < sb.Length; i++)
             {
@@ -666,6 +670,7 @@ namespace Npoi.Core.SS.UserModel
 
             return sb.ToString();
         }
+
         private FormatBase CreateNumberFormat(String formatStr, double cellValue)
         {
             String format = cleanFormatForNumber(formatStr);
@@ -675,7 +680,6 @@ namespace Npoi.Core.SS.UserModel
             }
             catch (ArgumentException)
             {
-
                 // the pattern could not be Parsed correctly,
                 // so fall back to the default number FormatBase
                 return GetDefaultFormat(cellValue);
@@ -687,6 +691,7 @@ namespace Npoi.Core.SS.UserModel
          * @param d the double value to check
          * @return <c>true</c> if d is a whole number
          */
+
         private static bool IsWholeNumber(double d)
         {
             return d == Math.Floor(d);
@@ -697,10 +702,12 @@ namespace Npoi.Core.SS.UserModel
          * @param cell The cell
          * @return a default FormatBase
          */
+
         public FormatBase GetDefaultFormat(ICell cell)
         {
             return GetDefaultFormat(cell.NumericCellValue);
         }
+
         private FormatBase GetDefaultFormat(double cellValue)
         {
             // for numeric cells try user supplied default
@@ -725,6 +732,7 @@ namespace Npoi.Core.SS.UserModel
          * @param cell The cell
          * @return a Formatted date string
          */
+
         private String GetFormattedDateString(ICell cell)
         {
             FormatBase dateFormat = GetFormat(cell);
@@ -745,9 +753,9 @@ namespace Npoi.Core.SS.UserModel
          * @param cell The cell
          * @return a Formatted number string
          */
+
         private String GetFormattedNumberString(ICell cell)
         {
-
             FormatBase numberFormat = GetFormat(cell);
             double d = cell.NumericCellValue;
             if (numberFormat == null)
@@ -762,14 +770,17 @@ namespace Npoi.Core.SS.UserModel
          *  FormatBase index and string, according to excel style rules.
          * @see #FormatCellValue(Cell)
          */
+
         public String FormatRawCellContents(double value, int formatIndex, String formatString)
         {
             return FormatRawCellContents(value, formatIndex, formatString, false);
         }
+
         /**
      * Performs Excel-style date formatting, using the
      *  supplied Date and format
      */
+
         private String PerformDateFormatting(DateTime d, FormatBase dateFormat)
         {
             if (dateFormat != null)
@@ -778,11 +789,13 @@ namespace Npoi.Core.SS.UserModel
             }
             return d.ToString();
         }
+
         /**
      * Formats the given raw cell value, based on the supplied
      *  format index and string, according to excel style rules.
      * @see #formatCellValue(Cell)
      */
+
         public String FormatRawCellContents(double value, int formatIndex, String formatString, bool use1904Windowing)
         {
             // Is it a date?
@@ -821,10 +834,12 @@ namespace Npoi.Core.SS.UserModel
             // original method.
             String result;
             String textValue = NumberToTextConverter.ToText(value);
-            if (textValue.IndexOf('E') > -1) {
+            if (textValue.IndexOf('E') > -1)
+            {
                 result = numberFormat.Format(value);
             }
-            else {
+            else
+            {
                 result = numberFormat.Format(textValue);
             }
             // Complete scientific notation by adding the missing +.
@@ -834,30 +849,32 @@ namespace Npoi.Core.SS.UserModel
             }
             return result;
         }
+
         /**
-         * 
+         *
          * Returns the Formatted value of a cell as a <c>String</c> regardless
          * of the cell type. If the Excel FormatBase pattern cannot be Parsed then the
          * cell value will be Formatted using a default FormatBase.
-         * 
+         *
          * When passed a null or blank cell, this method will return an empty
          * String (""). Formulas in formula type cells will not be evaluated.
-         * 
+         *
          *
          * @param cell The cell
          * @return the Formatted cell value as a String
          */
+
         public String FormatCellValue(ICell cell)
         {
             return FormatCellValue(cell, null);
         }
 
         /**
-         * 
+         *
          * Returns the Formatted value of a cell as a <c>String</c> regardless
          * of the cell type. If the Excel FormatBase pattern cannot be Parsed then the
          * cell value will be Formatted using a default FormatBase.
-         * 
+         *
          * When passed a null or blank cell, this method will return an empty
          * String (""). Formula cells will be evaluated using the given
          * {@link HSSFFormulaEvaluator} if the evaluator is non-null. If the
@@ -869,9 +886,9 @@ namespace Npoi.Core.SS.UserModel
          * @param evaluator The HSSFFormulaEvaluator (can be null)
          * @return a string value of the cell
          */
+
         public String FormatCellValue(ICell cell, IFormulaEvaluator evaluator)
         {
-
             if (cell == null)
             {
                 return "";
@@ -905,32 +922,34 @@ namespace Npoi.Core.SS.UserModel
 
                 case CellType.Boolean:
                     return cell.BooleanCellValue.ToString().ToUpper();
+
                 case CellType.Blank:
                     return "";
+
                 case CellType.Error:
                     return FormulaError.ForInt(cell.ErrorCellValue).String;
             }
             throw new Exception("Unexpected celltype (" + cellType + ")");
         }
 
-
         /**
-         * 
+         *
          * Sets a default number FormatBase to be used when the Excel FormatBase cannot be
          * Parsed successfully. <b>Note:</b> This is a fall back for when an error
          * occurs while parsing an Excel number FormatBase pattern. This will not
          * affect cells with the <em>General</em> FormatBase.
-         * 
-         * 
+         *
+         *
          * The value that will be passed to the FormatBase's FormatBase method (specified
          * by <c>java.text.FormatBase#FormatBase</c>) will be a double value from a
          * numeric cell. Therefore the code in the FormatBase method should expect a
          * <c>Number</c> value.
-         * 
+         *
          *
          * @param FormatBase A FormatBase instance to be used as a default
          * @see java.text.FormatBase#FormatBase
          */
+
         public void SetDefaultNumberFormat(FormatBase format)
         {
             IEnumerator itr = formats.Keys.GetEnumerator();
@@ -948,15 +967,16 @@ namespace Npoi.Core.SS.UserModel
 
         /**
          * Adds a new FormatBase to the available formats.
-         * 
+         *
          * The value that will be passed to the FormatBase's FormatBase method (specified
          * by <c>java.text.FormatBase#FormatBase</c>) will be a double value from a
          * numeric cell. Therefore the code in the FormatBase method should expect a
          * <c>Number</c> value.
-         * 
+         *
          * @param excelformatStr The data FormatBase string
          * @param FormatBase A FormatBase instance
          */
+
         public void AddFormat(String excelformatStr, FormatBase format)
         {
             formats[excelformatStr] = format;

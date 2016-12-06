@@ -17,20 +17,20 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-    using Npoi.Core.HSSF.Record;
 
     /**
-     * Title:        Sup Book (EXTERNALBOOK) 
+     * Title:        Sup Book (EXTERNALBOOK)
      * Description:  A External Workbook Description (Suplemental Book)
-     *               Its only a dummy record for making new ExternSheet Record 
+     *               Its only a dummy record for making new ExternSheet Record
      * REFERENCE:  5.38
      * @author Libin Roman (Vista Portal LDT. Developer)
      * @author Andrew C. Oliver (acoliver@apache.org)
      *
      */
+
     public class SupBookRecord : StandardRecord
     {
         private static POILogger logger = POILogFactory.GetLogger(typeof(SupBookRecord));
@@ -55,19 +55,21 @@ namespace Npoi.Core.HSSF.Record
         public const char CH_LIB_DIR = (char)8;
         public static readonly char PATH_SEPERATOR = System.IO.Path.DirectorySeparatorChar;
 
-
         public static SupBookRecord CreateInternalReferences(short numberOfSheets)
         {
             return new SupBookRecord(false, numberOfSheets);
         }
+
         public static SupBookRecord CreateAddInFunctions()
         {
             return new SupBookRecord(true, (short)1);
         }
+
         public static SupBookRecord CreateExternalReferences(String url, String[] sheetNames)
         {
             return new SupBookRecord(url, sheetNames);
         }
+
         private SupBookRecord(bool IsAddInFuncs, short numberOfSheets)
         {
             // else not 'External References'
@@ -76,6 +78,7 @@ namespace Npoi.Core.HSSF.Record
             field_3_sheet_names = null;
             _isAddInFunctions = IsAddInFuncs;
         }
+
         public SupBookRecord(String url, String[] sheetNames)
         {
             field_1_number_of_sheets = (short)sheetNames.Length;
@@ -91,6 +94,7 @@ namespace Npoi.Core.HSSF.Record
          * @param size  the size of the data area of the record
          * @param data  data of the record (should not contain sid/len)
          */
+
         public SupBookRecord(RecordInputStream in1)
         {
             int recLen = in1.Remaining;
@@ -142,6 +146,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get { return field_3_sheet_names != null; }
         }
+
         public bool IsInternalReferences
         {
             get
@@ -149,6 +154,7 @@ namespace Npoi.Core.HSSF.Record
                 return field_3_sheet_names == null && !_isAddInFunctions;
             }
         }
+
         public bool IsAddInFunctions
         {
             get
@@ -184,6 +190,7 @@ namespace Npoi.Core.HSSF.Record
             }
             return sb.ToString();
         }
+
         protected override int DataSize
         {
             get
@@ -235,6 +242,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get { return sid; }
         }
+
         public String URL
         {
             get
@@ -246,9 +254,9 @@ namespace Npoi.Core.HSSF.Record
                         return encodedUrl.Substring(1); // will this just be empty string?
                     case 1: // encoded file name
                         return DecodeFileName(encodedUrl);
+
                     case 2: // Self-referential external reference
                         return encodedUrl.Substring(1);
-
                 }
                 return encodedUrl;
             }
@@ -258,6 +266,7 @@ namespace Npoi.Core.HSSF.Record
                 field_2_encoded_url = field_2_encoded_url.Substring(0, 1) + value;
             }
         }
+
         private static String DecodeFileName(String encodedUrl)
         {
             /* see "MICROSOFT OFFICE EXCEL 97-2007  BINARY FILE FORMAT SPECIFICATION" */
@@ -279,25 +288,31 @@ namespace Npoi.Core.HSSF.Record
                             sb.Append(driveLetter).Append(":");
                         }
                         break;
+
                     case CH_SAME_VOLUME:
                         sb.Append(PATH_SEPERATOR);
                         break;
+
                     case CH_DOWN_DIR:
                         sb.Append(PATH_SEPERATOR);
                         break;
+
                     case CH_UP_DIR:
                         sb.Append("..").Append(PATH_SEPERATOR);
                         break;
+
                     case CH_LONG_VOLUME:
                         //Don't known to handle...
                         logger.Log(POILogger.WARN, "Found unexpected key: ChLongVolume - IGNORING");
                         break;
+
                     case CH_STARTUP_DIR:
                     case CH_ALT_STARTUP_DIR:
                     case CH_LIB_DIR:
                         logger.Log(POILogger.WARN, "EXCEL.EXE path unkown - using this directoy instead: .");
                         sb.Append(".").Append(PATH_SEPERATOR);
                         break;
+
                     default:
                         sb.Append(c);
                         break;
@@ -305,6 +320,7 @@ namespace Npoi.Core.HSSF.Record
             }
             return sb.ToString();
         }
+
         public String[] SheetNames
         {
             get

@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,8 +15,6 @@
    limitations under the License.
 ==================================================================== */
 
-
-
 namespace Npoi.Core.POIFS.EventFileSystem
 {
     /**
@@ -26,9 +23,9 @@ namespace Npoi.Core.POIFS.EventFileSystem
      * @author Marc Johnson (mjohnson at apache dot org)
      * @version %I%, %G%
      */
+
     public interface POIFSReaderListener
     {
-
         /**
          * Process a POIFSReaderEvent that this listener had Registered
          * for
@@ -38,5 +35,4 @@ namespace Npoi.Core.POIFS.EventFileSystem
 
         void ProcessPOIFSReaderEvent(POIFSReaderEvent evt);
     }   // end public interface POIFSReaderListener
-
 }

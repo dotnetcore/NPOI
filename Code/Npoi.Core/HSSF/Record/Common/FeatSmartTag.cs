@@ -17,14 +17,14 @@
 
 namespace Npoi.Core.HSSF.Record.Common
 {
-    using System;
-    using System.Text;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
+    using System;
+    using System.Text;
 
     /**
      * Title: FeatSmartTag (Smart Tag Shared Feature) common record part
-     * 
+     *
      * This record part specifies Smart Tag data for a sheet, stored as part
      *  of a Shared Feature. It can be found in records such as  {@link FeatRecord}.
      * It is made up of a hash, and a Set of Factoid Data that Makes up
@@ -32,6 +32,7 @@ namespace Npoi.Core.HSSF.Record.Common
      * For more details, see page 669 of the Excel binary file
      *  format documentation.
      */
+
     public class FeatSmartTag : SharedFeature
     {
         // TODO - process
@@ -68,5 +69,4 @@ namespace Npoi.Core.HSSF.Record.Common
             out1.Write(data);
         }
     }
-
 }

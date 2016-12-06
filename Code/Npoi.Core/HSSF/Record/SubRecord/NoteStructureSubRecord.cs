@@ -17,20 +17,21 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Represents a NoteStructure (0xD) sub record.
      *
-     * 
+     *
      * The docs say nothing about it. The Length of this record is always 26 bytes.
-     * 
+     *
      *
      * @author Yegor Kozlov
      */
-    public class NoteStructureSubRecord: SubRecord
+
+    public class NoteStructureSubRecord : SubRecord
     {
         public const short sid = 0x0D;
         private const int ENCODED_SIZE = 22;
@@ -41,6 +42,7 @@ namespace Npoi.Core.HSSF.Record
          * Construct a new <c>NoteStructureSubRecord</c> and
          * Fill its data with the default values
          */
+
         public NoteStructureSubRecord()
         {
             //all we know is that the the Length of <c>NoteStructureSubRecord</c> is always 22 bytes
@@ -51,9 +53,11 @@ namespace Npoi.Core.HSSF.Record
          * Constructs a NoteStructureSubRecord and Sets its fields appropriately.
          *
          */
+
         public NoteStructureSubRecord(ILittleEndianInput in1, int size)
         {
-            if (size != ENCODED_SIZE) {
+            if (size != ENCODED_SIZE)
+            {
                 throw new RecordFormatException("Unexpected size (" + size + ")");
             }
             //just grab the raw data
@@ -66,6 +70,7 @@ namespace Npoi.Core.HSSF.Record
          * Convert this record to string.
          * Used by BiffViewer and other utulities.
          */
+
         public override String ToString()
         {
             StringBuilder buffer = new StringBuilder();
@@ -86,6 +91,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return size of the record
          */
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(sid);
@@ -96,6 +102,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Size of record
          */
+
         public override int DataSize
         {
             get { return reserved.Length; }
@@ -104,6 +111,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return id of this record.
          */
+
         public override short Sid
         {
             get { return sid; }
@@ -117,7 +125,5 @@ namespace Npoi.Core.HSSF.Record
             rec.reserved = recdata;
             return rec;
         }
-
     }
-
 }

@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * The area format record is used to define the colours and patterns for an area.
@@ -32,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class AreaFormatRecord
        : StandardRecord
     {
@@ -48,7 +45,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public const short FILL_PATTERN_TRELLIS = 0xA;
         public const short FILL_PATTERN_LIGHT_HORIZONTAL_STRIPES = 0xB;
         public const short FILL_PATTERN_LIGHT_VERTICAL_STRIPES = 0xC;
-        public const short FILL_PATTERN_LIGHTDOWN= 0xD;
+        public const short FILL_PATTERN_LIGHTDOWN = 0xD;
         public const short FILL_PATTERN_LIGHTUP = 0xE;
         public const short FILL_PATTERN_LIGHT_GRID = 0xF;
         public const short FILL_PATTERN_LIGHT_TRELLIS = 0x10;
@@ -65,10 +62,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         private short field_5_forecolorIndex;
         private short field_6_backcolorIndex;
 
-
         public AreaFormatRecord()
         {
-
         }
 
         /**
@@ -79,7 +74,6 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public AreaFormatRecord(RecordInputStream in1)
         {
-
             field_1_foregroundColor = in1.ReadInt();
             field_2_backgroundColor = in1.ReadInt();
             field_3_pattern = in1.ReadShort();
@@ -137,14 +131,15 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
-             get{ return 4 + 4 + 2 + 2 + 2 + 2; }
+            get { return 4 + 4 + 2 + 2 + 2 + 2; }
         }
 
         public override short Sid
         {
-             get{ return sid; }
+            get { return sid; }
         }
 
         public override Object Clone()
@@ -160,71 +155,76 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          *  the foreground color field for the AreaFormat record.
          */
+
         public int ForegroundColor
         {
-            get{return field_1_foregroundColor;}
-            set{this.field_1_foregroundColor = value;}
+            get { return field_1_foregroundColor; }
+            set { this.field_1_foregroundColor = value; }
         }
 
         /**
          *  the background color field for the AreaFormat record.
          */
+
         public int BackgroundColor
         {
-            get{return field_2_backgroundColor;}
-            set{this.field_2_backgroundColor=value;}
+            get { return field_2_backgroundColor; }
+            set { this.field_2_backgroundColor = value; }
         }
 
         /**
          *  the pattern field for the AreaFormat record.
          */
+
         public short Pattern
         {
-            get{return field_3_pattern;}
-            set{this.field_3_pattern =value;}
+            get { return field_3_pattern; }
+            set { this.field_3_pattern = value; }
         }
 
         /**
          *  the format flags field for the AreaFormat record.
          */
+
         public short FormatFlags
         {
-            get{return field_4_formatFlags;}
-            set{this.field_4_formatFlags =value;}
+            get { return field_4_formatFlags; }
+            set { this.field_4_formatFlags = value; }
         }
 
         /**
          *  the forecolor index field for the AreaFormat record.
          */
+
         public short ForecolorIndex
         {
-            get{return field_5_forecolorIndex;}
-            set{this.field_5_forecolorIndex =value;}
+            get { return field_5_forecolorIndex; }
+            set { this.field_5_forecolorIndex = value; }
         }
 
         /**
          *  the backcolor index field for the AreaFormat record.
          */
+
         public short BackcolorIndex
         {
-            get{return field_6_backcolorIndex;}
-            set{this.field_6_backcolorIndex =value;}
+            get { return field_6_backcolorIndex; }
+            set { this.field_6_backcolorIndex = value; }
         }
 
         /**
          * automatic formatting
          * @return  the automatic field value.
          */
+
         public bool IsAutomatic
         {
-            get{return automatic.IsSet(field_4_formatFlags);}
-            set{
+            get { return automatic.IsSet(field_4_formatFlags); }
+            set
+            {
                 field_4_formatFlags = automatic.SetShortBoolean(field_4_formatFlags, value);
             }
         }
@@ -233,16 +233,11 @@ namespace Npoi.Core.HSSF.Record.Chart
          * swap foreground and background colours when data is negative
          * @return  the invert field value.
          */
+
         public bool IsInvert
         {
-            get{return invert.IsSet(field_4_formatFlags);}
-            set{ field_4_formatFlags = invert.SetShortBoolean(field_4_formatFlags, value);}
+            get { return invert.IsSet(field_4_formatFlags); }
+            set { field_4_formatFlags = invert.SetShortBoolean(field_4_formatFlags, value); }
         }
-
-
     }
 }
-
-
-
-

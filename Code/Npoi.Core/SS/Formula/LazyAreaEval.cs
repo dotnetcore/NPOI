@@ -17,25 +17,23 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
-    using System;
-    using System.Text;
     using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.Formula.PTG;
     using Npoi.Core.SS.Util;
+    using System;
+    using System.Text;
 
     /**
      * Provides Lazy Evaluation to 3D Ranges
      */
+
     public class LazyAreaEval : AreaEvalBase
     {
-
         private SheetRangeEvaluator _evaluator;
 
         public LazyAreaEval(AreaI ptg, SheetRangeEvaluator evaluator)
             : base(ptg, evaluator)
         {
-            
             _evaluator = evaluator;
         }
 
@@ -43,7 +41,6 @@ namespace Npoi.Core.SS.Formula
                 int lastColumnIndex, SheetRangeEvaluator evaluator) :
             base(evaluator, firstRowIndex, firstColumnIndex, lastRowIndex, lastColumnIndex)
         {
-            
             _evaluator = evaluator;
         }
 
@@ -51,6 +48,7 @@ namespace Npoi.Core.SS.Formula
         {
             return GetRelativeValue(FirstSheetIndex, relativeRowIndex, relativeColumnIndex);
         }
+
         public override ValueEval GetRelativeValue(int sheetIndex, int relativeRowIndex, int relativeColumnIndex)
         {
             int rowIx = (relativeRowIndex + FirstRow);
@@ -69,6 +67,7 @@ namespace Npoi.Core.SS.Formula
             int absRowIx = FirstRow + rowIndex;
             return new LazyAreaEval(absRowIx, FirstColumn, absRowIx, LastColumn, _evaluator);
         }
+
         public override TwoDEval GetColumn(int columnIndex)
         {
             if (columnIndex >= Width)
@@ -87,6 +86,7 @@ namespace Npoi.Core.SS.Formula
 
             return new LazyAreaEval(area, _evaluator);
         }
+
         public override String ToString()
         {
             CellReference crA = new CellReference(FirstRow, FirstColumn);
@@ -101,9 +101,11 @@ namespace Npoi.Core.SS.Formula
             sb.Append("]");
             return sb.ToString();
         }
+
         /**
         * @return  whether cell at rowIndex and columnIndex is a subtotal
         */
+
         public override bool IsSubTotal(int rowIndex, int columnIndex)
         {
             // delegate the query to the sheet evaluator which has access to internal ptgs

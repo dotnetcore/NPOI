@@ -17,15 +17,14 @@
 
 namespace Npoi.Core.HSSF.Extractor
 {
-    using System;
-    using System.Text;
-
+    using Npoi.Core;
     using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.POIFS.FileSystem;
-    using Npoi.Core;
+    using Npoi.Core.SS.Extractor;
     using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.UserModel;
-    using Npoi.Core.SS.Extractor;
+    using System;
+    using System.Text;
 
     /// <summary>
     /// A text extractor for Excel files.
@@ -42,44 +41,46 @@ namespace Npoi.Core.HSSF.Extractor
         private bool includeCellComments = false;
         private bool includeBlankCells = false;
         private bool includeHeaderFooter = true;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ExcelExtractor"/> class.
         /// </summary>
         /// <param name="wb">The wb.</param>
         public ExcelExtractor(HSSFWorkbook wb)
-            : base(wb)
-        {
+            : base(wb) {
             this.wb = wb;
             _formatter = new HSSFDataFormatter();
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ExcelExtractor"/> class.
         /// </summary>
         /// <param name="fs">The fs.</param>
         public ExcelExtractor(POIFSFileSystem fs)
-            : this(new HSSFWorkbook(fs))
-        {
+            : this(new HSSFWorkbook(fs)) {
         }
 
         /// <summary>
         ///  Should header and footer be included? Default is true
         /// </summary>
-        public bool IncludeHeaderFooter
-        {
-            get {
+        public bool IncludeHeaderFooter {
+            get
+            {
                 return this.includeHeaderFooter;
             }
-            set {
+            set
+            {
                 this.includeHeaderFooter = value;
             }
         }
+
         /// <summary>
         /// Should sheet names be included? Default is true
         /// </summary>
         /// <value>if set to <c>true</c> [include sheet names].</value>
-        public bool IncludeSheetNames
-        {
-            get {
+        public bool IncludeSheetNames {
+            get
+            {
                 return this.includeSheetNames;
             }
             set
@@ -87,14 +88,14 @@ namespace Npoi.Core.HSSF.Extractor
                 this.includeSheetNames = value;
             }
         }
+
         /// <summary>
         /// Should we return the formula itself, and not
         /// the result it produces? Default is false
         /// </summary>
         /// <value>if set to <c>true</c> [formulas not results].</value>
-        public bool FormulasNotResults
-        {
-            get 
+        public bool FormulasNotResults {
+            get
             {
                 return this.formulasNotResults;
             }
@@ -103,12 +104,12 @@ namespace Npoi.Core.HSSF.Extractor
                 this.formulasNotResults = value;
             }
         }
+
         /// <summary>
         /// Should cell comments be included? Default is false
         /// </summary>
         /// <value>if set to <c>true</c> [include cell comments].</value>
-        public bool IncludeCellComments
-        {
+        public bool IncludeCellComments {
             get
             {
                 return this.includeCellComments;
@@ -118,14 +119,14 @@ namespace Npoi.Core.HSSF.Extractor
                 this.includeCellComments = value;
             }
         }
+
         /// <summary>
         /// Should blank cells be output? Default is to only
         /// output cells that are present in the file and are
         /// non-blank.
         /// </summary>
         /// <value>if set to <c>true</c> [include blank cells].</value>
-        public bool IncludeBlankCells
-        {
+        public bool IncludeBlankCells {
             get
             {
                 return this.includeBlankCells;
@@ -140,8 +141,7 @@ namespace Npoi.Core.HSSF.Extractor
         /// Retreives the text contents of the file
         /// </summary>
         /// <value>All the text from the document.</value>
-        public override String Text
-        {
+        public override String Text {
             get
             {
                 StringBuilder text = new StringBuilder();
@@ -151,24 +151,20 @@ namespace Npoi.Core.HSSF.Extractor
                 wb.MissingCellPolicy = MissingCellPolicy.RETURN_BLANK_AS_NULL;
 
                 // Process each sheet in turn
-                for (int i = 0; i < wb.NumberOfSheets; i++)
-                {
+                for (int i = 0; i < wb.NumberOfSheets; i++) {
                     HSSFSheet sheet = (HSSFSheet)wb.GetSheetAt(i);
                     if (sheet == null) { continue; }
 
-                    if (includeSheetNames)
-                    {
+                    if (includeSheetNames) {
                         String name = wb.GetSheetName(i);
-                        if (name != null)
-                        {
+                        if (name != null) {
                             text.Append(name);
                             text.Append("\n");
                         }
                     }
 
                     // Header text, if there is any
-                    if (sheet.Header != null && includeHeaderFooter)
-                    {
+                    if (sheet.Header != null && includeHeaderFooter) {
                         text.Append(
                                 ExtractHeaderFooter(sheet.Header)
                         );
@@ -176,72 +172,65 @@ namespace Npoi.Core.HSSF.Extractor
 
                     int firstRow = sheet.FirstRowNum;
                     int lastRow = sheet.LastRowNum;
-                    for (int j = firstRow; j <= lastRow; j++)
-                    {
+                    for (int j = firstRow; j <= lastRow; j++) {
                         IRow row = sheet.GetRow(j);
                         if (row == null) { continue; }
 
                         // Check each cell in turn
                         int firstCell = row.FirstCellNum;
                         int lastCell = row.LastCellNum;
-                        if (includeBlankCells)
-                        {
+                        if (includeBlankCells) {
                             firstCell = 0;
                         }
 
-                        for (int k = firstCell; k < lastCell; k++)
-                        {
+                        for (int k = firstCell; k < lastCell; k++) {
                             ICell cell = row.GetCell(k);
                             bool outputContents = true;
 
-                            if (cell == null)
-                            {
+                            if (cell == null) {
                                 // Only output if requested
                                 outputContents = includeBlankCells;
                             }
-                            else
-                            {
-                                switch (cell.CellType)
-                                {
+                            else {
+                                switch (cell.CellType) {
                                     case CellType.String:
                                         text.Append(cell.RichStringCellValue.String);
                                         break;
+
                                     case CellType.Numeric:
                                         // Note - we don't apply any formatting!
                                         //text.Append(cell.NumericCellValue);
                                         text.Append(_formatter.FormatCellValue(cell));
                                         break;
+
                                     case CellType.Boolean:
                                         text.Append(cell.BooleanCellValue);
                                         break;
+
                                     case CellType.Error:
                                         text.Append(ErrorEval.GetText(cell.ErrorCellValue));
                                         break;
+
                                     case CellType.Formula:
-                                        if (formulasNotResults)
-                                        {
+                                        if (formulasNotResults) {
                                             text.Append(cell.CellFormula);
                                         }
-                                        else
-                                        {
-                                            switch (cell.CachedFormulaResultType)
-                                            {
+                                        else {
+                                            switch (cell.CachedFormulaResultType) {
                                                 case CellType.String:
                                                     IRichTextString str = cell.RichStringCellValue;
-                                                    if (str != null && str.Length > 0)
-                                                    {
+                                                    if (str != null && str.Length > 0) {
                                                         text.Append(str.ToString());
                                                     }
                                                     break;
+
                                                 case CellType.Numeric:
                                                     //text.Append(cell.NumericCellValue);
                                                     HSSFCellStyle style = (HSSFCellStyle)cell.CellStyle;
-                                                    if (style == null)
-                                                    {
+                                                    if (style == null) {
                                                         text.Append(cell.NumericCellValue);
                                                     }
-                                                    else
-                                                    {
+                                                    else {
                                                         text.Append(
                                                               _formatter.FormatRawCellContents(
                                                                     cell.NumericCellValue,
@@ -251,24 +240,25 @@ namespace Npoi.Core.HSSF.Extractor
                                                         );
                                                     }
                                                     break;
+
                                                 case CellType.Boolean:
                                                     text.Append(cell.BooleanCellValue);
                                                     break;
+
                                                 case CellType.Error:
                                                     text.Append(ErrorEval.GetText(cell.ErrorCellValue));
                                                     break;
-
                                             }
                                         }
                                         break;
+
                                     default:
                                         throw new Exception("Unexpected cell type (" + cell.CellType + ")");
                                 }
 
                                 // Output the comment, if requested and exists
                                 Npoi.Core.SS.UserModel.IComment comment = cell.CellComment;
-                                if (includeCellComments && comment != null)
-                                {
+                                if (includeCellComments && comment != null) {
                                     // Replace any newlines with spaces, otherwise it
                                     //  breaks the output
                                     String commentText = comment.String.String.Replace('\n', ' ');
@@ -277,8 +267,7 @@ namespace Npoi.Core.HSSF.Extractor
                             }
 
                             // Output a tab if we're not on the last cell
-                            if (outputContents && k < (lastCell - 1))
-                            {
+                            if (outputContents && k < (lastCell - 1)) {
                                 text.Append("\t");
                             }
                         }
@@ -288,8 +277,7 @@ namespace Npoi.Core.HSSF.Extractor
                     }
 
                     // Finally Feader text, if there is any
-                    if (sheet.Footer != null && includeHeaderFooter)
-                    {
+                    if (sheet.Footer != null && includeHeaderFooter) {
                         text.Append(
                                 ExtractHeaderFooter(sheet.Footer)
                         );
@@ -305,22 +293,18 @@ namespace Npoi.Core.HSSF.Extractor
         /// </summary>
         /// <param name="hf">The header or footer</param>
         /// <returns></returns>
-        public static String ExtractHeaderFooter(Npoi.Core.SS.UserModel.IHeaderFooter hf)
-        {
+        public static String ExtractHeaderFooter(Npoi.Core.SS.UserModel.IHeaderFooter hf) {
             StringBuilder text = new StringBuilder();
 
-            if (hf.Left != null)
-            {
+            if (hf.Left != null) {
                 text.Append(hf.Left);
             }
-            if (hf.Center != null)
-            {
+            if (hf.Center != null) {
                 if (text.Length > 0)
                     text.Append("\t");
                 text.Append(hf.Center);
             }
-            if (hf.Right != null)
-            {
+            if (hf.Right != null) {
                 if (text.Length > 0)
                     text.Append("\t");
                 text.Append(hf.Right);

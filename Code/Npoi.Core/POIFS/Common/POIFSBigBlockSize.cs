@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,14 @@
    limitations under the License.
 ==================================================================== */
 
-
 using Npoi.Core.Util;
+
 namespace Npoi.Core.POIFS.Common
 {
-
     /**
      * <p>A class describing attributes of the Big Block Size</p>
      */
+
     public class POIFSBigBlockSize
     {
         private int bigBlockSize;
@@ -41,11 +40,12 @@ namespace Npoi.Core.POIFS.Common
         }
 
         /**
-         * Returns the value that Gets written into the 
+         * Returns the value that Gets written into the
          *  header.
          * Is the power of two that corresponds to the
          *  size of the block, eg 512 => 9
          */
+
         public short GetHeaderValue()
         {
             return headerValue;
@@ -60,14 +60,15 @@ namespace Npoi.Core.POIFS.Common
         {
             return bigBlockSize / LittleEndianConsts.INT_SIZE;
         }
+
         public int GetXBATEntriesPerBlock()
         {
             return GetBATEntriesPerBlock() - 1;
         }
+
         public int GetNextXBATChainOffset()
         {
             return GetXBATEntriesPerBlock() * LittleEndianConsts.INT_SIZE;
         }
     }
-
 }

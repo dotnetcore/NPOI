@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,10 +17,9 @@
 
 namespace Npoi.Core.HSSF.EventUserModel
 {
-    using System.IO;
-    using Npoi.Core.POIFS.FileSystem;
     using Npoi.Core.HSSF.Record;
-
+    using Npoi.Core.POIFS.FileSystem;
+    using System.IO;
 
     /// <summary>
     /// Low level event based HSSF Reader.  Pass either a DocumentInputStream to
@@ -38,8 +36,7 @@ namespace Npoi.Core.HSSF.EventUserModel
         /// <summary>
         /// Creates a new instance of HSSFEventFactory
         /// </summary>
-        public HSSFEventFactory()
-        {
+        public HSSFEventFactory() {
         }
 
         /// <summary>
@@ -47,8 +44,7 @@ namespace Npoi.Core.HSSF.EventUserModel
         /// </summary>
         /// <param name="req">an Instance of HSSFRequest which has your registered listeners</param>
         /// <param name="fs">a POIFS filesystem containing your workbook</param>
-        public void ProcessWorkbookEvents(HSSFRequest req, POIFSFileSystem fs)
-        {
+        public void ProcessWorkbookEvents(HSSFRequest req, POIFSFileSystem fs) {
             Stream in1 = fs.CreateDocumentInputStream("Workbook");
 
             ProcessEvents(req, in1);
@@ -60,36 +56,31 @@ namespace Npoi.Core.HSSF.EventUserModel
         /// <param name="req">an Instance of HSSFRequest which has your registered listeners</param>
         /// <param name="fs">a POIFS filesystem containing your workbook</param>
         /// <returns>numeric user-specified result code.</returns>
-        public short AbortableProcessWorkbookEvents(HSSFRequest req, POIFSFileSystem fs)
-        {
+        public short AbortableProcessWorkbookEvents(HSSFRequest req, POIFSFileSystem fs) {
             Stream in1 = fs.CreateDocumentInputStream("Workbook");
             return AbortableProcessEvents(req, in1);
         }
 
         /// <summary>
         /// Processes a DocumentInputStream into essentially Record events.
-        /// If an 
+        /// If an
         /// <c>AbortableHSSFListener</c>
         ///  causes a halt to Processing during this call
-        /// the method will return just as with 
+        /// the method will return just as with
         /// <c>abortableProcessEvents</c>
         /// , but no
-        /// user code or 
+        /// user code or
         /// <c>HSSFUserException</c>
         ///  will be passed back.
         /// </summary>
         /// <param name="req">an Instance of HSSFRequest which has your registered listeners</param>
         /// <param name="in1">a DocumentInputStream obtained from POIFS's POIFSFileSystem object</param>
-        public void ProcessEvents(HSSFRequest req, Stream in1)
-        {
-            try
-            {
+        public void ProcessEvents(HSSFRequest req, Stream in1) {
+            try {
                 GenericProcessEvents(req, new RecordInputStream(in1));
             }
-            catch (HSSFUserException)
-            {/*If an HSSFUserException user exception Is thrown, ignore it.*/ }
+            catch (HSSFUserException) {/*If an HSSFUserException user exception Is thrown, ignore it.*/ }
         }
-
 
         /// <summary>
         /// Processes a DocumentInputStream into essentially Record events.
@@ -97,8 +88,7 @@ namespace Npoi.Core.HSSF.EventUserModel
         /// <param name="req">an Instance of HSSFRequest which has your registered listeners</param>
         /// <param name="in1">a DocumentInputStream obtained from POIFS's POIFSFileSystem object</param>
         /// <returns>numeric user-specified result code.</returns>
-        public short AbortableProcessEvents(HSSFRequest req, Stream in1)
-        {
+        public short AbortableProcessEvents(HSSFRequest req, Stream in1) {
             return GenericProcessEvents(req, new RecordInputStream(in1));
         }
 
@@ -108,8 +98,7 @@ namespace Npoi.Core.HSSF.EventUserModel
         /// <param name="req">an Instance of HSSFRequest which has your registered listeners</param>
         /// <param name="in1">a DocumentInputStream obtained from POIFS's POIFSFileSystem object</param>
         /// <returns>numeric user-specified result code.</returns>
-        protected short GenericProcessEvents(HSSFRequest req, RecordInputStream in1)
-        {
+        protected short GenericProcessEvents(HSSFRequest req, RecordInputStream in1) {
             bool going = true;
             short userCode = 0;
             Record r = null;
@@ -118,16 +107,13 @@ namespace Npoi.Core.HSSF.EventUserModel
             HSSFRecordStream recordStream = new HSSFRecordStream(in1);
 
             // Process each record as they come in
-            while (going)
-            {
+            while (going) {
                 r = recordStream.NextRecord();
-                if (r != null)
-                {
+                if (r != null) {
                     userCode = req.ProcessRecord(r);
                     if (userCode != 0) break;
                 }
-                else
-                {
+                else {
                     going = false;
                 }
             }

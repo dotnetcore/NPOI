@@ -17,12 +17,11 @@
 
 namespace Npoi.Core.HSSF.Util
 {
-    using System;
-    using System.Collections;
+    using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.SS.UserModel;
+    using System;
     using System.Collections.Generic;
-    using Npoi.Core.HSSF.Record;
 
     /// <summary>
     /// Various utility functions that make working with a cells and rows easier.  The various
@@ -80,7 +79,6 @@ namespace Npoi.Core.HSSF.Util
 
         private class UnicodeMapping
         {
-
             public String entityName;
             public String resolvedValue;
 
@@ -113,7 +111,6 @@ namespace Npoi.Core.HSSF.Util
             return row;
         }
 
-
         /// <summary>
         /// Get a specific cell from a row. If the cell doesn't exist,
         /// </summary>
@@ -130,7 +127,6 @@ namespace Npoi.Core.HSSF.Util
             }
             return cell;
         }
-
 
         /// <summary>
         /// Creates a cell, gives it a value, and applies a style if provided
@@ -152,7 +148,6 @@ namespace Npoi.Core.HSSF.Util
 
             return cell;
         }
-
 
         /// <summary>
         /// Create a cell, and give it a value.
@@ -242,9 +237,9 @@ namespace Npoi.Core.HSSF.Util
             switch (oldCell.CellType)
             {
                 case CellType.String:
-                   HSSFRichTextString rts= oldCell.RichStringCellValue as HSSFRichTextString;
+                    HSSFRichTextString rts = oldCell.RichStringCellValue as HSSFRichTextString;
                     newCell.SetCellValue(rts);
-                    if(rts!=null)
+                    if (rts != null)
                     {
                         for (int j = 0; j < rts.NumFormattingRuns; j++)
                         {
@@ -257,27 +252,32 @@ namespace Npoi.Core.HSSF.Util
                             }
                             else
                             {
-                                endIndex = rts.GetIndexOfFormattingRun(j+1);
+                                endIndex = rts.GetIndexOfFormattingRun(j + 1);
                             }
                             FontRecord fr = newCell.BoundWorkbook.CreateNewFont();
                             fr.CloneStyleFrom(oldCell.BoundWorkbook.GetFontRecordAt(fontIndex));
                             HSSFFont font = new HSSFFont((short)(newCell.BoundWorkbook.GetFontIndex(fr)), fr);
-                            newCell.RichStringCellValue.ApplyFont(startIndex,endIndex, font);
+                            newCell.RichStringCellValue.ApplyFont(startIndex, endIndex, font);
                         }
                     }
                     break;
+
                 case CellType.Numeric:
                     newCell.SetCellValue(oldCell.NumericCellValue);
                     break;
+
                 case CellType.Blank:
                     newCell.SetCellType(CellType.Blank);
                     break;
+
                 case CellType.Boolean:
                     newCell.SetCellValue(oldCell.BooleanCellValue);
                     break;
+
                 case CellType.Error:
                     newCell.SetCellValue(oldCell.ErrorCellValue);
                     break;
+
                 case CellType.Formula:
                     if (keepFormulas)
                     {
@@ -298,6 +298,7 @@ namespace Npoi.Core.HSSF.Util
                         }
                     }
                     break;
+
                 default:
                     break;
             }
@@ -324,7 +325,8 @@ namespace Npoi.Core.HSSF.Util
         {
             SetCellStyleProperty(cell, workbook, FONT, font);
         }
-        private static bool CompareHashTableKeyValueIsEqual(Dictionary<string,object> a, Dictionary<string, object> b)
+
+        private static bool CompareHashTableKeyValueIsEqual(Dictionary<string, object> a, Dictionary<string, object> b)
         {
             foreach (var a_entry in a)
             {
@@ -345,6 +347,7 @@ namespace Npoi.Core.HSSF.Util
 
             return true;
         }
+
         /**
          *  This method attempt to find an already existing HSSFCellStyle that matches
          *  what you want the style to be. If it does not find the style, then it
@@ -360,6 +363,7 @@ namespace Npoi.Core.HSSF.Util
          *@param  cell                   The cell that needs it's style changes
          *@exception  NestableException  Thrown if an error happens.
          */
+
         public static void SetCellStyleProperty(ICell cell, HSSFWorkbook workbook, String propertyName, Object propertyValue)
         {
             ICellStyle originalStyle = cell.CellStyle;
@@ -525,7 +529,6 @@ namespace Npoi.Core.HSSF.Util
         /// <returns>transalted to unicode</returns>
         public static ICell TranslateUnicodeValues(ICell cell)
         {
-
             String s = cell.RichStringCellValue.String;
             bool foundUnicode = false;
             String lowerCaseStr = s.ToLower();

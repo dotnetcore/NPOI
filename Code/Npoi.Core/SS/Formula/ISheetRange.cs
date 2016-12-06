@@ -17,8 +17,6 @@
 
 namespace Npoi.Core.SS.Formula
 {
-    using System;
-
     public interface ISheetRange
     {
         int FirstSheetIndex { get; }

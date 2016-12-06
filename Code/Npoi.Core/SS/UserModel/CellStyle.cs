@@ -25,6 +25,7 @@ namespace Npoi.Core.SS.UserModel
         /// the Cell should be auto-sized to shrink to fit if the text is too long
         /// </summary>
         bool ShrinkToFit { get; set; }
+
         /**
          * get the index within the Workbook (sequence within the collection of ExtnededFormat objects)
          * @return unique index number of the underlying record this style represents (probably you don't care
@@ -42,6 +43,7 @@ namespace Npoi.Core.SS.UserModel
         /**
          * Get the format string
          */
+
         String GetDataFormatString();
 
         /**
@@ -73,7 +75,6 @@ namespace Npoi.Core.SS.UserModel
 
         bool IsLocked { get; set; }
 
-
         /**
          * get the type of horizontal alignment for the cell
          * @return align - the type of alignment
@@ -88,14 +89,12 @@ namespace Npoi.Core.SS.UserModel
 
         HorizontalAlignment Alignment { get; set; }
 
-
         /**
          * get whether the text should be wrapped
          * @return wrap text or not
          */
 
         bool WrapText { get; set; }
-
 
         /**
          * get the type of vertical alignment for the cell
@@ -143,7 +142,6 @@ namespace Npoi.Core.SS.UserModel
 
         BorderStyle BorderLeft { get; set; }
 
-
         /**
          * get the type of border to use for the right border of the cell
          * @return border type
@@ -164,7 +162,6 @@ namespace Npoi.Core.SS.UserModel
          */
 
         BorderStyle BorderRight { get; set; }
-
 
         /**
          * get the type of border to use for the top border of the cell
@@ -187,7 +184,6 @@ namespace Npoi.Core.SS.UserModel
 
         BorderStyle BorderTop { get; set; }
 
-
         /**
          * get the type of border to use for the bottom border of the cell
          * @return border type
@@ -208,12 +204,10 @@ namespace Npoi.Core.SS.UserModel
          */
         BorderStyle BorderBottom { get; set; }
 
-
         /**
          * get the color to use for the left border
          */
         short LeftBorderColor { get; set; }
-
 
         /**
          * get the color to use for the left border
@@ -221,20 +215,17 @@ namespace Npoi.Core.SS.UserModel
          */
         short RightBorderColor { get; set; }
 
-
         /**
          * get the color to use for the top border
          * @return hhe index of the color defInition
          */
         short TopBorderColor { get; set; }
 
-
         /**
          * get the color to use for the left border
          * @return the index of the color defInition
          */
         short BottomBorderColor { get; set; }
-
 
         /**
          * get the fill pattern (??) - set to 1 to fill with foreground color
@@ -249,7 +240,6 @@ namespace Npoi.Core.SS.UserModel
          */
         short FillBackgroundColor { get; set; }
 
-
         /**
          * get the foreground fill color
          * @return fill color
@@ -258,12 +248,12 @@ namespace Npoi.Core.SS.UserModel
 
         /**
          * Clones all the style information from another
-         *  CellStyle, onto this one. This 
+         *  CellStyle, onto this one. This
          *  CellStyle will then have all the same
          *  properties as the source, but the two may
          *  be edited independently.
-         * Any stylings on this CellStyle will be lost! 
-         *  
+         * Any stylings on this CellStyle will be lost!
+         *
          * The source CellStyle could be from another
          *  Workbook if you like. This allows you to
          *  copy styles from one Workbook to another.
@@ -272,6 +262,7 @@ namespace Npoi.Core.SS.UserModel
          *  to be of the same type (HSSFCellStyle or
          *  XSSFCellStyle)
          */
+
         void CloneStyleFrom(ICellStyle source);
 
         IFont GetFont(IWorkbook parentWorkbook);
@@ -299,7 +290,7 @@ namespace Npoi.Core.SS.UserModel
          *  background fill, resolving indexes using
          *  the supplied workbook.
          * This will work for both indexed and rgb
-         *  defined colors. 
+         *  defined colors.
          */
         IColor FillBackgroundColorColor { get; }
         /**
@@ -307,7 +298,7 @@ namespace Npoi.Core.SS.UserModel
          *  foreground fill, resolving indexes using
          *  the supplied workbook.
          * This will work for both indexed and rgb
-         *  defined colors. 
+         *  defined colors.
          */
         IColor FillForegroundColorColor { get; }
     }

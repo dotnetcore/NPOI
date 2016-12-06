@@ -17,21 +17,22 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-    using System.Text;
     using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Util;
     using Npoi.Core.Util;
+    using System;
+    using System.Text;
 
     /**
      * <p>Title:        Area 3D Ptg - 3D reference (Sheet + Area)</p>
      * <p>Description:  Defined an area in Extern Sheet. </p>
      * <p>REFERENCE:  </p>
-     * 
+     *
      * This is HSSF only, as it matches the HSSF file format way of
      *  referring to the sheet by an extern index. The XSSF equivalent
      *  is {@link Area3DPxg}
      */
+
     [Serializable]
     public class Area3DPtg : AreaPtgBase, WorkbookDependentFormula, IExternSheetReferenceToken
     {
@@ -42,17 +43,16 @@ namespace Npoi.Core.SS.Formula.PTG
         private BitField rowRelative = BitFieldFactory.GetInstance(0x8000);
         private BitField colRelative = BitFieldFactory.GetInstance(0x4000);
 
-
-        public Area3DPtg(String arearef, int externIdx):base(arearef)
+        public Area3DPtg(String arearef, int externIdx) : base(arearef)
         {
-            ExternSheetIndex=externIdx;
-
+            ExternSheetIndex = externIdx;
         }
 
-        public Area3DPtg(AreaReference arearef, int externIdx):base(arearef)
+        public Area3DPtg(AreaReference arearef, int externIdx) : base(arearef)
         {
-            ExternSheetIndex=(externIdx);
+            ExternSheetIndex = (externIdx);
         }
+
         public Area3DPtg(ILittleEndianInput in1)
         {
             field_1_index_extern_sheet = in1.ReadShort();
@@ -64,7 +64,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 int externalSheetIndex) :
             base(firstRow, lastRow, firstColumn, lastColumn, firstRowRelative, lastRowRelative, firstColRelative, lastColRelative)
         {
-            ExternSheetIndex= externalSheetIndex;
+            ExternSheetIndex = externalSheetIndex;
         }
 
         public override String ToString()
@@ -85,6 +85,7 @@ namespace Npoi.Core.SS.Formula.PTG
             out1.WriteShort(field_1_index_extern_sheet);
             WriteCoordinates(out1);
         }
+
         public override int Size
         {
             get { return SIZE; }
@@ -92,10 +93,9 @@ namespace Npoi.Core.SS.Formula.PTG
 
         public int ExternSheetIndex
         {
-            get{return field_1_index_extern_sheet;}
+            get { return field_1_index_extern_sheet; }
             set { field_1_index_extern_sheet = value; }
         }
-
 
         /*public String Area{
             RangeAddress ra = new RangeAddress( FirstColumn,FirstRow + 1, LastColumn, LastRow + 1);
@@ -111,32 +111,34 @@ namespace Npoi.Core.SS.Formula.PTG
             CellReference frstCell = ar.FirstCell;
             CellReference lastCell = ar.LastCell;
 
-            FirstRow=(short)frstCell.Row;
-            FirstColumn=frstCell.Col;
-            LastRow=(short)lastCell.Row;
-            LastColumn=lastCell.Col;
-            IsFirstColRelative=!frstCell.IsColAbsolute;
-            IsLastColRelative=!lastCell.IsColAbsolute;
-            IsFirstRowRelative=!frstCell.IsRowAbsolute;
-            IsLastRowRelative=!lastCell.IsRowAbsolute;
+            FirstRow = (short)frstCell.Row;
+            FirstColumn = frstCell.Col;
+            LastRow = (short)lastCell.Row;
+            LastColumn = lastCell.Col;
+            IsFirstColRelative = !frstCell.IsColAbsolute;
+            IsLastColRelative = !lastCell.IsColAbsolute;
+            IsFirstRowRelative = !frstCell.IsRowAbsolute;
+            IsLastRowRelative = !lastCell.IsRowAbsolute;
         }
 
         public override String ToFormulaString()
         {
             throw new NotImplementedException("3D references need a workbook to determine formula text");
         }
+
         /**
  * @return text representation of this area reference that can be used in text
  *  formulas. The sheet name will get properly delimited if required.
  */
+
         public String ToFormulaString(IFormulaRenderingWorkbook book)
         {
             return ExternSheetNameResolver.PrependSheetName(book, field_1_index_extern_sheet, FormatReferenceAsString());
         }
+
         public override byte DefaultOperandClass
         {
             get { return Ptg.CLASS_REF; }
         }
-
     }
 }

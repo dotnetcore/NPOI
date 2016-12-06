@@ -17,14 +17,13 @@
 
 namespace Npoi.Core.HSSF.Model
 {
+    using Npoi.Core.DDF;
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
     using System;
 
-    using Npoi.Core.HSSF.Record;
-    using Npoi.Core.DDF;
-    using Npoi.Core.HSSF.UserModel;
-
     [Obsolete]
-    public class SimpleFilledShape: AbstractShape
+    public class SimpleFilledShape : AbstractShape
     {
         private EscherContainerRecord spContainer;
         private ObjRecord objRecord;
@@ -55,18 +54,18 @@ namespace Npoi.Core.HSSF.Model
             EscherOptRecord opt = new EscherOptRecord();
             EscherClientDataRecord clientData = new EscherClientDataRecord();
 
-            spContainer.RecordId=EscherContainerRecord.SP_CONTAINER;
-            spContainer.Options=(short)0x000F;
-            sp.RecordId=EscherSpRecord.RECORD_ID;
+            spContainer.RecordId = EscherContainerRecord.SP_CONTAINER;
+            spContainer.Options = (short)0x000F;
+            sp.RecordId = EscherSpRecord.RECORD_ID;
             short shapeType = objTypeToShapeType(hssfShape.ShapeType);
-            sp.Options=(short)((shapeType << 4) | 0x2);
-            sp.ShapeId=shapeId;
-            sp.Flags=EscherSpRecord.FLAG_HAVEANCHOR | EscherSpRecord.FLAG_HASSHAPETYPE;
-            opt.RecordId=EscherOptRecord.RECORD_ID;
+            sp.Options = (short)((shapeType << 4) | 0x2);
+            sp.ShapeId = shapeId;
+            sp.Flags = EscherSpRecord.FLAG_HAVEANCHOR | EscherSpRecord.FLAG_HASSHAPETYPE;
+            opt.RecordId = EscherOptRecord.RECORD_ID;
             AddStandardOptions(shape, opt);
             EscherRecord anchor = CreateAnchor(shape.Anchor);
-            clientData.RecordId=EscherClientDataRecord.RECORD_ID;
-            clientData.Options=(short)0x0000;
+            clientData.RecordId = EscherClientDataRecord.RECORD_ID;
+            clientData.Options = (short)0x0000;
 
             spContainer.AddChildRecord(sp);
             spContainer.AddChildRecord(opt);
@@ -113,6 +112,7 @@ namespace Npoi.Core.HSSF.Model
 
             return obj;
         }
+
         /// <summary>
         /// The shape container and it's children that can represent this
         /// shape.
@@ -125,6 +125,7 @@ namespace Npoi.Core.HSSF.Model
                 return spContainer;
             }
         }
+
         /// <summary>
         /// The object record that is associated with this shape.
         /// </summary>
@@ -136,6 +137,5 @@ namespace Npoi.Core.HSSF.Model
                 return objRecord;
             }
         }
-
     }
 }

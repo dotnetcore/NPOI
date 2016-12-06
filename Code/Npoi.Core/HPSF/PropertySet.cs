@@ -17,23 +17,23 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System.Collections.Generic;
 
 namespace Npoi.Core.HPSF
 {
+    using Npoi.Core.HPSF.Wellknown;
+    using Npoi.Core.Util;
     using System;
     using System.IO;
     using System.Text;
-    using Npoi.Core.Util;
-    using Npoi.Core.HPSF.Wellknown;
 
     /// <summary>
     /// Represents a property Set in the Horrible Property Set Format
@@ -59,7 +59,7 @@ namespace Npoi.Core.HPSF
     /// a {@link PropertySet}'s {@link Section} (throwing a {@link
     /// NoSingleSectionException} if the {@link PropertySet} Contains more
     /// (or less) than exactly one {@link Section}).
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
     /// @author Drew Varner (Drew.Varner hanginIn sc.edu)
     /// @since 2002-02-09
@@ -67,10 +67,10 @@ namespace Npoi.Core.HPSF
     [Serializable]
     public class PropertySet
     {
-
         /**
          * The "byteOrder" field must equal this value.
          */
+
         protected static byte[] BYTE_ORDER_ASSERTION =
             new byte[] { (byte)0xFE, (byte)0xFF };
 
@@ -85,17 +85,15 @@ namespace Npoi.Core.HPSF
         /// field. It is always <c>0xFFFE</c>
         /// </summary>
         /// <value>The property Set stream's low-level "byte order" field..</value>
-        public virtual int ByteOrder
-        {
+        public virtual int ByteOrder {
             get { return byteOrder; }
             set { byteOrder = value; }
         }
 
-
-
         /**
          * The "format" field must equal this value.
          */
+
         protected static byte[] FORMAT_ASSERTION =
             new byte[] { (byte)0x00, (byte)0x00 };
 
@@ -110,13 +108,10 @@ namespace Npoi.Core.HPSF
         /// field. It is always <c>0x0000</c>
         /// </summary>
         /// <value>The property Set stream's low-level "format" field.</value>
-        public virtual int Format
-        {
+        public virtual int Format {
             get { return format; }
             set { format = value; }
         }
-
-
 
         /**
          * Specifies the version of the operating system that Created
@@ -124,7 +119,6 @@ namespace Npoi.Core.HPSF
          * details!
          */
         protected int osVersion;
-
 
         /**
          * If the OS version field holds this value the property Set stream Was
@@ -149,18 +143,16 @@ namespace Npoi.Core.HPSF
         /// field.
         /// </summary>
         /// <value>The property Set stream's low-level "OS version" field.</value>
-        public virtual int OSVersion
-        {
+        public virtual int OSVersion {
             get { return osVersion; }
             set { osVersion = value; }
         }
-
-
 
         /**
          * Specifies this {@link PropertySet}'s "classID" field. See
          * the HPFS documentation for details!
          */
+
         [NonSerialized]
         protected ClassID classID;
 
@@ -168,42 +160,32 @@ namespace Npoi.Core.HPSF
         /// Gets or sets the property Set stream's low-level "class ID"
         /// </summary>
         /// <value>The property Set stream's low-level "class ID" field.</value>
-        public virtual ClassID ClassID
-        {
+        public virtual ClassID ClassID {
             get { return classID; }
             set { classID = value; }
         }
-
-
 
         /// <summary>
         /// Returns the number of {@link Section}s in the property
         /// Set.
         /// </summary>
         /// <value>The number of {@link Section}s in the property Set.</value>
-        public virtual int SectionCount
-        {
+        public virtual int SectionCount {
             get { return sections.Count; }
         }
-
-
 
         /**
          * The sections in this {@link PropertySet}.
          */
         protected List<Section> sections;
 
-
         /// <summary>
         /// Returns the {@link Section}s in the property Set.
         /// </summary>
         /// <value>{@link Section}s in the property Set.</value>
-        public virtual List<Section> Sections
-        {
+        public virtual List<Section> Sections {
             get { return sections; }
         }
-
-
 
         /// <summary>
         /// Creates an empty (uninitialized) {@link PropertySet}
@@ -212,10 +194,7 @@ namespace Npoi.Core.HPSF
         /// only, but expect it To become public once the property Set's
         /// writing functionality is implemented.
         /// </summary>
-        protected PropertySet()
-        { }
-
-
+        protected PropertySet() { }
 
         /// <summary>
         /// Creates a {@link PropertySet} instance from an {@link
@@ -229,10 +208,8 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="stream">Holds the data making out the property Set
         /// stream.</param>
-        public PropertySet(Stream stream)
-        {
-            if (IsPropertySetStream(stream))
-            {
+        public PropertySet(Stream stream) {
+            if (IsPropertySetStream(stream)) {
                 int avail = (stream as ByteArrayInputStream).Available(); ;
                 byte[] buffer = new byte[avail];
                 stream.Read(buffer, 0, buffer.Length);
@@ -242,27 +219,22 @@ namespace Npoi.Core.HPSF
                 throw new NoPropertySetStreamException("this stream may not be a valid property set stream");
         }
 
-
-
         /// <summary>
         /// Creates a {@link PropertySet} instance from a byte array
         /// that represents a stream in the Horrible Property Set
         /// Format.
         /// </summary>
         /// <param name="stream">The byte array holding the stream data.</param>
-        /// <param name="offset">The offset in stream where the stream data begin. 
+        /// <param name="offset">The offset in stream where the stream data begin.
         /// If the stream data begin with the first byte in the
         /// array, the offset is 0.</param>
         /// <param name="Length"> The Length of the stream data.</param>
-        public PropertySet(byte[] stream, int offset, int Length)
-        {
+        public PropertySet(byte[] stream, int offset, int Length) {
             if (IsPropertySetStream(stream, offset, Length))
                 init(stream, offset, Length);
             else
                 throw new NoPropertySetStreamException();
         }
-
-
 
         /// <summary>
         /// Creates a {@link PropertySet} instance from a byte array
@@ -271,12 +243,8 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="stream">The byte array holding the stream data. The
         /// complete byte array contents is the stream data.</param>
-        public PropertySet(byte[] stream):this(stream, 0, stream.Length)
-        {
-            
+        public PropertySet(byte[] stream) : this(stream, 0, stream.Length) {
         }
-
-
 
         /// <summary>
         /// Checks whether an {@link InputStream} is in the Horrible
@@ -291,8 +259,7 @@ namespace Npoi.Core.HPSF
         /// 	<c>true</c> if the stream is a property Set
         /// stream; otherwise, <c>false</c>.
         /// </returns>
-        public static bool IsPropertySetStream(Stream stream)
-        {
+        public static bool IsPropertySetStream(Stream stream) {
             ByteArrayInputStream dis = stream as ByteArrayInputStream;
             /*
              * Read at most this many bytes.
@@ -322,8 +289,6 @@ namespace Npoi.Core.HPSF
             return isPropertySetStream;
         }
 
-
-
         /// <summary>
         /// Checks whether a byte array is in the Horrible Property Set
         /// Format.
@@ -338,8 +303,7 @@ namespace Npoi.Core.HPSF
         /// </returns>
         public static bool IsPropertySetStream(byte[] src,
                                                   int offset,
-                                                  int Length)
-        {
+                                                  int Length) {
             /* FIXME (3): Ensure that at most "Length" bytes are Read. */
 
             /*
@@ -356,7 +320,7 @@ namespace Npoi.Core.HPSF
             int format = LittleEndian.GetUShort(src, o);
             o += LittleEndianConsts.SHORT_SIZE;
             temp = new byte[LittleEndianConsts.SHORT_SIZE];
-            LittleEndian.PutShort(temp,0, (short)format);
+            LittleEndian.PutShort(temp, 0, (short)format);
             if (!Arrays.Equals(temp, FORMAT_ASSERTION))
                 return false;
             long osVersion = LittleEndian.GetUInt(src, offset);
@@ -370,8 +334,6 @@ namespace Npoi.Core.HPSF
             return true;
         }
 
-
-
         /// <summary>
         /// Initializes this {@link PropertySet} instance from a byte
         /// array. The method assumes that it has been checked alReady that
@@ -381,8 +343,7 @@ namespace Npoi.Core.HPSF
         /// <param name="src">Byte array containing the property Set stream</param>
         /// <param name="offset">The property Set stream starts at this offset</param>
         /// <param name="Length">Length of the property Set stream.</param>
-        private void init(byte[] src, int offset, int Length)
-        {
+        private void init(byte[] src, int offset, int Length) {
             /* FIXME (3): Ensure that at most "Length" bytes are Read. */
 
             /*
@@ -422,15 +383,12 @@ namespace Npoi.Core.HPSF
              * consists of a ClassID and a DWord, and we have To increment
              * "offset" accordingly.
              */
-            for (int i = 0; i < sectionCount; i++)
-            {
+            for (int i = 0; i < sectionCount; i++) {
                 Section s = new Section(src, o);
                 o += ClassID.Length + LittleEndianConsts.INT_SIZE;
                 sections.Add(s);
             }
         }
-
-
 
         /// <summary>
         /// Checks whether this {@link PropertySet} represents a Summary
@@ -440,8 +398,7 @@ namespace Npoi.Core.HPSF
         /// 	<c>true</c> Checks whether this {@link PropertySet} represents a Summary
         /// Information; otherwise, <c>false</c>.
         /// </value>
-        public virtual bool IsSummaryInformation
-        {
+        public virtual bool IsSummaryInformation {
             get
             {
                 if (sections.Count <= 0)
@@ -459,13 +416,12 @@ namespace Npoi.Core.HPSF
         /// </value>
         /// Checks whether this {@link PropertySet} is a Document
         /// Summary Information.
-        /// @return 
+        /// @return
         /// <c>true</c>
         ///  if this {@link PropertySet}
-        /// represents a Document Summary Information, else 
+        /// represents a Document Summary Information, else
         /// <c>false</c>
-        public virtual bool IsDocumentSummaryInformation
-        {
+        public virtual bool IsDocumentSummaryInformation {
             get
             {
                 if (sections.Count <= 0)
@@ -474,8 +430,6 @@ namespace Npoi.Core.HPSF
                                   SectionIDMap.DOCUMENT_SUMMARY_INFORMATION_ID1);
             }
         }
-
-
 
         /// <summary>
         /// Convenience method returning the {@link Property} array
@@ -486,12 +440,9 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <value>The properties of the only {@link Section} of this
         /// {@link PropertySet}.</value>
-        public virtual Property[] Properties
-        {
+        public virtual Property[] Properties {
             get { return FirstSection.Properties; }
         }
-
-
 
         /// <summary>
         /// Convenience method returning the value of the property with
@@ -501,12 +452,9 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="id">The property ID</param>
         /// <returns>The property value</returns>
-        public virtual Object GetProperty(int id)
-        {
+        public virtual Object GetProperty(int id) {
             return FirstSection.GetProperty(id);
         }
-
-
 
         /// <summary>
         /// Convenience method returning the value of a bool property
@@ -518,12 +466,9 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="id">The property ID</param>
         /// <returns>The property value</returns>
-        public virtual bool GetPropertyBooleanValue(int id)
-        {
+        public virtual bool GetPropertyBooleanValue(int id) {
             return FirstSection.GetPropertyBooleanValue(id);
         }
-
-
 
         /// <summary>
         /// Convenience method returning the value of the numeric
@@ -534,12 +479,9 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="id">The property ID</param>
         /// <returns>The propertyIntValue value</returns>
-        public virtual int GetPropertyIntValue(int id)
-        {
+        public virtual int GetPropertyIntValue(int id) {
             return FirstSection.GetPropertyIntValue(id);
         }
-
-
 
         /// <summary>
         /// Checks whether the property which the last call To {@link
@@ -553,36 +495,29 @@ namespace Npoi.Core.HPSF
         /// <value><c>true</c> if the last call To {@link
         /// #GetPropertyIntValue} or {@link #GetProperty} tried To access a
         /// property that Was not available; otherwise, <c>false</c>.</value>
-        public virtual bool WasNull
-        {
+        public virtual bool WasNull {
             get { return FirstSection.WasNull; }
         }
-
-
 
         /// <summary>
         /// Gets the first section.
         /// </summary>
         /// <value>The first section.</value>
-        public virtual Section FirstSection
-        {
+        public virtual Section FirstSection {
             get
             {
-                if (SectionCount< 1)
+                if (SectionCount < 1)
                     throw new MissingSectionException("Property Set does not contain any sections.");
                 return sections[0];
             }
         }
-
-
 
         /// <summary>
         /// If the {@link PropertySet} has only a single section this
         /// method returns it.
         /// </summary>
         /// <value>The singleSection value</value>
-        public Section SingleSection
-        {
+        public Section SingleSection {
             get
             {
                 int sectionCount = SectionCount;
@@ -593,21 +528,18 @@ namespace Npoi.Core.HPSF
             }
         }
 
-
-
         /// <summary>
         /// Returns <c>true</c> if the <c>PropertySet</c> is equal
         /// To the specified parameter, else <c>false</c>.
         /// </summary>
-        /// <param name="o">the object To Compare this 
+        /// <param name="o">the object To Compare this
         /// <c>PropertySet</c>
         ///  with</param>
         /// <returns><c>true</c>
-        ///  if the objects are equal, 
+        ///  if the objects are equal,
         /// <c>false</c>
         /// if not</returns>
-        public override bool Equals(Object o)
-        {
+        public override bool Equals(Object o) {
             if (o == null || !(o is PropertySet))
                 return false;
             PropertySet ps = (PropertySet)o;
@@ -632,20 +564,15 @@ namespace Npoi.Core.HPSF
             return Util.AreEqual(Sections, ps.Sections);
         }
 
-
-
         /// <summary>
         /// Serves as a hash function for a particular type.
         /// </summary>
         /// <returns>
         /// A hash code for the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override int GetHashCode()
-        {
+        public override int GetHashCode() {
             throw new InvalidOperationException("FIXME: Not yet implemented.");
         }
-
-
 
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
@@ -653,8 +580,7 @@ namespace Npoi.Core.HPSF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override String ToString()
-        {
+        public override String ToString() {
             StringBuilder b = new StringBuilder();
             int sectionCount = SectionCount;
             b.Append(GetType().Name);
@@ -670,8 +596,7 @@ namespace Npoi.Core.HPSF
             b.Append(", sectionCount: ");
             b.Append(sectionCount);
             b.Append(", sections: [\n");
-            foreach (Section section in Sections)
-            {
+            foreach (Section section in Sections) {
                 b.Append(section.ToString());
             }
 

@@ -21,17 +21,16 @@ namespace Npoi.Core.SS.Formula.Eval
 
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     *  
+     *
      */
+
     public class UnaryMinusEval : Fixed1ArgFunction
     {
-
         public static Function instance = new UnaryMinusEval();
 
         private UnaryMinusEval()
         {
         }
-
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0)
         {

@@ -17,33 +17,34 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
-    using Npoi.Core.SS.Util;
 
     /**
-     * Common superclass of 2-D area refs 
+     * Common superclass of 2-D area refs
      */
+
     [Serializable]
     public abstract class Area2DPtgBase : AreaPtgBase
     {
         private const int SIZE = 9;
 
-        protected Area2DPtgBase(int firstRow, int lastRow, int firstColumn, int lastColumn, bool  firstRowRelative, bool  lastRowRelative, bool  firstColRelative, bool  lastColRelative)
+        protected Area2DPtgBase(int firstRow, int lastRow, int firstColumn, int lastColumn, bool firstRowRelative, bool lastRowRelative, bool firstColRelative, bool lastColRelative)
             : base(firstRow, lastRow, firstColumn, lastColumn, firstRowRelative, lastRowRelative, firstColRelative, lastColRelative)
         {
+        }
 
-        }
-        protected Area2DPtgBase(AreaReference ar):base(ar)
+        protected Area2DPtgBase(AreaReference ar) : base(ar)
         {
-            
         }
+
         protected Area2DPtgBase(ILittleEndianInput in1)
         {
             ReadCoordinates(in1);
         }
+
         protected abstract byte Sid { get; }
 
         public override void Write(ILittleEndianOutput out1)
@@ -51,10 +52,12 @@ namespace Npoi.Core.SS.Formula.PTG
             out1.WriteByte(Sid + PtgClass);
             WriteCoordinates(out1);
         }
+
         public Area2DPtgBase(String arearef)
             : base(arearef)
         {
         }
+
         public override int Size
         {
             get
@@ -62,10 +65,12 @@ namespace Npoi.Core.SS.Formula.PTG
                 return SIZE;
             }
         }
+
         public override String ToFormulaString()
         {
             return FormatReferenceAsString();
         }
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder();

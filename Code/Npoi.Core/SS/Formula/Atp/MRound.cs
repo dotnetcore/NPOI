@@ -17,10 +17,9 @@
 
 namespace Npoi.Core.SS.Formula.Atp
 {
-    using Npoi.Core.SS.Formula.Functions;
     using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.SS.Formula.Functions;
     using System;
-
 
     /**
      * Implementation of Excel 'Analysis ToolPak' function MROUND()<br/>
@@ -34,9 +33,9 @@ namespace Npoi.Core.SS.Formula.Atp
      *
      * @author Yegor Kozlov
      */
-    class MRound : FreeRefFunction
-    {
 
+    internal class MRound : FreeRefFunction
+    {
         public static FreeRefFunction Instance = new MRound();
 
         private MRound()
@@ -70,7 +69,6 @@ namespace Npoi.Core.SS.Formula.Atp
                         throw new EvaluationException(ErrorEval.NUM_ERROR);
                     }
                     result = multiple * Math.Round(number / multiple, MidpointRounding.AwayFromZero);
-                    
                 }
                 NumericFunction.CheckValue(result);
                 return new NumberEval(result);

@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -23,6 +22,7 @@ namespace Npoi.Core.DDF
      *
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public interface EscherSerializationListener
     {
         /**
@@ -31,6 +31,7 @@ namespace Npoi.Core.DDF
          * @param offset    The position in the data array at which the record will be Serialized.
          * @param recordId  The id of the record about to be Serialized.
          */
+
         void BeforeRecordSerialize(int offset, short recordId, EscherRecord record);
 
         /**
@@ -41,6 +42,7 @@ namespace Npoi.Core.DDF
          * @param size      The number of bytes written for this record.  If it is a container
          *                  record then this will include the size of any included records.
          */
+
         void AfterRecordSerialize(int offset, short recordId, int size, EscherRecord record);
     }
 }

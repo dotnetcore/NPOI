@@ -17,8 +17,8 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     /// <summary>
     /// An implementation of the MID function
@@ -56,7 +56,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return new StringEval("");
             }
             int endIx = Math.Min(startIx + numChars, len);
-            String result = text.Substring(startIx, endIx-startIx);
+            String result = text.Substring(startIx, endIx - startIx);
             return new StringEval(result);
         }
     }

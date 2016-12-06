@@ -18,18 +18,19 @@
  * Created on May 6, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     *  
+     *
      */
+
     public class Pi : Fixed0ArgFunction
     {
-
         private static readonly NumberEval PI_EVAL = new NumberEval(Math.PI);
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex)

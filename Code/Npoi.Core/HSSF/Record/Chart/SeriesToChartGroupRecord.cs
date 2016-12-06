@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Indicates the chart-group index for a series.  The order probably defines the mapping.  So the 0th record probably means the 0th series.  The only field in this of course defines which chart Group the 0th series (for instance) would map to.  Confusing?  Well thats because it Is.  (p 522 BCG)
@@ -32,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Andrew C. Oliver (acoliver at apache.org)
      */
+
     //
     [Obsolete("duplication record, see SerToCrtRecord")]
     public class SeriesToChartGroupRecord
@@ -40,10 +37,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         public const short sid = 0x1045;
         private short field_1_chartGroupIndex;
 
-
         public SeriesToChartGroupRecord()
         {
-
         }
 
         /**
@@ -54,7 +49,6 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public SeriesToChartGroupRecord(RecordInputStream in1)
         {
-
             field_1_chartGroupIndex = in1.ReadShort();
         }
 
@@ -80,6 +74,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 2; }
@@ -98,18 +93,14 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          * Get the chart Group index field for the SeriesToChartGroup record.
          */
+
         public short ChartGroupIndex
         {
             get { return field_1_chartGroupIndex; }
             set { this.field_1_chartGroupIndex = value; }
         }
-
-
     }
 }

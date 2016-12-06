@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System.Collections.Generic;
@@ -33,7 +33,7 @@ namespace Npoi.Core.POIFS.Properties
     /// Behavior for parent (directory) properties
     /// @author Marc Johnson27591@hotmail.com
     /// </summary>
-    public interface Parent:Child
+    public interface Parent : Child
     {
         /// <summary>
         /// Get an iterator over the children of this Parent
@@ -41,15 +41,18 @@ namespace Npoi.Core.POIFS.Properties
         /// </summary>
         /// <returns></returns>
         IEnumerator<Property> Children { get; }
+
         /// <summary>
         /// Add a new child to the collection of children
         /// </summary>
         /// <param name="property">the new child to be added; must not be null</param>
         void AddChild(Property property);
+
         /// <summary>
         /// Sets the previous child.
         /// </summary>
         new Child PreviousChild { get; set; }
+
         /// <summary>
         /// Sets the next child.
         /// </summary>

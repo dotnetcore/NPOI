@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -15,22 +14,21 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
-        
 
 /*
  * BlankRecord.java
  *
  * Created on December 10, 2001, 12:07 PM
  */
+
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
-     * Title:        Blank cell record 
+     * Title:        Blank cell record
      * Description:  Represents a column in a row with no value but with styling.
      * REFERENCE:  PG 287 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
      * @author Andrew C. Oliver (acoliver at apache dot org)
@@ -41,8 +39,10 @@ namespace Npoi.Core.HSSF.Record
     public class BlankRecord : StandardRecord, CellValueRecordInterface, IComparable
     {
         public const short sid = 0x201;
+
         //private short             field_1_row;
         private int field_1_row;
+
         private int field_2_col;
         private short field_3_xf;
 

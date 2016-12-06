@@ -15,12 +15,10 @@
    limitations Under the License.
 ==================================================================== */
 
-
-using Npoi.Core.HPSF;
-
 namespace Npoi.Core.HSSF.EventUserModel
 {
     using System;
+
     /// <summary>
     /// This exception Is provided as a way for API users to throw
     /// exceptions from their event handling code. By doing so they
@@ -39,14 +37,11 @@ namespace Npoi.Core.HSSF.EventUserModel
     [Serializable]
     public class HSSFUserException : Exception
     {
-
         /// <summary>
         /// Creates a new HSSFUserException
         /// </summary>
         public HSSFUserException()
-            : base()
-        {
-
+            : base() {
         }
 
         /// <summary>
@@ -55,18 +50,14 @@ namespace Npoi.Core.HSSF.EventUserModel
         /// </summary>
         /// <param name="msg">The MSG.</param>
         public HSSFUserException(String msg)
-            : base(msg)
-        {
-
+            : base(msg) {
         }
 
         /// <summary>
         /// Creates a new HSSFUserException with a reason.
         /// </summary>
         /// <param name="reason">The reason.</param>
-        public HSSFUserException(Exception reason)
-        {
-            
+        public HSSFUserException(Exception reason) {
         }
 
         /// <summary>
@@ -76,9 +67,7 @@ namespace Npoi.Core.HSSF.EventUserModel
         /// <param name="msg">The MSG.</param>
         /// <param name="reason">The reason.</param>
         public HSSFUserException(String msg, Exception reason)
-            : base(msg, reason)
-        {
-
+            : base(msg, reason) {
         }
     }
 }

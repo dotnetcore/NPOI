@@ -17,36 +17,32 @@
 
 namespace Npoi.Core.HSSF.Model
 {
-    using System;
-
     using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.PTG;
-
+    using System;
 
     /**
-     * HSSF wrapper for the {@link FormulaParser} and {@link FormulaRenderer} 
-     * 
+     * HSSF wrapper for the {@link FormulaParser} and {@link FormulaRenderer}
+     *
      * @author Josh Micich
      */
+
     public class HSSFFormulaParser
     {
-
-        private static IFormulaParsingWorkbook CreateParsingWorkbook(HSSFWorkbook book)
-        {
+        private static IFormulaParsingWorkbook CreateParsingWorkbook(HSSFWorkbook book) {
             return HSSFEvaluationWorkbook.Create(book);
         }
 
-        private HSSFFormulaParser()
-        {
+        private HSSFFormulaParser() {
             // no instances of this class
         }
 
         /**
          * Convenience method for parsing cell formulas. see {@link #parse(String, HSSFWorkbook, int)}
          */
-        public static Ptg[] Parse(String formula, HSSFWorkbook workbook)
-        {
+
+        public static Ptg[] Parse(String formula, HSSFWorkbook workbook) {
             return FormulaParser.Parse(formula, CreateParsingWorkbook(workbook));
         }
 
@@ -54,10 +50,11 @@ namespace Npoi.Core.HSSF.Model
          * @param formulaType a constant from {@link FormulaType}
          * @return the parsed formula tokens
          */
-        public static Ptg[] Parse(String formula, HSSFWorkbook workbook, FormulaType formulaType)
-        {
+
+        public static Ptg[] Parse(String formula, HSSFWorkbook workbook, FormulaType formulaType) {
             return FormulaParser.Parse(formula, CreateParsingWorkbook(workbook), formulaType);
         }
+
         /**
  * @param formula     the formula to parse
  * @param workbook    the parent workbook
@@ -68,11 +65,10 @@ namespace Npoi.Core.HSSF.Model
  *
  * @return the parsed formula tokens
  */
-        public static Ptg[] Parse(String formula, HSSFWorkbook workbook, FormulaType formulaType, int sheetIndex)
-        {
+
+        public static Ptg[] Parse(String formula, HSSFWorkbook workbook, FormulaType formulaType, int sheetIndex) {
             return FormulaParser.Parse(formula, CreateParsingWorkbook(workbook), formulaType, sheetIndex);
         }
-
 
         /**
          * Static method to convert an array of {@link Ptg}s in RPN order
@@ -81,8 +77,8 @@ namespace Npoi.Core.HSSF.Model
          * @param ptgs  must not be <c>null</c>
          * @return a human readable String
          */
-        public static String ToFormulaString(HSSFWorkbook book, Ptg[] ptgs)
-        {
+
+        public static String ToFormulaString(HSSFWorkbook book, Ptg[] ptgs) {
             return FormulaRenderer.ToFormulaString(HSSFEvaluationWorkbook.Create(book), ptgs);
         }
     }

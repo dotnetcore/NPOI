@@ -24,6 +24,7 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author Josh Micich
      */
+
     public abstract class Fixed1ArgFunction : Function1Arg
     {
         public ValueEval Evaluate(ValueEval[] args, int srcRowIndex, int srcColumnIndex)
@@ -34,7 +35,7 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return Evaluate(srcRowIndex, srcColumnIndex, args[0]);
         }
+
         public abstract ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0);
     }
-
 }

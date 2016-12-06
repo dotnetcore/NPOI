@@ -15,9 +15,9 @@
    limitations Under the License.
 ==================================================================== */
 
-using System.Collections.Generic;
 using Npoi.Core.HSSF.Model;
 using Npoi.Core.HSSF.Record.Chart;
+using System.Collections.Generic;
 
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 {
@@ -27,7 +27,8 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
     public class SeriesDataAggregate : RecordAggregate
     {
         private DimensionsRecord dimensions = null;
-        Dictionary<SeriesIndexRecord, List<Record>> dicData = new Dictionary<SeriesIndexRecord, List<Record>>();
+        private Dictionary<SeriesIndexRecord, List<Record>> dicData = new Dictionary<SeriesIndexRecord, List<Record>>();
+
         public SeriesDataAggregate(RecordStream rs)
         {
             dimensions = (DimensionsRecord)rs.GetNext();

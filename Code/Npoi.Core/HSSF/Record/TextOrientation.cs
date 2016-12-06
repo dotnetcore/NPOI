@@ -17,21 +17,23 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-	public enum TextOrientation {
-		None,
-		TopToBottom,
-		RotRight,
-		RotLeft
-	}
-
-    public enum HorizontalTextAlignment:int 
+    public enum TextOrientation
     {
-        Left=1,
-        Center=2,
-        Right=3,
+        None,
+        TopToBottom,
+        RotRight,
+        RotLeft
+    }
+
+    public enum HorizontalTextAlignment : int
+    {
+        Left = 1,
+        Center = 2,
+        Right = 3,
         Justify = 4
     }
-    public enum VerticalTextAlignment:int
+
+    public enum VerticalTextAlignment : int
     {
         Top = 1,
         Center = 2,

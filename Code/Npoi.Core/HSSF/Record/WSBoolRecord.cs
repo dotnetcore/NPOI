@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title:        WSBool Record.
@@ -48,6 +45,7 @@ namespace Npoi.Core.HSSF.Record
 
         // bits 1 to 3 Unused
         static private BitField dialog = BitFieldFactory.GetInstance(0x10);                               // is sheet dialog sheet
+
         static private BitField applystyles = BitFieldFactory.GetInstance(0x20);                               // whether to apply automatic styles to outlines
         static private BitField rowsumsbelow = BitFieldFactory.GetInstance(0x40);                                            // whether summary rows will appear below detail in outlines
         static private BitField rowsumsright = BitFieldFactory.GetInstance(0x80);                                            // whether summary rows will appear right of the detail in outlines
@@ -60,7 +58,6 @@ namespace Npoi.Core.HSSF.Record
         static private BitField alternateexpression = BitFieldFactory.GetInstance(0x40); // whether to use alternate expression eval
 
         static private BitField alternateformula = BitFieldFactory.GetInstance(0x80); // whether to use alternate formula entry
-
 
         public WSBoolRecord()
         {
@@ -79,7 +76,6 @@ namespace Npoi.Core.HSSF.Record
             field_2_wsbool =
                 data[1];
         }
-
 
         /**
          * Get first byte (see bit Getters)
@@ -144,7 +140,6 @@ namespace Npoi.Core.HSSF.Record
             set { field_1_wsbool = rowsumsright.SetByteBoolean(field_1_wsbool, value); }
         }
 
-
         /// <summary>
         /// Get the second byte (see bit Getters)
         /// </summary>
@@ -156,7 +151,6 @@ namespace Npoi.Core.HSSF.Record
             }
             set { field_2_wsbool = value; }
         }
-
 
         /// <summary>
         /// fit to page option is on

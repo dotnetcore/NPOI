@@ -18,10 +18,11 @@
  * Created on May 14, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     public abstract class OneArg : Fixed1ArgFunction
     {
@@ -29,6 +30,7 @@ namespace Npoi.Core.SS.Formula.Functions
         {
             // no fields to initialise
         }
+
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0)
         {
             double result;
@@ -44,6 +46,7 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return new NumberEval(result);
         }
+
         protected double Eval(ValueEval[] args, int srcCellRow, short srcCellCol)
         {
             if (args.Length != 1)
@@ -53,6 +56,7 @@ namespace Npoi.Core.SS.Formula.Functions
             double d = NumericFunction.SingleOperandEvaluate(args[0], srcCellRow, srcCellCol);
             return Evaluate(d);
         }
+
         public abstract double Evaluate(double d);
     }
 
@@ -62,6 +66,7 @@ namespace Npoi.Core.SS.Formula.Functions
         {
             // no fields to initialise
         }
+
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1)
         {
             double result;
@@ -78,6 +83,7 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return new NumberEval(result);
         }
+
         public abstract double Evaluate(double d0, double d1);
     }
 
@@ -85,6 +91,7 @@ namespace Npoi.Core.SS.Formula.Functions
      * @author Amol S. Deshmukh &lt; amolweb at yahoo dot com &gt;
      *
      */
+
     public abstract class NumericFunction : Function
     {
         public const double TEN = 10.0;
@@ -124,6 +131,7 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return new NumberEval(result);
         }
+
         protected abstract double Eval(ValueEval[] evals, int srcCellRow, int srcCellCol);
 
         public static readonly Function ABS = new Abs();
@@ -157,7 +165,7 @@ namespace Npoi.Core.SS.Formula.Functions
         public static readonly Function SQRT = new Sqrt();
 
         public static readonly Function CEILING = new Ceiling();
-        public static readonly Function COMBIN =new Combin();
+        public static readonly Function COMBIN = new Combin();
         public static readonly Function FLOOR = new Floor();
         public static readonly Function MOD = new Mod();
         public static readonly Function POWER = new Power();

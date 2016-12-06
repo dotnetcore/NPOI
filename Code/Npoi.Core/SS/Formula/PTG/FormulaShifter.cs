@@ -15,17 +15,16 @@
    limitations under the License.
 ==================================================================== */
 
-
-
 namespace Npoi.Core.SS.Formula
 {
-
+    using Npoi.Core.SS.Formula.PTG;
     using System;
     using System.Text;
-    using Npoi.Core.SS.Formula.PTG;
+
     /**
      * @author Josh Micich
      */
+
     public class FormulaShifter
     {
         public enum ShiftMode
@@ -33,12 +32,13 @@ namespace Npoi.Core.SS.Formula
             Row,
             Sheet
         }
+
         /**
          * Extern sheet index of sheet where moving is occurring
          */
         private int _externSheetIndex;
         /**
-         * Sheet name of the sheet where moving is occurring, 
+         * Sheet name of the sheet where moving is occurring,
          *  used for updating XSSF style 3D references on row shifts.
          */
         private String _sheetName;
@@ -47,38 +47,40 @@ namespace Npoi.Core.SS.Formula
         private int _amountToMove;
         private int _srcSheetIndex;
         private int _dstSheetIndex;
-         private ShiftMode _mode;
+        private ShiftMode _mode;
 
-         /**
-          * Create an instance for Shifting row.
-          *
-          * For example, this will be called on {@link Npoi.Core.HSSF.UserModel.HSSFSheet#ShiftRows(int, int, int)} }
-          */
-         private FormulaShifter(int externSheetIndex, String sheetName, int firstMovedIndex, int lastMovedIndex, int amountToMove)
-         {
-             if (amountToMove == 0)
-             {
-                 throw new ArgumentException("amountToMove must not be zero");
-             }
-             if (firstMovedIndex > lastMovedIndex)
-             {
-                 throw new ArgumentException("firstMovedIndex, lastMovedIndex out of order");
-             }
-             _externSheetIndex = externSheetIndex;
-             _sheetName = sheetName;
-             _firstMovedIndex = firstMovedIndex;
-             _lastMovedIndex = lastMovedIndex;
-             _amountToMove = amountToMove;
-             _mode = ShiftMode.Row;
+        /**
+         * Create an instance for Shifting row.
+         *
+         * For example, this will be called on {@link Npoi.Core.HSSF.UserModel.HSSFSheet#ShiftRows(int, int, int)} }
+         */
 
-             _srcSheetIndex = _dstSheetIndex = -1;
-         }
+        private FormulaShifter(int externSheetIndex, String sheetName, int firstMovedIndex, int lastMovedIndex, int amountToMove)
+        {
+            if (amountToMove == 0)
+            {
+                throw new ArgumentException("amountToMove must not be zero");
+            }
+            if (firstMovedIndex > lastMovedIndex)
+            {
+                throw new ArgumentException("firstMovedIndex, lastMovedIndex out of order");
+            }
+            _externSheetIndex = externSheetIndex;
+            _sheetName = sheetName;
+            _firstMovedIndex = firstMovedIndex;
+            _lastMovedIndex = lastMovedIndex;
+            _amountToMove = amountToMove;
+            _mode = ShiftMode.Row;
+
+            _srcSheetIndex = _dstSheetIndex = -1;
+        }
 
         /**
         * Create an instance for shifting sheets.
         *
-        * For example, this will be called on {@link org.apache.poi.hssf.usermodel.HSSFWorkbook#setSheetOrder(String, int)}  
+        * For example, this will be called on {@link org.apache.poi.hssf.usermodel.HSSFWorkbook#setSheetOrder(String, int)}
         */
+
         private FormulaShifter(int srcSheetIndex, int dstSheetIndex)
         {
             _externSheetIndex = _firstMovedIndex = _lastMovedIndex = _amountToMove = -1;
@@ -88,6 +90,7 @@ namespace Npoi.Core.SS.Formula
             _dstSheetIndex = dstSheetIndex;
             _mode = ShiftMode.Sheet;
         }
+
         public static FormulaShifter CreateForRowShift(int externSheetIndex, String sheetName, int firstMovedRowIndex, int lastMovedRowIndex, int numberOfRowsToMove)
         {
             return new FormulaShifter(externSheetIndex, sheetName, firstMovedRowIndex, lastMovedRowIndex, numberOfRowsToMove);
@@ -97,6 +100,7 @@ namespace Npoi.Core.SS.Formula
         {
             return new FormulaShifter(srcSheetIndex, dstSheetIndex);
         }
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -114,6 +118,7 @@ namespace Npoi.Core.SS.Formula
          * @param currentExternSheetIx - the extern sheet index of the sheet that contains the formula being adjusted
          * @return <c>true</c> if a change was made to the formula tokens
          */
+
         public bool AdjustFormula(Ptg[] ptgs, int currentExternSheetIx)
         {
             bool refsWereChanged = false;
@@ -136,15 +141,19 @@ namespace Npoi.Core.SS.Formula
             {
                 case ShiftMode.Row:
                     return AdjustPtgDueToRowMove(ptg, currentExternSheetIx);
+
                 case ShiftMode.Sheet:
                     return AdjustPtgDueToShiftMove(ptg);
+
                 default:
                     throw new InvalidOperationException("Unsupported shift mode: " + _mode);
             }
         }
+
         /**
          * @return <c>true</c> if this Ptg needed to be changed
          */
+
         private Ptg AdjustPtgDueToRowMove(Ptg ptg, int currentExternSheetIx)
         {
             if (ptg is RefPtg)
@@ -214,6 +223,7 @@ namespace Npoi.Core.SS.Formula
             }
             return null;
         }
+
         private Ptg AdjustPtgDueToShiftMove(Ptg ptg)
         {
             Ptg updatedPtg = null;
@@ -233,6 +243,7 @@ namespace Npoi.Core.SS.Formula
             }
             return updatedPtg;
         }
+
         private Ptg RowMoveRefPtg(RefPtgBase rptg)
         {
             int refRow = rptg.Row;

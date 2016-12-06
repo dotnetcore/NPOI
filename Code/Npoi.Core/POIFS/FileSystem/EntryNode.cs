@@ -17,17 +17,16 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
-using System;
-
 using Npoi.Core.POIFS.Properties;
+using System;
 
 namespace Npoi.Core.POIFS.FileSystem
 {
@@ -41,13 +40,11 @@ namespace Npoi.Core.POIFS.FileSystem
     [Serializable]
     public abstract class EntryNode : Entry
     {
-
         // the DocumentProperty backing this object
         protected Property _property;
 
         // this object's parent Entry
         protected DirectoryNode _parent;
-
 
         protected EntryNode()
             : this(null, null)

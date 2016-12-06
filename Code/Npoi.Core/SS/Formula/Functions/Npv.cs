@@ -18,10 +18,11 @@
  * Created on May 15, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     public class Npv : Function
     {
@@ -42,6 +43,7 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return new NumberEval(result);
         }
+
         [Obsolete]
         public ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1,
                 ValueEval arg2)
@@ -61,6 +63,7 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return new NumberEval(result);
         }
+
         [Obsolete]
         public ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1,
                 ValueEval arg2, ValueEval arg3)
@@ -118,5 +121,4 @@ namespace Npoi.Core.SS.Formula.Functions
             return sum;
         }
     }
-
 }

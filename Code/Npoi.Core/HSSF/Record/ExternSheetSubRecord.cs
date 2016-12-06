@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,18 +15,16 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
-     * Title:        A sub Record for Extern Sheet 
-     * Description:  Defines a named range within a workbook. 
-     * REFERENCE:  
+     * Title:        A sub Record for Extern Sheet
+     * Description:  Defines a named range within a workbook.
+     * REFERENCE:
      * @author Libin Roman (Vista Portal LDT. Developer)
      * @version 1.0-pre
      */
@@ -39,9 +36,9 @@ namespace Npoi.Core.HSSF.Record
         private short field_2_index_to_first_supbook_sheet;
         private short field_3_index_to_last_supbook_sheet;
 
-
         /** a Constractor for making new sub record
          */
+
         public ExternSheetSubRecord()
         {
         }
@@ -51,6 +48,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @param in the RecordInputstream to Read the record from
          */
+
         public ExternSheetSubRecord(RecordInputStream in1)
         {
             field_1_index_to_supbook = in1.ReadShort();
@@ -58,10 +56,10 @@ namespace Npoi.Core.HSSF.Record
             field_3_index_to_last_supbook_sheet = in1.ReadShort();
         }
 
-
         /** Sets the Index to the sup book
          * @param index sup book index
          */
+
         public void SetIndexToSupBook(short index)
         {
             field_1_index_to_supbook = index;
@@ -70,6 +68,7 @@ namespace Npoi.Core.HSSF.Record
         /** Gets the index to sup book
          * @return sup book index
          */
+
         public short GetIndexToSupBook()
         {
             return field_1_index_to_supbook;
@@ -78,6 +77,7 @@ namespace Npoi.Core.HSSF.Record
         /** Sets the index to first sheet in supbook
          * @param index index to first sheet
          */
+
         public void SetIndexToFirstSupBook(short index)
         {
             field_2_index_to_first_supbook_sheet = index;
@@ -86,6 +86,7 @@ namespace Npoi.Core.HSSF.Record
         /** Gets the index to first sheet from supbook
          * @return index to first supbook
          */
+
         public short GetIndexToFirstSupBook()
         {
             return field_2_index_to_first_supbook_sheet;
@@ -94,6 +95,7 @@ namespace Npoi.Core.HSSF.Record
         /** Sets the index to last sheet in supbook
          * @param index index to last sheet
          */
+
         public void SetIndexToLastSupBook(short index)
         {
             field_3_index_to_last_supbook_sheet = index;
@@ -102,12 +104,11 @@ namespace Npoi.Core.HSSF.Record
         /** Gets the index to last sheet in supbook
          * @return index to last supbook
          */
+
         public short GetIndexToLastSupBook()
         {
             return field_3_index_to_last_supbook_sheet;
         }
-
-
 
         public override String ToString()
         {
@@ -127,7 +128,8 @@ namespace Npoi.Core.HSSF.Record
          * @param data byte array containing instance data
          * @return number of bytes written
          */
-        public override int Serialize(int offset, byte [] data)
+
+        public override int Serialize(int offset, byte[] data)
         {
             LittleEndian.PutShort(data, 0 + offset, GetIndexToSupBook());
             LittleEndian.PutShort(data, 2 + offset, GetIndexToFirstSupBook());
@@ -136,9 +138,9 @@ namespace Npoi.Core.HSSF.Record
             return RecordSize;
         }
 
-
         /** returns the record size
          */
+
         public override int RecordSize
         {
             get { return 6; }
@@ -147,10 +149,10 @@ namespace Npoi.Core.HSSF.Record
         /**
          * return the non static version of the id for this record.
          */
+
         public override short Sid
         {
             get { return sid; }
         }
     }
-
 }

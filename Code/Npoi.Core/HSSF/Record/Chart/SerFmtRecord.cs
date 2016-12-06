@@ -18,11 +18,11 @@
 namespace Npoi.Core.HSSF.Record.Chart
 {
     /// <summary>
-    /// The SerFmt record specifies properties of the associated data points, data markers, 
-    /// or lines of the series. The associated data points, data markers, or lines of the 
-    /// series are specified by the preceding DataFormat record. If this record is not 
-    /// present in the sequence of records that conforms to the SS rule of the Chart Sheet 
-    /// Substream ABNF, then the properties of the associated data points, data markers, 
+    /// The SerFmt record specifies properties of the associated data points, data markers,
+    /// or lines of the series. The associated data points, data markers, or lines of the
+    /// series are specified by the preceding DataFormat record. If this record is not
+    /// present in the sequence of records that conforms to the SS rule of the Chart Sheet
+    /// Substream ABNF, then the properties of the associated data points, data markers,
     /// or lines of the series are specified by the default values of the fields of this record.
     /// </summary>
     /// <remarks>
@@ -30,9 +30,10 @@ namespace Npoi.Core.HSSF.Record.Chart
     /// </remarks>
     public class SerFmtRecord : RowDataRecord
     {
-         public const short sid = 0x105D;
-         public SerFmtRecord(RecordInputStream ris)
-            : base(ris)
+        public const short sid = 0x105D;
+
+        public SerFmtRecord(RecordInputStream ris)
+           : base(ris)
         {
         }
 
@@ -43,6 +44,7 @@ namespace Npoi.Core.HSSF.Record.Chart
                 return base.DataSize;
             }
         }
+
         public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             base.Serialize(out1);

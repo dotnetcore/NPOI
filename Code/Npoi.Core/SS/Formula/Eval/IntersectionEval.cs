@@ -14,19 +14,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using System;
+
 using Npoi.Core.SS.Formula.Functions;
-using Npoi.Core.SS.Formula.Eval;
+using System;
 
 namespace Npoi.Core.SS.Formula.Eval
 {
-
     /**
      * @author Josh Micich
      */
+
     public class IntersectionEval : Fixed2ArgFunction
     {
-
         public static Npoi.Core.SS.Formula.Functions.Function instance = new IntersectionEval();
 
         private IntersectionEval()
@@ -36,7 +35,6 @@ namespace Npoi.Core.SS.Formula.Eval
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1)
         {
-
             try
             {
                 AreaEval reA = EvaluateRef(arg0);
@@ -58,9 +56,9 @@ namespace Npoi.Core.SS.Formula.Eval
          * @return simple rectangular {@link AreaEval} which represents the intersection of areas
          * <c>aeA</c> and <c>aeB</c>. If the two areas do not intersect, the result is <code>null</code>.
          */
+
         private static AreaEval ResolveRange(AreaEval aeA, AreaEval aeB)
         {
-
             int aeAfr = aeA.FirstRow;
             int aeAfc = aeA.FirstColumn;
             int aeBlc = aeB.LastColumn;
@@ -84,7 +82,6 @@ namespace Npoi.Core.SS.Formula.Eval
             {
                 return null;
             }
-
 
             int top = Math.Max(aeAfr, aeBfr);
             int bottom = Math.Min(aeAlr, aeBlr);
@@ -112,4 +109,3 @@ namespace Npoi.Core.SS.Formula.Eval
         }
     }
 }
-

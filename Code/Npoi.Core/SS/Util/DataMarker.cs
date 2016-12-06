@@ -17,8 +17,9 @@
  * ====================================================================
  */
 
-using System;
 using Npoi.Core.SS.UserModel;
+using System;
+
 namespace Npoi.Core.SS.Util
 {
     /// <summary>
@@ -27,7 +28,6 @@ namespace Npoi.Core.SS.Util
     /// </summary>
     public class DataMarker
     {
-
         private ISheet sheet;
         private CellRangeAddress range;
 
@@ -56,7 +56,6 @@ namespace Npoi.Core.SS.Util
                 this.sheet = value;
             }
         }
-
 
         /// <summary>
         /// get or set range of the marker.

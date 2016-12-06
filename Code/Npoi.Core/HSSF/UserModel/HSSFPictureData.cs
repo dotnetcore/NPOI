@@ -14,13 +14,12 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
     using Npoi.Core.DDF;
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.Util;
+    using System;
 
     /// <summary>
     /// Represents binary data stored in the file.  Eg. A GIF, JPEG etc...
@@ -30,11 +29,13 @@ namespace Npoi.Core.HSSF.UserModel
     {
         // MSOBI constants for various formats.
         public const short MSOBI_WMF = 0x2160;
+
         public const short MSOBI_EMF = 0x3D40;
         public const short MSOBI_PICT = 0x5420;
         public const short MSOBI_PNG = 0x6E00;
         public const short MSOBI_JPEG = 0x46A0;
         public const short MSOBI_DIB = 0x7A80;
+
         // Mask of the bits in the options used to store the image format.
         public const short FORMAT_MASK = unchecked((short)0xFFF0);
 
@@ -74,6 +75,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return pictureData;
             }
         }
+
         /// <summary>
         /// gets format of the picture.
         /// </summary>
@@ -85,6 +87,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return blip.RecordId - unchecked((short)0xF018);
             }
         }
+
         /// <summary>
         /// Suggests a file extension for this image.
         /// </summary>
@@ -95,23 +98,31 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 case EscherMetafileBlip.RECORD_ID_WMF:
                     return "wmf";
+
                 case EscherMetafileBlip.RECORD_ID_EMF:
                     return "emf";
+
                 case EscherMetafileBlip.RECORD_ID_PICT:
                     return "pict";
+
                 case EscherBitmapBlip.RECORD_ID_PNG:
                     return "png";
+
                 case EscherBitmapBlip.RECORD_ID_JPEG:
                     return "jpeg";
+
                 case EscherBitmapBlip.RECORD_ID_DIB:
                     return "dib";
+
                 default:
                     return "";
             }
         }
+
         /**
      * Returns the mime type for the image
      */
+
         public String MimeType
         {
             get
@@ -120,16 +131,22 @@ namespace Npoi.Core.HSSF.UserModel
                 {
                     case EscherMetafileBlip.RECORD_ID_WMF:
                         return "image/x-wmf";
+
                     case EscherMetafileBlip.RECORD_ID_EMF:
                         return "image/x-emf";
+
                     case EscherMetafileBlip.RECORD_ID_PICT:
                         return "image/x-pict";
+
                     case EscherBitmapBlip.RECORD_ID_PNG:
                         return "image/png";
+
                     case EscherBitmapBlip.RECORD_ID_JPEG:
                         return "image/jpeg";
+
                     case EscherBitmapBlip.RECORD_ID_DIB:
                         return "image/bmp";
+
                     default:
                         return "image/unknown";
                 }
@@ -146,6 +163,7 @@ namespace Npoi.Core.HSSF.UserModel
      * @see Workbook#PICTURE_TYPE_PNG
      * @see Workbook#PICTURE_TYPE_WMF
      */
+
         public PictureType PictureType
         {
             get
@@ -154,16 +172,22 @@ namespace Npoi.Core.HSSF.UserModel
                 {
                     case EscherMetafileBlip.RECORD_ID_WMF:
                         return PictureType.WMF;
+
                     case EscherMetafileBlip.RECORD_ID_EMF:
                         return PictureType.EMF;
+
                     case EscherMetafileBlip.RECORD_ID_PICT:
                         return PictureType.PICT;
+
                     case EscherBitmapBlip.RECORD_ID_PNG:
                         return PictureType.PNG;
+
                     case EscherBitmapBlip.RECORD_ID_JPEG:
                         return PictureType.JPEG;
+
                     case EscherBitmapBlip.RECORD_ID_DIB:
                         return PictureType.DIB;
+
                     default:
                         return PictureType.Unknown;
                 }

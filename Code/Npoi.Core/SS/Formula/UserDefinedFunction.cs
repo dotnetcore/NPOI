@@ -1,12 +1,11 @@
-﻿using System;
-using Npoi.Core.SS.Formula.Eval;
+﻿using Npoi.Core.SS.Formula.Eval;
 using Npoi.Core.SS.Formula.Functions;
+using System;
 
 namespace Npoi.Core.SS.Formula
 {
     public class UserDefinedFunction : FreeRefFunction
     {
-
         public static FreeRefFunction instance = new UserDefinedFunction();
 
         private UserDefinedFunction()
@@ -23,7 +22,7 @@ namespace Npoi.Core.SS.Formula
             }
 
             ValueEval nameArg = args[0];
-            String functionName = string.Empty ;
+            String functionName = string.Empty;
             if (nameArg is FunctionNameEval)
             {
                 functionName = ((FunctionNameEval)nameArg).FunctionName;

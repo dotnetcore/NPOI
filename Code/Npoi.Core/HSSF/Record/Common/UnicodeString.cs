@@ -17,11 +17,11 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.HSSF.Record.Cont;
+    using Npoi.Core.Util;
     using System;
     using System.Collections.Generic;
     using System.Text;
-    using Npoi.Core.HSSF.Record.Cont;
-    using Npoi.Core.Util;
 
     /**
      * Title: Unicode String<p/>
@@ -29,8 +29,9 @@ namespace Npoi.Core.HSSF.Record
      *               It is considered more desirable then repeating it in all of them.<p/>
      *               This is often called a XLUnicodeRichExtendedString in MS documentation.<p/>
      * REFERENCE:  PG 264 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)<p/>
-     * REFERENCE:  PG 951 Excel Binary File Format (.xls) Structure Specification v20091214 
+     * REFERENCE:  PG 951 Excel Binary File Format (.xls) Structure Specification v20091214
      */
+
     public class UnicodeString : IComparable<UnicodeString>
     { // TODO - make this when the compatibility version is Removed
         private static POILogger _logger = POILogFactory.GetLogger(typeof(UnicodeString));
@@ -41,8 +42,10 @@ namespace Npoi.Core.HSSF.Record
         private List<FormatRun> field_4_format_Runs;
         private ExtRst field_5_ext_rst;
         private static BitField highByte = BitFieldFactory.GetInstance(0x1);
+
         // 0x2 is reserved
         private static BitField extBit = BitFieldFactory.GetInstance(0x4);
+
         private static BitField richText = BitFieldFactory.GetInstance(0x8);
 
         public class FormatRun : IComparable<FormatRun>
@@ -87,10 +90,12 @@ namespace Npoi.Core.HSSF.Record
 
                 return _character == other._character && _fontIndex == other._fontIndex;
             }
+
             public override int GetHashCode()
             {
                 return base.GetHashCode();
             }
+
             public int CompareTo(FormatRun r)
             {
                 if (_character == r._character && _fontIndex == r._fontIndex)
@@ -123,14 +128,17 @@ namespace Npoi.Core.HSSF.Record
 
             // This is a Phs (see page 881)
             private short formattingFontIndex;
+
             private short formattingOptions;
 
             // This is a RPHSSub (see page 894)
             private int numberOfRuns;
+
             private String phoneticText;
 
             // This is an array of PhRuns (see page 881)
             private PhRun[] phRuns;
+
             // Sometimes there's some cruft at the end
             private byte[] extraData;
 
@@ -141,6 +149,7 @@ namespace Npoi.Core.HSSF.Record
                 phRuns = new PhRun[0];
                 extraData = new byte[0];
             }
+
             public override int GetHashCode()
             {
                 int hash = reserved;
@@ -160,10 +169,12 @@ namespace Npoi.Core.HSSF.Record
                 }
                 return hash;
             }
+
             internal ExtRst()
             {
                 populateEmpty();
             }
+
             internal ExtRst(ILittleEndianInput in1, int expectedLength)
             {
                 reserved = in1.ReadShort();
@@ -235,10 +246,12 @@ namespace Npoi.Core.HSSF.Record
                     extraData[i] = (byte)in1.ReadByte();
                 }
             }
+
             /**
-             * Returns our size, excluding our 
+             * Returns our size, excluding our
              *  4 byte header
              */
+
             internal int DataSize
             {
                 get
@@ -247,6 +260,7 @@ namespace Npoi.Core.HSSF.Record
                        (6 * phRuns.Length) + extraData.Length;
                 }
             }
+
             internal void Serialize(ContinuableRecordOutput out1)
             {
                 int dataSize = DataSize;
@@ -282,11 +296,12 @@ namespace Npoi.Core.HSSF.Record
                 ExtRst other = (ExtRst)obj;
                 return (CompareTo(other) == 0);
             }
+
             public override string ToString()
             {
                 return base.ToString();
             }
-                 
+
             public int CompareTo(ExtRst o)
             {
                 int result;
@@ -349,6 +364,7 @@ namespace Npoi.Core.HSSF.Record
                     return formattingFontIndex;
                 }
             }
+
             public short FormattingOptions
             {
                 get
@@ -356,6 +372,7 @@ namespace Npoi.Core.HSSF.Record
                     return formattingOptions;
                 }
             }
+
             public int NumberOfRuns
             {
                 get
@@ -363,6 +380,7 @@ namespace Npoi.Core.HSSF.Record
                     return numberOfRuns;
                 }
             }
+
             public String PhoneticText
             {
                 get
@@ -370,6 +388,7 @@ namespace Npoi.Core.HSSF.Record
                     return phoneticText;
                 }
             }
+
             public PhRun[] PhRuns
             {
                 get
@@ -378,6 +397,7 @@ namespace Npoi.Core.HSSF.Record
                 }
             }
         }
+
         public class PhRun
         {
             internal int phoneticTextFirstCharacterOffset;
@@ -391,12 +411,14 @@ namespace Npoi.Core.HSSF.Record
                 this.realTextFirstCharacterOffset = realTextFirstCharacterOffset;
                 this.realTextLength = realTextLength;
             }
+
             internal PhRun(ILittleEndianInput in1)
             {
                 phoneticTextFirstCharacterOffset = in1.ReadUShort();
                 realTextFirstCharacterOffset = in1.ReadUShort();
                 realTextLength = in1.ReadUShort();
             }
+
             internal void Serialize(ContinuableRecordOutput out1)
             {
                 out1.WriteContinueIfRequired(6);
@@ -416,8 +438,6 @@ namespace Npoi.Core.HSSF.Record
             String = (str);
         }
 
-
-
         public override int GetHashCode()
         {
             int stringHash = 0;
@@ -433,6 +453,7 @@ namespace Npoi.Core.HSSF.Record
          * @param o     The object to Compare.
          * @return      true if the object is actually Equal.
          */
+
         public override bool Equals(Object o)
         {
             if (!(o is UnicodeString))
@@ -501,6 +522,7 @@ namespace Npoi.Core.HSSF.Record
          * construct a unicode string record and fill its fields, ID is ignored
          * @param in the RecordInputstream to read the record from
          */
+
         public UnicodeString(RecordInputStream in1)
         {
             field_1_charCount = in1.ReadShort();
@@ -529,7 +551,6 @@ namespace Npoi.Core.HSSF.Record
                 field_3_string = in1.ReadUnicodeLEString(CharCount);
             }
 
-
             if (IsRichText && (RunCount > 0))
             {
                 field_4_format_Runs = new List<FormatRun>(RunCount);
@@ -549,14 +570,13 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
-
         /**
              * get the number of characters in the string,
              *  as an un-wrapped int
              *
              * @return number of characters
              */
+
         public int CharCount
         {
             get
@@ -572,6 +592,7 @@ namespace Npoi.Core.HSSF.Record
                 field_1_charCount = (short)value;
             }
         }
+
         public short CharCountShort
         {
             get { return field_1_charCount; }
@@ -597,10 +618,10 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         /**
              * @return the actual string this Contains as a java String object
              */
+
         public String String
         {
             get
@@ -629,7 +650,6 @@ namespace Npoi.Core.HSSF.Record
                     //Set the uncompressed bit
                     field_2_optionflags = highByte.SetByte(field_2_optionflags);
                 else field_2_optionflags = highByte.ClearByte(field_2_optionflags);
-
             }
         }
 
@@ -675,6 +695,7 @@ namespace Npoi.Core.HSSF.Record
          *  If a font run exists at the current charcter location, then it is
          *  Replaced with the font run to be Added.
          */
+
         public void AddFormatRun(FormatRun r)
         {
             if (field_4_format_Runs == null)
@@ -721,7 +742,6 @@ namespace Npoi.Core.HSSF.Record
             field_2_optionflags = richText.ClearByte(field_2_optionflags);
         }
 
-
         public ExtRst ExtendedRst
         {
             get
@@ -742,14 +762,13 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
-
         /**
          * Swaps all use in the string of one font index
          *  for use of a different font index.
          * Normally only called when fonts have been
          *  Removed / re-ordered
          */
+
         public void SwapFontUse(short oldFontIndex, short newFontIndex)
         {
             foreach (FormatRun run in field_4_format_Runs)
@@ -779,6 +798,7 @@ namespace Npoi.Core.HSSF.Record
          * @return String of output for biffviewer etc.
          *
          */
+
         public String GetDebugInfo()
         {
             StringBuilder buffer = new StringBuilder();
@@ -811,6 +831,7 @@ namespace Npoi.Core.HSSF.Record
          *  about where we can and can't split onto
          *  Continue records.
          */
+
         public void Serialize(ContinuableRecordOutput out1)
         {
             int numberOfRichTextRuns = 0;
@@ -830,7 +851,6 @@ namespace Npoi.Core.HSSF.Record
 
             if (numberOfRichTextRuns > 0)
             {
-
                 //This will ensure that a run does not split a continue
                 for (int i = 0; i < numberOfRichTextRuns; i++)
                 {
@@ -851,7 +871,6 @@ namespace Npoi.Core.HSSF.Record
 
         public int CompareTo(UnicodeString str)
         {
-
             //int result = String.CompareTo(str.String);
             int result = string.Compare(String, str.String, StringComparison.CurrentCulture);
 
@@ -941,5 +960,4 @@ namespace Npoi.Core.HSSF.Record
             return str;
         }
     }
-
 }

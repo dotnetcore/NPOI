@@ -14,6 +14,7 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
+
 using Npoi.Core.Util;
 
 namespace Npoi.Core.HPSF
@@ -23,18 +24,16 @@ namespace Npoi.Core.HPSF
         public const int SIZE = 2;
         private bool _value;
 
-        public VariantBool(byte[] data, int offset)
-        {
+        public VariantBool(byte[] data, int offset) {
             _value = LittleEndian.GetShort(data, offset) != 0;
         }
 
-        public bool Value
-        {
-            get 
+        public bool Value {
+            get
             {
                 return _value;
             }
-            set 
+            set
             {
                 _value = value;
             }

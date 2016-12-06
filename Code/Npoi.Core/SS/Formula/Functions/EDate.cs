@@ -18,9 +18,8 @@
 namespace Npoi.Core.SS.Formula.Functions
 {
     using Npoi.Core.SS.Formula.Eval;
-    using System;
     using Npoi.Core.SS.UserModel;
-
+    using System;
 
     /**
      * Implementation of Excel 'Analysis ToolPak' function EDATE()<br/>
@@ -34,9 +33,9 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author Tomas Herceg
      */
+
     public class EDate : FreeRefFunction
     {
-
         public static FreeRefFunction Instance = new EDate();
 
         internal EDate()
@@ -63,7 +62,7 @@ namespace Npoi.Core.SS.Formula.Functions
 
                 DateTime resultDate = startDate.AddMonths(offsetInMonthAsNumber);
                 result = DateUtil.GetExcelDate(resultDate);
-                    
+
                 NumericFunction.CheckValue(result);
                 return new NumberEval(result);
             }
@@ -72,6 +71,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return e.GetErrorEval();
             }
         }
+
         private double GetValue(ValueEval arg)
         {
             if (arg is NumberEval)

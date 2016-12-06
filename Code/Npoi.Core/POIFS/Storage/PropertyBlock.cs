@@ -17,19 +17,18 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
-using System.IO;
-using System.Collections.Generic;
-
-using Npoi.Core.POIFS.Properties;
 using Npoi.Core.POIFS.Common;
+using Npoi.Core.POIFS.Properties;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Npoi.Core.POIFS.Storage
 {
@@ -54,9 +53,7 @@ namespace Npoi.Core.POIFS.Storage
             }
         }
 
-
-
-        private Property[]       _properties;
+        private Property[] _properties;
 
         /// <summary>
         /// Create a single instance initialized with default values
@@ -66,10 +63,10 @@ namespace Npoi.Core.POIFS.Storage
         /// <param name="offset">the offset into the properties array</param>
         protected PropertyBlock(POIFSBigBlockSize bigBlockSize, Property[] properties, int offset) : base(bigBlockSize)
         {
-            _properties = new Property[ bigBlockSize.GetPropertiesPerBlock() ];
+            _properties = new Property[bigBlockSize.GetPropertiesPerBlock()];
             for (int j = 0; j < _properties.Length; j++)
             {
-                _properties[ j ] = properties[ j + offset ];
+                _properties[j] = properties[j + offset];
             }
         }
 
@@ -81,9 +78,9 @@ namespace Npoi.Core.POIFS.Storage
         /// <param name="bigBlockSize"></param>
         /// <param name="properties">the Property instances to be converted into PropertyBlocks, in a java List</param>
         /// <returns>the array of newly created PropertyBlock instances</returns>
-        public static BlockWritable [] CreatePropertyBlockArray( POIFSBigBlockSize bigBlockSize,
+        public static BlockWritable[] CreatePropertyBlockArray(POIFSBigBlockSize bigBlockSize,
                                         List<Property> properties)
-            {
+        {
             int _properties_per_block = bigBlockSize.GetPropertiesPerBlock();
 
             int blockCount = (properties.Count + _properties_per_block - 1) / _properties_per_block;

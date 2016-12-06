@@ -1,5 +1,5 @@
-﻿using Npoi.Core.SS.Formula.Functions;
-using Npoi.Core.SS.Formula.Eval;
+﻿using Npoi.Core.SS.Formula.Eval;
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     /**
@@ -19,12 +19,13 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author cedric dot walter @ gmail dot com
      */
+
     public class Quotient : Fixed2ArgFunction, FreeRefFunction
     {
         public static FreeRefFunction instance = new Quotient();
+
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval venumerator, ValueEval vedenominator)
         {
-
             double enumerator = 0;
             try
             {
@@ -62,5 +63,4 @@ namespace Npoi.Core.SS.Formula.Functions
             return Evaluate(ec.RowIndex, ec.ColumnIndex, args[0], args[1]);
         }
     }
-
 }

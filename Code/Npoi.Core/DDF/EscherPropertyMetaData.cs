@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -28,6 +27,7 @@ namespace Npoi.Core.DDF
     {
         // Escher property types.
         public const byte TYPE_UNKNOWN = (byte)0;
+
         public const byte TYPE_bool = (byte)1;
         public const byte TYPE_RGB = (byte)2;
         public const byte TYPE_SHAPEPATH = (byte)3;
@@ -37,13 +37,11 @@ namespace Npoi.Core.DDF
         private String description;
         private byte type;
 
-
         /// <summary>
         /// Initializes a new instance of the <see cref="EscherPropertyMetaData"/> class.
         /// </summary>
         /// <param name="description">The description of the escher property.</param>
-        public EscherPropertyMetaData(String description)
-        {
+        public EscherPropertyMetaData(String description) {
             this.description = description;
         }
 
@@ -51,9 +49,8 @@ namespace Npoi.Core.DDF
         /// Initializes a new instance of the <see cref="EscherPropertyMetaData"/> class.
         /// </summary>
         /// <param name="description">The description of the escher property.</param>
-        /// <param name="type">The type of the property.</param> 
-        public EscherPropertyMetaData(String description, byte type)
-        {
+        /// <param name="type">The type of the property.</param>
+        public EscherPropertyMetaData(String description, byte type) {
             this.description = description;
             this.type = type;
         }
@@ -62,8 +59,7 @@ namespace Npoi.Core.DDF
         /// Gets the description.
         /// </summary>
         /// <value>The description.</value>
-        public String Description
-        {
+        public String Description {
             get { return description; }
         }
 
@@ -71,10 +67,8 @@ namespace Npoi.Core.DDF
         /// Gets the type.
         /// </summary>
         /// <value>The type.</value>
-        public byte Type
-        {
+        public byte Type {
             get { return type; }
         }
-
     }
 }

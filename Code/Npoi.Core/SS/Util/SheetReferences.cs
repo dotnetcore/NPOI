@@ -15,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Npoi.Core.SS.Util
 {
-
     /**
      * Holds a collection of Sheet names and their associated
      * reference numbers.
@@ -30,20 +27,24 @@ namespace Npoi.Core.SS.Util
      * @author Andrew C. Oliver (acoliver at apache dot org)
      *
      */
+
     public class SheetReferences
     {
-        Dictionary<object, object> map;
-        public SheetReferences() {
+        private Dictionary<object, object> map;
+
+        public SheetReferences()
+        {
             map = new Dictionary<object, object>(5);
         }
 
-        public void AddSheetReference(String sheetName, int number) {
+        public void AddSheetReference(String sheetName, int number)
+        {
             map[number] = sheetName;
         }
 
-        public String GetSheetName(int number) {
+        public String GetSheetName(int number)
+        {
             return (String)map[number];
         }
-
     }
 }

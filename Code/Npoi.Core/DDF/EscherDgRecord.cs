@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,9 +17,9 @@
 
 namespace Npoi.Core.DDF
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /// <summary>
     /// This record simply holds the number of shapes in the drawing group and the
@@ -42,8 +41,7 @@ namespace Npoi.Core.DDF
         /// <param name="offset">The starting offset into data</param>
         /// <param name="recordFactory">May be null since this is not a container record.</param>
         /// <returns>The number of bytes Read from the byte array.</returns>
-        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory)
-        {
+        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory) {
             int bytesRemaining = ReadHeader(data, offset);
             int pos = offset + 8;
             int size = 0;
@@ -62,8 +60,7 @@ namespace Npoi.Core.DDF
         /// <param name="data"> The byte array to Serialize to.</param>
         /// <returns>The number of bytes written.</returns>
         /// <param name="listener">a listener for begin and end serialization events.</param>
-        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener)
-        {
+        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener) {
             listener.BeforeRecordSerialize(offset, RecordId, this);
 
             LittleEndian.PutShort(data, offset, Options);
@@ -82,8 +79,7 @@ namespace Npoi.Core.DDF
         /// Returns the number of bytes that are required to Serialize this record.
         /// </summary>
         /// <value>Number of bytes</value>
-        public override int RecordSize
-        {
+        public override int RecordSize {
             get { return 8 + 8; }
         }
 
@@ -91,8 +87,7 @@ namespace Npoi.Core.DDF
         /// Return the current record id.
         /// </summary>
         /// <value>The 16 bit record id.</value>
-        public override short RecordId
-        {
+        public override short RecordId {
             get { return RECORD_ID; }
         }
 
@@ -100,8 +95,7 @@ namespace Npoi.Core.DDF
         ///  The short name for this record
         /// </summary>
         /// <value></value>
-        public override String RecordName
-        {
+        public override String RecordName {
             get { return "Dg"; }
         }
 
@@ -111,9 +105,8 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override String ToString()
-        {
-            String nl =Environment.NewLine;
+        public override String ToString() {
+            String nl = Environment.NewLine;
 
             //        String extraData;
             //        MemoryStream b = new MemoryStream();
@@ -132,11 +125,9 @@ namespace Npoi.Core.DDF
                     "  Instance: 0x" + HexDump.ToHex(Instance) + nl +
                     "  NumShapes: " + field_1_numShapes + nl +
                     "  LastMSOSPID: " + field_2_lastMSOSPID + nl;
-
         }
 
-        public override String ToXml(String tab)
-        {
+        public override String ToXml(String tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
                     .Append(tab).Append("\t").Append("<NumShapes>").Append(field_1_numShapes).Append("</NumShapes>\n")
@@ -144,43 +135,38 @@ namespace Npoi.Core.DDF
             builder.Append(tab).Append("</").Append(GetType().Name).Append(">\n");
             return builder.ToString();
         }
+
         /// <summary>
         /// Gets or sets The number of shapes in this drawing group.
         /// </summary>
         /// <value>The num shapes.</value>
-        public int NumShapes
-        {
+        public int NumShapes {
             get { return field_1_numShapes; }
             set { field_1_numShapes = value; }
         }
-
 
         /// <summary>
         /// Gets or sets The last shape id used in this drawing group.
         /// </summary>
         /// <value>The last MSOSPID.</value>
-        public int LastMSOSPID
-        {
+        public int LastMSOSPID {
             get { return field_2_lastMSOSPID; }
             set { field_2_lastMSOSPID = value; }
         }
-
 
         /// <summary>
         /// Gets the drawing group id for this record.  This is encoded in the
         /// instance part of the option record.
         /// </summary>
         /// <value>The drawing group id.</value>
-        public short DrawingGroupId
-        {
+        public short DrawingGroupId {
             get { return (short)(Options >> 4); }
         }
 
         /// <summary>
         /// Increments the shape count.
         /// </summary>
-        public void IncrementShapeCount()
-        {
+        public void IncrementShapeCount() {
             this.field_1_numShapes++;
         }
     }

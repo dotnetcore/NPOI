@@ -17,26 +17,22 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
+using Npoi.Core.POIFS.Dev;
+using Npoi.Core.POIFS.EventFileSystem;
+using Npoi.Core.POIFS.Properties;
+using Npoi.Core.Util;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Collections;
-
-
-using Npoi.Core.POIFS.Properties;
-using Npoi.Core.POIFS.Dev;
-using Npoi.Core.POIFS.FileSystem;
-using Npoi.Core.POIFS.EventFileSystem;
-using Npoi.Core.Util;
-using Npoi.Core.Util.Collections;
 
 namespace Npoi.Core.POIFS.FileSystem
 {
@@ -59,7 +55,6 @@ namespace Npoi.Core.POIFS.FileSystem
 
         // the path described by this document
         private POIFSDocumentPath _path;
-
 
         public DirectoryNode(DirectoryProperty property,
                         POIFSFileSystem fileSystem,
@@ -127,7 +122,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 _byname.Add(childNode.Name, childNode);
             }
         }
-        
+
         /// <summary>
         /// open a document in the directory's entry's list of entries
         /// </summary>
@@ -154,7 +149,7 @@ namespace Npoi.Core.POIFS.FileSystem
         public DocumentEntry CreateDocument(POIFSDocument document)
         {
             DocumentProperty property = document.DocumentProperty;
-            DocumentNode     rval     = new DocumentNode(property, this);
+            DocumentNode rval = new DocumentNode(property, this);
 
             ((DirectoryProperty)Property).AddChild(property);
             _oFilesSystem.AddDocument(document);
@@ -173,7 +168,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <returns>true if the operation succeeded, else false</returns>
         public bool ChangeName(String oldName, String newName)
         {
-            bool   rval  = false;
+            bool rval = false;
             EntryNode child = (EntryNode)_byname[oldName];
 
             if (child != null)
@@ -243,7 +238,7 @@ namespace Npoi.Core.POIFS.FileSystem
             get { return _nFilesSystem; }
         }
 
-       /// <summary>
+        /// <summary>
         /// get an iterator of the Entry instances contained directly in
         /// this instance (in other words, children only; no grandchildren
         /// etc.)
@@ -258,6 +253,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get { return _entries.GetEnumerator(); }
         }
+
         internal Entry GetEntry(int index)
         {
             return _entries[index];
@@ -269,9 +265,10 @@ namespace Npoi.Core.POIFS.FileSystem
          * etc).
          *
          * @return the names of all the entries that may be retrieved with
-         *         getEntry(String), which may be empty (if this 
+         *         getEntry(String), which may be empty (if this
          *         DirectoryEntry is empty)
          */
+
         public List<String> EntryNames
         {
             get
@@ -304,7 +301,6 @@ namespace Npoi.Core.POIFS.FileSystem
             get { return _entries.Count; }
         }
 
-
         public bool HasEntry(String name)
         {
             return name != null && _byname.ContainsKey(name);
@@ -335,13 +331,11 @@ namespace Npoi.Core.POIFS.FileSystem
             }
             if (rval == null)
             {
-
                 // either a null name was given, or there Is no such name
                 throw new FileNotFoundException("no such entry: \"" + name + "\"");
             }
             return rval;
         }
-
 
         //public DocumentReader CreateDocumentReader(string documentName)
         //{
@@ -383,7 +377,6 @@ namespace Npoi.Core.POIFS.FileSystem
             return CreateDocumentInputStream(GetEntry(documentName));
         }
 
-
         public DocumentEntry CreateDocument(NPOIFSDocument document)
         {
             try
@@ -399,14 +392,12 @@ namespace Npoi.Core.POIFS.FileSystem
                 _byname[property.Name] = rval;
 
                 return rval;
-
             }
             catch (IOException ex)
-        {
+            {
                 throw ex;
             }
         }
-
 
         /// <summary>
         /// Create a new DirectoryEntry
@@ -436,15 +427,15 @@ namespace Npoi.Core.POIFS.FileSystem
             return rval;
         }
 
-
         /// <summary>
         /// Gets or Sets the storage clsid for the directory entry
         /// </summary>
         /// <value>The storage ClassID.</value>
         public ClassID StorageClsid
         {
-            set{
-                this.Property.StorageClsid=value;
+            set
+            {
+                this.Property.StorageClsid = value;
             }
             get
             {
@@ -495,7 +486,6 @@ namespace Npoi.Core.POIFS.FileSystem
             }
         }
 
-
         public DocumentEntry CreateDocument(string name, int size, POIFSWriterListener writer)
         {
             if (_nFilesSystem != null)
@@ -508,8 +498,8 @@ namespace Npoi.Core.POIFS.FileSystem
             }
         }
 
-
         #region ViewableItertor interface
+
         /// <summary>
         /// Get an array of objects, some of which may implement POIFSViewable
         /// </summary>
@@ -531,7 +521,7 @@ namespace Npoi.Core.POIFS.FileSystem
         public IEnumerator ViewableIterator
         {
             get
-                {
+            {
                 List<object> components = new List<object>();
 
                 components.Add(Property);
@@ -561,10 +551,8 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get { return Name; }
         }
-        
-        #endregion
 
-
+        #endregion ViewableItertor interface
 
         #region IEnumerable<Entry> Members
 
@@ -573,7 +561,7 @@ namespace Npoi.Core.POIFS.FileSystem
             return _entries.GetEnumerator();
         }
 
-        #endregion
+        #endregion IEnumerable<Entry> Members
 
         #region IEnumerable Members
 
@@ -582,67 +570,58 @@ namespace Npoi.Core.POIFS.FileSystem
             return _entries.GetEnumerator();
         }
 
-        #endregion
+        #endregion IEnumerable Members
 
-
-
-
-        public  bool CanRead
+        public bool CanRead
         {
             get { throw new System.NotImplementedException(); }
         }
 
-        public  bool CanSeek
+        public bool CanSeek
         {
             get { throw new System.NotImplementedException(); }
         }
 
-        public  bool CanWrite
+        public bool CanWrite
         {
             get { throw new System.NotImplementedException(); }
         }
 
-        public  void Flush()
+        public void Flush()
         {
             throw new System.NotImplementedException();
         }
 
-        public  long Length
+        public long Length
         {
             get { throw new System.NotImplementedException(); }
         }
 
-        public  long Position
+        public long Position
         {
             get
             {
                 throw new System.NotImplementedException();
-    }
+            }
             set
             {
                 throw new System.NotImplementedException();
             }
         }
 
-        public  int Read(byte[] buffer, int offset, int count)
+        public int Read(byte[] buffer, int offset, int count)
         {
             throw new System.NotImplementedException();
         }
 
-        public  long Seek(long offset, SeekOrigin origin)
+        public long Seek(long offset, SeekOrigin origin)
         {
             throw new System.NotImplementedException();
         }
 
-        public  void SetLength(long value)
+        public void SetLength(long value)
         {
             throw new System.NotImplementedException();
         }
-
-
-
-
     }
-
-
 }

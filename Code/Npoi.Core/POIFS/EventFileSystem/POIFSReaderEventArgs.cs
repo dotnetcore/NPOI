@@ -17,17 +17,16 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
-using System;
-
 using Npoi.Core.POIFS.FileSystem;
+using System;
 
 namespace Npoi.Core.POIFS.EventFileSystem
 {
@@ -35,7 +34,7 @@ namespace Npoi.Core.POIFS.EventFileSystem
     /// EventArgs for POIFSReader
     /// author: Tony Qu
     /// </summary>
-    public class POIFSReaderEventArgs:EventArgs
+    public class POIFSReaderEventArgs : EventArgs
     {
         public POIFSReaderEventArgs(string name, POIFSDocumentPath path, POIFSDocument document)
         {
@@ -52,16 +51,20 @@ namespace Npoi.Core.POIFS.EventFileSystem
         {
             get { return path; }
         }
+
         public virtual POIFSDocument Document
         {
             get { return document; }
         }
+
         public virtual DocumentInputStream Stream
         {
-            get { 
-                return new DocumentInputStream(this.document); 
+            get
+            {
+                return new DocumentInputStream(this.document);
             }
         }
+
         public virtual string Name
         {
             get { return name; }

@@ -21,7 +21,6 @@ namespace Npoi.Core.SS.Formula.Functions
 {
     using Npoi.Core.SS.Formula.Eval;
 
-
     /**
      * Implementation of Excel function SLOPE()<p/>
      *
@@ -33,10 +32,11 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author Johan Karlsteen
      */
+
     public class Slope : Fixed2ArgFunction
     {
-
         private LinearRegressionFunction func;
+
         public Slope()
         {
             func = new LinearRegressionFunction(LinearRegressionFunction.FUNCTION.SLOPE);

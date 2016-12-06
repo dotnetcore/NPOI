@@ -14,17 +14,18 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
+
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.SS.UserModel;
+    using System;
 
     /// <summary>
     /// Represents an Excel hyperlink.
     /// </summary>
     /// <remarks>@author Yegor Kozlov (yegor at apache dot org)</remarks>
-    public class HSSFHyperlink:IHyperlink
+    public class HSSFHyperlink : IHyperlink
     {
         /**
          * Low-level record object that stores the actual hyperlink data
@@ -50,9 +51,11 @@ namespace Npoi.Core.HSSF.UserModel
                 case HyperlinkType.Email:
                     record.CreateUrlLink();
                     break;
+
                 case HyperlinkType.File:
                     record.CreateFileLink();
                     break;
+
                 case HyperlinkType.Document:
                     record.CreateDocumentLink();
                     break;
@@ -75,7 +78,7 @@ namespace Npoi.Core.HSSF.UserModel
         public int FirstRow
         {
             get { return record.FirstRow; }
-            set { record.FirstRow=value; }
+            set { record.FirstRow = value; }
         }
 
         /// <summary>
@@ -85,9 +88,8 @@ namespace Npoi.Core.HSSF.UserModel
         public int LastRow
         {
             get { return record.LastRow; }
-            set { record.LastRow=value; }
+            set { record.LastRow = value; }
         }
-
 
         /// <summary>
         /// Gets or sets the column of the first cell that Contains the hyperlink
@@ -96,7 +98,7 @@ namespace Npoi.Core.HSSF.UserModel
         public int FirstColumn
         {
             get { return record.FirstColumn; }
-            set { record.FirstColumn=value; }
+            set { record.FirstColumn = value; }
         }
 
         /// <summary>
@@ -106,7 +108,7 @@ namespace Npoi.Core.HSSF.UserModel
         public int LastColumn
         {
             get { return record.LastColumn; }
-            set { record.LastColumn=value; }
+            set { record.LastColumn = value; }
         }
 
         /// <summary>
@@ -152,9 +154,9 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return record.Label;
             }
-            set 
+            set
             {
-                record.Label=value;
+                record.Label = value;
             }
         }
 

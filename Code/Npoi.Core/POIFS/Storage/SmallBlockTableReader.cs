@@ -17,16 +17,16 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
-using Npoi.Core.POIFS.Properties;
 using Npoi.Core.POIFS.Common;
+using Npoi.Core.POIFS.Properties;
 
 namespace Npoi.Core.POIFS.Storage
 {

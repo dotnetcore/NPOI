@@ -19,9 +19,9 @@ using System.Text;
 
 namespace Npoi.Core.DDF
 {
+    using Npoi.Core.Util;
     using System;
     using System.IO;
-    using Npoi.Core.Util;
 
     /// <summary>
     /// @author Glen Stampoultzis
@@ -38,16 +38,14 @@ namespace Npoi.Core.DDF
         private byte[] field_1_UID;
         private byte field_2_marker = (byte)0xFF;
 
-
         /// <summary>
-        /// This method deSerializes the record from a byte array.    
+        /// This method deSerializes the record from a byte array.
         /// </summary>
         /// <param name="data"> The byte array containing the escher record information</param>
         /// <param name="offset">The starting offset into </param>
         /// <param name="recordFactory">May be null since this is not a container record.</param>
         /// <returns>The number of bytes Read from the byte array.</returns>
-        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory)
-        {
+        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory) {
             int bytesAfterHeader = ReadHeader(data, offset);
             int pos = offset + HEADER_SIZE;
 
@@ -68,8 +66,7 @@ namespace Npoi.Core.DDF
         /// <param name="data">the data array to Serialize to</param>
         /// <param name="listener">a listener for begin and end serialization events.</param>
         /// <returns>the number of bytes written.</returns>
-        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener)
-        {
+        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener) {
             listener.BeforeRecordSerialize(offset, RecordId, this);
 
             LittleEndian.PutShort(data, offset, Options);
@@ -89,8 +86,7 @@ namespace Npoi.Core.DDF
         /// Returns the number of bytes that are required to Serialize this record.
         /// </summary>
         /// <value> Number of bytes</value>
-        public override int RecordSize
-        {
+        public override int RecordSize {
             get { return 8 + 16 + 1 + field_pictureData.Length; }
         }
 
@@ -98,8 +94,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets the UID.
         /// </summary>
         /// <value>The UID.</value>
-        public byte[] UID
-        {
+        public byte[] UID {
             get { return field_1_UID; }
             set { this.field_1_UID = value; }
         }
@@ -108,8 +103,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets the marker.
         /// </summary>
         /// <value>The marker.</value>
-        public byte Marker
-        {
+        public byte Marker {
             get { return field_2_marker; }
             set { this.field_2_marker = value; }
         }
@@ -118,20 +112,16 @@ namespace Npoi.Core.DDF
         /// Toes the string.
         /// </summary>
         /// <returns></returns>
-        public override String ToString()
-        {
+        public override String ToString() {
             String nl = Environment.NewLine;
 
             String extraData;
-            using (MemoryStream b = new MemoryStream())
-            {
-                try
-                {
+            using (MemoryStream b = new MemoryStream()) {
+                try {
                     HexDump.Dump(this.field_pictureData, 0, b, 0);
                     extraData = HexDump.ToHex(b.ToArray());
                 }
-                catch (Exception e)
-                {
+                catch (Exception e) {
                     extraData = e.ToString();
                 }
                 return this.GetType().Name + ":" + nl +
@@ -144,17 +134,14 @@ namespace Npoi.Core.DDF
             }
         }
 
-        public override String ToXml(String tab)
-        {
+        public override String ToXml(String tab) {
             String extraData;
             //MemoryStream b = new MemoryStream();
-            try
-            {
+            try {
                 //HexDump.Dump(this.field_pictureData, 0, b, 0);
                 extraData = HexDump.ToHex(this.field_pictureData);
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 extraData = e.ToString();
             }
             StringBuilder builder = new StringBuilder();
@@ -165,6 +152,5 @@ namespace Npoi.Core.DDF
             builder.Append(tab).Append("</").Append(GetType().Name).Append(">\n");
             return builder.ToString();
         }
-
     }
 }

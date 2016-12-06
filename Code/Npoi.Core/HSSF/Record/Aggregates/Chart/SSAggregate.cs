@@ -22,7 +22,7 @@ using System.Diagnostics;
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 {
     /// <summary>
-    /// SS = DataFormat Begin [Chart3DBarShape] [LineFormat AreaFormat PieFormat] [SerFmt] 
+    /// SS = DataFormat Begin [Chart3DBarShape] [LineFormat AreaFormat PieFormat] [SerFmt]
     /// [GELFRAME] [MarkerFormat] [AttachedLabel] *2SHAPEPROPS [CRTMLFRT] End
     /// </summary>
     public class SSAggregate : ChartRecordAggregate
@@ -58,7 +58,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
                 areaFormat = (AreaFormatRecord)rs.GetNext();
                 pieFormat = (PieFormatRecord)rs.GetNext();
             }
-            if(rs.PeekNextChartSid()==SerFmtRecord.sid)
+            if (rs.PeekNextChartSid() == SerFmtRecord.sid)
                 serFmt = (SerFmtRecord)rs.GetNext();
 
             if (rs.PeekNextChartSid() == GelFrameRecord.sid)

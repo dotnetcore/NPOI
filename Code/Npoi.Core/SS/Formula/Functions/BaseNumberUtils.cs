@@ -14,6 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     using System;
@@ -23,6 +24,7 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author cedric dot walter @ gmail dot com
      */
+
     public class BaseNumberUtils
     {
         public static double ConvertToDecimal(String value, int base1, int maxNumberOfPlaces)
@@ -94,5 +96,4 @@ namespace Npoi.Core.SS.Formula.Functions
             return (Math.Pow(base1, maxNumberOfPlaces) - decimalValue);
         }
     }
-
 }

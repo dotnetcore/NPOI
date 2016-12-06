@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title:        File Pass Record
@@ -43,7 +40,6 @@ namespace Npoi.Core.HSSF.Record
         private byte[] _docId;
         private byte[] _saltData;
         private byte[] _saltHash;
-
 
         private const int ENCRYPTION_XOR = 0;
         private const int ENCRYPTION_OTHER = 1;
@@ -67,6 +63,7 @@ namespace Npoi.Core.HSSF.Record
                 case ENCRYPTION_OTHER:
                     // handled below
                     break;
+
                 default:
                     throw new RecordFormatException("Unknown encryption type " + _encryptionType);
             }
@@ -76,6 +73,7 @@ namespace Npoi.Core.HSSF.Record
                 case ENCRYPTION_OTHER_RC4:
                     // handled below
                     break;
+
                 case ENCRYPTION_OTHER_CAPI_2:
                 case ENCRYPTION_OTHER_CAPI_3:
                     throw new RecordFormatException(
@@ -92,6 +90,7 @@ namespace Npoi.Core.HSSF.Record
             _saltData = Read(in1, 16);
             _saltHash = Read(in1, 16);
         }
+
         private static byte[] Read(RecordInputStream in1, int size)
         {
             byte[] result = new byte[size];
@@ -114,7 +113,6 @@ namespace Npoi.Core.HSSF.Record
             return buffer.ToString();
         }
 
-
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(_encryptionType);
@@ -132,6 +130,7 @@ namespace Npoi.Core.HSSF.Record
                 return 54;
             }
         }
+
         public byte[] DocId
         {
             get
@@ -140,7 +139,6 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-
             }
         }
 
@@ -159,7 +157,6 @@ namespace Npoi.Core.HSSF.Record
                 return _saltHash;
             }
         }
-
 
         public override short Sid
         {

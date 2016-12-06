@@ -15,21 +15,20 @@
 * limitations Under the License.
 */
 
-
 namespace Npoi.Core.SS.Formula.Functions
 {
     using Npoi.Core.SS.Formula.Eval;
 
     /**
      * Implementation for Excel COLUMNS function.
-     * 
+     *
      * @author Josh Micich
      */
+
     public class Columns : Fixed1ArgFunction
     {
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0)
         {
-
             int result;
             if (arg0 is AreaEval)
             {

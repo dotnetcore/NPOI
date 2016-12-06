@@ -22,11 +22,12 @@ namespace Npoi.Core.SS.Formula.Functions
     /**
      * Implementation of the DMin function:
      * Finds the minimum value of a column in an area with given conditions.
-     * 
+     *
      * TODO:
      * - wildcards ? and * in string conditions
      * - functions as conditions
      */
+
     public class DMin : IDStarAlgorithm
     {
         private ValueEval minimumValue;
@@ -73,5 +74,4 @@ namespace Npoi.Core.SS.Formula.Functions
             }
         }
     }
-
 }

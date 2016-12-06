@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -15,36 +14,35 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
-        
 
 /*
  * NumberRecord.java
  *
  * Created on October 1, 2001, 8:01 PM
  */
+
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.SS.Util;
     using Npoi.Core.Util;
-
     using System;
     using System.Text;
-    using Npoi.Core.SS.Util;
 
     /**
-     * Contains a numeric cell value. 
+     * Contains a numeric cell value.
      * REFERENCE:  PG 334 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
      * @author Andrew C. Oliver (acoliver at apache dot org)
      * @author Jason Height (jheight at chariot dot net dot au)
      * @version 2.0-pre
      */
 
-    public class NumberRecord :CellRecord
+    public class NumberRecord : CellRecord
     {
         public const short sid = 0x203;
         private double field_4_value;
 
         /** Creates new NumberRecord */
+
         public NumberRecord()
         {
         }
@@ -55,7 +53,7 @@ namespace Npoi.Core.HSSF.Record
          * @param in the RecordInputstream to Read the record from
          */
 
-        public NumberRecord(RecordInputStream in1):base(in1)
+        public NumberRecord(RecordInputStream in1) : base(in1)
         {
             field_4_value = in1.ReadDouble();
         }
@@ -67,6 +65,7 @@ namespace Npoi.Core.HSSF.Record
                 return "NUMBER";
             }
         }
+
         protected override void AppendValueText(StringBuilder sb)
         {
             sb.Append("  .value= ").Append(NumberToTextConverter.ToText(field_4_value));
@@ -76,6 +75,7 @@ namespace Npoi.Core.HSSF.Record
         {
             out1.WriteDouble(Value);
         }
+
         protected override int ValueDataSize
         {
             get
@@ -83,6 +83,7 @@ namespace Npoi.Core.HSSF.Record
                 return 8;
             }
         }
+
         /**
          * Get the value for the cell
          *

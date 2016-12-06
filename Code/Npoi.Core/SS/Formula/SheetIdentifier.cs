@@ -30,6 +30,7 @@ namespace Npoi.Core.SS.Formula
             _bookName = bookName;
             _sheetIdentifier = sheetIdentifier;
         }
+
         public String BookName
         {
             get
@@ -37,6 +38,7 @@ namespace Npoi.Core.SS.Formula
                 return _bookName;
             }
         }
+
         public NameIdentifier SheetId
         {
             get
@@ -44,6 +46,7 @@ namespace Npoi.Core.SS.Formula
                 return _sheetIdentifier;
             }
         }
+
         protected virtual void AsFormulaString(StringBuilder sb)
         {
             if (_bookName != null)
@@ -59,12 +62,14 @@ namespace Npoi.Core.SS.Formula
                 sb.Append(_sheetIdentifier.Name);
             }
         }
+
         public String AsFormulaString()
         {
             StringBuilder sb = new StringBuilder(32);
             AsFormulaString(sb);
             return sb.ToString();
         }
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder(64);

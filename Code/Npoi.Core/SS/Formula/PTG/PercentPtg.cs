@@ -19,11 +19,13 @@ namespace Npoi.Core.SS.Formula.PTG
 {
     using System;
     using System.Text;
+
     /**
      * Percent PTG.
      *
      * @author Daniel Noll (daniel at nuix.com.au)
      */
+
     public class PercentPtg : ValueOperatorPtg
     {
         public const int SIZE = 1;

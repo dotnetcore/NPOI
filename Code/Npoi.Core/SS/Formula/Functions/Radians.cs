@@ -18,20 +18,21 @@
  * Created on May 6, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     using System;
 
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     *  
+     *
      */
+
     public class Radians : OneArg
     {
         public override double Evaluate(double d)
         {
             return d * Math.PI / 180;
         }
-
     }
 }

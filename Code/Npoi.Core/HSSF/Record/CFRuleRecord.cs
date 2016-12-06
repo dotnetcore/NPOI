@@ -17,18 +17,17 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
-    using System.Text;
     using Npoi.Core.HSSF.Model;
-    using Npoi.Core.HSSF.Record;
-    using Npoi.Core.Util;
+    using Npoi.Core.HSSF.Record.CF;
     using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.SS.Formula;
-    using Npoi.Core.HSSF.Record.CF;
-    using FR=Npoi.Core.SS.Formula;
-
     using Npoi.Core.SS.Formula.PTG;
     using Npoi.Core.SS.UserModel;
+    using Npoi.Core.Util;
+    using System;
+    using System.Text;
+
+    using FR = Npoi.Core.SS.Formula;
 
     //public enum ComparisonOperator : byte
     //{
@@ -46,12 +45,10 @@ namespace Npoi.Core.HSSF.Record
      * Conditional Formatting Rule Record.
      * @author Dmitriy Kumshayev
      */
+
     public class CFRuleRecord : StandardRecord
     {
-
         public const short sid = 0x01B1;
-
-
 
         private byte field_1_condition_type;
         public const byte CONDITION_TYPE_CELL_VALUE_IS = 1;
@@ -91,11 +88,11 @@ namespace Npoi.Core.HSSF.Record
         private static BitField prot = bf(0x40000000); // 1 = Record Contains protection formatting block
         private static BitField alignTextDir = bf(unchecked((int)0x80000000)); // 0 = Text direction modified
 
-
         private static BitField bf(int i)
         {
             return BitFieldFactory.GetInstance(i);
         }
+
         private short field_6_not_used;
 
         private FontFormatting _fontFormatting;
@@ -114,10 +111,11 @@ namespace Npoi.Core.HSSF.Record
         private FR.Formula field_18_formula2;
 
         /** Creates new CFRuleRecord */
+
         private CFRuleRecord(byte conditionType, ComparisonOperator comparisonOperation)
         {
             field_1_condition_type = conditionType;
-            field_2_comparison_operator =(byte) comparisonOperation;
+            field_2_comparison_operator = (byte)comparisonOperation;
 
             // Set modification flags to 1: by default options are not modified
             field_5_options = modificationBits.SetValue(field_5_options, -1);
@@ -140,19 +138,19 @@ namespace Npoi.Core.HSSF.Record
         }
 
         private CFRuleRecord(byte conditionType, ComparisonOperator comparisonOperation, Ptg[] formula1, Ptg[] formula2)
-            :this(conditionType, comparisonOperation)
+            : this(conditionType, comparisonOperation)
         {
-            
             //field_1_condition_type = CONDITION_TYPE_CELL_VALUE_IS;
             //field_2_comparison_operator = (byte)comparisonOperation;
             field_17_formula1 = FR.Formula.Create(formula1);
             field_18_formula2 = FR.Formula.Create(formula2);
         }
+
         /**
          * get the stack of the 1st expression as a list
          *
          * @return list of tokens (casts stack to a list and returns it!)
-         * this method can return null is we are unable to create Ptgs from 
+         * this method can return null is we are unable to create Ptgs from
          *	 existing excel file
          * callers should check for null!
          */
@@ -165,11 +163,12 @@ namespace Npoi.Core.HSSF.Record
             }
             set { field_17_formula1 = FR.Formula.Create(value); }
         }
+
         /**
          * get the stack of the 2nd expression as a list
          *
          * @return list of tokens (casts stack to a list and returns it!)
-         * this method can return null is we are unable to create Ptgs from 
+         * this method can return null is we are unable to create Ptgs from
          *	 existing excel file
          * callers should check for null!
          */
@@ -186,6 +185,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Creates a new comparison operation rule
          */
+
         [Obsolete]
         public static CFRuleRecord Create(HSSFWorkbook workbook, String formulaText)
         {
@@ -193,9 +193,11 @@ namespace Npoi.Core.HSSF.Record
             return new CFRuleRecord(CONDITION_TYPE_FORMULA, ComparisonOperator.NoComparison,
                     formula1, null);
         }
+
         /**
          * Creates a new comparison operation rule
          */
+
         [Obsolete]
         public static CFRuleRecord Create(HSSFWorkbook workbook, ComparisonOperator comparisonOperation,
                 String formulaText1, String formulaText2)
@@ -204,15 +206,18 @@ namespace Npoi.Core.HSSF.Record
             Ptg[] formula2 = ParseFormula(formulaText2, workbook);
             return new CFRuleRecord(CONDITION_TYPE_CELL_VALUE_IS, comparisonOperation, formula1, formula2);
         }
+
         public static CFRuleRecord Create(HSSFSheet sheet, String formulaText)
         {
             Ptg[] formula1 = ParseFormula(formulaText, sheet);
             return new CFRuleRecord(CONDITION_TYPE_FORMULA, ComparisonOperator.NoComparison,
                     formula1, null);
         }
+
         /**
          * Creates a new comparison operation rule
          */
+
         public static CFRuleRecord Create(HSSFSheet sheet, byte comparisonOperation,
                 String formulaText1, String formulaText2)
         {
@@ -220,6 +225,7 @@ namespace Npoi.Core.HSSF.Record
             Ptg[] formula2 = ParseFormula(formulaText2, sheet);
             return new CFRuleRecord(CONDITION_TYPE_CELL_VALUE_IS, (ComparisonOperator)comparisonOperation, formula1, formula2);
         }
+
         public CFRuleRecord(RecordInputStream in1)
         {
             field_1_condition_type = (byte)in1.ReadByte();
@@ -245,7 +251,7 @@ namespace Npoi.Core.HSSF.Record
             }
             field_17_formula1 = FR.Formula.Read(field_3_formula1_len, in1);
             field_18_formula2 = FR.Formula.Read(field_4_formula2_len, in1);
-    }
+        }
 
         public byte ConditionType
         {
@@ -281,6 +287,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get { return GetOptionFlag(align); }
         }
+
         public void SetAlignFormattingUnChanged()
         {
             SetOptionFlag(false, align);
@@ -290,6 +297,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get { return GetOptionFlag(bord); }
         }
+
         public BorderFormatting BorderFormatting
         {
             get
@@ -328,7 +336,7 @@ namespace Npoi.Core.HSSF.Record
                     return null;
                 }
             }
-            set 
+            set
             {
                 this._patternFormatting = value;
                 SetOptionFlag(_patternFormatting != null, patt);
@@ -339,6 +347,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get { return GetOptionFlag(prot); }
         }
+
         public void SetProtectionFormattingUnChanged()
         {
             SetOptionFlag(false, prot);
@@ -350,12 +359,12 @@ namespace Npoi.Core.HSSF.Record
             set { field_2_comparison_operator = value; }
         }
 
-
         /**
          * Get the option flags
          *
          * @return bit mask
          */
+
         public int Options
         {
             get { return field_5_options; }
@@ -374,7 +383,7 @@ namespace Npoi.Core.HSSF.Record
         public bool IsLeftBorderModified
         {
             get { return IsModified(bordLeft); }
-            set { SetModified(value, bordLeft);}
+            set { SetModified(value, bordLeft); }
         }
 
         public bool IsRightBorderModified
@@ -386,7 +395,7 @@ namespace Npoi.Core.HSSF.Record
         public bool IsTopBorderModified
         {
             get { return IsModified(bordTop); }
-            set { SetModified(value, bordTop);}
+            set { SetModified(value, bordTop); }
         }
 
         public bool IsBottomBorderModified
@@ -397,32 +406,32 @@ namespace Npoi.Core.HSSF.Record
 
         public bool IsTopLeftBottomRightBorderModified
         {
-            get{return IsModified(bordTlBr);}
-            set {  SetModified(value, bordTlBr);}
+            get { return IsModified(bordTlBr); }
+            set { SetModified(value, bordTlBr); }
         }
 
         public bool IsBottomLeftTopRightBorderModified
         {
             get { return IsModified(bordBlTr); }
-            set { SetModified(value, bordBlTr);}
+            set { SetModified(value, bordBlTr); }
         }
 
         public bool IsPatternStyleModified
         {
             get { return IsModified(pattStyle); }
-            set { SetModified(value, pattStyle);}
+            set { SetModified(value, pattStyle); }
         }
 
         public bool IsPatternColorModified
         {
             get { return IsModified(pattCol); }
-            set { SetModified(value, pattCol);}
+            set { SetModified(value, pattCol); }
         }
 
         public bool IsPatternBackgroundColorModified
         {
             get { return IsModified(pattBgCol); }
-            set {SetModified(value, pattBgCol); }
+            set { SetModified(value, pattBgCol); }
         }
 
         private bool GetOptionFlag(BitField field)
@@ -435,8 +444,6 @@ namespace Npoi.Core.HSSF.Record
             field_5_options = field.SetBoolean(field_5_options, flag);
         }
 
-
-
         public override short Sid
         {
             get { return sid; }
@@ -446,6 +453,7 @@ namespace Npoi.Core.HSSF.Record
          * @param ptgs may be <c>null</c>
          * @return encoded size of the formula
          */
+
         private int GetFormulaSize(FR.Formula formula)
         {
             return formula.EncodedTokenSize;
@@ -460,10 +468,11 @@ namespace Npoi.Core.HSSF.Record
          * @param data byte array containing instance data
          * @return number of bytes written
          */
+
         public override void Serialize(ILittleEndianOutput out1)
         {
-            int formula1Len=GetFormulaSize(field_17_formula1);
-            int formula2Len=GetFormulaSize(field_18_formula2);
+            int formula1Len = GetFormulaSize(field_17_formula1);
+            int formula2Len = GetFormulaSize(field_18_formula2);
 
             out1.WriteByte(field_1_condition_type);
             out1.WriteByte(field_2_comparison_operator);
@@ -472,23 +481,25 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteInt(field_5_options);
             out1.WriteShort(field_6_not_used);
 
-            if (ContainsFontFormattingBlock) {
-                byte[] fontFormattingRawRecord  = _fontFormatting.GetRawRecord();
+            if (ContainsFontFormattingBlock)
+            {
+                byte[] fontFormattingRawRecord = _fontFormatting.GetRawRecord();
                 out1.Write(fontFormattingRawRecord);
             }
 
-            if (ContainsBorderFormattingBlock) {
+            if (ContainsBorderFormattingBlock)
+            {
                 _borderFormatting.Serialize(out1);
             }
 
-            if (ContainsPatternFormattingBlock) {
+            if (ContainsPatternFormattingBlock)
+            {
                 _patternFormatting.Serialize(out1);
             }
 
             field_17_formula1.SerializeTokens(out1);
             field_18_formula2.SerializeTokens(out1);
         }
-
 
         protected override int DataSize
         {
@@ -497,7 +508,7 @@ namespace Npoi.Core.HSSF.Record
                 int retval = 12 +
                             (ContainsFontFormattingBlock ? _fontFormatting.GetRawRecord().Length : 0) +
                             (ContainsBorderFormattingBlock ? 8 : 0) +
-                            (ContainsPatternFormattingBlock? 4 : 0) +
+                            (ContainsPatternFormattingBlock ? 4 : 0) +
                             GetFormulaSize(field_17_formula1) +
                             GetFormulaSize(field_18_formula2)
                             ;
@@ -505,13 +516,12 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         public override String ToString()
         {
             StringBuilder buffer = new StringBuilder();
             buffer.Append("[CFRULE]\n");
             buffer.Append("    .condition_type   =").Append(field_1_condition_type).Append("\n");
-            buffer.Append("    OPTION FLAGS=0x").Append(string.Format("{0:X}",Options)).Append("\n");
+            buffer.Append("    OPTION FLAGS=0x").Append(string.Format("{0:X}", Options)).Append("\n");
             if (ContainsFontFormattingBlock)
             {
                 buffer.Append(_fontFormatting.ToString()).Append("\n");
@@ -529,7 +539,6 @@ namespace Npoi.Core.HSSF.Record
             buffer.Append("[/CFRULE]\n");
             return buffer.ToString();
         }
- 
 
         public override Object Clone()
         {
@@ -565,9 +574,10 @@ namespace Npoi.Core.HSSF.Record
          * this call will produce the wrong results if the formula Contains any cell references
          * One approach might be to apply the inverse of SharedFormulaRecord.ConvertSharedFormulas(Stack, int, int)
          * Note - two extra parameters (rowIx &amp;colIx) will be required. They probably come from one of the Region objects.
-         * 
+         *
          * @return <c>null</c> if <c>formula</c> was null.
          */
+
         private static Ptg[] ParseFormula(String formula, HSSFWorkbook workbook)
         {
             if (formula == null)
@@ -576,6 +586,7 @@ namespace Npoi.Core.HSSF.Record
             }
             return HSSFFormulaParser.Parse(formula, workbook);
         }
+
         /**
      * TODO - parse conditional format formulas properly i.e. produce tRefN and tAreaN instead of tRef and tArea
      * this call will produce the wrong results if the formula contains any cell references
@@ -584,6 +595,7 @@ namespace Npoi.Core.HSSF.Record
      *
      * @return <code>null</code> if <c>formula</c> was null.
      */
+
         private static Ptg[] ParseFormula(String formula, HSSFSheet sheet)
         {
             if (formula == null)

@@ -24,7 +24,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
     /// <summary>
     /// DVAXIS = Axis Begin [ValueRange] [AXM] AXS [CRTMLFRT] End
     /// </summary>
-    public class DVAxisAggregate: ChartRecordAggregate
+    public class DVAxisAggregate : ChartRecordAggregate
     {
         private AxisRecord axis;
         private ValueRangeRecord valueRange;
@@ -36,6 +36,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
         {
             get { return axis; }
         }
+
         public DVAxisAggregate(RecordStream rs, ChartRecordAggregate container, AxisRecord axis)
             : base(RuleName_DVAXIS, container)
         {
@@ -62,6 +63,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             Record r = rs.GetNext();//EndRecord
             Debug.Assert(r.GetType() == typeof(EndRecord));
         }
+
         public override void VisitContainedRecords(RecordVisitor rv)
         {
             rv.VisitRecord(axis);

@@ -17,7 +17,6 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-
     using Npoi.Core.SS.Formula.Eval;
 
     /**
@@ -27,14 +26,13 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * Based on POI {@link DateFunc}
      */
+
     public class TimeFunc : Fixed3ArgFunction
     {
-
         private const int SECONDS_PER_MINUTE = 60;
         private const int SECONDS_PER_HOUR = 3600;
         private const int HOURS_PER_DAY = 24;
         private const int SECONDS_PER_DAY = HOURS_PER_DAY * SECONDS_PER_HOUR;
-
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1,
                 ValueEval arg2)
@@ -50,6 +48,7 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return new NumberEval(result);
         }
+
         private int EvalArg(ValueEval arg, int srcRowIndex, int srcColumnIndex)
         {
             if (arg == MissingArgEval.instance)
@@ -60,6 +59,7 @@ namespace Npoi.Core.SS.Formula.Functions
             // Excel silently tRuncates double values to integers
             return OperandResolver.CoerceValueToInt(ev);
         }
+
         /**
          * Converts the supplied hours, minutes and seconds to an Excel time value.
          *
@@ -75,9 +75,9 @@ namespace Npoi.Core.SS.Formula.Functions
          * minutes and seconds when combined form a time value less than 0, the function
          * Evaluates to an error.
          */
+
         private double Evaluate(int hours, int minutes, int seconds)
         {
-
             if (hours > 32767 || minutes > 32767 || seconds > 32767)
             {
                 throw new EvaluationException(ErrorEval.VALUE_INVALID);
@@ -91,5 +91,4 @@ namespace Npoi.Core.SS.Formula.Functions
             return (totalSeconds % SECONDS_PER_DAY) / (double)SECONDS_PER_DAY;
         }
     }
-
 }

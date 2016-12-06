@@ -17,20 +17,18 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
-
-
-using System;
-using System.IO;
 
 using Npoi.Core.POIFS.Common;
 using Npoi.Core.Util;
+using System;
+using System.IO;
 
 namespace Npoi.Core.POIFS.Storage
 {
@@ -151,7 +149,6 @@ namespace Npoi.Core.POIFS.Storage
                 ? BATBlock.CalculateXBATStorageRequirements(bigBlockSize, blockCount - _max_bats_in_header) : 0;
         }
 
-
         /// <summary>
         /// Write the block's data to an Stream
         /// </summary>
@@ -178,7 +175,6 @@ namespace Npoi.Core.POIFS.Storage
 
             block.Write(ms.ToArray());
         }
-
 
         public void WriteBlock(byte[] block)
         {

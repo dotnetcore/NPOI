@@ -17,18 +17,17 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-    using Npoi.Core.Util;
-    using Npoi.Core.SS.Util;
     using Npoi.Core.HSSF.Record;
-    
-
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
+    using System;
 
     /**
      * Specifies a rectangular area of cells A1:A4 for instance.
      * @author  andy
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     [Serializable]
     public abstract class AreaPtgBase : OperandPtg, AreaI
     {
@@ -36,10 +35,12 @@ namespace Npoi.Core.SS.Formula.PTG
          * TODO - (May-2008) fix subclasses of AreaPtg 'AreaN~' which are used in shared formulas.
          * see similar comment in ReferencePtg
          */
+
         protected Exception NotImplemented()
         {
             return new NotImplementedException("Coding Error: This method should never be called. This ptg should be Converted");
         }
+
         protected AreaPtgBase()
         {
             // do nothing
@@ -59,7 +60,7 @@ namespace Npoi.Core.SS.Formula.PTG
         private static BitField columnMask = BitFieldFactory.GetInstance(0x3FFF);
 
         protected AreaPtgBase(String arearef)
-            : this(new AreaReference(arearef)) 
+            : this(new AreaReference(arearef))
         {
             //AreaReference ar = new AreaReference(arearef);
             //CellReference firstCell = ar.FirstCell;
@@ -73,6 +74,7 @@ namespace Npoi.Core.SS.Formula.PTG
             //IsFirstRowRelative = !firstCell.IsRowAbsolute;
             //IsLastRowRelative = !lastCell.IsRowAbsolute;
         }
+
         protected AreaPtgBase(AreaReference ar)
         {
             CellReference firstCell = ar.FirstCell;
@@ -86,39 +88,41 @@ namespace Npoi.Core.SS.Formula.PTG
             IsFirstRowRelative = (!firstCell.IsRowAbsolute);
             IsLastRowRelative = (!lastCell.IsRowAbsolute);
         }
+
         protected AreaPtgBase(int firstRow, int lastRow, int firstColumn, int lastColumn,
                 bool firstRowRelative, bool lastRowRelative, bool firstColRelative, bool lastColRelative)
         {
             if (lastRow >= firstRow)
             {
-                FirstRow=(firstRow);
-                LastRow=(lastRow);
-                IsFirstRowRelative=(firstRowRelative);
+                FirstRow = (firstRow);
+                LastRow = (lastRow);
+                IsFirstRowRelative = (firstRowRelative);
                 IsLastRowRelative = (lastRowRelative);
             }
             else
             {
-                FirstRow=(lastRow);
-                LastRow=(firstRow);
+                FirstRow = (lastRow);
+                LastRow = (firstRow);
                 IsFirstRowRelative = (lastRowRelative);
                 IsLastRowRelative = (firstRowRelative);
             }
 
             if (lastColumn >= firstColumn)
             {
-                FirstColumn=(firstColumn);
-                LastColumn=(lastColumn);
+                FirstColumn = (firstColumn);
+                LastColumn = (lastColumn);
                 IsFirstColRelative = (firstColRelative);
                 IsLastColRelative = (lastColRelative);
             }
             else
             {
-                FirstColumn=(lastColumn);
-                LastColumn=(firstColumn);
+                FirstColumn = (lastColumn);
+                LastColumn = (firstColumn);
                 IsFirstColRelative = (lastColRelative);
                 IsLastColRelative = (firstColRelative);
             }
         }
+
         protected void ReadCoordinates(ILittleEndianInput in1)
         {
             field_1_first_row = in1.ReadUShort();
@@ -126,6 +130,7 @@ namespace Npoi.Core.SS.Formula.PTG
             field_3_first_column = in1.ReadUShort();
             field_4_last_column = in1.ReadUShort();
         }
+
         protected void WriteCoordinates(ILittleEndianOutput out1)
         {
             out1.WriteShort(field_1_first_row);
@@ -153,6 +158,7 @@ namespace Npoi.Core.SS.Formula.PTG
         /**
          * @return the first row in the area
          */
+
         public virtual int FirstRow
         {
             get { return field_1_first_row; }
@@ -165,6 +171,7 @@ namespace Npoi.Core.SS.Formula.PTG
         /**
          * @return last row in the range (x2 in x1,y1-x2,y2)
          */
+
         public virtual int LastRow
         {
             get { return field_2_last_row; }
@@ -177,6 +184,7 @@ namespace Npoi.Core.SS.Formula.PTG
         /**
          * @return the first column number in the area.
          */
+
         public virtual int FirstColumn
         {
             get { return columnMask.GetValue(field_3_first_column); }
@@ -186,10 +194,10 @@ namespace Npoi.Core.SS.Formula.PTG
             }
         }
 
-
         /**
          * @return whether or not the first row is a relative reference or not.
          */
+
         public virtual bool IsFirstRowRelative
         {
             get { return rowRelative.IsSet(field_3_first_column); }
@@ -199,6 +207,7 @@ namespace Npoi.Core.SS.Formula.PTG
         /**
          * @return Isrelative first column to relative or not
          */
+
         public virtual bool IsFirstColRelative
         {
             get { return colRelative.IsSet(field_3_first_column); }
@@ -208,6 +217,7 @@ namespace Npoi.Core.SS.Formula.PTG
         /**
          * @return lastcolumn in the area
          */
+
         public virtual int LastColumn
         {
             get { return columnMask.GetValue(field_4_last_column); }
@@ -220,6 +230,7 @@ namespace Npoi.Core.SS.Formula.PTG
         /**
          * @return last column and bitmask (the raw field)
          */
+
         public virtual short LastColumnRaw
         {
             get
@@ -231,6 +242,7 @@ namespace Npoi.Core.SS.Formula.PTG
         /**
          * @return last row relative or not
          */
+
         public virtual bool IsLastRowRelative
         {
             get { return rowRelative.IsSet(field_4_last_column); }
@@ -240,16 +252,17 @@ namespace Npoi.Core.SS.Formula.PTG
         /**
          * @return lastcol relative or not
          */
+
         public virtual bool IsLastColRelative
         {
             get { return colRelative.IsSet(field_4_last_column); }
             set { field_4_last_column = colRelative.SetBoolean(field_4_last_column, value); }
         }
 
-
         /**
          * Set the last column irrespective of the bitmasks
          */
+
         public void SetLastColumnRaw(short column)
         {
             field_4_last_column = column;

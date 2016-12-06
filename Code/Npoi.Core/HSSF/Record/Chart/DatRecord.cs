@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,15 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
-    
-    using System.Text;
-    using System;
     using Npoi.Core.Util;
-
+    using System;
+    using System.Text;
 
     /**
      * The dat record is used to store options for the chart.
@@ -33,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class DatRecord
        : StandardRecord
     {
@@ -43,10 +39,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         private BitField border = BitFieldFactory.GetInstance(0x4);
         private BitField showSeriesKey = BitFieldFactory.GetInstance(0x8);
 
-
         public DatRecord()
         {
-
         }
 
         /**
@@ -58,7 +52,6 @@ namespace Npoi.Core.HSSF.Record.Chart
         public DatRecord(RecordInputStream in1)
         {
             field_1_options = in1.ReadShort();
-
         }
 
         public override String ToString()
@@ -87,6 +80,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 2; }
@@ -105,12 +99,10 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          * Get the options field for the Dat record.
          */
+
         public short Options
         {
             get { return field_1_options; }
@@ -121,6 +113,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * Sets the horizontal border field value.
          * has a horizontal border
          */
+
         public void SetHorizontalBorder(bool value)
         {
             field_1_options = horizontalBorder.SetShortBoolean(field_1_options, value);
@@ -130,6 +123,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * has a horizontal border
          * @return  the horizontal border field value.
          */
+
         public bool IsHorizontalBorder()
         {
             return horizontalBorder.IsSet(field_1_options);
@@ -139,6 +133,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * Sets the vertical border field value.
          * has vertical border
          */
+
         public void SetVerticalBorder(bool value)
         {
             field_1_options = verticalBorder.SetShortBoolean(field_1_options, value);
@@ -148,6 +143,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * has vertical border
          * @return  the vertical border field value.
          */
+
         public bool IsVerticalBorder()
         {
             return verticalBorder.IsSet(field_1_options);
@@ -157,6 +153,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * Sets the border field value.
          * data table has a border
          */
+
         public void SetBorder(bool value)
         {
             field_1_options = border.SetShortBoolean(field_1_options, value);
@@ -166,6 +163,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * data table has a border
          * @return  the border field value.
          */
+
         public bool IsBorder()
         {
             return border.IsSet(field_1_options);
@@ -175,6 +173,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * Sets the show series key field value.
          * shows the series key
          */
+
         public void SetShowSeriesKey(bool value)
         {
             field_1_options = showSeriesKey.SetShortBoolean(field_1_options, value);
@@ -184,13 +183,10 @@ namespace Npoi.Core.HSSF.Record.Chart
          * shows the series key
          * @return  the show series key field value.
          */
+
         public bool IsShowSeriesKey()
         {
             return showSeriesKey.IsSet(field_1_options);
         }
-
-
     }
 }
-
-

@@ -18,21 +18,23 @@
  * Created on May 15, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     using Npoi.Core.SS.Formula.Eval;
 
     /**
      * Counts the number of cells that contain numeric data within
-     *  the list of arguments. 
+     *  the list of arguments.
      *
      * Excel Syntax
      * COUNT(value1,value2,...)
      * Value1, value2, ...   are 1 to 30 arguments representing the values or ranges to be Counted.
-     * 
+     *
      * TODO: Check this properly Matches excel on edge cases
      *  like formula cells, error cells etc
      */
+
     public class Count : Function
     {
         private IMatchPredicate _predicate;
@@ -46,6 +48,7 @@ namespace Npoi.Core.SS.Formula.Functions
         {
             _predicate = criteriaPredicate;
         }
+
         public ValueEval Evaluate(ValueEval[] args, int srcCellRow, int srcCellCol)
         {
             int nArgs = args.Length;
@@ -66,7 +69,6 @@ namespace Npoi.Core.SS.Formula.Functions
             for (int i = 0; i < nArgs; i++)
             {
                 temp += CountUtils.CountArg(args[i], _predicate);
-
             }
             return new NumberEval(temp);
         }
@@ -75,7 +77,6 @@ namespace Npoi.Core.SS.Formula.Functions
         {
             public bool Matches(ValueEval valueEval)
             {
-
                 if (valueEval is NumberEval)
                 {
                     // only numbers are counted
@@ -91,7 +92,9 @@ namespace Npoi.Core.SS.Formula.Functions
                 return false;
             }
         }
+
         private static IMatchPredicate defaultPredicate = new DefaultPredicate();
+
         private class SubtotalPredicate : I_MatchAreaPredicate
         {
             public bool Matches(ValueEval valueEval)
@@ -99,12 +102,10 @@ namespace Npoi.Core.SS.Formula.Functions
                 return defaultPredicate.Matches(valueEval);
             }
 
-
             public bool Matches(TwoDEval x, int rowIndex, int columnIndex)
             {
                 return !x.IsSubTotal(rowIndex, columnIndex);
             }
-
         }
 
         private static IMatchPredicate subtotalPredicate = new SubtotalPredicate();
@@ -117,6 +118,7 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      *  @see Subtotal
      */
+
         public static Count SubtotalInstance()
         {
             return new Count(subtotalPredicate);

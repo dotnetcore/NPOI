@@ -15,9 +15,9 @@
    limitations Under the License.
 ==================================================================== */
 
-using System.Collections.Generic;
-using Npoi.Core.HSSF.Record.Chart;
 using Npoi.Core.HSSF.Model;
+using Npoi.Core.HSSF.Record.Chart;
+using System.Collections.Generic;
 
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 {
@@ -28,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
     {
         private CrtMlFrtRecord crtmlFrt = null;
         private List<CrtMlFrtContinueRecord> continues = new List<CrtMlFrtContinueRecord>();
+
         public CrtMlFrtAggregate(RecordStream rs, ChartRecordAggregate container)
             : base(RuleName_CRTMLFRT, container)
         {
@@ -40,6 +41,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
                 }
             }
         }
+
         public override void VisitContainedRecords(RecordVisitor rv)
         {
             WriteStartBlock(rv);

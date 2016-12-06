@@ -18,12 +18,12 @@
 namespace Npoi.Core.HSSF.Record.Chart
 {
     /// <summary>
-    /// The CrtMlFrt record specifies additional properties for chart elements, as specified by 
-    /// the Chart Sheet Substream ABNF. These properties complement the record to which they 
-    /// correspond, and are stored as a structure chain defined in XmlTkChain. An application 
-    /// can ignore this record without loss of functionality, except for the additional properties. 
+    /// The CrtMlFrt record specifies additional properties for chart elements, as specified by
+    /// the Chart Sheet Substream ABNF. These properties complement the record to which they
+    /// correspond, and are stored as a structure chain defined in XmlTkChain. An application
+    /// can ignore this record without loss of functionality, except for the additional properties.
     /// If this record is longer than 8224 bytes, it MUST be split into several records. The first
-    /// section of the data appears in this record and subsequent sections appear in one or more 
+    /// section of the data appears in this record and subsequent sections appear in one or more
     /// CrtMlFrtContinue records that follow this record.
     /// </summary>
     /// <remarks>
@@ -32,6 +32,7 @@ namespace Npoi.Core.HSSF.Record.Chart
     public class CrtMlFrtRecord : RowDataRecord
     {
         public const short sid = 0x89E;
+
         public CrtMlFrtRecord(RecordInputStream ris)
             : base(ris)
         {
@@ -44,6 +45,7 @@ namespace Npoi.Core.HSSF.Record.Chart
                 return base.DataSize;
             }
         }
+
         public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             base.Serialize(out1);

@@ -21,14 +21,14 @@ namespace Npoi.Core.SS.Formula.Function
     using System.Collections;
     using System.Collections.Generic;
 
-
     /**
      * Temporarily collects <c>FunctionMetadata</c> instances for creation of a
      * <c>FunctionMetadataRegistry</c>.
-     * 
+     *
      * @author Josh Micich
      */
-    class FunctionDataBuilder
+
+    internal class FunctionDataBuilder
     {
         private int _maxFunctionIndex;
         private Dictionary<object, object> _functionDataByName;
@@ -51,7 +51,6 @@ namespace Npoi.Core.SS.Formula.Function
                     returnClassCode, parameterClassCodes);
 
             int indexKey = functionIndex;
-
 
             if (functionIndex > _maxFunctionIndex)
             {
@@ -81,13 +80,12 @@ namespace Npoi.Core.SS.Formula.Function
             {
                 _mutatingFunctionIndexes.Add(indexKey);
             }
-            _functionDataByIndex[indexKey]=fm;
-            _functionDataByName[functionName]=fm;
+            _functionDataByIndex[indexKey] = fm;
+            _functionDataByName[functionName] = fm;
         }
 
         public FunctionMetadataRegistry Build()
         {
-
             FunctionMetadata[] jumbledArray = new FunctionMetadata[_functionDataByName.Count];
             IEnumerator values = _functionDataByName.Values.GetEnumerator();
             FunctionMetadata[] fdIndexArray = new FunctionMetadata[_maxFunctionIndex + 1];

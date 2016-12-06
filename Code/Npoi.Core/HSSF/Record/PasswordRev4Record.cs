@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,10 +17,9 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title:        Protection Revision 4 password Record
@@ -53,12 +51,12 @@ namespace Npoi.Core.HSSF.Record
             field_1_password = in1.ReadShort();
         }
 
-
         /**
          * set the password
          *
          * @param pw  representing the password
          */
+
         public void SetPassword(short pw)
         {
             field_1_password = pw;

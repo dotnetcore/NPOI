@@ -1,29 +1,28 @@
-﻿using System;
+﻿using Npoi.Core.Util;
+using System;
 using System.Text;
-
-using Npoi.Core.Util;
 
 namespace Npoi.Core.HSSF.Record
 {
     //Don't remove this class
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
-    public class SheetExtRecord:StandardRecord
+    public class SheetExtRecord : StandardRecord
     {
-        short rt = 0;
-        short grbitFrt = 0;
-        int cb = 0;
-        BitField icvPlain = BitFieldFactory.GetInstance(0x7F);
-        short optionflag = 0xFF;
-        short optionflag2 = 0;
-        BitField icvPlain12 = BitFieldFactory.GetInstance(0x7F);
-        BitField fCondFmtCalc = BitFieldFactory.GetInstance(0x80);
-        BitField fNotPublished = BitFieldFactory.GetInstance(0x100);
-        int xclrType = 0;
-        int xclrValue = 0;
-        long numTint = 0;
+        private short rt = 0;
+        private short grbitFrt = 0;
+        private int cb = 0;
+        private BitField icvPlain = BitFieldFactory.GetInstance(0x7F);
+        private short optionflag = 0xFF;
+        private short optionflag2 = 0;
+        private BitField icvPlain12 = BitFieldFactory.GetInstance(0x7F);
+        private BitField fCondFmtCalc = BitFieldFactory.GetInstance(0x80);
+        private BitField fNotPublished = BitFieldFactory.GetInstance(0x100);
+        private int xclrType = 0;
+        private int xclrValue = 0;
+        private long numTint = 0;
 
         public SheetExtRecord()
         {
@@ -56,13 +55,13 @@ namespace Npoi.Core.HSSF.Record
 
         public short TabColorIndex
         {
-            get 
+            get
             {
                 return icvPlain.GetShortValue(optionflag);
             }
             set
             {
-                optionflag=icvPlain.SetShortValue(optionflag,value);
+                optionflag = icvPlain.SetShortValue(optionflag, value);
             }
         }
 
@@ -72,7 +71,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return TabColorIndex == 0x7F;
             }
-            set 
+            set
             {
                 if (value)
                     TabColorIndex = 0x7F;
@@ -84,28 +83,30 @@ namespace Npoi.Core.HSSF.Record
         public bool EvaluateConditionalFormatting
         {
             get { return fCondFmtCalc.IsSet(optionflag2); }
-            set { optionflag2=(short)fCondFmtCalc.SetBoolean(optionflag2,value); }
+            set { optionflag2 = (short)fCondFmtCalc.SetBoolean(optionflag2, value); }
         }
 
         public bool IsSheetPublished
         {
             get { return !fNotPublished.IsSet(optionflag2); }
-            set { optionflag2=(short)fNotPublished.SetBoolean(optionflag2,!value); }
+            set { optionflag2 = (short)fNotPublished.SetBoolean(optionflag2, !value); }
         }
 
         protected override int DataSize
         {
-            get 
+            get
             {
-                return 12 + 4 + 4 + (cb == 0x28? 20 : 0);
+                return 12 + 4 + 4 + (cb == 0x28 ? 20 : 0);
             }
         }
-        public const short sid=0x862; //2146
+
+        public const short sid = 0x862; //2146
 
         public override short Sid
         {
             get { return sid; }
         }
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(rt);
@@ -122,9 +123,10 @@ namespace Npoi.Core.HSSF.Record
                 out1.WriteInt(xclrType);
                 out1.WriteInt(xclrValue);
                 out1.WriteLong(numTint);
-                out1.WriteShort(0); 
+                out1.WriteShort(0);
             }
         }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -132,6 +134,7 @@ namespace Npoi.Core.HSSF.Record
             sb.Append("[/SHEETEXT]");
             return sb.ToString();
         }
+
         public override object Clone()
         {
             SheetExtRecord rec = new SheetExtRecord();
@@ -147,7 +150,6 @@ namespace Npoi.Core.HSSF.Record
                 rec.numTint = numTint;
             }
             return rec;
-
         }
     }
 }

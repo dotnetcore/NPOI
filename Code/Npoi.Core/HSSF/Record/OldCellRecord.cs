@@ -17,16 +17,16 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
-     * Base class for all old (Biff 2 - Biff 4) cell value records 
+     * Base class for all old (Biff 2 - Biff 4) cell value records
      *  (implementors of {@link CellValueRecordInterface}).
      * Subclasses are expected to manage the cell data values (of various types).
      */
+
     public abstract class OldCellRecord
     {
         private short sid;
@@ -76,6 +76,7 @@ namespace Npoi.Core.HSSF.Record
          * @see Npoi.Core.HSSF.Record.ExtendedFormatRecord
          * @return index to the XF record
          */
+
         public short XFIndex
         {
             get
@@ -83,6 +84,7 @@ namespace Npoi.Core.HSSF.Record
                 return field_3_xf_index;
             }
         }
+
         public int CellAttrs
         {
             get
@@ -94,6 +96,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Is this a Biff2 record, or newer?
          */
+
         public virtual bool IsBiff2
         {
             get
@@ -101,6 +104,7 @@ namespace Npoi.Core.HSSF.Record
                 return isBiff2;
             }
         }
+
         public virtual short Sid
         {
             get
@@ -108,7 +112,6 @@ namespace Npoi.Core.HSSF.Record
                 return sid;
             }
         }
-
 
         public override String ToString()
         {
@@ -137,6 +140,7 @@ namespace Npoi.Core.HSSF.Record
          * Contained in this record. Trailing new-line should not be Appended
          * (superclass does that).
          */
+
         protected abstract void AppendValueText(StringBuilder sb);
 
         /**
@@ -144,5 +148,4 @@ namespace Npoi.Core.HSSF.Record
          */
         protected abstract String RecordName { get; }
     }
-
 }

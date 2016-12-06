@@ -14,14 +14,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.UserModel
 {
+    using Npoi.Core.SS.Util;
     using System;
 
-    using Npoi.Core.SS.Util;
     /**
          * Error style constants for error box
          */
+
     public static class ERRORSTYLE
     {
         /** STOP style */
@@ -40,20 +42,23 @@ namespace Npoi.Core.SS.UserModel
         /// get or set the error style for error box
         /// </summary>
         int ErrorStyle { get; set; }
+
         /// <summary>
         /// Setting this allows an empty object as a valid value. Retrieve the settings for empty cells allowed.
         /// @return True if this object should treats empty as valid value , false otherwise
         /// </summary>
         /// <value><c>true</c> if this object should treats empty as valid value, <c>false</c>  otherwise</value>
         bool EmptyCellAllowed { get; set; }
+
         /// <summary>
         /// Useful for list validation objects .
         /// Useful only list validation objects . This method always returns false if the object isn't a list validation object
         /// </summary>
         bool SuppressDropDownArrow { get; set; }
+
         /*
          * Useful for list validation objects .
-         * 
+         *
          * @param suppress
          *            True if a list should display the values into a drop down list ,
          *            false otherwise . In other words , if a list should display
@@ -64,7 +69,7 @@ namespace Npoi.Core.SS.UserModel
         /*
          * Useful only list validation objects . This method always returns false if
          * the object isn't a list validation object
-         * 
+         *
          * @return <c>true</c> if a list should display the values into a drop down list ,
          *         <c>false</c> otherwise .
          */
@@ -72,7 +77,7 @@ namespace Npoi.Core.SS.UserModel
 
         /**
          * Sets the behaviour when a cell which belongs to this object is selected
-         * 
+         *
          * <value><c>true</c> if an prompt box should be displayed , <c>false</c> otherwise</value>
          */
         bool ShowPromptBox { get; set; }
@@ -85,7 +90,7 @@ namespace Npoi.Core.SS.UserModel
 
         /**
          * Sets the behaviour when an invalid value is entered
-         * 
+         *
          * <value><c>true</c> if an error box should be displayed , <c>false</c> otherwise</value>
          */
         bool ShowErrorBox { get; set; }
@@ -101,16 +106,18 @@ namespace Npoi.Core.SS.UserModel
          * the user selects a cell which belongs to this validation object . In
          * order for a prompt box to be displayed you should also use method
          * SetShowPromptBox( bool show )
-         * 
+         *
          * @param title The prompt box's title
          * @param text The prompt box's text
          */
+
         void CreatePromptBox(String title, String text);
+
         /**
          * @return Prompt box's title or <code>null</code>
          */
         String PromptBoxTitle { get; }
-        
+
         /**
          * @return Prompt box's text or <code>null</code>
          */
@@ -121,10 +128,11 @@ namespace Npoi.Core.SS.UserModel
          * the user enters an invalid value int o a cell which belongs to this
          * validation object . In order for an error box to be displayed you should
          * also use method SetShowErrorBox( bool show )
-         * 
+         *
          * @param title The error box's title
          * @param text The error box's text
          */
+
         void CreateErrorBox(String title, String text);
 
         /**
@@ -139,7 +147,5 @@ namespace Npoi.Core.SS.UserModel
         String ErrorBoxText { get; }
 
         CellRangeAddressList Regions { get; }
-
     }
-
 }

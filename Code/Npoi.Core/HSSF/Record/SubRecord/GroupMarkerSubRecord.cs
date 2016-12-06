@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,21 +15,18 @@
    limitations Under the License.
 ==================================================================== */
 
-
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
-
 
     /**
      * The Group marker record is used as a position holder for Groups.
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class GroupMarkerSubRecord
        : SubRecord
     {
@@ -78,6 +74,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Size of record (exluding 4 byte header)
          */
+
         public override int DataSize
         {
             get { return reserved.Length; }
@@ -96,8 +93,5 @@ namespace Npoi.Core.HSSF.Record
                 rec.reserved[i] = reserved[i];
             return rec;
         }
-
-
-
     }
 }

@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,10 +17,10 @@
 
 namespace Npoi.Core.DDF
 {
-    using System;
-    using System.Text;
     using Npoi.Core.Util;
+    using System;
     using System.IO;
+    using System.Text;
 
     /// <summary>
     /// The escher client anchor specifies which rows and cells the shape is bound to as well as
@@ -62,8 +61,7 @@ namespace Npoi.Core.DDF
         /// <param name="offset">The starting offset into data</param>
         /// <param name="recordFactory">May be null since this is not a container record.</param>
         /// <returns>The number of bytes Read from the byte array.</returns>
-        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory)
-        {
+        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory) {
             int bytesRemaining = ReadHeader(data, offset);
             int pos = offset + 8;
             int size = 0;
@@ -73,14 +71,12 @@ namespace Npoi.Core.DDF
             {
                 // Not sure exactly what the format is quite yet, likely a reference to a PLC
             }
-            else
-            {
+            else {
                 field_1_flag = LittleEndian.GetShort(data, pos + size); size += 2;
                 field_2_col1 = LittleEndian.GetShort(data, pos + size); size += 2;
                 field_3_dx1 = LittleEndian.GetShort(data, pos + size); size += 2;
                 field_4_row1 = LittleEndian.GetShort(data, pos + size); size += 2;
-                if (bytesRemaining >= 18)
-                {
+                if (bytesRemaining >= 18) {
                     field_5_dy1 = LittleEndian.GetShort(data, pos + size); size += 2;
                     field_6_col2 = LittleEndian.GetShort(data, pos + size); size += 2;
                     field_7_dx2 = LittleEndian.GetShort(data, pos + size); size += 2;
@@ -88,8 +84,7 @@ namespace Npoi.Core.DDF
                     field_9_dy2 = LittleEndian.GetShort(data, pos + size); size += 2;
                     shortRecord = false;
                 }
-                else
-                {
+                else {
                     shortRecord = true;
                 }
             }
@@ -106,8 +101,7 @@ namespace Npoi.Core.DDF
         /// <param name="data">The byte array to Serialize to.</param>
         /// <param name="listener">a listener for begin and end serialization events.</param>
         /// <returns>The number of bytes written.</returns>
-        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener)
-        {
+        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener) {
             listener.BeforeRecordSerialize(offset, RecordId, this);
 
             if (remainingData == null) remainingData = new byte[0];
@@ -119,8 +113,7 @@ namespace Npoi.Core.DDF
             LittleEndian.PutShort(data, offset + 10, field_2_col1);
             LittleEndian.PutShort(data, offset + 12, field_3_dx1);
             LittleEndian.PutShort(data, offset + 14, field_4_row1);
-            if (!shortRecord)
-            {
+            if (!shortRecord) {
                 LittleEndian.PutShort(data, offset + 16, field_5_dy1);
                 LittleEndian.PutShort(data, offset + 18, field_6_col2);
                 LittleEndian.PutShort(data, offset + 20, field_7_dx2);
@@ -138,8 +131,7 @@ namespace Npoi.Core.DDF
         /// Returns the number of bytes that are required to Serialize this record.
         /// </summary>
         /// <value>Number of bytes</value>
-        public override int RecordSize
-        {
+        public override int RecordSize {
             get { return 8 + (shortRecord ? 8 : 18) + (remainingData == null ? 0 : remainingData.Length); }
         }
 
@@ -147,8 +139,7 @@ namespace Npoi.Core.DDF
         /// The record id for this record.
         /// </summary>
         /// <value></value>
-        public override short RecordId
-        {
+        public override short RecordId {
             get { return RECORD_ID; }
         }
 
@@ -156,8 +147,7 @@ namespace Npoi.Core.DDF
         /// The short name for this record
         /// </summary>
         /// <value></value>
-        public override String RecordName
-        {
+        public override String RecordName {
             get { return "ClientAnchor"; }
         }
 
@@ -167,21 +157,17 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override String ToString()
-        {
+        public override String ToString() {
             String nl = Environment.NewLine;
 
             String extraData;
-            using (MemoryStream b = new MemoryStream())
-            {
-                try
-                {
+            using (MemoryStream b = new MemoryStream()) {
+                try {
                     HexDump.Dump(this.remainingData, 0, b, 0);
                     //extraData = b.ToString();
                     extraData = Encoding.UTF8.GetString(b.ToArray());
                 }
-                catch (Exception)
-                {
+                catch (Exception) {
                     extraData = "error\n";
                 }
                 return GetType().Name + ":" + nl +
@@ -200,22 +186,18 @@ namespace Npoi.Core.DDF
                        "  Extra Data:" + nl + extraData;
             }
         }
-        public override String ToXml(String tab)
-        {
+
+        public override String ToXml(String tab) {
             String extraData;
-            using (MemoryStream b = new MemoryStream())
-            {
-                try
-                {
+            using (MemoryStream b = new MemoryStream()) {
+                try {
                     HexDump.Dump(this.remainingData, 0, b, 0);
                     extraData = HexDump.ToHex(b.ToArray());
                 }
-                catch (Exception)
-                {
+                catch (Exception) {
                     extraData = "error\n";
                 }
-                if (extraData.Contains("No Data"))
-                {
+                if (extraData.Contains("No Data")) {
                     extraData = "No Data";
                 }
                 StringBuilder builder = new StringBuilder();
@@ -236,12 +218,12 @@ namespace Npoi.Core.DDF
                 return builder.ToString();
             }
         }
+
         /// <summary>
         /// Gets or sets the flag.
         /// </summary>
         /// <value>0 = Move and size with Cells, 2 = Move but don't size with cells, 3 = Don't move or size with cells.</value>
-        public short Flag
-        {
+        public short Flag {
             get { return field_1_flag; }
             set { field_1_flag = value; }
         }
@@ -250,8 +232,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets The column number for the top-left position.  0 based.
         /// </summary>
         /// <value>The col1.</value>
-        public short Col1
-        {
+        public short Col1 {
             get { return field_2_col1; }
             set { field_2_col1 = value; }
         }
@@ -260,8 +241,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets The x offset within the top-left cell.  Range is from 0 to 1023.
         /// </summary>
         /// <value>The DX1.</value>
-        public short Dx1
-        {
+        public short Dx1 {
             get { return field_3_dx1; }
             set { field_3_dx1 = value; }
         }
@@ -270,19 +250,16 @@ namespace Npoi.Core.DDF
         /// Gets or sets The row number for the top-left corner of the shape.
         /// </summary>
         /// <value>The row1.</value>
-        public short Row1
-        {
+        public short Row1 {
             get { return field_4_row1; }
             set { this.field_4_row1 = value; }
         }
-
 
         /// <summary>
         /// Gets or sets The y offset within the top-left corner of the current shape.
         /// </summary>
         /// <value>The dy1.</value>
-        public short Dy1
-        {
+        public short Dy1 {
             get { return field_5_dy1; }
             set
             {
@@ -291,13 +268,11 @@ namespace Npoi.Core.DDF
             }
         }
 
-
         /// <summary>
         /// Gets or sets The column of the bottom right corner of this shape.
         /// </summary>
         /// <value>The col2.</value>
-        public short Col2
-        {
+        public short Col2 {
             get { return field_6_col2; }
             set
             {
@@ -306,13 +281,11 @@ namespace Npoi.Core.DDF
             }
         }
 
-
         /// <summary>
         /// Gets or sets The x offset withing the cell for the bottom-right corner of this shape.
         /// </summary>
         /// <value>The DX2.</value>
-        public short Dx2
-        {
+        public short Dx2 {
             get { return field_7_dx2; }
             set
             {
@@ -325,8 +298,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets The row number for the bottom-right corner of the current shape.
         /// </summary>
         /// <value>The row2.</value>
-        public short Row2
-        {
+        public short Row2 {
             get { return field_8_row2; }
             set
             {
@@ -335,13 +307,11 @@ namespace Npoi.Core.DDF
             }
         }
 
-
         /// <summary>
         /// Gets or sets The y offset withing the cell for the bottom-right corner of this shape.
         /// </summary>
         /// <value>The dy2.</value>
-        public short Dy2
-        {
+        public short Dy2 {
             get { return field_9_dy2; }
             set { field_9_dy2 = value; }
         }
@@ -350,11 +320,9 @@ namespace Npoi.Core.DDF
         /// Gets or sets the remaining data.
         /// </summary>
         /// <value>The remaining data.</value>
-        public byte[] RemainingData
-        {
+        public byte[] RemainingData {
             get { return remainingData; }
             set { remainingData = value; }
         }
-
     }
 }

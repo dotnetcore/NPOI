@@ -26,6 +26,7 @@ namespace Npoi.Core.SS.UserModel
      * @author Dmitriy Kumshayev
      * @author Yegor Kozlov
      */
+
     public interface IFontFormatting
     {
         /// <summary>
@@ -36,6 +37,7 @@ namespace Npoi.Core.SS.UserModel
             get;
             set;
         }
+
         /// <summary>
         /// get or set font color index
         /// </summary>
@@ -44,6 +46,7 @@ namespace Npoi.Core.SS.UserModel
             get;
             set;
         }
+
         /// <summary>
         /// get or set the height of the font in 1/20th point units
         /// </summary>
@@ -52,6 +55,7 @@ namespace Npoi.Core.SS.UserModel
             get;
             set;
         }
+
         /// <summary>
         /// get or set the type of underlining for the font
         /// </summary>
@@ -60,7 +64,6 @@ namespace Npoi.Core.SS.UserModel
             get;
             set;
         }
-        
 
         /**
          * Get whether the font weight is Set to bold or not
@@ -80,12 +83,13 @@ namespace Npoi.Core.SS.UserModel
          * @param italic - if true, Set posture style to italic, otherwise to normal
          * @param bold if true, Set font weight to bold, otherwise to normal
          */
+
         void SetFontStyle(bool italic, bool bold);
 
         /**
          * Set font style options to default values (non-italic, non-bold)
          */
+
         void ResetFontStyle();
     }
-
 }

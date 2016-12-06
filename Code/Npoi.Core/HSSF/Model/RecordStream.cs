@@ -17,10 +17,10 @@
 
 namespace Npoi.Core.HSSF.Model
 {
-    using System;
-    using System.Collections;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.Record.Chart;
+    using System;
+    using System.Collections;
 
     /// <summary>
     /// Simplifies iteration over a sequence of Record objects.
@@ -28,24 +28,19 @@ namespace Npoi.Core.HSSF.Model
     /// </summary>
     public class RecordStream
     {
-
         private IList _list;
         private int _nextIndex;
         private int _endIx;
         private int _countRead;
 
-        public RecordStream(IList inputList, int startIndex, int endIx)
-        {
+        public RecordStream(IList inputList, int startIndex, int endIx) {
             _list = inputList;
             _nextIndex = startIndex;
             _endIx = endIx;
             _countRead = 0;
-
         }
 
-        public RecordStream(IList records, int startIx):this(records, startIx, records.Count)
-        {
-            
+        public RecordStream(IList records, int startIx) : this(records, startIx, records.Count) {
         }
 
         /// <summary>
@@ -54,8 +49,7 @@ namespace Npoi.Core.HSSF.Model
         /// <returns>
         /// 	<c>true</c> if this instance has next; otherwise, <c>false</c>.
         /// </returns>
-        public bool HasNext()
-        {
+        public bool HasNext() {
             return _nextIndex < _endIx;
         }
 
@@ -63,65 +57,55 @@ namespace Npoi.Core.HSSF.Model
         /// Gets the next record
         /// </summary>
         /// <returns></returns>
-        public Record GetNext()
-        {
-            if (_nextIndex >= _list.Count)
-            {
+        public Record GetNext() {
+            if (_nextIndex >= _list.Count) {
                 throw new Exception("Attempt to Read past end of record stream");
             }
             _countRead++;
             return (Record)_list[_nextIndex++];
         }
+
         /// <summary>
         /// Peeks the next sid.
         /// </summary>
         /// <returns>-1 if at end of records</returns>
-        public int PeekNextSid()
-        {
-            if (!HasNext())
-            {
+        public int PeekNextSid() {
+            if (!HasNext()) {
                 return -1;
             }
             return ((Record)_list[_nextIndex]).Sid;
         }
+
         /// <summary>
         /// Peeks the next class.
         /// </summary>
         /// <returns>the class of the next Record.return null if this stream Is exhausted.</returns>
-        public Type PeekNextClass()
-        {
-            if (_nextIndex >= _list.Count)
-            {
+        public Type PeekNextClass() {
+            if (_nextIndex >= _list.Count) {
                 return null;
             }
             return _list[_nextIndex].GetType();
         }
 
-        public int GetCountRead()
-        {
+        public int GetCountRead() {
             return _countRead;
         }
 
-        public int PeekNextChartSid()
-        {
-            if (!HasNext())
-            {
+        public int PeekNextChartSid() {
+            if (!HasNext()) {
                 return -1;
             }
 
-            while (PeekNextSid() == StartBlockRecord.sid || PeekNextSid() == EndBlockRecord.sid)
-            {
+            while (PeekNextSid() == StartBlockRecord.sid || PeekNextSid() == EndBlockRecord.sid) {
                 GetNext();
             }
             return PeekNextSid();
         }
-        public void FindChartSubStream()
-        {
-            while (PeekNextSid() > -1)
-            {
+
+        public void FindChartSubStream() {
+            while (PeekNextSid() > -1) {
                 Record r = GetNext();
-                if (r.Sid == BOFRecord.sid && (r as BOFRecord).Type == BOFRecordType.Chart)
-                {
+                if (r.Sid == BOFRecord.sid && (r as BOFRecord).Type == BOFRecordType.Chart) {
                     _nextIndex--;
                     _countRead--;
                     break;

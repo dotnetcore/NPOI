@@ -16,15 +16,12 @@
 ==================================================================== */
 
 using Npoi.Core.SS.Formula.Eval;
-using System;
-using Npoi.Core.SS.Util;
 using Npoi.Core.SS.UserModel;
+using System;
 using System.Globalization;
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-
-
-
     /**
      * Implementation for Excel WeekNum() function.<p/>
      * <p/>
@@ -42,9 +39,9 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author cedric dot walter @ gmail dot com
      */
+
     public class WeekNum : Fixed2ArgFunction, FreeRefFunction
     {
-
         public static FreeRefFunction instance = new WeekNum();
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval serialNumVE, ValueEval returnTypeVE)

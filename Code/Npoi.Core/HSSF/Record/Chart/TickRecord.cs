@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,12 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * The Tick record defines how tick marks and label positioning/formatting
@@ -30,6 +28,7 @@ namespace Npoi.Core.HSSF.Record
 
      * @author Andrew C. Oliver(acoliver at apache.org)
      */
+
     public class TickRecord
        : StandardRecord
     {
@@ -51,10 +50,8 @@ namespace Npoi.Core.HSSF.Record
         private short field_11_tickColor;
         private short field_12_zero5;
 
-
         public TickRecord()
         {
-
         }
 
         /**
@@ -65,7 +62,6 @@ namespace Npoi.Core.HSSF.Record
 
         public TickRecord(RecordInputStream in1)
         {
-
             field_1_majorTickType = (byte)in1.ReadByte();
             field_2_minorTickType = (byte)in1.ReadByte();
             field_3_labelPosition = (byte)in1.ReadByte();
@@ -78,7 +74,7 @@ namespace Npoi.Core.HSSF.Record
 
             field_10_options = in1.ReadShort();
             field_11_tickColor = in1.ReadShort();
-            field_12_zero5 = in1.ReadShort();    
+            field_12_zero5 = in1.ReadShort();
         }
 
         public override String ToString()
@@ -154,6 +150,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 1 + 1 + 1 + 1 + 4 + 8 + 8 + 2 + 2 + 2; }
@@ -183,49 +180,50 @@ namespace Npoi.Core.HSSF.Record
             return rec;
         }
 
-
-
-
         /**
          * Get the major tick type field for the Tick record.
          */
+
         public byte MajorTickType
         {
-            get{return field_1_majorTickType;}
+            get { return field_1_majorTickType; }
             set { this.field_1_majorTickType = value; }
         }
+
         /**
          * Get the minor tick type field for the Tick record.
          */
+
         public byte MinorTickType
         {
             get { return field_2_minorTickType; }
             set { this.field_2_minorTickType = value; }
         }
 
-
         /**
          * Get the label position field for the Tick record.
          */
+
         public byte LabelPosition
         {
             get { return field_3_labelPosition; }
             set { this.field_3_labelPosition = value; }
         }
 
-
         /**
          * Get the background field for the Tick record.
          */
+
         public byte Background
         {
-            get{return field_4_background;}
+            get { return field_4_background; }
             set { this.field_4_background = value; }
         }
 
         /**
          * Get the label color rgb field for the Tick record.
          */
+
         public int LabelColorRgb
         {
             get { return field_5_labelColorRgb; }
@@ -235,6 +233,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the zero 1 field for the Tick record.
          */
+
         public int Zero1
         {
             get { return field_6_zero1; }
@@ -244,16 +243,17 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the zero 2 field for the Tick record.
          */
+
         public int Zero2
         {
             get { return field_7_zero2; }
             set { this.field_7_zero2 = value; }
         }
 
-
         /**
          * Get the options field for the Tick record.
          */
+
         public short Options
         {
             get { return field_10_options; }
@@ -263,6 +263,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the tick color field for the Tick record.
          */
+
         public short TickColor
         {
             get { return field_11_tickColor; }
@@ -272,31 +273,32 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the zero 3 field for the Tick record.
          */
+
         public short Zero3
         {
             get { return field_12_zero5; }
             set { this.field_12_zero5 = value; }
         }
 
-
         /**
          * use the quote Unquote automatic color for text
          * @return  the auto text color field value.
          */
+
         public bool IsAutoTextColor
         {
             get { return autoTextColor.IsSet(field_10_options); }
             set { field_10_options = autoTextColor.SetShortBoolean(field_10_options, value); }
         }
 
-
         /**
          * use the quote Unquote automatic color for text background
          * @return  the auto text background field value.
          */
+
         public bool IsAutoTextBackground
         {
-            get{return autoTextBackground.IsSet(field_10_options);}
+            get { return autoTextBackground.IsSet(field_10_options); }
             set { field_10_options = autoTextBackground.SetShortBoolean(field_10_options, value); }
         }
 
@@ -304,6 +306,7 @@ namespace Npoi.Core.HSSF.Record
          * rotate text (0=none, 1=normal, 2=90 degrees counterclockwise, 3=90 degrees clockwise)
          * @return  the rotation field value.
          */
+
         public short Rotation
         {
             get { return rotation.GetShortValue(field_10_options); }
@@ -314,12 +317,11 @@ namespace Npoi.Core.HSSF.Record
          * automatically rotate the text
          * @return  the autorotate field value.
          */
+
         public bool IsAutorotate
         {
             get { return autorotate.IsSet(field_10_options); }
             set { field_10_options = autorotate.SetShortBoolean(field_10_options, value); }
         }
-
-
     }
 }

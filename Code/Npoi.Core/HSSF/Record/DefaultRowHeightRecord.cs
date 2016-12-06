@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,10 +15,8 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
     using Npoi.Core.Util;
     using System;
     using System.Text;
@@ -55,20 +52,22 @@ namespace Npoi.Core.HSSF.Record
             field_2_row_height = DEFAULT_ROW_HEIGHT;
         }
 
-       /// <summary>
-       /// Constructs a DefaultRowHeight record and Sets its fields appropriately.
-       /// </summary>
-       /// <param name="in1">the RecordInputstream to Read the record from</param>
+        /// <summary>
+        /// Constructs a DefaultRowHeight record and Sets its fields appropriately.
+        /// </summary>
+        /// <param name="in1">the RecordInputstream to Read the record from</param>
         public DefaultRowHeightRecord(RecordInputStream in1)
         {
             field_1_option_flags = in1.ReadShort();
             field_2_row_height = in1.ReadShort();
         }
+
         internal short OptionFlags
         {
             get { return field_1_option_flags; }
             set { field_1_option_flags = value; }
         }
+
         ///// <summary>
         ///// A bit that specifies whether the default settings for the row height have been changed.
         ///// </summary>
@@ -89,8 +88,8 @@ namespace Npoi.Core.HSSF.Record
         //public bool IsThickTopBorder
         //{
         //    get { return isThickTopBorder.IsSet(field_1_option_flags); }
-        //    set { field_1_option_flags = isThickTopBorder.SetShortBoolean(field_1_option_flags, value); }        
-        
+        //    set { field_1_option_flags = isThickTopBorder.SetShortBoolean(field_1_option_flags, value); }
+
         //}
         //public bool IsThickBottomBorder
         //{
@@ -104,12 +103,12 @@ namespace Npoi.Core.HSSF.Record
         public short RowHeight
         {
             get { return field_2_row_height; }
-            set {
-                field_2_row_height = value; 
+            set
+            {
+                field_2_row_height = value;
             }
         }
 
-        
         public override String ToString()
         {
             StringBuilder buffer = new StringBuilder();

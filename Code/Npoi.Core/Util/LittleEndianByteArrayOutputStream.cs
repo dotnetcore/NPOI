@@ -46,10 +46,10 @@ namespace Npoi.Core.Util
                         + ") is out of allowable range (" + _writeIndex + ".." + buf.Length + ")");
             }
         }
+
         public LittleEndianByteArrayOutputStream(byte[] buf, int startOffset) :
             this(buf, startOffset, buf.Length - startOffset)
         {
-
         }
 
         private void CheckPosition(int i)
@@ -96,6 +96,7 @@ namespace Npoi.Core.Util
             _buf[i++] = (byte)((v >> 8) & 0xFF);
             _writeIndex = i;
         }
+
         public void Write(byte[] b)
         {
             int len = b.Length;
@@ -103,12 +104,14 @@ namespace Npoi.Core.Util
             System.Array.Copy(b, 0, _buf, _writeIndex, len);
             _writeIndex += len;
         }
+
         public void Write(byte[] b, int offset, int len)
         {
             CheckPosition(len);
             System.Array.Copy(b, offset, _buf, _writeIndex, len);
             _writeIndex += len;
         }
+
         public int WriteIndex
         {
             get
@@ -116,6 +119,7 @@ namespace Npoi.Core.Util
                 return _writeIndex;
             }
         }
+
         public ILittleEndianOutput CreateDelayedOutput(int size)
         {
             CheckPosition(size);

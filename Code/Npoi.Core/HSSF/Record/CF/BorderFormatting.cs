@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -15,7 +14,6 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
-        
 
 /*
  * FontFormatting.java
@@ -25,17 +23,15 @@
 
 namespace Npoi.Core.HSSF.Record.CF
 {
-    using System;
-    using System.Text;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.Util;
-
-
+    using System;
+    using System.Text;
 
     /**
      * Border Formatting Block of the Conditional Formatting Rule Record.
-     * 
+     *
      * @author Dmitriy Kumshayev
      */
 
@@ -48,6 +44,7 @@ namespace Npoi.Core.HSSF.Record.CF
         }
 
         /** Creates new FontFormatting */
+
         public BorderFormatting(RecordInputStream in1)
         {
             field_13_border_styles1 = in1.ReadInt();
@@ -57,6 +54,7 @@ namespace Npoi.Core.HSSF.Record.CF
         // BORDER FORMATTING BLOCK
         // For Border Line Style codes see HSSFCellStyle.BORDER_XXXXXX
         private int field_13_border_styles1;
+
         private static BitField bordLeftLineStyle = BitFieldFactory.GetInstance(0x0000000F);
         private static BitField bordRightLineStyle = BitFieldFactory.GetInstance(0x000000F0);
         private static BitField bordTopLineStyle = BitFieldFactory.GetInstance(0x00000F00);
@@ -75,65 +73,77 @@ namespace Npoi.Core.HSSF.Record.CF
         /// <summary>
         /// Get the type of border to use for the left border of the cell
         /// </summary>
-        public BorderStyle BorderLeft {
-            get {
-                return (BorderStyle) bordLeftLineStyle.GetValue (field_13_border_styles1);
+        public BorderStyle BorderLeft
+        {
+            get
+            {
+                return (BorderStyle)bordLeftLineStyle.GetValue(field_13_border_styles1);
             }
-            set {
-                field_13_border_styles1 = bordLeftLineStyle.SetValue (field_13_border_styles1, (int) value);
+            set
+            {
+                field_13_border_styles1 = bordLeftLineStyle.SetValue(field_13_border_styles1, (int)value);
             }
         }
 
-          
         /// <summary>
         /// Get the type of border to use for the right border of the cell
         /// </summary>
-        public BorderStyle BorderRight {
-            get {
-                return (BorderStyle) bordRightLineStyle.GetValue (field_13_border_styles1);
+        public BorderStyle BorderRight
+        {
+            get
+            {
+                return (BorderStyle)bordRightLineStyle.GetValue(field_13_border_styles1);
             }
-            set {
-                field_13_border_styles1 = bordRightLineStyle.SetValue (field_13_border_styles1, (int) value);
+            set
+            {
+                field_13_border_styles1 = bordRightLineStyle.SetValue(field_13_border_styles1, (int)value);
             }
         }
 
         /// <summary>
         /// Get the type of border to use for the top border of the cell
         /// </summary>
-        public BorderStyle BorderTop {
-            get {
-                return (BorderStyle) bordTopLineStyle.GetValue (field_13_border_styles1);
+        public BorderStyle BorderTop
+        {
+            get
+            {
+                return (BorderStyle)bordTopLineStyle.GetValue(field_13_border_styles1);
             }
-            set {
-                field_13_border_styles1 = bordTopLineStyle.SetValue (field_13_border_styles1, (int) value);
+            set
+            {
+                field_13_border_styles1 = bordTopLineStyle.SetValue(field_13_border_styles1, (int)value);
             }
         }
 
-         
         /// <summary>
         /// Get the type of border to use for the bottom border of the cell
         /// </summary>
-        public BorderStyle BorderBottom {
-            get {
-                return (BorderStyle) bordBottomLineStyle.GetValue (field_13_border_styles1);
+        public BorderStyle BorderBottom
+        {
+            get
+            {
+                return (BorderStyle)bordBottomLineStyle.GetValue(field_13_border_styles1);
             }
-            set {
-                field_13_border_styles1 = bordBottomLineStyle.SetValue (field_13_border_styles1, (int) value);
+            set
+            {
+                field_13_border_styles1 = bordBottomLineStyle.SetValue(field_13_border_styles1, (int)value);
             }
         }
 
         /// <summary>
         ///  Get the type of border to use for the diagonal border of the cell
         /// </summary>
-        public BorderStyle BorderDiagonal {
-            get {
-                return (BorderStyle) bordDiagLineStyle.GetValue (field_14_border_styles2);
+        public BorderStyle BorderDiagonal
+        {
+            get
+            {
+                return (BorderStyle)bordDiagLineStyle.GetValue(field_14_border_styles2);
             }
-            set {
-                field_14_border_styles2 = bordDiagLineStyle.SetValue (field_14_border_styles2, (int) value);
+            set
+            {
+                field_14_border_styles2 = bordDiagLineStyle.SetValue(field_14_border_styles2, (int)value);
             }
         }
-
 
         /// <summary>
         /// Get the color to use for the left border
@@ -180,7 +190,6 @@ namespace Npoi.Core.HSSF.Record.CF
             }
         }
 
-         
         /// <summary>
         /// Get the color to use for the bottom border
         /// </summary>
@@ -196,7 +205,6 @@ namespace Npoi.Core.HSSF.Record.CF
             }
         }
 
-         
         /// <summary>
         /// Get the color to use for the diagonal border
         /// </summary>
@@ -211,8 +219,9 @@ namespace Npoi.Core.HSSF.Record.CF
                 field_14_border_styles2 = bordDiagLineColor.SetValue(field_14_border_styles2, value);
             }
         }
+
         /// <summary>
-        /// true if forward diagonal is on 
+        /// true if forward diagonal is on
         /// </summary>
         public bool IsForwardDiagonalOn
         {
@@ -225,7 +234,7 @@ namespace Npoi.Core.HSSF.Record.CF
                 field_13_border_styles1 = bordBlTrtLineOnOff.SetBoolean(field_13_border_styles1, value);
             }
         }
-        
+
         /// <summary>
         /// true if backward diagonal Is on
         /// </summary>
@@ -241,15 +250,14 @@ namespace Npoi.Core.HSSF.Record.CF
             }
         }
 
-
         public override String ToString()
         {
             StringBuilder buffer = new StringBuilder();
             buffer.Append("    [Border Formatting]\n");
-            buffer.Append("          .lftln     = ").Append(StringUtil.ToHexString((int) BorderLeft)).Append("\n");
-            buffer.Append("          .rgtln     = ").Append(StringUtil.ToHexString((int) BorderRight)).Append("\n");
-            buffer.Append("          .topln     = ").Append(StringUtil.ToHexString((int) BorderTop)).Append("\n");
-            buffer.Append("          .btmln     = ").Append(StringUtil.ToHexString((int) BorderBottom)).Append("\n");
+            buffer.Append("          .lftln     = ").Append(StringUtil.ToHexString((int)BorderLeft)).Append("\n");
+            buffer.Append("          .rgtln     = ").Append(StringUtil.ToHexString((int)BorderRight)).Append("\n");
+            buffer.Append("          .topln     = ").Append(StringUtil.ToHexString((int)BorderTop)).Append("\n");
+            buffer.Append("          .btmln     = ").Append(StringUtil.ToHexString((int)BorderBottom)).Append("\n");
             buffer.Append("          .leftborder= ").Append(StringUtil.ToHexString(LeftBorderColor)).Append("\n");
             buffer.Append("          .rghtborder= ").Append(StringUtil.ToHexString(RightBorderColor)).Append("\n");
             buffer.Append("          .topborder= ").Append(StringUtil.ToHexString(TopBorderColor)).Append("\n");
@@ -276,6 +284,7 @@ namespace Npoi.Core.HSSF.Record.CF
             offset += 4;
             return 8;
         }
+
         public void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteInt(field_13_border_styles1);

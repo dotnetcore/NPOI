@@ -40,29 +40,29 @@ namespace Npoi.Core.HSSF.EventUserModel
          *
          */
 
-        public virtual void ProcessRecord(Record record)
-        {
+        public virtual void ProcessRecord(Record record) {
         }
 
         /**
-          * Process an HSSF Record. Called when a record occurs in an HSSF file. 
+          * Process an HSSF Record. Called when a record occurs in an HSSF file.
           * Provides two options for halting the Processing of the HSSF file.
           *
-          * The return value provides a means of non-error termination with a 
-          * user-defined result code. A value of zero must be returned to 
+          * The return value provides a means of non-error termination with a
+          * user-defined result code. A value of zero must be returned to
           * continue Processing, any other value will halt Processing by
-          * <c>HSSFEventFactory</c> with the code being passed back by 
+          * <c>HSSFEventFactory</c> with the code being passed back by
           * its abortable Process events methods.
-          * 
+          *
           * Error termination can be done by throwing the HSSFUserException.
           *
-          * Note that HSSFEventFactory will not call the inherited Process 
+          * Note that HSSFEventFactory will not call the inherited Process
           *
           * @return result code of zero for continued Processing.
           *
-          * @throws HSSFUserException User code can throw this to abort 
+          * @throws HSSFUserException User code can throw this to abort
           * file Processing by HSSFEventFactory and return diagnostic information.
           */
+
         public abstract short AbortableProcessRecord(Record record);
     }
 }

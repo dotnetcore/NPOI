@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,16 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
-
 
     /**
      * The area record is used to define a area chart.
@@ -34,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class AreaRecord
        : StandardRecord
     {
@@ -43,10 +38,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         private BitField DisplayAsPercentage = BitFieldFactory.GetInstance(0x2);
         private BitField shadow = BitFieldFactory.GetInstance(0x4);
 
-
         public AreaRecord()
         {
-
         }
 
         /**
@@ -57,7 +50,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public AreaRecord(RecordInputStream in1)
         {
-               field_1_formatFlags = in1.ReadShort();
+            field_1_formatFlags = in1.ReadShort();
         }
 
         public override String ToString()
@@ -85,6 +78,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 2; }
@@ -103,12 +97,10 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          *  the format flags field for the Area record.
          */
+
         public short FormatFlags
         {
             get { return field_1_formatFlags; }
@@ -119,17 +111,18 @@ namespace Npoi.Core.HSSF.Record.Chart
          * series is stacked
          * @return  the stacked field value.
          */
+
         public bool IsStacked
         {
             get { return stacked.IsSet(field_1_formatFlags); }
             set { field_1_formatFlags = stacked.SetShortBoolean(field_1_formatFlags, value); }
         }
 
-
         /**
          * results Displayed as percentages
          * @return  the Display as percentage field value.
          */
+
         public bool IsDisplayAsPercentage
         {
             get { return DisplayAsPercentage.IsSet(field_1_formatFlags); }
@@ -140,16 +133,11 @@ namespace Npoi.Core.HSSF.Record.Chart
          * Display a shadow for the chart
          * @return  the shadow field value.
          */
+
         public bool IsShadow
         {
             get { return shadow.IsSet(field_1_formatFlags); }
             set { field_1_formatFlags = shadow.SetShortBoolean(field_1_formatFlags, value); }
         }
-
-
     }
 }
-
-
-
-

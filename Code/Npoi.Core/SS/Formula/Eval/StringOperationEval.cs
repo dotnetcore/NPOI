@@ -20,20 +20,15 @@
 // */
 //namespace Npoi.Core.SS.Formula.Eval
 //{
-
-
 //    /**
 //     * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
 //     *
 //     */
 //    public abstract class StringOperationEval : OperationEval
 //    {
-
-
-
 //        /**
 //         * Returns an is StringValueEval or ErrorEval or BlankEval
-//         * 
+//         *
 //         * @param eval
 //         * @param srcRow
 //         * @param srcCol

@@ -1,4 +1,5 @@
 using System;
+
 /*
  * $Id: StringTokenizer.cs,v 1.4 2006/06/16 10:52:26 psoares33 Exp $
  *
@@ -50,23 +51,26 @@ using System;
 
 namespace Npoi.Core.Util.Collections
 {
-
     // a replacement for the StringTokenizer java class
     // it's more or less the same as the one in the GNU classpath
-    public class StringTokenizer {
+    public class StringTokenizer
+    {
         private int pos;
         private String str;
         private int len;
         private String delim;
         private bool retDelims;
 
-        public StringTokenizer(String str) : this(str, " \t\n\r\f", false) {
+        public StringTokenizer(String str) : this(str, " \t\n\r\f", false)
+        {
         }
 
-        public StringTokenizer(String str, String delim) : this(str, delim, false) {
+        public StringTokenizer(String str, String delim) : this(str, delim, false)
+        {
         }
 
-        public StringTokenizer(String str, String delim, bool retDelims) {
+        public StringTokenizer(String str, String delim, bool retDelims)
+        {
             len = str.Length;
             this.str = str;
             this.delim = delim;
@@ -74,49 +78,60 @@ namespace Npoi.Core.Util.Collections
             this.pos = 0;
         }
 
-        public bool HasMoreTokens() {
-            if (! retDelims) {
+        public bool HasMoreTokens()
+        {
+            if (!retDelims)
+            {
                 while (pos < len && delim.IndexOf(str[pos]) >= 0)
                     pos++;
             }
             return pos < len;
         }
 
-        public String NextToken(String delim) {
+        public String NextToken(String delim)
+        {
             this.delim = delim;
             return NextToken();
         }
 
-        public String NextToken() {
-            if (pos < len && delim.IndexOf(str[pos]) >= 0) {
+        public String NextToken()
+        {
+            if (pos < len && delim.IndexOf(str[pos]) >= 0)
+            {
                 if (retDelims)
                     return str.Substring(pos++, 1);
-                while (++pos < len && delim.IndexOf(str[pos]) >= 0);
+                while (++pos < len && delim.IndexOf(str[pos]) >= 0) ;
             }
-            if (pos < len) {
+            if (pos < len)
+            {
                 int start = pos;
-                while (++pos < len && delim.IndexOf(str[pos]) < 0);
+                while (++pos < len && delim.IndexOf(str[pos]) < 0) ;
 
                 return str.Substring(start, pos - start);
             }
             throw new IndexOutOfRangeException();
         }
 
-        public int CountTokens() {
+        public int CountTokens()
+        {
             int count = 0;
             int delimiterCount = 0;
             bool tokenFound = false;
             int tmpPos = pos;
 
-            while (tmpPos < len) {
-                if (delim.IndexOf(str[tmpPos++]) >= 0) {
-                    if (tokenFound) {
+            while (tmpPos < len)
+            {
+                if (delim.IndexOf(str[tmpPos++]) >= 0)
+                {
+                    if (tokenFound)
+                    {
                         count++;
                         tokenFound = false;
                     }
                     delimiterCount++;
                 }
-                else {
+                else
+                {
                     tokenFound = true;
                     while (tmpPos < len
                         && delim.IndexOf(str[tmpPos]) < 0)

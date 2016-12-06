@@ -17,21 +17,21 @@
 
 namespace Npoi.Core.SS.Util
 {
+    using Npoi.Core.SS.UserModel;
     using System;
 
-    using Npoi.Core.SS.UserModel;
-    using System.Drawing;
     //using System.Windows.Forms;
     using System.Collections.Generic;
+    using System.Drawing;
 
     /**
      * Helper methods for when working with Usermodel sheets
      *
      * @author Yegor Kozlov
      */
+
     public class SheetUtil
     {
-
         // /**
         // * Excel measures columns in units of 1/256th of a character width
         // * but the docs say nothing about what particular character is used.
@@ -51,20 +51,47 @@ namespace Npoi.Core.SS.Util
          *  {@link Npoi.Core.SS.UserModel.DataFormatter#formatCellValue(Npoi.Core.SS.UserModel.Cell)}
          *  returns formula string for formula cells. Dummy Evaluator Makes it to format the cached formula result.
          *
-         *  See Bugzilla #50021 
+         *  See Bugzilla #50021
          */
         private static IFormulaEvaluator dummyEvaluator = new DummyEvaluator();
+
         public class DummyEvaluator : IFormulaEvaluator
         {
-            public void ClearAllCachedResultValues() { }
-            public void NotifySetFormula(ICell cell) { }
-            public void NotifyDeleteCell(ICell cell) { }
-            public void NotifyUpdateCell(ICell cell) { }
-            public CellValue Evaluate(ICell cell) { return null; }
-            public ICell EvaluateInCell(ICell cell) { return null; }
+            public void ClearAllCachedResultValues()
+            {
+            }
+
+            public void NotifySetFormula(ICell cell)
+            {
+            }
+
+            public void NotifyDeleteCell(ICell cell)
+            {
+            }
+
+            public void NotifyUpdateCell(ICell cell)
+            {
+            }
+
+            public CellValue Evaluate(ICell cell)
+            {
+                return null;
+            }
+
+            public ICell EvaluateInCell(ICell cell)
+            {
+                return null;
+            }
+
             public bool IgnoreMissingWorkbooks { get; set; }
-            public void SetupReferencedWorkbooks(Dictionary<String, IFormulaEvaluator> workbooks) { }
-            public void EvaluateAll() { }
+
+            public void SetupReferencedWorkbooks(Dictionary<String, IFormulaEvaluator> workbooks)
+            {
+            }
+
+            public void EvaluateAll()
+            {
+            }
 
             public CellType EvaluateFormulaCell(ICell cell)
             {
@@ -83,6 +110,7 @@ namespace Npoi.Core.SS.Util
                 }
             }
         }
+
         public static IRow CopyRow(ISheet sourceSheet, int sourceRowIndex, ISheet targetSheet, int targetRowIndex)
         {
             // Get the source / new row
@@ -112,7 +140,7 @@ namespace Npoi.Core.SS.Util
 
                 if (oldCell.CellStyle != null)
                 {
-                    // apply style from old cell to new cell 
+                    // apply style from old cell to new cell
                     newCell.CellStyle = oldCell.CellStyle;
                 }
 
@@ -137,18 +165,23 @@ namespace Npoi.Core.SS.Util
                     case CellType.Blank:
                         newCell.SetCellValue(oldCell.StringCellValue);
                         break;
+
                     case CellType.Boolean:
                         newCell.SetCellValue(oldCell.BooleanCellValue);
                         break;
+
                     case CellType.Error:
                         newCell.SetCellErrorValue(oldCell.ErrorCellValue);
                         break;
+
                     case CellType.Formula:
                         newCell.SetCellFormula(oldCell.CellFormula);
                         break;
+
                     case CellType.Numeric:
                         newCell.SetCellValue(oldCell.NumericCellValue);
                         break;
+
                     case CellType.String:
                         newCell.SetCellValue(oldCell.RichStringCellValue);
                         break;
@@ -172,6 +205,7 @@ namespace Npoi.Core.SS.Util
             }
             return newRow;
         }
+
         public static IRow CopyRow(ISheet sheet, int sourceRowIndex, int targetRowIndex)
         {
             if (sourceRowIndex == targetRowIndex)
@@ -205,7 +239,7 @@ namespace Npoi.Core.SS.Util
 
                 if (oldCell.CellStyle != null)
                 {
-                    // apply style from old cell to new cell 
+                    // apply style from old cell to new cell
                     newCell.CellStyle = oldCell.CellStyle;
                 }
 
@@ -230,18 +264,23 @@ namespace Npoi.Core.SS.Util
                     case CellType.Blank:
                         newCell.SetCellValue(oldCell.StringCellValue);
                         break;
+
                     case CellType.Boolean:
                         newCell.SetCellValue(oldCell.BooleanCellValue);
                         break;
+
                     case CellType.Error:
                         newCell.SetCellErrorValue(oldCell.ErrorCellValue);
                         break;
+
                     case CellType.Formula:
                         newCell.SetCellFormula(oldCell.CellFormula);
                         break;
+
                     case CellType.Numeric:
                         newCell.SetCellValue(oldCell.NumericCellValue);
                         break;
+
                     case CellType.String:
                         newCell.SetCellValue(oldCell.RichStringCellValue);
                         break;
@@ -266,7 +305,6 @@ namespace Npoi.Core.SS.Util
             return newRow;
         }
 
-
         /**
          * Compute width of a single cell
          *
@@ -276,6 +314,7 @@ namespace Npoi.Core.SS.Util
          * @param useMergedCells    whether to use merged cells
          * @return  the width in pixels
          */
+
         public static double GetCellWidth(ICell cell, int defaultCharWidth, DataFormatter formatter, bool useMergedCells)
         {
             ISheet sheet = cell.Sheet;
@@ -433,10 +472,9 @@ namespace Npoi.Core.SS.Util
             // TODO: Fix shitty implementation until we get Graphics in .NET Core
             var pc = (1f / 11f) * windowsFont.Size;
             var perChar = (281.41f / 46f) * pc;
-            // 
+            //
             return new SizeF(txt.Length * perChar, windowsFont.Size);
         }
-
 
         // /**
         // * Drawing context to measure text
@@ -487,7 +525,6 @@ namespace Npoi.Core.SS.Util
             return width;
         }
 
-
         /**
          * Compute width of a column based on a subset of the rows and return the result
          *
@@ -498,6 +535,7 @@ namespace Npoi.Core.SS.Util
          * @param lastRow   0-based index of the last row to consider (inclusive)
          * @return  the width in pixels
          */
+
         public static double GetColumnWidth(ISheet sheet, int column, bool useMergedCells, int firstRow, int lastRow)
         {
             throw new NotImplementedException();
@@ -519,7 +557,6 @@ namespace Npoi.Core.SS.Util
             //    IRow row = sheet.GetRow(rowIdx);
             //    if (row != null)
             //    {
-
             //        ICell cell = row.GetCell(column);
 
             //        if (cell == null)
@@ -543,7 +580,7 @@ namespace Npoi.Core.SS.Util
         //    str.AddAttribute(TextAttribute.SIZE, (float)font.FontHeightInPoints);
         //    if (font.Boldweight == (short)FontBoldWeight.BOLD) str.AddAttribute(TextAttribute.WEIGHT, TextAttribute.WEIGHT_BOLD, startIdx, endIdx);
         //    if (font.IsItalic) str.AddAttribute(TextAttribute.POSTURE, TextAttribute.POSTURE_OBLIQUE, startIdx, endIdx);
-        //    if (font.Underline == (byte)FontUnderlineType.SINGLE) str.AddAttribute(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON, startIdx, endIdx);           
+        //    if (font.Underline == (byte)FontUnderlineType.SINGLE) str.AddAttribute(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON, startIdx, endIdx);
         //}
 
         /// <summary>
@@ -571,6 +608,7 @@ namespace Npoi.Core.SS.Util
             return font;
             //return new System.Drawing.Font(font1.FontName, font1.FontHeightInPoints);
         }
+
         public static bool ContainsCell(CellRangeAddress cr, int rowIx, int colIx)
         {
             if (cr.FirstRow <= rowIx && cr.LastRow >= rowIx
@@ -587,6 +625,7 @@ namespace Npoi.Core.SS.Util
          * @param srcName the original sheet name to
          * @return clone sheet name
          */
+
         public static String GetUniqueSheetName(IWorkbook wb, String srcName)
         {
             if (wb.GetSheetIndex(srcName) == -1)
@@ -635,7 +674,7 @@ namespace Npoi.Core.SS.Util
         /**
          * Return the cell, taking account of merged regions. Allows you to find the
          *  cell who's contents are Shown in a given position in the sheet.
-         * 
+         *
          * <p>If the cell at the given co-ordinates is a merged cell, this will
          *  return the primary (top-left) most cell of the merged region.</p>
          * <p>If the cell at the given co-ordinates is not in a merged region,
@@ -643,6 +682,7 @@ namespace Npoi.Core.SS.Util
          * <p>If there is no cell defined at the given co-ordinates, will return
          *  null.</p>
          */
+
         public static ICell GetCellWithMerges(ISheet sheet, int rowIx, int colIx)
         {
             IRow r = sheet.GetRow(rowIx);
@@ -675,6 +715,5 @@ namespace Npoi.Core.SS.Util
             //  live within any merged regions
             return null;
         }
-
     }
 }

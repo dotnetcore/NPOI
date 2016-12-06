@@ -18,14 +18,16 @@
 namespace Npoi.Core.SS.Formula.Functions
 {
     using Npoi.Core.SS.Formula.Eval;
-    using System;
     using Npoi.Core.SS.Util;
+    using System;
     using System.Text;
+
     /**
      * Creates a text reference as text, given specified row and column numbers.
      *
      * @author Aniket Banerjee (banerjee@google.com)
      */
+
     public class Address : Function
     {
         public const int REF_ABSOLUTE = 1;
@@ -62,18 +64,22 @@ namespace Npoi.Core.SS.Formula.Functions
                         pAbsRow = true;
                         pAbsCol = true;
                         break;
+
                     case REF_ROW_ABSOLUTE_COLUMN_RELATIVE:
                         pAbsRow = true;
                         pAbsCol = false;
                         break;
+
                     case REF_ROW_RELATIVE_RELATIVE_ABSOLUTE:
                         pAbsRow = false;
                         pAbsCol = true;
                         break;
+
                     case REF_RELATIVE:
                         pAbsRow = false;
                         pAbsCol = false;
                         break;
+
                     default:
                         throw new EvaluationException(ErrorEval.VALUE_INVALID);
                 }
@@ -111,7 +117,6 @@ namespace Npoi.Core.SS.Formula.Functions
                 sb.Append(ref1.FormatAsString());
 
                 return new StringEval(sb.ToString());
-
             }
             catch (EvaluationException e)
             {

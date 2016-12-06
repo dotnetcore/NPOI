@@ -8,10 +8,12 @@ namespace Npoi.Core.HSSF.Record
     public abstract class RowDataRecord : StandardRecord
     {
         private byte[] _rawData = null;
+
         public RowDataRecord(RecordInputStream in1)
         {
             _rawData = in1.ReadRemainder();
         }
+
         protected override int DataSize
         {
             get

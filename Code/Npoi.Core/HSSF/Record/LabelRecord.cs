@@ -17,18 +17,18 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Label Record - Read only support for strings stored directly in the cell..  Don't
-     * use this (except to Read), use LabelSST instead 
+     * use this (except to Read), use LabelSST instead
      * REFERENCE:  PG 325 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
-     * 
+     *
      * @see org.apache.poi.hssf.record.LabelSSTRecord
      */
+
     public class LabelRecord : Record, CellValueRecordInterface
     {
         private static POILogger logger = POILogFactory.GetLogger(typeof(LabelRecord));
@@ -77,7 +77,7 @@ namespace Npoi.Core.HSSF.Record
             }
             if (in1.Remaining > 0)
             {
-                logger.Log(POILogger.INFO, "LabelRecord data remains: " +in1.Remaining +
+                logger.Log(POILogger.INFO, "LabelRecord data remains: " + in1.Remaining +
                 " : " + HexDump.ToHex(in1.ReadRemainder()));
             }
         }
@@ -85,20 +85,21 @@ namespace Npoi.Core.HSSF.Record
         /*
          * Read ONLY ACCESS... THIS Is FOR COMPATIBILITY ONLY...USE LABELSST! public
          * void SetRow(short row) { field_1_row = row; }
-         * 
+         *
          * public void SetColumn(short col) { field_2_column = col; }
-         * 
+         *
          * public void SetXFIndex(short index) { field_3_xf_index = index; }
          */
+
         public int Row
         {
-            get{return field_1_row;}
+            get { return field_1_row; }
             set { throw new NotSupportedException("Use LabelSST instead"); }
         }
 
         public int Column
         {
-            get{return field_2_column;}
+            get { return field_2_column; }
             set { throw new NotSupportedException("Use LabelSST instead"); }
         }
 
@@ -144,11 +145,12 @@ namespace Npoi.Core.HSSF.Record
          * THROWS A RUNTIME EXCEPTION..  USE LABELSSTRecords.  YOU HAVE NO REASON to use LABELRecord!!
          */
 
-        public override int Serialize(int offset, byte [] data)
+        public override int Serialize(int offset, byte[] data)
         {
             throw new RecordFormatException(
                 "Label Records are supported Read ONLY...Convert to LabelSST");
         }
+
         public override int RecordSize
         {
             get
@@ -181,7 +183,6 @@ namespace Npoi.Core.HSSF.Record
             buffer.Append("[/LABEL]\n");
             return buffer.ToString();
         }
-
 
         public override Object Clone()
         {

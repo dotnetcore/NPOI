@@ -17,11 +17,11 @@
 
 namespace Npoi.Core.HSSF.Model
 {
-    using System;
     using Npoi.Core.DDF;
-    using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.HSSF.Record;
+    using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.SS.UserModel;
+    using System;
 
     /// <summary>
     /// An abstract shape Is the lowlevel model for a shape.
@@ -36,55 +36,51 @@ namespace Npoi.Core.HSSF.Model
         /// <param name="hssfShape">The simple shape this Is based on.</param>
         /// <param name="shapeId">The shape id.</param>
         /// <returns></returns>
-        public static AbstractShape CreateShape(HSSFShape hssfShape, int shapeId)
-        {
+        public static AbstractShape CreateShape(HSSFShape hssfShape, int shapeId) {
             AbstractShape shape;
-            if (hssfShape is HSSFComment)
-            {
+            if (hssfShape is HSSFComment) {
                 shape = new CommentShape((HSSFComment)hssfShape, shapeId);
             }
-            else if (hssfShape is HSSFTextbox)
-            {
+            else if (hssfShape is HSSFTextbox) {
                 shape = new TextboxShape((HSSFTextbox)hssfShape, shapeId);
             }
-            else if (hssfShape is HSSFPolygon)
-            {
+            else if (hssfShape is HSSFPolygon) {
                 shape = new PolygonShape((HSSFPolygon)hssfShape, shapeId);
             }
-            else if (hssfShape is HSSFSimpleShape)
-            {
+            else if (hssfShape is HSSFSimpleShape) {
                 HSSFSimpleShape simpleShape = (HSSFSimpleShape)hssfShape;
-                switch (simpleShape.ShapeType)
-                {
+                switch (simpleShape.ShapeType) {
                     case HSSFSimpleShape.OBJECT_TYPE_PICTURE:
                         shape = new PictureShape(simpleShape, shapeId);
                         break;
+
                     case HSSFSimpleShape.OBJECT_TYPE_LINE:
                         shape = new LineShape(simpleShape, shapeId);
                         break;
+
                     case HSSFSimpleShape.OBJECT_TYPE_OVAL:
                     case HSSFSimpleShape.OBJECT_TYPE_RECTANGLE:
                         shape = new SimpleFilledShape(simpleShape, shapeId);
                         break;
+
                     case HSSFSimpleShape.OBJECT_TYPE_COMBO_BOX:
                         shape = new ComboboxShape(simpleShape, shapeId);
                         break;
+
                     default:
                         throw new ArgumentException("Do not know how to handle this type of shape");
                 }
             }
-            else
-            {
+            else {
                 throw new ArgumentException("Unknown shape type");
             }
             EscherSpRecord sp = (EscherSpRecord)shape.SpContainer.GetChildById(EscherSpRecord.RECORD_ID);
-            if (hssfShape.Parent!= null)
-                sp.Flags=sp.Flags | EscherSpRecord.FLAG_CHILD;
+            if (hssfShape.Parent != null)
+                sp.Flags = sp.Flags | EscherSpRecord.FLAG_CHILD;
             return shape;
         }
 
-        protected AbstractShape()
-        {
+        protected AbstractShape() {
         }
 
         /// <summary>
@@ -105,8 +101,7 @@ namespace Npoi.Core.HSSF.Model
         /// </summary>
         /// <param name="userAnchor">The high level anchor to Convert.</param>
         /// <returns>An escher anchor record.</returns>
-        protected virtual EscherRecord CreateAnchor(HSSFAnchor userAnchor)
-        {
+        protected virtual EscherRecord CreateAnchor(HSSFAnchor userAnchor) {
             return ConvertAnchor.CreateAnchor(userAnchor);
         }
 
@@ -117,30 +112,25 @@ namespace Npoi.Core.HSSF.Model
         /// <param name="shape">The user model shape.</param>
         /// <param name="opt">The opt record to Add the properties to.</param>
         /// <returns>The number of options Added.</returns>
-        protected virtual int AddStandardOptions(HSSFShape shape, EscherOptRecord opt)
-        {
+        protected virtual int AddStandardOptions(HSSFShape shape, EscherOptRecord opt) {
             opt.AddEscherProperty(new EscherBoolProperty(EscherProperties.TEXT__SIZE_TEXT_TO_FIT_SHAPE, 0x080000));
             //        opt.AddEscherProperty( new EscherBoolProperty( EscherProperties.TEXT__SIZE_TEXT_TO_FIT_SHAPE, 0x080008 ) );
-            if (shape.IsNoFill)
-            {
+            if (shape.IsNoFill) {
                 // Wonderful... none of the spec's give any clue as to what these constants mean.
                 opt.AddEscherProperty(new EscherBoolProperty(EscherProperties.FILL__NOFILLHITTEST, 0x00110000));
             }
-            else
-            {
+            else {
                 opt.AddEscherProperty(new EscherBoolProperty(EscherProperties.FILL__NOFILLHITTEST, 0x00010000));
             }
             opt.AddEscherProperty(new EscherRGBProperty(EscherProperties.FILL__FILLCOLOR, shape.FillColor));
             opt.AddEscherProperty(new EscherBoolProperty(EscherProperties.GROUPSHAPE__PRINT, 0x080000));
             opt.AddEscherProperty(new EscherRGBProperty(EscherProperties.LINESTYLE__COLOR, shape.LineStyleColor));
             int options = 5;
-            if (shape.LineWidth != HSSFShape.LINEWIDTH_DEFAULT)
-            {
+            if (shape.LineWidth != HSSFShape.LINEWIDTH_DEFAULT) {
                 opt.AddEscherProperty(new EscherSimpleProperty(EscherProperties.LINESTYLE__LINEWIDTH, shape.LineWidth));
                 options++;
             }
-            if (shape.LineStyle != LineStyle.Solid)
-            {
+            if (shape.LineStyle != LineStyle.Solid) {
                 opt.AddEscherProperty(new EscherSimpleProperty(EscherProperties.LINESTYLE__LINEDASHING, (int)shape.LineStyle));
                 opt.AddEscherProperty(new EscherSimpleProperty(EscherProperties.LINESTYLE__LINEENDCAPSTYLE, 0));
                 if (shape.LineStyle == LineStyle.None)
@@ -152,13 +142,13 @@ namespace Npoi.Core.HSSF.Model
             opt.SortProperties();
             return options;   // # options Added
         }
+
         /// <summary>
         ///  Generate id for the CommonObjectDataSubRecord that stands behind this shape
         /// </summary>
         /// <param name="shapeId">shape id as generated by drawing manager</param>
         /// <returns>object id that will be assigned to the Obj record</returns>
-        protected virtual int GetCmoObjectId(int shapeId)
-        {
+        protected virtual int GetCmoObjectId(int shapeId) {
             //Typically objectId starts with 1, is unique among all Obj record within the worksheet stream
             //and increments by 1 for every new shape.
             //For most shapes there is a straight relationship between shapeId (generated by DDF) and objectId:

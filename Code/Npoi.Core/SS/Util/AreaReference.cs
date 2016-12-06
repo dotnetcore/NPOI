@@ -17,15 +17,12 @@
 
 namespace Npoi.Core.SS.Util
 {
-
     using System;
-    using System.Text;
-    using System.Collections;
     using System.Collections.Generic;
+    using System.Text;
 
     public class AreaReference
     {
-
         /** The Char (!) that Separates sheet names from cell references */
         private const char SHEET_NAME_DELIMITER = '!';
         /** The Char (:) that Separates the two cell references in a multi-cell area reference */
@@ -39,9 +36,10 @@ namespace Npoi.Core.SS.Util
 
         /**
          * Create an area ref from a string representation.  Sheet names containing special Chars should be
-         * delimited and escaped as per normal syntax rules for formulas.<br/> 
+         * delimited and escaped as per normal syntax rules for formulas.<br/>
          * The area reference must be contiguous (i.e. represent a single rectangle, not a Union of rectangles)
          */
+
         public AreaReference(String reference)
         {
             if (!IsContiguous(reference))
@@ -114,6 +112,7 @@ namespace Npoi.Core.SS.Util
             }
             return true;
         }
+
         public static AreaReference GetWholeRow(String start, String end)
         {
             return new AreaReference("$A" + start + ":$IV" + end);
@@ -124,10 +123,10 @@ namespace Npoi.Core.SS.Util
             return new AreaReference(start + "$1:" + end + "$65536");
         }
 
-
         /**
          * Creates an area ref from a pair of Cell References.
          */
+
         public AreaReference(CellReference topLeft, CellReference botRight)
         {
             //_firstCell = topLeft;
@@ -192,6 +191,7 @@ namespace Npoi.Core.SS.Util
          * (If it Is, you will need to call
          *  ....
          */
+
         public static bool IsContiguous(String reference)
         {
             // If there's a sheet name, strip it off
@@ -213,6 +213,7 @@ namespace Npoi.Core.SS.Util
          * is the reference for a whole-column reference,
          *  such as C:C or D:G ?
          */
+
         public static bool IsWholeColumnReference(CellReference topLeft, CellReference botRight)
         {
             // These are represented as something like
@@ -225,6 +226,7 @@ namespace Npoi.Core.SS.Util
             }
             return false;
         }
+
         public bool IsWholeColumnReference()
         {
             return IsWholeColumnReference(_firstCell, _lastCell);
@@ -234,6 +236,7 @@ namespace Npoi.Core.SS.Util
          * Takes a non-contiguous area reference, and
          *  returns an array of contiguous area references.
          */
+
         public static AreaReference[] GenerateContiguous(String reference)
         {
             List<AreaReference> refs = new List<AreaReference>();
@@ -251,6 +254,7 @@ namespace Npoi.Core.SS.Util
         /**
          * @return <c>false</c> if this area reference involves more than one cell
          */
+
         public bool IsSingleCell
         {
             get { return _isSingleCell; }
@@ -260,6 +264,7 @@ namespace Npoi.Core.SS.Util
          * @return the first cell reference which defines this area. Usually this cell is in the upper
          * left corner of the area (but this is not a requirement).
          */
+
         public CellReference FirstCell
         {
             get { return _firstCell; }
@@ -268,17 +273,20 @@ namespace Npoi.Core.SS.Util
         /**
          * Note - if this area reference refers to a single cell, the return value of this method will
          * be identical to that of <c>GetFirstCell()</c>
-         * @return the second cell reference which defines this area.  For multi-cell areas, this is 
-         * cell diagonally opposite the 'first cell'.  Usually this cell is in the lower right corner 
+         * @return the second cell reference which defines this area.  For multi-cell areas, this is
+         * cell diagonally opposite the 'first cell'.  Usually this cell is in the lower right corner
          * of the area (but this is not a requirement).
          */
+
         public CellReference LastCell
         {
-            get{return _lastCell;}
+            get { return _lastCell; }
         }
+
         /**
          * Returns a reference to every cell covered by this area
          */
+
         public CellReference[] GetAllReferencedCells()
         {
             // Special case for single cell reference
@@ -317,34 +325,36 @@ namespace Npoi.Core.SS.Util
          *    </table>
          * @return the text representation of this area reference as it would appear in a formula.
          */
+
         public String FormatAsString()
         {
-                // Special handling for whole-column references
-                if (IsWholeColumnReference())
-                {
-                    return
-                        CellReference.ConvertNumToColString(_firstCell.Col)
-                        + ":" +
-                        CellReference.ConvertNumToColString(_lastCell.Col);
-                }
+            // Special handling for whole-column references
+            if (IsWholeColumnReference())
+            {
+                return
+                    CellReference.ConvertNumToColString(_firstCell.Col)
+                    + ":" +
+                    CellReference.ConvertNumToColString(_lastCell.Col);
+            }
 
-                StringBuilder sb = new StringBuilder(32);
-                sb.Append(_firstCell.FormatAsString());
-                if (!_isSingleCell)
+            StringBuilder sb = new StringBuilder(32);
+            sb.Append(_firstCell.FormatAsString());
+            if (!_isSingleCell)
+            {
+                sb.Append(CELL_DELIMITER);
+                if (_lastCell.SheetName == null)
                 {
-                    sb.Append(CELL_DELIMITER);
-                    if (_lastCell.SheetName == null)
-                    {
-                        sb.Append(_lastCell.FormatAsString());
-                    }
-                    else
-                    {
-                        // don't want to include the sheet name twice
-                        _lastCell.AppendCellReference(sb);
-                    }
+                    sb.Append(_lastCell.FormatAsString());
                 }
-                return sb.ToString();
+                else
+                {
+                    // don't want to include the sheet name twice
+                    _lastCell.AppendCellReference(sb);
+                }
+            }
+            return sb.ToString();
         }
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder(64);
@@ -357,18 +367,18 @@ namespace Npoi.Core.SS.Util
         /**
          * Separates Area refs in two parts and returns them as Separate elements in a String array,
          * each qualified with the sheet name (if present)
-         * 
+         *
          * @return array with one or two elements. never <c>null</c>
          */
+
         private static String[] SeparateAreaRefs(String reference)
         {
             // TODO - refactor cell reference parsing logic to one place.
-            // Current known incarnations: 
+            // Current known incarnations:
             //   FormulaParser.Name
-            //   CellReference.SeparateRefParts() 
+            //   CellReference.SeparateRefParts()
             //   AreaReference.SeparateAreaRefs() (here)
             //   SheetNameFormatter.format() (inverse)
-
 
             int len = reference.Length;
             int delimiterPos = -1;
@@ -389,8 +399,9 @@ namespace Npoi.Core.SS.Util
                         }
                         continue;
                     case SPECIAL_NAME_DELIMITER:
-                    // fall through
+                        // fall through
                         break;
+
                     default:
                         continue;
                 }
@@ -402,7 +413,7 @@ namespace Npoi.Core.SS.Util
 
                 if (i >= len - 1)
                 {
-                    // reference ends with the delimited name. 
+                    // reference ends with the delimited name.
                     // Assume names like: "Sheet1!'A1'" are never legal.
                     throw new ArgumentException("Area reference '" + reference
                             + "' ends with special name delimiter '" + SPECIAL_NAME_DELIMITER + "'");
@@ -427,7 +438,7 @@ namespace Npoi.Core.SS.Util
             String partB = reference.Substring(delimiterPos + 1);
             if (partB.IndexOf(SHEET_NAME_DELIMITER) >= 0)
             {
-                // TODO - are references like "Sheet1!A1:Sheet1:B2" ever valid?  
+                // TODO - are references like "Sheet1!A1:Sheet1:B2" ever valid?
                 // FormulaParser has code to handle that.
 
                 throw new Exception("Unexpected " + SHEET_NAME_DELIMITER
@@ -445,5 +456,4 @@ namespace Npoi.Core.SS.Util
             return new String[] { partA, sheetName + partB, };
         }
     }
-
 }

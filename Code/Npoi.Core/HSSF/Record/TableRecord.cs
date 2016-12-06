@@ -17,10 +17,11 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-    using Npoi.Core.SS.Util;
+
     /**
      * DATATABLE (0x0236)<p/>
      *
@@ -31,6 +32,7 @@ namespace Npoi.Core.HSSF.Record
      *
      * See p536 of the June 08 binary docs
      */
+
     public class TableRecord : SharedValueRecordBase
     {
         public const short sid = 0x0236;
@@ -52,7 +54,6 @@ namespace Npoi.Core.HSSF.Record
         public TableRecord(RecordInputStream in1)
             : base(in1)
         {
-
             field_5_flags = in1.ReadByte();
             field_6_res = in1.ReadByte();
             field_7_rowInputRow = in1.ReadShort();
@@ -64,7 +65,6 @@ namespace Npoi.Core.HSSF.Record
         public TableRecord(CellRangeAddress8Bit range)
             : base(range)
         {
-
             field_6_res = 0;
         }
 
@@ -76,6 +76,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set { field_5_flags = value; }
         }
+
         public int RowInputRow
         {
             get
@@ -94,7 +95,6 @@ namespace Npoi.Core.HSSF.Record
             set { field_8_colInputRow = value; }
         }
 
-
         public int RowInputCol
         {
             get
@@ -103,6 +103,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set { field_9_rowInputCol = value; }
         }
+
         public int ColInputCol
         {
             get
@@ -112,7 +113,6 @@ namespace Npoi.Core.HSSF.Record
             set { field_10_colInputCol = value; }
         }
 
-
         public bool IsAlwaysCalc
         {
             get
@@ -121,7 +121,6 @@ namespace Npoi.Core.HSSF.Record
             }
             set { field_5_flags = alwaysCalc.SetBoolean(field_5_flags, value); }
         }
-
 
         public bool IsRowOrColInpCell
         {
@@ -166,6 +165,7 @@ namespace Npoi.Core.HSSF.Record
                 return sid;
             }
         }
+
         protected override int ExtraDataSize
         {
             get
@@ -175,6 +175,7 @@ namespace Npoi.Core.HSSF.Record
                 + 8; // 4 short fields
             }
         }
+
         protected override void SerializeExtraData(ILittleEndianOutput out1)
         {
             out1.WriteByte(field_5_flags);

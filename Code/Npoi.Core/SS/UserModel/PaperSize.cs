@@ -17,18 +17,19 @@
 
 namespace Npoi.Core.SS.UserModel
 {
-
     /**
      *  The enumeration value indicating the possible paper size for a sheet
      *
      * @author Daniele Montagni
      */
+
     public enum PaperSize : short
     {
         /// <summary>
         /// Allow accessing the Initial value.
         /// </summary>
         PRINTER_DEFAULT_PAPERSIZE = 0,
+
         US_Letter_Small = 1,
         US_Tabloid = 2,
         US_Ledger = 3,
@@ -61,18 +62,22 @@ namespace Npoi.Core.SS.UserModel
         Envelope_C6 = 30,
         Envelope_MONARCH = 31,
         A4_EXTRA = 53,
+
         /// <summary>
-        /// A4 Transverse - 210x297 mm 
+        /// A4 Transverse - 210x297 mm
         /// </summary>
         A4_TRANSVERSE_PAPERSIZE = 55,
+
         /// <summary>
-        /// A4 Plus - 210x330 mm 
+        /// A4 Plus - 210x330 mm
         /// </summary>
         A4_PLUS_PAPERSIZE = 60,
+
         /// <summary>
         /// US Letter Rotated 11 x 8 1/2 in
         /// </summary>
         LETTER_ROTATED_PAPERSIZE = 75,
+
         /// <summary>
         /// A4 Rotated - 297x210 mm */
         /// </summary>

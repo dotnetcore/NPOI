@@ -14,6 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.UserModel
 {
     /**
@@ -29,6 +30,7 @@ namespace Npoi.Core.SS.UserModel
      * In future, when we support more auto-filter functions like custom criteria, sort, etc. we will add
      * corresponding methods to this interface.
      */
+
     public interface IAutoFilter
     {
         /*
@@ -59,7 +61,6 @@ namespace Npoi.Core.SS.UserModel
          * void ApplyFilter(int columnIndex, FilterOperator operator, String criteria);
          */
 
-
         /*
          * Apply a filter against a list of values
          *
@@ -76,6 +77,5 @@ namespace Npoi.Core.SS.UserModel
          *
          * void ApplyFilter(int columnIndex, String ... values);
          */
-
     }
 }

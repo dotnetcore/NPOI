@@ -15,11 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
+using Npoi.Core.Util;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-using Npoi.Core.Util;
 
 namespace Npoi.Core.SS.Util
 {
@@ -43,14 +42,15 @@ namespace Npoi.Core.SS.Util
      *
      *
      */
+
     public class DateFormatConverter
     {
         private static POILogger logger = POILogFactory.GetLogger(typeof(DateFormatConverter));
 
         public class DateFormatTokenizer
         {
-            string format;
-            int pos;
+            private string format;
+            private int pos;
 
             public DateFormatTokenizer(string format)
             {
@@ -351,8 +351,8 @@ namespace Npoi.Core.SS.Util
                     //CultureInfo parentLocale = CultureShim.GetCultureInfo(localeString.Substring(0, 2));
                     logger.Log(POILogger.ERROR, "Unable to find prefix for " + locale + "(" + locale.DisplayName + ") or "
                             + localeString.Substring(0, 2)
-							// + "(" + parentLocale.DisplayName + ")"
-							);
+                            // + "(" + parentLocale.DisplayName + ")"
+                            );
                     return "";
                 }
             }
@@ -407,10 +407,9 @@ namespace Npoi.Core.SS.Util
 
         public static string GetDateTimePattern(int style, CultureInfo locale)
         {
-            string pattern= DateFormat.GetDateTimePattern(style, style, locale);
+            string pattern = DateFormat.GetDateTimePattern(style, style, locale);
             return pattern;
         }
-
     }
 
     public class DateFormat
@@ -424,7 +423,7 @@ namespace Npoi.Core.SS.Util
         public static string GetDateTimePattern(int dateStyle, int timeStyle, CultureInfo locale)
         {
             DateTimeFormatInfo dfi = locale.DateTimeFormat;
-            string datePattern = GetDatePattern(dateStyle,locale);
+            string datePattern = GetDatePattern(dateStyle, locale);
             string timePattern = GetTimePattern(timeStyle, locale);
 
             if (locale.TextInfo.IsRightToLeft)
@@ -432,6 +431,7 @@ namespace Npoi.Core.SS.Util
             else
                 return datePattern + " " + timePattern;
         }
+
         public static string GetDatePattern(int dateStyle, CultureInfo locale)
         {
             DateTimeFormatInfo dfi = locale.DateTimeFormat;
@@ -439,16 +439,21 @@ namespace Npoi.Core.SS.Util
             {
                 case DateFormat.SHORT:
                     return dfi.ShortDatePattern.Replace("yyyy", "yy").Replace("YYYY", "YY");
+
                 case DateFormat.MEDIUM:
                     return dfi.ShortDatePattern;
+
                 case DateFormat.LONG:
                     return dfi.LongDatePattern.Replace("dddd,", "").Trim();
+
                 case DateFormat.FULL:
                     return dfi.LongDatePattern;
+
                 default:
                     return dfi.ShortDatePattern;
             }
         }
+
         public static string GetTimePattern(int timeStyle, CultureInfo locale)
         {
             DateTimeFormatInfo dfi = locale.DateTimeFormat;
@@ -456,6 +461,7 @@ namespace Npoi.Core.SS.Util
             {
                 case DateFormat.SHORT:
                     return dfi.ShortTimePattern;
+
                 case DateFormat.MEDIUM:
                 case DateFormat.LONG:
                 case DateFormat.FULL:

@@ -17,17 +17,17 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
-
     using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.Util;
+    using System;
 
     /**
      * This class performs a D* calculation. It takes an {@link IDStarAlgorithm} object and
      * uses it for calculating the result value. Iterating a database and Checking the
      * entries against the Set of conditions is done here.
      */
+
     public class DStarRunner : Function3Arg
     {
         private IDStarAlgorithm algorithm;
@@ -129,6 +129,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @return a ValueEval which is guaranteed not to be a RefEval
          * @If a multi-sheet reference was found along the way.
          */
+
         private static ValueEval solveReference(ValueEval field)
         {
             if (field is RefEval)
@@ -155,6 +156,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @return the first column index that matches the given name (or int)
          * @
          */
+
         private static int GetColumnForTag(ValueEval nameValueEval, TwoDEval db)
         {
             int resultColumn = -1;
@@ -190,6 +192,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @return Corresponding column number.
          * @If it's not possible to turn all headings into strings.
          */
+
         private static int GetColumnForString(TwoDEval db, String name)
         {
             int resultColumn = -1;
@@ -216,6 +219,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @If references could not be Resolved or comparison
          * operators and operands didn't match.
          */
+
         private static bool FullFillsConditions(TwoDEval db, int row, TwoDEval cdb)
         {
             // Only one row must match to accept the input, so rows are ORed.
@@ -246,7 +250,6 @@ namespace Npoi.Core.SS.Formula.Functions
                     // The column in the DB to apply the condition to.
                     ValueEval targetHeader = solveReference(cdb.GetValue(0, column));
                     targetHeader = solveReference(targetHeader);
-
 
                     if (!(targetHeader is StringValueEval))
                         columnCondition = false;
@@ -289,52 +292,73 @@ namespace Npoi.Core.SS.Formula.Functions
          * @return Whether the condition holds.
          * @If comparison operator and operands don't match.
          */
+
         private static bool testNormalCondition(ValueEval value, String condition)
-            {
-        if(condition.StartsWith("<")) { // It's a </<= condition.
-            String number = condition.Substring(1);
-            if(number.StartsWith("=")) {
-                number = number.Substring(1);
-                return testNumericCondition(value, Operator.smallerEqualThan, number);
-            } else {
-                return testNumericCondition(value, Operator.smallerThan, number);
-            }
-        }
-        else if(condition.StartsWith(">")) { // It's a >/>= condition.
-            String number = condition.Substring(1);
-            if(number.StartsWith("=")) {
-                number = number.Substring(1);
-                return testNumericCondition(value, Operator.largerEqualThan, number);
-            } else {
-                return testNumericCondition(value, Operator.largerThan, number);
-            }
-        }
-        else if(condition.StartsWith("=")) { // It's a = condition.
-            String stringOrNumber = condition.Substring(1);
-            // Distinguish between string and number.
-            bool itsANumber = false;
-            try {
-                Int32.Parse(stringOrNumber);
-                itsANumber = true;
-            } catch (FormatException) { // It's not an int.
-                try {
-                    Double.Parse(stringOrNumber);
-                    itsANumber = true;
-                } catch (FormatException) { // It's a string.
-                    itsANumber = false;
+        {
+            if (condition.StartsWith("<"))
+            { // It's a </<= condition.
+                String number = condition.Substring(1);
+                if (number.StartsWith("="))
+                {
+                    number = number.Substring(1);
+                    return testNumericCondition(value, Operator.smallerEqualThan, number);
+                }
+                else
+                {
+                    return testNumericCondition(value, Operator.smallerThan, number);
                 }
             }
-            if(itsANumber) {
-                return testNumericCondition(value, Operator.equal, stringOrNumber);
-            } else { // It's a string.
-                String valueString = GetStringFromValueEval(value);
-                return stringOrNumber.Equals(valueString);
+            else if (condition.StartsWith(">"))
+            { // It's a >/>= condition.
+                String number = condition.Substring(1);
+                if (number.StartsWith("="))
+                {
+                    number = number.Substring(1);
+                    return testNumericCondition(value, Operator.largerEqualThan, number);
+                }
+                else
+                {
+                    return testNumericCondition(value, Operator.largerThan, number);
+                }
             }
-        } else { // It's a text starts-with condition.
-            String valueString = GetStringFromValueEval(value);
-            return valueString.StartsWith(condition);
+            else if (condition.StartsWith("="))
+            { // It's a = condition.
+                String stringOrNumber = condition.Substring(1);
+                // Distinguish between string and number.
+                bool itsANumber = false;
+                try
+                {
+                    Int32.Parse(stringOrNumber);
+                    itsANumber = true;
+                }
+                catch (FormatException)
+                { // It's not an int.
+                    try
+                    {
+                        Double.Parse(stringOrNumber);
+                        itsANumber = true;
+                    }
+                    catch (FormatException)
+                    { // It's a string.
+                        itsANumber = false;
+                    }
+                }
+                if (itsANumber)
+                {
+                    return testNumericCondition(value, Operator.equal, stringOrNumber);
+                }
+                else
+                { // It's a string.
+                    String valueString = GetStringFromValueEval(value);
+                    return stringOrNumber.Equals(valueString);
+                }
+            }
+            else
+            { // It's a text starts-with condition.
+                String valueString = GetStringFromValueEval(value);
+                return valueString.StartsWith(condition);
+            }
         }
-    }
 
         /**
          * Test whether a value matches a numeric condition.
@@ -344,6 +368,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @return whether the condition holds.
          * @If it's impossible to turn the condition into a number.
          */
+
         private static bool testNumericCondition(
                 ValueEval valueEval, Operator op, String condition)
         {
@@ -376,12 +401,16 @@ namespace Npoi.Core.SS.Formula.Functions
             {
                 case Operator.largerThan:
                     return result > 0;
+
                 case Operator.largerEqualThan:
                     return result >= 0;
+
                 case Operator.smallerThan:
                     return result < 0;
+
                 case Operator.smallerEqualThan:
                     return result <= 0;
+
                 case Operator.equal:
                     return result == 0;
             }
@@ -396,6 +425,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @return String corresponding to the given ValueEval.
          * @If it's not possible to retrieve a String value.
          */
+
         private static String GetStringFromValueEval(ValueEval value)
         {
             value = solveReference(value);
@@ -406,5 +436,4 @@ namespace Npoi.Core.SS.Formula.Functions
             return ((StringValueEval)value).StringValue;
         }
     }
-
 }

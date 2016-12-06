@@ -14,6 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.Extractor
 {
     using System;
@@ -22,6 +23,7 @@ namespace Npoi.Core.SS.Extractor
      * Common interface for Excel text extractors, covering
      *  HSSF and XSSF
      */
+
     public interface IExcelExtractor
     {
         bool IncludeCellComments { get; set; }
@@ -33,5 +35,4 @@ namespace Npoi.Core.SS.Extractor
          */
         String Text { get; }
     }
-
 }

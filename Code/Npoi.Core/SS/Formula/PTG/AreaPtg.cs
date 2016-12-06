@@ -17,39 +17,39 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-    using Npoi.Core.Util;
     using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
+    using System;
 
     /**
      * Specifies a rectangular area of cells A1:A4 for instance.
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     [Serializable]
     public class AreaPtg : Area2DPtgBase
     {
-
         public const byte sid = 0x25;
 
         public AreaPtg(int firstRow, int lastRow, int firstColumn, int lastColumn, bool firstRowRelative, bool lastRowRelative, bool firstColRelative, bool lastColRelative)
             : base(firstRow, lastRow, firstColumn, lastColumn, firstRowRelative, lastRowRelative, firstColRelative, lastColRelative)
         {
-
         }
+
         public AreaPtg(ILittleEndianInput in1)
             : base(in1)
         {
-
         }
+
         public AreaPtg(String arearef)
             : base(arearef)
         {
+        }
 
-        }
-        public AreaPtg(AreaReference areaRef):base(areaRef)
+        public AreaPtg(AreaReference areaRef) : base(areaRef)
         {
-            
         }
+
         protected override byte Sid
         {
             get { return sid; }

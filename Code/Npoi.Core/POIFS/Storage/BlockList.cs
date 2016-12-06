@@ -17,17 +17,16 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.POIFS.Storage
 {
-
     /// <summary>
     /// Interface for lists of blocks that are mapped by block allocation
     /// tables
@@ -56,7 +55,7 @@ namespace Npoi.Core.POIFS.Storage
         /// <param name="startBlock">the index of the first block in the stream</param>
         /// <param name="headerPropertiesStartBlock"></param>
         /// <returns>the stream as an array of correctly ordered blocks</returns>
-        ListManagedBlock[] FetchBlocks(int startBlock,int headerPropertiesStartBlock);
+        ListManagedBlock[] FetchBlocks(int startBlock, int headerPropertiesStartBlock);
 
         /// <summary>
         /// set the associated BlockAllocationTable

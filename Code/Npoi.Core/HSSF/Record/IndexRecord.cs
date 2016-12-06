@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title:        Index Record
@@ -39,11 +36,13 @@ namespace Npoi.Core.HSSF.Record
        : StandardRecord
     {
         public const short sid = 0x20B;
+
         //public const int DBCELL_CAPACITY = 30;
         public int field_1_zero;            // reserved must be 0
+
         public int field_2_first_row;       // first row on the sheet
         public int field_3_last_row_add1;   // last row
-        public int field_4_zero;            // DefColWidth 
+        public int field_4_zero;            // DefColWidth
         public IntList field_5_dbcells;         // array of offsets to DBCELL records
 
         public IndexRecord()
@@ -73,9 +72,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 field_5_dbcells.Add(in1.ReadInt());
             }
-
         }
-
 
         public void AddDbcell(int cell)
         {
@@ -108,7 +105,6 @@ namespace Npoi.Core.HSSF.Record
             }
             set { field_3_last_row_add1 = value; }
         }
-
 
         public int NumDbcells
         {
@@ -165,6 +161,7 @@ namespace Npoi.Core.HSSF.Record
         /** Returns the size of an INdexRecord when it needs to index the specified number of blocks
           *
           */
+
         public static int GetRecordSizeForBlockCount(int blockCount)
         {
             return 20 + (4 * blockCount);

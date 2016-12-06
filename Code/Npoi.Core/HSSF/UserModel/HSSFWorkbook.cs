@@ -17,15 +17,6 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
-
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.IO;
-    using System.Reflection;
-    using System.Security.Cryptography;
-    using System.Text;
     using Npoi.Core.DDF;
     using Npoi.Core.HSSF.Model;
     using Npoi.Core.HSSF.Record;
@@ -35,7 +26,14 @@ namespace Npoi.Core.HSSF.UserModel
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.SS.Util;
     using Npoi.Core.Util;
-
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using System.Reflection;
+    using System.Security.Cryptography;
+    using System.Text;
 
     /// <summary>
     /// High level representation of a workbook.  This is the first object most users
@@ -105,9 +103,7 @@ namespace Npoi.Core.HSSF.UserModel
          * this holds the HSSFFont objects attached to this workbook.
          * We only create these from the low level records as required.
          */
-        private Dictionary<object,object> fonts;
-
-
+        private Dictionary<object, object> fonts;
 
         //private static POILogger log = POILogFactory.GetLogger(typeof(HSSFWorkbook));
 
@@ -119,9 +115,8 @@ namespace Npoi.Core.HSSF.UserModel
         /// <summary>
         /// Totals the sizes of all sheet records and eventually serializes them
         /// </summary>
-        private class SheetRecordCollector : Npoi.Core.HSSF.Record.Aggregates.RecordVisitor,IDisposable
+        private class SheetRecordCollector : Npoi.Core.HSSF.Record.Aggregates.RecordVisitor, IDisposable
         {
-
             private List<object> _list;
             private int _totalSize;
 
@@ -130,6 +125,7 @@ namespace Npoi.Core.HSSF.UserModel
                 _totalSize = 0;
                 _list = new List<object>(128);
             }
+
             public int TotalSize
             {
                 get
@@ -137,11 +133,13 @@ namespace Npoi.Core.HSSF.UserModel
                     return _totalSize;
                 }
             }
+
             public void VisitRecord(Record r)
             {
                 _list.Add(r);
                 _totalSize += r.RecordSize;
             }
+
             public int Serialize(int offset, byte[] data)
             {
                 int result = 0;
@@ -153,12 +151,13 @@ namespace Npoi.Core.HSSF.UserModel
                 }
                 return result;
             }
+
             public void Dispose()
             {
                 //this._list = null;
             }
-
         }
+
         public static HSSFWorkbook Create(InternalWorkbook book)
         {
             return new HSSFWorkbook(book);
@@ -170,32 +169,31 @@ namespace Npoi.Core.HSSF.UserModel
         public HSSFWorkbook()
             : this(InternalWorkbook.CreateWorkbook())
         {
-
         }
 
         public HSSFWorkbook(InternalWorkbook book)
             : base((DirectoryNode)null)
         {
-
             workbook = book;
             _sheets = new List<HSSFSheet>(INITIAL_CAPACITY);
             names = new List<HSSFName>(INITIAL_CAPACITY);
         }
+
         /**
-         * Companion to HSSFWorkbook(POIFSFileSystem), this constructs the 
+         * Companion to HSSFWorkbook(POIFSFileSystem), this constructs the
          *  POI filesystem around your inputstream, including all nodes.
          * This calls {@link #HSSFWorkbook(InputStream, boolean)} with
-         *  preserve nodes set to true. 
+         *  preserve nodes set to true.
          *
          * @see #HSSFWorkbook(InputStream, boolean)
          * @see #HSSFWorkbook(POIFSFileSystem)
          * @see org.apache.poi.poifs.filesystem.POIFSFileSystem
          * @exception IOException if the stream cannot be read
          */
+
         public HSSFWorkbook(POIFSFileSystem fs)
             : this(fs, true)
         {
-
         }
 
         /// <summary>
@@ -210,23 +208,21 @@ namespace Npoi.Core.HSSF.UserModel
         public HSSFWorkbook(POIFSFileSystem fs, bool preserveNodes)
             : this(fs.Root, fs, preserveNodes)
         {
-
         }
 
         /**
          * Normally, the Workbook will be in a POIFS Stream
          * called "Workbook". However, some weird XLS generators use "WORKBOOK"
          */
+
         private static readonly string[] WORKBOOK_DIR_ENTRY_NAMES = {
             "Workbook", // as per BIFF8 spec
             "WORKBOOK", // Typically from third party programs
             "BOOK",     // Typically odd Crystal Reports exports
         };
 
-
         private static String GetWorkbookDirEntryName(DirectoryNode directory)
         {
-
             String[] potentialNames = WORKBOOK_DIR_ENTRY_NAMES;
             for (int i = 0; i < potentialNames.Length; i++)
             {
@@ -283,22 +279,23 @@ namespace Npoi.Core.HSSF.UserModel
             : this(directory, preserveNodes)
         {
         }
-            /**
-     * given a POI POIFSFileSystem object, and a specific directory
-     *  within it, read in its Workbook and populate the high and
-     *  low level models.  If you're reading in a workbook...start here.
-     *
-     * @param directory the POI filesystem directory to process from
-     * @param preserveNodes whether to preseve other nodes, such as
-     *        macros.  This takes more memory, so only say yes if you
-     *        need to. If set, will store all of the POIFSFileSystem
-     *        in memory
-     * @see org.apache.poi.poifs.filesystem.POIFSFileSystem
-     * @exception IOException if the stream cannot be read
-     */
-        public HSSFWorkbook(DirectoryNode directory, bool preserveNodes):base(directory)
-        {
 
+        /**
+ * given a POI POIFSFileSystem object, and a specific directory
+ *  within it, read in its Workbook and populate the high and
+ *  low level models.  If you're reading in a workbook...start here.
+ *
+ * @param directory the POI filesystem directory to process from
+ * @param preserveNodes whether to preseve other nodes, such as
+ *        macros.  This takes more memory, so only say yes if you
+ *        need to. If set, will store all of the POIFSFileSystem
+ *        in memory
+ * @see org.apache.poi.poifs.filesystem.POIFSFileSystem
+ * @exception IOException if the stream cannot be read
+ */
+
+        public HSSFWorkbook(DirectoryNode directory, bool preserveNodes) : base(directory)
+        {
             String workbookName = GetWorkbookDirEntryName(directory);
 
             this.preserveNodes = preserveNodes;
@@ -316,7 +313,6 @@ namespace Npoi.Core.HSSF.UserModel
             // Grab the data from the workbook stream, however
             //  it happens to be spelled.
             Stream stream = directory.CreatePOIFSDocumentReader(workbookName);
-
 
             List<Record> records = RecordFactory.CreateRecords(stream);
 
@@ -352,7 +348,6 @@ namespace Npoi.Core.HSSF.UserModel
         public HSSFWorkbook(Stream s)
             : this(s, true)
         {
-
         }
 
         /**
@@ -371,7 +366,6 @@ namespace Npoi.Core.HSSF.UserModel
         public HSSFWorkbook(Stream s, bool preserveNodes)
             : this(new POIFSFileSystem(s), preserveNodes)
         {
-
         }
 
         /**
@@ -424,8 +418,10 @@ namespace Npoi.Core.HSSF.UserModel
             //if (log.Check(POILogger.DEBUG))
             //    log.Log(POILogger.DEBUG, "ConvertLabelRecords exit");
         }
+
         [NonSerialized]
         private Npoi.Core.SS.UserModel.MissingCellPolicy missingCellPolicy = Npoi.Core.SS.UserModel.MissingCellPolicy.RETURN_NULL_AND_BLANK;
+
         /// <summary>
         /// Retrieves the current policy on what to do when
         /// getting missing or blank cells from a row.
@@ -501,7 +497,9 @@ namespace Npoi.Core.HSSF.UserModel
                         + index + ") is out of range " + range);
             }
         }
+
         /** Test only. Do not use */
+
         public void InsertChartRecord()
         {
             int loc = workbook.FindFirstRecordLocBySid(SSTRecord.sid);
@@ -528,6 +526,7 @@ namespace Npoi.Core.HSSF.UserModel
             UnknownRecord r = new UnknownRecord((short)0x00EB, data);
             workbook.Records.Insert(loc, r);
         }
+
         /// <summary>
         /// Selects a single sheet. This may be different to
         /// the 'active' sheet (which Is the sheet with focus).
@@ -535,7 +534,6 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="index">The index.</param>
         public void SetSelectedTab(int index)
         {
-
             ValidateSheetIndex(index);
             int nSheets = _sheets.Count;
             for (int i = 0; i < nSheets; i++)
@@ -544,13 +542,13 @@ namespace Npoi.Core.HSSF.UserModel
             }
             workbook.WindowOne.NumSelectedTabs = ((short)1);
         }
+
         /// <summary>
         /// Sets the selected tabs.
         /// </summary>
         /// <param name="indexes">The indexes.</param>
         public void SetSelectedTabs(int[] indexes)
         {
-
             for (int i = 0; i < indexes.Length; i++)
             {
                 ValidateSheetIndex(indexes[i]);
@@ -566,7 +564,6 @@ namespace Npoi.Core.HSSF.UserModel
                         bSelect = true;
                         break;
                     }
-
                 }
                 GetSheetAt(i).IsSelected = (bSelect);
             }
@@ -596,7 +593,6 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         public void SetActiveSheet(int index)
         {
-
             ValidateSheetIndex(index);
             int nSheets = _sheets.Count;
             for (int i = 0; i < nSheets; i++)
@@ -613,8 +609,9 @@ namespace Npoi.Core.HSSF.UserModel
         public int FirstVisibleTab
         {
             get { return workbook.WindowOne.FirstVisibleTab; }
-            set { workbook.WindowOne.FirstVisibleTab = value;}
+            set { workbook.WindowOne.FirstVisibleTab = value; }
         }
+
         [Obsolete("Misleading name - use GetFirstVisibleTab() ")]
         public short DisplayedTab
         {
@@ -631,7 +628,6 @@ namespace Npoi.Core.HSSF.UserModel
          * forceing an encoding
          */
         public const byte ENCODING_UTF_16 = 1;
-
 
         /// <summary>
         /// Set the sheet name.
@@ -676,6 +672,7 @@ namespace Npoi.Core.HSSF.UserModel
             ValidateSheetIndex(sheetIx);
             return workbook.IsSheetHidden(sheetIx);
         }
+
         /// <summary>
         /// Check whether a sheet is very hidden.
         /// This is different from the normal
@@ -690,6 +687,7 @@ namespace Npoi.Core.HSSF.UserModel
             ValidateSheetIndex(sheetIx);
             return workbook.IsSheetVeryHidden(sheetIx);
         }
+
         /// <summary>
         /// Hide or Unhide a sheet
         /// </summary>
@@ -701,6 +699,7 @@ namespace Npoi.Core.HSSF.UserModel
             WorkbookUtil.ValidateSheetState(hidden);
             workbook.SetSheetHidden(sheetIx, (int)hidden);
         }
+
         /// <summary>
         /// Hide or unhide a sheet.
         /// </summary>
@@ -711,11 +710,13 @@ namespace Npoi.Core.HSSF.UserModel
             ValidateSheetIndex(sheetIx);
             workbook.SetSheetHidden(sheetIx, hidden);
         }
+
         public void SetSheetHidden(int sheetIx, bool hidden)
         {
             ValidateSheetIndex(sheetIx);
             workbook.SetSheetHidden(sheetIx, hidden);
         }
+
         /// <summary>
         /// Returns the index of the sheet by his name
         /// </summary>
@@ -806,6 +807,7 @@ namespace Npoi.Core.HSSF.UserModel
             //workbook.CloneDrawings(((HSSFSheet)clonedSheet).Sheet);
             return clonedSheet;
         }
+
         /// <summary>
         /// Gets the name of the unique sheet.
         /// </summary>
@@ -851,6 +853,7 @@ namespace Npoi.Core.HSSF.UserModel
                 }
             }
         }
+
         /// <summary>
         /// Create an HSSFSheet for this HSSFWorkbook, Adds it to the sheets and
         /// returns the high level representation. Use this to Create new sheets.
@@ -895,6 +898,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             return _sheets;
         }
+
         ///<summary>
         /// Get the HSSFSheet object at the given index.
         ///</summary>
@@ -1056,6 +1060,7 @@ namespace Npoi.Core.HSSF.UserModel
             sheet.RepeatingRows = (rows);
             sheet.RepeatingColumns = (cols);
         }
+
         internal int FindExistingBuiltinNameRecordIdx(int sheetIndex, byte builtinCode)
         {
             for (int defNameIndex = 0; defNameIndex < names.Count; defNameIndex++)
@@ -1085,7 +1090,6 @@ namespace Npoi.Core.HSSF.UserModel
             names.Add(newName);
             return newName;
         }
-
 
         internal HSSFName GetBuiltInName(byte builtinCode, int sheetIndex)
         {
@@ -1188,6 +1192,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return (short)workbook.NumberOfFontRecords;
             }
         }
+
         public bool IsHidden
         {
             get
@@ -1200,7 +1205,6 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-
         /// <summary>
         /// Get the font at the given index number
         /// </summary>
@@ -1208,7 +1212,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <returns>HSSFFont at the index</returns>
         public Npoi.Core.SS.UserModel.IFont GetFontAt(short idx)
         {
-            if (fonts == null) fonts = new Dictionary<object,object>();
+            if (fonts == null) fonts = new Dictionary<object, object>();
 
             // So we don't confuse users, give them back
             //  the same object every time, but create
@@ -1234,8 +1238,9 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         public void ResetFontCache()
         {
-            fonts = new Dictionary<object,object>();
+            fonts = new Dictionary<object, object>();
         }
+
         /// <summary>
         /// Create a new Cell style and Add it to the workbook's style table
         /// </summary>
@@ -1264,7 +1269,6 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 return (short)workbook.NumExFormats;
             }
-
         }
 
         /// <summary>
@@ -1285,6 +1289,7 @@ namespace Npoi.Core.HSSF.UserModel
          *  the Workbook was read, if any. Has no effect on Workbooks
          *  opened from an InputStream, or newly created ones.
          */
+
         public void Close()
         {
             if (directory != null)
@@ -1313,9 +1318,9 @@ namespace Npoi.Core.HSSF.UserModel
                 this.DocumentSummaryInformation = HPSF.PropertySetFactory.CreateDocumentSummaryInformation();
             }
             Npoi.Core.HPSF.CustomProperties cp = this.DocumentSummaryInformation.CustomProperties;
-            if(cp==null)
+            if (cp == null)
             {
-                cp= new Npoi.Core.HPSF.CustomProperties();
+                cp = new Npoi.Core.HPSF.CustomProperties();
             }
             cp.Put("Generator", "NPOI");
             cp.Put("Generator Version", typeof(HSSFWorkbook).GetTypeInfo().Assembly.GetName().Version.ToString(3));
@@ -1323,7 +1328,7 @@ namespace Npoi.Core.HSSF.UserModel
             if (this.SummaryInformation == null)
             {
                 this.SummaryInformation = HPSF.PropertySetFactory.CreateSummaryInformation();
-            }            
+            }
             this.SummaryInformation.ApplicationName = "NPOI";
 
             // For tracking what we've written out, used if we're
@@ -1355,9 +1360,8 @@ namespace Npoi.Core.HSSF.UserModel
                     fs.Root.StorageClsid = (this.directory.StorageClsid);
                 }
                 fs.WriteFileSystem(stream);
-
             }
-            
+
             bytes = null;
         }
 
@@ -1402,7 +1406,6 @@ namespace Npoi.Core.HSSF.UserModel
                 }
             }
 
-
             byte[] retval = new byte[totalsize];
             int pos = workbook.Serialize(0, retval);
 
@@ -1413,7 +1416,7 @@ namespace Npoi.Core.HSSF.UserModel
                 if (serializedSize != src.TotalSize)
                 {
                     // Wrong offset values have been passed in the call to SetSheetBof() above.
-                    // For books with more than one sheet, this discrepancy would cause excel 
+                    // For books with more than one sheet, this discrepancy would cause excel
                     // to report errors and loose data while Reading the workbook
                     throw new InvalidOperationException("Actual serialized sheet size (" + serializedSize
                             + ") differs from pre-calculated size (" + src.TotalSize
@@ -1423,7 +1426,7 @@ namespace Npoi.Core.HSSF.UserModel
                 pos += serializedSize;
                 src.Dispose();
             }
-            
+
             return retval;
         }
 
@@ -1438,10 +1441,12 @@ namespace Npoi.Core.HSSF.UserModel
         {
             return workbook.GetSSTString(index).String;
         }
+
         /**
  * The locator of user-defined functions.
  * By default includes functions from the Excel Analysis Toolpack
  */
+
         [NonSerialized]
         private UDFFinder _udfFinder = new IndexedUDFFinder(UDFFinder.DEFAULT);
 
@@ -1450,12 +1455,15 @@ namespace Npoi.Core.HSSF.UserModel
  *
  * @param toopack the toolpack to register
  */
+
         public void AddToolPack(UDFFinder toopack)
         {
             AggregatingUDFFinder udfs = (AggregatingUDFFinder)_udfFinder;
             udfs.Add(toopack);
         }
+
         /*package*/
+
         internal UDFFinder GetUDFFinder()
         {
             return _udfFinder;
@@ -1482,6 +1490,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return result;
             }
         }
+
         public Npoi.Core.SS.UserModel.IName GetName(String name)
         {
             int nameIndex = GetNameIndex(name);
@@ -1525,10 +1534,12 @@ namespace Npoi.Core.HSSF.UserModel
 
             return result;
         }
+
         public NameRecord GetNameRecord(int nameIndex)
         {
             return Workbook.GetNameRecord(nameIndex);
         }
+
         /// <summary>
         /// TODO - make this less cryptic / move elsewhere
         /// </summary>
@@ -1540,7 +1551,6 @@ namespace Npoi.Core.HSSF.UserModel
             return workbook.ResolveNameXText(reFindex, definedNameIndex);
         }
 
-
         /// <summary>
         /// Sets the printarea for the sheet provided
         /// i.e. Reference = $A$1:$B$2
@@ -1551,11 +1561,10 @@ namespace Npoi.Core.HSSF.UserModel
         {
             NameRecord name = workbook.GetSpecificBuiltinRecord(NameRecord.BUILTIN_PRINT_AREA, sheetIndex + 1);
 
-
             if (name == null)
                 name = workbook.CreateBuiltInName(NameRecord.BUILTIN_PRINT_AREA, sheetIndex + 1);
             //Adding one here because 0 indicates a global named region; doesnt make sense for print areas
-            String[] parts = reference.Split(new char[]{','});
+            String[] parts = reference.Split(new char[] { ',' });
             StringBuilder sb = new StringBuilder(32);
             for (int i = 0; i < parts.Length; i++)
             {
@@ -1567,7 +1576,7 @@ namespace Npoi.Core.HSSF.UserModel
                 sb.Append("!");
                 sb.Append(parts[i]);
             }
-            name.NameDefinition =(HSSFFormulaParser.Parse(sb.ToString(), this, FormulaType.NamedRange, sheetIndex));
+            name.NameDefinition = (HSSFFormulaParser.Parse(sb.ToString(), this, FormulaType.NamedRange, sheetIndex));
         }
 
         /// <summary>
@@ -1581,7 +1590,6 @@ namespace Npoi.Core.HSSF.UserModel
         public void SetPrintArea(int sheetIndex, int startColumn, int endColumn,
                                   int startRow, int endRow)
         {
-
             //using absolute references because they don't Get copied and pasted anyway
             CellReference cell = new CellReference(startRow, startColumn, true, true);
             String reference = cell.FormatAsString();
@@ -1591,7 +1599,6 @@ namespace Npoi.Core.HSSF.UserModel
 
             SetPrintArea(sheetIndex, reference);
         }
-
 
         /// <summary>
         /// Retrieves the reference for the printarea of the specified sheet, the sheet name Is Appended to the reference even if it was not specified.
@@ -1657,7 +1664,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         //
         /// <summary>
-        /// As GetNameIndex(String) is not necessarily unique 
+        /// As GetNameIndex(String) is not necessarily unique
         /// (name + sheet index is unique), this method is more accurate.
         /// </summary>
         /// <param name="name">the name whose index in the list of names of this workbook should be looked up.</param>
@@ -1704,12 +1711,11 @@ namespace Npoi.Core.HSSF.UserModel
             int index = GetNameIndex(name);
 
             RemoveName(index);
-
         }
 
         //
         /// <summary>
-        ///  As #removeName(String) is not necessarily unique (name + sheet index is unique), 
+        ///  As #removeName(String) is not necessarily unique (name + sheet index is unique),
         ///  this method is more accurate.
         /// </summary>
         /// <param name="name">the name to remove.</param>
@@ -1718,6 +1724,7 @@ namespace Npoi.Core.HSSF.UserModel
             int index = GetNameIndex(name);
             RemoveName(index);
         }
+
         public HSSFPalette GetCustomPalette()
         {
             return new HSSFPalette(workbook.CustomPalette);
@@ -1761,7 +1768,7 @@ namespace Npoi.Core.HSSF.UserModel
             r.Decode();
             IList escherRecords = r.EscherRecords;
 
-            for (IEnumerator iterator = escherRecords.GetEnumerator(); iterator.MoveNext(); )
+            for (IEnumerator iterator = escherRecords.GetEnumerator(); iterator.MoveNext();)
             {
                 EscherRecord escherRecord = (EscherRecord)iterator.Current;
                 if (fat)
@@ -1770,6 +1777,7 @@ namespace Npoi.Core.HSSF.UserModel
                     escherRecord.Display(0);
             }
         }
+
         internal void InitDrawings()
         {
             DrawingManager2 mgr = workbook.FindDrawingGroup();
@@ -1785,11 +1793,12 @@ namespace Npoi.Core.HSSF.UserModel
                 workbook.CreateDrawingGroup();
             }
         }
+
         /// <summary>
         /// Adds a picture to the workbook.
         /// </summary>
         /// <param name="pictureData">The bytes of the picture</param>
-        /// <param name="format">The format of the picture.  One of 
+        /// <param name="format">The format of the picture.  One of
         /// PictureType.</param>
         /// <returns>the index to this picture (1 based).</returns>
         public int AddPicture(byte[] pictureData, Npoi.Core.SS.UserModel.PictureType format)
@@ -1804,64 +1813,73 @@ namespace Npoi.Core.HSSF.UserModel
             EscherBlipRecord blipRecord;
             int blipSize;
             short escherTag;
-            switch (format) {
+            switch (format)
+            {
                 case PictureType.WMF:
                     // remove first 22 bytes if file starts with magic bytes D7-CD-C6-9A
                     // see also http://de.wikipedia.org/wiki/Windows_Metafile#Hinweise_zur_WMF-Spezifikation
-                    if (LittleEndian.GetInt(pictureData) == unchecked((int)0x9AC6CDD7)) {
-                        byte[] picDataNoHeader = new byte[pictureData.Length-22];
-                        Array.Copy(pictureData, 22, picDataNoHeader, 0, pictureData.Length-22);
+                    if (LittleEndian.GetInt(pictureData) == unchecked((int)0x9AC6CDD7))
+                    {
+                        byte[] picDataNoHeader = new byte[pictureData.Length - 22];
+                        Array.Copy(pictureData, 22, picDataNoHeader, 0, pictureData.Length - 22);
                         pictureData = picDataNoHeader;
                     }
                     EscherMetafileBlip blipRecordMeta = new EscherMetafileBlip();
                     blipRecord = blipRecordMeta;
-                    blipRecordMeta.UID=(/*setter*/uid);
+                    blipRecordMeta.UID = (/*setter*/uid);
                     blipRecordMeta.SetPictureData(pictureData);
                     // taken from libre office export, it won't open, if this is left to 0
-                    blipRecordMeta.Filter=(/*setter*/unchecked((byte)-2));
+                    blipRecordMeta.Filter = (/*setter*/unchecked((byte)-2));
                     blipSize = blipRecordMeta.CompressedSize + 58;
                     escherTag = 0;
                     break;
+
                 case PictureType.EMF:
                     blipRecordMeta = new EscherMetafileBlip();
                     blipRecord = blipRecordMeta;
-                    blipRecordMeta.UID=(/*setter*/uid);
+                    blipRecordMeta.UID = (/*setter*/uid);
                     blipRecordMeta.SetPictureData(pictureData);
                     // taken from libre office export, it won't open, if this is left to 0
-                    blipRecordMeta.Filter=(/*setter*/unchecked((byte)-2));
+                    blipRecordMeta.Filter = (/*setter*/unchecked((byte)-2));
                     blipSize = blipRecordMeta.CompressedSize + 58;
                     escherTag = 0;
                     break;
+
                 default:
                     EscherBitmapBlip blipRecordBitmap = new EscherBitmapBlip();
                     blipRecord = blipRecordBitmap;
-                    blipRecordBitmap.UID=(/*setter*/ uid );
-                    blipRecordBitmap.Marker=(/*setter*/ (byte) 0xFF );
-                    blipRecordBitmap.PictureData=(pictureData);
+                    blipRecordBitmap.UID = (/*setter*/ uid);
+                    blipRecordBitmap.Marker = (/*setter*/ (byte)0xFF);
+                    blipRecordBitmap.PictureData = (pictureData);
                     blipSize = pictureData.Length + 25;
-                    escherTag = (short) 0xFF;
-    	            break;
+                    escherTag = (short)0xFF;
+                    break;
             }
 
             blipRecord.RecordId = (short)(EscherBitmapBlip.RECORD_ID_START + format);
-            
+
             switch (format)
             {
                 case Npoi.Core.SS.UserModel.PictureType.EMF:
                     blipRecord.Options = HSSFPictureData.MSOBI_EMF;
                     break;
+
                 case Npoi.Core.SS.UserModel.PictureType.WMF:
                     blipRecord.Options = HSSFPictureData.MSOBI_WMF;
                     break;
+
                 case Npoi.Core.SS.UserModel.PictureType.PICT:
                     blipRecord.Options = HSSFPictureData.MSOBI_PICT;
                     break;
+
                 case Npoi.Core.SS.UserModel.PictureType.PNG:
                     blipRecord.Options = HSSFPictureData.MSOBI_PNG;
                     break;
+
                 case Npoi.Core.SS.UserModel.PictureType.JPEG:
                     blipRecord.Options = HSSFPictureData.MSOBI_JPEG;
                     break;
+
                 case Npoi.Core.SS.UserModel.PictureType.DIB:
                     blipRecord.Options = HSSFPictureData.MSOBI_DIB;
                     break;
@@ -1903,6 +1921,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
             return pictures;
         }
+
         //public HSSFAutoFilter CreateAutoFilter(String formula)
         //{
         //    if (string.IsNullOrEmpty(formula))
@@ -1911,7 +1930,7 @@ namespace Npoi.Core.HSSF.UserModel
         //    HSSFAutoFilter autofilter = new HSSFAutoFilter(formula, this);
         //    return autofilter;
         //}
-//        public HSSFAutoFilter CreateCustomFilter(string formula,)
+        //        public HSSFAutoFilter CreateCustomFilter(string formula,)
 
         /// <summary>
         /// Performs a recursive search for pictures in the given list of escher records.
@@ -1943,6 +1962,7 @@ namespace Npoi.Core.HSSF.UserModel
                 }
             }
         }
+
         protected static Dictionary<String, ClassID> GetOleMap()
         {
             Dictionary<String, ClassID> olemap = new Dictionary<String, ClassID>();
@@ -2012,7 +2032,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <summary>
         /// Adds the LinkTable records required to allow formulas referencing
         /// the specified external workbook to be added to this one. Allows
-        /// formulas such as "[MyOtherWorkbook]Sheet3!$A$5" to be added to the 
+        /// formulas such as "[MyOtherWorkbook]Sheet3!$A$5" to be added to the
         /// file, for workbooks not already referenced.
         /// </summary>
         /// <param name="name">The name the workbook will be referenced as in formulas</param>
@@ -2089,11 +2109,15 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="objects">the list of embedded objects to populate.</param>
         private void GetAllEmbeddedObjects(HSSFShapeContainer parent, List<HSSFObjectData> objects)
         {
-            foreach (HSSFShape shape in parent.Children) {
-                if (shape is HSSFObjectData) {
-                    objects.Add((HSSFObjectData) shape);
-                } else if (shape is HSSFShapeContainer) {
-                    GetAllEmbeddedObjects((HSSFShapeContainer) shape, objects);
+            foreach (HSSFShape shape in parent.Children)
+            {
+                if (shape is HSSFObjectData)
+                {
+                    objects.Add((HSSFObjectData)shape);
+                }
+                else if (shape is HSSFShapeContainer)
+                {
+                    GetAllEmbeddedObjects((HSSFShapeContainer)shape, objects);
                 }
             }
         }
@@ -2122,21 +2146,20 @@ namespace Npoi.Core.HSSF.UserModel
             return _sheets.GetEnumerator();
         }
 
-
         /// <summary>
         /// Whether the application shall perform a full recalculation when the workbook is opened.
-        /// 
+        ///
         /// Typically you want to force formula recalculation when you modify cell formulas or values
         /// of a workbook previously created by Excel. When set to true, this flag will tell Excel
         /// that it needs to recalculate all formulas in the workbook the next time the file is opened.
-        /// 
+        ///
         /// Note, that recalculation updates cached formula results and, thus, modifies the workbook.
         /// Depending on the version, Excel may prompt you with "Do you want to save the changes in <em>filename</em>?"
         /// on close.
-        /// 
+        ///
         /// Value is true if the application will perform a full recalculation of
         /// workbook values when the workbook is opened.
-        /// 
+        ///
         /// since 3.8
         /// </summary>
         public bool ForceFormulaRecalculation
@@ -2145,7 +2168,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 InternalWorkbook iwb = Workbook;
                 RecalcIdRecord recalc = iwb.RecalcId;
-                recalc.EngineId=(0);
+                recalc.EngineId = (0);
             }
             get
             {
@@ -2157,13 +2180,14 @@ namespace Npoi.Core.HSSF.UserModel
 
         /**
          * Changes an external referenced file to another file.
-         * A formular in Excel which refers a cell in another file is saved in two parts: 
+         * A formular in Excel which refers a cell in another file is saved in two parts:
          * The referenced file is stored in an reference table. the row/cell information is saved separate.
          * This method invokation will only change the reference in the lookup-table itself.
          * @param oldUrl The old URL to search for and which is to be replaced
          * @param newUrl The URL replacement
          * @return true if the oldUrl was found and replaced with newUrl. Otherwise false
          */
+
         public bool ChangeExternalReference(String oldUrl, String newUrl)
         {
             return workbook.ChangeExternalReference(oldUrl, newUrl);

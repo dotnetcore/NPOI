@@ -17,18 +17,17 @@
 
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
-    using System;
-    using System.Text;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
-
+    using System;
+    using System.Text;
 
     /**
      * ENDBLOCK - Chart Future Record Type End Block (0x0853)<br/>
-     * 
+     *
      * @author Patrick Cheng
      */
+
     public class EndBlockRecord : StandardRecord
     {
         public const short sid = 0x0853;
@@ -40,6 +39,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         {
             get; set;
         }
+
         private byte[] unused;
 
         public EndBlockRecord()
@@ -52,17 +52,18 @@ namespace Npoi.Core.HSSF.Record.Chart
         {
             rt = in1.ReadShort();
             grbitFrt = in1.ReadShort();
-            ObjectKind = (ObjectKind) in1.ReadShort();
+            ObjectKind = (ObjectKind)in1.ReadShort();
             // Often, but not always has 6 unused bytes at the end
-		    if(in1.Available() == 0) {
-			    unused = new byte[0];
-		    } else {
-			    unused = new byte[6];
-			    in1.ReadFully(unused);
-		    }
-
+            if (in1.Available() == 0)
+            {
+                unused = new byte[0];
+            }
+            else
+            {
+                unused = new byte[6];
+                in1.ReadFully(unused);
+            }
         }
-
 
         protected override int DataSize
         {
@@ -72,7 +73,6 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
         }
 
-
         public override short Sid
         {
             get
@@ -81,12 +81,11 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
         }
 
-
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(rt);
             out1.WriteShort(grbitFrt);
-            out1.WriteShort((short) ObjectKind);
+            out1.WriteShort((short)ObjectKind);
             // 6 bytes unused
             out1.Write(unused);
         }
@@ -98,7 +97,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             buffer.Append("[ENDBLOCK]\n");
             buffer.Append("    .rt         =").Append(HexDump.ShortToHex(rt)).Append('\n');
             buffer.Append("    .grbitFrt   =").Append(HexDump.ShortToHex(grbitFrt)).Append('\n');
-            buffer.Append("    .iObjectKind=").Append(HexDump.ShortToHex((short) ObjectKind)).Append('\n');
+            buffer.Append("    .iObjectKind=").Append(HexDump.ShortToHex((short)ObjectKind)).Append('\n');
             //buffer.Append("    .unused     =").Append(HexDump.ToHex(unused)).Append('\n');
             buffer.Append("[/ENDBLOCK]\n");
             return buffer.ToString();

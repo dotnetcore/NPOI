@@ -14,15 +14,17 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
-    using System.Collections.Generic;
     using Npoi.Core;
-    using System.IO;
+    using Npoi.Core.HSSF.Record.Chart;
     using Npoi.Core.HSSF.Record.Crypto;
     using Npoi.Core.Util;
-    using Npoi.Core.HSSF.Record.Chart;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+
     /**
      * A stream based way to get at complete records, with
      * as low a memory footprint as possible.
@@ -33,14 +35,15 @@ namespace Npoi.Core.HSSF.Record
      * {@link HSSFListener} and have new records pushed to
      * them, but this does allow for a "pull" style of coding.
      */
+
     public class RecordFactoryInputStream
     {
-
         /**
          * Keeps track of the sizes of the Initial records up to and including {@link FilePassRecord}
          * Needed for protected files because each byte is encrypted with respect to its absolute
          * position from the start of the stream.
          */
+
         private class StreamEncryptionInfo
         {
             private int _InitialRecordsSize;
@@ -68,7 +71,7 @@ namespace Npoi.Core.HSSF.Record
                         recSize += rec.RecordSize;
                         outputRecs.Add(rec);
                         // Encrypted is normally BOF then FILEPASS
-					    // May sometimes be BOF, WRITEPROTECT, FILEPASS
+                        // May sometimes be BOF, WRITEPROTECT, FILEPASS
                         if (rec is WriteProtectRecord && rs.HasNextRecord)
                         {
                             rs.NextRecord();
@@ -145,6 +148,7 @@ namespace Npoi.Core.HSSF.Record
              * This will typically be the first or second record Read. Possibly <code>null</code>
              * if stream was empty
              */
+
             public Record LastRecord
             {
                 get
@@ -156,6 +160,7 @@ namespace Npoi.Core.HSSF.Record
             /**
              * <c>false</c> in some test cases
              */
+
             public bool HasBOFRecord
             {
                 get
@@ -164,7 +169,6 @@ namespace Npoi.Core.HSSF.Record
                 }
             }
         }
-
 
         private RecordInputStream _recStream;
         private bool _shouldIncludeContinueRecords;
@@ -194,12 +198,12 @@ namespace Npoi.Core.HSSF.Record
 
         private bool _lastRecordWasEOFLevelZero;
 
-
         /**
          * @param shouldIncludeContinueRecords caller can pass <c>false</c> if loose
          * {@link ContinueRecord}s should be skipped (this is sometimes useful in event based
          * processing).
          */
+
         public RecordFactoryInputStream(Stream in1, bool shouldIncludeContinueRecords)
         {
             RecordInputStream rs = new RecordInputStream(in1);
@@ -249,6 +253,7 @@ namespace Npoi.Core.HSSF.Record
          * Returns the next (complete) record from the
          * stream, or null if there are no more.
          */
+
         public Record NextRecord()
         {
             Record r;
@@ -297,6 +302,7 @@ namespace Npoi.Core.HSSF.Record
          * @return the next {@link Record} from the multiple record group as expanded from
          * a recently read {@link MulRKRecord}. <code>null</code> if not present.
          */
+
         private Record GetNextUnreadRecord()
         {
             if (_unreadRecordBuffer != null)
@@ -319,9 +325,9 @@ namespace Npoi.Core.HSSF.Record
          * this pass didn't return a record that's
          * suitable for returning (eg was a continue record).
          */
+
         private Record ReadNextRecord()
         {
-
             Record record = RecordFactory.CreateSingleRecord(_recStream);
             _lastRecordWasEOFLevelZero = false;
 

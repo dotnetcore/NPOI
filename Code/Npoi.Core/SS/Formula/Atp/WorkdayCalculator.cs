@@ -14,23 +14,26 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using System;
+
 using Npoi.Core.SS.UserModel;
+using System;
+
 namespace Npoi.Core.SS.Formula.Atp
 {
     /**
      * A calculator for workdays, considering dates as excel representations.
-     * 
+     *
      * @author jfaenomoto@gmail.com
      */
+
     public class WorkdayCalculator
     {
-
         public static WorkdayCalculator instance = new WorkdayCalculator();
 
         /**
          * Constructor.
          */
+
         private WorkdayCalculator()
         {
             // enforcing singleton
@@ -38,12 +41,13 @@ namespace Npoi.Core.SS.Formula.Atp
 
         /**
          * Calculate how many workdays are there between a start and an end date, as excel representations, considering a range of holidays.
-         * 
+         *
          * @param start start date.
          * @param end end date.
          * @param holidays an array of holidays.
          * @return number of workdays between start and end dates, including both dates.
          */
+
         public int CalculateWorkdays(double start, double end, double[] holidays)
         {
             int saturdaysPast = this.PastDaysOfWeek(start, end, DayOfWeek.Saturday);
@@ -54,12 +58,13 @@ namespace Npoi.Core.SS.Formula.Atp
 
         /**
          * Calculate the workday past x workdays from a starting date, considering a range of holidays.
-         * 
+         *
          * @param start start date.
          * @param workdays number of workdays to be past from starting date.
          * @param holidays an array of holidays.
          * @return date past x workdays.
          */
+
         public DateTime CalculateWorkdays(double start, int workdays, double[] holidays)
         {
             DateTime startDate = DateUtil.GetJavaDate(start);
@@ -72,7 +77,7 @@ namespace Npoi.Core.SS.Formula.Atp
             {
                 endDate = endDate.AddDays(direction);
                 excelEndDate += direction;
-                if (endDate.DayOfWeek!= DayOfWeek.Saturday
+                if (endDate.DayOfWeek != DayOfWeek.Saturday
                         && endDate.DayOfWeek != DayOfWeek.Sunday
                         && !IsHoliday(excelEndDate, holidays))
                 {
@@ -96,12 +101,13 @@ namespace Npoi.Core.SS.Formula.Atp
 
         /**
          * Calculates how many days of week past between a start and an end date.
-         * 
+         *
          * @param start start date.
          * @param end end date.
          * @param dayOfWeek a day of week as represented by {@link Calendar} constants.
          * @return how many days of week past in this interval.
          */
+
         public int PastDaysOfWeek(double start, double end, DayOfWeek dayOfWeek)
         {
             int pastDaysOfWeek = 0;
@@ -120,7 +126,7 @@ namespace Npoi.Core.SS.Formula.Atp
 
         /**
          * Calculates how many holidays in a list are workdays, considering an interval of dates.
-         * 
+         *
          * @param start start date.
          * @param end end date.
          * @param holidays an array of holidays.

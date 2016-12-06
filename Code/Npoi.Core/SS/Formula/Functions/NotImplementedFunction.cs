@@ -18,29 +18,31 @@
  * Created on May 6, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
-
+    using System;
 
     /**
-     * 
+     *
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     * This Is the default implementation of a Function class. 
+     * This Is the default implementation of a Function class.
      * The default behaviour Is to return a non-standard ErrorEval
-     * "ErrorEval.FUNCTION_NOT_IMPLEMENTED". This error should alert 
+     * "ErrorEval.FUNCTION_NOT_IMPLEMENTED". This error should alert
      * the user that the formula contained a function that Is not
      * yet implemented.
      */
+
     public class NotImplementedFunction : Function
     {
-
         private String _functionName;
+
         internal NotImplementedFunction()
         {
             _functionName = GetType().Name;
         }
+
         public NotImplementedFunction(String name)
         {
             _functionName = name;
@@ -50,6 +52,7 @@ namespace Npoi.Core.SS.Formula.Functions
         {
             throw new NotImplementedFunctionException(_functionName);
         }
+
         public String FunctionName
         {
             get
@@ -57,6 +60,5 @@ namespace Npoi.Core.SS.Formula.Functions
                 return _functionName;
             }
         }
-
     }
 }

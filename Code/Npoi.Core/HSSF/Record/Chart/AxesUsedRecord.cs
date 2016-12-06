@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * The number of axes used on a chart.
@@ -32,16 +28,15 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class AxesUsedRecord
        : StandardRecord
     {
         public const short sid = 0x1046;
         private short field_1_numAxis;
 
-
         public AxesUsedRecord()
         {
-
         }
 
         /**
@@ -77,6 +72,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 2; }
@@ -95,22 +91,14 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          * Get the num axis field for the AxisUsed record.
          */
+
         public short NumAxis
         {
             get { return field_1_numAxis; }
             set { this.field_1_numAxis = value; }
         }
-
-
     }
 }
-
-
-
-

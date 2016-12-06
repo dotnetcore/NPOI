@@ -16,10 +16,9 @@
 ==================================================================== */
 
 using Npoi.Core.DDF;
+
 namespace Npoi.Core.HSSF.UserModel
 {
-
-
     /// <summary>
     /// An anchor Is what specifics the position of a shape within a client object
     /// or within another containing shape.
@@ -50,6 +49,7 @@ namespace Npoi.Core.HSSF.UserModel
             this.Dx2 = dx2;
             this.Dy2 = dy2;
         }
+
         public static HSSFAnchor CreateAnchorFromEscher(EscherContainerRecord container)
         {
             if (null != container.GetChildById(EscherChildAnchorRecord.RECORD_ID))
@@ -65,6 +65,7 @@ namespace Npoi.Core.HSSF.UserModel
                 return null;
             }
         }
+
         /// <summary>
         /// Gets or sets the DX1.
         /// </summary>
@@ -74,6 +75,7 @@ namespace Npoi.Core.HSSF.UserModel
             get;
             set;
         }
+
         /// <summary>
         /// Gets or sets the dy1.
         /// </summary>
@@ -83,6 +85,7 @@ namespace Npoi.Core.HSSF.UserModel
             get;
             set;
         }
+
         /// <summary>
         /// Gets or sets the dy2.
         /// </summary>
@@ -92,6 +95,7 @@ namespace Npoi.Core.HSSF.UserModel
             get;
             set;
         }
+
         /// <summary>
         /// Gets or sets the DX2.
         /// </summary>
@@ -109,6 +113,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// 	<c>true</c> if this instance is horizontally flipped; otherwise, <c>false</c>.
         /// </value>
         public abstract bool IsHorizontallyFlipped { get; }
+
         /// <summary>
         /// Gets a value indicating whether this instance is vertically flipped.
         /// </summary>
@@ -117,8 +122,8 @@ namespace Npoi.Core.HSSF.UserModel
         /// </value>
         public abstract bool IsVerticallyFlipped { get; }
 
-
         internal abstract EscherRecord GetEscherAnchor();
+
         protected abstract void CreateEscherAnchor();
     }
 }

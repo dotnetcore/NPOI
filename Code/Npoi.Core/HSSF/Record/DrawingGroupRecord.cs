@@ -17,11 +17,10 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.DDF;
+    using Npoi.Core.Util;
     using System;
     using System.Collections;
-    using Npoi.Core.Util;
-    using Npoi.Core.DDF;
 
     public class DrawingGroupRecord : AbstractEscherHolderRecord
     {
@@ -37,7 +36,6 @@ namespace Npoi.Core.HSSF.Record
         public DrawingGroupRecord(RecordInputStream in1)
             : base(in1)
         {
-
         }
 
         protected override String RecordName
@@ -50,7 +48,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override int Serialize(int offset, byte [] data)
+        public override int Serialize(int offset, byte[] data)
         {
             byte[] rawData = RawData;
             if (EscherRecords.Count == 0 && rawData != null)
@@ -61,7 +59,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 byte[] buffer = new byte[RawDataSize];
                 int pos = 0;
-                for (IEnumerator iterator = EscherRecords.GetEnumerator(); iterator.MoveNext(); )
+                for (IEnumerator iterator = EscherRecords.GetEnumerator(); iterator.MoveNext();)
                 {
                     EscherRecord r = (EscherRecord)iterator.Current;
                     pos += r.Serialize(pos, buffer, new NullEscherSerializationListener());
@@ -74,9 +72,10 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Process the bytes into escher records.
          * (Not done by default in case we break things,
-         *  Unless you Set the "poi.deSerialize.escher" 
+         *  Unless you Set the "poi.deSerialize.escher"
          *  system property)
          */
+
         public void ProcessChildRecords()
         {
             ConvertRawBytesToEscherRecords();
@@ -85,6 +84,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Size of record (including 4 byte headers for all sections)
          */
+
         public override int RecordSize
         {
             get { return GrossSizeFromDataSize(this.RawDataSize); }
@@ -103,7 +103,7 @@ namespace Npoi.Core.HSSF.Record
                 else
                 {
                     int size = 0;
-                    for (IEnumerator iterator = escherRecords.GetEnumerator(); iterator.MoveNext(); )
+                    for (IEnumerator iterator = escherRecords.GetEnumerator(); iterator.MoveNext();)
                     {
                         EscherRecord r = (EscherRecord)iterator.Current;
                         size += r.RecordSize;
@@ -150,6 +150,5 @@ namespace Npoi.Core.HSSF.Record
             LittleEndian.PutShort(data, 0 + offset, ContinueRecord.sid);
             LittleEndian.PutShort(data, 2 + offset, (short)sizeExcludingHeader);
         }
-
     }
 }

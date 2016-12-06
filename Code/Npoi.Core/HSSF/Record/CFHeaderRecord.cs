@@ -17,19 +17,18 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.HSSF.Record.CF;
+    using Npoi.Core.SS.Util;
     using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.HSSF.Record.CF;
-    using Npoi.Core.SS.Util;
-
 
     /**
      * Conditional Formatting Header record (CFHEADER)
-     * 
+     *
      * @author Dmitriy Kumshayev
      */
+
     public class CFHeaderRecord : StandardRecord
     {
         public const short sid = 0x1B0;
@@ -40,15 +39,17 @@ namespace Npoi.Core.HSSF.Record
         private CellRangeAddressList field_4_cell_ranges;
 
         /** Creates new CFHeaderRecord */
+
         public CFHeaderRecord()
         {
             field_4_cell_ranges = new CellRangeAddressList();
         }
+
         public CFHeaderRecord(CellRangeAddress[] regions, int nRules)
         {
             CellRangeAddress[] unmergedRanges = regions;
             CellRangeAddress[] mergeCellRanges = CellRangeUtil.MergeCellRanges(unmergedRanges);
-            CellRanges= mergeCellRanges;
+            CellRanges = mergeCellRanges;
             field_1_numcf = nRules;
         }
 
@@ -58,7 +59,6 @@ namespace Npoi.Core.HSSF.Record
             field_2_need_recalculation = in1.ReadShort();
             field_3_enclosing_cell_range = new CellRangeAddress(in1);
             field_4_cell_ranges = new CellRangeAddressList(in1);
-
         }
 
         public int NumberOfConditionalFormats
@@ -76,7 +76,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return field_2_need_recalculation == 1 ? true : false;
             }
-            set { field_2_need_recalculation = value? 1 : 0; }
+            set { field_2_need_recalculation = value ? 1 : 0; }
         }
 
         public CellRangeAddress EnclosingCellRange
@@ -87,7 +87,6 @@ namespace Npoi.Core.HSSF.Record
             }
             set { field_3_enclosing_cell_range = value; }
         }
-
 
         public CellRangeAddress[] CellRanges
         {
@@ -150,7 +149,6 @@ namespace Npoi.Core.HSSF.Record
             field_3_enclosing_cell_range.Serialize(out1);
             field_4_cell_ranges.Serialize(out1);
         }
-
 
         public override short Sid
         {

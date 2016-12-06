@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,18 +15,16 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Title:        Save External Links record (BookBool)
      * Description:  Contains a flag specifying whether the Gui should save externally
-     *               linked values from other workbooks. 
+     *               linked values from other workbooks.
      * REFERENCE:  PG 289 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
      * @author Andrew C. Oliver (acoliver at apache dot org)
      * @version 2.0-pre
@@ -61,7 +58,7 @@ namespace Npoi.Core.HSSF.Record
 
         public short SaveLinkValues
         {
-            get{return field_1_save_link_values;}
+            get { return field_1_save_link_values; }
             set { field_1_save_link_values = value; }
         }
 

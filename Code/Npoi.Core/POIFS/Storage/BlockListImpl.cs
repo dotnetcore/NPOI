@@ -20,9 +20,9 @@ using System.IO;
 
 namespace Npoi.Core.POIFS.Storage
 {
-    public class BlockListImpl:BlockList
+    public class BlockListImpl : BlockList
     {
-        private ListManagedBlock[]         _blocks;
+        private ListManagedBlock[] _blocks;
         private BlockAllocationTableReader _bat;
 
         /// <summary>
@@ -30,14 +30,14 @@ namespace Npoi.Core.POIFS.Storage
         /// </summary>
         public BlockListImpl()
         {
-            _blocks = new ListManagedBlock[ 0 ];
-            _bat    = null;
+            _blocks = new ListManagedBlock[0];
+            _bat = null;
         }
 
         /// <summary>
         /// provide blocks to manage
         /// </summary>
-        /// <param name="blocks">blocks to be managed</param> 
+        /// <param name="blocks">blocks to be managed</param>
         public virtual void SetBlocks(ListManagedBlock[] blocks)
         {
             _blocks = blocks;
@@ -52,7 +52,7 @@ namespace Npoi.Core.POIFS.Storage
         {
             if ((index >= 0) && (index < _blocks.Length))
             {
-                _blocks[ index ] = null;
+                _blocks[index] = null;
             }
         }
 
@@ -72,19 +72,19 @@ namespace Npoi.Core.POIFS.Storage
 
             try
             {
-                result = _blocks[ index ];
+                result = _blocks[index];
                 if (result == null)
                 {
                     throw new IOException("block[ " + index
                                           + " ] already removed");
                 }
-                _blocks[ index ] = null;
+                _blocks[index] = null;
             }
             catch (IndexOutOfRangeException)
             {
                 throw new IOException("Cannot remove block[ " + index
-                                      + " ]; out of range[ 0 - " + 
-                                      (_blocks.Length-1) + " ]");
+                                      + " ]; out of range[ 0 - " +
+                                      (_blocks.Length - 1) + " ]");
             }
             return result;
         }
@@ -105,9 +105,8 @@ namespace Npoi.Core.POIFS.Storage
                 throw new IOException(
                     "Improperly initialized list: no block allocation table provided");
             }
-            return _bat.FetchBlocks(startBlock,headerPropertiesStartBlock, this);
+            return _bat.FetchBlocks(startBlock, headerPropertiesStartBlock, this);
         }
-
 
         /// <summary>
         /// set the associated BlockAllocationTable
@@ -116,7 +115,7 @@ namespace Npoi.Core.POIFS.Storage
         public virtual BlockAllocationTableReader BAT
         {
             set
-        {
+            {
                 if (_bat != null)
                 {
                     throw new IOException(

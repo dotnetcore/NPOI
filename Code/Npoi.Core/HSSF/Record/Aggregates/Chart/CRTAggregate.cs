@@ -15,15 +15,15 @@
    limitations Under the License.
 ==================================================================== */
 
-using System.Collections.Generic;
 using Npoi.Core.HSSF.Model;
 using Npoi.Core.HSSF.Record.Chart;
+using System.Collections.Generic;
 
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 {
     /// <summary>
-    /// CRT = ChartFormat Begin (Bar / Line / (BopPop [BopPopCustom]) / Pie / Area / Scatter / Radar / 
-    /// RadarArea / Surf) CrtLink [SeriesList] [Chart3d] [LD] [2DROPBAR] *4(CrtLine LineFormat) 
+    /// CRT = ChartFormat Begin (Bar / Line / (BopPop [BopPopCustom]) / Pie / Area / Scatter / Radar /
+    /// RadarArea / Surf) CrtLink [SeriesList] [Chart3d] [LD] [2DROPBAR] *4(CrtLine LineFormat)
     /// *2DFTTEXT [DataLabExtContents] [SS] *4SHAPEPROPS End
     /// </summary>
     public class CRTAggregate : ChartRecordAggregate
@@ -47,7 +47,6 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
         public CRTAggregate(RecordStream rs, ChartRecordAggregate container)
             : base(RuleName_CRT, container)
         {
-            
             chartForamt = (ChartFormatRecord)rs.GetNext();
             rs.GetNext();
 

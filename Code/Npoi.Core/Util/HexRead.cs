@@ -17,20 +17,18 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
-using System.Text;
-using System.IO;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Text;
 
 namespace Npoi.Core.Util
 {
@@ -43,12 +41,12 @@ namespace Npoi.Core.Util
         /// <param name="filename">The filename to read</param>
         /// <returns>The bytes read from the file.</returns>
         /// <exception cref="IOException">If there was a problem while reading the file.</exception>
-        public static byte[] ReadData( String filename )
+        public static byte[] ReadData(String filename)
         {
-            FileStream stream = new FileStream(filename,FileMode.Open,FileAccess.Read);
+            FileStream stream = new FileStream(filename, FileMode.Open, FileAccess.Read);
             try
             {
-                return ReadData( stream, -1 );
+                return ReadData(stream, -1);
             }
             finally
             {
@@ -63,26 +61,27 @@ namespace Npoi.Core.Util
         /// <param name="stream">The stream.</param>
         /// <param name="section">The section.</param>
         /// <returns></returns>
-        public static byte[] ReadData(Stream stream, String section )
+        public static byte[] ReadData(Stream stream, String section)
         {
-        	
             try
             {
                 StringBuilder sectionText = new StringBuilder();
                 bool inSection = false;
                 int c = stream.ReadByte();
-                while ( c != -1 )
+                while (c != -1)
                 {
-                    switch ( c )
+                    switch (c)
                     {
                         case '[':
                             inSection = true;
                             break;
+
                         case '\n':
                         case '\r':
                             inSection = false;
                             sectionText = new StringBuilder();
                             break;
+
                         case ']':
                             inSection = false;
                             if (sectionText.ToString().Equals(section))
@@ -91,8 +90,9 @@ namespace Npoi.Core.Util
                             }
                             sectionText = new StringBuilder();
                             break;
+
                         default:
-                            if ( inSection ) sectionText.Append( (char) c );
+                            if (inSection) sectionText.Append((char)c);
                             break;
                     }
                     c = stream.ReadByte();
@@ -102,15 +102,16 @@ namespace Npoi.Core.Util
             {
                 stream.Dispose();
             }
-            throw new IOException( "Section '" + section + "' not found" );
+            throw new IOException("Section '" + section + "' not found");
         }
+
         /// <summary>
         /// Reads the data.
         /// </summary>
         /// <param name="filename">The filename.</param>
         /// <param name="section">The section.</param>
         /// <returns></returns>
-        public static byte[] ReadData( String filename, String section )
+        public static byte[] ReadData(String filename, String section)
         {
             using (FileStream stream = new FileStream(filename, FileMode.Open, FileAccess.Read))
             {
@@ -124,34 +125,44 @@ namespace Npoi.Core.Util
         /// <param name="stream">The stream.</param>
         /// <param name="eofChar">The EOF char.</param>
         /// <returns></returns>
-        public static byte[] ReadData( Stream stream, int eofChar )
+        public static byte[] ReadData(Stream stream, int eofChar)
         {
             int characterCount = 0;
-            byte b = (byte) 0;
+            byte b = (byte)0;
             List<byte> bytes = new List<byte>();
             bool done = false;
-            while ( !done )
+            while (!done)
             {
                 int count = stream.ReadByte();
                 char baseChar = 'a';
-                if ( count == eofChar ) break;
-                switch ( count )
+                if (count == eofChar) break;
+                switch (count)
                 {
                     case '#':
-                        ReadToEOL( stream );
+                        ReadToEOL(stream);
                         break;
-                    case '0': case '1': case '2': case '3': case '4': case '5':
-                    case '6': case '7': case '8': case '9':
+
+                    case '0':
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':
+                    case '6':
+                    case '7':
+                    case '8':
+                    case '9':
                         b <<= 4;
-                        b += (byte) ( count - '0' );
+                        b += (byte)(count - '0');
                         characterCount++;
-                        if ( characterCount == 2 )
+                        if (characterCount == 2)
                         {
-                            bytes.Add( (byte)b );
+                            bytes.Add((byte)b);
                             characterCount = 0;
-                            b = (byte) 0;
+                            b = (byte)0;
                         }
                         break;
+
                     case 'A':
                     case 'B':
                     case 'C':
@@ -169,6 +180,7 @@ namespace Npoi.Core.Util
                             b = (byte)0;
                         }
                         break;
+
                     case 'a':
                     case 'b':
                     case 'c':
@@ -176,19 +188,21 @@ namespace Npoi.Core.Util
                     case 'e':
                     case 'f':
                         b <<= 4;
-                        b += (byte) ( count + 10 - baseChar );
+                        b += (byte)(count + 10 - baseChar);
                         characterCount++;
-                        if ( characterCount == 2 )
+                        if (characterCount == 2)
                         {
-                            bytes.Add( (byte) b );
+                            bytes.Add((byte)b);
                             characterCount = 0;
-                            b = (byte) 0;
+                            b = (byte)0;
                         }
                         break;
+
                     case -1:
                         done = true;
                         break;
-                    default :
+
+                    default:
                         break;
                 }
             }
@@ -218,10 +232,10 @@ namespace Npoi.Core.Util
         /// Reads to EOL.
         /// </summary>
         /// <param name="stream">The stream.</param>
-        static private void ReadToEOL( Stream stream )
+        static private void ReadToEOL(Stream stream)
         {
             int c = stream.ReadByte();
-            while ( c != -1 && c != '\n' && c != '\r' )
+            while (c != -1 && c != '\n' && c != '\r')
             {
                 c = stream.ReadByte();
             }

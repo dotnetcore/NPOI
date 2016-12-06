@@ -17,15 +17,15 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
-
     using Npoi.Core.SS.UserModel;
     using Npoi.Core.SS.Util;
+    using System;
 
     /**
      * @author <a href="rjankiraman@emptoris.com">Radhakrishnan J</a>
-     * 
+     *
      */
+
     public class HSSFDataValidationHelper : IDataValidationHelper
     {
         private HSSFSheet sheet;
@@ -33,17 +33,17 @@ namespace Npoi.Core.HSSF.UserModel
         public HSSFDataValidationHelper(HSSFSheet sheet)
             : base()
         {
-
             this.sheet = sheet;
         }
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see
          * Npoi.Core.SS.UserModel.DataValidationHelper#CreateDateConstraint
          * (int, java.lang.String, java.lang.String, java.lang.String)
          */
+
         public IDataValidationConstraint CreateDateConstraint(int operatorType, String formula1, String formula2, String dateFormat)
         {
             return DVConstraint.CreateDateConstraint(operatorType, formula1, formula2, dateFormat);
@@ -51,11 +51,12 @@ namespace Npoi.Core.HSSF.UserModel
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see
          * Npoi.Core.SS.UserModel.DataValidationHelper#CreateExplicitListConstraint
          * (java.lang.String[])
          */
+
         public IDataValidationConstraint CreateExplicitListConstraint(String[] listOfValues)
         {
             return DVConstraint.CreateExplicitListConstraint(listOfValues);
@@ -63,17 +64,16 @@ namespace Npoi.Core.HSSF.UserModel
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see
          * Npoi.Core.SS.UserModel.DataValidationHelper#CreateFormulaListConstraint
          * (java.lang.String)
          */
+
         public IDataValidationConstraint CreateFormulaListConstraint(String listFormula)
         {
             return DVConstraint.CreateFormulaListConstraint(listFormula);
         }
-
-
 
         public IDataValidationConstraint CreateNumericConstraint(int validationType, int operatorType, String formula1, String formula2)
         {
@@ -87,11 +87,12 @@ namespace Npoi.Core.HSSF.UserModel
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see
          * Npoi.Core.SS.UserModel.DataValidationHelper#CreateNumericConstraint
          * (int, java.lang.String, java.lang.String)
          */
+
         public IDataValidationConstraint CreateDecimalConstraint(int operatorType, String formula1, String formula2)
         {
             return DVConstraint.CreateNumericConstraint(ValidationType.DECIMAL, operatorType, formula1, formula2);
@@ -99,11 +100,12 @@ namespace Npoi.Core.HSSF.UserModel
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see
          * Npoi.Core.SS.UserModel.DataValidationHelper#CreateTextLengthConstraint
          * (int, java.lang.String, java.lang.String)
          */
+
         public IDataValidationConstraint CreateTextLengthConstraint(int operatorType, String formula1, String formula2)
         {
             return DVConstraint.CreateNumericConstraint(ValidationType.TEXT_LENGTH, operatorType, formula1, formula2);
@@ -111,17 +113,16 @@ namespace Npoi.Core.HSSF.UserModel
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see
          * Npoi.Core.SS.UserModel.DataValidationHelper#CreateTimeConstraint
          * (int, java.lang.String, java.lang.String, java.lang.String)
          */
+
         public IDataValidationConstraint CreateTimeConstraint(int operatorType, String formula1, String formula2)
         {
             return DVConstraint.CreateTimeConstraint(operatorType, formula1, formula2);
         }
-
-
 
         public IDataValidationConstraint CreateCustomConstraint(String formula)
         {
@@ -130,16 +131,16 @@ namespace Npoi.Core.HSSF.UserModel
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see
          * Npoi.Core.SS.UserModel.DataValidationHelper#CreateValidation(org
          * .apache.poi.SS.UserModel.DataValidationConstraint,
          * Npoi.Core.SS.Util.CellRangeAddressList)
          */
+
         public IDataValidation CreateValidation(IDataValidationConstraint constraint, CellRangeAddressList cellRangeAddressList)
         {
             return new HSSFDataValidation(cellRangeAddressList, constraint);
         }
     }
-
 }

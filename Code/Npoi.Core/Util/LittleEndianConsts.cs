@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
@@ -36,11 +36,11 @@ namespace Npoi.Core.Util
         public const int INT_SIZE = 4;
         public const int DOUBLE_SIZE = 8;
         public const int LONG_SIZE = 8;
+
         [Obsolete]
         public const int UINT_SIZE = 4;
-        
+
         [Obsolete]
-        public const int ULONG_SIZE=8;
-        
+        public const int ULONG_SIZE = 8;
     }
 }

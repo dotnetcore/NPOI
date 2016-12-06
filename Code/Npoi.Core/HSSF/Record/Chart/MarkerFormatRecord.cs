@@ -15,13 +15,13 @@
    limitations Under the License.
 ==================================================================== */
 
-using System.Text;
 using Npoi.Core.Util;
+using System.Text;
 
 namespace Npoi.Core.HSSF.Record.Chart
 {
     /// <summary>
-    /// specifies the color, size, and shape of the associated data markers that appear on line, radar, 
+    /// specifies the color, size, and shape of the associated data markers that appear on line, radar,
     /// and scatter chart groups. The associated data markers are specified by the preceding DataFormat record.
     /// </summary>
     /// <remarks>
@@ -38,9 +38,9 @@ namespace Npoi.Core.HSSF.Record.Chart
         private short field_6_icvBack;
         private int field_7_miSize;
 
-        BitField fAuto = BitFieldFactory.GetInstance(0x1);
-        BitField fNotShowInt = BitFieldFactory.GetInstance(0x10);
-        BitField fNotShowBrd = BitFieldFactory.GetInstance(0x20);
+        private BitField fAuto = BitFieldFactory.GetInstance(0x1);
+        private BitField fNotShowInt = BitFieldFactory.GetInstance(0x10);
+        private BitField fNotShowBrd = BitFieldFactory.GetInstance(0x20);
 
         protected override int DataSize
         {
@@ -72,6 +72,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             out1.WriteShort(field_6_icvBack);
             out1.WriteInt(field_7_miSize);
         }
+
         public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
@@ -89,6 +90,7 @@ namespace Npoi.Core.HSSF.Record.Chart
                 .AppendLine("[/MARKERFORMAT]");
             return buffer.ToString();
         }
+
         public override object Clone()
         {
             MarkerFormatRecord record = new MarkerFormatRecord();
@@ -103,10 +105,12 @@ namespace Npoi.Core.HSSF.Record.Chart
             record.Size = this.Size;
             return record;
         }
+
         public override short Sid
         {
             get { return sid; }
         }
+
         /// <summary>
         /// the border color of the data marker.
         /// </summary>
@@ -115,6 +119,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_1_rgbFore; }
             set { field_1_rgbFore = value; }
         }
+
         /// <summary>
         /// the interior color of the data marker.
         /// </summary>
@@ -123,6 +128,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_2_rgbBack; }
             set { field_2_rgbBack = value; }
         }
+
         /// <summary>
         /// the type of data marker.
         /// </summary>
@@ -131,6 +137,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_3_imk; }
             set { field_3_imk = value; }
         }
+
         /// <summary>
         /// whether the data marker is automatically generated.
         /// false The data marker is not automatically generated.
@@ -141,6 +148,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return fAuto.IsSet(field_4_flag); }
             set { field_4_flag = fAuto.SetShortBoolean(field_4_flag, value); }
         }
+
         /// <summary>
         /// whether to show the data marker interior.
         /// false  The data marker interior is shown.
@@ -151,6 +159,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return fNotShowInt.IsSet(field_4_flag); }
             set { field_4_flag = fNotShowInt.SetShortBoolean(field_4_flag, value); }
         }
+
         /// <summary>
         /// whether to show the data marker border.
         /// false The data marker border is shown.
@@ -161,6 +170,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return fNotShowBrd.IsSet(field_4_flag); }
             set { field_4_flag = fNotShowBrd.SetShortBoolean(field_4_flag, value); }
         }
+
         /// <summary>
         /// the border color of the data marker.
         /// </summary>
@@ -169,6 +179,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_5_icvFore; }
             set { field_5_icvFore = value; }
         }
+
         /// <summary>
         /// the interior color of the data marker.
         /// </summary>
@@ -177,6 +188,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_6_icvBack; }
             set { field_6_icvBack = value; }
         }
+
         /// <summary>
         /// specifies the size in twips of the data marker.
         /// </summary>

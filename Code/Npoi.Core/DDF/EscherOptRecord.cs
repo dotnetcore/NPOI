@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,10 +17,9 @@
 
 namespace Npoi.Core.DDF
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /// <summary>
     /// The opt record is used to store property values for a shape.  It is the key to determining
@@ -34,8 +32,7 @@ namespace Npoi.Core.DDF
         public const short RECORD_ID = unchecked((short)0xF00B);
         public const String RECORD_DESCRIPTION = "msofbtOPT";
 
-        public override short Instance
-        {
+        public override short Instance {
             get
             {
                 Instance = ((short)properties.Count);
@@ -47,8 +44,7 @@ namespace Npoi.Core.DDF
         /// Automatically recalculate the correct option
         /// </summary>
         /// <value></value>
-        internal override short Options
-        {
+        internal override short Options {
             get
             {
                 // update values
@@ -64,13 +60,11 @@ namespace Npoi.Core.DDF
         /// The short name for this record
         /// </summary>
         /// <value></value>
-        public override String RecordName
-        {
+        public override String RecordName {
             get { return "Opt"; }
         }
 
-        public override short Version
-        {
+        public override short Version {
             get
             {
                 Version = 0x3;
@@ -86,13 +80,10 @@ namespace Npoi.Core.DDF
             }
         }
 
-
-        public override String ToXml(String tab)
-        {
+        public override String ToXml(String tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)));
-            foreach (EscherProperty property in EscherProperties)
-            {
+            foreach (EscherProperty property in EscherProperties) {
                 builder.Append(property.ToXml(tab + "\t"));
             }
             builder.Append(tab).Append("</").Append(GetType().Name).Append(">\n");

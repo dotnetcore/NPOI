@@ -17,9 +17,9 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Title:        Bound Sheet Record (aka BundleSheet) (0x0085) for BIFF 5<br/>
@@ -27,6 +27,7 @@ namespace Npoi.Core.HSSF.Record
      *               and tells where the Beginning of file record is within the HSSF
      *               file.
      */
+
     public class OldSheetRecord
     {
         public const short sid = 0x0085;
@@ -65,6 +66,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return offset in bytes
          */
+
         public int PositionOfBof
         {
             get
@@ -77,6 +79,7 @@ namespace Npoi.Core.HSSF.Record
          * Get the sheetname for this sheet.  (this appears in the tabs at the bottom)
          * @return sheetname the name of the sheet
          */
+
         public String Sheetname
         {
             get
@@ -98,5 +101,4 @@ namespace Npoi.Core.HSSF.Record
             return buffer.ToString();
         }
     }
-
 }

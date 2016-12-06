@@ -1,5 +1,4 @@
-﻿
-namespace Npoi.Core.Util
+﻿namespace Npoi.Core.Util
 {
     using System;
     using System.IO;
@@ -7,25 +6,24 @@ namespace Npoi.Core.Util
 
     public class TempFile
     {
-
         private static string dir;
         /**
          * Creates a temporary file.  Files are collected into one directory and by default are
          * deleted on exit from the VM.  Files can be kept by defining the system property
          * <c>poi.keep.tmp.files</c>.
-         * 
+         *
          * Dont forget to close all files or it might not be possible to delete them.
          */
+
         public static FileInfo CreateTempFile(String prefix, String suffix)
         {
-
             if (dir == null)
             {
                 dir = Directory.CreateDirectory(Path.GetTempPath() + @"\poifiles").FullName;
             }
-            // Generate a unique new filename 
+            // Generate a unique new filename
             Random rnd = new Random(DateTime.Now.Millisecond);
-            string file=prefix + rnd.Next() + suffix;
+            string file = prefix + rnd.Next() + suffix;
             if (File.Exists(file))
             {
                 // That name is already taken, try another

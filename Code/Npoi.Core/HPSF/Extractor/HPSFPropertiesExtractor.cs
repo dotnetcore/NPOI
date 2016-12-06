@@ -14,18 +14,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.HPSF.Extractor
 {
-    using System;
-    using System.Text;
-    using System.IO;
-    using System.Collections;
-
     using Npoi.Core;
     using Npoi.Core.HPSF;
     using Npoi.Core.POIFS.FileSystem;
-    using Npoi.Core.Util;
+    using System;
+    using System.Collections;
     using System.Globalization;
+    using System.Text;
 
     /// <summary>
     /// Extracts all of the HPSF properties, both
@@ -35,35 +33,29 @@ namespace Npoi.Core.HPSF.Extractor
     public class HPSFPropertiesExtractor : POITextExtractor
     {
         public HPSFPropertiesExtractor(POITextExtractor mainExtractor)
-            : base(mainExtractor)
-        {
-
+            : base(mainExtractor) {
         }
+
         public HPSFPropertiesExtractor(POIDocument doc)
-            : base(doc)
-        {
-
+            : base(doc) {
         }
+
         public HPSFPropertiesExtractor(POIFSFileSystem fs)
-            : base(new HPSFPropertiesOnlyDocument(fs))
-        {
+            : base(new HPSFPropertiesOnlyDocument(fs)) {
+        }
 
-        }
         public HPSFPropertiesExtractor(NPOIFSFileSystem fs)
-            : base(new HPSFPropertiesOnlyDocument(fs))
-        {
-            
+            : base(new HPSFPropertiesOnlyDocument(fs)) {
         }
+
         /// <summary>
         /// Gets the document summary information text.
         /// </summary>
         /// <value>The document summary information text.</value>
-        public String DocumentSummaryInformationText
-        {
+        public String DocumentSummaryInformationText {
             get
             {
-                if (document == null)
-                {  // event based extractor does not have a document
+                if (document == null) {  // event based extractor does not have a document
                     return "";
                 }
                 DocumentSummaryInformation dsi = document.DocumentSummaryInformation;
@@ -74,12 +66,10 @@ namespace Npoi.Core.HPSF.Extractor
 
                 // Now custom ones
                 CustomProperties cps = dsi == null ? null : dsi.CustomProperties;
-                
-                if (cps != null)
-                {
+
+                if (cps != null) {
                     IEnumerator keys = cps.NameSet().GetEnumerator();
-                    while (keys.MoveNext())
-                    {
+                    while (keys.MoveNext()) {
                         String key = keys.Current.ToString();
                         String val = HelperPropertySet.GetPropertyValueText(cps[key]);
                         text.Append(key + " = " + val + "\n");
@@ -89,16 +79,15 @@ namespace Npoi.Core.HPSF.Extractor
                 return text.ToString();
             }
         }
+
         /// <summary>
         /// Gets the summary information text.
         /// </summary>
         /// <value>The summary information text.</value>
-        public String SummaryInformationText
-        {
+        public String SummaryInformationText {
             get
             {
-                if (document == null)
-                {  // event based extractor does not have a document
+                if (document == null) {  // event based extractor does not have a document
                     return "";
                 }
                 SummaryInformation si = document.SummaryInformation;
@@ -113,10 +102,8 @@ namespace Npoi.Core.HPSF.Extractor
         /// </summary>
         /// <param name="ps">The ps.</param>
         /// <returns></returns>
-        private static String GetPropertiesText(SpecialPropertySet ps)
-        {
-            if (ps == null)
-            {
+        private static String GetPropertiesText(SpecialPropertySet ps) {
+            if (ps == null) {
                 // Not defined, oh well
                 return "";
             }
@@ -125,12 +112,10 @@ namespace Npoi.Core.HPSF.Extractor
 
             Wellknown.PropertyIDMap idMap = ps.PropertySetIDMap;
             Property[] props = ps.Properties;
-            for (int i = 0; i < props.Length; i++)
-            {
+            for (int i = 0; i < props.Length; i++) {
                 String type = props[i].ID.ToString(CultureInfo.InvariantCulture);
                 Object typeObj = idMap.Get(props[i].ID);
-                if (typeObj != null)
-                {
+                if (typeObj != null) {
                     type = typeObj.ToString();
                 }
 
@@ -140,15 +125,13 @@ namespace Npoi.Core.HPSF.Extractor
 
             return text.ToString();
         }
-        
 
         /// <summary>
         /// Return the text of all the properties defined in
         /// the document.
         /// </summary>
         /// <value>All the text from the document.</value>
-        public override String Text
-        {
+        public override String Text {
             get
             {
                 return SummaryInformationText + DocumentSummaryInformationText;
@@ -161,8 +144,7 @@ namespace Npoi.Core.HPSF.Extractor
         /// metadata / properties, such as author and title.
         /// </summary>
         /// <value>The metadata text extractor.</value>
-        public override POITextExtractor MetadataTextExtractor
-        {
+        public override POITextExtractor MetadataTextExtractor {
             get
             {
                 throw new InvalidOperationException("You already have the Metadata Text Extractor, not recursing!");
@@ -172,13 +154,11 @@ namespace Npoi.Core.HPSF.Extractor
         public abstract class HelperPropertySet : SpecialPropertySet
         {
             public HelperPropertySet()
-                : base(null)
-            {
+                : base(null) {
             }
-            public static String GetPropertyValueText(Object val)
-            {
-                if (val == null)
-                {
+
+            public static String GetPropertyValueText(Object val) {
+                if (val == null) {
                     return "(not set)";
                 }
                 return SpecialPropertySet.GetPropertyStringValue(val);

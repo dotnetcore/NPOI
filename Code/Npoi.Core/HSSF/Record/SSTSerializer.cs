@@ -26,9 +26,9 @@ namespace Npoi.Core.HSSF.Record
      *
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class SSTSerializer
     {
-
         private int _numStrings;
         private int _numUniqueStrings;
 
@@ -73,7 +73,6 @@ namespace Npoi.Core.HSSF.Record
                 s.Serialize(out1);
             }
         }
-
 
         private UnicodeString GetUnicodeString(int index)
         {

@@ -17,20 +17,19 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF.Wellknown
 {
     using System;
-    using System.Text;
-    using System.Collections;
     using System.Collections.Generic;
+    using System.Text;
 
     /// <summary>
     /// Maps section format IDs To {@link PropertyIDMap}s. It Is
@@ -47,12 +46,12 @@ namespace Npoi.Core.HPSF.Wellknown
     /// @author Rainer Klute (klute@rainer-klute.de)
     /// @since 2002-02-09
     /// </summary>
-    public class SectionIDMap : Dictionary<object,object>
+    public class SectionIDMap : Dictionary<object, object>
     {
-
         /**
          * The SummaryInformation's section's format ID.
          */
+
         public static readonly byte[] SUMMARY_INFORMATION_ID = new byte[]
         {
             (byte) 0xF2, (byte) 0x9F, (byte) 0x85, (byte) 0xE0,
@@ -65,6 +64,7 @@ namespace Npoi.Core.HPSF.Wellknown
          * The DocumentSummaryInformation's first and second sections' format
          * ID.
          */
+
         public static readonly byte[] DOCUMENT_SUMMARY_INFORMATION_ID1 =
         {
                 (byte) 0xD5, (byte) 0xCD, (byte) 0xD5, (byte) 0x02,
@@ -72,6 +72,7 @@ namespace Npoi.Core.HPSF.Wellknown
                 (byte) 0x93, (byte) 0x97, (byte) 0x08, (byte) 0x00,
                 (byte) 0x2B, (byte) 0x2C, (byte) 0xF9, (byte) 0xAE
             };
+
         public static readonly byte[] DOCUMENT_SUMMARY_INFORMATION_ID2 =
             {
                 (byte) 0xD5, (byte) 0xCD, (byte) 0xD5, (byte) 0x05,
@@ -81,7 +82,7 @@ namespace Npoi.Core.HPSF.Wellknown
             };
 
         /**
-         * A property without a known name is described by this string. 
+         * A property without a known name is described by this string.
          */
         public const string UNDEFINED = "[undefined]";
 
@@ -91,17 +92,13 @@ namespace Npoi.Core.HPSF.Wellknown
          */
         private static SectionIDMap defaultMap;
 
-
-
         /// <summary>
         /// Returns the singleton instance of the default {@link
         /// SectionIDMap}.
         /// </summary>
         /// <returns>The instance value</returns>
-        public static SectionIDMap GetInstance()
-        {
-            if (defaultMap == null)
-            {
+        public static SectionIDMap GetInstance() {
+            if (defaultMap == null) {
                 SectionIDMap m = new SectionIDMap();
                 m.Put(SUMMARY_INFORMATION_ID,
                       PropertyIDMap.SummaryInformationProperties);
@@ -111,8 +108,6 @@ namespace Npoi.Core.HPSF.Wellknown
             }
             return defaultMap;
         }
-
-
 
         /// <summary>
         /// Returns the property ID string that is associated with a
@@ -127,13 +122,11 @@ namespace Npoi.Core.HPSF.Wellknown
         /// string "[undefined]" is returned.
         /// </returns>
         public static String GetPIDString(byte[] sectionFormatID,
-                                          long pid)
-        {
+                                          long pid) {
             PropertyIDMap m = GetInstance().Get(sectionFormatID);
             if (m == null)
                 return UNDEFINED;
-            else
-            {
+            else {
                 String s = (String)m.Get(pid);
                 if (s == null)
                     return UNDEFINED;
@@ -141,34 +134,26 @@ namespace Npoi.Core.HPSF.Wellknown
             }
         }
 
-
-
         /// <summary>
         /// Returns the {@link PropertyIDMap} for a given section format
         /// ID.
         /// </summary>
         /// <param name="sectionFormatID">The section format ID.</param>
         /// <returns>the property ID map</returns>
-        public PropertyIDMap Get(byte[] sectionFormatID)
-        {
+        public PropertyIDMap Get(byte[] sectionFormatID) {
             return (PropertyIDMap)this[Encoding.UTF8.GetString(sectionFormatID)];
         }
-
-
 
         /// <summary>
         /// Returns the {@link PropertyIDMap} for a given section format
         /// ID.
         /// </summary>
-        /// <param name="sectionFormatID">A section format ID as a 
+        /// <param name="sectionFormatID">A section format ID as a
         /// <c>byte[]</c></param>
         /// <returns>the property ID map</returns>
-        public Object Get(Object sectionFormatID)
-        {
+        public Object Get(Object sectionFormatID) {
             return Get((byte[])sectionFormatID);
         }
-
-
 
         /// <summary>
         /// Associates a section format ID with a {@link
@@ -178,12 +163,9 @@ namespace Npoi.Core.HPSF.Wellknown
         /// <param name="propertyIDMap">The property ID map.</param>
         /// <returns></returns>
         public Object Put(byte[] sectionFormatID,
-                          PropertyIDMap propertyIDMap)
-        {
+                          PropertyIDMap propertyIDMap) {
             return this[sectionFormatID] = propertyIDMap;
         }
-
-
 
         /// <summary>
         /// Puts the specified key.
@@ -194,10 +176,8 @@ namespace Npoi.Core.HPSF.Wellknown
         /// deprecated.</param>
         /// <returns>The return value remains undocumented since the method Is
         /// deprecated.</returns>
-        public Object Put(Object key, Object value)
-        {
+        public Object Put(Object key, Object value) {
             return Put((byte[])key, (PropertyIDMap)value);
         }
-
     }
 }

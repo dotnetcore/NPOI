@@ -17,17 +17,17 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
-using System.IO;
 using Npoi.Core.POIFS.Common;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Npoi.Core.POIFS.Storage
 {
@@ -35,9 +35,8 @@ namespace Npoi.Core.POIFS.Storage
     /// A list of RawDataBlocks instances, and methods to manage the list
     /// @author Marc Johnson (mjohnson at apache dot org
     /// </summary>
-    public class RawDataBlockList:BlockListImpl
+    public class RawDataBlockList : BlockListImpl
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="RawDataBlockList"/> class.
         /// </summary>
@@ -50,18 +49,20 @@ namespace Npoi.Core.POIFS.Storage
             while (true)
             {
                 RawDataBlock block = new RawDataBlock(stream, bigBlockSize.GetBigBlockSize());
-                
+
                 // If there was data, add the block to the list
-                if(block.HasData) {
-            	    blocks.Add(block);
+                if (block.HasData)
+                {
+                    blocks.Add(block);
                 }
 
                 // If the stream is now at the End Of File, we're done
-                if (block.EOF) {
+                if (block.EOF)
+                {
                     break;
                 }
             }
-             SetBlocks((ListManagedBlock[])blocks.ToArray());
+            SetBlocks((ListManagedBlock[])blocks.ToArray());
         }
     }
 }

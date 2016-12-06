@@ -17,20 +17,19 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-    using Npoi.Core.Util;
-    
-    using Npoi.Core.SS.Formula;
-
     using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.Util;
+    using System;
 
     /**
      * Title:        Deleted Area 3D Ptg - 3D referecnce (Sheet + Area)
-     * Description:  Defined a area in Extern Sheet. 
-     * REFERENCE:  
+     * Description:  Defined a area in Extern Sheet.
+     * REFERENCE:
      * @author Patrick Luby
      * @version 1.0-pre
      */
+
     public class DeletedArea3DPtg : OperandPtg, WorkbookDependentFormula
     {
         public const byte sid = 0x3d;
@@ -51,23 +50,28 @@ namespace Npoi.Core.SS.Formula.PTG
             unused1 = in1.ReadInt();
             unused2 = in1.ReadInt();
         }
+
         public String ToFormulaString(IFormulaRenderingWorkbook book)
         {
             return ExternSheetNameResolver.PrependSheetName(book, field_1_index_extern_sheet,
                     HSSFErrorConstants.GetText(HSSFErrorConstants.ERROR_REF));
         }
+
         public override String ToFormulaString()
         {
             throw new Exception("3D references need a workbook to determine formula text");
         }
+
         public override byte DefaultOperandClass
         {
             get { return Ptg.CLASS_REF; }
         }
+
         public override int Size
         {
             get { return 11; }
         }
+
         public override void Write(ILittleEndianOutput out1)
         {
             out1.WriteByte(sid + PtgClass);

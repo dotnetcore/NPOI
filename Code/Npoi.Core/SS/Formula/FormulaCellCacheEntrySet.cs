@@ -17,7 +17,6 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
     using System;
 
     /**
@@ -29,9 +28,9 @@ namespace Npoi.Core.SS.Formula
      *
      * @author Josh Micich
      */
-    class FormulaCellCacheEntrySet
-    {
 
+    internal class FormulaCellCacheEntrySet
+    {
         private int _size;
         private FormulaCellCacheEntry[] _arr;
 
@@ -64,7 +63,6 @@ namespace Npoi.Core.SS.Formula
             return result;
         }
 
-
         public void Add(CellCacheEntry cce)
         {
             if (_size * 3 >= _arr.Length * 2)
@@ -88,10 +86,8 @@ namespace Npoi.Core.SS.Formula
             }
         }
 
-
         private static bool AddInternal(CellCacheEntry[] arr, CellCacheEntry cce)
         {
-
             int startIx = cce.GetHashCode() % arr.Length;
 
             for (int i = startIx; i < arr.Length; i++)
@@ -183,6 +179,5 @@ namespace Npoi.Core.SS.Formula
             }
             return false;
         }
-
     }
 }

@@ -15,22 +15,21 @@
 * limitations Under the License.
 */
 
-
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
 
     /**
      * Implementation for Excel ROWS function.
-     * 
+     *
      * @author Josh Micich
      */
+
     public class Rows : Fixed1ArgFunction
     {
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0)
         {
-
             int result;
             if (arg0 is TwoDEval)
             {

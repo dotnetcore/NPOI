@@ -17,19 +17,18 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
-using System.Text;
-using System.IO;
 using System.Globalization;
-
+using System.IO;
+using System.Text;
 
 namespace Npoi.Core.Util
 {
@@ -41,11 +40,11 @@ namespace Npoi.Core.Util
     /// </summary>
     public class HexDump
     {
-
-        private static readonly char[] _hexcodes = new char[] { 
-        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 
+        private static readonly char[] _hexcodes = new char[] {
+        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
         '\0', '\0'
      };
+
         private static readonly int[] _shifts = new int[] { 60, 56, 52, 48, 44, 40, 36, 32, 28, 24, 20, 16, 12, 8, 4, 0 };
         public static readonly string EOL = Environment.NewLine;
 
@@ -77,7 +76,6 @@ namespace Npoi.Core.Util
 
         public static string Dump(byte[] data, long offset, int index)
         {
-
             if ((index < 0) || (index >= data.Length))
             {
                 string message = string.Format(CultureInfo.InvariantCulture, "illegal index: {0} into array of length {1}", index, data.Length);
@@ -183,7 +181,6 @@ namespace Npoi.Core.Util
                 }
                 if (data.Length != 0)
                 {
-
                     long display_offset = offset + index;
                     StringBuilder buffer = new StringBuilder(74);
                     int data_length = Math.Min(data.Length, index + length);
@@ -234,7 +231,6 @@ namespace Npoi.Core.Util
             }
         }
 
-
         /**
          * Dumps <code>bytesToDump</code> bytes to an output stream.
          *
@@ -243,7 +239,8 @@ namespace Npoi.Core.Util
          * @param start       The index to use as the starting position for the left hand side label
          * @param bytesToDump The number of bytes to output.  Use -1 to read until the end of file.
          */
-        public static void Dump(Stream in1, Stream out1, int start, int bytesToDump ) 
+
+        public static void Dump(Stream in1, Stream out1, int start, int bytesToDump)
         {
             MemoryStream buf = new MemoryStream();
             if (bytesToDump == -1)
@@ -261,7 +258,8 @@ namespace Npoi.Core.Util
                 while (bytesRemaining-- > 0)
                 {
                     int c = in1.ReadByte();
-                    if (c == -1) {
+                    if (c == -1)
+                    {
                         break;
                     }
                     buf.WriteByte((byte)c);
@@ -281,6 +279,7 @@ namespace Npoi.Core.Util
         {
             return ToHexChars(value, 2);
         }
+
         /// <summary>
         /// Bytes to hex.
         /// </summary>
@@ -300,6 +299,7 @@ namespace Npoi.Core.Util
         {
             return ToHexChars(value, 4);
         }
+
         /// <summary>
         /// char array of 4 (zero padded) uppercase hex chars and prefixed with '0x'
         /// </summary>
@@ -309,6 +309,7 @@ namespace Npoi.Core.Util
         {
             return ToHexChars(value, 8);
         }
+
         /// <summary>
         /// Toes the hex chars.
         /// </summary>
@@ -382,7 +383,6 @@ namespace Npoi.Core.Util
                     buffer.Append(", ");
                 }
                 buffer.Append(ToHex(value[i]));
-                
             }
             buffer.Append(']');
             return buffer.ToString();
@@ -427,5 +427,4 @@ namespace Npoi.Core.Util
             return retVal.ToString();
         }
     }
-
 }

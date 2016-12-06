@@ -17,15 +17,16 @@
 
 namespace Npoi.Core.HSSF.Record.Chart
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * STARTBLOCK - Chart Future Record Type Start Block (0x0852)<br/>
-     * 
+     *
      * @author Patrick Cheng
      */
+
     public class StartBlockRecord : StandardRecord
     {
         public static short sid = 0x0852;
@@ -58,17 +59,16 @@ namespace Npoi.Core.HSSF.Record.Chart
             rt = sid;
             grbitFrt = 0;
         }
-        
+
         public StartBlockRecord(RecordInputStream in1)
         {
             rt = in1.ReadShort();
             grbitFrt = in1.ReadShort();
-            ObjectKind = (ObjectKind) in1.ReadShort();
+            ObjectKind = (ObjectKind)in1.ReadShort();
             ObjectContext = in1.ReadShort();
             ObjectInstance1 = in1.ReadShort();
             ObjectInstance2 = in1.ReadShort();
         }
-
 
         protected override int DataSize
         {
@@ -90,7 +90,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         {
             out1.WriteShort(rt);
             out1.WriteShort(grbitFrt);
-            out1.WriteShort((short) ObjectKind);
+            out1.WriteShort((short)ObjectKind);
             out1.WriteShort(ObjectContext);
             out1.WriteShort(ObjectInstance1);
             out1.WriteShort(ObjectInstance2);
@@ -98,19 +98,19 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public override String ToString()
         {
-
             StringBuilder buffer = new StringBuilder();
 
             buffer.Append("[STARTBLOCK]\n");
             buffer.Append("    .rt              =").Append(HexDump.ShortToHex(rt)).Append('\n');
             buffer.Append("    .grbitFrt        =").Append(HexDump.ShortToHex(grbitFrt)).Append('\n');
-            buffer.Append("    .iObjectKind     =").Append(HexDump.ShortToHex((short) ObjectKind)).Append('\n');
+            buffer.Append("    .iObjectKind     =").Append(HexDump.ShortToHex((short)ObjectKind)).Append('\n');
             buffer.Append("    .iObjectContext  =").Append(HexDump.ShortToHex(ObjectContext)).Append('\n');
             buffer.Append("    .iObjectInstance1=").Append(HexDump.ShortToHex(ObjectInstance1)).Append('\n');
             buffer.Append("    .iObjectInstance2=").Append(HexDump.ShortToHex(ObjectInstance2)).Append('\n');
             buffer.Append("[/STARTBLOCK]\n");
             return buffer.ToString();
         }
+
         public override object Clone()
         {
             StartBlockRecord record = new StartBlockRecord();
@@ -122,7 +122,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             record.ObjectInstance2 = ObjectInstance2;
             return record;
         }
-        
+
         public static StartBlockRecord CreateStartBlock(ObjectKind objectKind)
         {
             return CreateStartBlock(objectKind, 0, 0, 0);

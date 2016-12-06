@@ -17,18 +17,17 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
-
 using System;
-using System.Text;
 using System.IO;
+using System.Text;
 
 namespace Npoi.Core.POIFS.FileSystem
 {
@@ -39,7 +38,7 @@ namespace Npoi.Core.POIFS.FileSystem
     public class POIFSDocumentPath
     {
         private string[] components;
-        private int hashcode=0;
+        private int hashcode = 0;
 
         /// <summary>
         /// simple constructor for the path of a document that is in the
@@ -51,6 +50,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             this.components = new string[0];
         }
+
         /// <summary>
         /// constructor for the path of a document that is not in the root
         /// of the POIFSFileSystem
@@ -78,7 +78,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 this.components = new string[components.Length];
                 for (int i = 0; i < components.Length; i++)
                 {
-                    if ((components[i] == null) 
+                    if ((components[i] == null)
                         || (components[i].Length == 0))
                     {
                         throw new ArgumentException("components cannot contain null or empty strings");
@@ -87,6 +87,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 }
             }
         }
+
         /// <summary>
         /// constructor that adds additional subdirectories to an existing
         /// path
@@ -117,12 +118,13 @@ namespace Npoi.Core.POIFS.FileSystem
                     }
                     if (components[j].Length == 0)
                     {
-                       // throw new ArgumentException("components cannot contain null or empty strings");
+                        // throw new ArgumentException("components cannot contain null or empty strings");
                     }
                     this.components[j + path.components.Length] = components[j];
                 }
             }
         }
+
         /// <summary>
         /// equality. Two POIFSDocumentPath instances are equal if they
         /// have the same number of component Strings, and if each
@@ -158,6 +160,7 @@ namespace Npoi.Core.POIFS.FileSystem
             }
             return flag;
         }
+
         /// <summary>
         /// get the specified component
         /// </summary>
@@ -219,6 +222,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 return this.components.Length;
             }
         }
+
         /// <summary>
         /// Returns the path's parent or <c>null</c> if this path
         /// is the root path.

@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,18 +15,17 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
-    using System.Text;
-    using System.IO;
-
     using Npoi.Core.Util;
+    using System;
+    using System.IO;
+    using System.Text;
 
     /**
      * Subrecords are part of the OBJ class.
      */
+
     public abstract class SubRecord : ICloneable
     {
         public static SubRecord CreateSubRecord(ILittleEndianInput in1, CommonObjectType cmoOt)
@@ -35,33 +33,43 @@ namespace Npoi.Core.HSSF.Record
             int sid = in1.ReadUShort();
             int secondUShort = in1.ReadUShort(); // Often (but not always) the datasize for the sub-record
 
-
             switch (sid)
             {
                 case CommonObjectDataSubRecord.sid:
                     return new CommonObjectDataSubRecord(in1, secondUShort);
+
                 case EmbeddedObjectRefSubRecord.sid:
                     return new EmbeddedObjectRefSubRecord(in1, secondUShort);
+
                 case GroupMarkerSubRecord.sid:
                     return new GroupMarkerSubRecord(in1, secondUShort);
+
                 case EndSubRecord.sid:
                     return new EndSubRecord(in1, secondUShort);
+
                 case NoteStructureSubRecord.sid:
                     return new NoteStructureSubRecord(in1, secondUShort);
+
                 case LbsDataSubRecord.sid:
                     return new LbsDataSubRecord(in1, secondUShort, (int)cmoOt);
+
                 case FtCblsSubRecord.sid:
                     return new FtCblsSubRecord(in1, secondUShort);
+
                 case FtPioGrbitSubRecord.sid:
                     return new FtPioGrbitSubRecord(in1, secondUShort);
+
                 case FtCfSubRecord.sid:
                     return new FtCfSubRecord(in1, secondUShort);
             }
             return new UnknownSubRecord(in1, sid, secondUShort);
         }
+
         public abstract short Sid { get; }
         public abstract int DataSize { get; }
+
         public abstract void Serialize(ILittleEndianOutput out1);
+
         public byte[] Serialize()
         {
             int size = DataSize + 4;
@@ -75,6 +83,7 @@ namespace Npoi.Core.HSSF.Record
                 return baos.ToArray();
             }
         }
+
         /**
  * Wether this record terminates the sub-record stream.
  * There are two cases when this method must be overridden and return <c>true</c>
@@ -83,6 +92,7 @@ namespace Npoi.Core.HSSF.Record
  *
  * @return whether this record is the last in the sub-record stream
  */
+
         public virtual bool IsTerminating
         {
             get
@@ -94,52 +104,56 @@ namespace Npoi.Core.HSSF.Record
         public abstract Object Clone();
     }
 
-     public class UnknownSubRecord : SubRecord
-     {
+    public class UnknownSubRecord : SubRecord
+    {
+        private int _sid;
+        private byte[] _data;
 
-         private int _sid;
-         private byte[] _data;
+        public UnknownSubRecord(ILittleEndianInput in1, int sid, int size)
+        {
+            _sid = sid;
+            byte[] buf = new byte[size];
+            in1.ReadFully(buf);
+            _data = buf;
+        }
 
-         public UnknownSubRecord(ILittleEndianInput in1, int sid, int size)
-         {
-             _sid = sid;
-             byte[] buf = new byte[size];
-             in1.ReadFully(buf);
-             _data = buf;
-         }
-         public override int DataSize
-         {
-             get
-             {
-                 return _data.Length;
-             }
-         }
-         public override short Sid
-         {
-             get 
-             {
-                 return (short)_sid;
-             }
-         }
-         public override void Serialize(ILittleEndianOutput out1)
-         {
-             out1.WriteShort(_sid);
-             out1.WriteShort(_data.Length);
-             out1.Write(_data);
-         }
-         public override Object Clone()
-         {
-             return this;
-         }
-         public override String ToString()
-         {
-             StringBuilder sb = new StringBuilder(64);
-             sb.Append(GetType().Name).Append(" [");
-             sb.Append("sid=").Append(HexDump.ShortToHex(_sid));
-             sb.Append(" size=").Append(_data.Length);
-             sb.Append(" : ").Append(HexDump.ToHex(_data));
-             sb.Append("]\n");
-             return sb.ToString();
-         }
-     }
+        public override int DataSize
+        {
+            get
+            {
+                return _data.Length;
+            }
+        }
+
+        public override short Sid
+        {
+            get
+            {
+                return (short)_sid;
+            }
+        }
+
+        public override void Serialize(ILittleEndianOutput out1)
+        {
+            out1.WriteShort(_sid);
+            out1.WriteShort(_data.Length);
+            out1.Write(_data);
+        }
+
+        public override Object Clone()
+        {
+            return this;
+        }
+
+        public override String ToString()
+        {
+            StringBuilder sb = new StringBuilder(64);
+            sb.Append(GetType().Name).Append(" [");
+            sb.Append("sid=").Append(HexDump.ShortToHex(_sid));
+            sb.Append(" size=").Append(_data.Length);
+            sb.Append(" : ").Append(HexDump.ToHex(_data));
+            sb.Append("]\n");
+            return sb.ToString();
+        }
+    }
 }

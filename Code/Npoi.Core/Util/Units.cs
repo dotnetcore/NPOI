@@ -13,13 +13,15 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
 ==================================================================== */using System;
+
 namespace Npoi.Core.Util
 {
-
     /**
      * @author Yegor Kozlov
      */
+
     public class Units
     {
         public static int EMU_PER_PIXEL = 9525;
@@ -40,14 +42,16 @@ namespace Npoi.Core.Util
          *
          * @param fixedPoint
          * @return decimal number
-         * 
+         *
          * @see <a href="http://msdn.microsoft.com/en-us/library/dd910765(v=office.12).aspx">[MS-OSHARED] - 2.2.1.6 FixedPoint</a>
          */
-        public static double FixedPointToDecimal(int fixedPoint) {
-        int i = (fixedPoint >> 16);
-        int f = (fixedPoint >> 0) & 0xFFFF;
-        double decimal1 = (i + f/65536.0);
-        return decimal1;
-    }
+
+        public static double FixedPointToDecimal(int fixedPoint)
+        {
+            int i = (fixedPoint >> 16);
+            int f = (fixedPoint >> 0) & 0xFFFF;
+            double decimal1 = (i + f / 65536.0);
+            return decimal1;
+        }
     }
 }

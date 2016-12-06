@@ -18,18 +18,19 @@
  * Created on May 22, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     public abstract class SingleArgTextFunc : TextFunction
     {
-
         protected SingleArgTextFunc()
         {
             // no fields to initialise
         }
+
         public override ValueEval EvaluateFunc(ValueEval[] args, int srcCellRow, int srcCellCol)
         {
             if (args.Length != 1)
@@ -39,15 +40,16 @@ namespace Npoi.Core.SS.Formula.Functions
             String arg = EvaluateStringArg(args[0], srcCellRow, srcCellCol);
             return Evaluate(arg);
         }
+
         public abstract ValueEval Evaluate(String arg);
     }
 
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
      */
+
     public abstract class TextFunction : Function
     {
-
         protected static String EMPTY_STRING = "";
 
         public static String EvaluateStringArg(ValueEval eval, int srcRow, int srcCol)
@@ -55,12 +57,15 @@ namespace Npoi.Core.SS.Formula.Functions
             ValueEval ve = OperandResolver.GetSingleValue(eval, srcRow, srcCol);
             return OperandResolver.CoerceValueToString(ve);
         }
+
         public static int EvaluateIntArg(ValueEval arg, int srcCellRow, int srcCellCol)
         {
             ValueEval ve = OperandResolver.GetSingleValue(arg, srcCellRow, srcCellCol);
             return OperandResolver.CoerceValueToInt(ve);
         }
-        public static double EvaluateDoubleArg(ValueEval arg, int srcCellRow, int srcCellCol) {
+
+        public static double EvaluateDoubleArg(ValueEval arg, int srcCellRow, int srcCellCol)
+        {
             ValueEval ve = OperandResolver.GetSingleValue(arg, srcCellRow, srcCellCol);
             return OperandResolver.CoerceValueToDouble(ve);
         }
@@ -76,16 +81,16 @@ namespace Npoi.Core.SS.Formula.Functions
                 return e.GetErrorEval();
             }
         }
+
         internal static bool IsPrintable(char c)
         {
             int charCode = (int)c;
             return charCode >= 32;
         }
+
         public abstract ValueEval EvaluateFunc(ValueEval[] args, int srcCellRow, int srcCellCol);
 
         /* ---------------------------------------------------------------------- */
-
-
 
         public static readonly Function LEN = new Len();
         public static readonly Function LOWER = new Lower();
@@ -93,6 +98,7 @@ namespace Npoi.Core.SS.Formula.Functions
         /**
          * @author Manda Wilson &lt; wilson at c bio dot msk cc dot org &gt;
          */
+
         ///<summary>
         ///An implementation of the TRIM function:
         ///<para>
@@ -104,6 +110,7 @@ namespace Npoi.Core.SS.Formula.Functions
         /*
          * @author Manda Wilson &lt; wilson at c bio dot msk cc dot org &gt;
         */
+
         ///<summary>
         ///An implementation of the MID function
         ///
@@ -113,8 +120,6 @@ namespace Npoi.Core.SS.Formula.Functions
         /// Syntax: MID(text, start_num, num_chars)
         ///</summary>
         public static readonly Function MID = new Mid();
-
-
 
         public static readonly Function LEFT = new LeftRight(true);
         public static readonly Function RIGHT = new LeftRight(false);
@@ -127,6 +132,7 @@ namespace Npoi.Core.SS.Formula.Functions
         /**
          * @author Torstein Tauno Svendsen (torstei@officenet.no)
          */
+
         ///<summary>
         ///Implementation of the FIND() function.
         ///<para>
@@ -138,6 +144,7 @@ namespace Npoi.Core.SS.Formula.Functions
         /// from.  Character positions are 1-based.</para>
         ///</summary>
         public static readonly Function FIND = new SearchFind(true);
+
         ///<summary>
         ///Implementation of the FIND() function. SEARCH is a case-insensitive version of FIND()
         ///<para>
@@ -149,6 +156,5 @@ namespace Npoi.Core.SS.Formula.Functions
         public static readonly Function CLEAN = new Clean();
         public static readonly Function CHAR = new CHAR();
         public static readonly Function PROPER = new Proper();
-
     }
 }

@@ -14,12 +14,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
-
     using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     /**
      * <p>Implementation for Excel Oct2Dec() function.</p>
@@ -38,13 +38,13 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author cedric dot walter @ gmail dot com
      */
+
     public class Oct2Dec : Fixed1ArgFunction, FreeRefFunction
     {
-
         public static FreeRefFunction instance = new Oct2Dec();
 
-        static int MAX_NUMBER_OF_PLACES = 10;
-        static int OCTAL_BASE = 8;
+        private static int MAX_NUMBER_OF_PLACES = 10;
+        private static int OCTAL_BASE = 8;
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval numberVE)
         {
@@ -68,5 +68,4 @@ namespace Npoi.Core.SS.Formula.Functions
             return Evaluate(ec.RowIndex, ec.ColumnIndex, args[0]);
         }
     }
-
 }

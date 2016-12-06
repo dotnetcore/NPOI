@@ -17,8 +17,8 @@
 
 namespace Npoi.Core.SS.UserModel
 {
-    using System;
     using Npoi.Core.SS.Util;
+    using System;
 
     public enum CellType : int
     {
@@ -44,9 +44,9 @@ namespace Npoi.Core.SS.UserModel
      * Cells should have their number (0 based) before being Added to a row.
      * </p>
      */
+
     public interface ICell
     {
-
         /// <summary>
         /// zero-based column index of a column in a sheet.
         /// </summary>
@@ -79,7 +79,7 @@ namespace Npoi.Core.SS.UserModel
         /// <p>If what you want to do is get a String value for your
         /// numeric cell, <i>stop!</i>. This is not the way to do it.
         /// Instead, for fetching the string value of a numeric or boolean
-        /// or date cell, use {@link DataFormatter} instead.</p> 
+        /// or date cell, use {@link DataFormatter} instead.</p>
         CellType CellType
         {
             get;
@@ -91,18 +91,16 @@ namespace Npoi.Core.SS.UserModel
         /// <param name="cellType"></param>
         void SetCellType(CellType cellType);
 
-
         /// <summary>
         /// Only valid for formula cells
         /// </summary>
         CellType CachedFormulaResultType { get; }
 
-   
         /// <summary>
         /// Set a numeric value for the cell
         /// </summary>
         /// <param name="value">the numeric value to set this cell to.  For formulas we'll set the
-        ///  precalculated value, for numerics we'll set its value. For other types we will change 
+        ///  precalculated value, for numerics we'll set its value. For other types we will change
         ///  the cell to a numeric cell and set its value.
         /// </param>
         void SetCellValue(double value);
@@ -110,8 +108,8 @@ namespace Npoi.Core.SS.UserModel
         /// <summary>
         /// Set a error value for the cell
         /// </summary>
-        /// <param name="value">the error value to set this cell to.  For formulas we'll set the 
-        /// precalculated value , for errors we'll set its value. For other types we will change 
+        /// <param name="value">the error value to set this cell to.  For formulas we'll set the
+        /// precalculated value , for errors we'll set its value. For other types we will change
         /// the cell to an error cell and set its value.
         /// </param>
         void SetCellErrorValue(byte value);
@@ -120,7 +118,7 @@ namespace Npoi.Core.SS.UserModel
         /// Converts the supplied date to its equivalent Excel numeric value and Sets that into the cell.
         /// </summary>
         /// <param name="value">the numeric value to set this cell to.  For formulas we'll set the
-        ///  precalculated value, for numerics we'll set its value. For other types we will change 
+        ///  precalculated value, for numerics we'll set its value. For other types we will change
         ///  the cell to a numerics cell and set its value.
         /// </param>
         void SetCellValue(DateTime value);
@@ -138,9 +136,9 @@ namespace Npoi.Core.SS.UserModel
         /// <summary>
         /// Set a string value for the cell.
         /// </summary>
-        /// <param name="value">value to set the cell to.  For formulas we'll set the formula 
-        /// string, for String cells we'll set its value.  For other types we will 
-        /// change the cell to a string cell and set its value. 
+        /// <param name="value">value to set the cell to.  For formulas we'll set the formula
+        /// string, for String cells we'll set its value.  For other types we will
+        /// change the cell to a string cell and set its value.
         /// If value is null then we will change the cell to a blank cell.
         /// </param>
         void SetCellValue(String value);
@@ -162,7 +160,7 @@ namespace Npoi.Core.SS.UserModel
         /// Sets formula for this cell.
         /// </summary>
         /// <param name="formula">the formula to Set, e.g. <code>"SUM(C4:E4)"</code>.</param>
-        void SetCellFormula(String formula);        
+        void SetCellFormula(String formula);
 
         /// <summary>
         /// Get the value of the cell as a number.
@@ -224,7 +222,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         void RemoveCellComment();
 
-         /// <summary>
+        /// <summary>
         /// hyperlink associated with this cell
         /// </summary>
         IHyperlink Hyperlink { get; set; }
@@ -238,7 +236,7 @@ namespace Npoi.Core.SS.UserModel
         ///  Only valid for array formula cells
         /// </summary>
         /// <returns>range of the array formula group that the cell belongs to.</returns>
-        CellRangeAddress ArrayFormulaRange{ get; }
+        CellRangeAddress ArrayFormulaRange { get; }
 
         /// <summary>
         /// if this cell is part of group of cells having a common array formula.
@@ -248,4 +246,3 @@ namespace Npoi.Core.SS.UserModel
         bool IsMergedCell { get; }
     }
 }
-

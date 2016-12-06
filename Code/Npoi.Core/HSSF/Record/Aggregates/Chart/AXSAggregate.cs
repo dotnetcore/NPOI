@@ -15,14 +15,14 @@
    limitations Under the License.
 ==================================================================== */
 
-using System.Collections.Generic;
 using Npoi.Core.HSSF.Model;
 using Npoi.Core.HSSF.Record.Chart;
+using System.Collections.Generic;
 
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 {
     /// <summary>
-    /// AXS = [IFmtRecord] [Tick] [FontX] *4(AxisLine LineFormat) [AreaFormat] 
+    /// AXS = [IFmtRecord] [Tick] [FontX] *4(AxisLine LineFormat) [AreaFormat]
     /// [GELFRAME] *4SHAPEPROPS [TextPropsStream *ContinueFrt12]
     /// </summary>
     public class AXSAggregate : ChartRecordAggregate
@@ -39,7 +39,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
         private List<ContinueFrt12Record> continues = new List<ContinueFrt12Record>();
 
         public AXSAggregate(RecordStream rs, ChartRecordAggregate container)
-            : base(RuleName_AXS, container) 
+            : base(RuleName_AXS, container)
         {
             if (rs.PeekNextChartSid() == IFmtRecordRecord.sid)
                 ifmt = (IFmtRecordRecord)rs.GetNext();
@@ -65,7 +65,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             {
                 while (rs.PeekNextChartSid() == ShapePropsStreamRecord.sid)
                 {
-                    shapes.Add(new ShapePropsAggregate(rs,this));
+                    shapes.Add(new ShapePropsAggregate(rs, this));
                 }
             }
             if (rs.PeekNextChartSid() == TextPropsStreamRecord.sid)

@@ -1,17 +1,15 @@
 namespace Npoi.Core.HSSF.Record.Crypto
 {
+    using Npoi.Core.Util;
     using System;
     using System.IO;
-
-    using Npoi.Core.Util;
-
-    
     using System.Security.Cryptography;
 
     public class Biff8EncryptionKey
     {
         // these two constants coincidentally have the same value
         private const int KEY_DIGEST_LENGTH = 5;
+
         private const int PASSWORD_HASH_NUMBER_OF_BYTES_USED = 5;
 
         private byte[] _keyDigest;
@@ -20,10 +18,12 @@ namespace Npoi.Core.HSSF.Record.Crypto
          * Create using the default password and a specified docId
          * @param docId 16 bytes
          */
+
         public static Biff8EncryptionKey Create(byte[] docId)
         {
             return new Biff8EncryptionKey(CreateKeyDigest("VelvetSweatshop", docId));
         }
+
         public static Biff8EncryptionKey Create(String password, byte[] docIdData)
         {
             return new Biff8EncryptionKey(CreateKeyDigest(password, docIdData));
@@ -50,7 +50,7 @@ namespace Npoi.Core.HSSF.Record.Crypto
                 passwordData[i * 2 + 1] = (byte)((ch << 8) & 0xFF);
             }
 
-            byte[] kd;			
+            byte[] kd;
             using (MD5 md5 = MD5.Create())
             {
                 byte[] passwordHash = md5.ComputeHash(passwordData);
@@ -79,6 +79,7 @@ namespace Npoi.Core.HSSF.Record.Crypto
         /**
          * @return <c>true</c> if the keyDigest is compatible with the specified saltData and saltHash
          */
+
         public bool Validate(byte[] saltData, byte[] saltHash)
         {
             Check16Bytes(saltData, "saltData");
@@ -117,6 +118,7 @@ namespace Npoi.Core.HSSF.Record.Crypto
             }
             return c;
         }
+
         private static void Check16Bytes(byte[] data, String argName)
         {
             if (data.Length != 16)
@@ -131,6 +133,7 @@ namespace Npoi.Core.HSSF.Record.Crypto
          * The {@link RC4} instance needs to be Changed every 1024 bytes.
          * @param keyBlockNo used to seed the newly Created {@link RC4}
          */
+
         internal RC4 CreateRC4(int keyBlockNo)
         {
             using (MD5 md5 = MD5.Create())
@@ -149,12 +152,12 @@ namespace Npoi.Core.HSSF.Record.Crypto
             }
         }
 
-
         /**
          * Stores the BIFF8 encryption/decryption password for the current thread.  This has been done
          * using a {@link ThreadLocal} in order to avoid further overloading the various public APIs
          * (e.g. {@link HSSFWorkbook}) that need this functionality.
          */
+
         [ThreadStatic]
         private static String _userPasswordTLS = null;
 
@@ -162,17 +165,17 @@ namespace Npoi.Core.HSSF.Record.Crypto
          * @return the BIFF8 encryption/decryption password for the current thread.
          * <code>null</code> if it is currently unSet.
          */
+
         public static String CurrentUserPassword
         {
             get
             {
                 return _userPasswordTLS;
             }
-            set 
+            set
             {
                 _userPasswordTLS = value;
             }
         }
     }
-
 }

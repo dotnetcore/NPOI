@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Npoi.Core.SS.UserModel.Charts
+﻿namespace Npoi.Core.SS.UserModel.Charts
 {
     public enum AxisTickMark
     {

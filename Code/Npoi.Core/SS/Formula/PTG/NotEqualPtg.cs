@@ -19,11 +19,13 @@ namespace Npoi.Core.SS.Formula.PTG
 {
     using System;
     using System.Text;
+
     /**
      * Ptg class to implement not equal
      *
      * @author fred at stsci dot edu
      */
+
     public class NotEqualPtg : ValueOperatorPtg
     {
         public const byte sid = 0x0e;

@@ -17,7 +17,6 @@
 
 namespace Npoi.Core.SS.UserModel.Charts
 {
-
     ///<summary>
     ///Enumeration of all possible chart legend positions.
     ///</summary>
@@ -32,6 +31,4 @@ namespace Npoi.Core.SS.UserModel.Charts
         Top,
         TopRight
     }
-
-
 }

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Text;
 using System.Globalization;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Npoi.Core.SS.Util
@@ -12,26 +12,27 @@ namespace Npoi.Core.SS.Util
     {
         public FormatBase()
         {
-
         }
 
         public virtual string Format(Object obj, CultureInfo culture)
         {
             return obj.ToString();
         }
+
         public virtual string Format(Object obj)
         {
             return Format(obj, new StringBuilder(), 0).ToString();
         }
+
         public virtual StringBuilder Format(Object obj, StringBuilder sb, int pos)
         {
             return sb.Append(obj.ToString());
         }
+
         public abstract StringBuilder Format(Object obj, StringBuilder toAppendTo, CultureInfo culture);
 
         //public abstract Object Parse(string source);
         public abstract Object ParseObject(string source, int pos);
-
     }
 
     /**
@@ -40,16 +41,19 @@ namespace Npoi.Core.SS.Util
     *
     * @author James May
     */
+
     public class SSNFormat : FormatBase
     {
         public static FormatBase instance = new SSNFormat();
         private static string df = "000000000";
+
         private SSNFormat()
         {
             // enforce singleton
         }
 
         /** Format a number as an SSN */
+
         public override String Format(object obj, CultureInfo culture)
         {
             String result = ((double)obj).ToString(df, culture);
@@ -77,16 +81,19 @@ namespace Npoi.Core.SS.Util
      * built-in Formatting for Zip + 4.
      * @author James May
      */
+
     public class ZipPlusFourFormat : FormatBase
     {
         public static FormatBase instance = new ZipPlusFourFormat();
         private static string df = "000000000";
+
         private ZipPlusFourFormat()
         {
             // enforce singleton
         }
 
         /** Format a number as Zip + 4 */
+
         public override String Format(object obj, CultureInfo culture)
         {
             String result = ((double)obj).ToString(df, culture);
@@ -113,16 +120,19 @@ namespace Npoi.Core.SS.Util
      * built-in phone number Formatting.
      * @author James May
      */
+
     public class PhoneFormat : FormatBase
     {
         public static FormatBase instance = new PhoneFormat();
         private static string df = "##########";
+
         private PhoneFormat()
         {
             // enforce singleton
         }
 
         /** Format a number as a phone number */
+
         public override String Format(object obj, CultureInfo culture)
         {
             String result = ((double)obj).ToString(df, culture);
@@ -168,7 +178,6 @@ namespace Npoi.Core.SS.Util
     {
         public DecimalFormat()
         {
-
         }
 
         private string pattern;
@@ -179,6 +188,7 @@ namespace Npoi.Core.SS.Util
                 throw new ArgumentException("invalid pattern");
             this.pattern = pattern;
         }
+
         public string Pattern
         {
             get
@@ -188,15 +198,17 @@ namespace Npoi.Core.SS.Util
         }
 
         private static readonly Regex RegexFraction = new Regex("#+/#+");
+
         public override string Format(Object obj)
         {
             return Format(obj, System.Globalization.CultureInfo.CurrentCulture);
         }
+
         public override string Format(object obj, CultureInfo culture)
         {
             //invalide fraction
             pattern = RegexFraction.Replace(pattern, "/");
-            
+
             if (pattern.IndexOf("'", StringComparison.Ordinal) != -1)
             {
                 //return ((double)obj).ToString();
@@ -218,20 +230,20 @@ namespace Npoi.Core.SS.Util
         {
             return System.Decimal.Parse(source.Substring(pos), CultureInfo.CurrentCulture);
         }
+
         private bool _parseIntegerOnly = false;
+
         public bool ParseIntegerOnly
         {
             get { return _parseIntegerOnly; }
             set { _parseIntegerOnly = value; }
         }
-
     }
 
     public class SimpleDateFormat : FormatBase
     {
         public SimpleDateFormat()
         {
-
         }
 
         protected string pattern;
@@ -240,10 +252,12 @@ namespace Npoi.Core.SS.Util
         {
             this.pattern = pattern;
         }
+
         public override string Format(Object obj)
         {
             return Format(obj, CultureInfo.CurrentCulture);
         }
+
         public override string Format(object obj, CultureInfo culture)
         {
             String result = ((DateTime)obj).ToString(pattern, culture); //DateTimeFormatInfo.InvariantInfo
@@ -259,13 +273,13 @@ namespace Npoi.Core.SS.Util
         {
             return DateTime.Parse(source.Substring(pos), CultureInfo.InvariantCulture).ToUniversalTime();
         }
+
         public DateTime Parse(string source)
         {
             return DateTime.Parse(source, CultureInfo.InvariantCulture);
         }
     }
-    
-    
+
     /**
      * Format class that does nothing and always returns a constant string.
      *
@@ -274,22 +288,27 @@ namespace Npoi.Core.SS.Util
      *
      * @see DataFormatter#createFormat(double, int, String)
      */
+
     public class ConstantStringFormat : FormatBase
     {
         private static DecimalFormat df = new DecimalFormat("##########");
         private String str;
+
         public ConstantStringFormat(String s)
         {
             str = s;
         }
+
         public override string Format(object obj)
         {
             return str;
         }
+
         public override string Format(object obj, CultureInfo culture)
         {
             return str;
         }
+
         public override StringBuilder Format(Object obj, StringBuilder toAppendTo, CultureInfo culture)
         {
             return toAppendTo.Append(str);

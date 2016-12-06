@@ -15,8 +15,8 @@
    limitations Under the License.
 ==================================================================== */
 
-using System;
 using Npoi.Core.Util;
+using System;
 
 namespace Npoi.Core.HPSF
 {
@@ -26,19 +26,16 @@ namespace Npoi.Core.HPSF
 
         private TypedPropertyValue[] _values;
 
-        public Vector(byte[] data, int startOffset, short type)
-        {
+        public Vector(byte[] data, int startOffset, short type) {
             this._type = type;
             Read(data, startOffset);
         }
 
-        public Vector(short type)
-        {
+        public Vector(short type) {
             this._type = type;
         }
 
-        public int Read(byte[] data, int startOffset)
-        {
+        public int Read(byte[] data, int startOffset) {
             int offset = startOffset;
 
             long longLength = LittleEndian.GetUInt(data, offset);
@@ -51,19 +48,15 @@ namespace Npoi.Core.HPSF
 
             _values = new TypedPropertyValue[length];
 
-            if (_type == Variant.VT_VARIANT)
-            {
-                for (int i = 0; i < length; i++)
-                {
+            if (_type == Variant.VT_VARIANT) {
+                for (int i = 0; i < length; i++) {
                     TypedPropertyValue value = new TypedPropertyValue();
                     offset += value.Read(data, offset);
                     _values[i] = value;
                 }
             }
-            else
-            {
-                for (int i = 0; i < length; i++)
-                {
+            else {
+                for (int i = 0; i < length; i++) {
                     TypedPropertyValue value = new TypedPropertyValue(_type, null);
                     // be aware: not padded here
                     offset += value.ReadValue(data, offset);
@@ -73,8 +66,7 @@ namespace Npoi.Core.HPSF
             return offset - startOffset;
         }
 
-        public TypedPropertyValue[] Values
-        {
+        public TypedPropertyValue[] Values {
             get { return _values; }
         }
     }

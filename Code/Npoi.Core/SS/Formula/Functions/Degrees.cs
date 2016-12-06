@@ -18,14 +18,16 @@
  * Created on May 6, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     using System;
 
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     *  
+     *
      */
+
     public class Degrees : OneArg
     {
         public override double Evaluate(double d)
@@ -33,6 +35,5 @@ namespace Npoi.Core.SS.Formula.Functions
             //convert from  degree to radius
             return d * 180 / Math.PI;
         }
-
     }
 }

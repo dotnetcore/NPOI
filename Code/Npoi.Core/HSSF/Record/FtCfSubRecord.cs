@@ -17,14 +17,14 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
     using Npoi.Core.Util;
+    using System;
     using System.Text;
-
 
     /**
      * The FtCf structure specifies the clipboard format of the picture-type Obj record Containing this FtCf.
      */
+
     public class FtCfSubRecord : SubRecord
     {
         public const short sid = 0x07;
@@ -52,6 +52,7 @@ namespace Npoi.Core.HSSF.Record
          * Construct a new <code>FtPioGrbitSubRecord</code> and
          * fill its data with the default values
          */
+
         public FtCfSubRecord()
         {
         }
@@ -69,6 +70,7 @@ namespace Npoi.Core.HSSF.Record
          * Convert this record to string.
          * Used by BiffViewer and other utilities.
          */
+
         public override String ToString()
         {
             StringBuilder buffer = new StringBuilder();
@@ -84,6 +86,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @param out the stream to serialize into
          */
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(sid);
@@ -102,6 +105,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return id of this record.
          */
+
         public override short Sid
         {
             get

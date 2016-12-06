@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,17 +15,15 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
-    using System;
-    using System.Text;
     using Npoi.Core.Util;
+    using System;
     using System.Globalization;
+    using System.Text;
 
     /**
-     * Title:        Continue Record - Helper class used primarily for SST Records 
+     * Title:        Continue Record - Helper class used primarily for SST Records
      * Description:  handles overflow for prior record in the input
      *               stream; content Is tailored to that prior record
      * @author Marc Johnson (mjohnson at apache dot org)
@@ -63,6 +60,7 @@ namespace Npoi.Core.HSSF.Record
         {
             field_1_data = in1.ReadRemainder();
         }
+
         protected override int DataSize
         {
             get
@@ -70,12 +68,12 @@ namespace Npoi.Core.HSSF.Record
                 return field_1_data.Length;
             }
         }
-        
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.Write(field_1_data);
         }
-        
+
         /*
          * USE ONLY within "ProcessContinue"
          */
@@ -89,16 +87,19 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Writes the full encoding of a Continue record without making an instance
          */
+
         [Obsolete]
         public static int Write(byte[] destBuf, int destOffset, byte? initialDataByte, byte[] srcData)
         {
             return Write(destBuf, destOffset, initialDataByte, srcData, 0, srcData.Length);
         }
+
         /**
-         * @param initialDataByte (optional - often used for unicode flag). 
+         * @param initialDataByte (optional - often used for unicode flag).
          * If supplied, this will be written before srcData
          * @return the total number of bytes written
          */
+
         [Obsolete]
         public static int Write(byte[] destBuf, int destOffset, byte? initialDataByte, byte[] srcData, int srcOffset, int len)
         {
@@ -114,6 +115,7 @@ namespace Npoi.Core.HSSF.Record
             Array.Copy(srcData, srcOffset, destBuf, pos, len);
             return 4 + totalLen;
         }
+
         //public override int Serialize(int offset, byte[] data)
         //{
         //    return Write(data, offset, null, field_1_data);
@@ -129,7 +131,6 @@ namespace Npoi.Core.HSSF.Record
             get { return field_1_data; }
             set { field_1_data = value; }
         }
-
 
         /**
          * Debugging toString
@@ -153,16 +154,15 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-
         /**
          * Clone this record.
          */
+
         public override Object Clone()
         {
             ContinueRecord Clone = new ContinueRecord();
             Clone.Data = (field_1_data);
             return Clone;
         }
-
     }
 }

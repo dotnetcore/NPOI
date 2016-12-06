@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Npoi.Core.SS.UserModel.Drawing;
 using Npoi.Core.Util;
-using Npoi.Core.SS.UserModel.Drawing;
 
 namespace Npoi.Core.HSSF.Record.Drawing
 {
@@ -23,6 +20,7 @@ namespace Npoi.Core.HSSF.Record.Drawing
                     complexData[i] = (byte)ris.ReadByte();
             }
         }
+
         public int DataSize
         {
             get { return 2 + 4 + complexData.Length; }
@@ -40,11 +38,13 @@ namespace Npoi.Core.HSSF.Record.Drawing
             get;
             set;
         }
+
         public int Op
         {
             get;
             set;
         }
+
         public byte[] ComplexData
         {
             get { return complexData; }
@@ -54,7 +54,6 @@ namespace Npoi.Core.HSSF.Record.Drawing
         {
             return string.Format("    " + OfficeArtProperties.GetFillStyleName(this.Opid.OpId) + "opid=" + HexDump.ShortToHex(this.Opid.OpId)
                 + "; op=" + HexDump.IntToHex(this.Op));
-            
         }
     }
 }

@@ -17,24 +17,24 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-    
     using Npoi.Core.Util;
+    using System;
 
     //import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
     /**
      * Common baseclass of all value operators.
-     * Subclasses include all Unary and binary operators except for the reference operators (IntersectionPtg, RangePtg, UnionPtg) 
-     * 
+     * Subclasses include all Unary and binary operators except for the reference operators (IntersectionPtg, RangePtg, UnionPtg)
+     *
      * @author Josh Micich
      */
+
     public abstract class ValueOperatorPtg : OperationPtg
     {
-
         /**
-         * All Operator <c>Ptg</c>s are base tokens (i.e. are not RVA classified)  
+         * All Operator <c>Ptg</c>s are base tokens (i.e. are not RVA classified)
          */
+
         public override bool IsBaseToken
         {
             get { return true; }
@@ -57,9 +57,9 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return 1; }
         }
 
-        public override String ToFormulaString() 
+        public override String ToFormulaString()
         {
-    	    throw new NotImplementedException("ToFormulaString(String[] operands) should be used for subclasses of OperationPtgs");
-	    }
+            throw new NotImplementedException("ToFormulaString(String[] operands) should be used for subclasses of OperationPtgs");
+        }
     }
 }

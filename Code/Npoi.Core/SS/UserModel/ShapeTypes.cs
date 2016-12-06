@@ -14,20 +14,22 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.UserModel
 {
-
     /**
      * All known types of automatic shapes in DrawingML
      *
      * @author Yegor Kozlov
      */
-    public enum ShapeTypes:int
+
+    public enum ShapeTypes : int
     {
         /// <summary>
         /// Allow accessing the Initial value.
         /// </summary>
         None = 0,
+
         Line = 1,
         LineInv = 2,
         Triangle = 3,

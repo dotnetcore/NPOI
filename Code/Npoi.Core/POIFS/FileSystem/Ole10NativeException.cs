@@ -22,15 +22,8 @@ namespace Npoi.Core.POIFS.FileSystem
     [Serializable]
     public class Ole10NativeException : Exception
     {
-        public Ole10NativeException(String message):base(message)
+        public Ole10NativeException(String message) : base(message)
         {
-            
         }
     }
 }
-
-
-
-
-
-

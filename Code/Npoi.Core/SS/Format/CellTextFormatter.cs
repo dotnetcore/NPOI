@@ -14,35 +14,40 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.Format
 {
     using System;
-    using System.Text.RegularExpressions;
     using System.Text;
-
+    using System.Text.RegularExpressions;
 
     /**
      * This class : printing out text.
      *
      * @author Ken Arnold, Industrious Media LLC
      */
+
     public class CellTextFormatter : CellFormatter
     {
         private int[] textPos;
         private String desc;
 
         internal static CellFormatter SIMPLE_TEXT = new CellTextFormatter("@");
+
         private class PartHandler : CellFormatPart.IPartHandler
         {
             private int numplace;
+
             public int NumPlace
             {
-                get{return numplace;}
+                get { return numplace; }
             }
+
             public PartHandler(int numPlace)
             {
                 this.numplace = numPlace;
             }
+
             public String HandlePart(Match m, String part,
                                 CellFormatType type, StringBuilder desc)
             {
@@ -54,6 +59,7 @@ namespace Npoi.Core.SS.Format
                 return null;
             }
         }
+
         public CellTextFormatter(String format)
             : base(format)
         {
@@ -74,6 +80,7 @@ namespace Npoi.Core.SS.Format
         }
 
         /** {@inheritDoc} */
+
         public override void FormatValue(StringBuilder toAppendTo, Object obj)
         {
             int start = toAppendTo.Length;
@@ -96,6 +103,7 @@ namespace Npoi.Core.SS.Format
          * <p/>
          * For text, this is just printing the text.
          */
+
         public override void SimpleValue(StringBuilder toAppendTo, Object value)
         {
             SIMPLE_TEXT.FormatValue(toAppendTo, value);

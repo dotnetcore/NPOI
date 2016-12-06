@@ -18,10 +18,10 @@
 namespace Npoi.Core.HSSF.Util
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.IO;
     using System.Reflection;
+
     /**
      * Intends to provide support for the very evil index to triplet Issue and
      * will likely replace the color constants interface for HSSF 2.0.
@@ -35,13 +35,15 @@ namespace Npoi.Core.HSSF.Util
      * @author  Andrew C. Oliver (acoliver at apache dot org)
      * @author  Brian Sanders (bsanders at risklabs dot com) - full default color palette
      */
+
     public class HSSFColor : Npoi.Core.SS.UserModel.IColor
     {
-        private static Dictionary<object,object> indexHash;
+        private static Dictionary<object, object> indexHash;
         public const short COLOR_NORMAL = 0x7fff;
 
         // TODO make subclass instances immutable
         /** Creates a new instance of HSSFColor */
+
         public HSSFColor()
         {
         }
@@ -55,6 +57,7 @@ namespace Npoi.Core.HSSF.Util
          *
          * @return a hashtable containing all colors keyed by <c>int</c> excel-style palette indexes
          */
+
         public static Dictionary<object, object> GetIndexHash()
         {
             if (indexHash == null)
@@ -70,6 +73,7 @@ namespace Npoi.Core.HSSF.Util
          *  the table, then call {@link #getIndexHash()} which returns a
          *  statically cached imuatable map of colours.
          */
+
         public static Dictionary<object, object> GetMutableIndexHash()
         {
             return CreateColorsByIndexMap();
@@ -156,7 +160,7 @@ namespace Npoi.Core.HSSF.Util
         /// if you have none of those requests.
         /// </summary>
         /// <returns>a hashtable containing all colors keyed by String gnumeric-like triplets</returns>
-        public static Dictionary<object,object> GetTripletHash()
+        public static Dictionary<object, object> GetTripletHash()
         {
             return CreateColorsByHexStringMap();
         }
@@ -193,13 +197,15 @@ namespace Npoi.Core.HSSF.Util
             }
         }
 
-        public byte[] RGB 
+        public byte[] RGB
         {
             get { return this.GetTriplet(); }
         }
+
         /**
          * @return  triplet representation like that in Excel
          */
+
         public virtual byte[] GetTriplet()
         {
             return Black.Triplet;
@@ -229,7 +235,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -256,7 +262,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -275,7 +281,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class OliveGreen: HSSFColor
+        public class OliveGreen : HSSFColor
         {
             public const short Index = 0x3b;
             public static readonly byte[] Triplet = { 51, 51, 0 };
@@ -283,7 +289,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -302,7 +308,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class DarkGreen: HSSFColor
+        public class DarkGreen : HSSFColor
         {
             public const short Index = 0x3a;
             public static readonly byte[] Triplet = { 0, 51, 0 };
@@ -310,7 +316,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -329,7 +335,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class DarkTeal: HSSFColor
+        public class DarkTeal : HSSFColor
         {
             public const short Index = 0x38;
             public static readonly byte[] Triplet = { 0, 51, 102 };
@@ -337,7 +343,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -356,7 +362,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class DarkBlue: HSSFColor
+        public class DarkBlue : HSSFColor
         {
             public const short Index = 0x12;
             public const short Index2 = 0x20;
@@ -365,7 +371,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -384,7 +390,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class Indigo: HSSFColor
+        public class Indigo : HSSFColor
         {
             public const short Index = 0x3e;
             public static readonly byte[] Triplet = { 51, 51, 153 };
@@ -392,7 +398,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -411,7 +417,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class Grey80Percent: HSSFColor
+        public class Grey80Percent : HSSFColor
         {
             public const short Index = 0x3f;
             public static readonly byte[] Triplet = { 51, 51, 51 };
@@ -419,7 +425,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -438,7 +444,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class DarkRed: HSSFColor
+        public class DarkRed : HSSFColor
         {
             public const short Index = 0x10;
             public const short Index2 = 0x25;
@@ -447,7 +453,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -466,7 +472,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class Orange: HSSFColor
+        public class Orange : HSSFColor
         {
             public const short Index = 0x35;
             public static readonly byte[] Triplet = { 255, 102, 0 };
@@ -474,7 +480,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -493,7 +499,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class DarkYellow: HSSFColor
+        public class DarkYellow : HSSFColor
         {
             public const short Index = 0x13;
             public static readonly byte[] Triplet = { 128, 128, 0 };
@@ -501,7 +507,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -520,7 +526,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class Green: HSSFColor
+        public class Green : HSSFColor
         {
             public const short Index = 0x11;
             public static readonly byte[] Triplet = { 0, 128, 0 };
@@ -528,7 +534,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -547,7 +553,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class Teal: HSSFColor
+        public class Teal : HSSFColor
         {
             public const short Index = 0x15;
             public const short Index2 = 0x26;
@@ -556,7 +562,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -575,7 +581,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class Blue: HSSFColor
+        public class Blue : HSSFColor
         {
             public const short Index = 0xc;
             public const short Index2 = 0x27;
@@ -584,7 +590,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -603,7 +609,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class BlueGrey: HSSFColor
+        public class BlueGrey : HSSFColor
         {
             public const short Index = 0x36;
             public static readonly byte[] Triplet = { 102, 102, 153 };
@@ -611,7 +617,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -630,7 +636,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class Grey50Percent: HSSFColor
+        public class Grey50Percent : HSSFColor
         {
             public const short Index = 0x17;
             public static readonly byte[] Triplet = { 128, 128, 128 };
@@ -638,7 +644,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -657,7 +663,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class Red: HSSFColor
+        public class Red : HSSFColor
         {
             public const short Index = 0xa;
             public static readonly byte[] Triplet = { 255, 0, 0 };
@@ -665,7 +671,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -684,7 +690,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class LightOrange: HSSFColor
+        public class LightOrange : HSSFColor
         {
             public const short Index = 0x34;
             public static readonly byte[] Triplet = { 255, 153, 0 };
@@ -692,7 +698,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -710,7 +716,8 @@ namespace Npoi.Core.HSSF.Util
          * Class LIME
          *
          */
-        public class Lime: HSSFColor
+
+        public class Lime : HSSFColor
         {
             public const short Index = 0x32;
             public static readonly byte[] Triplet = { 153, 204, 0 };
@@ -718,7 +725,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -737,7 +744,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class SeaGreen: HSSFColor
+        public class SeaGreen : HSSFColor
         {
             public const short Index = 0x39;
             public static readonly byte[] Triplet = { 51, 153, 102 };
@@ -745,7 +752,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -764,7 +771,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class Aqua: HSSFColor
+        public class Aqua : HSSFColor
         {
             public const short Index = 0x31;
             public static readonly byte[] Triplet = { 51, 204, 204 };
@@ -772,7 +779,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -786,7 +793,7 @@ namespace Npoi.Core.HSSF.Util
             }
         }
 
-        public class LightBlue: HSSFColor
+        public class LightBlue : HSSFColor
         {
             public const short Index = 0x30;
             public static readonly byte[] Triplet = { 51, 102, 255 };
@@ -794,7 +801,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -808,7 +815,7 @@ namespace Npoi.Core.HSSF.Util
             }
         }
 
-        public class Violet: HSSFColor
+        public class Violet : HSSFColor
         {
             public const short Index = 0x14;
             public const short Index2 = 0x24;
@@ -817,7 +824,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -844,7 +851,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -858,7 +865,7 @@ namespace Npoi.Core.HSSF.Util
             }
         }
 
-        public class Pink: HSSFColor
+        public class Pink : HSSFColor
         {
             public const short Index = 0xe;
             public const short Index2 = 0x21;
@@ -867,7 +874,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -881,7 +888,7 @@ namespace Npoi.Core.HSSF.Util
             }
         }
 
-        public class Gold: HSSFColor
+        public class Gold : HSSFColor
         {
             public const short Index = 0x33;
             public static readonly byte[] Triplet = { 255, 204, 0 };
@@ -889,7 +896,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -903,8 +910,7 @@ namespace Npoi.Core.HSSF.Util
             }
         }
 
-
-        public class Yellow: HSSFColor
+        public class Yellow : HSSFColor
         {
             public const short Index = 0xd;
             public const short Index2 = 0x22;
@@ -913,7 +919,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -927,7 +933,7 @@ namespace Npoi.Core.HSSF.Util
             }
         }
 
-        public class BrightGreen: HSSFColor
+        public class BrightGreen : HSSFColor
         {
             public const short Index = 0xb;
             public const short Index2 = 0x23;
@@ -941,7 +947,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -955,7 +961,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class Turquoise: HSSFColor
+        public class Turquoise : HSSFColor
         {
             public const short Index = 0xf;
             public const short Index2 = 0x23;
@@ -964,7 +970,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -983,7 +989,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class SkyBlue: HSSFColor
+        public class SkyBlue : HSSFColor
         {
             public const short Index = 0x28;
             public static readonly byte[] Triplet = { 0, 204, 255 };
@@ -991,7 +997,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1010,7 +1016,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class Plum: HSSFColor
+        public class Plum : HSSFColor
         {
             public const short Index = 0x3d;
             public const short Index2 = 0x19;
@@ -1019,7 +1025,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1038,7 +1044,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class Grey25Percent: HSSFColor
+        public class Grey25Percent : HSSFColor
         {
             public const short Index = 0x16;
             public static readonly byte[] Triplet = { 192, 192, 192 };
@@ -1046,7 +1052,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1065,7 +1071,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class Rose: HSSFColor
+        public class Rose : HSSFColor
         {
             public const short Index = 0x2d;
             public static readonly byte[] Triplet = { 255, 153, 204 };
@@ -1073,7 +1079,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1092,7 +1098,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class Tan: HSSFColor
+        public class Tan : HSSFColor
         {
             public const short Index = 0x2f;
             public static readonly byte[] Triplet = { 255, 204, 153 };
@@ -1100,7 +1106,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1119,7 +1125,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class LightYellow: HSSFColor
+        public class LightYellow : HSSFColor
         {
             public const short Index = 0x2b;
             public static readonly byte[] Triplet = { 255, 255, 153 };
@@ -1127,7 +1133,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1146,7 +1152,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class LightGreen: HSSFColor
+        public class LightGreen : HSSFColor
         {
             public const short Index = 0x2a;
             public static readonly byte[] Triplet = { 204, 255, 204 };
@@ -1154,7 +1160,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1173,7 +1179,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class LightTurquoise: HSSFColor
+        public class LightTurquoise : HSSFColor
         {
             public const short Index = 0x29;
             public const short Index2 = 0x1b;
@@ -1182,7 +1188,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1201,7 +1207,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class PaleBlue: HSSFColor
+        public class PaleBlue : HSSFColor
         {
             public const short Index = 0x2c;
             public static readonly byte[] Triplet = { 153, 204, 255 };
@@ -1209,7 +1215,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1228,16 +1234,15 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class Lavender: HSSFColor
+        public class Lavender : HSSFColor
         {
             public const short Index = 0x2e;
             public static readonly byte[] Triplet = { 204, 153, 255 };
             public const string HexString = "CCCC:9999:FFFF";
 
-
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1256,7 +1261,7 @@ namespace Npoi.Core.HSSF.Util
          *
          */
 
-        public class White: HSSFColor
+        public class White : HSSFColor
         {
             public const short Index = 0x9;
             public static readonly byte[] Triplet = { 255, 255, 255 };
@@ -1264,7 +1269,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1281,7 +1286,8 @@ namespace Npoi.Core.HSSF.Util
         /**
          * Class CORNFLOWER_BLUE
          */
-        public class CornflowerBlue: HSSFColor
+
+        public class CornflowerBlue : HSSFColor
         {
             public const short Index = 0x18;
             public static readonly byte[] Triplet = { 153, 153, 255 };
@@ -1289,7 +1295,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1303,11 +1309,11 @@ namespace Npoi.Core.HSSF.Util
             }
         }
 
-
         /**
          * Class LEMON_CHIFFON
          */
-        public class LemonChiffon: HSSFColor
+
+        public class LemonChiffon : HSSFColor
         {
             public const short Index = 0x1a;
             public static readonly byte[] Triplet = { 255, 255, 204 };
@@ -1316,7 +1322,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1333,14 +1339,16 @@ namespace Npoi.Core.HSSF.Util
         /**
          * Class MAROON
          */
-        public class Maroon: HSSFColor
+
+        public class Maroon : HSSFColor
         {
             public const short Index = 0x19;
             public static readonly byte[] Triplet = { 127, 0, 0 };
             public const string HexString = "8000:0:0";
+
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1357,7 +1365,8 @@ namespace Npoi.Core.HSSF.Util
         /**
          * Class ORCHID
          */
-        public class Orchid: HSSFColor
+
+        public class Orchid : HSSFColor
         {
             public const short Index = 0x1c;
             public static readonly byte[] Triplet = { 102, 0, 102 };
@@ -1365,7 +1374,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1382,6 +1391,7 @@ namespace Npoi.Core.HSSF.Util
         /**
          * Class CORAL
          */
+
         public class Coral : HSSFColor
         {
             public const short Index = 0x1d;
@@ -1390,7 +1400,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1407,6 +1417,7 @@ namespace Npoi.Core.HSSF.Util
         /**
          * Class ROYAL_BLUE
          */
+
         public class RoyalBlue : HSSFColor
         {
             public const short Index = 0x1e;
@@ -1415,7 +1426,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1432,6 +1443,7 @@ namespace Npoi.Core.HSSF.Util
         /**
          * Class LIGHT_CORNFLOWER_BLUE
          */
+
         public class LightCornflowerBlue : HSSFColor
         {
             public const short Index = 0x1f;
@@ -1440,7 +1452,7 @@ namespace Npoi.Core.HSSF.Util
 
             public override short Indexed
             {
-                get{return Index;}
+                get { return Index; }
             }
 
             public override byte[] GetTriplet()
@@ -1462,6 +1474,7 @@ namespace Npoi.Core.HSSF.Util
          * @author Jason
          *
          */
+
         public class Automatic : HSSFColor
         {
             private static HSSFColor instance = new Automatic();

@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title:        Print Setup Record
@@ -36,7 +33,6 @@ namespace Npoi.Core.HSSF.Record
     public class PrintSetupRecord
        : StandardRecord
     {
-
         public const short sid = 0xa1;
         private short field_1_paper_size;
         private short field_2_scale;
@@ -44,28 +40,36 @@ namespace Npoi.Core.HSSF.Record
         private short field_4_fit_width;
         private short field_5_fit_height;
         private short field_6_options;
-        
+
         private BitField lefttoright =
         BitFieldFactory.GetInstance(0x01);   // print over then down
+
         private BitField landscape =
         BitFieldFactory.GetInstance(0x02);   // landscape mode
+
         private BitField validSettings = BitFieldFactory.GetInstance(
         0x04);                // if papersize, scale, resolution, copies, landscape weren't obtained from the print consider them mere bunk
+
         private BitField nocolor =
         BitFieldFactory.GetInstance(0x08);   // print mono/b&w, colorless
+
         private BitField draft =
         BitFieldFactory.GetInstance(0x10);   // print draft quality
+
         private BitField notes =
         BitFieldFactory.GetInstance(0x20);   // print the notes
+
         private BitField noOrientation =
         BitFieldFactory.GetInstance(0x40);   // the orientation Is not Set
+
         private BitField usepage =
         BitFieldFactory.GetInstance(0x80);   // use a user Set page no, instead of auto
+
         private BitField endnote =
         BitFieldFactory.GetInstance(0x200);   // note is printed at the end
+
         private BitField ierror =
         BitFieldFactory.GetInstance(0xC00);   // printed style of cell errors
-       
 
         private short field_7_hresolution;
         private short field_8_vresolution;
@@ -75,7 +79,6 @@ namespace Npoi.Core.HSSF.Record
 
         public PrintSetupRecord()
         {
-            
         }
 
         /**
@@ -97,6 +100,7 @@ namespace Npoi.Core.HSSF.Record
             field_10_footermargin = in1.ReadDouble();
             field_11_copies = in1.ReadShort();
         }
+
         public short PaperSize
         {
             get
@@ -108,7 +112,7 @@ namespace Npoi.Core.HSSF.Record
 
         public short Scale
         {
-            get{return field_2_scale;}
+            get { return field_2_scale; }
             set { field_2_scale = value; }
         }
 
@@ -184,7 +188,7 @@ namespace Npoi.Core.HSSF.Record
 
         public bool UsePage
         {
-            get{return usepage.IsSet(field_6_options);}
+            get { return usepage.IsSet(field_6_options); }
             set { field_6_options = usepage.SetShortBoolean(field_6_options, value); }
         }
 
@@ -222,7 +226,7 @@ namespace Npoi.Core.HSSF.Record
         public short CellError
         {
             get { return ierror.GetShortValue(field_6_options); }
-            set 
+            set
             {
                 field_6_options = ierror.SetShortValue(field_6_options, value);
             }

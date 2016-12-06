@@ -17,6 +17,7 @@
 
 using Npoi.Core.HSSF.Model;
 using Npoi.Core.HSSF.Record.Chart;
+
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 {
     /// <summary>
@@ -49,6 +50,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             if (startObject != null)
                 endObject = (ChartEndObjectRecord)rs.GetNext();
         }
+
         public override void VisitContainedRecords(RecordVisitor rv)
         {
             if (dataLabExt != null)

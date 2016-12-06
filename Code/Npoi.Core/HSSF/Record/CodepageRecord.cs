@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title: Codepage Record
@@ -33,6 +29,7 @@ namespace Npoi.Core.HSSF.Record
      *  to encode/decode strings.</p>
      * @version 2.0-pre
      */
+
     public class CodepageRecord
        : StandardRecord
     {
@@ -59,6 +56,7 @@ namespace Npoi.Core.HSSF.Record
         {
             field_1_codepage = in1.ReadShort();
         }
+
         /**
          * Get the codepage for this workbook
          *

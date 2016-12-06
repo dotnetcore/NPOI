@@ -17,12 +17,12 @@
 
 namespace Npoi.Core.SS.UserModel.Charts
 {
-
     /**
      * Specifies the possible ways to place a picture on a data point, series, wall, or floor.
      *
      * @author Roman Kashitsyn
      */
+
     public enum AxisOrientation
     {
         /**
@@ -36,6 +36,4 @@ namespace Npoi.Core.SS.UserModel.Charts
          */
         MinToMax
     }
-
-
 }

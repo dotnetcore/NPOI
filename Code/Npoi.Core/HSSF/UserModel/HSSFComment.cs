@@ -14,13 +14,13 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
+
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
     using Npoi.Core.DDF;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.SS.UserModel;
-
+    using System;
 
     /// <summary>
     /// Represents a cell comment - a sticky note associated with a cell.
@@ -42,9 +42,9 @@ namespace Npoi.Core.HSSF.UserModel
         public HSSFComment(EscherContainerRecord spContainer, ObjRecord objRecord, TextObjectRecord textObjectRecord, NoteRecord _note)
             : base(spContainer, objRecord, textObjectRecord)
         {
-
             this._note = _note;
         }
+
         /// <summary>
         /// Construct a new comment with the given parent and anchor.
         /// </summary>
@@ -63,8 +63,9 @@ namespace Npoi.Core.HSSF.UserModel
 
             Author = "";
             CommonObjectDataSubRecord cod = (CommonObjectDataSubRecord)GetObjRecord().SubRecords[0];
-            cod.ObjectType = CommonObjectType.Comment; 
+            cod.ObjectType = CommonObjectType.Comment;
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="HSSFComment"/> class.
         /// </summary>
@@ -75,7 +76,6 @@ namespace Npoi.Core.HSSF.UserModel
         {
             this._note = note;
         }
-
 
         internal override void AfterInsert(HSSFPatriarch patriarch)
         {
@@ -94,7 +94,6 @@ namespace Npoi.Core.HSSF.UserModel
             opt.SetEscherProperty(new EscherSimpleProperty(EscherProperties.GROUPSHAPE__PRINT, false, false, GROUP_SHAPE_PROPERTY_DEFAULT_VALUE));
             return spContainer;
         }
-
 
         protected override ObjRecord CreateObjRecord()
         {
@@ -141,9 +140,9 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <value><c>true</c> if visible; otherwise, <c>false</c>.</value>
         /// Sets whether this comment Is visible.
-        /// @return 
+        /// @return
         /// <c>true</c>
-        ///  if the comment Is visible, 
+        ///  if the comment Is visible,
         /// <c>false</c>
         ///  otherwise
         public bool Visible
@@ -171,7 +170,6 @@ namespace Npoi.Core.HSSF.UserModel
                 if (_note != null) _note.Row = value;
             }
         }
-
 
         /// <summary>
         /// Gets or sets the column of the cell that Contains the comment
@@ -202,8 +200,6 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-        
-
         /// <summary>
         /// Gets the note record.
         /// </summary>
@@ -216,6 +212,7 @@ namespace Npoi.Core.HSSF.UserModel
         /**
          * Do we know which cell this comment belongs to?
          */
+
         public bool HasPosition
         {
             get
@@ -252,13 +249,13 @@ namespace Npoi.Core.HSSF.UserModel
                 throw new InvalidOperationException("Shape type can not be changed in " + this.GetType().Name);
             }
         }
-        
 
         internal override void AfterRemove(HSSFPatriarch patriarch)
         {
             base.AfterRemove(patriarch);
             patriarch.GetBoundAggregate().RemoveTailRecord(this.NoteRecord);
         }
+
         internal override HSSFShape CloneShape()
         {
             TextObjectRecord txo = (TextObjectRecord)GetTextObjectRecord().CloneViaReserialise();
@@ -269,6 +266,7 @@ namespace Npoi.Core.HSSF.UserModel
             NoteRecord note = (NoteRecord)NoteRecord.CloneViaReserialise();
             return new HSSFComment(spContainer, obj, txo, note);
         }
+
         public void SetBackgroundImage(int pictureIndex)
         {
             SetPropertyValue(new EscherSimpleProperty(EscherProperties.FILL__PATTERNTEXTURE, false, true, pictureIndex));
@@ -294,6 +292,7 @@ namespace Npoi.Core.HSSF.UserModel
             EscherSimpleProperty property = (EscherSimpleProperty)GetOptRecord().Lookup(EscherProperties.FILL__PATTERNTEXTURE);
             return property == null ? 0 : property.PropertyValue;
         }
+
         private void SetHidden(bool value)
         {
             EscherSimpleProperty property = (EscherSimpleProperty)GetOptRecord().Lookup(EscherProperties.GROUPSHAPE__PRINT);

@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /*
      * The font index record indexes into the font table for the text record.
@@ -31,9 +28,10 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     //
     /// <summary>
-    /// The FontX record specifies the font for a given text element. 
+    /// The FontX record specifies the font for a given text element.
     /// The Font record referenced by iFont can exist in this chart sheet substream or the workbook.
     /// </summary>
     public class FontXRecord
@@ -42,10 +40,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         public const short sid = 0x1026;
         private short field_1_fontIndex;
 
-
         public FontXRecord()
         {
-
         }
 
         /**
@@ -58,7 +54,6 @@ namespace Npoi.Core.HSSF.Record.Chart
         {
             field_1_fontIndex = in1.ReadShort();
         }
-
 
         public override String ToString()
         {
@@ -82,9 +77,10 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
-            get { return  2; }
+            get { return 2; }
         }
 
         public override short Sid
@@ -100,15 +96,14 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
         /// <summary>
         /// specifies the font to use for subsequent records.
-        /// This font can either be the default font of the chart, part of the collection of Font records following 
-        /// the FrtFontList record, or part of the collection of Font records in the globals substream. 
-        /// If iFont is 0x0000, this record specifies the default font of the chart. 
-        /// If iFont is less than or equal to the number of Font records in the globals substream, 
-        ///     iFont is a one-based index to a Font record in the globals substream. 
-        /// Otherwise iFont is a one-based index into the collection of Font records in this chart sheet substream 
+        /// This font can either be the default font of the chart, part of the collection of Font records following
+        /// the FrtFontList record, or part of the collection of Font records in the globals substream.
+        /// If iFont is 0x0000, this record specifies the default font of the chart.
+        /// If iFont is less than or equal to the number of Font records in the globals substream,
+        ///     iFont is a one-based index to a Font record in the globals substream.
+        /// Otherwise iFont is a one-based index into the collection of Font records in this chart sheet substream
         ///     where the index is equal to iFont ¨C n, where n is the number of Font records in the globals substream.
         /// </summary>
         public short FontIndex
@@ -116,8 +111,5 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_1_fontIndex; }
             set { this.field_1_fontIndex = value; }
         }
-
-
-
     }
 }

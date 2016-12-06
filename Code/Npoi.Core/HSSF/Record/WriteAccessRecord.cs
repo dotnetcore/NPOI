@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title:        Write Access Record
@@ -37,12 +34,12 @@ namespace Npoi.Core.HSSF.Record
     public class WriteAccessRecord : StandardRecord
     {
         public const short sid = 0x5c;
-        private String field_1_username=string.Empty;
-        
-	    private const byte PAD_CHAR = (byte) ' ';
-	    private const int DATA_SIZE = 112;
-        	/** this record is always padded to a constant length */
-	    private static byte[] PADDING = new byte[DATA_SIZE];
+        private String field_1_username = string.Empty;
+
+        private const byte PAD_CHAR = (byte)' ';
+        private const int DATA_SIZE = 112;
+        /** this record is always padded to a constant length */
+        private static byte[] PADDING = new byte[DATA_SIZE];
 
         static WriteAccessRecord()
         {
@@ -79,7 +76,7 @@ namespace Npoi.Core.HSSF.Record
                 LittleEndian.PutUShort(data, 0, nChars);
                 LittleEndian.PutByte(data, 2, is16BitFlag);
                 in1.ReadFully(data, 3, data.Length - 3);
-                char[] data1=new char[data.Length];
+                char[] data1 = new char[data.Length];
                 for (int i = 0; i < data.Length; i++)
                 {
                     data1[i] = (char)data[i];
@@ -108,9 +105,7 @@ namespace Npoi.Core.HSSF.Record
                 in1.ReadUByte();
                 padSize--;
             }
-
         }
-
 
         /**
          * Get the username for the user that Created the report.  HSSF uses the logged in user.  On
@@ -125,7 +120,8 @@ namespace Npoi.Core.HSSF.Record
             {
                 return field_1_username;
             }
-            set {
+            set
+            {
                 bool is16bit = StringUtil.HasMultibyte(value);
                 int encodedByteCount = 3 + Username.Length * (is16bit ? 2 : 1);
                 int paddingSize = DATA_SIZE - encodedByteCount;

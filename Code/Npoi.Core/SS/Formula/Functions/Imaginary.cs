@@ -17,9 +17,10 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
     using System.Text.RegularExpressions;
+
     /**
      * Implementation for Excel IMAGINARY() function.<p/>
      * <p/>
@@ -36,9 +37,9 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author cedric dot walter @ gmail dot com
      */
+
     public class Imaginary : Fixed1ArgFunction, FreeRefFunction
     {
-
         public static FreeRefFunction instance = new Imaginary();
 
         public static String GROUP1_REAL_SIGN_REGEX = "([+-]?)";
@@ -72,7 +73,7 @@ namespace Npoi.Core.SS.Formula.Functions
             //Matcher m = COMPLEX_NUMBER_PATTERN.matcher(iNumber);
             //bool result = m.matches();
             System.Text.RegularExpressions.Match m = COMPLEX_NUMBER_PATTERN.Match(iNumber);
-            bool result = m.Success && m.Groups[0].Length>0;
+            bool result = m.Success && m.Groups[0].Length > 0;
 
             String imaginary = "";
             if (result == true)
@@ -122,5 +123,4 @@ namespace Npoi.Core.SS.Formula.Functions
             return Evaluate(ec.RowIndex, ec.ColumnIndex, args[0]);
         }
     }
-
 }

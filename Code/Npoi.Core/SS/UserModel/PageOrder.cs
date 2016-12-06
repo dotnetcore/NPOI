@@ -22,9 +22,9 @@ namespace Npoi.Core.SS.UserModel
      *
      * @author Gisella Bronzetti
      */
+
     public class PageOrder
     {
-
         /**
          * Order pages vertically first, then move horizontally.
          */
@@ -34,11 +34,10 @@ namespace Npoi.Core.SS.UserModel
          */
         public static PageOrder OVER_THEN_DOWN;
 
-
         private int order;
 
         static PageOrder()
-        { 
+        {
             _table = new PageOrder[3];
             DOWN_THEN_OVER = new PageOrder(1);
             OVER_THEN_DOWN = new PageOrder(2);
@@ -65,5 +64,4 @@ namespace Npoi.Core.SS.UserModel
             return _table[value];
         }
     }
-
 }

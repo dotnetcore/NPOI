@@ -1,18 +1,17 @@
-﻿
-namespace Npoi.Core.HSSF.Record.AutoFilter
+﻿namespace Npoi.Core.HSSF.Record.AutoFilter
 {
-    public class FilterModeRecord:StandardRecord
+    public class FilterModeRecord : StandardRecord
     {
         public FilterModeRecord()
-        { 
+        {
         }
 
         public FilterModeRecord(RecordInputStream in1)
-        { 
-        
+        {
         }
 
         public const short sid = 0x9b;
+
         public override short Sid
         {
             get { return sid; }
@@ -25,8 +24,8 @@ namespace Npoi.Core.HSSF.Record.AutoFilter
 
         public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
-            
         }
+
         public override object Clone()
         {
             FilterModeRecord rec = new FilterModeRecord();

@@ -15,7 +15,6 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.Util.Collections;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,12 +27,12 @@ namespace Npoi.Core.POIFS.FileSystem
     /// </summary>
     public class FilteringDirectoryNode : DirectoryEntry
     {
-
         private List<String> excludes;
         private Dictionary<String, List<String>> childExcludes;
         private DirectoryEntry directory;
+
         /// <summary>
-        /// Creates a filter round the specified directory, which will exclude entries such as 
+        /// Creates a filter round the specified directory, which will exclude entries such as
         /// "MyNode" and "MyDir/IgnoreNode". The excludes can stretch into children, if they contain a /.
         /// </summary>
         /// <param name="directory">The Directory to filter</param>
@@ -66,6 +65,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 }
             }
         }
+
         #region DirectoryEntry 成员
 
         public IEnumerator<Entry> Entries
@@ -93,6 +93,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get { return EntryCount == 0; }
         }
+
         public bool HasEntry(String name)
         {
             if (excludes.Contains(name))
@@ -101,6 +102,7 @@ namespace Npoi.Core.POIFS.FileSystem
             }
             return directory.HasEntry(name);
         }
+
         public int EntryCount
         {
             get
@@ -121,6 +123,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             return new FilteringIterator(this); ;
         }
+
         public Entry GetEntry(String name)
         {
             if (excludes.Contains(name))
@@ -131,6 +134,7 @@ namespace Npoi.Core.POIFS.FileSystem
             Entry entry = directory.GetEntry(name);
             return WrapEntry(entry);
         }
+
         private Entry WrapEntry(Entry entry)
         {
             String name = entry.Name;
@@ -141,6 +145,7 @@ namespace Npoi.Core.POIFS.FileSystem
             }
             return entry;
         }
+
         public DocumentEntry CreateDocument(string name, System.IO.Stream stream)
         {
             return directory.CreateDocument(name, stream);
@@ -168,7 +173,7 @@ namespace Npoi.Core.POIFS.FileSystem
             }
         }
 
-        #endregion
+        #endregion DirectoryEntry 成员
 
         #region Entry 成员
 
@@ -202,7 +207,7 @@ namespace Npoi.Core.POIFS.FileSystem
             return directory.RenameTo(newName);
         }
 
-        #endregion
+        #endregion Entry 成员
 
         #region IEnumerable<Entry> 成员
 
@@ -211,22 +216,24 @@ namespace Npoi.Core.POIFS.FileSystem
             return new FilteringIterator(this);
         }
 
-        #endregion
+        #endregion IEnumerable<Entry> 成员
 
         #region IEnumerable 成员
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            return new FilteringIterator(this); 
+            return new FilteringIterator(this);
         }
 
-        #endregion
+        #endregion IEnumerable 成员
+
         private class FilteringIterator : IEnumerator<Entry>
         {
             private IEnumerator<Entry> parent;
             private Entry next;
             private DirectoryEntry directory;
             private FilteringDirectoryNode filtering;
+
             public FilteringIterator(FilteringDirectoryNode filtering)
             {
                 this.filtering = filtering;
@@ -234,6 +241,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 parent = directory.Entries;
                 //LocateNext();
             }
+
             //private void LocateNext()
             //{
             //    next = null;
@@ -272,7 +280,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 get { return next; }
             }
 
-            #endregion
+            #endregion IEnumerator<Entry> 成员
 
             #region IDisposable 成员
 
@@ -280,7 +288,7 @@ namespace Npoi.Core.POIFS.FileSystem
             {
             }
 
-            #endregion
+            #endregion IDisposable 成员
 
             #region IEnumerator 成员
 
@@ -311,9 +319,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 throw new NotImplementedException();
             }
 
-            #endregion
+            #endregion IEnumerator 成员
         }
-
-        
     }
 }

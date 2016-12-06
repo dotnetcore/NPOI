@@ -19,6 +19,7 @@ namespace Npoi.Core.Util
 {
     using System;
     using System.Globalization;
+
     /// <summary>
     /// A logger class that strives to make it as easy as possible for
     /// developers to write log calls, while simultaneously making those
@@ -56,15 +57,17 @@ namespace Npoi.Core.Util
         /// <param name="obj1">The object to log.  This is Converted to a string.</param>
         /// <param name="exception">An exception to be logged</param>
         public override void Log(int level, Object obj1,
-                        Exception exception) {
-        if (Check(level)) {
-            Console.WriteLine("["+_cat+"] "+obj1);
-            if(exception != null) {
-                System.Console.Write(exception.StackTrace);
+                        Exception exception)
+        {
+            if (Check(level))
+            {
+                Console.WriteLine("[" + _cat + "] " + obj1);
+                if (exception != null)
+                {
+                    System.Console.Write(exception.StackTrace);
+                }
             }
         }
-    }
-
 
         /// <summary>
         /// Check if a logger is enabled to log at the specified level
@@ -76,7 +79,7 @@ namespace Npoi.Core.Util
             int currentLevel;
             try
             {
-	            string temp = null;//ConfigurationManager.AppSettings["poi.log.level"];
+                string temp = null;//ConfigurationManager.AppSettings["poi.log.level"];
                 if (string.IsNullOrEmpty(temp))
                     temp = WARN.ToString(CultureInfo.InvariantCulture);
                 currentLevel = int.Parse(temp, CultureInfo.InvariantCulture);
@@ -92,9 +95,5 @@ namespace Npoi.Core.Util
             }
             return false;
         }
-
-
     }   // end package scope class POILogger
-
-
 }

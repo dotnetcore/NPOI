@@ -17,21 +17,21 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-    using Npoi.Core.Util;
     using Npoi.Core.SS.Formula;
-
+    using Npoi.Core.Util;
+    using System;
 
     /**
      * A Name, be that a Named Range or a Function / User Defined
      *  Function, addressed in the HSSF External Sheet style.
-     *  
+     *
      * This is HSSF only, as it matches the HSSF file format way of
      *  referring to the sheet by an extern index. The XSSF equivalent
      *  is {@link NameXPxg}
      */
+
     [Serializable]
-    public class NameXPtg : OperandPtg,WorkbookDependentFormula
+    public class NameXPtg : OperandPtg, WorkbookDependentFormula
     {
         public const short sid = 0x39;
         private const int SIZE = 7;
@@ -54,16 +54,15 @@ namespace Npoi.Core.SS.Formula.PTG
          * @param sheetRefIndex index to REF entry in externsheet record
          * @param nameIndex index to defined name or externname table
          */
+
         public NameXPtg(int sheetRefIndex, int nameIndex)
-            :this(sheetRefIndex, nameIndex + 1, 0)
+            : this(sheetRefIndex, nameIndex + 1, 0)
         {
-            
         }
 
         public NameXPtg(ILittleEndianInput in1)
-            :this(in1.ReadUShort(), in1.ReadUShort(), in1.ReadUShort())
+            : this(in1.ReadUShort(), in1.ReadUShort(), in1.ReadUShort())
         {
-
         }
 
         public override void Write(ILittleEndianOutput out1)
@@ -72,7 +71,6 @@ namespace Npoi.Core.SS.Formula.PTG
             out1.WriteShort(_sheetRefIndex);
             out1.WriteShort(_nameNumber);
             out1.WriteShort(_reserved);
-
         }
 
         public override int Size
@@ -85,6 +83,7 @@ namespace Npoi.Core.SS.Formula.PTG
             // -1 to convert definedNameIndex from 1-based to zero-based
             return book.ResolveNameXText(this);
         }
+
         public override String ToFormulaString()
         {
             throw new NotImplementedException("3D references need a workbook to determine formula text");
@@ -102,6 +101,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 return _sheetRefIndex;
             }
         }
+
         public int NameIndex
         {
             get

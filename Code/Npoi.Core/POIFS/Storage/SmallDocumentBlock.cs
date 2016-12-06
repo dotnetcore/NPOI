@@ -17,21 +17,19 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
-
+using Npoi.Core.POIFS.Common;
 using System;
 using System.Collections;
-using System.IO;
-
-using Npoi.Core.POIFS.Common;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Npoi.Core.POIFS.Storage
 {
@@ -42,15 +40,16 @@ namespace Npoi.Core.POIFS.Storage
     /// </summary>
     public class SmallDocumentBlock : BlockWritable, ListManagedBlock
     {
-
         private const int BLOCK_SHIFT = 6;
 
-        private byte[]            _data;
-        private const byte _default_fill         = ( byte ) 0xff;
-        private const int  _block_size           =  1 << BLOCK_SHIFT;
+        private byte[] _data;
+        private const byte _default_fill = (byte)0xff;
+        private const int _block_size = 1 << BLOCK_SHIFT;
         private const int BLOCK_MASK = _block_size - 1;
+
         private static int _blocks_per_big_block =
             POIFSConstants.BIG_BLOCK_SIZE / _block_size;
+
         private POIFSBigBlockSize _bigBlockSize;
 
         public SmallDocumentBlock(POIFSBigBlockSize bigBlockSize, byte[] data, int index)
@@ -59,7 +58,7 @@ namespace Npoi.Core.POIFS.Storage
             _blocks_per_big_block = GetBlocksPerBigBlock(bigBlockSize);
             _data = new byte[_block_size];
 
-            System.Array.Copy(data, index*_block_size, _data, 0, _block_size);
+            System.Array.Copy(data, index * _block_size, _data, 0, _block_size);
         }
 
         public SmallDocumentBlock(POIFSBigBlockSize bigBlockSize)
@@ -71,8 +70,9 @@ namespace Npoi.Core.POIFS.Storage
 
         private static int GetBlocksPerBigBlock(POIFSBigBlockSize bigBlockSize)
         {
-            return bigBlockSize.GetBigBlockSize()/_block_size;
+            return bigBlockSize.GetBigBlockSize() / _block_size;
         }
+
         /// <summary>
         /// convert a single long array into an array of SmallDocumentBlock
         /// instances
@@ -82,21 +82,21 @@ namespace Npoi.Core.POIFS.Storage
         /// <param name="size">the intended size of the array (which may be smaller)</param>
         /// <returns>an array of SmallDocumentBlock instances, filled from
         /// the array</returns>
-        public static SmallDocumentBlock [] Convert(POIFSBigBlockSize bigBlockSize,
-                                                    byte [] array,
+        public static SmallDocumentBlock[] Convert(POIFSBigBlockSize bigBlockSize,
+                                                    byte[] array,
                                                     int size)
         {
-            SmallDocumentBlock[] rval = new SmallDocumentBlock[ (size + _block_size - 1) / _block_size ];
-            int                  offset = 0;
+            SmallDocumentBlock[] rval = new SmallDocumentBlock[(size + _block_size - 1) / _block_size];
+            int offset = 0;
 
             for (int k = 0; k < rval.Length; k++)
             {
-                rval[ k ] = new SmallDocumentBlock(bigBlockSize);
+                rval[k] = new SmallDocumentBlock(bigBlockSize);
                 if (offset < array.Length)
                 {
                     int length = Math.Min(_block_size, array.Length - offset);
 
-                    Array.Copy(array, offset, rval[ k ]._data, 0, length);
+                    Array.Copy(array, offset, rval[k]._data, 0, length);
                     if (length != _block_size)
                     {
                         for (int i = length; i < _block_size; i++)
@@ -109,7 +109,6 @@ namespace Npoi.Core.POIFS.Storage
                     {
                         rval[k]._data[j] = _default_fill;
                     }
-
                 }
                 offset += _block_size;
             }
@@ -123,12 +122,12 @@ namespace Npoi.Core.POIFS.Storage
         /// <param name="bigBlockSize"></param>
         /// <param name="blocks">the List to be filled out.</param>
         /// <returns>number of big blocks the list encompasses</returns>
-        public static int Fill(POIFSBigBlockSize bigBlockSize,IList blocks)
+        public static int Fill(POIFSBigBlockSize bigBlockSize, IList blocks)
         {
             int _blocks_per_big_block = GetBlocksPerBigBlock(bigBlockSize);
-            int count           = blocks.Count;
+            int count = blocks.Count;
             int big_block_count = (count + _blocks_per_big_block - 1) / _blocks_per_big_block;
-            int full_count      = big_block_count * _blocks_per_big_block;
+            int full_count = big_block_count * _blocks_per_big_block;
 
             for (; count < full_count; count++)
             {
@@ -144,23 +143,22 @@ namespace Npoi.Core.POIFS.Storage
         /// <param name="store">the original DocumentBlocks</param>
         /// <param name="size">the total document size</param>
         /// <returns>an array of new SmallDocumentBlocks instances</returns>
-        public static SmallDocumentBlock [] Convert(POIFSBigBlockSize bigBlocksSize,
-                                                    BlockWritable [] store,
+        public static SmallDocumentBlock[] Convert(POIFSBigBlockSize bigBlocksSize,
+                                                    BlockWritable[] store,
                                                     int size)
         {
             using (MemoryStream stream = new MemoryStream())
             {
-
                 for (int j = 0; j < store.Length; j++)
                 {
                     store[j].WriteBlocks(stream);
                 }
                 byte[] data = stream.ToArray();
-            SmallDocumentBlock[] rval = new SmallDocumentBlock[ ConvertToBlockCount(size) ];
+                SmallDocumentBlock[] rval = new SmallDocumentBlock[ConvertToBlockCount(size)];
 
                 for (int index = 0; index < rval.Length; index++)
                 {
-                rval[index] = new SmallDocumentBlock(bigBlocksSize,data, index);
+                    rval[index] = new SmallDocumentBlock(bigBlocksSize, data, index);
                 }
                 return rval;
             }
@@ -172,14 +170,14 @@ namespace Npoi.Core.POIFS.Storage
         /// <param name="bigBlockSize"></param>
         /// <param name="blocks">the raw data containing the SmallDocumentBlock</param>
         /// <returns>a List of SmallDocumentBlock's extracted from the input</returns>
-        public static List<SmallDocumentBlock> Extract(POIFSBigBlockSize bigBlockSize, ListManagedBlock [] blocks)
+        public static List<SmallDocumentBlock> Extract(POIFSBigBlockSize bigBlockSize, ListManagedBlock[] blocks)
         {
             int _blocks_per_big_block = GetBlocksPerBigBlock(bigBlockSize);
             List<SmallDocumentBlock> sdbs = new List<SmallDocumentBlock>();
 
             for (int j = 0; j < blocks.Length; j++)
             {
-                byte[] data = blocks[ j ].Data;
+                byte[] data = blocks[j].Data;
 
                 for (int k = 0; k < _blocks_per_big_block; k++)
                 {
@@ -197,14 +195,14 @@ namespace Npoi.Core.POIFS.Storage
         /// <param name="offset">the offset into the array of blocks to Read from</param>
         public static void Read(BlockWritable[] blocks, byte[] buffer, int offset)
         {
-            int firstBlockIndex  = offset / _block_size;
+            int firstBlockIndex = offset / _block_size;
             int firstBlockOffSet = offset % _block_size;
-            int lastBlockIndex   = (offset + buffer.Length - 1) / _block_size;
+            int lastBlockIndex = (offset + buffer.Length - 1) / _block_size;
 
             if (firstBlockIndex == lastBlockIndex)
             {
                 Array.Copy(
-                    (( SmallDocumentBlock ) blocks[ firstBlockIndex ])._data,
+                    ((SmallDocumentBlock)blocks[firstBlockIndex])._data,
                     firstBlockOffSet, buffer, 0, buffer.Length);
             }
             else
@@ -212,18 +210,18 @@ namespace Npoi.Core.POIFS.Storage
                 int buffer_offset = 0;
 
                 Array.Copy(
-                    (( SmallDocumentBlock ) blocks[ firstBlockIndex ])._data,
+                    ((SmallDocumentBlock)blocks[firstBlockIndex])._data,
                     firstBlockOffSet, buffer, buffer_offset,
                     _block_size - firstBlockOffSet);
                 buffer_offset += _block_size - firstBlockOffSet;
                 for (int j = firstBlockIndex + 1; j < lastBlockIndex; j++)
                 {
-                    Array.Copy((( SmallDocumentBlock ) blocks[ j ])._data,
+                    Array.Copy(((SmallDocumentBlock)blocks[j])._data,
                                      0, buffer, buffer_offset, _block_size);
                     buffer_offset += _block_size;
                 }
                 Array.Copy(
-                    (( SmallDocumentBlock ) blocks[ lastBlockIndex ])._data, 0,
+                    ((SmallDocumentBlock)blocks[lastBlockIndex])._data, 0,
                     buffer, buffer_offset, buffer.Length - buffer_offset);
             }
         }
@@ -279,15 +277,14 @@ namespace Npoi.Core.POIFS.Storage
         public void WriteBlocks(Stream stream)
 
         {
-            stream.Write(_data,0,_data.Length);
+            stream.Write(_data, 0, _data.Length);
         }
-
 
         /// <summary>
         /// Get the data from the block
         /// </summary>
         /// <value>the block's data as a byte array</value>
-        public byte [] Data
+        public byte[] Data
         {
             get
             {

@@ -1,5 +1,4 @@
-﻿
-namespace Npoi.Core.SS.Formula.Eval
+﻿namespace Npoi.Core.SS.Formula.Eval
 {
     public class MissingArgEval : ValueEval
     {

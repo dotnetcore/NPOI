@@ -17,12 +17,10 @@
 
 namespace Npoi.Core.SS.UserModel
 {
-
-    using System;
-    using System.Collections.Generic;
-
     using Npoi.Core.SS.Util;
+    using System;
     using System.Collections;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Indicate the position of the margin. One of left, right, top and bottom.
@@ -33,14 +31,17 @@ namespace Npoi.Core.SS.UserModel
         /// referes to the left margin
         /// </summary>
         LeftMargin = 0,
+
         /// <summary>
         /// referes to the right margin
         /// </summary>
         RightMargin = 1,
+
         /// <summary>
         /// referes to the top margin
         /// </summary>
         TopMargin = 2,
+
         /// <summary>
         /// referes to the bottom margin
         /// </summary>
@@ -59,14 +60,17 @@ namespace Npoi.Core.SS.UserModel
         /// referes to the lower/right corner
         /// </summary>
         LowerRight = 0,
+
         /// <summary>
         /// referes to the upper/right corner
         /// </summary>
         UpperRight = 1,
+
         /// <summary>
         /// referes to the lower/left corner
         /// </summary>
         LowerLeft = 2,
+
         /// <summary>
         /// referes to the upper/left corner
         /// </summary>
@@ -83,7 +87,6 @@ namespace Npoi.Core.SS.UserModel
     /// </remarks>
     public interface ISheet
     {
-
         /// <summary>
         /// Create a new row within the sheet and return the high level representation
         /// </summary>
@@ -150,6 +153,7 @@ namespace Npoi.Core.SS.UserModel
         /// <param name="targetIndex">target index</param>
         /// <returns>the new copied row object</returns>
         IRow CopyRow(int sourceIndex, int targetIndex);
+
         /// <summary>
         /// Set the width (in units of 1/256th of a character width)
         /// </summary>
@@ -241,7 +245,7 @@ namespace Npoi.Core.SS.UserModel
         /// <summary>
         /// Returns the merged region at the specified index
         /// </summary>
-        /// <param name="index">The index.</param>      
+        /// <param name="index">The index.</param>
         Npoi.Core.SS.Util.CellRangeAddress GetMergedRegion(int index);
 
         /// <summary>
@@ -250,11 +254,10 @@ namespace Npoi.Core.SS.UserModel
         /// <returns>
         /// an iterator of the PHYSICAL rows.  Meaning the 3rd element may not
         /// be the third row if say for instance the second row is undefined.
-        /// Call <see cref="Npoi.Core.SS.UserModel.IRow.RowNum"/> on each row 
+        /// Call <see cref="Npoi.Core.SS.UserModel.IRow.RowNum"/> on each row
         /// if you care which one it is.
         /// </returns>
         IEnumerator GetRowEnumerator();
-
 
         /// <summary>
         /// Get the row enumerator
@@ -268,7 +271,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <value>whether all zero values on the worksheet are displayed.</value>
         bool DisplayZeros { get; set; }
-        
+
         /// <summary>
         /// Gets or sets a value indicating whether the sheet displays Automatic Page Breaks.
         /// </summary>
@@ -292,14 +295,14 @@ namespace Npoi.Core.SS.UserModel
         /// <summary>
         /// Flag indicating whether summary rows appear below detail in an outline, when applying an outline.
         ///
-        /// 
+        ///
         /// When true a summary row is inserted below the detailed data being summarized and a
         /// new outline level is established on that row.
-        /// 
-        /// 
+        ///
+        ///
         /// When false a summary row is inserted above the detailed data being summarized and a new outline level
         /// is established on that row.
-        /// 
+        ///
         /// </summary>
         /// <returns><c>true</c> if row summaries appear below detail in the outline</returns>
         bool RowSumsBelow { get; set; }
@@ -307,14 +310,14 @@ namespace Npoi.Core.SS.UserModel
         /// <summary>
         /// Flag indicating whether summary columns appear to the right of detail in an outline, when applying an outline.
         ///
-        /// 
+        ///
         /// When true a summary column is inserted to the right of the detailed data being summarized
         /// and a new outline level is established on that column.
-        /// 
-        /// 
+        ///
+        ///
         /// When false a summary column is inserted to the left of the detailed data being
         /// summarized and a new outline level is established on that column.
-        /// 
+        ///
         /// </summary>
         /// <returns><c>true</c> if col summaries appear right of the detail in the outline</returns>
         bool RowSumsRight { get; set; }
@@ -336,7 +339,7 @@ namespace Npoi.Core.SS.UserModel
         /// Gets the user model for the default document header.
         /// <p/>
         /// Note that XSSF offers more kinds of document headers than HSSF does
-        /// 
+        ///
         /// </summary>
         /// <returns>the document header. Never <code>null</code></returns>
         IHeader Header { get; }
@@ -348,6 +351,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <returns>the document footer. Never <code>null</code></returns>
         IFooter Footer { get; }
+
         /// <summary>
         /// Gets the size of the margin in inches.
         /// </summary>
@@ -428,6 +432,7 @@ namespace Npoi.Core.SS.UserModel
         /// <param name="toprow">the top row to show in desktop window pane</param>
         /// <param name="leftcol">the left column to show in desktop window pane</param>
         void ShowInPane(int toprow, int leftcol);
+
         /// <summary>
         /// Sets desktop window pane display area, when the
         /// file is first opened in a viewer.
@@ -443,7 +448,7 @@ namespace Npoi.Core.SS.UserModel
         ///
         /// Calls shiftRows(startRow, endRow, n, false, false);
         ///
-        /// 
+        ///
         /// Additionally shifts merged regions that are completely defined in these
         /// rows (ie. merged 2 cells on a row to be shifted).
         /// </summary>
@@ -660,7 +665,7 @@ namespace Npoi.Core.SS.UserModel
         /// Adjusts the column width to fit the contents.
         /// </summary>
         /// <param name="column">the column index.</param>
-        /// <param name="useMergedCells">whether to use the contents of merged cells when 
+        /// <param name="useMergedCells">whether to use the contents of merged cells when
         /// calculating the width of the column. Default is to ignore merged cells.</param>
         /// <remarks>
         /// This process can be relatively slow on large sheets, so this should
@@ -699,7 +704,7 @@ namespace Npoi.Core.SS.UserModel
         /// <summary>
         /// Sets whether sheet is selected.
         /// </summary>
-        /// <param name="value">Whether to select the sheet or deselect the sheet.</param> 
+        /// <param name="value">Whether to select the sheet or deselect the sheet.</param>
         void SetActive(bool value);
 
         /// <summary>
@@ -759,7 +764,6 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         bool IsRightToLeft { get; set; }
 
-        
         /// <summary>
         ///  Get or set the repeating rows used when printing the sheet, as found in File->PageSetup->Sheet.
         /// <p/>
@@ -769,13 +773,12 @@ namespace Npoi.Core.SS.UserModel
         /// Sheet2!$5:$8
         /// </pre>
         /// The {@link CellRangeAddress} returned contains a column part which spans
-        /// all columns, and a row part which specifies the contiguous range of 
+        /// all columns, and a row part which specifies the contiguous range of
         /// repeating rows.
         /// <p/>
         /// If the Sheet does not have any repeating rows defined, null is returned.
         /// </summary>
         CellRangeAddress RepeatingRows { get; set; }
-
 
         /// <summary>
         ///  Gets or set the repeating columns used when printing the sheet, as found in File->PageSetup->Sheet.
@@ -785,11 +788,11 @@ namespace Npoi.Core.SS.UserModel
         /// Sheet1!$A:$A
         /// Sheet2!$C:$F
         /// </pre>
-        /// The {@link CellRangeAddress} returned contains a row part which spans all 
-        /// rows, and a column part which specifies the contiguous range of 
+        /// The {@link CellRangeAddress} returned contains a row part which spans all
+        /// rows, and a column part which specifies the contiguous range of
         /// repeating columns.
         /// <p/>
-        /// If the Sheet does not have any repeating columns defined, null is 
+        /// If the Sheet does not have any repeating columns defined, null is
         /// returned.
         /// </summary>
         CellRangeAddress RepeatingColumns { get; set; }
@@ -818,5 +821,4 @@ namespace Npoi.Core.SS.UserModel
         /// <returns></returns>
         int GetColumnOutlineLevel(int columnIndex);
     }
-
 }

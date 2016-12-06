@@ -18,11 +18,11 @@
  * Created on May 9, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     public class Or : BooleanFunction
     {
-
         protected override bool InitialResultValue
         {
             get

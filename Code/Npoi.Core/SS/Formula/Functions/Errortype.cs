@@ -15,9 +15,9 @@
    limitations under the License.
 ==================================================================== */
 
-using System;
 using Npoi.Core.SS.Formula.Eval;
 using Npoi.Core.SS.UserModel;
+using System;
 
 namespace Npoi.Core.SS.Formula.Functions
 {
@@ -50,10 +50,8 @@ namespace Npoi.Core.SS.Formula.Functions
 
     public class Errortype : Fixed1ArgFunction
     {
-
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0)
         {
-
             try
             {
                 OperandResolver.GetSingleValue(arg0, srcRowIndex, srcColumnIndex);
@@ -72,22 +70,26 @@ namespace Npoi.Core.SS.Formula.Functions
             {
                 case ErrorConstants.ERROR_NULL:
                     return 1;
+
                 case ErrorConstants.ERROR_DIV_0:
                     return 2;
+
                 case ErrorConstants.ERROR_VALUE:
                     return 3;
+
                 case ErrorConstants.ERROR_REF:
                     return 4;
+
                 case ErrorConstants.ERROR_NAME:
                     return 5;
+
                 case ErrorConstants.ERROR_NUM:
                     return 6;
+
                 case ErrorConstants.ERROR_NA:
                     return 7;
             }
             throw new ArgumentException("Invalid error code (" + errorCode + ")");
         }
-
     }
-
 }

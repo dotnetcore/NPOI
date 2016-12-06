@@ -18,13 +18,15 @@
  * Created on May 21, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     using System;
+
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     * 
-     * 
+     *
+     *
      * This class Is a functon library for common fiscal functions.
      * <b>Glossary of terms/abbreviations:</b>
      * <br/>
@@ -33,9 +35,9 @@ namespace Npoi.Core.SS.Formula.Functions
      * <li><em>PV:</em> Present Value</li>
      * <li><em>NPV:</em> Net Present Value</li>
      * <li><em>PMT:</em> (Periodic) Payment</li>
-     * 
+     *
      * </ul>
-     * For more info on the terms/abbreviations please use the references below 
+     * For more info on the terms/abbreviations please use the references below
      * (hyperlinks are subject to Change):
      * <br/>Online References:
      * <ol>
@@ -60,26 +62,27 @@ namespace Npoi.Core.SS.Formula.Functions
      * ny + p + f=0                            ...{when r=0}
      * </pre>
      */
+
     public class FinanceLib
     {
-        
         // constants for default values
 
-
-
-        private FinanceLib() { }
+        private FinanceLib()
+        {
+        }
 
         /**
          * Future value of an amount given the number of payments, rate, amount
          * of individual payment, present value and bool value indicating whether
-         * payments are due at the beginning of period 
-         * (false => payments are due at end of period) 
+         * payments are due at the beginning of period
+         * (false => payments are due at end of period)
          * @param r rate
          * @param n num of periods
          * @param y pmt per period
          * @param p future value
          * @param t type (true=pmt at end of period, false=pmt at begining of period)
          */
+
         public static double fv(double r, double n, double y, double p, bool t)
         {
             double retval = 0;
@@ -100,14 +103,15 @@ namespace Npoi.Core.SS.Formula.Functions
         /**
          * Present value of an amount given the number of future payments, rate, amount
          * of individual payment, future value and bool value indicating whether
-         * payments are due at the beginning of period 
-         * (false => payments are due at end of period) 
+         * payments are due at the beginning of period
+         * (false => payments are due at end of period)
          * @param r
          * @param n
          * @param y
          * @param f
          * @param t
          */
+
         public static double pv(double r, double n, double y, double f, bool t)
         {
             double retval = 0;
@@ -127,13 +131,14 @@ namespace Npoi.Core.SS.Formula.Functions
 
         /**
          * calculates the Net Present Value of a principal amount
-         * given the disCount rate and a sequence of cash flows 
-         * (supplied as an array). If the amounts are income the value should 
-         * be positive, else if they are payments and not income, the 
+         * given the disCount rate and a sequence of cash flows
+         * (supplied as an array). If the amounts are income the value should
+         * be positive, else if they are payments and not income, the
          * value should be negative.
          * @param r
          * @param cfs cashflow amounts
          */
+
         public static double npv(double r, double[] cfs)
         {
             double npv = 0;
@@ -148,13 +153,14 @@ namespace Npoi.Core.SS.Formula.Functions
         }
 
         /**
-         * 
+         *
          * @param r
          * @param n
          * @param p
          * @param f
          * @param t
          */
+
         public static double pmt(double r, double n, double p, double f, bool t)
         {
             double retval = 0;
@@ -173,13 +179,14 @@ namespace Npoi.Core.SS.Formula.Functions
         }
 
         /**
-         * 
+         *
          * @param r
          * @param y
          * @param p
          * @param f
          * @param t
          */
+
         public static double nper(double r, double y, double p, double f, bool t)
         {
             double retval = 0;
@@ -202,7 +209,5 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return retval;
         }
-
-
     }
 }

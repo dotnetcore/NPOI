@@ -17,16 +17,15 @@
 
 namespace Npoi.Core.SS.Formula
 {
-    using System.Collections;
     using Npoi.Core.SS.Formula.Eval;
     using System.Collections.Generic;
 
-
     /**
      * Stores the cached result of a formula evaluation, along with the Set of sensititive input cells
-     * 
+     *
      * @author Josh Micich
      */
+
     public class FormulaCellCacheEntry : CellCacheEntry
     {
         public static new FormulaCellCacheEntry[] EMPTY_ARRAY = { };
@@ -42,7 +41,6 @@ namespace Npoi.Core.SS.Formula
 
         public FormulaCellCacheEntry()
         {
-
         }
 
         public bool IsInputSensitive
@@ -62,7 +60,7 @@ namespace Npoi.Core.SS.Formula
 
         public void SetSensitiveInputCells(CellCacheEntry[] sensitiveInputCells)
         {
-            // need To tell all cells that were previously used, but no longer are, 
+            // need To tell all cells that were previously used, but no longer are,
             // that they are not consumed by this cell any more
             ChangeConsumingCells(sensitiveInputCells == null ? CellCacheEntry.EMPTY_ARRAY : sensitiveInputCells);
             _sensitiveInputCells = sensitiveInputCells;
@@ -84,7 +82,6 @@ namespace Npoi.Core.SS.Formula
 
         private void ChangeConsumingCells(CellCacheEntry[] usedCells)
         {
-
             CellCacheEntry[] prevUsedCells = _sensitiveInputCells;
             int nUsed = usedCells.Length;
             for (int i = 0; i < nUsed; i++)

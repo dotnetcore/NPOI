@@ -15,9 +15,9 @@
    limitations Under the License.
 ==================================================================== */
 
-using System.Collections.Generic;
 using Npoi.Core.HSSF.Model;
 using Npoi.Core.HSSF.Record.Chart;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart
@@ -36,6 +36,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
         private SerAuxTrendRecord serAuxTrend = null;
         private SerAuxErrBarRecord serAuxErrBar = null;
         private List<LegendExceptionAggregate> leList = new List<LegendExceptionAggregate>();
+
         public SeriesFormatAggregate(RecordStream rs, ChartRecordAggregate container)
             : base(RuleName_SERIESFORMAT, container)
         {
@@ -93,7 +94,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             rv.VisitRecord(series);
             rv.VisitRecord(BeginRecord.instance);
 
-            foreach(KeyValuePair<BRAIRecord,SeriesTextRecord> kv in dic4AI)
+            foreach (KeyValuePair<BRAIRecord, SeriesTextRecord> kv in dic4AI)
             {
                 rv.VisitRecord(kv.Key);
                 if (kv.Value != null)
@@ -122,12 +123,14 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             rv.VisitRecord(EndRecord.instance);
         }
 
-        short _seriesIndex;
+        private short _seriesIndex;
+
         public short SeriesIndex
         {
             get { return _seriesIndex; }
             set { _seriesIndex = value; }
         }
+
         /// <summary>
         /// LegendException [Begin ATTACHEDLABEL [TEXTPROPS] End]
         /// </summary>
@@ -136,10 +139,12 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             private LegendExceptionRecord legendException = null;
             private AttachedLabelAggregate attachedLabel = null;
             private TextPropsAggregate textProps = null;
+
             public LegendExceptionRecord LegendException
             {
                 get { return legendException; }
             }
+
             public LegendExceptionAggregate(RecordStream rs, ChartRecordAggregate container)
                 : base(RuleName_LEGENDEXCEPTION, container)
             {
@@ -148,7 +153,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
                 {
                     rs.GetNext();
                     attachedLabel = new AttachedLabelAggregate(rs, this);
-                    if (rs.PeekNextChartSid() == TextPropsStreamRecord.sid || 
+                    if (rs.PeekNextChartSid() == TextPropsStreamRecord.sid ||
                         rs.PeekNextChartSid() == RichTextStreamRecord.sid)
                     {
                         textProps = new TextPropsAggregate(rs, this);
@@ -157,6 +162,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
                     Debug.Assert(r.GetType() == typeof(EndRecord));
                 }
             }
+
             public override void VisitContainedRecords(RecordVisitor rv)
             {
                 rv.VisitRecord(legendException);

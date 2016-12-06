@@ -17,21 +17,21 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-    using Npoi.Core.HSSF.Util;
-
-    using Npoi.Core.SS.Util;
 
     /**
-     * The <c>HyperlinkRecord</c> wraps an HLINK-record 
+     * The <c>HyperlinkRecord</c> wraps an HLINK-record
      *  from the Excel-97 format.
-     * Supports only external links for now (eg http://) 
+     * Supports only external links for now (eg http://)
      *
      * @author      Mark Hissink Muller <a href="mailto:mark@hissinkmuller.nl">mark@hissinkmuller.nl</a>
      * @author      Yegor Kozlov (yegor at apache dot org)
      */
+
     public class HyperlinkRecord : StandardRecord
     {
         private static POILogger logger = POILogFactory.GetLogger(typeof(HyperlinkRecord));
@@ -52,13 +52,13 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Tail of a URL link
          */
-        public static readonly byte[] URL_uninterpretedTail = HexRead.ReadFromString("79 58 81 F4  3B 1D 7F 48   AF 2C 82 5D  C4 85 27 63   00 00 00 00  A5 AB 00 00"); 
+        public static readonly byte[] URL_uninterpretedTail = HexRead.ReadFromString("79 58 81 F4  3B 1D 7F 48   AF 2C 82 5D  C4 85 27 63   00 00 00 00  A5 AB 00 00");
         /**
          * Tail of a file link
          */
         public static readonly byte[] FILE_uninterpretedTail = HexRead.ReadFromString("FF FF AD DE  00 00 00 00   00 00 00 00  00 00 00 00   00 00 00 00  00 00 00 00");
         private static readonly int TAIL_SIZE = FILE_uninterpretedTail.Length;
-        
+
         public const short sid = 0x1b8;
 
         /** cell range of this hyperlink */
@@ -68,7 +68,6 @@ namespace Npoi.Core.HSSF.Record
          * 16-byte GUID
          */
         private GUID _guid;
-
 
         /**
          * Some sort of options for file links.
@@ -83,23 +82,23 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Test label
          */
-        private String _label=string.Empty;
-        private String _targetFrame=string.Empty;
+        private String _label = string.Empty;
+        private String _targetFrame = string.Empty;
         /**
          * Moniker. Makes sense only for URL and file links
          */
         private GUID _moniker;
         /** in 8:3 DOS format No Unicode string header,
          * always 8-bit characters, zero-terminated */
-        private String _shortFilename=string.Empty;
+        private String _shortFilename = string.Empty;
         /** Link */
-        private String _address=string.Empty;
+        private String _address = string.Empty;
         /**
          * Text describing a place in document.  In Excel UI, this is appended to the
          * address, (after a '#' delimiter).<br/>
          * This field is optional.  If present, the {@link #HLINK_PLACE} must be set.
          */
-        private String _textMark=string.Empty;
+        private String _textMark = string.Empty;
         /**
          * Remaining bytes
          */
@@ -108,9 +107,9 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Create a new hyperlink
          */
+
         public HyperlinkRecord()
         {
-
         }
 
         /**
@@ -118,6 +117,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @param in the stream to Read from
          */
+
         public HyperlinkRecord(RecordInputStream in1)
         {
             _range = new CellRangeAddress(in1);
@@ -232,6 +232,7 @@ namespace Npoi.Core.HSSF.Record
                 Console.WriteLine(HexDump.ToHex(in1.ReadRemainder()));
             }
         }
+
         private static byte[] ReadTail(byte[] expectedTail, ILittleEndianInput in1)
         {
             byte[] result = new byte[TAIL_SIZE];
@@ -249,6 +250,7 @@ namespace Npoi.Core.HSSF.Record
             //}
             return result;
         }
+
         private static void WriteTail(byte[] tail, ILittleEndianOutput out1)
         {
             out1.Write(tail);
@@ -259,10 +261,11 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return the 0-based column of the first cell that Contains the hyperlink
          */
+
         public int FirstColumn
         {
-            get{return _range.FirstColumn;}
-            set{_range.FirstColumn = value;}
+            get { return _range.FirstColumn; }
+            set { _range.FirstColumn = value; }
         }
 
         /**
@@ -270,10 +273,11 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return the 0-based column of the last cell that Contains the hyperlink
         */
+
         public int LastColumn
         {
-            get{return _range.LastColumn;}
-            set{_range.LastColumn= value;}
+            get { return _range.LastColumn; }
+            set { _range.LastColumn = value; }
         }
 
         /**
@@ -281,10 +285,11 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return the 0-based row of the first cell that Contains the hyperlink
          */
+
         public int FirstRow
         {
-           get{ return _range.FirstRow;}
-            set{_range.FirstRow = value;}
+            get { return _range.FirstRow; }
+            set { _range.FirstRow = value; }
         }
 
         /**
@@ -292,6 +297,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return the 0-based row of the last cell that Contains the hyperlink
          */
+
         public int LastRow
         {
             get { return _range.LastRow; }
@@ -303,6 +309,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return 16-byte guid identifier
          */
+
         public GUID Guid
         {
             get
@@ -316,6 +323,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return 16-byte moniker
          */
+
         public GUID Moniker
         {
             get
@@ -323,6 +331,7 @@ namespace Npoi.Core.HSSF.Record
                 return _moniker;
             }
         }
+
         private static String CleanString(String s)
         {
             if (s == null)
@@ -336,6 +345,7 @@ namespace Npoi.Core.HSSF.Record
             }
             return s.Substring(0, idx);
         }
+
         private static String AppendNullTerm(String s)
         {
             if (s == null)
@@ -350,13 +360,14 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return  text to Display
          */
+
         public String Label
         {
             get
             {
                 return CleanString(_label);
             }
-            set 
+            set
             {
                 _label = AppendNullTerm(value);
             }
@@ -367,11 +378,12 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return  the Address of this hyperlink
          */
+
         public String Address
         {
             get
             {
-                if ((_linkOpts & HLINK_URL) != 0 && _moniker!=null && FILE_MONIKER.Equals(_moniker))
+                if ((_linkOpts & HLINK_URL) != 0 && _moniker != null && FILE_MONIKER.Equals(_moniker))
                     return CleanString(_address != null ? _address : _shortFilename);
                 else if ((_linkOpts & HLINK_PLACE) != 0)
                     return CleanString(_textMark);
@@ -388,13 +400,14 @@ namespace Npoi.Core.HSSF.Record
                     _address = AppendNullTerm(value);
             }
         }
+
         public String TextMark
         {
             get
             {
                 return CleanString(_textMark);
             }
-            set 
+            set
             {
                 _textMark = AppendNullTerm(value);
             }
@@ -403,6 +416,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Link options. Must be a combination of HLINK_* constants.
          */
+
         public int LinkOptions
         {
             get
@@ -410,6 +424,7 @@ namespace Npoi.Core.HSSF.Record
                 return _linkOpts;
             }
         }
+
         public String TargetFrame
         {
             get
@@ -417,20 +432,23 @@ namespace Npoi.Core.HSSF.Record
                 return CleanString(_targetFrame);
             }
         }
+
         public String ShortFilename
         {
             get
             {
                 return CleanString(_shortFilename);
             }
-            set 
+            set
             {
                 _shortFilename = AppendNullTerm(value);
             }
         }
+
         /**
          * Label options
          */
+
         public int LabelOptions
         {
             get
@@ -442,6 +460,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Options for a file link
          */
+
         public int FileOptions
         {
             get
@@ -450,12 +469,10 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         public override short Sid
         {
             get { return HyperlinkRecord.sid; }
         }
-
 
         public override void Serialize(ILittleEndianOutput out1)
         {
@@ -486,7 +503,7 @@ namespace Npoi.Core.HSSF.Record
                 _moniker.Serialize(out1);
                 if (_moniker != null && URL_MONIKER.Equals(_moniker))
                 {
-                    if (_uninterpretedTail == null) 
+                    if (_uninterpretedTail == null)
                     {
                         out1.WriteInt(_address.Length * 2);
                         StringUtil.PutUnicodeLE(_address, out1);
@@ -523,7 +540,6 @@ namespace Npoi.Core.HSSF.Record
             {
                 out1.WriteInt(_textMark.Length);
                 StringUtil.PutUnicodeLE(_textMark, out1);
-
             }
         }
 
@@ -554,7 +570,7 @@ namespace Npoi.Core.HSSF.Record
                 if ((_linkOpts & HLINK_URL) != 0 && (_linkOpts & HLINK_UNC_PATH) == 0)
                 {
                     size += GUID.ENCODED_SIZE;  //moniker Length
-                    if (_moniker!=null&&URL_MONIKER.Equals(_moniker))
+                    if (_moniker != null && URL_MONIKER.Equals(_moniker))
                     {
                         size += 4;  //Address Length
                         size += _address.Length * 2;
@@ -599,11 +615,11 @@ namespace Npoi.Core.HSSF.Record
             {
                 buffer.Append("    .targetFrame= ").Append(TargetFrame).Append("\n");
             }
-            if((_linkOpts & HLINK_URL) != 0 && _moniker != null) 
+            if ((_linkOpts & HLINK_URL) != 0 && _moniker != null)
             {
                 buffer.Append("    .moniker          = ").Append(_moniker.FormatAsString()).Append("\n");
             }
-            if ((_linkOpts & HLINK_PLACE) != 0) 
+            if ((_linkOpts & HLINK_PLACE) != 0)
             {
                 buffer.Append("    .targetFrame= ").Append(TextMark).Append("\n");
             }
@@ -614,12 +630,12 @@ namespace Npoi.Core.HSSF.Record
 
         /// <summary>
         /// Initialize a new url link
-        /// </summary>        
+        /// </summary>
         public void CreateUrlLink()
         {
-            _range = new CellRangeAddress(0, 0, 0, 0); 
+            _range = new CellRangeAddress(0, 0, 0, 0);
             _guid = STD_MONIKER;
-            
+
             _linkOpts = HLINK_URL | HLINK_ABS | HLINK_LABEL;
             Label = "";
             _moniker = URL_MONIKER;
@@ -638,7 +654,7 @@ namespace Npoi.Core.HSSF.Record
             _fileOpts = 0;
             Label = "";
             _moniker = FILE_MONIKER;
-            Address= null;
+            Address = null;
             ShortFilename = "";
             _uninterpretedTail = FILE_uninterpretedTail;
         }
@@ -662,7 +678,7 @@ namespace Npoi.Core.HSSF.Record
             HyperlinkRecord rec = new HyperlinkRecord();
             rec._range = _range.Copy();
             rec._guid = _guid;
-            
+
             rec._linkOpts = _linkOpts;
             rec._fileOpts = _fileOpts;
             rec._label = _label;
@@ -674,7 +690,5 @@ namespace Npoi.Core.HSSF.Record
             rec._uninterpretedTail = _uninterpretedTail;
             return rec;
         }
-
-
     }
 }

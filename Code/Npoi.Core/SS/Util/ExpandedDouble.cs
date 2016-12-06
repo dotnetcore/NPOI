@@ -16,10 +16,11 @@
 ==================================================================== */
 
 using System;
+
 namespace Npoi.Core.SS.Util
 {
-
     using Npoi.Core.Util;
+
     /*
      * Represents a 64 bit IEEE double quantity expressed with both decimal and binary exponents
      * Does not handle negative numbers or zero
@@ -34,6 +35,7 @@ namespace Npoi.Core.SS.Util
      *
      * @author Josh Micich
      */
+
     public class ExpandedDouble
     {
         private static readonly BigInteger BI_FRAC_MASK = new BigInteger(IEEEDouble.FRAC_MASK);
@@ -41,9 +43,8 @@ namespace Npoi.Core.SS.Util
 
         private static BigInteger GetFrac(long rawBits)
         {
-            return (new BigInteger(rawBits)&BI_FRAC_MASK|BI_IMPLIED_FRAC_MSB)<<11;
+            return (new BigInteger(rawBits) & BI_FRAC_MASK | BI_IMPLIED_FRAC_MSB) << 11;
         }
-
 
         public static ExpandedDouble FromRawBitsAndExponent(long rawBits, int exp)
         {
@@ -62,9 +63,9 @@ namespace Npoi.Core.SS.Util
             if (biasedExp == 0)
             {
                 // sub-normal numbers
-                BigInteger frac = new BigInteger(rawBits)&BI_FRAC_MASK;
+                BigInteger frac = new BigInteger(rawBits) & BI_FRAC_MASK;
                 int expAdj = 64 - frac.BitLength();
-                _significand = frac<<expAdj;
+                _significand = frac << expAdj;
                 _binaryExponent = (biasedExp & 0x07FF) - 1023 - expAdj;
             }
             else
@@ -85,11 +86,11 @@ namespace Npoi.Core.SS.Util
             _binaryExponent = binaryExp;
         }
 
-
         /**
          * Convert to an equivalent {@link NormalisedDecimal} representation having 15 decimal digits of precision in the
          * non-fractional bits of the significand.
          */
+
         public NormalisedDecimal NormaliseBaseTen()
         {
             return NormalisedDecimal.Create(_significand, _binaryExponent);
@@ -98,6 +99,7 @@ namespace Npoi.Core.SS.Util
         /**
          * @return the number of non-fractional bits after the MSB of the significand
          */
+
         public int GetBinaryExponent()
         {
             return _binaryExponent;
@@ -109,4 +111,3 @@ namespace Npoi.Core.SS.Util
         }
     }
 }
-

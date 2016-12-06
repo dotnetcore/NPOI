@@ -17,18 +17,20 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
-    using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     public interface Accumulator
     {
         double Accumulate(double x, double y);
     }
+
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
      *
      */
+
     public abstract class XYNumericFunction : Fixed2ArgFunction
     {
         protected static int X = 0;
@@ -37,10 +39,12 @@ namespace Npoi.Core.SS.Formula.Functions
         private abstract class ValueArray : ValueVector
         {
             private int _size;
+
             protected ValueArray(int size)
             {
                 _size = size;
             }
+
             public ValueEval GetItem(int index)
             {
                 if (index < 0 || index > _size)
@@ -50,7 +54,9 @@ namespace Npoi.Core.SS.Formula.Functions
                 }
                 return GetItemInternal(index);
             }
+
             protected abstract ValueEval GetItemInternal(int index);
+
             public int Size
             {
                 get
@@ -63,17 +69,19 @@ namespace Npoi.Core.SS.Formula.Functions
         private class SingleCellValueArray : ValueArray
         {
             private ValueEval _value;
+
             public SingleCellValueArray(ValueEval value)
                 : base(1)
             {
-
                 _value = value;
             }
+
             protected override ValueEval GetItemInternal(int index)
             {
                 return _value;
             }
         }
+
         private class RefValueArray : ValueArray
         {
             private RefEval _ref;
@@ -85,12 +93,14 @@ namespace Npoi.Core.SS.Formula.Functions
                 _ref = ref1;
                 _width = ref1.NumberOfSheets;
             }
+
             protected override ValueEval GetItemInternal(int index)
             {
                 int sIx = (index % _width) + _ref.FirstSheetIndex;
                 return _ref.GetInnerValueEval(sIx);
             }
         }
+
         private class AreaValueArray : ValueArray
         {
             private TwoDEval _ae;
@@ -102,6 +112,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 _ae = ae;
                 _width = ae.Width;
             }
+
             protected override ValueEval GetItemInternal(int index)
             {
                 int rowIx = index / _width;
@@ -109,9 +120,9 @@ namespace Npoi.Core.SS.Formula.Functions
                 return _ae.GetValue(rowIx, colIx);
             }
         }
+
         protected class DoubleArrayPair
         {
-
             private double[] _xArray;
             private double[] _yArray;
 
@@ -120,16 +131,17 @@ namespace Npoi.Core.SS.Formula.Functions
                 _xArray = xArray;
                 _yArray = yArray;
             }
+
             public double[] GetXArray()
             {
                 return _xArray;
             }
+
             public double[] GetYArray()
             {
                 return _yArray;
             }
         }
-
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1)
         {
@@ -155,9 +167,11 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return new NumberEval(result);
         }
+
         /**
  * Constructs a new instance of the Accumulator used to calculated this function
  */
+
         public abstract Accumulator CreateAccumulator();
 
         private double EvaluateInternal(ValueVector x, ValueVector y, int size)
@@ -271,6 +285,7 @@ namespace Npoi.Core.SS.Formula.Functions
             //return retval;
             throw new InvalidOperationException("not found in poi");
         }
+
         private static ValueVector CreateValueVector(ValueEval arg)
         {
             if (arg is ErrorEval)

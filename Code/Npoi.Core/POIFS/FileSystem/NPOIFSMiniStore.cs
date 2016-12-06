@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,21 +15,20 @@
    limitations under the License.
 ==================================================================== */
 
-
 using Npoi.Core.POIFS.Common;
-using Npoi.Core.POIFS.Storage;
 using Npoi.Core.POIFS.Properties;
-using System.Collections.Generic;
-using System;
+using Npoi.Core.POIFS.Storage;
 using Npoi.Core.Util;
+using System;
+using System.Collections.Generic;
 
 namespace Npoi.Core.POIFS.FileSystem
 {
-
     /**
      * This class handles the MiniStream (small block store)
      *  in the NIO case for {@link NPOIFSFileSystem}
      */
+
     public class NPOIFSMiniStore : BlockStore
     {
         private NPOIFSFileSystem _filesystem;
@@ -53,6 +51,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /**
          * Load the block at the given offset.
          */
+
         public override ByteBuffer GetBlockAt(int offset)
         {
             // Which big block is this?
@@ -73,7 +72,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 throw new IndexOutOfRangeException("Big block " + bigBlockNumber + " outside stream");
             }
 
-            // Position ourselves, and take a slice 
+            // Position ourselves, and take a slice
             dataBlock.Position = dataBlock.Position + bigBlockOffset;
             ByteBuffer miniBuffer = dataBlock.Slice();
             miniBuffer.Limit = POIFSConstants.SMALL_BLOCK_SIZE;
@@ -83,6 +82,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /**
          * Load the block, extending the underlying stream if needed
          */
+
         public override ByteBuffer CreateBlockIfNeeded(int offset)
         {
             bool firstInStore = false;
@@ -93,13 +93,15 @@ namespace Npoi.Core.POIFS.FileSystem
             }
 
             // Try to Get it without extending the stream
-            if (! firstInStore) {
+            if (!firstInStore)
+            {
                 try
                 {
                     return GetBlockAt(offset);
-                }catch (IndexOutOfRangeException){}
+                }
+                catch (IndexOutOfRangeException) { }
             }
-            
+
             // Need to extend the stream
             // TODO Replace this with proper append support
             // For now, do the extending by hand...
@@ -134,13 +136,13 @@ namespace Npoi.Core.POIFS.FileSystem
 
             // Now try again, to get the real small block
             return CreateBlockIfNeeded(offset);
-            
         }
 
         /**
          * Returns the BATBlock that handles the specified offset,
          *  and the relative index within it
          */
+
         public override BATBlockAndIndex GetBATBlockAndIndex(int offset)
         {
             return BATBlock.GetSBATBlockAndIndex(
@@ -150,6 +152,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /**
          * Works out what block follows the specified one.
          */
+
         public override int GetNextBlock(int offset)
         {
             BATBlockAndIndex bai = GetBATBlockAndIndex(offset);
@@ -159,6 +162,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /**
          * Changes the record of what block follows the specified one.
          */
+
         public override void SetNextBlock(int offset, int nextBlock)
         {
             BATBlockAndIndex bai = GetBATBlockAndIndex(offset);
@@ -170,6 +174,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * This method will extend the file if needed, and if doing
          *  so, allocate new FAT blocks to Address the extra space.
          */
+
         public override int GetFreeBlock()
         {
             int sectorsPerSBAT = _filesystem.GetBigBlockSizeDetails().GetBATEntriesPerBlock();
@@ -245,7 +250,6 @@ namespace Npoi.Core.POIFS.FileSystem
             return offset;
         }
 
-
         public override ChainLoopDetector GetChainLoopDetector()
         {
             return new ChainLoopDetector(_root.Size, this);
@@ -259,6 +263,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /**
          * Writes the SBATs to their backing blocks
          */
+
         public void SyncWithDataSource()
         {
             foreach (BATBlock sbat in _sbat_blocks)

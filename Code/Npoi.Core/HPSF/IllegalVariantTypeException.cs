@@ -17,30 +17,29 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF
 {
-    using System;
     using Npoi.Core.Util;
+    using System;
 
     /// <summary>
     /// This exception is thrown if HPSF encounters a variant type that is illegal
     /// in the current context.
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
     /// @since 2004-06-21
     /// </summary>
     [Serializable]
     public class IllegalVariantTypeException : VariantTypeException
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="IllegalVariantTypeException"/> class.
         /// </summary>
@@ -48,9 +47,7 @@ namespace Npoi.Core.HPSF
         /// <param name="value">The value</param>
         /// <param name="msg">A message string</param>
         public IllegalVariantTypeException(long variantType,
-                                           Object value, String msg):base(variantType, value, msg)
-        {
-            
+                                           Object value, String msg) : base(variantType, value, msg) {
         }
 
         /// <summary>
@@ -59,12 +56,9 @@ namespace Npoi.Core.HPSF
         /// <param name="variantType">The unsupported variant type</param>
         /// <param name="value">The value.</param>
         public IllegalVariantTypeException(long variantType,
-                                           Object value):this(variantType, value, "The variant type " + variantType + " (" +
+                                           Object value) : this(variantType, value, "The variant type " + variantType + " (" +
                  Variant.GetVariantName(variantType) + ", " +
-                 HexDump.ToHex(variantType) + ") is illegal in this context.")
-        {
-
+                 HexDump.ToHex(variantType) + ") is illegal in this context.") {
         }
-
     }
 }

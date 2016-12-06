@@ -15,8 +15,8 @@
    limitations Under the License.
 ==================================================================== */
 
-using System;
 using Npoi.Core.Util;
+using System;
 
 namespace Npoi.Core.HPSF
 {
@@ -29,28 +29,23 @@ namespace Npoi.Core.HPSF
 
         private Object _value;
 
-        public TypedPropertyValue()
-        {
+        public TypedPropertyValue() {
         }
 
-        public TypedPropertyValue(byte[] data, int startOffset)
-        {
+        public TypedPropertyValue(byte[] data, int startOffset) {
             Read(data, startOffset);
         }
 
-        public TypedPropertyValue(int type, Object value)
-        {
+        public TypedPropertyValue(int type, Object value) {
             _type = type;
             _value = value;
         }
 
-        public Object Value
-        {
+        public Object Value {
             get { return _value; }
         }
 
-        public int Read(byte[] data, int startOffset)
-        {
+        public int Read(byte[] data, int startOffset) {
             int offset = startOffset;
 
             _type = LittleEndian.GetShort(data, offset);
@@ -58,8 +53,7 @@ namespace Npoi.Core.HPSF
 
             short padding = LittleEndian.GetShort(data, offset);
             offset += LittleEndian.SHORT_SIZE;
-            if (padding != 0)
-            {
+            if (padding != 0) {
                 logger.Log(POILogger.WARN, "TypedPropertyValue padding at offset "
                         + offset + " MUST be 0, but it's value is " + padding);
             }
@@ -69,10 +63,8 @@ namespace Npoi.Core.HPSF
             return offset - startOffset;
         }
 
-        public int ReadValue(byte[] data, int offset)
-        {
-            switch (_type)
-            {
+        public int ReadValue(byte[] data, int offset) {
+            switch (_type) {
                 case Variant.VT_EMPTY:
                 case Variant.VT_NULL:
                     _value = null;
@@ -240,12 +232,10 @@ namespace Npoi.Core.HPSF
             }
         }
 
-        internal int ReadValuePadded(byte[] data, int offset)
-        {
+        internal int ReadValuePadded(byte[] data, int offset) {
             int nonPadded = ReadValue(data, offset);
             return (nonPadded & 0x03) == 0 ? nonPadded : nonPadded
                     + (4 - (nonPadded & 0x03));
         }
     }
-
 }

@@ -18,6 +18,7 @@
 namespace Npoi.Core.SS.UserModel
 {
     using System;
+
     public interface IComment
     {
         /**
@@ -34,14 +35,12 @@ namespace Npoi.Core.SS.UserModel
          */
         int Row { get; set; }
 
-
         /**
          * Return the column of the cell that Contains the comment
          *
          * @return the 0-based column of the cell that Contains the comment
          */
         int Column { get; set; }
-
 
         /**
          * Name of the original comment author

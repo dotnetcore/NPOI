@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF
@@ -35,9 +35,9 @@ namespace Npoi.Core.HPSF
     /// property Set is not of that type.
     /// The constructors of this class are analogous To those of its
     /// superclass and documented there.
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
-    /// @since 2002-02-09 
+    /// @since 2002-02-09
     /// </summary>
     [Serializable]
     public class UnexpectedPropertySetTypeException : HPSFException
@@ -45,31 +45,23 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// Initializes a new instance of the <see cref="UnexpectedPropertySetTypeException"/> class.
         /// </summary>
-        public UnexpectedPropertySetTypeException():base()
-        {
-            
+        public UnexpectedPropertySetTypeException() : base() {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UnexpectedPropertySetTypeException"/> class.
         /// </summary>
         /// <param name="msg">The message string.</param>
-        public UnexpectedPropertySetTypeException(String msg):base(msg)
-        {
-            
+        public UnexpectedPropertySetTypeException(String msg) : base(msg) {
         }
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UnexpectedPropertySetTypeException"/> class.
         /// </summary>
         /// <param name="reason">The reason, i.e. a throwable that indirectly
         /// caused this exception.</param>
-        public UnexpectedPropertySetTypeException(Exception reason):base(reason)
-        {
-            
+        public UnexpectedPropertySetTypeException(Exception reason) : base(reason) {
         }
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UnexpectedPropertySetTypeException"/> class.
@@ -78,10 +70,7 @@ namespace Npoi.Core.HPSF
         /// <param name="reason">The reason, i.e. a throwable that indirectly
         /// caused this exception.</param>
         public UnexpectedPropertySetTypeException(String msg,
-                                                  Exception reason):base(msg, reason)
-        {
-            
+                                                  Exception reason) : base(msg, reason) {
         }
-
     }
 }

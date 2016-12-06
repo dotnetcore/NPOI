@@ -17,24 +17,24 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
-using System.IO;
 using System.Globalization;
+using System.IO;
 
 namespace Npoi.Core.Util
 {
     /// <summary>
     /// representation of a byte (8-bit) field at a fixed location within a
     /// byte array
-    /// @author Marc Johnson (mjohnson at apache dot org    
+    /// @author Marc Johnson (mjohnson at apache dot org
     /// </summary>
     public class ByteField : FixedField
     {
@@ -63,7 +63,7 @@ namespace Npoi.Core.Util
                 throw new IndexOutOfRangeException("offset cannot be negative");
             }
             this._offset = offset;
-            this.Value=value;
+            this.Value = value;
         }
 
         /// <summary>
@@ -154,7 +154,4 @@ namespace Npoi.Core.Util
             data[this._offset] = this._value;
         }
     }
-
- 
-
 }

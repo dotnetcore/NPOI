@@ -15,12 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
+using Npoi.Core.POIFS.Dev;
+using Npoi.Core.POIFS.Properties;
 using System;
 using System.Collections;
-
-using Npoi.Core.POIFS.FileSystem;
-using Npoi.Core.POIFS.Properties;
-using Npoi.Core.POIFS.Dev;
 using System.Collections.Generic;
 
 namespace Npoi.Core.POIFS.FileSystem
@@ -42,7 +40,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * @param parent the parent of this entry
          */
 
-        public DocumentNode(DocumentProperty property, DirectoryNode parent):base(property, parent)
+        public DocumentNode(DocumentProperty property, DirectoryNode parent) : base(property, parent)
         {
             _document = property.Document;
         }
@@ -58,7 +56,6 @@ namespace Npoi.Core.POIFS.FileSystem
             get { return _document; }
         }
 
-
         /**
          * get the zize of the document, in bytes
          *
@@ -70,7 +67,6 @@ namespace Npoi.Core.POIFS.FileSystem
             get { return Property.Size; }
         }
 
-
         /**
          * Is this a DocumentEntry?
          *
@@ -79,9 +75,8 @@ namespace Npoi.Core.POIFS.FileSystem
 
         public override bool IsDocumentEntry
         {
-            get{return true;}
+            get { return true; }
         }
-
 
         /**
          * extensions use this method to verify internal rules regarding
@@ -95,7 +90,6 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get { return true; }
         }
-
 
         /**
          * Get an array of objects, some of which may implement
@@ -151,7 +145,7 @@ namespace Npoi.Core.POIFS.FileSystem
 
         public String ShortDescription
         {
-            get{return Name;}
+            get { return Name; }
         }
     }
 }

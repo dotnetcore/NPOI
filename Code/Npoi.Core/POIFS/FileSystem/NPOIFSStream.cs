@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,29 +15,26 @@
    limitations under the License.
 ==================================================================== */
 
-
 using Npoi.Core.POIFS.Common;
-using Npoi.Core.POIFS.FileSystem;
+using Npoi.Core.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Npoi.Core.Util;
 
 namespace Npoi.Core.POIFS.FileSystem
 {
-
     /**
  * This handles Reading and writing a stream within a
  *  {@link NPOIFSFileSystem}. It can supply an iterator
  *  to read blocks, and way to write out to existing and
  *  new blocks.
- * Most users will want a higher level version of this, 
+ * Most users will want a higher level version of this,
  *  which deals with properties to track which stream
  *  this is.
  * This only works on big block streams, it doesn't
  *  handle small block ones.
  * This uses the new NIO code
- * 
+ *
  * TODO Implement a streaming write method, and append
  */
 
@@ -50,9 +46,10 @@ namespace Npoi.Core.POIFS.FileSystem
 
         /**
          * Constructor for an existing stream. It's up to you
-         *  to know how to Get the start block (eg from a 
-         *  {@link HeaderBlock} or a {@link Property}) 
+         *  to know how to Get the start block (eg from a
+         *  {@link HeaderBlock} or a {@link Property})
          */
+
         public NPOIFSStream(BlockStore blockStore, int startBlock)
         {
             this.blockStore = blockStore;
@@ -63,6 +60,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * Constructor for a new stream. A start block won't
          *  be allocated until you begin writing to it.
          */
+
         public NPOIFSStream(BlockStore blockStore)
         {
             this.blockStore = blockStore;
@@ -74,11 +72,11 @@ namespace Npoi.Core.POIFS.FileSystem
          * Will be {@link POIFSConstants#END_OF_CHAIN} for a
          *  new stream that hasn't been written to yet.
          */
+
         public int GetStartBlock()
         {
             return startBlock;
         }
-
 
         #region IEnumerable<byte[]> Members
 
@@ -88,8 +86,7 @@ namespace Npoi.Core.POIFS.FileSystem
             return GetBlockIterator();
         }
 
-        #endregion
-
+        #endregion IEnumerable<byte[]> Members
 
         #region IEnumerable Members
 
@@ -98,12 +95,13 @@ namespace Npoi.Core.POIFS.FileSystem
             return GetBlockIterator();
         }
 
-        #endregion
+        #endregion IEnumerable Members
 
         /**
      * Returns an iterator that'll supply one {@link ByteBuffer}
      *  per block in the stream.
      */
+
         public IEnumerator<ByteBuffer> GetBlockIterator()
         {
             if (startBlock == POIFSConstants.END_OF_CHAIN)
@@ -121,6 +119,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * Note - if this is property based, you'll still
          *  need to update the size in the property yourself
          */
+
         public void UpdateContents(byte[] contents)
         {
             Stream os = GetOutputStream();
@@ -144,11 +143,13 @@ namespace Npoi.Core.POIFS.FileSystem
         /**
          * Frees all blocks in the stream
          */
+
         public void Free()
         {
             ChainLoopDetector loopDetector = blockStore.GetChainLoopDetector();
             Free(loopDetector);
         }
+
         internal void Free(ChainLoopDetector loopDetector)
         {
             int nextBlock = startBlock;
@@ -168,13 +169,15 @@ namespace Npoi.Core.POIFS.FileSystem
 
         public class StreamBlockByteBuffer : MemoryStream
         {
-            byte[] oneByte = new byte[1];
-            ByteBuffer buffer;
+            private byte[] oneByte = new byte[1];
+            private ByteBuffer buffer;
+
             // Make sure we don't encounter a loop whilst overwriting
             // the existing blocks
-            ChainLoopDetector loopDetector;
-            int prevBlock, nextBlock;
-            NPOIFSStream pStream;
+            private ChainLoopDetector loopDetector;
+
+            private int prevBlock, nextBlock;
+            private NPOIFSStream pStream;
 
             protected internal StreamBlockByteBuffer(NPOIFSStream pStream)
             {
@@ -207,7 +210,7 @@ namespace Npoi.Core.POIFS.FileSystem
                     }
                     pStream.blockStore.SetNextBlock(thisBlock, POIFSConstants.END_OF_CHAIN);
 
-                    // If we've just written the first block on a 
+                    // If we've just written the first block on a
                     //  new stream, save the start block offset
                     if (pStream.startBlock == POIFSConstants.END_OF_CHAIN)
                     {
@@ -254,8 +257,8 @@ namespace Npoi.Core.POIFS.FileSystem
                 } while (len > 0);
             }
 
-	        protected override void Dispose(bool disposing)
-	        {
+            protected override void Dispose(bool disposing)
+            {
                 // If we're overwriting, free any remaining blocks
                 NPOIFSStream toFree = new NPOIFSStream(pStream.blockStore, nextBlock);
                 toFree.Free(loopDetector);
@@ -263,16 +266,18 @@ namespace Npoi.Core.POIFS.FileSystem
                 // Mark the end of the stream
                 pStream.blockStore.SetNextBlock(prevBlock, POIFSConstants.END_OF_CHAIN);
 
-				base.Dispose(disposing);
-			}
-		}
+                base.Dispose(disposing);
+            }
+        }
 
         public class StreamBlockByteBufferIterator : IEnumerator<ByteBuffer>
         {
             private ChainLoopDetector loopDetector;
             private int nextBlock;
+
             //private BlockStore blockStore;
             private ByteBuffer current;
+
             private NPOIFSStream pStream;
 
             public StreamBlockByteBufferIterator(NPOIFSStream pStream, int firstBlock)
@@ -350,7 +355,6 @@ namespace Npoi.Core.POIFS.FileSystem
 
                 try
                 {
-
                     loopDetector.Claim(nextBlock);
                     // byte[] data = blockStore.GetBlockAt(nextBlock);
                     current = pStream.blockStore.GetBlockAt(nextBlock);
@@ -371,7 +375,4 @@ namespace Npoi.Core.POIFS.FileSystem
     }
 
     //public class StreamBlockByteBufferIterator : IEnumerator<byte[]>
-    
-
-    
 }

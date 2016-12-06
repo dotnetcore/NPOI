@@ -1,5 +1,5 @@
-﻿using System.Text;
-using Npoi.Core.Util;
+﻿using Npoi.Core.Util;
+using System.Text;
 
 namespace Npoi.Core.HSSF.Record.Chart
 {
@@ -53,7 +53,6 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public override string ToString()
         {
-
             StringBuilder buffer = new StringBuilder();
 
             buffer.Append("[PIEFORMAT]").AppendLine()
@@ -62,6 +61,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
             return buffer.ToString();
         }
+
         /// <summary>
         /// A signed integer that specifies the distance of a data point or data points in a series from the center of one of the following:
         /// The plot area for a doughnut or pie chart group.

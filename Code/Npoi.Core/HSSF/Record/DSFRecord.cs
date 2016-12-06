@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title: double Stream Flag Record
@@ -34,7 +30,7 @@ namespace Npoi.Core.HSSF.Record
      * @version 2.0-pre
      */
 
-    public class DSFRecord: StandardRecord
+    public class DSFRecord : StandardRecord
     {
         public const short sid = 0x161;
         private int _options;
@@ -44,26 +40,26 @@ namespace Npoi.Core.HSSF.Record
         {
             _options = options;
         }
-        public DSFRecord(bool isBiff5BookStreamPresent):this(0)
+
+        public DSFRecord(bool isBiff5BookStreamPresent) : this(0)
         {
-            
             _options = biff5BookStreamFlag.SetBoolean(0, isBiff5BookStreamPresent);
         }
+
         /**
          * Constructs a DBCellRecord and Sets its fields appropriately.
          * @param in the RecordInputstream to Read the record from
          */
 
-        public DSFRecord(RecordInputStream in1):this(in1.ReadShort())
+        public DSFRecord(RecordInputStream in1) : this(in1.ReadShort())
         {
-            
         }
 
         public bool IsBiff5BookStreamPresent
         {
-          get
+            get
             {
-            return biff5BookStreamFlag.IsSet(_options);
+                return biff5BookStreamFlag.IsSet(_options);
             }
         }
 

@@ -17,23 +17,23 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
-using System.IO;
 using System.Globalization;
+using System.IO;
 
 namespace Npoi.Core.Util
 {
     public class ShortField
     {
-        private short     _value;
+        private short _value;
         private int _offset;
 
         /// <summary>
@@ -57,8 +57,8 @@ namespace Npoi.Core.Util
         /// </summary>
         /// <param name="offset">offset of the field within its byte array</param>
         /// <param name="value">the initial value</param>
-        /// <exception cref="IndexOutOfRangeException">if offset is negative</exception> 
-        public ShortField(int offset, short value):this(offset)
+        /// <exception cref="IndexOutOfRangeException">if offset is negative</exception>
+        public ShortField(int offset, short value) : this(offset)
         {
             this._value = value;
         }
@@ -70,7 +70,7 @@ namespace Npoi.Core.Util
         /// <param name="offset">offset of the field within its byte array</param>
         /// <param name="data">the byte array to read the value from</param>
         /// <exception cref="IndexOutOfRangeException">if the offset is not
-        /// within the range of 0..(data.length - 1)</exception> 
+        /// within the range of 0..(data.length - 1)</exception>
         public ShortField(int offset, byte[] data)
             : this(offset)
         {
@@ -101,6 +101,7 @@ namespace Npoi.Core.Util
             get { return _value; }
             set { this._value = value; }
         }
+
         /// <summary>
         /// set the ShortField's current value and write it to a byte array
         /// </summary>
@@ -108,7 +109,7 @@ namespace Npoi.Core.Util
         /// <param name="data">the byte array to write the value to</param>
         /// <exception cref="IndexOutOfRangeException">if the offset is out
         /// of range</exception>
-        public void Set(short value, ref byte [] data)
+        public void Set(short value, ref byte[] data)
         {
             _value = value;
             WriteToBytes(data);
@@ -120,7 +121,7 @@ namespace Npoi.Core.Util
         /// <param name="data">the byte array from which the value is to be read</param>
         /// <exception cref="IndexOutOfRangeException">if the offset is out
         /// of range</exception>
-        public void ReadFromBytes(byte [] data)
+        public void ReadFromBytes(byte[] data)
         {
             _value = LittleEndian.GetShort(data, _offset);
         }
@@ -147,7 +148,7 @@ namespace Npoi.Core.Util
         /// written</param>
         /// <exception cref="IndexOutOfRangeException">if the offset is out
         /// of range</exception>
-        public void WriteToBytes(byte [] data)
+        public void WriteToBytes(byte[] data)
         {
             LittleEndian.PutShort(data, _offset, _value);
         }

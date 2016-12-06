@@ -24,11 +24,11 @@ namespace Npoi.Core.SS.UserModel
         /// <summary>
         /// Allow accessing the Initial value.
         /// </summary>
-        /// 
+        ///
         Unknown = -1,
 
         None = 0,
-        
+
         /** Extended windows meta file */
         EMF = 2,
 
@@ -59,7 +59,6 @@ namespace Npoi.Core.SS.UserModel
          */
         EPS = 10,
 
-
         /**
          * Windows Bitmap (.bmp)
          */
@@ -70,25 +69,28 @@ namespace Npoi.Core.SS.UserModel
          */
         WPG = 12
     }
+
     /**
      * Repersents a picture in a SpreadsheetML document
      *
      * @author Yegor Kozlov
      */
+
     public interface IPicture
     {
-
         /**
          * Reset the image to the dimension of the embedded image
-         * 
+         *
          * @see #resize(double, double)
          */
+
         void Resize();
-        
+
         /**
          * Resize the image proportionally.
          *
          */
+
         void Resize(double scale);
 
         /**
@@ -102,12 +104,13 @@ namespace Npoi.Core.SS.UserModel
          * <code>resize(1.0,1.0)</code> keeps the original size,<br/>
          * <code>resize(0.5,0.5)</code> resize to 50% of the original,<br/>
          * <code>resize(2.0,2.0)</code> resizes to 200% of the original.<br/>
-         * <code>resize({@link Double#MAX_VALUE},{@link Double#MAX_VALUE})</code> resizes to the dimension of the embedded image. 
+         * <code>resize({@link Double#MAX_VALUE},{@link Double#MAX_VALUE})</code> resizes to the dimension of the embedded image.
          * </p>
          *
          * @param scaleX the amount by which the image width is multiplied relative to the original width.
          * @param scaleY the amount by which the image height is multiplied relative to the original height.
          */
+
         void Resize(double scaleX, double scaleY);
 
         /**
@@ -115,6 +118,7 @@ namespace Npoi.Core.SS.UserModel
          *
          * @return XSSFClientAnchor with the preferred size for this image
          */
+
         IClientAnchor GetPreferredSize();
 
         /**
@@ -124,6 +128,7 @@ namespace Npoi.Core.SS.UserModel
          * @param scaleY the amount by which image height is multiplied relative to the original height.
          * @return ClientAnchor with the preferred size for this image
          */
+
         IClientAnchor GetPreferredSize(double scaleX, double scaleY);
 
         /**
@@ -131,9 +136,8 @@ namespace Npoi.Core.SS.UserModel
          *
          * @return image dimension in pixels
          */
+
         Size GetImageDimension();
-
-
 
         /**
          * Return picture data for this picture

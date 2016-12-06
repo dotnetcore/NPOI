@@ -14,6 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.UserModel
 {
     using System;
@@ -24,11 +25,12 @@ namespace Npoi.Core.SS.UserModel
      *
      * See also OOO's excelfileformat.pdf (2.5.6)
      */
+
     public class FormulaError
     {
         static FormulaError()
         {
-            _values = new FormulaError[] { 
+            _values = new FormulaError[] {
                 FormulaError.NULL,
                 FormulaError.DIV0,
                 FormulaError.VALUE,
@@ -47,6 +49,7 @@ namespace Npoi.Core.SS.UserModel
                 smap.Add(error.String, error);
             }
         }
+
         private static FormulaError[] _values;
         /**
          * Intended to indicate when two areas are required to intersect, but do not.
@@ -122,7 +125,7 @@ namespace Npoi.Core.SS.UserModel
         // It is desirable to make these (arbitrary) strings look clearly different from any other
         // value expression that might appear in a formula.  In addition these error strings should
         // look unlike the standard Excel errors.  Hence tilde ('~') was used.
-    
+
         /**
          * POI specific code to indicate that there is a circular reference
          *  in the formula
@@ -154,6 +157,7 @@ namespace Npoi.Core.SS.UserModel
         /**
          * @return numeric code of the error
          */
+
         public byte Code
         {
             get
@@ -161,9 +165,11 @@ namespace Npoi.Core.SS.UserModel
                 return type;
             }
         }
+
         /**
          * @return long (internal) numeric code of the error
          */
+
         public int LongCode
         {
             get
@@ -171,9 +177,11 @@ namespace Npoi.Core.SS.UserModel
                 return longType;
             }
         }
+
         /**
          * @return string representation of the error
          */
+
         public String String
         {
             get
@@ -185,6 +193,7 @@ namespace Npoi.Core.SS.UserModel
         private static Dictionary<String, FormulaError> smap = new Dictionary<string, FormulaError>();
         private static Dictionary<Byte, FormulaError> bmap = new Dictionary<byte, FormulaError>();
         private static Dictionary<int, FormulaError> imap = new Dictionary<int, FormulaError>();
+
         public static bool IsValidCode(int errorCode)
         {
             foreach (FormulaError error in _values)
@@ -194,12 +203,14 @@ namespace Npoi.Core.SS.UserModel
             }
             return false;
         }
+
         public static FormulaError ForInt(byte type)
         {
             if (bmap.ContainsKey(type))
                 return bmap[type];
             throw new ArgumentException("Unknown error type: " + type);
         }
+
         public static FormulaError ForInt(int type)
         {
             if (imap.ContainsKey(type))
@@ -215,11 +226,8 @@ namespace Npoi.Core.SS.UserModel
         {
             if (smap.ContainsKey(code))
                 return smap[code];
-            
+
             throw new ArgumentException("Unknown error code: " + code);
         }
-
     }
-
 }
-

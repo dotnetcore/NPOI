@@ -14,9 +14,10 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
+
+using Npoi.Core.Util;
 using System;
 using System.Text;
-using Npoi.Core.Util;
 
 namespace Npoi.Core.HSSF.Record.Chart
 {
@@ -74,6 +75,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             record.YBR = this.YBR;
             return record;
         }
+
         public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
@@ -99,6 +101,7 @@ namespace Npoi.Core.HSSF.Record.Chart
                 .AppendLine("[/CRTLAYOUT12A]");
             return buffer.ToString();
         }
+
         public CrtLayout12ARecord(RecordInputStream ris)
         {
             frtHeader.rt = (ushort)ris.ReadUShort();
@@ -172,6 +175,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_1_dwCheckSum; }
             set { field_1_dwCheckSum = value; }
         }
+
         /// <summary>
         /// specifies the horizontal offset of the plot area’s upper-left corner, relative to the upper-left corner of the chart area
         /// </summary>
@@ -180,6 +184,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_3_xTL; }
             set { field_3_xTL = value; }
         }
+
         /// <summary>
         /// specifies the vertical offset of the plot area’s upper-left corner, relative to the upper-left corner of the chart area
         /// </summary>
@@ -188,6 +193,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_4_yTL; }
             set { field_4_yTL = value; }
         }
+
         /// <summary>
         /// specifies the width of the plot area
         /// </summary>
@@ -196,6 +202,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_5_xBR; }
             set { field_5_xBR = value; }
         }
+
         /// <summary>
         /// specifies the height of the plot area
         /// </summary>
@@ -204,6 +211,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_6_yBR; }
             set { field_6_yBR = value; }
         }
+
         /// <summary>
         /// A CrtLayout12Mode structure that specifies the meaning of x.
         /// </summary>
@@ -212,6 +220,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return (CrtLayout12Mode)field_7_wXMode; }
             set { field_7_wXMode = (short)value; }
         }
+
         /// <summary>
         /// A CrtLayout12Mode structure that specifies the meaning of y.
         /// </summary>
@@ -220,6 +229,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return (CrtLayout12Mode)field_8_wYMode; }
             set { field_8_wYMode = (short)value; }
         }
+
         /// <summary>
         /// A CrtLayout12Mode structure that specifies the meaning of dx.
         /// </summary>
@@ -228,6 +238,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return (CrtLayout12Mode)field_9_wWidthMode; }
             set { field_9_wWidthMode = (short)value; }
         }
+
         /// <summary>
         /// A CrtLayout12Mode structure that specifies the meaning of dy.
         /// </summary>
@@ -236,6 +247,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return (CrtLayout12Mode)field_10_wHeightMode; }
             set { field_10_wHeightMode = (short)value; }
         }
+
         /// <summary>
         /// An Xnum (section 2.5.342) value that specifies a horizontal offset. The meaning is determined by wXMode.
         /// </summary>
@@ -244,6 +256,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_11_x; }
             set { field_11_x = value; }
         }
+
         /// <summary>
         /// An Xnum value that specifies a vertical offset. The meaning is determined by wYMode.
         /// </summary>
@@ -252,6 +265,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_12_y; }
             set { field_12_y = value; }
         }
+
         /// <summary>
         /// An Xnum value that specifies a width or an horizontal offset. The meaning is determined by wWidthMode.
         /// </summary>
@@ -260,6 +274,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return field_13_dx; }
             set { field_13_dx = value; }
         }
+
         /// <summary>
         /// An Xnum value that specifies a height or an vertical offset. The meaning is determined by wHeightMode.
         /// </summary>

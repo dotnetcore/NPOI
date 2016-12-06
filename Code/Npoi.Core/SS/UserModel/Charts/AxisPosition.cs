@@ -14,14 +14,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.UserModel.Charts
 {
-
     /**
      * Enumeration of all possible axis positions.
      *
      * @author Roman Kashitsyn
      */
+
     public enum AxisPosition
     {
         Bottom,
@@ -30,4 +31,3 @@ namespace Npoi.Core.SS.UserModel.Charts
         Top
     }
 }
-

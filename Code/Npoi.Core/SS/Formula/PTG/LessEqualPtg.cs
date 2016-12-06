@@ -1,4 +1,3 @@
-        
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -26,6 +25,7 @@ namespace Npoi.Core.SS.Formula.PTG
      *
      * @author fred at stsci dot edu
      */
+
     public class LessEqualPtg : ValueOperatorPtg
     {
         public const byte sid = 0x0a;

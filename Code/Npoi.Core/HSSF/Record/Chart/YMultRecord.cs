@@ -18,8 +18,8 @@
 namespace Npoi.Core.HSSF.Record.Chart
 {
     /// <summary>
-    /// The YMult record specifies properties of the value multiplier for a value axis and 
-    /// that specifies the beginning of a collection of records as defined by the Chart Sheet 
+    /// The YMult record specifies properties of the value multiplier for a value axis and
+    /// that specifies the beginning of a collection of records as defined by the Chart Sheet
     /// substream ABNF. The collection of records specifies a display units label.
     /// </summary>
     /// <remarks>
@@ -28,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
     public class YMultRecord : RowDataRecord
     {
         public const short sid = 0x857;
+
         public YMultRecord(RecordInputStream ris)
             : base(ris)
         {
@@ -40,6 +41,7 @@ namespace Npoi.Core.HSSF.Record.Chart
                 return base.DataSize;
             }
         }
+
         public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             base.Serialize(out1);

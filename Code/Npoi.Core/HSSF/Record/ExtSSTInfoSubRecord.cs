@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -15,20 +14,18 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
-        
 
 /*
  * ExtSSTInfoSubRecord.java
  *
  * Created on September 8, 2001, 8:37 PM
  */
+
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Extended SST table info subrecord
@@ -41,14 +38,15 @@ namespace Npoi.Core.HSSF.Record
     public class InfoSubRecord
     {
         public const int ENCODED_SIZE = 8;
+
         public const short sid =
             0xFFF;                                             // only here for conformance, doesn't really have an sid
+
         private int field_1_stream_pos;          // stream pointer to the SST record
         private int field_2_bucket_sst_offset;   // don't really Understand this yet.
         private short field_3_zero;                // must be 0;
 
         /** Creates new ExtSSTInfoSubRecord */
-
 
         public InfoSubRecord(int streamPos, int bucketSstOffset)
         {
@@ -100,6 +98,5 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteShort(field_2_bucket_sst_offset);
             out1.WriteShort(field_3_zero);
         }
-
     }
 }

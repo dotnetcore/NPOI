@@ -17,25 +17,21 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-
-    using System;
-    using System.IO;
     //using System.Runtime.Serialization.Formatters.Binary;
-    using System.Collections;
 
     using Npoi.Core.Util;
+    using System;
     using System.Collections.Generic;
 
-
     /**
-     * <c>Ptg</c> represents a syntactic token in a formula.  'PTG' is an acronym for 
-     * '<b>p</b>arse <b>t</b>hin<b>g</b>'.  Originally, the name referred to the single 
+     * <c>Ptg</c> represents a syntactic token in a formula.  'PTG' is an acronym for
+     * '<b>p</b>arse <b>t</b>hin<b>g</b>'.  Originally, the name referred to the single
      * byte identifier at the start of the token, but in POI, <c>Ptg</c> encapsulates
      * the whole formula token (initial byte + value data).
-     * 
-     * 
+     *
+     *
      * <c>Ptg</c>s are logically arranged in a tree representing the structure of the
-     * Parsed formula.  However, in BIFF files <c>Ptg</c>s are written/Read in 
+     * Parsed formula.  However, in BIFF files <c>Ptg</c>s are written/Read in
      * <em>Reverse-Polish Notation</em> order. The RPN ordering also simplifies formula
      * evaluation logic, so POI mostly accesses <c>Ptg</c>s in the same way.
      *
@@ -43,6 +39,7 @@ namespace Npoi.Core.SS.Formula.PTG
      * @author avik
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     [Serializable]
     public abstract class Ptg : ICloneable
     {
@@ -52,6 +49,7 @@ namespace Npoi.Core.SS.Formula.PTG
          * Reads <c>size</c> bytes of the input stream, to Create an array of <c>Ptg</c>s.
          * Extra data (beyond <c>size</c>) may be Read if and <c>ArrayPtg</c>s are present.
          */
+
         public static Ptg[] ReadTokens(int size, ILittleEndianInput in1)
         {
             List<Ptg> temp = new List<Ptg>(4 + size / 2);
@@ -112,9 +110,9 @@ namespace Npoi.Core.SS.Formula.PTG
 
             return retval;
         }
+
         private static Ptg CreateClassifiedPtg(byte id, ILittleEndianInput in1)
         {
-
             int baseId = id & 0x1F | 0x20;
 
             switch (baseId)
@@ -180,6 +178,7 @@ namespace Npoi.Core.SS.Formula.PTG
             }
             throw new Exception("Unexpected base token id (" + id + ")");
         }
+
         private static Ptg[] ToPtgArray(List<Ptg> l)
         {
             if (l.Count == 0)
@@ -190,14 +189,16 @@ namespace Npoi.Core.SS.Formula.PTG
             Ptg[] result = (Ptg[])l.ToArray();
             return result;
         }
+
         /**
          * @return a distinct copy of this <c>Ptg</c> if the class is mutable, or the same instance
          * if the class is immutable.
          */
+
         //[Obsolete]
         //public Ptg Copy()
         //{
-        //    // TODO - all base tokens are logically immutable, but AttrPtg needs some clean-up 
+        //    // TODO - all base tokens are logically immutable, but AttrPtg needs some clean-up
         //    if (this is ValueOperatorPtg)
         //    {
         //        return this;
@@ -210,16 +211,14 @@ namespace Npoi.Core.SS.Formula.PTG
         //}
         public virtual object Clone()
         {
-	        throw new NotImplementedException();
+            throw new NotImplementedException();
             //using (MemoryStream stream = new MemoryStream())
             //{
-
             //    BinaryFormatter formatter = new BinaryFormatter();
             //    formatter.Serialize(stream, this);
             //    stream.Position = 0;
             //    return formatter.Deserialize(stream);
             //}
-
         }
 
         /**
@@ -227,6 +226,7 @@ namespace Npoi.Core.SS.Formula.PTG
 	 * if there are no array tokens present.
 	 * @return the full size taken to encode the specified <c>Ptg</c>s
 	 */
+
         public static int GetEncodedSize(Ptg[] ptgs)
         {
             int result = 0;
@@ -236,10 +236,12 @@ namespace Npoi.Core.SS.Formula.PTG
             }
             return result;
         }
+
         /**
  * Used to calculate value that should be encoded at the start of the encoded Ptg token array;
  * @return the size of the encoded Ptg tokens not including any trailing array data.
  */
+
         public static int GetEncodedSizeWithoutArrayData(Ptg[] ptgs)
         {
             int result = 0;
@@ -259,12 +261,13 @@ namespace Npoi.Core.SS.Formula.PTG
         }
 
         /**
-         * Writes the ptgs to the data buffer, starting at the specified offset.  
+         * Writes the ptgs to the data buffer, starting at the specified offset.
          *
          * <br/>
          * The 2 byte encode Length field is <b>not</b> written by this method.
          * @return number of bytes written
          */
+
         public static int SerializePtgs(Ptg[] ptgs, byte[] array, int offset)
         {
             int size = ptgs.Length;
@@ -285,7 +288,6 @@ namespace Npoi.Core.SS.Formula.PTG
                         arrayPtgs = new List<object>(5);
                     }
                     arrayPtgs.Add(ptg);
-
                 }
             }
             if (arrayPtgs != null)
@@ -300,7 +302,7 @@ namespace Npoi.Core.SS.Formula.PTG
         }
 
         /**
-         * @return the encoded Length of this Ptg, including the initial Ptg type identifier byte. 
+         * @return the encoded Length of this Ptg, including the initial Ptg type identifier byte.
          */
         public abstract int Size { get; }
         /**
@@ -308,19 +310,21 @@ namespace Npoi.Core.SS.Formula.PTG
  */
         public abstract bool IsBaseToken { get; }
 
-
         /** Write this Ptg to a byte array*/
+
         public abstract void Write(ILittleEndianOutput out1);
 
         /**
          * return a string representation of this token alone
          */
+
         public abstract String ToFormulaString();
 
         /** Overridden toString method to Ensure object hash is not printed.
          * This helps Get rid of gratuitous diffs when comparing two dumps
          * Subclasses may output more relevant information by overriding this method
          **/
+
         public override String ToString()
         {
             return this.GetType().ToString();
@@ -335,6 +339,7 @@ namespace Npoi.Core.SS.Formula.PTG
         /**
          *  @return the 'operand class' (REF/VALUE/ARRAY) for this Ptg
          */
+
         public byte PtgClass
         {
             get { return ptgClass; }
@@ -354,6 +359,7 @@ namespace Npoi.Core.SS.Formula.PTG
  * Debug / diagnostic method to get this token's 'operand class' type.
  * @return 'R' for 'reference', 'V' for 'value', 'A' for 'array' and '.' for base tokens
  */
+
         public char RVAType
         {
             get
@@ -379,7 +385,7 @@ namespace Npoi.Core.SS.Formula.PTG
             throw new NotImplementedException();
         }
 
-        #endregion
+        #endregion ICloneable Members
 
         public static bool DoesFormulaReferToDeletedCell(Ptg[] ptgs)
         {

@@ -17,19 +17,19 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Title:        Row Record
-     * Description:  stores the row information for the sheet. 
+     * Description:  stores the row information for the sheet.
      * REFERENCE:  PG 379 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
      * @author Andrew C. Oliver (acoliver at apache dot org)
      * @author Jason Height (jheight at chariot dot net dot au)
      * @version 2.0-pre
      */
+
     public class RowRecord : StandardRecord, IComparable
     {
         public const short sid = 0x208;
@@ -41,6 +41,7 @@ namespace Npoi.Core.HSSF.Record
         /** The maximum row number that excel can handle (zero based) ie 65536 rows Is
          *  max number of rows.
          */
+
         [Obsolete]
         public const int MAX_ROW_NUMBER = 65535;
 
@@ -52,21 +53,23 @@ namespace Npoi.Core.HSSF.Record
 
         // for generated sheets.
         private short field_6_reserved;
+
         /** 16 bit options flags */
         private int field_7_option_flags;
         private static BitField outlineLevel = BitFieldFactory.GetInstance(0x07);
 
         // bit 3 reserved
         private static BitField colapsed = BitFieldFactory.GetInstance(0x10);
+
         private static BitField zeroHeight = BitFieldFactory.GetInstance(0x20);
         private static BitField badFontHeight = BitFieldFactory.GetInstance(0x40);
         private static BitField formatted = BitFieldFactory.GetInstance(0x80);
 
-    private int field_8_option_flags;   // only if isFormatted
-    private static BitField          xfIndex       = BitFieldFactory.GetInstance(0xFFF);
-    private static BitField          topBorder     = BitFieldFactory.GetInstance(0x1000);
-    private static BitField          bottomBorder  = BitFieldFactory.GetInstance(0x2000);
-    private static BitField          phoeneticGuide  = BitFieldFactory.GetInstance(0x4000);
+        private int field_8_option_flags;   // only if isFormatted
+        private static BitField xfIndex = BitFieldFactory.GetInstance(0xFFF);
+        private static BitField topBorder = BitFieldFactory.GetInstance(0x1000);
+        private static BitField bottomBorder = BitFieldFactory.GetInstance(0x2000);
+        private static BitField phoeneticGuide = BitFieldFactory.GetInstance(0x4000);
 
         public RowRecord(int rowNumber)
         {
@@ -100,14 +103,16 @@ namespace Npoi.Core.HSSF.Record
         }
 
         public void SetEmpty()
-        { 
+        {
             field_2_first_col = 0;
-            field_3_last_col = 0;            
+            field_3_last_col = 0;
         }
+
         /**
          * Get the logical row number for this row (0 based index)
          * @return row - the row number
          */
+
         public bool IsEmpty
         {
             get
@@ -115,6 +120,7 @@ namespace Npoi.Core.HSSF.Record
                 return (field_2_first_col | field_3_last_col) == 0;
             }
         }
+
         //public short RowNumber
         public int RowNumber
         {
@@ -132,7 +138,7 @@ namespace Npoi.Core.HSSF.Record
 
         public int FirstCol
         {
-            get{return field_2_first_col;}
+            get { return field_2_first_col; }
             set { field_2_first_col = value; }
         }
 
@@ -154,7 +160,7 @@ namespace Npoi.Core.HSSF.Record
 
         public short Height
         {
-            get{return field_4_height;}
+            get { return field_4_height; }
             set { field_4_height = value; }
         }
 
@@ -213,9 +219,9 @@ namespace Npoi.Core.HSSF.Record
             {
                 return (colapsed.IsSet(field_7_option_flags));
             }
-            set 
-            { 
-                field_7_option_flags = colapsed.SetBoolean(field_7_option_flags, value); 
+            set
+            {
+                field_7_option_flags = colapsed.SetBoolean(field_7_option_flags, value);
             }
         }
 
@@ -231,9 +237,9 @@ namespace Npoi.Core.HSSF.Record
             {
                 return zeroHeight.IsSet(field_7_option_flags);
             }
-            set 
-            { 
-                field_7_option_flags = zeroHeight.SetBoolean(field_7_option_flags, value); 
+            set
+            {
+                field_7_option_flags = zeroHeight.SetBoolean(field_7_option_flags, value);
             }
         }
 
@@ -249,9 +255,9 @@ namespace Npoi.Core.HSSF.Record
             {
                 return badFontHeight.IsSet(field_7_option_flags);
             }
-            set 
-            { 
-                field_7_option_flags = badFontHeight.SetBoolean(field_7_option_flags, value); 
+            set
+            {
+                field_7_option_flags = badFontHeight.SetBoolean(field_7_option_flags, value);
             }
         }
 
@@ -275,6 +281,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get { return (short)this.field_8_option_flags; }
         }
+
         /**
          * if the row is formatted then this is the index to the extended format record
          * @see org.apache.poi.hssf.record.ExtendedFormatRecord
@@ -286,37 +293,44 @@ namespace Npoi.Core.HSSF.Record
             get { return xfIndex.GetShortValue((short)field_8_option_flags); }
             set { field_8_option_flags = xfIndex.SetValue(field_8_option_flags, value); }
         }
+
         /**
          * bit that specifies whether any cell in the row has a thick top border, or any
          * cell in the row directly above the current row has a thick bottom border.
          * @param f has thick top border
          */
+
         public bool TopBorder
         {
             get { return topBorder.IsSet(field_8_option_flags); }
             set { field_8_option_flags = topBorder.SetBoolean(field_8_option_flags, value); }
         }
+
         /**
          * A bit that specifies whether any cell in the row has a medium or thick
          * bottom border, or any cell in the row directly below the current row has
          * a medium or thick top border.
          * @param f has thick bottom border
          */
+
         public bool BottomBorder
         {
             get { return bottomBorder.IsSet(field_8_option_flags); }
             set { field_8_option_flags = bottomBorder.SetBoolean(field_8_option_flags, value); }
         }
+
         /**
          * A bit that specifies whether the phonetic guide feature is enabled for
          * any cell in this row.
          * @param f use phoenetic guide
          */
+
         public bool PhoeneticGuide
         {
             get { return phoeneticGuide.IsSet(field_8_option_flags); }
             set { field_8_option_flags = phoeneticGuide.SetBoolean(field_8_option_flags, value); }
         }
+
         public override String ToString()
         {
             StringBuilder buffer = new StringBuilder();
@@ -343,7 +357,6 @@ namespace Npoi.Core.HSSF.Record
             return buffer.ToString();
         }
 
-
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(RowNumber);
@@ -355,6 +368,7 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteShort(OptionFlags);
             out1.WriteShort(OptionFlags2);
         }
+
         protected override int DataSize
         {
             get
@@ -362,6 +376,7 @@ namespace Npoi.Core.HSSF.Record
                 return ENCODED_SIZE - 4;
             }
         }
+
         public override int RecordSize
         {
             get { return 20; }
@@ -406,7 +421,7 @@ namespace Npoi.Core.HSSF.Record
             return false;
         }
 
-        public override int GetHashCode ()
+        public override int GetHashCode()
         {
             return RowNumber;
         }

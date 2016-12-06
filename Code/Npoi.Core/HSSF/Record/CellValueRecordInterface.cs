@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -15,16 +14,15 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
-        
 
 /*
  * CellValueRecordInterface.java
  *
  * Created on October 2, 2001, 8:27 PM
  */
+
 namespace Npoi.Core.HSSF.Record
 {
-
     /**
      * The cell value record interface Is implemented by all classes of type Record that
      * contain cell values.  It allows the containing sheet to move through them and Compare
@@ -40,7 +38,6 @@ namespace Npoi.Core.HSSF.Record
 
     public interface CellValueRecordInterface
     {
-
         /**
          * Get the row this cell occurs on
          *
@@ -57,7 +54,6 @@ namespace Npoi.Core.HSSF.Record
          */
 
         int Column { get; set; }
-
 
         short XFIndex { get; set; }
     }

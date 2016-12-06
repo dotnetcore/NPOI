@@ -17,20 +17,19 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
-    using System;
     using Npoi.Core.SS.Formula.Eval;
-    using Npoi.Core.SS.UserModel;
-    using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.UserModel;
+    using System;
+
     /**
-     * 
-     * 
+     *
+     *
      * @author Josh Micich
      */
+
     public class SheetRefEvaluator
     {
-
         private WorkbookEvaluator _bookEvaluator;
         private EvaluationTracker _tracker;
         private IEvaluationSheet _sheet;
@@ -76,6 +75,7 @@ namespace Npoi.Core.SS.Formula
  * @return  whether cell at rowIndex and columnIndex is a subtotal
  * @see org.apache.poi.ss.formula.functions.Subtotal
  */
+
         public bool IsSubTotal(int rowIndex, int columnIndex)
         {
             bool subtotal = false;

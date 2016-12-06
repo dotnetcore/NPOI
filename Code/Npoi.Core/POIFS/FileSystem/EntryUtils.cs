@@ -14,9 +14,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 using System;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Npoi.Core.POIFS.FileSystem
@@ -26,6 +27,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /**
      * Copies an Entry into a target POIFS directory, recursively
      */
+
         public static void CopyNodeRecursively(Entry entry, DirectoryEntry target)
         {
             // System.err.println("copyNodeRecursively called with "+entry.getName()+
@@ -35,7 +37,7 @@ namespace Npoi.Core.POIFS.FileSystem
             {
                 DirectoryEntry dirEntry = (DirectoryEntry)entry;
                 newTarget = target.CreateDirectory(entry.Name);
-                newTarget.StorageClsid=(dirEntry.StorageClsid);
+                newTarget.StorageClsid = (dirEntry.StorageClsid);
                 IEnumerator<Entry> entries = dirEntry.Entries;
 
                 while (entries.MoveNext())
@@ -54,12 +56,13 @@ namespace Npoi.Core.POIFS.FileSystem
 
         /**
          * Copies all the nodes from one POIFS Directory to another
-         * 
+         *
          * @param sourceRoot
          *            is the source Directory to copy from
          * @param targetRoot
          *            is the target Directory to copy to
          */
+
         public static void CopyNodes(DirectoryEntry sourceRoot,
                 DirectoryEntry targetRoot)
         {
@@ -71,10 +74,11 @@ namespace Npoi.Core.POIFS.FileSystem
 
         /**
          * Copies nodes from one Directory to the other minus the excepts
-         * 
+         *
          * @param filteredSource The filtering source Directory to copy from
          * @param filteredTarget The filtering target Directory to copy to
          */
+
         public static void CopyNodes(FilteringDirectoryNode filteredSource,
                 FilteringDirectoryNode filteredTarget)
         {
@@ -85,7 +89,7 @@ namespace Npoi.Core.POIFS.FileSystem
 
         /**
          * Copies nodes from one Directory to the other minus the excepts
-         * 
+         *
          * @param sourceRoot
          *            is the source Directory to copy from
          * @param targetRoot
@@ -94,6 +98,7 @@ namespace Npoi.Core.POIFS.FileSystem
          *            is a list of Strings specifying what nodes NOT to copy
          * @deprecated use {@link FilteringDirectoryNode} instead
          */
+
         [Obsolete]
         public static void CopyNodes(DirectoryEntry sourceRoot,
                 DirectoryEntry targetRoot, List<String> excepts)
@@ -111,12 +116,13 @@ namespace Npoi.Core.POIFS.FileSystem
 
         /**
          * Copies all nodes from one POIFS to the other
-         * 
+         *
          * @param source
          *            is the source POIFS to copy from
          * @param target
          *            is the target POIFS to copy to
          */
+
         public static void CopyNodes(POIFSFileSystem source,
                 POIFSFileSystem target)
         {
@@ -128,11 +134,12 @@ namespace Npoi.Core.POIFS.FileSystem
          * This delegates the filtering work to {@link FilteringDirectoryNode},
          *  so excepts can be of the form "NodeToExclude" or
          *  "FilteringDirectory/ExcludedChildNode"
-         * 
+         *
          * @param source is the source POIFS to copy from
          * @param target is the target POIFS to copy to
          * @param excepts is a list of Entry Names to be excluded from the copy
          */
+
         public static void CopyNodes(POIFSFileSystem source,
                 POIFSFileSystem target, List<String> excepts)
         {
@@ -150,6 +157,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * To exclude certain parts of the Directory from being checked,
          *  use a {@link FilteringDirectoryNode}
          */
+
         public static bool AreDirectoriesIdentical(DirectoryEntry dirA, DirectoryEntry dirB)
         {
             // First, check names
@@ -252,6 +260,7 @@ namespace Npoi.Core.POIFS.FileSystem
          *  and the same contents. (Their parent directories are
          *  not checked)
          */
+
         public static bool AreDocumentsIdentical(DocumentEntry docA, DocumentEntry docB)
         {
             if (!docA.Name.Equals(docB.Name))

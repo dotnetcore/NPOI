@@ -17,18 +17,19 @@
 
 namespace Npoi.Core.HSSF.Record.Common
 {
-    using System;
-
     using Npoi.Core.Util;
+    using System;
 
     /**
      * Common Interface for all Shared Features
      */
+
     public interface SharedFeature
     {
         String ToString();
+
         void Serialize(ILittleEndianOutput out1);
+
         int DataSize { get; }
     }
-
 }

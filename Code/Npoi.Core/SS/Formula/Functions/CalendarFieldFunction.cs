@@ -25,10 +25,11 @@ namespace Npoi.Core.SS.Formula.Functions
      * Implementation of Excel functions Date parsing functions:
      *  Date - DAY, MONTH and YEAR
      *  Time - HOUR, MINUTE and SECOND
-     *  
+     *
      * @author Others (not mentioned in code)
      * @author Thies Wellpott
      */
+
     public class CalendarFieldFunction : Fixed1ArgFunction
     {
         public const int YEAR_ID = 0x01;
@@ -122,4 +123,3 @@ namespace Npoi.Core.SS.Formula.Functions
         }
     }
 }
-

@@ -18,6 +18,7 @@
  * Created on May 6, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     /**
@@ -29,9 +30,9 @@ namespace Npoi.Core.SS.Formula.Functions
      * These formulas seem to agree with excel's implementation.
      *
      */
+
     public class Atanh : OneArg
     {
-
         public override double Evaluate(double d)
         {
             return MathX.Atanh(d);

@@ -6,12 +6,10 @@ namespace Npoi.Core.HPSF
     {
         private byte[] _value;
 
-        public Blob(byte[] data, int offset)
-        {
+        public Blob(byte[] data, int offset) {
             int size = LittleEndian.GetInt(data, offset);
 
-            if (size == 0)
-            {
+            if (size == 0) {
                 _value = new byte[0];
                 return;
             }
@@ -20,8 +18,7 @@ namespace Npoi.Core.HPSF
                     + LittleEndian.INT_SIZE, size);
         }
 
-        public int Size
-        {
+        public int Size {
             get { return LittleEndian.INT_SIZE + _value.Length; }
         }
     }

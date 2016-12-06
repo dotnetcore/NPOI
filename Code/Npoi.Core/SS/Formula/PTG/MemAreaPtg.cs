@@ -17,15 +17,14 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-
-    using Npoi.Core.Util;
-
 
     /**
      * @author Daniel Noll (daniel at nuix dot com dot au)
      */
+
     public class MemAreaPtg : OperandPtg
     {
         public const short sid = 0x26;
@@ -61,11 +60,10 @@ namespace Npoi.Core.SS.Formula.PTG
 
         public override void Write(ILittleEndianOutput out1)
         {
-		    out1.WriteByte(sid + PtgClass);
-		    out1.WriteInt(field_1_reserved);
-		    out1.WriteShort(field_2_subex_len);
+            out1.WriteByte(sid + PtgClass);
+            out1.WriteInt(field_1_reserved);
+            out1.WriteShort(field_2_subex_len);
         }
-
 
         public override int Size
         {

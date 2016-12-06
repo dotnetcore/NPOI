@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -15,13 +14,13 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
-        
 
 /*
  * MulBlankRecord.java
  *
  * Created on December 10, 2001, 12:49 PM
  */
+
 namespace Npoi.Core.HSSF.Record
 {
     using Npoi.Core.Util;
@@ -29,7 +28,7 @@ namespace Npoi.Core.HSSF.Record
     using System.Text;
 
     /**
-     * Title:        Mulitple Blank cell record 
+     * Title:        Mulitple Blank cell record
      * Description:  Represents a  Set of columns in a row with no value but with styling.
      *               In this release we have Read-only support for this record type.
      *               The RecordFactory Converts this to a Set of BlankRecord objects.
@@ -43,8 +42,10 @@ namespace Npoi.Core.HSSF.Record
     public class MulBlankRecord : StandardRecord
     {
         public const short sid = 0xbe;
+
         //private short             field_1_row;
         private int _row;
+
         private int _first_col;
         private short[] _xfs;
         private int _last_col;
@@ -165,6 +166,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get { return sid; }
         }
+
         protected override int DataSize
         {
             get { return 6 + _xfs.Length * 2; }
@@ -181,6 +183,7 @@ namespace Npoi.Core.HSSF.Record
             }
             out1.WriteShort(_last_col);
         }
+
         //poi bug 46776
         public override Object Clone()
         {

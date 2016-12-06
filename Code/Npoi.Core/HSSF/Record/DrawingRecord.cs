@@ -14,15 +14,17 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
+
 namespace Npoi.Core.HSSF.Record
 {
-
-    using System;
     using Npoi.Core.Util;
+    using System;
+
     /**
      * DrawingRecord (0x00EC)<p/>
      *
      */
+
     public class DrawingRecord : StandardRecord
     {
         public const short sid = 0xEC;
@@ -39,6 +41,7 @@ namespace Npoi.Core.HSSF.Record
         {
             recordData = in1.ReadRemainder();
         }
+
         [Obsolete]
         public void ProcessContinueRecord(byte[] record)
         {
@@ -63,6 +66,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get { return sid; }
         }
+
         public byte[] Data
         {
             get
@@ -76,7 +80,7 @@ namespace Npoi.Core.HSSF.Record
                 //}
                 return recordData;
             }
-            set 
+            set
             {
                 if (value == null)
                 {
@@ -85,10 +89,12 @@ namespace Npoi.Core.HSSF.Record
                 this.recordData = value;
             }
         }
+
         /**
          * Cloning of drawing records must be executed through HSSFPatriarch, because all id's must be changed
          * @return cloned drawing records
          */
+
         public override Object Clone()
         {
             DrawingRecord rec = new DrawingRecord();

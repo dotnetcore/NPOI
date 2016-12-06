@@ -17,14 +17,14 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * Revision
- * Who          Date            Comment  
+ * Who          Date            Comment
  * Tony Qu      2008.10.18      add methods to support ulong
  * ==============================================================*/
 
@@ -218,7 +218,6 @@ namespace Npoi.Core.Util
             //PutNumber(data, offset, value, LittleEndianConsts.BYTE_SIZE);
         }
 
-
         /// <summary>
         /// Puts the U short.
         /// </summary>
@@ -233,7 +232,6 @@ namespace Npoi.Core.Util
             data[i++] = (byte)((value >> 8) & 0xFF);
         }
 
-
         /// <summary>
         /// put a short value into beginning of a byte array
         /// </summary>
@@ -247,7 +245,7 @@ namespace Npoi.Core.Util
 
         /**
          * Put signed short into output stream
-         * 
+         *
          * @param value
          *            the short (16-bit) value
          * @param outputStream
@@ -255,7 +253,8 @@ namespace Npoi.Core.Util
          * @throws IOException
          *             if an I/O error occurs
          */
-        public static void PutShort( Stream outputStream, short value )
+
+        public static void PutShort(Stream outputStream, short value)
         {
             outputStream.WriteByte((byte)((value >> 0) & 0xFF));
             outputStream.WriteByte((byte)((value >> 8) & 0xFF));
@@ -294,10 +293,10 @@ namespace Npoi.Core.Util
         /// <param name="outputStream">output stream</param>
         public static void PutInt(int value, Stream outputStream)
         {
-            outputStream.WriteByte((byte) ((value >> 0) & 0xFF));
-            outputStream.WriteByte((byte) ((value >> 8) & 0xFF));
-            outputStream.WriteByte((byte) ((value >> 16) & 0xFF));
-            outputStream.WriteByte((byte) ((value >> 24) & 0xFF));
+            outputStream.WriteByte((byte)((value >> 0) & 0xFF));
+            outputStream.WriteByte((byte)((value >> 8) & 0xFF));
+            outputStream.WriteByte((byte)((value >> 16) & 0xFF));
+            outputStream.WriteByte((byte)((value >> 24) & 0xFF));
         }
 
         /// <summary>
@@ -318,7 +317,6 @@ namespace Npoi.Core.Util
                 v >>= 8;
             }
         }
-
 
         /// <summary>
         /// put a double value into a byte array
@@ -363,6 +361,7 @@ namespace Npoi.Core.Util
             }
             return (ch2 << 8) + (ch1 << 0);
         }
+
         /// <summary>
         /// get an int value from an Stream
         /// </summary>
@@ -440,7 +439,6 @@ namespace Npoi.Core.Util
             return data[offset] & 0xFF;
         }
 
-
         /// <summary>
         /// Copy a portion of a byte array
         /// </summary>
@@ -464,23 +462,25 @@ namespace Npoi.Core.Util
         {
             return GetDouble(data, 0);
         }
+
         [Obsolete]
         public static long GetLong(byte[] data)
         {
             return GetLong(data, 0);
         }
 
-
         [Obsolete]
         public static ulong GetULong(byte[] data)
         {
             return GetULong(data, 0);
         }
+
         [Obsolete]
         public static ulong GetULong(byte[] data, int offset)
         {
             return BitConverter.ToUInt64(data, offset);
         }
+
         //[Obsolete] - private method can not be used outside of this class and only obsolete methods are using this method.
         private static long GetNumber(byte[] data, int offset, int size)
         {
@@ -492,14 +492,6 @@ namespace Npoi.Core.Util
             }
             return num;
         }
-
-        
-
-        
-
-        
-
-        
 
         /// <summary>
         /// Gets the unsigned byte.
@@ -521,9 +513,6 @@ namespace Npoi.Core.Util
         {
             return (short)(data[offset] & 0xFF);
         }
-        
-
-        
 
         /// <summary>
         /// Puts the double.
@@ -538,7 +527,7 @@ namespace Npoi.Core.Util
 
         /**
          * put a double value into a byte array
-         * 
+         *
          * @param value
          *            the double (64-bit) value
          * @param outputStream
@@ -551,8 +540,6 @@ namespace Npoi.Core.Util
         {
             PutLong(BitConverter.DoubleToInt64Bits(value), outputStream);
         }
-
-
 
         /// <summary>
         /// Puts the uint.
@@ -567,7 +554,7 @@ namespace Npoi.Core.Util
 
         /**
          * Put unsigned int into output stream
-         * 
+         *
          * @param value
          *            the int (32-bit) value
          * @param outputStream
@@ -575,7 +562,8 @@ namespace Npoi.Core.Util
          * @throws IOException
          *             if an I/O error occurs
          */
-        public static void PutUInt( long value, Stream outputStream )
+
+        public static void PutUInt(long value, Stream outputStream)
         {
             outputStream.WriteByte((byte)((value >> 0) & 0xFF));
             outputStream.WriteByte((byte)((value >> 8) & 0xFF));
@@ -608,7 +596,7 @@ namespace Npoi.Core.Util
 
         /**
          * Put long into output stream
-         * 
+         *
          * @param value
          *            the long (64-bit) value
          * @param outputStream
@@ -616,15 +604,16 @@ namespace Npoi.Core.Util
          * @throws IOException
          *             if an I/O error occurs
          */
-        public static void PutLong( long value, Stream outputStream )
+
+        public static void PutLong(long value, Stream outputStream)
         {
-            outputStream.WriteByte((byte) ((value >> 0) & 0xFF));
-            outputStream.WriteByte((byte) ((value >> 8) & 0xFF));
-            outputStream.WriteByte((byte) ((value >> 16) & 0xFF));
-            outputStream.WriteByte((byte) ((value >> 24) & 0xFF));
-            outputStream.WriteByte((byte) ((value >> 32) & 0xFF));
-            outputStream.WriteByte((byte) ((value >> 40) & 0xFF));
-            outputStream.WriteByte((byte) ((value >> 48) & 0xFF));
+            outputStream.WriteByte((byte)((value >> 0) & 0xFF));
+            outputStream.WriteByte((byte)((value >> 8) & 0xFF));
+            outputStream.WriteByte((byte)((value >> 16) & 0xFF));
+            outputStream.WriteByte((byte)((value >> 24) & 0xFF));
+            outputStream.WriteByte((byte)((value >> 32) & 0xFF));
+            outputStream.WriteByte((byte)((value >> 40) & 0xFF));
+            outputStream.WriteByte((byte)((value >> 48) & 0xFF));
             outputStream.WriteByte((byte)((value >> 56) & 0xFF));
         }
 
@@ -698,14 +687,12 @@ namespace Npoi.Core.Util
         [Obsolete]
         public static void PutShortArray(byte[] data, int offset, short[] value)
         {
-            PutNumber( data, offset, Convert.ToInt64(value.Length), LittleEndianConsts.SHORT_SIZE);
+            PutNumber(data, offset, Convert.ToInt64(value.Length), LittleEndianConsts.SHORT_SIZE);
             for (int i = 0; i < value.Length; i++)
             {
-                PutNumber( data, (offset + 2) + (i * 2), Convert.ToInt64(value[i]), LittleEndianConsts.SHORT_SIZE);
+                PutNumber(data, (offset + 2) + (i * 2), Convert.ToInt64(value[i]), LittleEndianConsts.SHORT_SIZE);
             }
         }
-
-        
 
         /// <summary>
         /// Puts the U short.
@@ -717,9 +704,10 @@ namespace Npoi.Core.Util
         {
             PutNumber(data, 0, Convert.ToInt64(value), LittleEndianConsts.SHORT_SIZE);
         }
+
         /**
          * Put unsigned short into output stream
-         * 
+         *
          * @param value
          *            the unsigned short (16-bit) value
          * @param outputStream
@@ -727,7 +715,8 @@ namespace Npoi.Core.Util
          * @throws IOException
          *             if an I/O error occurs
          */
-        public static void PutUShort( int value, Stream outputStream )
+
+        public static void PutUShort(int value, Stream outputStream)
         {
             outputStream.WriteByte((byte)((value >> 0) & 0xFF));
             outputStream.WriteByte((byte)((value >> 8) & 0xFF));
@@ -759,8 +748,6 @@ namespace Npoi.Core.Util
             return buffer;
         }
 
-        
-
         /// <summary>
         /// Reads the long.
         /// </summary>
@@ -772,11 +759,8 @@ namespace Npoi.Core.Util
             //return GetULong(ReadFromStream(stream, LittleEndianConsts.LONG_SIZE));
             return BitConverter.ToUInt64(ReadFromStream(stream, LittleEndianConsts.LONG_SIZE), 0);
         }
-
-        
-
-        
     }
+
     // Nested Types
     [Serializable]
     public class BufferUnderrunException : IOException
@@ -787,6 +771,7 @@ namespace Npoi.Core.Util
         {
         }
     }
+
     [Serializable]
     public class BufferUnderflowException : RuntimeException
     {

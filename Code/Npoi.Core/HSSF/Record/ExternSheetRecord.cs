@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,16 +15,12 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
-    using System;
-    using System.Text;
-    using System.Collections;
     using Npoi.Core.Util;
+    using System;
     using System.Collections.Generic;
-
+    using System.Text;
 
     public class RefSubRecord
     {
@@ -41,8 +36,10 @@ namespace Npoi.Core.HSSF.Record
             _firstSheetIndex += offset;
             _lastSheetIndex += offset;
         }
+
         /** a Constructor for making new sub record
          */
+
         public RefSubRecord(int extBookIndex, int firstSheetIndex, int lastSheetIndex)
         {
             _extBookIndex = extBookIndex;
@@ -53,11 +50,12 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @param in the RecordInputstream to Read the record from
          */
+
         public RefSubRecord(RecordInputStream in1)
             : this(in1.ReadShort(), in1.ReadShort(), in1.ReadShort())
         {
-
         }
+
         public int ExtBookIndex
         {
             get
@@ -65,6 +63,7 @@ namespace Npoi.Core.HSSF.Record
                 return _extBookIndex;
             }
         }
+
         public int FirstSheetIndex
         {
             get
@@ -72,6 +71,7 @@ namespace Npoi.Core.HSSF.Record
                 return _firstSheetIndex;
             }
         }
+
         public int LastSheetIndex
         {
             get { return _lastSheetIndex; }
@@ -95,6 +95,7 @@ namespace Npoi.Core.HSSF.Record
          * @param data byte array containing instance data
          * @return number of bytes written
          */
+
         public void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(_extBookIndex);
@@ -104,9 +105,9 @@ namespace Npoi.Core.HSSF.Record
     }
 
     /**
-     * Title:        Extern Sheet 
-     * Description:  A List of Inndexes to SupBook 
-     * REFERENCE:  
+     * Title:        Extern Sheet
+     * Description:  A List of Inndexes to SupBook
+     * REFERENCE:
      * @author Libin Roman (Vista Portal LDT. Developer)
      * @version 1.0-pre
      */
@@ -115,9 +116,6 @@ namespace Npoi.Core.HSSF.Record
     {
         public const short sid = 0x17;
         private IList<RefSubRecord> _list;
-
-
-
 
         public ExternSheetRecord()
         {
@@ -142,6 +140,7 @@ namespace Npoi.Core.HSSF.Record
                 _list.Add(rec);
             }
         }
+
         /**
         * Add a zero-based reference to a {@link org.apache.poi.hssf.record.SupBookRecord}.
         * <p>
@@ -172,11 +171,13 @@ namespace Npoi.Core.HSSF.Record
         * @param lastSheetIndex   the scope, must be -2 for add-in references
         * @return index of newly added ref
         */
+
         public int AddRef(int extBookIndex, int firstSheetIndex, int lastSheetIndex)
         {
             _list.Add(new RefSubRecord(extBookIndex, firstSheetIndex, lastSheetIndex));
             return _list.Count - 1;
         }
+
         public int GetRefIxForSheet(int externalBookIndex, int firstSheetIndex, int lastSheetIndex)
         {
             int nItems = _list.Count;
@@ -194,9 +195,11 @@ namespace Npoi.Core.HSSF.Record
             }
             return -1;
         }
+
         /** returns the number of REF Records, which is in model
          * @return number of REF records
          */
+
         public int NumOfREFRecords
         {
             get
@@ -204,10 +207,11 @@ namespace Npoi.Core.HSSF.Record
                 return _list.Count;
             }
         }
-    
-        /**  
+
+        /**
  * @return number of REF structures
  */
+
         public int NumOfRefs
         {
             get
@@ -216,18 +220,21 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        /** 
+        /**
          * Adds REF struct (ExternSheetSubRecord)
          * @param rec REF struct
          */
+
         public void AddREFRecord(RefSubRecord rec)
         {
             _list.Add(rec);
         }
+
         private RefSubRecord GetRef(int i)
         {
             return (RefSubRecord)_list[i];
         }
+
         [Obsolete]
         public void AdjustIndex(int extRefIndex, int offset)
         {
@@ -249,7 +256,7 @@ namespace Npoi.Core.HSSF.Record
                 else if (refSubRecord.FirstSheetIndex > sheetIdx &&
                       refSubRecord.LastSheetIndex > sheetIdx)
                 {
-                    _list[i] =(new RefSubRecord(refSubRecord.ExtBookIndex, refSubRecord.FirstSheetIndex - 1, refSubRecord.LastSheetIndex - 1));
+                    _list[i] = (new RefSubRecord(refSubRecord.ExtBookIndex, refSubRecord.FirstSheetIndex - 1, refSubRecord.LastSheetIndex - 1));
                 }
             }
 
@@ -263,14 +270,17 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Returns the index of the SupBookRecord for this index
          */
+
         public int GetExtbookIndexFromRefIndex(int refIndex)
         {
             RefSubRecord refRec = GetRef(refIndex);
             return refRec.ExtBookIndex;
         }
+
         /**
          * @return -1 if not found
          */
+
         public int FindRefIndexFromExtBookIndex(int extBookIndex)
         {
             int nItems = _list.Count;
@@ -283,6 +293,7 @@ namespace Npoi.Core.HSSF.Record
             }
             return -1;
         }
+
         public static ExternSheetRecord Combine(ExternSheetRecord[] esrs)
         {
             ExternSheetRecord result = new ExternSheetRecord();
@@ -297,11 +308,13 @@ namespace Npoi.Core.HSSF.Record
             }
             return result;
         }
+
         /**
          * Returns the first sheet that the reference applies to, or
          *  -1 if the referenced sheet can't be found, or -2 if the
          *  reference is workbook scoped.
          */
+
         public int GetFirstSheetIndexFromRefIndex(int extRefIndex)
         {
             return GetRef(extRefIndex).FirstSheetIndex;
@@ -314,11 +327,12 @@ namespace Npoi.Core.HSSF.Record
          * For a single sheet reference, the first and last should be
          *  the same.
          */
+
         public int GetLastSheetIndexFromRefIndex(int extRefIndex)
         {
             return GetRef(extRefIndex).LastSheetIndex;
         }
-    
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -346,6 +360,7 @@ namespace Npoi.Core.HSSF.Record
          * @param data byte array containing instance data
          * @return number of bytes written
          */
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             int nItems = _list.Count;
@@ -360,14 +375,16 @@ namespace Npoi.Core.HSSF.Record
 
         protected override int DataSize
         {
-            get { 
-                return 2 + _list.Count * RefSubRecord.ENCODED_SIZE; 
+            get
+            {
+                return 2 + _list.Count * RefSubRecord.ENCODED_SIZE;
             }
         }
 
         /**
          * return the non static version of the id for this record.
          */
+
         public override short Sid
         {
             get { return sid; }

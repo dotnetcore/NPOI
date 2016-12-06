@@ -24,10 +24,11 @@ namespace Npoi.Core.HSSF.UserModel
     /**
      * High level representation for Border Formatting component
      * of Conditional Formatting Settings
-     * 
+     *
      * @author Dmitriy Kumshayev
      *
      */
+
     public class HSSFBorderFormatting : IBorderFormatting
     {
         private CFRuleRecord cfRuleRecord;
@@ -47,7 +48,8 @@ namespace Npoi.Core.HSSF.UserModel
         public BorderStyle BorderBottom
         {
             get { return borderFormatting.BorderBottom; }
-            set {
+            set
+            {
                 borderFormatting.BorderBottom = value;
                 if (value != BorderStyle.None)
                     cfRuleRecord.IsBottomBorderModified = true;
@@ -57,9 +59,11 @@ namespace Npoi.Core.HSSF.UserModel
         public BorderStyle BorderDiagonal
         {
             get { return borderFormatting.BorderDiagonal; }
-            set {
+            set
+            {
                 borderFormatting.BorderDiagonal = value;
-                if (value != BorderStyle.None) {
+                if (value != BorderStyle.None)
+                {
                     cfRuleRecord.IsBottomLeftTopRightBorderModified = true;
                     cfRuleRecord.IsTopLeftBottomRightBorderModified = true;
                 }
@@ -69,7 +73,8 @@ namespace Npoi.Core.HSSF.UserModel
         public BorderStyle BorderLeft
         {
             get { return borderFormatting.BorderLeft; }
-            set {
+            set
+            {
                 borderFormatting.BorderLeft = value;
                 if (value != BorderStyle.None)
                     cfRuleRecord.IsLeftBorderModified = true;
@@ -79,7 +84,8 @@ namespace Npoi.Core.HSSF.UserModel
         public BorderStyle BorderRight
         {
             get { return borderFormatting.BorderRight; }
-            set {
+            set
+            {
                 borderFormatting.BorderRight = value;
                 if (value != BorderStyle.None)
                     cfRuleRecord.IsRightBorderModified = true;
@@ -89,7 +95,8 @@ namespace Npoi.Core.HSSF.UserModel
         public BorderStyle BorderTop
         {
             get { return borderFormatting.BorderTop; }
-            set {
+            set
+            {
                 borderFormatting.BorderTop = value;
                 if (value != BorderStyle.None)
                     cfRuleRecord.IsTopBorderModified = true;
@@ -98,10 +105,10 @@ namespace Npoi.Core.HSSF.UserModel
 
         public short BottomBorderColor
         {
-            get{return borderFormatting.BottomBorderColor;}
+            get { return borderFormatting.BottomBorderColor; }
             set
             {
-                borderFormatting.BottomBorderColor=(value);
+                borderFormatting.BottomBorderColor = (value);
                 if (value != 0)
                 {
                     cfRuleRecord.IsBottomBorderModified = (true);
@@ -111,10 +118,10 @@ namespace Npoi.Core.HSSF.UserModel
 
         public short DiagonalBorderColor
         {
-            get{return borderFormatting.DiagonalBorderColor;}
+            get { return borderFormatting.DiagonalBorderColor; }
             set
             {
-                borderFormatting.DiagonalBorderColor=(value);
+                borderFormatting.DiagonalBorderColor = (value);
                 if (value != 0)
                 {
                     cfRuleRecord.IsBottomLeftTopRightBorderModified = (true);
@@ -125,10 +132,10 @@ namespace Npoi.Core.HSSF.UserModel
 
         public short LeftBorderColor
         {
-            get{return borderFormatting.LeftBorderColor;}
+            get { return borderFormatting.LeftBorderColor; }
             set
             {
-                borderFormatting.LeftBorderColor=(value);
+                borderFormatting.LeftBorderColor = (value);
                 if (value != 0)
                 {
                     cfRuleRecord.IsLeftBorderModified = (true);
@@ -138,10 +145,10 @@ namespace Npoi.Core.HSSF.UserModel
 
         public short RightBorderColor
         {
-            get{return borderFormatting.RightBorderColor;}
+            get { return borderFormatting.RightBorderColor; }
             set
             {
-                borderFormatting.RightBorderColor=(value);
+                borderFormatting.RightBorderColor = (value);
                 if (value != 0)
                 {
                     cfRuleRecord.IsRightBorderModified = (true);
@@ -151,10 +158,10 @@ namespace Npoi.Core.HSSF.UserModel
 
         public short TopBorderColor
         {
-            get{return borderFormatting.TopBorderColor;}
+            get { return borderFormatting.TopBorderColor; }
             set
             {
-                borderFormatting.TopBorderColor=(value);
+                borderFormatting.TopBorderColor = (value);
                 if (value != 0)
                 {
                     cfRuleRecord.IsTopBorderModified = (true);
@@ -164,10 +171,10 @@ namespace Npoi.Core.HSSF.UserModel
 
         public bool IsBackwardDiagonalOn
         {
-            get{return borderFormatting.IsBackwardDiagonalOn;}
+            get { return borderFormatting.IsBackwardDiagonalOn; }
             set
             {
-                borderFormatting.IsBackwardDiagonalOn=value;
+                borderFormatting.IsBackwardDiagonalOn = value;
                 if (value)
                 {
                     cfRuleRecord.IsTopLeftBottomRightBorderModified = (value);
@@ -180,13 +187,12 @@ namespace Npoi.Core.HSSF.UserModel
             get { return borderFormatting.IsForwardDiagonalOn; }
             set
             {
-                borderFormatting.IsForwardDiagonalOn=(value);
+                borderFormatting.IsForwardDiagonalOn = (value);
                 if (value)
                 {
                     cfRuleRecord.IsBottomLeftTopRightBorderModified = (value);
                 }
             }
         }
-
     }
 }

@@ -1,5 +1,4 @@
-﻿
-/* ====================================================================
+﻿/* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
    this work for additional information regarding copyright ownership.
@@ -18,29 +17,25 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
-
-using System.Text;
 
 namespace Npoi.Core.Util
 {
     using System;
     using System.IO;
-    
+
     /// <summary>
     /// CRC Verification
     /// </summary>
     public class CRC32
     {
-
         protected ulong[] crc32Table;
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CRC32"/> class.
@@ -84,7 +79,6 @@ namespace Npoi.Core.Util
             }
             return ulCRC ^ 0xffffffff;
         }
-
 
         /// <summary>
         /// String CRC
@@ -134,5 +128,4 @@ namespace Npoi.Core.Util
             }
         }
     }
-
 }

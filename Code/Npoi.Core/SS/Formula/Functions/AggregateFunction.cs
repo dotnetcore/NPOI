@@ -15,11 +15,10 @@
    limitations under the License.
 ==================================================================== */
 
-using Npoi.Core.SS.Formula.Functions;
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     public class AVEDEV : AggregateFunction
     {
@@ -28,6 +27,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return StatsLib.avedev(values);
         }
     }
+
     public class AVERAGE : AggregateFunction
     {
         protected internal override double Evaluate(double[] values)
@@ -39,6 +39,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return MathX.Average(values);
         }
     }
+
     public class DEVSQ : AggregateFunction
     {
         protected internal override double Evaluate(double[] values)
@@ -46,6 +47,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return StatsLib.devsq(values);
         }
     }
+
     public class SUM : AggregateFunction
     {
         protected internal override double Evaluate(double[] values)
@@ -53,6 +55,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return MathX.Sum(values);
         }
     }
+
     public class LARGE : AggregateFunction
     {
         protected internal override double Evaluate(double[] ops)
@@ -67,6 +70,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return StatsLib.kthLargest(values, k);
         }
     }
+
     public class MAX : AggregateFunction
     {
         protected internal override double Evaluate(double[] values)
@@ -74,6 +78,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return values.Length > 0 ? MathX.Max(values) : 0;
         }
     }
+
     public class MIN : AggregateFunction
     {
         protected internal override double Evaluate(double[] values)
@@ -81,6 +86,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return values.Length > 0 ? MathX.Min(values) : 0;
         }
     }
+
     public class MEDIAN : AggregateFunction
     {
         protected internal override double Evaluate(double[] values)
@@ -88,6 +94,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return StatsLib.median(values);
         }
     }
+
     public class PRODUCT : AggregateFunction
     {
         protected internal override double Evaluate(double[] values)
@@ -95,6 +102,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return MathX.Product(values);
         }
     }
+
     public class SMALL : AggregateFunction
     {
         protected internal override double Evaluate(double[] ops)
@@ -109,6 +117,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return StatsLib.kthSmallest(values, k);
         }
     }
+
     public class STDEV : AggregateFunction
     {
         protected internal override double Evaluate(double[] values)
@@ -120,6 +129,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return StatsLib.stdev(values);
         }
     }
+
     public class SUMSQ : AggregateFunction
     {
         protected internal override double Evaluate(double[] values)
@@ -127,6 +137,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return MathX.Sumsq(values);
         }
     }
+
     public class VAR : AggregateFunction
     {
         protected internal override double Evaluate(double[] values)
@@ -138,6 +149,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return StatsLib.var(values);
         }
     };
+
     public class VARP : AggregateFunction
     {
         protected internal override double Evaluate(double[] values)
@@ -153,6 +165,7 @@ namespace Npoi.Core.SS.Formula.Functions
     public class SubtotalInstance : AggregateFunction
     {
         private AggregateFunction _func;
+
         public SubtotalInstance(AggregateFunction func)
         {
             _func = func;
@@ -162,9 +175,11 @@ namespace Npoi.Core.SS.Formula.Functions
         {
             return _func.Evaluate(values);
         }
+
         /**
                  *  ignore nested subtotals.
                  */
+
         public override bool IsSubtotalCounted
         {
             get
@@ -174,10 +189,10 @@ namespace Npoi.Core.SS.Formula.Functions
         }
     }
 
-
     public class LargeSmall : Fixed2ArgFunction
     {
         private bool _isLarge;
+
         protected LargeSmall(bool isLarge)
         {
             _isLarge = isLarge;
@@ -242,6 +257,7 @@ namespace Npoi.Core.SS.Formula.Functions
      *     <li>If k is not a multiple of 1/(n - 1), PERCENTILE interpolates to determine the value at the k-th percentile.</li>
      * </ul>
      */
+
     public class Percentile : Fixed2ArgFunction
     {
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0,
@@ -302,11 +318,11 @@ namespace Npoi.Core.SS.Formula.Functions
         }
     }
 
-
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
      *
      */
+
     public abstract class AggregateFunction : MultiOperandNumericFunction
     {
         public static Function SubtotalInstance(Function func)
@@ -314,26 +330,30 @@ namespace Npoi.Core.SS.Formula.Functions
             AggregateFunction arg = (AggregateFunction)func;
             return new SubtotalInstance(arg);
         }
+
         internal class ValueCollector : MultiOperandNumericFunction
         {
             private static ValueCollector instance = new ValueCollector();
+
             public ValueCollector() :
                 base(false, false)
             {
             }
+
             public static double[] CollectValues(params ValueEval[] operands)
             {
                 return instance.GetNumberArray(operands);
             }
+
             protected internal override double Evaluate(double[] values)
             {
                 throw new InvalidOperationException("should not be called");
             }
         }
+
         protected AggregateFunction()
             : base(false, false)
         {
-
         }
 
         public static readonly Function AVEDEV = new AVEDEV();

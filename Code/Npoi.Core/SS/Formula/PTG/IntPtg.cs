@@ -17,12 +17,10 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-    using System.Text;
     using Npoi.Core.Util;
+    using System;
     using System.Globalization;
-    
-
+    using System.Text;
 
     /**
      * Integer (unsigned short integer)
@@ -30,17 +28,20 @@ namespace Npoi.Core.SS.Formula.PTG
      * @author  Andrew C. Oliver (acoliver at apache dot org)
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     public class IntPtg : ScalarConstantPtg
     {
         // 16 bit Unsigned integer
         private const int MIN_VALUE = 0x0000;
+
         private const int MAX_VALUE = 0xFFFF;
 
         /**
-         * Excel represents integers 0..65535 with the tInt token. 
-         * @return <c>true</c> if the specified value is within the range of values 
-         * <c>IntPtg</c> can represent. 
+         * Excel represents integers 0..65535 with the tInt token.
+         * @return <c>true</c> if the specified value is within the range of values
+         * <c>IntPtg</c> can represent.
          */
+
         public static bool IsInRange(int i)
         {
             return i >= MIN_VALUE && i <= MAX_VALUE;
@@ -53,7 +54,6 @@ namespace Npoi.Core.SS.Formula.PTG
         public IntPtg(ILittleEndianInput in1)
             : this(in1.ReadUShort())
         {
-            
         }
 
         public IntPtg(int value)

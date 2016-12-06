@@ -18,10 +18,12 @@
 namespace Npoi.Core.SS.Formula.Eval
 {
     using Npoi.Core.SS.Formula.Functions;
+
     /**
      * Implementation of Excel formula token '%'. <p/>
      * @author Josh Micich
      */
+
     public class PercentEval : Fixed1ArgFunction
     {
         public static Function instance = new PercentEval();

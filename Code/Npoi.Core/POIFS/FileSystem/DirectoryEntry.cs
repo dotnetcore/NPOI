@@ -17,22 +17,19 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
+using Npoi.Core.POIFS.EventFileSystem;
+using Npoi.Core.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
-
-using Npoi.Core.Util;
-using Npoi.Core.POIFS.EventFileSystem;
-using Npoi.Core.Util.Collections;
-
 
 namespace Npoi.Core.POIFS.FileSystem
 {
@@ -43,7 +40,6 @@ namespace Npoi.Core.POIFS.FileSystem
     /// </summary>
     public interface DirectoryEntry : Entry, IEnumerable<Entry>
     {
-
         /// <summary>
         /// get an iterator of the Entry instances contained directly in
         /// this instance (in other words, children only; no grandchildren
@@ -76,7 +72,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// </summary>
         /// <value>number of immediately (no grandchildren etc.) contained
         /// Entry instances</value>
-        int EntryCount{get;}
+        int EntryCount { get; }
 
         /// <summary>
         /// get a specified Entry by name
@@ -94,6 +90,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <returns>the new DocumentEntry</returns>
         DocumentEntry CreateDocument(String name,
                                             Stream stream);
+
         // <summary>
         // Create a new DocumentEntry; the data will be provided later
         // </summary>
@@ -129,6 +126,6 @@ namespace Npoi.Core.POIFS.FileSystem
         /// </summary>
         /// <param name="name">entry name</param>
         /// <returns>true if have</returns>
-        bool HasEntry(String name );
+        bool HasEntry(String name);
     }
 }

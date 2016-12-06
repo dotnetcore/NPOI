@@ -17,38 +17,34 @@
 
 namespace Npoi.Core.HSSF.EventUserModel.DummyRecord
 {
-
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
 
     /**
      */
+
     public abstract class DummyRecordBase : Record
     {
-
-        protected DummyRecordBase()
-        {
+        protected DummyRecordBase() {
             //
         }
 
-        public override short Sid
-        {
+        public override short Sid {
             get
             {
                 return -1;
             }
         }
-        public override int Serialize(int offset, byte[] data)
-        {
+
+        public override int Serialize(int offset, byte[] data) {
             throw new RecordFormatException("Cannot serialize a dummy record");
         }
-        public override int RecordSize
-        {
+
+        public override int RecordSize {
             get
             {
                 throw new RecordFormatException("Cannot serialize a dummy record");
             }
         }
     }
-
 }

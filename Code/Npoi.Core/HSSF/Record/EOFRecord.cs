@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -15,72 +14,70 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
-        
 
 namespace Npoi.Core.HSSF.Record
 {
-    using System.Text;
     using Npoi.Core.Util;
     using System;
-
-
-/**
- * End Of File record.
- * 
- * Description:  Marks the end of records belonging to a particular object in the
- *               HSSF File
- * REFERENCE:  PG 307 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
- * @author Andrew C. Oliver (acoliver at apache dot org)
- * @author Jason Height (jheight at chariot dot net dot au)
- * @version 2.0-pre
- */
-
-public class EOFRecord: StandardRecord
-{
-    public const short sid = 0x0A;
-    public const int ENCODED_SIZE = 4;
-    public static readonly EOFRecord instance = new EOFRecord();
-
-    public EOFRecord()
-    {
-    }
+    using System.Text;
 
     /**
-     * Constructs a EOFRecord record and Sets its fields appropriately.
-     * @param in the RecordInputstream to Read the record from
+     * End Of File record.
+     *
+     * Description:  Marks the end of records belonging to a particular object in the
+     *               HSSF File
+     * REFERENCE:  PG 307 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
+     * @author Andrew C. Oliver (acoliver at apache dot org)
+     * @author Jason Height (jheight at chariot dot net dot au)
+     * @version 2.0-pre
      */
 
-    public EOFRecord(RecordInputStream in1)
+    public class EOFRecord : StandardRecord
     {
-        
-    }
+        public const short sid = 0x0A;
+        public const int ENCODED_SIZE = 4;
+        public static readonly EOFRecord instance = new EOFRecord();
 
-    public override String ToString()
-    {
-        StringBuilder buffer = new StringBuilder();
+        public EOFRecord()
+        {
+        }
 
-        buffer.Append("[EOF]\n");
-        buffer.Append("[/EOF]\n");
-        return buffer.ToString();
-    }
+        /**
+         * Constructs a EOFRecord record and Sets its fields appropriately.
+         * @param in the RecordInputstream to Read the record from
+         */
 
-    public override void Serialize(ILittleEndianOutput out1)
-    {
-    }
+        public EOFRecord(RecordInputStream in1)
+        {
+        }
 
-    protected override int DataSize
-    {
-        get { return ENCODED_SIZE-4; }
-    }
+        public override String ToString()
+        {
+            StringBuilder buffer = new StringBuilder();
 
-    public override short Sid
-    {
-        get{return sid;}
-    }
+            buffer.Append("[EOF]\n");
+            buffer.Append("[/EOF]\n");
+            return buffer.ToString();
+        }
 
-    public override Object Clone() {
-      EOFRecord rec = new EOFRecord();
-      return rec;
+        public override void Serialize(ILittleEndianOutput out1)
+        {
+        }
+
+        protected override int DataSize
+        {
+            get { return ENCODED_SIZE - 4; }
+        }
+
+        public override short Sid
+        {
+            get { return sid; }
+        }
+
+        public override Object Clone()
+        {
+            EOFRecord rec = new EOFRecord();
+            return rec;
+        }
     }
-}
 }

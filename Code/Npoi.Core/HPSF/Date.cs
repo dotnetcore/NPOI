@@ -25,8 +25,7 @@ namespace Npoi.Core.HPSF
 
         private byte[] _value;
 
-        public Date(byte[] data, int offset)
-        {
+        public Date(byte[] data, int offset) {
             _value = LittleEndian.GetByteArray(data, offset, SIZE);
         }
     }

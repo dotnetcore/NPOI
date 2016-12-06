@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,17 +15,14 @@
    limitations under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.DDF
 {
+    using ICSharpCode.SharpZipLib.Zip.Compression;
+    using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+    using Npoi.Core.Util;
     using System;
     using System.IO;
     using System.Text;
-
-
-    using Npoi.Core.Util;
-    using ICSharpCode.SharpZipLib.Zip.Compression;
-    using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 
     /// <summary>
     /// Used to dump the contents of escher records to a PrintStream.
@@ -34,9 +30,7 @@ namespace Npoi.Core.DDF
     /// </summary>
     public class EscherDump
     {
-
-        public EscherDump()
-        {
+        public EscherDump() {
         }
 
         /// <summary>
@@ -46,12 +40,10 @@ namespace Npoi.Core.DDF
         /// <param name="data">The data array containing the escher records.</param>
         /// <param name="offset">The starting offset within the data array.</param>
         /// <param name="size">The number of bytes to Read.</param>
-        public void Dump(byte[] data, int offset, int size)
-        {
+        public void Dump(byte[] data, int offset, int size) {
             IEscherRecordFactory recordFactory = new DefaultEscherRecordFactory();
             int pos = offset;
-            while (pos < offset + size)
-            {
+            while (pos < offset + size) {
                 EscherRecord r = recordFactory.CreateRecord(data, pos);
                 int bytesRead = r.FillFields(data, pos, recordFactory);
                 Console.WriteLine(r.ToString());
@@ -64,8 +56,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="maxLength">The number of bytes to Read</param>
         /// <param name="in1">An input stream to Read from.</param>
-        public void DumpOld(long maxLength, Stream in1)
-        {
+        public void DumpOld(long maxLength, Stream in1) {
             long remainingBytes = maxLength;
             short options;      // 4 bits for the version and 12 bits for the instance
             short recordId;
@@ -76,8 +67,7 @@ namespace Npoi.Core.DDF
 
             bool atEOF = false;
 
-            while (!atEOF && (remainingBytes > 0))
-            {
+            while (!atEOF && (remainingBytes > 0)) {
                 stringBuf = new StringBuilder();
                 options = LittleEndian.ReadShort(in1);
                 recordId = LittleEndian.ReadShort(in1);
@@ -85,104 +75,135 @@ namespace Npoi.Core.DDF
 
                 remainingBytes -= 2 + 2 + 4;
 
-                switch (recordId)
-                {
+                switch (recordId) {
                     case unchecked((short)0xF000):
                         recordName = "MsofbtDggContainer";
                         break;
+
                     case unchecked((short)0xF006):
                         recordName = "MsofbtDgg";
                         break;
+
                     case unchecked((short)0xF016):
                         recordName = "MsofbtCLSID";
                         break;
+
                     case unchecked((short)0xF00B):
                         recordName = "MsofbtOPT";
                         break;
+
                     case unchecked((short)0xF11A):
                         recordName = "MsofbtColorMRU";
                         break;
+
                     case unchecked((short)0xF11E):
                         recordName = "MsofbtSplitMenuColors";
                         break;
+
                     case unchecked((short)0xF001):
                         recordName = "MsofbtBstoreContainer";
                         break;
+
                     case unchecked((short)0xF007):
                         recordName = "MsofbtBSE";
                         break;
+
                     case unchecked((short)0xF002):
                         recordName = "MsofbtDgContainer";
                         break;
+
                     case unchecked((short)0xF008):
                         recordName = "MsofbtDg";
                         break;
+
                     case unchecked((short)0xF118):
                         recordName = "MsofbtRegroupItem";
                         break;
+
                     case unchecked((short)0xF120):
                         recordName = "MsofbtColorScheme";
                         break;
+
                     case unchecked((short)0xF003):
                         recordName = "MsofbtSpgrContainer";
                         break;
+
                     case unchecked((short)0xF004):
                         recordName = "MsofbtSpContainer";
                         break;
+
                     case unchecked((short)0xF009):
                         recordName = "MsofbtSpgr";
                         break;
+
                     case unchecked((short)0xF00A):
                         recordName = "MsofbtSp";
                         break;
+
                     case unchecked((short)0xF00C):
                         recordName = "MsofbtTextbox";
                         break;
+
                     case unchecked((short)0xF00D):
                         recordName = "MsofbtClientTextbox";
                         break;
+
                     case unchecked((short)0xF00E):
                         recordName = "MsofbtAnchor";
                         break;
+
                     case unchecked((short)0xF00F):
                         recordName = "MsofbtChildAnchor";
                         break;
+
                     case unchecked((short)0xF010):
                         recordName = "MsofbtClientAnchor";
                         break;
+
                     case unchecked((short)0xF011):
                         recordName = "MsofbtClientData";
                         break;
+
                     case unchecked((short)0xF11F):
                         recordName = "MsofbtOleObject";
                         break;
+
                     case unchecked((short)0xF11D):
                         recordName = "MsofbtDeletedPspl";
                         break;
+
                     case unchecked((short)0xF005):
                         recordName = "MsofbtSolverContainer";
                         break;
+
                     case unchecked((short)0xF012):
                         recordName = "MsofbtConnectorRule";
                         break;
+
                     case unchecked((short)0xF013):
                         recordName = "MsofbtAlignRule";
                         break;
+
                     case unchecked((short)0xF014):
                         recordName = "MsofbtArcRule";
                         break;
+
                     case unchecked((short)0xF015):
                         recordName = "MsofbtClientRule";
                         break;
+
                     case unchecked((short)0xF017):
                         recordName = "MsofbtCalloutRule";
                         break;
+
                     case unchecked((short)0xF119):
                         recordName = "MsofbtSelection";
                         break;
+
                     case unchecked((short)0xF122):
                         recordName = "MsofbtUDefProp";
                         break;
+
                     default:
                         if (recordId >= unchecked((short)0xF018) && recordId <= unchecked((short)0xF117))
                             recordName = "MsofbtBLIP";
@@ -203,9 +224,7 @@ namespace Npoi.Core.DDF
                 stringBuf.Append(HexDump.ToHex(((short)(options >> 4))));
                 Console.WriteLine(stringBuf.ToString());
 
-
-                if (recordId == (unchecked((short)0xF007)) && 36 <= remainingBytes && 36 <= recordBytesRemaining)
-                {	// BSE, FBSE
+                if (recordId == (unchecked((short)0xF007)) && 36 <= remainingBytes && 36 <= recordBytesRemaining) {	// BSE, FBSE
                     //                ULONG nP = pIn->GetRecPos();
 
                     byte n8;
@@ -255,8 +274,7 @@ namespace Npoi.Core.DDF
                     //n -= pIn->GetRecPos() - nP;
                     recordBytesRemaining = 0;		// loop to MsofbtBLIP
                 }
-                else if (recordId == unchecked((short)0xF010) && 0x12 <= remainingBytes && 0x12 <= recordBytesRemaining)
-                {	// ClientAnchor
+                else if (recordId == unchecked((short)0xF010) && 0x12 <= remainingBytes && 0x12 <= recordBytesRemaining) {	// ClientAnchor
                     //ULONG nP = pIn->GetRecPos();
                     //                short n16;
 
@@ -284,14 +302,11 @@ namespace Npoi.Core.DDF
 
                     remainingBytes -= 18;
                     recordBytesRemaining -= 18;
-
                 }
-                else if (recordId == unchecked((short)0xF00B) || recordId == unchecked((short)0xF122))
-                {	// OPT
+                else if (recordId == unchecked((short)0xF00B) || recordId == unchecked((short)0xF122)) {	// OPT
                     int nComplex = 0;
                     Console.WriteLine("    PROPID        VALUE");
-                    while (recordBytesRemaining >= 6 + nComplex && remainingBytes >= 6 + nComplex)
-                    {
+                    while (recordBytesRemaining >= 6 + nComplex && remainingBytes >= 6 + nComplex) {
                         short n16;
                         int n32;
                         n16 = LittleEndian.ReadShort(in1);
@@ -304,16 +319,14 @@ namespace Npoi.Core.DDF
                         Console.Write(" (");
                         int propertyId = n16 & (short)0x3FFF;
                         Console.Write(" " + propertyId);
-                        if ((n16 & unchecked((short)0x8000)) == 0)
-                        {
+                        if ((n16 & unchecked((short)0x8000)) == 0) {
                             if ((n16 & (short)0x4000) != 0)
                                 Console.Write(", fBlipID");
                             Console.Write(")  ");
 
                             Console.Write(HexDump.ToHex(n32));
 
-                            if ((n16 & (short)0x4000) == 0)
-                            {
+                            if ((n16 & (short)0x4000) == 0) {
                                 Console.Write(" (");
                                 Console.Write(Dec1616(n32));
                                 Console.Write(')');
@@ -321,8 +334,7 @@ namespace Npoi.Core.DDF
                             }
                             Console.WriteLine();
                         }
-                        else
-                        {
+                        else {
                             Console.Write(", fComplex)  ");
                             Console.Write(HexDump.ToHex(n32));
                             Console.Write(" - Complex prop len");
@@ -330,11 +342,9 @@ namespace Npoi.Core.DDF
 
                             nComplex += n32;
                         }
-
                     }
                     // complex property data
-                    while ((nComplex & remainingBytes) > 0)
-                    {
+                    while ((nComplex & remainingBytes) > 0) {
                         nDumpSize = (nComplex > (int)remainingBytes) ? (short)remainingBytes : (short)nComplex;
                         HexDump.Dump(in1, 0, nDumpSize);
                         nComplex -= nDumpSize;
@@ -342,8 +352,7 @@ namespace Npoi.Core.DDF
                         remainingBytes -= nDumpSize;
                     }
                 }
-                else if (recordId == (unchecked((short)0xF012)))
-                {
+                else if (recordId == (unchecked((short)0xF012))) {
                     Console.Write("    Connector rule: ");
                     Console.Write(LittleEndian.ReadInt(in1));
                     Console.Write("    ShapeID A: ");
@@ -360,8 +369,7 @@ namespace Npoi.Core.DDF
                     recordBytesRemaining -= 24;
                     remainingBytes -= 24;
                 }
-                else if (recordId >= unchecked((short)0xF018) && recordId < unchecked((short)0xF117))
-                {
+                else if (recordId >= unchecked((short)0xF018) && recordId < unchecked((short)0xF117)) {
                     Console.WriteLine("    Secondary UID: ");
                     HexDump.Dump(in1, 0, 16);
                     Console.WriteLine("    Cache of size: " + HexDump.ToHex(LittleEndian.ReadInt(in1)));
@@ -381,17 +389,14 @@ namespace Npoi.Core.DDF
 
                     nDumpSize = (recordBytesRemaining > (int)remainingBytes) ? (short)remainingBytes : (short)recordBytesRemaining;
 
-
                     byte[] buf = new byte[nDumpSize];
-                    int Read = in1.Read(buf,0,buf.Length);
+                    int Read = in1.Read(buf, 0, buf.Length);
                     while (Read != -1 && Read < nDumpSize)
                         Read += in1.Read(buf, Read, buf.Length);
 
-                    using (MemoryStream bin = new MemoryStream(buf))
-                    {
+                    using (MemoryStream bin = new MemoryStream(buf)) {
                         Inflater inflater = new Inflater(false);
-                        using (InflaterInputStream zIn = new InflaterInputStream(bin, inflater))
-                        {
+                        using (InflaterInputStream zIn = new InflaterInputStream(bin, inflater)) {
                             int bytesToDump = -1;
                             HexDump.Dump(zIn, 0, bytesToDump);
 
@@ -402,8 +407,7 @@ namespace Npoi.Core.DDF
                 }
 
                 bool isContainer = (options & (short)0x000F) == (short)0x000F;
-                if (isContainer && remainingBytes >= 0)
-                {	// Container
+                if (isContainer && remainingBytes >= 0) {	// Container
                     if (recordBytesRemaining <= (int)remainingBytes)
                         Console.WriteLine("            completed within");
                     else
@@ -413,8 +417,7 @@ namespace Npoi.Core.DDF
                 {
                     nDumpSize = (recordBytesRemaining > (int)remainingBytes) ? (short)remainingBytes : (short)recordBytesRemaining;
 
-                    if (nDumpSize != 0)
-                    {
+                    if (nDumpSize != 0) {
                         HexDump.Dump(in1, 0, nDumpSize);
                         remainingBytes -= nDumpSize;
                     }
@@ -426,8 +429,7 @@ namespace Npoi.Core.DDF
 
         private class PropName
         {
-            public PropName(int id, String name)
-            {
+            public PropName(int id, String name) {
                 this.id = id;
                 this.name = name;
             }
@@ -435,16 +437,14 @@ namespace Npoi.Core.DDF
             public int id;
             public String name;
         }
+
         /// <summary>
         /// Returns a property name given a property id.  This is used only by the
         /// old escher dump routine.
         /// </summary>
         /// <param name="propertyId">The property number for the name</param>
         /// <returns>A descriptive name.</returns>
-        private String PropertyName(short propertyId)
-        {
-
-
+        private String PropertyName(short propertyId) {
             PropName[] props = new PropName[] {
             new PropName(4, "transform.rotation"),
             new PropName(119, "protection.lockrotation"),
@@ -722,10 +722,8 @@ namespace Npoi.Core.DDF
             new PropName(959, "groupshape.print"),
         };
 
-            for (int i = 0; i < props.Length; i++)
-            {
-                if (props[i].id == propertyId)
-                {
+            for (int i = 0; i < props.Length; i++) {
+                if (props[i].id == propertyId) {
                     return props[i].name;
                 }
             }
@@ -738,26 +736,32 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="b">blip id</param>
         /// <returns> A description.</returns>
-        private String GetBlipType(byte b)
-        {
-            switch (b)
-            {
+        private String GetBlipType(byte b) {
+            switch (b) {
                 case 0:
                     return " ERROR";
+
                 case 1:
                     return " UNKNOWN";
+
                 case 2:
                     return " EMF";
+
                 case 3:
                     return " WMF";
+
                 case 4:
                     return " PICT";
+
                 case 5:
                     return " JPEG";
+
                 case 6:
                     return " PNG";
+
                 case 7:
                     return " DIB";
+
                 default:
                     if (b < 32)
                         return " NotKnown";
@@ -771,8 +775,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="n32">The N32.</param>
         /// <returns></returns>
-        private String Dec1616(int n32)
-        {
+        private String Dec1616(int n32) {
             String result = "";
             result += (short)(n32 >> 16);
             result += '.';
@@ -785,19 +788,20 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="bytes">How many bytes this hex value consists of.</param>
         /// <param name="in1">The stream to Read the hex value from.</param>
-        private void OutHex(int bytes, Stream in1)
-        {
-            switch (bytes)
-            {
+        private void OutHex(int bytes, Stream in1) {
+            switch (bytes) {
                 case 1:
                     Console.Write(HexDump.ToHex((byte)in1.ReadByte()));
                     break;
+
                 case 2:
                     Console.Write(HexDump.ToHex(LittleEndian.ReadShort(in1)));
                     break;
+
                 case 4:
                     Console.Write(HexDump.ToHex(LittleEndian.ReadInt(in1)));
                     break;
+
                 default:
                     throw new IOException("Unable to output variable of that width");
             }
@@ -808,8 +812,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="recordSize">Size of the record.</param>
         /// <param name="data">The data.</param>
-        public void Dump(int recordSize, byte[] data)
-        {
+        public void Dump(int recordSize, byte[] data) {
             //        ByteArrayInputStream is = new ByteArrayInputStream( data );
             //        dump( recordSize, is, out );
             Dump(data, 0, recordSize);

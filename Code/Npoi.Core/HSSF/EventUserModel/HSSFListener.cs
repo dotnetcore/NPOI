@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -28,7 +27,6 @@ namespace Npoi.Core.HSSF.EventUserModel
     /// </summary>
     public interface IHSSFListener
     {
-
         /// <summary>
         /// Process an HSSF Record. Called when a record occurs in an HSSF file.
         /// </summary>

@@ -17,19 +17,18 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
+using Npoi.Core.POIFS.FileSystem;
 using System;
 using System.Collections;
 using System.IO;
-
-using Npoi.Core.POIFS.FileSystem;
 
 namespace Npoi.Core.POIFS.Dev
 {

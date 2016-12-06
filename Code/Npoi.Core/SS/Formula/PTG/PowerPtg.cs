@@ -25,6 +25,7 @@ namespace Npoi.Core.SS.Formula.PTG
      * @author  andy
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     public class PowerPtg : ValueOperatorPtg
     {
         public const byte sid = 0x07;
@@ -43,14 +44,13 @@ namespace Npoi.Core.SS.Formula.PTG
 
         public override int NumberOfOperands
         {
-            get { return 2; } 
+            get { return 2; }
             // TODO - 2 seems wrong (Jun 2008).  Maybe this method is not relevant
         }
 
         public override String ToFormulaString(String[] operands)
         {
             StringBuilder buffer = new StringBuilder();
-
 
             buffer.Append(operands[0]);
             buffer.Append("^");

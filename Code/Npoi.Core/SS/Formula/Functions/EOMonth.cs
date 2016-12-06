@@ -17,10 +17,10 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.UserModel;
+    using System;
 
     /**
      * Implementation for the Excel EOMONTH() function.<p/>
@@ -36,11 +36,10 @@ namespace Npoi.Core.SS.Formula.Functions
      * the last day of the month. <b>months</b> may be positive (in the future),
      * zero or negative (in the past).
      */
+
     public class EOMonth : FreeRefFunction
     {
-
         public static FreeRefFunction instance = new EOMonth();
-
 
         public ValueEval Evaluate(ValueEval[] args, OperationEvaluationContext ec)
         {
@@ -69,7 +68,6 @@ namespace Npoi.Core.SS.Formula.Functions
                 dtEnd = new DateTime(dtEnd.Year, dtEnd.Month, 1);
                 //last day of the month
                 dtEnd = dtEnd.AddDays(-1);
-                
 
                 return new NumberEval(DateUtil.GetExcelDate(dtEnd));
             }
@@ -78,7 +76,5 @@ namespace Npoi.Core.SS.Formula.Functions
                 return e.GetErrorEval();
             }
         }
-
     }
-
 }

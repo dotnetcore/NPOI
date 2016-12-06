@@ -17,17 +17,17 @@
 
 namespace Npoi.Core.HSSF.Record.Chart
 {
-    using System;
-    using System.Text;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
-
+    using System;
+    using System.Text;
 
     /**
      * CATLAB - Category Labels (0x0856)<br/>
-     * 
+     *
      * @author Patrick Cheng
      */
+
     public class CatLabRecord : StandardRecord
     {
         public const short sid = 0x0856;
@@ -55,9 +55,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             {
                 unused = in1.ReadShort();
             }
-
         }
-
 
         protected override int DataSize
         {
@@ -77,7 +75,6 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public override void Serialize(ILittleEndianOutput out1)
         {
-
             out1.WriteShort(rt);
             out1.WriteShort(grbitFrt);
             out1.WriteShort(wOffset);

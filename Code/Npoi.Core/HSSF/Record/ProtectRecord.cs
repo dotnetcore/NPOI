@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,18 +15,16 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title: Protect Record
      * Description:  defines whether a sheet or workbook is protected (HSSF DOES NOT SUPPORT ENCRYPTION)
-     * (kindly ask the US government to stop having arcane stupid encryption laws and we'll support it) 
+     * (kindly ask the US government to stop having arcane stupid encryption laws and we'll support it)
      * (after all terrorists will all use US-legal encrypton right??)
      * HSSF now supports the simple "protected" sheets (where they are not encrypted and open office et al
      * ignore the password record entirely).
@@ -41,6 +38,7 @@ namespace Npoi.Core.HSSF.Record
         public const short sid = 0x12;
         private static BitField protectFlag = BitFieldFactory.GetInstance(0x0001);
         private short _options;
+
         public ProtectRecord(short options)
         {
             _options = options;
@@ -54,13 +52,14 @@ namespace Npoi.Core.HSSF.Record
         public ProtectRecord(RecordInputStream in1)
             : this(in1.ReadShort())
         {
-
         }
+
         public ProtectRecord(bool isProtected)
             : this(0)
         {
             this.Protect = (isProtected);
         }
+
         /**
          * Get whether the sheet is protected or not
          * @return whether to protect the sheet or not

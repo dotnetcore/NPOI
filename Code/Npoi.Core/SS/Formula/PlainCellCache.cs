@@ -17,15 +17,12 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
-    using System;
-    using System.Collections;
     using Npoi.Core.Util;
+    using System;
     using System.Collections.Generic;
 
     public class Loc
     {
-
         private long _bookSheetColumn;
 
         private int _rowIndex;
@@ -46,9 +43,10 @@ namespace Npoi.Core.SS.Formula
             _bookSheetColumn = bookSheetColumn;
             _rowIndex = rowIndex;
         }
+
         public override int GetHashCode()
         {
-            return (int)(_bookSheetColumn ^ (Operator.UnsignedRightShift(_bookSheetColumn , 32))) + 17 * _rowIndex;
+            return (int)(_bookSheetColumn ^ (Operator.UnsignedRightShift(_bookSheetColumn, 32))) + 17 * _rowIndex;
         }
 
         public override bool Equals(Object obj)
@@ -64,6 +62,7 @@ namespace Npoi.Core.SS.Formula
                 return _rowIndex;
             }
         }
+
         public int ColumnIndex
         {
             get
@@ -71,6 +70,7 @@ namespace Npoi.Core.SS.Formula
                 return (int)(_bookSheetColumn & 0x000FFFF);
             }
         }
+
         public int SheetIndex
         {
             get
@@ -87,31 +87,36 @@ namespace Npoi.Core.SS.Formula
             }
         }
     }
+
     /**
      *
      * @author Josh Micich
      */
+
     public class PlainCellCache
     {
-
         private Dictionary<object, object> _plainValueEntriesByLoc;
 
         public PlainCellCache()
         {
             _plainValueEntriesByLoc = new Dictionary<object, object>();
         }
+
         public void Put(Loc key, PlainValueCellCacheEntry cce)
         {
             _plainValueEntriesByLoc[key] = cce;
         }
+
         public void Clear()
         {
             _plainValueEntriesByLoc.Clear();
         }
+
         public PlainValueCellCacheEntry Get(Loc key)
         {
             return (PlainValueCellCacheEntry)_plainValueEntriesByLoc[key];
         }
+
         public void Remove(Loc key)
         {
             _plainValueEntriesByLoc.Remove(key);

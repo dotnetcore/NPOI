@@ -3,12 +3,10 @@ using System.Text;
 
 namespace Npoi.Core.HSSF.Record.AutoFilter
 {
-    public class AutoFilterInfoRecord:StandardRecord
+    public class AutoFilterInfoRecord : StandardRecord
     {
-
         public AutoFilterInfoRecord()
-        { 
-        
+        {
         }
 
         private short field_1_cEntries = 0;
@@ -19,6 +17,7 @@ namespace Npoi.Core.HSSF.Record.AutoFilter
         }
 
         public const short sid = 0x9D;
+
         public override short Sid
         {
             get { return sid; }
@@ -34,6 +33,7 @@ namespace Npoi.Core.HSSF.Record.AutoFilter
             get { return field_1_cEntries; }
             set { field_1_cEntries = value; }
         }
+
         public override String ToString()
         {
             StringBuilder buffer = new StringBuilder();
@@ -43,10 +43,12 @@ namespace Npoi.Core.HSSF.Record.AutoFilter
             buffer.Append("[/AUTOFILTERINFO]\n");
             return buffer.ToString();
         }
+
         public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             out1.WriteShort(field_1_cEntries);
         }
+
         public override object Clone()
         {
             AutoFilterInfoRecord rec = new AutoFilterInfoRecord();

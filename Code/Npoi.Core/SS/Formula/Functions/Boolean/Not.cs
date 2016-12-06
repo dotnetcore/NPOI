@@ -18,10 +18,10 @@
  * Created on May 9, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     using Npoi.Core.SS.Formula.Eval;
-
 
     /*
      * @author Amol S. Deshmukh &lt; amol at apache dot org &gt;
@@ -29,6 +29,7 @@ namespace Npoi.Core.SS.Formula.Functions
      * (treated as a bool). If the specified arg Is a number,
      * then it Is true <=> 'number Is non-zero'
      */
+
     public class Not : Fixed1ArgFunction
     {
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0)

@@ -17,18 +17,17 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
-using System.Collections.Generic;
-
-using Npoi.Core.POIFS.Storage;
 using Npoi.Core.POIFS.Common;
+using Npoi.Core.POIFS.Storage;
+using System.Collections.Generic;
 
 namespace Npoi.Core.POIFS.Properties
 {
@@ -44,7 +43,7 @@ namespace Npoi.Core.POIFS.Properties
         /// <param name="blocks">The blocks to be converted</param>
         /// <returns>the converted List of Property objects. May contain
         /// nulls, but will not be null</returns>
-        public static List<Property> ConvertToProperties(ListManagedBlock [] blocks)
+        public static List<Property> ConvertToProperties(ListManagedBlock[] blocks)
         {
             List<Property> properties = new List<Property>();
 
@@ -60,27 +59,30 @@ namespace Npoi.Core.POIFS.Properties
         public static void ConvertToProperties(byte[] data, List<Property> properties)
         {
             int property_count = data.Length / POIFSConstants.PROPERTY_SIZE;
-                int    offset         = 0;
+            int offset = 0;
 
-                for (int k = 0; k < property_count; k++)
-                {
+            for (int k = 0; k < property_count; k++)
+            {
                 switch (data[offset + PropertyConstants.PROPERTY_TYPE_OFFSET])
-                    {
+                {
                     case PropertyConstants.DIRECTORY_TYPE:
                         properties.Add(new DirectoryProperty(properties.Count, data, offset));
-                            break;
+                        break;
+
                     case PropertyConstants.DOCUMENT_TYPE:
                         properties.Add(new DocumentProperty(properties.Count, data, offset));
-                            break;
+                        break;
+
                     case PropertyConstants.ROOT_TYPE:
                         properties.Add(new RootProperty(properties.Count, data, offset));
-                            break;
+                        break;
+
                     default:
-                            properties.Add(null);
-                            break;
-                    }
-                    offset += POIFSConstants.PROPERTY_SIZE;
+                        properties.Add(null);
+                        break;
                 }
+                offset += POIFSConstants.PROPERTY_SIZE;
+            }
         }
     }
 }

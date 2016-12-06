@@ -17,18 +17,17 @@
 
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
-    using System;
-    using System.Text;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
-
+    using System;
+    using System.Text;
 
     /**
      * ENDOBJECT - Chart Future Record Type End Object (0x0855)<br/>
-     * 
+     *
      * @author Patrick Cheng
      */
+
     public class ChartEndObjectRecord : StandardRecord
     {
         public const short sid = 0x0855;
@@ -54,11 +53,10 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             else
             {
-                // Read the reserved bytes 
+                // Read the reserved bytes
                 in1.ReadFully(reserved);
             }
         }
-
 
         protected override int DataSize
         {

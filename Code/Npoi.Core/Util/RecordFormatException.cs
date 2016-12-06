@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,7 +15,6 @@
    limitations under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.Util
 {
     using System;
@@ -26,11 +24,12 @@ namespace Npoi.Core.Util
      *  (especially HSSF and DDF), when they hit invalid
      *  format or data when Processing a record.
      */
+
     [Serializable]
     public class RecordFormatException
         : RuntimeException
     {
-        public RecordFormatException(String exception):
+        public RecordFormatException(String exception) :
             base(exception)
         {
         }
@@ -38,13 +37,11 @@ namespace Npoi.Core.Util
         public RecordFormatException(String exception, Exception ex)
             : base(exception, ex)
         {
-
         }
 
-        public RecordFormatException(Exception ex):
+        public RecordFormatException(Exception ex) :
             base(ex)
         {
         }
     }
-
 }

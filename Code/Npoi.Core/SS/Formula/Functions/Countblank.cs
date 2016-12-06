@@ -17,6 +17,7 @@
 
 using Npoi.Core.SS.Formula.Eval;
 using System;
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     /**
@@ -30,12 +31,11 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author Mads Mohr Christensen
      */
+
     public class Countblank : Fixed1ArgFunction
     {
-
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0)
         {
-
             double result;
             if (arg0 is RefEval)
             {
@@ -53,6 +53,7 @@ namespace Npoi.Core.SS.Formula.Functions
         }
 
         private static IMatchPredicate predicate = new BlankPredicate();
+
         private class BlankPredicate : IMatchPredicate
         {
             #region I_MatchPredicate 成员
@@ -62,7 +63,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return valueEval == BlankEval.instance;
             }
 
-            #endregion
+            #endregion I_MatchPredicate 成员
         }
     }
 }

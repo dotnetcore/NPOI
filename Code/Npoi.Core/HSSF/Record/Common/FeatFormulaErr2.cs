@@ -17,37 +17,45 @@
 
 namespace Npoi.Core.HSSF.Record.Common
 {
-    using System;
-    using System.Text;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
+    using System;
+    using System.Text;
 
     /**
      * FeatFormulaErr2 (Formula Evaluation Shared Feature) common record part
-     * 
-     * This record part specifies Formula Evaluation &amp; Error Ignoring data 
-     *  for a sheet, stored as part of a Shared Feature. It can be found in 
+     *
+     * This record part specifies Formula Evaluation &amp; Error Ignoring data
+     *  for a sheet, stored as part of a Shared Feature. It can be found in
      *  records such as {@link FeatRecord}.
      * For the full meanings of the flags, see pages 669 and 670
      *  of the Excel binary file format documentation.
      */
+
     public class FeatFormulaErr2 : SharedFeature
     {
-        static BitField checkCalculationErrors =
+        private static BitField checkCalculationErrors =
             BitFieldFactory.GetInstance(0x01);
-        static BitField checkEmptyCellRef =
+
+        private static BitField checkEmptyCellRef =
             BitFieldFactory.GetInstance(0x02);
-        static BitField checkNumbersAsText =
+
+        private static BitField checkNumbersAsText =
             BitFieldFactory.GetInstance(0x04);
-        static BitField checkInconsistentRanges =
+
+        private static BitField checkInconsistentRanges =
             BitFieldFactory.GetInstance(0x08);
-        static BitField checkInconsistentFormulas =
+
+        private static BitField checkInconsistentFormulas =
             BitFieldFactory.GetInstance(0x10);
-        static BitField checkDateTimeFormats =
+
+        private static BitField checkDateTimeFormats =
             BitFieldFactory.GetInstance(0x20);
-        static BitField checkUnprotectedFormulas =
+
+        private static BitField checkUnprotectedFormulas =
             BitFieldFactory.GetInstance(0x40);
-        static BitField performDataValidation =
+
+        private static BitField performDataValidation =
             BitFieldFactory.GetInstance(0x80);
 
         /**
@@ -55,8 +63,9 @@ namespace Npoi.Core.HSSF.Record.Common
          */
         private int errorCheck;
 
-
-        public FeatFormulaErr2() { }
+        public FeatFormulaErr2()
+        {
+        }
 
         public FeatFormulaErr2(RecordInputStream in1)
         {
@@ -204,5 +213,4 @@ namespace Npoi.Core.HSSF.Record.Common
             }
         }
     }
-
 }

@@ -17,16 +17,15 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
-
 
 namespace Npoi.Core.POIFS.FileSystem
 {
@@ -36,11 +35,10 @@ namespace Npoi.Core.POIFS.FileSystem
     /// POIFS works with)
     /// </summary>
     [Serializable]
-    public class OfficeXmlFileException:ArgumentException
+    public class OfficeXmlFileException : ArgumentException
     {
-        public OfficeXmlFileException(String s):base(s)
-        { 
-        
+        public OfficeXmlFileException(String s) : base(s)
+        {
         }
     }
 }

@@ -18,12 +18,14 @@
  * Created on May 6, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     *  
+     *
      */
+
     public class Even : OneArg
     {
         private const long PARITY_MASK = unchecked((long)0xFFFFFFFFFFFFFFFEL);
@@ -55,6 +57,5 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return x + 2;
         }
-
     }
 }

@@ -14,6 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.UserModel
 {
     using System;
@@ -21,23 +22,28 @@ namespace Npoi.Core.SS.UserModel
     public enum HyperlinkType : int
     {
         Unknown = 0,
+
         /// <summary>
         /// Link to an existing file or web page
         /// </summary>
         Url = 1,
+
         /// <summary>
         /// Link to a place in this document
         /// </summary>
         Document = 2,
+
         /// <summary>
         /// Link to an E-mail Address
         /// </summary>
         Email = 3,
+
         /// <summary>
         /// Link to a file
         /// </summary>
         File = 4
     }
+
     /// <summary>
     /// Represents an Excel hyperlink.
     /// </summary>
@@ -62,6 +68,7 @@ namespace Npoi.Core.SS.UserModel
         /// the row of the first cell that Contains the hyperlink
         /// </summary>
         int FirstRow { get; set; }
+
         /// <summary>
         /// the row of the last cell that Contains the hyperlink
         /// </summary>
@@ -79,5 +86,4 @@ namespace Npoi.Core.SS.UserModel
 
         string TextMark { get; set; }
     }
-
 }

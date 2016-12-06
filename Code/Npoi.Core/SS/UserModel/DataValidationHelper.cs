@@ -14,19 +14,19 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.UserModel
 {
-    using System;
-
     using Npoi.Core.SS.Util;
+    using System;
 
     /**
      * @author <a href="rjankiraman@emptoris.com">Radhakrishnan J</a>
-     * 
+     *
      */
+
     public interface IDataValidationHelper
     {
-
         IDataValidationConstraint CreateFormulaListConstraint(String listFormula);
 
         IDataValidationConstraint CreateExplicitListConstraint(String[] listOfValues);
@@ -47,5 +47,4 @@ namespace Npoi.Core.SS.UserModel
 
         IDataValidation CreateValidation(IDataValidationConstraint constraint, CellRangeAddressList cellRangeAddressList);
     }
-
 }

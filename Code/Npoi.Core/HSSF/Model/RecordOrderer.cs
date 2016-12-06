@@ -17,66 +17,60 @@
 
 namespace Npoi.Core.HSSF.Model
 {
-    using System;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.Record.Aggregates;
-    using System.Collections.Generic;
     using Npoi.Core.HSSF.Record.PivotTable;
+    using System;
+    using System.Collections.Generic;
 
     /**
      * Finds correct insert positions for records in workbook streams<p/>
-     * 
+     *
      * See OOO excelfileformat.pdf sec. 4.2.5 'Record Order in a BIFF8 Workbook Stream'
-     * 
+     *
      * @author Josh Micich
      */
+
     public class RecordOrderer
     {
-
         // TODO - simplify logic using a generalised record ordering
 
-        private RecordOrderer()
-        {
+        private RecordOrderer() {
             // no instances of this class
         }
+
         /**
          * Adds the specified new record in the correct place in sheet records list
-         * 
+         *
          */
-        public static void AddNewSheetRecord(List<RecordBase> sheetRecords, RecordBase newRecord)
-        {
+
+        public static void AddNewSheetRecord(List<RecordBase> sheetRecords, RecordBase newRecord) {
             int index = FindSheetInsertPos(sheetRecords, newRecord.GetType());
             sheetRecords.Insert(index, newRecord);
         }
 
-        private static int FindSheetInsertPos(List<RecordBase> records, Type recClass)
-        {
-            if (recClass == typeof(DataValidityTable))
-            {
+        private static int FindSheetInsertPos(List<RecordBase> records, Type recClass) {
+            if (recClass == typeof(DataValidityTable)) {
                 return FindDataValidationTableInsertPos(records);
             }
-            if (recClass == typeof(MergedCellsTable))
-            {
+            if (recClass == typeof(MergedCellsTable)) {
                 return FindInsertPosForNewMergedRecordTable(records);
             }
-            if (recClass == typeof(ConditionalFormattingTable))
-            {
+            if (recClass == typeof(ConditionalFormattingTable)) {
                 return FindInsertPosForNewCondFormatTable(records);
             }
-            if (recClass == typeof(GutsRecord))
-            {
+            if (recClass == typeof(GutsRecord)) {
                 return GetGutsRecordInsertPos(records);
             }
-            if (recClass == typeof(PageSettingsBlock))
-            {
+            if (recClass == typeof(PageSettingsBlock)) {
                 return GetPageBreakRecordInsertPos(records);
             }
-            if (recClass == typeof(WorksheetProtectionBlock))
-            {
+            if (recClass == typeof(WorksheetProtectionBlock)) {
                 return GetWorksheetProtectionBlockInsertPos(records);
             }
             throw new InvalidOperationException("Unexpected record class (" + recClass.Name + ")");
         }
+
         /// <summary>
         /// Finds the index where the protection block should be inserted
         /// </summary>
@@ -99,20 +93,18 @@ namespace Npoi.Core.HSSF.Model
         /// o SORT
         /// + DIMENSION
         /// </remark>
-        private static int GetWorksheetProtectionBlockInsertPos(List<RecordBase> records)
-        {
+        private static int GetWorksheetProtectionBlockInsertPos(List<RecordBase> records) {
             int i = GetDimensionsIndex(records);
-            while (i > 0)
-            {
+            while (i > 0) {
                 i--;
                 Object rb = records[i];
-                if (!IsProtectionSubsequentRecord(rb))
-                {
+                if (!IsProtectionSubsequentRecord(rb)) {
                     return i + 1;
                 }
             }
             throw new InvalidOperationException("did not find insert pos for protection block");
         }
+
         /// <summary>
         /// These records may occur between the 'Worksheet Protection Block' and DIMENSION:
         /// </summary>
@@ -123,17 +115,13 @@ namespace Npoi.Core.HSSF.Model
         /// oo COLINFO
         /// o SORT
         /// </remarks>
-        private static bool IsProtectionSubsequentRecord(Object rb)
-        {
-            if (rb is ColumnInfoRecordsAggregate)
-            {
+        private static bool IsProtectionSubsequentRecord(Object rb) {
+            if (rb is ColumnInfoRecordsAggregate) {
                 return true; // oo COLINFO
             }
-            if (rb is Record)
-            {
+            if (rb is Record) {
                 Record record = (Record)rb;
-                switch (record.Sid)
-                {
+                switch (record.Sid) {
                     case DefaultColWidthRecord.sid:
                     case UnknownRecord.SORT_0090:
                         return true;
@@ -141,28 +129,24 @@ namespace Npoi.Core.HSSF.Model
             }
             return false;
         }
-        private static int GetPageBreakRecordInsertPos(List<RecordBase> records)
-        {
+
+        private static int GetPageBreakRecordInsertPos(List<RecordBase> records) {
             int dimensionsIndex = GetDimensionsIndex(records);
             int i = dimensionsIndex - 1;
-            while (i > 0)
-            {
+            while (i > 0) {
                 i--;
                 RecordBase rb = records[i];
-                if (IsPageBreakPriorRecord(rb))
-                {
+                if (IsPageBreakPriorRecord(rb)) {
                     return i + 1;
                 }
             }
             throw new InvalidOperationException("Did not Find insert point for GUTS");
         }
-        private static bool IsPageBreakPriorRecord(RecordBase rb)
-        {
-            if (rb is Record)
-            {
+
+        private static bool IsPageBreakPriorRecord(RecordBase rb) {
+            if (rb is Record) {
                 Record record = (Record)rb;
-                switch (record.Sid)
-                {
+                switch (record.Sid) {
                     case BOFRecord.sid:
                     case IndexRecord.sid:
                     // calc settings block
@@ -182,65 +166,56 @@ namespace Npoi.Core.HSSF.Model
                     case DefaultRowHeightRecord.sid:
                     case UnknownRecord.SHEETPR_0081:
                         return true;
-                    // next is the 'Worksheet Protection Block'
+                        // next is the 'Worksheet Protection Block'
                 }
             }
             return false;
         }
+
         /// <summary>
         /// Find correct position to add new CFHeader record
         /// </summary>
         /// <param name="records"></param>
         /// <returns></returns>
-        private static int FindInsertPosForNewCondFormatTable(List<RecordBase> records)
-        {
-
-            for (int i = records.Count - 2; i >= 0; i--)
-            { // -2 to skip EOF record
+        private static int FindInsertPosForNewCondFormatTable(List<RecordBase> records) {
+            for (int i = records.Count - 2; i >= 0; i--) { // -2 to skip EOF record
                 Object rb = records[i];
-                if (rb is MergedCellsTable)
-                {
+                if (rb is MergedCellsTable) {
                     return i + 1;
                 }
-                if (rb is DataValidityTable)
-                {
+                if (rb is DataValidityTable) {
                     continue;
                 }
                 Record rec = (Record)rb;
-                switch (rec.Sid)
-                {
+                switch (rec.Sid) {
                     case WindowTwoRecord.sid:
                     case SCLRecord.sid:
                     case PaneRecord.sid:
                     case SelectionRecord.sid:
                     case UnknownRecord.STANDARDWIDTH_0099:
-                    // MergedCellsTable usually here 
+                    // MergedCellsTable usually here
                     case UnknownRecord.LABELRANGES_015F:
                     case UnknownRecord.PHONETICPR_00EF:
                         // ConditionalFormattingTable goes here
                         return i + 1;
-                    // HyperlinkTable (not aggregated by POI yet)
-                    // DataValidityTable
+                        // HyperlinkTable (not aggregated by POI yet)
+                        // DataValidityTable
                 }
             }
             throw new InvalidOperationException("Did not Find Window2 record");
         }
 
-        private static int FindInsertPosForNewMergedRecordTable(List<RecordBase> records)
-        {
-            for (int i = records.Count - 2; i >= 0; i--)
-            { // -2 to skip EOF record
+        private static int FindInsertPosForNewMergedRecordTable(List<RecordBase> records) {
+            for (int i = records.Count - 2; i >= 0; i--) { // -2 to skip EOF record
                 Object rb = records[i];
-                if (!(rb is Record))
-                {
-                    // DataValidityTable, ConditionalFormattingTable, 
+                if (!(rb is Record)) {
+                    // DataValidityTable, ConditionalFormattingTable,
                     // even PageSettingsBlock (which doesn't normally appear after 'View Settings')
                     continue;
                 }
                 Record rec = (Record)rb;
-                switch (rec.Sid)
-                {
-                    // 'View Settings' (4 records) 
+                switch (rec.Sid) {
+                    // 'View Settings' (4 records)
                     case WindowTwoRecord.sid:
                     case SCLRecord.sid:
                     case PaneRecord.sid:
@@ -253,11 +228,10 @@ namespace Npoi.Core.HSSF.Model
             throw new InvalidOperationException("Did not Find Window2 record");
         }
 
-
         /**
          * Finds the index where the sheet validations header record should be inserted
          * @param records the records for this sheet
-         * 
+         *
          * + WINDOW2
          * o SCL
          * o PANE
@@ -274,30 +248,25 @@ namespace Npoi.Core.HSSF.Model
          * o RANGEPROTECTION
          * + EOF
          */
-        private static int FindDataValidationTableInsertPos(List<RecordBase> records)
-        {
+
+        private static int FindDataValidationTableInsertPos(List<RecordBase> records) {
             int i = records.Count - 1;
-            if (!(records[i] is EOFRecord))
-            {
+            if (!(records[i] is EOFRecord)) {
                 throw new InvalidOperationException("Last sheet record should be EOFRecord");
             }
-            while (i > 0)
-            {
+            while (i > 0) {
                 i--;
                 RecordBase rb = records[i];
-                if (IsDVTPriorRecord(rb))
-                {
+                if (IsDVTPriorRecord(rb)) {
                     Record nextRec = (Record)records[i + 1];
-                    if (!IsDVTSubsequentRecord(nextRec.Sid))
-                    {
+                    if (!IsDVTSubsequentRecord(nextRec.Sid)) {
                         throw new InvalidOperationException("Unexpected (" + nextRec.GetType().Name
                                 + ") found after (" + rb.GetType().Name + ")");
                     }
                     return i + 1;
                 }
                 Record rec = (Record)rb;
-                if (!IsDVTSubsequentRecord(rec.Sid))
-                {
+                if (!IsDVTSubsequentRecord(rec.Sid)) {
                     throw new InvalidOperationException("Unexpected (" + rec.GetType().Name
                             + ") while looking for DV Table insert pos");
                 }
@@ -305,16 +274,12 @@ namespace Npoi.Core.HSSF.Model
             return 0;
         }
 
-
-        private static bool IsDVTPriorRecord(RecordBase rb)
-        {
-            if (rb is MergedCellsTable || rb is ConditionalFormattingTable)
-            {
+        private static bool IsDVTPriorRecord(RecordBase rb) {
+            if (rb is MergedCellsTable || rb is ConditionalFormattingTable) {
                 return true;
             }
             short sid = ((Record)rb).Sid;
-            switch (sid)
-            {
+            switch (sid) {
                 case WindowTwoRecord.sid:
                 case SCLRecord.sid:
                 case PaneRecord.sid:
@@ -331,31 +296,28 @@ namespace Npoi.Core.HSSF.Model
             return false;
         }
 
-        private static bool IsDVTSubsequentRecord(short sid)
-        {
-            switch (sid)
-            {
+        private static bool IsDVTSubsequentRecord(short sid) {
+            switch (sid) {
                 //case UnknownRecord.SHEETEXT_0862:
                 case SheetExtRecord.sid:
                 case UnknownRecord.SHEETPROTECTION_0867:
                 case UnknownRecord.PLV_MAC:
                 //case UnknownRecord.RANGEPROTECTION_0868:
-                case FeatRecord.sid: 
+                case FeatRecord.sid:
                 case EOFRecord.sid:
                     return true;
             }
             return false;
         }
+
         /**
          * DIMENSIONS record is always present
          */
-        private static int GetDimensionsIndex(List<RecordBase> records)
-        {
+
+        private static int GetDimensionsIndex(List<RecordBase> records) {
             int nRecs = records.Count;
-            for (int i = 0; i < nRecs; i++)
-            {
-                if (records[i] is DimensionsRecord)
-                {
+            for (int i = 0; i < nRecs; i++) {
+                if (records[i] is DimensionsRecord) {
                     return i;
                 }
             }
@@ -363,62 +325,55 @@ namespace Npoi.Core.HSSF.Model
             throw new InvalidOperationException("DimensionsRecord not found");
         }
 
-        private static int GetGutsRecordInsertPos(List<RecordBase> records)
-        {
+        private static int GetGutsRecordInsertPos(List<RecordBase> records) {
             int dimensionsIndex = GetDimensionsIndex(records);
             int i = dimensionsIndex - 1;
-            while (i > 0)
-            {
+            while (i > 0) {
                 i--;
                 RecordBase rb = records[i];
-                if (IsGutsPriorRecord(rb))
-                {
+                if (IsGutsPriorRecord(rb)) {
                     return i + 1;
                 }
             }
             throw new InvalidOperationException("Did not Find insert point for GUTS");
         }
 
-        private static bool IsGutsPriorRecord(RecordBase rb)
-        {
-            if (rb is Record)
-            {
+        private static bool IsGutsPriorRecord(RecordBase rb) {
+            if (rb is Record) {
                 Record record = (Record)rb;
-                switch (record.Sid)
-                {
+                switch (record.Sid) {
                     case BOFRecord.sid:
                     case IndexRecord.sid:
                     // calc settings block
-                        case UncalcedRecord.sid:
-                        case CalcCountRecord.sid:
-                        case CalcModeRecord.sid:
-                        case PrecisionRecord.sid:
-                        case RefModeRecord.sid:
-                        case DeltaRecord.sid:
-                        case IterationRecord.sid:
-                        case DateWindow1904Record.sid:
-                        case SaveRecalcRecord.sid:
+                    case UncalcedRecord.sid:
+                    case CalcCountRecord.sid:
+                    case CalcModeRecord.sid:
+                    case PrecisionRecord.sid:
+                    case RefModeRecord.sid:
+                    case DeltaRecord.sid:
+                    case IterationRecord.sid:
+                    case DateWindow1904Record.sid:
+                    case SaveRecalcRecord.sid:
                     // end calc settings
                     case PrintHeadersRecord.sid:
                     case PrintGridlinesRecord.sid:
                     case GridsetRecord.sid:
                         return true;
-                    // DefaultRowHeightRecord.sid is next
+                        // DefaultRowHeightRecord.sid is next
                 }
             }
             return false;
         }
+
         /// <summary>
         /// if the specified record ID terminates a sequence of Row block records
-        /// It is assumed that at least one row or cell value record has been found prior to the current 
+        /// It is assumed that at least one row or cell value record has been found prior to the current
         /// record
         /// </summary>
         /// <param name="sid"></param>
         /// <returns></returns>
-        public static bool IsEndOfRowBlock(int sid)
-        {
-            switch (sid)
-            {
+        public static bool IsEndOfRowBlock(int sid) {
+            switch (sid) {
                 case ViewDefinitionRecord.sid:                // should have been prefixed with DrawingRecord (0x00EC), but bug 46280 seems to allow this
                 case DrawingRecord.sid:
                 case DrawingSelectionRecord.sid:
@@ -433,21 +388,21 @@ namespace Npoi.Core.HSSF.Model
 
                 case DVALRecord.sid:
                     return true;
+
                 case EOFRecord.sid:
                     // WINDOW2 should always be present, so shouldn't have got this far
                     throw new InvalidOperationException("Found EOFRecord before WindowTwoRecord was encountered");
             }
             return PageSettingsBlock.IsComponentRecord(sid);
         }
+
         /// <summary>
         /// Whether the specified record id normally appears in the row blocks section of the sheet records
         /// </summary>
         /// <param name="sid"></param>
         /// <returns></returns>
-        public static bool IsRowBlockRecord(int sid)
-        {
-            switch (sid)
-            {
+        public static bool IsRowBlockRecord(int sid) {
+            switch (sid) {
                 case RowRecord.sid:
 
                 case BlankRecord.sid:
@@ -462,7 +417,6 @@ namespace Npoi.Core.HSSF.Model
                 case SharedFormulaRecord.sid:
                 case TableRecord.sid:
                     return true;
-
             }
             return false;
         }

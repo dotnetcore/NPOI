@@ -17,10 +17,10 @@
 
 namespace Npoi.Core.SS.UserModel
 {
-    using System.Globalization;
     using System;
-    using System.Text.RegularExpressions;
+    using System.Globalization;
     using System.Text;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Contains methods for dealing with Excel dates.
@@ -50,10 +50,10 @@ namespace Npoi.Core.SS.UserModel
         private static Regex date_ptrn2 = new Regex("^\\[[a-zA-Z]+\\]");
         private static Regex date_ptrn3a = new Regex("[yYmMdDhHsS]");
         private static Regex date_ptrn3b = new Regex("^[\\[\\]yYmMdDhHsS\\-T/,. :\"\\\\]+0*[ampAMP/]*$");
+
         //  elapsed time patterns: [h],[m] and [s]
         //private static Regex date_ptrn4 = new Regex("^\\[([hH]+|[mM]+|[sS]+)\\]");
         private static Regex date_ptrn4 = new Regex("^\\[([hH]+|[mM]+|[sS]+)\\]$");
-
 
         /// <summary>
         /// Given a Calendar, return the number of days since 1899/12/31.
@@ -70,6 +70,7 @@ namespace Npoi.Core.SS.UserModel
             }
             return daynum;
         }
+
         /// <summary>
         /// Given a Date, Converts it into a double representing its internal Excel representation,
         /// which Is the number of days since 1/1/1900. Fractional days represent hours, minutes, and seconds.
@@ -80,6 +81,7 @@ namespace Npoi.Core.SS.UserModel
         {
             return GetExcelDate(date, false);
         }
+
         /// <summary>
         /// Gets the excel date.
         /// </summary>
@@ -174,6 +176,7 @@ namespace Npoi.Core.SS.UserModel
             }
             return value;
         }
+
         /// <summary>
         /// Given a Date, Converts it into a double representing its internal Excel representation,
         /// which Is the number of days since 1/1/1900. Fractional days represent hours, minutes, and seconds.
@@ -214,8 +217,8 @@ namespace Npoi.Core.SS.UserModel
 
         /// <summary>
         ///  Given an Excel date with using 1900 date windowing, and converts it to a java.util.Date.
-        ///  Excel Dates and Times are stored without any timezone 
-        ///  information. If you know (through other means) that your file 
+        ///  Excel Dates and Times are stored without any timezone
+        ///  information. If you know (through other means) that your file
         ///  uses a different TimeZone to the system default, you can use
         ///  this version of the getJavaDate() method to handle it.
         /// </summary>
@@ -225,7 +228,6 @@ namespace Npoi.Core.SS.UserModel
         {
             return GetJavaDate(date, false);
         }
-
 
         /**
          *  Given an Excel date with either 1900 or 1904 date windowing,
@@ -246,19 +248,21 @@ namespace Npoi.Core.SS.UserModel
          *  @return Java representation of the date, or null if date Is not a valid Excel date
          *  @see TimeZone
          */
+
         public static DateTime GetJavaDate(double date, bool use1904windowing)
         {
             return GetJavaCalendar(date, use1904windowing, false);
         }
+
         ///**
         // *  Given an Excel date with either 1900 or 1904 date windowing,
         // *  converts it to a java.util.Date.
-        // *  
-        // *  Excel Dates and Times are stored without any timezone 
-        // *  information. If you know (through other means) that your file 
+        // *
+        // *  Excel Dates and Times are stored without any timezone
+        // *  information. If you know (through other means) that your file
         // *  uses a different TimeZone to the system default, you can use
         // *  this version of the getJavaDate() method to handle it.
-        // *   
+        // *
         // *  @param date  The Excel date.
         // *  @param tz The TimeZone to evaluate the date in
         // *  @param use1904windowing  true if date uses 1904 windowing,
@@ -272,12 +276,12 @@ namespace Npoi.Core.SS.UserModel
         ///**
         // *  Given an Excel date with either 1900 or 1904 date windowing,
         // *  converts it to a java.util.Date.
-        // *  
-        // *  Excel Dates and Times are stored without any timezone 
-        // *  information. If you know (through other means) that your file 
+        // *
+        // *  Excel Dates and Times are stored without any timezone
+        // *  information. If you know (through other means) that your file
         // *  uses a different TimeZone to the system default, you can use
         // *  this version of the getJavaDate() method to handle it.
-        // *   
+        // *
         // *  @param date  The Excel date.
         // *  @param tz The TimeZone to evaluate the date in
         // *  @param use1904windowing  true if date uses 1904 windowing,
@@ -313,8 +317,8 @@ namespace Npoi.Core.SS.UserModel
                 dt = dt.AddMilliseconds(-dt.Millisecond);
             }
             calendar = dt;
-
         }
+
         /**
          * Get EXCEL date as Java Calendar with given time zone.
          * @param date  The Excel date.
@@ -323,10 +327,12 @@ namespace Npoi.Core.SS.UserModel
          * @param timeZone The TimeZone to evaluate the date in
          * @return Java representation of the date, or null if date is not a valid Excel date
          */
+
         public static DateTime GetJavaCalendar(double date, bool use1904windowing)
         {
             return GetJavaCalendar(date, use1904windowing, false);
         }
+
         /// <summary>
         /// Get EXCEL date as Java Calendar (with default time zone). This is like GetJavaDate(double, boolean) but returns a Calendar object.
         /// </summary>
@@ -367,6 +373,7 @@ namespace Npoi.Core.SS.UserModel
                 throw new ArgumentException(msg);
             }
         }
+
         /// <summary>
         /// Converts the time internal.
         /// </summary>
@@ -404,9 +411,11 @@ namespace Npoi.Core.SS.UserModel
         // string represents a date format if the same string is passed multiple times.
         // see https://issues.apache.org/bugzilla/show_bug.cgi?id=55611
         private static int lastFormatIndex = -1;
+
         private static String lastFormatString = null;
         private static bool cached = false;
         private static string syncIsADateFormat = "IsADateFormat";
+
         /// <summary>
         /// Given a format ID and its format String, will Check to see if the
         /// format represents a date format or not.
@@ -483,7 +492,6 @@ namespace Npoi.Core.SS.UserModel
                 }
                 fs = sb.ToString();
 
-
                 // short-circuit if it indicates elapsed time: [h], [m] or [s]
                 //if (Regex.IsMatch(fs, "^\\[([hH]+|[mM]+|[sS]+)\\]"))
                 if (date_ptrn4.IsMatch(fs))
@@ -539,6 +547,7 @@ namespace Npoi.Core.SS.UserModel
                 return result;
             }
         }
+
         /// <summary>
         /// Converts a string of format "YYYY/MM/DD" to its (Excel) numeric equivalent
         /// </summary>
@@ -557,6 +566,7 @@ namespace Npoi.Core.SS.UserModel
                 throw new ArgumentException(msg);
             }
         }
+
         /// <summary>
         /// Parses the YYYYMMDD date internal.
         /// </summary>
@@ -579,6 +589,7 @@ namespace Npoi.Core.SS.UserModel
             DateTime cal = new DateTime(year, month, day, 0, 0, 0);
             return cal;
         }
+
         /// <summary>
         /// Parses the int.
         /// </summary>
@@ -590,6 +601,7 @@ namespace Npoi.Core.SS.UserModel
         {
             return ParseInt(strVal, fieldName, 0, rangeMax - 1);
         }
+
         /// <summary>
         /// Parses the int.
         /// </summary>
@@ -616,6 +628,7 @@ namespace Npoi.Core.SS.UserModel
             }
             return result;
         }
+
         /// <summary>
         /// Given a format ID this will Check whether the format represents an internal excel date format or not.
         /// </summary>
@@ -673,6 +686,7 @@ namespace Npoi.Core.SS.UserModel
             }
             return bDate;
         }
+
         /// <summary>
         /// Check if a cell contains a date, Checking only for internal excel date formats.
         /// As Excel stores a great many of its dates in "non-internal" date formats, you will not normally want to use this method.
@@ -693,7 +707,6 @@ namespace Npoi.Core.SS.UserModel
             return bDate;
         }
 
-
         /// <summary>
         /// Given a double, Checks if it Is a valid Excel date.
         /// </summary>
@@ -706,6 +719,5 @@ namespace Npoi.Core.SS.UserModel
             //return true;
             return value > -Double.Epsilon;
         }
-
     }
 }

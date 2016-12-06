@@ -15,16 +15,16 @@
    limitations Under the License.
 ==================================================================== */
 
-using System.Collections.Generic;
 using Npoi.Core.HSSF.Model;
 using Npoi.Core.HSSF.Record.Chart;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 {
     /// <summary>
-    /// CHARTFOMATS = Chart Begin *2FONTLIST Scl PlotGrowth [FRAME] *SERIESFORMAT *SS ShtProps 
-    /// *2DFTTEXT AxesUsed 1*2AXISPARENT [CrtLayout12A] [DAT] *ATTACHEDLABEL [CRTMLFRT] 
+    /// CHARTFOMATS = Chart Begin *2FONTLIST Scl PlotGrowth [FRAME] *SERIESFORMAT *SS ShtProps
+    /// *2DFTTEXT AxesUsed 1*2AXISPARENT [CrtLayout12A] [DAT] *ATTACHEDLABEL [CRTMLFRT]
     /// *([DataLabExt StartObject] ATTACHEDLABEL [EndObject]) [TEXTPROPS] *2CRTMLFRT End
     /// </summary>
     public class ChartFormatsAggregate : ChartRecordAggregate
@@ -84,7 +84,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             Debug.Assert(rs.PeekNextChartSid() == ShtPropsRecord.sid);
             shtProps = (ShtPropsRecord)rs.GetNext();
 
-            while (rs.PeekNextChartSid() == DefaultTextRecord.sid||
+            while (rs.PeekNextChartSid() == DefaultTextRecord.sid ||
                 rs.PeekNextChartSid() == DataLabExtRecord.sid)
             {
                 dftTextList.Add(new DFTTextAggregate(rs, this));
@@ -185,12 +185,14 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             WriteEndBlock(rv);
             rv.VisitRecord(EndRecord.instance);
         }
+
         private class ChartFormatsAttachedLabelAggregate : ChartRecordAggregate
         {
             private DataLabExtRecord dataLabExt;
             private ChartStartObjectRecord startObject;
             private AttachedLabelAggregate attachedLabel;
             private ChartEndObjectRecord endObject;
+
             public ChartFormatsAttachedLabelAggregate(RecordStream rs, ChartRecordAggregate container)
                 : base("ChartFormatsAttachedLabel", container)
             {

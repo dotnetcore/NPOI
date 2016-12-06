@@ -26,6 +26,7 @@ namespace Npoi.Core.HSSF.Record.Chart
     public class CrtMlFrtContinueRecord : RowDataRecord
     {
         public const short sid = 0x89f;
+
         public CrtMlFrtContinueRecord(RecordInputStream ris)
             : base(ris)
         {
@@ -38,6 +39,7 @@ namespace Npoi.Core.HSSF.Record.Chart
                 return base.DataSize;
             }
         }
+
         public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             base.Serialize(out1);

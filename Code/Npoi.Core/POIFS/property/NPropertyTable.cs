@@ -15,15 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
-
-
-using System;
-using System.Collections.Generic;
-using System.IO;
 using Npoi.Core.POIFS.Common;
 using Npoi.Core.POIFS.FileSystem;
 using Npoi.Core.POIFS.Storage;
 using Npoi.Core.Util;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Npoi.Core.POIFS.Properties
 {
@@ -37,8 +35,8 @@ namespace Npoi.Core.POIFS.Properties
         }
 
         public NPropertyTable(HeaderBlock headerBlock, NPOIFSFileSystem fileSystem)
-            :base(headerBlock, 
-                    BuildProperties( (new NPOIFSStream(fileSystem, headerBlock.PropertyStart)).GetEnumerator(),headerBlock.BigBlockSize)
+            : base(headerBlock,
+                    BuildProperties((new NPOIFSStream(fileSystem, headerBlock.PropertyStart)).GetEnumerator(), headerBlock.BigBlockSize)
             )
         {
             _bigBigBlockSize = headerBlock.BigBlockSize;
@@ -48,7 +46,7 @@ namespace Npoi.Core.POIFS.Properties
         {
             List<Property> properties = new List<Property>();
 
-            while(dataSource.MoveNext())
+            while (dataSource.MoveNext())
             {
                 ByteBuffer bb = dataSource.Current;
 
@@ -77,7 +75,6 @@ namespace Npoi.Core.POIFS.Properties
                 PropertyFactory.ConvertToProperties(data, properties);
             }
             return properties;
-
         }
 
         public override int CountBlocks
@@ -85,13 +82,15 @@ namespace Npoi.Core.POIFS.Properties
             get
             {
                 int size = _properties.Count * POIFSConstants.PROPERTY_SIZE;
-                
-                return (int)Math.Ceiling(1.0*size/_bigBigBlockSize.GetBigBlockSize());
+
+                return (int)Math.Ceiling(1.0 * size / _bigBigBlockSize.GetBigBlockSize());
             }
         }
+
         /**
      * Prepare to be written
      */
+
         public void PreWrite()
         {
             List<Property> pList = new List<Property>();
@@ -99,7 +98,7 @@ namespace Npoi.Core.POIFS.Properties
             int i = 0;
             foreach (Property p in _properties)
             {
-                // only handle non-null properties 
+                // only handle non-null properties
                 if (p == null) continue;
                 p.Index = (i++);
                 pList.Add(p);

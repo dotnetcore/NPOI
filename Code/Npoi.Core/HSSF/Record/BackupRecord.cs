@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,13 +17,12 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
-     * Title:        Backup Record 
+     * Title:        Backup Record
      * Description:  bool specifying whether
      *               the GUI should store a backup of the file.
      * REFERENCE:  PG 287 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
@@ -48,7 +46,7 @@ namespace Npoi.Core.HSSF.Record
 
         public BackupRecord(RecordInputStream in1)
         {
-             field_1_backup = in1.ReadShort();
+            field_1_backup = in1.ReadShort();
         }
 
         /**

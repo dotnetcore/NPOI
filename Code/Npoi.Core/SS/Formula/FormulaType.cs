@@ -17,21 +17,22 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
     /**
      * Enumeration of various formula types.<br/>
-     * 
+     *
      * For POI internal use only
-     * 
+     *
      * @author Josh Micich
      */
-    public enum FormulaType:int
+
+    public enum FormulaType : int
     {
         Cell = 0,
         Shared = 1,
         Array = 2,
         CondFormat = 3,
         NamedRange = 4,
+
         // this constant is currently very specific.  The exact differences from general data
         // validation formulas or conditional format formulas is not known yet
         DataValidationList = 5,

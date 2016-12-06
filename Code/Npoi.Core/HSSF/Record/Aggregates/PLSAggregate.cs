@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Npoi.Core.HSSF.Model;
+﻿using Npoi.Core.HSSF.Model;
+using System.Collections.Generic;
 
 namespace Npoi.Core.HSSF.Record.Aggregates
 {
@@ -42,6 +42,5 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 rv.VisitRecord(_plsContinues[i]);
             }
         }
-
     }
 }

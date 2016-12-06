@@ -17,17 +17,16 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-    using Npoi.Core.Util;
-    
     using Npoi.Core.SS.Util;
-
+    using Npoi.Core.Util;
+    using System;
 
     /**
      * ReferencePtgBase - handles references (such as A1, A2, IA4)
      * @author  Andrew C. Oliver (acoliver@apache.org)
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     [Serializable]
     public abstract class RefPtgBase : OperandPtg
     {
@@ -52,6 +51,7 @@ namespace Npoi.Core.SS.Formula.PTG
          * Takes in a String representation of a cell reference and Fills out the
          * numeric fields.
          */
+
         protected RefPtgBase(String cellref)
         {
             CellReference c = new CellReference(cellref);
@@ -60,6 +60,7 @@ namespace Npoi.Core.SS.Formula.PTG
             IsColRelative = !c.IsColAbsolute;
             IsRowRelative = !c.IsRowAbsolute;
         }
+
         protected RefPtgBase(CellReference c)
         {
             Row = (c.Row);
@@ -67,6 +68,7 @@ namespace Npoi.Core.SS.Formula.PTG
             IsColRelative = (!c.IsColAbsolute);
             IsRowRelative = (!c.IsRowAbsolute);
         }
+
         protected RefPtgBase(int row, int column, bool isRowRelative, bool isColumnRelative)
         {
             this.Row = row;
@@ -80,11 +82,13 @@ namespace Npoi.Core.SS.Formula.PTG
             field_1_row = in1.ReadUShort();
             field_2_col = in1.ReadUShort();
         }
+
         protected void ReadCoordinates(ILittleEndianInput in1)
         {
             field_1_row = in1.ReadUShort();
             field_2_col = in1.ReadUShort();
         }
+
         protected void WriteCoordinates(ILittleEndianOutput out1)
         {
             out1.WriteShort(field_1_row);
@@ -96,10 +100,12 @@ namespace Npoi.Core.SS.Formula.PTG
             LittleEndian.PutUShort(array, offset + 0, field_1_row);
             LittleEndian.PutUShort(array, offset + 2, field_2_col);
         }
+
         /**
          * Returns the row number as a short, which will be
          *  wrapped (negative) for values between 32769 and 65535
          */
+
         public int Row
         {
             get { return field_1_row; }
@@ -108,9 +114,11 @@ namespace Npoi.Core.SS.Formula.PTG
                 field_1_row = value;
             }
         }
+
         /**
          * Returns the row number as an int, between 0 and 65535
          */
+
         public int RowAsInt
         {
             get { return field_1_row; }
@@ -153,13 +161,13 @@ namespace Npoi.Core.SS.Formula.PTG
                 field_2_col = column.SetValue(field_2_col, value);
             }
         }
+
         public String FormatReferenceAsString()
         {
             // Only make cell references as needed. Memory is an issue
             CellReference cr = new CellReference(Row, Column, !IsRowRelative, !IsColRelative);
             return cr.FormatAsString();
         }
-
 
         public override byte DefaultOperandClass
         {

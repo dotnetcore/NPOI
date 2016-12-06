@@ -14,6 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core
 {
     using Npoi.Core.HPSF;
@@ -40,7 +41,6 @@ namespace Npoi.Core
         public POIOLE2TextExtractor(POIDocument document)
             : base(document)
         {
-
         }
 
         /// <summary>
@@ -54,6 +54,7 @@ namespace Npoi.Core
                 return document.DocumentSummaryInformation;
             }
         }
+
         /// <summary>
         /// Returns the summary information metadata for the document
         /// </summary>

@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Defines a series name
@@ -31,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Andrew C. Oliver (acoliver at apache.org)
      */
+
     public class SeriesTextRecord
        : StandardRecord
     {
@@ -42,8 +40,6 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         private bool is16bit;
         private String field_4_text;
-
-
 
         public SeriesTextRecord()
         {
@@ -59,7 +55,6 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public SeriesTextRecord(RecordInputStream in1)
         {
-
             field_1_id = in1.ReadShort();
             int field_2_textLength = (byte)in1.ReadByte();
             is16bit = (in1.ReadUByte() & 0x01) != 0;
@@ -116,6 +111,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 2 + 1 + 1 + field_4_text.Length * (is16bit ? 2 : 1); }
@@ -136,12 +132,10 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          * Get the id field for the SeriesText record.
          */
+
         public short Id
         {
             get
@@ -154,6 +148,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the text field for the SeriesText record.
          */
+
         public String Text
         {
             get
@@ -171,7 +166,5 @@ namespace Npoi.Core.HSSF.Record.Chart
                 is16bit = StringUtil.HasMultibyte(value);
             }
         }
-
-
     }
 }

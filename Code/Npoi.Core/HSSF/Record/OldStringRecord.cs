@@ -17,15 +17,15 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
-     * Biff2 - Biff 4 Label Record (0x0007 / 0x0207) - read only support for 
+     * Biff2 - Biff 4 Label Record (0x0007 / 0x0207) - read only support for
      *  formula string results.
      */
+
     public class OldStringRecord
     {
         public const short biff2_sid = 0x0007;
@@ -39,6 +39,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @param in the RecordInputstream to read the record from
          */
+
         public OldStringRecord(RecordInputStream in1)
         {
             sid = in1.Sid;
@@ -81,6 +82,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return The string represented by this record.
          */
+
         public String GetString()
         {
             return GetString(field_2_bytes, codepage);
@@ -114,5 +116,4 @@ namespace Npoi.Core.HSSF.Record
             return buffer.ToString();
         }
     }
-
 }

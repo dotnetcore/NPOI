@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,11 +17,11 @@
 
 namespace Npoi.Core.DDF
 {
-    using System;
-    using System.Text;
-    using System.Collections;
     using Npoi.Core.Util;
+    using System;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Text;
 
     /// <summary>
     /// This record is used whenever a escher record is encountered that
@@ -37,8 +36,7 @@ namespace Npoi.Core.DDF
         private byte[] _thedata = NO_BYTES;
         private List<EscherRecord> _childRecords = new List<EscherRecord>();
 
-        public UnknownEscherRecord()
-        {
+        public UnknownEscherRecord() {
         }
 
         /// <summary>
@@ -48,28 +46,24 @@ namespace Npoi.Core.DDF
         /// <param name="offset">The starting offset into data </param>
         /// <param name="recordFactory">May be null since this is not a container record.</param>
         /// <returns>The number of bytes Read from the byte array.</returns>
-        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory)
-        {
+        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory) {
             int bytesRemaining = ReadHeader(data, offset);
             /*
 		     * Modified by Zhang Zhang
-		     * Have a check between avaliable bytes and bytesRemaining, 
+		     * Have a check between avaliable bytes and bytesRemaining,
 		     * take the avaliable length if the bytesRemaining out of range.
 		     * July 09, 2010
 		     */
             int avaliable = data.Length - (offset + 8);
-            if (bytesRemaining > avaliable)
-            {
+            if (bytesRemaining > avaliable) {
                 bytesRemaining = avaliable;
             }
-            if (IsContainerRecord)
-            {
+            if (IsContainerRecord) {
                 int bytesWritten = 0;
                 _thedata = new byte[0];
                 offset += 8;
                 bytesWritten += 8;
-                while (bytesRemaining > 0)
-                {
+                while (bytesRemaining > 0) {
                     EscherRecord child = recordFactory.CreateRecord(data, offset);
                     int childBytesWritten = child.FillFields(data, offset, recordFactory);
                     bytesWritten += childBytesWritten;
@@ -79,8 +73,7 @@ namespace Npoi.Core.DDF
                 }
                 return bytesWritten;
             }
-            else
-            {
+            else {
                 _thedata = new byte[bytesRemaining];
                 Array.Copy(data, offset + 8, _thedata, 0, bytesRemaining);
                 return bytesRemaining + 8;
@@ -95,23 +88,20 @@ namespace Npoi.Core.DDF
         /// <param name="data"></param>
         /// <param name="listener">a listener for begin and end serialization events.</param>
         /// <returns>the number of bytes written.</returns>
-        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener)
-        {
+        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener) {
             listener.BeforeRecordSerialize(offset, RecordId, this);
 
             LittleEndian.PutShort(data, offset, Options);
             LittleEndian.PutShort(data, offset + 2, RecordId);
             int remainingBytes = _thedata.Length;
-            for (IEnumerator iterator = ChildRecords.GetEnumerator(); iterator.MoveNext(); )
-            {
+            for (IEnumerator iterator = ChildRecords.GetEnumerator(); iterator.MoveNext();) {
                 EscherRecord r = (EscherRecord)iterator.Current;
                 remainingBytes += r.RecordSize;
             }
             LittleEndian.PutInt(data, offset + 4, remainingBytes);
             Array.Copy(_thedata, 0, data, offset + 8, _thedata.Length);
             int pos = offset + 8 + _thedata.Length;
-            for (IEnumerator iterator = ChildRecords.GetEnumerator(); iterator.MoveNext(); )
-            {
+            for (IEnumerator iterator = ChildRecords.GetEnumerator(); iterator.MoveNext();) {
                 EscherRecord r = (EscherRecord)iterator.Current;
                 pos += r.Serialize(pos, data);
             }
@@ -124,8 +114,7 @@ namespace Npoi.Core.DDF
         /// Gets the data.
         /// </summary>
         /// <value>The data.</value>
-        public byte[] Data
-        {
+        public byte[] Data {
             get { return _thedata; }
         }
 
@@ -133,8 +122,7 @@ namespace Npoi.Core.DDF
         /// Returns the number of bytes that are required to Serialize this record.
         /// </summary>
         /// <value>Number of bytes</value>
-        public override int RecordSize
-        {
+        public override int RecordSize {
             get { return 8 + _thedata.Length; }
         }
 
@@ -144,8 +132,7 @@ namespace Npoi.Core.DDF
         /// that may contain children.
         /// </summary>
         /// <value></value>
-        public override List<EscherRecord> ChildRecords
-        {
+        public override List<EscherRecord> ChildRecords {
             get { return _childRecords; }
             set { this._childRecords = value; }
         }
@@ -154,8 +141,7 @@ namespace Npoi.Core.DDF
         /// The short name for this record
         /// </summary>
         /// <value></value>
-        public override String RecordName
-        {
+        public override String RecordName {
             get { return "Unknown 0x" + HexDump.ToHex(RecordId); }
         }
 
@@ -165,16 +151,13 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override String ToString()
-        {
+        public override String ToString() {
             String nl = Environment.NewLine;
 
             StringBuilder children = new StringBuilder();
-            if (ChildRecords.Count > 0)
-            {
+            if (ChildRecords.Count > 0) {
                 children.Append("  children: " + nl);
-                for (IEnumerator iterator = ChildRecords.GetEnumerator(); iterator.MoveNext(); )
-                {
+                for (IEnumerator iterator = ChildRecords.GetEnumerator(); iterator.MoveNext();) {
                     EscherRecord record = (EscherRecord)iterator.Current;
                     children.Append(record.ToString());
                     children.Append(nl);
@@ -182,16 +165,13 @@ namespace Npoi.Core.DDF
             }
 
             String theDumpHex = "";
-            try
-            {
-                if (_thedata.Length != 0)
-                {
+            try {
+                if (_thedata.Length != 0) {
                     theDumpHex = "  Extra Data(" + _thedata.Length + "):" + nl;
                     theDumpHex += HexDump.Dump(_thedata, 0, 0);
                 }
             }
-            catch (Exception)
-            {
+            catch (Exception) {
                 theDumpHex = "Error!!";
             }
 
@@ -204,15 +184,14 @@ namespace Npoi.Core.DDF
                     theDumpHex +
                     children.ToString();
         }
-        public override String ToXml(String tab)
-        {
+
+        public override String ToXml(String tab) {
             String theDumpHex = HexDump.ToHex(_thedata, 32);
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
                     .Append(tab).Append("\t").Append("<IsContainer>").Append(IsContainerRecord).Append("</IsContainer>\n")
                     .Append(tab).Append("\t").Append("<Numchildren>").Append(HexDump.ToHex(_childRecords.Count)).Append("</Numchildren>\n");
-            for (IEnumerator<EscherRecord> iterator = _childRecords.GetEnumerator(); iterator.MoveNext(); )
-            {
+            for (IEnumerator<EscherRecord> iterator = _childRecords.GetEnumerator(); iterator.MoveNext();) {
                 EscherRecord record = iterator.Current;
                 builder.Append(record.ToXml(tab + "\t"));
             }
@@ -220,15 +199,13 @@ namespace Npoi.Core.DDF
             builder.Append(tab).Append("</").Append(GetType().Name).Append(">\n");
             return builder.ToString();
         }
+
         /// <summary>
         /// Adds the child record.
         /// </summary>
         /// <param name="childRecord">The child record.</param>
-        public void AddChildRecord(EscherRecord childRecord)
-        {
+        public void AddChildRecord(EscherRecord childRecord) {
             ChildRecords.Add(childRecord);
         }
-
     }
-
 }

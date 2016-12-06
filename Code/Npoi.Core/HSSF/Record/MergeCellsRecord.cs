@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,26 +15,24 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
-    using System;
-    using System.Text;
-    using System.Collections;
-
     using Npoi.Core.SS.Util;
     using Npoi.Core.Util;
+    using System;
+    using System.Collections;
+    using System.Text;
 
     /**
      * Title: Merged Cells Record
-     * 
+     *
      * Description:  Optional record defining a square area of cells to "merged" into
-     *               one cell. 
-     * REFERENCE:  NONE (UNDOCUMENTED PRESENTLY) 
+     *               one cell.
+     * REFERENCE:  NONE (UNDOCUMENTED PRESENTLY)
      * @author Andrew C. Oliver (acoliver at apache dot org)
      * @version 2.0-pre
      */
+
     public class MergeCellsRecord : StandardRecord, ICloneable
     {
         public const short sid = 0xe5;
@@ -44,7 +41,6 @@ namespace Npoi.Core.HSSF.Record
         private CellRangeAddress[] _regions;
         private int _startIndex;
         private int _numberOfRegions;
-
 
         public MergeCellsRecord(CellRangeAddress[] regions, int startIndex, int numberOfRegions)
         {
@@ -61,14 +57,14 @@ namespace Npoi.Core.HSSF.Record
         public MergeCellsRecord(RecordInputStream in1)
         {
             int nRegions = in1.ReadUShort();
-    	    CellRangeAddress[] cras = new CellRangeAddress[nRegions];
-    	    for (int i = 0; i < nRegions; i++) 
+            CellRangeAddress[] cras = new CellRangeAddress[nRegions];
+            for (int i = 0; i < nRegions; i++)
             {
-			    cras[i] = new CellRangeAddress(in1);
-		    }
-    	    _numberOfRegions = nRegions;
-    	    _startIndex = 0;
-    	    _regions = cras;
+                cras[i] = new CellRangeAddress(in1);
+            }
+            _numberOfRegions = nRegions;
+            _startIndex = 0;
+            _regions = cras;
         }
 
         public IEnumerator GetEnumerator()
@@ -97,10 +93,12 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return MergedRegion at the given index representing the area that is Merged (r1,c1 - r2,c2)
          */
+
         public CellRangeAddress GetAreaAt(int index)
         {
             return _regions[_startIndex + index];
         }
+
         protected override int DataSize
         {
             get
@@ -113,6 +111,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get { return sid; }
         }
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             int nItems = _numberOfRegions;
@@ -122,7 +121,6 @@ namespace Npoi.Core.HSSF.Record
                 _regions[_startIndex + i].Serialize(out1);
             }
         }
-        
 
         public override String ToString()
         {

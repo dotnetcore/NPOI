@@ -14,6 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.Util
 {
     using System.IO;
@@ -28,6 +29,7 @@ namespace Npoi.Core.Util
      *  http://en.wikipedia.org/wiki/LZW
      *  http://marknelson.us/1989/10/01/lzw-data-compression/
      */
+
     public abstract class LZWDecompresser
     {
         /**
@@ -63,18 +65,21 @@ namespace Npoi.Core.Util
          * Equally, if the dictionary is left with all zeros, then
          *  usually the new codes can go in at the start.
          */
+
         protected abstract int populateDictionary(byte[] dict);
 
         /**
          * Adjusts the position offset if needed when looking
          *  something up in the dictionary.
          */
+
         protected abstract int adjustDictionaryOffset(int offset);
 
         /**
          * Decompresses the given input stream, returning the array of bytes
          *  of the decompressed input.
          */
+
         public byte[] decompress(Stream src)
         {
             using (MemoryStream res = new MemoryStream())
@@ -97,6 +102,7 @@ namespace Npoi.Core.Util
          * 5) Loop until we've done all 8 bits, then read in the next
          *     flag byte
          */
+
         public void decompress(Stream src, Stream res)
         {
             // How far through the output we've got
@@ -131,7 +137,7 @@ namespace Npoi.Core.Util
             // How long a code sequence is, and where in the
             //  dictionary to start at
             int len, pntr;
-            
+
             while ((flag = src.ReadByte()) != -1)
             {
                 // Compare each bit in our flag byte in turn:
@@ -163,7 +169,7 @@ namespace Npoi.Core.Util
 
                         // Build up how long the code sequence is, and
                         //  what position of the code to start at
-                        // (The position is the usually the first 12 bits, 
+                        // (The position is the usually the first 12 bits,
                         //  and the length is usually the last 4 bits)
                         len = (dataIPt2 & 15) + codeLengthIncrease;
                         if (positionIsBigEndian)
@@ -198,16 +204,19 @@ namespace Npoi.Core.Util
          *  the wrapping.
          * This is a convenience method
          */
+
         public static byte fromInt(int b)
         {
             if (b < 128) return (byte)b;
             return (byte)(b - 256);
         }
+
         /**
          * Given a java byte, turn it into an integer between 0
          *  and 255 (i.e. handle the unwrapping).
          * This is a convenience method
          */
+
         public static int fromByte(byte b)
         {
             if (b >= 0)
@@ -217,5 +226,4 @@ namespace Npoi.Core.Util
             return b + 256;
         }
     }
-
 }

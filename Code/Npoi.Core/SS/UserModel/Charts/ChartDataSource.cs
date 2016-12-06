@@ -36,6 +36,7 @@ namespace Npoi.Core.SS.UserModel.Charts
          * @throws {@code IndexOutOfBoundsException} if index
          *                parameter not in range {@code 0 &lt;= index &lt;= pointCount}
          */
+
         T GetPointAt(int index);
 
         /**

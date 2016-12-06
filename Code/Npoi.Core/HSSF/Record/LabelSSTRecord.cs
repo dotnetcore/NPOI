@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,24 +15,22 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
-
 
     /**
      * Title:        Label SST Record
      * Description:  Refers to a string in the shared string table and Is a column
-     *               value.  
+     *               value.
      * REFERENCE:  PG 325 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
      * @author Andrew C. Oliver (acoliver at apache dot org)
      * @author Jason Height (jheight at chariot dot net dot au)
      * @version 2.0-pre
      */
+
     [Serializable]
     public class LabelSSTRecord : CellRecord
     {
@@ -75,6 +72,7 @@ namespace Npoi.Core.HSSF.Record
             get { return field_4_sst_index; }
             set { field_4_sst_index = value; }
         }
+
         protected override void AppendValueText(StringBuilder sb)
         {
             sb.Append("  .sstIndex = ");
@@ -85,7 +83,6 @@ namespace Npoi.Core.HSSF.Record
         {
             out1.WriteInt(SSTIndex);
         }
-
 
         protected override int ValueDataSize
         {

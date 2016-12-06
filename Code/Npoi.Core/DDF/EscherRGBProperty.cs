@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -18,9 +17,9 @@
 
 namespace Npoi.Core.DDF
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /// <summary>
     /// A color property.
@@ -28,23 +27,19 @@ namespace Npoi.Core.DDF
     /// </summary>
     public class EscherRGBProperty : EscherSimpleProperty
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="EscherRGBProperty"/> class.
         /// </summary>
         /// <param name="propertyNumber">The property number.</param>
         /// <param name="rgbColor">Color of the RGB.</param>
-        public EscherRGBProperty(short propertyNumber, int rgbColor):base(propertyNumber, rgbColor)
-        {
-            
+        public EscherRGBProperty(short propertyNumber, int rgbColor) : base(propertyNumber, rgbColor) {
         }
 
         /// <summary>
         /// Gets the color of the RGB.
         /// </summary>
         /// <value>The color of the RGB.</value>
-        public int RgbColor
-        {
+        public int RgbColor {
             get { return propertyValue; }
         }
 
@@ -52,8 +47,7 @@ namespace Npoi.Core.DDF
         /// Gets the red.
         /// </summary>
         /// <value>The red.</value>
-        public byte Red
-        {
+        public byte Red {
             get { return (byte)(propertyValue & 0xFF); }
         }
 
@@ -61,21 +55,19 @@ namespace Npoi.Core.DDF
         /// Gets the green.
         /// </summary>
         /// <value>The green.</value>
-        public byte Green
-        {
-            get{return (byte)((propertyValue >> 8) & 0xFF);}
+        public byte Green {
+            get { return (byte)((propertyValue >> 8) & 0xFF); }
         }
 
         /// <summary>
         /// Gets the blue.
         /// </summary>
         /// <value>The blue.</value>
-        public byte Blue
-        {
-            get{return (byte)((propertyValue >> 16) & 0xFF);}
+        public byte Blue {
+            get { return (byte)((propertyValue >> 16) & 0xFF); }
         }
-        public override String ToXml(String tab)
-        {
+
+        public override String ToXml(String tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append("<").Append(GetType().Name).Append(" id=\"0x").Append(HexDump.ToHex(Id))
                     .Append("\" name=\"").Append(Name).Append("\" blipId=\"")

@@ -17,23 +17,22 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
-using System;
-using System.Text;
-using System.Collections;
-using System.IO;
-
-using Npoi.Core.POIFS.Dev;
 using Npoi.Core.POIFS.Common;
+using Npoi.Core.POIFS.Dev;
 using Npoi.Core.Util;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace Npoi.Core.POIFS.Properties
 {
@@ -42,53 +41,56 @@ namespace Npoi.Core.POIFS.Properties
     /// implementing POIFS Property behavior.
     /// @author Marc Johnson (mjohnson at apache dot org)
     /// </summary>
-    public abstract class Property:Child, POIFSViewable
+    public abstract class Property : Child, POIFSViewable
     {
-        private const byte   _default_fill             = ( byte ) 0x00;
-        private const int    _name_size_offset         = 0x40;
+        private const byte _default_fill = (byte)0x00;
+        private const int _name_size_offset = 0x40;
         private const int _max_name_length = (_name_size_offset / LittleEndianConsts.SHORT_SIZE) - 1;
 
-        protected const int  _NO_INDEX                 = -1;
+        protected const int _NO_INDEX = -1;
 
         // useful offsets
-        private const int    _node_color_offset        = 0x43;
-        private const int    _previous_property_offset = 0x44;
-        private const int    _next_property_offset     = 0x48;
-        private const int    _child_property_offset    = 0x4C;
-        private const int    _storage_clsid_offset     = 0x50;
-        private const int    _user_flags_offset        = 0x60;
-        private const int    _seconds_1_offset         = 0x64;
-        private const int    _days_1_offset            = 0x68;
-        private const int    _seconds_2_offset         = 0x6C;
-        private const int    _days_2_offset            = 0x70;
-        private const int    _start_block_offset       = 0x74;
-        private const int    _size_offset              = 0x78;
+        private const int _node_color_offset = 0x43;
+
+        private const int _previous_property_offset = 0x44;
+        private const int _next_property_offset = 0x48;
+        private const int _child_property_offset = 0x4C;
+        private const int _storage_clsid_offset = 0x50;
+        private const int _user_flags_offset = 0x60;
+        private const int _seconds_1_offset = 0x64;
+        private const int _days_1_offset = 0x68;
+        private const int _seconds_2_offset = 0x6C;
+        private const int _days_2_offset = 0x70;
+        private const int _start_block_offset = 0x74;
+        private const int _size_offset = 0x78;
 
         // node colors
-        protected const byte _NODE_BLACK               = 1;
-        protected const byte _NODE_RED                 = 0;
+        protected const byte _NODE_BLACK = 1;
+
+        protected const byte _NODE_RED = 0;
 
         // documents must be at least this size to be stored in big blocks
         private const int _big_block_minimum_bytes = POIFSConstants.BIG_BLOCK_MINIMUM_DOCUMENT_SIZE;   //4096;
-        private String              _name;
-        private ShortField          _name_size;
-        private ByteField           _property_type;
-        private ByteField           _node_color;
-        private IntegerField        _previous_property;
-        private IntegerField        _next_property;
-        private IntegerField        _child_property;
-        private ClassID             _storage_clsid;
-        private IntegerField        _user_flags;
-        private IntegerField        _seconds_1;
-        private IntegerField        _days_1;
-        private IntegerField        _seconds_2;
-        private IntegerField        _days_2;
-        private IntegerField        _start_block;
-        private IntegerField        _size;
-        private byte[]              _raw_data;
-        private int                 _index;
-        private Child               _next_child;
-        private Child               _previous_child;
+
+        private String _name;
+        private ShortField _name_size;
+        private ByteField _property_type;
+        private ByteField _node_color;
+        private IntegerField _previous_property;
+        private IntegerField _next_property;
+        private IntegerField _child_property;
+        private ClassID _storage_clsid;
+        private IntegerField _user_flags;
+        private IntegerField _seconds_1;
+        private IntegerField _days_1;
+        private IntegerField _seconds_2;
+        private IntegerField _days_2;
+        private IntegerField _start_block;
+        private IntegerField _size;
+        private byte[] _raw_data;
+        private int _index;
+        private Child _next_child;
+        private Child _previous_child;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Property"/> class.
@@ -100,31 +102,31 @@ namespace Npoi.Core.POIFS.Properties
             {
                 this._raw_data[i] = _default_fill;
             }
-            _name_size         = new ShortField(_name_size_offset);
-            _property_type     =
+            _name_size = new ShortField(_name_size_offset);
+            _property_type =
                 new ByteField(PropertyConstants.PROPERTY_TYPE_OFFSET);
-            _node_color        = new ByteField(_node_color_offset);
+            _node_color = new ByteField(_node_color_offset);
             _previous_property = new IntegerField(_previous_property_offset,
                                                   _NO_INDEX, _raw_data);
-            _next_property     = new IntegerField(_next_property_offset,
+            _next_property = new IntegerField(_next_property_offset,
                                                   _NO_INDEX, _raw_data);
-            _child_property    = new IntegerField(_child_property_offset,
+            _child_property = new IntegerField(_child_property_offset,
                                                   _NO_INDEX, _raw_data);
-            _storage_clsid     = new ClassID(_raw_data,_storage_clsid_offset);
-            _user_flags        = new IntegerField(_user_flags_offset, 0, _raw_data);
-            _seconds_1         = new IntegerField(_seconds_1_offset, 0,
+            _storage_clsid = new ClassID(_raw_data, _storage_clsid_offset);
+            _user_flags = new IntegerField(_user_flags_offset, 0, _raw_data);
+            _seconds_1 = new IntegerField(_seconds_1_offset, 0,
                                                   _raw_data);
-            _days_1            = new IntegerField(_days_1_offset, 0, _raw_data);
-            _seconds_2         = new IntegerField(_seconds_2_offset, 0,
+            _days_1 = new IntegerField(_days_1_offset, 0, _raw_data);
+            _seconds_2 = new IntegerField(_seconds_2_offset, 0,
                                                   _raw_data);
-            _days_2            = new IntegerField(_days_2_offset, 0, _raw_data);
-            _start_block       = new IntegerField(_start_block_offset);
-            _size              = new IntegerField(_size_offset, 0, _raw_data);
-            _index             = _NO_INDEX;
+            _days_2 = new IntegerField(_days_2_offset, 0, _raw_data);
+            _start_block = new IntegerField(_start_block_offset);
+            _size = new IntegerField(_size_offset, 0, _raw_data);
+            _index = _NO_INDEX;
 
-            this.Name="";
-            this.NextChild=null;
-            this.PreviousChild=null;
+            this.Name = "";
+            this.NextChild = null;
+            this.PreviousChild = null;
         }
 
         /// <summary>
@@ -133,29 +135,29 @@ namespace Npoi.Core.POIFS.Properties
         /// <param name="index">index number</param>
         /// <param name="array">byte data</param>
         /// <param name="offset">offset into byte data</param>
-        protected Property(int index, byte [] array, int offset)
+        protected Property(int index, byte[] array, int offset)
         {
-            _raw_data = new byte[ POIFSConstants.PROPERTY_SIZE ];
+            _raw_data = new byte[POIFSConstants.PROPERTY_SIZE];
             System.Array.Copy(array, offset, _raw_data, 0, POIFSConstants.PROPERTY_SIZE);
-            _name_size         = new ShortField(_name_size_offset, _raw_data);
-            _property_type     =
+            _name_size = new ShortField(_name_size_offset, _raw_data);
+            _property_type =
                 new ByteField(PropertyConstants.PROPERTY_TYPE_OFFSET, _raw_data);
-            _node_color        = new ByteField(_node_color_offset, _raw_data);
+            _node_color = new ByteField(_node_color_offset, _raw_data);
             _previous_property = new IntegerField(_previous_property_offset,
                                                   _raw_data);
-            _next_property     = new IntegerField(_next_property_offset,
+            _next_property = new IntegerField(_next_property_offset,
                                                   _raw_data);
-            _child_property    = new IntegerField(_child_property_offset,
+            _child_property = new IntegerField(_child_property_offset,
                                                   _raw_data);
-            _storage_clsid     = new ClassID(_raw_data,_storage_clsid_offset);
-            _user_flags        = new IntegerField(_user_flags_offset, 0, _raw_data);
-            _seconds_1         = new IntegerField(_seconds_1_offset, _raw_data);
-            _days_1            = new IntegerField(_days_1_offset, _raw_data);
-            _seconds_2         = new IntegerField(_seconds_2_offset, _raw_data);
-            _days_2            = new IntegerField(_days_2_offset, _raw_data);
-            _start_block       = new IntegerField(_start_block_offset, _raw_data);
-            _size              = new IntegerField(_size_offset, _raw_data);
-            _index             = index;
+            _storage_clsid = new ClassID(_raw_data, _storage_clsid_offset);
+            _user_flags = new IntegerField(_user_flags_offset, 0, _raw_data);
+            _seconds_1 = new IntegerField(_seconds_1_offset, _raw_data);
+            _days_1 = new IntegerField(_days_1_offset, _raw_data);
+            _seconds_2 = new IntegerField(_seconds_2_offset, _raw_data);
+            _days_2 = new IntegerField(_days_2_offset, _raw_data);
+            _start_block = new IntegerField(_start_block_offset, _raw_data);
+            _size = new IntegerField(_size_offset, _raw_data);
+            _index = index;
             int name_length = (_name_size.Value / LittleEndianConsts.SHORT_SIZE)
                               - 1;
 
@@ -165,18 +167,18 @@ namespace Npoi.Core.POIFS.Properties
             }
             else
             {
-                char[] char_array  = new char[ name_length ];
-                int    name_offset = 0;
+                char[] char_array = new char[name_length];
+                int name_offset = 0;
 
                 for (int j = 0; j < name_length; j++)
                 {
-                    char_array[ j ] = ( char ) new ShortField(name_offset,
+                    char_array[j] = (char)new ShortField(name_offset,
                                                               _raw_data).Value;
-                    name_offset     += LittleEndianConsts.SHORT_SIZE;
+                    name_offset += LittleEndianConsts.SHORT_SIZE;
                 }
                 _name = new String(char_array, 0, name_length);
             }
-            _next_child     = null;
+            _next_child = null;
             _previous_child = null;
         }
 
@@ -187,7 +189,7 @@ namespace Npoi.Core.POIFS.Properties
         /// written.</param>
         public void WriteData(Stream stream)
         {
-            stream.Write(_raw_data,0,this._raw_data.Length);
+            stream.Write(_raw_data, 0, this._raw_data.Length);
         }
 
         /// <summary>
@@ -201,9 +203,9 @@ namespace Npoi.Core.POIFS.Properties
             {
                 _start_block.Set(value, _raw_data);
             }
-            get 
+            get
             {
-                return _start_block.Value; 
+                return _start_block.Value;
             }
         }
 
@@ -279,7 +281,7 @@ namespace Npoi.Core.POIFS.Properties
         /// Gets or sets the storage class ID for this property stream. ThIs Is the Class ID
         /// of the COM object which can read and write this property stream </summary>
         /// <value>Storage Class ID</value>
-        public ClassID StorageClsid 
+        public ClassID StorageClsid
         {
             get
             {
@@ -297,9 +299,9 @@ namespace Npoi.Core.POIFS.Properties
                 {
                     value.Write(_raw_data, _storage_clsid_offset);
                 }
-               
             }
         }
+
         /// <summary>
         /// Set the property type. Makes no attempt to validate the value.
         /// </summary>
@@ -354,10 +356,11 @@ namespace Npoi.Core.POIFS.Properties
         /// <value>the size of the document, in bytes</value>
         public virtual int Size
         {
-            set{
+            set
+            {
                 _size.Set(value, _raw_data);
             }
-            get 
+            get
             {
                 return _size.Value;
             }
@@ -399,7 +402,8 @@ namespace Npoi.Core.POIFS.Properties
         /// <value>The index of the previous child.</value>
         public int PreviousChildIndex
         {
-            get{
+            get
+            {
                 return _previous_property.Value;
             }
         }
@@ -437,6 +441,7 @@ namespace Npoi.Core.POIFS.Properties
                 return _previous_child;
             }
         }
+
         /// <summary>
         /// Gets or sets the next Child
         /// </summary>
@@ -457,7 +462,7 @@ namespace Npoi.Core.POIFS.Properties
             }
         }
 
-        #endregion
+        #endregion Child Members
 
         #region POIFSViewable Members
 
@@ -529,6 +534,6 @@ namespace Npoi.Core.POIFS.Properties
             }
         }
 
-        #endregion
+        #endregion POIFSViewable Members
     }
 }

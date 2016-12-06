@@ -17,7 +17,6 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-
     using Npoi.Core.SS.Formula.Eval;
 
     /**
@@ -25,12 +24,13 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author Josh Micich
      */
+
     public interface Function3Arg : Function
     {
         /**
          * see {@link Function#Evaluate(ValueEval[], int, int)}
          */
+
         ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1, ValueEval arg2);
     }
 }
-

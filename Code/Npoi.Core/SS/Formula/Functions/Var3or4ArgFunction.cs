@@ -25,15 +25,16 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author Josh Micich
      */
+
     public abstract class Var3or4ArgFunction : Function3Arg, Function4Arg
     {
-
         public ValueEval Evaluate(ValueEval[] args, int srcRowIndex, int srcColumnIndex)
         {
             switch (args.Length)
             {
                 case 3:
                     return Evaluate(srcRowIndex, srcColumnIndex, args[0], args[1], args[2]);
+
                 case 4:
                     return Evaluate(srcRowIndex, srcColumnIndex, args[0], args[1], args[2], args[3]);
             }
@@ -44,5 +45,4 @@ namespace Npoi.Core.SS.Formula.Functions
 
         public abstract ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1, ValueEval arg2, ValueEval arg3);
     }
-
 }

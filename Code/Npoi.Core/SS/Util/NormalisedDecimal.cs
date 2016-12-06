@@ -17,10 +17,10 @@
 
 namespace Npoi.Core.SS.Util
 {
-    using System;
-    using System.Text;
     using Npoi.Core.Util;
+    using System;
     using System.Globalization;
+    using System.Text;
 
     /*
      * Represents a transformation of a 64 bit IEEE double quantity having a decimal exponent and a
@@ -44,6 +44,7 @@ namespace Npoi.Core.SS.Util
      *
      * @author Josh Micich
      */
+
     public class NormalisedDecimal
     {
         /**
@@ -63,7 +64,6 @@ namespace Npoi.Core.SS.Util
          */
         private const int C_2_POW_19 = 1 << 19;
 
-
         /**
          * the value of {@link #_fractionalPart} that represents 0.5
          */
@@ -74,15 +74,12 @@ namespace Npoi.Core.SS.Util
          */
         private const long MAX_REP_WHOLE_PART = 0x38D7EA4C68000L;
 
-
-
         public static NormalisedDecimal Create(BigInteger frac, int binaryExponent)
         {
             // estimate pow2&pow10 first, perform optional mulShift, then normalize
             int pow10;
             if (binaryExponent > 49 || binaryExponent < 46)
             {
-
                 // working with ints (left Shifted 20) instead of doubles
                 // x = 14.5 - binaryExponent * log10(2);
                 int x = (29 << 19) - binaryExponent * LOG_BASE_10_OF_2_TIMES_2_POW_20;
@@ -112,9 +109,11 @@ namespace Npoi.Core.SS.Util
                     cc.multiplyByPowerOfTen(1);
                     pow10--;
                     break;
+
                 case 47:
                 case 48:
                     break;
+
                 case 49:
                     if (cc.IsBelowMaxRep())
                     {
@@ -137,6 +136,7 @@ namespace Npoi.Core.SS.Util
         /**
          * Rounds at the digit with value 10<sup>decimalExponent</sup>
          */
+
         public NormalisedDecimal RoundUnits()
         {
             long wholePart = _wholePart;
@@ -171,14 +171,12 @@ namespace Npoi.Core.SS.Util
          */
         private int _fractionalPart;
 
-
         public NormalisedDecimal(long wholePart, int fracPart, int decimalExponent)
         {
             _wholePart = wholePart;
             _fractionalPart = fracPart;
             _relativeDecimalExponent = decimalExponent;
         }
-
 
         /**
          * Convert to an equivalent {@link ExpandedDouble} representation (binary frac and exponent).
@@ -190,6 +188,7 @@ namespace Npoi.Core.SS.Util
          * The sign bit must be obtained from somewhere else.
          * @return a new {@link NormalisedDecimal} normalised to base 2 representation.
          */
+
         public ExpandedDouble NormaliseBaseTwo()
         {
             MutableFPNumber cc = new MutableFPNumber(ComposeFrac(), 39);
@@ -201,46 +200,50 @@ namespace Npoi.Core.SS.Util
         /**
          * @return the significand as a fixed point number (with 24 fraction bits and 47-50 whole bits)
          */
+
         public BigInteger ComposeFrac()
         {
             long wp = _wholePart;
             int fp = _fractionalPart;
             return new BigInteger(new byte[] {
-				(byte) (wp >> 56), // N.B. assuming sign bit is zero
+                (byte) (wp >> 56), // N.B. assuming sign bit is zero
 				(byte) (wp >> 48),
-				(byte) (wp >> 40),
-				(byte) (wp >> 32),
-				(byte) (wp >> 24),
-				(byte) (wp >> 16),
-				(byte) (wp >>  8),
-				(byte) (wp >>  0),
-				(byte) (fp >> 16),
-				(byte) (fp >> 8),
-				(byte) (fp >> 0),
-		});
+                (byte) (wp >> 40),
+                (byte) (wp >> 32),
+                (byte) (wp >> 24),
+                (byte) (wp >> 16),
+                (byte) (wp >>  8),
+                (byte) (wp >>  0),
+                (byte) (fp >> 16),
+                (byte) (fp >> 8),
+                (byte) (fp >> 0),
+        });
         }
 
         public String GetSignificantDecimalDigits()
         {
             return _wholePart.ToString(CultureInfo.InvariantCulture);
         }
+
         /**
          * Rounds the first whole digit position (considers only units digit, not frational part).
          * Caller should check total digit count of result to see whether the rounding operation caused
          * a carry out of the most significant digit
          */
+
         public String GetSignificantDecimalDigitsLastDigitRounded()
         {
             long wp = _wholePart + 5; // rounds last digit
             StringBuilder sb = new StringBuilder(24);
             sb.Append(wp);
-            sb[sb.Length - 1]= '0';
+            sb[sb.Length - 1] = '0';
             return sb.ToString();
         }
 
         /**
          * @return the number of powers of 10 which have been extracted from the significand and binary exponent.
          */
+
         public int GetDecimalExponent()
         {
             return _relativeDecimalExponent + EXPONENT_OFFSET;
@@ -249,6 +252,7 @@ namespace Npoi.Core.SS.Util
         /**
          * assumes both this and other are normalised
          */
+
         public int CompareNormalised(NormalisedDecimal other)
         {
             int cmp = _relativeDecimalExponent - other._relativeDecimalExponent;
@@ -266,9 +270,10 @@ namespace Npoi.Core.SS.Util
             }
             return _fractionalPart - other._fractionalPart;
         }
+
         public decimal GetFractionalPart()
         {
-            return new decimal(_fractionalPart)/(BD_2_POW_24);
+            return new decimal(_fractionalPart) / (BD_2_POW_24);
         }
 
         private String GetFractionalDigits()
@@ -280,10 +285,8 @@ namespace Npoi.Core.SS.Util
             return GetFractionalPart().ToString(CultureInfo.InvariantCulture).Substring(2);
         }
 
-
         public override String ToString()
         {
-
             StringBuilder sb = new StringBuilder();
             sb.Append(this.GetType().Name);
             sb.Append(" [");
@@ -299,6 +302,4 @@ namespace Npoi.Core.SS.Util
             return sb.ToString();
         }
     }
-
-
 }

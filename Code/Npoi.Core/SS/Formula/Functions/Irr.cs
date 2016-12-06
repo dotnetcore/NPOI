@@ -17,8 +17,8 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     /**
      * Calculates the internal rate of return.
@@ -31,9 +31,9 @@ namespace Npoi.Core.SS.Formula.Functions
      * @see <a href="http://en.wikipedia.org/wiki/Internal_rate_of_return#Numerical_solution">Wikipedia on IRR</a>
      * @see <a href="http://office.microsoft.com/en-us/excel-help/irr-HP005209146.aspx">Excel IRR</a>
      */
+
     public class Irr : Function
     {
-
         public ValueEval Evaluate(ValueEval[] args, int srcRowIndex, int srcColumnIndex)
         {
             if (args.Length == 0 || args.Length > 2)
@@ -70,11 +70,11 @@ namespace Npoi.Core.SS.Formula.Functions
          * @param income the income values.
          * @return the irr.
          */
+
         public static double irr(double[] income)
         {
             return irr(income, 0.1d);
         }
-
 
         /**
          * Calculates IRR using the Newton-Raphson Method.
@@ -98,6 +98,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @see <a href="http://en.wikipedia.org/wiki/Newton%27s_method">
          *     http://en.wikipedia.org/wiki/Newton%27s_method</a>
          */
+
         public static double irr(double[] values, double guess)
         {
             int maxIterationCount = 20;
@@ -109,7 +110,6 @@ namespace Npoi.Core.SS.Formula.Functions
             int i = 0;
             while (i < maxIterationCount)
             {
-
                 // the value of the function (NPV) and its derivate can be calculated in the same loop
                 double fValue = 0;
                 double fDerivative = 0;

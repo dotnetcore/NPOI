@@ -18,7 +18,7 @@
 namespace Npoi.Core.HSSF.Record.Chart
 {
     /// <summary>
-    /// The BopPop record specifies that the chart group is a bar of pie chart group or 
+    /// The BopPop record specifies that the chart group is a bar of pie chart group or
     /// a pie of pie chart group and specifies the chart group attributes.
     /// </summary>
     /// <remarks>
@@ -27,6 +27,7 @@ namespace Npoi.Core.HSSF.Record.Chart
     public class BopPopRecord : RowDataRecord
     {
         public const short sid = 0x1061;
+
         public BopPopRecord(RecordInputStream ris)
             : base(ris)
         {
@@ -39,6 +40,7 @@ namespace Npoi.Core.HSSF.Record.Chart
                 return base.DataSize;
             }
         }
+
         public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             base.Serialize(out1);

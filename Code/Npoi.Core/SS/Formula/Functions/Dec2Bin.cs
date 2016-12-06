@@ -14,12 +14,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
-
     using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     /**
      * Implementation for Excel Bin2Dec() function.<p/>
@@ -46,9 +46,9 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author cedric dot walter @ gmail dot com
      */
+
     public class Dec2Bin : Var1or2ArgFunction, FreeRefFunction
     {
-
         public static FreeRefFunction instance = new Dec2Bin();
 
         private static long MinValue = -512;
@@ -76,7 +76,7 @@ namespace Npoi.Core.SS.Formula.Functions
             }
 
             //If number < -512 or if number > 512, this function returns the #NUM! error value.
-            if (number< MinValue || number > MaxValue)
+            if (number < MinValue || number > MaxValue)
             {
                 return ErrorEval.NUM_ERROR;
             }
@@ -101,7 +101,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 Double placesNumberDouble = OperandResolver.ParseDouble(placesStr);
 
                 //non numeric value
-                if (double.IsNaN( placesNumberDouble))
+                if (double.IsNaN(placesNumberDouble))
                 {
                     return ErrorEval.VALUE_INVALID;
                 }
@@ -148,5 +148,4 @@ namespace Npoi.Core.SS.Formula.Functions
             return ErrorEval.VALUE_INVALID;
         }
     }
-
 }

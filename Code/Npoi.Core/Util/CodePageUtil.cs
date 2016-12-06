@@ -16,17 +16,17 @@
 ==================================================================== */
 
 using System;
-using System.IO;
 using System.Text;
+
 namespace Npoi.Core.Util
 {
-
     /**
      * Utilities for working with Microsoft CodePages.
-     * 
+     *
      * <p>Provides constants for understanding numeric codepages,
      *  along with utilities to translate these into Java Character Sets.</p>
      */
+
     public class CodePageUtil
     {
         /** <p>Codepage 037, a special case</p> */
@@ -204,6 +204,7 @@ namespace Npoi.Core.Util
          * @param string The string to convert
          * @param codepage The codepage number
          */
+
         public static byte[] GetBytesInCodePage(String string1, int codepage)
         {
             String encoding = CodepageToEncoding(codepage);
@@ -217,10 +218,11 @@ namespace Npoi.Core.Util
          * @param string The byte of the string to convert
          * @param codepage The codepage number
          */
+
         public static String GetStringFromCodePage(byte[] string1, int codepage)
-    {
-        return GetStringFromCodePage(string1, 0, string1.Length, codepage);
-    }
+        {
+            return GetStringFromCodePage(string1, 0, string1.Length, codepage);
+        }
 
         /**
          * Converts the bytes into a String, based on the equivalent character encoding
@@ -228,6 +230,7 @@ namespace Npoi.Core.Util
          * @param string The byte of the string to convert
          * @param codepage The codepage number
          */
+
         public static String GetStringFromCodePage(byte[] string1, int offset,
                  int length, int codepage)
         {
@@ -249,6 +252,7 @@ namespace Npoi.Core.Util
          * @exception UnsupportedEncodingException if the specified codepage is
          * less than zero.
          */
+
         public static String CodepageToEncoding(int codepage)
         {
             if (codepage <= 0)
@@ -258,109 +262,159 @@ namespace Npoi.Core.Util
             {
                 case CP_UTF16:
                     return "UTF-16";
+
                 case CP_UTF16_BE:
                     return "UTF-16BE";
+
                 case CP_UTF8:
                     return "UTF-8";
+
                 case CP_037:
                     return "cp037";
+
                 case CP_GBK:
                     return "GBK";
+
                 case CP_MS949:
                     return "ms949";
+
                 case CP_WINDOWS_1250:
                     return "windows-1250";
+
                 case CP_WINDOWS_1251:
                     return "windows-1251";
+
                 case CP_WINDOWS_1252:
                 case CP_WINDOWS_1252_BIFF23:
                     return "windows-1252";
+
                 case CP_WINDOWS_1253:
                     return "windows-1253";
+
                 case CP_WINDOWS_1254:
                     return "windows-1254";
+
                 case CP_WINDOWS_1255:
                     return "windows-1255";
+
                 case CP_WINDOWS_1256:
                     return "windows-1256";
+
                 case CP_WINDOWS_1257:
                     return "windows-1257";
+
                 case CP_WINDOWS_1258:
                     return "windows-1258";
+
                 case CP_JOHAB:
                     return "johab";
+
                 case CP_MAC_ROMAN:
                 case CP_MAC_ROMAN_BIFF23:
                     return "MacRoman";
+
                 case CP_MAC_JAPAN:
                     return "SJIS";
+
                 case CP_MAC_CHINESE_TRADITIONAL:
                     return "Big5";
+
                 case CP_MAC_KOREAN:
                     return "EUC-KR";
+
                 case CP_MAC_ARABIC:
                     return "MacArabic";
+
                 case CP_MAC_HEBREW:
                     return "MacHebrew";
+
                 case CP_MAC_GREEK:
                     return "MacGreek";
+
                 case CP_MAC_CYRILLIC:
                     return "MacCyrillic";
+
                 case CP_MAC_CHINESE_SIMPLE:
                     return "EUC_CN";
+
                 case CP_MAC_ROMANIA:
                     return "MacRomania";
+
                 case CP_MAC_UKRAINE:
                     return "MacUkraine";
+
                 case CP_MAC_THAI:
                     return "MacThai";
+
                 case CP_MAC_CENTRAL_EUROPE:
                     return "MacCentralEurope";
+
                 case CP_MAC_ICELAND:
                     return "MacIceland";
+
                 case CP_MAC_TURKISH:
                     return "MacTurkish";
+
                 case CP_MAC_CROATIAN:
                     return "MacCroatian";
+
                 case CP_US_ACSII:
                 case CP_US_ASCII2:
                     return "US-ASCII";
+
                 case CP_KOI8_R:
                     return "KOI8-R";
+
                 case CP_ISO_8859_1:
                     return "ISO-8859-1";
+
                 case CP_ISO_8859_2:
                     return "ISO-8859-2";
+
                 case CP_ISO_8859_3:
                     return "ISO-8859-3";
+
                 case CP_ISO_8859_4:
                     return "ISO-8859-4";
+
                 case CP_ISO_8859_5:
                     return "ISO-8859-5";
+
                 case CP_ISO_8859_6:
                     return "ISO-8859-6";
+
                 case CP_ISO_8859_7:
                     return "ISO-8859-7";
+
                 case CP_ISO_8859_8:
                     return "ISO-8859-8";
+
                 case CP_ISO_8859_9:
                     return "ISO-8859-9";
+
                 case CP_ISO_2022_JP1:
                 case CP_ISO_2022_JP2:
                 case CP_ISO_2022_JP3:
                     return "ISO-2022-JP";
+
                 case CP_ISO_2022_KR:
                     return "ISO-2022-KR";
+
                 case CP_EUC_JP:
                     return "EUC-JP";
+
                 case CP_EUC_KR:
                     return "EUC-KR";
+
                 case CP_GB2312:
                     return "GB2312";
+
                 case CP_GB18030:
                     return "GB18030";
+
                 case CP_SJIS:
                     return "SJIS";
+
                 default:
                     return "cp" + codepage;
             }

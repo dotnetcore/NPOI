@@ -18,11 +18,12 @@
  * Created on May 10, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Eval
 {
-    using System;
     using Npoi.Core.SS.Formula.Functions;
     using Npoi.Core.SS.Util;
+    using System;
 
     //public class RelationalValues
     //{
@@ -35,6 +36,7 @@ namespace Npoi.Core.SS.Formula.Eval
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo Dot com &gt;
      *
      */
+
     public abstract class RelationalOperationEval : Fixed2ArgFunction
     {
         private static int DoCompare(ValueEval va, ValueEval vb)
@@ -98,29 +100,34 @@ namespace Npoi.Core.SS.Formula.Eval
             throw new ArgumentException("Bad operand types (" + va.GetType().Name + "), ("
                     + vb.GetType().Name + ")");
         }
-        private static int CompareBlank(ValueEval v) {
-		    if (v == BlankEval.instance) {
-			    return 0;
-		    }
-		    if (v is BoolEval) {
-			    BoolEval boolEval = (BoolEval) v;
-			    return boolEval.BooleanValue ? -1 : 0;
-		    }
-		    if (v is NumberEval) {
-			    NumberEval ne = (NumberEval) v;
+
+        private static int CompareBlank(ValueEval v)
+        {
+            if (v == BlankEval.instance)
+            {
+                return 0;
+            }
+            if (v is BoolEval)
+            {
+                BoolEval boolEval = (BoolEval)v;
+                return boolEval.BooleanValue ? -1 : 0;
+            }
+            if (v is NumberEval)
+            {
+                NumberEval ne = (NumberEval)v;
                 //return ne.NumberValue.CompareTo(0.0);
                 return NumberComparer.Compare(0.0, ne.NumberValue);
-		    }
-		    if (v is StringEval) {
-			    StringEval se = (StringEval) v;
-			    return se.StringValue.Length < 1 ? 0 : -1;
-		    }
-		    throw new ArgumentException("bad value class (" + v.GetType().Name + ")");
-	    }
+            }
+            if (v is StringEval)
+            {
+                StringEval se = (StringEval)v;
+                return se.StringValue.Length < 1 ? 0 : -1;
+            }
+            throw new ArgumentException("bad value class (" + v.GetType().Name + ")");
+        }
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1)
         {
-
             ValueEval vA;
             ValueEval vB;
             try
@@ -138,7 +145,6 @@ namespace Npoi.Core.SS.Formula.Eval
         }
 
         public abstract bool ConvertComparisonResult(int cmpResult);
-
 
         public static Function EqualEval = new EqualEval();
         public static Function NotEqualEval = new NotEqualEval();

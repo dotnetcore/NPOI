@@ -13,12 +13,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System.Collections;
-    using Npoi.Core.SS.UserModel;
-
     using Npoi.Core.HSSF.Record;
+    using Npoi.Core.SS.UserModel;
     using System.Collections.Generic;
 
     /// <summary>
@@ -71,7 +70,7 @@ namespace Npoi.Core.HSSF.UserModel
 
             // Loop over each font, seeing if it is the same
             //  as an earlier one. If it is, point users of the
-            //  later duplicate copy to the earlier one, and 
+            //  later duplicate copy to the earlier one, and
             //  mark the later one as needing deleting
             // Note - don't change built in fonts (those before 5)
             for (int i = 5; i < newPos.Length; i++)
@@ -132,7 +131,7 @@ namespace Npoi.Core.HSSF.UserModel
             //  re-start its HSSFFontCache
             workbook.ResetFontCache();
 
-            // Update the cell styles to point at the 
+            // Update the cell styles to point at the
             //  new locations of the fonts
             for (int i = 0; i < workbook.Workbook.NumExFormats; i++)
             {
@@ -152,12 +151,12 @@ namespace Npoi.Core.HSSF.UserModel
                 Npoi.Core.SS.UserModel.ISheet s = workbook.GetSheetAt(sheetNum);
                 //IEnumerator rIt = s.GetRowEnumerator();
                 //while (rIt.MoveNext())
-                foreach (IRow row in s) 
+                foreach (IRow row in s)
                 {
                     //HSSFRow row = (HSSFRow)rIt.Current;
                     //IEnumerator cIt = row.GetEnumerator();
                     //while (cIt.MoveNext())
-                    foreach (ICell cell in row) 
+                    foreach (ICell cell in row)
                     {
                         //ICell cell = (HSSFCell)cIt.Current;
                         if (cell.CellType == Npoi.Core.SS.UserModel.CellType.String)
@@ -218,7 +217,7 @@ namespace Npoi.Core.HSSF.UserModel
 
             // Loop over each style, seeing if it is the same
             //  as an earlier one. If it is, point users of the
-            //  later duplicate copy to the earlier one, and 
+            //  later duplicate copy to the earlier one, and
             //  mark the later one as needing deleting
             // Only work on user added ones, which come after 20
             for (int i = 21; i < newPos.Length; i++)
@@ -313,7 +312,7 @@ namespace Npoi.Core.HSSF.UserModel
                 HSSFSheet s = (HSSFSheet)workbook.GetSheetAt(sheetNum);
                 //IEnumerator rIt = s.GetRowEnumerator();
                 //while (rIt.MoveNext())
-                foreach(IRow row in s)
+                foreach (IRow row in s)
                 {
                     //HSSFRow row = (HSSFRow)rIt.Current;
                     //IEnumerator cIt = row.GetEnumerator();

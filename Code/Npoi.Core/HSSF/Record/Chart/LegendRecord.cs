@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Defines a legend for a chart.
@@ -32,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Andrew C. Oliver (acoliver at apache.org)
      */
+
     public class LegendRecord
        : StandardRecord
     {
@@ -59,10 +56,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         private BitField vertical = BitFieldFactory.GetInstance(0x10);
         private BitField dataTable = BitFieldFactory.GetInstance(0x20);
 
-
         public LegendRecord()
         {
-
         }
 
         /**
@@ -80,7 +75,6 @@ namespace Npoi.Core.HSSF.Record.Chart
             field_5_type = (byte)in1.ReadByte();
             field_6_spacing = (byte)in1.ReadByte();
             field_7_options = in1.ReadShort();
-
         }
 
         public override String ToString()
@@ -141,6 +135,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 4 + 4 + 4 + 4 + 1 + 1 + 2; }
@@ -165,19 +160,17 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          * Get the x axis upper left field for the Legend record.
          */
+
         public int XAxisUpperLeft
         {
             get
             {
                 return field_1_xAxisUpperLeft;
             }
-            set 
+            set
             {
                 field_1_xAxisUpperLeft = value;
             }
@@ -186,13 +179,14 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the y axis upper left field for the Legend record.
          */
+
         public int YAxisUpperLeft
         {
             get
             {
                 return field_2_yAxisUpperLeft;
             }
-            set 
+            set
             {
                 field_2_yAxisUpperLeft = value;
             }
@@ -201,6 +195,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the x size field for the Legend record.
          */
+
         public int XSize
         {
             get { return field_3_xSize; }
@@ -210,15 +205,17 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the y size field for the Legend record.
          */
+
         public int YSize
         {
             get { return field_4_ySize; }
             set { this.field_4_ySize = value; }
         }
+
         /**
          * Get the type field for the Legend record.
          *
-         * @return  One of 
+         * @return  One of
          *        TYPE_BOTTOM
          *        TYPE_CORNER
          *        TYPE_TOP
@@ -226,6 +223,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          *        TYPE_LEFT
          *        TYPE_UNDOCKED
          */
+
         public byte Type
         {
             get { return field_5_type; }
@@ -235,21 +233,22 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the spacing field for the Legend record.
          *
-         * @return  One of 
+         * @return  One of
          *        SPACING_CLOSE
          *        SPACING_MEDIUM
          *        SPACING_OPEN
          */
+
         public byte Spacing
         {
             get { return field_6_spacing; }
             set { this.field_6_spacing = value; }
         }
 
-
         /**
          * Get the options field for the Legend record.
          */
+
         public short Options
         {
             get { return field_7_options; }
@@ -260,6 +259,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * automatic positioning (1=docked)
          * @return  the auto position field value.
          */
+
         public bool IsAutoPosition
         {
             get { return autoPosition.IsSet(field_7_options); }
@@ -270,20 +270,21 @@ namespace Npoi.Core.HSSF.Record.Chart
          * excel 5 only (true)
          * @return  the auto series field value.
          */
+
         public bool IsAutoSeries
         {
             get { return autoSeries.IsSet(field_7_options); }
             set { field_7_options = autoSeries.SetShortBoolean(field_7_options, value); }
         }
 
-
         /**
          * position of legend on the x axis is automatic
          * @return  the auto x positioning field value.
          */
+
         public bool IsAutoXPositioning
         {
-            get{return autoXPositioning.IsSet(field_7_options);}
+            get { return autoXPositioning.IsSet(field_7_options); }
             set { field_7_options = autoXPositioning.SetShortBoolean(field_7_options, value); }
         }
 
@@ -291,33 +292,33 @@ namespace Npoi.Core.HSSF.Record.Chart
          * position of legend on the y axis is automatic
          * @return  the auto y positioning field value.
          */
+
         public bool IsAutoYPositioning
         {
-            get{return autoYPositioning.IsSet(field_7_options);}
-            set{field_7_options = autoYPositioning.SetShortBoolean(field_7_options, value);}
+            get { return autoYPositioning.IsSet(field_7_options); }
+            set { field_7_options = autoYPositioning.SetShortBoolean(field_7_options, value); }
         }
 
         /**
          * vertical or horizontal legend (1 or 0 respectively).  Always 0 if not automatic.
          * @return  the vertical field value.
          */
+
         public bool IsVertical
         {
             get { return vertical.IsSet(field_7_options); }
             set { field_7_options = vertical.SetShortBoolean(field_7_options, value); }
         }
 
-
         /**
          * 1 if chart Contains data table
          * @return  the data table field value.
          */
+
         public bool IsDataTable
         {
-            get{return dataTable.IsSet(field_7_options);}
+            get { return dataTable.IsSet(field_7_options); }
             set { field_7_options = dataTable.SetShortBoolean(field_7_options, value); }
         }
-
-
     }
 }

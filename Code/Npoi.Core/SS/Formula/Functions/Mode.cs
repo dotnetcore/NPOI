@@ -17,17 +17,18 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
+    using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using Npoi.Core.Util;
     using System;
     using System.Collections;
-    using Npoi.Core.Util;
-    using Npoi.Core.SS.Formula.Eval;
-    using Npoi.Core.SS.Formula;
     using System.Collections.Generic;
 
     /**
 * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
 *
 */
+
     public class Mode : Function
     {
         /**
@@ -37,6 +38,7 @@ namespace Npoi.Core.SS.Formula.Functions
          *
          * @param v
          */
+
         public static double Evaluate(double[] v)
         {
             if (v.Length < 2)
@@ -70,7 +72,6 @@ namespace Npoi.Core.SS.Formula.Functions
                 return maxv;
             }
             throw new EvaluationException(ErrorEval.NA);
-
         }
 
         public ValueEval Evaluate(ValueEval[] args, int srcCellRow, int srcCellCol)
@@ -124,7 +125,6 @@ namespace Npoi.Core.SS.Formula.Functions
                 return;
             }
             CollectValue(arg, temp, true);
-
         }
 
         private static void CollectValue(ValueEval arg, IList temp, bool mustBeNumber)

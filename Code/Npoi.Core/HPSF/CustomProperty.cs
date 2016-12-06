@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF
@@ -34,21 +34,18 @@ namespace Npoi.Core.HPSF
     /// information stream. The difference To normal properties is that custom
     /// properties have an optional name. If the name is not <c>null</c> it
     /// will be maintained in the section's dictionary.
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
     /// @since 2006-02-09
     /// </summary>
     public class CustomProperty : MutableProperty
     {
-
         private String name;
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomProperty"/> class.
         /// </summary>
-        public CustomProperty()
-        {
+        public CustomProperty() {
             this.name = null;
         }
 
@@ -56,10 +53,9 @@ namespace Npoi.Core.HPSF
         /// Initializes a new instance of the <see cref="CustomProperty"/> class.
         /// </summary>
         /// <param name="property">the property To copy</param>
-        public CustomProperty(Property property):
+        public CustomProperty(Property property) :
             this(property, "") //change null to "" by Tony Qu
         {
-            
         }
 
         /// <summary>
@@ -68,9 +64,7 @@ namespace Npoi.Core.HPSF
         /// <param name="property">This property's attributes are copied To the new custom
         /// property.</param>
         /// <param name="name">The new custom property's name.</param>
-        public CustomProperty(Property property, String name):base(property) 
-        {
-            
+        public CustomProperty(Property property, String name) : base(property) {
             this.name = name;
         }
 
@@ -78,8 +72,7 @@ namespace Npoi.Core.HPSF
         /// Gets or sets the property's name.
         /// </summary>
         /// <value>the property's name.</value>
-        public String Name
-        {
+        public String Name {
             get { return name; }
             set { this.name = value; }
         }
@@ -93,8 +86,7 @@ namespace Npoi.Core.HPSF
         /// <returns><c>true</c>
         ///  if both custom properties are equal, else
         /// <c>false</c></returns>
-        public bool EqualsContents(Object o)
-        {
+        public bool EqualsContents(Object o) {
             CustomProperty c = (CustomProperty)o;
             String name1 = c.Name;
             String name2 = this.Name;
@@ -108,15 +100,12 @@ namespace Npoi.Core.HPSF
                     && c.Value.Equals(this.Value);
         }
 
-
         /// <summary>
         /// </summary>
         /// <returns></returns>
         /// @see Object#GetHashCode()
-        public override int GetHashCode()
-        {
+        public override int GetHashCode() {
             return (int)this.ID;
         }
-
     }
 }

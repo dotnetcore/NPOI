@@ -17,20 +17,20 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
-    using System;
-    using Npoi.Core.SS.Formula.PTG;
     using Npoi.Core.SS.Formula.Function;
+    using Npoi.Core.SS.Formula.PTG;
+    using System;
+
     /**
      * Represents a syntactic element from a formula by encapsulating the corresponding <c>Ptg</c>
      * Token.  Each <c>ParseNode</c> may have child <c>ParseNode</c>s in the case when the wrapped
      * <c>Ptg</c> is non-atomic.
-     * 
+     *
      * @author Josh Micich
      */
-    class ParseNode
-    {
 
+    internal class ParseNode
+    {
         public static ParseNode[] EMPTY_ARRAY = { };
         private Ptg _token;
         private ParseNode[] _children;
@@ -54,21 +54,22 @@ namespace Npoi.Core.SS.Formula
             }
             _tokenCount = tokenCount;
         }
+
         public ParseNode(Ptg token)
             : this(token, EMPTY_ARRAY)
         {
-
         }
+
         public ParseNode(Ptg token, ParseNode child0)
             : this(token, new ParseNode[] { child0, })
         {
-
         }
+
         public ParseNode(Ptg token, ParseNode child0, ParseNode child1)
             : this(token, new ParseNode[] { child0, child1, })
         {
-
         }
+
         private int TokenCount
         {
             get
@@ -76,6 +77,7 @@ namespace Npoi.Core.SS.Formula
                 return _tokenCount;
             }
         }
+
         public int EncodedSize
         {
             get
@@ -92,12 +94,14 @@ namespace Npoi.Core.SS.Formula
         /**
          * Collects the array of <c>Ptg</c> Tokens for the specified tree.
          */
+
         public static Ptg[] ToTokenArray(ParseNode rootNode)
         {
             TokenCollector temp = new TokenCollector(rootNode.TokenCount);
             rootNode.CollectPtgs(temp);
             return temp.GetResult();
         }
+
         private void CollectPtgs(TokenCollector temp)
         {
             if (IsIf(_token))
@@ -106,27 +110,29 @@ namespace Npoi.Core.SS.Formula
                 return;
             }
             bool isPreFixOperator = _token is MemFuncPtg || _token is MemAreaPtg;
-		    if (isPreFixOperator) {
-			    temp.Add(_token);
-		    }
+            if (isPreFixOperator)
+            {
+                temp.Add(_token);
+            }
             for (int i = 0; i < GetChildren().Length; i++)
             {
                 GetChildren()[i].CollectPtgs(temp);
             }
-            if(!isPreFixOperator)
+            if (!isPreFixOperator)
             {
                 temp.Add(_token);
             }
         }
+
         /**
          * The IF() function Gets marked up with two or three tAttr Tokens.
          * Similar logic will be required for CHOOSE() when it is supported
-         * 
+         *
          * See excelfileformat.pdf sec 3.10.5 "tAttr (19H)
          */
+
         private void CollectIfPtgs(TokenCollector temp)
         {
-
             // condition goes first
             GetChildren()[0].CollectPtgs(temp);
 
@@ -196,7 +202,6 @@ namespace Npoi.Core.SS.Formula
 
         private class TokenCollector
         {
-
             private Ptg[] _ptgs;
             private int _offset;
 

@@ -14,41 +14,39 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
-    using System.IO;
-    using System.Collections;
-
-    using Npoi.Core.HSSF.Record;
-    using Npoi.Core.Util;
-    using Npoi.Core.POIFS.FileSystem;
     using Npoi.Core.DDF;
-
+    using Npoi.Core.HSSF.Record;
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.Util;
+    using System;
+    using System.Collections;
+    using System.IO;
 
     /**
      * Represents binary object (i.e. OLE) data stored in the file.  Eg. A GIF, JPEG etc...
      *
      * @author Daniel Noll
      */
+
     public class HSSFObjectData : HSSFPicture
     {
-
         /**
          * Reference to the filesystem root, required for retrieving the object data.
          */
         private DirectoryEntry _root;
-
 
         public HSSFObjectData(EscherContainerRecord spContainer, ObjRecord objRecord, DirectoryEntry _root)
             : base(spContainer, objRecord)
         {
             this._root = _root;
         }
+
         /**
          * Returns the OLE2 Class Name of the object
          */
+
         public String OLE2ClassName
         {
             get
@@ -64,6 +62,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @return the object data as an OLE2 directory.
          * @ if there was an error Reading the data.
          */
+
         public DirectoryEntry GetDirectory()
         {
             EmbeddedObjectRefSubRecord subRecord = FindObjectRecord();
@@ -87,16 +86,18 @@ namespace Npoi.Core.HSSF.UserModel
          *  that doesn't have an associated POIFS Directory
          *  Entry
          */
+
         public byte[] GetObjectData()
         {
             return FindObjectRecord().ObjectData;
         }
 
         /**
-         * Does this ObjectData have an associated POIFS 
+         * Does this ObjectData have an associated POIFS
          *  Directory Entry?
          * (Not all do, those that don't have a data portion)
          */
+
         public bool HasDirectoryEntry()
         {
             EmbeddedObjectRefSubRecord subRecord = FindObjectRecord();
@@ -107,9 +108,10 @@ namespace Npoi.Core.HSSF.UserModel
         }
 
         /**
-         * Finds the EmbeddedObjectRefSubRecord, or throws an 
+         * Finds the EmbeddedObjectRefSubRecord, or throws an
          *  Exception if there wasn't one
          */
+
         public EmbeddedObjectRefSubRecord FindObjectRecord()
         {
             IEnumerator subRecordIter = GetObjRecord().SubRecords.GetEnumerator();
@@ -126,24 +128,20 @@ namespace Npoi.Core.HSSF.UserModel
             throw new InvalidOperationException("Object data does not contain a reference to an embedded object OLE2 directory");
         }
 
-
         protected override EscherContainerRecord CreateSpContainer()
         {
             throw new InvalidOperationException("HSSFObjectData cannot be created from scratch");
         }
-
 
         protected override ObjRecord CreateObjRecord()
         {
             throw new InvalidOperationException("HSSFObjectData cannot be created from scratch");
         }
 
-
         internal override void AfterRemove(HSSFPatriarch patriarch)
         {
             throw new InvalidOperationException("HSSFObjectData cannot be created from scratch");
         }
-
 
         internal override void AfterInsert(HSSFPatriarch patriarch)
         {

@@ -17,16 +17,17 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
-    using System.Text;
     using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.PTG;
     using Npoi.Core.SS.UserModel;
+    using System;
+    using System.Text;
 
     /**
      * Formula Record (0x0006 / 0x0206 / 0x0406) - holds a formula in
      *  encoded form, along with the value if a number
      */
+
     public class OldFormulaRecord : OldCellRecord
     {
         public const short biff2_sid = 0x0006;
@@ -85,6 +86,7 @@ namespace Npoi.Core.HSSF.Record
         {
             return specialCachedValue.GetBooleanValue();
         }
+
         public int GetCachedErrorValue()
         {
             return specialCachedValue.GetErrorValue();
@@ -95,6 +97,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return calculated value
          */
+
         public double Value
         {
             get
@@ -108,6 +111,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return bitmask
          */
+
         public short Options
         {
             get
@@ -119,6 +123,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return the formula tokens. never <code>null</code>
          */
+
         public Ptg[] ParsedExpression
         {
             get
@@ -139,6 +144,7 @@ namespace Npoi.Core.HSSF.Record
         {
             sb.Append("    .value       = ").Append(Value).Append("\n");
         }
+
         protected override String RecordName
         {
             get
@@ -147,5 +153,4 @@ namespace Npoi.Core.HSSF.Record
             }
         }
     }
-
 }

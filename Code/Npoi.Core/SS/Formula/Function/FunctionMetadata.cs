@@ -19,14 +19,15 @@ namespace Npoi.Core.SS.Formula.Function
 {
     using System;
     using System.Text;
+
     /**
      * Holds information about Excel built-in functions.
-     * 
+     *
      * @author Josh Micich
      */
+
     public class FunctionMetadata
     {
-
         private int _index;
         private String _name;
         private int _minParams;
@@ -35,6 +36,7 @@ namespace Npoi.Core.SS.Formula.Function
         private byte[] _parameterClassCodes;
         private const short FUNCTION_MAX_PARAMS = 30;
         /* package */
+
         internal FunctionMetadata(int index, String name, int minParams, int maxParams,
             byte returnClassCode, byte[] parameterClassCodes)
         {
@@ -45,34 +47,42 @@ namespace Npoi.Core.SS.Formula.Function
             _returnClassCode = returnClassCode;
             _parameterClassCodes = parameterClassCodes;
         }
+
         public int Index
         {
             get { return _index; }
         }
+
         public String Name
         {
             get { return _name; }
         }
+
         public int MinParams
         {
             get { return _minParams; }
         }
+
         public int MaxParams
         {
-            get{return _maxParams;}
+            get { return _maxParams; }
         }
+
         public bool HasFixedArgsLength
         {
             get { return _minParams == _maxParams; }
         }
+
         public byte ReturnClassCode
         {
             get { return _returnClassCode; }
         }
+
         public byte[] ParameterClassCodes
         {
             get { return (byte[])_parameterClassCodes.Clone(); }
         }
+
         public bool HasUnlimitedVarags
         {
             get
@@ -80,6 +90,7 @@ namespace Npoi.Core.SS.Formula.Function
                 return FUNCTION_MAX_PARAMS == _maxParams;
             }
         }
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder(64);

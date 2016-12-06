@@ -18,16 +18,17 @@
 namespace Npoi.Core.SS.UserModel
 {
     using System;
+
     /**
-     * Rich text unicode string.  These strings can have fonts 
+     * Rich text unicode string.  These strings can have fonts
      *  applied to arbitary parts of the string.
-     *  
+     *
      * @author Glen Stampoultzis (glens at apache.org)
      * @author Jason Height (jheight at apache.org)
      */
+
     public interface IRichTextString
     {
-
         /**
          * Applies a font to the specified characters of a string.
          *
@@ -35,6 +36,7 @@ namespace Npoi.Core.SS.UserModel
          * @param endIndex      The end index to apply the font to (exclusive)
          * @param fontIndex     The font to use.
          */
+
         void ApplyFont(int startIndex, int endIndex, short fontIndex);
 
         /**
@@ -44,17 +46,20 @@ namespace Npoi.Core.SS.UserModel
          * @param endIndex      The end index to apply to font to (exclusive)
          * @param font          The index of the font to use.
          */
+
         void ApplyFont(int startIndex, int endIndex, IFont font);
 
         /**
          * Sets the font of the entire string.
          * @param font          The font to use.
          */
+
         void ApplyFont(IFont font);
 
         /**
          * Removes any formatting that may have been applied to the string.
          */
+
         void ClearFormatting();
 
         /**
@@ -78,6 +83,7 @@ namespace Npoi.Core.SS.UserModel
          * @param index     the index of the formatting run
          * @return  the index within the string.
          */
+
         int GetIndexOfFormattingRun(int index);
 
         /**
@@ -85,7 +91,7 @@ namespace Npoi.Core.SS.UserModel
          *
          * @param fontIndex  the font to apply.
          */
-        void ApplyFont(short fontIndex);
 
+        void ApplyFont(short fontIndex);
     }
 }

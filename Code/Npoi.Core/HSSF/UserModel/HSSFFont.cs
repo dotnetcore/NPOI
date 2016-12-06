@@ -15,21 +15,20 @@
    limitations Under the License.
 ==================================================================== */
 
-
 using Npoi.Core.HSSF.Util;
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.SS.UserModel;
+    using System;
 
     /// <summary>
     /// Represents a Font used in a workbook.
     /// @version 1.0-pre
     /// @author  Andrew C. Oliver
     /// </summary>
-    public class HSSFFont:Npoi.Core.SS.UserModel.IFont
+    public class HSSFFont : Npoi.Core.SS.UserModel.IFont
     {
         public const String FONT_ARIAL = "Arial";
 
@@ -46,7 +45,6 @@ namespace Npoi.Core.HSSF.UserModel
             font = rec;
             this.index = index;
         }
-
 
         /// <summary>
         /// Get the name for the font (i.e. Arial)
@@ -71,8 +69,6 @@ namespace Npoi.Core.HSSF.UserModel
             get { return index; }
         }
 
-
-
         /// <summary>
         /// Get or sets the font height in Unit's of 1/20th of a point.  Maybe you might want to
         /// use the GetFontHeightInPoints which matches to the familiar 10, 12, 14 etc..
@@ -91,7 +87,7 @@ namespace Npoi.Core.HSSF.UserModel
         public short FontHeightInPoints
         {
             get { return (short)(font.FontHeight / 20); }
-            set { font.FontHeight=(short)(value * 20); }
+            set { font.FontHeight = (short)(value * 20); }
         }
 
         /// <summary>
@@ -101,7 +97,7 @@ namespace Npoi.Core.HSSF.UserModel
         public bool IsItalic
         {
             get { return font.IsItalic; }
-            set { font.IsItalic=value; }
+            set { font.IsItalic = value; }
         }
 
         /// <summary>
@@ -113,7 +109,7 @@ namespace Npoi.Core.HSSF.UserModel
         public bool IsStrikeout
         {
             get { return font.IsStrikeout; }
-            set { font.IsStrikeout=value; }
+            set { font.IsStrikeout = value; }
         }
 
         /// <summary>
@@ -123,7 +119,7 @@ namespace Npoi.Core.HSSF.UserModel
         public short Color
         {
             get { return font.ColorPaletteIndex; }
-            set { font.ColorPaletteIndex=value; }
+            set { font.ColorPaletteIndex = value; }
         }
 
         /// <summary>
@@ -146,9 +142,11 @@ namespace Npoi.Core.HSSF.UserModel
             get { return font.BoldWeight; }
             set { font.BoldWeight = value; }
         }
+
         /**
          * get or set if the font bold style
          */
+
         public bool IsBold
         {
             get
@@ -174,7 +172,6 @@ namespace Npoi.Core.HSSF.UserModel
             set { font.SuperSubScript = value; }
         }
 
-
         /// <summary>
         /// Gets or sets the type of text Underlining to use
         /// </summary>
@@ -184,7 +181,6 @@ namespace Npoi.Core.HSSF.UserModel
             get { return font.Underline; }
             set { font.Underline = value; }
         }
-
 
         /// <summary>
         /// Gets or sets the char set to use.

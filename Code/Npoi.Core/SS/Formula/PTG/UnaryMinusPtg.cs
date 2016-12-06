@@ -25,6 +25,7 @@ namespace Npoi.Core.SS.Formula.PTG
      * does not have any effect on the operand
      * @author Avik Sengupta
      */
+
     public class UnaryMinusPtg : ValueOperatorPtg
     {
         public const byte sid = 0x13;
@@ -49,6 +50,7 @@ namespace Npoi.Core.SS.Formula.PTG
         }
 
         /** implementation of method from OperationsPtg*/
+
         public override String ToFormulaString(String[] operands)
         {
             StringBuilder buffer = new StringBuilder();

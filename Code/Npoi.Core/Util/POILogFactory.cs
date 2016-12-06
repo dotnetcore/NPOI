@@ -1,5 +1,4 @@
-﻿
-/* ====================================================================
+﻿/* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
    this work for additional information regarding copyright ownership.
@@ -18,27 +17,25 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Npoi.Core.Util
 {
     public class POILogFactory
     {
-
         /**
          * Map of POILogger instances, with classes as keys
          */
-        private static Dictionary<string,object> _loggers = new Dictionary<string, object>();
+        private static Dictionary<string, object> _loggers = new Dictionary<string, object>();
 
         /**
          * A common instance of NullLogger, as it does nothing
@@ -67,7 +64,7 @@ namespace Npoi.Core.Util
         {
             return GetLogger(type.Name);
         }
-        
+
         /// <summary>
         /// Get a logger, based on a String
         /// </summary>
@@ -76,48 +73,57 @@ namespace Npoi.Core.Util
         public static POILogger GetLogger(String cat)
         {
             POILogger logger = null;
-            
+
             // If we haven't found out what logger to use yet,
             //  then do so now
             // Don't look it up until we're first asked, so
             //  that our users can set the system property
             //  between class loading and first use
-            if(_loggerClassName == null) {
-        	    try
-        	    {
-	        	    _loggerClassName = null;
-	        	    //ConfigurationManager.AppSettings["loggername"];
-        	    } catch(Exception) {}
-            	
-        	    // Use the default logger if none specified,
-        	    //  or none could be fetched
-        	    if(_loggerClassName == null) {
-        		    _loggerClassName = _nullLogger.GetType().Name;
-        	    }
-            }
-            
-            // Short circuit for the null logger, which
-            //  ignores all categories
-            if(_loggerClassName.Equals(_nullLogger.GetType().Name)) {
-        	    return _nullLogger;
+            if (_loggerClassName == null)
+            {
+                try
+                {
+                    _loggerClassName = null;
+                    //ConfigurationManager.AppSettings["loggername"];
+                }
+                catch (Exception) { }
+
+                // Use the default logger if none specified,
+                //  or none could be fetched
+                if (_loggerClassName == null)
+                {
+                    _loggerClassName = _nullLogger.GetType().Name;
+                }
             }
 
-            
+            // Short circuit for the null logger, which
+            //  ignores all categories
+            if (_loggerClassName.Equals(_nullLogger.GetType().Name))
+            {
+                return _nullLogger;
+            }
+
             // Fetch the right logger for them, creating
-            //  it if that's required 
-            if (_loggers.ContainsKey(cat)) {
+            //  it if that's required
+            if (_loggers.ContainsKey(cat))
+            {
                 logger = (POILogger)_loggers[cat];
-            } else {
-                try {
+            }
+            else
+            {
+                try
+                {
                     //logger=assembly.CreateInstance(_loggerClassName) as POILogger;
                     Type loggerClass = Type.GetType(_loggerClassName);
-                    logger =  Activator.CreateInstance(loggerClass) as POILogger;
+                    logger = Activator.CreateInstance(loggerClass) as POILogger;
                     logger.Initialize(cat);
-                } catch(Exception) {
-                  // Give up and use the null logger
-                  logger = _nullLogger;
                 }
-                
+                catch (Exception)
+                {
+                    // Give up and use the null logger
+                    logger = _nullLogger;
+                }
+
                 // Save for next time
                 _loggers[cat] = logger;
             }

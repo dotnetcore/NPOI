@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title:        Password Record
@@ -79,6 +76,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @return short  representing the password
          */
+
         public int Password
         {
             get { return field_1_password; }
@@ -114,10 +112,10 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Clone this record.
          */
+
         public override Object Clone()
         {
             return new PasswordRecord(field_1_password);
         }
-
     }
 }

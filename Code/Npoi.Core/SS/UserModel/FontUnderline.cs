@@ -22,9 +22,9 @@ namespace Npoi.Core.SS.UserModel
      *
      * @author Gisella Bronzetti
      */
+
     public class FontUnderline
     {
-
         /**
          * Single-line underlining under each character in the cell.
          * The underline is drawn through the descenders of
@@ -58,9 +58,7 @@ namespace Npoi.Core.SS.UserModel
          */
         public static readonly FontUnderline NONE = new FontUnderline(0);
 
-
         private int value;
-
 
         private FontUnderline(int val)
         {
@@ -120,6 +118,7 @@ namespace Npoi.Core.SS.UserModel
                 _table[4] = FontUnderline.DOUBLE_ACCOUNTING;
             }
         }
+
         public static FontUnderline ValueOf(int value)
         {
             return _table[value];
@@ -133,21 +132,24 @@ namespace Npoi.Core.SS.UserModel
                 case FontUnderlineType.Double:
                     val = FontUnderline.DOUBLE;
                     break;
+
                 case FontUnderlineType.DoubleAccounting:
                     val = FontUnderline.DOUBLE_ACCOUNTING;
                     break;
+
                 case FontUnderlineType.SingleAccounting:
                     val = FontUnderline.SINGLE_ACCOUNTING;
                     break;
+
                 case FontUnderlineType.Single:
                     val = FontUnderline.SINGLE;
                     break;
+
                 default:
                     val = FontUnderline.NONE;
                     break;
             }
             return val;
         }
-
     }
 }

@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-    using System.Text;
     using Npoi.Core.Util;
     using System;
-
+    using System.Text;
 
     /**
      * Title:        Default Column Width Record
@@ -42,6 +39,7 @@ namespace Npoi.Core.HSSF.Record
      *  The default column width is 8 characters
      */
         public const int DEFAULT_COLUMN_WIDTH = 0x0008;
+
         public DefaultColWidthRecord()
         {
             field_1_col_width = DEFAULT_COLUMN_WIDTH;
@@ -57,7 +55,6 @@ namespace Npoi.Core.HSSF.Record
             field_1_col_width = in1.ReadUShort();
         }
 
-
         /**
          * Get the default column width
          * @return defaultwidth for columns
@@ -69,13 +66,13 @@ namespace Npoi.Core.HSSF.Record
             {
                 return field_1_col_width;
             }
-            set 
+            set
             {
                 field_1_col_width = value;
             }
         }
 
-        internal int offsetForFilePointer;  //used for defcolwidth position of IndexRecord 
+        internal int offsetForFilePointer;  //used for defcolwidth position of IndexRecord
 
         public override String ToString()
         {

@@ -17,10 +17,9 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Describes the frozen and Unfozen panes.
@@ -29,6 +28,7 @@ namespace Npoi.Core.HSSF.Record
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class PaneRecord : StandardRecord
     {
         public const short sid = 0x41;
@@ -42,10 +42,8 @@ namespace Npoi.Core.HSSF.Record
         public const short ACTIVE_PANE_LOWER_LEFT = 2;
         public const short ACTIVE_PANE_UPPER_LEFT = 3;
 
-
         public PaneRecord()
         {
-
         }
 
         /**
@@ -61,7 +59,6 @@ namespace Npoi.Core.HSSF.Record
             field_3_topRow = in1.ReadShort();
             field_4_leftColumn = in1.ReadShort();
             field_5_activePane = in1.ReadShort();
-
         }
 
         public override String ToString()
@@ -128,19 +125,17 @@ namespace Npoi.Core.HSSF.Record
             return rec;
         }
 
-
-
-
         /**
          * Get the x field for the Pane record.
          */
+
         public short X
         {
             get
             {
                 return field_1_x;
             }
-            set 
+            set
             {
                 this.field_1_x = value;
             }
@@ -149,43 +144,46 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the y field for the Pane record.
          */
+
         public short Y
         {
             get
             {
                 return field_2_y;
             }
-            set 
+            set
             {
                 this.field_2_y = value;
             }
         }
 
-
         /**
          * Get the top row field for the Pane record.
          */
+
         public short TopRow
         {
             get
             {
                 return field_3_topRow;
             }
-            set 
+            set
             {
                 this.field_3_topRow = value;
             }
         }
+
         /**
          * Get the left column field for the Pane record.
          */
+
         public short LeftColumn
         {
             get
             {
                 return field_4_leftColumn;
             }
-            set 
+            set
             {
                 this.field_4_leftColumn = value;
             }
@@ -194,19 +192,20 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the active pane field for the Pane record.
          *
-         * @return  One of 
+         * @return  One of
          *        ACTIVE_PANE_LOWER_RIGHT
          *        ACTIVE_PANE_UPPER_RIGHT
          *        ACTIVE_PANE_LOWER_LEFT
          *        ACTIVE_PANE_UPPER_LEFT
          */
+
         public short ActivePane
         {
             get
             {
                 return field_5_activePane;
             }
-            set 
+            set
             {
                 this.field_5_activePane = value;
             }

@@ -1,7 +1,5 @@
-﻿using System;
+﻿using Npoi.Core.Util;
 using System.Collections.Generic;
-using System.Text;
-using Npoi.Core.Util;
 
 namespace Npoi.Core.HSSF.Record.Drawing
 {
@@ -24,14 +22,15 @@ namespace Npoi.Core.HSSF.Record.Drawing
                 dataRemian -= opte.DataSize;
                 dictOptions.Add(opte.Opid.OpId, opte);
             }
-            
         }
+
         public OfficeArtFOPTE GetFillOptionElement(int opid)
         {
             if (dictOptions.ContainsKey(opid))
                 return dictOptions[opid];
             return null;
         }
+
         public int DataSize
         {
             get
@@ -52,6 +51,7 @@ namespace Npoi.Core.HSSF.Record.Drawing
             }
         }
     }
+
     public class OfficeArtTertiaryFOPT : OfficeArtFOPT
     {
         public OfficeArtTertiaryFOPT(RecordInputStream ris)

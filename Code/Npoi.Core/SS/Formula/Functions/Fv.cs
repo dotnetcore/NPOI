@@ -18,6 +18,7 @@
  * Created on May 15, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     public class Fv : FinanceFunction
@@ -26,6 +27,5 @@ namespace Npoi.Core.SS.Formula.Functions
         {
             return FinanceLib.fv(rate, arg1, arg2, arg3, type);
         }
-
     }
 }

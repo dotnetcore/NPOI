@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.POIFS.Properties
@@ -32,12 +32,13 @@ namespace Npoi.Core.POIFS.Properties
     /// </summary>
     public class PropertyConstants
     {
-        public const int  PROPERTY_TYPE_OFFSET = 0x42;
+        public const int PROPERTY_TYPE_OFFSET = 0x42;
 
         // the property types
         public const byte INVALID_TYPE = 0;
-        public const byte DIRECTORY_TYPE       = 1; //STGTY_STORAGE
-        public const byte DOCUMENT_TYPE        = 2; //STGTY_STREAM
+
+        public const byte DIRECTORY_TYPE = 1; //STGTY_STORAGE
+        public const byte DOCUMENT_TYPE = 2; //STGTY_STREAM
         public const byte LOCKBYTES_TYPE = 3;       //STGTY_LOCKBYTES
         public const byte PROPERT_TYPE = 4;         //STGTY_PROPERTY
         public const byte ROOT_TYPE = 5;            //STGTY_ROOT

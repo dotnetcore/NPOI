@@ -17,12 +17,13 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
-    using System;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
+
     /**
      * Stores the parameters that identify the evaluation of one cell.<br/>
      */
+
     public abstract class CellCacheEntry : ICacheEntry
     {
         public static CellCacheEntry[] EMPTY_ARRAY = { };
@@ -30,11 +31,11 @@ namespace Npoi.Core.SS.Formula
         private FormulaCellCacheEntrySet _consumingCells;
         private ValueEval _value;
 
-
         protected CellCacheEntry()
         {
             _consumingCells = new FormulaCellCacheEntrySet();
         }
+
         protected void ClearValue()
         {
             _value = null;
@@ -50,6 +51,7 @@ namespace Npoi.Core.SS.Formula
             _value = value;
             return result;
         }
+
         public ValueEval GetValue()
         {
             return _value;
@@ -93,8 +95,8 @@ namespace Npoi.Core.SS.Formula
         public void AddConsumingCell(FormulaCellCacheEntry cellLoc)
         {
             _consumingCells.Add(cellLoc);
-
         }
+
         public FormulaCellCacheEntry[] GetConsumingCells()
         {
             return _consumingCells.ToArray();
@@ -107,6 +109,7 @@ namespace Npoi.Core.SS.Formula
                 throw new InvalidOperationException("Specified formula cell is not consumed by this cell");
             }
         }
+
         public void RecurseClearCachedFormulaResults(IEvaluationListener listener)
         {
             if (listener == null)
@@ -121,11 +124,12 @@ namespace Npoi.Core.SS.Formula
         }
 
         /**
-         * Calls formulaCell.SetFormulaResult(null, null) recursively all the way up the tree of 
+         * Calls formulaCell.SetFormulaResult(null, null) recursively all the way up the tree of
          * dependencies. Calls usedCell.ClearConsumingCell(fc) for each child of a cell that Is
          * Cleared along the way.
          * @param formulaCells
          */
+
         protected void RecurseClearCachedFormulaResults()
         {
             FormulaCellCacheEntry[] formulaCells = GetConsumingCells();
@@ -141,6 +145,7 @@ namespace Npoi.Core.SS.Formula
         /**
          * Identical To {@link #RecurseClearCachedFormulaResults()} except for the listener call-backs
          */
+
         protected void RecurseClearCachedFormulaResults(IEvaluationListener listener, int depth)
         {
             FormulaCellCacheEntry[] formulaCells = GetConsumingCells();
@@ -154,6 +159,5 @@ namespace Npoi.Core.SS.Formula
                 fc.RecurseClearCachedFormulaResults(listener, depth + 1);
             }
         }
-
     }
 }

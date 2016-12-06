@@ -18,8 +18,8 @@
 namespace Npoi.Core.HSSF.Record.Chart
 {
     /// <summary>
-    /// The BopPopCustom record specifies which data points in the series are contained 
-    /// in the secondary bar/pie instead of the primary pie. MUST follow a BopPop record 
+    /// The BopPopCustom record specifies which data points in the series are contained
+    /// in the secondary bar/pie instead of the primary pie. MUST follow a BopPop record
     /// that has its split field set to Custom (0x0003).
     /// </summary>
     /// <remarks>
@@ -28,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
     public class BopPopCustomRecord : RowDataRecord
     {
         public const short sid = 0x1067;
+
         public BopPopCustomRecord(RecordInputStream ris)
             : base(ris)
         {
@@ -40,6 +41,7 @@ namespace Npoi.Core.HSSF.Record.Chart
                 return base.DataSize;
             }
         }
+
         public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             base.Serialize(out1);

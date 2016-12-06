@@ -15,18 +15,13 @@
    limitations Under the License.
 ==================================================================== */
 
-
-using Npoi.Core.DDF;
-using Npoi.Core.HPSF;
-
 namespace Npoi.Core.HSSF.Record.Aggregates
 {
-
-    using System;
     using Npoi.Core.HSSF.Record;
-    using Npoi.Core.SS.Util;
     using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.Util;
     using Npoi.Core.Util;
+    using System;
 
     /// <summary>
     /// The formula record aggregate is used to join toGether the formula record and it's
@@ -34,7 +29,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
     /// @author Glen Stampoultzis (glens at apache.org)
     /// </summary>
     [Serializable]
-    public class FormulaRecordAggregate: RecordAggregate, CellValueRecordInterface, IComparable, ICloneable
+    public class FormulaRecordAggregate : RecordAggregate, CellValueRecordInterface, IComparable, ICloneable
     {
         public const short sid = -2000;
 
@@ -42,8 +37,10 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         private SharedValueManager _sharedValueManager;
         /** caches the calculated result of the formula */
         private StringRecord _stringRecord;
+
         [NonSerialized]
         private SharedFormulaRecord _sharedFormulaRecord;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FormulaRecordAggregate"/> class.
         /// </summary>
@@ -87,16 +84,21 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 }
             }
         }
-        	/**
-	     * Should be called by any code which is either deleting this formula cell, or changing
-	     * its type.  This method gives the aggregate a chance to unlink any shared formula
-	     * that may be involved with this cell formula.
-	     */
-	    public void NotifyFormulaChanging() {
-		    if (_sharedFormulaRecord != null) {
-			    _sharedValueManager.Unlink(_sharedFormulaRecord);
-		    }
-	    }
+
+        /**
+     * Should be called by any code which is either deleting this formula cell, or changing
+     * its type.  This method gives the aggregate a chance to unlink any shared formula
+     * that may be involved with this cell formula.
+     */
+
+        public void NotifyFormulaChanging()
+        {
+            if (_sharedFormulaRecord != null)
+            {
+                _sharedValueManager.Unlink(_sharedFormulaRecord);
+            }
+        }
+
         public bool IsPartOfArrayFormula
         {
             get
@@ -119,7 +121,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /// <param name="offset">offset to begin writing at</param>
         /// <param name="data">byte array containing instance data.</param>
         /// <returns>number of bytes written</returns>
-        public override int Serialize(int offset, byte [] data)
+        public override int Serialize(int offset, byte[] data)
         {
             int pos = offset;
             pos += _formulaRecord.Serialize(pos, data);
@@ -129,8 +131,8 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 pos += _stringRecord.Serialize(pos, data);
             }
             return pos - offset;
-
         }
+
         /// <summary>
         /// Visit each of the atomic BIFF records contained in this {@link RecordAggregate} in the order
         /// that they should be written to file.  Implementors may or may not return the actual
@@ -151,6 +153,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 rv.VisitRecord(_stringRecord);
             }
         }
+
         /// <summary>
         /// Get the current Serialized size of the record. Should include the sid and recLength (4 bytes).
         /// </summary>
@@ -164,7 +167,6 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
         }
 
-
         /// <summary>
         /// return the non static version of the id for this record.
         /// </summary>
@@ -176,14 +178,15 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 return sid;
             }
         }
+
         /// <summary>
         /// Sometimes the shared formula flag "seems" to be erroneously set (because the corresponding
         /// SharedFormulaRecord does not exist). Normally this would leave no way of determining
         /// the Ptg tokens for the formula.  However as it turns out in these
-        /// cases, Excel encodes the unshared Ptg tokens in the right place (inside the FormulaRecord). 
+        /// cases, Excel encodes the unshared Ptg tokens in the right place (inside the FormulaRecord).
         /// So the the only thing that needs to be done is to ignore the erroneous
         /// shared formula flag.
-        /// 
+        ///
         /// This method may also be used for setting breakpoints to help diagnose issues regarding the
         /// abnormally-set 'shared formula' flags.
         /// </summary>
@@ -227,26 +230,23 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             set { this._stringRecord = value; }
         }
 
-
         public short XFIndex
         {
-            get{return _formulaRecord.XFIndex;}
-            set{_formulaRecord.XFIndex=value;}
+            get { return _formulaRecord.XFIndex; }
+            set { _formulaRecord.XFIndex = value; }
         }
 
         public int Column
         {
-            get{return _formulaRecord.Column;}
-            set{_formulaRecord.Column=value;}
+            get { return _formulaRecord.Column; }
+            set { _formulaRecord.Column = value; }
         }
 
         public int Row
         {
             get { return _formulaRecord.Row; }
-            set { _formulaRecord.Row=value; }
+            set { _formulaRecord.Row = value; }
         }
-
-
 
         public int CompareTo(Object o)
         {
@@ -263,7 +263,6 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         //    return _formulaRecord.IsEqual(i);
         //}
 
-
         /// <summary>
         /// Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.
         /// </summary>
@@ -279,9 +278,9 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             return _formulaRecord.Equals(obj);
         }
 
-        public override int GetHashCode ()
+        public override int GetHashCode()
         {
-            return _formulaRecord.GetHashCode ();
+            return _formulaRecord.GetHashCode();
         }
 
         /// <summary>
@@ -307,6 +306,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 return _stringRecord.String;
             }
         }
+
         public void SetCachedDoubleResult(double value)
         {
             _stringRecord = null;
@@ -319,13 +319,12 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /// <param name="value">The value.</param>
         public void SetCachedStringResult(String value)
         {
-
             // Save the string into a String Record, creating one if required
             if (_stringRecord == null)
             {
                 _stringRecord = new StringRecord();
             }
-            _stringRecord.String=(value);
+            _stringRecord.String = (value);
             if (value.Length < 1)
             {
                 _formulaRecord.SetCachedResultTypeEmptyString();
@@ -335,6 +334,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 _formulaRecord.SetCachedResultTypeString();
             }
         }
+
         /// <summary>
         /// Sets the cached boolean result.
         /// </summary>
@@ -344,6 +344,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             _stringRecord = null;
             _formulaRecord.SetCachedResultBoolean(value);
         }
+
         /// <summary>
         /// Sets the cached error result.
         /// </summary>
@@ -361,7 +362,8 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             return this;
         }
 
-        #endregion
+        #endregion ICloneable Members
+
         public Ptg[] FormulaTokens
         {
             get
@@ -379,14 +381,17 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 return _formulaRecord.ParsedExpression;
             }
         }
+
         /**
  * Also checks for a related shared formula and unlinks it if found
  */
+
         public void SetParsedExpression(Ptg[] ptgs)
         {
             NotifyFormulaChanging();
-            _formulaRecord.ParsedExpression=(ptgs);
+            _formulaRecord.ParsedExpression = (ptgs);
         }
+
         public void UnlinkSharedFormula()
         {
             SharedFormulaRecord sfr = _sharedFormulaRecord;
@@ -400,6 +405,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             _formulaRecord.SetSharedFormula(false);
             _sharedFormulaRecord = null;
         }
+
         public CellRangeAddress GetArrayFormulaRange()
         {
             if (_sharedFormulaRecord != null)
@@ -419,16 +425,18 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             CellRangeAddress8Bit a = arec.Range;
             return new CellRangeAddress(a.FirstRow, a.LastRow, a.FirstColumn, a.LastColumn);
         }
+
         public void SetArrayFormula(CellRangeAddress r, Ptg[] ptgs)
         {
-
             ArrayRecord arr = new ArrayRecord(Npoi.Core.SS.Formula.Formula.Create(ptgs), new CellRangeAddress8Bit(r.FirstRow, r.LastRow, r.FirstColumn, r.LastColumn));
             _sharedValueManager.AddArrayRecord(arr);
         }
+
         /**
          * Removes an array formula
          * @return the range of the array formula containing the specified cell. Never <code>null</code>
          */
+
         public CellRangeAddress RemoveArrayFormula(int rowIndex, int columnIndex)
         {
             CellRangeAddress8Bit a = _sharedValueManager.RemoveArrayFormula(rowIndex, columnIndex);

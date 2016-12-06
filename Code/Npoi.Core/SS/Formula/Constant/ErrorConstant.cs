@@ -17,10 +17,10 @@
 
 namespace Npoi.Core.SS.Formula.Constant
 {
+    using Npoi.Core.HSSF.UserModel;
     using System;
     using System.Text;
-    using Npoi.Core.HSSF.UserModel;
-    
+
     /// <summary>
     /// Represents a constant error code value as encoded in a constant values array.
     /// This class is a type-safe wrapper for a 16-bit int value performing a similar job to
@@ -43,7 +43,8 @@ namespace Npoi.Core.SS.Formula.Constant
         /// Initializes a new instance of the <see cref="ErrorConstant"/> class.
         /// </summary>
         /// <param name="errorCode">The error code.</param>
-        private ErrorConstant(int errorCode) {
+        private ErrorConstant(int errorCode)
+        {
             _errorCode = errorCode;
         }
 
@@ -51,14 +52,17 @@ namespace Npoi.Core.SS.Formula.Constant
         /// Gets the error code.
         /// </summary>
         /// <value>The error code.</value>
-        public int ErrorCode {
+        public int ErrorCode
+        {
             get { return _errorCode; }
         }
+
         /// <summary>
         /// Gets the text.
         /// </summary>
         /// <value>The text.</value>
-        public String Text {
+        public String Text
+        {
             get
             {
                 if (HSSFErrorConstants.IsValidCode(_errorCode))
@@ -74,8 +78,9 @@ namespace Npoi.Core.SS.Formula.Constant
         /// </summary>
         /// <param name="errorCode">The error code.</param>
         /// <returns></returns>
-        public static ErrorConstant ValueOf(int errorCode) {
-            if(errorCode==HSSFErrorConstants.ERROR_NULL)
+        public static ErrorConstant ValueOf(int errorCode)
+        {
+            if (errorCode == HSSFErrorConstants.ERROR_NULL)
             {
                 return NULL;
             }
@@ -106,13 +111,15 @@ namespace Npoi.Core.SS.Formula.Constant
             Console.Error.WriteLine("Warning - Unexpected error code (" + errorCode + ")");
             return new ErrorConstant(errorCode);
         }
+
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </summary>
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override String ToString() {
+        public override String ToString()
+        {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name).Append(" [");
             sb.Append(Text);

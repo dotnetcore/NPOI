@@ -17,18 +17,18 @@
 
 namespace Npoi.Core.HSSF.Record.Aggregates
 {
-    using System;
-    using System.Text;
-    using System.Collections;
-    using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.Record;
     using Npoi.Core.SS.Formula;
-    using System.Collections.Generic;
-    using Npoi.Core.SS.Util;
     using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.SS.Util;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Text;
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// CFRecordsAggregate - aggregates Conditional Formatting records CFHeaderRecord
     /// and number of up to three CFRuleRecord records toGether to simplify
@@ -73,11 +73,9 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
         }
 
-
         public CFRecordsAggregate(CellRangeAddress[] regions, CFRuleRecord[] rules)
             : this(new CFHeaderRecord(regions, rules.Length), rules)
         {
-
         }
 
         /// <summary>
@@ -104,6 +102,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
             return new CFRecordsAggregate(header, rules);
         }
+
         /// <summary>
         /// Create CFRecordsAggregate from a list of CF Records
         /// </summary>
@@ -144,8 +143,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
 
             if (countFound < nRules)
-            { // TODO -(MAR-2008) can this ever happen? Write junit 
-
+            { // TODO -(MAR-2008) can this ever happen? Write junit
                 //if (log.Check(POILogger.DEBUG))
                 //{
                 //    log.Log(POILogger.DEBUG, "Expected  " + nRules + " Conditional Formats, "
@@ -158,6 +156,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
             return new CFRecordsAggregate(header, rules);
         }
+
         public override void VisitContainedRecords(RecordVisitor rv)
         {
             rv.VisitRecord(header);
@@ -173,7 +172,6 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /// </summary>
         public CFRecordsAggregate CloneCFAggregate()
         {
-
             CFRuleRecord[] newRecs = new CFRuleRecord[rules.Count];
             for (int i = 0; i < newRecs.Length; i++)
             {
@@ -223,11 +221,13 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                         + ") nRules=" + rules.Count);
             }
         }
+
         public CFRuleRecord GetRule(int idx)
         {
             CheckRuleIndex(idx);
             return rules[idx];
         }
+
         public void SetRule(int idx, CFRuleRecord r)
         {
             CheckRuleIndex(idx);
@@ -237,6 +237,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /**
          * @return <c>false</c> if this whole {@link CFHeaderRecord} / {@link CFRuleRecord}s should be deleted
          */
+
         public bool UpdateFormulasAfterCellShift(FormulaShifter shifter, int currentExternSheetIx)
         {
             CellRangeAddress[] cellRanges = header.CellRanges;
@@ -287,6 +288,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
             return true;
         }
+
         private static CellRangeAddress ShiftRange(FormulaShifter shifter, CellRangeAddress cra, int currentExternSheetIx)
         {
             // FormulaShifter works well in terms of Ptgs - so convert CellRangeAddress to AreaPtg (and back) here
@@ -309,6 +311,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
             throw new InvalidCastException("Unexpected shifted ptg class (" + ptg0.GetType().Name + ")");
         }
+
         public void AddRule(CFRuleRecord r)
         {
             if (rules.Count >= MAX_97_2003_CONDTIONAL_FORMAT_RULES)
@@ -320,6 +323,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             rules.Add(r);
             header.NumberOfConditionalFormats = (rules.Count);
         }
+
         public int NumberOfRules
         {
             get { return rules.Count; }

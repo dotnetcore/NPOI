@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,21 +15,19 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
-    using System;
-    using System.Text;
-    using Npoi.Core.Util;
     using Npoi.Core.SS.Util;
+    using Npoi.Core.Util;
+    using System;
     using System.Collections.Generic;
+    using System.Text;
 
     /**
-     * Title:        Bound Sheet Record (aka BundleSheet) 
+     * Title:        Bound Sheet Record (aka BundleSheet)
      * Description:  Defines a sheet within a workbook.  Basically stores the sheetname
      *               and tells where the Beginning of file record Is within the HSSF
-     *               file. 
+     *               file.
      * REFERENCE:  PG 291 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
      * @author Andrew C. Oliver (acoliver at apache dot org)
      * @author Sergei Kozello (sergeikozello at mail.ru)
@@ -42,18 +39,17 @@ namespace Npoi.Core.HSSF.Record
         public const short sid = 0x85;
 
         private static BitField hiddenFlag = BitFieldFactory.GetInstance(0x01);
-	    private static BitField veryHiddenFlag = BitFieldFactory.GetInstance(0x02);
+        private static BitField veryHiddenFlag = BitFieldFactory.GetInstance(0x02);
 
         private int field_1_position_of_BOF;
         private int field_2_option_flags;
         private int field_4_isMultibyteUnicode;
         private String field_5_sheetname;
 
-
         public BoundSheetRecord(String sheetname)
         {
             field_2_option_flags = 0;
-            this.Sheetname=sheetname;
+            this.Sheetname = sheetname;
         }
 
         /**
@@ -67,9 +63,8 @@ namespace Npoi.Core.HSSF.Record
             field_1_position_of_BOF = in1.ReadInt();	// bof
             field_2_option_flags = in1.ReadShort();	// flags
             int field_3_sheetname_length = in1.ReadUByte();						// len(str)
-            field_4_isMultibyteUnicode = (byte)in1.ReadByte();						// Unicode
+            field_4_isMultibyteUnicode = (byte)in1.ReadByte();                      // Unicode
 
-            
             if (this.IsMultibyte)
             {
                 field_5_sheetname = in1.ReadUnicodeLEString(field_3_sheetname_length);
@@ -93,15 +88,16 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /**
-         * Is the sheet very hidden? Different from (normal) hidden 
+         * Is the sheet very hidden? Different from (normal) hidden
          */
+
         public bool IsVeryHidden
         {
             get
             {
                 return veryHiddenFlag.IsSet(field_2_option_flags);
             }
-            set 
+            set
             {
                 field_2_option_flags = veryHiddenFlag.SetBoolean(field_2_option_flags, value);
             }
@@ -120,7 +116,6 @@ namespace Npoi.Core.HSSF.Record
                 WorkbookUtil.ValidateSheetName(value);
                 field_5_sheetname = value;
                 field_4_isMultibyteUnicode = (StringUtil.HasMultibyte(value) ? (byte)1 : (byte)0);
-
             }
         }
 
@@ -189,26 +184,24 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        	/**
-	     * Converts a List of {@link BoundSheetRecord}s to an array and sorts by the position of their
-	     * BOFs.
-	     */
-	    public static BoundSheetRecord[] OrderByBofPosition(List<BoundSheetRecord> boundSheetRecords) 
+        /**
+     * Converts a List of {@link BoundSheetRecord}s to an array and sorts by the position of their
+     * BOFs.
+     */
+
+        public static BoundSheetRecord[] OrderByBofPosition(List<BoundSheetRecord> boundSheetRecords)
         {
-		    
-		    BoundSheetRecord[] bsrs = boundSheetRecords.ToArray();
-		    Array.Sort(bsrs, new BOFComparator());
-	 	    return bsrs;
-	    }
-
-
+            BoundSheetRecord[] bsrs = boundSheetRecords.ToArray();
+            Array.Sort(bsrs, new BOFComparator());
+            return bsrs;
+        }
 
         private class BOFComparator : IComparer<BoundSheetRecord>
         {
-		    public int Compare(BoundSheetRecord bsr1, BoundSheetRecord bsr2) {
-			    return bsr1.PositionOfBof - bsr2.PositionOfBof;
-		    }
-
+            public int Compare(BoundSheetRecord bsr1, BoundSheetRecord bsr2)
+            {
+                return bsr1.PositionOfBof - bsr2.PositionOfBof;
+            }
         };
     }
 }

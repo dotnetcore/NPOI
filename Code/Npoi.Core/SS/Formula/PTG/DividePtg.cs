@@ -25,6 +25,7 @@ namespace Npoi.Core.SS.Formula.PTG
      * @author  Andrew C. Oliver acoliver at apache dot org
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     public class DividePtg : ValueOperatorPtg
     {
         public const byte sid = 0x06;

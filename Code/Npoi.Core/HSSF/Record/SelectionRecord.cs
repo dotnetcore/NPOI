@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,12 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
-    using System.Text;
-
     using Npoi.Core.SS.Util;
     using Npoi.Core.Util;
+    using System;
+    using System.Text;
 
     /**
      * Title:        Selection Record
@@ -45,7 +42,7 @@ namespace Npoi.Core.HSSF.Record
         private int field_2_row_active_cell;
         private int field_3_col_active_cell;
         private int field_4_ref_active_cell;
-        private CellRangeAddress8Bit[] field_6_refs;     
+        private CellRangeAddress8Bit[] field_6_refs;
 
         public SelectionRecord(int activeCellRow, int activeCellCol)
         {
@@ -65,7 +62,7 @@ namespace Npoi.Core.HSSF.Record
         public SelectionRecord(RecordInputStream in1)
         {
             field_1_pane = (byte)in1.ReadByte();
-            
+
             field_2_row_active_cell = in1.ReadUShort();
             field_3_col_active_cell = in1.ReadShort();
             field_4_ref_active_cell = in1.ReadShort();
@@ -168,15 +165,15 @@ namespace Npoi.Core.HSSF.Record
                 field_6_refs[i].Serialize(out1);
             }
         }
+
         protected override int DataSize
         {
             get
             {
-                return 9 // 1 byte + 4 shorts 
+                return 9 // 1 byte + 4 shorts
                     + CellRangeAddress8Bit.GetEncodedSize(field_6_refs.Length);
             }
         }
-
 
         public override short Sid
         {

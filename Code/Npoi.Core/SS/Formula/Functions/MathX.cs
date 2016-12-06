@@ -18,6 +18,7 @@
  * Created on May 19, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     using System;
@@ -28,28 +29,29 @@ namespace Npoi.Core.SS.Formula.Functions
      * provided by java.lang.Math class. It follows the Math class
      * in that it has a private constructor and all static methods.
      */
+
     public class MathX
     {
-
-
-        private MathX() { }
-
+        private MathX()
+        {
+        }
 
         /**
          * Returns a value rounded to p digits after decimal.
          * If p Is negative, then the number Is rounded to
-         * places to the left of the decimal point. eg. 
+         * places to the left of the decimal point. eg.
          * 10.23 rounded to -1 will give: 10. If p Is zero,
          * the returned value Is rounded to the nearest integral
          * value.
          * If n Is negative, the resulting value Is obtained
          * as the round value of absolute value of n multiplied
-         * by the sign value of n (@see MathX.sign(double d)). 
+         * by the sign value of n (@see MathX.sign(double d)).
          * Thus, -0.6666666 rounded to p=0 will give -1 not 0.
          * If n Is NaN, returned value Is NaN.
          * @param n
          * @param p
          */
+
         public static double Round(double n, int p)
         {
             double retval;
@@ -89,18 +91,19 @@ namespace Npoi.Core.SS.Formula.Functions
         /**
          * Returns a value rounded-up to p digits after decimal.
          * If p Is negative, then the number Is rounded to
-         * places to the left of the decimal point. eg. 
+         * places to the left of the decimal point. eg.
          * 10.23 rounded to -1 will give: 20. If p Is zero,
          * the returned value Is rounded to the nearest integral
          * value.
          * If n Is negative, the resulting value Is obtained
          * as the round-up value of absolute value of n multiplied
-         * by the sign value of n (@see MathX.sign(double d)). 
+         * by the sign value of n (@see MathX.sign(double d)).
          * Thus, -0.2 rounded-up to p=0 will give -1 not 0.
          * If n Is NaN, returned value Is NaN.
          * @param n
          * @param p
          */
+
         public static double RoundUp(double n, int p)
         {
             double retval;
@@ -149,18 +152,19 @@ namespace Npoi.Core.SS.Formula.Functions
         /**
          * Returns a value rounded to p digits after decimal.
          * If p Is negative, then the number Is rounded to
-         * places to the left of the decimal point. eg. 
+         * places to the left of the decimal point. eg.
          * 10.23 rounded to -1 will give: 10. If p Is zero,
          * the returned value Is rounded to the nearest integral
          * value.
          * If n Is negative, the resulting value Is obtained
          * as the round-up value of absolute value of n multiplied
-         * by the sign value of n (@see MathX.sign(double d)). 
+         * by the sign value of n (@see MathX.sign(double d)).
          * Thus, -0.8 rounded-down to p=0 will give 0 not -1.
          * If n Is NaN, returned value Is NaN.
          * @param n
          * @param p
          */
+
         public static double RoundDown(double n, int p)
         {
             double retval;
@@ -189,17 +193,17 @@ namespace Npoi.Core.SS.Formula.Functions
             return retval;
         }
 
-
         /*
          * If d < 0, returns short -1
          * <br/>
          * If d > 0, returns short 1
          * <br/>
-         * If d == 0, returns short 0 
+         * If d == 0, returns short 0
          *  If d Is NaN, then 1 will be returned. It Is the responsibility
          * of caller to Check for d IsNaN if some other value Is desired.
          * @param d
          */
+
         public static short Sign(double d)
         {
             return (short)((d == 0)
@@ -213,6 +217,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * average of all values
          * @param values
          */
+
         public static double Average(double[] values)
         {
             double ave = 0;
@@ -225,11 +230,11 @@ namespace Npoi.Core.SS.Formula.Functions
             return ave;
         }
 
-
         /**
          * sum of all values
          * @param values
          */
+
         public static double Sum(double[] values)
         {
             double sum = 0;
@@ -244,6 +249,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * sum of squares of all values
          * @param values
          */
+
         public static double Sumsq(double[] values)
         {
             double sumsq = 0;
@@ -254,11 +260,11 @@ namespace Npoi.Core.SS.Formula.Functions
             return sumsq;
         }
 
-
         /**
          * product of all values
          * @param values
          */
+
         public static double Product(double[] values)
         {
             double product = 0;
@@ -278,6 +284,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * double.POSITIVE_INFINITY Is returned.
          * @param values
          */
+
         public static double Min(double[] values)
         {
             double min = double.PositiveInfinity;
@@ -293,6 +300,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * double.NEGATIVE_INFINITY Is returned.
          * @param values
          */
+
         public static double Max(double[] values)
         {
             double max = double.NegativeInfinity;
@@ -305,7 +313,7 @@ namespace Npoi.Core.SS.Formula.Functions
 
         /**
          * Note: this function Is different from java.lang.Math.floor(..).
-         * 
+         *
          * When n and s are "valid" arguments, the returned value Is: Math.floor(n/s) * s;
          * <br/>
          * n and s are invalid if any of following conditions are true:
@@ -318,6 +326,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @param n
          * @param s
          */
+
         public static double Floor(double n, double s)
         {
             double f;
@@ -336,7 +345,7 @@ namespace Npoi.Core.SS.Formula.Functions
 
         /**
          * Note: this function Is different from java.lang.Math.ceil(..).
-         * 
+         *
          * When n and s are "valid" arguments, the returned value Is: Math.ceiling(n/s) * s;
          * <br/>
          * n and s are invalid if any of following conditions are true:
@@ -349,6 +358,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @param n
          * @param s
          */
+
         public static double Ceiling(double n, double s)
         {
             double c;
@@ -366,15 +376,16 @@ namespace Npoi.Core.SS.Formula.Functions
         }
 
         /**
-         * <br/> for all n >= 1; factorial n = n * (n-1) * (n-2) * ... * 1 
+         * <br/> for all n >= 1; factorial n = n * (n-1) * (n-2) * ... * 1
          * <br/> else if n == 0; factorial n = 1
          * <br/> else if n &lt; 0; factorial n = double.NaN
          * <br/> Loss of precision can occur if n Is large enough.
-         * If n Is large so that the resulting value would be greater 
+         * If n Is large so that the resulting value would be greater
          * than double.MAX_VALUE; double.POSITIVE_INFINITY Is returned.
-         * If n &lt; 0, double.NaN Is returned. 
+         * If n &lt; 0, double.NaN Is returned.
          * @param n
          */
+
         public static double Factorial(int n)
         {
             double d = 1;
@@ -400,10 +411,9 @@ namespace Npoi.Core.SS.Formula.Functions
             return d;
         }
 
-
         /**
          * returns the remainder resulting from operation:
-         * n / d. 
+         * n / d.
          * <br/> The result has the sign of the divisor.
          * <br/> Examples:
          * <ul>
@@ -416,6 +426,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @param n
          * @param d
          */
+
         public static double Mod(double n, double d)
         {
             double result = 0;
@@ -443,11 +454,11 @@ namespace Npoi.Core.SS.Formula.Functions
             return result;
         }
 
-
         /**
          * inverse hyperbolic cosine
          * @param d
          */
+
         public static double Acosh(double d)
         {
             return Math.Log(Math.Sqrt(Math.Pow(d, 2) - 1) + d);
@@ -457,6 +468,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * inverse hyperbolic sine
          * @param d
          */
+
         public static double Asinh(double d)
         {
             double d2 = d * d;
@@ -467,6 +479,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * inverse hyperbolic tangent
          * @param d
          */
+
         public static double Atanh(double d)
         {
             return Math.Log((1 + d) / (1 - d)) / 2;
@@ -476,6 +489,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * hyperbolic cosine
          * @param d
          */
+
         public static double Cosh(double d)
         {
             double ePowX = Math.Pow(Math.E, d);
@@ -488,6 +502,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * hyperbolic sine
          * @param d
          */
+
         public static double Sinh(double d)
         {
             double ePowX = Math.Pow(Math.E, d);
@@ -500,6 +515,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * hyperbolic tangent
          * @param d
          */
+
         public static double Tanh(double d)
         {
             double ePowX = Math.Pow(Math.E, d);
@@ -515,6 +531,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * not of equal Length, the return value can be Unpredictable.
          * @param arrays
          */
+
         public static double SumProduct(double[][] arrays)
         {
             double d = 0;
@@ -543,16 +560,17 @@ namespace Npoi.Core.SS.Formula.Functions
         }
 
         /**
-         * returns the sum of difference of squares of corresponding double 
-         * value in each subarray: ie. sigma (xarr[i]^2-yarr[i]^2) 
+         * returns the sum of difference of squares of corresponding double
+         * value in each subarray: ie. sigma (xarr[i]^2-yarr[i]^2)
          * <br/>
-         * It Is the responsibility of the caller 
-         * to Ensure that the two subarrays are of equal Length. If the 
-         * subarrays are not of equal Length, the return value can be 
+         * It Is the responsibility of the caller
+         * to Ensure that the two subarrays are of equal Length. If the
+         * subarrays are not of equal Length, the return value can be
          * Unpredictable.
          * @param xarr
          * @param yarr
          */
+
         public static double Sumx2my2(double[] xarr, double[] yarr)
         {
             double d = 0;
@@ -573,16 +591,17 @@ namespace Npoi.Core.SS.Formula.Functions
         }
 
         /**
-         * returns the sum of sum of squares of corresponding double 
-         * value in each subarray: ie. sigma (xarr[i]^2 + yarr[i]^2) 
+         * returns the sum of sum of squares of corresponding double
+         * value in each subarray: ie. sigma (xarr[i]^2 + yarr[i]^2)
          * <br/>
-         * It Is the responsibility of the caller 
-         * to Ensure that the two subarrays are of equal Length. If the 
-         * subarrays are not of equal Length, the return value can be 
+         * It Is the responsibility of the caller
+         * to Ensure that the two subarrays are of equal Length. If the
+         * subarrays are not of equal Length, the return value can be
          * Unpredictable.
          * @param xarr
          * @param yarr
          */
+
         public static double Sumx2py2(double[] xarr, double[] yarr)
         {
             double d = 0;
@@ -594,7 +613,7 @@ namespace Npoi.Core.SS.Formula.Functions
                     d += (xarr[i] * xarr[i]) + (yarr[i] * yarr[i]);
                 }
             }
-            catch (IndexOutOfRangeException )
+            catch (IndexOutOfRangeException)
             {
                 d = double.NaN;
             }
@@ -602,18 +621,18 @@ namespace Npoi.Core.SS.Formula.Functions
             return d;
         }
 
-
         /**
-         * returns the sum of squares of difference of corresponding double 
-         * value in each subarray: ie. sigma ( (xarr[i]-yarr[i])^2 ) 
+         * returns the sum of squares of difference of corresponding double
+         * value in each subarray: ie. sigma ( (xarr[i]-yarr[i])^2 )
          * <br/>
-         * It Is the responsibility of the caller 
-         * to Ensure that the two subarrays are of equal Length. If the 
-         * subarrays are not of equal Length, the return value can be 
+         * It Is the responsibility of the caller
+         * to Ensure that the two subarrays are of equal Length. If the
+         * subarrays are not of equal Length, the return value can be
          * Unpredictable.
          * @param xarr
          * @param yarr
          */
+
         public static double Sumxmy2(double[] xarr, double[] yarr)
         {
             double d = 0;
@@ -626,7 +645,7 @@ namespace Npoi.Core.SS.Formula.Functions
                     d += t * t;
                 }
             }
-            catch (IndexOutOfRangeException )
+            catch (IndexOutOfRangeException)
             {
                 d = double.NaN;
             }
@@ -644,6 +663,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @param n
          * @param k
          */
+
         public static double NChooseK(int n, int k)
         {
             double d = 1;
@@ -664,6 +684,5 @@ namespace Npoi.Core.SS.Formula.Functions
 
             return d;
         }
-
     }
 }

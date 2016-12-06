@@ -14,12 +14,13 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.UserModel
 {
-
     /**
      * @author Yegor Kozlov
      */
+
     public interface IDrawing
     {
         /**
@@ -31,6 +32,7 @@ namespace Npoi.Core.SS.UserModel
       *
       * @return the newly created picture.
       */
+
         IPicture CreatePicture(IClientAnchor anchor, int pictureIndex);
 
         /**
@@ -39,6 +41,7 @@ namespace Npoi.Core.SS.UserModel
          *               to the sheet.
          * @return the newly created comment.
          */
+
         IComment CreateCellComment(IClientAnchor anchor);
 
         /**
@@ -47,6 +50,7 @@ namespace Npoi.Core.SS.UserModel
          *               the sheet.
          * @return the newly created chart
          */
+
         IChart CreateChart(IClientAnchor anchor);
 
         /**
@@ -63,7 +67,7 @@ namespace Npoi.Core.SS.UserModel
          * @param row2 the row (0 based) of the second cell.
          * @return the newly created client anchor
          */
+
         IClientAnchor CreateAnchor(int dx1, int dy1, int dx2, int dy2, int col1, int row1, int col2, int row2);
     }
-
 }

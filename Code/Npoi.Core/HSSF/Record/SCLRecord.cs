@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,15 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
-    using Npoi.Core.HSSF.Record;
 
     /**
      * Specifies the window's zoom magnification.  If this record Isn't present then the windows zoom is 100%. see p384 Excel Dev Kit
@@ -33,6 +28,7 @@ namespace Npoi.Core.HSSF.Record
 
      * @author Andrew C. Oliver (acoliver at apache.org)
      */
+
     public class SCLRecord
        : StandardRecord
     {
@@ -40,10 +36,8 @@ namespace Npoi.Core.HSSF.Record
         private short field_1_numerator;
         private short field_2_denominator;
 
-
         public SCLRecord()
         {
-
         }
 
         /**
@@ -54,7 +48,6 @@ namespace Npoi.Core.HSSF.Record
 
         public SCLRecord(RecordInputStream in1)
         {
-
             field_1_numerator = in1.ReadShort();
             field_2_denominator = in1.ReadShort();
         }
@@ -77,7 +70,8 @@ namespace Npoi.Core.HSSF.Record
             return buffer.ToString();
         }
 
-        public override void Serialize(ILittleEndianOutput out1) {
+        public override void Serialize(ILittleEndianOutput out1)
+        {
             out1.WriteShort(field_1_numerator);
             out1.WriteShort(field_2_denominator);
         }
@@ -85,6 +79,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 2 + 2; }
@@ -104,19 +99,17 @@ namespace Npoi.Core.HSSF.Record
             return rec;
         }
 
-
-
-
         /**
          * Get the numerator field for the SCL record.
          */
+
         public short Numerator
         {
             get
             {
                 return field_1_numerator;
             }
-            set 
+            set
             {
                 this.field_1_numerator = value;
             }
@@ -125,20 +118,17 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get the denominator field for the SCL record.
          */
+
         public short Denominator
         {
             get
             {
                 return field_2_denominator;
             }
-            set 
+            set
             {
                 this.field_2_denominator = value;
             }
         }
-
-
     }
 }
-
-

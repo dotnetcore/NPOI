@@ -15,17 +15,15 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-
-    using System;
-    using System.Text;
-    using System.Collections;
     using Npoi.Core.DDF;
-    using Npoi.Core.Util;
-    using System.Collections.Generic;
     using Npoi.Core.HSSF.Util;
+    using Npoi.Core.Util;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Text;
 
     /**
      * The escher container record is used to hold escher records.  It is abstract and
@@ -34,9 +32,11 @@ namespace Npoi.Core.HSSF.Record
      * @author Glen Stampoultzis (glens at apache.org)
      * @author Michael Zalewski (zalewski at optonline.net)
      */
+
     public abstract class AbstractEscherHolderRecord : Record
     {
         private static bool DESERIALISE;
+
         static AbstractEscherHolderRecord()
         {
             DESERIALISE = false;
@@ -54,7 +54,6 @@ namespace Npoi.Core.HSSF.Record
         private LazilyConcatenatedByteArray rawDataContainer = new LazilyConcatenatedByteArray();
         //private byte[] rawData;
 
-
         public AbstractEscherHolderRecord()
         {
             escherRecords = new List<EscherRecord>();
@@ -65,6 +64,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @param in the RecordInputstream to Read the record from
          */
+
         public AbstractEscherHolderRecord(RecordInputStream in1)
         {
             escherRecords = new List<EscherRecord>();
@@ -77,7 +77,6 @@ namespace Npoi.Core.HSSF.Record
                 byte[] data = in1.ReadAllContinuedRemainder();
                 ConvertToEscherRecords(0, data.Length, data);
             }
-
         }
 
         protected void ConvertRawBytesToEscherRecords()
@@ -88,6 +87,7 @@ namespace Npoi.Core.HSSF.Record
                 ConvertToEscherRecords(0, rawData.Length, rawData);
             }
         }
+
         private void ConvertToEscherRecords(int offset, int size, byte[] data)
         {
             escherRecords.Clear();
@@ -144,11 +144,10 @@ namespace Npoi.Core.HSSF.Record
             return RecordSize;
         }
 
-
-
         /**
          * Size of record (including 4 byte header)
          */
+
         public override int RecordSize
         {
             get
@@ -175,7 +174,6 @@ namespace Npoi.Core.HSSF.Record
         {
             return CloneViaReserialise();
         }
-
 
         /**
  * Clone the current record, via a call to serialise
@@ -231,9 +229,10 @@ namespace Npoi.Core.HSSF.Record
          *  children (and most top level escher holders do),
          *  then return that.
          */
+
         public EscherContainerRecord GetEscherContainer()
         {
-            for (IEnumerator it = escherRecords.GetEnumerator(); it.MoveNext(); )
+            for (IEnumerator it = escherRecords.GetEnumerator(); it.MoveNext();)
             {
                 Object er = it.Current;
                 if (er is EscherContainerRecord)
@@ -249,14 +248,16 @@ namespace Npoi.Core.HSSF.Record
          *  first EscherRecord with the given id, or null
          *  if none found
          */
+
         public EscherRecord FindFirstWithId(short id)
         {
             return FindFirstWithId(id, EscherRecords);
         }
+
         private EscherRecord FindFirstWithId(short id, List<EscherRecord> records)
         {
             // Check at our level
-            for (IEnumerator it = records.GetEnumerator(); it.MoveNext(); )
+            for (IEnumerator it = records.GetEnumerator(); it.MoveNext();)
             {
                 EscherRecord r = (EscherRecord)it.Current;
                 if (r.RecordId == id)
@@ -266,7 +267,7 @@ namespace Npoi.Core.HSSF.Record
             }
 
             // Then Check our children in turn
-            for (IEnumerator it = records.GetEnumerator(); it.MoveNext(); )
+            for (IEnumerator it = records.GetEnumerator(); it.MoveNext();)
             {
                 EscherRecord r = (EscherRecord)it.Current;
                 if (r.IsContainerRecord)
@@ -284,7 +285,6 @@ namespace Npoi.Core.HSSF.Record
             return null;
         }
 
-
         public EscherRecord GetEscherRecord(int index)
         {
             return escherRecords[index];
@@ -294,6 +294,7 @@ namespace Npoi.Core.HSSF.Record
          * Big drawing Group records are split but it's easier to deal with them
          * as a whole Group so we need to join them toGether.
          */
+
         public void Join(AbstractEscherHolderRecord record)
         {
             rawDataContainer.Concatenate(record.RawData);
@@ -317,6 +318,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Convert raw data to escher records.
          */
+
         public void Decode()
         {
             if (null == escherRecords || 0 == escherRecords.Count)
@@ -325,9 +327,5 @@ namespace Npoi.Core.HSSF.Record
                 ConvertToEscherRecords(0, rawData.Length, rawData);
             }
         }
-
     }
-
 }
-
-

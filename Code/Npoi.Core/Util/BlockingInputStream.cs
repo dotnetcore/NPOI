@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,27 +15,24 @@
    limitations under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.Util
 {
     using System;
     using System.IO;
 
-
-
-
     /**
-     * Implementation of a BlockingInputStream to provide data to 
+     * Implementation of a BlockingInputStream to provide data to
      * RawDataBlock that expects data in 512 byte chunks.  Useful to read
-     * data from slow (ie, non FileInputStream) sources, for example when 
-     * Reading an OLE2 Document over a network. 
+     * data from slow (ie, non FileInputStream) sources, for example when
+     * Reading an OLE2 Document over a network.
      *
      * Possible extentions: add a timeout. Curently a call to Read(byte[]) on this
-     *    class is blocking, so use at your own peril if your underlying stream blocks. 
+     *    class is blocking, so use at your own peril if your underlying stream blocks.
      *
      * @author Jens Gerhard
-     * @author aviks - documentation cleanups. 
+     * @author aviks - documentation cleanups.
      */
+
     public class BlockingInputStream : Stream
     {
         protected Stream stream;
@@ -60,7 +56,6 @@ namespace Npoi.Core.Util
         public void Mark(int readLimit)
         {
             throw new NotImplementedException();
-
         }
 
         public bool MarkSupported()
@@ -76,14 +71,14 @@ namespace Npoi.Core.Util
         /**
          * We had to revert to byte per byte Reading to keep
          * with slow network connections on one hand, without
-         * missing the end-of-file. 
+         * missing the end-of-file.
          * This is the only method that does its own thing in this class
-         *    everything else is delegated to aggregated stream. 
+         *    everything else is delegated to aggregated stream.
          * THIS IS A BLOCKING BLOCK READ!!!
          */
+
         public int Read(byte[] bf)
         {
-
             int i = 0;
             int b = 4611;
             while (i < bf.Length)
@@ -165,4 +160,3 @@ namespace Npoi.Core.Util
         }
     }
 }
-

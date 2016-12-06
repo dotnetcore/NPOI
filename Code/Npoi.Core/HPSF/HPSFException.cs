@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF
@@ -33,21 +33,18 @@ namespace Npoi.Core.HPSF
     /// This exception is the superclass of all other checked exceptions thrown
     /// in this package. It supports a nested "reason" throwable, i.e. an exception
     /// that caused this one To be thrown.
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
     /// @since 2002-02-09
     /// </summary>
     [Serializable]
     public class HPSFException : Exception
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HPSFException"/> class.
         /// </summary>
         public HPSFException()
-            : base()
-        {
-
+            : base() {
         }
 
         /// <summary>
@@ -55,12 +52,8 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="msg">The message string.</param>
         public HPSFException(String msg)
-            : base(msg)
-        {
-
+            : base(msg) {
         }
-
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HPSFException"/> class.
@@ -68,12 +61,8 @@ namespace Npoi.Core.HPSF
         /// <param name="reason">The reason, i.e. a throwable that indirectly
         /// caused this exception.</param>
         public HPSFException(Exception reason)
-            : base("",reason)
-        {
-
+            : base("", reason) {
         }
-
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HPSFException"/> class.
@@ -82,11 +71,8 @@ namespace Npoi.Core.HPSF
         /// <param name="reason">The reason, i.e. a throwable that indirectly
         /// caused this exception.</param>
         public HPSFException(String msg, Exception reason)
-            : base(msg,reason)
-        {
+            : base(msg, reason) {
         }
-
-
 
         /// <summary>
         /// Returns the {@link Exception} that caused this exception To
@@ -94,10 +80,8 @@ namespace Npoi.Core.HPSF
         /// Exception}.
         /// </summary>
         /// <value>The reason.</value>
-        public Exception Reason
-        {
+        public Exception Reason {
             get { return this.InnerException; }
         }
-
     }
 }

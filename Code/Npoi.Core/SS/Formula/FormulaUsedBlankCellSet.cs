@@ -17,16 +17,14 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
-    using System;
-    using System.Text;
-    using System.Collections;
     using Npoi.Core.SS.Util;
+    using System;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Text;
 
     public class BookSheetKey
     {
-
         private int _bookIndex;
         private int _sheetIndex;
 
@@ -35,26 +33,28 @@ namespace Npoi.Core.SS.Formula
             _bookIndex = bookIndex;
             _sheetIndex = sheetIndex;
         }
+
         public override int GetHashCode()
         {
             return _bookIndex * 17 + _sheetIndex;
         }
+
         public override bool Equals(Object obj)
         {
             BookSheetKey other = (BookSheetKey)obj;
             return _bookIndex == other._bookIndex && _sheetIndex == other._sheetIndex;
         }
     }
+
     /**
-     * Optimisation - compacts many blank cell references used by a single formula. 
-     * 
+     * Optimisation - compacts many blank cell references used by a single formula.
+     *
      * @author Josh Micich
      */
+
     public class FormulaUsedBlankCellSet
     {
-
-
-        private  class BlankCellSheetGroup
+        private class BlankCellSheetGroup
         {
             private IList _rectangleGroups;
             private int _currentRowIndex;
@@ -127,12 +127,10 @@ namespace Npoi.Core.SS.Formula
                 }
                 return false;
             }
-
         }
 
         private class BlankCellRectangleGroup
         {
-
             private int _firstRowIndex;
             private int _firstColumnIndex;
             private int _lastColumnIndex;
@@ -184,6 +182,7 @@ namespace Npoi.Core.SS.Formula
                 _lastRowIndex = rowIndex;
                 return true;
             }
+
             public override String ToString()
             {
                 StringBuilder sb = new StringBuilder(64);
@@ -216,7 +215,7 @@ namespace Npoi.Core.SS.Formula
             if (result == null)
             {
                 result = new BlankCellSheetGroup();
-                _sheetGroupsByBookSheet[key]= result;
+                _sheetGroupsByBookSheet[key] = result;
             }
             return result;
         }
@@ -230,6 +229,7 @@ namespace Npoi.Core.SS.Formula
             }
             return bcsg.ContainsCell(rowIndex, columnIndex);
         }
+
         public bool IsEmpty
         {
             get

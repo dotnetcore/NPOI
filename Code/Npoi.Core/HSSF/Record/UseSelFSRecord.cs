@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Title:        Use Natural Language Formulas Flag
@@ -55,11 +52,13 @@ namespace Npoi.Core.HSSF.Record
             this(in1.ReadUShort())
         {
         }
+
         public UseSelFSRecord(bool b)
             : this(0)
         {
             _options = useNaturalLanguageFormulasFlag.SetBoolean(_options, b);
         }
+
         // /**
         // * turn the flag on or off
         // *

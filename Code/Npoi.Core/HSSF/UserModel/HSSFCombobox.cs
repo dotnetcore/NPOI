@@ -14,10 +14,11 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
-using System;
+
 using Npoi.Core.DDF;
 using Npoi.Core.HSSF.Record;
 using Npoi.Core.SS.UserModel;
+using System;
 
 namespace Npoi.Core.HSSF.UserModel
 {
@@ -26,13 +27,11 @@ namespace Npoi.Core.HSSF.UserModel
         public HSSFCombobox(EscherContainerRecord spContainer, ObjRecord objRecord)
             : base(spContainer, objRecord)
         {
-
         }
 
         public HSSFCombobox(HSSFShape parent, HSSFAnchor anchor)
             : base(parent, anchor)
         {
-
             base.ShapeType = (OBJECT_TYPE_COMBO_BOX);
             CommonObjectDataSubRecord cod = (CommonObjectDataSubRecord)GetObjRecord().SubRecords[0];
             cod.ObjectType = CommonObjectType.ComboBox;

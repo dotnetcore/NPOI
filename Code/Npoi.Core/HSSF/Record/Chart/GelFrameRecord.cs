@@ -28,14 +28,12 @@ namespace Npoi.Core.HSSF.Record.Chart
     /// </remarks>
     public class GelFrameRecord : RowDataRecord
     {
-        
-
         //private OfficeArtFOPT fillOption;
         //private OfficeArtTertiaryFOPT tertiaryFillOption;
         public const short sid = 0x1066;
 
         public GelFrameRecord(RecordInputStream ris)
-            :base(ris)
+            : base(ris)
         {
             //fillOption = new OfficeArtFOPT(ris);
             //tertiaryFillOption = new OfficeArtTertiaryFOPT(ris);
@@ -43,10 +41,10 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         protected override int DataSize
         {
-            get 
+            get
             {
                 return base.DataSize;
-                //return fillOption.DataSize + tertiaryFillOption.DataSize; 
+                //return fillOption.DataSize + tertiaryFillOption.DataSize;
             }
         }
 
@@ -61,223 +59,221 @@ namespace Npoi.Core.HSSF.Record.Chart
         {
             get { return sid; }
         }
-/*
-        public MSOFillType FillType
-        {
-            get;
-            set;
-        }
-        
-        public int FillColor
-        {
-            get;
-            set;
-        }
-        public int FillOpacity
-        {
-            ///Value of the real number = Integral + (Fractional / 65536.0)
-            get;
-            set;
-        }
-        public int FillBackColor
-        {
-            get;
-            set;
-        }
 
-        public int FillBackOpacity
-        {
-            get;
-            set;
-        }
-        public int FillCrMod
-        {
-            get;
-            set;
-        }
-        public int FillBlip_complex
-        {
-            get;
-            set;
-        }
-        public int FillBlipName_complex
-        {
-            get;
-            set;
-        }
-        public int FillBlipFlags
-        {
-            get;
-            set;
-        }
-        public int FillWidth
-        {
-            get;
-            set;
-        }
-        public int FillHeight
-        {
-            get;
-            set;
-        }
-        
-        public int FillAngle
-        {
-            get;
-            set;
-        }
-        
-        public int FillFocus
-        {
-            get;
-            set;
-        }
+        /*
+                public MSOFillType FillType
+                {
+                    get;
+                    set;
+                }
 
-        public int FillToLeft
-        {
-            get;
-            set;
-        }
-        public int FillToTop
-        {
-            get;
-            set;
-        }
-        public int FillToRight
-        {
-            get;
-            set;
-        }
-        public int FillToBottom
-        {
-            get;
-            set;
-        }
-        public int FillRectLeft
-        {
-            get;
-            set;
-        }
-        public int FillRectTop
-        {
-            get;
-            set;
-        }
-        public int FillRectRight
-        {
-            get;
-            set;
-        }
-        public int FillRectBottom
-        {
-            get;
-            set;
-        }
-        public int FillDztype
-        {
-            get;
-            set;
-        }
-        public int FillShadePreset
-        {
-            get;
-            set;
-        }
-        public int FillShadeColors_complex
-        {
-            get;
-            set;
-        }
-        public int FillOriginX
-        {
-            get;
-            set;
-        }
-        public int FillOriginY
-        {
-            get;
-            set;
-        }
-        
-        public int FillShapeOriginX
-        {
-            get;
-            set;
-        }
-        public int FillShapeOriginY
-        {
-            get;
-            set;
-        }
-        
-        public int FillShadeType
-        {
-            get;
-            set;
-        }
+                public int FillColor
+                {
+                    get;
+                    set;
+                }
+                public int FillOpacity
+                {
+                    ///Value of the real number = Integral + (Fractional / 65536.0)
+                    get;
+                    set;
+                }
+                public int FillBackColor
+                {
+                    get;
+                    set;
+                }
 
+                public int FillBackOpacity
+                {
+                    get;
+                    set;
+                }
+                public int FillCrMod
+                {
+                    get;
+                    set;
+                }
+                public int FillBlip_complex
+                {
+                    get;
+                    set;
+                }
+                public int FillBlipName_complex
+                {
+                    get;
+                    set;
+                }
+                public int FillBlipFlags
+                {
+                    get;
+                    set;
+                }
+                public int FillWidth
+                {
+                    get;
+                    set;
+                }
+                public int FillHeight
+                {
+                    get;
+                    set;
+                }
 
-        public int fFilled
-        {
-            get;
-            set;
-        }
-        public int fHitTestFill
-        {
-            get;
-            set;
-        }
-        public int FillShape
-        {
-            get;
-            set;
-        }
-        public int FillUseRect
-        {
-            get;
-            set;
-        }
-        public int fNoFillHitTest
-        {
-            get;
-            set;
-        }
+                public int FillAngle
+                {
+                    get;
+                    set;
+                }
 
+                public int FillFocus
+                {
+                    get;
+                    set;
+                }
 
-        public int FillColorExt
-        {
-            get;
-            set;
-        }
-        public int FillColorExtMod
-        {
-            get;
-            set;
-        }
-        public int FillBackColorExt
-        {
-            get;
-            set;
-        }
-        
-        public int FillBackColorExtMod
-        {
-            get;
-            set;
-        }
+                public int FillToLeft
+                {
+                    get;
+                    set;
+                }
+                public int FillToTop
+                {
+                    get;
+                    set;
+                }
+                public int FillToRight
+                {
+                    get;
+                    set;
+                }
+                public int FillToBottom
+                {
+                    get;
+                    set;
+                }
+                public int FillRectLeft
+                {
+                    get;
+                    set;
+                }
+                public int FillRectTop
+                {
+                    get;
+                    set;
+                }
+                public int FillRectRight
+                {
+                    get;
+                    set;
+                }
+                public int FillRectBottom
+                {
+                    get;
+                    set;
+                }
+                public int FillDztype
+                {
+                    get;
+                    set;
+                }
+                public int FillShadePreset
+                {
+                    get;
+                    set;
+                }
+                public int FillShadeColors_complex
+                {
+                    get;
+                    set;
+                }
+                public int FillOriginX
+                {
+                    get;
+                    set;
+                }
+                public int FillOriginY
+                {
+                    get;
+                    set;
+                }
 
+                public int FillShapeOriginX
+                {
+                    get;
+                    set;
+                }
+                public int FillShapeOriginY
+                {
+                    get;
+                    set;
+                }
 
-        public int fRecolorFillAsPicture
-        {
-            get;
-            set;
-        }
-        
-        public int fUseShapeAnchor
-        {
-            get;
-            set;
-        }
-        */
+                public int FillShadeType
+                {
+                    get;
+                    set;
+                }
+
+                public int fFilled
+                {
+                    get;
+                    set;
+                }
+                public int fHitTestFill
+                {
+                    get;
+                    set;
+                }
+                public int FillShape
+                {
+                    get;
+                    set;
+                }
+                public int FillUseRect
+                {
+                    get;
+                    set;
+                }
+                public int fNoFillHitTest
+                {
+                    get;
+                    set;
+                }
+
+                public int FillColorExt
+                {
+                    get;
+                    set;
+                }
+                public int FillColorExtMod
+                {
+                    get;
+                    set;
+                }
+                public int FillBackColorExt
+                {
+                    get;
+                    set;
+                }
+
+                public int FillBackColorExtMod
+                {
+                    get;
+                    set;
+                }
+
+                public int fRecolorFillAsPicture
+                {
+                    get;
+                    set;
+                }
+
+                public int fUseShapeAnchor
+                {
+                    get;
+                    set;
+                }
+                */
     }
 }

@@ -15,23 +15,22 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.SS.Formula
 {
+    using Npoi.Core.Util;
     using System;
+    using System.Globalization;
     using System.Text;
     using System.Text.RegularExpressions;
-    using Npoi.Core.Util;
-    using System.Globalization;
 
     /**
      * Formats sheet names for use in formula expressions.
-     * 
+     *
      * @author Josh Micich
      */
+
     public class SheetNameFormatter
     {
-
         private const string BIFF8_LAST_COLUMN = "IV";
         private const int BIFF8_LAST_COLUMN_TEXT_LEN = 2;
         private static readonly string BIFF8_LAST_ROW = (0x10000).ToString(CultureInfo.InvariantCulture);
@@ -45,12 +44,14 @@ namespace Npoi.Core.SS.Formula
         {
             // no instances of this class
         }
+
         /**
          * Used to format sheet names as they would appear in cell formula expressions.
          * @return the sheet name UnChanged if there is no need for delimiting.  Otherwise the sheet
-         * name is enclosed in single quotes (').  Any single quotes which were already present in the 
-         * sheet name will be converted to double single quotes ('').  
+         * name is enclosed in single quotes (').  Any single quotes which were already present in the
+         * sheet name will be converted to double single quotes ('').
          */
+
         public static String Format(String rawSheetName)
         {
             StringBuilder sb = new StringBuilder(rawSheetName.Length + 2);
@@ -60,9 +61,10 @@ namespace Npoi.Core.SS.Formula
 
         /**
          * Convenience method for when a StringBuilder is already available
-         * 
-         * @param out - sheet name will be Appended here possibly with delimiting quotes 
+         *
+         * @param out - sheet name will be Appended here possibly with delimiting quotes
          */
+
         public static void AppendFormat(StringBuilder out1, String rawSheetName)
         {
             bool needsQuotes = NeedsDelimiting(rawSheetName);
@@ -137,7 +139,7 @@ namespace Npoi.Core.SS.Formula
             if (Char.IsLetter(rawSheetName[0])
                     && Char.IsDigit(rawSheetName[len - 1]))
             {
-                // note - values like "A$1:$C$20" don't Get this far 
+                // note - values like "A$1:$C$20" don't Get this far
                 if (NameLooksLikePlainCellReference(rawSheetName))
                 {
                     return true;
@@ -149,6 +151,7 @@ namespace Npoi.Core.SS.Formula
             }
             return false;
         }
+
         private static bool NameLooksLikeBooleanLiteral(String rawSheetName)
         {
             switch (rawSheetName[0])
@@ -156,19 +159,22 @@ namespace Npoi.Core.SS.Formula
                 case 'T':
                 case 't':
                     return "TRUE".Equals(rawSheetName, StringComparison.OrdinalIgnoreCase);
+
                 case 'F':
                 case 'f':
                     return "FALSE".Equals(rawSheetName, StringComparison.OrdinalIgnoreCase);
             }
             return false;
         }
+
         /**
-         * @return <c>true</c> if the presence of the specified Char in a sheet name would 
-         * require the sheet name to be delimited in formulas.  This includes every non-alphanumeric 
+         * @return <c>true</c> if the presence of the specified Char in a sheet name would
+         * require the sheet name to be delimited in formulas.  This includes every non-alphanumeric
          * Char besides Underscore '_'.
          */
         /* package */
-        static bool IsSpecialChar(char ch)
+
+        private static bool IsSpecialChar(char ch)
         {
             // note - Char.IsJavaIdentifierPart() would allow dollars '$'
             if (Char.IsLetterOrDigit(ch))
@@ -180,6 +186,7 @@ namespace Npoi.Core.SS.Formula
                 case '.': // dot is OK
                 case '_': // Underscore is ok
                     return false;
+
                 case '\n':
                 case '\r':
                 case '\t':
@@ -189,14 +196,13 @@ namespace Npoi.Core.SS.Formula
             return true;
         }
 
-
         /**
-         * Used to decide whether sheet names like 'AB123' need delimiting due to the fact that they 
+         * Used to decide whether sheet names like 'AB123' need delimiting due to the fact that they
          * look like cell references.
          * <p/>
          * This code is currently being used for translating formulas represented with <code>Ptg</code>
-         * tokens into human readable text form.  In formula expressions, a sheet name always has a 
-         * trailing '!' so there is little chance for ambiguity.  It doesn't matter too much what this 
+         * tokens into human readable text form.  In formula expressions, a sheet name always has a
+         * trailing '!' so there is little chance for ambiguity.  It doesn't matter too much what this
          * method returns but it is worth noting the likely consumers of these formula text strings:
          * <ol>
          * <li>POI's own formula parser</li>
@@ -205,26 +211,27 @@ namespace Npoi.Core.SS.Formula
          * <li>Manual entry into Excel cell contents</li>
          * <li>Some third party formula parser</li>
          * </ol>
-         * 
+         *
          * At the time of writing, POI's formula parser tolerates cell-like sheet names in formulas
-         * with or without delimiters.  The same goes for Excel(2007), both manual and automated entry.  
+         * with or without delimiters.  The same goes for Excel(2007), both manual and automated entry.
          * <p/>
          * For better or worse this implementation attempts to replicate Excel's formula renderer.
          * Excel uses range checking on the apparent 'row' and 'column' components.  Note however that
          * the maximum sheet size varies across versions.
          * @see org.apache.poi.hssf.util.CellReference
          */
+
         public static bool CellReferenceIsWithinRange(String lettersPrefix, String numbersSuffix)
         {
             return Npoi.Core.SS.Util.CellReference.CellReferenceIsWithinRange(lettersPrefix, numbersSuffix, Npoi.Core.SS.SpreadsheetVersion.EXCEL97);
         }
 
         /**
-         * Note - this method assumes the specified rawSheetName has only letters and digits.  It 
+         * Note - this method assumes the specified rawSheetName has only letters and digits.  It
          * cannot be used to match absolute or range references (using the dollar or colon char).
-         * 
+         *
          * Some notable cases:
-         *    <blockquote><table border="0" cellpAdding="1" cellspacing="0" 
+         *    <blockquote><table border="0" cellpAdding="1" cellspacing="0"
          *                 summary="Notable cases.">
          *      <tr><th>Input </th><th>Result </th><th>Comments</th></tr>
          *      <tr><td>"A1" </td><td>true</td><td> </td></tr>
@@ -237,10 +244,11 @@ namespace Npoi.Core.SS.Formula
          *      <tr><td>"SALES20080101" </td><td>true</td>
          *      		<td>Still needs delimiting even though well out of range</td></tr>
          *    </table></blockquote>
-         *  
+         *
          * @return <c>true</c> if there is any possible ambiguity that the specified rawSheetName
          * could be interpreted as a valid cell name.
          */
+
         public static bool NameLooksLikePlainCellReference(String rawSheetName)
         {
             Regex matcher = new Regex(CELL_REF_PATTERN);
@@ -255,6 +263,5 @@ namespace Npoi.Core.SS.Formula
             String numbersSuffix = match.Groups[2].Value;
             return CellReferenceIsWithinRange(lettersPrefix, numbersSuffix);
         }
-
     }
 }

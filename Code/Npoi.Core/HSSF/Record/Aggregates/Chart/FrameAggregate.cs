@@ -15,8 +15,8 @@
    limitations Under the License.
 ==================================================================== */
 
-using Npoi.Core.HSSF.Record.Chart;
 using Npoi.Core.HSSF.Model;
+using Npoi.Core.HSSF.Record.Chart;
 using System.Diagnostics;
 
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart
@@ -31,6 +31,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
         private AreaFormatRecord areaFormat = null;
         private GelFrameAggregate gelFrame = null;
         private ShapePropsAggregate shapeProps = null;
+
         public FrameAggregate(RecordStream rs, ChartRecordAggregate container)
             : base(RuleName_FRAME, container)
         {
@@ -42,12 +43,12 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             {
                 gelFrame = new GelFrameAggregate(rs, this);
             }
-            
+
             if (rs.PeekNextChartSid() == ShapePropsStreamRecord.sid)
             {
                 shapeProps = new ShapePropsAggregate(rs, this);
             }
-            
+
             Record r = rs.GetNext();//EndRecord
             Debug.Assert(r.GetType() == typeof(EndRecord));
         }

@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections;
 
 namespace Npoi.Core.SS.Util
 {
-    using Npoi.Core.Util;
-
     using Npoi.Core.HSSF.Record;
+    using Npoi.Core.Util;
     using System.Collections.Generic;
 
     public class CellRangeAddressList
@@ -19,20 +17,22 @@ namespace Npoi.Core.SS.Util
         {
             _list = new List<CellRangeAddress>();
         }
+
         /**
-         * Convenience constructor for creating a <c>CellRangeAddressList</c> with a single 
+         * Convenience constructor for creating a <c>CellRangeAddressList</c> with a single
          * <c>CellRangeAddress</c>.  Other <c>CellRangeAddress</c>es may be Added later.
          */
+
         public CellRangeAddressList(int firstRow, int lastRow, int firstCol, int lastCol)
             : this()
         {
-
             AddCellRangeAddress(firstRow, firstCol, lastRow, lastCol);
         }
 
         /**
          * @param in the RecordInputstream to read the record from
          */
+
         public CellRangeAddressList(RecordInputStream in1)
         {
             int nItems = in1.ReadUShort();
@@ -49,9 +49,10 @@ namespace Npoi.Core.SS.Util
          * structures is automatically set when reading an Excel file and/or
          * increased when you manually Add a new ADDR structure . This is the reason
          * there isn't a set method for this field .
-         * 
+         *
          * @return number of ADDR structures
          */
+
         public int CountRanges()
         {
             return _list.Count;
@@ -59,22 +60,25 @@ namespace Npoi.Core.SS.Util
 
         /**
          * Add a cell range structure.
-         * 
+         *
          * @param firstRow - the upper left hand corner's row
          * @param firstCol - the upper left hand corner's col
          * @param lastRow - the lower right hand corner's row
          * @param lastCol - the lower right hand corner's col
          * @return the index of this ADDR structure
          */
+
         public void AddCellRangeAddress(int firstRow, int firstCol, int lastRow, int lastCol)
         {
             CellRangeAddress region = new CellRangeAddress(firstRow, lastRow, firstCol, lastCol);
             AddCellRangeAddress(region);
         }
+
         public void AddCellRangeAddress(CellRangeAddress cra)
         {
             _list.Add(cra);
         }
+
         public CellRangeAddress Remove(int rangeIndex)
         {
             if (_list.Count == 0)
@@ -94,16 +98,19 @@ namespace Npoi.Core.SS.Util
         /**
          * @return <c>CellRangeAddress</c> at the given index
          */
+
         public CellRangeAddress GetCellRangeAddress(int index)
         {
             return (CellRangeAddress)_list[index];
         }
+
         public int Serialize(int offset, byte[] data)
         {
             int totalSize = this.Size;
             Serialize(new LittleEndianByteArrayOutputStream(data, offset, totalSize));
             return totalSize;
         }
+
         public void Serialize(ILittleEndianOutput out1)
         {
             int nItems = _list.Count;
@@ -122,14 +129,17 @@ namespace Npoi.Core.SS.Util
                 return GetEncodedSize(_list.Count);
             }
         }
+
         /**
          * @return the total size of for the specified number of ranges,
          *  including the initial 2 byte range count
          */
+
         public static int GetEncodedSize(int numberOfRanges)
         {
             return 2 + CellRangeAddress.GetEncodedSize(numberOfRanges);
         }
+
         public CellRangeAddressList Copy()
         {
             CellRangeAddressList result = new CellRangeAddressList();
@@ -142,6 +152,7 @@ namespace Npoi.Core.SS.Util
             }
             return result;
         }
+
         public CellRangeAddress[] CellRangeAddresses
         {
             get

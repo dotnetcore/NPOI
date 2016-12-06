@@ -17,27 +17,25 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
-
+using Npoi.Core.POIFS.Common;
+using Npoi.Core.POIFS.Dev;
+using Npoi.Core.POIFS.EventFileSystem;
+using Npoi.Core.POIFS.Properties;
+using Npoi.Core.POIFS.Storage;
+using Npoi.Core.Util;
 using System;
-using System.Text;
-using System.IO;
 using System.Collections;
 using System.Collections.Generic;
-
-using Npoi.Core.POIFS.Common;
-using Npoi.Core.POIFS.Storage;
-using Npoi.Core.POIFS.Dev;
-using Npoi.Core.POIFS.Properties;
-using Npoi.Core.POIFS.EventFileSystem;
-using Npoi.Core.Util;
+using System.IO;
+using System.Text;
 
 namespace Npoi.Core.POIFS.FileSystem
 {
@@ -95,7 +93,7 @@ namespace Npoi.Core.POIFS.FileSystem
         public POIFSDocument(string name, SmallDocumentBlock[] blocks, int length)
         {
             _size = length;
-            if(blocks.Length == 0)
+            if (blocks.Length == 0)
                 _bigBigBlockSize = POIFSConstants.SMALLER_BIG_BLOCK_SIZE_DETAILS;
             else
                 _bigBigBlockSize = blocks[0].BigBlockSize;
@@ -158,9 +156,9 @@ namespace Npoi.Core.POIFS.FileSystem
             else
             {
                 _small_store = new SmallBlockStore(bigBlockSize, EMPTY_SMALL_BLOCK_ARRAY);
+            }
         }
 
-        }
         /// <summary>
         /// Initializes a new instance of the <see cref="POIFSDocument"/> class.
         /// </summary>
@@ -172,7 +170,7 @@ namespace Npoi.Core.POIFS.FileSystem
         }
 
         public POIFSDocument(string name, int size, POIFSBigBlockSize bigBlockSize, POIFSDocumentPath path, POIFSWriterListener writer)
-            {
+        {
             _size = size;
             _bigBigBlockSize = bigBlockSize;
             _property = new DocumentProperty(name, _size);
@@ -190,9 +188,10 @@ namespace Npoi.Core.POIFS.FileSystem
         }
 
         public POIFSDocument(string name, int size, POIFSDocumentPath path, POIFSWriterListener writer)
-            :this(name, size, POIFSConstants.SMALLER_BIG_BLOCK_SIZE_DETAILS, path, writer)
+            : this(name, size, POIFSConstants.SMALLER_BIG_BLOCK_SIZE_DETAILS, path, writer)
         {
         }
+
         /// <summary>
         /// Constructor from small blocks
         /// </summary>
@@ -200,8 +199,8 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <param name="blocks">the small blocks making up the POIFSDocument</param>
         /// <param name="length">the actual length of the POIFSDocument</param>
         public POIFSDocument(string name, ListManagedBlock[] blocks, int length)
-            :this(name, POIFSConstants.SMALLER_BIG_BLOCK_SIZE_DETAILS, blocks, length)
-            {
+            : this(name, POIFSConstants.SMALLER_BIG_BLOCK_SIZE_DETAILS, blocks, length)
+        {
         }
 
         /// <summary>
@@ -230,7 +229,6 @@ namespace Npoi.Core.POIFS.FileSystem
             this._big_store.WriteBlocks(stream);
         }
 
-
         public DataInputBlock GetDataInputBlock(int offset)
         {
             if (offset >= _size)
@@ -250,6 +248,7 @@ namespace Npoi.Core.POIFS.FileSystem
 
             return DocumentBlock.GetDataInputBlock(_big_store.Blocks, offset);
         }
+
         /// <summary>
         /// Gets the number of BigBlock's this instance uses
         /// </summary>
@@ -412,10 +411,10 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get
             {
-
                 return new List<object>().GetEnumerator();
             }
         }
+
         public event POIFSWriterEventHandler BeforeWriting;
 
         protected virtual void OnBeforeWriting(POIFSWriterEventArgs e)
@@ -425,6 +424,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 BeforeWriting(this, e);
             }
         }
+
         internal class SmallBlockStore
         {
             private SmallDocumentBlock[] smallBlocks;
@@ -458,7 +458,7 @@ namespace Npoi.Core.POIFS.FileSystem
             internal virtual SmallDocumentBlock[] Blocks
             {
                 get
-            {
+                {
                     if (this.Valid && (this.writer != null))
                     {
                         MemoryStream stream = new MemoryStream(this.size);
@@ -466,11 +466,11 @@ namespace Npoi.Core.POIFS.FileSystem
                         //OnBeforeWriting(new POIFSWriterEventArgs(dstream, this.path, this.name, this.size));
                         writer.ProcessPOIFSWriterEvent(new POIFSWriterEvent(dstream, this.path, this.name, this.size));
                         this.smallBlocks = SmallDocumentBlock.Convert(bigBlockSize, stream.ToArray(), this.size);
-
-                        }
-                    return this.smallBlocks;
                     }
+                    return this.smallBlocks;
                 }
+            }
+
             internal virtual bool Valid
             {
                 get
@@ -478,8 +478,6 @@ namespace Npoi.Core.POIFS.FileSystem
                     return ((this.smallBlocks.Length > 0) || (this.writer != null));
                 }
             }
-
-
         }
 
         internal class BigBlockStore
@@ -514,7 +512,7 @@ namespace Npoi.Core.POIFS.FileSystem
             internal virtual bool Valid
             {
                 get
-            {
+                {
                     return ((this.bigBlocks.Length > 0) || (this.writer != null));
                 }
             }
@@ -522,9 +520,9 @@ namespace Npoi.Core.POIFS.FileSystem
             internal virtual DocumentBlock[] Blocks
             {
                 get
-            {
-                    if (this.Valid && (this.writer != null))
                 {
+                    if (this.Valid && (this.writer != null))
+                    {
                         MemoryStream stream = new MemoryStream(this.size);
                         DocumentOutputStream stream2 = new DocumentOutputStream(stream, this.size);
                         //OnBeforeWriting(new POIFSWriterEventArgs(stream2, this.path, this.name, this.size));
@@ -540,9 +538,9 @@ namespace Npoi.Core.POIFS.FileSystem
                 if (this.Valid)
                 {
                     if (this.writer != null)
-                        {
-                            DocumentOutputStream stream2 = new DocumentOutputStream(stream, this.size);
-                            //OnBeforeWriting(new POIFSWriterEventArgs(stream2, this.path, this.name, this.size));
+                    {
+                        DocumentOutputStream stream2 = new DocumentOutputStream(stream, this.size);
+                        //OnBeforeWriting(new POIFSWriterEventArgs(stream2, this.path, this.name, this.size));
                         writer.ProcessPOIFSWriterEvent(new POIFSWriterEvent(stream2, path, name, size));
                         stream2.WriteFiller(this.CountBlocks * POIFSConstants.BIG_BLOCK_SIZE, DocumentBlock.FillByte);
                     }
@@ -564,16 +562,14 @@ namespace Npoi.Core.POIFS.FileSystem
                     if (!this.Valid)
                     {
                         return num;
-                }
+                    }
                     if (this.writer != null)
                     {
                         return (((this.size + POIFSConstants.BIG_BLOCK_SIZE) - 1) / POIFSConstants.BIG_BLOCK_SIZE);
-            }
+                    }
                     return this.bigBlocks.Length;
                 }
             }
         }
-
-      
     }
 }

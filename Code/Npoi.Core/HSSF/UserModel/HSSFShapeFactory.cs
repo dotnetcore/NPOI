@@ -15,10 +15,10 @@
    limitations Under the License.
 ==================================================================== */
 
-using System.Collections.Generic;
 using Npoi.Core.DDF;
 using Npoi.Core.HSSF.Record;
 using Npoi.Core.POIFS.FileSystem;
+using System.Collections.Generic;
 
 namespace Npoi.Core.HSSF.UserModel
 {
@@ -26,6 +26,7 @@ namespace Npoi.Core.HSSF.UserModel
      * @author Evgeniy Berlog
      * date: 05.06.12
      */
+
     public class HSSFShapeFactory
     {
         private const short OBJECT_TYPE_LINE = 1;
@@ -41,6 +42,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @param out - shape container to which shapes must be added
          * @param root - node to create HSSFObjectData shapes
          */
+
         public static void CreateShapeTree(EscherContainerRecord container, EscherAggregate agg,
             HSSFShapeContainer out1, DirectoryNode root)
         {
@@ -78,6 +80,7 @@ namespace Npoi.Core.HSSF.UserModel
                         case EscherClientDataRecord.RECORD_ID:
                             objRecord = (ObjRecord)shapeToObj[(record)];
                             break;
+
                         case EscherTextboxRecord.RECORD_ID:
                             txtRecord = (TextObjectRecord)shapeToObj[(record)];
                             break;
@@ -96,15 +99,19 @@ namespace Npoi.Core.HSSF.UserModel
                     case CommonObjectType.Picture:
                         shape = new HSSFPicture(container, objRecord);
                         break;
+
                     case CommonObjectType.Rectangle:
                         shape = new HSSFSimpleShape(container, objRecord, txtRecord);
                         break;
+
                     case CommonObjectType.Line:
                         shape = new HSSFSimpleShape(container, objRecord);
                         break;
+
                     case CommonObjectType.ComboBox:
                         shape = new HSSFCombobox(container, objRecord);
                         break;
+
                     case CommonObjectType.MicrosoftOfficeDrawing:
                         EscherOptRecord optRecord = (EscherOptRecord)container.GetChildById(EscherOptRecord.RECORD_ID);
                         EscherProperty property = optRecord.Lookup(EscherProperties.GEOMETRY__VERTICES);
@@ -117,12 +124,15 @@ namespace Npoi.Core.HSSF.UserModel
                             shape = new HSSFSimpleShape(container, objRecord, txtRecord);
                         }
                         break;
+
                     case CommonObjectType.Text:
                         shape = new HSSFTextbox(container, objRecord, txtRecord);
                         break;
+
                     case CommonObjectType.Comment:
                         shape = new HSSFComment(container, objRecord, txtRecord, agg.GetNoteRecordByObj(objRecord));
                         break;
+
                     default:
                         shape = new HSSFSimpleShape(container, objRecord, txtRecord);
                         break;

@@ -20,12 +20,12 @@ namespace Npoi.Core.SS.Formula.PTG
     using System;
 
     /**
-     * An XSSF only special kind of Ptg, which stores a range of 
+     * An XSSF only special kind of Ptg, which stores a range of
      *  sheet / book references in string form.
      */
+
     public interface Pxg3D : Pxg
     {
         String LastSheetName { get; set; }
     }
-
 }

@@ -14,6 +14,7 @@
 * See the License for the specific language governing permissions and
 * limitations Under the License.
 */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     using Npoi.Core.SS.Formula.Eval;
@@ -22,15 +23,16 @@ namespace Npoi.Core.SS.Formula.Functions
     /**
      * @author Pavel Krupets (pkrupets at palmtreebusiness dot com)
      */
+
     public class DateFunc : Fixed3ArgFunction
     {
         public static Function instance = new DateFunc();
 
         private DateFunc()
-        { 
-            
+        {
         }
-        public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1,ValueEval arg2)
+
+        public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1, ValueEval arg2)
         {
             double result;
             try
@@ -52,6 +54,7 @@ namespace Npoi.Core.SS.Formula.Functions
 	     * Note - works with Java Calendar months, not Excel months
          * Java Calendar month = Excel month + 1
 	     */
+
         public double Evaluate(int year, int month, int pDay)
         {
             // We don't support negative years yet
@@ -116,6 +119,5 @@ namespace Npoi.Core.SS.Formula.Functions
 
             return year < 1900 ? 1900 + year : year;
         }
-
     }
 }

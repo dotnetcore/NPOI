@@ -17,11 +17,10 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
-    using System.Collections;
     using Npoi.Core.Util.Collections;
-    using System.Globalization;
+    using System;
     using System.Collections.Generic;
+    using System.Globalization;
 
     /// <summary>
     /// Stores width and height details about a font.
@@ -31,7 +30,7 @@ namespace Npoi.Core.HSSF.UserModel
     {
         private String fontName;
         private int height;
-        private Dictionary<object,object> charWidths = new Dictionary<object,object>();
+        private Dictionary<object, object> charWidths = new Dictionary<object, object>();
 
         /// <summary>
         /// Construct the font details with the given name and height.
@@ -113,6 +112,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             return "font." + fontName + ".height";
         }
+
         /// <summary>
         /// Builds the font widths property.
         /// </summary>
@@ -122,6 +122,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             return "font." + fontName + ".widths";
         }
+
         /// <summary>
         /// Builds the font chars property.
         /// </summary>
@@ -133,7 +134,7 @@ namespace Npoi.Core.HSSF.UserModel
         }
 
         /// <summary>
-        /// Create an instance of 
+        /// Create an instance of
         /// <c>FontDetails</c>
         ///  by loading them from the
         /// provided property object.
@@ -198,7 +199,5 @@ namespace Npoi.Core.HSSF.UserModel
             String[] list = text.Split(separator.ToCharArray());
             return list;
         }
-
-
     }
 }

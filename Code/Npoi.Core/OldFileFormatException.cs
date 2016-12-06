@@ -8,6 +8,5 @@ namespace Npoi.Core
         public OldFileFormatException(String s)
             : base(s)
         { }
-
     }
 }

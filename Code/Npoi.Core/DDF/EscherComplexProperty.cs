@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -20,9 +19,9 @@ using System.Text;
 
 namespace Npoi.Core.DDF
 {
+    using Npoi.Core.Util;
     using System;
     using System.IO;
-    using Npoi.Core.Util;
 
     /// <summary>
     /// A complex property differs from a simple property in that the data can not fit inside a 32 bit
@@ -42,9 +41,7 @@ namespace Npoi.Core.DDF
         /// indicating that this is a complex property.</param>
         /// <param name="complexData">The value of this property.</param>
         public EscherComplexProperty(short id, byte[] complexData)
-            : base(id)
-        {
-
+            : base(id) {
             this._complexData = complexData;
         }
 
@@ -54,11 +51,9 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="propertyNumber">The property number.</param>
         /// <param name="isBlipId">Whether this is a blip id.  Should be false.</param>
-        /// <param name="complexData">The value of this complex property.</param> 
+        /// <param name="complexData">The value of this complex property.</param>
         public EscherComplexProperty(short propertyNumber, bool isBlipId, byte[] complexData)
-            : base(propertyNumber, true, isBlipId)
-        {
-
+            : base(propertyNumber, true, isBlipId) {
             this._complexData = complexData;
         }
 
@@ -68,8 +63,7 @@ namespace Npoi.Core.DDF
         /// <param name="data"></param>
         /// <param name="pos"></param>
         /// <returns></returns>
-        public override int SerializeSimplePart(byte[] data, int pos)
-        {
+        public override int SerializeSimplePart(byte[] data, int pos) {
             LittleEndian.PutShort(data, pos, Id);
             LittleEndian.PutInt(data, pos + 2, _complexData.Length);
             return 6;
@@ -81,8 +75,7 @@ namespace Npoi.Core.DDF
         /// <param name="data">The data array to Serialize to</param>
         /// <param name="pos">The offset within data to start serializing to.</param>
         /// <returns>The number of bytes Serialized.</returns>
-        public override int SerializeComplexPart(byte[] data, int pos)
-        {
+        public override int SerializeComplexPart(byte[] data, int pos) {
             Array.Copy(_complexData, 0, data, pos, _complexData.Length);
             return _complexData.Length;
         }
@@ -91,8 +84,7 @@ namespace Npoi.Core.DDF
         /// Gets the complex data.
         /// </summary>
         /// <value>The complex data.</value>
-        public byte[] ComplexData
-        {
+        public byte[] ComplexData {
             get { return _complexData; }
         }
 
@@ -101,8 +93,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="o">The object to compare to.</param>
         /// <returns>True if the objects are equal.</returns>
-        public override bool Equals(Object o)
-        {
+        public override bool Equals(Object o) {
             if (this == o) return true;
             if (!(o is EscherComplexProperty)) return false;
 
@@ -117,8 +108,7 @@ namespace Npoi.Core.DDF
         /// Caclulates the number of bytes required to Serialize this property.
         /// </summary>
         /// <value>Number of bytes</value>
-        public override int PropertySize
-        {
+        public override int PropertySize {
             get { return 6 + _complexData.Length; }
         }
 
@@ -128,8 +118,7 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A hash code for the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override int GetHashCode()
-        {
+        public override int GetHashCode() {
             return Id * 11;
         }
 
@@ -139,18 +128,14 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override String ToString()
-        {
+        public override String ToString() {
             String dataStr;
-            using (MemoryStream b = new MemoryStream())
-            {
-                try
-                {
+            using (MemoryStream b = new MemoryStream()) {
+                try {
                     HexDump.Dump(this._complexData, 0, b, 0);
                     dataStr = b.ToString();
                 }
-                catch (Exception e)
-                {
+                catch (Exception e) {
                     dataStr = e.ToString();
                 }
             }
@@ -160,8 +145,8 @@ namespace Npoi.Core.DDF
                     + ", blipId: " + IsBlipId
                     + ", data: " + Environment.NewLine + dataStr;
         }
-        public override String ToXml(String tab)
-        {
+
+        public override String ToXml(String tab) {
             String dataStr = HexDump.ToHex(_complexData, 32);
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append("<").Append(GetType().Name).Append(" id=\"0x").Append(HexDump.ToHex(Id))

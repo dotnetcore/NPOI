@@ -1,4 +1,3 @@
-
 ///* ====================================================================
 //   Licensed to the Apache Software Foundation (ASF) Under one or more
 //   contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,11 @@
 //   limitations Under the License.
 //==================================================================== */
 
-
 //namespace Npoi.Core.HSSF.Record.Chart
 //{
-
 //    using System;
 //    using System.Text;
 //    using Npoi.Core.Util;
-
 
 //    public enum AxisLineType
 //    {
@@ -51,12 +47,12 @@
 
 //     * @author Glen Stampoultzis (glens at apache.org)
 //     *///
-    
+
 //    /// <summary>
-//    /// The AxisLine record specifies which part of the axis (section 2.2.3.6) is 
+//    /// The AxisLine record specifies which part of the axis (section 2.2.3.6) is
 //    /// specified by the LineFormat record (section 2.4.156) that follows.
-//    /// 
-//    /// Excel Binary File Format (.xls) Structure Specification 
+//    ///
+//    /// Excel Binary File Format (.xls) Structure Specification
 //    /// </summary>
 //    public class AxisLineFormatRecord
 //       : StandardRecord
@@ -68,10 +64,8 @@
 //        public static short AXIS_TYPE_MINOR_GRID_LINE = 2;
 //        public static short AXIS_TYPE_WALLS_OR_FLOOR = 3;
 
-
 //        public AxisLineFormatRecord()
 //        {
-
 //        }
 
 //        /**
@@ -126,21 +120,18 @@
 //            return rec;
 //        }
 
-
-
-
 //        /**
 //         * Get the axis type field for the AxisLineFormat record.
 //         *
-//         * @return  One of 
+//         * @return  One of
 //         *        AXIS_TYPE_AXIS_LINE
 //         *        AXIS_TYPE_MAJOR_GRID_LINE
 //         *        AXIS_TYPE_MINOR_GRID_LINE
 //         *        AXIS_TYPE_WALLS_OR_FLOOR
 //         *///
-        
+
 //        /// <summary>
-//        /// 
+//        ///
 //        /// </summary>
 //        public short AxisType
 //        {
@@ -150,7 +141,3 @@
 
 //    }
 //}
-
-
-
-

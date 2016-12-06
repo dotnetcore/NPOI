@@ -17,19 +17,20 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-    using System.Text;
     using Npoi.Core.SS.Util;
     using Npoi.Core.Util;
+    using System;
+    using System.Text;
 
     /**
      * <p>Title:        XSSF Area 3D Reference (Sheet + Area)</p>
      * <p>Description:  Defined an area in an external or different sheet. </p>
      * <p>REFERENCE:  </p>
-     * 
+     *
      * <p>This is XSSF only, as it stores the sheet / book references
      *  in String form. The HSSF equivalent using indexes is {@link Area3DPtg}</p>
      */
+
     public class Area3DPxg : AreaPtgBase, Pxg3D
     {
         private int externalWorkbookNumber = -1;
@@ -41,6 +42,7 @@ namespace Npoi.Core.SS.Formula.PTG
         {
             ;
         }
+
         public Area3DPxg(int externalWorkbookNumber, SheetIdentifier sheetName, AreaReference arearef)
             : base(arearef)
         {
@@ -60,12 +62,11 @@ namespace Npoi.Core.SS.Formula.PTG
             : this(sheetName, new AreaReference(arearef))
         {
         }
+
         public Area3DPxg(SheetIdentifier sheetName, AreaReference arearef)
             : this(-1, sheetName, arearef)
         {
-
         }
-
 
         public override String ToString()
         {
@@ -97,6 +98,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 return externalWorkbookNumber;
             }
         }
+
         public String SheetName
         {
             get
@@ -147,10 +149,10 @@ namespace Npoi.Core.SS.Formula.PTG
                 return 1;
             }
         }
+
         public override void Write(ILittleEndianOutput out1)
         {
             throw new InvalidOperationException("XSSF-only Ptg, should not be serialised");
         }
     }
 }
-

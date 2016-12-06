@@ -18,14 +18,15 @@
 namespace Npoi.Core.SS.UserModel
 {
     using System;
+
     /**
      * Represents a defined name for a range of cells.
      * A name is a meaningful shorthand that makes it easier to understand the purpose of a
      * cell reference, constant or a formula.
      */
+
     public interface IName
     {
-
         /**
          * Get the sheets name which this named range is referenced to
          *
@@ -39,7 +40,6 @@ namespace Npoi.Core.SS.UserModel
          * @return named range name
          */
         String NameName { get; set; }
-
 
         /**
          * Returns the formula that the name is defined to refer to.
@@ -82,7 +82,7 @@ namespace Npoi.Core.SS.UserModel
          *
          * @param value <c>true</c> indicates the name refers to a function.
          */
+
         void SetFunction(bool value);
     }
-
 }

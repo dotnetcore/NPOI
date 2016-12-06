@@ -24,6 +24,7 @@ namespace Npoi.Core.HSSF.Record
      *
      * @author Shawn Laubach (slaubach at apache dot org)
      */
+
     public interface IMargin
     {
         /**

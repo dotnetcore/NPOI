@@ -17,17 +17,16 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-    
-    using Npoi.Core.Util;
-
     using Npoi.Core.HSSF.UserModel;
+    using Npoi.Core.Util;
+    using System;
 
     /**
      * AreaErr - handles deleted cell area references.
      *
      * @author Daniel Noll (daniel at nuix dot com dot au)
      */
+
     public class AreaErrPtg : OperandPtg
     {
         public const byte sid = 0x2b;
@@ -40,16 +39,18 @@ namespace Npoi.Core.SS.Formula.PTG
             unused1 = in1.ReadInt();
             unused2 = in1.ReadInt();
         }
+
         public AreaErrPtg()
         {
             unused1 = 0;
             unused2 = 0;
         }
+
         public override void Write(ILittleEndianOutput out1)
         {
-		    out1.WriteByte(sid + PtgClass);
-		    out1.WriteInt(unused1);
-		    out1.WriteInt(unused2);
+            out1.WriteByte(sid + PtgClass);
+            out1.WriteInt(unused1);
+            out1.WriteInt(unused2);
         }
 
         public override String ToFormulaString()

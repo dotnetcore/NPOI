@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,16 +15,14 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Aggregates
 {
-
-    using System;
-    using System.Collections;
+    using Npoi.Core.HSSF.Model;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.SS.Formula;
-    using Npoi.Core.HSSF.Model;
     using Npoi.Core.SS.Formula.PTG;
+    using System;
+    using System.Collections;
     using System.Collections.Generic;
 
     /**
@@ -39,20 +36,20 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
     public class ValueRecordsAggregate
     {
-        const int MAX_ROW_INDEX = 0XFFFF;
-        const int INDEX_NOT_SET = -1;
+        private const int MAX_ROW_INDEX = 0XFFFF;
+        private const int INDEX_NOT_SET = -1;
         public const short sid = -1001; // 1000 clashes with RowRecordsAggregate
-        int firstcell = INDEX_NOT_SET;
-        int lastcell = INDEX_NOT_SET;
-        CellValueRecordInterface[][] records;
+        private int firstcell = INDEX_NOT_SET;
+        private int lastcell = INDEX_NOT_SET;
+        private CellValueRecordInterface[][] records;
 
         /** Creates a new instance of ValueRecordsAggregate */
 
-        public ValueRecordsAggregate():
+        public ValueRecordsAggregate() :
             this(INDEX_NOT_SET, INDEX_NOT_SET, new CellValueRecordInterface[30][]) // We start with 30 Rows.
         {
-            
         }
+
         private ValueRecordsAggregate(int firstCellIx, int lastCellIx, CellValueRecordInterface[][] pRecords)
         {
             firstcell = firstCellIx;
@@ -113,7 +110,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             int row = cell.Row;
             if (row >= records.Length)
             {
-                throw new Exception("cell row is out of range"); 
+                throw new Exception("cell row is out of range");
             }
             CellValueRecordInterface[] rowCells = records[row];
             if (rowCells == null)
@@ -126,8 +123,8 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 throw new Exception("cell column is out of range");
             }
             rowCells[column] = null;
-            
         }
+
         public void RemoveAllCellsValuesForRow(int rowIndex)
         {
             if (rowIndex < 0 || rowIndex > MAX_ROW_INDEX)
@@ -144,6 +141,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
             records[rowIndex] = null;
         }
+
         public CellValueRecordInterface[] GetValueRecords()
         {
             List<CellValueRecordInterface> temp = new List<CellValueRecordInterface>();
@@ -164,8 +162,9 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                     }
                 }
             }
-             return (CellValueRecordInterface[])temp.ToArray();
+            return (CellValueRecordInterface[])temp.ToArray();
         }
+
         public int PhysicalNumberOfCells
         {
             get
@@ -199,6 +198,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 return lastcell;
             }
         }
+
         public void AddMultipleBlanks(MulBlankRecord mbr)
         {
             for (int j = 0; j < mbr.NumColumns; j++)
@@ -211,9 +211,9 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 InsertCell(br);
             }
         }
+
         private MulBlankRecord CreateMBR(CellValueRecordInterface[] cellValues, int startIx, int nBlank)
         {
-
             short[] xfs = new short[nBlank];
             for (int i = 0; i < xfs.Length; i++)
             {
@@ -229,7 +229,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             {
                 FormulaRecord formulaRec = (FormulaRecord)rec;
                 // read optional cached text value
-                StringRecord cachedText=null;
+                StringRecord cachedText = null;
                 Type nextClass = rs.PeekNextClass();
                 if (nextClass == typeof(StringRecord))
                 {
@@ -248,31 +248,32 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         }
 
         /**
-         * Sometimes the shared formula flag "seems" to be erroneously Set, in which case there is no 
-         * call to <c>SharedFormulaRecord.ConvertSharedFormulaRecord</c> and hence the 
+         * Sometimes the shared formula flag "seems" to be erroneously Set, in which case there is no
+         * call to <c>SharedFormulaRecord.ConvertSharedFormulaRecord</c> and hence the
          * <c>ParsedExpression</c> field of this <c>FormulaRecord</c> will not Get updated.<br/>
          * As it turns out, this is not a problem, because in these circumstances, the existing value
          * for <c>ParsedExpression</c> is perfectly OK.<p/>
-         * 
+         *
          * This method may also be used for Setting breakpoints to help diagnose Issues regarding the
-         * abnormally-Set 'shared formula' flags. 
+         * abnormally-Set 'shared formula' flags.
          * (see TestValueRecordsAggregate.testSpuriousSharedFormulaFlag()).<p/>
-         * 
-         * The method currently does nothing but do not delete it without Finding a nice home for this 
+         *
+         * The method currently does nothing but do not delete it without Finding a nice home for this
          * comment.
          */
-        static void HandleMissingSharedFormulaRecord(FormulaRecord formula)
+
+        private static void HandleMissingSharedFormulaRecord(FormulaRecord formula)
         {
             // could log an info message here since this is a fairly Unusual occurrence.
         }
 
-
         /** Tallies a count of the size of the cell records
          *  that are attached to the rows in the range specified.
          */
+
         public int GetRowCellBlockSize(int startRow, int endRow)
         {
-            MyEnumerator itr = new MyEnumerator(ref records,startRow, endRow);
+            MyEnumerator itr = new MyEnumerator(ref records, startRow, endRow);
             int size = 0;
             while (itr.MoveNext())
             {
@@ -287,9 +288,10 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         }
 
         /** Returns true if the row has cells attached to it */
+
         public bool RowHasCells(int row)
         {
-            if (row > records.Length - 1) //previously this said row > records.Length which means if 
+            if (row > records.Length - 1) //previously this said row > records.Length which means if
                 return false;  // if records.Length == 60 and I pass "60" here I Get array out of bounds
             CellValueRecordInterface[] rowCells = records[row]; //because a 60 Length array has the last index = 59
             if (rowCells == null) return false;
@@ -299,6 +301,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
             return false;
         }
+
         public void UpdateFormulasAfterRowShift(FormulaShifter shifter, int currentExternSheetIndex)
         {
             for (int i = 0; i < records.Length; i++)
@@ -328,7 +331,6 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         public void VisitCellsForRow(int rowIndex, RecordVisitor rv)
         {
-
             CellValueRecordInterface[] rowCells = records[rowIndex];
             if (rowCells == null)
             {
@@ -358,7 +360,8 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 }
             }
         }
-        static int CountBlanks(CellValueRecordInterface[] rowCellValues, int startIx)
+
+        private static int CountBlanks(CellValueRecordInterface[] rowCellValues, int startIx)
         {
             int i = startIx;
             while (i < rowCellValues.Length)
@@ -372,10 +375,12 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
             return i - startIx;
         }
+
         /** Serializes the cells that are allocated to a certain row range*/
+
         public int SerializeCellRow(int row, int offset, byte[] data)
         {
-            MyEnumerator itr = new MyEnumerator(ref records,row, row);
+            MyEnumerator itr = new MyEnumerator(ref records, row, row);
             int pos = offset;
 
             while (itr.MoveNext())
@@ -395,10 +400,10 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         private class MyEnumerator : IEnumerator
         {
-            short nextColumn = -1;
-            int nextRow, lastRow;
+            private short nextColumn = -1;
+            private int nextRow, lastRow;
 
-            CellValueRecordInterface[][] records;
+            private CellValueRecordInterface[][] records;
 
             public MyEnumerator(ref CellValueRecordInterface[][] _records)
             {
@@ -408,19 +413,20 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 //FindNext();
             }
 
-            public MyEnumerator(ref CellValueRecordInterface[][] _records,int firstRow, int lastRow)
+            public MyEnumerator(ref CellValueRecordInterface[][] _records, int firstRow, int lastRow)
             {
                 this.records = _records;
                 this.nextRow = firstRow;
                 this.lastRow = lastRow;
                 //FindNext();
             }
+
             public bool MoveNext()
             {
-                
                 FindNext();
                 return nextRow <= lastRow; ;
             }
+
             public Object Current
             {
                 get
@@ -430,6 +436,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                     return o;
                 }
             }
+
             public void Remove()
             {
                 throw new InvalidOperationException("gibt's noch nicht");
@@ -454,6 +461,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                     nextColumn = 0;
                 }
             }
+
             public void Reset()
             {
                 nextColumn = -1;

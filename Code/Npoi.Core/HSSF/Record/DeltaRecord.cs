@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-    using System.Text;
     using Npoi.Core.Util;
     using System;
-
+    using System.Text;
 
     /**
      * Title:        Delta Record
@@ -57,7 +54,6 @@ namespace Npoi.Core.HSSF.Record
             field_1_max_change = in1.ReadDouble();
         }
 
-
         /**
          * Get the maximum Change
          * @return maxChange - maximum rounding error
@@ -69,7 +65,8 @@ namespace Npoi.Core.HSSF.Record
             {
                 return field_1_max_change;
             }
-            set {
+            set
+            {
                 field_1_max_change = value;
             }
         }

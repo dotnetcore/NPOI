@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,12 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * The series record describes the overall data for a series.
@@ -30,6 +28,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class SeriesRecord
        : StandardRecord
     {
@@ -53,10 +52,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         public const short BUBBLE_SERIES_TYPE_TEXT = 3;
         private short field_6_numBubbleValues;
 
-
         public SeriesRecord()
         {
-
         }
 
         /**
@@ -73,7 +70,6 @@ namespace Npoi.Core.HSSF.Record.Chart
             field_4_numValues = in1.ReadShort();
             field_5_bubbleSeriesType = in1.ReadShort();
             field_6_numBubbleValues = in1.ReadShort();
-
         }
 
         public override String ToString()
@@ -123,6 +119,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return 2 + 2 + 2 + 2 + 2 + 2; }
@@ -146,61 +143,61 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /**
          * Get the category data type field for the Series record.
          *
-         * @return  One of 
+         * @return  One of
          *        CATEGORY_DATA_TYPE_DATES
          *        CATEGORY_DATA_TYPE_NUMERIC
          *        CATEGORY_DATA_TYPE_SEQUENCE
          *        CATEGORY_DATA_TYPE_TEXT
          */
+
         public short CategoryDataType
         {
             get
             {
                 return field_1_categoryDataType;
             }
-            set 
+            set
             {
                 this.field_1_categoryDataType = value;
             }
         }
+
         /**
          * Get the values data type field for the Series record.
          *
-         * @return  One of 
+         * @return  One of
          *        VALUES_DATA_TYPE_DATES
          *        VALUES_DATA_TYPE_NUMERIC
          *        VALUES_DATA_TYPE_SEQUENCE
          *        VALUES_DATA_TYPE_TEXT
          */
+
         public short ValuesDataType
         {
             get
             {
                 return field_2_valuesDataType;
             }
-            set 
+            set
             {
                 this.field_2_valuesDataType = value;
             }
         }
 
-
         /**
          * Get the num categories field for the Series record.
          */
+
         public short NumCategories
         {
             get
             {
                 return field_3_numCategories;
             }
-            set 
+            set
             {
                 this.field_3_numCategories = value;
             }
@@ -209,13 +206,14 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the num values field for the Series record.
          */
+
         public short NumValues
         {
             get
             {
                 return field_4_numValues;
             }
-            set 
+            set
             {
                 this.field_4_numValues = value;
             }
@@ -224,38 +222,39 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Get the bubble series type field for the Series record.
          *
-         * @return  One of 
+         * @return  One of
          *        BUBBLE_SERIES_TYPE_DATES
          *        BUBBLE_SERIES_TYPE_NUMERIC
          *        BUBBLE_SERIES_TYPE_SEQUENCE
          *        BUBBLE_SERIES_TYPE_TEXT
          */
+
         public short BubbleSeriesType
         {
             get
             {
                 return field_5_bubbleSeriesType;
             }
-            set 
+            set
             {
                 this.field_5_bubbleSeriesType = value;
             }
         }
+
         /**
          * Get the num bubble values field for the Series record.
          */
+
         public short NumBubbleValues
         {
             get
             {
                 return field_6_numBubbleValues;
             }
-            set 
+            set
             {
-                this.field_6_numBubbleValues =value;
+                this.field_6_numBubbleValues = value;
             }
         }
-
-
     }
 }

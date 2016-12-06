@@ -17,14 +17,15 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
-using Npoi.Core.Util;
 
-/**
- * Common header/footer base class
- *
- * @author Josh Micich
- */
+    /**
+     * Common header/footer base class
+     *
+     * @author Josh Micich
+     */
+
     public abstract class HeaderFooterBase : StandardRecord
     {
         private bool field_2_hasMultibyte;
@@ -32,7 +33,7 @@ using Npoi.Core.Util;
 
         protected HeaderFooterBase(String text)
         {
-            Text=(text);
+            Text = (text);
         }
 
         protected HeaderFooterBase(RecordInputStream in1)
@@ -59,12 +60,12 @@ using Npoi.Core.Util;
             }
         }
 
-
         /**
          * get the length of the footer string
          *
          * @return length of the footer string
          */
+
         private int TextLength
         {
             get
@@ -79,7 +80,7 @@ using Npoi.Core.Util;
             {
                 return field_3_text;
             }
-            set 
+            set
             {
                 if (value == null)
                 {
@@ -93,7 +94,7 @@ using Npoi.Core.Util;
                 {
                     throw new ArgumentException("Header/Footer string too long (limit is "
                             + RecordInputStream.MAX_RECORD_DATA_SIZE + " bytes)");
-                }               
+                }
             }
         }
 
@@ -118,7 +119,7 @@ using Npoi.Core.Util;
         {
             get
             {
-                if (TextLength< 1)
+                if (TextLength < 1)
                 {
                     return 0;
                 }
@@ -127,6 +128,3 @@ using Npoi.Core.Util;
         }
     }
 }
-
-
-

@@ -17,7 +17,6 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
     //using Npoi.Core.HSSF.Model;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.Record.Aggregates;
@@ -26,14 +25,16 @@ namespace Npoi.Core.HSSF.UserModel
     using Npoi.Core.SS.Formula.PTG;
     using Npoi.Core.SS.Formula.Udf;
     using Npoi.Core.SS.UserModel;
-using Npoi.Core.Util;
     using Npoi.Core.SS.Util;
-   
+    using Npoi.Core.Util;
+    using System;
+
     /**
      * Internal POI use only
-     * 
+     *
      * @author Josh Micich
      */
+
     public class HSSFEvaluationWorkbook : IFormulaRenderingWorkbook, IEvaluationWorkbook, IFormulaParsingWorkbook
     {
         private static POILogger logger = POILogFactory.GetLogger(typeof(HSSFEvaluationWorkbook));
@@ -60,6 +61,7 @@ using Npoi.Core.Util;
             int sheetIndex = _uBook.GetSheetIndex(sheetName);
             return _iBook.CheckExternSheet(sheetIndex);
         }
+
         public int GetExternalSheetIndex(String workbookName, String sheetName)
         {
             return _iBook.GetExternalSheetIndex(workbookName, sheetName);
@@ -74,24 +76,26 @@ using Npoi.Core.Util;
         {
             throw new InvalidOperationException("XSSF-style external names are not supported for HSSF");
         }
+
         public Ptg Get3DReferencePtg(CellReference cr, SheetIdentifier sheet)
         {
             int extIx = GetSheetExtIx(sheet);
             return new Ref3DPtg(cr, extIx);
         }
+
         public Ptg Get3DReferencePtg(AreaReference areaRef, SheetIdentifier sheet)
         {
             int extIx = GetSheetExtIx(sheet);
             return new Area3DPtg(areaRef, extIx);
         }
+
         public Ptg GetNameXPtg(String name, SheetIdentifier sheet)
         {
             int sheetRefIndex = GetSheetExtIx(sheet);
             return _iBook.GetNameXPtg(name, sheetRefIndex, _uBook.GetUDFFinder());
         }
 
-
-        public IEvaluationName GetName(String name,int sheetIndex)
+        public IEvaluationName GetName(String name, int sheetIndex)
         {
             for (int i = 0; i < _iBook.NumNames; i++)
             {
@@ -109,6 +113,7 @@ using Npoi.Core.Util;
             HSSFSheet sheet = ((HSSFEvaluationSheet)evalSheet).HSSFSheet;
             return _uBook.GetSheetIndex(sheet);
         }
+
         public int GetSheetIndex(String sheetName)
         {
             return _uBook.GetSheetIndex(sheetName);
@@ -123,6 +128,7 @@ using Npoi.Core.Util;
         {
             return new HSSFEvaluationSheet((HSSFSheet)_uBook.GetSheetAt(sheetIndex));
         }
+
         public int ConvertFromExternSheetIndex(int externSheetIndex)
         {
             // TODO Update this to expose first and last sheet indexes
@@ -164,6 +170,7 @@ using Npoi.Core.Util;
             }
             return sheet;
         }
+
         public ExternalSheet GetExternalSheet(String firstSheetName, string lastSheetName, int externalWorkbookNumber)
         {
             throw new InvalidOperationException("XSSF-style external references are not supported for HSSF");
@@ -178,19 +185,23 @@ using Npoi.Core.Util;
         {
             return _iBook.FindSheetFirstNameFromExternSheet(externSheetIndex);
         }
+
         public String GetSheetLastNameByExternSheet(int externSheetIndex)
         {
             return _iBook.FindSheetLastNameFromExternSheet(externSheetIndex);
         }
+
         public String GetNameText(NamePtg namePtg)
         {
             return _iBook.GetNameRecord(namePtg.Index).NameText;
         }
+
         public IEvaluationName GetName(NamePtg namePtg)
         {
             int ix = namePtg.Index;
             return new Name(_iBook.GetNameRecord(ix), ix);
         }
+
         public Ptg[] GetFormulaTokens(IEvaluationCell evalCell)
         {
             ICell cell = ((HSSFEvaluationCell)evalCell).HSSFCell;
@@ -220,10 +231,8 @@ using Npoi.Core.Util;
             return _uBook.GetUDFFinder();
         }
 
-
         private class Name : IEvaluationName
         {
-
             private NameRecord _nameRecord;
             private int _index;
 
@@ -232,30 +241,39 @@ using Npoi.Core.Util;
                 _nameRecord = nameRecord;
                 _index = index;
             }
+
             public Ptg[] NameDefinition
             {
-                get{
+                get
+                {
                     return _nameRecord.NameDefinition;
                 }
             }
+
             public String NameText
             {
-                get{
+                get
+                {
                     return _nameRecord.NameText;
                 }
             }
+
             public bool HasFormula
             {
-                get{
+                get
+                {
                     return _nameRecord.HasFormula;
                 }
             }
+
             public bool IsFunctionName
             {
-                get{
+                get
+                {
                     return _nameRecord.IsFunctionName;
                 }
             }
+
             public bool IsRange
             {
                 get
@@ -263,11 +281,13 @@ using Npoi.Core.Util;
                     return _nameRecord.HasFormula; // TODO - is this right?
                 }
             }
+
             public NamePtg CreatePtg()
             {
                 return new NamePtg(_index);
             }
         }
+
         private int GetSheetExtIx(SheetIdentifier sheetIden)
         {
             int extIx;
@@ -299,6 +319,7 @@ using Npoi.Core.Util;
             }
             return extIx;
         }
+
         public SpreadsheetVersion GetSpreadsheetVersion()
         {
             return SpreadsheetVersion.EXCEL97;

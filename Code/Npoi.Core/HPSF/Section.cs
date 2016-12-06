@@ -17,33 +17,32 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF
 {
-    using System;
-    using System.Text;
-    using System.Collections;
-    using Npoi.Core.Util;
     using Npoi.Core.HPSF.Wellknown;
+    using Npoi.Core.Util;
+    using System;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Text;
 
     /// <summary>
     /// Represents a section in a {@link PropertySet}.
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
     /// @author Drew Varner (Drew.Varner allUpIn sc.edu)
     /// @since 2002-02-09
     /// </summary>
     public class Section
     {
-
         /**
          * Maps property IDs To section-private PID strings. These
          * strings can be found in the property with ID 0.
@@ -55,79 +54,60 @@ namespace Npoi.Core.HPSF
          */
         protected ClassID formatID;
 
-
         /// <summary>
         /// Returns the format ID. The format ID is the "type" of the
         /// section. For example, if the format ID of the first {@link
-        /// Section} Contains the bytes specified by 
+        /// Section} Contains the bytes specified by
         /// <c>org.apache.poi.hpsf.wellknown.SectionIDMap.SUMMARY_INFORMATION_ID</c>
         /// the section (and thus the property Set) is a SummaryInformation.
         /// </summary>
         /// <value>The format ID.</value>
-        public ClassID FormatID
-        {
+        public ClassID FormatID {
             get { return formatID; }
         }
 
         protected long offset;
 
-
         /// <summary>
         /// Gets the offset of the section in the stream.
         /// </summary>
         /// <value>The offset of the section in the stream</value>
-        public long OffSet
-        {
+        public long OffSet {
             get { return offset; }
         }
 
-
-
-
         protected int size;
-
 
         /// <summary>
         /// Returns the section's size in bytes.
         /// </summary>
         /// <value>The section's size in bytes.</value>
-        public virtual int Size
-        {
+        public virtual int Size {
             get { return size; }
         }
-
-
 
         /// <summary>
         /// Returns the number of properties in this section.
         /// </summary>
-        /// <value>The number of properties in this section.</value> 
-        public virtual int PropertyCount
-        {
+        /// <value>The number of properties in this section.</value>
+        public virtual int PropertyCount {
             get { return properties.Length; }
         }
 
         protected Property[] properties;
 
-
         /// <summary>
         /// Returns this section's properties.
         /// </summary>
         /// <value>This section's properties.</value>
-        public virtual Property[] Properties
-        {
+        public virtual Property[] Properties {
             get { return properties; }
         }
-
-
 
         /// <summary>
         /// Creates an empty and uninitialized {@link Section}.
         /// </summary>
-        protected Section()
-        { }
-
-
+        protected Section() { }
 
         /// <summary>
         /// Creates a {@link Section} instance from a byte array.
@@ -135,8 +115,7 @@ namespace Npoi.Core.HPSF
         /// <param name="src">Contains the complete property Set stream.</param>
         /// <param name="offset">The position in the stream that points To the
         /// section's format ID.</param>
-        public Section(byte[] src, int offset)
-        {
+        public Section(byte[] src, int offset) {
             int o1 = offset;
 
             /*
@@ -167,7 +146,7 @@ namespace Npoi.Core.HPSF
             /*
              * Read the properties. The offset is positioned at the first
              * entry of the property list. There are two problems:
-             * 
+             *
              * 1. For each property we have To Find out its Length. In the
              *    property list we Find each property's ID and its offset relative
              *    To the section's beginning. Unfortunately the properties in the
@@ -175,8 +154,8 @@ namespace Npoi.Core.HPSF
              *    possible To calculate the Length as
              *    (offset of property(i+1) - offset of property(i)). Before we can
              *    that we first have To sort the property list by ascending offsets.
-             * 
-             * 2. We have To Read the property with ID 1 before we Read other 
+             *
+             * 2. We have To Read the property with ID 1 before we Read other
              *    properties, at least before other properties containing strings.
              *    The reason is that property 1 specifies the codepage. If it Is
              *    1200, all strings are in Unicode. In other words: Before we can
@@ -194,8 +173,7 @@ namespace Npoi.Core.HPSF
             int pass1OffSet = o1;
             List<object> propertyList = new List<object>(propertyCount);
             PropertyListEntry ple;
-            for (int i = 0; i < properties.Length; i++)
-            {
+            for (int i = 0; i < properties.Length; i++) {
                 ple = new PropertyListEntry();
 
                 /* Read the property ID. */
@@ -214,16 +192,14 @@ namespace Npoi.Core.HPSF
             propertyList.Sort();
 
             /* Calculate the properties' Lengths. */
-            for (int i = 0; i < propertyCount - 1; i++)
-            {
+            for (int i = 0; i < propertyCount - 1; i++) {
                 PropertyListEntry ple1 =
                     (PropertyListEntry)propertyList[i];
                 PropertyListEntry ple2 =
                     (PropertyListEntry)propertyList[i + 1];
                 ple1.Length = ple2.offset - ple1.offset;
             }
-            if (propertyCount > 0)
-            {
+            if (propertyCount > 0) {
                 ple = (PropertyListEntry)propertyList[propertyCount - 1];
                 ple.Length = size - ple.offset;
                 //if (ple.Length <= 0)
@@ -241,13 +217,11 @@ namespace Npoi.Core.HPSF
             /* Look for the codepage. */
             int codepage = -1;
             for (IEnumerator i = propertyList.GetEnumerator();
-                 codepage == -1 && i.MoveNext(); )
-            {
+                 codepage == -1 && i.MoveNext();) {
                 ple = (PropertyListEntry)i.Current;
 
                 /* Read the codepage if the property ID is 1. */
-                if (ple.id == PropertyIDMap.PID_CODEPAGE)
-                {
+                if (ple.id == PropertyIDMap.PID_CODEPAGE) {
                     /* Read the property's value type. It must be
                      * VT_I2. */
                     int o = (int)(this.offset + ple.offset);
@@ -267,8 +241,7 @@ namespace Npoi.Core.HPSF
             /* Pass 2: Read all properties - including the codepage property,
              * if available. */
             int i1 = 0;
-            for (IEnumerator i = propertyList.GetEnumerator(); i.MoveNext(); )
-            {
+            for (IEnumerator i = propertyList.GetEnumerator(); i.MoveNext();) {
                 ple = (PropertyListEntry)i.Current;
                 Property p = new Property(ple.id, src,
                         this.offset + ple.offset,
@@ -285,13 +258,12 @@ namespace Npoi.Core.HPSF
             this.dictionary = (IDictionary)GetProperty(0);
         }
 
-
-
         /**
          * Represents an entry in the property list and holds a property's ID and
          * its offset from the section's beginning.
          */
-        class PropertyListEntry : IComparable
+
+        private class PropertyListEntry : IComparable
         {
             public int id;
             public int offset;
@@ -304,8 +276,8 @@ namespace Npoi.Core.HPSF
              *
              * @see Comparable#CompareTo(java.lang.Object)
              */
-            public int CompareTo(Object o)
-            {
+
+            public int CompareTo(Object o) {
                 if (!(o is PropertyListEntry))
                     throw new InvalidCastException(o.ToString());
                 int otherOffSet = ((PropertyListEntry)o).offset;
@@ -317,8 +289,7 @@ namespace Npoi.Core.HPSF
                     return 1;
             }
 
-            public override String ToString()
-            {
+            public override String ToString() {
                 StringBuilder b = new StringBuilder();
                 b.Append(GetType().Name);
                 b.Append("[id=");
@@ -332,8 +303,6 @@ namespace Npoi.Core.HPSF
             }
         }
 
-
-
         /**
          * Returns the value of the property with the specified ID. If
          * the property is not available, <c>null</c> is returned
@@ -344,8 +313,8 @@ namespace Npoi.Core.HPSF
          *
          * @return The property's value
          */
-        public virtual Object GetProperty(long id)
-        {
+
+        public virtual Object GetProperty(long id) {
             wasNull = false;
             for (int i = 0; i < properties.Length; i++)
                 if (id == properties[i].ID)
@@ -353,8 +322,6 @@ namespace Npoi.Core.HPSF
             wasNull = true;
             return null;
         }
-
-
 
         /**
          * Returns the value of the numeric property with the specified
@@ -367,8 +334,8 @@ namespace Npoi.Core.HPSF
          *
          * @return The property's value
          */
-        public virtual int GetPropertyIntValue(long id)
-        {
+
+        public virtual int GetPropertyIntValue(long id) {
             Object o = GetProperty(id);
             if (o == null)
                 return 0;
@@ -378,8 +345,6 @@ namespace Npoi.Core.HPSF
                      o.GetType().Name + ".");
             return (int)o;
         }
-
-
 
         /**
          * Returns the value of the bool property with the specified
@@ -392,20 +357,16 @@ namespace Npoi.Core.HPSF
          *
          * @return The property's value
          */
-        public virtual bool GetPropertyBooleanValue(int id)
-        {
+
+        public virtual bool GetPropertyBooleanValue(int id) {
             object tmp = GetProperty(id);
-            if (tmp != null)
-            {
+            if (tmp != null) {
                 return (bool)GetProperty(id);
             }
-            else
-            {
+            else {
                 return false;
             }
         }
-
-
 
         /**
          * This member is <c>true</c> if the last call To {@link
@@ -413,7 +374,6 @@ namespace Npoi.Core.HPSF
          * property that was not available, else <c>false</c>.
          */
         private bool wasNull;
-
 
         /// <summary>
         /// Checks whether the property which the last call To {@link
@@ -427,12 +387,9 @@ namespace Npoi.Core.HPSF
         /// <value><c>true</c> if the last call To {@link
         /// #GetPropertyIntValue} or {@link #GetProperty} tried To access a
         /// property that was not available; otherwise, <c>false</c>.</value>
-        public virtual bool WasNull
-        {
+        public virtual bool WasNull {
             get { return wasNull; }
         }
-
-
 
         /// <summary>
         /// Returns the PID string associated with a property ID. The ID
@@ -442,8 +399,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="pid">The property ID.</param>
         /// <returns>The property ID's string value</returns>
-        public String GetPIDString(long pid)
-        {
+        public String GetPIDString(long pid) {
             String s = null;
             if (dictionary != null)
                 s = (String)dictionary[pid];
@@ -454,41 +410,39 @@ namespace Npoi.Core.HPSF
             return s;
         }
 
-
-
         /**
          * Checks whether this section is equal To another object. The result Is
          * <c>false</c> if one of the the following conditions holds:
-         * 
+         *
          * <ul>
-         * 
+         *
          * <li>The other object is not a {@link Section}.</li>
-         * 
+         *
          * <li>The format IDs of the two sections are not equal.</li>
-         *   
+         *
          * <li>The sections have a different number of properties. However,
          * properties with ID 1 (codepage) are not counted.</li>
-         * 
+         *
          * <li>The other object is not a {@link Section}.</li>
-         * 
+         *
          * <li>The properties have different values. The order of the properties
          * is irrelevant.</li>
-         * 
+         *
          * </ul>
-         * 
+         *
          * @param o The object To Compare this section with
          * @return <c>true</c> if the objects are equal, <c>false</c> if
          * not
          */
-        public override bool Equals(Object o)
-        {
+
+        public override bool Equals(Object o) {
             if (o == null || !(o is Section))
                 return false;
             Section s = (Section)o;
             if (!s.FormatID.Equals(FormatID))
                 return false;
 
-            /* Compare all properties except 0 and 1 as they must be handled 
+            /* Compare all properties except 0 and 1 as they must be handled
              * specially. */
             Property[] pa1 = new Property[Properties.Length];
             Property[] pa2 = new Property[s.Properties.Length];
@@ -499,33 +453,27 @@ namespace Npoi.Core.HPSF
              * arrays. */
             Property p10 = null;
             Property p20 = null;
-            for (int i = 0; i < pa1.Length; i++)
-            {
+            for (int i = 0; i < pa1.Length; i++) {
                 long id = pa1[i].ID;
-                if (id == 0)
-                {
+                if (id == 0) {
                     p10 = pa1[i];
                     pa1 = Remove(pa1, i);
                     i--;
                 }
-                if (id == 1)
-                {
+                if (id == 1) {
                     // p11 = pa1[i];
                     pa1 = Remove(pa1, i);
                     i--;
                 }
             }
-            for (int i = 0; i < pa2.Length; i++)
-            {
+            for (int i = 0; i < pa2.Length; i++) {
                 long id = pa2[i].ID;
-                if (id == 0)
-                {
+                if (id == 0) {
                     p20 = pa2[i];
                     pa2 = Remove(pa2, i);
                     i--;
                 }
-                if (id == 1)
-                {
+                if (id == 1) {
                     // p21 = pa2[i];
                     pa2 = Remove(pa2, i);
                     i--;
@@ -539,15 +487,13 @@ namespace Npoi.Core.HPSF
 
             /* If the dictionaries are unequal the sections are unequal. */
             bool dictionaryEqual = true;
-            if (p10 != null && p20 != null)
-            {
+            if (p10 != null && p20 != null) {
                 //tony qu fixed this issue
-                Dictionary<object,object> a=(Dictionary<object,object>)p10.Value;
-                Dictionary<object,object> b = (Dictionary<object,object>)p20.Value;
-                dictionaryEqual = a.Count==b.Count;
+                Dictionary<object, object> a = (Dictionary<object, object>)p10.Value;
+                Dictionary<object, object> b = (Dictionary<object, object>)p20.Value;
+                dictionaryEqual = a.Count == b.Count;
             }
-            else if (p10 != null || p20 != null)
-            {
+            else if (p10 != null || p20 != null) {
                 dictionaryEqual = false;
             }
             if (!dictionaryEqual)
@@ -556,8 +502,6 @@ namespace Npoi.Core.HPSF
                 return Util.AreEqual(pa1, pa2);
         }
 
-
-
         /// <summary>
         /// Removes a field from a property array. The resulting array Is
         /// compactified and returned.
@@ -565,8 +509,7 @@ namespace Npoi.Core.HPSF
         /// <param name="pa">The property array.</param>
         /// <param name="i">The index of the field To be Removed.</param>
         /// <returns>the compactified array.</returns>
-        private Property[] Remove(Property[] pa, int i)
-        {
+        private Property[] Remove(Property[] pa, int i) {
             Property[] h = new Property[pa.Length - 1];
             if (i > 0)
                 System.Array.Copy(pa, 0, h, 0, i);
@@ -574,15 +517,13 @@ namespace Npoi.Core.HPSF
             return h;
         }
 
-
         /// <summary>
         /// Serves as a hash function for a particular type.
         /// </summary>
         /// <returns>
         /// A hash code for the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override int GetHashCode()
-        {
+        public override int GetHashCode() {
             long GetHashCode = 0;
             GetHashCode += FormatID.GetHashCode();
             Property[] pa = Properties;
@@ -592,17 +533,13 @@ namespace Npoi.Core.HPSF
             return returnHashCode;
         }
 
-
-
-
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </summary>
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
-        public override String ToString()
-        {
+        public override String ToString() {
             StringBuilder b = new StringBuilder();
             Property[] pa = Properties;
             b.Append(GetType().Name);
@@ -616,8 +553,7 @@ namespace Npoi.Core.HPSF
             b.Append(", size: ");
             b.Append(Size);
             b.Append(", properties: [\n");
-            for (int i = 0; i < pa.Length; i++)
-            {
+            for (int i = 0; i < pa.Length; i++) {
                 b.Append(pa[i].ToString());
                 b.Append(",\n");
             }
@@ -625,8 +561,6 @@ namespace Npoi.Core.HPSF
             b.Append(']');
             return b.ToString();
         }
-
-
 
         /// <summary>
         /// Gets the section's dictionary. A dictionary allows an application To
@@ -638,26 +572,24 @@ namespace Npoi.Core.HPSF
         /// <value>the dictionary or null
         ///  if the section does not have
         /// a dictionary.</value>
-        public virtual IDictionary Dictionary
-        {
-            get {
+        public virtual IDictionary Dictionary {
+            get
+            {
                 if (dictionary == null)
-                    dictionary = new Dictionary<object,object>();
+                    dictionary = new Dictionary<object, object>();
                 return dictionary;
             }
-            set { 
-                dictionary = value; 
+            set
+            {
+                dictionary = value;
             }
         }
-
-
 
         /// <summary>
         /// Gets the section's codepage, if any.
         /// </summary>
         /// <value>The section's codepage if one is defined, else -1.</value>
-        public int Codepage
-        {
+        public int Codepage {
             get
             {
                 if (GetProperty(PropertyIDMap.PID_CODEPAGE) == null)
@@ -667,6 +599,5 @@ namespace Npoi.Core.HPSF
                 return codepage;
             }
         }
-
     }
 }

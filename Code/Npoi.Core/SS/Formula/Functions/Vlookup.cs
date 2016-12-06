@@ -17,30 +17,30 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+
     /**
      * Implementation of the VLOOKUP() function.<p/>
-     * 
+     *
      * VLOOKUP Finds a row in a lookup table by the first column value and returns the value from another column.<br/>
-     * 
+     *
      * <b>Syntax</b>:<br/>
      * <b>VLOOKUP</b>(<b>lookup_value</b>, <b>table_array</b>, <b>col_index_num</b>, range_lookup)<p/>
-     * 
+     *
      * <b>lookup_value</b>  The value to be found in the first column of the table array.<br/>
      * <b>table_array</b> An area reference for the lookup data. <br/>
      * <b>col_index_num</b> a 1 based index specifying which column value of the lookup data will be returned.<br/>
-     * <b>range_lookup</b> If TRUE (default), VLOOKUP Finds the largest value less than or equal to 
-     * the lookup_value.  If FALSE, only exact Matches will be considered<br/>   
-     * 
+     * <b>range_lookup</b> If TRUE (default), VLOOKUP Finds the largest value less than or equal to
+     * the lookup_value.  If FALSE, only exact Matches will be considered<br/>
+     *
      * @author Josh Micich
      */
+
     public class Vlookup : Var3or4ArgFunction
     {
-
         //private class ColumnVector : ValueVector
         //{
-
         //    private AreaEval _tableArray;
         //    private int _size;
         //    private int _columnAbsoluteIndex;
@@ -111,12 +111,12 @@ namespace Npoi.Core.SS.Formula.Functions
             }
         }
 
-
         /**
          * Returns one column from an <c>AreaEval</c>
-         * 
+         *
          * @(#VALUE!) if colIndex Is negative, (#REF!) if colIndex Is too high
          */
+
         private ValueVector CreateResultColumnVector(TwoDEval tableArray, int colIndex)
         {
             if (colIndex >= tableArray.Width)

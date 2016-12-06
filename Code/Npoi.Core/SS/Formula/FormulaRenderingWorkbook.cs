@@ -17,35 +17,40 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
-    using System;
-    using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.PTG;
+    using System;
 
     /**
      * Abstracts a workbook for the purpose of converting formula To text.<br/>
-     * 
+     *
      * For POI internal use only
-     * 
+     *
      * @author Josh Micich
      */
+
     public interface IFormulaRenderingWorkbook
     {
-
         /**
          * @return <c>null</c> if externSheetIndex refers To a sheet inside the current workbook
          */
+
         ExternalSheet GetExternalSheet(int externSheetIndex);
+
         //String GetSheetNameByExternSheet(int externSheetIndex);
         /**
          * @return the name of the (first) sheet referred to by the given external sheet index
          */
+
         String GetSheetFirstNameByExternSheet(int externSheetIndex);
+
         /**
          * @return the name of the (last) sheet referred to by the given external sheet index
          */
+
         String GetSheetLastNameByExternSheet(int externSheetIndex);
+
         String ResolveNameXText(NameXPtg nameXPtg);
+
         String GetNameText(NamePtg namePtg);
     }
 }

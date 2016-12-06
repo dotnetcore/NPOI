@@ -26,5 +26,4 @@ namespace Npoi.Core.SS.UserModel
     public interface IFooter : IHeaderFooter
     {
     }
-
 }

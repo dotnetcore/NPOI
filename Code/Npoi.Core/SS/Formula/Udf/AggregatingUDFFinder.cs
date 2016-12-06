@@ -17,8 +17,8 @@
 
 namespace Npoi.Core.SS.Formula.Udf
 {
-    using System;
     using Npoi.Core.SS.Formula.Functions;
+    using System;
     using System.Collections.Generic;
 
     /**
@@ -26,9 +26,9 @@ namespace Npoi.Core.SS.Formula.Udf
      *
      * @author PUdalau
      */
+
     public class AggregatingUDFFinder : UDFFinder
     {
-
         private List<UDFFinder> _usedToolPacks = new List<UDFFinder>();
 
         public AggregatingUDFFinder(params UDFFinder[] usedToolPacks)
@@ -38,7 +38,7 @@ namespace Npoi.Core.SS.Formula.Udf
         }
 
         /// <summary>
-        /// Returns executor by specified name. 
+        /// Returns executor by specified name.
         /// </summary>
         /// <param name="name">Name of function.</param>
         /// <returns>Function executor. null if not found</returns>
@@ -66,4 +66,3 @@ namespace Npoi.Core.SS.Formula.Udf
         }
     }
 }
-

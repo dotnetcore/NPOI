@@ -21,7 +21,6 @@ namespace Npoi.Core.SS.UserModel
 
     public interface IPictureData
     {
-
         /**
          * Gets the picture data.
          *
@@ -34,7 +33,9 @@ namespace Npoi.Core.SS.UserModel
          *
          * @return the file extension.
          */
+
         String SuggestFileExtension();
+
         /**
          * Returns the mime type for the image
          */

@@ -17,20 +17,20 @@
 
 namespace Npoi.Core.HSSF.Record.Aggregates
 {
-    using System;
     using Npoi.Core.HSSF.Model;
     using Npoi.Core.HSSF.Record;
+    using System;
     using System.Collections.Generic;
 
     /**
      * Manages the all the records associated with a 'Custom View Settings' sub-stream.<br/>
      * Includes the Initial USERSVIEWBEGIN(0x01AA) and USERSVIEWEND(0x01AB).
-     * 
+     *
      * @author Josh Micich
      */
+
     public class CustomViewSettingsRecordAggregate : RecordAggregate
     {
-
         private Record _begin;
         private Record _end;
         /**
@@ -103,4 +103,3 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         }
     }
 }
-

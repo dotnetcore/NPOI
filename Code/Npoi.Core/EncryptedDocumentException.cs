@@ -8,6 +8,5 @@ namespace Npoi.Core
         public EncryptedDocumentException(String s)
             : base(s)
         { }
-
     }
 }

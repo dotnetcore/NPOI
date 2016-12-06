@@ -17,21 +17,20 @@
 
 namespace Npoi.Core.HSSF.Record.Cont
 {
-    using System;
-
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
+    using System;
 
     /**
      * An augmented {@link LittleEndianOutput} used for serialization of {@link ContinuableRecord}s.
      * This class keeps track of how much remaining space is available in the current BIFF record and
-     * can start new {@link ContinueRecord}s as required. 
-     * 
+     * can start new {@link ContinueRecord}s as required.
+     *
      * @author Josh Micich
      */
+
     public class ContinuableRecordOutput : ILittleEndianOutput
     {
-
         private ILittleEndianOutput _out;
         private UnknownLengthRecordOutput _ulrOutput;
         private int _totalPreviousRecordsSize;
@@ -49,8 +48,9 @@ namespace Npoi.Core.HSSF.Record.Cont
         }
 
         /**
-         * @return total number of bytes written so far (including all BIFF headers) 
+         * @return total number of bytes written so far (including all BIFF headers)
          */
+
         public int TotalSize
         {
             get
@@ -58,16 +58,20 @@ namespace Npoi.Core.HSSF.Record.Cont
                 return _totalPreviousRecordsSize + _ulrOutput.TotalSize;
             }
         }
+
         /**
          * Terminates the last record (also updates its 'ushort size' field)
          */
+
         public void Terminate()
         {
             _ulrOutput.Terminate();
         }
+
         /**
          * @return number of remaining bytes of space in current record
          */
+
         public int AvailableSpace
         {
             get
@@ -80,12 +84,14 @@ namespace Npoi.Core.HSSF.Record.Cont
          * Terminates the current record and starts a new {@link ContinueRecord} (regardless
          * of how much space is still available in the current record).
          */
+
         public void WriteContinue()
         {
             _ulrOutput.Terminate();
             _totalPreviousRecordsSize += _ulrOutput.TotalSize;
             _ulrOutput = new UnknownLengthRecordOutput(_out, ContinueRecord.sid);
         }
+
         public void WriteContinueIfRequired(int requiredContinuousSize)
         {
             if (_ulrOutput.AvailableSpace < requiredContinuousSize)
@@ -100,17 +106,18 @@ namespace Npoi.Core.HSSF.Record.Cont
          * <li>byte optionFlags</li>
          * <li>encoded character data (in "ISO-8859-1" or "UTF-16LE" encoding)</li>
          * </ul>
-         * 
+         *
          * Notes:
          * <ul>
-         * <li>The value of the 'is16bitEncoded' flag is determined by the actual character data 
+         * <li>The value of the 'is16bitEncoded' flag is determined by the actual character data
          * of <c>text</c></li>
          * <li>The string options flag is never separated (by a {@link ContinueRecord}) from the
          * first chunk of character data it refers to.</li>
-         * <li>The 'ushort Length' field is assumed to have been explicitly written earlier.  Hence, 
+         * <li>The 'ushort Length' field is assumed to have been explicitly written earlier.  Hence,
          * there may be an intervening {@link ContinueRecord}</li>
          * </ul>
          */
+
         public void WriteStringData(String text)
         {
             bool is16bitEncoded = StringUtil.HasMultibyte(text);
@@ -126,6 +133,7 @@ namespace Npoi.Core.HSSF.Record.Cont
             WriteByte(optionFlags);
             WriteCharacterData(text, is16bitEncoded);
         }
+
         /**
          * Writes a unicode string complete with header and character data.  This includes:
          * <ul>
@@ -135,7 +143,7 @@ namespace Npoi.Core.HSSF.Record.Cont
          * <li>ushort extendedDataSize (optional)</li>
          * <li>encoded character data (in "ISO-8859-1" or "UTF-16LE" encoding)</li>
          * </ul>
-         * 
+         *
          * The following bits of the 'optionFlags' byte will be set as appropriate:
          * <table border='1'>
          * <tr><th>Mask</th><th>Description</th></tr>
@@ -144,14 +152,15 @@ namespace Npoi.Core.HSSF.Record.Cont
          * <tr><td>0x08</td><td>isRichText</td></tr>
          * </table>
          * Notes:
-         * <ul> 
-         * <li>The value of the 'is16bitEncoded' flag is determined by the actual character data 
+         * <ul>
+         * <li>The value of the 'is16bitEncoded' flag is determined by the actual character data
          * of <c>text</c></li>
          * <li>The string header fields are never separated (by a {@link ContinueRecord}) from the
          * first chunk of character data (i.e. the first character is always encoded in the same
          * record as the string header).</li>
          * </ul>
          */
+
         public void WriteString(String text, int numberOfRichTextRuns, int extendedDataSize)
         {
             bool is16bitEncoded = StringUtil.HasMultibyte(text);
@@ -186,7 +195,6 @@ namespace Npoi.Core.HSSF.Record.Cont
             }
             WriteCharacterData(text, is16bitEncoded);
         }
-
 
         private void WriteCharacterData(String text, bool is16bitEncoded)
         {
@@ -233,6 +241,7 @@ namespace Npoi.Core.HSSF.Record.Cont
             WriteContinueIfRequired(b.Length);
             _ulrOutput.Write(b);
         }
+
         public void Write(byte[] b, int offset, int len)
         {
             //WriteContinueIfRequired(len);
@@ -252,26 +261,31 @@ namespace Npoi.Core.HSSF.Record.Cont
                 WriteContinue();
             }
         }
+
         public void WriteByte(int v)
         {
             WriteContinueIfRequired(1);
             _ulrOutput.WriteByte(v);
         }
+
         public void WriteDouble(double v)
         {
             WriteContinueIfRequired(8);
             _ulrOutput.WriteDouble(v);
         }
+
         public void WriteInt(int v)
         {
             WriteContinueIfRequired(4);
             _ulrOutput.WriteInt(v);
         }
+
         public void WriteLong(long v)
         {
             WriteContinueIfRequired(8);
             _ulrOutput.WriteLong(v);
         }
+
         public void WriteShort(int v)
         {
             WriteContinueIfRequired(2);
@@ -283,37 +297,43 @@ namespace Npoi.Core.HSSF.Record.Cont
         // */
         private static ILittleEndianOutput NOPOutput = new DelayableLittleEndianOutput1();
 
-        class DelayableLittleEndianOutput1 : IDelayableLittleEndianOutput
+        private class DelayableLittleEndianOutput1 : IDelayableLittleEndianOutput
         {
-
             public ILittleEndianOutput CreateDelayedOutput(int size)
             {
                 return this;
             }
+
             public void Write(byte[] b)
             {
                 // does nothing
             }
+
             public void Write(byte[] b, int offset, int len)
             {
                 // does nothing
             }
+
             public void WriteByte(int v)
             {
                 // does nothing
             }
+
             public void WriteDouble(double v)
             {
                 // does nothing
             }
+
             public void WriteInt(int v)
             {
                 // does nothing
             }
+
             public void WriteLong(long v)
             {
                 // does nothing
             }
+
             public void WriteShort(int v)
             {
                 // does nothing

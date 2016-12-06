@@ -23,6 +23,7 @@ namespace Npoi.Core.SS.UserModel
      * @author Dmitriy Kumshayev
      * @author Yegor Kozlov
      */
+
     public interface IBorderFormatting
     {
         BorderStyle BorderBottom { get; set; }

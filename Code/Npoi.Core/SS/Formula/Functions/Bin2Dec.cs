@@ -17,14 +17,9 @@
 
 using Npoi.Core.SS.Formula.Eval;
 using System;
-using Npoi.Core.SS.Util;
-using Npoi.Core.SS.UserModel;
-using System.Globalization;
-using Npoi.Core.Util;
-using System.Collections.Generic;
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-
     /**
      * Implementation for Excel Bin2Dec() function.<p/>
      * <p/>
@@ -42,9 +37,9 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author cedric dot walter @ gmail dot com
      */
+
     public class Bin2Dec : Fixed1ArgFunction, FreeRefFunction
     {
-
         public static FreeRefFunction instance = new Bin2Dec();
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval numberVE)

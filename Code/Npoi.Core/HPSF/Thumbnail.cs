@@ -17,18 +17,18 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF
 {
-    using System;
     using Npoi.Core.Util;
+    using System;
 
     /// <summary>
     /// Class To manipulate data in the Clipboard Variant (Variant#VT_CF VT_CF) format.
@@ -52,7 +52,7 @@ namespace Npoi.Core.HPSF
         /// OffSet in bytes where the Windows Metafile (WMF) image data starts in the <c>byte[]</c> returned by SummaryInformation#GetThumbnail()
         /// There is only WMF data at this point in the
         /// <c>byte[]</c> if the Clipboard Format Tag is
-        /// CFTAG_WINDOWS and the Clipboard Format is 
+        /// CFTAG_WINDOWS and the Clipboard Format is
         /// CF_METAFILEPICT.
         /// </summary>
         /// <remarks>Note: The <c>byte[]</c> that starts at
@@ -98,12 +98,11 @@ namespace Npoi.Core.HPSF
         /// Clipboard Format - Device Independent Bitmap
         /// </summary>
         public const int CF_DIB = 8;
+
         /// <summary>
         /// Clipboard Format - Enhanced Windows metafile format
         /// </summary>
         public const int CF_ENHMETAFILE = 14;
-
-
 
         /// <summary>
         /// Clipboard Format - Bitmap
@@ -118,8 +117,6 @@ namespace Npoi.Core.HPSF
          */
         private byte[] thumbnailData = null;
 
-
-
         /// <summary>
         /// Default Constructor. If you use it then one you'll have To Add
         /// the thumbnail <c>byte[]</c> from {@link
@@ -127,38 +124,29 @@ namespace Npoi.Core.HPSF
         /// manipulations, otherwise you'll Get a
         /// <c>NullPointerException</c>.
         /// </summary>
-        public Thumbnail()
-        {
-            
+        public Thumbnail() {
         }
-
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Thumbnail"/> class.
         /// </summary>
         /// <param name="thumbnailData">The thumbnail data.</param>
-        public Thumbnail(byte[] thumbnailData)
-        {
+        public Thumbnail(byte[] thumbnailData) {
             this.thumbnailData = thumbnailData;
         }
-
-
 
         /// <summary>
         /// Gets or sets the thumbnail as a <c>byte[]</c> in {@link
         /// Variant#VT_CF VT_CF} format.
         /// </summary>
         /// <value>The thumbnail value</value>
-        public byte[] ThumbnailData
-        {
+        public byte[] ThumbnailData {
             get
             {
                 return thumbnailData;
             }
             set { this.thumbnailData = value; }
         }
-
 
         /// <summary>
         /// Returns an <c>int</c> representing the Clipboard
@@ -172,8 +160,7 @@ namespace Npoi.Core.HPSF
         /// </ul>
         /// </summary>
         /// <returns>A flag indicating the Clipboard Format Tag</returns>
-        public long ClipboardFormatTag
-        {
+        public long ClipboardFormatTag {
             get
             {
                 long clipboardFormatTag = LittleEndian.GetInt(this.ThumbnailData,
@@ -181,8 +168,6 @@ namespace Npoi.Core.HPSF
                 return clipboardFormatTag;
             }
         }
-
-
 
         /// <summary>
         /// Returns an <c>int</c> representing the Clipboard
@@ -198,16 +183,13 @@ namespace Npoi.Core.HPSF
         /// </ul>
         /// </summary>
         /// <returns>a flag indicating the Clipboard Format</returns>
-        public long GetClipboardFormat()
-        {
+        public long GetClipboardFormat() {
             if (!(ClipboardFormatTag == CFTAG_WINDOWS))
                 throw new HPSFException("Clipboard Format Tag of Thumbnail must " +
                                         "be CFTAG_WINDOWS.");
 
             return LittleEndian.GetInt(this.ThumbnailData, OFFSet_CF);
         }
-
-
 
         /// <summary>
         /// Returns the Thumbnail as a <c>byte[]</c> of WMF data
@@ -224,16 +206,14 @@ namespace Npoi.Core.HPSF
         /// CF_METAFILEPICT
         /// </summary>
         /// <returns></returns>
-        public byte[] GetThumbnailAsWMF()
-        {
+        public byte[] GetThumbnailAsWMF() {
             if (!(ClipboardFormatTag == CFTAG_WINDOWS))
                 throw new HPSFException("Clipboard Format Tag of Thumbnail must " +
                                         "be CFTAG_WINDOWS.");
             if (!(GetClipboardFormat() == CF_METAFILEPICT))
                 throw new HPSFException("Clipboard Format of Thumbnail must " +
                                         "be CF_METAFILEPICT.");
-            else
-            {
+            else {
                 byte[] thumbnail = this.ThumbnailData;
                 int wmfImageLength = thumbnail.Length - OFFSet_WMFDATA;
                 byte[] wmfImage = new byte[wmfImageLength];
@@ -245,6 +225,5 @@ namespace Npoi.Core.HPSF
                 return wmfImage;
             }
         }
-
     }
 }

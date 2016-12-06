@@ -4,9 +4,9 @@ using System.Text;
 namespace Npoi.Core.SS.Formula.PTG
 {
     using Npoi.Core.SS.Formula;
+
     public class ExternSheetNameResolver
     {
-
         public static String PrependSheetName(IFormulaRenderingWorkbook book, int field_1_index_extern_sheet, String cellRefText)
         {
             ExternalSheet externalSheet = book.GetExternalSheet(field_1_index_extern_sheet);
@@ -54,7 +54,6 @@ namespace Npoi.Core.SS.Formula.PTG
                         sb.Append(lastSheetName);
                     }
                 }
-
             }
             sb.Append('!');
             sb.Append(cellRefText);

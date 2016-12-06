@@ -17,22 +17,20 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
-
-    using System.Collections;
-    using System.Reflection;
     using Npoi.Core.SS.Formula.PTG;
+    using System;
     using System.Collections.Generic;
-
+    using System.Reflection;
 
     /**
      * This class Creates <c>OperationEval</c> instances to help evaluate <c>OperationPtg</c>
      * formula tokens.
-     * 
+     *
      * @author Josh Micich
      */
-    class OperationEvaluatorFactory
+
+    internal class OperationEvaluatorFactory
     {
         private static Type[] OPERATION_CONSTRUCTOR_CLASS_ARRAY = new Type[] { typeof(Ptg) };
 
@@ -67,7 +65,6 @@ namespace Npoi.Core.HSSF.UserModel
 
         private static void Add(Dictionary<object, object> m, Type ptgClass, Type evalClass)
         {
-
             // perform some validation now, to keep later exception handlers simple
             if (!typeof(Ptg).GetTypeInfo().IsAssignableFrom(ptgClass))
             {
@@ -106,6 +103,7 @@ namespace Npoi.Core.HSSF.UserModel
          * returns the OperationEval concrete impl instance corresponding
          * to the supplied operationPtg
          */
+
         public static OperationEval Create(OperationPtg ptg)
         {
             if (ptg == null)

@@ -26,12 +26,12 @@ namespace Npoi.Core.SS.Formula
     }
 
     /**
-     * 
+     *
      * @author Josh Micich
      */
+
     public class FormulaCellCache
     {
-
         private Dictionary<object, object> _formulaEntriesByCell;
 
         public FormulaCellCache()
@@ -42,9 +42,8 @@ namespace Npoi.Core.SS.Formula
 
         public CellCacheEntry[] GetCacheEntries()
         {
-
             FormulaCellCacheEntry[] result = new FormulaCellCacheEntry[_formulaEntriesByCell.Count];
-            _formulaEntriesByCell.Values.CopyTo(result,0);
+            _formulaEntriesByCell.Values.CopyTo(result, 0);
             return result;
         }
 
@@ -56,6 +55,7 @@ namespace Npoi.Core.SS.Formula
         /**
          * @return <c>null</c> if not found
          */
+
         public FormulaCellCacheEntry Get(IEvaluationCell cell)
         {
             return (FormulaCellCacheEntry)_formulaEntriesByCell[cell.IdentityKey];

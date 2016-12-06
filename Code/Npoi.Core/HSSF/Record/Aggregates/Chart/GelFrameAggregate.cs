@@ -15,9 +15,9 @@
    limitations Under the License.
 ==================================================================== */
 
-using System.Collections.Generic;
 using Npoi.Core.HSSF.Model;
 using Npoi.Core.HSSF.Record.Chart;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Npoi.Core.HSSF.Record.Aggregates.Chart
@@ -32,6 +32,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
         private GelFrameRecord gelFrame2;
         private List<ContinueRecord> continues = new List<ContinueRecord>();
         private PicFRecord picF;
+
         public GelFrameAggregate(RecordStream rs, ChartRecordAggregate container)
             : base(RuleName_GELFRAME, container)
         {
@@ -57,6 +58,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
                 Debug.Assert(r.GetType() == typeof(EndRecord));
             }
         }
+
         public override void VisitContainedRecords(RecordVisitor rv)
         {
             rv.VisitRecord(gelFrame1);

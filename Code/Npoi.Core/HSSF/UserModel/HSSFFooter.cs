@@ -15,13 +15,12 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.Record.Aggregates;
     using Npoi.Core.SS.UserModel;
+    using System;
 
     /// <summary>
     /// Class to Read and manipulate the footer.
@@ -33,7 +32,7 @@ namespace Npoi.Core.HSSF.UserModel
     /// fonts by using similar methods.
     /// @author Shawn Laubach (slaubach at apache dot org)
     /// </summary>
-    public class HSSFFooter : HeaderFooter,IFooter
+    public class HSSFFooter : HeaderFooter, IFooter
     {
         private PageSettingsBlock _psb;
 
@@ -45,7 +44,6 @@ namespace Npoi.Core.HSSF.UserModel
         {
             _psb = psb;
         }
-
 
         /// <summary>
         /// Gets the raw footer.
@@ -63,17 +61,18 @@ namespace Npoi.Core.HSSF.UserModel
                 return hf.Text;
             }
         }
+
         protected override void SetHeaderFooterText(string text)
         {
             FooterRecord hfr = _psb.Footer;
             if (hfr == null)
             {
                 hfr = new FooterRecord(text);
-                _psb.Footer=(hfr);
+                _psb.Footer = (hfr);
             }
             else
             {
-                hfr.Text=(text);
+                hfr.Text = (text);
             }
         }
     }

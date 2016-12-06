@@ -22,7 +22,7 @@ namespace Npoi.Core.SS.UserModel.Charts
     /// </summary>
     /// <remarks>@author Roman Kashitsyn</remarks>
     public interface IChartAxisFactory
-    { 
+    {
         /// <summary>
         /// returns new value axis
         /// </summary>
@@ -32,5 +32,4 @@ namespace Npoi.Core.SS.UserModel.Charts
 
         IChartAxis CreateCategoryAxis(AxisPosition pos);
     }
-
 }

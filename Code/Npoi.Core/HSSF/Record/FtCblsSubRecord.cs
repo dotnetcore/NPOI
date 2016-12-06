@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Npoi.Core.Util;
+using System;
 using System.Text;
-using Npoi.Core.Util;
-
 
 namespace Npoi.Core.HSSF.Record
 {
@@ -16,6 +15,7 @@ namespace Npoi.Core.HSSF.Record
          * Construct a new <code>FtCblsSubRecord</code> and
          * fill its data with the default values
          */
+
         public FtCblsSubRecord()
         {
             reserved = new byte[ENCODED_SIZE];
@@ -37,6 +37,7 @@ namespace Npoi.Core.HSSF.Record
          * Convert this record to string.
          * Used by BiffViewer and other utilities.
          */
+
         public override String ToString()
         {
             StringBuilder buffer = new StringBuilder();
@@ -53,6 +54,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * @param out the stream to serialize into
          */
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(sid);
@@ -71,6 +73,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return id of this record.
          */
+
         public override short Sid
         {
             get
@@ -87,6 +90,5 @@ namespace Npoi.Core.HSSF.Record
             rec.reserved = recdata;
             return rec;
         }
-
     }
 }

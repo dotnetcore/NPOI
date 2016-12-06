@@ -14,21 +14,22 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.Format
 {
     using System;
     using System.Text;
-
-
 
     /**
      * A formatter for the default "General" cell format.
      *
      * @author Ken Arnold, Industrious Media LLC
      */
+
     public class CellGeneralFormatter : CellFormatter
     {
         /** Creates a new general formatter. */
+
         public CellGeneralFormatter()
             : base("General")
         {
@@ -42,12 +43,13 @@ namespace Npoi.Core.SS.Format
          * @param toAppendTo The buffer to append to.
          * @param value      The value to format.
          */
+
         public override void FormatValue(StringBuilder toAppendTo, Object value)
         {
             //if (value is Number) {
             if (Npoi.Core.Util.Number.IsNumber(value))
             {
-                double val ;
+                double val;
                 double.TryParse(value.ToString(), out val);
                 if (val == 0)
                 {
@@ -96,7 +98,7 @@ namespace Npoi.Core.SS.Format
                         if (text[RemoveFrom] == '+' || text[RemoveFrom] == '-')
                             RemoveFrom++;
                         int count = 0;
-                        while (RemoveFrom + count< text.Length)
+                        while (RemoveFrom + count < text.Length)
                         {
                             if (text[RemoveFrom + count] == '0')
                                 count++;
@@ -106,8 +108,9 @@ namespace Npoi.Core.SS.Format
                         toAppendTo.Remove(RemoveFrom, count);
                     }
                 }
-            } 
-            else if (value is Boolean) {
+            }
+            else if (value is Boolean)
+            {
                 toAppendTo.Append(value.ToString().ToUpper());
             }
             else
@@ -117,6 +120,7 @@ namespace Npoi.Core.SS.Format
         }
 
         /** Equivalent to {@link #formatValue(StringBuilder,Object)}. {@inheritDoc}. */
+
         public override void SimpleValue(StringBuilder toAppendTo, Object value)
         {
             FormatValue(toAppendTo, value);

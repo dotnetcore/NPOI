@@ -15,17 +15,16 @@
    limitations under the License.
 ==================================================================== */
 
-
 using Npoi.Core.POIFS.Common;
 using Npoi.Core.POIFS.Dev;
+using Npoi.Core.POIFS.EventFileSystem;
 using Npoi.Core.POIFS.Properties;
 using Npoi.Core.Util;
-using System.IO;
-using System.Collections.Generic;
 using System;
-using System.Text;
 using System.Collections;
-using Npoi.Core.POIFS.EventFileSystem;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace Npoi.Core.POIFS.FileSystem
 {
@@ -33,6 +32,7 @@ namespace Npoi.Core.POIFS.FileSystem
  * This class manages a document in the NIO POIFS filesystem.
  * This is the {@link NPOIFSFileSystem} version.
  */
+
     public class NPOIFSDocument : POIFSViewable
     {
         private DocumentProperty _property;
@@ -42,16 +42,19 @@ namespace Npoi.Core.POIFS.FileSystem
         private int _block_size;
 
         /**
-    * Constructor for an existing Document 
+    * Constructor for an existing Document
     */
+
         public NPOIFSDocument(DocumentNode document)
             : this((DocumentProperty)document.Property,
                  ((DirectoryNode)document.Parent).NFileSystem)
         {
         }
+
         /**
-         * Constructor for an existing Document 
+         * Constructor for an existing Document
          */
+
         public NPOIFSDocument(DocumentProperty property, NPOIFSFileSystem filesystem)
         {
             this._property = property;
@@ -75,6 +78,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * @param name the name of the POIFSDocument
          * @param stream the InputStream we read data from
          */
+
         public NPOIFSDocument(String name, NPOIFSFileSystem filesystem, Stream stream)
         {
             this._filesystem = filesystem;
@@ -120,7 +124,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 _block_size = _filesystem.GetBlockStoreBlockSize();
             }
 
-            // start from the beginning 
+            // start from the beginning
             //bis.Seek(0, SeekOrigin.Begin);
 
             // Store it
@@ -133,7 +137,7 @@ namespace Npoi.Core.POIFS.FileSystem
             //    outStream.Write(buf, 0, readBytes);
             //}
 
-            for (int readBytes = 0; ; )
+            for (int readBytes = 0; ;)
             {
                 readBytes = inStream.Read(buf, 0, buf.Length);
                 if (readBytes <= 0)
@@ -172,10 +176,13 @@ namespace Npoi.Core.POIFS.FileSystem
             this._property = new DocumentProperty(name, size);
             _property.StartBlock = (/*setter*/_stream.GetStartBlock());
         }
+
         /**
         * Frees the underlying stream and property
         */
-        internal void Free() {
+
+        internal void Free()
+        {
             _stream.Free();
             _property.StartBlock = (POIFSConstants.END_OF_CHAIN);
         }
@@ -210,6 +217,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /**
          * @return size of the document
          */
+
         public int Size
         {
             get
@@ -217,6 +225,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 return _property.Size;
             }
         }
+
         public void ReplaceContents(Stream stream)
         {
             Free();
@@ -224,9 +233,11 @@ namespace Npoi.Core.POIFS.FileSystem
             _property.StartBlock = (_stream.GetStartBlock());
             _property.UpdateSize(size);
         }
+
         /**
          * @return the instance's DocumentProperty
          */
+
         public DocumentProperty DocumentProperty
         {
             get
@@ -240,6 +251,7 @@ namespace Npoi.Core.POIFS.FileSystem
          *
          * @return an array of Object; may not be null, but may be empty
          */
+
         protected Object[] GetViewableArray()
         {
             Object[] results = new Object[1];
@@ -282,13 +294,12 @@ namespace Npoi.Core.POIFS.FileSystem
               * @return an Iterator; may not be null, but may have an empty back end
               *		 store
               */
+
         protected IEnumerator GetViewableIterator()
         {
             //  return Collections.EMPTY_LIST.iterator();
             return null;
-
         }
-
 
         /**
     * Provides a short description of the object, to be used when a
@@ -296,6 +307,7 @@ namespace Npoi.Core.POIFS.FileSystem
     *
     * @return short description
     */
+
         protected String GetShortDescription()
         {
             StringBuilder buffer = new StringBuilder();
@@ -327,6 +339,6 @@ namespace Npoi.Core.POIFS.FileSystem
             get { return GetViewableIterator(); }
         }
 
-        #endregion
+        #endregion POIFSViewable Members
     }
 }

@@ -18,20 +18,20 @@
  * Created on May 8, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Eval
 {
+    using Npoi.Core.SS.Formula.PTG;
     using System;
     using System.Text;
-    using Npoi.Core.SS.Formula.PTG;
-
 
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
-     *  
+     *
      */
+
     public class BoolEval : NumericValueEval, StringValueEval
     {
-
         private bool value;
 
         public static readonly BoolEval FALSE = new BoolEval(false);
@@ -42,6 +42,7 @@ namespace Npoi.Core.SS.Formula.Eval
          * <c>(b ? BoolEval.TRUE : BoolEval.FALSE)</c>
          * @return a <c>BoolEval</c> instance representing <c>b</c>.
          */
+
         public static BoolEval ValueOf(bool b)
         {
             // TODO - Find / Replace all occurrences
@@ -65,13 +66,14 @@ namespace Npoi.Core.SS.Formula.Eval
 
         public double NumberValue
         {
-            get{return value ? 1 : 0;}
+            get { return value ? 1 : 0; }
         }
 
         public String StringValue
         {
             get { return value ? "TRUE" : "FALSE"; }
         }
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder(64);

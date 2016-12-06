@@ -17,31 +17,29 @@
 
 namespace Npoi.Core.HSSF.Record.Aggregates
 {
-
-    using System;
-    using System.Collections;
-
     using Npoi.Core.HSSF.Model;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.SS.Formula;
-    using Npoi.Core.SS.Formula.PTG;
+    using System;
+    using System.Collections;
     using System.Collections.Generic;
 
     /**
      * Holds all the conditional formatting for a workbook sheet.<p/>
-     * 
+     *
      * See OOO exelfileformat.pdf sec 4.12 'Conditional Formatting Table'
-     * 
+     *
      * @author Josh Micich
      */
+
     public class ConditionalFormattingTable : RecordAggregate
     {
-
         private IList _cfHeaders;
 
         /**
          * Creates an empty ConditionalFormattingTable
          */
+
         public ConditionalFormattingTable()
         {
             _cfHeaders = new List<object>();
@@ -49,7 +47,6 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         public ConditionalFormattingTable(RecordStream rs)
         {
-
             IList temp = new List<object>();
             while (rs.PeekNextClass() == typeof(CFHeaderRecord))
             {
@@ -70,6 +67,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /**
          * @return index of the newly added CF header aggregate
          */
+
         public int Add(CFRecordsAggregate cfAggregate)
         {
             _cfHeaders.Add(cfAggregate);

@@ -17,21 +17,20 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
-using System.IO;
-using System.Collections;
-
 using Npoi.Core.POIFS.Common;
-using Npoi.Core.POIFS.Properties;
 using Npoi.Core.POIFS.FileSystem;
+using Npoi.Core.POIFS.Properties;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Npoi.Core.POIFS.Storage
 {
@@ -43,9 +42,9 @@ namespace Npoi.Core.POIFS.Storage
     public class SmallBlockTableWriter : BlockWritable, BATManaged
     {
         private BlockAllocationTableWriter _sbat;
-        private IList                       _small_blocks;
-        private int                        _big_block_count;
-        private RootProperty               _root;
+        private IList _small_blocks;
+        private int _big_block_count;
+        private RootProperty _root;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SmallBlockTableWriter"/> class.
@@ -58,27 +57,29 @@ namespace Npoi.Core.POIFS.Storage
         {
             _sbat = new BlockAllocationTableWriter(bigBlockSize);
             _small_blocks = new List<object>();
-            _root         = root;
+            _root = root;
             IEnumerator iter = documents.GetEnumerator();
 
             while (iter.MoveNext())
             {
-                POIFSDocument   doc    = ( POIFSDocument ) iter.Current;
+                POIFSDocument doc = (POIFSDocument)iter.Current;
                 BlockWritable[] blocks = doc.SmallBlocks;
 
                 if (blocks.Length != 0)
                 {
-                    doc.StartBlock=_sbat.AllocateSpace(blocks.Length);
+                    doc.StartBlock = _sbat.AllocateSpace(blocks.Length);
                     for (int j = 0; j < blocks.Length; j++)
                     {
-                        _small_blocks.Add(blocks[ j ]);
+                        _small_blocks.Add(blocks[j]);
                     }
-                } else {
-            	    doc.StartBlock=POIFSConstants.END_OF_CHAIN;
+                }
+                else
+                {
+                    doc.StartBlock = POIFSConstants.END_OF_CHAIN;
                 }
             }
             _sbat.SimpleCreateBlocks();
-            _root.Size=_small_blocks.Count;
+            _root.Size = _small_blocks.Count;
             _big_block_count = SmallDocumentBlock.Fill(bigBlockSize, _small_blocks);
         }
 
@@ -106,7 +107,7 @@ namespace Npoi.Core.POIFS.Storage
         /// <value>count of BigBlock instances</value>
         public int CountBlocks
         {
-            get{return _big_block_count;}
+            get { return _big_block_count; }
         }
 
         /// <summary>
@@ -115,7 +116,7 @@ namespace Npoi.Core.POIFS.Storage
         /// <value>The start block.</value>
         public int StartBlock
         {
-            set { _root.StartBlock=value; }
+            set { _root.StartBlock = value; }
         }
 
         /// <summary>
@@ -128,7 +129,7 @@ namespace Npoi.Core.POIFS.Storage
 
             while (iter.MoveNext())
             {
-                (( BlockWritable ) iter.Current).WriteBlocks(stream);
+                ((BlockWritable)iter.Current).WriteBlocks(stream);
             }
         }
     }

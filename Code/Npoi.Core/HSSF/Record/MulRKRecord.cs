@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -15,19 +14,19 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
-        
 
 /*
  * MulRKRecord.java
  *
  * Created on November 9, 2001, 4:53 PM
  */
+
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.HSSF.Util;
     using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.HSSF.Util;
 
     /**
      * Used to store multiple RK numbers on a row.  1 MulRk = Multiple Cell values.
@@ -121,7 +120,6 @@ namespace Npoi.Core.HSSF.Record
             return RKUtil.DecodeNumber(field_3_rks[coffset].rk);
         }
 
-
         //private List<object> ParseRKs(RecordInputStream in1)
         //{
         //    List<object> retval = new List<object>();
@@ -162,6 +160,7 @@ namespace Npoi.Core.HSSF.Record
         {
             throw new RecordFormatException("Sorry, you can't serialize MulRK in this release");
         }
+
         protected override int DataSize
         {
             get
@@ -169,6 +168,7 @@ namespace Npoi.Core.HSSF.Record
                 throw new RecordFormatException("Sorry, you can't serialize MulRK in this release");
             }
         }
+
         private class RkRec
         {
             public const int ENCODED_SIZE = 6;
@@ -193,6 +193,4 @@ namespace Npoi.Core.HSSF.Record
             }
         }
     }
-
-    
 }

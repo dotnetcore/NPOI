@@ -18,11 +18,11 @@
 namespace Npoi.Core.HSSF.Record.Chart
 {
     /// <summary>
-    /// The DropBar record specifies the attributes of the up bars or the down bars between multiple 
-    /// series of a line chart group and specifies the beginning of a collection of records as 
-    /// defined by the Chart Sheet Substream ABNF. The first of these collections in the line chart 
-    /// group specifies the attributes of the up bars. The second specifies the attributes of the 
-    /// down bars. If this record exists, then the chart group type MUST be line and the field cSer 
+    /// The DropBar record specifies the attributes of the up bars or the down bars between multiple
+    /// series of a line chart group and specifies the beginning of a collection of records as
+    /// defined by the Chart Sheet Substream ABNF. The first of these collections in the line chart
+    /// group specifies the attributes of the up bars. The second specifies the attributes of the
+    /// down bars. If this record exists, then the chart group type MUST be line and the field cSer
     /// in the record SeriesList MUST be greater than 1.
     /// </summary>
     /// <remarks>
@@ -31,6 +31,7 @@ namespace Npoi.Core.HSSF.Record.Chart
     public class DropBarRecord : RowDataRecord
     {
         public const short sid = 0x103D;
+
         public DropBarRecord(RecordInputStream ris)
             : base(ris)
         {
@@ -43,6 +44,7 @@ namespace Npoi.Core.HSSF.Record.Chart
                 return base.DataSize;
             }
         }
+
         public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
             base.Serialize(out1);

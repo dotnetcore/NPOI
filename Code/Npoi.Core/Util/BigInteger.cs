@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Text;
 using System.Diagnostics;
 using System.Globalization;
+using System.Text;
 
 namespace Npoi.Core.Util
 {
@@ -41,6 +41,7 @@ namespace Npoi.Core.Util
         * value and correction factor is applied in accessor method.
         */
 #if !HIDE_UNREACHABLE_CODE
+
         [Obsolete]
 #endif
         private int bitCount;
@@ -55,6 +56,7 @@ namespace Npoi.Core.Util
          * value and correction factor is applied in accessor method.
          */
 #if !HIDE_UNREACHABLE_CODE
+
         [Obsolete]
 #endif
         private int bitLength;
@@ -68,8 +70,8 @@ namespace Npoi.Core.Util
         // * @deprecated Deprecated since logical value is offset from stored
         // * value and correction factor is applied in accessor method.
         // */
-       // [Obsolete]
-       // never used private int lowestSetBit;
+        // [Obsolete]
+        // never used private int lowestSetBit;
 
         /**
          * Two plus the index of the lowest-order int in the magnitude of this
@@ -80,6 +82,7 @@ namespace Npoi.Core.Util
          * value and correction factor is applied in accessor method.
          */
 #if !HIDE_UNREACHABLE_CODE
+
         [Obsolete]
 #endif
         private int firstNonzeroIntNum;
@@ -94,12 +97,14 @@ namespace Npoi.Core.Util
         private static BigInteger[] posConst = new BigInteger[Max_CONSTANT + 1];
         private static BigInteger[] negConst = new BigInteger[Max_CONSTANT + 1];
         private static readonly String[] zeros = new String[64];
+
         //Constructors
         static BigInteger()
         {
             Init();
         }
-        static void Init()
+
+        private static void Init()
         {
             if (zeros[63] == null)
             {
@@ -116,16 +121,19 @@ namespace Npoi.Core.Util
                     zeros[i] = zeros[63].Substring(0, i);
             }
         }
+
         /**
          * This internal constructor differs from its public cousin
          * with the arguments reversed in two ways: it assumes that its
          * arguments are correct, and it doesn't copy the magnitude array.
          */
+
         public BigInteger(int[] magnitude, int signum)
         {
             this._signum = (magnitude.Length == 0 ? 0 : signum);
             this.mag = magnitude;
         }
+
         /**
          * Translates a byte array containing the two's-complement binary
          * representation of a BigInteger into a BigInteger.  The input array is
@@ -136,6 +144,7 @@ namespace Npoi.Core.Util
          *         BigInteger.
          * @throws NumberFormatException {@code val} is zero bytes long.
          */
+
         public BigInteger(byte[] val)
         {
             if (val.Length == 0)
@@ -152,12 +161,14 @@ namespace Npoi.Core.Util
                 _signum = (mag.Length == 0 ? 0 : 1);
             }
         }
+
         /**
          * This private constructor translates an int array containing the
          * two's-complement binary representation of a BigInteger into a
          * BigInteger. The input array is assumed to be in <i>big-endian</i>
          * int-order: the most significant int is in the zeroth element.
          */
+
         public BigInteger(int[] val)
         {
             if (val.Length == 0)
@@ -174,9 +185,11 @@ namespace Npoi.Core.Util
                 _signum = (mag.Length == 0 ? 0 : 1);
             }
         }
+
         /**
          * Constructs a BigInteger with the specified value, which may not be zero.
          */
+
         public BigInteger(long val)
         {
             if (val < 0)
@@ -206,7 +219,6 @@ namespace Npoi.Core.Util
         public BigInteger(string val)
             : this(val, 10)
         {
-
         }
 
         public BigInteger(String val, int radix)
@@ -284,10 +296,12 @@ namespace Npoi.Core.Util
             // Required for cases where the array was overallocated.
             mag = TrustedStripLeadingZeroInts(magnitude);
         }
+
         /**
          * Returns the input array stripped of any leading zero bytes.
          * Since the source is trusted the copying may be skipped.
          */
+
         private static int[] TrustedStripLeadingZeroInts(int[] val)
         {
             int vlen = val.Length;
@@ -327,6 +341,7 @@ namespace Npoi.Core.Util
                 carry = Operator.UnsignedRightShift(sum, 32);
             }
         }
+
         /**
          * Returns the String representation of this BigInteger in the
          * given radix.  If the radix is outside the range from {@link
@@ -344,6 +359,7 @@ namespace Npoi.Core.Util
          * @see    Character#forDigit
          * @see    #BigInteger(java.lang.String, int)
          */
+
         public String ToString(int radix)
         {
             if (_signum == 0)
@@ -395,6 +411,7 @@ namespace Npoi.Core.Util
             }
             return buf.ToString();
         }
+
         /**
          * The BigInteger constant zero.
          *
@@ -430,10 +447,11 @@ namespace Npoi.Core.Util
          * @param  val value of the BigInteger to return.
          * @return a BigInteger with the specified value.
          */
+
         public static BigInteger ValueOf(long val)
         {
             Init();
-           // If -Max_CONSTANT < val < Max_CONSTANT, return stashed constant
+            // If -Max_CONSTANT < val < Max_CONSTANT, return stashed constant
             if (val == 0)
                 return ZERO;
             if (val > 0 && val <= Max_CONSTANT)
@@ -443,6 +461,7 @@ namespace Npoi.Core.Util
 
             return new BigInteger(val);
         }
+
         private const int Max_CONSTANT = 16;
 
         /**
@@ -450,17 +469,21 @@ namespace Npoi.Core.Util
          * Assumes that the input array will not be modified (the returned
          * BigInteger will reference the input array if feasible).
          */
+
         private static BigInteger ValueOf(int[] val)
         {
             return (val[0] > 0 ? new BigInteger(val, 1) : new BigInteger(val));
         }
+
         /**
          * Package private method to return bit length for an integer.
          */
+
         public static int BitLengthForInt(int n)
         {
             return 32 - NumberOfLeadingZeros(n);
         }
+
         // Miscellaneous Bit Operations
 
         /*
@@ -473,6 +496,7 @@ namespace Npoi.Core.Util
          * @return number of bits in the minimal two's-complement
          *         representation of this BigInteger, <i>excluding</i> a sign bit.
          */
+
         public int BitLength()
         {
             int n = bitLength - 1;
@@ -506,6 +530,7 @@ namespace Npoi.Core.Util
             }
             return n;
         }
+
         /**
          * Returns the number of bits in the two's complement representation
          * of this BigInteger that differ from its sign bit.  This method is
@@ -514,9 +539,10 @@ namespace Npoi.Core.Util
          * @return number of bits in the two's complement representation
          *         of this BigInteger that differ from its sign bit.
          */
+
         public int BitCount()
         {
-            //@SuppressWarnings("deprecation") 
+            //@SuppressWarnings("deprecation")
             int bc = bitCount - 1;
             if (bc == -1)
             {  // bitCount not initialized yet
@@ -544,6 +570,7 @@ namespace Npoi.Core.Util
          *
          * @return {@code abs(this)}
          */
+
         public BigInteger Abs()
         {
             return (_signum >= 0 ? this : this.Negate());
@@ -554,10 +581,12 @@ namespace Npoi.Core.Util
          *
          * @return {@code -this}
          */
+
         public BigInteger Negate()
         {
             return new BigInteger(this.mag, -this._signum);
         }
+
         /**
          * Returns a BigInteger whose value is <c>(this<sup>exponent</sup>)</c>.
          * Note that {@code exponent} is an integer rather than a BigInteger.
@@ -567,6 +596,7 @@ namespace Npoi.Core.Util
          * @throws ArithmeticException {@code exponent} is negative.  (This would
          *         cause the operation to yield a non-integer value.)
          */
+
         public BigInteger Pow(int exponent)
         {
             if (exponent < 0)
@@ -596,10 +626,12 @@ namespace Npoi.Core.Util
             }
             return new BigInteger(result, newSign);
         }
+
         /**
          * Multiplies int arrays x and y to the specified lengths and places
          * the result into z. There will be no leading zeros in the resultant array.
          */
+
         private int[] MultiplyToLen(int[] x, int xlen, int[] y, int ylen, int[] z)
         {
             int xstart = xlen - 1;
@@ -633,10 +665,12 @@ namespace Npoi.Core.Util
             }
             return z;
         }
+
         /**
          * Multiply an array by one word k and add to result, return the carry
          */
-        static int mulAdd(int[] output, int[] input, int offset, int len, int k)
+
+        private static int mulAdd(int[] output, int[] input, int offset, int len, int k)
         {
             long kLong = k & LONG_MASK;
             long carry = 0;
@@ -651,10 +685,12 @@ namespace Npoi.Core.Util
             }
             return (int)carry;
         }
+
         /**
          * Squares the contents of the int array x. The result is placed into the
          * int array z.  The contents of x are not changed.
          */
+
         private static int[] squareToLen(int[] x, int len, int[] z)
         {
             /*
@@ -720,6 +756,7 @@ namespace Npoi.Core.Util
 
             return z;
         }
+
         // shifts a up to len left n bits assumes no leading zeros, 0<=n<32
         public static void PrimitiveLeftShift(int[] a, int len, int n)
         {
@@ -735,11 +772,13 @@ namespace Npoi.Core.Util
             }
             a[len - 1] <<= n;
         }
+
         /**
          * Add one word to the number a mlen words into a. Return the resulting
          * carry.
          */
-        static int addOne(int[] a, int offset, int mlen, int carry)
+
+        private static int addOne(int[] a, int offset, int mlen, int carry)
         {
             offset = a.Length - 1 - mlen - offset;
             long t = (a[offset] & LONG_MASK) + (carry & LONG_MASK);
@@ -762,16 +801,19 @@ namespace Npoi.Core.Util
             }
             return 1;
         }
+
         /**
          * Returns the signum function of this BigInteger.
          *
          * @return -1, 0 or 1 as the value of this BigInteger is negative, zero or
          *         positive.
          */
+
         public int Signum()
         {
             return this._signum;
         }
+
         /**
          * Returns a byte array containing the two's-complement
          * representation of this BigInteger.  The byte array will be in
@@ -786,6 +828,7 @@ namespace Npoi.Core.Util
          *         this BigInteger.
          * @see    #BigInteger(byte[])
          */
+
         public byte[] ToByteArray()
         {
             int byteLen = (BitLength() / 8 + 1);
@@ -807,32 +850,38 @@ namespace Npoi.Core.Util
             }
             return byteArray;
         }
+
         /**
          * Returns the length of the two's complement representation in ints,
          * including space for at least one sign bit.
          */
+
         private int intLength()
         {
             return Operator.UnsignedRightShift(BitLength(), 5) + 1;
         }
 
         /* Returns sign bit */
+
         private int signBit()
         {
             return _signum < 0 ? 1 : 0;
         }
 
         /* Returns an int of sign bits */
+
         private int signInt()
         {
             return _signum < 0 ? -1 : 0;
         }
+
         /**
          * Returns the specified int of the little-endian two's complement
          * representation (int 0 is the least significant).  The int number can
          * be arbitrarily high (values are logically preceded by infinitely many
          * sign ints).
          */
+
         private int GetInt(int n)
         {
             if (n < 0)
@@ -845,11 +894,13 @@ namespace Npoi.Core.Util
             return (_signum >= 0 ? magInt :
                     (n <= FirstNonzeroIntNum() ? -magInt : ~magInt));
         }
+
         /**
          * Returns the index of the int that contains the first nonzero int in the
          * little-endian binary representation of the magnitude (int 0 is the
          * least significant). If the magnitude is zero, return value is undefined.
          */
+
         private int FirstNonzeroIntNum()
         {
             int fn = firstNonzeroIntNum - 2;
@@ -867,9 +918,11 @@ namespace Npoi.Core.Util
             }
             return fn;
         }
+
         /**
          * Returns a copy of the input array stripped of any leading zero bytes.
          */
+
         private static int[] stripLeadingZeroBytes(byte[] a)
         {
             int byteLength = a.Length;
@@ -893,10 +946,12 @@ namespace Npoi.Core.Util
             }
             return result;
         }
+
         /**
          * Takes an array a representing a negative 2's-complement number and
          * returns the minimal (no leading zero bytes) unsigned whose value is -a.
          */
+
         private static int[] makePositive(byte[] a)
         {
             int keep, k;
@@ -905,7 +960,6 @@ namespace Npoi.Core.Util
             // Find first non-sign (0xff) byte of input
             for (keep = 0; (keep < byteLength) && ((sbyte)a[keep] == (sbyte)-1); keep++)
                 ;
-
 
             /* Allocate output array.  If all non-sign bytes are 0x00, we must
              * allocate space for one extra output byte. */
@@ -943,6 +997,7 @@ namespace Npoi.Core.Util
 
             return result;
         }
+
         /*
          * The following two arrays are used for fast String conversions.  Both
          * are indexed by radix.  The first is the number of digits of the given
@@ -954,6 +1009,7 @@ namespace Npoi.Core.Util
          * nonsense values in their 0 and 1 elements, as radixes 0 and 1 are not
          * used.
          */
+
         private static readonly int[] digitsPerLong = {0, 0,
         62, 39, 31, 27, 24, 22, 20, 19, 18, 18, 17, 17, 16, 16, 15, 15, 15, 14,
         14, 14, 14, 13, 13, 13, 13, 13, 13, 12, 12, 12, 12, 12, 12, 12, 12};
@@ -985,9 +1041,11 @@ namespace Npoi.Core.Util
         3790, 3899, 4001, 4096, 4186, 4271, 4350, 4426, 4498, 4567, 4633,
         4696, 4756, 4814, 4870, 4923, 4975, 5025, 5074, 5120, 5166, 5210,
                                            5253, 5295};
+
         /*
          * These two arrays are the integer analogue of above.
          */
+
         private static readonly int[] digitsPerInt = {0, 0, 30, 19, 15, 13, 11,
         11, 10, 9, 9, 8, 8, 8, 8, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6,
         6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5};
@@ -1001,10 +1059,12 @@ namespace Npoi.Core.Util
         0x17179149, 0x1cb91000, 0x23744899, 0x2b73a840, 0x34e63b41,
         0x40000000, 0x4cfa3cc1, 0x5c13d840, 0x6d91b519, 0x39aa400
     };
+
         /**
          * Takes an array a representing a negative 2's-complement number and
          * returns the minimal (no leading zero ints) unsigned whose value is -a.
          */
+
         private static int[] makePositive(int[] a)
         {
             int keep, j;
@@ -1031,7 +1091,9 @@ namespace Npoi.Core.Util
 
             return result;
         }
+
         #region Integer Method
+
         /**
          * Returns the number of zero bits preceding the highest-order
          * ("leftmost") one-bit in the two's complement binary representation
@@ -1052,6 +1114,7 @@ namespace Npoi.Core.Util
          *     is equal to zero.
          * @since 1.5
          */
+
         public static int NumberOfLeadingZeros(int i)
         {
             // HD, Figure 5-6
@@ -1065,6 +1128,7 @@ namespace Npoi.Core.Util
             n -= Operator.UnsignedRightShift(i, 31);
             return n;
         }
+
         /**
          * Returns the number of zero bits following the lowest-order ("rightmost")
          * one-bit in the two's complement binary representation of the specified
@@ -1078,6 +1142,7 @@ namespace Npoi.Core.Util
          *     to zero.
          * @since 1.5
          */
+
         public static int NumberOfTrailingZeros(int i)
         {
             // HD, Figure 5-14
@@ -1090,6 +1155,7 @@ namespace Npoi.Core.Util
             y = i << 2; if (y != 0) { n = n - 2; i = y; }
             return n - Operator.UnsignedRightShift((i << 1), 31);
         }
+
         /**
          * Returns the number of one-bits in the two's complement binary
          * representation of the specified {@code int} value.  This function is
@@ -1099,6 +1165,7 @@ namespace Npoi.Core.Util
          *     representation of the specified {@code int} value.
          * @since 1.5
          */
+
         public static int BitCountForInt(int i)
         {
             // HD, Figure 5-2
@@ -1110,7 +1177,9 @@ namespace Npoi.Core.Util
             x = x + (x >> 16);
             return (int)(x & 0x3f);
         }
-        #endregion
+
+        #endregion Integer Method
+
         #region IComparable<BigInteger> 成员
 
         public int CompareTo(BigInteger val)
@@ -1121,14 +1190,17 @@ namespace Npoi.Core.Util
                 {
                     case 1:
                         return compareMagnitude(val);
+
                     case -1:
                         return val.compareMagnitude(this);
+
                     default:
                         return 0;
                 }
             }
             return _signum > val._signum ? 1 : -1;
         }
+
         /**
      * Compares the magnitude array of this BigInteger with the specified
      * BigInteger's. This is the version of compareTo ignoring sign.
@@ -1137,7 +1209,8 @@ namespace Npoi.Core.Util
      * @return -1, 0 or 1 as this magnitude array is less than, equal to or
      *         greater than the magnitude aray for the specified BigInteger's.
      */
-        int compareMagnitude(BigInteger val)
+
+        private int compareMagnitude(BigInteger val)
         {
             int[] m1 = mag;
             int len1 = m1.Length;
@@ -1156,7 +1229,8 @@ namespace Npoi.Core.Util
             }
             return 0;
         }
-        #endregion
+
+        #endregion IComparable<BigInteger> 成员
 
         /**
          * Compares this BigInteger with the specified Object for equality.
@@ -1165,6 +1239,7 @@ namespace Npoi.Core.Util
          * @return {@code true} if and only if the specified Object is a
          *         BigInteger whose value is numerically equal to this BigInteger.
          */
+
         public override bool Equals(object x)
         {
             // This test is just an optimization, which may or may not help
@@ -1191,6 +1266,7 @@ namespace Npoi.Core.Util
 
             return true;
         }
+
         /**
          * Returns the minimum of this BigInteger and {@code val}.
          *
@@ -1198,6 +1274,7 @@ namespace Npoi.Core.Util
          * @return the BigInteger whose value is the lesser of this BigInteger and
          *         {@code val}.  If they are equal, either may be returned.
          */
+
         public BigInteger Min(BigInteger val)
         {
             return (CompareTo(val) < 0 ? this : val);
@@ -1210,11 +1287,11 @@ namespace Npoi.Core.Util
          * @return the BigInteger whose value is the greater of this and
          *         {@code val}.  If they are equal, either may be returned.
          */
+
         public BigInteger Max(BigInteger val)
         {
             return (CompareTo(val) > 0 ? this : val);
         }
-
 
         // Hash Function
 
@@ -1223,6 +1300,7 @@ namespace Npoi.Core.Util
          *
          * @return hash code for this BigInteger.
          */
+
         public override int GetHashCode()
         {
             int hashCode = 0;
@@ -1232,6 +1310,7 @@ namespace Npoi.Core.Util
 
             return hashCode * _signum;
         }
+
         /**
          * Converts this BigInteger to an {@code int}.  This
          * conversion is analogous to a
@@ -1246,12 +1325,14 @@ namespace Npoi.Core.Util
          *
          * @return this BigInteger converted to an {@code int}.
          */
+
         public int IntValue()
         {
             int result = 0;
             result = GetInt(0);
             return result;
         }
+
         public BigInteger ShiftLeft(int n)
         {
             if (_signum == 0)
@@ -1303,6 +1384,7 @@ namespace Npoi.Core.Util
 
             return new BigInteger(newMag, _signum);
         }
+
         /**
          * Converts this BigInteger to a {@code long}.  This
          * conversion is analogous to a
@@ -1317,6 +1399,7 @@ namespace Npoi.Core.Util
          *
          * @return this BigInteger converted to a {@code long}.
          */
+
         public long LongValue()
         {
             long result = 0;
@@ -1325,6 +1408,7 @@ namespace Npoi.Core.Util
                 result = (result << 32) + (GetInt(i) & LONG_MASK);
             return result;
         }
+
         /**
          * Returns a BigInteger whose value is {@code (this >> n)}.  Sign
          * extension is performed.  The shift distance, {@code n}, may be
@@ -1337,6 +1421,7 @@ namespace Npoi.Core.Util
          *         Integer.Min_VALUE}.
          * @see #shiftLeft
          */
+
         public BigInteger ShiftRight(int n)
         {
             if (n == 0)
@@ -1404,7 +1489,8 @@ namespace Npoi.Core.Util
 
             return new BigInteger(newMag, _signum);
         }
-        int[] Increment(int[] val)
+
+        private int[] Increment(int[] val)
         {
             int lastSum = 0;
             for (int i = val.Length - 1; i >= 0 && lastSum == 0; i--)
@@ -1416,6 +1502,7 @@ namespace Npoi.Core.Util
             }
             return val;
         }
+
         public BigInteger and(BigInteger val)
         {
             int[] result = new int[Math.Max(intLength(), val.intLength())];
@@ -1425,6 +1512,7 @@ namespace Npoi.Core.Util
 
             return ValueOf(result);
         }
+
         /**
          * Returns a BigInteger whose value is {@code (~this)}.  (This method
          * returns a negative value if and only if this BigInteger is
@@ -1432,6 +1520,7 @@ namespace Npoi.Core.Util
          *
          * @return {@code ~this}
          */
+
         public BigInteger Not()
         {
             int[] result = new int[intLength()];
@@ -1440,6 +1529,7 @@ namespace Npoi.Core.Util
 
             return ValueOf(result);
         }
+
         /**
          * Returns a BigInteger whose value is {@code (this | val)}.  (This method
          * returns a negative BigInteger if and only if either this or val is
@@ -1448,6 +1538,7 @@ namespace Npoi.Core.Util
          * @param val value to be OR'ed with this BigInteger.
          * @return {@code this | val}
          */
+
         public BigInteger Or(BigInteger val)
         {
             int[] result = new int[Math.Max(intLength(), val.intLength())];
@@ -1457,11 +1548,13 @@ namespace Npoi.Core.Util
 
             return ValueOf(result);
         }
+
         /**
          * Package private methods used by BigDecimal code to multiply a BigInteger
          * with a long. Assumes v is not equal to INFLATED.
          */
-        BigInteger Multiply(long v)
+
+        private BigInteger Multiply(long v)
         {
             if (v == 0 || _signum == 0)
                 return ZERO;
@@ -1502,12 +1595,14 @@ namespace Npoi.Core.Util
                 rmag = Arrays.CopyOfRange(rmag, 1, rmag.Length);
             return new BigInteger(rmag, rsign);
         }
+
         /**
          * Returns a BigInteger whose value is {@code (this * val)}.
          *
          * @param  val value to be multiplied by this BigInteger.
          * @return {@code this * val}
          */
+
         public BigInteger Multiply(BigInteger val)
         {
             if (val._signum == 0 || _signum == 0)
@@ -1518,12 +1613,14 @@ namespace Npoi.Core.Util
             result = TrustedStripLeadingZeroInts(result);
             return new BigInteger(result, _signum == val._signum ? 1 : -1);
         }
+
         /**
          * Returns a BigInteger whose value is {@code (this + val)}.
          *
          * @param  val value to be added to this BigInteger.
          * @return {@code this + val}
          */
+
         public BigInteger Add(BigInteger val)
         {
             if (val._signum == 0)
@@ -1542,11 +1639,13 @@ namespace Npoi.Core.Util
 
             return new BigInteger(resultMag, cmp == _signum ? 1 : -1);
         }
+
         /**
          * Adds the contents of the int arrays x and y. This method allocates
          * a new int array to hold the answer and returns a reference to that
          * array.
          */
+
         private static int[] add(int[] x, int[] y)
         {
             // If x is shorter, swap the two arrays
@@ -1589,12 +1688,14 @@ namespace Npoi.Core.Util
             }
             return result;
         }
+
         /**
          * Returns a BigInteger whose value is {@code (this - val)}.
          *
          * @param  val value to be subtracted from this BigInteger.
          * @return {@code this - val}
          */
+
         public BigInteger Subtract(BigInteger val)
         {
             if (val._signum == 0)
@@ -1620,6 +1721,7 @@ namespace Npoi.Core.Util
          * than the second.  This method allocates the space necessary to hold the
          * answer.
          */
+
         private static int[] Subtract(int[] big, int[] little)
         {
             int bigIndex = big.Length;
@@ -1647,6 +1749,7 @@ namespace Npoi.Core.Util
 
             return result;
         }
+
         /**
          * Returns a BigInteger whose value is {@code (this / val)}.
          *
@@ -1654,6 +1757,7 @@ namespace Npoi.Core.Util
          * @return {@code this / val}
          * @throws ArithmeticException if {@code val} is zero.
          */
+
         public BigInteger Divide(BigInteger val)
         {
             MutableBigInteger q = new MutableBigInteger(),
@@ -1663,7 +1767,9 @@ namespace Npoi.Core.Util
             a.divide(b, q);
             return q.toBigInteger(this._signum == val._signum ? 1 : -1);
         }
+
         #region operator overload
+
         //***********************************************************************
         // Overloading of unary >> operators
         //***********************************************************************
@@ -1671,6 +1777,7 @@ namespace Npoi.Core.Util
         {
             return bi1.ShiftRight(shiftVal);
         }
+
         //***********************************************************************
         // Overloading of unary << operators
         //***********************************************************************
@@ -1679,6 +1786,7 @@ namespace Npoi.Core.Util
         {
             return bi1.ShiftLeft(shiftVal);
         }
+
         //***********************************************************************
         // Overloading of bitwise AND operator
         //***********************************************************************
@@ -1687,6 +1795,7 @@ namespace Npoi.Core.Util
         {
             return bi1.and(bi2);
         }
+
         //***********************************************************************
         // Overloading of bitwise OR operator
         //***********************************************************************
@@ -1694,6 +1803,7 @@ namespace Npoi.Core.Util
         {
             return bi1.Or(bi2);
         }
+
         //***********************************************************************
         // Overloading of bitwise mul operator
         //***********************************************************************
@@ -1701,6 +1811,7 @@ namespace Npoi.Core.Util
         {
             return bi1.Multiply(bi2);
         }
+
         //***********************************************************************
         // Overloading of bitwise add operator
         //***********************************************************************
@@ -1708,6 +1819,7 @@ namespace Npoi.Core.Util
         {
             return bi1.Add(bi2);
         }
+
         //***********************************************************************
         // Overloading of bitwise subtract operator
         //***********************************************************************
@@ -1715,14 +1827,17 @@ namespace Npoi.Core.Util
         {
             return bi1.Subtract(bi2);
         }
+
         public static bool operator <(BigInteger bi1, BigInteger bi2)
         {
             return bi1.CompareTo(bi2) < 0;
         }
+
         public static bool operator >(BigInteger bi1, BigInteger bi2)
         {
             return bi1.CompareTo(bi2) > 0;
         }
+
         public static BigInteger operator /(BigInteger bi1, BigInteger bi2)
         {
             return bi1.Divide(bi2);
@@ -1732,12 +1847,15 @@ namespace Npoi.Core.Util
         {
             return bi1.Equals(bi2);
         }
+
         public static bool operator !=(BigInteger bi1, BigInteger bi2)
         {
             return !(bi1 == bi2);
         }
-        #endregion
+
+        #endregion operator overload
     }
+
     internal class MutableBigInteger
     {
         /**
@@ -1745,20 +1863,20 @@ namespace Npoi.Core.Util
          * The magnitude may start at an offset into the value array, and it may
          * end before the length of the value array.
          */
-        int[] _value;
+        private int[] _value;
 
         /**
          * The number of ints of the value array that are currently used
          * to hold the magnitude of this MutableBigInteger. The magnitude starts
          * at an offset and offset + intLen may be less than value.Length.
          */
-        int intLen;
+        private int intLen;
 
         /**
          * The offset into the value array where the magnitude of this
          * MutableBigInteger begins.
          */
-        int offset = 0;
+        private int offset = 0;
 
         // Constants
         /**
@@ -1766,15 +1884,17 @@ namespace Npoi.Core.Util
          * BigDecimal divideAndRound to increment the quotient. Use this constant
          * only when the method is not going to modify this object.
          */
-        static readonly MutableBigInteger One = new MutableBigInteger(1);
+        private static readonly MutableBigInteger One = new MutableBigInteger(1);
 
         // Constructors
         private const long LONG_MASK = BigInteger.LONG_MASK;
+
         private const long INFLATED = long.MinValue;
         /**
          * The default constructor. An empty MutableBigInteger is created with
          * a one word capacity.
          */
+
         public MutableBigInteger()
         {
             _value = new int[1];
@@ -1785,6 +1905,7 @@ namespace Npoi.Core.Util
          * Construct a new MutableBigInteger with a magnitude specified by
          * the int val.
          */
+
         public MutableBigInteger(int val)
         {
             _value = new int[1];
@@ -1796,11 +1917,13 @@ namespace Npoi.Core.Util
          * Construct a new MutableBigInteger with the specified value array
          * up to the length of the array supplied.
          */
+
         public MutableBigInteger(int[] val)
         {
             _value = val;
             intLen = val.Length;
         }
+
         public static int[] ArraysCopyOf(int[] original, int newLength)
         {
             int[] copy = new int[newLength];
@@ -1808,6 +1931,7 @@ namespace Npoi.Core.Util
                              Math.Min(original.Length, newLength));
             return copy;
         }
+
         public static long[] ArraysCopyOf(long[] original, int newLength)
         {
             long[] copy = new long[newLength];
@@ -1815,6 +1939,7 @@ namespace Npoi.Core.Util
                              Math.Min(original.Length, newLength));
             return copy;
         }
+
         public static int[] ArraysCopyOfRange(int[] original, int from, int to)
         {
             int newLength = to - from;
@@ -1825,6 +1950,7 @@ namespace Npoi.Core.Util
                              Math.Min(original.Length - from, newLength));
             return copy;
         }
+
         public static long[] ArraysCopyOfRange(long[] original, int from, int to)
         {
             int newLength = to - from;
@@ -1835,11 +1961,13 @@ namespace Npoi.Core.Util
                              Math.Min(original.Length - from, newLength));
             return copy;
         }
+
         /**
          * Construct a new MutableBigInteger with a magnitude equal to the
          * specified BigInteger.
          */
-        MutableBigInteger(BigInteger b)
+
+        private MutableBigInteger(BigInteger b)
         {
             intLen = b.mag.Length;
             _value = ArraysCopyOf(b.mag, intLen);
@@ -1849,7 +1977,8 @@ namespace Npoi.Core.Util
          * Construct a new MutableBigInteger with a magnitude equal to the
          * specified MutableBigInteger.
          */
-        MutableBigInteger(MutableBigInteger val)
+
+        private MutableBigInteger(MutableBigInteger val)
         {
             intLen = val.intLen;
             _value = ArraysCopyOfRange(val._value, val.offset, val.offset + intLen);
@@ -1859,6 +1988,7 @@ namespace Npoi.Core.Util
          * Internal helper method to return the magnitude array. The caller is not
          * supposed to modify the returned array.
          */
+
         private int[] getMagnitudeArray()
         {
             if (offset > 0 || _value.Length != intLen)
@@ -1870,6 +2000,7 @@ namespace Npoi.Core.Util
          * Convert this MutableBigInteger to a long value. The caller has to make
          * sure this MutableBigInteger can be fit into long.
          */
+
         private long toLong()
         {
             Debug.Assert(intLen <= 2, "this MutableBigInteger exceeds the range of long");
@@ -1882,6 +2013,7 @@ namespace Npoi.Core.Util
         /**
          * Convert this MutableBigInteger to a BigInteger object.
          */
+
         public BigInteger toBigInteger(int sign)
         {
             if (intLen == 0 || sign == 0)
@@ -1912,7 +2044,8 @@ namespace Npoi.Core.Util
         /**
          * Clear out a MutableBigInteger for reuse.
          */
-        void clear()
+
+        private void clear()
         {
             offset = intLen = 0;
             for (int index = 0, n = _value.Length; index < n; index++)
@@ -1922,7 +2055,8 @@ namespace Npoi.Core.Util
         /**
          * Set a MutableBigInteger to zero, removing its offset.
          */
-        void reset()
+
+        private void reset()
         {
             offset = intLen = 0;
         }
@@ -1932,7 +2066,8 @@ namespace Npoi.Core.Util
          * as this MutableBigInteger is numerically less than, equal to, or
          * greater than <c>b</c>.
          */
-        int compare(MutableBigInteger b)
+
+        private int compare(MutableBigInteger b)
         {
             int blen = b.intLen;
             if (intLen < blen)
@@ -1961,7 +2096,8 @@ namespace Npoi.Core.Util
          * Assumes no leading unnecessary zeros, which holds for results
          * from divide().
          */
-        int compareHalf(MutableBigInteger b)
+
+        private int compareHalf(MutableBigInteger b)
         {
             int blen = b.intLen;
             int len = intLen;
@@ -1988,7 +2124,7 @@ namespace Npoi.Core.Util
             // compare values with right-shifted values of b,
             // carrying shifted-out bits across words
             int[] val = _value;
-            for (int i = offset, j = bstart; i < len + offset; )
+            for (int i = offset, j = bstart; i < len + offset;)
             {
                 int bv = bval[j++];
                 long hb = (Operator.UnsignedRightShift(bv, 1) + carry) & LONG_MASK;
@@ -2004,6 +2140,7 @@ namespace Npoi.Core.Util
          * Return the index of the lowest set bit in this MutableBigInteger. If the
          * magnitude of this MutableBigInteger is zero, -1 is returned.
          */
+
         private int getLowestSetBit()
         {
             if (intLen == 0)
@@ -2022,6 +2159,7 @@ namespace Npoi.Core.Util
          * index. This method is not used because it is not inlined on all
          * platforms.
          */
+
         private int getInt(int index)
         {
             return _value[offset + index];
@@ -2032,6 +2170,7 @@ namespace Npoi.Core.Util
          * use in this MutableBigInteger at the specified index. This method is
          * not used because it is not inlined on all platforms.
          */
+
         private long getLong(int index)
         {
             return _value[offset + index] & LONG_MASK;
@@ -2042,7 +2181,8 @@ namespace Npoi.Core.Util
          * making sure that there are no leading zeros, and that if the
          * magnitude is zero, then intLen is zero.
          */
-        void normalize()
+
+        private void normalize()
         {
             if (intLen == 0)
             {
@@ -2069,6 +2209,7 @@ namespace Npoi.Core.Util
          * If this MutableBigInteger cannot hold len words, increase the size
          * of the value array to len words.
          */
+
         private void ensureCapacity(int len)
         {
             if (_value.Length < len)
@@ -2083,7 +2224,8 @@ namespace Npoi.Core.Util
          * Convert this MutableBigInteger into an int array with no leading
          * zeros, of a length that is equal to this MutableBigInteger's intLen.
          */
-        int[] toIntArray()
+
+        private int[] toIntArray()
         {
             int[] result = new int[intLen];
             for (int i = 0; i < intLen; i++)
@@ -2096,7 +2238,8 @@ namespace Npoi.Core.Util
          * This does not get inlined on all platforms so it is not used
          * as often as originally intended.
          */
-        void setInt(int index, int val)
+
+        private void setInt(int index, int val)
         {
             _value[offset + index] = val;
         }
@@ -2105,7 +2248,8 @@ namespace Npoi.Core.Util
          * Sets this MutableBigInteger's value array to the specified array.
          * The intLen is set to the specified length.
          */
-        void setValue(int[] val, int length)
+
+        private void setValue(int[] val, int length)
         {
             _value = val;
             intLen = length;
@@ -2116,7 +2260,8 @@ namespace Npoi.Core.Util
          * Sets this MutableBigInteger's value array to a copy of the specified
          * array. The intLen is set to the length of the new array.
          */
-        void copyValue(MutableBigInteger src)
+
+        private void copyValue(MutableBigInteger src)
         {
             int len = src.intLen;
             if (_value.Length < len)
@@ -2130,7 +2275,8 @@ namespace Npoi.Core.Util
          * Sets this MutableBigInteger's value array to a copy of the specified
          * array. The intLen is set to the length of the specified array.
          */
-        void copyValue(int[] val)
+
+        private void copyValue(int[] val)
         {
             int len = val.Length;
             if (_value.Length < len)
@@ -2143,7 +2289,8 @@ namespace Npoi.Core.Util
         /**
          * Returns true iff this MutableBigInteger has a value of one.
          */
-        bool isOne()
+
+        private bool isOne()
         {
             return (intLen == 1) && (_value[offset] == 1);
         }
@@ -2151,7 +2298,8 @@ namespace Npoi.Core.Util
         /**
          * Returns true iff this MutableBigInteger has a value of zero.
          */
-        bool isZero()
+
+        private bool isZero()
         {
             return (intLen == 0);
         }
@@ -2159,7 +2307,8 @@ namespace Npoi.Core.Util
         /**
          * Returns true iff this MutableBigInteger is even.
          */
-        bool isEven()
+
+        private bool isEven()
         {
             return (intLen == 0) || ((_value[offset + intLen - 1] & 1) == 0);
         }
@@ -2167,7 +2316,8 @@ namespace Npoi.Core.Util
         /**
          * Returns true iff this MutableBigInteger is odd.
          */
-        bool isOdd()
+
+        private bool isOdd()
         {
             return isZero() ? false : ((_value[offset + intLen - 1] & 1) == 1);
         }
@@ -2177,7 +2327,8 @@ namespace Npoi.Core.Util
          * MutableBigInteger is in normal form if it has no leading zeros
          * after the offset, and intLen + offset &lt;= value.Length.
          */
-        bool isNormal()
+
+        private bool isNormal()
         {
             if (intLen + offset > _value.Length)
                 return false;
@@ -2189,6 +2340,7 @@ namespace Npoi.Core.Util
         /**
          * Returns a String representation of this MutableBigInteger in radix 10.
          */
+
         public String toString()
         {
             BigInteger b = toBigInteger(1);
@@ -2199,7 +2351,8 @@ namespace Npoi.Core.Util
          * Right shift this MutableBigInteger n bits. The MutableBigInteger is left
          * in normal form.
          */
-        void rightShift(int n)
+
+        private void rightShift(int n)
         {
             if (intLen == 0)
                 return;
@@ -2223,7 +2376,8 @@ namespace Npoi.Core.Util
         /**
          * Left shift this MutableBigInteger n bits.
          */
-        void leftShift(int n)
+
+        private void leftShift(int n)
         {
             /*
              * If there is enough storage space in this MutableBigInteger already
@@ -2284,6 +2438,7 @@ namespace Npoi.Core.Util
          * divisor a back to the dividend result at a specified offset. It is used
          * when qhat was estimated too large, and must be adjusted.
          */
+
         private int divadd(int[] a, int[] result, int offset)
         {
             long carry = 0;
@@ -2303,6 +2458,7 @@ namespace Npoi.Core.Util
          * word input x, and subtracts the n word product from q. This is needed
          * when subtracting qhat*divisor from dividend.
          */
+
         private int mulsub(int[] q, int[] a, int x, int len, int offset)
         {
             long xLong = x & LONG_MASK;
@@ -2326,6 +2482,7 @@ namespace Npoi.Core.Util
          * less than 32.
          * Assumes that intLen > 0, n > 0 for speed
          */
+
         private void primitiveRightShift(int n)
         {
             int[] val = _value;
@@ -2344,6 +2501,7 @@ namespace Npoi.Core.Util
          * less than 32.
          * Assumes that intLen > 0, n > 0 for speed
          */
+
         private void primitiveLeftShift(int n)
         {
             int[] val = _value;
@@ -2362,7 +2520,8 @@ namespace Npoi.Core.Util
          * is placed within this MutableBigInteger.
          * The contents of the addend are not changed.
          */
-        void add(MutableBigInteger addend)
+
+        private void add(MutableBigInteger addend)
         {
             int x = intLen;
             int y = addend.intLen;
@@ -2424,12 +2583,12 @@ namespace Npoi.Core.Util
             offset = result.Length - resultLen;
         }
 
-
         /**
          * Subtracts the smaller of this and b from the larger and places the
          * result into this MutableBigInteger.
          */
-        int subtract(MutableBigInteger b)
+
+        private int subtract(MutableBigInteger b)
         {
             MutableBigInteger a = this;
 
@@ -2486,6 +2645,7 @@ namespace Npoi.Core.Util
          * into the larger. Returns 1 if the answer is in a, -1 if in b, 0 if no
          * operation was performed.
          */
+
         private int difference(MutableBigInteger b)
         {
             MutableBigInteger a = this;
@@ -2527,7 +2687,8 @@ namespace Npoi.Core.Util
          * Multiply the contents of two MutableBigInteger objects. The result is
          * placed into MutableBigInteger z. The contents of y are not changed.
          */
-        void multiply(MutableBigInteger y, MutableBigInteger z)
+
+        private void multiply(MutableBigInteger y, MutableBigInteger z)
         {
             int xLen = intLen;
             int yLen = y.intLen;
@@ -2573,6 +2734,7 @@ namespace Npoi.Core.Util
          * Multiply the contents of this MutableBigInteger by the word y. The
          * result is placed into z.
          */
+
         public void mul(int y, MutableBigInteger z)
         {
             if (y == 1)
@@ -2621,6 +2783,7 @@ namespace Npoi.Core.Util
         * @return the remainder of the division is returned.
         *
         */
+
         public int divideOneWord(int divisor, MutableBigInteger quotient)
         {
             long divisorLong = divisor & LONG_MASK;
@@ -2697,6 +2860,7 @@ namespace Npoi.Core.Util
          * changed.
          *
          */
+
         public MutableBigInteger divide(MutableBigInteger b, MutableBigInteger quotient)
         {
             if (b.intLen == 0)
@@ -2746,6 +2910,7 @@ namespace Npoi.Core.Util
          *
          * @return the remainder of the division will be returned.
          */
+
         public long divide(long v, MutableBigInteger quotient)
         {
             if (v == 0)
@@ -2777,10 +2942,10 @@ namespace Npoi.Core.Util
          * array. The quotient will be placed into the provided quotient object &amp;
          * the remainder object is returned.
          */
+
         private MutableBigInteger divideMagnitude(int[] divisor,
                                                   MutableBigInteger quotient)
         {
-
             // Remainder starts as dividend with space for a leading zero
             MutableBigInteger rem = new MutableBigInteger(new int[intLen + 1]);
             Array.Copy(_value, offset, rem._value, 1, intLen);
@@ -2909,6 +3074,7 @@ namespace Npoi.Core.Util
          * Compare two longs as if they were unsigned.
          * Returns true iff one is bigger than two.
          */
+
         private bool unsignedLongCompare(long one, long two)
         {
             return (one + long.MinValue) > (two + long.MinValue);
@@ -2919,6 +3085,7 @@ namespace Npoi.Core.Util
          * qhat for two multi precision numbers. It is used when
          * the signed value of n is less than zero.
          */
+
         private void divWord(int[] result, long n, int d)
         {
             long dLong = d & LONG_MASK;
@@ -2954,7 +3121,8 @@ namespace Npoi.Core.Util
         /**
          * Calculate GCD of this and b. This and b are changed by the computation.
          */
-        MutableBigInteger hybridGCD(MutableBigInteger b)
+
+        private MutableBigInteger hybridGCD(MutableBigInteger b)
         {
             // Use Euclid's algorithm until the numbers are approximately the
             // same length, then use the binary GCD algorithm to find the GCD.
@@ -2977,6 +3145,7 @@ namespace Npoi.Core.Util
          * Calculate GCD of this and v.
          * Assumes that this and v are not zero.
          */
+
         private MutableBigInteger binaryGCD(MutableBigInteger v)
         {
             // Algorithm B from Knuth section 4.5.2
@@ -3037,7 +3206,8 @@ namespace Npoi.Core.Util
         /**
          * Calculate GCD of a and b interpreted as unsigned integers.
          */
-        static int binaryGcd(int a, int b)
+
+        private static int binaryGcd(int a, int b)
         {
             if (b == 0)
                 return a;
@@ -3072,7 +3242,8 @@ namespace Npoi.Core.Util
          * Returns the modInverse of this mod p. This and p are not affected by
          * the operation.
          */
-        MutableBigInteger mutableModInverse(MutableBigInteger p)
+
+        private MutableBigInteger mutableModInverse(MutableBigInteger p)
         {
             // Modulus is odd, use Schroeppel's algorithm
             if (p.isOdd())
@@ -3119,7 +3290,8 @@ namespace Npoi.Core.Util
         /*
          * Calculate the multiplicative inverse of this mod 2^k.
          */
-        MutableBigInteger modInverseMP2(int k)
+
+        private MutableBigInteger modInverseMP2(int k)
         {
             if (isEven())
                 throw new ArithmeticException("Non-invertible. (GCD != 1)");
@@ -3153,7 +3325,8 @@ namespace Npoi.Core.Util
         /*
          * Returns the multiplicative inverse of val mod 2^32.  Assumes val is odd.
          */
-        static int inverseMod32(int val)
+
+        private static int inverseMod32(int val)
         {
             // Newton's iteration!
             int t = val;
@@ -3167,7 +3340,8 @@ namespace Npoi.Core.Util
         /*
          * Calculate the multiplicative inverse of 2^k mod mod, where mod is odd.
          */
-        static MutableBigInteger modInverseBP2(MutableBigInteger mod, int k)
+
+        private static MutableBigInteger modInverseBP2(MutableBigInteger mod, int k)
         {
             // Copy the mod to protect original
             return fixup(new MutableBigInteger(1), new MutableBigInteger(mod), k);
@@ -3182,6 +3356,7 @@ namespace Npoi.Core.Util
          * ("Montgomery Form").  The algorithm is described in an unpublished
          * manuscript entitled "Fast Modular Reciprocals."
          */
+
         private MutableBigInteger modInverse(MutableBigInteger mod)
         {
             //TODO: to complete this method,we should implement SignedMutableBigInteger class
@@ -3243,7 +3418,8 @@ namespace Npoi.Core.Util
          * Calculates X such that X = C * 2^(-k) (mod P)
          * Assumes C<P and P is odd.
          */
-        static MutableBigInteger fixup(MutableBigInteger c, MutableBigInteger p,
+
+        private static MutableBigInteger fixup(MutableBigInteger c, MutableBigInteger p,
                                                                           int k)
         {
             MutableBigInteger temp = new MutableBigInteger();
@@ -3284,7 +3460,8 @@ namespace Npoi.Core.Util
          * Uses the extended Euclidean algorithm to compute the modInverse of base
          * mod a modulus that is a power of 2. The modulus is 2^k.
          */
-        MutableBigInteger euclidModInverse(int k)
+
+        private MutableBigInteger euclidModInverse(int k)
         {
             MutableBigInteger b = new MutableBigInteger(1);
             b.leftShift(k);
@@ -3344,6 +3521,5 @@ namespace Npoi.Core.Util
             mod.subtract(t1);
             return mod;
         }
-
     }
 }

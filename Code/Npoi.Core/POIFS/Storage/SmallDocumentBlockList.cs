@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System.Collections.Generic;
@@ -33,7 +33,7 @@ namespace Npoi.Core.POIFS.Storage
     /// A list of SmallDocumentBlocks instances, and methods to manage the list
     /// @author Marc Johnson (mjohnson at apache dot org)
     /// </summary>
-    public class SmallDocumentBlockList:BlockListImpl
+    public class SmallDocumentBlockList : BlockListImpl
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SmallDocumentBlockList"/> class.

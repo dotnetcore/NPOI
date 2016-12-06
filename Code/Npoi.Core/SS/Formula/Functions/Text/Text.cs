@@ -1,20 +1,22 @@
-﻿using System;
-using Npoi.Core.SS.Formula.Eval;
+﻿using Npoi.Core.SS.Formula.Eval;
 using Npoi.Core.SS.UserModel;
+using System;
 
 namespace Npoi.Core.SS.Formula.Functions
 {
     /**
 	 * An implementation of the TEXT function
-	 * TEXT returns a number value formatted with the given number formatting string. 
+	 * TEXT returns a number value formatted with the given number formatting string.
 	 * This function is not a complete implementation of the Excel function, but
-	 *  handles most of the common cases. All work is passed down to 
+	 *  handles most of the common cases. All work is passed down to
 	 *  {@link DataFormatter} to be done, as this works much the same as the
-	 *  display focused work that that does. 
+	 *  display focused work that that does.
 	 */
+
     public class Text : Fixed2ArgFunction
     {
         public static DataFormatter Formatter = new DataFormatter();
+
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1)
         {
             double s0;
@@ -45,7 +47,7 @@ namespace Npoi.Core.SS.Formula.Functions
             //    if (result != ErrorEval.VALUE_INVALID)
             //        return result;
             //}
-            ////The regular expression needs ^ and $. 
+            ////The regular expression needs ^ and $.
             //if (Regex.Match(s1, @"^[\d,\#,\.,\$,\,]+$").Success)
             //{
             //    //TODO: simulate DecimalFormat class in java.
@@ -112,6 +114,7 @@ namespace Npoi.Core.SS.Formula.Functions
             //    return TryParseDateTime(s0, s1);
             //}
         }
+
         //private ValueEval TryParseDateTime(double s0, string s1)
         //{
         //    try

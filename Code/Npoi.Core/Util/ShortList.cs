@@ -23,7 +23,7 @@ namespace Npoi.Core.Util
     /// A List of short's; as full an implementation of the java.Util.List
     /// interface as possible, with an eye toward minimal creation of
     /// objects
-    /// 
+    ///
     /// the mimicry of List is as follows:
     /// <ul>
     /// <li> if possible, operations designated 'optional' in the List
@@ -33,7 +33,7 @@ namespace Npoi.Core.Util
     /// <li> wherever the List interface refers to a Collection or List,
     ///      substitute shortList</li>
     /// </ul>
-    /// 
+    ///
     /// the mimicry is not perfect, however:
     /// <ul>
     /// <li> operations involving Iterators or ListIterators are not
@@ -41,7 +41,7 @@ namespace Npoi.Core.Util
     /// <li> Remove(Object) becomes RemoveValue to distinguish it from
     ///      Remove(short index)</li>
     /// <li> subList is not supported</li>
-    /// </ul> 
+    /// </ul>
     /// </summary>
     public class ShortList
     {
@@ -55,7 +55,6 @@ namespace Npoi.Core.Util
         public ShortList()
             : this(_default_size)
         {
-
         }
 
         /// <summary>
@@ -96,7 +95,6 @@ namespace Npoi.Core.Util
             }
             else
             {
-
                 // index < limit -- insert into the middle
                 if (_limit == _array.Length)
                 {
@@ -264,7 +262,6 @@ namespace Npoi.Core.Util
 
                 if (other._limit == _limit)
                 {
-
                     // assume match
                     rval = true;
                     for (int j = 0; rval && (j < _limit); j++)
@@ -293,7 +290,7 @@ namespace Npoi.Core.Util
         /// <summary>
         /// Returns the hash code value for this list.  The hash code of a
         /// list is defined to be the result of the following calculation:
-        /// 
+        ///
         /// <code>
         /// hashCode = 1;
         /// Iterator i = list.Iterator();
@@ -302,7 +299,7 @@ namespace Npoi.Core.Util
         ///      hashCode = 31*hashCode + (obj==null ? 0 : obj.HashCode());
         /// }
         /// </code>
-        /// 
+        ///
         /// This ensures that list1.Equals(list2) implies that
         /// list1.HashCode()==list2.HashCode() for any two lists, list1 and
         /// list2, as required by the general contract of Object.HashCode.
@@ -457,7 +454,7 @@ namespace Npoi.Core.Util
         {
             bool rval = false;
 
-            for (int j = 0; j < _limit; )
+            for (int j = 0; j < _limit;)
             {
                 if (!c.Contains(_array[j]))
                 {
@@ -500,6 +497,7 @@ namespace Npoi.Core.Util
         {
             return _limit;
         }
+
         /// <summary>
         /// the number of elements in this shortList
         /// </summary>
@@ -507,7 +505,7 @@ namespace Npoi.Core.Util
         {
             get { return _limit; }
         }
-        
+
         /// <summary>
         /// Returns an array Containing all of the elements in this list in
         /// proper sequence.  Obeys the general contract of the

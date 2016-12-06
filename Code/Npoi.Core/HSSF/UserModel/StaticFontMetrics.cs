@@ -19,12 +19,11 @@ using System.Reflection;
 
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
-    using System.Collections;
-    using System.IO;
-    using System.Drawing;
     using Npoi.Core.Util.Collections;
+    using System;
     using System.Collections.Generic;
+    using System.Drawing;
+    using System.IO;
 
     /**
      * Allows the user to lookup the font metrics for a particular font without
@@ -35,107 +34,107 @@ namespace Npoi.Core.HSSF.UserModel
      *
      * @author Glen Stampoultzis (glens at apache.org)
      */
-    class StaticFontMetrics
-	{
-		const string FONT_METRICS_PROPERTIES_FILE_NAME = "font_metrics.properties";
 
-		/** The font metrics property file we're using */
-		private static Properties fontMetricsProps;
-		/** Our cache of font details we've alReady looked up */
-		private static Dictionary<object, object> fontDetailsMap = new Dictionary<object, object>();
+    internal class StaticFontMetrics
+    {
+        private const string FONT_METRICS_PROPERTIES_FILE_NAME = "font_metrics.properties";
 
-		/**
+        /** The font metrics property file we're using */
+        private static Properties fontMetricsProps;
+        /** Our cache of font details we've alReady looked up */
+        private static Dictionary<object, object> fontDetailsMap = new Dictionary<object, object>();
+
+        /**
          * Retrieves the fake font details for a given font.
          * @param font  the font to lookup.
          * @return  the fake font.
          */
-		public static FontDetails GetFontDetails(Font font)
-		{
-			// If we haven't alReady identified out font metrics file,
-			//  figure out which one to use and Load it
-			if (fontMetricsProps == null)
-			{
-				Stream metricsIn = null;
-				try
-				{
-					fontMetricsProps = new Properties();
 
-					// Check to see if the font metric file was specified
-					//  as a system property
-					String propFileName = null;
-					try
-					{
-						propFileName = null;//ConfigurationManager.AppSettings["font.metrics.filename"];
-					}
-					catch (Exception) { }
+        public static FontDetails GetFontDetails(Font font)
+        {
+            // If we haven't alReady identified out font metrics file,
+            //  figure out which one to use and Load it
+            if (fontMetricsProps == null)
+            {
+                Stream metricsIn = null;
+                try
+                {
+                    fontMetricsProps = new Properties();
 
-					if (propFileName != null)
-					{
-						if (!File.Exists(propFileName))
-							throw new FileNotFoundException("font_metrics.properties not found at path " + Path.GetFullPath(propFileName));
-						metricsIn = typeof(StaticFontMetrics).GetTypeInfo().Assembly.GetManifestResourceStream(FONT_METRICS_PROPERTIES_FILE_NAME);
-					}
-					else
-					{
-						// Use the built-in font metrics file off the classpath
-						metricsIn = typeof(StaticFontMetrics).GetTypeInfo().Assembly.GetManifestResourceStream(FONT_METRICS_PROPERTIES_FILE_NAME);
-						if (metricsIn == null)
-							throw new FileNotFoundException("font_metrics.properties not found in classpath");
-					}
-					fontMetricsProps.Load(metricsIn);
-				}
-				catch (IOException e)
-				{
-					throw new Exception("Could not Load font metrics: " + e.Message);
-				}
-				finally
-				{
-					if (metricsIn != null)
-					{
-						try
-						{
-							metricsIn.Dispose();
-						}
-						catch (IOException)
-						{
+                    // Check to see if the font metric file was specified
+                    //  as a system property
+                    String propFileName = null;
+                    try
+                    {
+                        propFileName = null;//ConfigurationManager.AppSettings["font.metrics.filename"];
+                    }
+                    catch (Exception) { }
 
-						}
-					}
-				}
-			}
+                    if (propFileName != null)
+                    {
+                        if (!File.Exists(propFileName))
+                            throw new FileNotFoundException("font_metrics.properties not found at path " + Path.GetFullPath(propFileName));
+                        metricsIn = typeof(StaticFontMetrics).GetTypeInfo().Assembly.GetManifestResourceStream(FONT_METRICS_PROPERTIES_FILE_NAME);
+                    }
+                    else
+                    {
+                        // Use the built-in font metrics file off the classpath
+                        metricsIn = typeof(StaticFontMetrics).GetTypeInfo().Assembly.GetManifestResourceStream(FONT_METRICS_PROPERTIES_FILE_NAME);
+                        if (metricsIn == null)
+                            throw new FileNotFoundException("font_metrics.properties not found in classpath");
+                    }
+                    fontMetricsProps.Load(metricsIn);
+                }
+                catch (IOException e)
+                {
+                    throw new Exception("Could not Load font metrics: " + e.Message);
+                }
+                finally
+                {
+                    if (metricsIn != null)
+                    {
+                        try
+                        {
+                            metricsIn.Dispose();
+                        }
+                        catch (IOException)
+                        {
+                        }
+                    }
+                }
+            }
 
-			// Grab the base name of the font they've asked about
-			String fontName = font.FontFamily?.Name;
+            // Grab the base name of the font they've asked about
+            String fontName = font.FontFamily?.Name;
 
-			// Some fonts support plain/bold/italic/bolditalic variants
-			// Others have different font instances for bold etc
-			// (eg font.dialog.plain.* vs font.Californian FB Bold.*)
-			String fontStyle = "";
-			//if(font.IsPlain())  fontStyle += "plain";
-			if (font.Bold) fontStyle += "bold";
-			if (font.Italic) fontStyle += "italic";
+            // Some fonts support plain/bold/italic/bolditalic variants
+            // Others have different font instances for bold etc
+            // (eg font.dialog.plain.* vs font.Californian FB Bold.*)
+            String fontStyle = "";
+            //if(font.IsPlain())  fontStyle += "plain";
+            if (font.Bold) fontStyle += "bold";
+            if (font.Italic) fontStyle += "italic";
 
-			// Do we have a definition for this font with just the name?
-			// If not, Check with the font style Added
-			if (fontMetricsProps[FontDetails.BuildFontHeightProperty(fontName)] == null &&
-			fontMetricsProps[FontDetails.BuildFontHeightProperty(fontName + "." + fontStyle)] != null)
-			{
-				// Need to Add on the style to the font name
-				fontName += "." + fontStyle;
-			}
+            // Do we have a definition for this font with just the name?
+            // If not, Check with the font style Added
+            if (fontMetricsProps[FontDetails.BuildFontHeightProperty(fontName)] == null &&
+            fontMetricsProps[FontDetails.BuildFontHeightProperty(fontName + "." + fontStyle)] != null)
+            {
+                // Need to Add on the style to the font name
+                fontName += "." + fontStyle;
+            }
 
-			// Get the details on this font
-			if (fontDetailsMap[fontName] == null)
-			{
-				FontDetails fontDetails = FontDetails.Create(fontName, fontMetricsProps);
-				fontDetailsMap[fontName] = fontDetails;
-				return fontDetails;
-			}
-			else
-			{
-				return (FontDetails)fontDetailsMap[fontName];
-			}
-
-		}
-	}
+            // Get the details on this font
+            if (fontDetailsMap[fontName] == null)
+            {
+                FontDetails fontDetails = FontDetails.Create(fontName, fontMetricsProps);
+                fontDetailsMap[fontName] = fontDetails;
+                return fontDetails;
+            }
+            else
+            {
+                return (FontDetails)fontDetailsMap[fontName];
+            }
+        }
+    }
 }

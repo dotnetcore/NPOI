@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -20,8 +19,8 @@ using System.Text;
 
 namespace Npoi.Core.DDF
 {
-    using System;
     using Npoi.Core.Util;
+    using System;
 
     /// <summary>
     /// A list of the most recently used colours for the drawings contained in
@@ -45,8 +44,7 @@ namespace Npoi.Core.DDF
         /// <param name="offset">The starting offset into data</param>
         /// <param name="recordFactory">May be null since this is not a container record.</param>
         /// <returns>The number of bytes Read from the byte array.</returns>
-        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory)
-        {
+        public override int FillFields(byte[] data, int offset, IEscherRecordFactory recordFactory) {
             int bytesRemaining = ReadHeader(data, offset);
             int pos = offset + 8;
             int size = 0;
@@ -68,8 +66,7 @@ namespace Npoi.Core.DDF
         /// <param name="data">The byte array to Serialize to.</param>
         /// <param name="listener">a listener for begin and end serialization events.</param>
         /// <returns>The number of bytes written.</returns>
-        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener)
-        {
+        public override int Serialize(int offset, byte[] data, EscherSerializationListener listener) {
             //        int field_2_numIdClusters = field_5_fileIdClusters.Length + 1;
             listener.BeforeRecordSerialize(offset, RecordId, this);
 
@@ -83,7 +80,7 @@ namespace Npoi.Core.DDF
             LittleEndian.PutInt(data, pos, field_2_color2); pos += 4;
             LittleEndian.PutInt(data, pos, field_3_color3); pos += 4;
             LittleEndian.PutInt(data, pos, field_4_color4); pos += 4;
-            
+
             listener.AfterRecordSerialize(pos, RecordId, pos - offset, this);
             return RecordSize;
         }
@@ -92,8 +89,7 @@ namespace Npoi.Core.DDF
         /// Returns the number of bytes that are required to Serialize this record.
         /// </summary>
         /// <value>number of bytes</value>
-        public override int RecordSize
-        {
+        public override int RecordSize {
             get { return 8 + 4 * 4; }
         }
 
@@ -101,8 +97,7 @@ namespace Npoi.Core.DDF
         /// Return the current record id.
         /// </summary>
         /// <value>the 16 bit identifer for this record.</value>
-        public override short RecordId
-        {
+        public override short RecordId {
             get { return RECORD_ID; }
         }
 
@@ -110,8 +105,7 @@ namespace Npoi.Core.DDF
         /// Gets the short name for this record
         /// </summary>
         /// <value>The name of the record.</value>
-        public override String RecordName
-        {
+        public override String RecordName {
             get { return "SplitMenuColors"; }
         }
 
@@ -122,8 +116,7 @@ namespace Npoi.Core.DDF
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </returns>
         /// @return  a string representation of this record.
-        public override String ToString()
-        {
+        public override String ToString() {
             String nl = Environment.NewLine;
 
             //        String extraData;
@@ -146,10 +139,9 @@ namespace Npoi.Core.DDF
                     "  Color3: 0x" + HexDump.ToHex(field_3_color3) + nl +
                     "  Color4: 0x" + HexDump.ToHex(field_4_color4) + nl +
                     "";
-
         }
-        public override String ToXml(String tab)
-        {
+
+        public override String ToXml(String tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
                     .Append(tab).Append("\t").Append("<Color1>0x").Append(HexDump.ToHex(field_1_color1)).Append("</Color1>\n")
@@ -159,12 +151,12 @@ namespace Npoi.Core.DDF
             builder.Append(tab).Append("</").Append(GetType().Name).Append(">\n");
             return builder.ToString();
         }
+
         /// <summary>
         /// Gets or sets the color1.
         /// </summary>
         /// <value>The color1.</value>
-        public int Color1
-        {
+        public int Color1 {
             get { return field_1_color1; }
             set { field_1_color1 = value; }
         }
@@ -173,8 +165,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets the color2.
         /// </summary>
         /// <value>The color2.</value>
-        public int Color2
-        {
+        public int Color2 {
             get { return field_2_color2; }
             set { field_2_color2 = value; }
         }
@@ -183,8 +174,7 @@ namespace Npoi.Core.DDF
         /// Gets or sets the color3.
         /// </summary>
         /// <value>The color3.</value>
-        public int Color3
-        {
+        public int Color3 {
             get { return field_3_color3; }
             set { field_3_color3 = value; }
         }
@@ -193,11 +183,9 @@ namespace Npoi.Core.DDF
         /// Gets or sets the color4.
         /// </summary>
         /// <value>The color4.</value>
-        public int Color4
-        {
+        public int Color4 {
             get { return field_4_color4; }
             set { field_4_color4 = value; }
         }
-
     }
 }

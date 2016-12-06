@@ -17,8 +17,8 @@
 
 namespace Npoi.Core.HSSF.Record.Crypto
 {
-    using System;
     using Npoi.Core.HSSF.Record;
+    using System;
 
     /**
      * Used for both encrypting and decrypting BIFF8 streams. The internal
@@ -26,9 +26,9 @@ namespace Npoi.Core.HSSF.Record.Crypto
      *
      * @author Josh Micich
      */
+
     public class Biff8RC4
     {
-
         private const int RC4_REKEYING_INTERVAL = 1024;
 
         private RC4 _rc4;
@@ -94,6 +94,7 @@ namespace Npoi.Core.HSSF.Record.Crypto
          *
          * @return <c>true</c> if record type specified by <c>sid</c> is never encrypted
          */
+
         private static bool IsNeverEncryptedRecord(int sid)
         {
             switch (sid)
@@ -122,6 +123,7 @@ namespace Npoi.Core.HSSF.Record.Crypto
          * Used when BIFF header fields (sid, size) are being Read. The internal
          * {@link RC4} instance must step even when unencrypted bytes are read
          */
+
         public void SkipTwoBytes()
         {
             GetNextRC4Byte();
@@ -216,4 +218,3 @@ namespace Npoi.Core.HSSF.Record.Crypto
         }
     }
 }
-

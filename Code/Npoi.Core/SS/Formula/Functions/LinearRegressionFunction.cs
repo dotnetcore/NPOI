@@ -23,7 +23,6 @@ namespace Npoi.Core.SS.Formula.Functions
     using Npoi.Core.SS.Formula.Eval;
     using System;
 
-
     /**
      * Base class for linear regression functions.
      *
@@ -37,12 +36,13 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author Johan Karlsteen
      */
+
     public class LinearRegressionFunction : Fixed2ArgFunction
     {
-
         private abstract class ValueArray : ValueVector
         {
             private int _size;
+
             protected ValueArray(int size)
             {
                 _size = size;
@@ -57,6 +57,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 }
                 return GetItemInternal(index);
             }
+
             protected abstract ValueEval GetItemInternal(int index);
 
             public int Size
@@ -71,6 +72,7 @@ namespace Npoi.Core.SS.Formula.Functions
         private class SingleCellValueArray : ValueArray
         {
             private ValueEval _value;
+
             public SingleCellValueArray(ValueEval value)
                 : base(1)
             {
@@ -87,6 +89,7 @@ namespace Npoi.Core.SS.Formula.Functions
         {
             private RefEval _ref;
             private int _width;
+
             public RefValueArray(RefEval ref1)
                 : base(ref1.NumberOfSheets)
             {
@@ -122,13 +125,13 @@ namespace Npoi.Core.SS.Formula.Functions
         }
 
         public enum FUNCTION { INTERCEPT, SLOPE };
+
         public FUNCTION function;
 
         public LinearRegressionFunction(FUNCTION function)
         {
             this.function = function;
         }
-
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex,
                 ValueEval arg0, ValueEval arg1)
@@ -158,7 +161,6 @@ namespace Npoi.Core.SS.Formula.Functions
 
         private double EvaluateInternal(ValueVector x, ValueVector y, int size)
         {
-
             // error handling is as if the x is fully Evaluated before y
             ErrorEval firstXerr = null;
             ErrorEval firstYerr = null;

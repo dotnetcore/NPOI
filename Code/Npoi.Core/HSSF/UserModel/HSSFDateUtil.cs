@@ -15,20 +15,16 @@
    limitations under the License.
 ==================================================================== */
 
-
-
 /*
  * DateUtil.java
  *
  * Created on January 19, 2002, 9:30 AM
  */
+
 namespace Npoi.Core.HSSF.UserModel
 {
-    using System;
-
-
-
     using Npoi.Core.SS.UserModel;
+    using System;
 
     /**
      * Contains methods for dealing with Excel dates.

@@ -26,7 +26,7 @@ namespace Npoi.Core.HSSF.UserModel
      * need to display data exactly as it appears in Excel. Supported formats
      * include currency, SSN, percentages, decimals, dates, phone numbers, zip
      * codes, etc.
-     * 
+     *
      * Internally, formats will be implemented using subclasses of <see cref="Npoi.Core.SS.Util.FormatBase"/>
      * such as <see cref="Npoi.Core.SS.Util.DecimalFormat"/> and <see cref="Npoi.Core.SS.Util.SimpleDateFormat"/>. Therefore the
      * formats used by this class must obey the same pattern rules as these Format
@@ -34,7 +34,7 @@ namespace Npoi.Core.HSSF.UserModel
      * ".", "," etc.) may appear in number formats. Other characters can be
      * inserted <em>before</em> or <em>after</em> the number pattern to form a
      * prefix or suffix.
-     * 
+     *
      * For example the Excel pattern <c>"$#,##0.00 "USD"_);($#,##0.00 "USD")"
      * </c> will be correctly formatted as "$1,000.00 USD" or "($1,000.00 USD)".
      * However the pattern <c>"00-00-00"</c> is incorrectly formatted by
@@ -42,14 +42,14 @@ namespace Npoi.Core.HSSF.UserModel
      * DecimalFormat, you can provide your own custom {@link Format} implementation
      * via <c>HSSFDataFormatter.AddFormat(String,Format)</c>. The following
      * custom formats are already provided by this class:
-     * 
+     *
      * <pre>
      * <ul><li>SSN "000-00-0000"</li>
      *     <li>Phone Number "(###) ###-####"</li>
      *     <li>Zip plus 4 "00000-0000"</li>
      * </ul>
      * </pre>
-     * 
+     *
      * If the Excel format pattern cannot be parsed successfully, then a default
      * format will be used. The default number format will mimic the Excel General
      * format: "#" for whole numbers and "#.##########" for decimal numbers. You
@@ -60,26 +60,25 @@ namespace Npoi.Core.HSSF.UserModel
      *
      * @author James May (james dot may at fmr dot com)
      */
+
     public class HSSFDataFormatter : DataFormatter
     {
-
         /**
          * Creates a formatter using the given locale.
          */
+
         public HSSFDataFormatter(CultureInfo locale)
             : base(locale)
         {
-
         }
 
         /**
          * Creates a formatter using the {@link Locale#getDefault() default locale}.
          */
+
         public HSSFDataFormatter()
             : this(System.Globalization.CultureInfo.CurrentCulture)
         {
         }
-
     }
-
 }

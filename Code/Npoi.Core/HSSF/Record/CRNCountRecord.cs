@@ -17,23 +17,23 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
+
     /**
-     * XCT ?CRN Count 
+     * XCT ?CRN Count
      *
      * REFERENCE:  5.114
      *
      * @author Josh Micich
      */
+
     public class CRNCountRecord : StandardRecord
     {
         public const short sid = 0x59;
 
         private const short DATA_SIZE = 4;
-
 
         private int field_1_number_crn_records;
         private int field_2_sheet_table_index;
@@ -78,6 +78,7 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteShort((short)field_1_number_crn_records);
             out1.WriteShort((short)field_2_sheet_table_index);
         }
+
         protected override int DataSize
         {
             get
@@ -89,6 +90,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * return the non static version of the id for this record.
          */
+
         public override short Sid
         {
             get { return sid; }

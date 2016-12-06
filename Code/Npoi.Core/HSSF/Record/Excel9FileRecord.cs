@@ -1,18 +1,17 @@
-﻿
-namespace Npoi.Core.HSSF.Record
+﻿namespace Npoi.Core.HSSF.Record
 {
-    public class Excel9FileRecord:StandardRecord
+    public class Excel9FileRecord : StandardRecord
     {
         public Excel9FileRecord()
-        { 
-        
+        {
         }
+
         public Excel9FileRecord(RecordInputStream in1)
-        { 
-        
+        {
         }
 
         public const short sid = 0x1c0;
+
         public override short Sid
         {
             get { return sid; }
@@ -25,7 +24,6 @@ namespace Npoi.Core.HSSF.Record
 
         public override void Serialize(Npoi.Core.Util.ILittleEndianOutput out1)
         {
-            
         }
     }
 }

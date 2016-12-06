@@ -17,36 +17,34 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
-    using System.Text;
     using Npoi.Core.Util;
-
-    using System.IO;
+    using System;
     using System.Collections.Generic;
-
+    using System.IO;
+    using System.Text;
 
     /**
      * The obj record is used to hold various graphic objects and controls.
      *
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class ObjRecord : Record
     {
         private const int NORMAL_PAD_ALIGNMENT = 2;
-	    private const int MAX_PAD_ALIGNMENT = 4;
+        private const int MAX_PAD_ALIGNMENT = 4;
 
         public const short sid = 0x5D;
         private List<SubRecord> subrecords;
-        	/** used when POI has no idea what is going on */
-	    private byte[] _uninterpretedData;
-    /**
-* Excel seems to tolerate padding to quad or double byte length
+        /** used when POI has no idea what is going on */
+        private byte[] _uninterpretedData;
+        /**
+    * Excel seems to tolerate padding to quad or double byte length
 */
         private bool _isPaddedToQuadByteMultiple;
 
         //00000000 15 00 12 00 01 00 01 00 11 60 00 00 00 00 00 0D .........`......
         //00000010 26 01 00 00 00 00 00 00 00 00                   &.........
-
 
         public ObjRecord()
         {
@@ -129,15 +127,17 @@ namespace Npoi.Core.HSSF.Record
                 _uninterpretedData = null;
             }
         }
+
         /**
      * Some XLS files have ObjRecords with nearly 8Kb of excessive padding. These were probably
      * written by a version of POI (around 3.1) which incorrectly interpreted the second short of
      * the ftLbs subrecord (0x1FEE) as a length, and read that many bytes as padding (other bugs
      * helped allow this to occur).
-     * 
+     *
      * Excel reads files with this excessive padding OK, truncating the over-sized ObjRecord back
      * to the its proper size.  POI does the same.
      */
+
         private static bool CanPaddingBeDiscarded(byte[] data, int nRemainingBytes)
         {
             // make sure none of the padding looks important
@@ -165,15 +165,15 @@ namespace Npoi.Core.HSSF.Record
             return sb.ToString();
         }
 
-        public override int Serialize(int offset, byte [] data)
+        public override int Serialize(int offset, byte[] data)
         {
             int recSize = RecordSize;
             int dataSize = recSize - 4;
 
             LittleEndianByteArrayOutputStream out1 = new LittleEndianByteArrayOutputStream(data, offset, recSize);
 
-		    out1.WriteShort(sid);
-		    out1.WriteShort(dataSize);
+            out1.WriteShort(sid);
+            out1.WriteShort(dataSize);
 
             if (_uninterpretedData == null)
             {
@@ -199,6 +199,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Size of record (excluding 4 byte header)
          */
+
         public override int RecordSize
         {
             get

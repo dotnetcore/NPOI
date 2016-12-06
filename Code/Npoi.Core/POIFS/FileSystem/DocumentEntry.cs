@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.POIFS.FileSystem
@@ -32,13 +32,12 @@ namespace Npoi.Core.POIFS.FileSystem
     /// managed by a Filesystem instance.
     /// @author Marc Johnson (mjohnson at apache dot org)
     /// </summary>
-    public interface DocumentEntry:Entry
+    public interface DocumentEntry : Entry
     {
         /// <summary>
         /// get the size of the document, in bytes
         /// </summary>
         /// <value>size in bytes</value>
-        int Size{get;}
+        int Size { get; }
     }
-
 }

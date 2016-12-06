@@ -31,12 +31,12 @@ namespace Npoi.Core.Util
         }
 
         public ByteBuffer(byte[] buffer, int off, int len)
-            :this(-1, off, off+len, buffer.Length, buffer, 0)
+            : this(-1, off, off + len, buffer.Length, buffer, 0)
         {
         }
 
         public ByteBuffer(int capacity, int limit)
-            :this(-1, 0, limit, capacity, new byte[capacity], 0)
+            : this(-1, 0, limit, capacity, new byte[capacity], 0)
         {
         }
 
@@ -78,7 +78,8 @@ namespace Npoi.Core.Util
         /// Returns the number of elements between the current position and the limit.
         /// </summary>
         /// <returns>The number of elements remaining in this buffer</returns>
-        public int Remaining() {
+        public int Remaining()
+        {
             return limit - position;
         }
 
@@ -86,7 +87,8 @@ namespace Npoi.Core.Util
         /// Tells whether there are any elements between the current position and the limit.
         /// </summary>
         /// <returns>true if, and only if, there is at least one element remaining in this buffer</returns>
-        public bool HasRemaining() {
+        public bool HasRemaining()
+        {
             return position < limit;
         }
 
@@ -109,7 +111,6 @@ namespace Npoi.Core.Util
             {
                 throw new IndexOutOfRangeException();
             }
-
         }
 
         public static ByteBuffer CreateBuffer(byte[] buffer)
@@ -160,7 +161,7 @@ namespace Npoi.Core.Util
 
         protected int CheckIndex(int i)
         {
-            if(i < 0 || (i >= limit))
+            if (i < 0 || (i >= limit))
                 throw new IndexOutOfRangeException();
             return i;
         }
@@ -185,7 +186,7 @@ namespace Npoi.Core.Util
             }
             set
             {
-             //   buffer[Index(NextPutIndex(index))] = value;
+                //   buffer[Index(NextPutIndex(index))] = value;
                 if (index < 0 || index >= limit)
                     throw new IndexOutOfRangeException();
                 buffer[Index(index)] = value;
@@ -202,7 +203,6 @@ namespace Npoi.Core.Util
         {
             return Read(buf, 0, buf.Length);
         }
-
 
         public ByteBuffer Read(byte[] dst, int offset, int length)
         {
@@ -251,7 +251,6 @@ namespace Npoi.Core.Util
             return this;
         }
 
-
         public ByteBuffer Write(byte[] data)
         {
             return Write(data, 0, data.Length);
@@ -261,7 +260,7 @@ namespace Npoi.Core.Util
         {
             get { return limit - position; }
         }
-        
+
         public byte[] Buffer
         {
             get { return buffer; }
@@ -283,6 +282,7 @@ namespace Npoi.Core.Util
         }
     }
 }
+
 /*
 
     private byte[] buffer;
@@ -308,7 +308,6 @@ namespace Npoi.Core.Util
 
         public ByteBuffer(byte[] buffer) : this(buffer, 0, buffer.Length)
         {
-
         }
         public void Write(byte[] data)
         {
@@ -414,7 +413,7 @@ namespace Npoi.Core.Util
 
         public byte this[int index]
         {
-            get 
+            get
             {
                 if (index < 0 || index > length)
                     throw new IndexOutOfRangeException();
@@ -438,7 +437,6 @@ namespace Npoi.Core.Util
             buf.length = start + count;
 
             return buf;
-
         }
 
 */

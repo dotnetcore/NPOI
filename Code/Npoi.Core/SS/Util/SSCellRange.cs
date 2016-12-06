@@ -17,9 +17,8 @@
 
 namespace Npoi.Core.SS.Util
 {
-    using System;
-
     using Npoi.Core.SS.UserModel;
+    using System;
     using System.Collections.Generic;
     using System.Globalization;
 
@@ -28,9 +27,9 @@ namespace Npoi.Core.SS.Util
      *
      * @author Josh Micich
      */
-    public class SSCellRange<K> : ICellRange<K> where K:ICell
-    {
 
+    public class SSCellRange<K> : ICellRange<K> where K : ICell
+    {
         private int _height;
         private int _width;
         private K[] _flattenedArray;
@@ -55,11 +54,9 @@ namespace Npoi.Core.SS.Util
             }
 
             K[] flattenedArray = (K[])Array.CreateInstance(cellClass, nItems);
-            flattenedArray=flattenedList.ToArray();
+            flattenedArray = flattenedList.ToArray();
             return new SSCellRange<K>(firstRow, firstColumn, height, width, flattenedArray);
         }
-
-
 
         public K GetCell(int relativeRowIndex, int relativeColumnIndex)
         {
@@ -76,9 +73,9 @@ namespace Npoi.Core.SS.Util
             int flatIndex = _width * relativeRowIndex + relativeColumnIndex;
             return _flattenedArray[flatIndex];
         }
-        internal class ArrayIterator<D> :IEnumerator<D>
-        {
 
+        internal class ArrayIterator<D> : IEnumerator<D>
+        {
             private D[] _array;
             private int _index;
 
@@ -89,6 +86,7 @@ namespace Npoi.Core.SS.Util
             }
 
             #region IEnumerator<D> Members
+
             public bool MoveNext()
             {
                 return _index < _array.Length;
@@ -100,7 +98,7 @@ namespace Npoi.Core.SS.Util
             }
 
             public void Reset()
-            { 
+            {
             }
 
             public D Current
@@ -115,8 +113,7 @@ namespace Npoi.Core.SS.Util
                 }
             }
 
-
-            #endregion
+            #endregion IEnumerator<D> Members
 
             #region IDisposable Members
 
@@ -125,7 +122,7 @@ namespace Npoi.Core.SS.Util
                 //do nothing?
             }
 
-            #endregion
+            #endregion IDisposable Members
 
             #region IEnumerator Members
 
@@ -134,11 +131,10 @@ namespace Npoi.Core.SS.Util
                 get { return this.Current; }
             }
 
-            #endregion
+            #endregion IEnumerator Members
         }
 
         #region CellRange<K> Members
-
 
         public K TopLeftCell
         {
@@ -147,14 +143,16 @@ namespace Npoi.Core.SS.Util
 
         public K[] FlattenedCells
         {
-            get {
+            get
+            {
                 return (K[])_flattenedArray.Clone();
             }
         }
 
         public K[][] Cells
         {
-            get {
+            get
+            {
                 Type itemCls = _flattenedArray.GetType();
                 K[][] result = (K[][])Array.CreateInstance(itemCls, _height);
                 itemCls = itemCls.GetElementType();
@@ -175,6 +173,7 @@ namespace Npoi.Core.SS.Util
                 return _height;
             }
         }
+
         public int Width
         {
             get
@@ -182,6 +181,7 @@ namespace Npoi.Core.SS.Util
                 return _width;
             }
         }
+
         public int Size
         {
             get
@@ -198,10 +198,8 @@ namespace Npoi.Core.SS.Util
                 return cra.FormatAsString();
             }
         }
-        #endregion
 
-
-
+        #endregion CellRange<K> Members
 
         #region IEnumerable<K> Members
 
@@ -210,7 +208,7 @@ namespace Npoi.Core.SS.Util
             return new ArrayIterator<K>(_flattenedArray);
         }
 
-        #endregion
+        #endregion IEnumerable<K> Members
 
         #region IEnumerable Members
 
@@ -219,9 +217,6 @@ namespace Npoi.Core.SS.Util
             throw new NotImplementedException();
         }
 
-        #endregion
+        #endregion IEnumerable Members
     }
 }
-
-
-

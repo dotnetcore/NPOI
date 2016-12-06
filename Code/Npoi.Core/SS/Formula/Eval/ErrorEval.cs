@@ -17,20 +17,22 @@
 
 namespace Npoi.Core.SS.Formula.Eval
 {
-    using System;
-    using System.Text;
     using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.SS.UserModel;
-    using System.Collections.Generic;
     using Npoi.Core.Util;
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
 
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
      *
      */
+
     public class ErrorEval : ValueEval
     {
         private static Dictionary<FormulaError, ErrorEval> evals = new Dictionary<FormulaError, ErrorEval>();
+
         // convenient access to namespace
         private const HSSFErrorConstants EC = null;
 
@@ -49,18 +51,17 @@ namespace Npoi.Core.SS.Formula.Eval
         /** <b>#N/A</b> - Argument or function not available */
         public static readonly ErrorEval NA = new ErrorEval(FormulaError.NA);
 
-
         // POI internal error codes
         public static ErrorEval FUNCTION_NOT_IMPLEMENTED = new ErrorEval(FormulaError.FUNCTION_NOT_IMPLEMENTED);
 
         // Note - Excel does not seem to represent this condition with an error code
         public static ErrorEval CIRCULAR_REF_ERROR = new ErrorEval(FormulaError.CIRCULAR_REF);
 
-
         /**
          * Translates an Excel internal error code into the corresponding POI ErrorEval instance
          * @param errorCode
          */
+
         public static ErrorEval ValueOf(int errorCode)
         {
             FormulaError error = FormulaError.ForInt(errorCode);
@@ -71,10 +72,11 @@ namespace Npoi.Core.SS.Formula.Eval
         }
 
         /**
-         * Converts error codes to text.  Handles non-standard error codes OK.  
+         * Converts error codes to text.  Handles non-standard error codes OK.
          * For debug/test purposes (and for formatting error messages).
          * @return the String representation of the specified Excel error code.
          */
+
         public static String GetText(int errorCode)
         {
             if (FormulaError.IsValidCode(errorCode))
@@ -86,17 +88,19 @@ namespace Npoi.Core.SS.Formula.Eval
         }
 
         private FormulaError _error;
- 
+
         private ErrorEval(FormulaError error)
         {
             _error = error;
             if (!evals.ContainsKey(error))
                 evals.Add(error, this);
         }
+
         public int ErrorCode
         {
-            get{return _error.LongCode;}
+            get { return _error.LongCode; }
         }
+
         public String ErrorString
         {
             get
@@ -104,6 +108,7 @@ namespace Npoi.Core.SS.Formula.Eval
                 return _error.String;
             }
         }
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder(64);

@@ -15,23 +15,21 @@
 * limitations Under the License.
 */
 
-
 namespace Npoi.Core.SS.Formula.Functions
 {
     using Npoi.Core.SS.Formula.Eval;
 
     /**
      * Implementation of Excel function NA()
-     * 
+     *
      * @author Josh Micich
      */
+
     public class Na : Fixed0ArgFunction
     {
-
         public override ValueEval Evaluate(int srcCellRow, int srcCellCol)
         {
             return ErrorEval.NA;
         }
-
     }
 }

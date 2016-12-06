@@ -17,7 +17,6 @@
 
 namespace Npoi.Core.HSSF.Record.Aggregates
 {
-
     using Npoi.Core.HSSF.Model;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
@@ -32,11 +31,13 @@ namespace Npoi.Core.HSSF.Record.Aggregates
      *
      * @author Josh Micich
      */
+
     public class WorksheetProtectionBlock : RecordAggregate
     {
         // Every one of these component records is optional
         // (The whole WorksheetProtectionBlock may not be present)
         private ProtectRecord _protectRecord;
+
         private ObjectProtectRecord _objectProtectRecord;
         private ScenarioProtectRecord _scenarioProtectRecord;
         private PasswordRecord _passwordRecord;
@@ -44,6 +45,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /**
          * Creates an empty WorksheetProtectionBlock
          */
+
         public WorksheetProtectionBlock()
         {
             // all fields emptyv
@@ -53,6 +55,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * @return <c>true</c> if the specified Record sid is one belonging to
          *         the 'Page Settings Block'.
          */
+
         public static bool IsComponentRecord(int sid)
         {
             switch (sid)
@@ -68,25 +71,28 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         private bool ReadARecord(RecordStream rs)
         {
-            
             switch (rs.PeekNextSid())
             {
                 case ProtectRecord.sid:
                     CheckNotPresent(_protectRecord);
                     _protectRecord = rs.GetNext() as ProtectRecord;
                     break;
+
                 case ObjectProtectRecord.sid:
                     CheckNotPresent(_objectProtectRecord);
                     _objectProtectRecord = rs.GetNext() as ObjectProtectRecord;
                     break;
+
                 case ScenarioProtectRecord.sid:
                     CheckNotPresent(_scenarioProtectRecord);
                     _scenarioProtectRecord = rs.GetNext() as ScenarioProtectRecord;
                     break;
+
                 case PasswordRecord.sid:
                     CheckNotPresent(_passwordRecord);
                     _passwordRecord = rs.GetNext() as PasswordRecord;
                     break;
+
                 default:
                     // all other record types are not part of the PageSettingsBlock
                     return false;
@@ -147,6 +153,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * written in one consolidated block (in the standard ordering) regardless of how scattered the
          * records were when they were originally Read.
          */
+
         public void AddRecords(RecordStream rs)
         {
             while (true)
@@ -172,6 +179,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 return _protectRecord;
             }
         }
+
         /// <summary>
         /// the PasswordRecord. If one is not Contained in the sheet, then one is Created.
         /// </summary>
@@ -233,7 +241,8 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         public bool IsObjectProtected
         {
-            get{
+            get
+            {
                 return _objectProtectRecord != null && _objectProtectRecord.Protect;
             }
         }
@@ -250,20 +259,23 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /// Creates an ObjectProtect record with protect set to false.
         /// </summary>
         /// <returns></returns>
-        private static ObjectProtectRecord CreateObjectProtect() {
-		ObjectProtectRecord retval = new ObjectProtectRecord();
-		retval.Protect = (false);
-		return retval;
-	}
+        private static ObjectProtectRecord CreateObjectProtect()
+        {
+            ObjectProtectRecord retval = new ObjectProtectRecord();
+            retval.Protect = (false);
+            return retval;
+        }
+
         /// <summary>
         /// Creates a ScenarioProtect record with protect set to false.
         /// </summary>
         /// <returns></returns>
-        private static ScenarioProtectRecord CreateScenarioProtect() {
-		ScenarioProtectRecord retval = new ScenarioProtectRecord();
-		retval.Protect = (false);
-		return retval;
-	}
+        private static ScenarioProtectRecord CreateScenarioProtect()
+        {
+            ScenarioProtectRecord retval = new ScenarioProtectRecord();
+            retval.Protect = (false);
+            return retval;
+        }
 
         /// <summary>
         ///Creates a Password record with password set to 0x0000.
@@ -287,6 +299,3 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         }
     }
 }
-
-
-

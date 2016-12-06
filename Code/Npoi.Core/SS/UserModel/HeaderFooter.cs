@@ -14,9 +14,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.UserModel
 {
     using System;
+
     /// <summary>
     /// Common interface for Npoi.Core.SS.UserModel.Header and Npoi.Core.SS.UserModel.Footer
     /// </summary>
@@ -41,4 +43,3 @@ namespace Npoi.Core.SS.UserModel
         String Right { get; set; }
     }
 }
-

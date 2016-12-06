@@ -17,20 +17,19 @@
 
 namespace Npoi.Core.HSSF.UserModel
 {
-
-    using System;
     using Npoi.Core.HSSF.Model;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.HSSF.Record.CF;
     using Npoi.Core.SS.Formula.PTG;
     using Npoi.Core.SS.UserModel;
+    using System;
 
     /**
-     * 
+     *
      * High level representation of Conditional Formatting Rule.
      * It allows to specify formula based conditions for the Conditional Formatting
      * and the formatting Settings such as font, border and pattern.
-     * 
+     *
      * @author Dmitriy Kumshayev
      */
 
@@ -57,13 +56,13 @@ namespace Npoi.Core.HSSF.UserModel
             FontFormatting fontFormatting = cfRuleRecord.FontFormatting;
             if (fontFormatting != null)
             {
-                cfRuleRecord.FontFormatting=(fontFormatting);
+                cfRuleRecord.FontFormatting = (fontFormatting);
                 return new HSSFFontFormatting(cfRuleRecord);
             }
             else if (Create)
             {
                 fontFormatting = new FontFormatting();
-                cfRuleRecord.FontFormatting=(fontFormatting);
+                cfRuleRecord.FontFormatting = (fontFormatting);
                 return new HSSFFontFormatting(cfRuleRecord);
             }
             else
@@ -75,15 +74,18 @@ namespace Npoi.Core.HSSF.UserModel
         /**
          * @return - font formatting object  if defined,  <c>null</c> otherwise
          */
+
         public IFontFormatting GetFontFormatting()
         {
             return GetFontFormatting(false);
         }
+
         /**
-         * Create a new font formatting structure if it does not exist, 
+         * Create a new font formatting structure if it does not exist,
          * otherwise just return existing object.
-         * @return - font formatting object, never returns <c>null</c>. 
+         * @return - font formatting object, never returns <c>null</c>.
          */
+
         public IFontFormatting CreateFontFormatting()
         {
             return GetFontFormatting(true);
@@ -94,13 +96,13 @@ namespace Npoi.Core.HSSF.UserModel
             BorderFormatting borderFormatting = cfRuleRecord.BorderFormatting;
             if (borderFormatting != null)
             {
-                cfRuleRecord.BorderFormatting=(borderFormatting);
+                cfRuleRecord.BorderFormatting = (borderFormatting);
                 return new HSSFBorderFormatting(cfRuleRecord);
             }
             else if (Create)
             {
                 borderFormatting = new BorderFormatting();
-                cfRuleRecord.BorderFormatting=(borderFormatting);
+                cfRuleRecord.BorderFormatting = (borderFormatting);
                 return new HSSFBorderFormatting(cfRuleRecord);
             }
             else
@@ -108,18 +110,22 @@ namespace Npoi.Core.HSSF.UserModel
                 return null;
             }
         }
+
         /**
          * @return - border formatting object  if defined,  <c>null</c> otherwise
          */
+
         public IBorderFormatting GetBorderFormatting()
         {
             return GetBorderFormatting(false);
         }
+
         /**
-         * Create a new border formatting structure if it does not exist, 
+         * Create a new border formatting structure if it does not exist,
          * otherwise just return existing object.
-         * @return - border formatting object, never returns <c>null</c>. 
+         * @return - border formatting object, never returns <c>null</c>.
          */
+
         public IBorderFormatting CreateBorderFormatting()
         {
             return GetBorderFormatting(true);
@@ -130,13 +136,13 @@ namespace Npoi.Core.HSSF.UserModel
             PatternFormatting patternFormatting = cfRuleRecord.PatternFormatting;
             if (patternFormatting != null)
             {
-                cfRuleRecord.PatternFormatting=(patternFormatting);
+                cfRuleRecord.PatternFormatting = (patternFormatting);
                 return new HSSFPatternFormatting(cfRuleRecord);
             }
             else if (Create)
             {
                 patternFormatting = new PatternFormatting();
-                cfRuleRecord.PatternFormatting=(patternFormatting);
+                cfRuleRecord.PatternFormatting = (patternFormatting);
                 return new HSSFPatternFormatting(cfRuleRecord);
             }
             else
@@ -148,22 +154,27 @@ namespace Npoi.Core.HSSF.UserModel
         /**
          * @return - pattern formatting object  if defined, <c>null</c> otherwise
          */
+
         public IPatternFormatting GetPatternFormatting()
         {
             return GetPatternFormatting(false);
         }
+
         /**
-         * Create a new pattern formatting structure if it does not exist, 
+         * Create a new pattern formatting structure if it does not exist,
          * otherwise just return existing object.
-         * @return - pattern formatting object, never returns <c>null</c>. 
+         * @return - pattern formatting object, never returns <c>null</c>.
          */
+
         public IPatternFormatting CreatePatternFormatting()
         {
             return GetPatternFormatting(true);
         }
+
         /**
 	     * @return -  the conditiontype for the cfrule
 	     */
+
         public ConditionType ConditionType
         {
             get
@@ -171,9 +182,11 @@ namespace Npoi.Core.HSSF.UserModel
                 return (ConditionType)cfRuleRecord.ConditionType;
             }
         }
+
         /**
 	     * @return - the comparisionoperatation for the cfrule
 	     */
+
         public ComparisonOperator ComparisonOperation
         {
             get

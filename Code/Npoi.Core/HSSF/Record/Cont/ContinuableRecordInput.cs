@@ -19,7 +19,6 @@
 
 namespace Npoi.Core.HSSF.Record.Cont
 {
-
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
 
@@ -50,6 +49,7 @@ namespace Npoi.Core.HSSF.Record.Cont
      *
      * @author Yegor Kozlov
      */
+
     public class ContinuableRecordInput : ILittleEndianInput
     {
         private RecordInputStream _in;
@@ -58,6 +58,7 @@ namespace Npoi.Core.HSSF.Record.Cont
         {
             _in = in1;
         }
+
         public int Available()
         {
             return _in.Available();
@@ -118,15 +119,15 @@ namespace Npoi.Core.HSSF.Record.Cont
         {
             return _in.ReadDouble();
         }
+
         public void ReadFully(byte[] buf)
         {
             _in.ReadFully(buf);
         }
+
         public void ReadFully(byte[] buf, int off, int len)
         {
             _in.ReadFully(buf, off, len);
         }
-
     }
-
 }

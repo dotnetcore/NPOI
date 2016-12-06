@@ -15,14 +15,13 @@
    limitations under the License.
 ==================================================================== */
 
+using Npoi.Core.Util;
 using System;
 using System.Text;
-using Npoi.Core.Util;
-
 
 namespace Npoi.Core.HSSF.Record
 {
-    public abstract class CellRecord : StandardRecord, CellValueRecordInterface,IComparable
+    public abstract class CellRecord : StandardRecord, CellValueRecordInterface, IComparable
     {
         private int _rowIndex;
         private int _columnIndex;
@@ -64,13 +63,13 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         /**
          * get the index to the ExtendedFormat
          *
          * @see org.apache.poi.hssf.record.ExtendedFormatRecord
          * @return index to the XF record
          */
+
         public short XFIndex
         {
             get
@@ -131,6 +130,7 @@ namespace Npoi.Core.HSSF.Record
          * contained in this record. Trailing new-line should not be Appended
          * (superclass does that).
          */
+
         protected abstract void AppendValueText(StringBuilder sb);
 
         /**
@@ -141,6 +141,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * writes out the value data for this cell record
          */
+
         protected abstract void SerializeValue(ILittleEndianOutput out1);
 
         /**
@@ -187,7 +188,7 @@ namespace Npoi.Core.HSSF.Record
             return false;
         }
 
-        public override int GetHashCode ()
+        public override int GetHashCode()
         {
             return Row ^ Column;
         }

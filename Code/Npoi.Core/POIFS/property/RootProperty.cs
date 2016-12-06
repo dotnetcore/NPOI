@@ -17,12 +17,12 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using Npoi.Core.POIFS.Common;
@@ -30,14 +30,14 @@ using Npoi.Core.POIFS.Storage;
 
 namespace Npoi.Core.POIFS.Properties
 {
-    public class RootProperty:DirectoryProperty
+    public class RootProperty : DirectoryProperty
     {
         private const string NAME = "Root Entry";
 
-        public RootProperty():base(NAME)
+        public RootProperty() : base(NAME)
         {
-            this.NodeColor=_NODE_BLACK;
-            this.PropertyType=PropertyConstants.ROOT_TYPE;
+            this.NodeColor = _NODE_BLACK;
+            this.PropertyType = PropertyConstants.ROOT_TYPE;
             this.StartBlock = POIFSConstants.END_OF_CHAIN;
         }
 
@@ -47,10 +47,9 @@ namespace Npoi.Core.POIFS.Properties
         /// <param name="index">index number</param>
         /// <param name="array">byte data</param>
         /// <param name="offset">offset into byte data</param>
-        public RootProperty(int index, byte [] array,
-                               int offset): base(index, array, offset)
+        public RootProperty(int index, byte[] array,
+                               int offset) : base(index, array, offset)
         {
-           
         }
 
         /// <summary>
@@ -59,8 +58,9 @@ namespace Npoi.Core.POIFS.Properties
         /// <value>the size of the document, in bytes</value>
         public override int Size
         {
-            set{
-                base.Size=SmallDocumentBlock.CalcSize(value);
+            set
+            {
+                base.Size = SmallDocumentBlock.CalcSize(value);
             }
         }
     }

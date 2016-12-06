@@ -17,14 +17,14 @@
 
 namespace Npoi.Core.SS.Formula
 {
-    using System;
-
     using Npoi.Core.SS.Formula.Eval;
+    using System;
     using System.Text;
 
     /**
      * Evaluator for returning cells or sheets for a range of sheets
      */
+
     public class SheetRangeEvaluator : ISheetRange
     {
         private int _firstSheetIndex;
@@ -45,10 +45,10 @@ namespace Npoi.Core.SS.Formula
             _lastSheetIndex = lastSheetIndex;
             _sheetEvaluators = sheetEvaluators;
         }
+
         public SheetRangeEvaluator(int onlySheetIndex, SheetRefEvaluator sheetEvaluator)
             : this(onlySheetIndex, onlySheetIndex, new SheetRefEvaluator[] { sheetEvaluator })
         {
-            
         }
 
         public SheetRefEvaluator GetSheetEvaluator(int sheetIndex)
@@ -68,6 +68,7 @@ namespace Npoi.Core.SS.Formula
                 return _firstSheetIndex;
             }
         }
+
         public int LastSheetIndex
         {
             get
@@ -80,6 +81,7 @@ namespace Npoi.Core.SS.Formula
         {
             return GetSheetEvaluator(sheetIndex).SheetName;
         }
+
         public String SheetNameRange
         {
             get
@@ -100,5 +102,4 @@ namespace Npoi.Core.SS.Formula
             return GetSheetEvaluator(sheetIndex).GetEvalForCell(rowIndex, columnIndex);
         }
     }
-
 }

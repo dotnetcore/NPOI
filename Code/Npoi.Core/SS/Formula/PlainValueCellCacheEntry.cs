@@ -17,14 +17,14 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
     using Npoi.Core.SS.Formula.Eval;
 
     /**
      * Used for non-formula cells, primarily To keep track of the referencing (formula) cells.
-     * 
+     *
      * @author Josh Micich
      */
+
     public class PlainValueCellCacheEntry : CellCacheEntry
     {
         public PlainValueCellCacheEntry(ValueEval value)

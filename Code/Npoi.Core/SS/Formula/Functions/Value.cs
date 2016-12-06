@@ -18,12 +18,13 @@
  * Created on May 15, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
-    using System.Text;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
     using System.Globalization;
+    using System.Text;
 
     public class Value : Fixed1ArgFunction
     {
@@ -56,6 +57,7 @@ namespace Npoi.Core.SS.Formula.Functions
          *
          * @return <code>null</code> if there is any problem converting the text
          */
+
         private static Double ConvertTextToNumber(String strText)
         {
             bool foundCurrency = false;
@@ -133,8 +135,9 @@ namespace Npoi.Core.SS.Formula.Functions
                     case ' ':
                         String remainingTextTrimmed = strText.Substring(i).Trim();
                         // support for value[space]%
-                        if (remainingTextTrimmed.Equals("%")) {
-                            foundPercentage= true;
+                        if (remainingTextTrimmed.Equals("%"))
+                        {
+                            foundPercentage = true;
                             break;
                         }
                         if (remainingTextTrimmed.Length > 0)
@@ -143,6 +146,7 @@ namespace Npoi.Core.SS.Formula.Functions
                             return Double.NaN;
                         }
                         break;
+
                     case '.':
                         if (foundDecimalPoint)
                         {
@@ -181,9 +185,11 @@ namespace Npoi.Core.SS.Formula.Functions
                         sb.Append(strText.Substring(i));
                         i = len;
                         break;
+
                     case '%':
                         foundPercentage = true;
                         break;
+
                     default:
                         // all other characters are illegal
                         return Double.NaN;

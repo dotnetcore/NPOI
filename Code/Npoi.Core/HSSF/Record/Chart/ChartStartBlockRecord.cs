@@ -17,17 +17,16 @@
 
 namespace Npoi.Core.HSSF.Record.Chart
 {
-    using System;
-    using System.IO;
-    using System.Text;
     using Npoi.Core.Util;
-
+    using System;
+    using System.Text;
 
     /**
      * STARTBLOCK - Chart Future Record Type Start Block (0x0852)<br/>
-     * 
+     *
      * @author Patrick Cheng
      */
+
     public class ChartStartBlockRecord : StandardRecord
     {
         public static short sid = 0x0852;
@@ -41,7 +40,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public ChartStartBlockRecord()
         { }
-        
+
         public ChartStartBlockRecord(RecordInputStream in1)
         {
             rt = in1.ReadShort();
@@ -51,7 +50,6 @@ namespace Npoi.Core.HSSF.Record.Chart
             iObjectInstance1 = in1.ReadShort();
             iObjectInstance2 = in1.ReadShort();
         }
-
 
         protected override int DataSize
         {
@@ -81,7 +79,6 @@ namespace Npoi.Core.HSSF.Record.Chart
 
         public override String ToString()
         {
-
             StringBuilder buffer = new StringBuilder();
 
             buffer.Append("[STARTBLOCK]\n");
@@ -94,6 +91,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             buffer.Append("[/STARTBLOCK]\n");
             return buffer.ToString();
         }
+
         public override object Clone()
         {
             ChartStartBlockRecord record = new ChartStartBlockRecord();
@@ -105,6 +103,5 @@ namespace Npoi.Core.HSSF.Record.Chart
             record.iObjectInstance2 = iObjectInstance2;
             return record;
         }
-
     }
 }

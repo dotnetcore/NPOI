@@ -15,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.UserModel
 {
     using Npoi.Core.DDF;
     using Npoi.Core.SS.UserModel;
     using System;
-
 
     /// <summary>
     /// A client anchor Is attached to an excel worksheet.  It anchors against a
@@ -31,10 +29,12 @@ namespace Npoi.Core.HSSF.UserModel
     public class HSSFClientAnchor : HSSFAnchor, IClientAnchor
     {
         private EscherClientAnchorRecord _escherClientAnchor;
+
         public HSSFClientAnchor(EscherClientAnchorRecord escherClientAnchorRecord)
         {
             this._escherClientAnchor = escherClientAnchorRecord;
         }
+
         /// <summary>
         /// Creates a new client anchor and defaults all the anchor positions to 0.
         /// </summary>
@@ -47,10 +47,10 @@ namespace Npoi.Core.HSSF.UserModel
         /// <summary>
         /// Creates a new client anchor and Sets the top-left and bottom-right
         /// coordinates of the anchor.
-        /// 
-        /// Note: Microsoft Excel seems to sometimes disallow 
-        /// higher y1 than y2 or higher x1 than x2 in the anchor, you might need to 
-        /// reverse them and draw shapes vertically or horizontally flipped! 
+        ///
+        /// Note: Microsoft Excel seems to sometimes disallow
+        /// higher y1 than y2 or higher x1 than x2 in the anchor, you might need to
+        /// reverse them and draw shapes vertically or horizontally flipped!
         /// </summary>
         /// <param name="dx1">the x coordinate within the first cell.</param>
         /// <param name="dy1">the y coordinate within the first cell.</param>
@@ -63,8 +63,6 @@ namespace Npoi.Core.HSSF.UserModel
         public HSSFClientAnchor(int dx1, int dy1, int dx2, int dy2, int col1, int row1, int col2, int row2)
             : base(dx1, dy1, dx2, dy2)
         {
-
-
             CheckRange(dx1, 0, 1023, "dx1");
             CheckRange(dx2, 0, 1023, "dx2");
             CheckRange(dy1, 0, 255, "dy1");
@@ -74,10 +72,10 @@ namespace Npoi.Core.HSSF.UserModel
             CheckRange(row1, 0, 255 * 256, "row1");
             CheckRange(row2, 0, 255 * 256, "row2");
 
-            Col1=((short)Math.Min(col1, col2));
-            Col2=((short)Math.Max(col1, col2));
-            Row1=((short)Math.Min(row1, row2));
-            Row2=((short)Math.Max(row1, row2));
+            Col1 = ((short)Math.Min(col1, col2));
+            Col2 = ((short)Math.Max(col1, col2));
+            Row1 = ((short)Math.Min(row1, row2));
+            Row2 = ((short)Math.Max(row1, row2));
 
             if (col1 > col2)
             {
@@ -93,7 +91,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// Calculates the height of a client anchor in points.
         /// </summary>
         /// <param name="sheet">the sheet the anchor will be attached to</param>
-        /// <returns>the shape height.</returns>     
+        /// <returns>the shape height.</returns>
         public float GetAnchorHeightInPoints(Npoi.Core.SS.UserModel.ISheet sheet)
         {
             int y1 = Dy1;
@@ -172,7 +170,7 @@ namespace Npoi.Core.HSSF.UserModel
             set
             {
                 CheckRange(value, 0, 256 * 256, "row1");
-                _escherClientAnchor.Row1 = (short)value; 
+                _escherClientAnchor.Row1 = (short)value;
             }
         }
 
@@ -193,10 +191,10 @@ namespace Npoi.Core.HSSF.UserModel
         /// <summary>
         /// Sets the top-left and bottom-right
         /// coordinates of the anchor
-        /// 
-        /// Note: Microsoft Excel seems to sometimes disallow 
-        /// higher y1 than y2 or higher x1 than x2 in the anchor, you might need to 
-        /// reverse them and draw shapes vertically or horizontally flipped! 
+        ///
+        /// Note: Microsoft Excel seems to sometimes disallow
+        /// higher y1 than y2 or higher x1 than x2 in the anchor, you might need to
+        /// reverse them and draw shapes vertically or horizontally flipped!
         /// </summary>
         /// <param name="col1">the column (0 based) of the first cell.</param>
         /// <param name="row1"> the row (0 based) of the first cell.</param>
@@ -266,7 +264,6 @@ namespace Npoi.Core.HSSF.UserModel
             set { this._escherClientAnchor.Flag = (short)value; }
         }
 
-
         /// <summary>
         /// Checks the range.
         /// </summary>
@@ -279,6 +276,7 @@ namespace Npoi.Core.HSSF.UserModel
             if (value < minRange || value > maxRange)
                 throw new ArgumentOutOfRangeException(varName + " must be between " + minRange + " and " + maxRange + ", but was: " + value);
         }
+
         internal override EscherRecord GetEscherAnchor()
         {
             return _escherClientAnchor;
@@ -303,12 +301,14 @@ namespace Npoi.Core.HSSF.UserModel
                     && anchor.Dx2 == Dx2 && anchor.Dy1 == Dy1 && anchor.Dy2 == Dy2
                     && anchor.Row1 == Row1 && anchor.Row2 == Row2 && anchor.AnchorType == AnchorType;
         }
+
         public override int GetHashCode()
         {
             return Col1.GetHashCode() ^ Col2.GetHashCode() ^ Dx1.GetHashCode()
                    ^ Dx2.GetHashCode() ^ Dy1.GetHashCode() ^ Dy2.GetHashCode()
-                    ^Row1.GetHashCode() ^  Row2.GetHashCode() ^ AnchorType.GetHashCode();
+                    ^ Row1.GetHashCode() ^ Row2.GetHashCode() ^ AnchorType.GetHashCode();
         }
+
         public override int Dx1
         {
             get
@@ -320,6 +320,7 @@ namespace Npoi.Core.HSSF.UserModel
                 _escherClientAnchor.Dx1 = (short)value;
             }
         }
+
         public override int Dx2
         {
             get
@@ -331,6 +332,7 @@ namespace Npoi.Core.HSSF.UserModel
                 _escherClientAnchor.Dx2 = (short)value;
             }
         }
+
         public override int Dy1
         {
             get
@@ -342,6 +344,7 @@ namespace Npoi.Core.HSSF.UserModel
                 _escherClientAnchor.Dy1 = (short)value;
             }
         }
+
         public override int Dy2
         {
             get

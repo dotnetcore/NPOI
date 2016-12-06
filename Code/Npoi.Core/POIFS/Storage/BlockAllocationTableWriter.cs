@@ -17,24 +17,22 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
-
-using System.Collections.Generic;
-using System.IO;
 
 using Npoi.Core.POIFS.Common;
 using Npoi.Core.POIFS.FileSystem;
 using Npoi.Core.Util;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Npoi.Core.POIFS.Storage
 {
-
     /// <summary>
     /// This class manages and creates the Block Allocation Table, which is
     /// basically a set of linked lists of block indices.
@@ -50,9 +48,9 @@ namespace Npoi.Core.POIFS.Storage
     /// </summary>
     public class BlockAllocationTableWriter : BlockWritable, BATManaged
     {
-        private List<int>    _entries;
+        private List<int> _entries;
         private BATBlock[] _blocks;
-        private int        _start_block;
+        private int _start_block;
         private POIFSBigBlockSize _bigBlockSize;
 
         private static int _default_size = 128;
@@ -64,7 +62,7 @@ namespace Npoi.Core.POIFS.Storage
         {
             _start_block = POIFSConstants.END_OF_CHAIN;
             _entries = new List<int>(_default_size);
-            _blocks      = new BATBlock[ 0 ];
+            _blocks = new BATBlock[0];
             _bigBlockSize = bigBlockSize;
         }
 
@@ -75,28 +73,27 @@ namespace Npoi.Core.POIFS.Storage
         public int CreateBlocks()
         {
             int xbat_blocks = 0;
-            int bat_blocks  = 0;
+            int bat_blocks = 0;
 
             while (true)
             {
-                int calculated_bat_blocks  =
+                int calculated_bat_blocks =
                     BATBlock.CalculateStorageRequirements(_bigBlockSize,
                                                           bat_blocks
                                                           + xbat_blocks
                                                           + _entries.Count);
                 int calculated_xbat_blocks =
-                    HeaderBlockWriter.CalculateXBATStorageRequirements(_bigBlockSize,calculated_bat_blocks);
+                    HeaderBlockWriter.CalculateXBATStorageRequirements(_bigBlockSize, calculated_bat_blocks);
 
                 if ((bat_blocks == calculated_bat_blocks)
                         && (xbat_blocks == calculated_xbat_blocks))
                 {
-
                     // stable ... we're OK
                     break;
                 }
                 else
                 {
-                    bat_blocks  = calculated_bat_blocks;
+                    bat_blocks = calculated_bat_blocks;
                     xbat_blocks = calculated_xbat_blocks;
                 }
             }
@@ -158,7 +155,7 @@ namespace Npoi.Core.POIFS.Storage
         {
             for (int j = 0; j < _blocks.Length; j++)
             {
-                _blocks[ j ].WriteBlocks(stream);
+                _blocks[j].WriteBlocks(stream);
             }
         }
 

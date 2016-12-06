@@ -15,44 +15,41 @@
 * limitations Under the License.
 */
 
-
 using Npoi.Core.Util;
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
-    using Npoi.Core.SS.Formula.Eval;
     using Npoi.Core.SS.Formula;
-
+    using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     /*
      * Implementation for the Excel function SUMPRODUCT<p/>
-     * 
+     *
      * Syntax : <br/>
      *  SUMPRODUCT ( array1[, array2[, array3[, ...]]])
      *    <table border="0" cellpAdding="1" cellspacing="0" summary="Parameter descriptions">
-     *      <tr><th>array1, ... arrayN </th><td>typically area references, 
+     *      <tr><th>array1, ... arrayN </th><td>typically area references,
      *      possibly cell references or scalar values</td></tr>
      *    </table><br/>
-     *    
-     * Let A<b>n</b><sub>(<b>i</b>,<b>j</b>)</sub> represent the element in the <b>i</b>th row <b>j</b>th column 
-     * of the <b>n</b>th array<br/>   
-     * Assuming each array has the same dimensions (W, H), the result Is defined as:<br/>    
-     * SUMPRODUCT = &Sigma;<sub><b>i</b>: 1..H</sub>  
-     * 	(  &Sigma;<sub><b>j</b>: 1..W</sub>  
-     * 	  (  &Pi;<sub><b>n</b>: 1..N</sub> 
-     * 			A<b>n</b><sub>(<b>i</b>,<b>j</b>)</sub> 
-     *    ) 
-     *  ) 
-     * 
+     *
+     * Let A<b>n</b><sub>(<b>i</b>,<b>j</b>)</sub> represent the element in the <b>i</b>th row <b>j</b>th column
+     * of the <b>n</b>th array<br/>
+     * Assuming each array has the same dimensions (W, H), the result Is defined as:<br/>
+     * SUMPRODUCT = &Sigma;<sub><b>i</b>: 1..H</sub>
+     * 	(  &Sigma;<sub><b>j</b>: 1..W</sub>
+     * 	  (  &Pi;<sub><b>n</b>: 1..N</sub>
+     * 			A<b>n</b><sub>(<b>i</b>,<b>j</b>)</sub>
+     *    )
+     *  )
+     *
      * @author Josh Micich
      */
+
     public class Sumproduct : Function
     {
-
         public ValueEval Evaluate(ValueEval[] args, int srcCellRow, int srcCellCol)
         {
-
             int maxN = args.Length;
 
             if (maxN < 1)
@@ -100,9 +97,9 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return new NumberEval(term);
         }
+
         private static double GetScalarValue(ValueEval arg)
         {
-
             ValueEval eval;
             if (arg is RefEval)
             {
@@ -141,6 +138,7 @@ namespace Npoi.Core.SS.Formula.Functions
 
             return GetProductTerm((ValueEval)eval, true);
         }
+
         private ValueEval EvaluateAreaSumProduct(ValueEval[] evalArgs)
         {
             int maxN = evalArgs.Length;
@@ -155,7 +153,6 @@ namespace Npoi.Core.SS.Formula.Functions
                 return ErrorEval.VALUE_INVALID;
             }
 
-
             AreaEval firstArg = args[0];
 
             int height = firstArg.LastRow - firstArg.FirstRow + 1;
@@ -164,7 +161,7 @@ namespace Npoi.Core.SS.Formula.Functions
             // first check dimensions
             if (!AreasAllSameSize(args, height, width))
             {
-                // normally this results in #VALUE!, 
+                // normally this results in #VALUE!,
                 // but errors in individual cells take precedence
                 for (int i = 1; i < args.Length; i++)
                 {
@@ -207,6 +204,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 }
             }
         }
+
         private static bool AreasAllSameSize(TwoDEval[] args, int height, int width)
         {
             for (int i = 0; i < args.Length; i++)
@@ -224,19 +222,20 @@ namespace Npoi.Core.SS.Formula.Functions
             }
             return true;
         }
+
         /**
-         * Determines a <c>double</c> value for the specified <c>ValueEval</c>. 
+         * Determines a <c>double</c> value for the specified <c>ValueEval</c>.
          * @param IsScalarProduct <c>false</c> for SUMPRODUCTs over area refs.
          * @throws EvalEx if <c>ve</c> represents an error value.
          * <p/>
-         * Note - string values and empty cells are interpreted differently depending on 
+         * Note - string values and empty cells are interpreted differently depending on
          * <c>isScalarProduct</c>.  For scalar products, if any term Is blank or a string, the
          * error (#VALUE!) Is raised.  For area (sum)products, if any term Is blank or a string, the
          * result Is zero.
          */
+
         private static double GetProductTerm(ValueEval ve, bool IsScalarProduct)
         {
-
             if (ve is BlankEval || ve == null)
             {
                 // TODO - shouldn't BlankEval.INSTANCE be used always instead of null?

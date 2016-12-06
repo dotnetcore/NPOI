@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,15 +15,12 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
-    using Npoi.Core.HSSF.Record;
-    using Npoi.Core.Util;
-    using System.Text;
-
     using Npoi.Core.SS.Formula.PTG;
+    using Npoi.Core.Util;
+    using System;
+    using System.Text;
 
     /**
      * Not implemented yet. May commit it anyway just so people can see
@@ -32,9 +28,10 @@ namespace Npoi.Core.HSSF.Record
      *
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class LinkedDataFormulaField
     {
-        Ptg[] formulaTokens;
+        private Ptg[] formulaTokens;
 
         public int Size
         {
@@ -61,8 +58,8 @@ namespace Npoi.Core.HSSF.Record
                         .Append("=")
                         .Append(formulaTokens[k].ToString())
                         .Append("\n");
-                        //.Append(((Ptg)formulaTokens[k]).ToDebugString())
-                        //.Append("\n");
+                //.Append(((Ptg)formulaTokens[k]).ToDebugString())
+                //.Append("\n");
             }
         }
 
@@ -82,19 +79,17 @@ namespace Npoi.Core.HSSF.Record
             return size;
         }
 
-
         public Ptg[] FormulaTokens
         {
             get
             {
                 return (Ptg[])this.formulaTokens.Clone();
             }
-            set 
+            set
             {
                 this.formulaTokens = (Ptg[])value.Clone();
             }
         }
-
 
         public LinkedDataFormulaField Copy()
         {

@@ -17,24 +17,23 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.POIFS.EventFileSystem
 {
+    using Npoi.Core.POIFS.FileSystem;
+    using Npoi.Core.POIFS.Properties;
+    using Npoi.Core.POIFS.Storage;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.IO;
-
-    using Npoi.Core.POIFS.FileSystem;
-    using Npoi.Core.POIFS.Properties;
-    using Npoi.Core.POIFS.Storage;
 
     /// <summary>
     /// An event-driven Reader for POIFS file systems. Users of this class
@@ -59,6 +58,7 @@ namespace Npoi.Core.POIFS.EventFileSystem
                 StreamReaded(this, e);
             }
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="POIFSReader"/> class.
         /// </summary>
@@ -75,7 +75,6 @@ namespace Npoi.Core.POIFS.EventFileSystem
         /// <returns>POIFSDocument list</returns>
         public List<DocumentDescriptor> Read(Stream stream)
         {
-
             registryClosed = true;
 
             // Read the header block from the stream
@@ -177,6 +176,7 @@ namespace Npoi.Core.POIFS.EventFileSystem
                                       (path == null) ? new POIFSDocumentPath()
                                                      : path, name);
         }
+
         /// <summary>
         /// Processes the properties.
         /// </summary>
@@ -219,7 +219,6 @@ namespace Npoi.Core.POIFS.EventFileSystem
                     {
                         listeners.Reset();
                         int size = property.Size;
-                        
 
                         if (property.ShouldUseSmallBlocks)
                         {

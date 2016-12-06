@@ -14,17 +14,14 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Npoi.Core.SS.Formula.Functions;
+
 using Npoi.Core.SS.Formula.Eval;
+using Npoi.Core.SS.Formula.Functions;
 
 namespace Npoi.Core.SS.Formula.Atp
 {
-    class IfError : FreeRefFunction
+    internal class IfError : FreeRefFunction
     {
-
         public static FreeRefFunction Instance = new IfError();
 
         private IfError()

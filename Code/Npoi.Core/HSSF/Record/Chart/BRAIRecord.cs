@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,15 +15,13 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
-    using System;
-    using System.Text;
     using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.PTG;
     using Npoi.Core.Util;
-
+    using System;
+    using System.Text;
 
     /*
      * Describes a linked data record.  This record referes to the series data or text.
@@ -33,9 +30,10 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     //
     /// <summary>
-    /// The BRAI record specifies a reference to data in a sheet (1) that is used by a part of a series, 
+    /// The BRAI record specifies a reference to data in a sheet (1) that is used by a part of a series,
     /// legend entry, trendline or error bars.
     /// </summary>
     public class BRAIRecord : StandardRecord
@@ -62,10 +60,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         /// </summary>
         private Formula field_5_formulaOfLink;
 
-
         public BRAIRecord()
         {
-
         }
 
         /**
@@ -90,7 +86,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
             buffer.Append("[AI]\n");
             buffer.Append("    .linkType             = ")
-                .Append(HexDump.ByteToHex(LinkType)).Append('\n');                
+                .Append(HexDump.ByteToHex(LinkType)).Append('\n');
             buffer.Append(Environment.NewLine);
             buffer.Append("    .referenceType        = ").Append(HexDump.ByteToHex(ReferenceType)).Append('\n');
             buffer.Append(Environment.NewLine);
@@ -124,6 +120,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get
@@ -152,17 +149,15 @@ namespace Npoi.Core.HSSF.Record.Chart
             return rec;
         }
 
-
-
-
         /*
          * Get the link type field for the LinkedData record.
          *
-         * @return  One of 
+         * @return  One of
          *        LINK_TYPE_TITLE_OR_TEXT
          *        LINK_TYPE_VALUES
          *        LINK_TYPE_CATEGORIES
          */
+
         //
         /// <summary>
         /// specifies the part of the series, trendline, or error bars the referenced data specifies.
@@ -182,13 +177,14 @@ namespace Npoi.Core.HSSF.Record.Chart
         /*
          * Get the reference type field for the LinkedData record.
          *
-         * @return  One of 
+         * @return  One of
          *        REFERENCE_TYPE_DEFAULT_CATEGORIES
          *        REFERENCE_TYPE_DIRECT
          *        REFERENCE_TYPE_WORKSHEET
          *        REFERENCE_TYPE_NOT_USED
          *        REFERENCE_TYPE_ERROR_REPORTED
          */
+
         public byte ReferenceType
         {
             get
@@ -201,6 +197,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /*
          * Get the options field for the LinkedData record.
          */
+
         public short Options
         {
             get
@@ -230,10 +227,10 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
         }
 
-
         /*
          * Get the formula of link field for the LinkedData record.
          */
+
         public Ptg[] FormulaOfLink
         {
             get
@@ -250,6 +247,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * true if this object has a custom number format
          * @return  the custom number format field value.
          */
+
         public bool IsCustomNumberFormat
         {
             get
@@ -261,6 +259,5 @@ namespace Npoi.Core.HSSF.Record.Chart
                 field_3_options = customNumberFormat.SetShortBoolean(field_3_options, value);
             }
         }
-
     }
 }

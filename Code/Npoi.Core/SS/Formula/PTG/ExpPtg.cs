@@ -17,12 +17,9 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-    
-
 
     /**
      *
@@ -30,6 +27,7 @@ namespace Npoi.Core.SS.Formula.PTG
      * @author Jason Height (jheight at chariot dot net dot au)
      * @author dmui (save existing implementation)
      */
+
     public class ExpPtg : ControlPtg
     {
         private const int SIZE = 5;

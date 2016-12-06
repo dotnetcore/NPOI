@@ -17,17 +17,16 @@
 
 namespace Npoi.Core.HSSF.Record.Chart
 {
-    using System;
-    using System.IO;
-    using System.Text;
     using Npoi.Core.Util;
-
+    using System;
+    using System.Text;
 
     /**
      * DATALABEXT - Chart Data Label Extension (0x086A) <br/>
-     * 
+     *
      * @author Patrick Cheng
      */
+
     public class DataLabelExtensionRecord : StandardRecord
     {
         public static short sid = 0x086A;
@@ -43,7 +42,6 @@ namespace Npoi.Core.HSSF.Record.Chart
             in1.ReadFully(unused);
         }
 
-
         protected override int DataSize
         {
             get
@@ -51,7 +49,6 @@ namespace Npoi.Core.HSSF.Record.Chart
                 return 2 + 2 + 8;
             }
         }
-
 
         public override short Sid
         {
@@ -61,14 +58,12 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
         }
 
-
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(rt);
             out1.WriteShort(grbitFrt);
             out1.Write(unused);
         }
-
 
         public override String ToString()
         {

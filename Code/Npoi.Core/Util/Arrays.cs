@@ -1,5 +1,4 @@
-﻿
-/* ====================================================================
+﻿/* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
    this work for additional information regarding copyright ownership.
@@ -18,20 +17,16 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
-using System.Collections;
 using System.Text;
-using System.Collections.Generic;
-using Npoi.Core.Util.Collections;
-
 
 namespace Npoi.Core.Util
 {
@@ -42,13 +37,14 @@ namespace Npoi.Core.Util
         /// </summary>
         /// <param name="array">The array.</param>
         /// <param name="defaultValue">The default value.</param>
-        public static void Fill(byte[] array,byte defaultValue)
+        public static void Fill(byte[] array, byte defaultValue)
         {
             for (int i = 0; i < array.Length; i++)
             {
                 array[i] = defaultValue;
             }
         }
+
         public static void Fill(char[] array, char defaultValue)
         {
             for (int i = 0; i < array.Length; i++)
@@ -56,6 +52,7 @@ namespace Npoi.Core.Util
                 array[i] = defaultValue;
             }
         }
+
         public static void Fill<T>(T[] array, T defaultValue)
         {
             for (int i = 0; i < array.Length; i++)
@@ -104,10 +101,10 @@ namespace Npoi.Core.Util
             }
             if (toIndex > length)
             {
-                throw new IndexOutOfRangeException( "toIndex(" + toIndex + ")");
+                throw new IndexOutOfRangeException("toIndex(" + toIndex + ")");
             }
         }
- 
+
         /// <summary>
         /// Fills the specified array.
         /// </summary>
@@ -143,6 +140,7 @@ namespace Npoi.Core.Util
             }
             return true;
         }
+
         /**
          * Returns <c>true</c> if the two specified arrays of Objects are
          * <i>equal</i> to one another.  The two arrays are considered equal if
@@ -157,6 +155,7 @@ namespace Npoi.Core.Util
          * @param a2 the other array to be tested for equality
          * @return <c>true</c> if the two arrays are equal
          */
+
         public static bool Equals(Object[] a, Object[] a2)
         {
             if (a == a2)
@@ -178,6 +177,7 @@ namespace Npoi.Core.Util
 
             return true;
         }
+
         /// <summary>
         /// Moves a number of entries in an array to another point in the array, shifting those inbetween as required.
         /// </summary>
@@ -209,7 +209,7 @@ namespace Npoi.Core.Util
                 throw new ArgumentException("Asked to move to a position that doesn't have enough space");
             }
 
-            // Grab the bit to move 
+            // Grab the bit to move
             Object[] toMove = new Object[numToMove];
             Array.Copy(array, moveFrom, toMove, 0, numToMove);
 
@@ -238,7 +238,6 @@ namespace Npoi.Core.Util
 
             // And copy the shifted block to the shifted location
             Array.Copy(toShift, 0, array, shiftTo, toShift.Length);
-
 
             // We're done - array will now have everything moved as required
         }
@@ -269,6 +268,7 @@ namespace Npoi.Core.Util
                              Math.Min(original.Length - from, newLength));
             return copy;
         }
+
         internal static byte[] CopyOfRange(byte[] original, int from, int to)
         {
             int newLength = to - from;
@@ -296,13 +296,16 @@ namespace Npoi.Core.Util
          * @return a content-based hash code for <tt>a</tt>
          * @since 1.5
          */
-        public static int HashCode(long[] a) {
+
+        public static int HashCode(long[] a)
+        {
             if (a == null)
                 return 0;
 
             int result = 1;
-            foreach (long element in a) {
-                int elementHash = (int)(element ^ (Operator.UnsignedRightShift(element , 32)));
+            foreach (long element in a)
+            {
+                int elementHash = (int)(element ^ (Operator.UnsignedRightShift(element, 32)));
                 result = 31 * result + elementHash;
             }
 
@@ -325,7 +328,9 @@ namespace Npoi.Core.Util
          * @return a content-based hash code for <tt>a</tt>
          * @since 1.5
          */
-        public static int HashCode(int[] a) {
+
+        public static int HashCode(int[] a)
+        {
             if (a == null)
                 return 0;
 
@@ -352,7 +357,9 @@ namespace Npoi.Core.Util
          * @return a content-based hash code for <tt>a</tt>
          * @since 1.5
          */
-        public static int HashCode(short[] a) {
+
+        public static int HashCode(short[] a)
+        {
             if (a == null)
                 return 0;
 
@@ -379,7 +386,9 @@ namespace Npoi.Core.Util
          * @return a content-based hash code for <tt>a</tt>
          * @since 1.5
          */
-        public static int HashCode(char[] a) {
+
+        public static int HashCode(char[] a)
+        {
             if (a == null)
                 return 0;
 
@@ -406,7 +415,9 @@ namespace Npoi.Core.Util
          * @return a content-based hash code for <tt>a</tt>
          * @since 1.5
          */
-        public static int HashCode(byte[] a) {
+
+        public static int HashCode(byte[] a)
+        {
             if (a == null)
                 return 0;
 
@@ -433,7 +444,9 @@ namespace Npoi.Core.Util
          * @return a content-based hash code for <tt>a</tt>
          * @since 1.5
          */
-        public static int HashCode(bool[] a) {
+
+        public static int HashCode(bool[] a)
+        {
             if (a == null)
                 return 0;
 
@@ -460,7 +473,9 @@ namespace Npoi.Core.Util
          * @return a content-based hash code for <tt>a</tt>
          * @since 1.5
          */
-        public static int HashCode(float[] a) {
+
+        public static int HashCode(float[] a)
+        {
             if (a == null)
                 return 0;
 
@@ -489,12 +504,15 @@ namespace Npoi.Core.Util
          * @return a content-based hash code for <tt>a</tt>
          * @since 1.5
          */
-        public static int HashCode(double[] a) {
+
+        public static int HashCode(double[] a)
+        {
             if (a == null)
                 return 0;
 
             int result = 1;
-            foreach (double element in a) {
+            foreach (double element in a)
+            {
                 long bits = BitConverter.DoubleToInt64Bits(element);
                 result = 31 * result + (int)(bits ^ (Operator.UnsignedRightShift(bits, 32)));
             }
@@ -522,7 +540,9 @@ namespace Npoi.Core.Util
          * @see #deepHashCode(Object[])
          * @since 1.5
          */
-        public static int HashCode(Object[] a) {
+
+        public static int HashCode(Object[] a)
+        {
             if (a == null)
                 return 0;
 
@@ -563,32 +583,35 @@ namespace Npoi.Core.Util
          * @see #hashCode(Object[])
          * @since 1.5
          */
-        public static int DeepHashCode(Object[] a) {
+
+        public static int DeepHashCode(Object[] a)
+        {
             if (a == null)
                 return 0;
 
             int result = 1;
 
-            foreach (Object element in a) {
+            foreach (Object element in a)
+            {
                 int elementHash = 0;
                 if (element is Object[])
-                    elementHash = DeepHashCode((Object[]) element);
+                    elementHash = DeepHashCode((Object[])element);
                 else if (element is byte[])
-                    elementHash = HashCode((byte[]) element);
+                    elementHash = HashCode((byte[])element);
                 else if (element is short[])
-                    elementHash = HashCode((short[]) element);
+                    elementHash = HashCode((short[])element);
                 else if (element is int[])
-                    elementHash = HashCode((int[]) element);
+                    elementHash = HashCode((int[])element);
                 else if (element is long[])
-                    elementHash = HashCode((long[]) element);
+                    elementHash = HashCode((long[])element);
                 else if (element is char[])
-                    elementHash = HashCode((char[]) element);
+                    elementHash = HashCode((char[])element);
                 else if (element is float[])
-                    elementHash = HashCode((float[]) element);
+                    elementHash = HashCode((float[])element);
                 else if (element is double[])
-                    elementHash = HashCode((double[]) element);
+                    elementHash = HashCode((double[])element);
                 else if (element is bool[])
-                    elementHash = HashCode((bool[]) element);
+                    elementHash = HashCode((bool[])element);
                 else if (element != null)
                     elementHash = element.GetHashCode();
 
@@ -633,16 +656,19 @@ namespace Npoi.Core.Util
          * @see Objects#deepEquals(Object, Object)
          * @since 1.5
          */
-        public static bool DeepEquals(Object[] a1, Object[] a2) {
+
+        public static bool DeepEquals(Object[] a1, Object[] a2)
+        {
             if (a1 == a2)
                 return true;
-            if (a1 == null || a2==null)
+            if (a1 == null || a2 == null)
                 return false;
             int length = a1.Length;
             if (a2.Length != length)
                 return false;
 
-            for (int i = 0; i < length; i++) {
+            for (int i = 0; i < length; i++)
+            {
                 Object e1 = a1[i];
                 Object e2 = a2[i];
 
@@ -660,26 +686,27 @@ namespace Npoi.Core.Util
             return true;
         }
 
-        static bool DeepEquals0(Object e1, Object e2) {
+        private static bool DeepEquals0(Object e1, Object e2)
+        {
             bool eq;
             if (e1 is Object[] && e2 is Object[])
-                eq = DeepEquals ((Object[]) e1, (Object[]) e2);
+                eq = DeepEquals((Object[])e1, (Object[])e2);
             else if (e1 is byte[] && e2 is byte[])
-                eq = Equals((byte[]) e1, (byte[]) e2);
+                eq = Equals((byte[])e1, (byte[])e2);
             else if (e1 is short[] && e2 is short[])
-                eq = Equals((short[]) e1, (short[]) e2);
+                eq = Equals((short[])e1, (short[])e2);
             else if (e1 is int[] && e2 is int[])
-                eq = Equals((int[]) e1, (int[]) e2);
+                eq = Equals((int[])e1, (int[])e2);
             else if (e1 is long[] && e2 is long[])
-                eq = Equals((long[]) e1, (long[]) e2);
+                eq = Equals((long[])e1, (long[])e2);
             else if (e1 is char[] && e2 is char[])
-                eq = Equals((char[]) e1, (char[]) e2);
+                eq = Equals((char[])e1, (char[])e2);
             else if (e1 is float[] && e2 is float[])
-                eq = Equals((float[]) e1, (float[]) e2);
+                eq = Equals((float[])e1, (float[])e2);
             else if (e1 is double[] && e2 is double[])
-                eq = Equals((double[]) e1, (double[]) e2);
+                eq = Equals((double[])e1, (double[])e2);
             else if (e1 is bool[] && e2 is bool[])
-                eq = Equals((bool[]) e1, (bool[]) e2);
+                eq = Equals((bool[])e1, (bool[])e2);
             else
                 eq = e1.Equals(e2);
             return eq;
@@ -698,7 +725,9 @@ namespace Npoi.Core.Util
          * @return a string representation of <tt>a</tt>
          * @since 1.5
          */
-        public static String ToString(long[] a) {
+
+        public static String ToString(long[] a)
+        {
             if (a == null)
                 return "null";
             int iMax = a.Length - 1;
@@ -707,7 +736,8 @@ namespace Npoi.Core.Util
 
             StringBuilder b = new StringBuilder();
             b.Append('[');
-            for (int i = 0; ; i++) {
+            for (int i = 0; ; i++)
+            {
                 b.Append(a[i]);
                 if (i == iMax)
                     return b.Append(']').ToString();
@@ -728,7 +758,9 @@ namespace Npoi.Core.Util
          * @return a string representation of <tt>a</tt>
          * @since 1.5
          */
-        public static String ToString(int[] a) {
+
+        public static String ToString(int[] a)
+        {
             if (a == null)
                 return "null";
             int iMax = a.Length - 1;
@@ -737,7 +769,8 @@ namespace Npoi.Core.Util
 
             StringBuilder b = new StringBuilder();
             b.Append('[');
-            for (int i = 0; ; i++) {
+            for (int i = 0; ; i++)
+            {
                 b.Append(a[i]);
                 if (i == iMax)
                     return b.Append(']').ToString();
@@ -758,7 +791,9 @@ namespace Npoi.Core.Util
          * @return a string representation of <tt>a</tt>
          * @since 1.5
          */
-        public static String ToString(short[] a) {
+
+        public static String ToString(short[] a)
+        {
             if (a == null)
                 return "null";
             int iMax = a.Length - 1;
@@ -767,7 +802,8 @@ namespace Npoi.Core.Util
 
             StringBuilder b = new StringBuilder();
             b.Append('[');
-            for (int i = 0; ; i++) {
+            for (int i = 0; ; i++)
+            {
                 b.Append(a[i]);
                 if (i == iMax)
                     return b.Append(']').ToString();
@@ -788,7 +824,9 @@ namespace Npoi.Core.Util
          * @return a string representation of <tt>a</tt>
          * @since 1.5
          */
-        public static String ToString(char[] a) {
+
+        public static String ToString(char[] a)
+        {
             if (a == null)
                 return "null";
             int iMax = a.Length - 1;
@@ -797,7 +835,8 @@ namespace Npoi.Core.Util
 
             StringBuilder b = new StringBuilder();
             b.Append('[');
-            for (int i = 0; ; i++) {
+            for (int i = 0; ; i++)
+            {
                 b.Append(a[i]);
                 if (i == iMax)
                     return b.Append(']').ToString();
@@ -818,7 +857,9 @@ namespace Npoi.Core.Util
          * @return a string representation of <tt>a</tt>
          * @since 1.5
          */
-        public static String ToString(byte[] a) {
+
+        public static String ToString(byte[] a)
+        {
             if (a == null)
                 return "null";
             int iMax = a.Length - 1;
@@ -827,7 +868,8 @@ namespace Npoi.Core.Util
 
             StringBuilder b = new StringBuilder();
             b.Append('[');
-            for (int i = 0; ; i++) {
+            for (int i = 0; ; i++)
+            {
                 b.Append(a[i]);
                 if (i == iMax)
                     return b.Append(']').ToString();
@@ -848,7 +890,9 @@ namespace Npoi.Core.Util
          * @return a string representation of <tt>a</tt>
          * @since 1.5
          */
-        public static String ToString(bool[] a) {
+
+        public static String ToString(bool[] a)
+        {
             if (a == null)
                 return "null";
             int iMax = a.Length - 1;
@@ -857,7 +901,8 @@ namespace Npoi.Core.Util
 
             StringBuilder b = new StringBuilder();
             b.Append('[');
-            for (int i = 0; ; i++) {
+            for (int i = 0; ; i++)
+            {
                 b.Append(a[i]);
                 if (i == iMax)
                     return b.Append(']').ToString();
@@ -878,7 +923,9 @@ namespace Npoi.Core.Util
          * @return a string representation of <tt>a</tt>
          * @since 1.5
          */
-        public static String ToString(float[] a) {
+
+        public static String ToString(float[] a)
+        {
             if (a == null)
                 return "null";
 
@@ -888,7 +935,8 @@ namespace Npoi.Core.Util
 
             StringBuilder b = new StringBuilder();
             b.Append('[');
-            for (int i = 0; ; i++) {
+            for (int i = 0; ; i++)
+            {
                 b.Append(a[i]);
                 if (i == iMax)
                     return b.Append(']').ToString();
@@ -909,7 +957,9 @@ namespace Npoi.Core.Util
          * @return a string representation of <tt>a</tt>
          * @since 1.5
          */
-        public static String ToString(double[] a) {
+
+        public static String ToString(double[] a)
+        {
             if (a == null)
                 return "null";
             int iMax = a.Length - 1;
@@ -918,14 +968,14 @@ namespace Npoi.Core.Util
 
             StringBuilder b = new StringBuilder();
             b.Append('[');
-            for (int i = 0; ; i++) {
+            for (int i = 0; ; i++)
+            {
                 b.Append(a[i]);
                 if (i == iMax)
                     return b.Append(']').ToString();
                 b.Append(", ");
             }
         }
-
 
         /**
          * Returns a string representation of the "deep contents" of the specified
@@ -960,7 +1010,9 @@ namespace Npoi.Core.Util
          * @see #ToString(Object[])
          * @since 1.5
          */
-        public static String DeepToString(Object[] a) {
+
+        public static String DeepToString(Object[] a)
+        {
             if (a == null)
                 return "null";
 
@@ -991,7 +1043,6 @@ namespace Npoi.Core.Util
             buf.Append('[');
             for (int i = 0; ; i++)
             {
-
                 Object element = a[i];
                 if (element == null)
                 {
@@ -1057,6 +1108,7 @@ namespace Npoi.Core.Util
          * @see #deepToString(Object[])
          * @since 1.5
          */
+
         public static String ToString(Object[] a)
         {
             if (a == null)

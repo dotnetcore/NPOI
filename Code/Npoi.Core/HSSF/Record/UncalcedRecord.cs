@@ -17,16 +17,16 @@
 
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
 
     /**
      * Title: Uncalced Record
-     * 
-     * If this record occurs in the Worksheet Substream, it indicates that the formulas have not 
+     *
+     * If this record occurs in the Worksheet Substream, it indicates that the formulas have not
      * been recalculated before the document was saved.
-     * 
+     *
      * @author Olivier Leprince
      */
 
@@ -37,17 +37,20 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Default constructor
          */
+
         public UncalcedRecord()
         {
             _reserved = 0;
         }
+
         /**
          * Read constructor
          */
+
         public UncalcedRecord(RecordInputStream in1)
         {
             _reserved = in1.ReadShort();
-	    }
+        }
 
         public override short Sid
         {
@@ -64,7 +67,7 @@ namespace Npoi.Core.HSSF.Record
 
         public override void Serialize(ILittleEndianOutput out1)
         {
-           out1.WriteShort(_reserved);
+            out1.WriteShort(_reserved);
         }
 
         protected override int DataSize

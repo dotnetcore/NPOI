@@ -18,6 +18,7 @@
  * Created on May 9, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
     using Npoi.Core.SS.Formula.Eval;
@@ -28,7 +29,6 @@ namespace Npoi.Core.SS.Formula.Functions
     /// @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
     public interface Function
     {
-
         /// <summary>
         /// Evaluates the specified args.
         /// </summary>
@@ -37,6 +37,5 @@ namespace Npoi.Core.SS.Formula.Functions
         /// <param name="srcColumnIndex">column index of the cell containing the formula under evaluation</param>
         /// <returns></returns>
         ValueEval Evaluate(ValueEval[] args, int srcRowIndex, int srcColumnIndex);
-
     }
 }

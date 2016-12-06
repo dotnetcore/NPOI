@@ -17,20 +17,22 @@
 
 namespace Npoi.Core.SS.Formula.Constant
 {
-    using System;
     using Npoi.Core.Util;
+    using System;
 
     /**
      * To support Constant Values (2.5.7) as required by the CRN record.
-     * This class is also used for two dimensional arrays which are encoded by 
+     * This class is also used for two dimensional arrays which are encoded by
      * EXTERNALNAME (5.39) records and Array tokens.<p/>
-     * 
+     *
      * @author Josh Micich
      */
+
     public class ConstantValueParser
     {
         // note - these (non-combinable) enum values are sParse.
         private const int TYPE_EMPTY = 0;
+
         private const int TYPE_NUMBER = 1;
         private const int TYPE_STRING = 2;
         private const int TYPE_BOOLEAN = 4;
@@ -52,7 +54,7 @@ namespace Npoi.Core.SS.Formula.Constant
             object[] result = new Object[nValues];
             for (int i = 0; i < result.Length; i++)
             {
-                result[i]=ReadAConstantValue(in1);
+                result[i] = ReadAConstantValue(in1);
             }
             return result;
         }
@@ -65,12 +67,16 @@ namespace Npoi.Core.SS.Formula.Constant
                 case TYPE_EMPTY:
                     in1.ReadLong(); // 8 byte 'not used' field
                     return EMPTY_REPRESENTATION;
+
                 case TYPE_NUMBER:
                     return in1.ReadDouble();
+
                 case TYPE_STRING:
                     return StringUtil.ReadUnicodeString(in1);
+
                 case TYPE_BOOLEAN:
                     return ReadBoolean(in1);
+
                 case TYPE_ERROR_CODE:
                     int errCode = in1.ReadUShort();
                     // next 6 bytes are Unused
@@ -88,6 +94,7 @@ namespace Npoi.Core.SS.Formula.Constant
             {
                 case FALSE_ENCODING:
                     return false;
+
                 case TRUE_ENCODING:
                     return true;
             }
@@ -109,6 +116,7 @@ namespace Npoi.Core.SS.Formula.Constant
         /**
          * @return encoded size without the 'type' code byte
          */
+
         private static int GetEncodedSize(Object obj)
         {
             if (obj == EMPTY_REPRESENTATION)

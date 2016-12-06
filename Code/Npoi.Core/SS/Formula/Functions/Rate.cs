@@ -14,8 +14,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-using System;
+
 using Npoi.Core.SS.Formula.Eval;
+using System;
 using System.Diagnostics;
 
 namespace Npoi.Core.SS.Formula.Functions
@@ -23,6 +24,7 @@ namespace Npoi.Core.SS.Formula.Functions
     /**
      * Implements the Excel Rate function
      */
+
     public class Rate : Function
     {
         public ValueEval Evaluate(ValueEval[] args, int srcRowIndex, int srcColumnIndex)
@@ -120,10 +122,11 @@ namespace Npoi.Core.SS.Formula.Functions
 
         /**
          * Excel does not support infinities and NaNs, rather, it gives a #NUM! error in these cases
-         * 
+         *
          * @throws EvaluationException (#NUM!) if result is NaN or Infinity
          */
-        static void CheckValue(double result)
+
+        private static void CheckValue(double result)
         {
             if (Double.IsNaN(result) || Double.IsInfinity(result))
             {

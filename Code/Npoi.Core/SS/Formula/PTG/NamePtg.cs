@@ -17,16 +17,16 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
-    using System;
-    using Npoi.Core.Util;
     using Npoi.Core.SS.Formula;
-
+    using Npoi.Core.Util;
+    using System;
 
     /**
      *
      * @author  andy
      * @author Jason Height (jheight at chariot dot net dot au)
      */
+
     [Serializable]
     public class NamePtg : OperandPtg, WorkbookDependentFormula
     {
@@ -38,6 +38,7 @@ namespace Npoi.Core.SS.Formula.PTG
         /**
  * @param nameIndex zero-based index to name within workbook
  */
+
         public NamePtg(int nameIndex)
         {
             field_1_label_index = 1 + nameIndex; // convert to 1-based
@@ -54,6 +55,7 @@ namespace Npoi.Core.SS.Formula.PTG
         /**
          * @return zero based index to a defined name record in the LinkTable
          */
+
         public int Index
         {
             get { return field_1_label_index - 1; } // Convert to zero based
@@ -61,11 +63,10 @@ namespace Npoi.Core.SS.Formula.PTG
 
         public override void Write(ILittleEndianOutput out1)
         {
-		    out1.WriteByte(sid + PtgClass);
-		    out1.WriteShort(field_1_label_index);
-		    out1.WriteShort(field_2_zero);
+            out1.WriteByte(sid + PtgClass);
+            out1.WriteShort(field_1_label_index);
+            out1.WriteShort(field_2_zero);
         }
-
 
         public override int Size
         {
@@ -76,11 +77,11 @@ namespace Npoi.Core.SS.Formula.PTG
         {
             return book.GetNameText(this);
         }
+
         public override String ToFormulaString()
         {
             throw new NotImplementedException("3D references need a workbook to determine formula text");
         }
-    
 
         public override byte DefaultOperandClass
         {

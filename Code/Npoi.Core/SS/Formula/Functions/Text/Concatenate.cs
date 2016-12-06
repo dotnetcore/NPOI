@@ -18,28 +18,27 @@
  * Created on May 15, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System.Text;
     using Npoi.Core.SS.Formula.Eval;
+    using System.Text;
 
     /**
      * @author Amol S. Deshmukh &lt; amolweb at ya hoo dot com &gt;
      *
      */
+
     public class Concatenate : TextFunction
     {
-
-
         public override ValueEval EvaluateFunc(ValueEval[] args, int srcCellRow, int srcCellCol)
         {
-
             StringBuilder sb = new StringBuilder();
-			for (int i=0, iSize=args.Length; i<iSize; i++) {
-				sb.Append(EvaluateStringArg(args[i], srcCellRow, srcCellCol));
-			}
-			return new StringEval(sb.ToString());
-
+            for (int i = 0, iSize = args.Length; i < iSize; i++)
+            {
+                sb.Append(EvaluateStringArg(args[i], srcCellRow, srcCellCol));
+            }
+            return new StringEval(sb.ToString());
         }
     }
 }

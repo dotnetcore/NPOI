@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,13 +15,11 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record.Chart
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * The series list record defines the series Displayed as an overlay to the main chart record.
@@ -31,12 +28,12 @@ namespace Npoi.Core.HSSF.Record.Chart
 
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class SeriesListRecord
        : StandardRecord
     {
         public const short sid = 0x1016;
         private short[] field_1_seriesNumbers;
-
 
         public SeriesListRecord(short[] seriesNumbers)
         {
@@ -52,13 +49,12 @@ namespace Npoi.Core.HSSF.Record.Chart
         public SeriesListRecord(RecordInputStream in1)
         {
             int nItems = in1.ReadUShort();
-    	    short[] ss = new short[nItems];
-    	    for (int i = 0; i < nItems; i++) {
-			    ss[i] = in1.ReadShort();
-    			
-		    }
+            short[] ss = new short[nItems];
+            for (int i = 0; i < nItems; i++)
+            {
+                ss[i] = in1.ReadShort();
+            }
             field_1_seriesNumbers = ss;
-
         }
 
         public override String ToString()
@@ -87,6 +83,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         /**
          * Size of record (exluding 4 byte header)
          */
+
         protected override int DataSize
         {
             get { return field_1_seriesNumbers.Length * 2 + 2; }
@@ -102,18 +99,14 @@ namespace Npoi.Core.HSSF.Record.Chart
             return new SeriesListRecord((short[])field_1_seriesNumbers.Clone());
         }
 
-
-
-
         /**
          * Get the series numbers field for the SeriesList record.
          */
+
         public short[] SeriesNumbers
         {
             get { return field_1_seriesNumbers; }
             set { this.field_1_seriesNumbers = value; }
         }
-
-
     }
 }

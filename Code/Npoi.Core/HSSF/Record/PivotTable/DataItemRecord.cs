@@ -17,17 +17,17 @@
 
 namespace Npoi.Core.HSSF.Record.PivotTable
 {
-    using System;
-    using System.Text;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.Util;
-
+    using System;
+    using System.Text;
 
     /**
      * SXDI - Data Item (0x00C5)<br/>
-     * 
+     *
      * @author Patrick Cheng
      */
+
     public class DataItemRecord : StandardRecord
     {
         public const short sid = 0x00C5;
@@ -52,10 +52,8 @@ namespace Npoi.Core.HSSF.Record.PivotTable
             name = in1.ReadString();
         }
 
-
         public override void Serialize(ILittleEndianOutput out1)
         {
-
             out1.WriteShort(isxvdData);
             out1.WriteShort(iiftab);
             out1.WriteShort(df);
@@ -66,7 +64,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
             StringUtil.WriteUnicodeString(out1, name);
         }
 
-
         protected override int DataSize
         {
             get
@@ -75,7 +72,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
             }
         }
 
-
         public override short Sid
         {
             get
@@ -83,7 +79,6 @@ namespace Npoi.Core.HSSF.Record.PivotTable
                 return sid;
             }
         }
-
 
         public override string ToString()
         {

@@ -1,9 +1,8 @@
-﻿using System;
-using Npoi.Core.SS.Formula.Functions;
+﻿using Npoi.Core.SS.Formula.Functions;
+using System;
 
 namespace Npoi.Core.SS.Formula.Eval
 {
-
     public abstract class TwoOperandNumericOperation : Fixed2ArgFunction
     {
         //public int Type

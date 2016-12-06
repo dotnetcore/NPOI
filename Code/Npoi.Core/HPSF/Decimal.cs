@@ -14,6 +14,7 @@
    See the License for the specific language governing permissions and
    limitations Under the License.
 ==================================================================== */
+
 using Npoi.Core.Util;
 
 namespace Npoi.Core.HPSF
@@ -28,8 +29,7 @@ namespace Npoi.Core.HPSF
         private int field_4_hi32;
         private long field_5_lo64;
 
-        public Decimal(byte[] data, int startOffset)
-        {
+        public Decimal(byte[] data, int startOffset) {
             int offset = startOffset;
 
             field_1_wReserved = LittleEndian.GetShort(data, offset);

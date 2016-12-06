@@ -1,10 +1,10 @@
 namespace System
 {
-	internal enum FontStyle
-	{
-		Regular,
-		Bold,
-		Italic,
-		Underline
-	}
+    internal enum FontStyle
+    {
+        Regular,
+        Bold,
+        Italic,
+        Underline
+    }
 }

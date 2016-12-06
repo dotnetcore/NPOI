@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,12 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.HSSF.Util;
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-    using Npoi.Core.HSSF.Util;
-
 
     /**
      * Title:        RK Record
@@ -71,7 +68,6 @@ namespace Npoi.Core.HSSF.Record
         public int RKField
         {
             get { return field_4_rk_number; }
-
         }
 
         /**
@@ -93,16 +89,16 @@ namespace Npoi.Core.HSSF.Record
 
         /**
          * Extract the value of the number
-         * 
+         *
          * The mechanism for determining the value is dependent on the two
          * low order bits of the raw number. If bit 1 is Set, the number
          * is an integer and can be cast directly as a double, otherwise,
          * it's apparently the exponent and mantissa of a double (and the
          * remaining low-order bits of the double's mantissa are 0's).
-         * 
+         *
          * If bit 0 is Set, the result of the conversion to a double Is
          * divided by 100; otherwise, the value is left alone.
-         * 
+         *
          * [Insert picture of Screwy Squirrel in full Napoleonic regalia]
          *
          * @return the value as a proper double (hey, it <B>could</B>
@@ -114,7 +110,6 @@ namespace Npoi.Core.HSSF.Record
             get { return RKUtil.DecodeNumber(field_4_rk_number); }
         }
 
-
         protected override String RecordName
         {
             get
@@ -122,7 +117,6 @@ namespace Npoi.Core.HSSF.Record
                 return "RK";
             }
         }
-
 
         protected override void AppendValueText(StringBuilder sb)
         {
@@ -133,7 +127,6 @@ namespace Npoi.Core.HSSF.Record
         {
             out1.WriteInt(field_4_rk_number);
         }
-
 
         protected override int ValueDataSize
         {

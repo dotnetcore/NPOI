@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -24,7 +23,6 @@ namespace Npoi.Core.DDF
     /// </summary>
     public class EscherShapePathProperty : EscherSimpleProperty
     {
-
         public const int LINE_OF_STRAIGHT_SEGMENTS = 0;
         public const int CLOSED_POLYGON = 1;
         public const int CURVES = 2;
@@ -37,11 +35,7 @@ namespace Npoi.Core.DDF
         /// <param name="propertyNumber">The property number.</param>
         /// <param name="shapePath">The shape path.</param>
         public EscherShapePathProperty(short propertyNumber, int shapePath)
-            : base(propertyNumber, false, false, shapePath)
-        {
-
+            : base(propertyNumber, false, false, shapePath) {
         }
-
     }
-
 }

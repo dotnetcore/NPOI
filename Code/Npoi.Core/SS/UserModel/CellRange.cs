@@ -25,11 +25,13 @@ namespace Npoi.Core.SS.UserModel
          * @param relativeColumnIndex must be between <tt>0</tt> and <tt>width-1</tt>
          * @return the cell at the specified coordinates.  Never <code>null</code>.
          */
+
         T GetCell(int relativeRowIndex, int relativeColumnIndex);
+
         /**
          * @return a flattened array of all the cells in this {@link CellRange}
          */
-        T[] FlattenedCells{get;}
+        T[] FlattenedCells { get; }
         /**
          * @return a 2-D array of all the cells in this {@link CellRange}.  The first
          * array dimension is the row index (values <tt>0...height-1</tt>)

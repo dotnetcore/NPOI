@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,16 +15,14 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.HSSF.Record.Cont;
     using Npoi.Core.Util;
-
     using System;
     using System.Collections;
-    using System.Text;
-    using Npoi.Core.HSSF.Record.Cont;
     using System.Collections.Generic;
+    using System.Text;
 
     /**
      * Title:        Extended Static String Table
@@ -43,9 +40,11 @@ namespace Npoi.Core.HSSF.Record
     public class ExtSSTRecord : ContinuableRecord
     {
         public const short DEFAULT_BUCKET_SIZE = 8;
+
         //Cant seem to Find this documented but from the biffviewer it Is clear that
         //Excel only records the indexes for the first 128 buckets.
         public const int MAX_BUCKETS = 128;
+
         public const short sid = 0xff;
         private short field_1_strings_per_bucket = DEFAULT_BUCKET_SIZE;
         private InfoSubRecord[] _sstInfos;
@@ -95,7 +94,6 @@ namespace Npoi.Core.HSSF.Record
             set { field_1_strings_per_bucket = value; }
         }
 
-
         public override String ToString()
         {
             StringBuilder buffer = new StringBuilder();
@@ -131,10 +129,12 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /** Returns the size of this record */
+
         internal int DataSize
         {
             get { return 2 + InfoSubRecord.ENCODED_SIZE * _sstInfos.Length; }
         }
+
         internal InfoSubRecord[] InfoSubRecords
         {
             get
@@ -142,6 +142,7 @@ namespace Npoi.Core.HSSF.Record
                 return _sstInfos;
             }
         }
+
         public static int GetNumberOfInfoRecsForStrings(int numStrings)
         {
             int infoRecs = (numStrings / DEFAULT_BUCKET_SIZE);
@@ -155,6 +156,7 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /** Given a number of strings (in the sst), returns the size of the extsst record*/
+
         public static int GetRecordSizeForStrings(int numStrings)
         {
             return 4 + 2 + (GetNumberOfInfoRecsForStrings(numStrings) * 8);
@@ -173,6 +175,5 @@ namespace Npoi.Core.HSSF.Record
                 _sstInfos[i] = new InfoSubRecord(bucketAbsoluteOffsets[i], bucketRelativeOffsets[i]);
             }
         }
-
     }
 }

@@ -17,19 +17,18 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 using System;
-using System.Text;
-using System.IO;
 using System.Collections;
-
+using System.IO;
+using System.Text;
 
 namespace Npoi.Core.POIFS.Dev
 {
@@ -58,7 +57,7 @@ namespace Npoi.Core.POIFS.Dev
                 using (Stream fileStream = File.OpenRead(filename))
                 {
                     POIFSViewable fs = (POIFSViewable)new POIFSFileSystem(fileStream);
-                
+
                     var strings = POIFSViewEngine.InspectViewable(fs, true,
                                                 0, "  ");
                     IEnumerator iter = strings.GetEnumerator();

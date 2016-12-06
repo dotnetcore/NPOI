@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,14 +15,12 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.EventUserModel
 {
+    using Npoi.Core.HSSF.Record;
     using System;
     using System.Collections;
-    using Npoi.Core.HSSF.Record;
     using System.Collections.Generic;
-
 
     /// <summary>
     /// An HSSFRequest object should be constructed registering an instance or multiple
@@ -33,15 +30,14 @@ namespace Npoi.Core.HSSF.EventUserModel
     /// </summary>
     public class HSSFRequest
     {
-        private Dictionary<object,object> records;
+        private Dictionary<object, object> records;
 
         /// <summary>
         /// Creates a new instance of HSSFRequest
         /// </summary>
-        public HSSFRequest()
-        {
+        public HSSFRequest() {
             records =
-                new Dictionary<object,object>(50);   // most folks won't listen for too many of these
+                new Dictionary<object, object>(50);   // most folks won't listen for too many of these
         }
 
         /// <summary>
@@ -53,21 +49,18 @@ namespace Npoi.Core.HSSF.EventUserModel
         /// </summary>
         /// <param name="lsnr">for the event</param>
         /// <param name="sid">identifier for the record type this Is the .sid static member on the individual records</param>
-        public void AddListener(IHSSFListener lsnr, short sid)
-        {
+        public void AddListener(IHSSFListener lsnr, short sid) {
             IList list = null;
             Object obj = records[sid];
 
-            if (obj != null)
-            {
+            if (obj != null) {
                 list = (IList)obj;
             }
-            else
-            {
+            else {
                 list = new List<object>(
                     1);   // probably most people will use one listener
                 list.Add(lsnr);
-                records[sid]=list;
+                records[sid] = list;
             }
         }
 
@@ -80,12 +73,10 @@ namespace Npoi.Core.HSSF.EventUserModel
         /// something?).
         /// </summary>
         /// <param name="lsnr">a single listener to associate with ALL records</param>
-        public void AddListenerForAllRecords(IHSSFListener lsnr)
-        {
+        public void AddListenerForAllRecords(IHSSFListener lsnr) {
             short[] rectypes = RecordFactory.GetAllKnownRecordSIDs();
 
-            for (int k = 0; k < rectypes.Length; k++)
-            {
+            for (int k = 0; k < rectypes.Length; k++) {
                 AddListener(lsnr, rectypes[k]);
             }
         }
@@ -97,26 +88,21 @@ namespace Npoi.Core.HSSF.EventUserModel
         /// </summary>
         /// <param name="rec">The record.</param>
         /// <returns>numeric user-specified result code. If zero continue Processing.</returns>
-        public short ProcessRecord(Record rec)
-        {
+        public short ProcessRecord(Record rec) {
             Object obj = records[rec.Sid];
             short userCode = 0;
 
-            if (obj != null)
-            {
+            if (obj != null) {
                 IList listeners = (IList)obj;
 
-                for (int k = 0; k < listeners.Count; k++)
-                {
+                for (int k = 0; k < listeners.Count; k++) {
                     Object listenObj = listeners[k];
-                    if (listenObj is AbortableHSSFListener)
-                    {
+                    if (listenObj is AbortableHSSFListener) {
                         AbortableHSSFListener listener = (AbortableHSSFListener)listenObj;
                         userCode = listener.AbortableProcessRecord(rec);
                         if (userCode != 0) break;
                     }
-                    else
-                    {
+                    else {
                         IHSSFListener listener = (IHSSFListener)listenObj;
                         listener.ProcessRecord(rec);
                     }

@@ -17,10 +17,9 @@
 
 using System;
 using System.Text;
+
 namespace Npoi.Core.SS.Util
 {
-
-
     /*
      * Excel Converts numbers to text with different rules to those of java, so
      *  <c>Double.ToString(value)</c> won't do.
@@ -112,9 +111,9 @@ namespace Npoi.Core.SS.Util
      *
      * @author Josh Micich
      */
+
     public class NumberToTextConverter
     {
-
         private const long EXCEL_NAN_BITS = unchecked((long)0xFFFF0420003C0000L);
         private const int MAX_TEXT_LEN = 20;
 
@@ -130,14 +129,16 @@ namespace Npoi.Core.SS.Util
          * In some special cases Excel behaves quite differently.  This function attempts to reproduce
          * those results.
          */
+
         public static String ToText(double value)
         {
             return RawDoubleBitsToText(BitConverter.DoubleToInt64Bits(value));
         }
+
         /* namespace */
+
         public static String RawDoubleBitsToText(long pRawBits)
         {
-
             long rawBits = pRawBits;
             bool isNegative = rawBits < 0; // sign bit is in the same place for long and double
             if (isNegative)
@@ -178,6 +179,7 @@ namespace Npoi.Core.SS.Util
             ConvertToText(sb, nd);
             return sb.ToString();
         }
+
         private static void ConvertToText(StringBuilder sb, NormalisedDecimal pnd)
         {
             NormalisedDecimal rnd = pnd.RoundUnits();
@@ -219,7 +221,7 @@ namespace Npoi.Core.SS.Util
                 if (countSigDigits > 1)
                 {
                     sb.Append('.');
-                    sb.Append(decimalDigits.Substring(1, countSigDigits-1));
+                    sb.Append(decimalDigits.Substring(1, countSigDigits - 1));
                 }
                 sb.Append("E-");
                 AppendExp(sb, -decExponent);
@@ -235,7 +237,6 @@ namespace Npoi.Core.SS.Util
 
         private static void FormatGreaterThanOne(StringBuilder sb, String decimalDigits, int decExponent, int countSigDigits)
         {
-
             if (decExponent > 19)
             {
                 // scientific notation
@@ -243,7 +244,7 @@ namespace Npoi.Core.SS.Util
                 if (countSigDigits > 1)
                 {
                     sb.Append('.');
-                    sb.Append(decimalDigits.Substring(1, countSigDigits-1));
+                    sb.Append(decimalDigits.Substring(1, countSigDigits - 1));
                 }
                 sb.Append("E+");
                 AppendExp(sb, decExponent);

@@ -22,21 +22,25 @@ namespace Npoi.Core.SS.Formula.Eval
 
     /**
      * Provides functionality for evaluating arguments to functions and operators.
-     * 
+     *
      * @author Josh Micich
      */
+
     public class OperandResolver
     {
         // Based on regular expression defined in JavaDoc at {@link java.lang.Double#valueOf}
         // modified to remove support for NaN, Infinity, Hexadecimal support and floating type suffixes
         private const String Digits = "\\d+";
+
         private const String Exp = "[eE][+-]?" + Digits;
+
         private const String fpRegex =
                     ("[\\x00-\\x20]*" +
                      "[+-]?(" +
                      "(((" + Digits + "(\\.)?(" + Digits + "?)(" + Exp + ")?)|" +
                      "(\\.(" + Digits + ")(" + Exp + ")?))))" +
                      "[\\x00-\\x20]*");
+
         private OperandResolver()
         {
             // no instances of this class
@@ -51,9 +55,10 @@ namespace Npoi.Core.SS.Formula.Eval
          * @return a <c>NumberEval</c>, <c>StringEval</c>, <c>BoolEval</c> or <c>BlankEval</c>.
          * Never <c>null</c> or <c>ErrorEval</c>.
          * @throws EvaluationException(#VALUE!) if srcCellRow or srcCellCol do not properly index into
-         *  an AreaEval.  If the actual value retrieved is an ErrorEval, a corresponding 
+         *  an AreaEval.  If the actual value retrieved is an ErrorEval, a corresponding
          *  EvaluationException is thrown.
          */
+
         public static ValueEval GetSingleValue(ValueEval arg, int srcCellRow, int srcCellCol)
         {
             ValueEval result;
@@ -80,7 +85,7 @@ namespace Npoi.Core.SS.Formula.Eval
          * Implements (some perhaps not well known) Excel functionality to select a single cell from an
          * area depending on the coordinates of the calling cell.  Here is an example demonstrating
          * both selection from a single row area and a single column area in the same formula.
-         * 
+         *
          *    <table border="1" cellpAdding="1" cellspacing="1" summary="sample spReadsheet">
          *      <tr><th> </th><th> A </th><th> B </th><th> C </th><th> D </th></tr>
          *      <tr><th>1</th><td>15</td><td>20</td><td>25</td><td> </td></tr>
@@ -88,10 +93,10 @@ namespace Npoi.Core.SS.Formula.Eval
          *      <tr><th>3</th><td> </td><td> </td><td> </td><td>300</td></tr>
          *      <tr><th>3</th><td> </td><td> </td><td> </td><td>400</td></tr>
          *    </table>
-         * 
+         *
          * If the formula "=1000+A1:B1+D2:D3" is put into the 9 cells from A2 to C4, the spReadsheet
          * will look like this:
-         * 
+         *
          *    <table border="1" cellpAdding="1" cellspacing="1" summary="sample spReadsheet">
          *      <tr><th> </th><th> A </th><th> B </th><th> C </th><th> D </th></tr>
          *      <tr><th>1</th><td>15</td><td>20</td><td>25</td><td> </td></tr>
@@ -99,47 +104,47 @@ namespace Npoi.Core.SS.Formula.Eval
          *      <tr><th>3</th><td>1315</td><td>1320</td><td>#VALUE!</td><td>300</td></tr>
          *      <tr><th>4</th><td>#VALUE!</td><td>#VALUE!</td><td>#VALUE!</td><td>400</td></tr>
          *    </table>
-         * 
-         * Note that the row area (A1:B1) does not include column C and the column area (D2:D3) does 
+         *
+         * Note that the row area (A1:B1) does not include column C and the column area (D2:D3) does
          * not include row 4, so the values in C1(=25) and D4(=400) are not accessible to the formula
          * as written, but in the 4 cells A2:B3, the row and column selection works ok.<p/>
-         * 
-         * The same concept is extended to references across sheets, such that even multi-row, 
+         *
+         * The same concept is extended to references across sheets, such that even multi-row,
          * multi-column areas can be useful.<p/>
-         * 
+         *
          * Of course with carefully (or carelessly) chosen parameters, cyclic references can occur and
-         * hence this method <b>can</b> throw a 'circular reference' EvaluationException.  Note that 
+         * hence this method <b>can</b> throw a 'circular reference' EvaluationException.  Note that
          * this method does not attempt to detect cycles.  Every cell in the specified Area <c>ae</c>
-         * has already been Evaluated prior to this method call.  Any cell (or cell<b>s</b>) part of 
-         * <c>ae</c> that would incur a cyclic reference error if selected by this method, will 
+         * has already been Evaluated prior to this method call.  Any cell (or cell<b>s</b>) part of
+         * <c>ae</c> that would incur a cyclic reference error if selected by this method, will
          * already have the value <c>ErrorEval.CIRCULAR_REF_ERROR</c> upon entry to this method.  It
          * is assumed logic exists elsewhere to produce this behaviour.
-         * 
+         *
          * @return whatever the selected cell's Evaluated value Is.  Never <c>null</c>. Never
          *  <c>ErrorEval</c>.
          * @if there is a problem with indexing into the area, or if the
          *  Evaluated cell has an error.
          */
+
         public static ValueEval ChooseSingleElementFromArea(AreaEval ae,
                 int srcCellRow, int srcCellCol)
         {
             ValueEval result = ChooseSingleElementFromAreaInternal(ae, srcCellRow, srcCellCol);
-            
+
             if (result is ErrorEval)
             {
                 throw new EvaluationException((ErrorEval)result);
-
             }
             return result;
         }
 
         /**
-         * @return possibly  <c>ErrorEval</c>, and <c>null</c> 
+         * @return possibly  <c>ErrorEval</c>, and <c>null</c>
          */
+
         private static ValueEval ChooseSingleElementFromAreaInternal(AreaEval ae,
                 int srcCellRow, int srcCellCol)
         {
-
             //if (false)
             //{
             //    // this is too simplistic
@@ -158,10 +163,10 @@ namespace Npoi.Core.SS.Formula.Eval
 
             //    Another reason there's little value in attempting to detect circular references here Is
             //    that only direct circular references could be detected.  If the cycle involved two or more
-            //    cells this method could not detect it.  
+            //    cells this method could not detect it.
 
             //    Logic to detect evaluation cycles of all kinds has been coded in EvaluationCycleDetector
-            //    (and HSSFFormulaEvaluator). 
+            //    (and HSSFFormulaEvaluator).
             //     */
             //}
 
@@ -192,21 +197,24 @@ namespace Npoi.Core.SS.Formula.Eval
             }
             return ae.GetAbsoluteValue(ae.FirstRow, srcCellCol);
         }
+
         private static ValueEval ChooseSingleElementFromRef(RefEval ref1)
         {
             return ref1.GetInnerValueEval(ref1.FirstSheetIndex);
         }
+
         /**
          * Applies some conversion rules if the supplied value is not already an integer.<br/>
          * Value is first Coerced to a <c>double</c> ( See <c>CoerceValueTodouble()</c> ).<p/>
-         * 
+         *
          * Excel typically Converts doubles to integers by truncating toward negative infinity.<br/>
          * The equivalent java code Is:<br/>
          *  <c>return (int)Math.floor(d);</c><br/>
          * <b>not</b>:<br/>
-         *  <c>return (int)d; // wrong - rounds toward zero</c> 
-         * 
+         *  <c>return (int)d; // wrong - rounds toward zero</c>
+         *
          */
+
         public static int CoerceValueToInt(ValueEval ev)
         {
             if (ev == BlankEval.instance)
@@ -221,7 +229,7 @@ namespace Npoi.Core.SS.Formula.Eval
 
         /**
          * Applies some conversion rules if the supplied value is not already a number.
-         * Note - <c>BlankEval</c> is not supported and must be handled by the caller. 
+         * Note - <c>BlankEval</c> is not supported and must be handled by the caller.
          * @param ev must be a <c>NumberEval</c>, <c>StringEval</c> or <c>BoolEval</c>
          * @return actual, Parsed or interpreted double value (respectively).
          * @throws EvaluationException(#VALUE!) only if a StringEval is supplied and cannot be Parsed
@@ -229,6 +237,7 @@ namespace Npoi.Core.SS.Formula.Eval
          * @throws Exception if the supplied parameter is not <c>NumberEval</c>,
          *  <c>StringEval</c> or <c>BoolEval</c>
          */
+
         public static double CoerceValueToDouble(ValueEval ev)
         {
             if (ev == BlankEval.instance)
@@ -255,8 +264,8 @@ namespace Npoi.Core.SS.Formula.Eval
         /**
          * Converts a string to a double using standard rules that Excel would use.<br/>
          * Tolerates currency prefixes, commas, leading and trailing spaces.<p/>
-         *   
-         *  Some examples:<br/> 
+         *
+         *  Some examples:<br/>
          *  " 123 " -&gt; 123.0<br/>
          *  ".123" -&gt; 0.123<br/>
          *  These not supported yet:<br/>
@@ -264,24 +273,25 @@ namespace Npoi.Core.SS.Formula.Eval
          *  "$1.25E4" -&gt; 12500.0<br/>
          *  "5**2" -&gt; 500<br/>
          *  "250%" -&gt; 2.5<br/>
-         *  
+         *
          * @param text
          * @return <c>null</c> if the specified text cannot be Parsed as a number
          */
+
         public static double ParseDouble(String pText)
         {
             //if (Regex.Match(fpRegex, pText).Success)
-                try
-                {
-                    double ret = double.Parse(pText, CultureInfo.CurrentCulture);
-                    if (double.IsInfinity(ret))
-                        return double.NaN;
-                    return ret;
-                }
-                catch (Exception)
-                {
-                    return Double.NaN;
-                }
+            try
+            {
+                double ret = double.Parse(pText, CultureInfo.CurrentCulture);
+                if (double.IsInfinity(ret))
+                    return double.NaN;
+                return ret;
+            }
+            catch (Exception)
+            {
+                return Double.NaN;
+            }
             //else
             {
                 //return Double.NaN;
@@ -321,6 +331,7 @@ namespace Npoi.Core.SS.Formula.Eval
          * @param ve must be a <c>NumberEval</c>, <c>StringEval</c>, <c>BoolEval</c>, or <c>BlankEval</c>
          * @return the Converted string value. never <c>null</c>
          */
+
         public static String CoerceValueToString(ValueEval ve)
         {
             if (ve is StringValueEval)
@@ -335,13 +346,14 @@ namespace Npoi.Core.SS.Formula.Eval
             }
             throw new ArgumentException("Unexpected eval class (" + ve.GetType().Name + ")");
         }
+
         /**
  * @return <c>null</c> to represent blank values
  * @throws EvaluationException if ve is an ErrorEval, or if a string value cannot be converted
  */
+
         public static Boolean? CoerceValueToBoolean(ValueEval ve, bool stringsAreBlanks)
         {
-
             if (ve == null || ve == BlankEval.instance)
             {
                 // TODO - remove 've == null' condition once AreaEval is fixed

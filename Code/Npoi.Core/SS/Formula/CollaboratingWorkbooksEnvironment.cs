@@ -14,23 +14,23 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
 namespace Npoi.Core.SS.Formula
 {
-
+    using Npoi.Core.SS.UserModel;
     using System;
-    using System.Text;
     using System.Collections;
     using System.Collections.Generic;
-    using Npoi.Core.SS.UserModel;
+    using System.Text;
 
     [Serializable]
     public class WorkbookNotFoundException : Exception
     {
-        public WorkbookNotFoundException(String msg):base(msg)
+        public WorkbookNotFoundException(String msg) : base(msg)
         {
-            
         }
     }
+
     /**
      * Manages a collection of {@link WorkbookEvaluator}s, in order To support evaluation of formulas
      * across spreadsheets.<p/>
@@ -39,6 +39,7 @@ namespace Npoi.Core.SS.Formula
      *
      * @author Josh Micich
      */
+
     public class CollaboratingWorkbooksEnvironment
     {
         public static readonly CollaboratingWorkbooksEnvironment EMPTY = new CollaboratingWorkbooksEnvironment();
@@ -47,11 +48,13 @@ namespace Npoi.Core.SS.Formula
         private WorkbookEvaluator[] _evaluators;
 
         private bool _unhooked;
+
         private CollaboratingWorkbooksEnvironment()
         {
             _evaluatorsByName = new Dictionary<String, WorkbookEvaluator>();
             _evaluators = new WorkbookEvaluator[0];
         }
+
         public static void Setup(String[] workbookNames, WorkbookEvaluator[] evaluators)
         {
             int nItems = workbookNames.Length;
@@ -67,17 +70,19 @@ namespace Npoi.Core.SS.Formula
             CollaboratingWorkbooksEnvironment env = new CollaboratingWorkbooksEnvironment(workbookNames, evaluators, nItems);
             HookNewEnvironment(evaluators, env);
         }
+
         public static void Setup(Dictionary<String, WorkbookEvaluator> evaluatorsByName)
         {
             if (evaluatorsByName.Count < 1)
             {
-                throw new  ArgumentException("Must provide at least one collaborating worbook");
+                throw new ArgumentException("Must provide at least one collaborating worbook");
             }
             List<WorkbookEvaluator> temp = new List<WorkbookEvaluator>(evaluatorsByName.Count);
             temp.AddRange(evaluatorsByName.Values);
             WorkbookEvaluator[] evaluators = temp.ToArray();
             new CollaboratingWorkbooksEnvironment(evaluatorsByName, evaluators);
         }
+
         public static void SetupFormulaEvaluator(Dictionary<String, IFormulaEvaluator> evaluators)
         {
             Dictionary<String, WorkbookEvaluator> evaluatorsByName = new Dictionary<String, WorkbookEvaluator>(evaluators.Count);
@@ -96,11 +101,12 @@ namespace Npoi.Core.SS.Formula
             }
             Setup(evaluatorsByName);
         }
+
         private CollaboratingWorkbooksEnvironment(String[] workbookNames, WorkbookEvaluator[] evaluators, int nItems)
             : this(toUniqueMap(workbookNames, evaluators, nItems), evaluators)
         {
-
         }
+
         private static Dictionary<String, WorkbookEvaluator> toUniqueMap(String[] workbookNames, WorkbookEvaluator[] evaluators, int nItems)
         {
             Dictionary<String, WorkbookEvaluator> evaluatorsByName = new Dictionary<String, WorkbookEvaluator>(nItems * 3 / 2);
@@ -116,6 +122,7 @@ namespace Npoi.Core.SS.Formula
             }
             return evaluatorsByName;
         }
+
         private CollaboratingWorkbooksEnvironment(Dictionary<String, WorkbookEvaluator> evaluatorsByName, WorkbookEvaluator[] evaluators)
         {
             Dictionary<WorkbookEvaluator, String> uniqueEvals = new Dictionary<WorkbookEvaluator, String>(evaluators.Length);
@@ -139,7 +146,6 @@ namespace Npoi.Core.SS.Formula
 
         private static void HookNewEnvironment(WorkbookEvaluator[] evaluators, CollaboratingWorkbooksEnvironment env)
         {
-
             // All evaluators will need To share the same cache.
             // but the cache takes an optional evaluation listener.
             int nItems = evaluators.Length;
@@ -159,8 +165,8 @@ namespace Npoi.Core.SS.Formula
             {
                 evaluators[i].AttachToEnvironment(env, cache, i);
             }
-
         }
+
         private void UnhookOldEnvironments(WorkbookEvaluator[] evaluators)
         {
             List<object> oldEnvs = new List<object>();
@@ -177,8 +183,9 @@ namespace Npoi.Core.SS.Formula
         }
 
         /**
-         * 
+         *
          */
+
         private void Unhook()
         {
             if (_evaluators.Length < 1)

@@ -17,21 +17,21 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-    using System;
-    using System.Text;
-    using System.Collections;
     using Npoi.Core.DDF;
-    using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.HSSF.Model;
+    using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.Util;
+    using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.IO;
+    using System.Text;
 
     internal class SerializationListener : EscherSerializationListener
     {
-        IList<int> spEndingOffsets;
-        IList<EscherRecord> records;
-        EscherRecord record;
+        private IList<int> spEndingOffsets;
+        private IList<EscherRecord> records;
+        private EscherRecord record;
 
         public SerializationListener(IList<int> spEndingOffsets, IList<EscherRecord> records, EscherRecord e)
         {
@@ -44,7 +44,6 @@ namespace Npoi.Core.HSSF.Record
 
         void EscherSerializationListener.BeforeRecordSerialize(int offset, short recordId, EscherRecord record)
         {
-           
         }
 
         void EscherSerializationListener.AfterRecordSerialize(int offset, short recordId, int size, EscherRecord record)
@@ -56,12 +55,13 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        #endregion
+        #endregion EscherSerializationListener Members
     }
+
     internal class RecordSizeListener : EscherSerializationListener
     {
-        IList<int> spEndingOffsets;
-        EscherRecord record;
+        private IList<int> spEndingOffsets;
+        private EscherRecord record;
 
         public RecordSizeListener(IList<int> spEndingOffsets, EscherRecord e)
         {
@@ -73,7 +73,6 @@ namespace Npoi.Core.HSSF.Record
 
         void EscherSerializationListener.BeforeRecordSerialize(int offset, short recordId, EscherRecord record)
         {
-
         }
 
         void EscherSerializationListener.AfterRecordSerialize(int offset, short recordId, int size, EscherRecord record)
@@ -84,8 +83,9 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        #endregion
+        #endregion EscherSerializationListener Members
     }
+
     /**
      * This class Is used to aggregate the MSODRAWING and OBJ record
      * combinations.  This Is necessary due to the bizare way in which
@@ -93,9 +93,9 @@ namespace Npoi.Core.HSSF.Record
      * combination of MSODRAWING -> OBJ -> MSODRAWING -> OBJ records
      * but the escher records are Serialized _across_ the MSODRAWING
      * records.
-     * 
+     *
      * It Gets even worse when you start looking at TXO records.
-     * 
+     *
      * So what we do with this class Is aggregate lazily.  That Is
      * we don't aggregate the MSODRAWING -> OBJ records Unless we
      * need to modify them.
@@ -126,9 +126,10 @@ namespace Npoi.Core.HSSF.Record
      * <p/>
      * EscherAggrefate contains also NoteRecords
      * NoteRecords must be serial
-     * 
+     *
      * @author Glen Stampoultzis (glens at apache.org)
      */
+
     public class EscherAggregate : AbstractEscherHolderRecord
     {
         public const short sid = 9876;
@@ -363,6 +364,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return  Returns the current sid.
          */
+
         public override short Sid
         {
             get { return sid; }
@@ -372,13 +374,14 @@ namespace Npoi.Core.HSSF.Record
          * Calculates the string representation of this record.  This Is
          * simply a dump of all the records.
          */
+
         public override String ToString()
         {
             String nl = Environment.NewLine;
 
             StringBuilder result = new StringBuilder();
             result.Append('[').Append(RecordName).Append(']' + nl);
-            for (IEnumerator iterator = EscherRecords.GetEnumerator(); iterator.MoveNext(); )
+            for (IEnumerator iterator = EscherRecords.GetEnumerator(); iterator.MoveNext();)
             {
                 EscherRecord escherRecord = (EscherRecord)iterator.Current;
                 result.Append(escherRecord.ToString() + nl);
@@ -387,17 +390,19 @@ namespace Npoi.Core.HSSF.Record
 
             return result.ToString();
         }
+
         /**
          * Calculates the xml representation of this record.  This is
          * simply a dump of all the records.
          * @param tab - string which must be added before each line (used by default '\t')
          * @return xml representation of the all aggregated records
          */
+
         public String ToXml(String tab)
         {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append("<").Append(RecordName).Append(">\n");
-            for (IEnumerator iterator = EscherRecords.GetEnumerator(); iterator.MoveNext(); )
+            for (IEnumerator iterator = EscherRecords.GetEnumerator(); iterator.MoveNext();)
             {
                 EscherRecord escherRecord = (EscherRecord)iterator.Current;
                 builder.Append(escherRecord.ToXml(tab + "\t"));
@@ -410,6 +415,7 @@ namespace Npoi.Core.HSSF.Record
          * @param sid - record sid we want to check if it belongs to drawing layer
          * @return true if record is instance of DrawingRecord or ContinueRecord or ObjRecord or TextObjRecord
          */
+
         private static bool IsDrawingLayerRecord(short sid)
         {
             return sid == DrawingRecord.sid ||
@@ -427,6 +433,7 @@ namespace Npoi.Core.HSSF.Record
          * @param locFirstDrawingRecord - location of the first DrawingRecord inside sheet
          * @return new EscherAggregate create from all aggregated records which belong to drawing layer
          */
+
         public static EscherAggregate CreateAggregate(List<RecordBase> records, int locFirstDrawingRecord)
         {
             // Keep track of any shape records Created so we can match them back to the object id's.
@@ -513,8 +520,8 @@ namespace Npoi.Core.HSSF.Record
             records.RemoveRange(locFirstDrawingRecord, locLastDrawingRecord - locFirstDrawingRecord);
             records.Insert(locFirstDrawingRecord, agg);
             return agg;
-
         }
+
         /**
          * Serializes this aggregate to a byte array.  Since this Is an aggregate
          * record it will effectively Serialize the aggregated records.
@@ -523,14 +530,13 @@ namespace Npoi.Core.HSSF.Record
          * @param data      The byte array to Serialize to.
          * @return          The number of bytes Serialized.
          */
+
         public override int Serialize(int offset, byte[] data)
         {
-
             // Determine buffer size
             List<EscherRecord> records = EscherRecords;
             int size = GetEscherRecordSize(records);
             byte[] buffer = new byte[size];
-
 
             // Serialize escher records into one big data structure and keep note of ending offsets.
             List<int> spEndingOffsets = new List<int>();
@@ -574,7 +580,6 @@ namespace Npoi.Core.HSSF.Record
                     Array.Copy(buffer, endOffset + 1, drawingData, 0, drawingData.Length);
                     pos += WriteDataIntoDrawingRecord(drawingData, writtenEscherBytes, pos, data, i);
                 }
-
             }
             if ((pos - offset) < buffer.Length - 1)
             {
@@ -602,6 +607,7 @@ namespace Npoi.Core.HSSF.Record
          * @param i - number of shape, saved into data array
          * @return offset of data array after serialization
          */
+
         private int WriteDataIntoDrawingRecord(byte[] drawingData, int writtenEscherBytes, int pos, byte[] data, int i)
         {
             int temp = 0;
@@ -646,6 +652,7 @@ namespace Npoi.Core.HSSF.Record
          * @param records List of escher records
          * @return the number of bytes
          */
+
         private int GetEscherRecordSize(List<EscherRecord> records)
         {
             int size = 0;
@@ -655,11 +662,13 @@ namespace Npoi.Core.HSSF.Record
             }
             return size;
         }
+
         /**
          * @param records list of records to look into
          * @param loc - location of the record which sid must be returned
          * @return sid of the record with selected location
          */
+
         private static short GetSid(List<RecordBase> records, int loc)
         {
             RecordBase record = records[(loc)];
@@ -675,10 +684,10 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-
         /**
      * @return record size, including header size of obj, text, note, drawing, continue records
      */
+
         public override int RecordSize
         {
             get
@@ -742,6 +751,7 @@ namespace Npoi.Core.HSSF.Record
          *
          * id of DgRecord and SpRecord are empty and must be set later by HSSFPatriarch
          */
+
         private void BuildBaseTree()
         {
             EscherContainerRecord dgContainer = new EscherContainerRecord();
@@ -756,23 +766,23 @@ namespace Npoi.Core.HSSF.Record
             short dgId = 1;
             dg.Options = ((short)(dgId << 4));
             dg.NumShapes = (0);
-            dg.LastMSOSPID=(1024);
-            spgrContainer.RecordId=(EscherContainerRecord.SPGR_CONTAINER);
-            spgrContainer.Options=((short)0x000F);
-            spContainer1.RecordId=(EscherContainerRecord.SP_CONTAINER);
-            spContainer1.Options=((short)0x000F);
-            spgr.RecordId=(EscherSpgrRecord.RECORD_ID);
-            spgr.Options=((short)0x0001);    // version
-            spgr.RectX1=(0);
-            spgr.RectY1=(0);
-            spgr.RectX2=(1023);
-            spgr.RectY2=(255);
-            sp1.RecordId=(EscherSpRecord.RECORD_ID);
+            dg.LastMSOSPID = (1024);
+            spgrContainer.RecordId = (EscherContainerRecord.SPGR_CONTAINER);
+            spgrContainer.Options = ((short)0x000F);
+            spContainer1.RecordId = (EscherContainerRecord.SP_CONTAINER);
+            spContainer1.Options = ((short)0x000F);
+            spgr.RecordId = (EscherSpgrRecord.RECORD_ID);
+            spgr.Options = ((short)0x0001);    // version
+            spgr.RectX1 = (0);
+            spgr.RectY1 = (0);
+            spgr.RectX2 = (1023);
+            spgr.RectY2 = (255);
+            sp1.RecordId = (EscherSpRecord.RECORD_ID);
 
-            sp1.Options=((short)0x0002);
-            sp1.Version=((short)0x2);
-            sp1.ShapeId=(-1);
-            sp1.Flags=(EscherSpRecord.FLAG_GROUP | EscherSpRecord.FLAG_PATRIARCH);
+            sp1.Options = ((short)0x0002);
+            sp1.Version = ((short)0x2);
+            sp1.ShapeId = (-1);
+            sp1.Flags = (EscherSpRecord.FLAG_GROUP | EscherSpRecord.FLAG_PATRIARCH);
             dgContainer.AddChildRecord(dg);
             dgContainer.AddChildRecord(spgrContainer);
             spgrContainer.AddChildRecord(spContainer1);
@@ -786,24 +796,21 @@ namespace Npoi.Core.HSSF.Record
             this.drawingManager = drawingManager;
         }
 
-
         /**
          * Unused since this Is an aggregate record.  Use CreateAggregate().
          *
          * @see #CreateAggregate
          */
+
         public System.Collections.IList Children(byte[] data, short size, int offset)
         {
             throw new InvalidOperationException("Should not reach here");
         }
 
-        
-
-        
-
         internal class CustomEscherRecordFactory : DefaultEscherRecordFactory
         {
-            List<EscherRecord> shapeRecords;
+            private List<EscherRecord> shapeRecords;
+
             public CustomEscherRecordFactory(List<EscherRecord> shapeRecords)
             {
                 this.shapeRecords = shapeRecords;
@@ -926,7 +933,7 @@ namespace Npoi.Core.HSSF.Record
         //                    if (tailRec.Count>=i && tailRec[i-1] is NoteRecord)
         //                    {
         //                        NoteRecord noterec=(NoteRecord)tailRec[i - 1];
-                                
+
         //                        // comment
         //                        box =
         //                            new HSSFComment(null, anchor1);
@@ -935,14 +942,14 @@ namespace Npoi.Core.HSSF.Record
         //                        comment.Row = noterec.Row;
         //                        comment.Column = noterec.Column;
         //                        comment.Visible = (noterec.Flags == NoteRecord.NOTE_VISIBLE);
-        //                        comment.String = textrec.Str;                                
+        //                        comment.String = textrec.Str;
         //                    }
         //                    else
         //                    {
         //                        // TextBox
         //                        box =
         //                            new HSSFTextbox(null, anchor1);
-        //                        ((HSSFTextbox)box).String = textrec.Str;  
+        //                        ((HSSFTextbox)box).String = textrec.Str;
         //                    }
         //                    patriarch.AddShape(box);
         //                    ConvertRecordsToUserModel(shapeContainer, box);
@@ -973,7 +980,6 @@ namespace Npoi.Core.HSSF.Record
         //                    break;
         //            }
 
-
         //        }
         //        else
         //        {
@@ -996,7 +1002,7 @@ namespace Npoi.Core.HSSF.Record
 
         private EscherRecord GetEscherChild(EscherContainerRecord owner, int recordId)
         {
-            for (IEnumerator iterator = owner.ChildRecords.GetEnumerator(); iterator.MoveNext(); )
+            for (IEnumerator iterator = owner.ChildRecords.GetEnumerator(); iterator.MoveNext();)
             {
                 EscherRecord escherRecord = (EscherRecord)iterator.Current;
                 if (escherRecord.RecordId == recordId)
@@ -1004,7 +1010,6 @@ namespace Npoi.Core.HSSF.Record
             }
             return null;
         }
-
 
         //private void ConvertRecordsToUserModel(EscherContainerRecord shapeContainer, Object model)
         //{
@@ -1086,7 +1091,6 @@ namespace Npoi.Core.HSSF.Record
         {
             return GetSid(records, loc) == ObjRecord.sid || GetSid(records, loc) == TextObjectRecord.sid;
         }
-        
 
         //private void ConvertShapes(HSSFShapeContainer parent, EscherContainerRecord escherParent, Dictionary<object,object> shapeToObj)
         //{
@@ -1261,11 +1265,12 @@ namespace Npoi.Core.HSSF.Record
         /// <param name="objRecord">Obj or TextObj record</param>
         public void AssociateShapeToObjRecord(EscherRecord r, Record objRecord)
         {
-            if(!shapeToObj.ContainsKey(r))
+            if (!shapeToObj.ContainsKey(r))
                 shapeToObj.Add(r, objRecord);
             else
-                shapeToObj[r]= objRecord;
+                shapeToObj[r] = objRecord;
         }
+
         /// <summary>
         /// Remove echerRecord and associated to it Obj or TextObj record
         /// </summary>
@@ -1274,12 +1279,14 @@ namespace Npoi.Core.HSSF.Record
         {
             shapeToObj.Remove(rec);
         }
+
         internal void SetDgId(short dgId)
         {
             EscherContainerRecord dgContainer = GetEscherContainer();
             EscherDgRecord dg = (EscherDgRecord)dgContainer.GetChildById(EscherDgRecord.RECORD_ID);
             dg.Options = (short)(dgId << 4);
         }
+
         internal void SetMainSpRecordId(int shapeId)
         {
             EscherContainerRecord dgContainer = GetEscherContainer();
@@ -1301,6 +1308,7 @@ namespace Npoi.Core.HSSF.Record
             else
                 tailRec[note.ShapeId] = note;
         }
+
         /**
      * @return unmodifiable copy of tail records. We need to access them when building shapes.
      *         Every HSSFComment shape has a link to a NoteRecord from the tailRec collection.
@@ -1311,10 +1319,12 @@ namespace Npoi.Core.HSSF.Record
         {
             return shapeToObj;
         }
+
         /**
      * @param obj - ObjRecord with id == NoteRecord.id
      * @return null if note record is not found else returns note record with id == obj.id
      */
+
         internal NoteRecord GetNoteRecordByObj(ObjRecord obj)
         {
             CommonObjectDataSubRecord cod = (CommonObjectDataSubRecord)obj.SubRecords[0];

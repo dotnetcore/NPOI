@@ -14,12 +14,13 @@
 * See the License for the specific language governing permissions and
 * limitations Under the License.
 */
+
 using Npoi.Core.SS.Formula.Eval;
 
 namespace Npoi.Core.SS.Formula.Functions
 {
     /**
-     * contribute by Pavel Egorov 
+     * contribute by Pavel Egorov
      * https://github.com/xoposhiy/npoi/commit/27b34a2389030c7115a666ace65daafda40d61af
      */
     /**
@@ -33,12 +34,12 @@ namespace Npoi.Core.SS.Formula.Functions
      * Returns the logical value <tt>TRUE</tt> if value refers to any error value except
      * <tt>'#N/A'</tt>; otherwise, it returns <tt>FALSE</tt>.
      */
+
     public class Iserr : LogicalFunction
     {
         protected override bool Evaluate(ValueEval arg)
         {
             return arg is ErrorEval && arg != ErrorEval.NA;
-
         }
     }
 }

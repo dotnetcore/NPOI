@@ -17,14 +17,14 @@
 
 namespace Npoi.Core.SS.Formula.PTG
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    
-    using Npoi.Core.Util;
 
     /**
      * @author Daniel Noll (daniel at nuix dot com dot au)
      */
+
     public class RangePtg : OperationPtg
     {
         public const int SIZE = 1;
@@ -57,8 +57,8 @@ namespace Npoi.Core.SS.Formula.PTG
             return ":";
         }
 
-
         /** implementation of method from OperationsPtg*/
+
         public override String ToFormulaString(String[] operands)
         {
             StringBuilder buffer = new StringBuilder();
@@ -73,6 +73,5 @@ namespace Npoi.Core.SS.Formula.PTG
         {
             get { return 2; }
         }
-
     }
 }

@@ -1,4 +1,3 @@
-
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) Under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -16,15 +15,14 @@
    limitations Under the License.
 ==================================================================== */
 
-
 namespace Npoi.Core.HSSF.Record
 {
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using System.Collections;
-    using Npoi.Core.Util;
 
-    public enum BOFRecordType {
+    public enum BOFRecordType
+    {
         Workbook = 0x05,
         VBModule = 0x06,
         Worksheet = 0x10,
@@ -46,15 +44,16 @@ namespace Npoi.Core.HSSF.Record
 
     public class BOFRecord : StandardRecord
     {
-
         /**
          * for BIFF8 files the BOF is 0x809. For earlier versions see
-         *  {@link #biff2_sid} {@link #biff3_sid} {@link #biff4_sid} 
+         *  {@link #biff2_sid} {@link #biff3_sid} {@link #biff4_sid}
          *  {@link #biff5_sid}
          */
         public const short sid = 0x809;
+
         // SIDs from earlier BIFF versions
         public const short biff2_sid = 0x009;
+
         public const short biff3_sid = 0x209;
         public const short biff4_sid = 0x409;
         public const short biff5_sid = 0x809;
@@ -101,7 +100,7 @@ namespace Npoi.Core.HSSF.Record
         private BOFRecord(BOFRecordType type)
         {
             field_1_version = VERSION;
-            field_2_type = (int) type;
+            field_2_type = (int)type;
             field_3_build = BUILD;
             field_4_year = BUILD_YEAR;
             field_5_history = 0x01;
@@ -154,6 +153,7 @@ namespace Npoi.Core.HSSF.Record
             set { field_1_version = value; }
             get { return field_1_version; }
         }
+
         /**
          * Set the history bit mask (not very useful)
          * @see #HISTORY_MASK
@@ -192,8 +192,8 @@ namespace Npoi.Core.HSSF.Record
 
         public BOFRecordType Type
         {
-            get { return (BOFRecordType) field_2_type; }
-            set { field_2_type = (int) value; }
+            get { return (BOFRecordType)field_2_type; }
+            set { field_2_type = (int)value; }
         }
 
         private String TypeName
@@ -245,7 +245,7 @@ namespace Npoi.Core.HSSF.Record
             buffer.Append("    .version         = ")
                 .Append(StringUtil.ToHexString(Version)).Append("\n");
             buffer.Append("    .type            = ")
-                .Append(StringUtil.ToHexString((int) Type)).Append("\n");
+                .Append(StringUtil.ToHexString((int)Type)).Append("\n");
             buffer.Append(" (").Append(TypeName).Append(")").Append("\n");
             buffer.Append("    .build           = ")
                 .Append(StringUtil.ToHexString(Build)).Append("\n");
@@ -262,7 +262,7 @@ namespace Npoi.Core.HSSF.Record
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(Version);
-            out1.WriteShort((int) Type);
+            out1.WriteShort((int)Type);
             out1.WriteShort(Build);
             out1.WriteShort(BuildYear);
             out1.WriteInt(HistoryBitMask);

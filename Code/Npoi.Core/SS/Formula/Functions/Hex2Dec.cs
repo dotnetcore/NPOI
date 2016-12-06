@@ -17,10 +17,9 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
-
     using Npoi.Core.SS.Formula;
     using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     /**
      * Implementation for Excel HEX2DEC() function.<p/>
@@ -37,13 +36,13 @@ namespace Npoi.Core.SS.Formula.Functions
      *
      * @author cedric dot walter @ gmail dot com
      */
+
     public class Hex2Dec : Fixed1ArgFunction, FreeRefFunction
     {
-
         public static FreeRefFunction instance = new Hex2Dec();
 
-        static int HEXADECIMAL_BASE = 16;
-        static int MAX_NUMBER_OF_PLACES = 10;
+        private static int HEXADECIMAL_BASE = 16;
+        private static int MAX_NUMBER_OF_PLACES = 10;
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval numberVE)
         {
@@ -57,7 +56,7 @@ namespace Npoi.Core.SS.Formula.Functions
             {
                 hex = OperandResolver.CoerceValueToString(numberVE);
             }
-            
+
             try
             {
                 return new NumberEval(BaseNumberUtils.ConvertToDecimal(hex, HEXADECIMAL_BASE, MAX_NUMBER_OF_PLACES));
@@ -77,5 +76,4 @@ namespace Npoi.Core.SS.Formula.Functions
             return Evaluate(ec.RowIndex, ec.ColumnIndex, args[0]);
         }
     }
-
 }

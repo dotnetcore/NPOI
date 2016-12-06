@@ -18,11 +18,11 @@
  * Created on May 15, 2005
  *
  */
+
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
     using Npoi.Core.SS.Formula.Eval;
-    
+    using System;
 
     public class Today : Fixed0ArgFunction
     {

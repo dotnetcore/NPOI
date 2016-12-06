@@ -16,11 +16,9 @@
 
 namespace Npoi.Core.HSSF.Record
 {
-
+    using Npoi.Core.Util;
     using System;
     using System.Text;
-    using Npoi.Core.Util;
-
 
     /**
      * Title:        DATAVALIDATIONS Record
@@ -28,6 +26,7 @@ namespace Npoi.Core.HSSF.Record
      *               This record Is the list header of all data validation records (0x01BE) in the current sheet.
      * @author Dragos Buleandra (dragos.buleandra@trade2b.ro)
      */
+
     public class DVALRecord : StandardRecord
     {
         public const short sid = 0x01B2;
@@ -68,10 +67,10 @@ namespace Npoi.Core.HSSF.Record
             this.field_5_dv_no = in1.ReadInt();
         }
 
-
         /**
          * @return the field_1_options
          */
+
         public short Options
         {
             get { return field_1_options; }
@@ -81,13 +80,14 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return the Horizontal position of the dialog
          */
+
         public int HorizontalPos
         {
             get
             {
                 return field_2_horiz_pos;
             }
-            set 
+            set
             {
                 this.field_2_horiz_pos = value;
             }
@@ -96,13 +96,14 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return the the Vertical position of the dialog
          */
+
         public int VerticalPos
         {
             get
             {
                 return field_3_vert_pos;
             }
-            set 
+            set
             {
                 this.field_3_vert_pos = value;
             }
@@ -111,13 +112,14 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get Object ID of the drop down arrow object for list boxes
          */
+
         public int ObjectID
         {
             get
             {
                 return this.field_cbo_id;
             }
-            set 
+            set
             {
                 this.field_cbo_id = value;
             }
@@ -126,18 +128,18 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Get number of following DV records
          */
+
         public int DVRecNo
         {
             get
             {
                 return this.field_5_dv_no;
             }
-            set 
+            set
             {
                 this.field_5_dv_no = value;
             }
         }
-
 
         public override String ToString()
         {
@@ -155,11 +157,11 @@ namespace Npoi.Core.HSSF.Record
 
         public override void Serialize(ILittleEndianOutput out1)
         {
-		    out1.WriteShort(Options);
-		    out1.WriteInt(HorizontalPos);
-		    out1.WriteInt(VerticalPos);
-		    out1.WriteInt(ObjectID);
-		    out1.WriteInt(DVRecNo);
+            out1.WriteShort(Options);
+            out1.WriteInt(HorizontalPos);
+            out1.WriteInt(VerticalPos);
+            out1.WriteInt(ObjectID);
+            out1.WriteInt(DVRecNo);
         }
 
         protected override int DataSize

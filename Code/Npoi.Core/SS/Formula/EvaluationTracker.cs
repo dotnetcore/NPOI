@@ -17,12 +17,10 @@
 
 namespace Npoi.Core.SS.Formula
 {
-
+    using Npoi.Core.SS.Formula.Eval;
     using System;
     using System.Collections;
-    using Npoi.Core.SS.Formula.Eval;
     using System.Collections.Generic;
-
 
     /// <summary>
     /// Instances of this class keep track of multiple dependent cell evaluations due
@@ -32,12 +30,13 @@ namespace Npoi.Core.SS.Formula
     /// references in spreadsheet formulas.
     /// </summary>
     /// <remarks>
-    /// @author Josh Micich 
+    /// @author Josh Micich
     /// </remarks>
     public class EvaluationTracker
     {
         // TODO - consider deleting this class and letting CellEvaluationFrame take care of itself
         private IList _evaluationFrames;
+
         private IList _currentlyEvaluatingCells;
         private EvaluationCache _cache;
 
@@ -62,6 +61,7 @@ namespace Npoi.Core.SS.Formula
          * <br/>
          * @return <c>false</c> if the specified cell is already being evaluated
          */
+
         public bool StartEvaluate(FormulaCellCacheEntry cce)
         {
             if (cce == null)
@@ -79,7 +79,6 @@ namespace Npoi.Core.SS.Formula
 
         public void UpdateCacheResult(ValueEval result)
         {
-
             int nFrames = _evaluationFrames.Count;
             if (nFrames < 1)
             {
@@ -100,9 +99,9 @@ namespace Npoi.Core.SS.Formula
          * required. However, they have been included To assert correct behaviour,
          * and form more meaningful error messages.
          */
+
         public void EndEvaluate(CellCacheEntry cce)
         {
-
             int nFrames = _evaluationFrames.Count;
             if (nFrames < 1)
             {

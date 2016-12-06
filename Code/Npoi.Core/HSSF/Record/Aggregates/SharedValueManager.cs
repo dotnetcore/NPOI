@@ -15,17 +15,15 @@
    limitations under the License.
 ==================================================================== */
 
-
-using Npoi.Core.HPSF;
 using Npoi.Core.Util;
 
 namespace Npoi.Core.HSSF.Record.Aggregates
 {
-    using System;
-    using System.Text;
-    using System.Collections.Generic;
     using Npoi.Core.HSSF.Record;
     using Npoi.Core.SS.Util;
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
 
     /// <summary>
     /// Manages various auxiliary records while constructing a RowRecordsAggregate
@@ -34,7 +32,6 @@ namespace Npoi.Core.HSSF.Record.Aggregates
     [Serializable]
     public class SharedValueManager
     {
-
         private class SharedFormulaGroup
         {
             private SharedFormulaRecord _sfr;
@@ -46,10 +43,12 @@ namespace Npoi.Core.HSSF.Record.Aggregates
              * {@link #_sfr}
              */
             private CellReference _firstCell;
+
             internal CellReference FirstCell
             {
                 get { return _firstCell; }
             }
+
             public SharedFormulaGroup(SharedFormulaRecord sfr, CellReference firstCell)
             {
                 if (!sfr.IsInRange(firstCell.Row, firstCell.Col))
@@ -112,6 +111,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
              * @return <c>true</c> if the specified coordinates correspond to the 'first cell'
              * of this shared formula group.
              */
+
             public bool IsFirstCell(int row, int column)
             {
                 return _firstCell.Row == row && _firstCell.Col == column;
@@ -120,10 +120,12 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         public static readonly SharedValueManager EMPTY = new SharedValueManager(
                 new SharedFormulaRecord[0], new CellReference[0], new List<ArrayRecord>(), new List<TableRecord>());
+
         private List<ArrayRecord> _arrayRecords;
         private List<TableRecord> _tableRecords;
         private Dictionary<SharedFormulaRecord, SharedFormulaGroup> _groupsBySharedFormulaRecord;
         /** cached for optimization purposes */
+
         [NonSerialized]
         private Dictionary<int, SharedFormulaGroup> _groupsCache;
 
@@ -146,12 +148,14 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
             _groupsBySharedFormulaRecord = m;
         }
+
         public static SharedValueManager CreateEmpty()
         {
             // Note - must create distinct instances because they are assumed to be mutable.
             return new SharedValueManager(
                 new SharedFormulaRecord[0], new CellReference[0], new List<ArrayRecord>(), new List<TableRecord>());
         }
+
         /**
          * @param firstCells
          * @param recs list of sheet records (possibly Contains records for other parts of the Excel file)
@@ -160,6 +164,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * that this code does not inadvertently collect <c>SharedFormulaRecord</c>s from any other
          * sheet (which could happen if endIx is chosen poorly).  (see bug 44449)
          */
+
         public static SharedValueManager Create(SharedFormulaRecord[] sharedFormulaRecords,
                 CellReference[] firstCells, List<ArrayRecord> arrayRecords, List<TableRecord> tableRecords)
         {
@@ -170,14 +175,13 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             return new SharedValueManager(sharedFormulaRecords, firstCells, arrayRecords, tableRecords);
         }
 
-
         /**
          * @param firstCell as extracted from the {@link ExpPtg} from the cell's formula.
          * @return never <code>null</code>
          */
+
         public SharedFormulaRecord LinkSharedFormulaRecord(CellReference firstCell, FormulaRecordAggregate agg)
         {
-
             SharedFormulaGroup result = FindFormulaGroupForCell(firstCell);
             if (null == result)
             {
@@ -197,13 +201,13 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                     _groupsCache.Add(GetKeyForCache(group.FirstCell), group);
                 }
             }
-            int key=GetKeyForCache(cellRef);
+            int key = GetKeyForCache(cellRef);
             SharedFormulaGroup sfg = null;
             if (_groupsCache.ContainsKey(key))
             {
                 sfg = _groupsCache[key];
             }
-            
+
             return sfg;
         }
 
@@ -246,6 +250,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         [NonSerialized]
         private SharedFormulaGroupComparator SVGComparator = new SharedFormulaGroupComparator();
+
         private class SharedFormulaGroupComparator : Comparer<SharedFormulaGroup>
         {
             public override int Compare(SharedFormulaGroup a, SharedFormulaGroup b)
@@ -280,6 +285,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * a table or array region. <code>null</code> if the formula cell is not shared/array/table,
          * or if the specified formula is not the the first in the group.
          */
+
         public SharedValueRecordBase GetRecordForFirstCell(FormulaRecordAggregate agg)
         {
             CellReference firstCell = agg.FormulaRecord.Formula.ExpReference;
@@ -290,7 +296,6 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 // not a shared/array/table formula
                 return null;
             }
-
 
             int row = firstCell.Row;
             int column = firstCell.Col;
@@ -310,7 +315,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             //        return sfg.SFR;
             //    }
             //}
-            if (!(_groupsBySharedFormulaRecord.Count==0))
+            if (!(_groupsBySharedFormulaRecord.Count == 0))
             {
                 SharedFormulaGroup sfg = FindFormulaGroupForCell(firstCell);
                 if (null != sfg)
@@ -344,6 +349,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * Converts all {@link FormulaRecord}s handled by <c>sharedFormulaRecord</c>
          * to plain unshared formulas
          */
+
         public void Unlink(SharedFormulaRecord sharedFormulaRecord)
         {
             SharedFormulaGroup svg = _groupsBySharedFormulaRecord[sharedFormulaRecord];
@@ -359,6 +365,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /**
  * Add specified Array Record.
  */
+
         public void AddArrayRecord(ArrayRecord ar)
         {
             // could do a check here to make sure none of the ranges overlap
@@ -370,6 +377,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * The caller should clear (set blank) all cells in the returned range.
          * @return the range of the array formula which was just removed. Never <code>null</code>.
          */
+
         public CellRangeAddress8Bit RemoveArrayFormula(int rowIndex, int columnIndex)
         {
             foreach (ArrayRecord ar in _arrayRecords)
@@ -388,6 +396,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /**
          * @return the shared ArrayRecord identified by (firstRow, firstColumn). never <code>null</code>.
          */
+
         public ArrayRecord GetArrayRecord(int firstRow, int firstColumn)
         {
             foreach (ArrayRecord ar in _arrayRecords)
@@ -399,6 +408,5 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             }
             return null;
         }
-
     }
 }

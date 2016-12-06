@@ -17,14 +17,14 @@
 
 namespace Npoi.Core.SS.Formula.Eval
 {
-    using System;
-
     using Npoi.Core.SS.Formula;
+    using System;
     using System.Text;
 
     /**
      * Evaluation of a Name defined in a Sheet or Workbook scope
      */
+
     public class ExternalNameEval : ValueEval
     {
         private IEvaluationName _name;
@@ -51,5 +51,4 @@ namespace Npoi.Core.SS.Formula.Eval
             return sb.ToString();
         }
     }
-
 }

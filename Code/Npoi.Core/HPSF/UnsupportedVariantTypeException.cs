@@ -17,32 +17,31 @@
 
 /* ================================================================
  * About NPOI
- * Author: Tony Qu 
- * Author's email: tonyqus (at) gmail.com 
+ * Author: Tony Qu
+ * Author's email: tonyqus (at) gmail.com
  * Author's Blog: tonyqus.wordpress.com.cn (wp.tonyqus.cn)
  * HomePage: http://www.codeplex.com/npoi
  * Contributors:
- * 
+ *
  * ==============================================================*/
 
 namespace Npoi.Core.HPSF
 {
-    using System;
     using Npoi.Core.Util;
+    using System;
 
     /// <summary>
     /// This exception is thrown if HPSF encounters a variant type that isn't
     /// supported yet. Although a variant type is unsupported the value can still be
     /// retrieved using the {@link VariantTypeException#GetValue} method.
     /// Obviously this class should disappear some day.
-    /// @author Rainer Klute 
+    /// @author Rainer Klute
     /// <a href="mailto:klute@rainer-klute.de">&lt;klute@rainer-klute.de&gt;</a>
     /// @since 2003-08-05
     /// </summary>
     [Serializable]
     public abstract class UnsupportedVariantTypeException : VariantTypeException
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="UnsupportedVariantTypeException"/> class.
         /// </summary>
@@ -56,12 +55,7 @@ namespace Npoi.Core.HPSF
                 HexDump.ToHex(variantType) + "). If you want support for " +
                 "this variant type in one of the next POI releases please " +
                 "submit a request for enhancement (RFE) To " +
-                "<http://issues.apache.org/bugzilla/>! Thank you!")
-        {
-
+                "<http://issues.apache.org/bugzilla/>! Thank you!") {
         }
-
-
-
     }
 }

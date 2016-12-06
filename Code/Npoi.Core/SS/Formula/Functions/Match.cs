@@ -17,14 +17,12 @@
 
 namespace Npoi.Core.SS.Formula.Functions
 {
-    using System;
-    using Npoi.Core.SS.Formula.Eval;
-    using Npoi.Core.SS.Formula.Functions;
     using Npoi.Core.SS.Formula;
+    using Npoi.Core.SS.Formula.Eval;
+    using System;
 
     public class SingleValueVector : ValueVector
     {
-
         private ValueEval _value;
 
         public SingleValueVector(ValueEval value)
@@ -50,17 +48,18 @@ namespace Npoi.Core.SS.Formula.Functions
             }
         }
     }
+
     /**
      * Implementation for the MATCH() Excel function.<p/>
-     * 
+     *
      * <b>Syntax:</b><br/>
      * <b>MATCH</b>(<b>lookup_value</b>, <b>lookup_array</b>, match_type)<p/>
-     * 
-     * Returns a 1-based index specifying at what position in the <b>lookup_array</b> the specified 
+     *
+     * Returns a 1-based index specifying at what position in the <b>lookup_array</b> the specified
      * <b>lookup_value</b> Is found.<p/>
-     * 
+     *
      * Specific matching behaviour can be modified with the optional <b>match_type</b> parameter.
-     * 
+     *
      *    <table border="0" cellpAdding="1" cellspacing="0" summary="match_type parameter description">
      *      <tr><th>Value</th><th>Matching Behaviour</th></tr>
      *      <tr><td>1</td><td>(default) Find the largest value that Is less than or equal to lookup_value.
@@ -70,26 +69,24 @@ namespace Npoi.Core.SS.Formula.Functions
      *      <tr><td>-1</td><td>Find the smallest value that Is greater than or equal to lookup_value.
      *        The lookup_array must be in descending <i>order</i>*.</td></tr>
      *    </table>
-     * 
+     *
      * * Note regarding <i>order</i> - For the <b>match_type</b> cases that require the lookup_array to
      *  be ordered, MATCH() can produce incorrect results if this requirement Is not met.  Observed
      *  behaviour in Excel Is to return the lowest index value for which every item after that index
      *  breaks the match rule.<br/>
      *  The (ascending) sort order expected by MATCH() Is:<br/>
      *  numbers (low to high), strings (A to Z), bool (FALSE to TRUE)<br/>
-     *  MATCH() ignores all elements in the lookup_array with a different type to the lookup_value. 
+     *  MATCH() ignores all elements in the lookup_array with a different type to the lookup_value.
      *  Type conversion of the lookup_array elements Is never performed.
-     *  
-     *  
+     *
+     *
      * @author Josh Micich
      */
+
     public class Match : Function
     {
-
-
         public ValueEval Evaluate(ValueEval[] args, int srcCellRow, int srcCellCol)
         {
-
             double match_type = 1; // default
 
             switch (args.Length)
@@ -107,8 +104,10 @@ namespace Npoi.Core.SS.Formula.Functions
                         return ErrorEval.REF_INVALID;
                     }
                     break;
+
                 case 2:
                     break;
+
                 default:
                     return ErrorEval.VALUE_INVALID;
             }
@@ -116,7 +115,6 @@ namespace Npoi.Core.SS.Formula.Functions
             bool matchExact = match_type == 0;
             // Note - Excel does not strictly require -1 and +1
             bool FindLargestLessThanOrEqual = match_type > 0;
-
 
             try
             {
@@ -175,8 +173,6 @@ namespace Npoi.Core.SS.Formula.Functions
             throw new Exception("Unexpected eval type (" + eval.GetType().Name + ")");
         }
 
-
-
         private static double EvaluateMatchTypeArg(ValueEval arg, int srcCellRow, int srcCellCol)
         {
             ValueEval match_type = OperandResolver.GetSingleValue(arg, srcCellRow, srcCellCol);
@@ -208,10 +204,10 @@ namespace Npoi.Core.SS.Formula.Functions
         /**
          * @return zero based index
          */
+
         private static int FindIndexOfValue(ValueEval lookupValue, ValueVector lookupRange,
                 bool matchExact, bool FindLargestLessThanOrEqual)
         {
-
             LookupValueComparer lookupComparer = CreateLookupComparer(lookupValue, matchExact);
 
             if (matchExact)

@@ -1,14 +1,13 @@
-﻿using System;
-using System.Text;
+﻿using Npoi.Core.SS.Formula.PTG;
 using Npoi.Core.Util;
-using Npoi.Core.SS.Formula.PTG;
+using System;
 using System.Globalization;
+using System.Text;
 
 namespace Npoi.Core.HSSF.Record
 {
     public class LbsDataSubRecord : SubRecord
     {
-
         public const int sid = 0x0013;
         /**
           * From [MS-XLS].pdf 2.5.147 FtLbsData:
@@ -69,15 +68,16 @@ namespace Npoi.Core.HSSF.Record
          */
         private bool[] _bsels;
 
-        LbsDataSubRecord()
+        private LbsDataSubRecord()
         {
-
         }
-    /**
-     * @param in the stream to read data from
-     * @param cbFContinued the seconf short in the record header
-     * @param cmoOt the Containing Obj's {@link CommonObjectDataSubRecord#field_1_objectType}
-     */
+
+        /**
+         * @param in the stream to read data from
+         * @param cbFContinued the seconf short in the record header
+         * @param cmoOt the Containing Obj's {@link CommonObjectDataSubRecord#field_1_objectType}
+         */
+
         public LbsDataSubRecord(ILittleEndianInput in1, int cbFContinued, int cmoOt)
         {
             _cbFContinued = cbFContinued;
@@ -100,9 +100,11 @@ namespace Npoi.Core.HSSF.Record
                     case 1:
                         _unknownPostFormulaByte = (byte)in1.ReadByte();
                         break;
+
                     case 0:
                         _unknownPostFormulaByte = null;
                         break;
+
                     default:
                         throw new RecordFormatException("Unexpected leftover bytes");
                 }
@@ -144,8 +146,8 @@ namespace Npoi.Core.HSSF.Record
                     _bsels[i] = in1.ReadByte() == 1;
                 }
             }
-
         }
+
         public override bool IsTerminating
         {
             get
@@ -153,10 +155,12 @@ namespace Npoi.Core.HSSF.Record
                 return true;
             }
         }
+
         /**
  *
  * @return the formula that specifies the range of cell values that are the items in this list.
  */
+
         public Ptg Formula
         {
             get
@@ -168,6 +172,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * @return the number of items in the list
          */
+
         public int NumberOfItems
         {
             get
@@ -175,10 +180,12 @@ namespace Npoi.Core.HSSF.Record
                 return _cLines;
             }
         }
+
         public override short Sid
         {
             get { return sid; }
         }
+
         public override int DataSize
         {
             get
@@ -216,6 +223,7 @@ namespace Npoi.Core.HSSF.Record
                 return result;
             }
         }
+
         public override void Serialize(ILittleEndianOutput out1)
         {
             out1.WriteShort(sid);
@@ -267,6 +275,7 @@ namespace Npoi.Core.HSSF.Record
                 }
             }
         }
+
         private static Ptg ReadRefPtg(byte[] formulaRawBytes)
         {
             ILittleEndianInput in1 = new LittleEndianByteArrayInputStream(formulaRawBytes);
@@ -280,10 +289,12 @@ namespace Npoi.Core.HSSF.Record
             }
             return null;
         }
+
         public override Object Clone()
         {
             return this;
         }
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder(256);
@@ -306,6 +317,7 @@ namespace Npoi.Core.HSSF.Record
   * @return a new instance of LbsDataSubRecord to construct auto-filters
   * @see org.apache.poi.hssf.model.ComboboxShape#createObjRecord(org.apache.poi.hssf.usermodel.HSSFSimpleShape, int)
   */
+
         public static LbsDataSubRecord CreateAutoFilterInstance()
         {
             LbsDataSubRecord lbs = new LbsDataSubRecord();
@@ -321,12 +333,13 @@ namespace Npoi.Core.HSSF.Record
             return lbs;
         }
     }
- 
-        /**
-     * This structure specifies properties of the dropdown list control
-     */
-    public class LbsDropData {
 
+    /**
+ * This structure specifies properties of the dropdown list control
+ */
+
+    public class LbsDropData
+    {
         /**
  * Combo dropdown control
  */
@@ -340,7 +353,7 @@ namespace Npoi.Core.HSSF.Record
          */
         public const int STYLE_COMBO_SIMPLE_DROPDOWN = 2;
         /**
-         *  An unsigned integer that specifies the style of this dropdown. 
+         *  An unsigned integer that specifies the style of this dropdown.
          */
         internal int _wStyle;
 
@@ -371,17 +384,20 @@ namespace Npoi.Core.HSSF.Record
             _unused = 0;
         }
 
-        public LbsDropData(ILittleEndianInput in1){
+        public LbsDropData(ILittleEndianInput in1)
+        {
             _wStyle = in1.ReadUShort();
             _cLine = in1.ReadUShort();
             _dxMin = in1.ReadUShort();
             _str = StringUtil.ReadUnicodeString(in1);
-            if(StringUtil.GetEncodedSize(_str) % 2 != 0){
+            if (StringUtil.GetEncodedSize(_str) % 2 != 0)
+            {
                 _unused = (byte)in1.ReadByte();
             }
         }
 
-        public void Serialize(ILittleEndianOutput out1) {
+        public void Serialize(ILittleEndianOutput out1)
+        {
             out1.WriteShort(_wStyle);
             out1.WriteShort(_cLine);
             out1.WriteShort(_dxMin);
@@ -400,7 +416,8 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override String ToString(){
+        public override String ToString()
+        {
             StringBuilder sb = new StringBuilder();
             sb.Append("[LbsDropData]\n");
             sb.Append("  ._wStyle:  ").Append(_wStyle).Append('\n');
