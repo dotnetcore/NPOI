@@ -64,7 +64,7 @@ namespace Npoi.Core.XSSF.UserModel
 
                 shape.SetText(new XSSFRichTextString());
                 //Assert.AreEqual("null", shape.Text);
-                Assert.AreEqual(String.Empty, shape.Text);
+                Assert.AreEqual(string.Empty, shape.Text);
 
                 shape.AddNewTextParagraph();
                 shape.AddNewTextParagraph("test-other-text");

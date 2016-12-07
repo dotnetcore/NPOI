@@ -288,12 +288,12 @@ namespace Npoi.Core.XSSF.UserModel
 
         #region IShape Members
 
-        public int CountOfAllChildren
+        public override int CountOfAllChildren
         {
             get { throw new NotImplementedException(); }
         }
 
-        public int FillColor
+        public override int FillColor
         {
             get
             {
@@ -305,7 +305,7 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-        public LineStyle LineStyle
+        public override LineStyle LineStyle
         {
             get
             {
@@ -317,26 +317,9 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-        public int LineStyleColor
+        public override int LineStyleColor
         {
             get { throw new NotImplementedException(); }
-        }
-
-        public int LineWidth
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                base.LineWidth = (value);
-            }
-        }
-
-        public void SetLineStyleColor(int lineStyleColor)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion IShape Members

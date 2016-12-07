@@ -69,10 +69,10 @@ namespace Npoi.Core.HSSF.UserModel
 
         private int _validationType;
         private int _operator;
-        private String[] _explicitListValues;
+        private string[] _explicitListValues;
 
-        private String _formula1;
-        private String _formula2;
+        private string _formula1;
+        private string _formula2;
         private Double _value1;
         private Double _value2;
 
@@ -92,7 +92,7 @@ namespace Npoi.Core.HSSF.UserModel
          * Creates a list constraint
          */
 
-        private DVConstraint(String listFormula, String[] excplicitListValues)
+        private DVConstraint(string listFormula, String[] excplicitListValues)
             : this(ValidationType.LIST, OperatorType.IGNORED,
                 listFormula, null, Double.NaN, Double.NaN, excplicitListValues)
         {
@@ -148,12 +148,12 @@ namespace Npoi.Core.HSSF.UserModel
             return new DVConstraint(validationType, comparisonOperator, formula1, formula2, value1, value2, null);
         }
 
-        public static DVConstraint CreateFormulaListConstraint(String listFormula)
+        public static DVConstraint CreateFormulaListConstraint(string listFormula)
         {
             return new DVConstraint(listFormula, null);
         }
 
-        public static DVConstraint CreateExplicitListConstraint(String[] explicitListValues)
+        public static DVConstraint CreateExplicitListConstraint(string[] explicitListValues)
         {
             return new DVConstraint(null, explicitListValues);
         }
@@ -232,7 +232,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @return all text After '=' if textExpr begins with '='. Otherwise <code>null</code> if textExpr does not begin with '='
          */
 
-        private static String GetFormulaFromTextExpression(String textExpr)
+        private static string GetFormulaFromTextExpression(string textExpr)
         {
             if (textExpr == null)
             {
@@ -253,7 +253,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @return <code>null</code> if numberStr is <code>null</code>
          */
 
-        private static Double ConvertNumber(String numberStr)
+        private static Double ConvertNumber(string numberStr)
         {
             if (numberStr == null)
             {
@@ -274,7 +274,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @return <code>null</code> if timeStr is <code>null</code>
          */
 
-        private static Double ConvertTime(String timeStr)
+        private static Double ConvertTime(string timeStr)
         {
             if (timeStr == null)
             {
@@ -288,7 +288,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @return <code>null</code> if timeStr is <code>null</code>
          */
 
-        private static Double ConvertDate(String dateStr, SimpleDateFormat dateFormat)
+        private static Double ConvertDate(string dateStr, SimpleDateFormat dateFormat)
         {
             if (dateStr == null)
             {
@@ -314,7 +314,7 @@ namespace Npoi.Core.HSSF.UserModel
             return HSSFDateUtil.GetExcelDate(dateVal);
         }
 
-        public static DVConstraint CreateCustomFormulaConstraint(String formula)
+        public static DVConstraint CreateCustomFormulaConstraint(string formula)
         {
             if (formula == null)
             {
@@ -506,7 +506,7 @@ namespace Npoi.Core.HSSF.UserModel
          * Empty array if both formula and value are <code>null</code>
          */
 
-        private static Ptg[] ConvertDoubleFormula(String formula, Double value, HSSFSheet sheet)
+        private static Ptg[] ConvertDoubleFormula(string formula, Double value, HSSFSheet sheet)
         {
             if (formula == null)
             {

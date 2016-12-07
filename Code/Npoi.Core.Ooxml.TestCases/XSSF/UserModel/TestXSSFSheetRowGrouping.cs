@@ -326,10 +326,6 @@ namespace Npoi.Core.XSSF.UserModel
                     + sheet.FirstRowNum + "-" + sheet.LastRowNum + ")");
             for (int i = sheet.FirstRowNum; i < sheet.LastRowNum; i++)
             {
-                if (collapsed[i - sheet.FirstRowNum] == null)
-                {
-                    continue;
-                }
                 XSSFRow row = (XSSFRow)sheet.GetRow(i);
                 Assert.IsNotNull(row, "Could not read row " + i);
                 Assert.IsNotNull(row.GetCTRow(), "Could not read row " + i);

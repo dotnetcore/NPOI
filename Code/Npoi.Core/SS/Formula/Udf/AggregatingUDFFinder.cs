@@ -42,7 +42,7 @@ namespace Npoi.Core.SS.Formula.Udf
         /// </summary>
         /// <param name="name">Name of function.</param>
         /// <returns>Function executor. null if not found</returns>
-        public override FreeRefFunction FindFunction(String name)
+        public override FreeRefFunction FindFunction(string name)
         {
             FreeRefFunction evaluatorForFunction;
             foreach (UDFFinder pack in _usedToolPacks)

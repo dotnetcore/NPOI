@@ -457,7 +457,7 @@ namespace Npoi.Core.SS.Formula.Eval
      * @since 3.8 beta6
      */
 
-        public static void RegisterFunction(String name, Function func)
+        public static void RegisterFunction(string name, Function func)
         {
             FunctionMetadata metaData = FunctionMetadataRegistry.GetFunctionByName(name);
             if (metaData == null)
@@ -465,7 +465,7 @@ namespace Npoi.Core.SS.Formula.Eval
                 if (AnalysisToolPak.IsATPFunction(name))
                 {
                     throw new ArgumentException(name + " is a function from the Excel Analysis Toolpack. " +
-                                                "Use AnalysisToolpack.RegisterFunction(String name, FreeRefFunction func) instead.");
+                                                "Use AnalysisToolpack.RegisterFunction(string name, FreeRefFunction func) instead.");
                 }
                 else
                 {

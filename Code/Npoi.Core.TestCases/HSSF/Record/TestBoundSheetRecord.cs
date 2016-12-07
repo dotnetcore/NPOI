@@ -126,7 +126,7 @@ namespace TestCases.HSSF.Record
             ConfirmValid("data'", false);
         }
 
-        private static void ConfirmValid(String sheetName, bool expectedResult)
+        private static void ConfirmValid(string sheetName, bool expectedResult)
         {
 
             try

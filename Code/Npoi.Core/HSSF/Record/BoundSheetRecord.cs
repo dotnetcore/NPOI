@@ -44,9 +44,9 @@ namespace Npoi.Core.HSSF.Record
         private int field_1_position_of_BOF;
         private int field_2_option_flags;
         private int field_4_isMultibyteUnicode;
-        private String field_5_sheetname;
+        private string field_5_sheetname;
 
-        public BoundSheetRecord(String sheetname)
+        public BoundSheetRecord(string sheetname)
         {
             field_2_option_flags = 0;
             this.Sheetname = sheetname;

@@ -395,10 +395,10 @@ namespace Npoi.Core.HPSF
             int length = TypeWriter.WriteUIntToStream(out1, (uint)dictionary.Count);
             for (IEnumerator i = dictionary.Keys.GetEnumerator(); i.MoveNext();) {
                 long key = Convert.ToInt64(i.Current, CultureInfo.InvariantCulture);
-                String value = (String)dictionary[key];
+                String value = (string)dictionary[key];
                 //tony qu added: some key is int32 instead of int64
                 if (value == null)
-                    value = (String)dictionary[(int)key];
+                    value = (string)dictionary[(int)key];
 
                 if (codepage == CodePageUtil.CP_UNICODE) {
                     /* Write the dictionary item in Unicode. */
@@ -545,7 +545,7 @@ namespace Npoi.Core.HPSF
         /// supported by HPSF.</param>
         public void SetProperty(int id, Object value) {
             if (value is String)
-                SetProperty(id, (String)value);
+                SetProperty(id, (string)value);
             else if (value is long)
                 SetProperty(id, ((long)value));
             else if (value is int)

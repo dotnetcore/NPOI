@@ -683,7 +683,7 @@ namespace Npoi.Core.XSSF.UserModel
             sheet.GetRow(6).GetCell(0).SetCellType(CellType.Blank);  // go
             wbRead.Close();
             wbRead = XSSFTestDataSamples.WriteOutAndReadBack(wb) as XSSFWorkbook;
-            sheet.GetRow(7).GetCell(0).SetCellValue((String)null);  // go
+            sheet.GetRow(7).GetCell(0).SetCellValue((string)null);  // go
             wbRead.Close();
             wbRead = XSSFTestDataSamples.WriteOutAndReadBack(wb) as XSSFWorkbook;
 
@@ -1556,7 +1556,7 @@ namespace Npoi.Core.XSSF.UserModel
                 WorkbookFactory.Create(inpA);
                 Assert.Fail("Should've raised a EncryptedDocumentException error");
             }
-            catch (EncryptedDocumentException e) { }
+            catch (EncryptedDocumentException) { }
 
             // Via a POIFSFileSystem
             POIFSFileSystem fsP = new POIFSFileSystem(inpB);
@@ -1565,7 +1565,7 @@ namespace Npoi.Core.XSSF.UserModel
                 WorkbookFactory.Create(fsP);
                 Assert.Fail("Should've raised a EncryptedDocumentException error");
             }
-            catch (EncryptedDocumentException e) { }
+            catch (EncryptedDocumentException) { }
 
             // Via a NPOIFSFileSystem
             NPOIFSFileSystem fsNP = new NPOIFSFileSystem(inpC);
@@ -1574,7 +1574,7 @@ namespace Npoi.Core.XSSF.UserModel
                 WorkbookFactory.Create(fsNP);
                 Assert.Fail("Should've raised a EncryptedDocumentException error");
             }
-            catch (EncryptedDocumentException e) { }
+            catch (EncryptedDocumentException) { }
         }
 
         [Test]
@@ -2046,7 +2046,7 @@ namespace Npoi.Core.XSSF.UserModel
                 new XSSFWorkbook(pkg);
                 Assert.Fail(".xlsb files not supported");
             }
-            catch (XLSBUnsupportedException e)
+            catch (XLSBUnsupportedException )
             {
                 // Good, detected and warned
             }
@@ -2057,7 +2057,7 @@ namespace Npoi.Core.XSSF.UserModel
                 WorkbookFactory.Create(pkg);
                 Assert.Fail(".xlsb files not supported");
             }
-            catch (XLSBUnsupportedException e)
+            catch (XLSBUnsupportedException )
             {
                 // Good, detected and warned
             }
@@ -2069,7 +2069,7 @@ namespace Npoi.Core.XSSF.UserModel
                 WorkbookFactory.Create(xlsbFile.FullName);
                 Assert.Fail(".xlsb files not supported");
             }
-            catch (XLSBUnsupportedException e)
+            catch (XLSBUnsupportedException )
             {
                 // Good, detected and warned
             }
@@ -2382,7 +2382,7 @@ namespace Npoi.Core.XSSF.UserModel
      * problems when deleting columns, conditionally to stop recursion
      */
 
-        private static String FORMULA1 =
+        private static string FORMULA1 =
                 "IF( INDIRECT( ADDRESS( ROW(), COLUMN()-1 ) ) = 0, 0,"
                         + "INDIRECT( ADDRESS( ROW(), COLUMN()-1 ) ) ) + 2";
 
@@ -2391,7 +2391,7 @@ namespace Npoi.Core.XSSF.UserModel
          * problems when deleting rows, conditionally to stop recursion
          */
 
-        private static String FORMULA2 =
+        private static string FORMULA2 =
                 "IF( INDIRECT( ADDRESS( ROW()-1, COLUMN() ) ) = 0, 0,"
                         + "INDIRECT( ADDRESS( ROW()-1, COLUMN() ) ) ) + 2";
 

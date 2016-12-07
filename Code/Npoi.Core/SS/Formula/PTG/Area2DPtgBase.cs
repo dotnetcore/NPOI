@@ -53,7 +53,7 @@ namespace Npoi.Core.SS.Formula.PTG
             WriteCoordinates(out1);
         }
 
-        public Area2DPtgBase(String arearef)
+        public Area2DPtgBase(string arearef)
             : base(arearef)
         {
         }

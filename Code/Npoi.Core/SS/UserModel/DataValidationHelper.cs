@@ -27,9 +27,9 @@ namespace Npoi.Core.SS.UserModel
 
     public interface IDataValidationHelper
     {
-        IDataValidationConstraint CreateFormulaListConstraint(String listFormula);
+        IDataValidationConstraint CreateFormulaListConstraint(string listFormula);
 
-        IDataValidationConstraint CreateExplicitListConstraint(String[] listOfValues);
+        IDataValidationConstraint CreateExplicitListConstraint(string[] listOfValues);
 
         IDataValidationConstraint CreateNumericConstraint(int validationType, int operatorType, String formula1, String formula2);
 
@@ -43,7 +43,7 @@ namespace Npoi.Core.SS.UserModel
 
         IDataValidationConstraint CreateTimeConstraint(int operatorType, String formula1, String formula2);
 
-        IDataValidationConstraint CreateCustomConstraint(String formula);
+        IDataValidationConstraint CreateCustomConstraint(string formula);
 
         IDataValidation CreateValidation(IDataValidationConstraint constraint, CellRangeAddressList cellRangeAddressList);
     }

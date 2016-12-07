@@ -26,7 +26,7 @@ namespace Npoi.Core.SS.Formula
     [Serializable]
     public class WorkbookNotFoundException : Exception
     {
-        public WorkbookNotFoundException(String msg) : base(msg)
+        public WorkbookNotFoundException(string msg) : base(msg)
         {
         }
     }
@@ -55,7 +55,7 @@ namespace Npoi.Core.SS.Formula
             _evaluators = new WorkbookEvaluator[0];
         }
 
-        public static void Setup(String[] workbookNames, WorkbookEvaluator[] evaluators)
+        public static void Setup(string[] workbookNames, WorkbookEvaluator[] evaluators)
         {
             int nItems = workbookNames.Length;
             if (evaluators.Length != nItems)
@@ -86,7 +86,7 @@ namespace Npoi.Core.SS.Formula
         public static void SetupFormulaEvaluator(Dictionary<String, IFormulaEvaluator> evaluators)
         {
             Dictionary<String, WorkbookEvaluator> evaluatorsByName = new Dictionary<String, WorkbookEvaluator>(evaluators.Count);
-            foreach (String wbName in evaluators.Keys)
+            foreach (string wbName in evaluators.Keys)
             {
                 IFormulaEvaluator eval = evaluators[(wbName)];
                 if (eval is IWorkbookEvaluatorProvider)
@@ -102,12 +102,12 @@ namespace Npoi.Core.SS.Formula
             Setup(evaluatorsByName);
         }
 
-        private CollaboratingWorkbooksEnvironment(String[] workbookNames, WorkbookEvaluator[] evaluators, int nItems)
+        private CollaboratingWorkbooksEnvironment(string[] workbookNames, WorkbookEvaluator[] evaluators, int nItems)
             : this(toUniqueMap(workbookNames, evaluators, nItems), evaluators)
         {
         }
 
-        private static Dictionary<String, WorkbookEvaluator> toUniqueMap(String[] workbookNames, WorkbookEvaluator[] evaluators, int nItems)
+        private static Dictionary<String, WorkbookEvaluator> toUniqueMap(string[] workbookNames, WorkbookEvaluator[] evaluators, int nItems)
         {
             Dictionary<String, WorkbookEvaluator> evaluatorsByName = new Dictionary<String, WorkbookEvaluator>(nItems * 3 / 2);
             for (int i = 0; i < nItems; i++)
@@ -126,7 +126,7 @@ namespace Npoi.Core.SS.Formula
         private CollaboratingWorkbooksEnvironment(Dictionary<String, WorkbookEvaluator> evaluatorsByName, WorkbookEvaluator[] evaluators)
         {
             Dictionary<WorkbookEvaluator, String> uniqueEvals = new Dictionary<WorkbookEvaluator, String>(evaluators.Length);
-            foreach (String wbName in evaluatorsByName.Keys)
+            foreach (string wbName in evaluatorsByName.Keys)
             {
                 WorkbookEvaluator wbEval = evaluatorsByName[(wbName)];
                 if (uniqueEvals.ContainsKey(wbEval))
@@ -199,7 +199,7 @@ namespace Npoi.Core.SS.Formula
             _unhooked = true;
         }
 
-        public WorkbookEvaluator GetWorkbookEvaluator(String workbookName)
+        public WorkbookEvaluator GetWorkbookEvaluator(string workbookName)
         {
             if (_unhooked)
             {

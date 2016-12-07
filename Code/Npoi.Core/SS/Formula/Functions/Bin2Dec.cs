@@ -104,7 +104,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return new NumberEval(long.Parse(value));
         }
 
-        private int getDecimalValue(String unsigned)
+        private int getDecimalValue(string unsigned)
         {
             int sum = 0;
             int numBits = unsigned.Length;
@@ -120,7 +120,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return sum;
         }
 
-        private static String toggleBits(String s)
+        private static string toggleBits(string s)
         {
             long i = Convert.ToInt64(s, 2);
             long i2 = i ^ ((1L << s.Length) - 1);

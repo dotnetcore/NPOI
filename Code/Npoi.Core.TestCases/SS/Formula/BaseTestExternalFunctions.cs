@@ -93,7 +93,7 @@ namespace TestCases.SS.Formula
          *
          * @param TestFile  either atp.xls or atp.xlsx
          */
-        public void BaseTestInvokeATP(String testFile)
+        public void BaseTestInvokeATP(string testFile)
         {
             IWorkbook wb = _testDataProvider.OpenSampleWorkbook(testFile);
             IFormulaEvaluator Evaluator = wb.GetCreationHelper().CreateFormulaEvaluator();

@@ -4,9 +4,7 @@ namespace Npoi.Core.OpenXml4Net
 {
     public class OpenXml4NetException : Exception
     {
-        private Exceptions.InvalidFormatException ex;
-
-        public OpenXml4NetException(String msg)
+        public OpenXml4NetException(string msg)
             : base(msg)
         {
         }

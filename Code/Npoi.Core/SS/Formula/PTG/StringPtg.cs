@@ -45,7 +45,7 @@ namespace Npoi.Core.SS.Formula.PTG
         private byte field_2_options;
 
         private bool _is16bitUnicode;
-        private String field_3_string;
+        private string field_3_string;
 
         /** Create a StringPtg from a stream */
 
@@ -73,7 +73,7 @@ namespace Npoi.Core.SS.Formula.PTG
          *            String representation of a floating point number
          */
 
-        public StringPtg(String value)
+        public StringPtg(string value)
         {
             if (value.Length > 255)
             {

@@ -568,7 +568,7 @@ namespace TestCases.HPSF.Basic
                 PropertySet psr = new PropertySet(bytes);
                 Assert.IsTrue(psr.IsSummaryInformation);
                 Section sr = (Section)psr.Sections[0];
-                String title = (String)sr.GetProperty(PropertyIDMap.PID_TITLE);
+                String title = (string)sr.GetProperty(PropertyIDMap.PID_TITLE);
                 Assert.AreEqual(TITLE, title);
             }
             catch (WritingNotSupportedException e)
@@ -1049,7 +1049,7 @@ namespace TestCases.HPSF.Basic
          *
          * @return the display name of the default character Set.
          */
-        private static String GetDefaultCharSetName()
+        private static string GetDefaultCharSetName()
         {
             //String charSetName = System.GetProperty("file.encoding");
             //CharSet charSet = CharSet.forName(charSetName);

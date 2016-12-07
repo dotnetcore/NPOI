@@ -126,7 +126,7 @@ namespace Npoi.Core.SS.UserModel
                     return wb;
                 }
             }
-            catch (OfficeXmlFileException e)
+            catch (OfficeXmlFileException)
             {
                 // opening as .xls failed => try opening as .xlsx
                 OPCPackage pkg = OPCPackage.Open(file);

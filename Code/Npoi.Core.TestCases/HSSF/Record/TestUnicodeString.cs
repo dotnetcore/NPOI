@@ -37,7 +37,7 @@ namespace TestCases.HSSF.Record
     {
         private static int MAX_DATA_SIZE = RecordInputStream.MAX_RECORD_DATA_SIZE;
             /** a 4 character string requiring 16 bit encoding */
-        private static String STR_16_BIT = "A\u591A\u8A00\u8A9E";
+        private static string STR_16_BIT = "A\u591A\u8A00\u8A9E";
 
         public TestUnicodeString()
         {
@@ -346,7 +346,7 @@ namespace TestCases.HSSF.Record
             Assert.AreEqual(expectedSize, actualSize);
         }
 
-        private static UnicodeString MakeUnicodeString(String s)
+        private static UnicodeString MakeUnicodeString(string s)
         {
             UnicodeString st = new UnicodeString(s);
             st.OptionFlags = ((byte)0);

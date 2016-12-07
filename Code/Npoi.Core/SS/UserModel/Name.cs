@@ -45,7 +45,7 @@ namespace Npoi.Core.SS.UserModel
          * Returns the formula that the name is defined to refer to.
          *
          * @return the reference for this name, <code>null</code> if it has not been set yet. Never empty string
-         * @see #SetRefersToFormula(String)
+         * @see #SetRefersToFormula(string)
          */
         String RefersToFormula { get; set; }
 

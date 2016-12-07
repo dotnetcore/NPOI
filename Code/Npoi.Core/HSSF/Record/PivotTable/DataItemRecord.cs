@@ -38,7 +38,7 @@ namespace Npoi.Core.HSSF.Record.PivotTable
         private int isxvd;
         private int isxvi;
         private int ifmt;
-        private String name;
+        private string name;
 
         public DataItemRecord(RecordInputStream in1)
         {

@@ -278,7 +278,7 @@ namespace Npoi.Core.SS.Formula.Eval
          * @return <c>null</c> if the specified text cannot be Parsed as a number
          */
 
-        public static double ParseDouble(String pText)
+        public static double ParseDouble(string pText)
         {
             //if (Regex.Match(fpRegex, pText).Success)
             try

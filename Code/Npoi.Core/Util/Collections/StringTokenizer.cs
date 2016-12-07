@@ -56,20 +56,20 @@ namespace Npoi.Core.Util.Collections
     public class StringTokenizer
     {
         private int pos;
-        private String str;
+        private string str;
         private int len;
-        private String delim;
+        private string delim;
         private bool retDelims;
 
-        public StringTokenizer(String str) : this(str, " \t\n\r\f", false)
+        public StringTokenizer(string str) : this(str, " \t\n\r\f", false)
         {
         }
 
-        public StringTokenizer(String str, String delim) : this(str, delim, false)
+        public StringTokenizer(string str, String delim) : this(str, delim, false)
         {
         }
 
-        public StringTokenizer(String str, String delim, bool retDelims)
+        public StringTokenizer(string str, String delim, bool retDelims)
         {
             len = str.Length;
             this.str = str;
@@ -88,7 +88,7 @@ namespace Npoi.Core.Util.Collections
             return pos < len;
         }
 
-        public String NextToken(String delim)
+        public String NextToken(string delim)
         {
             this.delim = delim;
             return NextToken();

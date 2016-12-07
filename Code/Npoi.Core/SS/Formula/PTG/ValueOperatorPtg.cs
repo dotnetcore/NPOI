@@ -59,7 +59,7 @@ namespace Npoi.Core.SS.Formula.PTG
 
         public override String ToFormulaString()
         {
-            throw new NotImplementedException("ToFormulaString(String[] operands) should be used for subclasses of OperationPtgs");
+            throw new NotImplementedException("ToFormulaString(string[] operands) should be used for subclasses of OperationPtgs");
         }
     }
 }

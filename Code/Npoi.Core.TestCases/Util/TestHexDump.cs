@@ -315,7 +315,7 @@ namespace TestCases.Util
             ConfirmStr("0xFFFFFFFFFFFF0006", HexDump.LongToHex(-65530));
             ConfirmStr("0x0000000000003FCD", HexDump.LongToHex(16333));
         }
-        private static void ConfirmStr(String expected, char[] actualChars)
+        private static void ConfirmStr(string expected, char[] actualChars)
         {
             Assert.AreEqual(expected, new String(actualChars));
         }

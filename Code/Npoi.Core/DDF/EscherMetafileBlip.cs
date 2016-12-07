@@ -329,7 +329,7 @@ namespace Npoi.Core.DDF
             }
         }
 
-        public override String ToXml(String tab) {
+        public override String ToXml(string tab) {
             String extraData = "";
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))

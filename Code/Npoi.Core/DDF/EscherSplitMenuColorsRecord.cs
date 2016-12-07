@@ -141,7 +141,7 @@ namespace Npoi.Core.DDF
                     "";
         }
 
-        public override String ToXml(String tab) {
+        public override String ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
                     .Append(tab).Append("\t").Append("<Color1>0x").Append(HexDump.ToHex(field_1_color1)).Append("</Color1>\n")

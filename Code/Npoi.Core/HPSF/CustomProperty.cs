@@ -40,7 +40,7 @@ namespace Npoi.Core.HPSF
     /// </summary>
     public class CustomProperty : MutableProperty
     {
-        private String name;
+        private string name;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomProperty"/> class.

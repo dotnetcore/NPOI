@@ -32,8 +32,8 @@ namespace Npoi.Core.SS.Format
 
     public class CellNumberFormatter : CellFormatter
     {
-        private String desc;
-        private String printfFmt;
+        private string desc;
+        private string printfFmt;
         private double scale;
         private Special decimalPoint;
         private Special slash;
@@ -50,8 +50,8 @@ namespace Npoi.Core.SS.Format
         private List<Special> exponentSpecials;
         private List<Special> exponentDigitSpecials;
         private int maxDenominator;
-        private String numeratorFmt;
-        private String denominatorFmt;
+        private string numeratorFmt;
+        private string denominatorFmt;
         private bool improperFraction;
         private DecimalFormat decimalFmt;
         private static List<Special> EmptySpecialList = new List<Special>();
@@ -283,7 +283,7 @@ namespace Npoi.Core.SS.Format
          * @param format The format to Parse.
          */
 
-        public CellNumberFormatter(String format)
+        public CellNumberFormatter(string format)
             : base(format)
         {
             ;
@@ -466,7 +466,7 @@ namespace Npoi.Core.SS.Format
                     withChar);
         }
 
-        private static String SingleNumberFormat(List<Special> numSpecials)
+        private static string SingleNumberFormat(List<Special> numSpecials)
         {
             //return "%0" + numSpecials.Count + "d";
             return "D" + numSpecials.Count;
@@ -1077,7 +1077,7 @@ namespace Npoi.Core.SS.Format
             return true;
         }
 
-        private void WriteSingleint(String fmt, int num, StringBuilder output,
+        private void WriteSingleint(string fmt, int num, StringBuilder output,
                 List<Special> numSpecials, SortedList<StringMod, object> mods)
         {
             StringBuilder sb = new StringBuilder();

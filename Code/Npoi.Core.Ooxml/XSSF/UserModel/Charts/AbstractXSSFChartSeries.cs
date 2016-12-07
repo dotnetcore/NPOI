@@ -7,7 +7,7 @@ namespace Npoi.Core.XSSF.UserModel.Charts
 {
     public class AbstractXSSFChartSeries : IChartSeries
     {
-        private String titleValue;
+        private string titleValue;
         private CellReference titleRef;
         private TitleType? titleType;
 

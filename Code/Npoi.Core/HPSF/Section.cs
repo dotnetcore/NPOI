@@ -402,7 +402,7 @@ namespace Npoi.Core.HPSF
         public String GetPIDString(long pid) {
             String s = null;
             if (dictionary != null)
-                s = (String)dictionary[pid];
+                s = (string)dictionary[pid];
             if (s == null)
                 s = SectionIDMap.GetPIDString(FormatID.Bytes, pid);
             if (s == null)

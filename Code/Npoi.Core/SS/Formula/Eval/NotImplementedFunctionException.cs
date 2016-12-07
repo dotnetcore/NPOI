@@ -27,7 +27,7 @@ namespace Npoi.Core.SS.Formula.Eval
 
     public class NotImplementedFunctionException : NotImplementedException
     {
-        private String functionName;
+        private string functionName;
 
         public NotImplementedFunctionException(string functionName)
             : base(functionName)

@@ -33,20 +33,20 @@ namespace TestCases.SS.Formula.Functions
     public class TestBin2Dec
     {
 
-        private static ValueEval invokeValue(String number1)
+        private static ValueEval invokeValue(string number1)
         {
             ValueEval[] args = new ValueEval[] { new StringEval(number1) };
             return new Bin2Dec().Evaluate(args, -1, -1);
         }
 
-        private static void ConfirmValue(String msg, String number1, String expected)
+        private static void ConfirmValue(string msg, String number1, String expected)
         {
             ValueEval result = invokeValue(number1);
             Assert.AreEqual(typeof(NumberEval), result.GetType(), "Had: " + result.ToString());
             Assert.AreEqual(expected, ((NumberEval)result).StringValue, msg);
         }
 
-        private static void ConfirmValueError(String msg, String number1, ErrorEval numError)
+        private static void ConfirmValueError(string msg, String number1, ErrorEval numError)
         {
             ValueEval result = invokeValue(number1);
             Assert.AreEqual(typeof(ErrorEval), result.GetType());

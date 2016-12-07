@@ -32,7 +32,7 @@ namespace TestCases.HSSF.Extractor
     [TestFixture]
     public class TestOldExcelExtractor : POITestCase
     {
-        private static OldExcelExtractor CreateExtractor(String sampleFileName)
+        private static OldExcelExtractor CreateExtractor(string sampleFileName)
         {
             Stream is1 = HSSFTestDataSamples.OpenSampleFileStream(sampleFileName);
 
@@ -101,7 +101,7 @@ namespace TestCases.HSSF.Extractor
         [Test]
         public void TestSimpleExcel5()
         {
-            foreach (String ver in new String[] { "5", "95" })
+            foreach (string ver in new String[] { "5", "95" })
             {
                 OldExcelExtractor extractor = CreateExtractor("testEXCEL_" + ver + ".xls");
 
@@ -167,7 +167,7 @@ namespace TestCases.HSSF.Extractor
         [Test]
         public void TestFormattedNumbersExcel5()
         {
-            foreach (String ver in new String[] { "5", "95" })
+            foreach (string ver in new String[] { "5", "95" })
             {
                 OldExcelExtractor extractor = CreateExtractor("testEXCEL_" + ver + ".xls");
                 String text = extractor.Text;
@@ -194,7 +194,7 @@ namespace TestCases.HSSF.Extractor
         [Test]
         public void TestFromFile()
         {
-            foreach (String ver in new String[] { "4", "5", "95" })
+            foreach (string ver in new String[] { "4", "5", "95" })
             {
                 String filename = "testEXCEL_" + ver + ".xls";
                 FileInfo f = HSSFTestDataSamples.GetSampleFile(filename);

@@ -116,7 +116,7 @@ namespace Npoi.Core.XWPF.UserModel
             {
                 numbering.GetNum(p.GetNumID()).GetCTNum().GetLvlOverrideArray(1);
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (ArgumentOutOfRangeException)
             {
                 ex = true;
             }

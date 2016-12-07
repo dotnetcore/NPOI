@@ -101,7 +101,7 @@ namespace Npoi.Core.Util
          * @return the byte array of 16-bit unicode characters
          */
 
-        public static byte[] GetToUnicodeLE(String string1)
+        public static byte[] GetToUnicodeLE(string string1)
         {
             return UTF16LE.GetBytes(string1);
         }
@@ -180,13 +180,13 @@ namespace Npoi.Core.Util
         /// <param name="input">the String containing the data to be written</param>
         /// <param name="output">the byte array to which the data Is to be written</param>
         /// <param name="offset">an offset into the byte arrat at which the data Is start when written</param>
-        public static void PutCompressedUnicode(String input, byte[] output, int offset)
+        public static void PutCompressedUnicode(string input, byte[] output, int offset)
         {
             byte[] bytes = ISO_8859_1.GetBytes(input);
             Array.Copy(bytes, 0, output, offset, bytes.Length);
         }
 
-        public static void PutCompressedUnicode(String input, ILittleEndianOutput out1)
+        public static void PutCompressedUnicode(string input, ILittleEndianOutput out1)
         {
             byte[] bytes = ISO_8859_1.GetBytes(input);
             out1.Write(bytes);
@@ -200,13 +200,13 @@ namespace Npoi.Core.Util
         /// <param name="input">the String containing the unicode data to be written</param>
         /// <param name="output">the byte array to hold the uncompressed unicode, should be twice the Length of the String</param>
         /// <param name="offset">the offset to start writing into the byte array</param>
-        public static void PutUnicodeLE(String input, byte[] output, int offset)
+        public static void PutUnicodeLE(string input, byte[] output, int offset)
         {
             byte[] bytes = UTF16LE.GetBytes(input);
             Array.Copy(bytes, 0, output, offset, bytes.Length);
         }
 
-        public static void PutUnicodeLE(String input, ILittleEndianOutput out1)
+        public static void PutUnicodeLE(string input, ILittleEndianOutput out1)
         {
             byte[] bytes = UTF16LE.GetBytes(input);
             out1.Write(bytes);
@@ -252,7 +252,7 @@ namespace Npoi.Core.Util
         /// <returns>
         /// 	<c>true</c> if Has at least one multibyte character; otherwise, <c>false</c>.
         /// </returns>
-        public static bool HasMultibyte(String value)
+        public static bool HasMultibyte(string value)
         {
             if (value == null) return false;
             for (int i = 0; i < value.Length; i++)
@@ -379,7 +379,7 @@ namespace Npoi.Core.Util
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        public static int GetEncodedSize(String value)
+        public static int GetEncodedSize(string value)
         {
             int result = 2 + 1;
             result += value.Length * (StringUtil.HasMultibyte(value) ? 2 : 1);
@@ -394,7 +394,7 @@ namespace Npoi.Core.Util
         /// 	<c>true</c> if string needs Unicode to be represented.; otherwise, <c>false</c>.
         /// </returns>
         ///<remarks>Tony Qu change the logic</remarks>
-        public static bool IsUnicodeString(String value)
+        public static bool IsUnicodeString(string value)
         {
             return !value.Equals(ISO_8859_1.GetString(ISO_8859_1.GetBytes(value)));
         }
@@ -506,7 +506,7 @@ namespace Npoi.Core.Util
         * @see <a href="http://www.alanwood.net/demos/symbol.html">Symbol font - Unicode alternatives for Greek and special characters in HTML</a>
         */
 
-        public static String mapMsCodepointString(String string1)
+        public static String mapMsCodepointString(string string1)
         {
             if (string1 == null || "".Equals(string1)) return string1;
             InitMsCodepointMap();
@@ -518,7 +518,7 @@ namespace Npoi.Core.Util
             {
                 int msCodepoint = char.ConvertToUtf32(string1, offset);//codePointAt(stringChars, offset, string1.Length);
                 int uniCodepoint = msCodepointToUnicode[(msCodepoint)];
-                sb.Append(Char.ConvertFromUtf32(uniCodepoint == null ? msCodepoint : uniCodepoint));
+                sb.Append(Char.ConvertFromUtf32(uniCodepoint == 0 ? msCodepoint : uniCodepoint));
                 offset += CharCount(msCodepoint);
             }
 

@@ -91,7 +91,7 @@ namespace TestCases.HSSF.Record
 
         }
 
-        private static byte[] hr(String str)
+        private static byte[] hr(string str)
         {
             return HexRead.ReadFromString(str);
         }

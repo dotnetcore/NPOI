@@ -166,7 +166,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <param name="oldName">the original name</param>
         /// <param name="newName">the new name</param>
         /// <returns>true if the operation succeeded, else false</returns>
-        public bool ChangeName(String oldName, String newName)
+        public bool ChangeName(string oldName, String newName)
         {
             bool rval = false;
             EntryNode child = (EntryNode)_byname[oldName];
@@ -265,7 +265,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * etc).
          *
          * @return the names of all the entries that may be retrieved with
-         *         getEntry(String), which may be empty (if this
+         *         getEntry(string), which may be empty (if this
          *         DirectoryEntry is empty)
          */
 
@@ -301,7 +301,7 @@ namespace Npoi.Core.POIFS.FileSystem
             get { return _entries.Count; }
         }
 
-        public bool HasEntry(String name)
+        public bool HasEntry(string name)
         {
             return name != null && _byname.ContainsKey(name);
         }
@@ -314,7 +314,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// the specified Entry, if it is directly contained in
         /// this DirectoryEntry
         /// </returns>
-        public Entry GetEntry(String name)
+        public Entry GetEntry(string name)
         {
             Entry rval = null;
 
@@ -404,7 +404,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// </summary>
         /// <param name="name">the name of the new DirectoryEntry</param>
         /// <returns>the name of the new DirectoryEntry</returns>
-        public DirectoryEntry CreateDirectory(String name)
+        public DirectoryEntry CreateDirectory(string name)
         {
             DirectoryProperty property = new DirectoryProperty(name);
             DirectoryNode rval;

@@ -276,7 +276,7 @@ namespace Npoi.Core.SS.Util
             return new decimal(_fractionalPart) / (BD_2_POW_24);
         }
 
-        private String GetFractionalDigits()
+        private string GetFractionalDigits()
         {
             if (_fractionalPart == 0)
             {

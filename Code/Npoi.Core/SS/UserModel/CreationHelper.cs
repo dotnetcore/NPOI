@@ -39,7 +39,7 @@ namespace Npoi.Core.SS.UserModel
          * @param text The text to Initialise the RichTextString with
          */
 
-        IRichTextString CreateRichTextString(String text);
+        IRichTextString CreateRichTextString(string text);
 
         /**
          * Creates a new DataFormat instance

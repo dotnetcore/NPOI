@@ -40,7 +40,7 @@ namespace TestCases.HSSF.Record.Crypto
 
         }
 
-        private static void ConfirmRC4(String k, String origText, String expEncrHex)
+        private static void ConfirmRC4(string k, String origText, String expEncrHex)
         {
             byte[] actEncr = Encoding.GetEncoding("GB2312").GetBytes(origText);
             new RC4(Encoding.GetEncoding("GB2312").GetBytes(k)).Encrypt(actEncr);

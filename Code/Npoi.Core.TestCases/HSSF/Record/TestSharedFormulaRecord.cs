@@ -40,7 +40,7 @@ namespace TestCases.HSSF.Record
         /**
          * A sample spreadsheet known to have one sheet with 4 shared formula ranges
          */
-        private static String SHARED_FORMULA_TEST_XLS = "SharedFormulaTest.xls";
+        private static string SHARED_FORMULA_TEST_XLS = "SharedFormulaTest.xls";
         /**
          * Binary data for an encoded formula.  Taken from attachment 22062 (bugzilla 45123/45421).
          * The shared formula is in Sheet1!C6:C21, with text "SUMPRODUCT(--(End_Acct=$C6),--(End_Bal))"

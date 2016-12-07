@@ -131,12 +131,12 @@ namespace Npoi.Core.HSSF.Record
         private bool field_11_nameIsMultibyte;
 
         private byte field_12_built_in_code;
-        private String field_12_name_text;
+        private string field_12_name_text;
         private SSFormula.Formula field_13_name_definition;
-        private String field_14_custom_menu_text;
-        private String field_15_description_text;
-        private String field_16_help_topic_text;
-        private String field_17_status_bar_text;
+        private string field_14_custom_menu_text;
+        private string field_15_description_text;
+        private string field_16_help_topic_text;
+        private string field_17_status_bar_text;
 
         /** Creates new NameRecord */
 

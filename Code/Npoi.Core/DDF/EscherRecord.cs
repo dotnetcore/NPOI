@@ -304,7 +304,7 @@ namespace Npoi.Core.DDF
          * @return xml representation of this record
          */
 
-        public virtual String ToXml(String tab) {
+        public virtual String ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append("<").Append(GetType().Name).Append(">\n")
                     .Append(tab).Append("\t").Append("<RecordId>0x").Append(HexDump.ToHex(_recordId)).Append("</RecordId>\n")
@@ -313,7 +313,7 @@ namespace Npoi.Core.DDF
             return builder.ToString();
         }
 
-        protected String FormatXmlRecordHeader(String className, String recordId, String version, String instance) {
+        protected String FormatXmlRecordHeader(string className, String recordId, String version, String instance) {
             StringBuilder builder = new StringBuilder();
             builder.Append("<").Append(className).Append(" recordId=\"0x").Append(recordId).Append("\" version=\"0x")
                     .Append(version).Append("\" instance=\"0x").Append(instance).Append("\" size=\"").Append(RecordSize).Append("\">\n");

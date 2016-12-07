@@ -110,7 +110,7 @@ namespace TestCases.SS.UserModel
             Assert.AreEqual(4, c4.NumericCellValue, 0.0001);
         }
 
-        public void BaseTestSharedFormulas(String sampleFile)
+        public void BaseTestSharedFormulas(string sampleFile)
         {
             IWorkbook wb = _testDataProvider.OpenSampleWorkbook(sampleFile);
 

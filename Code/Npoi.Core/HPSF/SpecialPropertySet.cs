@@ -305,7 +305,7 @@ namespace Npoi.Core.HPSF
         protected static String GetPropertyStringValue(Object propertyValue) {
             // Normal cases
             if (propertyValue == null) return null;
-            if (propertyValue is String) return (String)propertyValue;
+            if (propertyValue is String) return (string)propertyValue;
 
             // Do our best with some edge cases
             if (propertyValue is byte[]) {

@@ -224,7 +224,7 @@ namespace Npoi.Core.HSSF.UserModel
             /// </summary>
             /// <param name="color">The color.</param>
             /// <returns></returns>
-            private String GetGnumericPart(byte color)
+            private string GetGnumericPart(byte color)
             {
                 String s;
                 if (color == 0)

@@ -56,7 +56,7 @@ namespace Npoi.Core
          * @param cls defines what object is used to construct instances of this relationship
          */
 
-        public POIXMLRelation(String type, String rel, String defaultName, Type cls)
+        public POIXMLRelation(string type, String rel, String defaultName, Type cls)
         {
             _type = type;
             _relation = rel;
@@ -72,7 +72,7 @@ namespace Npoi.Core
          * @param defaultName default item name
          */
 
-        public POIXMLRelation(String type, String rel, String defaultName)
+        public POIXMLRelation(string type, String rel, String defaultName)
             : this(type, rel, defaultName, null)
         {
         }

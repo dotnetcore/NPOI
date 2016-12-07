@@ -30,10 +30,10 @@ namespace Npoi.Core.HSSF.UserModel
 
     public class HSSFDataValidation : IDataValidation
     {
-        private String _prompt_title;
-        private String _prompt_text;
-        private String _error_title;
-        private String _error_text;
+        private string _prompt_title;
+        private string _prompt_text;
+        private string _error_title;
+        private string _error_text;
 
         private int _errorStyle = ERRORSTYLE.STOP;
         private bool _emptyCellAllowed = true;
@@ -153,7 +153,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @see Npoi.Core.HSSF.UserModel.DataValidation#CreatePromptBox(java.lang.String, java.lang.String)
          */
 
-        public void CreatePromptBox(String title, String text)
+        public void CreatePromptBox(string title, String text)
         {
             _prompt_title = title;
             _prompt_text = text;
@@ -188,7 +188,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @see Npoi.Core.HSSF.UserModel.DataValidation#CreateErrorBox(java.lang.String, java.lang.String)
          */
 
-        public void CreateErrorBox(String title, String text)
+        public void CreateErrorBox(string title, String text)
         {
             _error_title = title;
             _error_text = text;

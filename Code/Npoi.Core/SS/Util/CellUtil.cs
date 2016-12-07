@@ -66,7 +66,7 @@ namespace Npoi.Core.SS.Util
             public String entityName;
             public String resolvedValue;
 
-            public UnicodeMapping(String pEntityName, String pResolvedValue)
+            public UnicodeMapping(string pEntityName, String pResolvedValue)
             {
                 entityName = "&" + pEntityName + ";";
                 resolvedValue = pResolvedValue;
@@ -322,7 +322,7 @@ namespace Npoi.Core.SS.Util
          * Returns a map containing the format properties of the given cell style.
          *
          * @param style cell style
-         * @return map of format properties (String -> Object)
+         * @return map of format properties (string -> Object)
          * @see #setFormatProperties(org.apache.poi.ss.usermodel.CellStyle, org.apache.poi.ss.usermodel.Workbook, java.util.Map)
          */
 
@@ -361,7 +361,7 @@ namespace Npoi.Core.SS.Util
          *
          * @param style cell style
          * @param workbook parent workbook
-         * @param properties map of format properties (String -> Object)
+         * @param properties map of format properties (string -> Object)
          * @see #getFormatProperties(CellStyle)
          */
 
@@ -397,7 +397,7 @@ namespace Npoi.Core.SS.Util
          * Utility method that returns the named short value form the given map.
          * @return zero if the property does not exist, or is not a {@link Short}.
          *
-         * @param properties map of named properties (String -> Object)
+         * @param properties map of named properties (string -> Object)
          * @param name property name
          * @return property value, or zero
          */
@@ -415,7 +415,7 @@ namespace Npoi.Core.SS.Util
          * Utility method that returns the named boolean value form the given map.
          * @return false if the property does not exist, or is not a {@link Boolean}.
          *
-         * @param properties map of properties (String -> Object)
+         * @param properties map of properties (string -> Object)
          * @param name property name
          * @return property value, or false
          */
@@ -433,7 +433,7 @@ namespace Npoi.Core.SS.Util
         /**
          * Utility method that puts the named short value to the given map.
          *
-         * @param properties map of properties (String -> Object)
+         * @param properties map of properties (string -> Object)
          * @param name property name
          * @param value property value
          */
@@ -449,7 +449,7 @@ namespace Npoi.Core.SS.Util
         /**
          * Utility method that puts the named boolean value to the given map.
          *
-         * @param properties map of properties (String -> Object)
+         * @param properties map of properties (string -> Object)
          * @param name property name
          * @param value property value
          */
@@ -515,7 +515,7 @@ namespace Npoi.Core.SS.Util
         };
         }
 
-        private static UnicodeMapping um(String entityName, String resolvedValue)
+        private static UnicodeMapping um(string entityName, String resolvedValue)
         {
             return new UnicodeMapping(entityName, resolvedValue);
         }

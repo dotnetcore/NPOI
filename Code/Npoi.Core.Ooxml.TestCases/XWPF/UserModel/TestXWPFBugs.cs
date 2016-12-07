@@ -36,7 +36,7 @@ namespace Npoi.Core.XWPF.UserModel
             XWPFDocument doc = new XWPFDocument();
             XWPFRun run = doc.CreateParagraph().CreateRun();
 
-            foreach (String str in blabla.Split("\n".ToCharArray()))
+            foreach (string str in blabla.Split("\n".ToCharArray()))
             {
                 run.SetText(str);
                 run.AddBreak();

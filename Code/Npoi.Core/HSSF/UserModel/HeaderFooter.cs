@@ -34,7 +34,7 @@ namespace Npoi.Core.HSSF.UserModel
         // Possibly empty string if no header or footer is set.Never<c>null</c>.
         public abstract String RawText { get; }
 
-        private String[] SplitParts()
+        private string[] SplitParts()
         {
             String text = RawText;
             // default values
@@ -111,7 +111,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// strings.
         /// </summary>
         /// <param name="parts">The parts.</param>
-        private void UpdateHeaderFooterText(String[] parts)
+        private void UpdateHeaderFooterText(string[] parts)
         {
             String _left = parts[0];
             String _center = parts[1];
@@ -142,7 +142,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="text">the new header footer text (contains mark-up tags). Possibly
         /// empty string never </param>
-        protected abstract void SetHeaderFooterText(String text);
+        protected abstract void SetHeaderFooterText(string text);
 
         /// <summary>
         /// Get the left side of the header or footer.
@@ -208,7 +208,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="font">the new font.</param>
         /// <param name="style">the fonts style, one of regular, italic, bold, italic bold or bold italic.</param>
         /// <returns>The special string to represent a new font size</returns>
-        public static String Font(String font, String style)
+        public static String Font(string font, String style)
         {
             return "&\"" + font + "," + style + "\"";
         }
@@ -368,7 +368,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="text">The text.</param>
         /// <returns></returns>
-        public static String StripFields(String text)
+        public static String StripFields(string text)
         {
             int pos;
 

@@ -60,7 +60,7 @@ namespace Npoi.Core.HSSF.Record
          * An optional array of strings where each string specifies an item in the list.
          * The number of elements in this array, if it exists, MUST be {@link #_cLines}
          */
-        private String[] _rgLines;
+        private string[] _rgLines;
 
         /**
          * An optional array of bools that specifies
@@ -211,7 +211,7 @@ namespace Npoi.Core.HSSF.Record
                 }
                 if (_rgLines != null)
                 {
-                    foreach (String str in _rgLines)
+                    foreach (string str in _rgLines)
                     {
                         result += StringUtil.GetEncodedSize(str);
                     }
@@ -261,7 +261,7 @@ namespace Npoi.Core.HSSF.Record
 
             if (_rgLines != null)
             {
-                foreach (String str in _rgLines)
+                foreach (string str in _rgLines)
                 {
                     StringUtil.WriteUnicodeString(out1, str);
                 }
@@ -370,7 +370,7 @@ namespace Npoi.Core.HSSF.Record
         /**
          * a string that specifies the current string value in the dropdown
          */
-        private String _str;
+        private string _str;
 
         /**
          * Optional, undefined and MUST be ignored.

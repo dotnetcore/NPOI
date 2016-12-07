@@ -15,7 +15,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         // TODO configuration by default. should be clearly stated that it should be
         // changed to match installation path
         // as schemas dir is needed in runtime
-        static private String pathForXmlSchema = System.AppContext.BaseDirectory
+        static private string pathForXmlSchema = System.AppContext.BaseDirectory
                 + @"\" + "src" + @"\" + "schemas";
 
         public static String PathForXmlSchema

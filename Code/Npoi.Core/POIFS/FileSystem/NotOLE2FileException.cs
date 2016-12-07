@@ -27,7 +27,7 @@ namespace Npoi.Core.POIFS.FileSystem
 
     public class NotOLE2FileException : IOException
     {
-        public NotOLE2FileException(String s)
+        public NotOLE2FileException(string s)
             : base(s)
         {
         }

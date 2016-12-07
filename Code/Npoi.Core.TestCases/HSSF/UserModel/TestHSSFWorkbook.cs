@@ -55,7 +55,7 @@ namespace TestCases.HSSF.UserModel
         {
             return wb.Workbook;
         }
-        private static HSSFWorkbook OpenSample(String sampleFileName)
+        private static HSSFWorkbook OpenSample(string sampleFileName)
         {
             return HSSFTestDataSamples.OpenSampleWorkbook(sampleFileName);
         }

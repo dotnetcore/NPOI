@@ -37,7 +37,7 @@ namespace Npoi.Core.SS.Formula.Udf
             _funcMap = new Dictionary<int, String>();
         }
 
-        public override FreeRefFunction FindFunction(String name)
+        public override FreeRefFunction FindFunction(string name)
         {
             FreeRefFunction func = base.FindFunction(name);
             if (func != null)
@@ -53,7 +53,7 @@ namespace Npoi.Core.SS.Formula.Udf
             return _funcMap[idx];
         }
 
-        public int GetFunctionIndex(String name)
+        public int GetFunctionIndex(string name)
         {
             return name.GetHashCode();
         }

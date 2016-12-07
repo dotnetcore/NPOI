@@ -44,7 +44,7 @@ namespace Npoi.Core.POIFS.FileSystem
             // Process the excludes
             this.excludes = new List<String>();
             this.childExcludes = new Dictionary<String, List<String>>();
-            foreach (String excl in excludes)
+            foreach (string excl in excludes)
             {
                 int splitAt = excl.IndexOf('/');
                 if (splitAt == -1)
@@ -78,7 +78,7 @@ namespace Npoi.Core.POIFS.FileSystem
             get
             {
                 List<String> names = new List<String>();
-                foreach (String name in directory.EntryNames)
+                foreach (string name in directory.EntryNames)
                 {
                     if (!excludes.Contains(name))
                     {
@@ -94,7 +94,7 @@ namespace Npoi.Core.POIFS.FileSystem
             get { return EntryCount == 0; }
         }
 
-        public bool HasEntry(String name)
+        public bool HasEntry(string name)
         {
             if (excludes.Contains(name))
             {
@@ -108,7 +108,7 @@ namespace Npoi.Core.POIFS.FileSystem
             get
             {
                 int size = directory.EntryCount;
-                foreach (String excl in excludes)
+                foreach (string excl in excludes)
                 {
                     if (directory.HasEntry(excl))
                     {
@@ -124,7 +124,7 @@ namespace Npoi.Core.POIFS.FileSystem
             return new FilteringIterator(this); ;
         }
 
-        public Entry GetEntry(String name)
+        public Entry GetEntry(string name)
         {
             if (excludes.Contains(name))
             {

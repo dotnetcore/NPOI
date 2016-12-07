@@ -269,15 +269,15 @@ namespace Npoi.Core.HPSF
                         break;
                     }
                 case Variant.VT_LPSTR: {
-                        CodePageString codePageString = new CodePageString((String)value,
+                        CodePageString codePageString = new CodePageString((string)value,
                         codepage);
                         length += codePageString.Write(out1);
                         break;
                     }
                 case Variant.VT_LPWSTR: {
-                        int nrOfChars = ((String)value).Length + 1;
+                        int nrOfChars = ((string)value).Length + 1;
                         length += TypeWriter.WriteUIntToStream(out1, (uint)nrOfChars);
-                        char[] s = ((String)value).ToCharArray();
+                        char[] s = ((string)value).ToCharArray();
                         for (int i = 0; i < s.Length; i++) {
                             int high = ((s[i] & 0x0000ff00) >> 8);
                             int low = (s[i] & 0x000000ff);

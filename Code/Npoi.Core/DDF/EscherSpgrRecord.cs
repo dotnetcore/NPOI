@@ -137,7 +137,7 @@ namespace Npoi.Core.DDF
                     "  RectHeight: " + field_4_rectY2 + nl;
         }
 
-        public override String ToXml(String tab) {
+        public override String ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
                     .Append(tab).Append("\t").Append("<RectX>").Append(field_1_rectX1).Append("</RectX>\n")

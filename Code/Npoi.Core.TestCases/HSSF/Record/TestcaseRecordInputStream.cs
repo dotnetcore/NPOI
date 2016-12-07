@@ -79,7 +79,7 @@ namespace TestCases.HSSF.Record
         /// <param name="expectedSid"></param>
         /// <param name="expectedData">just raw data (without ushort sid, ushort size)</param>
         /// <param name="actualRecordBytes">this includes 4 prefix bytes (sid & size)</param>
-        public static void ConfirmRecordEncoding(String msgPrefix, int expectedSid, byte[] expectedData, byte[] actualRecordBytes)
+        public static void ConfirmRecordEncoding(string msgPrefix, int expectedSid, byte[] expectedData, byte[] actualRecordBytes)
         {
             int expectedDataSize = expectedData.Length;
             Assert.AreEqual(actualRecordBytes.Length - 4, expectedDataSize,"Size of encode data mismatch");

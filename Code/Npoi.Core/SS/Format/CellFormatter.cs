@@ -48,7 +48,7 @@ namespace Npoi.Core.SS.Format
          * @param format The format.
          */
 
-        public CellFormatter(String format)
+        public CellFormatter(string format)
         {
             this.format = format;
         }
@@ -112,7 +112,7 @@ namespace Npoi.Core.SS.Format
          * @return The input string, surrounded by quotes.
          */
 
-        private static String Quote(String str)
+        private static string Quote(string str)
         {
             return '"' + str + '"';
         }

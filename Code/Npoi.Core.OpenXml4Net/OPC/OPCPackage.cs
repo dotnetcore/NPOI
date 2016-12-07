@@ -143,7 +143,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *             occur.
          */
 
-        public static OPCPackage Open(String path)
+        public static OPCPackage Open(string path)
         {
             return Open(path, defaultPackageAccess);
         }
@@ -177,7 +177,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *             occur.
          */
 
-        public static OPCPackage Open(String path, PackageAccess access)
+        public static OPCPackage Open(string path, PackageAccess access)
         {
             if (path == null || "".Equals(path.Trim()))
                 throw new ArgumentException("'path' must be given");
@@ -226,7 +226,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * Open a package.
          *
-         * Note - uses quite a bit more memory than {@link #open(String)}, which
+         * Note - uses quite a bit more memory than {@link #open(string)}, which
          * doesn't need to hold the whole zip file in memory, and can take advantage
          * of native methods
          *
@@ -439,7 +439,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *            The full path to the image file.
          */
 
-        public void AddThumbnail(String path)
+        public void AddThumbnail(string path)
         {
             // Check parameter
             if ("".Equals(path))
@@ -611,7 +611,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @return All part associated to the specified content type.
          */
 
-        public List<PackagePart> GetPartsByContentType(String contentType)
+        public List<PackagePart> GetPartsByContentType(string contentType)
         {
             List<PackagePart> retArr = new List<PackagePart>();
             foreach (PackagePart part in partList.Values)
@@ -1328,7 +1328,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *      java.lang.String)
          */
 
-        public PackageRelationship AddExternalRelationship(String target,
+        public PackageRelationship AddExternalRelationship(string target,
                 String relationshipType)
         {
             return AddExternalRelationship(target, relationshipType, null);
@@ -1352,7 +1352,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *      java.lang.String)
          */
 
-        public PackageRelationship AddExternalRelationship(String target,
+        public PackageRelationship AddExternalRelationship(string target,
                 String relationshipType, String id)
         {
             if (target == null)
@@ -1388,7 +1388,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *            Id of the relationship to delete.
          */
 
-        public void RemoveRelationship(String id)
+        public void RemoveRelationship(string id)
         {
             if (relationships != null)
             {
@@ -1402,7 +1402,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *
          * @return All package relationships of this package.
          * @throws OpenXml4NetException
-         * @see #GetRelationshipsHelper(String)
+         * @see #GetRelationshipsHelper(string)
          */
 
         public PackageRelationshipCollection Relationships
@@ -1440,7 +1440,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *            Id of the wanted relationship.
          */
 
-        private PackageRelationshipCollection GetRelationshipsHelper(String id)
+        private PackageRelationshipCollection GetRelationshipsHelper(string id)
         {
             ThrowExceptionIfWriteOnly();
             EnsureRelationships();
@@ -1483,7 +1483,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#GetRelationship(java.lang.String)
          */
 
-        public PackageRelationship GetRelationship(String id)
+        public PackageRelationship GetRelationship(string id)
         {
             return this.relationships.GetRelationshipByID(id);
         }
@@ -1523,7 +1523,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *            The marshaller to register with the specified content type.
          */
 
-        public void AddMarshaller(String contentType, PartMarshaller marshaller)
+        public void AddMarshaller(string contentType, PartMarshaller marshaller)
         {
             try
             {
@@ -1545,7 +1545,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *            The unmarshaller to register with the specified content type.
          */
 
-        public void AddUnmarshaller(String contentType,
+        public void AddUnmarshaller(string contentType,
                 PartUnmarshaller unmarshaller)
         {
             try
@@ -1567,7 +1567,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *            The content type associated with the marshaller to Remove.
          */
 
-        public void RemoveMarshaller(String contentType)
+        public void RemoveMarshaller(string contentType)
         {
             partMarshallers.Remove(new ContentType(contentType));
         }
@@ -1579,7 +1579,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *            The content type associated with the unmarshaller to Remove.
          */
 
-        public void RemoveUnmarshaller(String contentType)
+        public void RemoveUnmarshaller(string contentType)
         {
             partUnmarshallers.Remove(new ContentType(contentType));
         }
@@ -1762,7 +1762,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @since POI-3.8
          */
 
-        public bool ReplaceContentType(String oldContentType, String newContentType)
+        public bool ReplaceContentType(string oldContentType, String newContentType)
         {
             bool success = false;
             List<PackagePart> list = GetPartsByContentType(oldContentType);

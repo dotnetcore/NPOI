@@ -51,7 +51,7 @@ namespace Npoi.Core.HPSF
         /// Initializes a new instance of the <see cref="MissingSectionException"/> class.
         /// </summary>
         /// <param name="msg">The exception's message string</param>
-        public MissingSectionException(String msg) : base(msg) {
+        public MissingSectionException(string msg) : base(msg) {
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="msg">The exception's message string</param>
         /// <param name="reason">This exception's underlying reason</param>
-        public MissingSectionException(String msg, Exception reason) : base(msg, reason) {
+        public MissingSectionException(string msg, Exception reason) : base(msg, reason) {
         }
     }
 }

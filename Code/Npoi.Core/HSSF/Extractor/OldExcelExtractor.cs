@@ -95,7 +95,7 @@ namespace Npoi.Core.HSSF.Extractor
             Prepare();
         }
 
-        public static void main(String[] args) {
+        public static void main(string[] args) {
             if (args.Length < 1) {
                 System.Console.WriteLine("Use:");
                 System.Console.WriteLine("   OldExcelExtractor <filename>");

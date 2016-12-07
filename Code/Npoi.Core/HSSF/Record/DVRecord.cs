@@ -145,7 +145,7 @@ namespace Npoi.Core.HSSF.Record
          * Excel UI and encode 'not present' as "\0".
          */
 
-        private static UnicodeString ResolveTitleText(String str)
+        private static UnicodeString ResolveTitleText(string str)
         {
             if (str == null || str.Length < 1)
             {

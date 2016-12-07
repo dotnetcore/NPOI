@@ -275,7 +275,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        private static String ReadRawString(RecordInputStream in1, int textLength)
+        private static string ReadRawString(RecordInputStream in1, int textLength)
         {
             byte compressByte = (byte)in1.ReadByte();
             bool isCompressed = (compressByte & 0x01) == 0;

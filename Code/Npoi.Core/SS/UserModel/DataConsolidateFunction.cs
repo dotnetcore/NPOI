@@ -40,7 +40,7 @@ namespace Npoi.Core.SS.UserModel
         VARP = new DataConsolidateFunction(11, "Varp");
 
         private int value;
-        private String name;
+        private string name;
 
         public DataConsolidateFunction(int value, String name)
         {

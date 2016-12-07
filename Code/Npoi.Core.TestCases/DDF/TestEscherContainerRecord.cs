@@ -31,7 +31,7 @@ namespace TestCases.DDF
     [TestFixture]
     public class TestEscherContainerRecord
     {
-        private String ESCHER_DATA_PATH;
+        private string ESCHER_DATA_PATH;
 
         public TestEscherContainerRecord()
         {

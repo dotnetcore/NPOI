@@ -30,7 +30,7 @@ namespace Npoi.Core.SS.Util
          * @return a valid string, "empty" if to short, "null" if null
          */
 
-        public static String CreateSafeSheetName(String nameProposal)
+        public static String CreateSafeSheetName(string nameProposal)
         {
             return CreateSafeSheetName(nameProposal, ' ');
         }
@@ -55,7 +55,7 @@ namespace Npoi.Core.SS.Util
          * @return a valid string, "empty" if to short, "null" if null
          */
 
-        public static String CreateSafeSheetName(String nameProposal, char replaceChar)
+        public static String CreateSafeSheetName(string nameProposal, char replaceChar)
         {
             if (nameProposal == null)
             {
@@ -123,7 +123,7 @@ namespace Npoi.Core.SS.Util
          * @param sheetName the name to validate
          */
 
-        public static void ValidateSheetName(String sheetName)
+        public static void ValidateSheetName(string sheetName)
         {
             if (sheetName == null)
             {

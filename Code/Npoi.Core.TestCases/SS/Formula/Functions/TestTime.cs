@@ -95,12 +95,12 @@ namespace TestCases.SS.Formula.Functions
             Confirm("12:08:01", 18, 32767, 61);
             Confirm("07:50:01", 32767, 49, 61);
         }
-        private void Confirm(String expectedTimeStr, int inH, int inM, int inS)
+        private void Confirm(string expectedTimeStr, int inH, int inM, int inS)
         {
             Confirm(expectedTimeStr, "TIME(" + inH + "," + inM + "," + inS + ")");
         }
 
-        private void Confirm(String expectedTimeStr, String formulaText)
+        private void Confirm(string expectedTimeStr, String formulaText)
         {
             //		Console.WriteLine("=" + formulaText);
             //String[] parts = Pattern.compile(":").split(expectedTimeStr);

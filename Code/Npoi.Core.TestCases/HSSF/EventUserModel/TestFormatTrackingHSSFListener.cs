@@ -37,7 +37,7 @@ namespace TestCases.HSSF.EventUserModel
         private FormatTrackingHSSFListener listener;
         private MockHSSFListener mockListen;
 
-        private void ProcessFile(String filename)
+        private void ProcessFile(string filename)
         {
             HSSFRequest req = new HSSFRequest();
             mockListen = new MockHSSFListener();

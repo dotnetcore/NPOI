@@ -110,7 +110,7 @@ namespace Npoi.Core.SS.Formula.Function
                     returnClassCode, parameterClassCodes, hasNote);
         }
 
-        private static byte ParseReturnTypeCode(String code)
+        private static byte ParseReturnTypeCode(string code)
         {
             if (code.Length == 0)
             {
@@ -119,7 +119,7 @@ namespace Npoi.Core.SS.Formula.Function
             return ParseOperandTypeCode(code);
         }
 
-        private static byte[] ParseOperandTypeCodes(String codes)
+        private static byte[] ParseOperandTypeCodes(string codes)
         {
             if (codes.Length < 1)
             {
@@ -147,7 +147,7 @@ namespace Npoi.Core.SS.Formula.Function
             return result;
         }
 
-        private static bool IsDash(String codes)
+        private static bool IsDash(string codes)
         {
             if (codes.Length == 1)
             {
@@ -160,7 +160,7 @@ namespace Npoi.Core.SS.Formula.Function
             return false;
         }
 
-        private static byte ParseOperandTypeCode(String code)
+        private static byte ParseOperandTypeCode(string code)
         {
             if (code.Length != 1)
             {
@@ -180,7 +180,7 @@ namespace Npoi.Core.SS.Formula.Function
          * left behind
          */
 
-        private static void ValidateFunctionName(String functionName)
+        private static void ValidateFunctionName(string functionName)
         {
             int len = functionName.Length;
             int ix = len - 1;
@@ -204,7 +204,7 @@ namespace Npoi.Core.SS.Formula.Function
                     + "' (is footnote number incorrectly Appended)");
         }
 
-        private static int ParseInt(String valStr)
+        private static int ParseInt(string valStr)
         {
             return int.Parse(valStr, CultureInfo.InvariantCulture);
         }

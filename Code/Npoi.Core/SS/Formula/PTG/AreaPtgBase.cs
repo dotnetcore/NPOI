@@ -59,7 +59,7 @@ namespace Npoi.Core.SS.Formula.PTG
         private static BitField colRelative = BitFieldFactory.GetInstance(0x4000);
         private static BitField columnMask = BitFieldFactory.GetInstance(0x3FFF);
 
-        protected AreaPtgBase(String arearef)
+        protected AreaPtgBase(string arearef)
             : this(new AreaReference(arearef))
         {
             //AreaReference ar = new AreaReference(arearef);

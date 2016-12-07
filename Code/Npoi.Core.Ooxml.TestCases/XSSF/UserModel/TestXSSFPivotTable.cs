@@ -109,7 +109,7 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 pivotTable.AddRowLabel(columnIndex);
             }
-            catch (IndexOutOfRangeException e)
+            catch (IndexOutOfRangeException)
             {
                 return;
             }
@@ -236,7 +236,7 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 pivotTable.AddColumnLabel(DataConsolidateFunction.SUM, columnIndex);
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (ArgumentOutOfRangeException)
             {
                 return;
             }
@@ -273,7 +273,7 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 pivotTable.AddDataColumn(columnIndex, isDataField);
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (ArgumentOutOfRangeException )
             {
                 return;
             }
@@ -309,7 +309,7 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 pivotTable.AddReportFilter(columnIndex);
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (ArgumentOutOfRangeException)
             {
                 return;
             }

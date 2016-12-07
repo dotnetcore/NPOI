@@ -25,7 +25,7 @@ namespace Npoi.Core.SS.Formula
         public String _bookName;
         public NameIdentifier _sheetIdentifier;
 
-        public SheetIdentifier(String bookName, NameIdentifier sheetIdentifier)
+        public SheetIdentifier(string bookName, NameIdentifier sheetIdentifier)
         {
             _bookName = bookName;
             _sheetIdentifier = sheetIdentifier;

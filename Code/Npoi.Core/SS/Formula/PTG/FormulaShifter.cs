@@ -41,7 +41,7 @@ namespace Npoi.Core.SS.Formula
          * Sheet name of the sheet where moving is occurring,
          *  used for updating XSSF style 3D references on row shifts.
          */
-        private String _sheetName;
+        private string _sheetName;
         private int _firstMovedIndex;
         private int _lastMovedIndex;
         private int _amountToMove;
@@ -78,7 +78,7 @@ namespace Npoi.Core.SS.Formula
         /**
         * Create an instance for shifting sheets.
         *
-        * For example, this will be called on {@link org.apache.poi.hssf.usermodel.HSSFWorkbook#setSheetOrder(String, int)}
+        * For example, this will be called on {@link org.apache.poi.hssf.usermodel.HSSFWorkbook#setSheetOrder(string, int)}
         */
 
         private FormulaShifter(int srcSheetIndex, int dstSheetIndex)

@@ -52,7 +52,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// Initializes a new instance of the <see cref="HSSFRichTextString"/> class.
         /// </summary>
         /// <param name="str">The string.</param>
-        public HSSFRichTextString(String str)
+        public HSSFRichTextString(string str)
         {
             if (str == null)
             {

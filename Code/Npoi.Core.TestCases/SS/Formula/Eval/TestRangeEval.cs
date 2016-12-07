@@ -50,7 +50,7 @@ namespace TestCases.SS.Formula.Eval
             Confirm("D7", "B3", "B3:D7");
         }
 
-        private static void Confirm(String refA, String refB, String expectedAreaRef)
+        private static void Confirm(string refA, String refB, String expectedAreaRef)
         {
 
             ValueEval[] args = {
@@ -67,7 +67,7 @@ namespace TestCases.SS.Formula.Eval
             Assert.AreEqual(ar.LastCell.Col, ae.LastColumn);
         }
 
-        private static ValueEval CreateRefEval(String refStr)
+        private static ValueEval CreateRefEval(string refStr)
         {
             CellReference cr = new CellReference(refStr);
             return new MockRefEval(cr.Row, cr.Col);

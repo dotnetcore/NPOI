@@ -35,7 +35,7 @@ namespace Npoi.Core.SS.Format
         private bool ShowM;
         private bool ShowAmPm;
         private FormatBase dateFmt;
-        private String sFmt;
+        private string sFmt;
         private int millisecondPartLength = 0;
 
         private static readonly TimeSpan EXCEL_EPOCH_TIME;
@@ -163,7 +163,7 @@ namespace Npoi.Core.SS.Format
          * @param format The format.
          */
 
-        public CellDateFormatter(String format)
+        public CellDateFormatter(string format)
             : base(format)
         {
             DatePartHandler partHandler = new DatePartHandler(this);

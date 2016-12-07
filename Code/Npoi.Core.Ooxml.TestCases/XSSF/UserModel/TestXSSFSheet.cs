@@ -1115,7 +1115,7 @@ namespace Npoi.Core.XSSF.UserModel
             runGetLeftCol("TwoSheetsNoneHidden.xls", false, 0, 0);
         }
 
-        private void runGetTopRow(String file, bool isXSSF, params int[] topRows)
+        private void runGetTopRow(string file, bool isXSSF, params int[] topRows)
         {
             IWorkbook wb;
             if (isXSSF)
@@ -1153,7 +1153,7 @@ namespace Npoi.Core.XSSF.UserModel
             //}
         }
 
-        private void runGetLeftCol(String file, bool isXSSF, params int[] topRows)
+        private void runGetLeftCol(string file, bool isXSSF, params int[] topRows)
         {
             IWorkbook wb;
             if (isXSSF)
@@ -1370,7 +1370,7 @@ namespace Npoi.Core.XSSF.UserModel
                 sheet.OnDocumentRead();
                 Assert.Fail("Throws exception because we cannot read here");
             }
-            catch (POIXMLException e)
+            catch (POIXMLException )
             {
                 // expected here
             }

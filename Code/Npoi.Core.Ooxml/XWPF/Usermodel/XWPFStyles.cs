@@ -160,7 +160,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @return				true if style exist, false if style not exist
          */
 
-        public bool StyleExist(String styleID)
+        public bool StyleExist(string styleID)
         {
             foreach (XWPFStyle style in listStyle)
             {
@@ -190,7 +190,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @return style
          */
 
-        public XWPFStyle GetStyle(String styleID)
+        public XWPFStyle GetStyle(string styleID)
         {
             foreach (XWPFStyle style in listStyle)
             {
@@ -277,7 +277,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @param strSpellingLanguage
          */
 
-        public void SetSpellingLanguage(String strSpellingLanguage)
+        public void SetSpellingLanguage(string strSpellingLanguage)
         {
             CT_Language lang = GetCTLanguage();
             lang.val = (/*setter*/strSpellingLanguage);
@@ -289,7 +289,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @param strEastAsia
          */
 
-        public void SetEastAsia(String strEastAsia)
+        public void SetEastAsia(string strEastAsia)
         {
             CT_Language lang = GetCTLanguage();
             lang.eastAsia = (/*setter*/strEastAsia);

@@ -129,7 +129,7 @@ namespace Npoi.Core.XSSF.UserModel
          * The color applied to the lines of this shape.
          */
 
-        public void SetLineStyleColor(int red, int green, int blue)
+        public virtual void SetLineStyleColor(int red, int green, int blue)
         {
             Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties props = GetShapeProperties();
             CT_LineProperties ln = props.IsSetLn() ? props.ln : props.AddNewLn();
@@ -139,12 +139,12 @@ namespace Npoi.Core.XSSF.UserModel
             fill.srgbClr = (rgb);
         }
 
-        public int CountOfAllChildren
+        public virtual int CountOfAllChildren
         {
             get { throw new System.NotImplementedException(); }
         }
 
-        public int FillColor
+        public virtual int FillColor
         {
             get
             {
@@ -184,11 +184,11 @@ namespace Npoi.Core.XSSF.UserModel
                 Npoi.Core.OpenXmlFormats.Dml.Spreadsheet.CT_ShapeProperties props = GetShapeProperties();
                 if (props.IsSetLn())
                 {
-                    return props.ln.w * 1.0 / EMU_PER_POINT;
+                    return props.ln.w * 1 / EMU_PER_POINT;
                 }
                 else
                 {
-                    return 0.0;
+                    return 0;
                 }
             }
             set

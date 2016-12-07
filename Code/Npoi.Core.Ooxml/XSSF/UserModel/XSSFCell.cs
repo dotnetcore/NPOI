@@ -46,8 +46,8 @@ namespace Npoi.Core.XSSF.UserModel
 
     public class XSSFCell : ICell
     {
-        private static String FALSE_AS_STRING = "0";
-        private static String TRUE_AS_STRING = "1";
+        private static string FALSE_AS_STRING = "0";
+        private static string TRUE_AS_STRING = "1";
 
         /**
          * the xml bean Containing information about the cell's location, value,
@@ -380,7 +380,7 @@ namespace Npoi.Core.XSSF.UserModel
          * If value is null then we will change the cell to a Blank cell.
          */
 
-        public void SetCellValue(String str)
+        public void SetCellValue(string str)
         {
             SetCellValue(str == null ? null : new XSSFRichTextString(str));
         }
@@ -466,7 +466,7 @@ namespace Npoi.Core.XSSF.UserModel
         /// </summary>
         /// <param name="si">Shared Group Index</param>
         /// <returns>non shared formula created for the given shared formula and this cell</returns>
-        private String ConvertSharedFormula(int si)
+        private string ConvertSharedFormula(int si)
         {
             XSSFSheet sheet = (XSSFSheet)Sheet;
 
@@ -494,7 +494,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Sets formula for this cell.
          * <p>
          * Note, this method only Sets the formula string and does not calculate the formula value.
-         * To Set the precalculated value use {@link #setCellValue(double)} or {@link #setCellValue(String)}
+         * To Set the precalculated value use {@link #setCellValue(double)} or {@link #setCellValue(string)}
          * </p>
          *
          * @param formula the formula to Set, e.g. <code>"SUM(C4:E4)"</code>.
@@ -504,7 +504,7 @@ namespace Npoi.Core.XSSF.UserModel
          *  when the cell is a part of a multi-cell array formula
          */
 
-        public void SetCellFormula(String formula)
+        public void SetCellFormula(string formula)
         {
             if (IsPartOfArrayFormulaGroup)
             {
@@ -513,7 +513,7 @@ namespace Npoi.Core.XSSF.UserModel
             SetFormula(formula, FormulaType.Cell);
         }
 
-        internal void SetCellArrayFormula(String formula, CellRangeAddress range)
+        internal void SetCellArrayFormula(string formula, CellRangeAddress range)
         {
             SetFormula(formula, FormulaType.Array);
             CT_CellFormula cellFormula = _cell.f;
@@ -521,7 +521,7 @@ namespace Npoi.Core.XSSF.UserModel
             cellFormula.@ref = (range.FormatAsString());
         }
 
-        private void SetFormula(String formula, FormulaType formulaType)
+        private void SetFormula(string formula, FormulaType formulaType)
         {
             IWorkbook wb = _row.Sheet.Workbook;
             if (formula == null)
@@ -922,7 +922,7 @@ namespace Npoi.Core.XSSF.UserModel
         /// </summary>
         /// <param name="cellTypeCode"></param>
         /// <returns></returns>
-        private static String GetCellTypeName(CellType cellTypeCode)
+        private static string GetCellTypeName(CellType cellTypeCode)
         {
             switch (cellTypeCode)
             {
@@ -1088,7 +1088,7 @@ namespace Npoi.Core.XSSF.UserModel
             throw new RuntimeException("Unexpected cell type (" + cellType + ")");
         }
 
-        private String ConvertCellValueToString()
+        private string ConvertCellValueToString()
         {
             CellType cellType = CellType;
 
@@ -1169,7 +1169,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @see #NotifyArrayFormulaChanging()
          */
 
-        internal void NotifyArrayFormulaChanging(String msg)
+        internal void NotifyArrayFormulaChanging(string msg)
         {
             if (IsPartOfArrayFormulaGroup)
             {

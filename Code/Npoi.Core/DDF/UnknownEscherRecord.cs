@@ -185,7 +185,7 @@ namespace Npoi.Core.DDF
                     children.ToString();
         }
 
-        public override String ToXml(String tab) {
+        public override String ToXml(string tab) {
             String theDumpHex = HexDump.ToHex(_thedata, 32);
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))

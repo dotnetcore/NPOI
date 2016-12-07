@@ -32,7 +32,7 @@ namespace TestCases.HSSF.Record.Crypto
     public class TestBiff8EncryptionKey
     {
 
-        private static byte[] fromHex(String hexString)
+        private static byte[] fromHex(string hexString)
         {
             return HexRead.ReadFromString(hexString);
         }

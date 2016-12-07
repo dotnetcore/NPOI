@@ -79,7 +79,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * @param stream the InputStream we read data from
          */
 
-        public NPOIFSDocument(String name, NPOIFSFileSystem filesystem, Stream stream)
+        public NPOIFSDocument(string name, NPOIFSFileSystem filesystem, Stream stream)
         {
             this._filesystem = filesystem;
             // sotre it
@@ -149,7 +149,7 @@ namespace Npoi.Core.POIFS.FileSystem
             return length;
         }
 
-        public NPOIFSDocument(String name, int size, NPOIFSFileSystem filesystem, POIFSWriterListener Writer)
+        public NPOIFSDocument(string name, int size, NPOIFSFileSystem filesystem, POIFSWriterListener Writer)
         {
             this._filesystem = filesystem;
 

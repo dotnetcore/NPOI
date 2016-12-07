@@ -45,7 +45,7 @@ namespace TestCases.POIFS.Properties
         /// Initializes a new instance of the <see cref="LocalProperty"/> class.
         /// </summary>
         /// <param name="name">name of the property</param>
-        public LocalProperty(String name)
+        public LocalProperty(string name)
             : base()
         {
             this.Name = name;

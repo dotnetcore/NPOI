@@ -60,7 +60,7 @@ namespace Npoi.Core.SS.Formula
                 }
                 if (ptg is ParenthesisPtg)
                 {
-                    String contents = (String)stack.Pop();
+                    String contents = (string)stack.Pop();
                     stack.Push("(" + contents + ")");
                     continue;
                 }
@@ -115,7 +115,7 @@ namespace Npoi.Core.SS.Formula
                 // stack.push(). So this is either an internal error or impossible.
                 throw new InvalidOperationException("Stack underflow");
             }
-            String result = (String)stack.Pop();
+            String result = (string)stack.Pop();
             if (stack.Count != 0)
             {
                 // Might be caused by some Tokens like AttrPtg and Mem*Ptg, which really shouldn't
@@ -125,7 +125,7 @@ namespace Npoi.Core.SS.Formula
             return result;
         }
 
-        private static String[] GetOperands(Stack<object> stack, int nOperands)
+        private static string[] GetOperands(Stack<object> stack, int nOperands)
         {
             String[] operands = new String[nOperands];
 
@@ -137,7 +137,7 @@ namespace Npoi.Core.SS.Formula
                          + ") operands but got (" + (nOperands - j - 1) + ")";
                     throw new InvalidOperationException(msg);
                 }
-                operands[j] = (String)stack.Pop();
+                operands[j] = (string)stack.Pop();
             }
             return operands;
         }

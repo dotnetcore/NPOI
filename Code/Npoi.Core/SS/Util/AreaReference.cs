@@ -40,7 +40,7 @@ namespace Npoi.Core.SS.Util
          * The area reference must be contiguous (i.e. represent a single rectangle, not a Union of rectangles)
          */
 
-        public AreaReference(String reference)
+        public AreaReference(string reference)
         {
             if (!IsContiguous(reference))
             {
@@ -96,7 +96,7 @@ namespace Npoi.Core.SS.Util
             }
         }
 
-        private bool IsPlainColumn(String refPart)
+        private bool IsPlainColumn(string refPart)
         {
             for (int i = refPart.Length - 1; i >= 0; i--)
             {
@@ -113,12 +113,12 @@ namespace Npoi.Core.SS.Util
             return true;
         }
 
-        public static AreaReference GetWholeRow(String start, String end)
+        public static AreaReference GetWholeRow(string start, String end)
         {
             return new AreaReference("$A" + start + ":$IV" + end);
         }
 
-        public static AreaReference GetWholeColumn(String start, String end)
+        public static AreaReference GetWholeColumn(string start, String end)
         {
             return new AreaReference(start + "$1:" + end + "$65536");
         }
@@ -192,7 +192,7 @@ namespace Npoi.Core.SS.Util
          *  ....
          */
 
-        public static bool IsContiguous(String reference)
+        public static bool IsContiguous(string reference)
         {
             // If there's a sheet name, strip it off
             int sheetRefEnd = reference.IndexOf('!');
@@ -237,7 +237,7 @@ namespace Npoi.Core.SS.Util
          *  returns an array of contiguous area references.
          */
 
-        public static AreaReference[] GenerateContiguous(String reference)
+        public static AreaReference[] GenerateContiguous(string reference)
         {
             List<AreaReference> refs = new List<AreaReference>();
             String st = reference;
@@ -371,7 +371,7 @@ namespace Npoi.Core.SS.Util
          * @return array with one or two elements. never <c>null</c>
          */
 
-        private static String[] SeparateAreaRefs(String reference)
+        private static string[] SeparateAreaRefs(string reference)
         {
             // TODO - refactor cell reference parsing logic to one place.
             // Current known incarnations:

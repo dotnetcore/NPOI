@@ -355,7 +355,7 @@ namespace Npoi.Core.XWPF.Extractor
             String s = ex.Text.ToLower();
             int hits = 0;
 
-            foreach (String targ in targs)
+            foreach (string targ in targs)
             {
                 bool hitted = false;
                 if (s.IndexOf(targ) > -1)
@@ -382,7 +382,7 @@ namespace Npoi.Core.XWPF.Extractor
             //This ensures that there is only one copy.
             MatchCollection mc;
             int hit;
-            foreach (String targ in targs)
+            foreach (string targ in targs)
             {
                 mc = Regex.Matches(s, targ);
                 hit = 0;

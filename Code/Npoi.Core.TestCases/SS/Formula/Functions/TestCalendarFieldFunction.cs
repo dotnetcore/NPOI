@@ -103,7 +103,7 @@ namespace TestCases.SS.Formula.Functions
             Confirm("SECOND(0.26)", 24);
         }
 
-        private void Confirm(String formulaText, double expectedResult)
+        private void Confirm(string formulaText, double expectedResult)
         {
             cell11.CellFormula=(formulaText);
             Evaluator.ClearAllCachedResultValues();

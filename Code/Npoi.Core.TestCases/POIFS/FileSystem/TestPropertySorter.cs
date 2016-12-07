@@ -59,7 +59,7 @@ namespace TestCases.POIFS.FileSystem
 
 
         //the correct order of entries in the Test file
-        private static String[] _entries = { "dir", "JML", "UTIL", "Loader", "Sheet1", "Sheet2", "Sheet3", "__SRP_0", "__SRP_1", "__SRP_2", "__SRP_3", "__SRP_4", "__SRP_5", "ThisWorkbook","_VBA_PROJECT"       //Changed the last two order which become more reasonable
+        private static string[] _entries = { "dir", "JML", "UTIL", "Loader", "Sheet1", "Sheet2", "Sheet3", "__SRP_0", "__SRP_1", "__SRP_2", "__SRP_3", "__SRP_4", "__SRP_5", "ThisWorkbook","_VBA_PROJECT"       //Changed the last two order which become more reasonable
     };
 
         private static POIFSFileSystem OpenSampleFS()

@@ -28,7 +28,7 @@ namespace TestCases
      */
     public class POITestCase
     {
-        public static void AssertContains(String haystack, String needle)
+        public static void AssertContains(string haystack, String needle)
         {
             Assert.IsTrue(
                   haystack.Contains(needle),

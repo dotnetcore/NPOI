@@ -219,7 +219,7 @@ namespace Npoi.Core.XSSF.UserModel
                 String position = _vmlShape.GetClientDataArray(0).GetAnchorArray(0);
                 int[] pos = new int[8];
                 int i = 0;
-                foreach (String s in position.Split(",".ToCharArray()))
+                foreach (string s in position.Split(",".ToCharArray()))
                 {
                     pos[i++] = int.Parse(s.Trim());
                 }

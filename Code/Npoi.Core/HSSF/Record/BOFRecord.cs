@@ -196,7 +196,7 @@ namespace Npoi.Core.HSSF.Record
             set { field_2_type = (int)value; }
         }
 
-        private String TypeName
+        private string TypeName
         {
             get
             {

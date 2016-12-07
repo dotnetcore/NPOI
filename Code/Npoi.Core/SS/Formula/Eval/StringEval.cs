@@ -36,7 +36,7 @@ namespace Npoi.Core.SS.Formula.Eval
         {
         }
 
-        public StringEval(String value)
+        public StringEval(string value)
         {
             if (value == null)
             {

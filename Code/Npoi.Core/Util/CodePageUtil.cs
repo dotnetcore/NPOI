@@ -205,7 +205,7 @@ namespace Npoi.Core.Util
          * @param codepage The codepage number
          */
 
-        public static byte[] GetBytesInCodePage(String string1, int codepage)
+        public static byte[] GetBytesInCodePage(string string1, int codepage)
         {
             String encoding = CodepageToEncoding(codepage);
             return Encoding.GetEncoding(encoding).GetBytes(string1);

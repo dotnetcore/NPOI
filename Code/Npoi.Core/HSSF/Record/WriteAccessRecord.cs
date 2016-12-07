@@ -34,7 +34,7 @@ namespace Npoi.Core.HSSF.Record
     public class WriteAccessRecord : StandardRecord
     {
         public const short sid = 0x5c;
-        private String field_1_username = string.Empty;
+        private string field_1_username = string.Empty;
 
         private const byte PAD_CHAR = (byte)' ';
         private const int DATA_SIZE = 112;

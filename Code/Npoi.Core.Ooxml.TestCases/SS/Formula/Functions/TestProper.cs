@@ -74,7 +74,7 @@ namespace Npoi.Core.SS.Formula.Functions
             Confirm("PROPER(\"" + builder.ToString() + "\")", expected.ToString());
         }
 
-        private void Confirm(String formulaText, String expectedResult)
+        private void Confirm(string formulaText, String expectedResult)
         {
             cell11.CellFormula = (/*setter*/formulaText);
             Evaluator.ClearAllCachedResultValues();

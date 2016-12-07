@@ -164,7 +164,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          *            The content type associated with the specified extension.
          */
 
-        private void AddDefaultContentType(String extension, String contentType)
+        private void AddDefaultContentType(string extension, String contentType)
         {
             // Remark : Originally the latest parameter was :
             // contentType.toLowerCase(). Change due to a request ID 1996748.
@@ -270,7 +270,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          *         register, then <code>false</code>.
          */
 
-        public bool IsContentTypeRegister(String contentType)
+        public bool IsContentTypeRegister(string contentType)
         {
             if (contentType == null)
                 throw new ArgumentException("contentType");

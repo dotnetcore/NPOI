@@ -35,7 +35,7 @@ namespace Npoi.Core.HSSF.Record
     {
         public const short sid = 0x14;
 
-        public HeaderRecord(String text) : base(text)
+        public HeaderRecord(string text) : base(text)
         {
         }
 

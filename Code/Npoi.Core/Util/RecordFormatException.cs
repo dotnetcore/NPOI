@@ -29,12 +29,12 @@ namespace Npoi.Core.Util
     public class RecordFormatException
         : RuntimeException
     {
-        public RecordFormatException(String exception) :
+        public RecordFormatException(string exception) :
             base(exception)
         {
         }
 
-        public RecordFormatException(String exception, Exception ex)
+        public RecordFormatException(string exception, Exception ex)
             : base(exception, ex)
         {
         }

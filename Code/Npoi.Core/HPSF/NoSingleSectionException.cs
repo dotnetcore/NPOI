@@ -53,7 +53,7 @@ namespace Npoi.Core.HPSF
         /// Initializes a new instance of the <see cref="NoSingleSectionException"/> class.
         /// </summary>
         /// <param name="msg">The exception's message string</param>
-        public NoSingleSectionException(String msg) : base(msg) {
+        public NoSingleSectionException(string msg) : base(msg) {
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="msg">The exception's message string</param>
         /// <param name="reason">This exception's underlying reason</param>
-        public NoSingleSectionException(String msg, Exception reason) : base(msg, reason) {
+        public NoSingleSectionException(string msg, Exception reason) : base(msg, reason) {
         }
     }
 }

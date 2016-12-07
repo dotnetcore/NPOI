@@ -76,7 +76,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return new StringEval(result);
         }
 
-        private static String ReplaceAllOccurrences(String oldStr, String searchStr, String newStr)
+        private static string ReplaceAllOccurrences(string oldStr, String searchStr, String newStr)
         {
             StringBuilder sb = new StringBuilder();
             int startIndex = 0;
@@ -97,7 +97,7 @@ namespace Npoi.Core.SS.Formula.Functions
             }
         }
 
-        private static String ReplaceOneOccurrence(String oldStr, String searchStr, String newStr, int instanceNumber)
+        private static string ReplaceOneOccurrence(string oldStr, String searchStr, String newStr, int instanceNumber)
         {
             if (searchStr.Length < 1)
             {

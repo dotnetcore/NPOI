@@ -35,7 +35,7 @@ namespace Npoi.Core.HSSF.Record
         private short field_1_Readonly;
         private short field_2_password;
         private byte field_3_username_unicode_options;
-        private String field_3_username_value;
+        private string field_3_username_value;
 
         public FileSharingRecord()
         {
@@ -74,7 +74,7 @@ namespace Npoi.Core.HSSF.Record
 
         //this Is the world's lamest "security".  thanks to Wouter van Vugt for making me
         //not have to try real hard.  -ACO
-        public static short HashPassword(String password)
+        public static short HashPassword(string password)
         {
             byte[] passwordChars = Encoding.UTF8.GetBytes(password);
             int hash = 0;

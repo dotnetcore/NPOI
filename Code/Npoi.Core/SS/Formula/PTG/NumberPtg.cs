@@ -49,7 +49,7 @@ namespace Npoi.Core.SS.Formula.PTG
          *  @param value : String representation of a floating point number
          */
 
-        public NumberPtg(String value)
+        public NumberPtg(string value)
             : this(Double.Parse(value, CultureInfo.InvariantCulture))
         {
         }

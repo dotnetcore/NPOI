@@ -444,7 +444,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="propertyId">The property number for the name</param>
         /// <returns>A descriptive name.</returns>
-        private String PropertyName(short propertyId) {
+        private string PropertyName(short propertyId) {
             PropName[] props = new PropName[] {
             new PropName(4, "transform.rotation"),
             new PropName(119, "protection.lockrotation"),
@@ -736,7 +736,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="b">blip id</param>
         /// <returns> A description.</returns>
-        private String GetBlipType(byte b) {
+        private string GetBlipType(byte b) {
             switch (b) {
                 case 0:
                     return " ERROR";
@@ -775,7 +775,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="n32">The N32.</param>
         /// <returns></returns>
-        private String Dec1616(int n32) {
+        private string Dec1616(int n32) {
             String result = "";
             result += (short)(n32 >> 16);
             result += '.';

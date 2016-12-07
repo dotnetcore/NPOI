@@ -132,7 +132,7 @@ namespace TestCases.HSSF.Record.Crypto
                 throw new ComparisonFailure("Value mismatch", new String(exp), new String(act));
             }
 
-            public void ConfirmData(String expHexData)
+            public void ConfirmData(string expHexData)
             {
 
                 byte[] expData = HexRead.ReadFromString(expHexData);

@@ -33,7 +33,7 @@ namespace TestCases.HSSF.Record.Aggregates
     [TestFixture]
     public class TestValueRecordsAggregate
     {
-        private static String ABNORMAL_SHARED_FORMULA_FLAG_TEST_FILE = "AbnormalSharedFormulaFlag.xls";
+        private static string ABNORMAL_SHARED_FORMULA_FLAG_TEST_FILE = "AbnormalSharedFormulaFlag.xls";
         ValueRecordsAggregate valueRecord = new ValueRecordsAggregate();
         [TearDown]
         public void TearDown()
@@ -244,7 +244,7 @@ namespace TestCases.HSSF.Record.Aggregates
                 throw new Exception("Something else wrong with this Test case");
             }
         }
-        private static String GetFormulaFromFirstCell(Npoi.Core.SS.UserModel.ISheet s, int rowIx)
+        private static string GetFormulaFromFirstCell(Npoi.Core.SS.UserModel.ISheet s, int rowIx)
         {
             return s.GetRow(rowIx).GetCell((short)0).CellFormula;
         }

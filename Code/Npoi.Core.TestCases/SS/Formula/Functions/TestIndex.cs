@@ -74,7 +74,7 @@ namespace TestCases.SS.Formula.Functions
          * @param rowNum 1-based
          * @param colNum 1-based, pass -1 to signify argument not present
          */
-        private static void ConfirmAreaEval(String areaRefString, double[] dValues,
+        private static void ConfirmAreaEval(string areaRefString, double[] dValues,
                 int rowNum, int colNum, double expectedResult)
         {
             ValueEval[] values = new ValueEval[dValues.Length];
@@ -160,7 +160,7 @@ namespace TestCases.SS.Formula.Functions
          * Confirms that the result is an area ref with the specified coordinates
          * @return <c>ve</c> cast to {@link AreaEval} if it is valid
          */
-        private static AreaEval ConfirmAreaEval(String refText, ValueEval ve)
+        private static AreaEval ConfirmAreaEval(string refText, ValueEval ve)
         {
             CellRangeAddress cra = CellRangeAddress.ValueOf(refText);
             Assert.IsTrue(ve is AreaEval);

@@ -221,7 +221,7 @@ namespace Npoi.Core.HSSF.UserModel
             "BOOK",     // Typically odd Crystal Reports exports
         };
 
-        private static String GetWorkbookDirEntryName(DirectoryNode directory)
+        private static string GetWorkbookDirEntryName(DirectoryNode directory)
         {
             String[] potentialNames = WORKBOOK_DIR_ENTRY_NAMES;
             for (int i = 0; i < potentialNames.Length; i++)
@@ -439,7 +439,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="sheetname">the name of the sheet to reorder</param>
         /// <param name="pos">the position that we want to Insert the sheet into (0 based)</param>
-        public void SetSheetOrder(String sheetname, int pos)
+        public void SetSheetOrder(string sheetname, int pos)
         {
             int oldSheetIndex = GetSheetIndex(sheetname);
             HSSFSheet sheet = (HSSFSheet)this.GetSheet(sheetname);
@@ -722,7 +722,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="name">the sheet name</param>
         /// <returns>index of the sheet (0 based)</returns>
-        public int GetSheetIndex(String name)
+        public int GetSheetIndex(string name)
         {
             return workbook.GetSheetIndex(name);
         }
@@ -813,7 +813,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="srcName">Name of the SRC.</param>
         /// <returns></returns>
-        private String GetUniqueSheetName(String srcName)
+        private string GetUniqueSheetName(string srcName)
         {
             int uniqueIndex = 2;
             String baseName = srcName;
@@ -860,7 +860,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="sheetname">sheetname to set for the sheet.</param>
         /// <returns>HSSFSheet representing the new sheet.</returns>
-        public ISheet CreateSheet(String sheetname)
+        public ISheet CreateSheet(string sheetname)
         {
             if (sheetname == null)
             {
@@ -914,7 +914,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="name">name of the sheet</param>
         /// <returns>HSSFSheet with the name provided or null if it does not exist</returns>
-        public Npoi.Core.SS.UserModel.ISheet GetSheet(String name)
+        public Npoi.Core.SS.UserModel.ISheet GetSheet(string name)
         {
             HSSFSheet retval = null;
 
@@ -1431,7 +1431,7 @@ namespace Npoi.Core.HSSF.UserModel
         }
 
         [Obsolete("Do not call this method from your applications. Use the methods available in the HSSFRow to Add string HSSFCells")]
-        public int AddSSTString(String str)
+        public int AddSSTString(string str)
         {
             return workbook.AddSSTString(new UnicodeString(str));
         }
@@ -1491,7 +1491,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-        public Npoi.Core.SS.UserModel.IName GetName(String name)
+        public Npoi.Core.SS.UserModel.IName GetName(string name)
         {
             int nameIndex = GetNameIndex(name);
             if (nameIndex < 0)
@@ -1645,7 +1645,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="name">named range name</param>
         /// <returns>named range index</returns>
-        public int GetNameIndex(String name)
+        public int GetNameIndex(string name)
         {
             int retval = -1;
 
@@ -1664,7 +1664,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         //
         /// <summary>
-        /// As GetNameIndex(String) is not necessarily unique
+        /// As GetNameIndex(string) is not necessarily unique
         /// (name + sheet index is unique), this method is more accurate.
         /// </summary>
         /// <param name="name">the name whose index in the list of names of this workbook should be looked up.</param>
@@ -1706,7 +1706,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// Remove the named range by his name
         /// </summary>
         /// <param name="name">named range name</param>
-        public void RemoveName(String name)
+        public void RemoveName(string name)
         {
             int index = GetNameIndex(name);
 
@@ -1715,7 +1715,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         //
         /// <summary>
-        ///  As #removeName(String) is not necessarily unique (name + sheet index is unique),
+        ///  As #removeName(string) is not necessarily unique (name + sheet index is unique),
         ///  this method is more accurate.
         /// </summary>
         /// <param name="name">the name to remove.</param>
@@ -1922,7 +1922,7 @@ namespace Npoi.Core.HSSF.UserModel
             return pictures;
         }
 
-        //public HSSFAutoFilter CreateAutoFilter(String formula)
+        //public HSSFAutoFilter CreateAutoFilter(string formula)
         //{
         //    if (string.IsNullOrEmpty(formula))
         //        return null;
@@ -1967,7 +1967,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             Dictionary<String, ClassID> olemap = new Dictionary<String, ClassID>();
             olemap.Add("PowerPoint Document", ClassID.PPT_SHOW);
-            foreach (String str in WORKBOOK_DIR_ENTRY_NAMES)
+            foreach (string str in WORKBOOK_DIR_ENTRY_NAMES)
             {
                 olemap.Add(str, ClassID.XLS_WORKBOOK);
             }
@@ -2038,7 +2038,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="name">The name the workbook will be referenced as in formulas</param>
         /// <param name="workbook">The open workbook to fetch the link required information from</param>
         /// <returns></returns>
-        public int LinkExternalWorkbook(String name, IWorkbook workbook)
+        public int LinkExternalWorkbook(string name, IWorkbook workbook)
         {
             return this.workbook.LinkExternalWorkbook(name, workbook);
         }
@@ -2060,7 +2060,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="password">password to set</param>
         /// <param name="username">The username.</param>
-        public void WriteProtectWorkbook(String password, String username)
+        public void WriteProtectWorkbook(string password, String username)
         {
             this.workbook.WriteProtectWorkbook(password, username);
         }
@@ -2188,7 +2188,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @return true if the oldUrl was found and replaced with newUrl. Otherwise false
          */
 
-        public bool ChangeExternalReference(String oldUrl, String newUrl)
+        public bool ChangeExternalReference(string oldUrl, String newUrl)
         {
             return workbook.ChangeExternalReference(oldUrl, newUrl);
         }

@@ -221,7 +221,7 @@ namespace Npoi.Core.Util
         {
         }
 
-        public BigInteger(String val, int radix)
+        public BigInteger(string val, int radix)
         {
             int cursor = 0, numDigits;
             int len = val.Length;
@@ -350,7 +350,7 @@ namespace Npoi.Core.Util
          * {@code Integer.toString}).  The digit-to-character mapping
          * provided by {@code Character.forDigit} is used, and a minus
          * sign is prepended if appropriate.  (This representation is
-         * compatible with the {@link #BigInteger(String, int) (String,
+         * compatible with the {@link #BigInteger(string, int) (string,
          * int)} constructor.)
          *
          * @param  radix  radix of the String representation.

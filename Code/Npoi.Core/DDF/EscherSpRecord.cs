@@ -131,7 +131,7 @@ namespace Npoi.Core.DDF
                     "  Flags: " + DecodeFlags(field_2_flags) + " (0x" + HexDump.ToHex(field_2_flags) + ")" + nl;
         }
 
-        public override String ToXml(String tab) {
+        public override String ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
                     .Append(tab).Append("\t").Append("<ShapeType>0x").Append(HexDump.ToHex(ShapeType)).Append("</ShapeType>\n")
@@ -146,7 +146,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="flags">The flags.</param>
         /// <returns></returns>
-        private String DecodeFlags(int flags) {
+        private string DecodeFlags(int flags) {
             StringBuilder result = new StringBuilder();
             result.Append((flags & FLAG_GROUP) != 0 ? "|GROUP" : "");
             result.Append((flags & FLAG_CHILD) != 0 ? "|CHILD" : "");

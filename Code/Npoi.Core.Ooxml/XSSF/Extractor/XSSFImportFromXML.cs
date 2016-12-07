@@ -69,7 +69,7 @@
 //     * @throws ParserConfigurationException if there are problems with XML Parser configuration
 //     * @throws IOException  if there are problems Reading the input string
 //     */
-//    public void importFromXML(String xmlInputString) , XPathExpressionException, ParserConfigurationException, IOException {
+//    public void importFromXML(string xmlInputString) , XPathExpressionException, ParserConfigurationException, IOException {
 //        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 //        factory.SetNamespaceAware(true);
 //        DocumentBuilder builder = factory.newDocumentBuilder();
@@ -121,7 +121,7 @@
 //                    String nodeXPath = commonXPath + "[" + (i + 1) + "]" + localXPath;
 
 //                    // TODO: convert the data to the cell format
-//                    String value = (String) xpath.Evaluate(nodeXPath, result.item(i), XPathConstants.STRING);
+//                    String value = (string) xpath.Evaluate(nodeXPath, result.item(i), XPathConstants.STRING);
 //                    logger.log(POILogger.DEBUG, "Extracting with xpath " + nodeXPath + " : value is '" + value + "'");
 //                    XSSFRow row = table.GetXSSFSheet().GetRow(rowId);
 //                    if (row == null) {
@@ -151,7 +151,7 @@
 //            _docElem = doc.GetDocumentElement();
 //        }
 
-//        public String GetNamespaceURI(String prefix) {
+//        public String GetNamespaceURI(string prefix) {
 //            return GetNamespaceForPrefix(prefix);
 //        }
 
@@ -160,7 +160,7 @@
 //         * @return uri of Namespace that prefix Resolves to, or
 //         *         <code>null</code> if specified prefix is not bound.
 //         */
-//        private String GetNamespaceForPrefix(String prefix) {
+//        private string GetNamespaceForPrefix(string prefix) {
 //            // Code adapted from Xalan's org.apache.xml.utils.PrefixResolverDefault.GetNamespaceForPrefix()
 
 //            if (prefix.Equals("xml")) {
@@ -203,12 +203,12 @@
 //        }
 
 //        // Dummy implementation - not used!
-//        public Iterator GetPrefixes(String val) {
+//        public Iterator GetPrefixes(string val) {
 //            return null;
 //        }
 
 //        // Dummy implementation - not used!
-//        public String GetPrefix(String uri) {
+//        public String GetPrefix(string uri) {
 //            return null;
 //        }
 //    }

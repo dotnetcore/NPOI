@@ -31,20 +31,20 @@ namespace TestCases.SS.Formula.Functions
     public class TestValue
     {
 
-        private static ValueEval invokeValue(String strText)
+        private static ValueEval invokeValue(string strText)
         {
             ValueEval[] args = new ValueEval[] { new StringEval(strText), };
             return new Value().Evaluate(args, -1, (short)-1);
         }
 
-        private static void ConfirmValue(String strText, double expected)
+        private static void ConfirmValue(string strText, double expected)
         {
             ValueEval result = invokeValue(strText);
             Assert.AreEqual(typeof(NumberEval), result.GetType());
             Assert.AreEqual(expected, ((NumberEval)result).NumberValue, 0.0);
         }
 
-        private static void ConfirmValueError(String strText)
+        private static void ConfirmValueError(string strText)
         {
             ValueEval result = invokeValue(strText);
             Assert.AreEqual(typeof(ErrorEval), result.GetType());

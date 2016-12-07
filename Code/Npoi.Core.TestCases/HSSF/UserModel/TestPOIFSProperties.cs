@@ -35,7 +35,7 @@ namespace TestCases.HSSF.UserModel
     public class TestPOIFSProperties
     {
 
-        private static String title = "Testing POIFS properties";
+        private static string title = "Testing POIFS properties";
 
         public void TestFail()  
         {

@@ -34,7 +34,7 @@ namespace Npoi.Core.POIFS.Dev
 {
     public class POIFSLister
     {
-        public static void ViewFile(String filename)
+        public static void ViewFile(string filename)
         {
             using (Stream stream = new FileStream(filename, FileMode.Open))
             {

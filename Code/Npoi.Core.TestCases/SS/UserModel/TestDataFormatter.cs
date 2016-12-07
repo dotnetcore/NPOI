@@ -88,7 +88,7 @@ namespace TestCases.SS.UserModel
              "[BLACK]##.##;[RED]-##.##",
              "[COLOR11]##.##;[COLOR 43]-##.00",
        };
-            foreach (String format in formats)
+            foreach (string format in formats)
             {
                 Assert.AreEqual(
                       "12.34",
@@ -117,7 +117,7 @@ namespace TestCases.SS.UserModel
             String[] formats = new String[] {
              "#,##0.00;[Blue](#,##0.00)",
        };
-            foreach (String format in formats)
+            foreach (string format in formats)
             {
                 Assert.AreEqual(
                       
@@ -137,7 +137,7 @@ namespace TestCases.SS.UserModel
             formats = new String[] {
              "$#,##0.00;[Red]($#,##0.00)"
        };
-            foreach (String format in formats)
+            foreach (string format in formats)
             {
                 Assert.AreEqual(
                       "$12.34",

@@ -136,7 +136,7 @@ namespace Npoi.Core.XSSF.Extractor
 
             xpaths.Sort();
 
-            foreach (String xpath in xpaths)
+            foreach (string xpath in xpaths)
             {
                 XSSFSingleXmlCell simpleXmlCell;
                 if (SingleXmlCellsMappings.ContainsKey(xpath))
@@ -282,12 +282,12 @@ namespace Npoi.Core.XSSF.Extractor
             }
         }
 
-        private String RemoveNamespace(String elementName)
+        private string RemoveNamespace(string elementName)
         {
             return Regex.IsMatch(elementName, ".*:.*") ? elementName.Split(new char[] { ':' })[1] : elementName;
         }
 
-        private XElement GetNodeByXPath(String xpath, XElement rootNode, XDocument doc, bool CreateMultipleInstances)
+        private XElement GetNodeByXPath(string xpath, XElement rootNode, XDocument doc, bool CreateMultipleInstances)
         {
             String[] xpathTokens = xpath.Split(new char[] { '/' });
 
@@ -350,7 +350,7 @@ namespace Npoi.Core.XSSF.Extractor
             return selectedNode;
         }
 
-        private XElement selectNode(String axisName, IList<XElement> list)
+        private XElement selectNode(string axisName, IList<XElement> list)
         {
             XElement selectedNode = null;
             for (int j = 0; j < list.Count; j++)
@@ -371,7 +371,7 @@ namespace Npoi.Core.XSSF.Extractor
             return schemaNamespace != null && !schemaNamespace.Equals("");
         }
 
-        private String GetNamespace()
+        private string GetNamespace()
         {
             return map.GetCTSchema().Namespace;
         }
@@ -381,7 +381,7 @@ namespace Npoi.Core.XSSF.Extractor
          *
          */
 
-        public int Compare(String leftXpath, String rightXpath)
+        public int Compare(string leftXpath, String rightXpath)
         {
             int result = 0;
             string xmlSchema = map.GetSchema();
@@ -429,7 +429,7 @@ namespace Npoi.Core.XSSF.Extractor
             return result;
         }
 
-        private int IndexOfElementInComplexType(String elementName, XElement complexType)
+        private int IndexOfElementInComplexType(string elementName, XElement complexType)
         {
             var list = complexType.ChildElements().ToList();
             int indexOf = -1;
@@ -450,7 +450,7 @@ namespace Npoi.Core.XSSF.Extractor
             return indexOf;
         }
 
-        private XElement GetComplexTypeForElement(String elementName, XElement xmlSchema, XElement localComplexTypeRootNode)
+        private XElement GetComplexTypeForElement(string elementName, XElement xmlSchema, XElement localComplexTypeRootNode)
         {
             XElement complexTypeNode = null;
 

@@ -34,8 +34,8 @@ namespace Npoi.Core.SS.Formula.PTG
     public class Ref3DPxg : RefPtgBase, Pxg3D
     {
         private int externalWorkbookNumber = -1;
-        private String firstSheetName;
-        private String lastSheetName;
+        private string firstSheetName;
+        private string lastSheetName;
 
         public Ref3DPxg(int externalWorkbookNumber, SheetIdentifier sheetName, String cellref)
             : this(externalWorkbookNumber, sheetName, new CellReference(cellref))

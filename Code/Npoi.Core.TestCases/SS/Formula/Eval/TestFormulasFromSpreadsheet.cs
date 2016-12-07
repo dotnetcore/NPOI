@@ -110,7 +110,7 @@ namespace TestCases.SS.Formula.Eval
         }
 
 
-        private static void ConfirmExpectedResult(String msg, ICell expected, CellValue actual)
+        private static void ConfirmExpectedResult(string msg, ICell expected, CellValue actual)
         {
             if (expected == null)
             {
@@ -328,7 +328,7 @@ namespace TestCases.SS.Formula.Eval
         /**
          * @return <code>null</code> if cell is missing, empty or blank
          */
-        private static String GetTargetFunctionName(IRow r)
+        private static string GetTargetFunctionName(IRow r)
         {
             if (r == null)
             {

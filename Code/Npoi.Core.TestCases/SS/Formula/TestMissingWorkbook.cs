@@ -41,7 +41,7 @@ namespace TestCases.SS.Formula
         {
             ;
         }
-        protected TestMissingWorkbook(String MAIN_WORKBOOK_FILENAME,
+        protected TestMissingWorkbook(string MAIN_WORKBOOK_FILENAME,
                 String SOURCE_DUMMY_WORKBOOK_FILENAME, String SOURCE_WORKBOOK_FILENAME)
         {
             this.MAIN_WORKBOOK_FILENAME = MAIN_WORKBOOK_FILENAME;

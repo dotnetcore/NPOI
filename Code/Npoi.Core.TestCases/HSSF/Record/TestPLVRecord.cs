@@ -33,9 +33,9 @@ namespace TestCases.HSSF.Record
     [TestFixture]
     public class TestPLVRecord
     {
-        private static String DV_DEFINITION = "$A$1:$A$5";
-        private static String XLS_FILENAME = "53972.xls";
-        private static String SHEET_NAME = "S2";
+        private static string DV_DEFINITION = "$A$1:$A$5";
+        private static string XLS_FILENAME = "53972.xls";
+        private static string SHEET_NAME = "S2";
         [Test]
         public void TestPLVRecord1()
         {

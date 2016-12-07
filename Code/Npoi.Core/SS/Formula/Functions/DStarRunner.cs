@@ -426,7 +426,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @If it's not possible to retrieve a String value.
          */
 
-        private static String GetStringFromValueEval(ValueEval value)
+        private static string GetStringFromValueEval(ValueEval value)
         {
             value = solveReference(value);
             if (value is BlankEval)

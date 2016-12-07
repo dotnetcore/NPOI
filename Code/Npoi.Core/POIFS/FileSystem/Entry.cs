@@ -87,6 +87,6 @@ namespace Npoi.Core.POIFS.FileSystem
         /// </summary>
         /// <param name="newName">the new name for this Entry</param>
         /// <returns>true if the operation succeeded, else false</returns>
-        bool RenameTo(String newName);
+        bool RenameTo(string newName);
     }
 }

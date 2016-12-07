@@ -39,7 +39,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
             {
                 this.contentTypeManager = new ZipContentTypeManager(null, this);
             }
-            catch (InvalidFormatException e) { }
+            catch (InvalidFormatException ) { }
         }
 
         /**
@@ -71,7 +71,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *             If the content type part parsing encounters an error.
          */
 
-        public ZipPackage(String path, PackageAccess access)
+        public ZipPackage(string path, PackageAccess access)
             : base(access)
         {
             ZipFile zipFile = null;
@@ -384,7 +384,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @return A unique identifier use to be use as a temp file name.
          */
 
-        private String GenerateTempFileName(string directory)
+        private string GenerateTempFileName(string directory)
         {
             FileInfo tmpFilename = null;
             string path = null;

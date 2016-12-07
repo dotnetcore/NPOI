@@ -111,7 +111,7 @@ namespace Npoi.Core.SS.UserModel
          * @param text The prompt box's text
          */
 
-        void CreatePromptBox(String title, String text);
+        void CreatePromptBox(string title, String text);
 
         /**
          * @return Prompt box's title or <code>null</code>
@@ -133,7 +133,7 @@ namespace Npoi.Core.SS.UserModel
          * @param text The error box's text
          */
 
-        void CreateErrorBox(String title, String text);
+        void CreateErrorBox(string title, String text);
 
         /**
          * @return Error box's title or <code>null</code>

@@ -35,14 +35,14 @@ namespace Npoi.Core.XSSF
 
     public class XSSFTestDataSamples
     {
-        public static OPCPackage OpenSamplePackage(String sampleName)
+        public static OPCPackage OpenSamplePackage(string sampleName)
         {
             return OPCPackage.Open(
                   HSSFTestDataSamples.OpenSampleFileStream(sampleName)
             );
         }
 
-        public static XSSFWorkbook OpenSampleWorkbook(String sampleName)
+        public static XSSFWorkbook OpenSampleWorkbook(string sampleName)
         {
             Stream is1 = HSSFTestDataSamples.OpenSampleFileStream(sampleName);
             return new XSSFWorkbook(is1);

@@ -33,12 +33,12 @@ namespace TestCases.SS.Formula.Function
     public class TestParseMissingBuiltInFuncs
     {
 
-        private static Ptg[] Parse(String formula)
+        private static Ptg[] Parse(string formula)
         {
             HSSFWorkbook book = new HSSFWorkbook();
             return HSSFFormulaParser.Parse(formula, book);
         }
-        private static void ConfirmFunc(String formula, int expPtgArraySize, bool isVarArgFunc, int funcIx)
+        private static void ConfirmFunc(string formula, int expPtgArraySize, bool isVarArgFunc, int funcIx)
         {
             Ptg[] ptgs = Parse(formula);
             Ptg ptgF = ptgs[ptgs.Length - 1];  // func is last RPN token in all these formulas

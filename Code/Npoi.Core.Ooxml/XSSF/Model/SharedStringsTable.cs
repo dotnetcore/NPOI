@@ -108,7 +108,7 @@ namespace Npoi.Core.XSSF.Model
             }
         }
 
-        private String GetKey(CT_Rst st)
+        private string GetKey(CT_Rst st)
         {
             return st.XmlText;
         }

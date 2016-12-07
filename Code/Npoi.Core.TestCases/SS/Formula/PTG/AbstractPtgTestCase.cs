@@ -36,7 +36,7 @@ namespace TestCases.SS.Formula.PTG
          * @param sampleFileName the filename.
          * @return the loaded workbook.
          */
-        protected static HSSFWorkbook LoadWorkbook(String sampleFileName)
+        protected static HSSFWorkbook LoadWorkbook(string sampleFileName)
         {
             return HSSFTestDataSamples.OpenSampleWorkbook(sampleFileName);
         }
@@ -44,7 +44,7 @@ namespace TestCases.SS.Formula.PTG
         /**
          * Creates a new Workbook and Adds one sheet with the specified name
          */
-        protected static HSSFWorkbook CreateWorkbookWithSheet(String sheetName)
+        protected static HSSFWorkbook CreateWorkbookWithSheet(string sheetName)
         {
             HSSFWorkbook book = new HSSFWorkbook();
             book.CreateSheet(sheetName);

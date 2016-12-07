@@ -36,7 +36,7 @@ namespace Npoi.Core.POIFS.Dev
 
     public class POIFSViewer
     {
-        public static void ViewFile(String filename, bool printName)
+        public static void ViewFile(string filename, bool printName)
         {
             if (printName)
             {

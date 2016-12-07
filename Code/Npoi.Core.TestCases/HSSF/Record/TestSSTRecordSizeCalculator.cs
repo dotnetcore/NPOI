@@ -35,7 +35,7 @@ namespace TestCases.HSSF.Record
     [TestFixture]
     public class TestSSTRecordSizeCalculator
     {
-        private static String SMALL_STRING = "Small string";
+        private static string SMALL_STRING = "Small string";
         private static int COMPRESSED_PLAIN_STRING_OVERHEAD = 3;
         //    private List recordLengths;
         private IntMapper<UnicodeString> strings = new IntMapper<UnicodeString>();
@@ -123,7 +123,7 @@ namespace TestCases.HSSF.Record
             String s = new String(new char[size]);
             return MakeUnicodeString(s);
         }
-        private static UnicodeString MakeUnicodeString(String s)
+        private static UnicodeString MakeUnicodeString(string s)
         {
             UnicodeString st = new UnicodeString(s);
             st.OptionFlags = ((byte)0);

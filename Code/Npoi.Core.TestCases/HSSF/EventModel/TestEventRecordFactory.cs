@@ -156,7 +156,7 @@ namespace TestCases.HSSF.EventModel
 
         class ERFListener2 : IERFListener
         {
-            private String[] expectedRecordTypes = {
+            private string[] expectedRecordTypes = {
               typeof(UnknownRecord).Name,
               typeof(ContinueRecord).Name,
               typeof(ContinueRecord).Name

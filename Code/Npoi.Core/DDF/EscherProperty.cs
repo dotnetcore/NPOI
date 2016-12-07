@@ -104,7 +104,7 @@ namespace Npoi.Core.DDF
             get { return 6; }
         }
 
-        public virtual String ToXml(String tab) {
+        public virtual String ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab)
                    .Append("<")

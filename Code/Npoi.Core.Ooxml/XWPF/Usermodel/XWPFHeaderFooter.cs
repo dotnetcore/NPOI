@@ -362,7 +362,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @throws Exception
          */
 
-        public XWPFPictureData GetPictureDataByID(String blipID)
+        public XWPFPictureData GetPictureDataByID(string blipID)
         {
             POIXMLDocumentPart relatedPart = GetRelationById(blipID);
             if (relatedPart != null && relatedPart is XWPFPictureData)

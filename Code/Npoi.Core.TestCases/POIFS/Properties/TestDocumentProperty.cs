@@ -134,7 +134,7 @@ namespace TestCases.POIFS.Properties
             Assert.AreEqual(name, property.Name);
         }
 
-        private void VerifyProperty(String name, int size)
+        private void VerifyProperty(string name, int size)
         {
             DocumentProperty property = new DocumentProperty(name, size);
 

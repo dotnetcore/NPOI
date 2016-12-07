@@ -44,7 +44,7 @@ namespace Npoi.Core.SS.Formula.Atp
          * @throws EvaluationException exception upon parsing.
          */
 
-        public static DateTime ParseDate(String strVal)
+        public static DateTime ParseDate(string strVal)
         {
             String[] parts = strVal.Split("-/".ToCharArray());// Pattern.compile("/").split(strVal);
             if (parts.Length != 3)

@@ -42,7 +42,7 @@ namespace TestCases.HPSF.Basic
     public class TestWriteWellKnown
     {
         //static string dataDir = @"..\..\..\TestCases\HPSF\data\";
-        private static String POI_FS = "TestWriteWellKnown.doc";
+        private static string POI_FS = "TestWriteWellKnown.doc";
 
         /**
          * @see TestCase#SetUp()

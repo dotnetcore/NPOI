@@ -285,7 +285,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return appropriate prefix for an auto-numbering bullet
          */
 
-        private String GetBulletPrefix(ListAutoNumber scheme, int value)
+        private string GetBulletPrefix(ListAutoNumber scheme, int value)
         {
             StringBuilder out1 = new StringBuilder();
 
@@ -367,7 +367,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Convert an integer to its alpha equivalent e.g. 1 = A, 2 = B, 27 = AA etc
          */
 
-        private String valueToAlpha(int value)
+        private string valueToAlpha(int value)
         {
             String alpha = "";
             int modulo;
@@ -380,14 +380,14 @@ namespace Npoi.Core.XSSF.UserModel
             return alpha;
         }
 
-        private static String[] _romanChars = new String[] { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+        private static string[] _romanChars = new String[] { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
         private static int[] _romanAlphaValues = new int[] { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
 
         /**
          * Convert an integer to its roman equivalent e.g. 1 = I, 9 = IX etc
          */
 
-        private String valueToRoman(int value)
+        private string valueToRoman(int value)
         {
             StringBuilder out1 = new StringBuilder();
             for (int i = 0; value > 0 && i < _romanChars.Length; i++)
@@ -417,7 +417,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param text	string representing the paragraph text
          */
 
-        public void SetText(String text)
+        public void SetText(string text)
         {
             ClearText();
 
@@ -501,7 +501,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return Created paragraph run
          */
 
-        public XSSFTextParagraph AddNewTextParagraph(String text)
+        public XSSFTextParagraph AddNewTextParagraph(string text)
         {
             XSSFTextParagraph paragraph = AddNewTextParagraph();
             paragraph.AddNewTextRun().Text = (text);

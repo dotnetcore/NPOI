@@ -282,7 +282,7 @@ namespace TestCases.HSSF.Util
 
         }
 
-        private static void ConfirmWholeColumnRef(String ref1, int firstCol, int lastCol, bool firstIsAbs, bool lastIsAbs)
+        private static void ConfirmWholeColumnRef(string ref1, int firstCol, int lastCol, bool firstIsAbs, bool lastIsAbs)
         {
             AreaReference ar = new AreaReference(ref1);
             ConfirmCell(ar.FirstCell, 0, firstCol, true, firstIsAbs);

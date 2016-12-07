@@ -33,8 +33,8 @@ namespace Npoi.Core.SS.Formula.PTG
     public class NameXPxg : OperandPtg, Pxg
     {
         private int externalWorkbookNumber = -1;
-        private String sheetName;
-        private String nameName;
+        private string sheetName;
+        private string nameName;
 
         public NameXPxg(int externalWorkbookNumber, String sheetName, String nameName)
         {
@@ -43,7 +43,7 @@ namespace Npoi.Core.SS.Formula.PTG
             this.nameName = nameName;
         }
 
-        public NameXPxg(String sheetName, String nameName)
+        public NameXPxg(string sheetName, String nameName)
             : this(-1, sheetName, nameName)
         {
         }

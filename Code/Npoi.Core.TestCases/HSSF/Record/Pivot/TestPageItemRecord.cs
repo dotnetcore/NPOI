@@ -56,7 +56,7 @@ namespace TestCases.HSSF.Record.Pivot
             ConfirmSerialize("01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12");
         }
 
-        private static PageItemRecord ConfirmSerialize(String hexDump)
+        private static PageItemRecord ConfirmSerialize(string hexDump)
         {
             byte[] data = HexRead.ReadFromString(hexDump);
             RecordInputStream in1 = TestcaseRecordInputStream.Create(PageItemRecord.sid, data);

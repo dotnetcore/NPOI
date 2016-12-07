@@ -57,7 +57,7 @@ namespace Npoi.Core.SS.Formula.PTG
             ReadCoordinates(in1);
         }
 
-        public Ref3DPtg(String cellref, int externIdx)
+        public Ref3DPtg(string cellref, int externIdx)
         {
             CellReference c = new CellReference(cellref);
             Row = c.Row;

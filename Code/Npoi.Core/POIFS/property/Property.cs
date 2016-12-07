@@ -72,7 +72,7 @@ namespace Npoi.Core.POIFS.Properties
         // documents must be at least this size to be stored in big blocks
         private const int _big_block_minimum_bytes = POIFSConstants.BIG_BLOCK_MINIMUM_DOCUMENT_SIZE;   //4096;
 
-        private String _name;
+        private string _name;
         private ShortField _name_size;
         private ByteField _property_type;
         private ByteField _node_color;

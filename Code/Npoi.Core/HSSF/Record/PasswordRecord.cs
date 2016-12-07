@@ -51,7 +51,7 @@ namespace Npoi.Core.HSSF.Record
 
         //this Is the world's lamest "security".  thanks to Wouter van Vugt for making me
         //not have to try real hard.  -ACO
-        public static short HashPassword(String password)
+        public static short HashPassword(string password)
         {
             byte[] passwordChars = Encoding.UTF8.GetBytes(password);
             int hash = 0;

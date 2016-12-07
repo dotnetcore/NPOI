@@ -198,7 +198,7 @@ namespace Npoi.Core.SS.Format
          * @param desc The string to Parse.
          */
 
-        public CellFormatPart(String desc)
+        public CellFormatPart(string desc)
         {
             Match m = FORMAT_PAT.Match(desc);
             if (!m.Success)
@@ -346,7 +346,7 @@ namespace Npoi.Core.SS.Format
          * @return The type of format.
          */
 
-        private CellFormatType formatType(String fdesc)
+        private CellFormatType formatType(string fdesc)
         {
             fdesc = fdesc.Trim();
             if (fdesc.Equals("") || fdesc.Equals("General", StringComparison.OrdinalIgnoreCase))
@@ -418,7 +418,7 @@ namespace Npoi.Core.SS.Format
          * @see CellFormatType#isSpecial(char)
          */
 
-        private static String QuoteSpecial(String repl, CellFormatType type)
+        private static string QuoteSpecial(string repl, CellFormatType type)
         {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < repl.Length; i++)
@@ -516,7 +516,7 @@ namespace Npoi.Core.SS.Format
             }
         }
 
-        public static StringBuilder ParseFormat(String fdesc, CellFormatType type,
+        public static StringBuilder ParseFormat(string fdesc, CellFormatType type,
                 IPartHandler partHandler)
         {
             // Quoting is very awkward.  In the Java classes, quoting is done
@@ -609,7 +609,7 @@ namespace Npoi.Core.SS.Format
             return fmt;
         }
 
-        public static String QuoteReplacement(String s)
+        public static String QuoteReplacement(string s)
         {
             if ((s.IndexOf('\\') == -1) && (s.IndexOf('$') == -1))
                 return s;
@@ -637,7 +637,7 @@ namespace Npoi.Core.SS.Format
          * @return The character repeated three times.
          */
 
-        internal static String ExpandChar(String part)
+        internal static String ExpandChar(string part)
         {
             String repl;
             char ch = part[1];

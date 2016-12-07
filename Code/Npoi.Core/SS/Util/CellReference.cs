@@ -81,7 +81,7 @@ namespace Npoi.Core.SS.Util
 
         private int _rowIndex;
         private int _colIndex;
-        private String _sheetName;
+        private string _sheetName;
         private bool _isRowAbs;
         private bool _isColAbs;
 
@@ -90,7 +90,7 @@ namespace Npoi.Core.SS.Util
          * delimited and escaped as per normal syntax rules for formulas.
          */
 
-        public CellReference(String cellRef)
+        public CellReference(string cellRef)
         {
             if (cellRef.EndsWith("#REF!", StringComparison.CurrentCulture))
             {
@@ -158,7 +158,7 @@ namespace Npoi.Core.SS.Util
         {
         }
 
-        public CellReference(String pSheetName, int pRow, int pCol, bool pAbsRow, bool pAbsCol)
+        public CellReference(string pSheetName, int pRow, int pCol, bool pAbsRow, bool pAbsCol)
         {
             // TODO - "-1" is a special value being temporarily used for whole row and whole column area references.
             // so these Checks are currently N.Q.R.
@@ -220,7 +220,7 @@ namespace Npoi.Core.SS.Util
          * @return zero based column index
          */
 
-        public static int ConvertColStringToIndex(String ref1)
+        public static int ConvertColStringToIndex(string ref1)
         {
             int retval = 0;
             char[] refs = ref1.ToUpper().ToCharArray();
@@ -242,12 +242,12 @@ namespace Npoi.Core.SS.Util
             return retval - 1;
         }
 
-        public static bool IsPartAbsolute(String part)
+        public static bool IsPartAbsolute(string part)
         {
             return part[0] == ABSOLUTE_REFERENCE_MARKER;
         }
 
-        public static NameType ClassifyCellReference(String str, SpreadsheetVersion ssVersion)
+        public static NameType ClassifyCellReference(string str, SpreadsheetVersion ssVersion)
         {
             int len = str.Length;
             if (len < 1)
@@ -301,7 +301,7 @@ namespace Npoi.Core.SS.Util
             return NameType.NamedRange;
         }
 
-        private static NameType ValidateNamedRangeName(String str, SpreadsheetVersion ssVersion)
+        private static NameType ValidateNamedRangeName(string str, SpreadsheetVersion ssVersion)
         {
             Regex colMatcher = new Regex(COLUMN_REF_PATTERN);
 
@@ -364,7 +364,7 @@ namespace Npoi.Core.SS.Util
          * name still in ALPHA-26 number format.  The third element is the row.
          */
 
-        private static String[] SeparateRefParts(String reference)
+        private static string[] SeparateRefParts(string reference)
         {
             int plingPos = reference.LastIndexOf(SHEET_NAME_DELIMITER);
             String sheetName = ParseSheetName(reference, plingPos);
@@ -394,7 +394,7 @@ namespace Npoi.Core.SS.Util
             };
         }
 
-        private static String ParseSheetName(String reference, int indexOfSheetNameDelimiter)
+        private static string ParseSheetName(string reference, int indexOfSheetNameDelimiter)
         {
             if (indexOfSheetNameDelimiter < 0)
             {
@@ -561,7 +561,7 @@ namespace Npoi.Core.SS.Util
          * @return <c>true</c> if the row and col parameters are within range of a BIFF8 spreadsheet.
          */
 
-        public static bool CellReferenceIsWithinRange(String colStr, String rowStr, SpreadsheetVersion ssVersion)
+        public static bool CellReferenceIsWithinRange(string colStr, String rowStr, SpreadsheetVersion ssVersion)
         {
             if (!IsColumnWithnRange(colStr, ssVersion))
             {
@@ -570,7 +570,7 @@ namespace Npoi.Core.SS.Util
             return IsRowWithnRange(rowStr, ssVersion);
         }
 
-        public static bool IsRowWithnRange(String rowStr, SpreadsheetVersion ssVersion)
+        public static bool IsRowWithnRange(string rowStr, SpreadsheetVersion ssVersion)
         {
             int rowNum = Int32.Parse(rowStr, CultureInfo.InvariantCulture);
 
@@ -587,7 +587,7 @@ namespace Npoi.Core.SS.Util
             return rowNum <= ssVersion.MaxRows;
         }
 
-        public static bool IsColumnWithnRange(String colStr, SpreadsheetVersion ssVersion)
+        public static bool IsColumnWithnRange(string colStr, SpreadsheetVersion ssVersion)
         {
             String lastCol = ssVersion.LastColumnName;
             int lastColLength = lastCol.Length;

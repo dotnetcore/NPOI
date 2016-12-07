@@ -175,12 +175,12 @@ namespace Npoi.Core.XSSF.UserModel
          * The value of <code>null</code> unsets the Typeface attribute from the underlying xml.
          */
 
-        public void SetFont(String typeface)
+        public void SetFont(string typeface)
         {
             SetFontFamily(typeface, unchecked((byte)-1), unchecked((byte)-1), false);
         }
 
-        public void SetFontFamily(String typeface, byte charset, byte pictAndFamily, bool isSymbol)
+        public void SetFontFamily(string typeface, byte charset, byte pictAndFamily, bool isSymbol)
         {
             CT_TextCharacterProperties rPr = GetRPr();
 

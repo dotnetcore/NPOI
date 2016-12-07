@@ -33,7 +33,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * L'ID de la relation.
          */
-        private String id;
+        private string id;
 
         /**
          * Reference to the package.
@@ -43,7 +43,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /**
          * Type de relation.
          */
-        private String relationshipType;
+        private string relationshipType;
 
         /**
          * Partie source de cette relation.

@@ -171,7 +171,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @param evaluators all evaluators for the full set of workbooks required by the formulas.
          */
 
-        public static void SetupEnvironment(String[] workbookNames, HSSFFormulaEvaluator[] evaluators)
+        public static void SetupEnvironment(string[] workbookNames, HSSFFormulaEvaluator[] evaluators)
         {
             WorkbookEvaluator[] wbEvals = new WorkbookEvaluator[evaluators.Length];
             for (int i = 0; i < wbEvals.Length; i++)

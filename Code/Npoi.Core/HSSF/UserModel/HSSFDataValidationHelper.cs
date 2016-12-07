@@ -57,7 +57,7 @@ namespace Npoi.Core.HSSF.UserModel
          * (java.lang.String[])
          */
 
-        public IDataValidationConstraint CreateExplicitListConstraint(String[] listOfValues)
+        public IDataValidationConstraint CreateExplicitListConstraint(string[] listOfValues)
         {
             return DVConstraint.CreateExplicitListConstraint(listOfValues);
         }
@@ -70,7 +70,7 @@ namespace Npoi.Core.HSSF.UserModel
          * (java.lang.String)
          */
 
-        public IDataValidationConstraint CreateFormulaListConstraint(String listFormula)
+        public IDataValidationConstraint CreateFormulaListConstraint(string listFormula)
         {
             return DVConstraint.CreateFormulaListConstraint(listFormula);
         }
@@ -124,7 +124,7 @@ namespace Npoi.Core.HSSF.UserModel
             return DVConstraint.CreateTimeConstraint(operatorType, formula1, formula2);
         }
 
-        public IDataValidationConstraint CreateCustomConstraint(String formula)
+        public IDataValidationConstraint CreateCustomConstraint(string formula)
         {
             return DVConstraint.CreateCustomFormulaConstraint(formula);
         }

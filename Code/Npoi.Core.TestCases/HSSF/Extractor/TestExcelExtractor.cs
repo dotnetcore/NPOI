@@ -34,7 +34,7 @@ using Npoi.Core.HSSF.Record.Crypto;
     public class TestExcelExtractor
     {
 
-        private static ExcelExtractor CreateExtractor(String sampleFileName)
+        private static ExcelExtractor CreateExtractor(string sampleFileName)
         {
 
             Stream is1 = HSSFTestDataSamples.OpenSampleFileStream(sampleFileName);

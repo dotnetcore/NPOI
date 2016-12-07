@@ -205,7 +205,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
          *         <code>null</code> if the formula wasn't modified
          */
 
-        private static String ShiftFormula(XSSFRow row, String formula, FormulaShifter Shifter)
+        private static string ShiftFormula(XSSFRow row, String formula, FormulaShifter Shifter)
         {
             ISheet sheet = row.Sheet;
             IWorkbook wb = sheet.Workbook;

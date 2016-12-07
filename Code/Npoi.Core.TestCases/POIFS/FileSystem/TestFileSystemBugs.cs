@@ -53,14 +53,14 @@ namespace TestCases.POIFS.FileSystem
             }
             openedFSs = null;
         }
-        protected DirectoryNode[] openSample(String name, bool oldFails)
+        protected DirectoryNode[] openSample(string name, bool oldFails)
         {
             return openSamples(new Stream[] {
                 _samples.OpenResourceAsStream(name),
                 _samples.OpenResourceAsStream(name)
         }, oldFails);
         }
-        protected DirectoryNode[] openSSSample(String name, bool oldFails)
+        protected DirectoryNode[] openSSSample(string name, bool oldFails)
         {
             return openSamples(new Stream[] {
                 _ssSamples.OpenResourceAsStream(name),
@@ -186,7 +186,7 @@ namespace TestCases.POIFS.FileSystem
             //    CheckSizes("/", read.Root, entries);
             //}
         }
-        private void fetchSizes(String path, DirectoryNode dir, Dictionary<String, int> entries)
+        private void fetchSizes(string path, DirectoryNode dir, Dictionary<String, int> entries)
         {
             foreach (Entry entry in dir)
             {
@@ -203,7 +203,7 @@ namespace TestCases.POIFS.FileSystem
                 }
             }
         }
-        private void CheckSizes(String path, DirectoryNode dir, Dictionary<String, int> entries)
+        private void CheckSizes(string path, DirectoryNode dir, Dictionary<String, int> entries)
         {
             foreach (Entry entry in dir)
             {

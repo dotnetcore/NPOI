@@ -40,7 +40,7 @@ namespace TestCases.SS.UserModel
         {
             _testDataProvider = testDataProvider;
         }
-        public void BaseTestDefaultFont(String defaultName, short defaultSize, short defaultColor)
+        public void BaseTestDefaultFont(string defaultName, short defaultSize, short defaultColor)
         {
             //get default font and check against default value
             IWorkbook workbook = _testDataProvider.CreateWorkbook();

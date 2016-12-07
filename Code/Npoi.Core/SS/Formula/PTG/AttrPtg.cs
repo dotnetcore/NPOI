@@ -275,7 +275,7 @@ namespace Npoi.Core.SS.Formula.PTG
             }
         }
 
-        public String ToFormulaString(String[] operands)
+        public String ToFormulaString(string[] operands)
         {
             if (space.IsSet(field_1_options))
             {

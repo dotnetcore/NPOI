@@ -227,7 +227,7 @@ namespace Npoi.Core.SS.Formula.PTG
             return b.ToString();
         }
 
-        private static String GetConstantText(Object o)
+        private static string GetConstantText(Object o)
         {
             if (o == null)
             {
@@ -235,7 +235,7 @@ namespace Npoi.Core.SS.Formula.PTG
             }
             if (o is String)
             {
-                return "\"" + (String)o + "\"";
+                return "\"" + (string)o + "\"";
             }
             if (o is Double || o is double)
             {

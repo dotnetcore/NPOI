@@ -81,13 +81,13 @@ namespace Npoi.Core.XSSF.UserModel
             return sheetIndex;
         }
 
-        public int GetExternalSheetIndex(String sheetName)
+        public int GetExternalSheetIndex(string sheetName)
         {
             int sheetIndex = _uBook.GetSheetIndex(sheetName);
             return ConvertToExternalSheetIndex(sheetIndex);
         }
 
-        private int ResolveBookIndex(String bookName)
+        private int ResolveBookIndex(string bookName)
         {
             // Strip the [] wrapper, if still present
             if (bookName.StartsWith("[") && bookName.EndsWith("]"))
@@ -100,7 +100,7 @@ namespace Npoi.Core.XSSF.UserModel
             {
                 return Int32.Parse(bookName);
             }
-            catch (FormatException e) { }
+            catch (FormatException) { }
 
             // Look up an External Link Table for this name
             List<ExternalLinksTable> tables = _uBook.ExternalLinksTable;
@@ -129,7 +129,7 @@ namespace Npoi.Core.XSSF.UserModel
             throw new Exception("Book not linked for filename " + bookName);
         }
 
-        private int FindExternalLinkIndex(String bookName, List<ExternalLinksTable> tables)
+        private int FindExternalLinkIndex(string bookName, List<ExternalLinksTable> tables)
         {
             for (int i = 0; i < tables.Count; i++)
             {
@@ -143,9 +143,9 @@ namespace Npoi.Core.XSSF.UserModel
 
         private class FakeExternalLinksTable : ExternalLinksTable
         {
-            private String fileName;
+            private string fileName;
 
-            public FakeExternalLinksTable(String fileName)
+            public FakeExternalLinksTable(string fileName)
             {
                 this.fileName = fileName;
             }
@@ -163,7 +163,7 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-        public IEvaluationName GetName(String name, int sheetIndex)
+        public IEvaluationName GetName(string name, int sheetIndex)
         {
             for (int i = 0; i < _uBook.NumberOfNames; i++)
             {
@@ -195,7 +195,7 @@ namespace Npoi.Core.XSSF.UserModel
             throw new InvalidOperationException("HSSF-style external references are not supported for XSSF");
         }
 
-        public ExternalName GetExternalName(String nameName, String sheetName, int externalWorkbookNumber)
+        public ExternalName GetExternalName(string nameName, String sheetName, int externalWorkbookNumber)
         {
             if (externalWorkbookNumber > 0)
             {
@@ -226,7 +226,7 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-        public Ptg GetNameXPtg(String name, SheetIdentifier sheet)
+        public Ptg GetNameXPtg(string name, SheetIdentifier sheet)
         {
             IndexedUDFFinder udfFinder = (IndexedUDFFinder)GetUDFFinder();
             FreeRefFunction func = udfFinder.FindFunction(name);
@@ -321,7 +321,7 @@ namespace Npoi.Core.XSSF.UserModel
             throw new InvalidOperationException("HSSF-style external references are not supported for XSSF");
         }
 
-        public ExternalSheet GetExternalSheet(String firstSheetName, String lastSheetName, int externalWorkbookNumber)
+        public ExternalSheet GetExternalSheet(string firstSheetName, String lastSheetName, int externalWorkbookNumber)
         {
             String workbookName;
             if (externalWorkbookNumber > 0)
@@ -347,12 +347,12 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-        public int GetExternalSheetIndex(String workbookName, String sheetName)
+        public int GetExternalSheetIndex(string workbookName, String sheetName)
         {
             throw new RuntimeException("not implemented yet");
         }
 
-        public int GetSheetIndex(String sheetName)
+        public int GetSheetIndex(string sheetName)
         {
             return _uBook.GetSheetIndex(sheetName);
         }
@@ -399,7 +399,7 @@ namespace Npoi.Core.XSSF.UserModel
          *  Ptgs, this method strips them out for us.
          */
 
-        private String CleanXSSFFormulaText(String text)
+        private string CleanXSSFFormulaText(string text)
         {
             // Newlines are allowed in XSSF
             text = text.Replace("\\n", "").Replace("\\r", "");

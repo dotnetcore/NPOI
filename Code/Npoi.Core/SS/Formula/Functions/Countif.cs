@@ -56,15 +56,15 @@ namespace Npoi.Core.SS.Formula.Functions
             public static readonly CmpOp OP_LT = op("<", LT);
             public static readonly CmpOp OP_GT = op(">", GT);
             public static readonly CmpOp OP_GE = op(">=", GE);
-            private String _representation;
+            private string _representation;
             private int _code;
 
-            private static CmpOp op(String rep, int code)
+            private static CmpOp op(string rep, int code)
             {
                 return new CmpOp(rep, code);
             }
 
-            private CmpOp(String representation, int code)
+            private CmpOp(string representation, int code)
             {
                 _representation = representation;
                 _code = code;
@@ -90,7 +90,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 }
             }
 
-            public static CmpOp GetOperator(String value)
+            public static CmpOp GetOperator(string value)
             {
                 int len = value.Length;
                 if (len < 1)
@@ -410,11 +410,11 @@ namespace Npoi.Core.SS.Formula.Functions
 
         internal class StringMatcher : MatcherBase
         {
-            private String _value;
+            private string _value;
             private CmpOp _operator;
             private Regex _pattern;
 
-            public StringMatcher(String value, CmpOp optr) : base(optr)
+            public StringMatcher(string value, CmpOp optr) : base(optr)
             {
                 _value = value;
                 _operator = optr;
@@ -483,7 +483,7 @@ namespace Npoi.Core.SS.Formula.Functions
             /// </summary>
             /// <param name="value">Excel wildcard expression</param>
             /// <returns>return null if the specified value contains no special wildcard characters.</returns>
-            internal static Regex GetWildCardPattern(String value)
+            internal static Regex GetWildCardPattern(string value)
             {
                 int len = value.Length;
                 StringBuilder sb = new StringBuilder(len);
@@ -658,7 +658,7 @@ namespace Npoi.Core.SS.Formula.Functions
                     + evaluatedCriteriaArg.GetType().Name + ")");
         }
 
-        private static ErrorEval ParseError(String value)
+        private static ErrorEval ParseError(string value)
         {
             if (value.Length < 4 || value[0] != '#')
             {
@@ -680,7 +680,7 @@ namespace Npoi.Core.SS.Formula.Functions
          */
         /* package */
 
-        public static bool? ParseBoolean(String strRep)
+        public static bool? ParseBoolean(string strRep)
         {
             if (strRep.Length < 1)
             {

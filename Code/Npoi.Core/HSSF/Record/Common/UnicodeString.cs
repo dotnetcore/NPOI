@@ -38,7 +38,7 @@ namespace Npoi.Core.HSSF.Record
 
         private short field_1_charCount;
         private byte field_2_optionflags;
-        private String field_3_string;
+        private string field_3_string;
         private List<FormatRun> field_4_format_Runs;
         private ExtRst field_5_ext_rst;
         private static BitField highByte = BitFieldFactory.GetInstance(0x1);
@@ -134,7 +134,7 @@ namespace Npoi.Core.HSSF.Record
             // This is a RPHSSub (see page 894)
             private int numberOfRuns;
 
-            private String phoneticText;
+            private string phoneticText;
 
             // This is an array of PhRuns (see page 881)
             private PhRun[] phRuns;
@@ -433,7 +433,7 @@ namespace Npoi.Core.HSSF.Record
             //Used for clone method.
         }
 
-        public UnicodeString(String str)
+        public UnicodeString(string str)
         {
             String = (str);
         }

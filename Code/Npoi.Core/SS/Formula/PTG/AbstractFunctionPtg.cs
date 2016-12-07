@@ -104,7 +104,7 @@ namespace Npoi.Core.SS.Formula.PTG
             return Name;
         }
 
-        public override String ToFormulaString(String[] operands)
+        public override String ToFormulaString(string[] operands)
         {
             StringBuilder buf = new StringBuilder();
 
@@ -143,7 +143,7 @@ namespace Npoi.Core.SS.Formula.PTG
          *  <c>false</c> if the name should be assumed to be an external function.
          */
 
-        public static bool IsBuiltInFunctionName(String name)
+        public static bool IsBuiltInFunctionName(string name)
         {
             short ix = FunctionMetadataRegistry.LookupIndexByName(name.ToUpper());
             return ix >= 0;
@@ -170,7 +170,7 @@ namespace Npoi.Core.SS.Formula.PTG
          * @return the standard worksheet function index if found, otherwise <c>FUNCTION_INDEX_EXTERNAL</c>
          */
 
-        protected static short LookupIndex(String name)
+        protected static short LookupIndex(string name)
         {
             short ix = FunctionMetadataRegistry.LookupIndexByName(name.ToUpper());
             if (ix < 0)

@@ -29,7 +29,7 @@ namespace Npoi.Core.XWPF
 
     public class XWPFTestDataSamples
     {
-        public static XWPFDocument OpenSampleDocument(String sampleName)
+        public static XWPFDocument OpenSampleDocument(string sampleName)
         {
             Stream is1 = POIDataSamples.GetDocumentInstance().OpenResourceAsStream(sampleName);
             return new XWPFDocument(is1);
@@ -44,7 +44,7 @@ namespace Npoi.Core.XWPF
             return new XWPFDocument(bais);
         }
 
-        public static byte[] GetImage(String filename)
+        public static byte[] GetImage(string filename)
         {
             Stream is1 = POIDataSamples.GetDocumentInstance().OpenResourceAsStream(filename);
             byte[] result = IOUtils.ToByteArray(is1);

@@ -45,7 +45,7 @@ namespace TestCases.POIFS.FileSystem
     public class TestOffice2007XMLException
     {
 
-        private static Stream OpenSampleStream(String sampleFileName)
+        private static Stream OpenSampleStream(string sampleFileName)
         {
             return HSSFTestDataSamples.OpenSampleFileStream(sampleFileName);
         }
@@ -79,7 +79,7 @@ namespace TestCases.POIFS.FileSystem
             // text file isn't
             ConfirmIsPOIFS("SampleSS.txt", false);
         }
-        private void ConfirmIsPOIFS(String sampleFileName, bool expectedResult)
+        private void ConfirmIsPOIFS(string sampleFileName, bool expectedResult)
         {
             Stream in1 = OpenSampleStream(sampleFileName);
             try

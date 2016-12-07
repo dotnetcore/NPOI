@@ -65,7 +65,7 @@ namespace Npoi.Core.SS.Formula
             return CreateExternSheetRefEvaluator(ptg.ExternSheetIndex);
         }
 
-        private SheetRangeEvaluator CreateExternSheetRefEvaluator(String firstSheetName, String lastSheetName, int externalWorkbookNumber)
+        private SheetRangeEvaluator CreateExternSheetRefEvaluator(string firstSheetName, String lastSheetName, int externalWorkbookNumber)
         {
             ExternalSheet externalSheet = _workbook.GetExternalSheet(firstSheetName, lastSheetName, externalWorkbookNumber);
             return CreateExternSheetRefEvaluator(externalSheet);
@@ -140,7 +140,7 @@ namespace Npoi.Core.SS.Formula
          * @return <code>null</code> if either workbook or sheet is not found
          */
 
-        private SheetRefEvaluator CreateExternSheetRefEvaluator(String workbookName, String sheetName)
+        private SheetRefEvaluator CreateExternSheetRefEvaluator(string workbookName, String sheetName)
         {
             WorkbookEvaluator targetEvaluator;
             if (workbookName == null)
@@ -194,7 +194,7 @@ namespace Npoi.Core.SS.Formula
          * @return a {@link RefEval} or {@link AreaEval}
          */
 
-        public ValueEval GetDynamicReference(String workbookName, String sheetName, String refStrPart1,
+        public ValueEval GetDynamicReference(string workbookName, String sheetName, String refStrPart1,
                 String refStrPart2, bool isA1Style)
         {
             if (!isA1Style)
@@ -308,17 +308,17 @@ namespace Npoi.Core.SS.Formula
             return new LazyAreaEval(firstRow, firstCol, lastRow, lastCol, sre);
         }
 
-        private static int ParseRowRef(String refStrPart)
+        private static int ParseRowRef(string refStrPart)
         {
             return CellReference.ConvertColStringToIndex(refStrPart);
         }
 
-        private static int ParseColRef(String refStrPart)
+        private static int ParseColRef(string refStrPart)
         {
             return Int32.Parse(refStrPart, CultureInfo.InvariantCulture) - 1;
         }
 
-        private static NameType ClassifyCellReference(String str, SpreadsheetVersion ssVersion)
+        private static NameType ClassifyCellReference(string str, SpreadsheetVersion ssVersion)
         {
             int len = str.Length;
             if (len < 1)
@@ -328,7 +328,7 @@ namespace Npoi.Core.SS.Formula
             return CellReference.ClassifyCellReference(str, ssVersion);
         }
 
-        public FreeRefFunction FindUserDefinedFunction(String functionName)
+        public FreeRefFunction FindUserDefinedFunction(string functionName)
         {
             return _bookEvaluator.FindUserDefinedFunction(functionName);
         }

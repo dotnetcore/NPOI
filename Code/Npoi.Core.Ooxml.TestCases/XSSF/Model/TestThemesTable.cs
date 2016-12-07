@@ -36,7 +36,7 @@
 //    [TestFixture]
 //    public class TestThemesTable
 //{
-//    private String testFile = "Themes.xlsx";
+//    private string testFile = "Themes.xlsx";
 
 //    [Test]
 //        [Test]

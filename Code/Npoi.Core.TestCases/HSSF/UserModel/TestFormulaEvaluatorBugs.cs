@@ -36,7 +36,7 @@ namespace TestCases.HSSF.UserModel
     public class TestFormulaEvaluatorBugs
     {
         private static bool OUTPUT_TEST_FILES = false;
-        private String tmpDirName;
+        private string tmpDirName;
 
         [SetUp]
         public void SetUp()

@@ -35,8 +35,8 @@ namespace Npoi.Core.HSSF.Record
         private bool _is16bitUnicode;
 
         //int field_1_string_length;
-        //private String field_3_string;
-        private String _text;
+        //private string field_3_string;
+        private string _text;
 
         public StringRecord()
         {

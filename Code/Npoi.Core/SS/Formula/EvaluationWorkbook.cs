@@ -23,10 +23,10 @@ namespace Npoi.Core.SS.Formula
 
     public class ExternalSheet
     {
-        private String _workbookName;
-        private String _sheetName;
+        private string _workbookName;
+        private string _sheetName;
 
-        public ExternalSheet(String workbookName, String sheetName)
+        public ExternalSheet(string workbookName, String sheetName)
         {
             _workbookName = workbookName;
             _sheetName = sheetName;
@@ -51,9 +51,9 @@ namespace Npoi.Core.SS.Formula
 
     public class ExternalSheetRange : ExternalSheet
     {
-        private String _lastSheetName;
+        private string _lastSheetName;
 
-        public ExternalSheetRange(String workbookName, String firstSheetName, String lastSheetName)
+        public ExternalSheetRange(string workbookName, String firstSheetName, String lastSheetName)
             : base(workbookName, firstSheetName)
         {
             this._lastSheetName = lastSheetName;
@@ -94,7 +94,7 @@ namespace Npoi.Core.SS.Formula
 
         int GetSheetIndex(IEvaluationSheet sheet);
 
-        int GetSheetIndex(String sheetName);
+        int GetSheetIndex(string sheetName);
 
         IEvaluationSheet GetSheet(int sheetIndex);
 
@@ -110,7 +110,7 @@ namespace Npoi.Core.SS.Formula
          * <p>Return will have no workbook set if it's actually in our own workbook</p>
          */
 
-        ExternalSheet GetExternalSheet(String firstSheetName, string lastSheetName, int externalWorkbookNumber);
+        ExternalSheet GetExternalSheet(string firstSheetName, string lastSheetName, int externalWorkbookNumber);
 
         /**
          * HSSF Only - convert an external sheet index to an internal sheet index,
@@ -129,11 +129,11 @@ namespace Npoi.Core.SS.Formula
          * XSSF Only - fetch the external-style name details
          */
 
-        ExternalName GetExternalName(String nameName, String sheetName, int externalWorkbookNumber);
+        ExternalName GetExternalName(string nameName, String sheetName, int externalWorkbookNumber);
 
         IEvaluationName GetName(NamePtg namePtg);
 
-        IEvaluationName GetName(String name, int sheetIndex);
+        IEvaluationName GetName(string name, int sheetIndex);
 
         String ResolveNameXText(NameXPtg ptg);
 
@@ -144,11 +144,11 @@ namespace Npoi.Core.SS.Formula
 
     public class ExternalName
     {
-        private String _nameName;
+        private string _nameName;
         private int _nameNumber;
         private int _ix;
 
-        public ExternalName(String nameName, int nameNumber, int ix)
+        public ExternalName(string nameName, int nameNumber, int ix)
         {
             _nameName = nameName;
             _nameNumber = nameNumber;

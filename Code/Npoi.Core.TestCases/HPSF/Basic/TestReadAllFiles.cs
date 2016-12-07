@@ -41,7 +41,7 @@ namespace TestCases.HPSF.Basic
     [TestFixture]
     public class TestReadAllFiles
     {
-        private static String[] excludes = new String[] {
+        private static string[] excludes = new String[] {
         //"TestZeroLengthCodePage.mpp",
     };
 
@@ -113,7 +113,7 @@ namespace TestCases.HPSF.Basic
          */
         public static bool checkExclude(string f)
         {
-            foreach (String exclude in excludes)
+            foreach (string exclude in excludes)
             {
                 if (f.EndsWith(exclude))
                 {

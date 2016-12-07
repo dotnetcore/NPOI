@@ -33,7 +33,7 @@ namespace TestCases.HSSF.Record
     public class TestWriteAccessRecord
     {
 
-        private static String HEX_SIXTYFOUR_SPACES = ""
+        private static string HEX_SIXTYFOUR_SPACES = ""
             + "20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 "
             + "20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 "
             + "20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 "

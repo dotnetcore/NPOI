@@ -40,7 +40,7 @@ namespace Npoi.Core.HSSF.UserModel
      * However the pattern <c>"00-00-00"</c> is incorrectly formatted by
      * DecimalFormat as "000000--". For Excel formats that are not compatible with
      * DecimalFormat, you can provide your own custom {@link Format} implementation
-     * via <c>HSSFDataFormatter.AddFormat(String,Format)</c>. The following
+     * via <c>HSSFDataFormatter.AddFormat(string,Format)</c>. The following
      * custom formats are already provided by this class:
      *
      * <pre>

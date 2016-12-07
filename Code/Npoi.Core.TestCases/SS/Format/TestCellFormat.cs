@@ -34,7 +34,7 @@ namespace TestCases.SS.Format
     [TestFixture]
     public class TestCellFormat
     {
-        private static String _255_POUND_SIGNS;
+        private static string _255_POUND_SIGNS;
         static TestCellFormat()
         {
             StringBuilder sb = new StringBuilder();

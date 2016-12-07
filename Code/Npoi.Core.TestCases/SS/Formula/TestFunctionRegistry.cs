@@ -144,7 +144,7 @@ namespace TestCases.SS.Formula
             catch (ArgumentException e)
             {
                 Assert.AreEqual("ISODD is a function from the Excel Analysis Toolpack. " +
-                        "Use AnalysisToolpack.RegisterFunction(String name, FreeRefFunction func) instead.", e.Message);
+                        "Use AnalysisToolpack.RegisterFunction(string name, FreeRefFunction func) instead.", e.Message);
             }
 
             FreeRefFunction atpFunc = new FreeRefFunction2();/*FreeRefFunction() {
@@ -179,7 +179,7 @@ namespace TestCases.SS.Formula
             catch (ArgumentException e)
             {
                 Assert.AreEqual("SUM is a built-in Excel function. " +
-                        "Use FunctoinEval.RegisterFunction(String name, Function func) instead.", e.Message);
+                        "Use FunctoinEval.RegisterFunction(string name, Function func) instead.", e.Message);
             }
         }
         class FreeRefFunction2 : FreeRefFunction

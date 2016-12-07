@@ -30,7 +30,7 @@ namespace TestCases.DDF
     [TestFixture]
     public class TestEscherBlipWMFRecord
     {
-        private String dataStr;
+        private string dataStr;
         private byte[] data;
         
         public TestEscherBlipWMFRecord()

@@ -268,7 +268,7 @@ namespace Npoi.Core.HPSF
                 int PAddING = 4; /* Pad To multiples of 4. */
                 switch ((int)type) {
                     case Variant.VT_LPSTR: {
-                            int l = ((String)value).Length + 1;
+                            int l = ((string)value).Length + 1;
                             int r = l % PAddING;
                             if (r > 0)
                                 l += PAddING - r;

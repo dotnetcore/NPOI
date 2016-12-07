@@ -358,7 +358,7 @@ namespace Npoi.Core.XSSF.UserModel
             return _ctName.name == cf.GetCTName().name && _ctName.localSheetId == cf.GetCTName().localSheetId;
         }
 
-        private static void validateName(String name)
+        private static void validateName(string name)
         {
             if (name.Length == 0) throw new ArgumentException("Name cannot be blank");
             char c = name[0];

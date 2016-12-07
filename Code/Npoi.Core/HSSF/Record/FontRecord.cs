@@ -57,7 +57,7 @@ namespace Npoi.Core.HSSF.Record
         private byte field_7_family;             // ?? defined by windows api logfont structure?
         private byte field_8_charset;            // ?? defined by windows api logfont structure?
         private byte field_9_zero = 0;           // must be 0
-        private String field_11_font_name;         // whoa...the font name
+        private string field_11_font_name;         // whoa...the font name
 
         public FontRecord()
         {

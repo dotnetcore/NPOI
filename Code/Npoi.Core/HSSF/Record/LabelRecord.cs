@@ -39,7 +39,7 @@ namespace Npoi.Core.HSSF.Record
         private short field_3_xf_index;
         private short field_4_string_len;
         private byte field_5_unicode_flag;
-        private String field_6_value;
+        private string field_6_value;
 
         /** Creates new LabelRecord */
 

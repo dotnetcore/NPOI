@@ -42,20 +42,20 @@ namespace TestCases.HSSF.UserModel
     [TestFixture]
     public class TestWorkbook
     {
-        private static String LAST_NAME_KEY = "lastName";
-        private static String FIRST_NAME_KEY = "firstName";
-        private static String SSN_KEY = "ssn";
-        private static String REPLACE_ME = "replaceMe";
-        private static String REPLACED = "replaced";
-        private static String DO_NOT_REPLACE = "doNotReplace";
-        private static String EMPLOYEE_INFORMATION = "Employee Info";
-        private static String LAST_NAME_VALUE = "Bush";
-        private static String FIRST_NAME_VALUE = "George";
-        private static String SSN_VALUE = "555555555";
+        private static string LAST_NAME_KEY = "lastName";
+        private static string FIRST_NAME_KEY = "firstName";
+        private static string SSN_KEY = "ssn";
+        private static string REPLACE_ME = "replaceMe";
+        private static string REPLACED = "replaced";
+        private static string DO_NOT_REPLACE = "doNotReplace";
+        private static string EMPLOYEE_INFORMATION = "Employee Info";
+        private static string LAST_NAME_VALUE = "Bush";
+        private static string FIRST_NAME_VALUE = "George";
+        private static string SSN_VALUE = "555555555";
         private SanityChecker sanityChecker = new SanityChecker();
 
 
-        private static HSSFWorkbook OpenSample(String sampleFileName)
+        private static HSSFWorkbook OpenSample(string sampleFileName)
         {
             return HSSFTestDataSamples.OpenSampleWorkbook(sampleFileName);
         }

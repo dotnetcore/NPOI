@@ -34,7 +34,7 @@ namespace Npoi.Core.XSSF.UserModel
     [TestFixture]
     public class TestXSSFComment : BaseTestCellComment
     {
-        private static String TEST_RICHTEXTSTRING = "test richtextstring";
+        private static string TEST_RICHTEXTSTRING = "test richtextstring";
 
         public TestXSSFComment()
             : base(XSSFITestDataProvider.instance)

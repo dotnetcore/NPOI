@@ -93,7 +93,7 @@ namespace Npoi.Core.SS.Formula
             return _workbook.GetSheetName(sheetIndex);
         }
 
-        public WorkbookEvaluator GetOtherWorkbookEvaluator(String workbookName)
+        public WorkbookEvaluator GetOtherWorkbookEvaluator(string workbookName)
         {
             return _collaboratingWorkbookEnvironment.GetWorkbookEvaluator(workbookName);
         }
@@ -113,7 +113,7 @@ namespace Npoi.Core.SS.Formula
 
         /* package */
 
-        internal IEvaluationName GetName(String name, int sheetIndex)
+        internal IEvaluationName GetName(string name, int sheetIndex)
         {
             IEvaluationName evalName = _workbook.GetName(name, sheetIndex);
             return evalName;
@@ -137,7 +137,7 @@ namespace Npoi.Core.SS.Formula
 #endif
         }
 
-        private static void LogDebug(String s)
+        private static void LogDebug(string s)
         {
             if (IsDebugLogEnabled())
             {
@@ -145,7 +145,7 @@ namespace Npoi.Core.SS.Formula
             }
         }
 
-        private static void LogInfo(String s)
+        private static void LogInfo(string s)
         {
             if (IsInfoLogEnabled())
             {
@@ -248,7 +248,7 @@ namespace Npoi.Core.SS.Formula
          */
         /* package */
 
-        public int GetSheetIndex(String sheetName)
+        public int GetSheetIndex(string sheetName)
         {
             int result;
             if (_sheetIndexesByName.ContainsKey(sheetName))
@@ -855,7 +855,7 @@ namespace Npoi.Core.SS.Formula
             return EvaluateAny(cell, sheetIndex, rowIndex, columnIndex, tracker);
         }
 
-        public FreeRefFunction FindUserDefinedFunction(String functionName)
+        public FreeRefFunction FindUserDefinedFunction(string functionName)
         {
             return _udfFinder.FindFunction(functionName);
         }
@@ -920,7 +920,7 @@ namespace Npoi.Core.SS.Formula
          * @since 3.8 beta6
          */
 
-        public static void RegisterFunction(String name, FreeRefFunction func)
+        public static void RegisterFunction(string name, FreeRefFunction func)
         {
             AnalysisToolPak.RegisterFunction(name, func);
         }
@@ -934,7 +934,7 @@ namespace Npoi.Core.SS.Formula
          * @since 3.8 beta6
          */
 
-        public static void RegisterFunction(String name, Functions.Function func)
+        public static void RegisterFunction(string name, Functions.Function func)
         {
             FunctionEval.RegisterFunction(name, func);
         }

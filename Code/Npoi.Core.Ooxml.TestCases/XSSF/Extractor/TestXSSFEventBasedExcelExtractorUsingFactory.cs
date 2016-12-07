@@ -24,7 +24,7 @@
 //{
 //    public class TestXSSFEventBasedExcelExtractorUsingFactory : TestXSSFEventBasedExcelExtractor
 //    {
-//        protected XSSFEventBasedExcelExtractor GetExtractor(String sampleName)
+//        protected XSSFEventBasedExcelExtractor GetExtractor(string sampleName)
 //        {
 //            ExtractorFactory.SetAllThreadsPreferEventExtractors(true);
 //            return (XSSFEventBasedExcelExtractor)ExtractorFactory.CreateExtractor(HSSFTestDataSamples.OpenSampleFileStream(sampleName));

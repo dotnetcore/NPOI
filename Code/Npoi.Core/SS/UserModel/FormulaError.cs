@@ -139,7 +139,7 @@ namespace Npoi.Core.SS.UserModel
 
         private byte type;
         private int longType;
-        private String repr;
+        private string repr;
 
         private FormulaError(int type, String repr)
         {
@@ -222,7 +222,7 @@ namespace Npoi.Core.SS.UserModel
             throw new ArgumentException("Unknown error type: " + type);
         }
 
-        public static FormulaError ForString(String code)
+        public static FormulaError ForString(string code)
         {
             if (smap.ContainsKey(code))
                 return smap[code];

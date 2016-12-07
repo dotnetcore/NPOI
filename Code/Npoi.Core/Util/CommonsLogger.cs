@@ -34,7 +34,7 @@
 //    {
 //        private POILogger logger = null;
 
-//        public void Initialize(String cat)
+//        public void Initialize(string cat)
 //        {
 //            this.logger = POILogFactory.GetLogger(cat);
 //        }

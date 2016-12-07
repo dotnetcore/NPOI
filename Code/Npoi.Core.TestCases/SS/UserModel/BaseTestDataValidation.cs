@@ -184,7 +184,7 @@ namespace TestCases.SS.UserModel
                 cell.CellStyle = (/*setter*/style);
                 SetCellValue(cell, strStettings);
             }
-            public void AddListValidation(String[] explicitListValues, String listFormula, String listValsDescr,
+            public void AddListValidation(string[] explicitListValues, String listFormula, String listValsDescr,
                     bool allowEmpty, bool suppressDropDown)
             {
                 String promptDescr = (allowEmpty ? "empty ok" : "not empty")
@@ -194,7 +194,7 @@ namespace TestCases.SS.UserModel
             }
         }
 
-        private static void Log(String msg)
+        private static void Log(string msg)
         {
             log.Log(POILogger.INFO, msg);
         }
@@ -278,12 +278,12 @@ namespace TestCases.SS.UserModel
             }
 
 
-            public ISheet CreateSheet(String sheetName)
+            public ISheet CreateSheet(string sheetName)
             {
                 _currentSheet = _wb.CreateSheet(sheetName);
                 return _currentSheet;
             }
-            public void CreateDVTypeRow(String strTypeDescription)
+            public void CreateDVTypeRow(string strTypeDescription)
             {
                 ISheet sheet = _currentSheet;
                 IRow row = sheet.CreateRow(sheet.PhysicalNumberOfRows);
@@ -334,7 +334,7 @@ namespace TestCases.SS.UserModel
                 return new ValidationAdder(_currentSheet, _style_1, _style_2, cellStyle, dataValidationType);
             }
 
-            public void CreateDVDescriptionRow(String strTypeDescription)
+            public void CreateDVDescriptionRow(string strTypeDescription)
             {
                 ISheet sheet = _currentSheet;
                 IRow row = sheet.GetRow(sheet.PhysicalNumberOfRows - 1);

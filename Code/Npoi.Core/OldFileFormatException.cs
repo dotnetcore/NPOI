@@ -5,7 +5,7 @@ namespace Npoi.Core
     [Serializable]
     public class OldFileFormatException : UnsupportedFileFormatException
     {
-        public OldFileFormatException(String s)
+        public OldFileFormatException(string s)
             : base(s)
         { }
     }

@@ -185,7 +185,7 @@ namespace Npoi.Core.XSSF.Model
                 return null;
         }
 
-        public int PutNumberFormat(String fmt)
+        public int PutNumberFormat(string fmt)
         {
             if (numberFormats.ContainsValue(fmt))
             {

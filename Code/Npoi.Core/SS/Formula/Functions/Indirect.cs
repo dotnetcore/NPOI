@@ -147,7 +147,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * Returns <code>null</code> if text cannot be parsed.
          */
 
-        private static String[] ParseWorkbookAndSheetName(string text)
+        private static string[] ParseWorkbookAndSheetName(string text)
         {
             int lastIx = text.Length - 1;
             if (lastIx < 0)
@@ -236,7 +236,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * (the typical syntax error is a single quote character not followed by another).
          */
 
-        private static String UnescapeString(string text)
+        private static string UnescapeString(string text)
         {
             int len = text.Length;
             StringBuilder sb = new StringBuilder(len);

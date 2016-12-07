@@ -221,7 +221,7 @@ namespace Npoi.Core.XWPF.Model
             return hdr;
         }
 
-        private CT_HdrFtr buildHdrFtr(String pStyle, XWPFParagraph[] paragraphs)
+        private CT_HdrFtr buildHdrFtr(string pStyle, XWPFParagraph[] paragraphs)
         {
             CT_HdrFtr ftr = new CT_HdrFtr();
             if (paragraphs != null)
@@ -259,7 +259,7 @@ namespace Npoi.Core.XWPF.Model
          * CreateFooter(int, XWPFParagraph[]) methods.
          */
 
-        private CT_HdrFtr buildHdrFtr(String pStyle, XWPFParagraph[] paragraphs, XWPFHeaderFooter wrapper)
+        private CT_HdrFtr buildHdrFtr(string pStyle, XWPFParagraph[] paragraphs, XWPFHeaderFooter wrapper)
         {
             CT_HdrFtr ftr = wrapper._getHdrFtr();
             if (paragraphs != null)
@@ -400,7 +400,7 @@ namespace Npoi.Core.XWPF.Model
             return defaultFooter;
         }
 
-        public void CreateWatermark(String text)
+        public void CreateWatermark(string text)
         {
             XWPFParagraph[] pars = new XWPFParagraph[1];
             try
@@ -412,7 +412,7 @@ namespace Npoi.Core.XWPF.Model
                 pars[0] = GetWatermarkParagraph(text, 3);
                 CreateHeader(EVEN, pars);
             }
-            catch (IOException e)
+            catch (IOException)
             {
                 // TODO Auto-generated catch block
                 //Trace.Write(e.StackTrace);
@@ -424,7 +424,7 @@ namespace Npoi.Core.XWPF.Model
          * TODO: manage all the other variables
          */
 
-        private XWPFParagraph GetWatermarkParagraph(String text, int idx)
+        private XWPFParagraph GetWatermarkParagraph(string text, int idx)
         {
             CT_P p = new CT_P();
             byte[] rsidr = doc.Document.body.GetPArray(0).rsidR;

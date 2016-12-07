@@ -108,7 +108,7 @@ namespace TestCases.SS.UserModel
 
             //names cannot be blank and must begin with a letter or underscore and not contain spaces
             String[] invalidNames = { "", "123", "1Name", "Named Range" };
-            foreach (String name in invalidNames)
+            foreach (string name in invalidNames)
             {
                 try
                 {

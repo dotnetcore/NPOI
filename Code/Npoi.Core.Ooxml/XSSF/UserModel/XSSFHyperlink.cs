@@ -34,7 +34,7 @@ namespace Npoi.Core.XSSF.UserModel
         private HyperlinkType _type;
         private PackageRelationship _externalRel;
         private CT_Hyperlink _ctHyperlink;
-        private String _location;
+        private string _location;
 
         /**
          * Create a new XSSFHyperlink. This method is protected to be used only by XSSFCreationHelper
@@ -196,7 +196,7 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-        private void Validate(String address)
+        private void Validate(string address)
         {
             switch (_type)
             {
@@ -252,7 +252,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Assigns this hyperlink to the given cell reference
          */
 
-        internal void SetCellReference(String ref1)
+        internal void SetCellReference(string ref1)
         {
             _ctHyperlink.@ref = ref1;
         }

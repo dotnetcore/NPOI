@@ -53,12 +53,12 @@ namespace Npoi.Core.SS.Formula.Functions
         }
 
         /**
-         * TODO see if the same functionality is needed in {@link OperandResolver#parseDouble(String)}
+         * TODO see if the same functionality is needed in {@link OperandResolver#parseDouble(string)}
          *
          * @return <code>null</code> if there is any problem converting the text
          */
 
-        private static Double ConvertTextToNumber(String strText)
+        private static Double ConvertTextToNumber(string strText)
         {
             bool foundCurrency = false;
             bool foundUnaryPlus = false;

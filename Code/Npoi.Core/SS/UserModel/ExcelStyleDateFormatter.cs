@@ -67,18 +67,18 @@ namespace Npoi.Core.SS.UserModel
         {
         }
 
-        public ExcelStyleDateFormatter(String pattern)
+        public ExcelStyleDateFormatter(string pattern)
             : base(ProcessFormatPattern(pattern))
         {
         }
 
-        //public ExcelStyleDateFormatter(String pattern,
+        //public ExcelStyleDateFormatter(string pattern,
         //                           DateFormatSymbols formatSymbols)
         //{
         //    super(processFormatPattern(pattern), formatSymbols);
         //}
 
-        //public ExcelStyleDateFormatter(String pattern, Locale locale)
+        //public ExcelStyleDateFormatter(string pattern, Locale locale)
         //{
         //    super(processFormatPattern(pattern), locale);
         //}
@@ -92,7 +92,7 @@ namespace Npoi.Core.SS.UserModel
          * with our detection sequences
          */
 
-        private static String ProcessFormatPattern(String f)
+        private static string ProcessFormatPattern(string f)
         {
             String t = f.Replace("MMMMM", MMMMM_START_SYMBOL + "MMM" + MMMMM_TRUNCATE_SYMBOL);
             t = Regex.Replace(t, "\\[H\\]", (H_BRACKET_SYMBOL).ToString(), RegexOptions.IgnoreCase);

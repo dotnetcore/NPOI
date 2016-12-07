@@ -79,7 +79,7 @@ namespace Npoi.Core.SS.UserModel
          */
         public const int FIRST_USER_DEFINED_FORMAT_INDEX = 164;
 
-        private static String[] _formats;
+        private static string[] _formats;
 
         /*
         0 General General 18 Time h:mm AM/PM
@@ -184,7 +184,7 @@ namespace Npoi.Core.SS.UserModel
 
         public static String[] GetAll()
         {
-            return (String[])_formats.Clone();
+            return (string[])_formats.Clone();
         }
 
         /**
@@ -213,7 +213,7 @@ namespace Npoi.Core.SS.UserModel
          * @return index of format or -1 if undefined.
          */
 
-        public static int GetBuiltinFormat(String pFmt)
+        public static int GetBuiltinFormat(string pFmt)
         {
             String fmt;
             if (string.Compare(pFmt, ("TEXT"), StringComparison.OrdinalIgnoreCase) == 0)

@@ -54,7 +54,7 @@ namespace Npoi.Core.HPSF
         /// Initializes a new instance of the <see cref="HPSFRuntimeException"/> class.
         /// </summary>
         /// <param name="msg">The message string.</param>
-        public HPSFRuntimeException(String msg)
+        public HPSFRuntimeException(string msg)
             : base(msg) {
         }
 
@@ -73,7 +73,7 @@ namespace Npoi.Core.HPSF
         /// <param name="msg">The message string.</param>
         /// <param name="reason">The reason, i.e. a throwable that indirectly
         /// caused this exception.</param>
-        public HPSFRuntimeException(String msg, Exception reason)
+        public HPSFRuntimeException(string msg, Exception reason)
             : base(msg, reason) {
         }
     }

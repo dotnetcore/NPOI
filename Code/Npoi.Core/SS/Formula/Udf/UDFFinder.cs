@@ -38,6 +38,6 @@ namespace Npoi.Core.SS.Formula.Udf
          * @return Function executor.
          */
 
-        public abstract FreeRefFunction FindFunction(String name);
+        public abstract FreeRefFunction FindFunction(string name);
     }
 }

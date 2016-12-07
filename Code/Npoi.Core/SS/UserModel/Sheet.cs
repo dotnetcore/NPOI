@@ -376,7 +376,7 @@ namespace Npoi.Core.SS.UserModel
         /// Sets the protection enabled as well as the password
         /// </summary>
         /// <param name="password">to set for protection. Pass <code>null</code> to remove protection</param>
-        void ProtectSheet(String password);
+        void ProtectSheet(string password);
 
         /// <summary>
         /// Answer whether scenario protection is enabled or disabled
@@ -713,7 +713,7 @@ namespace Npoi.Core.SS.UserModel
         /// <param name="formula">text representation of the formula</param>
         /// <param name="range">Region of array formula for result</param>
         /// <returns>the <see cref="ICellRange{ICell}"/> of cells affected by this change</returns>
-        ICellRange<ICell> SetArrayFormula(String formula, CellRangeAddress range);
+        ICellRange<ICell> SetArrayFormula(string formula, CellRangeAddress range);
 
         /// <summary>
         /// Remove a Array Formula from this sheet.  All cells contained in the Array Formula range are removed as well
@@ -802,7 +802,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <param name="Name">new sheet name</param>
         /// <returns>cloned sheet</returns>
-        ISheet CopySheet(String Name);
+        ISheet CopySheet(string Name);
 
         /// <summary>
         /// Copy sheet with a new name
@@ -810,7 +810,7 @@ namespace Npoi.Core.SS.UserModel
         /// <param name="Name">new sheet name</param>
         /// <param name="copyStyle">whether to copy styles</param>
         /// <returns>cloned sheet</returns>
-        ISheet CopySheet(String Name, Boolean copyStyle);
+        ISheet CopySheet(string Name, Boolean copyStyle);
 
         /// <summary>
         /// Returns the column outline level. Increased as you

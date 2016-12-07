@@ -91,7 +91,7 @@ namespace TestCases.SS.Formula.Eval
         /**
          * Uses {@link ConcatEval} to force number-to-text conversion
          */
-        private static void ConfirmTextRendering(String expRendering, double d)
+        private static void ConfirmTextRendering(string expRendering, double d)
         {
             ValueEval[] args = { StringEval.EMPTY_INSTANCE, new NumberEval(d), };
             StringEval se = (StringEval)EvalInstances.Concat.Evaluate(args, -1, (short)-1);

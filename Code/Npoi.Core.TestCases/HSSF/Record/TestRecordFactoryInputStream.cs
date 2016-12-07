@@ -38,7 +38,7 @@ namespace TestCases.HSSF.Record
          * Hex dump of a BOF record and most of a FILEPASS record.
          * A 16 byte saltHash should be Added to complete the second record
          */
-        private static String COMMON_HEX_DATA = ""
+        private static string COMMON_HEX_DATA = ""
             // BOF
             + "09 08 10 00"
             + "00 06  05 00  D3 10  CC 07  01 00 00 00  00 06 00 00"
@@ -52,7 +52,7 @@ namespace TestCases.HSSF.Record
         /**
          * Hex dump of a sample WINDOW1 record
          */
-        private static String SAMPLE_WINDOW1 = "3D 00 12 00"
+        private static string SAMPLE_WINDOW1 = "3D 00 12 00"
             + "00 00 00 00 40 38 55 23 38 00 00 00 00 00 01 00 58 02";
 
         /**

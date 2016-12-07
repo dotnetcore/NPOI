@@ -56,13 +56,13 @@ namespace Npoi.Core.SS.UserModel
 
         private int maxDenom;
 
-        private String wholePartFormatString;
+        private string wholePartFormatString;
         /**
          * Single parameter ctor
          * @param denomFormatString The format string for the denominator
          */
 
-        public FractionFormat(String wholePartFormatString, String denomFormatString)
+        public FractionFormat(string wholePartFormatString, String denomFormatString)
         {
             this.wholePartFormatString = wholePartFormatString;
             //init exactDenom and maxDenom
@@ -207,14 +207,14 @@ namespace Npoi.Core.SS.UserModel
             return this.Format(obj.ToString());
         }
 
-        public override Object ParseObject(String source, int pos)
+        public override Object ParseObject(string source, int pos)
         {
             throw new NotImplementedException("Reverse parsing not supported");
         }
 
         private class SimpleFractionException : Exception
         {
-            public SimpleFractionException(String message) :
+            public SimpleFractionException(string message) :
                 base(message)
             {
             }

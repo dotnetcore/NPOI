@@ -270,7 +270,7 @@ namespace Npoi.Core.SS.Util
             return nDigits > MAX_TEXT_LEN;
         }
 
-        private static int CountSignifantDigits(String sb)
+        private static int CountSignifantDigits(string sb)
         {
             int result = sb.Length - 1;
             while (sb[result] == '0')

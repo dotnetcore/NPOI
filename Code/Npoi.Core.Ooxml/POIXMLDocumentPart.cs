@@ -254,7 +254,7 @@ namespace Npoi.Core
          * @return the target part of the relation, or null, if none exists
          */
 
-        public POIXMLDocumentPart GetRelationById(String id)
+        public POIXMLDocumentPart GetRelationById(string id)
         {
             if (string.IsNullOrEmpty(id))
                 return null;
@@ -292,7 +292,7 @@ namespace Npoi.Core
          * @param part the child to add
          */
 
-        public void AddRelation(String id, POIXMLDocumentPart part)
+        public void AddRelation(string id, POIXMLDocumentPart part)
         {
             relations[id] = part;
             part.IncrementRelationCounter();

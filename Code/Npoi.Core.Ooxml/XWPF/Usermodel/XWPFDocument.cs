@@ -402,7 +402,7 @@ namespace Npoi.Core.XWPF.UserModel
             return table.StyleID;
         }
 
-        public XWPFHyperlink GetHyperlinkByID(String id)
+        public XWPFHyperlink GetHyperlinkByID(string id)
         {
             IEnumerator<XWPFHyperlink> iter = hyperlinks.GetEnumerator();
             while (iter.MoveNext())
@@ -450,7 +450,7 @@ namespace Npoi.Core.XWPF.UserModel
             return hyperlinks.ToArray();
         }
 
-        public XWPFComment GetCommentByID(String id)
+        public XWPFComment GetCommentByID(string id)
         {
             IEnumerator<XWPFComment> iter = comments.GetEnumerator();
             while (iter.MoveNext())
@@ -473,7 +473,7 @@ namespace Npoi.Core.XWPF.UserModel
          *  given relationship of the core document.
          */
 
-        public PackagePart GetPartById(String id)
+        public PackagePart GetPartById(string id)
         {
             try
             {
@@ -1462,7 +1462,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @return XWPFPictureData of a specificID
          */
 
-        public XWPFPictureData GetPictureDataByID(String blipID)
+        public XWPFPictureData GetPictureDataByID(string blipID)
         {
             POIXMLDocumentPart relatedPart = GetRelationById(blipID);
             if (relatedPart is XWPFPictureData)

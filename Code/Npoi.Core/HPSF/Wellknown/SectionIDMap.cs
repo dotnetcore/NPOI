@@ -127,7 +127,7 @@ namespace Npoi.Core.HPSF.Wellknown
             if (m == null)
                 return UNDEFINED;
             else {
-                String s = (String)m.Get(pid);
+                String s = (string)m.Get(pid);
                 if (s == null)
                     return UNDEFINED;
                 return s;

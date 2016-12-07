@@ -630,7 +630,7 @@ namespace Npoi.Core.DDF
         /// <param name="propName">Name of the prop.</param>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        private static EscherPropertyMetaData GetData(String propName, byte type) {
+        private static EscherPropertyMetaData GetData(string propName, byte type) {
             return new EscherPropertyMetaData(propName, type);
         }
 
@@ -639,7 +639,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="propName">Name of the prop.</param>
         /// <returns></returns>
-        private static EscherPropertyMetaData GetData(String propName) {
+        private static EscherPropertyMetaData GetData(string propName) {
             return new EscherPropertyMetaData(propName);
         }
 

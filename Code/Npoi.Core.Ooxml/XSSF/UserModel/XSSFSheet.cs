@@ -1332,7 +1332,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param password to set for protection. Pass <code>null</code> to remove protection
          */
 
-        public void ProtectSheet(String password)
+        public void ProtectSheet(string password)
         {
             if (password != null)
             {
@@ -1349,14 +1349,14 @@ namespace Npoi.Core.XSSF.UserModel
         }
 
         /**
-         * Converts a String to a {@link STUnsignedshortHex} value that Contains the {@link PasswordRecord#hashPassword(String)}
+         * Converts a String to a {@link STUnsignedshortHex} value that Contains the {@link PasswordRecord#hashPassword(string)}
          * value in hexadecimal format
          *
          * @param password the password string you wish convert to an {@link STUnsignedshortHex}
          * @return {@link STUnsignedshortHex} that Contains Excel hashed password in Hex format
          */
 
-        private string StringToExcelPassword(String password)
+        private string StringToExcelPassword(string password)
         {
             //ST_UnsignedshortHex hexPassword = new ST_UnsignedshortHex();
             return PasswordRecord.HashPassword(password).ToString("x");
@@ -3150,7 +3150,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @deprecated since Nov 2009 use {@link XSSFCell#SetCellComment(Npoi.Core.SS.usermodel.Comment)} instead
          */
 
-        public static void SetCellComment(String cellRef, XSSFComment comment)
+        public static void SetCellComment(string cellRef, XSSFComment comment)
         {
             CellReference cellReference = new CellReference(cellRef);
 
@@ -3289,7 +3289,7 @@ namespace Npoi.Core.XSSF.UserModel
                     sheetComments = (CommentsTable)CreateRelationship(
                           XSSFRelation.SHEET_COMMENTS, XSSFFactory.GetInstance(), (int)sheet.sheetId);
                 }
-                catch (PartAlreadyExistsException e)
+                catch (PartAlreadyExistsException )
                 {
                     // Technically a sheet doesn't need the same number as
                     //  it's comments, and clearly someone has already pinched
@@ -4089,7 +4089,7 @@ namespace Npoi.Core.XSSF.UserModel
             return SSCellRange<ICell>.Create(firstRow, firstColumn, height, width, temp, typeof(ICell));
         }
 
-        public ICellRange<ICell> SetArrayFormula(String formula, CellRangeAddress range)
+        public ICellRange<ICell> SetArrayFormula(string formula, CellRangeAddress range)
         {
             ICellRange<ICell> cr = GetCellRange(range);
 
@@ -4495,7 +4495,7 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-        private static String GetReferenceBuiltInRecord(
+        private static string GetReferenceBuiltInRecord(
             String sheetName, int startC, int endC, int startR, int endR)
         {
             // Excel example for built-in title:
@@ -4563,7 +4563,7 @@ namespace Npoi.Core.XSSF.UserModel
             String[] parts = refStr.Split(",".ToCharArray());
             int maxRowIndex = SpreadsheetVersion.EXCEL2007.LastRowIndex;
             int maxColIndex = SpreadsheetVersion.EXCEL2007.LastColumnIndex;
-            foreach (String part in parts)
+            foreach (string part in parts)
             {
                 CellRangeAddress range = CellRangeAddress.ValueOf(part);
                 if ((range.FirstColumn == 0
@@ -4590,12 +4590,12 @@ namespace Npoi.Core.XSSF.UserModel
             return null;
         }
 
-        public ISheet CopySheet(String Name)
+        public ISheet CopySheet(string Name)
         {
             return CopySheet(Name, true);
         }
 
-        public ISheet CopySheet(String name, Boolean copyStyle)
+        public ISheet CopySheet(string name, Boolean copyStyle)
         {
             String clonedName = SheetUtil.GetUniqueSheetName(this.Workbook, name);
             XSSFSheet clonedSheet = (XSSFSheet)this.Workbook.CreateSheet(clonedName);

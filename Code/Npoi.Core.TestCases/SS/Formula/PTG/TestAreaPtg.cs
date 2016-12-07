@@ -124,7 +124,7 @@ namespace TestCases.SS.Formula.PTG
             Assert.AreEqual(expectedFormula2, newFormula2, "Relative references Changed");
         }
 
-        private static String ShiftAllColumnsBy1(String formula)
+        private static string ShiftAllColumnsBy1(string formula)
         {
             int letUsShiftColumn1By1Column = 1;
             HSSFWorkbook wb = null;

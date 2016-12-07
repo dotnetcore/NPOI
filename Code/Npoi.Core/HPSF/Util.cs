@@ -224,7 +224,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="s">The string To pad.</param>
         /// <returns> The padded string as a character array.</returns>
-        public static char[] Pad4(String s) {
+        public static char[] Pad4(string s) {
             return Pad4(s.ToCharArray());
         }
     }

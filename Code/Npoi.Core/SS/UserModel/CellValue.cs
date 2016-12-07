@@ -37,7 +37,7 @@ namespace Npoi.Core.SS.UserModel
         private CellType _cellType;
         private double _numberValue;
         private bool _boolValue;
-        private String _textValue;
+        private string _textValue;
         private int _errorCode;
 
         private CellValue(CellType cellType, double numberValue, bool boolValue,
@@ -60,7 +60,7 @@ namespace Npoi.Core.SS.UserModel
             return boolValue ? TRUE : FALSE;
         }
 
-        public CellValue(String stringValue)
+        public CellValue(string stringValue)
             : this(CellType.String, 0.0, false, stringValue, 0)
         {
         }

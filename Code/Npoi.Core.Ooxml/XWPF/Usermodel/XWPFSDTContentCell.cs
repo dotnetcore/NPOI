@@ -40,7 +40,7 @@ namespace Npoi.Core.XWPF.UserModel
 
         //private List<ICell> cells = new List<ICell>().
 
-        private String text = "";
+        private string text = "";
 
         public XWPFSDTContentCell(CT_SdtContentCell sdtContentCell,
                                   XWPFTableRow xwpfTableRow, IBody part)
@@ -166,7 +166,6 @@ namespace Npoi.Core.XWPF.UserModel
             //{
             //    return true;
             //}
-            return false;
         }
 
         public string Text

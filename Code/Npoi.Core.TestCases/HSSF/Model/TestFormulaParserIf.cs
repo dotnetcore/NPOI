@@ -30,12 +30,12 @@ namespace TestCases.HSSF.Model
     [TestFixture]
     public class TestFormulaParserIf
     {
-        private static Ptg[] ParseFormula(String formula)
+        private static Ptg[] ParseFormula(string formula)
         {
             return TestFormulaParser.ParseFormula(formula);
         }
 
-        private static Ptg[] ConfirmTokenClasses(String formula, Type[] expectedClasses)
+        private static Ptg[] ConfirmTokenClasses(string formula, Type[] expectedClasses)
         {
             return TestFormulaParser.ConfirmTokenClasses(formula, expectedClasses);
         }

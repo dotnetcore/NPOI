@@ -47,7 +47,7 @@ namespace Npoi.Core.POIFS.Properties
         /// Initializes a new instance of the <see cref="DirectoryProperty"/> class.
         /// </summary>
         /// <param name="name">the name of the directory</param>
-        public DirectoryProperty(String name) : base()
+        public DirectoryProperty(string name) : base()
         {
             _children = new List<Property>();
             _children_names = new List<string>();

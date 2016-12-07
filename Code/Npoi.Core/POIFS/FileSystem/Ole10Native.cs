@@ -38,11 +38,11 @@ namespace Npoi.Core.POIFS.FileSystem
         private int totalSize;             // 4 bytes, total size of record not including this field
 
         private short flags1 = 2;          // 2 bytes, unknown, mostly [02 00]
-        private String label;              // ASCIIZ, stored in this field without the terminating zero
-        private String fileName;           // ASCIIZ, stored in this field without the terminating zero
+        private string label;              // ASCIIZ, stored in this field without the terminating zero
+        private string fileName;           // ASCIIZ, stored in this field without the terminating zero
         private short flags2 = 0;          // 2 bytes, unknown, mostly [00 00]
         private short unknown1 = 3;        // see below
-        private String command;            // ASCIIZ, stored in this field without the terminating zero
+        private string command;            // ASCIIZ, stored in this field without the terminating zero
         private byte[] dataBuffer;         // varying size, the actual native data
         private short flags3 = 0;          // some final flags? or zero terminators?, sometimes not there
 
@@ -101,7 +101,7 @@ namespace Npoi.Core.POIFS.FileSystem
        * Creates an instance and fills the fields based on ... the fields
        */
 
-        public Ole10Native(String label, String filename, String command, byte[] data)
+        public Ole10Native(string label, String filename, String command, byte[] data)
         {
             Label = (label);
             FileName = (filename);

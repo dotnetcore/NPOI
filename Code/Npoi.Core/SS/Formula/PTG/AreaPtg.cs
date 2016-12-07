@@ -41,7 +41,7 @@ namespace Npoi.Core.SS.Formula.PTG
         {
         }
 
-        public AreaPtg(String arearef)
+        public AreaPtg(string arearef)
             : base(arearef)
         {
         }

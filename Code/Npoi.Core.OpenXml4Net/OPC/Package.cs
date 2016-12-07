@@ -30,17 +30,17 @@
 //        }
 
 //        /**
-//         * @deprecated use {@link OPCPackage#open(String)}
+//         * @deprecated use {@link OPCPackage#open(string)}
 //         */
-//        public static Package Open(String path)
+//        public static Package Open(string path)
 //        {
 //            return Open(path, defaultPackageAccess);
 //        }
 
 //        /**
-//         * @deprecated use {@link OPCPackage#open(String,PackageAccess)}
+//         * @deprecated use {@link OPCPackage#open(string,PackageAccess)}
 //         */
-//        public static Package Open(String path, PackageAccess access)
+//        public static Package Open(string path, PackageAccess access)
 //        {
 //            if (path == null || "".Equals(path.Trim())
 //                    || new DirectoryInfo(path).Exists)

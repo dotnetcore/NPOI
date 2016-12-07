@@ -267,7 +267,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return LookupUtils.CreateLookupComparer(lookupValue, matchExact, true);
         }
 
-        private static bool IsLookupValueWild(String stringValue)
+        private static bool IsLookupValueWild(string stringValue)
         {
             if (stringValue.IndexOf('?') >= 0 || stringValue.IndexOf('*') >= 0)
             {

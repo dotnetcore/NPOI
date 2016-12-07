@@ -37,7 +37,7 @@ namespace TestCases.SS.Formula.Functions
 
         private class NumericEvalEx : Exception
         {
-            public NumericEvalEx(String msg)
+            public NumericEvalEx(string msg)
                 : base(msg)
             {
             }
@@ -109,7 +109,7 @@ namespace TestCases.SS.Formula.Functions
             NumericValueEval result = (NumericValueEval)EvalResult;
             return result.NumberValue;
         }
-        private static String formatErrorMessage(ErrorEval ee)
+        private static string formatErrorMessage(ErrorEval ee)
         {
             if (errorCodesAreEqual(ee, ErrorEval.VALUE_INVALID))
             {

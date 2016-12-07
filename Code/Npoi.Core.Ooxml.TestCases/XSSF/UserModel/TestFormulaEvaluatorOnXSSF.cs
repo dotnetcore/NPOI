@@ -107,7 +107,7 @@ namespace Npoi.Core.XSSF.UserModel
             return row.GetCell(columnIndex);
         }
 
-        private static void ConfirmExpectedResult(String msg, ICell expected, CellValue actual)
+        private static void ConfirmExpectedResult(string msg, ICell expected, CellValue actual)
         {
             if (expected == null)
             {
@@ -326,7 +326,7 @@ namespace Npoi.Core.XSSF.UserModel
          * TODO - these are all formulas which currently (Apr-2008) break on ooxml
          */
 
-        private static bool IsIgnoredFormulaTestCase(String cellFormula)
+        private static bool IsIgnoredFormulaTestCase(string cellFormula)
         {
             if ("COLUMN(1:2)".Equals(cellFormula) || "ROW(2:3)".Equals(cellFormula))
             {
@@ -383,7 +383,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return <code>null</code> if cell is missing, empty or blank
          */
 
-        private static String GetTargetFunctionName(IRow r)
+        private static string GetTargetFunctionName(IRow r)
         {
             if (r == null)
             {

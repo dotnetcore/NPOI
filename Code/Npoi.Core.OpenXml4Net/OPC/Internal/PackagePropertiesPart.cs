@@ -15,7 +15,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
 
     public class PackagePropertiesPart : PackagePart, PackageProperties
     {
-        private static String NAMESPACE_DC = "http://purl.org/dc/elements/1.1/";
+        private static string NAMESPACE_DC = "http://purl.org/dc/elements/1.1/";
 
         public static String NAMESPACE_DC_URI = "http://purl.org/dc/elements/1.1/";
 
@@ -372,7 +372,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @see org.apache.poi.OpenXml4Net.opc.PackageProperties#setCategoryProperty(java.lang.String)
          */
 
-        public void SetCategoryProperty(String category)
+        public void SetCategoryProperty(string category)
         {
             this.category = SetStringValue(category);
         }
@@ -383,7 +383,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @see org.apache.poi.OpenXml4Net.opc.PackageProperties#setContentStatusProperty(java.lang.String)
          */
 
-        public void SetContentStatusProperty(String contentStatus)
+        public void SetContentStatusProperty(string contentStatus)
         {
             this.contentStatus = SetStringValue(contentStatus);
         }
@@ -394,7 +394,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @see org.apache.poi.OpenXml4Net.opc.PackageProperties#setContentTypeProperty(java.lang.String)
          */
 
-        public void SetContentTypeProperty(String contentType)
+        public void SetContentTypeProperty(string contentType)
         {
             this.contentType = SetStringValue(contentType);
         }
@@ -405,7 +405,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @see org.apache.poi.OpenXml4Net.opc.PackageProperties#setCreatedProperty(org.apache.poi.OpenXml4Net.util.Nullable)
          */
 
-        public void SetCreatedProperty(String created)
+        public void SetCreatedProperty(string created)
         {
             try
             {
@@ -436,7 +436,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @see org.apache.poi.OpenXml4Net.opc.PackageProperties#setCreatorProperty(java.lang.String)
          */
 
-        public void SetCreatorProperty(String creator)
+        public void SetCreatorProperty(string creator)
         {
             this.creator = SetStringValue(creator);
         }
@@ -447,7 +447,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @see org.apache.poi.OpenXml4Net.opc.PackageProperties#setDescriptionProperty(java.lang.String)
          */
 
-        public void SetDescriptionProperty(String description)
+        public void SetDescriptionProperty(string description)
         {
             this.description = SetStringValue(description);
         }
@@ -458,7 +458,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @see org.apache.poi.OpenXml4Net.opc.PackageProperties#setIdentifierProperty(java.lang.String)
          */
 
-        public void SetIdentifierProperty(String identifier)
+        public void SetIdentifierProperty(string identifier)
         {
             this.identifier = SetStringValue(identifier);
         }
@@ -469,7 +469,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @see org.apache.poi.OpenXml4Net.opc.PackageProperties#setKeywordsProperty(java.lang.String)
          */
 
-        public void SetKeywordsProperty(String keywords)
+        public void SetKeywordsProperty(string keywords)
         {
             this.keywords = SetStringValue(keywords);
         }
@@ -480,7 +480,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @see org.apache.poi.OpenXml4Net.opc.PackageProperties#setLanguageProperty(java.lang.String)
          */
 
-        public void SetLanguageProperty(String language)
+        public void SetLanguageProperty(string language)
         {
             this.language = SetStringValue(language);
         }
@@ -491,7 +491,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @see org.apache.poi.OpenXml4Net.opc.PackageProperties#setLastModifiedByProperty(java.lang.String)
          */
 
-        public void SetLastModifiedByProperty(String lastModifiedBy)
+        public void SetLastModifiedByProperty(string lastModifiedBy)
         {
             this.lastModifiedBy = SetStringValue(lastModifiedBy);
         }
@@ -502,7 +502,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @see org.apache.poi.OpenXml4Net.opc.PackageProperties#setLastPrintedProperty(org.apache.poi.OpenXml4Net.util.Nullable)
          */
 
-        public void SetLastPrintedProperty(String lastPrinted)
+        public void SetLastPrintedProperty(string lastPrinted)
         {
             try
             {
@@ -533,7 +533,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @see org.apache.poi.OpenXml4Net.opc.PackageProperties#setModifiedProperty(org.apache.poi.OpenXml4Net.util.Nullable)
          */
 
-        public void SetModifiedProperty(String modified)
+        public void SetModifiedProperty(string modified)
         {
             try
             {
@@ -564,7 +564,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @see org.apache.poi.OpenXml4Net.opc.PackageProperties#setRevisionProperty(java.lang.String)
          */
 
-        public void SetRevisionProperty(String revision)
+        public void SetRevisionProperty(string revision)
         {
             this.revision = SetStringValue(revision);
         }
@@ -575,7 +575,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @see org.apache.poi.OpenXml4Net.opc.PackageProperties#setSubjectProperty(java.lang.String)
          */
 
-        public void SetSubjectProperty(String subject)
+        public void SetSubjectProperty(string subject)
         {
             this.subject = SetStringValue(subject);
         }
@@ -586,7 +586,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @see org.apache.poi.OpenXml4Net.opc.PackageProperties#setTitleProperty(java.lang.String)
          */
 
-        public void SetTitleProperty(String title)
+        public void SetTitleProperty(string title)
         {
             this.title = SetStringValue(title);
         }
@@ -597,7 +597,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @see org.apache.poi.OpenXml4Net.opc.PackageProperties#setVersionProperty(java.lang.String)
          */
 
-        public void SetVersionProperty(String version)
+        public void SetVersionProperty(string version)
         {
             this.version = SetStringValue(version);
         }
@@ -606,7 +606,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * Convert a strig value into a String
          */
 
-        private String SetStringValue(String s)
+        private string SetStringValue(string s)
         {
             if (s == null || s.Equals(""))
                 return null;
@@ -621,7 +621,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          *             Throws if the date format isnot valid.
          */
 
-        private Nullable<DateTime> SetDateValue(String s)
+        private Nullable<DateTime> SetDateValue(string s)
         {
             if (s == null || s.Equals(""))
                 return new Nullable<DateTime>();
@@ -645,7 +645,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @see java.util.SimpleDateFormat
          */
 
-        private String GetDateValue(Nullable<DateTime> d)
+        private string GetDateValue(Nullable<DateTime> d)
         {
             if (d == null || d.Equals(""))
                 return "";

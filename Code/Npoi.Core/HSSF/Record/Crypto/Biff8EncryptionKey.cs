@@ -24,7 +24,7 @@ namespace Npoi.Core.HSSF.Record.Crypto
             return new Biff8EncryptionKey(CreateKeyDigest("VelvetSweatshop", docId));
         }
 
-        public static Biff8EncryptionKey Create(String password, byte[] docIdData)
+        public static Biff8EncryptionKey Create(string password, byte[] docIdData)
         {
             return new Biff8EncryptionKey(CreateKeyDigest(password, docIdData));
         }
@@ -38,7 +38,7 @@ namespace Npoi.Core.HSSF.Record.Crypto
             _keyDigest = keyDigest;
         }
 
-        internal static byte[] CreateKeyDigest(String password, byte[] docIdData)
+        internal static byte[] CreateKeyDigest(string password, byte[] docIdData)
         {
             Check16Bytes(docIdData, "docId");
             int nChars = Math.Min(password.Length, 16);
@@ -159,7 +159,7 @@ namespace Npoi.Core.HSSF.Record.Crypto
          */
 
         [ThreadStatic]
-        private static String _userPasswordTLS = null;
+        private static string _userPasswordTLS = null;
 
         /**
          * @return the BIFF8 encryption/decryption password for the current thread.

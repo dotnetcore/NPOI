@@ -708,7 +708,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * @exception IOException
          */
 
-        public DocumentEntry CreateDocument(String name, int size, POIFSWriterListener writer)
+        public DocumentEntry CreateDocument(string name, int size, POIFSWriterListener writer)
         {
             return Root.CreateDocument(name, size, writer);
         }
@@ -723,7 +723,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * @exception IOException on name duplication
          */
 
-        public DirectoryEntry CreateDirectory(String name)
+        public DirectoryEntry CreateDirectory(string name)
         {
             return Root.CreateDirectory(name);
         }

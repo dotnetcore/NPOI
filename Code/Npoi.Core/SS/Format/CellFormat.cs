@@ -69,7 +69,7 @@ namespace Npoi.Core.SS.Format
 
     public class CellFormat
     {
-        private String format;
+        private string format;
         private CellFormatPart posNumFmt;
         private CellFormatPart zeroNumFmt;
         private CellFormatPart negNumFmt;
@@ -130,7 +130,7 @@ namespace Npoi.Core.SS.Format
          * @return A {@link CellFormat} that applies the given format.
          */
 
-        public static CellFormat GetInstance(String format)
+        public static CellFormat GetInstance(string format)
         {
             CellFormat fmt = null;
             if (formatCache.ContainsKey(format))
@@ -152,7 +152,7 @@ namespace Npoi.Core.SS.Format
          * @param format The format.
          */
 
-        private CellFormat(String format)
+        private CellFormat(string format)
         {
             this.format = format;
             MatchCollection mc = ONE_PART.Matches(format);

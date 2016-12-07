@@ -95,7 +95,7 @@ namespace Npoi.Core.XSSF.UserModel
         private int _EvaluationFailureCount;
         private int _EvaluationSuccessCount;
 
-        private static void ConfirmExpectedResult(String msg, ICell expected, CellValue actual)
+        private static void ConfirmExpectedResult(string msg, ICell expected, CellValue actual)
         {
             if (expected == null)
             {
@@ -118,11 +118,7 @@ namespace Npoi.Core.XSSF.UserModel
                     break;
 
                 case CellType.Error:
-                    Assert.AreEqual(CellType.Error, actual.CellType, msg);
-                    if (false)
-                    { // TODO: fix ~45 functions which are currently returning incorrect error values
-                        Assert.AreEqual(expected.ErrorCellValue, actual.ErrorValue, msg);
-                    }
+                    Assert.AreEqual(CellType.Error, actual.CellType, msg);                  
                     break;
 
                 case CellType.Formula: // will never be used, since we will call method After formula Evaluation
@@ -320,7 +316,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return <code>null</code> if cell is missing, empty or blank
          */
 
-        private static String GetTargetFunctionName(IRow r)
+        private static string GetTargetFunctionName(IRow r)
         {
             if (r == null)
             {
@@ -350,7 +346,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return <code>null</code> if cell is missing, empty or blank
          */
 
-        private static String GetTargetTestName(IRow r)
+        private static string GetTargetTestName(IRow r)
         {
             if (r == null)
             {

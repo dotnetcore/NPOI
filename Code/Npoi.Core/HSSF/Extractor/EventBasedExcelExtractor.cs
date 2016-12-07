@@ -286,7 +286,7 @@ namespace Npoi.Core.HSSF.Extractor
             /// <param name="cell">The cell.</param>
             /// <param name="value">The value.</param>
             /// <returns></returns>
-            private String FormatNumberDateCell(CellValueRecordInterface cell, double value) {
+            private string FormatNumberDateCell(CellValueRecordInterface cell, double value) {
                 // Get the built in format, if there is one
                 int formatIndex = ft.GetFormatIndex(cell);
                 String formatString = ft.GetFormatString(cell);

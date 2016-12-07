@@ -8,6 +8,10 @@
     "SharpZipLib.NETStandard": "0.86.0.1"
   },
 
+  "buildOptions": {
+    "nowarn": [ "CS0612", "CS0618" ],
+    "define": [ "HIDE_UNREACHABLE_CODE" ]
+  },
   "frameworks": {
     "net46": {
       "frameworkAssemblies": {

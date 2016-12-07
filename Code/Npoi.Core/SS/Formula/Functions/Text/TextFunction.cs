@@ -41,7 +41,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return Evaluate(arg);
         }
 
-        public abstract ValueEval Evaluate(String arg);
+        public abstract ValueEval Evaluate(string arg);
     }
 
     /**

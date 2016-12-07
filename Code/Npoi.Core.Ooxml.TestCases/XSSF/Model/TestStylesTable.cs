@@ -24,7 +24,7 @@ namespace Npoi.Core.XSSF.Model
     [TestFixture]
     public class TestStylesTable
     {
-        private String testFile = "Formatting.xlsx";
+        private string testFile = "Formatting.xlsx";
 
         [Test]
         public void TestCreateNew()

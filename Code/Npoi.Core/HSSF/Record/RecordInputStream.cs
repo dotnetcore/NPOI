@@ -443,7 +443,7 @@ namespace Npoi.Core.HSSF.Record
             return ReadStringCommon(requestedLength, true);
         }
 
-        private String ReadStringCommon(int requestedLength, bool pIsCompressedEncoding)
+        private string ReadStringCommon(int requestedLength, bool pIsCompressedEncoding)
         {
             // Sanity check to detect garbage string lengths
             if (requestedLength < 0 || requestedLength > 0x100000)

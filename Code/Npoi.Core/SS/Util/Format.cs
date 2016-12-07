@@ -69,7 +69,7 @@ namespace Npoi.Core.SS.Util
             return toAppendTo.Append(Format((long)obj, culture));
         }
 
-        public override Object ParseObject(String source, int pos)
+        public override Object ParseObject(string source, int pos)
         {
             string tmp = source.Substring(pos);
             return long.Parse(tmp, CultureInfo.InvariantCulture);
@@ -108,7 +108,7 @@ namespace Npoi.Core.SS.Util
             return toAppendTo.Append(Format(obj, culture));
         }
 
-        public override Object ParseObject(String source, int pos)
+        public override Object ParseObject(string source, int pos)
         {
             string tmp = source.Substring(pos);
             return long.Parse(tmp, CultureInfo.InvariantCulture);
@@ -167,7 +167,7 @@ namespace Npoi.Core.SS.Util
             return toAppendTo.Append(Format(obj, culture));
         }
 
-        public override Object ParseObject(String source, int pos)
+        public override Object ParseObject(string source, int pos)
         {
             string tmp = source.Substring(pos);
             return long.Parse(tmp, CultureInfo.InvariantCulture);
@@ -292,9 +292,9 @@ namespace Npoi.Core.SS.Util
     public class ConstantStringFormat : FormatBase
     {
         private static DecimalFormat df = new DecimalFormat("##########");
-        private String str;
+        private string str;
 
-        public ConstantStringFormat(String s)
+        public ConstantStringFormat(string s)
         {
             str = s;
         }
@@ -314,7 +314,7 @@ namespace Npoi.Core.SS.Util
             return toAppendTo.Append(str);
         }
 
-        public override Object ParseObject(String source, int pos)
+        public override Object ParseObject(string source, int pos)
         {
             return df.ParseObject(source, pos);
         }

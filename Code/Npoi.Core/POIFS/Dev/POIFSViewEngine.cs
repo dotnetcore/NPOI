@@ -122,7 +122,7 @@ namespace Npoi.Core.POIFS.Dev
         /// <param name="indentString">string to use for indenting</param>
         /// <param name="data">The data.</param>
         /// <returns></returns>
-        private static String Indent(int indentLevel,
+        private static string Indent(int indentLevel,
                                      String indentString, String data)
         {
             StringBuilder finalBuffer = new StringBuilder();

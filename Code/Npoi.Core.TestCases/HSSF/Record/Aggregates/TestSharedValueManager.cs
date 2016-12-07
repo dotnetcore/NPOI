@@ -47,7 +47,7 @@ namespace TestCases.HSSF.Record.Aggregates
          * formulas to spill out into plain formula records (which would make these tests pointless).
          *
          */
-        private static String SAMPLE_FILE_NAME = "overlapSharedFormula.xls";
+        private static string SAMPLE_FILE_NAME = "overlapSharedFormula.xls";
         /**
          * Some of these bugs are intermittent, and the test author couldn't think of a way to write
          * test code to hit them bug deterministically. The reason for the unpredictability is that

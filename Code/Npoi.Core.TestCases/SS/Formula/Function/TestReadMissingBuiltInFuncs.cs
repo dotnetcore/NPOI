@@ -38,7 +38,7 @@ namespace TestCases.SS.Formula.Function
         /**
          * This spreadsheet has examples of calls to the interesting built-in functions in cells A1:A7
          */
-        private static String SAMPLE_SPREADSHEET_FILE_NAME = "missingFuncs44675.xls";
+        private static string SAMPLE_SPREADSHEET_FILE_NAME = "missingFuncs44675.xls";
         private static ISheet _sheet;
 
         private static ISheet GetSheet()
@@ -166,7 +166,7 @@ namespace TestCases.SS.Formula.Function
             Assert.AreEqual("DPRODUCT(C1:E5,\"HarvestYield\",G1:H2)", formula);
         }
 
-        private String GetCellFormula(int rowIx)
+        private string GetCellFormula(int rowIx)
         {
             ISheet sheet;
             try
@@ -191,7 +191,7 @@ namespace TestCases.SS.Formula.Function
 #endif
             return result;
         }
-        private static AssertionException afe(String msg)
+        private static AssertionException afe(string msg)
         {
             return new AssertionException(msg);
         }

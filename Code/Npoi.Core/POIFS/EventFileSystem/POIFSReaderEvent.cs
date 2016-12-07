@@ -31,7 +31,7 @@ namespace Npoi.Core.POIFS.EventFileSystem
     {
         private DocumentInputStream stream;
         private POIFSDocumentPath path;
-        private String documentName;
+        private string documentName;
 
         /**
          * package scoped constructor

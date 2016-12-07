@@ -30,7 +30,7 @@ namespace Npoi.Core.SS.Format
     public class CellTextFormatter : CellFormatter
     {
         private int[] textPos;
-        private String desc;
+        private string desc;
 
         internal static CellFormatter SIMPLE_TEXT = new CellTextFormatter("@");
 
@@ -60,7 +60,7 @@ namespace Npoi.Core.SS.Format
             }
         }
 
-        public CellTextFormatter(String format)
+        public CellTextFormatter(string format)
             : base(format)
         {
             ;

@@ -36,7 +36,7 @@ namespace TestCases.HSSF.EventUserModel
 
         private Record[] r;
 
-        private void ReadRecords(String sampleFileName)
+        private void ReadRecords(string sampleFileName)
         {
             HSSFRequest req = new HSSFRequest();
             MockHSSFListener mockListen = new MockHSSFListener();
@@ -410,7 +410,7 @@ namespace TestCases.HSSF.EventUserModel
                     log("Starting row #" + rr.RowNumber);
                 }
             }
-            private void log(String msg)
+            private void log(string msg)
             {
                 if (logToStdOut)
                 {

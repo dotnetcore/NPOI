@@ -29,7 +29,7 @@ namespace Npoi.Core.XWPF.UserModel
     public class XWPFPicture
     {
         private CT_Picture ctPic;
-        private String description;
+        private string description;
         private XWPFRun run;
 
         public XWPFPicture(CT_Picture ctPic, XWPFRun Run)

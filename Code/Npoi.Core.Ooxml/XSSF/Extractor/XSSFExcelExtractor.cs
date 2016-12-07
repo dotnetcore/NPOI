@@ -43,7 +43,7 @@ namespace Npoi.Core.XSSF.Extractor
         private bool includeCellComments = false;
         private bool includeHeadersFooters = true;
 
-        public XSSFExcelExtractor(String path)
+        public XSSFExcelExtractor(string path)
             : this(new XSSFWorkbook(path))
         {
         }
@@ -317,7 +317,7 @@ namespace Npoi.Core.XSSF.Extractor
             text.Append(xcell.GetRawValue());
         }
 
-        private String ExtractHeaderFooter(IHeaderFooter hf)
+        private string ExtractHeaderFooter(IHeaderFooter hf)
         {
             return Npoi.Core.HSSF.Extractor.ExcelExtractor.ExtractHeaderFooter(hf);
         }

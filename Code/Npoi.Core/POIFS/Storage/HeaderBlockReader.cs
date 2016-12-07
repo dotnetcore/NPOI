@@ -148,7 +148,7 @@ namespace Npoi.Core.POIFS.Storage
             return data;
         }
 
-        private static String LongToHex(long value)
+        private static string LongToHex(long value)
         {
             return new String(HexDump.LongToHex(value));
         }

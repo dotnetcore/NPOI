@@ -36,15 +36,15 @@ namespace TestCases.SS.Formula.Atp
         private static int MARCH = 3;
         private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
 
-        private static String STARTING_DATE = formatter.Format(new DateTime(2008, OCTOBER, 1), CultureInfo.CurrentCulture);
+        private static string STARTING_DATE = formatter.Format(new DateTime(2008, OCTOBER, 1), CultureInfo.CurrentCulture);
 
-        private static String END_DATE = formatter.Format(new DateTime(2009, MARCH, 1), CultureInfo.CurrentCulture);
+        private static string END_DATE = formatter.Format(new DateTime(2009, MARCH, 1), CultureInfo.CurrentCulture);
 
-        private static String FIRST_HOLIDAY = formatter.Format(new DateTime(2008, NOVEMBER, 26), CultureInfo.CurrentCulture);
+        private static string FIRST_HOLIDAY = formatter.Format(new DateTime(2008, NOVEMBER, 26), CultureInfo.CurrentCulture);
 
-        private static String SECOND_HOLIDAY = formatter.Format(new DateTime(2008, DECEMBER, 4), CultureInfo.CurrentCulture);
+        private static string SECOND_HOLIDAY = formatter.Format(new DateTime(2008, DECEMBER, 4), CultureInfo.CurrentCulture);
 
-        private static String THIRD_HOLIDAY = formatter.Format(new DateTime(2009, JANUARY, 21), CultureInfo.CurrentCulture);
+        private static string THIRD_HOLIDAY = formatter.Format(new DateTime(2009, JANUARY, 21), CultureInfo.CurrentCulture);
 
         private static OperationEvaluationContext EC = new OperationEvaluationContext(null, null, 1, 1, 1, null);
         [Test]
@@ -100,12 +100,12 @@ namespace TestCases.SS.Formula.Atp
 
             private List<ValueEval> holidays;
 
-            public MockAreaEval(String[] holidays)
+            public MockAreaEval(string[] holidays)
                 : this(0, 0, 0, holidays.Length - 1)
             {
 
                 this.holidays = new List<ValueEval>();
-                foreach (String holiday in holidays)
+                foreach (string holiday in holidays)
                 {
                     this.holidays.Add(new StringEval(holiday));
                 }

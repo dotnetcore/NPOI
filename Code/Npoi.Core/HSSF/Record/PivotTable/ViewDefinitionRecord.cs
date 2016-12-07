@@ -57,8 +57,8 @@ namespace Npoi.Core.HSSF.Record.PivotTable
         private int grbit;
         private int itblAutoFmt;
 
-        private String dataField;
-        private String name;
+        private string dataField;
+        private string name;
 
         public ViewDefinitionRecord(RecordInputStream in1)
         {

@@ -104,7 +104,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @return
          */
 
-        private String integerToRoman(int number)
+        private string integerToRoman(int number)
         {
             StringBuilder result = new StringBuilder();
             for (int i = 0; i < 13; i++)
@@ -126,7 +126,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @return
          */
 
-        public String MakeConcise(String result, int form)
+        public String MakeConcise(string result, int form)
         {
             if (form > 0)
             {

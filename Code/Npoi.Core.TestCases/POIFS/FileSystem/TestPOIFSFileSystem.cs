@@ -403,7 +403,7 @@ namespace TestCases.POIFS.FileSystem
         }
 
 
-        private static Stream OpenSampleStream(String sampleFileName)
+        private static Stream OpenSampleStream(string sampleFileName)
         {
             return HSSFTestDataSamples.OpenSampleFileStream(sampleFileName);
         }

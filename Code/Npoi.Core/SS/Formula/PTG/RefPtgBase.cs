@@ -52,7 +52,7 @@ namespace Npoi.Core.SS.Formula.PTG
          * numeric fields.
          */
 
-        protected RefPtgBase(String cellref)
+        protected RefPtgBase(string cellref)
         {
             CellReference c = new CellReference(cellref);
             Row = c.Row;

@@ -175,7 +175,7 @@ namespace Npoi.Core.SS.Formula.Functions
 
         private class StringLookupComparer : LookupValueComparerBase
         {
-            private String _value;
+            private string _value;
             private Regex _wildCardPattern;
             private bool _matchExact;
             private bool _isMatchFunction;
@@ -206,7 +206,7 @@ namespace Npoi.Core.SS.Formula.Functions
                     }
                 }
 
-                return CompareResult.ValueOf(String.Compare(_value, stringValue, true));
+                return CompareResult.ValueOf(string.Compare(_value, stringValue, true));
             }
 
             protected override String GetValueAsString()
@@ -652,7 +652,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return sb.ToString();
         }
 
-        private String FormatAsString
+        private string FormatAsString
         {
             get
             {

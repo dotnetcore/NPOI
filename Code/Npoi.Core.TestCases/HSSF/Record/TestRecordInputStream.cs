@@ -35,7 +35,7 @@ namespace TestCases.HSSF.Record
          * Data inspired by attachment 22626 of bug 45866<br/>
          * A unicode string of 18 chars, with a continue record where the compression flag Changes
          */
-        private static String HED_DUMP1 = ""
+        private static string HED_DUMP1 = ""
                 + "1A 59 00 8A 9E 8A " // 3 uncompressed unicode chars
                 + "3C 00 " // Continue sid
                 + "10 00 " // rec size 16 (1+15)
@@ -45,7 +45,7 @@ namespace TestCases.HSSF.Record
         /**
          * same string re-arranged
          */
-        private static String HED_DUMP2 = ""
+        private static string HED_DUMP2 = ""
             // 15 chars at end of current record
                 + "4D 75 6C 74 69 6C 69 6E 67 75 61 6C 20 2D 20"
                 + "3C 00 " // Continue sid

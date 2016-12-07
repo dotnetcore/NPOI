@@ -36,7 +36,6 @@ namespace Npoi.Core.XWPF.UserModel
         protected List<XWPFNum> nums = new List<XWPFNum>();
 
         private CT_Numbering ctNumbering;
-        private bool isNew;
 
         /**
          *create a new styles object with an existing document
@@ -45,7 +44,6 @@ namespace Npoi.Core.XWPF.UserModel
         public XWPFNumbering(PackagePart part, PackageRelationship rel)
             : base(part, rel)
         {
-            isNew = true;
         }
 
         /**
@@ -56,7 +54,6 @@ namespace Npoi.Core.XWPF.UserModel
         {
             abstractNums = new List<XWPFAbstractNum>();
             nums = new List<XWPFNum>();
-            isNew = true;
         }
 
         /**
@@ -81,7 +78,6 @@ namespace Npoi.Core.XWPF.UserModel
                 {
                     abstractNums.Add(new XWPFAbstractNum(ctAbstractNum, this));
                 }
-                isNew = false;
             }
             catch (Exception e)
             {

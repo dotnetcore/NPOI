@@ -39,9 +39,9 @@ namespace Npoi.Core.HSSF.Record
 
         //private short             field_4_name_Length;
         //private short             field_5_comment_Length;
-        private String field_6_name_text;
+        private string field_6_name_text;
 
-        private String field_7_comment_text;
+        private string field_7_comment_text;
 
         public NameCommentRecord(string name, String comment)
         {

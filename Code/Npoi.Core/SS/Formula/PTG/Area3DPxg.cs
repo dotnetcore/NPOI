@@ -34,8 +34,8 @@ namespace Npoi.Core.SS.Formula.PTG
     public class Area3DPxg : AreaPtgBase, Pxg3D
     {
         private int externalWorkbookNumber = -1;
-        private String firstSheetName;
-        private String lastSheetName;
+        private string firstSheetName;
+        private string lastSheetName;
 
         public Area3DPxg(int externalWorkbookNumber, SheetIdentifier sheetName, String arearef)
             : this(externalWorkbookNumber, sheetName, new AreaReference(arearef))

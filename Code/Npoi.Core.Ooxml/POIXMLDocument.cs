@@ -57,7 +57,7 @@ namespace Npoi.Core
          * Works around shortcomings in java's this() constructor calls
          */
 
-        public static OPCPackage OpenPackage(String path)
+        public static OPCPackage OpenPackage(string path)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace Npoi.Core
          *  specified content type.
          */
 
-        protected PackagePart[] GetRelatedByType(String contentType)
+        protected PackagePart[] GetRelatedByType(string contentType)
         {
             PackageRelationshipCollection partsC =
                 GetPackagePart().GetRelationshipsByType(contentType);

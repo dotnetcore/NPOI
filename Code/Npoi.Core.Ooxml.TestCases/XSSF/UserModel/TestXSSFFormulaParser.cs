@@ -380,7 +380,7 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-        private static String ToFormulaString(Ptg ptg, IFormulaParsingWorkbook wb)
+        private static string ToFormulaString(Ptg ptg, IFormulaParsingWorkbook wb)
         {
             if (ptg is WorkbookDependentFormula)
             {

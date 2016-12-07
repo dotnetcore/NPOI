@@ -42,7 +42,7 @@ namespace Npoi.Core.HSSF.Record.PivotTable
         private int isxdiShow;
         private int reserved1;
         private int reserved2;
-        private String subName;
+        private string subName;
 
         public ExtendedPivotTableViewFieldsRecord(RecordInputStream in1)
         {

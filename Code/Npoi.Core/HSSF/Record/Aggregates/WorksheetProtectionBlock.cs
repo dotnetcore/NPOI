@@ -201,7 +201,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /// <param name="password">password to set;Pass <code>null</code> to remove all protection</param>
         /// <param name="shouldProtectObjects">shouldProtectObjects are protected</param>
         /// <param name="shouldProtectScenarios">shouldProtectScenarios are protected</param>
-        public void ProtectSheet(String password, bool shouldProtectObjects,
+        public void ProtectSheet(string password, bool shouldProtectObjects,
                 bool shouldProtectScenarios)
         {
             if (password == null)

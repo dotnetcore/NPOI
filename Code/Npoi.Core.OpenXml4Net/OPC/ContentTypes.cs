@@ -94,7 +94,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
 
         public static String EXTENSION_XML = "xml";
 
-        public static String GetContentTypeFromFileExtension(String filename)
+        public static String GetContentTypeFromFileExtension(string filename)
         {
             String extension = filename.Substring(filename.LastIndexOf(".") + 1)
                     .ToLower();

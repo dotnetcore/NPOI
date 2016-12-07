@@ -268,7 +268,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * Combine a string Uri with a prefix and a suffix.
          */
 
-        public static String Combine(String prefix, String suffix)
+        public static String Combine(string prefix, String suffix)
         {
             if (!prefix.EndsWith("" + FORWARD_SLASH_CHAR)
                     && !suffix.StartsWith("" + FORWARD_SLASH_CHAR))
@@ -515,7 +515,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * Get Uri from a string path.
          */
 
-        public static Uri GetURIFromPath(String path)
+        public static Uri GetURIFromPath(string path)
         {
             Uri retUri = null;
             try
@@ -592,7 +592,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @see #CreatePartName(Uri)
          */
 
-        public static PackagePartName CreatePartName(String partName)
+        public static PackagePartName CreatePartName(string partName)
         {
             Uri partNameURI;
             try
@@ -620,7 +620,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @see #CreatePartName(Uri)
          */
 
-        public static PackagePartName CreatePartName(String partName,
+        public static PackagePartName CreatePartName(string partName,
                 PackagePart relativePart)
         {
             Uri newPartNameURI;
@@ -762,7 +762,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
   * TODO YK: for now this method does only (5). Finish the rest.
   */
 
-        public static Uri ToUri(String value)
+        public static Uri ToUri(string value)
         {
             //5. Convert all back slashes to forward slashes
             if (value.IndexOf("\\") != -1)
@@ -825,7 +825,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
   * @return  the encoded string
   */
 
-        public static String Encode(String s)
+        public static String Encode(string s)
         {
             int n = s.Length;
             if (n == 0) return s;

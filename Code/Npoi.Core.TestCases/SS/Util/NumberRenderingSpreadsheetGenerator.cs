@@ -133,14 +133,14 @@ namespace TestCases.SS.Util
             //}
         }
 
-        private static String FormatLongAsHex(long l)
+        private static string FormatLongAsHex(long l)
         {
             StringBuilder sb = new StringBuilder(20);
             sb.Append(HexDump.LongToHex(l)).Append('L');
             return sb.ToString();
         }
 
-        public static void Main(String[] args)
+        public static void Main(string[] args)
         {
             WriteJavaDoc();
 
@@ -223,7 +223,7 @@ namespace TestCases.SS.Util
 
         }
 
-        private static String InterpretLong(byte[] fileContent, int offset)
+        private static string InterpretLong(byte[] fileContent, int offset)
         {
             Stream is1 = new MemoryStream(fileContent, offset, 8);
             long l;

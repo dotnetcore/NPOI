@@ -146,7 +146,7 @@ namespace Npoi.Core.XSSF.UserModel
                 Assert.Fail("Without a fix for #56752, shouldn't be able to Evaluate a " +
                      "reference to a non-provided linked workbook");
             }
-            catch (Exception e) { }
+            catch (Exception) { }
 
             // Setup the environment
             Dictionary<String, IFormulaEvaluator> evaluators = new Dictionary<String, IFormulaEvaluator>();
@@ -192,7 +192,7 @@ namespace Npoi.Core.XSSF.UserModel
                 cXSLX_nw_cell.CellFormula = (/*setter*/"[alt.xlsx]Sheet1!$A$1");
                 Assert.Fail("New workbook not linked, shouldn't be able to Add");
             }
-            catch (Exception e) { }
+            catch (Exception ) { }
 
             // Link and re-try
             IWorkbook alt = new XSSFWorkbook();

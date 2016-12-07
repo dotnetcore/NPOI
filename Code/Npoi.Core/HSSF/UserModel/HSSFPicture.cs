@@ -267,7 +267,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-        private String Trim(string value)
+        private string Trim(string value)
         {
             int end = value.Length;
             int st = 0;

@@ -213,7 +213,7 @@ namespace Npoi.Core.XWPF.UserModel
             b.color = (rgbColor);
         }
 
-        public void SetText(String text)
+        public void SetText(string text)
         {
             CT_P ctP = (ctTc.SizeOfPArray() == 0) ? ctTc.AddNewP() : ctTc.GetPArray(0);
             XWPFParagraph par = new XWPFParagraph(ctP, this);
@@ -231,7 +231,7 @@ namespace Npoi.Core.XWPF.UserModel
      * @param rgbStr - the desired cell color, in the hex form "RRGGBB".
      */
 
-        public void SetColor(String rgbStr)
+        public void SetColor(string rgbStr)
         {
             CT_TcPr tcpr = ctTc.IsSetTcPr() ? ctTc.tcPr : ctTc.AddNewTcPr();
             CT_Shd ctshd = tcpr.IsSetShd() ? tcpr.shd : tcpr.AddNewShd();

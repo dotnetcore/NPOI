@@ -238,7 +238,7 @@ namespace Npoi.Core.XWPF.UserModel
               null
         );
 
-        private XWPFRelation(String type, String rel, String defaultName, Type cls)
+        private XWPFRelation(string type, String rel, String defaultName, Type cls)
             : base(type, rel, defaultName, cls)
         {
             ;
@@ -254,7 +254,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @return registered POIXMLRelation or null if not found
          */
 
-        public static XWPFRelation GetInstance(String rel)
+        public static XWPFRelation GetInstance(string rel)
         {
             if (_table.ContainsKey(rel))
                 return _table[(rel)];

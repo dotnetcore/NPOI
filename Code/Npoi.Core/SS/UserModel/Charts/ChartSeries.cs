@@ -17,7 +17,7 @@ namespace Npoi.Core.SS.UserModel.Charts
  * @param title
  */
 
-        void SetTitle(String title);
+        void SetTitle(string title);
 
         /**
          * Sets the title of the series as a cell reference.

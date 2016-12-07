@@ -37,10 +37,10 @@ namespace Npoi.Core.HSSF.Util
         private const int MAX_HEIGHT = 66666;
 
         //static char SO_FORMNAME_ENCLOSURE =  '\'';
-        private String m_sheetName;
+        private string m_sheetName;
 
-        private String m_cellFrom;
-        private String m_cellTo;
+        private string m_cellFrom;
+        private string m_cellTo;
 
         /**
          * Accepts an external reference from excel.
@@ -49,7 +49,7 @@ namespace Npoi.Core.HSSF.Util
          * @param _url
          */
 
-        public RangeAddress(String _url)
+        public RangeAddress(string _url)
         {
             init(_url);
         }
@@ -105,7 +105,7 @@ namespace Npoi.Core.HSSF.Util
             }
         }
 
-        public bool IsCellOk(String _cell)
+        public bool IsCellOk(string _cell)
         {
             if (_cell != null)
             {
@@ -124,7 +124,7 @@ namespace Npoi.Core.HSSF.Util
             return IsSheetNameOk(m_sheetName);
         }
 
-        private static bool intern_isSheetNameOk(String _sheetName, bool _canBeWaitSpace)
+        private static bool intern_isSheetNameOk(string _sheetName, bool _canBeWaitSpace)
         {
             for (int i = 0; i < _sheetName.Length; i++)
             {
@@ -138,7 +138,7 @@ namespace Npoi.Core.HSSF.Util
             return true;
         }
 
-        public static bool IsSheetNameOk(String _sheetName)
+        public static bool IsSheetNameOk(string _sheetName)
         {
             bool res = false;
             if (!string.IsNullOrEmpty(_sheetName))
@@ -243,7 +243,7 @@ namespace Npoi.Core.HSSF.Util
             }
         }
 
-        private void init(String _url)
+        private void init(string _url)
         {
             _url = RemoveString(_url, "$");
             _url = RemoveString(_url, "'");
@@ -263,7 +263,7 @@ namespace Npoi.Core.HSSF.Util
             m_cellTo = RemoveString(m_cellTo, ".");
         }
 
-        private String[] ParseURL(String _url)
+        private string[] ParseURL(string _url)
         {
             String[] result = new String[3];
             int index = _url.IndexOf(':');
@@ -307,7 +307,7 @@ namespace Npoi.Core.HSSF.Util
             return result;
         }
 
-        public int GetYPosition(String _subrange)
+        public int GetYPosition(string _subrange)
         {
             int result = WRONG_POS;
             _subrange = _subrange.Trim();
@@ -330,7 +330,7 @@ namespace Npoi.Core.HSSF.Util
             return result;
         }
 
-        private static bool IsLetter(String _str)
+        private static bool IsLetter(string _str)
         {
             bool res = true;
             if (!string.IsNullOrEmpty(_str))
@@ -350,7 +350,7 @@ namespace Npoi.Core.HSSF.Util
             return res;
         }
 
-        public int GetXPosition(String _subrange)
+        public int GetXPosition(string _subrange)
         {
             int result = WRONG_POS;
             String tmp = Filter(_subrange);
@@ -363,7 +363,7 @@ namespace Npoi.Core.HSSF.Util
             return result;
         }
 
-        public String GetDigitPart(String _value)
+        public String GetDigitPart(string _value)
         {
             String result = "";
             int digitpos = GetFirstDigitPosition(_value);
@@ -374,7 +374,7 @@ namespace Npoi.Core.HSSF.Util
             return result;
         }
 
-        public String GetCharPart(String _value)
+        public String GetCharPart(string _value)
         {
             String result = "";
             int digitpos = GetFirstDigitPosition(_value);
@@ -385,7 +385,7 @@ namespace Npoi.Core.HSSF.Util
             return result;
         }
 
-        private String Filter(String _range)
+        private string Filter(string _range)
         {
             String res = "";
             for (int i = 0; i < _range.Length; i++)
@@ -399,7 +399,7 @@ namespace Npoi.Core.HSSF.Util
             return res;
         }
 
-        private int GetFirstDigitPosition(String _value)
+        private int GetFirstDigitPosition(string _value)
         {
             int result = WRONG_POS;
             if (_value != null && _value.Trim().Length == 0)
@@ -419,7 +419,7 @@ namespace Npoi.Core.HSSF.Util
             return result;
         }
 
-        public int Get26Sys(String _s)
+        public int Get26Sys(string _s)
         {
             int sum = 0;
             int multiplier = 1;
@@ -453,7 +453,7 @@ namespace Npoi.Core.HSSF.Util
             return s;
         }
 
-        public String ReplaceString(String _source, String _oldPattern,
+        public String ReplaceString(string _source, String _oldPattern,
         String _newPattern)
         {
             StringBuilder res = new StringBuilder(_source);
@@ -462,7 +462,7 @@ namespace Npoi.Core.HSSF.Util
             return res.ToString();
         }
 
-        public String RemoveString(String _source, String _match)
+        public String RemoveString(string _source, String _match)
         {
             return ReplaceString(_source, _match, "");
         }

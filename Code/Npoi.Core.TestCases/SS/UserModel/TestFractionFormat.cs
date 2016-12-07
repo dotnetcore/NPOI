@@ -78,7 +78,7 @@ namespace TestCases.SS.UserModel
             reader.Dispose();
         }
 
-        private String Clean(String s)
+        private string Clean(string s)
         {
             //s = s.Trim().Replace(" +", " ").Replace("- +", "-");
             s = Regex.Replace(s.Trim(), " +", " ");

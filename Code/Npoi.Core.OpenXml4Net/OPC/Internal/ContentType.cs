@@ -33,12 +33,12 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
         /**
          * Type in Type/Subtype.
          */
-        private String type;
+        private string type;
 
         /**
          * Subtype
          */
-        private String subType;
+        private string subType;
 
         /**
          * Parameters
@@ -124,7 +124,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          *             If the specified content type is not valid with RFC 2616.
          */
 
-        public ContentType(String contentType)
+        public ContentType(string contentType)
         {
             Match mMediaType = patternTypeSubType.Match(contentType);
             if (!mMediaType.Success)
@@ -171,7 +171,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
             retVal.Append(this.SubType);
             if (withParameters)
             {
-                foreach (String key in parameters.Keys)
+                foreach (string key in parameters.Keys)
                 {
                     retVal.Append(";");
                     retVal.Append(key);
@@ -187,7 +187,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
             StringBuilder retVal = new StringBuilder();
             retVal.Append(ToString());
 
-            foreach (String key in parameters.Keys)
+            foreach (string key in parameters.Keys)
             {
                 retVal.Append(";");
                 retVal.Append(key);
@@ -268,16 +268,16 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal
          * @return The value associated to the specified key.
          */
 
-        public String GetParameter(String key)
+        public String GetParameter(string key)
         {
             return parameters[key];
         }
 
         /**
-     * @deprecated Use {@link #getParameter(String)} instead
+     * @deprecated Use {@link #getParameter(string)} instead
      */
 
-        public String GetParameters(String key)
+        public String GetParameters(string key)
         {
             return GetParameter(key);
         }

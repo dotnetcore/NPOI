@@ -34,9 +34,7 @@ namespace Npoi.Core.XSSF.UserModel
     {
         private static CT_GraphicalObjectFrame prototype = null;
 
-        private CT_GraphicalObjectFrame graphicFrame;
-        private XSSFDrawing drawing;
-        private XSSFClientAnchor anchor;
+        private CT_GraphicalObjectFrame graphicFrame;      
 
         /**
          * Construct a new XSSFGraphicFrame object.
@@ -44,6 +42,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param Drawing the XSSFDrawing that owns this frame
          * @param ctGraphicFrame the XML bean that stores this frame content
          */
+
 
         public XSSFGraphicFrame(XSSFDrawing Drawing, CT_GraphicalObjectFrame ctGraphicFrame)
         {
@@ -90,7 +89,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Sets the frame macro.
          */
 
-        public void SetMacro(String macro)
+        public void SetMacro(string macro)
         {
             graphicFrame.macro = (macro);
         }
@@ -122,24 +121,12 @@ namespace Npoi.Core.XSSF.UserModel
          * Returns the frame anchor.
          * @return the anchor this frame is attached to
          */
-
-        public XSSFClientAnchor Anchor
-        {
-            get
-            {
-                return anchor;
-            }
-            set
-            {
-                this.anchor = value;
-            }
-        }
+        public XSSFClientAnchor Anchor { get; set; }
 
         /**
          * Assign a DrawingML chart to the graphic frame.
          */
-
-        internal void SetChart(XSSFChart chart, String relId)
+        internal void SetChart(XSSFChart chart, string relId)
         {
             CT_GraphicalObjectData data = graphicFrame.graphic.AddNewGraphicData();
             AppendChartElement(data, relId);

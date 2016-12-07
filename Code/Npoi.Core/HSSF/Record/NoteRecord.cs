@@ -48,7 +48,7 @@ namespace Npoi.Core.HSSF.Record
         private short field_3_flags;
         private int field_4_shapeid;
         private bool field_5_hasMultibyte;
-        private String field_6_author;
+        private string field_6_author;
         private const Byte DEFAULT_PADDING = (byte)0;
 
         /**

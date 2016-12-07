@@ -98,7 +98,7 @@ namespace Npoi.Core.XSSF.UserModel.Extensions
  * resultant text should not normally be saved back into the document!
  */
 
-        public static String StripFields(String text)
+        public static String StripFields(string text)
         {
             return HeaderFooter.StripFields(text);
         }

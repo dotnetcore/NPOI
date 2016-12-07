@@ -27,18 +27,18 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * Reserved characters for sub delimitations.
          */
 
-        private static String[] RFC3986_PCHAR_SUB_DELIMS = { "!", "$", "&", "'",
+        private static string[] RFC3986_PCHAR_SUB_DELIMS = { "!", "$", "&", "'",
             "(", ")", "*", "+", ",", ";", "=" };
 
         /**
          * Unreserved character (+ ALPHA & DIGIT).
          */
-        private static String[] RFC3986_PCHAR_UNRESERVED_SUP = { "-", ".", "_", "~" };
+        private static string[] RFC3986_PCHAR_UNRESERVED_SUP = { "-", ".", "_", "~" };
 
         /**
          * Authorized reserved characters for pChar.
          */
-        private static String[] RFC3986_PCHAR_AUTHORIZED_SUP = { ":", "@" };
+        private static string[] RFC3986_PCHAR_AUTHORIZED_SUP = { ":", "@" };
 
         /**
          * Flag to know if this part name is from a relationship part name.
@@ -94,7 +94,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *             Packaging Convention specifications.
          */
 
-        internal PackagePartName(String partName, bool checkConformance)
+        internal PackagePartName(string partName, bool checkConformance)
         {
             Uri partURI;
             try
@@ -293,7 +293,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *            The segment to check
          */
 
-        private static void CheckPCharCompliance(String segment)
+        private static void CheckPCharCompliance(string segment)
         {
             bool errorFlag;
             for (int i = 0; i < segment.Length; ++i)
@@ -604,7 +604,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * (lexigraphical sort)
          */
 
-        public static int Compare(String str1, String str2)
+        public static int Compare(string str1, String str2)
         {
             if (str1 == null)
             {

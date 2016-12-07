@@ -87,7 +87,7 @@ namespace Npoi.Core.Util
          * @param externalForm representation of the Class ID represented by this object.
          */
 
-        public ClassID(String externalForm)
+        public ClassID(string externalForm)
         {
             bytes = new byte[LENGTH];
             String clsStr = Regex.Replace(externalForm, "[{}-]", "");

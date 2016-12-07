@@ -692,17 +692,5 @@ namespace Npoi.Core.XSSF.UserModel
         {
             get { throw new System.NotImplementedException(); }
         }
-
-        private bool IsRightToLeft
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
-        }
     }
 }

@@ -59,7 +59,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @see Npoi.Core.ss.usermodel.DataValidationHelper#CreateExplicitListConstraint(java.lang.String[])
          */
 
-        public IDataValidationConstraint CreateExplicitListConstraint(String[] listOfValues)
+        public IDataValidationConstraint CreateExplicitListConstraint(string[] listOfValues)
         {
             return new XSSFDataValidationConstraint(listOfValues);
         }
@@ -68,7 +68,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @see Npoi.Core.ss.usermodel.DataValidationHelper#CreateFormulaListConstraint(java.lang.String)
          */
 
-        public IDataValidationConstraint CreateFormulaListConstraint(String listFormula)
+        public IDataValidationConstraint CreateFormulaListConstraint(string listFormula)
         {
             return new XSSFDataValidationConstraint(ValidationType.LIST, listFormula);
         }
@@ -117,7 +117,7 @@ namespace Npoi.Core.XSSF.UserModel
             return new XSSFDataValidationConstraint(ValidationType.TIME, operatorType, formula1, formula2);
         }
 
-        public IDataValidationConstraint CreateCustomConstraint(String formula)
+        public IDataValidationConstraint CreateCustomConstraint(string formula)
         {
             return new XSSFDataValidationConstraint(ValidationType.FORMULA, formula);
         }

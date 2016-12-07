@@ -331,7 +331,7 @@ namespace Npoi.Core.XSSF.UserModel
                 typeof(XSSFPivotCacheRecords)
         );
 
-        private XSSFRelation(String type, String rel, String defaultName, Type cls) :
+        private XSSFRelation(string type, String rel, String defaultName, Type cls) :
             base(type, rel, defaultName, cls)
         {
             if (cls != null && !_table.ContainsKey(rel))
@@ -368,7 +368,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return registered POIXMLRelation or null if not found
          */
 
-        public static XSSFRelation GetInstance(String rel)
+        public static XSSFRelation GetInstance(string rel)
         {
             if (_table.ContainsKey(rel))
                 return _table[rel];

@@ -43,7 +43,7 @@ namespace TestCases.HSSF.Record
             return result;
         }
 
-        private static byte[] ReadSampleHexData(String sampleFileName, String sectionName,int recSid)
+        private static byte[] ReadSampleHexData(string sampleFileName, String sectionName,int recSid)
         {
             Stream is1 = HSSFTestDataSamples.OpenSampleFileStream(sampleFileName);
             byte[] data;

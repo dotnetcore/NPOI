@@ -153,7 +153,7 @@ namespace Npoi.Core.SS.Format
          * @return A condition object for the given condition.
          */
 
-        public static CellFormatCondition GetInstance(String opString,
+        public static CellFormatCondition GetInstance(string opString,
                 String constStr)
         {
             if (!TESTS.ContainsKey(opString))

@@ -40,7 +40,7 @@ namespace TestCases.HSSF.UserModel
         {
         }
 
-        private static HSSFWorkbook OpenSample(String sampleFileName)
+        private static HSSFWorkbook OpenSample(string sampleFileName)
         {
             return HSSFTestDataSamples.OpenSampleWorkbook(sampleFileName);
         }
@@ -175,7 +175,7 @@ namespace TestCases.HSSF.UserModel
             floatTest("/");
         }
 
-        private static void floatTest(String operator1)
+        private static void floatTest(string operator1)
         {
             HSSFWorkbook wb = new HSSFWorkbook();
             Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
@@ -212,7 +212,7 @@ namespace TestCases.HSSF.UserModel
             floatVerify(operator1, wb);
         }
 
-        private static void floatVerify(String operator1, HSSFWorkbook wb)
+        private static void floatVerify(string operator1, HSSFWorkbook wb)
         {
 
             Npoi.Core.SS.UserModel.ISheet s = wb.GetSheetAt(0);
@@ -256,7 +256,7 @@ namespace TestCases.HSSF.UserModel
             RefAreaArrayFunctionTest("SUM");
         }
 
-        private static void OperationRefTest(String operator1)
+        private static void OperationRefTest(string operator1)
         {
             HSSFWorkbook wb = new HSSFWorkbook();
             Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
@@ -333,7 +333,7 @@ namespace TestCases.HSSF.UserModel
          * Opens the sheet we wrote out by BinomialOperator and makes sure the formulas
          * all Match what we expect (x operator y)
          */
-        private static void OperationalRefVerify(String operator1, HSSFWorkbook wb)
+        private static void OperationalRefVerify(string operator1, HSSFWorkbook wb)
         {
 
             Npoi.Core.SS.UserModel.ISheet s = wb.GetSheetAt(0);
@@ -407,7 +407,7 @@ namespace TestCases.HSSF.UserModel
         /**
          * Tests Order wrting out == Order writing in for a given formula
          */
-        private static void OrderTest(String formula)
+        private static void OrderTest(string formula)
         {
             HSSFWorkbook wb = new HSSFWorkbook();
             Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
@@ -434,7 +434,7 @@ namespace TestCases.HSSF.UserModel
          * huge set of x operator y formulas.  Next we call BinomialVerify and verify
          * that they are all how we expect.
          */
-        private static void BinomialOperator(String operator1)
+        private static void BinomialOperator(string operator1)
         {
             HSSFWorkbook wb = new HSSFWorkbook();
             Npoi.Core.SS.UserModel.ISheet s = wb.CreateSheet();
@@ -474,7 +474,7 @@ namespace TestCases.HSSF.UserModel
          * Opens the sheet we wrote out by BinomialOperator and makes sure the formulas
          * all Match what we expect (x operator y)
          */
-        private static void BinomialVerify(String operator1, HSSFWorkbook wb)
+        private static void BinomialVerify(string operator1, HSSFWorkbook wb)
         {
             Npoi.Core.SS.UserModel.ISheet s = wb.GetSheetAt(0);
             IRow r = null;
@@ -514,7 +514,7 @@ namespace TestCases.HSSF.UserModel
         /**
          * Writes a function then Tests to see if its correct
          */
-        public static void AreaFunctionTest(String function)
+        public static void AreaFunctionTest(string function)
         {
 
             HSSFWorkbook wb = new HSSFWorkbook();
@@ -541,7 +541,7 @@ namespace TestCases.HSSF.UserModel
          * Writes a function then Tests to see if its correct
          */
 
-        public void RefArrayFunctionTest(String function)
+        public void RefArrayFunctionTest(string function)
         {
 
             HSSFWorkbook wb = new HSSFWorkbook();
@@ -569,7 +569,7 @@ namespace TestCases.HSSF.UserModel
          * Writes a function then Tests to see if its correct
          *
          */
-        public void RefAreaArrayFunctionTest(String function)
+        public void RefAreaArrayFunctionTest(string function)
         {
 
             HSSFWorkbook wb = new HSSFWorkbook();

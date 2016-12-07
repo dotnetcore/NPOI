@@ -21,7 +21,7 @@ namespace TestCases.SS
         /// </summary>
         /// <param name="sampleFileName"> the file name to load.</param>
         /// <returns>an instance of Workbook loaded from the supplied file name</returns>
-        IWorkbook OpenSampleWorkbook(String sampleFileName);
+        IWorkbook OpenSampleWorkbook(string sampleFileName);
 
         /// <summary>
         /// Override to provide way of creating HSSF / XSSF workbooks
@@ -34,7 +34,7 @@ namespace TestCases.SS
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <returns>an open InputStream for the specified sample file</returns>
-        byte[] GetTestDataFileContent(String fileName);
+        byte[] GetTestDataFileContent(string fileName);
 
         SpreadsheetVersion GetSpreadsheetVersion();
 

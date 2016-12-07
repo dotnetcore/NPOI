@@ -74,7 +74,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="formula">formula for the valued, Compared with the cell</param>
         /// <returns></returns>
-        public IConditionalFormattingRule CreateConditionalFormattingRule(String formula)
+        public IConditionalFormattingRule CreateConditionalFormattingRule(string formula)
         {
             HSSFWorkbook wb = (HSSFWorkbook)_sheet.Workbook;
             CFRuleRecord rr = CFRuleRecord.Create(_sheet, formula);

@@ -205,7 +205,7 @@ namespace Npoi.Core
             return utcString.Equals(dateTimeUtcString);
         }
 
-        private static String ZeroPad(long i)
+        private static string ZeroPad(long i)
         {
             if (i >= 0 && i <= 9)
             {

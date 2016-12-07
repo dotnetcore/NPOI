@@ -75,7 +75,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
             sw.Write(string.Format("<{0}>", nodeName));
             if (this.author != null)
             {
-                foreach (String x in this.author)
+                foreach (string x in this.author)
                 {
                     sw.Write(string.Format("<author>{0}</author>", XmlHelper.EncodeXml(x)));
                 }

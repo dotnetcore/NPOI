@@ -35,7 +35,7 @@
 //        private bool includeSheetNames = true;
 //        private bool formulasNotResults = false;
 
-//        public XSSFEventBasedExcelExtractor(String path)
+//        public XSSFEventBasedExcelExtractor(string path)
 //            : this(OPCPackage.Open(path))
 //        {
 //        }
@@ -189,7 +189,7 @@
 //        }
 //        protected class SheetTextExtractor : SheetContentsHandler
 //        {
-//            private StringBuilder output;
+//            private stringBuilder output;
 //            private bool firstCellOfRow = true;
 
 //            protected SheetTextExtractor(StringBuilder output)
@@ -207,7 +207,7 @@
 //                output.Append('\n');
 //            }
 
-//            public void cell(String cellRef, String formattedValue)
+//            public void cell(string cellRef, String formattedValue)
 //            {
 //                if (firstCellOfRow)
 //                {
@@ -220,7 +220,7 @@
 //                output.Append(formattedValue);
 //            }
 
-//            public void headerFooter(String text, bool IsHeader, String tagName)
+//            public void headerFooter(string text, bool IsHeader, String tagName)
 //            {
 //                // We don't include headers in the output yet, so ignore
 //            }

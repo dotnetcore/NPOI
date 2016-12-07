@@ -182,7 +182,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <returns>
         /// true if the operation succeeded, else false
         /// </returns>
-        public bool RenameTo(String newName)
+        public bool RenameTo(string newName)
         {
             bool rval = false;
 

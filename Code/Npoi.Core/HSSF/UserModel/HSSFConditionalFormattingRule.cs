@@ -222,7 +222,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-        private String ToFormulaString(Ptg[] ParsedExpression)
+        private string ToFormulaString(Ptg[] ParsedExpression)
         {
             if (ParsedExpression == null)
             {

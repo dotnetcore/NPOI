@@ -29,13 +29,13 @@ namespace Npoi.Core.XSSF.UserModel
 
     public class XSSFDataValidationConstraint : IDataValidationConstraint
     {
-        private String formula1;
-        private String formula2;
+        private string formula1;
+        private string formula2;
         private int validationType = -1;
         private int operator1 = -1;
-        private String[] explicitListOfValues;
+        private string[] explicitListOfValues;
 
-        public XSSFDataValidationConstraint(String[] explicitListOfValues)
+        public XSSFDataValidationConstraint(string[] explicitListOfValues)
         {
             if (explicitListOfValues == null || explicitListOfValues.Length == 0)
             {
@@ -165,7 +165,7 @@ namespace Npoi.Core.XSSF.UserModel
             return validationType;
         }
 
-        protected String RemoveLeadingEquals(String formula1)
+        protected String RemoveLeadingEquals(string formula1)
         {
             return IsFormulaEmpty(formula1) ? formula1 : formula1[0] == '=' ? formula1.Substring(1) : formula1;
         }
@@ -205,7 +205,7 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
-        protected bool IsFormulaEmpty(String formula1)
+        protected bool IsFormulaEmpty(string formula1)
         {
             return formula1 == null || formula1.Trim().Length == 0;
         }

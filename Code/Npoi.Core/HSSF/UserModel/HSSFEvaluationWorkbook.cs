@@ -56,13 +56,13 @@ namespace Npoi.Core.HSSF.UserModel
             _iBook = book.Workbook;
         }
 
-        public int GetExternalSheetIndex(String sheetName)
+        public int GetExternalSheetIndex(string sheetName)
         {
             int sheetIndex = _uBook.GetSheetIndex(sheetName);
             return _iBook.CheckExternSheet(sheetIndex);
         }
 
-        public int GetExternalSheetIndex(String workbookName, String sheetName)
+        public int GetExternalSheetIndex(string workbookName, String sheetName)
         {
             return _iBook.GetExternalSheetIndex(workbookName, sheetName);
         }
@@ -72,7 +72,7 @@ namespace Npoi.Core.HSSF.UserModel
             return _iBook.GetExternalName(externSheetIndex, externNameIndex);
         }
 
-        public ExternalName GetExternalName(String nameName, String sheetName, int externalWorkbookNumber)
+        public ExternalName GetExternalName(string nameName, String sheetName, int externalWorkbookNumber)
         {
             throw new InvalidOperationException("XSSF-style external names are not supported for HSSF");
         }
@@ -89,13 +89,13 @@ namespace Npoi.Core.HSSF.UserModel
             return new Area3DPtg(areaRef, extIx);
         }
 
-        public Ptg GetNameXPtg(String name, SheetIdentifier sheet)
+        public Ptg GetNameXPtg(string name, SheetIdentifier sheet)
         {
             int sheetRefIndex = GetSheetExtIx(sheet);
             return _iBook.GetNameXPtg(name, sheetRefIndex, _uBook.GetUDFFinder());
         }
 
-        public IEvaluationName GetName(String name, int sheetIndex)
+        public IEvaluationName GetName(string name, int sheetIndex)
         {
             for (int i = 0; i < _iBook.NumNames; i++)
             {
@@ -114,7 +114,7 @@ namespace Npoi.Core.HSSF.UserModel
             return _uBook.GetSheetIndex(sheet);
         }
 
-        public int GetSheetIndex(String sheetName)
+        public int GetSheetIndex(string sheetName)
         {
             return _uBook.GetSheetIndex(sheetName);
         }
@@ -171,7 +171,7 @@ namespace Npoi.Core.HSSF.UserModel
             return sheet;
         }
 
-        public ExternalSheet GetExternalSheet(String firstSheetName, string lastSheetName, int externalWorkbookNumber)
+        public ExternalSheet GetExternalSheet(string firstSheetName, string lastSheetName, int externalWorkbookNumber)
         {
             throw new InvalidOperationException("XSSF-style external references are not supported for HSSF");
         }

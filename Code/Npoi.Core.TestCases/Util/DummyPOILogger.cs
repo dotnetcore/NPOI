@@ -48,7 +48,7 @@ namespace TestCases.Util
 		    return true;
 	    }
 
-	    public override void Initialize(String cat) {}
+	    public override void Initialize(string cat) {}
 
         public override void Log(int level, Object obj1)
         {

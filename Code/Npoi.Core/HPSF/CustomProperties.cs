@@ -180,7 +180,7 @@ namespace Npoi.Core.HPSF
         /// <returns>The Removed property or
         /// <c>null</c>
         ///  if the specified property was not found.</returns>
-        public object Remove(String name) {
+        public object Remove(string name) {
             if (dictionaryNameToID[name] == null)
                 return null;
             long id = (long)dictionaryNameToID[name];
@@ -199,7 +199,7 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(String name, String value) {
+        public Object Put(string name, String value) {
             MutableProperty p = new MutableProperty();
             p.ID = -1;
             p.Type = Variant.VT_LPWSTR;
@@ -216,7 +216,7 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(String name, long value) {
+        public Object Put(string name, long value) {
             MutableProperty p = new MutableProperty();
             p.ID = -1;
             p.Type = Variant.VT_I8;
@@ -233,7 +233,7 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(String name, Double value) {
+        public Object Put(string name, Double value) {
             MutableProperty p = new MutableProperty();
             p.ID = -1;
             p.Type = Variant.VT_R8;
@@ -250,7 +250,7 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(String name, int value) {
+        public Object Put(string name, int value) {
             MutableProperty p = new MutableProperty();
             p.ID = -1;
             p.Type = Variant.VT_I4;
@@ -267,7 +267,7 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(String name, bool value) {
+        public Object Put(string name, bool value) {
             MutableProperty p = new MutableProperty();
             p.ID = -1;
             p.Type = Variant.VT_BOOL;
@@ -284,7 +284,7 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(String name, DateTime value) {
+        public Object Put(string name, DateTime value) {
             MutableProperty p = new MutableProperty();
             p.ID = -1;
             p.Type = Variant.VT_FILETIME;

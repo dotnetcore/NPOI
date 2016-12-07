@@ -46,7 +46,7 @@ namespace TestCases.HSSF.UserModel
             TestCases.CultureShim.SetCurrentCulture("en-US");
         }
 
-        private static HSSFWorkbook OpenSample(String sampleFileName)
+        private static HSSFWorkbook OpenSample(string sampleFileName)
         {
             return HSSFTestDataSamples.OpenSampleWorkbook(sampleFileName);
         }
@@ -537,7 +537,7 @@ namespace TestCases.HSSF.UserModel
             cell.SetCellType(CellType.String);
             Assert.AreEqual("1.2", cell.ToString());
 
-            cell.SetCellValue((String)null);
+            cell.SetCellValue((string)null);
             cell.SetCellValue((IRichTextString)null);
             wb.Close();
         }

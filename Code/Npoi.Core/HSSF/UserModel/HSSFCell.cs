@@ -402,7 +402,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-        private String ConvertCellValueToString()
+        private string ConvertCellValueToString()
         {
             switch (cellType)
             {
@@ -513,7 +513,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// string, for String cells we'll Set its value.  For other types we will
         /// Change the cell to a string cell and Set its value.
         /// If value is null then we will Change the cell to a Blank cell.</param>
-        public void SetCellValue(String value)
+        public void SetCellValue(string value)
         {
             HSSFRichTextString str = new HSSFRichTextString(value);
             SetCellValue(str);
@@ -632,7 +632,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-        public void SetCellFormula(String formula)
+        public void SetCellFormula(string formula)
         {
             if (IsPartOfArrayFormulaGroup)
             {
@@ -699,7 +699,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="cellTypeCode">The cell type code.</param>
         /// <returns></returns>
-        private String GetCellTypeName(CellType cellTypeCode)
+        private string GetCellTypeName(CellType cellTypeCode)
         {
             switch (cellTypeCode)
             {
@@ -1344,7 +1344,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// The purpose of this method is to validate the cell state prior to modification
         /// </summary>
         /// <param name="msg"></param>
-        internal void NotifyArrayFormulaChanging(String msg)
+        internal void NotifyArrayFormulaChanging(string msg)
         {
             CellRangeAddress cra = this.ArrayFormulaRange;
             if (cra.NumberOfCells > 1)

@@ -37,7 +37,7 @@ namespace Npoi.Core.POIFS.FileSystem
     public class DocumentDescriptor
     {
         private POIFSDocumentPath path;
-        private String name;
+        private string name;
         private int hashcode = 0;
 
         /// <summary>

@@ -42,7 +42,7 @@ namespace TestCases.SS.Formula.Functions
          * Creates a dummy AreaEval
          * @param values empty (<code>null</code>) entries in this array will be Converted to NumberEval.ZERO
          */
-        public static AreaEval CreateAreaEval(String areaRefStr, ValueEval[] values)
+        public static AreaEval CreateAreaEval(string areaRefStr, ValueEval[] values)
         {
             AreaPtg areaPtg = new AreaPtg(areaRefStr);
             return CreateAreaEval(areaPtg, values);
@@ -74,11 +74,11 @@ namespace TestCases.SS.Formula.Functions
         /**
          * Creates a single RefEval (with value zero)
          */
-        public static RefEval CreateRefEval(String refStr)
+        public static RefEval CreateRefEval(string refStr)
         {
             return CreateRefEval(refStr, NumberEval.ZERO);
         }
-        public static RefEval CreateRefEval(String refStr, ValueEval value)
+        public static RefEval CreateRefEval(string refStr, ValueEval value)
         {
             return new MockRefEval(new RefPtg(refStr), value);
         }

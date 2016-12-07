@@ -54,7 +54,7 @@ namespace TestCases.SS.Formula.Functions
             return invokeT(arg);
         }
 
-        private static void ConfirmText(String text)
+        private static void ConfirmText(string text)
         {
             ValueEval arg = new StringEval(text);
             ValueEval eval = invokeT(arg);

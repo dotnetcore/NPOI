@@ -47,7 +47,7 @@ namespace Npoi.Core.SS.Formula.Functions
             }
         }
 
-        private ValueEval Eval(String haystack, String needle, int startIndex)
+        private ValueEval Eval(string haystack, String needle, int startIndex)
         {
             int result;
             if (_isCaseSensitive)

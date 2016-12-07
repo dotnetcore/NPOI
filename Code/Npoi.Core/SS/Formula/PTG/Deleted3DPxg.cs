@@ -29,7 +29,7 @@ namespace Npoi.Core.SS.Formula.PTG
     public class Deleted3DPxg : OperandPtg, Pxg
     {
         private int externalWorkbookNumber = -1;
-        private String sheetName;
+        private string sheetName;
 
         public Deleted3DPxg(int externalWorkbookNumber, String sheetName)
         {
@@ -37,7 +37,7 @@ namespace Npoi.Core.SS.Formula.PTG
             this.sheetName = sheetName;
         }
 
-        public Deleted3DPxg(String sheetName)
+        public Deleted3DPxg(string sheetName)
             : this(-1, sheetName)
         {
             ;

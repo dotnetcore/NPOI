@@ -82,7 +82,7 @@ namespace TestCases.SS.Formula.Functions
             Confirm("DATE(1004, 1, 1)", 366705.00);
         }
 
-        private void Confirm(String formulaText, double expectedResult)
+        private void Confirm(string formulaText, double expectedResult)
         {
             cell11.CellFormula=(formulaText);
             Evaluator.ClearAllCachedResultValues();

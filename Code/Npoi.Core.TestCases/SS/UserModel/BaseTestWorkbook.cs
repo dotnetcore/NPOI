@@ -92,7 +92,7 @@ namespace TestCases.SS.UserModel
             String[] invalidNames = {"", "Sheet/", "Sheet\\",
                 "Sheet?", "Sheet*", "Sheet[", "Sheet]", "'Sheet'",
                 "My:Sheet"};
-            foreach (String sheetName in invalidNames)
+            foreach (string sheetName in invalidNames)
             {
                 try
                 {
@@ -678,7 +678,7 @@ namespace TestCases.SS.UserModel
             Assert.AreEqual(6.0, Evaluator.Evaluate(cell2).NumberValue);
         }
 
-        public void ChangeSheetNameWithSharedFormulas(String sampleFile)
+        public void ChangeSheetNameWithSharedFormulas(string sampleFile)
         {
             IWorkbook wb = _testDataProvider.OpenSampleWorkbook(sampleFile);
 

@@ -37,7 +37,7 @@ namespace Npoi.Core.XSSF
             // enforce Singleton
         }
 
-        public IWorkbook OpenSampleWorkbook(String sampleFileName)
+        public IWorkbook OpenSampleWorkbook(string sampleFileName)
         {
             return XSSFTestDataSamples.OpenSampleWorkbook(sampleFileName);
         }
@@ -56,7 +56,7 @@ namespace Npoi.Core.XSSF
             return new XSSFWorkbook();
         }
 
-        public byte[] GetTestDataFileContent(String fileName)
+        public byte[] GetTestDataFileContent(string fileName)
         {
             return POIDataSamples.GetSpreadSheetInstance().ReadFile(fileName);
         }

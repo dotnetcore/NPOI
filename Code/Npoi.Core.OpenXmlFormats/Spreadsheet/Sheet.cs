@@ -3855,8 +3855,6 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
 
         private uint numFmtIdField;
 
-        private bool numFmtIdFieldSpecified;
-
         public CT_InputCells()
         {
             this.deletedField = false;
@@ -6205,7 +6203,7 @@ namespace Npoi.Core.OpenXmlFormats.Spreadsheet
                 this.extLst.Write(sw, "extLst");
             if (this.formula != null)
             {
-                foreach (String x in this.formula)
+                foreach (string x in this.formula)
                 {
                     sw.Write(string.Format("<formula>{0}</formula>",  XmlHelper.EncodeXml(x)));
                 }

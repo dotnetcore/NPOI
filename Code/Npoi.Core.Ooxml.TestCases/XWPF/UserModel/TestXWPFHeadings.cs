@@ -29,7 +29,7 @@ namespace Npoi.Core.XWPF.UserModel
     [TestFixture]
     public class TestXWPFHeadings
     {
-        private static String HEADING1 = "Heading1";
+        private static string HEADING1 = "Heading1";
 
         [Test]
         public void TestSetParagraphStyle()

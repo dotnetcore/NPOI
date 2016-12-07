@@ -175,7 +175,7 @@ namespace Npoi.Core.XSSF.Extractor
                         "Map ID=\"5\"",
                 };
 
-                    foreach (String condition in regexConditions)
+                    foreach (string condition in regexConditions)
                     {
                         Regex pattern = new Regex(condition, RegexOptions.Compiled);
                         Assert.IsTrue(pattern.IsMatch(xml), condition);

@@ -82,23 +82,23 @@ namespace Npoi.Core.HSSF.Record
         /**
          * Test label
          */
-        private String _label = string.Empty;
-        private String _targetFrame = string.Empty;
+        private string _label = string.Empty;
+        private string _targetFrame = string.Empty;
         /**
          * Moniker. Makes sense only for URL and file links
          */
         private GUID _moniker;
         /** in 8:3 DOS format No Unicode string header,
          * always 8-bit characters, zero-terminated */
-        private String _shortFilename = string.Empty;
+        private string _shortFilename = string.Empty;
         /** Link */
-        private String _address = string.Empty;
+        private string _address = string.Empty;
         /**
          * Text describing a place in document.  In Excel UI, this is appended to the
          * address, (after a '#' delimiter).<br/>
          * This field is optional.  If present, the {@link #HLINK_PLACE} must be set.
          */
-        private String _textMark = string.Empty;
+        private string _textMark = string.Empty;
         /**
          * Remaining bytes
          */
@@ -332,7 +332,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        private static String CleanString(String s)
+        private static string CleanString(string s)
         {
             if (s == null)
             {
@@ -346,7 +346,7 @@ namespace Npoi.Core.HSSF.Record
             return s.Substring(0, idx);
         }
 
-        private static String AppendNullTerm(String s)
+        private static string AppendNullTerm(string s)
         {
             if (s == null)
             {

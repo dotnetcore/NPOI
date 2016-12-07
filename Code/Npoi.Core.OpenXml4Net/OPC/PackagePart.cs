@@ -127,7 +127,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *      java.lang.String)
          */
 
-        public PackageRelationship AddExternalRelationship(String target,
+        public PackageRelationship AddExternalRelationship(string target,
                 String relationshipType)
         {
             return AddExternalRelationship(target, relationshipType, null);
@@ -151,7 +151,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *      java.lang.String)
          */
 
-        public PackageRelationship AddExternalRelationship(String target,
+        public PackageRelationship AddExternalRelationship(string target,
                 String relationshipType, String id)
         {
             if (target == null)
@@ -364,7 +364,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#removeRelationship(java.lang.String)
          */
 
-        public void RemoveRelationship(String id)
+        public void RemoveRelationship(string id)
         {
             this._container.ThrowExceptionIfReadOnly();
             if (this._relationships != null)
@@ -396,7 +396,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#getRelationship(java.lang.String)
          */
 
-        public PackageRelationship GetRelationship(String id)
+        public PackageRelationship GetRelationship(string id)
         {
             return this._relationships.GetRelationshipByID(id);
         }
@@ -435,10 +435,10 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *             part.
          * @throws InvalidOperationException
          *             Throws if the package is open en write only mode.
-         * @see #getRelationshipsByType(String)
+         * @see #getRelationshipsByType(string)
          */
 
-        private PackageRelationshipCollection GetRelationshipsCore(String filter)
+        private PackageRelationshipCollection GetRelationshipsCore(string filter)
         {
             this._container.ThrowExceptionIfWriteOnly();
             if (_relationships == null)
@@ -515,7 +515,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
                 {
                     target = PackagingUriHelper.ParseUri(t.Substring(0, t.IndexOf('#')), UriKind.Absolute);
                 }
-                catch (UriFormatException e)
+                catch (UriFormatException )
                 {
                     throw new InvalidFormatException("Invalid target URI: " + t);
                 }

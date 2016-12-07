@@ -317,7 +317,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /// Sets the cached string result.
         /// </summary>
         /// <param name="value">The value.</param>
-        public void SetCachedStringResult(String value)
+        public void SetCachedStringResult(string value)
         {
             // Save the string into a String Record, creating one if required
             if (_stringRecord == null)

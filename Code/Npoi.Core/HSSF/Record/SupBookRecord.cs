@@ -41,8 +41,8 @@ namespace Npoi.Core.HSSF.Record
         private const short TAG_ADD_IN_FUNCTIONS = 0x3A01;
 
         private short field_1_number_of_sheets;
-        private String field_2_encoded_url;
-        private String[] field_3_sheet_names;
+        private string field_2_encoded_url;
+        private string[] field_3_sheet_names;
         private bool _isAddInFunctions;
 
         public const char CH_VOLUME = (char)1;
@@ -65,7 +65,7 @@ namespace Npoi.Core.HSSF.Record
             return new SupBookRecord(true, (short)1);
         }
 
-        public static SupBookRecord CreateExternalReferences(String url, String[] sheetNames)
+        public static SupBookRecord CreateExternalReferences(string url, String[] sheetNames)
         {
             return new SupBookRecord(url, sheetNames);
         }
@@ -79,7 +79,7 @@ namespace Npoi.Core.HSSF.Record
             _isAddInFunctions = IsAddInFuncs;
         }
 
-        public SupBookRecord(String url, String[] sheetNames)
+        public SupBookRecord(string url, String[] sheetNames)
         {
             field_1_number_of_sheets = (short)sheetNames.Length;
             field_2_encoded_url = url;
@@ -173,7 +173,7 @@ namespace Npoi.Core.HSSF.Record
                 sb.Append("External References]\n");
                 sb.Append(" .url     = ").Append(field_2_encoded_url).Append("\n");
                 sb.Append(" .nSheets = ").Append(field_1_number_of_sheets).Append("\n");
-                foreach (String sheetname in field_3_sheet_names)
+                foreach (string sheetname in field_3_sheet_names)
                 {
                     sb.Append("    .name = ").Append(sheetname).Append("\n");
                 }
@@ -267,7 +267,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        private static String DecodeFileName(String encodedUrl)
+        private static string DecodeFileName(string encodedUrl)
         {
             /* see "MICROSOFT OFFICE EXCEL 97-2007  BINARY FILE FORMAT SPECIFICATION" */
             StringBuilder sb = new StringBuilder();
@@ -325,7 +325,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get
             {
-                return (String[])field_3_sheet_names.Clone();
+                return (string[])field_3_sheet_names.Clone();
             }
         }
     }

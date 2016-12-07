@@ -446,7 +446,7 @@ namespace TestCases.HSSF.UserModel
             Assert.AreEqual("\u00a310.52", f.FormatCellValue(sheet.GetRow(12).GetCell(1)));
         }
 
-        private static void log(String msg)
+        private static void log(string msg)
         {
             //if (false) { // successful Tests should be silent
             Console.WriteLine(msg);

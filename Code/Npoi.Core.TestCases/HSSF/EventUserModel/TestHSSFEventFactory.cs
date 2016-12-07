@@ -33,7 +33,7 @@ namespace TestCases.HSSF.EventUserModel
     public class TestHSSFEventFactory
     {
 
-        private static Stream OpenSample(String sampleFileName)
+        private static Stream OpenSample(string sampleFileName)
         {
             return HSSFTestDataSamples.OpenSampleFileStream(sampleFileName);
         }

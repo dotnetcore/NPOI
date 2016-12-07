@@ -24,7 +24,7 @@ namespace Npoi.Core.SS.Formula
     {
         public NameIdentifier _lastSheetIdentifier;
 
-        public SheetRangeIdentifier(String bookName, NameIdentifier firstSheetIdentifier, NameIdentifier lastSheetIdentifier)
+        public SheetRangeIdentifier(string bookName, NameIdentifier firstSheetIdentifier, NameIdentifier lastSheetIdentifier)
             : base(bookName, firstSheetIdentifier)
         {
             _lastSheetIdentifier = lastSheetIdentifier;

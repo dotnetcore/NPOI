@@ -41,7 +41,7 @@ namespace Npoi.Core.Util
         /// <param name="filename">The filename to read</param>
         /// <returns>The bytes read from the file.</returns>
         /// <exception cref="IOException">If there was a problem while reading the file.</exception>
-        public static byte[] ReadData(String filename)
+        public static byte[] ReadData(string filename)
         {
             FileStream stream = new FileStream(filename, FileMode.Open, FileAccess.Read);
             try
@@ -55,7 +55,7 @@ namespace Npoi.Core.Util
         }
 
         /// <summary>
-        /// Same as ReadData(String) except that this method allows you to specify sections within
+        /// Same as ReadData(string) except that this method allows you to specify sections within
         /// a file.  Sections are referenced using section headers in the form:
         /// </summary>
         /// <param name="stream">The stream.</param>
@@ -111,7 +111,7 @@ namespace Npoi.Core.Util
         /// <param name="filename">The filename.</param>
         /// <param name="section">The section.</param>
         /// <returns></returns>
-        public static byte[] ReadData(String filename, String section)
+        public static byte[] ReadData(string filename, String section)
         {
             using (FileStream stream = new FileStream(filename, FileMode.Open, FileAccess.Read))
             {
@@ -220,7 +220,7 @@ namespace Npoi.Core.Util
         /// </summary>
         /// <param name="data">The data.</param>
         /// <returns></returns>
-        public static byte[] ReadFromString(String data)
+        public static byte[] ReadFromString(string data)
         {
             using (MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(data)))
             {

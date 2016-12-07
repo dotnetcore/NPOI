@@ -41,7 +41,7 @@ namespace Npoi.Core.HSSF.Record
         //private bool field_3_unicode_flag;     // it Is not Undocumented - it Is Unicode flag
         private bool field_3_hasMultibyte;
 
-        private String field_4_formatstring;
+        private string field_4_formatstring;
 
         public FormatRecord(int indexCode, String fs)
         {

@@ -31,7 +31,7 @@ namespace TestCases.SS.Formula
     public class TestSheetNameFormatter
     {
 
-        private static void ConfirmFormat(String rawSheetName, String expectedSheetNameEncoding)
+        private static void ConfirmFormat(string rawSheetName, String expectedSheetNameEncoding)
         {
             Assert.AreEqual(expectedSheetNameEncoding, SheetNameFormatter.Format(rawSheetName));
         }
@@ -70,7 +70,7 @@ namespace TestCases.SS.Formula
             ConfirmFormat("No", "No");
         }
 
-        private static void ConfirmCellNameMatch(String rawSheetName, bool expected)
+        private static void ConfirmCellNameMatch(string rawSheetName, bool expected)
         {
             Assert.AreEqual(expected, SheetNameFormatter.NameLooksLikePlainCellReference(rawSheetName));
         }
@@ -93,7 +93,7 @@ namespace TestCases.SS.Formula
             ConfirmCellNameMatch("SALES20080101", false); // out of range
         }
 
-        private static void ConfirmCellRange(String text, int numberOfPrefixLetters, bool expected)
+        private static void ConfirmCellRange(string text, int numberOfPrefixLetters, bool expected)
         {
             String prefix = text.Substring(0, numberOfPrefixLetters);
             String suffix = text.Substring(numberOfPrefixLetters);

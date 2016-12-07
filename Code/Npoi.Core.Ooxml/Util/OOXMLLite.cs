@@ -46,13 +46,13 @@
 //     */
 //    private Stream _ooxmlJar;
 
-//    OOXMLLite(String dest, String test, String ooxmlJar) {
+//    OOXMLLite(string dest, String test, String ooxmlJar) {
 //        _destDest = new FileStream(dest);
 //        _testDir = new FileStream(test);
 //        _ooxmlJar = new FileStream(ooxmlJar);
 //    }
 
-//    public static void main(String[] args)  {
+//    public static void main(string[] args)  {
 //        String dest = null, test = null, ooxml = null;
 
 //        for (int i = 0; i < args.Length; i++) {
@@ -71,7 +71,7 @@
 //        collectTests(_testDir, _testDir, lst, ".+?\\.Test.+?\\.class$");
 
 //        TestSuite suite = new TestSuite();
-//        for (String arg : lst) {
+//        for (string arg : lst) {
 //            //ignore inner classes defined in tests
 //            if (arg.IndexOf('$') != -1) continue;
 
@@ -148,7 +148,7 @@
 //     * @return the classes loaded by the system class loader keyed by class name
 //     */
 //    @SuppressWarnings("unChecked")
-//    private static Map<String, Class<?>> GetLoadedClasses(String ptrn) {
+//    private static Map<String, Class<?>> GetLoadedClasses(string ptrn) {
 //        ClassLoader appLoader = ClassLoader.GetSystemClassLoader();
 //        try {
 //            Vector<Class<?>> classes = (Vector<Class<?>>) _classes.Get(appLoader);

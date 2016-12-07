@@ -174,7 +174,7 @@ namespace TestCases.SS.Formula
                         _plainCellLocsByCacheEntry[entry] = loc;
                 }
             }
-            private void Log(String tag, int rowIndex, int columnIndex, Object value)
+            private void Log(string tag, int rowIndex, int columnIndex, Object value)
             {
                 StringBuilder sb = new StringBuilder(64);
                 sb.Append(tag).Append(' ');
@@ -185,7 +185,7 @@ namespace TestCases.SS.Formula
                 }
                 _logList.Add(sb.ToString());
             }
-            private String FormatValue(Object value)
+            private string FormatValue(Object value)
             {
                 if (value is Ptg[])
                 {
@@ -255,7 +255,7 @@ namespace TestCases.SS.Formula
                 return HSSFEvaluationTestHelper.WrapCell(cell);
             }
 
-            public void SetCellValue(String cellRefText, double value)
+            public void SetCellValue(string cellRefText, double value)
             {
                 ICell cell = GetOrCreateCell(cellRefText);
                 // be sure to blank cell, in case it is currently a formula
@@ -264,21 +264,21 @@ namespace TestCases.SS.Formula
                 cell.SetCellValue(value);
                 _Evaluator.NotifyUpdateCell(WrapCell(cell));
             }
-            public void ClearCell(String cellRefText)
+            public void ClearCell(string cellRefText)
             {
                 ICell cell = GetOrCreateCell(cellRefText);
                 cell.SetCellType(CellType.Blank);
                 _Evaluator.NotifyUpdateCell(WrapCell(cell));
             }
 
-            public void SetCellFormula(String cellRefText, String formulaText)
+            public void SetCellFormula(string cellRefText, String formulaText)
             {
                 ICell cell = GetOrCreateCell(cellRefText);
                 cell.CellFormula = formulaText;
                 _Evaluator.NotifyUpdateCell(WrapCell(cell));
             }
 
-            private ICell GetOrCreateCell(String cellRefText)
+            private ICell GetOrCreateCell(string cellRefText)
             {
                 CellReference cr = new CellReference(cellRefText);
                 int rowIndex = cr.Row;
@@ -296,7 +296,7 @@ namespace TestCases.SS.Formula
                 return cell;
             }
 
-            public ValueEval EvaluateCell(String cellRefText)
+            public ValueEval EvaluateCell(string cellRefText)
             {
                 return _Evaluator.Evaluate(WrapCell(GetOrCreateCell(cellRefText)));
             }

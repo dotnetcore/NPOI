@@ -104,7 +104,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         private static short lastDateFormat = short.MinValue;
         private static List<FormatRecord> lastFormats = null;
-        private static String getDataFormatStringCache = null;
+        private static string getDataFormatStringCache = null;
 
         /// <summary>
         /// Get the contents of the format string, by looking up

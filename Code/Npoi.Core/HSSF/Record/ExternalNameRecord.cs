@@ -46,7 +46,7 @@ namespace Npoi.Core.HSSF.Record
         private short field_1_option_flag;
         private short field_2_ixals;
         private short field_3_not_used;
-        private String field_4_name;
+        private string field_4_name;
         private Formula field_5_name_definition;
 
         /**
@@ -269,7 +269,7 @@ namespace Npoi.Core.HSSF.Record
          * Remove this when HasFormula() Is stable.
          */
 
-        private Exception ReadFail(String msg)
+        private Exception ReadFail(string msg)
         {
             String fullMsg = msg + " fields: (option=" + field_1_option_flag + " index=" + field_2_ixals
             + " not_used=" + field_3_not_used + " name='" + field_4_name + "')";

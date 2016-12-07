@@ -115,7 +115,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param formula - formula for the valued, Compared with the cell
          */
 
-        public IConditionalFormattingRule CreateConditionalFormattingRule(String formula)
+        public IConditionalFormattingRule CreateConditionalFormattingRule(string formula)
         {
             XSSFConditionalFormattingRule rule = new XSSFConditionalFormattingRule(_sheet);
             CT_CfRule cfRule = rule.GetCTCfRule();

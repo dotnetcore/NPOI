@@ -28,7 +28,7 @@
 //     */
 //    public class TestXSSFExcelExtractorUsingFactory : TestXSSFExcelExtractor
 //    {
-//        protected XSSFExcelExtractor GetExtractor(String sampleName)
+//        protected XSSFExcelExtractor GetExtractor(string sampleName)
 //        {
 //            ExtractorFactory.SetAllThreadsPreferEventExtractors(false);
 //            ExtractorFactory.SetThreadPrefersEventExtractors(false);

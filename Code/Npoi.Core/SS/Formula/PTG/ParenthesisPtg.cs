@@ -57,7 +57,7 @@ namespace Npoi.Core.SS.Formula.PTG
             return "()";
         }
 
-        public String ToFormulaString(String[] operands)
+        public String ToFormulaString(string[] operands)
         {
             return "(" + operands[0] + ")";
         }

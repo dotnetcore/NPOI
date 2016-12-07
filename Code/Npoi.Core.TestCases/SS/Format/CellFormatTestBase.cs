@@ -51,13 +51,13 @@ namespace TestCases.SS.Format
 
         protected IWorkbook workbook;
 
-        private String testFile;
+        private string testFile;
         private Dictionary<String, String> testFlags;
         private bool tryAllColors;
 		// TODO: Port
         //private Label label;
 
-        private static String[] COLOR_NAMES =
+        private static string[] COLOR_NAMES =
             {"Black", "Red", "Green", "Blue", "Yellow", "Cyan", "Magenta",
                     "White"};
         private static Color[] COLORS = { Color.Black, Color.Red, Color.Green, Color.Blue, Color.Yellow, Color.Cyan, Color.Magenta, Color.Wheat };
@@ -78,14 +78,14 @@ namespace TestCases.SS.Format
                 return TEST_COLOR;
             }
 
-            public virtual void Equivalent(String expected, String actual, CellFormatPart format)
+            public virtual void Equivalent(string expected, String actual, CellFormatPart format)
             {
                 Assert.AreEqual('"' + expected + '"',
                         '"' + actual + '"', "format \"" + format.ToString() + "\"");
             }
         }
 
-        protected void RunFormatTests(String workbookName, CellValue valueGetter)
+        protected void RunFormatTests(string workbookName, CellValue valueGetter)
         {
 			OpenWorkbook(workbookName);
 
@@ -137,7 +137,7 @@ namespace TestCases.SS.Format
          *
          * @throws IOException
          */
-        protected void OpenWorkbook(String workbookName)
+        protected void OpenWorkbook(string workbookName)
         {
             workbook = _testDataProvider.OpenSampleWorkbook(workbookName);
             workbook.MissingCellPolicy = MissingCellPolicy.CREATE_NULL_AS_BLANK;//Row.CREATE_NULL_AS_BLANK);
@@ -198,7 +198,7 @@ namespace TestCases.SS.Format
             // If there are specified categories, find out if this has one of them
             Regex regex = new Regex("\\s*,\\s*");
 
-            foreach (String category in regex.Split(testCategories))//.Split("\\s*,\\s*"))
+            foreach (string category in regex.Split(testCategories))//.Split("\\s*,\\s*"))
             {
                 if (categories.ContainsKey(category))
                 {
@@ -239,7 +239,7 @@ namespace TestCases.SS.Format
             }
         }
 
-        private String tryColor(String desc, String cname, CellValue Getter,
+        private string tryColor(string desc, String cname, CellValue Getter,
                 Object value, String expectedText, Color expectedColor)
         {
 
@@ -279,7 +279,7 @@ namespace TestCases.SS.Format
          *
          * @return The value for the flag.
          */
-        protected bool flagBoolean(String flagName, bool expected)
+        protected bool flagBoolean(string flagName, bool expected)
         {
             String value = testFlags[(flagName)];
             bool isSet;
@@ -308,7 +308,7 @@ namespace TestCases.SS.Format
          *
          * @return The value for the flag.
          */
-        protected String flagString(String flagName, String expected)
+        protected String flagString(string flagName, String expected)
         {
             String value = testFlags[(flagName)];
             if (value == null)
@@ -317,7 +317,7 @@ namespace TestCases.SS.Format
             return value;
         }
 
-        private void warnIfUnexpected(String flagName, Object expected,
+        private void warnIfUnexpected(string flagName, Object expected,
                 Object actual)
         {
             if (!actual.Equals(expected))

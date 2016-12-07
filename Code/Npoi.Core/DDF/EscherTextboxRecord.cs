@@ -162,7 +162,7 @@ namespace Npoi.Core.DDF
                     theDumpHex;
         }
 
-        public override String ToXml(String tab) {
+        public override String ToXml(string tab) {
             String theDumpHex = "";
             try {
                 if (_thedata.Length != 0) {

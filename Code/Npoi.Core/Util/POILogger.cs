@@ -49,7 +49,7 @@ namespace Npoi.Core.Util
         public POILogger()
         { }
 
-        abstract public void Initialize(String cat);
+        abstract public void Initialize(string cat);
 
         /**
          * Log a message

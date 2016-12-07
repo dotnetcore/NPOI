@@ -518,7 +518,7 @@ namespace TestCases.HSSF.Record
             Assert.AreEqual("00000303-0000-0000-C000-000000000046", g.FormatAsString());
         }
 
-        private static GUID CreateFromStreamDump(String s)
+        private static GUID CreateFromStreamDump(string s)
         {
             return new GUID(new LittleEndianByteArrayInputStream(HexRead.ReadFromString(s)));
         }

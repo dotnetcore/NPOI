@@ -26,9 +26,9 @@ namespace Npoi.Core.XSSF.Model
     [TestFixture]
     public class TestCommentsTable
     {
-        private static String TEST_A2_TEXT = "test A2 text";
-        private static String TEST_A1_TEXT = "test A1 text";
-        private static String TEST_AUTHOR = "test author";
+        private static string TEST_A2_TEXT = "test A2 text";
+        private static string TEST_A1_TEXT = "test A1 text";
+        private static string TEST_AUTHOR = "test author";
 
         [Test]
         public void FindAuthor()

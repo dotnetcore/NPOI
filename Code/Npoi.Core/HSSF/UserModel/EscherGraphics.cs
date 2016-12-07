@@ -283,7 +283,7 @@ namespace Npoi.Core.HSSF.UserModel
                 Logger.Log(POILogger.WARN, "DrawRoundRect not supported");
         }
 
-        public void DrawString(String str, int x, int y)
+        public void DrawString(string str, int x, int y)
         {
             if (string.IsNullOrEmpty(str))
                 return;

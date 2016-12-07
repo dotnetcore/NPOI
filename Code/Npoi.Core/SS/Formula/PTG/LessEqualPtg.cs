@@ -47,7 +47,7 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return 2; }
         }
 
-        public override String ToFormulaString(String[] operands)
+        public override String ToFormulaString(string[] operands)
         {
             StringBuilder buffer = new StringBuilder();
             buffer.Append(operands[0]);

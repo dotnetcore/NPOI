@@ -36,8 +36,8 @@ namespace Npoi.Core.HSSF.Record
         private byte[] unused = new byte[8];
         private int cts;
 
-        private String rgchDefListStyle;
-        private String rgchDefPivotStyle;
+        private string rgchDefListStyle;
+        private string rgchDefPivotStyle;
 
         public TableStylesRecord(RecordInputStream in1)
         {

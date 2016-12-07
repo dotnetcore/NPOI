@@ -1152,7 +1152,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// Sets the protection enabled as well as the password
         /// </summary>
         /// <param name="password">password to set for protection, pass <code>null</code> to remove protection</param>
-        public void ProtectSheet(String password)
+        public void ProtectSheet(string password)
         {
             ProtectionBlock.ProtectSheet(password, true, true); //protect objs&scenarios(normal)
         }
@@ -2111,7 +2111,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="formula">text representation of the formula</param>
         /// <param name="range">Region of array formula for result</param>
         /// <returns>the <see cref="ICellRange{ICell}"/> of cells affected by this change</returns>
-        public ICellRange<ICell> SetArrayFormula(String formula, CellRangeAddress range)
+        public ICellRange<ICell> SetArrayFormula(string formula, CellRangeAddress range)
         {
             // make sure the formula parses OK first
             int sheetIndex = _workbook.GetSheetIndex(this);
@@ -2615,12 +2615,12 @@ namespace Npoi.Core.HSSF.UserModel
             return CopySheet(string.Concat(SheetName, " - Copy"), CopyStyle);
         }
 
-        public ISheet CopySheet(String Name)
+        public ISheet CopySheet(string Name)
         {
             return CopySheet(Name, true);
         }
 
-        public ISheet CopySheet(String Name, Boolean copyStyle)
+        public ISheet CopySheet(string Name, Boolean copyStyle)
         {
             int maxColumnNum = 0;
             HSSFSheet newSheet = (HSSFSheet)Workbook.CreateSheet(Name);

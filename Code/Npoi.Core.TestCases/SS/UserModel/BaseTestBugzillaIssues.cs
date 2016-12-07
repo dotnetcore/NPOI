@@ -324,7 +324,7 @@ namespace TestCases.SS.UserModel
             ICell cell = wb.CreateSheet().CreateRow(0).CreateCell(0);
 
             String fmla;
-            foreach (String name in func)
+            foreach (string name in func)
             {
 
                 fmla = CreateFunction(name, 5);
@@ -346,7 +346,7 @@ namespace TestCases.SS.UserModel
             }
         }
 
-        private static String CreateFunction(String name, int maxArgs)
+        private static string CreateFunction(string name, int maxArgs)
         {
             StringBuilder fmla = new StringBuilder();
             fmla.Append(name);

@@ -43,7 +43,7 @@ namespace Npoi.Core.SS.Formula.PTG
         private BitField rowRelative = BitFieldFactory.GetInstance(0x8000);
         private BitField colRelative = BitFieldFactory.GetInstance(0x4000);
 
-        public Area3DPtg(String arearef, int externIdx) : base(arearef)
+        public Area3DPtg(string arearef, int externIdx) : base(arearef)
         {
             ExternSheetIndex = externIdx;
         }
@@ -104,7 +104,7 @@ namespace Npoi.Core.SS.Formula.PTG
             return result;
         }*/
 
-        public void SetArea(String ref1)
+        public void SetArea(string ref1)
         {
             AreaReference ar = new AreaReference(ref1);
 

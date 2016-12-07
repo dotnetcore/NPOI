@@ -31,7 +31,7 @@ namespace Npoi.Core.SS.Formula.PTG
     {
         public const byte sid = 0x03;
 
-        private static String Add = "+";
+        private static string Add = "+";
 
         public static ValueOperatorPtg instance = new AddPtg();
 
@@ -52,7 +52,7 @@ namespace Npoi.Core.SS.Formula.PTG
 
         /** implementation of method from OperationsPtg*/
 
-        public override String ToFormulaString(String[] operands)
+        public override String ToFormulaString(string[] operands)
         {
             StringBuilder buffer = new StringBuilder();
 

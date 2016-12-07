@@ -164,7 +164,7 @@ namespace Npoi.Core.DDF
                     + ", data: " + nl + results.ToString();
         }
 
-        public override String ToXml(String tab) {
+        public override String ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append("<").Append(GetType().Name).Append(" id=\"0x").Append(HexDump.ToHex(Id))
                     .Append("\" name=\"").Append(Name).Append("\" blipId=\"")

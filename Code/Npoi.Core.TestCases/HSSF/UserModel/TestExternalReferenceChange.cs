@@ -28,9 +28,9 @@ namespace TestCases.HSSF.UserModel
     public class TestExternalReferenceChange
     {
 
-        private static String MAIN_WORKBOOK_FILENAME = "52575_main.xls";
-        private static String SOURCE_DUMMY_WORKBOOK_FILENAME = "source_dummy.xls";
-        private static String SOURCE_WORKBOOK_FILENAME = "52575_source.xls";
+        private static string MAIN_WORKBOOK_FILENAME = "52575_main.xls";
+        private static string SOURCE_DUMMY_WORKBOOK_FILENAME = "source_dummy.xls";
+        private static string SOURCE_WORKBOOK_FILENAME = "52575_source.xls";
 
         private HSSFWorkbook mainWorkbook;
         private HSSFWorkbook sourceWorkbook;

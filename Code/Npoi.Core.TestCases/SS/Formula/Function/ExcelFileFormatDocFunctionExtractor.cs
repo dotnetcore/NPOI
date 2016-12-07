@@ -39,7 +39,7 @@
 //    public class ExcelFileFormatDocFunctionExtractor
 //    {
 
-//        private static String SOURCE_DOC_FILE_NAME = "excelfileformat.odt";
+//        private static string SOURCE_DOC_FILE_NAME = "excelfileformat.odt";
 
 //        /**
 //         * For simplicity, the output file is strictly simple ASCII.
@@ -75,11 +75,11 @@
 
 //            private int _index;
 //            private bool _hasFootnote;
-//            private String _name;
+//            private string _name;
 //            private int _minParams;
 //            private int _maxParams;
-//            private String _returnClass;
-//            private String _paramClasses;
+//            private string _returnClass;
+//            private string _paramClasses;
 //            private bool _isVolatile;
 
 //            public FunctionData(int funcIx, bool hasFootnote, String funcName, int minParams, int maxParams,
@@ -94,7 +94,7 @@
 //                _paramClasses = ConvertSpecialChars(paramClasses);
 //                _isVolatile = isVolatile;
 //            }
-//            private static String ConvertSpecialChars(String ss)
+//            private static string ConvertSpecialChars(string ss)
 //            {
 //                StringBuilder sb = new StringBuilder(ss.Length + 4);
 //                for (int i = 0; i < ss.Length; i++)
@@ -136,7 +136,7 @@
 //                        + _maxParams + "\t" + _returnClass + "\t" + _paramClasses
 //                        + "\t" + CheckMark(_isVolatile) + "\t" + CheckMark(_hasFootnote);
 //            }
-//            private static String CheckMark(bool b)
+//            private static string CheckMark(bool b)
 //            {
 //                return b ? "x" : "";
 //            }
@@ -215,7 +215,7 @@
 //                }
 //            }
 
-//            public void endTableGroup(String headingText)
+//            public void endTableGroup(string headingText)
 //            {
 //                int[] keys = new int[_groupFunctionIndexes.Count];
 
@@ -238,23 +238,23 @@
 //         */
 //        private static class EFFDocHandler : ContentHandler
 //        {
-//            private static String[] HEADING_PATH_NAMES = {
+//            private static string[] HEADING_PATH_NAMES = {
 //			"office:document-content", "office:body", "office:text", "text:h",
 //		};
-//            private static String[] TABLE_BASE_PATH_NAMES = {
+//            private static string[] TABLE_BASE_PATH_NAMES = {
 //			"office:document-content", "office:body", "office:text", "table:table",
 //		};
-//            private static String[] TABLE_ROW_RELPATH_NAMES = {
+//            private static string[] TABLE_ROW_RELPATH_NAMES = {
 //			"table:table-row",
 //		};
-//            private static String[] TABLE_CELL_RELPATH_NAMES = {
+//            private static string[] TABLE_CELL_RELPATH_NAMES = {
 //			"table:table-row", "table:table-cell", "text:p",
 //		};
 //            // After May 2008 there was one more style applied to the footnotes
-//            private static String[] NOTE_REF_RELPATH_NAMES_OLD = {
+//            private static string[] NOTE_REF_RELPATH_NAMES_OLD = {
 //			"table:table-row", "table:table-cell", "text:p", "text:span", "text:note-ref",
 //		};
-//            private static String[] NOTE_REF_RELPATH_NAMES = {
+//            private static string[] NOTE_REF_RELPATH_NAMES = {
 //			"table:table-row", "table:table-cell", "text:p", "text:span", "text:span", "text:note-ref",
 //		};
 
@@ -264,12 +264,12 @@
 //            private bool _isInsideTable;
 
 //            private List _rowData;
-//            private StringBuilder _textNodeBuffer;
+//            private stringBuilder _textNodeBuffer;
 //            private List _rowNoteFlags;
 //            private bool _cellHasNote;
 
 //            private FunctionDataCollector _fdc;
-//            private String _lastHeadingText;
+//            private string _lastHeadingText;
 
 //            public EFFDocHandler(FunctionDataCollector fdc)
 //            {
@@ -285,7 +285,7 @@
 //            {
 //                return matchesPath(0, TABLE_BASE_PATH_NAMES);
 //            }
-//            private bool matchesRelPath(String[] pathNames)
+//            private bool matchesRelPath(string[] pathNames)
 //            {
 //                return matchesPath(TABLE_BASE_PATH_NAMES.Length, pathNames);
 //            }
@@ -314,9 +314,9 @@
 //                }
 //            }
 
-//            public void endElement(String namespaceURI, String localName, String name)
+//            public void endElement(string namespaceURI, String localName, String name)
 //            {
-//                String expectedName = (String)_elemNameStack.Peek();
+//                String expectedName = (string)_elemNameStack.Peek();
 //                if (expectedName != name)
 //                {
 //                    throw new RuntimeException("close tag mismatch");
@@ -353,7 +353,7 @@
 //                _elemNameStack.Pop();
 //            }
 
-//            private void ProcessTableRow(String[] cellData, Boolean[] noteFlags)
+//            private void ProcessTableRow(string[] cellData, Boolean[] noteFlags)
 //            {
 //                // each table row of the document Contains data for two functions
 //                if (cellData.Length != 15)
@@ -363,7 +363,7 @@
 //                ProcessFunction(cellData, noteFlags, 0);
 //                ProcessFunction(cellData, noteFlags, 8);
 //            }
-//            public void ProcessFunction(String[] cellData, Boolean[] noteFlags, int i)
+//            public void ProcessFunction(string[] cellData, Boolean[] noteFlags, int i)
 //            {
 //                String funcIxStr = cellData[i + 0];
 //                if (funcIxStr.Length < 1)
@@ -384,7 +384,7 @@
 
 //                _fdc.AddFuntion(funcIx, hasFootnote, funcName, minParams, maxParams, returnClass, paramClasses, volatileFlagStr);
 //            }
-//            private static int ParseInt(String valStr)
+//            private static int ParseInt(string valStr)
 //            {
 //                try
 //                {
@@ -395,7 +395,7 @@
 //                    throw new RuntimeException("Value '" + valStr + "' could not be Parsed as an integer");
 //                }
 //            }
-//            public void startElement(String namespaceURI, String localName, String name, Attributes atts)
+//            public void startElement(string namespaceURI, String localName, String name, Attributes atts)
 //            {
 //                _elemNameStack.Push(name);
 //                if (matchesTargetPath())
@@ -435,7 +435,7 @@
 //            {
 //                // do nothing
 //            }
-//            public void endPrefixMapping(String prefix)
+//            public void endPrefixMapping(string prefix)
 //            {
 //                // do nothing
 //            }
@@ -443,7 +443,7 @@
 //            {
 //                // do nothing
 //            }
-//            public void ProcessingInstruction(String target, String data)
+//            public void ProcessingInstruction(string target, String data)
 //            {
 //                // do nothing
 //            }
@@ -451,7 +451,7 @@
 //            {
 //                // do nothing
 //            }
-//            public void skippedEntity(String name)
+//            public void skippedEntity(string name)
 //            {
 //                // do nothing
 //            }
@@ -459,7 +459,7 @@
 //            {
 //                // do nothing
 //            }
-//            public void startPrefixMapping(String prefix, String uri)
+//            public void startPrefixMapping(string prefix, String uri)
 //            {
 //                // do nothing
 //            }
@@ -633,7 +633,7 @@
 //        /**
 //         * Helps identify the source file
 //         */
-//        private static String GetFileMD5(File f)
+//        private static string GetFileMD5(File f)
 //        {
 //            MessageDigest m;
 //            try
@@ -711,7 +711,7 @@
 //            return result;
 //        }
 
-//        public static void main(String[] args)
+//        public static void main(string[] args)
 //        {
 
 //            File outFile = new File("functionMetadata-asGenerated.txt");

@@ -28,9 +28,9 @@ namespace Npoi.Core.XWPF.UserModel
 
     public class XWPFHyperlink
     {
-        private String id, url;
+        private string id, url;
 
-        public XWPFHyperlink(String id, String url)
+        public XWPFHyperlink(string id, String url)
         {
             this.id = id;
             this.url = url;

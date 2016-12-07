@@ -27,7 +27,7 @@
 // * Tests for {@link XSSFEventBasedExcelExtractor}
 // */
 //public class TestXSSFEventBasedExcelExtractor  {
-//    protected XSSFEventBasedExcelExtractor GetExtractor(String sampleName) throws Exception {
+//    protected XSSFEventBasedExcelExtractor GetExtractor(string sampleName) throws Exception {
 //        return new XSSFEventBasedExcelExtractor(XSSFTestDataSamples.
 //                openSamplePackage(sampleName));
 //    }

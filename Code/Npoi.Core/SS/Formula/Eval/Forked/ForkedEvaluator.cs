@@ -82,7 +82,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
          * @param columnIndex zero based
          */
 
-        public void UpdateCell(String sheetName, int rowIndex, int columnIndex, ValueEval value)
+        public void UpdateCell(string sheetName, int rowIndex, int columnIndex, ValueEval value)
         {
             ForkedEvaluationCell cell = _sewb.GetOrCreateUpdatableCell(sheetName, rowIndex, columnIndex);
             cell.SetValue(value);
@@ -91,7 +91,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
 
         /**
          * Copies the values of all updated cells (modified by calls to {@link
-         * #updateCell(String, int, int, ValueEval)}) to the supplied <tt>workbook</tt>.<br/>
+         * #updateCell(string, int, int, ValueEval)}) to the supplied <tt>workbook</tt>.<br/>
          * Typically, the supplied <tt>workbook</tt> is a writable copy of the 'master workbook',
          * but at the very least it must contain sheets with the same names.
          */
@@ -114,7 +114,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
          * @return <code>null</code> if the supplied cell is <code>null</code> or blank
          */
 
-        public ValueEval Evaluate(String sheetName, int rowIndex, int columnIndex)
+        public ValueEval Evaluate(string sheetName, int rowIndex, int columnIndex)
         {
             IEvaluationCell cell = _sewb.GetEvaluationCell(sheetName, rowIndex, columnIndex);
 
@@ -149,7 +149,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
          * @param Evaluators all Evaluators for the full Set of workbooks required by the formulas.
          */
 
-        public static void SetupEnvironment(String[] workbookNames, ForkedEvaluator[] Evaluators)
+        public static void SetupEnvironment(string[] workbookNames, ForkedEvaluator[] Evaluators)
         {
             WorkbookEvaluator[] wbEvals = new WorkbookEvaluator[Evaluators.Length];
             for (int i = 0; i < wbEvals.Length; i++)

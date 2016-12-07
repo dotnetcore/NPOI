@@ -36,15 +36,15 @@ namespace TestCases.HSSF
         {
             return _inst.GetFileInfo(sampleFileName);
         }
-        public static Stream OpenSampleFileStream(String sampleFileName)
+        public static Stream OpenSampleFileStream(string sampleFileName)
         {
             return _inst.OpenResourceAsStream(sampleFileName);
         }
-        public static byte[] GetTestDataFileContent(String fileName)
+        public static byte[] GetTestDataFileContent(string fileName)
         {
             return _inst.ReadFile(fileName);
         }
-        public static HSSFWorkbook OpenSampleWorkbook(String sampleFileName)
+        public static HSSFWorkbook OpenSampleWorkbook(string sampleFileName)
         {
             using (var sampleStream = _inst.OpenResourceAsStream(sampleFileName))
             {

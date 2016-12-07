@@ -22,10 +22,10 @@ namespace Npoi.Core.SS.Formula
 
     public class NameIdentifier
     {
-        private String _name;
+        private string _name;
         private bool _isQuoted;
 
-        public NameIdentifier(String name, bool isQuoted)
+        public NameIdentifier(string name, bool isQuoted)
         {
             _name = name;
             _isQuoted = isQuoted;

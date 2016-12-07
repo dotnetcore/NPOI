@@ -53,7 +53,7 @@ namespace Npoi.Core.XWPF.UserModel
     public class XWPFRun : ISDTContents, IRunElement, ICharacterRun
     {
         private CT_R run;
-        private String pictureText;
+        private string pictureText;
 
         //private XWPFParagraph paragraph;
         private IRunBody parent;
@@ -330,7 +330,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @param rgbStr - the desired color, in the hex form "RRGGBB".
          */
 
-        public void SetColor(String rgbStr)
+        public void SetColor(string rgbStr)
         {
             CT_RPr pr = run.IsSetRPr() ? run.rPr : run.AddNewRPr();
             Npoi.Core.OpenXmlFormats.Wordprocessing.CT_Color color = pr.IsSetColor() ? pr.color : pr.AddNewColor();
@@ -370,12 +370,12 @@ namespace Npoi.Core.XWPF.UserModel
         ///Sets the text of this text run
         /// </summary>
         /// <param name="value">the literal text which shall be displayed in the document</param>
-        public void SetText(String value)
+        public void SetText(string value)
         {
             SetText(value, 0);
         }
 
-        public void AppendText(String value)
+        public void AppendText(string value)
         {
             SetText(value, run.GetTList().Count);
         }
@@ -387,7 +387,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @param pos - position in the text array (NB: 0 based)
          */
 
-        public void SetText(String value, int pos)
+        public void SetText(string value, int pos)
         {
             int length = run.SizeOfTArray();
             if (pos > length) throw new IndexOutOfRangeException("Value too large for the parameter position");
@@ -433,7 +433,7 @@ namespace Npoi.Core.XWPF.UserModel
             get
             {
                 CT_RPr pr = run.rPr;
-                return (pr != null && pr.IsSetU() && pr.u.val != null) ?
+                return (pr != null && pr.IsSetU()) ?
                     EnumConverter.ValueOf<UnderlinePatterns, ST_Underline>(pr.u.val) : UnderlinePatterns.None;
             }
         }
@@ -875,7 +875,7 @@ namespace Npoi.Core.XWPF.UserModel
          * @param fcr FontCharRange or null for default handling
          */
 
-        public void SetFontFamily(String fontFamily, FontCharRange fcr)
+        public void SetFontFamily(string fontFamily, FontCharRange fcr)
         {
             CT_RPr pr = run.IsSetRPr() ? run.rPr : run.AddNewRPr();
             CT_Fonts fonts = pr.IsSetRFonts() ? pr.rFonts : pr.AddNewRFonts();

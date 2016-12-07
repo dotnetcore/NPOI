@@ -63,7 +63,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#addExternalRelationship(java.lang.String, java.lang.String)
          */
 
-        PackageRelationship AddExternalRelationship(String target, String relationshipType);
+        PackageRelationship AddExternalRelationship(string target, String relationshipType);
 
         /**
          * Adds an external relationship to a part
@@ -81,7 +81,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @see org.apache.poi.OpenXml4Net.opc.RelationshipSource#addExternalRelationship(java.lang.String, java.lang.String)
          */
 
-        PackageRelationship AddExternalRelationship(String target, String relationshipType, String id);
+        PackageRelationship AddExternalRelationship(string target, String relationshipType, String id);
 
         /**
          * Delete all the relationships attached to this.
@@ -96,7 +96,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *            The ID identified the part to delete.
          */
 
-        void RemoveRelationship(String id);
+        void RemoveRelationship(string id);
 
         /**
          * Retrieve all the relationships attached to this.
@@ -114,7 +114,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @return The package relationship
          */
 
-        PackageRelationship GetRelationship(String id);
+        PackageRelationship GetRelationship(string id);
 
         /**
          * Retrieve all relationships attached to this part which have the specified

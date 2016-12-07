@@ -63,7 +63,7 @@ namespace TestCases.HSSF.UserModel
         }
 
 
-        private static HSSFWorkbook OpenSample(String sampleFileName)
+        private static HSSFWorkbook OpenSample(string sampleFileName)
         {
             return HSSFTestDataSamples.OpenSampleWorkbook(sampleFileName);
         }
@@ -448,7 +448,7 @@ namespace TestCases.HSSF.UserModel
         {
             Assert.AreEqual(a.RichStringCellValue.String, b.RichStringCellValue.String);
         }
-        private static String unicodeString(ICell cell)
+        private static string unicodeString(ICell cell)
         {
             String ss = cell.RichStringCellValue.String;
             char[] s = ss.ToCharArray();
@@ -1406,7 +1406,7 @@ namespace TestCases.HSSF.UserModel
             Assert.AreEqual(CellType.Numeric, cell.CachedFormulaResultType);
             Assert.AreEqual(expectedValue, cell.NumericCellValue, 0.0);
         }
-        private static void ConfirmCachedValue(String expectedValue, ICell cell)
+        private static void ConfirmCachedValue(string expectedValue, ICell cell)
         {
             Assert.AreEqual(CellType.Formula, cell.CellType);
             Assert.AreEqual(CellType.String, cell.CachedFormulaResultType);
@@ -2943,7 +2943,7 @@ namespace TestCases.HSSF.UserModel
                 row.CreateCell(0).SetCellValue(1.03 * (r + 7));
                 row.CreateCell(1).SetCellValue(DateTime.Now);
                 row.CreateCell(2).SetCellValue(DateTime.Now);
-                row.CreateCell(3).SetCellValue(String.Format("row:{0}/col:{1}", r, 3));
+                row.CreateCell(3).SetCellValue(string.Format("row:{0}/col:{1}", r, 3));
                 row.CreateCell(4).SetCellValue(true);
                 row.CreateCell(5).SetCellType(CellType.Error);
                 row.CreateCell(6).SetCellValue("added cells.");

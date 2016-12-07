@@ -33,8 +33,8 @@ namespace TestCases.HSSF.UserModel
     public class TestNonStandardWorkbookStreamNames
     {
 
-        private String xlsA = "WORKBOOK_in_capitals.xls";
-        private String xlsB = "BOOK_in_capitals.xls";
+        private string xlsA = "WORKBOOK_in_capitals.xls";
+        private string xlsB = "BOOK_in_capitals.xls";
 
         /**
          * Test that we can Open a file with WORKBOOK
@@ -104,7 +104,7 @@ namespace TestCases.HSSF.UserModel
         [Test]
         public void TestWrite()
         {
-            foreach (String file in new String[] { xlsA, xlsB })
+            foreach (string file in new String[] { xlsA, xlsB })
             {
                 Stream is1 = HSSFTestDataSamples.OpenSampleFileStream(file);
                 POIFSFileSystem fs = new POIFSFileSystem(is1);

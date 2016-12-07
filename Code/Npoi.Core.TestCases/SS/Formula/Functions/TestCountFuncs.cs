@@ -38,7 +38,7 @@ namespace TestCases.SS.Formula.Functions
     public class TestCountFuncs
     {
 
-        private static String NULL = null;
+        private static string NULL = null;
 
         /// <summary>
         ///  Some of the tests are depending on the american culture.
@@ -583,7 +583,7 @@ namespace TestCases.SS.Formula.Functions
             TestCountFunctionFromSpreadsheet("countblankExamples.xls", 1, 3, 4, "countblank");
         }
 
-        private static void TestCountFunctionFromSpreadsheet(String FILE_NAME, int START_ROW_IX, int COL_IX_ACTUAL, int COL_IX_EXPECTED, String functionName)
+        private static void TestCountFunctionFromSpreadsheet(string FILE_NAME, int START_ROW_IX, int COL_IX_ACTUAL, int COL_IX_EXPECTED, String functionName)
         {
 
             int failureCount = 0;

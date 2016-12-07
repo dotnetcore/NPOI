@@ -48,7 +48,7 @@ namespace Npoi.Core.HPSF
             }
         }
 
-        public CodePageString(String aString, int codepage) {
+        public CodePageString(string aString, int codepage) {
             SetJavaValue(aString, codepage);
         }
 
@@ -79,7 +79,7 @@ namespace Npoi.Core.HPSF
             get { return LittleEndian.INT_SIZE + _value.Length; }
         }
 
-        public void SetJavaValue(String aString, int codepage) {
+        public void SetJavaValue(string aString, int codepage) {
             if (codepage == -1)
                 _value = Encoding.UTF8.GetBytes(aString + "\0");
             else

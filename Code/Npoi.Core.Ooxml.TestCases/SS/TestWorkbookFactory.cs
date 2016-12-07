@@ -30,9 +30,9 @@ namespace Npoi.Core.SS
     [TestFixture]
     public class TestWorkbookFactory
     {
-        private String xls;
-        private String xlsx;
-        private String txt;
+        private string xls;
+        private string xlsx;
+        private string txt;
 
         private string testdataPath;
 
@@ -121,7 +121,7 @@ namespace Npoi.Core.SS
                 }
                 Assert.Fail();
             }
-            catch (ArgumentException e)
+            catch (ArgumentException )
             {
                 // Good
             }

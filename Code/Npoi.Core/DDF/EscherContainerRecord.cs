@@ -315,7 +315,7 @@ namespace Npoi.Core.DDF
                 children.ToString();
         }
 
-        public override String ToXml(String tab) {
+        public override String ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(RecordName, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)));
             for (IEnumerator<EscherRecord> iterator = _childRecords.GetEnumerator(); iterator.MoveNext();) {

@@ -32,7 +32,7 @@ namespace TestCases.HSSF.Model
     public class TestOperandClassTransformer
     {
 
-        private static Ptg[] ParseFormula(String formula)
+        private static Ptg[] ParseFormula(string formula)
         {
             Ptg[] result = HSSFFormulaParser.Parse(formula, (HSSFWorkbook)null);
             Assert.IsNotNull(result, "Ptg array should not be null");
@@ -148,7 +148,7 @@ namespace TestCases.HSSF.Model
             }
         }
 
-        private static String GetOperandClassName(byte ptgClass)
+        private static string GetOperandClassName(byte ptgClass)
         {
             switch (ptgClass)
             {

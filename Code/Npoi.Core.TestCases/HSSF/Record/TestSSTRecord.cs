@@ -393,7 +393,7 @@ namespace TestCases.HSSF.Record
         /**
          * hex dump from UnicodeStringFailCase1.xls atatched to Bugzilla 50779
          */
-        private static String data_50779_1 =
+        private static string data_50779_1 =
             //Offset=0x00000612(1554) recno=71 sid=0x00FC size=0x2020(8224)
                 "      FC 00 20 20 51 00 00 00 51 00 00 00 32 00" +
                 "05 10 00 00 00 42 30 44 30 46 30 48 30 4A 30 4B" +
@@ -939,7 +939,7 @@ namespace TestCases.HSSF.Record
         /**
          * hex dump from UnicodeStringFailCase2.xls atatched to Bugzilla 50779
          */
-        private static String data_50779_2 =
+        private static string data_50779_2 =
             //"Offset=0x00000612(1554) recno=71 sid=0x00FC size=0x2020(8224)\n" +
                 "      FC 00 20 20 51 00 00 00 51 00 00 00 32 00" +
                 "01 42 30 44 30 46 30 48 30 4A 30 4B 30 4D 30 4F" +

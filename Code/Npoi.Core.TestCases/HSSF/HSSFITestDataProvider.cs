@@ -10,7 +10,7 @@ namespace TestCases.HSSF
 {
     public class HSSFITestDataProvider : ITestDataProvider
     {
-        public IWorkbook OpenSampleWorkbook(String sampleFileName)
+        public IWorkbook OpenSampleWorkbook(string sampleFileName)
         {
             return HSSFTestDataSamples.OpenSampleWorkbook(sampleFileName);
         }
@@ -33,7 +33,7 @@ namespace TestCases.HSSF
         {
             return new HSSFFormulaEvaluator((HSSFWorkbook)wb);
         }
-        public byte[] GetTestDataFileContent(String fileName)
+        public byte[] GetTestDataFileContent(string fileName)
         {
             return POIDataSamples.GetSpreadSheetInstance().ReadFile(fileName);
         }

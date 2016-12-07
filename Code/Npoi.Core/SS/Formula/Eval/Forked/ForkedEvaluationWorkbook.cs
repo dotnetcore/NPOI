@@ -27,7 +27,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
     /**
      * Represents a workbook being used for forked Evaluation. Most operations are delegated to the
      * shared master workbook, except those that potentially involve cell values that may have been
-     * updated After a call to {@link #getOrCreateUpdatableCell(String, int, int)}.
+     * updated After a call to {@link #getOrCreateUpdatableCell(string, int, int)}.
      *
      * @author Josh Micich
      */
@@ -43,20 +43,20 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
             _sharedSheetsByName = new Dictionary<String, ForkedEvaluationSheet>();
         }
 
-        public ForkedEvaluationCell GetOrCreateUpdatableCell(String sheetName, int rowIndex,
+        public ForkedEvaluationCell GetOrCreateUpdatableCell(string sheetName, int rowIndex,
                 int columnIndex)
         {
             ForkedEvaluationSheet sheet = GetSharedSheet(sheetName);
             return sheet.GetOrCreateUpdatableCell(rowIndex, columnIndex);
         }
 
-        public IEvaluationCell GetEvaluationCell(String sheetName, int rowIndex, int columnIndex)
+        public IEvaluationCell GetEvaluationCell(string sheetName, int rowIndex, int columnIndex)
         {
             ForkedEvaluationSheet sheet = GetSharedSheet(sheetName);
             return sheet.GetCell(rowIndex, columnIndex);
         }
 
-        private ForkedEvaluationSheet GetSharedSheet(String sheetName)
+        private ForkedEvaluationSheet GetSharedSheet(string sheetName)
         {
             ForkedEvaluationSheet result = null;
             if (_sharedSheetsByName.ContainsKey(sheetName))
@@ -105,7 +105,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
             return _masterBook.GetExternalSheet(externSheetIndex);
         }
 
-        public ExternalSheet GetExternalSheet(String firstSheetName, string lastSheetName, int externalWorkbookNumber)
+        public ExternalSheet GetExternalSheet(string firstSheetName, string lastSheetName, int externalWorkbookNumber)
         {
             return _masterBook.GetExternalSheet(firstSheetName, lastSheetName, externalWorkbookNumber);
         }
@@ -125,7 +125,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
             return _masterBook.GetName(namePtg);
         }
 
-        public IEvaluationName GetName(String name, int sheetIndex)
+        public IEvaluationName GetName(string name, int sheetIndex)
         {
             return _masterBook.GetName(name, sheetIndex);
         }
@@ -140,7 +140,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
             return _masterBook.GetExternalName(externSheetIndex, externNameIndex);
         }
 
-        public ExternalName GetExternalName(String nameName, String sheetName, int externalWorkbookNumber)
+        public ExternalName GetExternalName(string nameName, String sheetName, int externalWorkbookNumber)
         {
             return _masterBook.GetExternalName(nameName, sheetName, externalWorkbookNumber);
         }
@@ -155,7 +155,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
             return _masterBook.GetSheetIndex(sheet);
         }
 
-        public int GetSheetIndex(String sheetName)
+        public int GetSheetIndex(string sheetName)
         {
             return _masterBook.GetSheetIndex(sheetName);
         }
@@ -177,10 +177,10 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
 
         private class OrderedSheet : IComparable<OrderedSheet>
         {
-            private String _sheetName;
+            private string _sheetName;
             private int _index;
 
-            public OrderedSheet(String sheetName, int index)
+            public OrderedSheet(string sheetName, int index)
             {
                 _sheetName = sheetName;
                 _index = index;

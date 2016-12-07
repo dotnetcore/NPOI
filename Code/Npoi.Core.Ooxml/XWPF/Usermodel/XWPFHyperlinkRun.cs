@@ -54,7 +54,7 @@ namespace Npoi.Core.XWPF.UserModel
             return hyperlink.id;
         }
 
-        public void SetHyperlinkId(String id)
+        public void SetHyperlinkId(string id)
         {
             hyperlink.id = (id);
         }

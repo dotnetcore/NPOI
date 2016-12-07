@@ -34,7 +34,7 @@ namespace Npoi.Core.SS.Util
         private IWorkbook workbook;
         private Object[][] cells;
         private bool shouldCreateEmptyCells = false;
-        private String sheetName = null;
+        private string sheetName = null;
 
         public SheetBuilder(IWorkbook workbook, Object[][] cells)
         {
@@ -76,7 +76,7 @@ namespace Npoi.Core.SS.Util
          * @return {@code this}
          */
 
-        public SheetBuilder SetSheetName(String sheetName)
+        public SheetBuilder SetSheetName(string sheetName)
         {
             this.sheetName = sheetName;
             return this;
@@ -165,14 +165,14 @@ namespace Npoi.Core.SS.Util
         {
             if (obj is String)
             {
-                String str = (String)obj;
+                String str = (string)obj;
                 if (str.Length < 2)
                 {
                     return false;
                 }
                 else
                 {
-                    return ((String)obj)[0] == '=';
+                    return ((string)obj)[0] == '=';
                 }
             }
             else
@@ -181,9 +181,9 @@ namespace Npoi.Core.SS.Util
             }
         }
 
-        private String GetFormula(Object obj)
+        private string GetFormula(Object obj)
         {
-            return ((String)obj).Substring(1);
+            return ((string)obj).Substring(1);
         }
     }
 }

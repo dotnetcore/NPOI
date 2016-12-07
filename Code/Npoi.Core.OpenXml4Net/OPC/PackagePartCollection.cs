@@ -36,7 +36,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
             String[] segments = partName.URI.OriginalString.Split(
                     PackagingUriHelper.FORWARD_SLASH_CHAR);
             StringBuilder concatSeg = new StringBuilder();
-            foreach (String seg in segments)
+            foreach (string seg in segments)
             {
                 if (!seg.Equals(""))
                     concatSeg.Append(PackagingUriHelper.FORWARD_SLASH_CHAR);

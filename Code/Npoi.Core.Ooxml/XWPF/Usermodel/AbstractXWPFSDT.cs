@@ -30,8 +30,8 @@ namespace Npoi.Core.XWPF.UserModel
 
     public abstract class AbstractXWPFSDT : ISDTContents
     {
-        private String title;
-        private String tag;
+        private string title;
+        private string tag;
         private IBody part;
 
         public AbstractXWPFSDT(CT_SdtPr pr, IBody part)

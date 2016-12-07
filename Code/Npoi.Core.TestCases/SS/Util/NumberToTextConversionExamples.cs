@@ -40,8 +40,8 @@ namespace TestCases.SS.Util
         /// </summary>
         public class ExampleConversion
         {
-            private String _cSharpRendering;
-            private String _excelRendering;
+            private string _cSharpRendering;
+            private string _excelRendering;
             private double _doubleValue;
             private long _rawDoubleBits;
 
@@ -88,7 +88,7 @@ namespace TestCases.SS.Util
                 _excelRendering = excelRendering;
                 _doubleValue = d;
             }
-            private static String DoubleToHexString(double d)
+            private static string DoubleToHexString(double d)
             {
                 return "0x" + BitConverter.DoubleToInt64Bits(d).ToString("X") + "L";
             }

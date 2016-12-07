@@ -31,7 +31,7 @@ namespace Npoi.Core.SS.Formula.Udf
     {
         private Dictionary<String, FreeRefFunction> _functionsByName;
 
-        public DefaultUDFFinder(String[] functionNames, FreeRefFunction[] functionImpls)
+        public DefaultUDFFinder(string[] functionNames, FreeRefFunction[] functionImpls)
         {
             int nFuncs = functionNames.Length;
             if (functionImpls.Length != nFuncs)
@@ -47,7 +47,7 @@ namespace Npoi.Core.SS.Formula.Udf
             _functionsByName = m;
         }
 
-        public override FreeRefFunction FindFunction(String name)
+        public override FreeRefFunction FindFunction(string name)
         {
             if (!_functionsByName.ContainsKey(name.ToUpper()))
                 return null;

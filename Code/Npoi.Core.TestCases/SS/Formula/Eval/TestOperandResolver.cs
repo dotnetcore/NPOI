@@ -66,7 +66,7 @@ namespace TestCases.SS.Formula.Eval
 
         /**
          * 
-         * Tests that a list of valid strings all return a non null value from {@link OperandResolver#ParseDouble(String)}
+         * Tests that a list of valid strings all return a non null value from {@link OperandResolver#ParseDouble(string)}
          * 
          */
         [Test]
@@ -76,7 +76,7 @@ namespace TestCases.SS.Formula.Eval
 
             String[] values = new String[] { ".19", "0.19", "1.9", "1E4", "-.19", "-0.19", "8.5", "-1E4", ".5E6", "+1.5", "+1E5", "  +1E5  " };
 
-            foreach (String value in values)
+            foreach (string value in values)
             {
                 Assert.AreNotEqual(double.NaN,OperandResolver.ParseDouble(value));  //this bug is caused by double.Parse
                 Assert.AreEqual(OperandResolver.ParseDouble(value), Double.Parse(value));
@@ -86,7 +86,7 @@ namespace TestCases.SS.Formula.Eval
 
         /**
          * 
-         * Tests that a list of invalid strings all return null from {@link OperandResolver#ParseDouble(String)}
+         * Tests that a list of invalid strings all return null from {@link OperandResolver#ParseDouble(string)}
          * 
          */
         [Test]
@@ -96,7 +96,7 @@ namespace TestCases.SS.Formula.Eval
 
             String[] values = new String[] { "-", "ABC", "-X", "1E5a", "Infinity", "NaN", ".5F" };    //, "1,000" };
 
-            foreach (String value in values)
+            foreach (string value in values)
             {
                 Assert.AreEqual(double.NaN, OperandResolver.ParseDouble(value));
             }

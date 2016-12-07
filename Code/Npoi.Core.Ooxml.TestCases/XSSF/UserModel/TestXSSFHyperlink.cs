@@ -118,7 +118,7 @@ namespace Npoi.Core.XSSF.UserModel
                 "www.apache .org",
                 "c:\\temp",
                 "\\poi"};
-            foreach (String s in invalidURLs)
+            foreach (string s in invalidURLs)
             {
                 try
                 {

@@ -148,7 +148,7 @@ namespace Npoi.Core.XSSF.Model
             ISheet s = w.CreateSheet();
             int i = 0;
             List<String> lst = ReadStrings("48936-strings.txt");
-            foreach (String str in lst)
+            foreach (string str in lst)
             {
                 s.CreateRow(i++).CreateCell(0).SetCellValue(str);
             }
@@ -163,7 +163,7 @@ namespace Npoi.Core.XSSF.Model
             }
             s = w.GetSheetAt(0);
             i = 0;
-            foreach (String str in lst)
+            foreach (string str in lst)
             {
                 String val = s.GetRow(i++).GetCell(0).StringCellValue;
                 Assert.AreEqual(str, val);
@@ -172,7 +172,7 @@ namespace Npoi.Core.XSSF.Model
             Assert.IsNotNull(XSSFTestDataSamples.WriteOutAndReadBack(w));
         }
 
-        private List<String> ReadStrings(String filename)
+        private List<String> ReadStrings(string filename)
         {
             List<String> strs = new List<String>();
             POIDataSamples samples = POIDataSamples.GetSpreadSheetInstance();

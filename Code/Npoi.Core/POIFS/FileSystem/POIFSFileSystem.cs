@@ -224,7 +224,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <param name="size">the size of the new DocumentEntry</param>
         /// <param name="writer">the Writer of the new DocumentEntry</param>
         /// <returns>the new DocumentEntry</returns>
-        public DocumentEntry CreateDocument(String name, int size,
+        public DocumentEntry CreateDocument(string name, int size,
             /*POIFSWriterEventHandler*/ POIFSWriterListener writer) //Leon
         {
             return this.Root.CreateDocument(name, size, writer);
@@ -235,7 +235,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// </summary>
         /// <param name="name">the name of the new DirectoryEntry</param>
         /// <returns>the new DirectoryEntry</returns>
-        public DirectoryEntry CreateDirectory(String name)
+        public DirectoryEntry CreateDirectory(string name)
         {
             return this.Root.CreateDirectory(name);
         }

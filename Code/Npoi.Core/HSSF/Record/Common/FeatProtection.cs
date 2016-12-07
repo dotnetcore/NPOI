@@ -45,7 +45,7 @@ namespace Npoi.Core.HSSF.Record.Common
          */
         private int passwordVerifier;
 
-        private String title;
+        private string title;
         private byte[] securityDescriptor;
 
         public FeatProtection()
@@ -106,7 +106,7 @@ namespace Npoi.Core.HSSF.Record.Common
             return title;
         }
 
-        public void SetTitle(String title)
+        public void SetTitle(string title)
         {
             this.title = title;
         }

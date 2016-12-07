@@ -51,7 +51,7 @@ namespace Npoi.Core.HPSF
         /// Initializes a new instance of the <see cref="NoPropertySetStreamException"/> class.
         /// </summary>
         /// <param name="msg">The exception's message string</param>
-        public NoPropertySetStreamException(String msg) : base(msg) {
+        public NoPropertySetStreamException(string msg) : base(msg) {
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="msg">The exception's message string</param>
         /// <param name="reason">This exception's underlying reason</param>
-        public NoPropertySetStreamException(String msg,
+        public NoPropertySetStreamException(string msg,
                                             Exception reason) : base(msg, reason) {
         }
     }

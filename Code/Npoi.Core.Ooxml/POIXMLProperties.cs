@@ -85,7 +85,7 @@ namespace Npoi.Core
             }
         }
 
-        public void SetCreated(String date)
+        public void SetCreated(string date)
         {
             part.SetCreatedProperty(date);
         }
@@ -150,7 +150,7 @@ namespace Npoi.Core
             }
         }
 
-        public void SetLastPrinted(String date)
+        public void SetLastPrinted(string date)
         {
             part.SetLastPrintedProperty(date);
         }
@@ -167,7 +167,7 @@ namespace Npoi.Core
             }
         }
 
-        public void SetModified(String date)
+        public void SetModified(string date)
         {
             part.SetModifiedProperty(date);
         }
@@ -439,7 +439,7 @@ namespace Npoi.Core
          * @throws IllegalArgumentException if a property with this name already exists
          */
 
-        private CT_Property Add(String name)
+        private CT_Property Add(string name)
         {
             if (Contains(name))
             {
@@ -461,7 +461,7 @@ namespace Npoi.Core
          * @throws IllegalArgumentException if a property with this name already exists
          */
 
-        public void AddProperty(String name, String value)
+        public void AddProperty(string name, String value)
         {
             CT_Property p = Add(name);
             p.ItemElementName = ItemChoiceType.lpwstr;
@@ -474,7 +474,7 @@ namespace Npoi.Core
          * @throws IllegalArgumentException if a property with this name already exists
          */
 
-        public void AddProperty(String name, double value)
+        public void AddProperty(string name, double value)
         {
             CT_Property p = Add(name);
             p.ItemElementName = ItemChoiceType.r8;
@@ -487,7 +487,7 @@ namespace Npoi.Core
          * @throws IllegalArgumentException if a property with this name already exists
          */
 
-        public void AddProperty(String name, int value)
+        public void AddProperty(string name, int value)
         {
             CT_Property p = Add(name);
             p.ItemElementName = ItemChoiceType.i4;
@@ -500,7 +500,7 @@ namespace Npoi.Core
          * @throws IllegalArgumentException if a property with this name already exists
          */
 
-        public void AddProperty(String name, bool value)
+        public void AddProperty(string name, bool value)
         {
             CT_Property p = Add(name);
             p.ItemElementName = ItemChoiceType.@bool;
@@ -530,7 +530,7 @@ namespace Npoi.Core
          * @return whether a property with the given name exists in the custom properties
          */
 
-        public bool Contains(String name)
+        public bool Contains(string name)
         {
             foreach (CT_Property p in props.GetProperties().GetPropertyList())
             {
@@ -549,7 +549,7 @@ namespace Npoi.Core
          * @param name the name of the property to fetch
          */
 
-        public CT_Property GetProperty(String name)
+        public CT_Property GetProperty(string name)
         {
             foreach (CT_Property p in props.GetProperties().GetPropertyList())
             {

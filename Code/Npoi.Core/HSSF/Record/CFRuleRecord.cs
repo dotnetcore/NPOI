@@ -578,7 +578,7 @@ namespace Npoi.Core.HSSF.Record
          * @return <c>null</c> if <c>formula</c> was null.
          */
 
-        private static Ptg[] ParseFormula(String formula, HSSFWorkbook workbook)
+        private static Ptg[] ParseFormula(string formula, HSSFWorkbook workbook)
         {
             if (formula == null)
             {
@@ -596,7 +596,7 @@ namespace Npoi.Core.HSSF.Record
      * @return <code>null</code> if <c>formula</c> was null.
      */
 
-        private static Ptg[] ParseFormula(String formula, HSSFSheet sheet)
+        private static Ptg[] ParseFormula(string formula, HSSFSheet sheet)
         {
             if (formula == null)
             {

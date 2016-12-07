@@ -49,7 +49,7 @@ namespace Npoi.Core.HPSF
         /// Initializes a new instance of the <see cref="MarkUnsupportedException"/> class.
         /// </summary>
         /// <param name="msg">The exception's message string.</param>
-        public MarkUnsupportedException(String msg) : base(msg) {
+        public MarkUnsupportedException(string msg) : base(msg) {
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="msg">The exception's message string</param>
         /// <param name="reason">This exception's underlying reason</param>
-        public MarkUnsupportedException(String msg, Exception reason) : base(msg, reason) {
+        public MarkUnsupportedException(string msg, Exception reason) : base(msg, reason) {
         }
     }
 }

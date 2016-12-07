@@ -141,7 +141,7 @@ namespace Npoi.Core.SS.UserModel
         /// change the cell to a string cell and set its value.
         /// If value is null then we will change the cell to a blank cell.
         /// </param>
-        void SetCellValue(String value);
+        void SetCellValue(string value);
 
         /// <summary>
         /// Copy the cell to the target index. If the target cell exists, a new cell will be inserted before the existing cell.
@@ -160,7 +160,7 @@ namespace Npoi.Core.SS.UserModel
         /// Sets formula for this cell.
         /// </summary>
         /// <param name="formula">the formula to Set, e.g. <code>"SUM(C4:E4)"</code>.</param>
-        void SetCellFormula(String formula);
+        void SetCellFormula(string formula);
 
         /// <summary>
         /// Get the value of the cell as a number.

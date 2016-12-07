@@ -52,7 +52,7 @@ namespace TestCases.HSSF.Model
          * @return Parsed token array alReady Confirmed not <c>null</c>
          */
         /* package */
-        public static Ptg[] ParseFormula(String formula)
+        public static Ptg[] ParseFormula(string formula)
         {
             Ptg[] result = HSSFFormulaParser.Parse(formula, null);
             Assert.IsNotNull(result, "Ptg array should not be null");
@@ -639,7 +639,7 @@ namespace TestCases.HSSF.Model
         }
 
         /* package */
-        public static Ptg[] ConfirmTokenClasses(String formula, Type[] expectedClasses)
+        public static Ptg[] ConfirmTokenClasses(string formula, Type[] expectedClasses)
         {
             Ptg[] ptgs = ParseFormula(formula);
             Assert.AreEqual(expectedClasses.Length, ptgs.Length);
@@ -678,7 +678,7 @@ namespace TestCases.HSSF.Model
             ConfirmUnary("+ 12", 12, typeof(IntPtg), typeof(UnaryPlusPtg));
             ConfirmUnary("- 13", 13, typeof(IntPtg), typeof(UnaryMinusPtg));
         }
-        private static void ConfirmUnary(String formulaText, double val, params Type[] expectedTokenTypes)
+        private static void ConfirmUnary(string formulaText, double val, params Type[] expectedTokenTypes)
         {
             Ptg[] ptgs = ParseFormula(formulaText);
             ConfirmTokenClasses(ptgs, expectedTokenTypes);
@@ -704,7 +704,7 @@ namespace TestCases.HSSF.Model
             ConfirmTokenClasses("2^5", new Type[] { typeof(IntPtg), typeof(IntPtg), typeof(PowerPtg), });
         }
 
-        private static Ptg ParseSingleToken(String formula, Type ptgClass)
+        private static Ptg ParseSingleToken(string formula, Type ptgClass)
         {
             Ptg[] ptgs = ParseFormula(formula);
             Assert.AreEqual(1, ptgs.Length);
@@ -780,7 +780,7 @@ namespace TestCases.HSSF.Model
          * quotes.  This method converts single quotes to double quotes before performing the Parse
          * and result check.
          */
-        private static void ConfirmStringParse(String singleQuotedValue)
+        private static void ConfirmStringParse(string singleQuotedValue)
         {
             // formula: internal quotes become double double, surround with double quotes
             String formula = '"' + singleQuotedValue.Replace("'", "\"\"") + '"';
@@ -872,7 +872,7 @@ namespace TestCases.HSSF.Model
             ParseExpectedException("countif(A1:B5, C1, D1)");
         }
 
-        private static void ParseExpectedException(String formula)
+        private static void ParseExpectedException(string formula)
         {
             try
             {
@@ -995,7 +995,7 @@ namespace TestCases.HSSF.Model
             ConfirmArgCountMsg("vlookup(1, 2)", "Too few arguments to function 'VLOOKUP'. At least 3 were expected but got 2.");
         }
 
-        private static void ConfirmArgCountMsg(String formula, String expectedMessage)
+        private static void ConfirmArgCountMsg(string formula, String expectedMessage)
         {
             HSSFWorkbook book = new HSSFWorkbook();
             try
@@ -1187,7 +1187,7 @@ namespace TestCases.HSSF.Model
                 // this would cause ClassCastException below
                 throw new AssertionException("Wrong encoding of array element value");
             }
-            Assert.AreEqual(typeof(String), element.GetType());
+            Assert.AreEqual(typeof(string), element.GetType());
 
             // make sure the formula encodes OK
             int encSize = Ptg.GetEncodedSize(ptgs);

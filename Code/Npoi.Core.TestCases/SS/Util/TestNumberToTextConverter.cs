@@ -91,7 +91,7 @@ namespace TestCases.SS.Util
             }
         }
 
-        private static String FormatExample(Util.NumberToTextConversionExamples.ExampleConversion example)
+        private static string FormatExample(Util.NumberToTextConversionExamples.ExampleConversion example)
         {
             String hexLong = example.RawDoubleBits.ToString("X");
             String longRep = "0x" + "0000000000000000".Substring(hexLong.Length) + hexLong + "L";

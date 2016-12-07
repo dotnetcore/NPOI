@@ -46,7 +46,7 @@ namespace Npoi.Core.SS.UserModel
      * However the pattern <c>"00-00-00"</c> is incorrectly Formatted by
      * DecimalFormat as "000000--". For Excel Formats that are not compatible with
      * DecimalFormat, you can provide your own custom {@link FormatBase} implementation
-     * via <c>HSSFDataFormatter.AddFormat(String,FormatBase)</c>. The following
+     * via <c>HSSFDataFormatter.AddFormat(string,FormatBase)</c>. The following
      * custom Formats are already provided by this class:
      *
      * <pre>
@@ -70,8 +70,8 @@ namespace Npoi.Core.SS.UserModel
 
     public class DataFormatter
     {
-        private static String defaultFractionWholePartFormat = "#";
-        private static String defaultFractionFractionPartFormat = "#/##";
+        private static string defaultFractionWholePartFormat = "#";
+        private static string defaultFractionFractionPartFormat = "#/##";
         /** Pattern to find a number FormatBase: "0" or  "#" */
         private static string numPattern = "[0#]+";
 
@@ -110,7 +110,7 @@ namespace Npoi.Core.SS.UserModel
       * Cells formatted with a date or time format and which contain invalid date or time values
      *  show 255 pound signs ("#").
       */
-        private static String invalidDateTimeString;
+        private static string invalidDateTimeString;
 
         static DataFormatter()
         {
@@ -391,21 +391,21 @@ namespace Npoi.Core.SS.UserModel
             return null;
         }
 
-        private int IndexOfFraction(String format)
+        private int IndexOfFraction(string format)
         {
             int i = format.IndexOf("#/#");
             int j = format.IndexOf("?/?");
             return i == -1 ? j : j == -1 ? i : Math.Min(i, j);
         }
 
-        private int LastIndexOfFraction(String format)
+        private int LastIndexOfFraction(string format)
         {
             int i = format.LastIndexOf("#/#");
             int j = format.LastIndexOf("?/?");
             return i == -1 ? j : j == -1 ? i : Math.Max(i, j);
         }
 
-        private FormatBase CreateDateFormat(String pformatStr, double cellValue)
+        private FormatBase CreateDateFormat(string pformatStr, double cellValue)
         {
             String formatStr = pformatStr;
             formatStr = formatStr.Replace("\\-", "-");
@@ -574,7 +574,7 @@ namespace Npoi.Core.SS.UserModel
             }
         }
 
-        private String cleanFormatForNumber(String formatStr)
+        private string cleanFormatForNumber(string formatStr)
         {
             StringBuilder sb = new StringBuilder(formatStr);
 
@@ -671,7 +671,7 @@ namespace Npoi.Core.SS.UserModel
             return sb.ToString();
         }
 
-        private FormatBase CreateNumberFormat(String formatStr, double cellValue)
+        private FormatBase CreateNumberFormat(string formatStr, double cellValue)
         {
             String format = cleanFormatForNumber(formatStr);
             try
@@ -733,7 +733,7 @@ namespace Npoi.Core.SS.UserModel
          * @return a Formatted date string
          */
 
-        private String GetFormattedDateString(ICell cell)
+        private string GetFormattedDateString(ICell cell)
         {
             FormatBase dateFormat = GetFormat(cell);
             DateTime d = cell.DateCellValue;
@@ -754,7 +754,7 @@ namespace Npoi.Core.SS.UserModel
          * @return a Formatted number string
          */
 
-        private String GetFormattedNumberString(ICell cell)
+        private string GetFormattedNumberString(ICell cell)
         {
             FormatBase numberFormat = GetFormat(cell);
             double d = cell.NumericCellValue;
@@ -781,7 +781,7 @@ namespace Npoi.Core.SS.UserModel
      *  supplied Date and format
      */
 
-        private String PerformDateFormatting(DateTime d, FormatBase dateFormat)
+        private string PerformDateFormatting(DateTime d, FormatBase dateFormat)
         {
             if (dateFormat != null)
             {
@@ -977,7 +977,7 @@ namespace Npoi.Core.SS.UserModel
          * @param FormatBase A FormatBase instance
          */
 
-        public void AddFormat(String excelformatStr, FormatBase format)
+        public void AddFormat(string excelformatStr, FormatBase format)
         {
             formats[excelformatStr] = format;
         }

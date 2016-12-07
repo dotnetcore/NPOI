@@ -28,13 +28,13 @@ namespace TestCases
         /** <c>true</c> if standard system propery is not set,
          * but the data is available on the test runtime classpath */
         private bool _sampleDataIsAvaliableOnClassPath;
-        private String _moduleDir;
+        private string _moduleDir;
 
         /**
          *
          * @param moduleDir   the name of the directory containing the test files
          */
-        private POIDataSamples(String moduleDir)
+        private POIDataSamples(string moduleDir)
         {
             _moduleDir = moduleDir;
             Initialise();
@@ -104,7 +104,7 @@ namespace TestCases
  * Opens a test sample file from the 'data' sub-package of this class's package. 
  * @return <c>null</c> if the sample file is1 not deployed on the classpath.
  */
-        private Stream OpenClasspathResource(String sampleFileName)
+        private Stream OpenClasspathResource(string sampleFileName)
         {
             FileStream file = new FileStream(_resolvedDataDir + sampleFileName, FileMode.Open, FileAccess.Read);
             return file;
@@ -139,7 +139,7 @@ namespace TestCases
  * 
  * @return an Open <c>Stream</c> for the specified sample file
  */
-        public Stream OpenResourceAsStream(String sampleFileName)
+        public Stream OpenResourceAsStream(string sampleFileName)
         {
             Initialise();
 
@@ -181,7 +181,7 @@ namespace TestCases
             }
         }
 
-        public FileInfo GetFileInfo(String sampleFileName)
+        public FileInfo GetFileInfo(string sampleFileName)
         {
             string path = _resolvedDataDir + sampleFileName;
             if (!File.Exists(path))
@@ -198,7 +198,7 @@ namespace TestCases
          * @return
          * @throws RuntimeException if the file was not found
          */
-        public FileStream GetFile(String sampleFileName)
+        public FileStream GetFile(string sampleFileName)
         {
             string path = _resolvedDataDir+ sampleFileName;
             if (!File.Exists(path))
@@ -231,7 +231,7 @@ namespace TestCases
         /**
          * @return byte array of sample file content from file found in standard hssf test data dir 
          */
-        public byte[] ReadFile(String fileName)
+        public byte[] ReadFile(string fileName)
         {
             MemoryStream bos = new MemoryStream();
 

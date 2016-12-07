@@ -52,7 +52,7 @@ namespace Npoi.Core.SS.Formula
          * sheet name will be converted to double single quotes ('').
          */
 
-        public static String Format(String rawSheetName)
+        public static String Format(string rawSheetName)
         {
             StringBuilder sb = new StringBuilder(rawSheetName.Length + 2);
             AppendFormat(sb, rawSheetName);
@@ -116,7 +116,7 @@ namespace Npoi.Core.SS.Formula
             }
         }
 
-        private static bool NeedsDelimiting(String rawSheetName)
+        private static bool NeedsDelimiting(string rawSheetName)
         {
             int len = rawSheetName.Length;
             if (len < 1)
@@ -152,7 +152,7 @@ namespace Npoi.Core.SS.Formula
             return false;
         }
 
-        private static bool NameLooksLikeBooleanLiteral(String rawSheetName)
+        private static bool NameLooksLikeBooleanLiteral(string rawSheetName)
         {
             switch (rawSheetName[0])
             {
@@ -221,7 +221,7 @@ namespace Npoi.Core.SS.Formula
          * @see org.apache.poi.hssf.util.CellReference
          */
 
-        public static bool CellReferenceIsWithinRange(String lettersPrefix, String numbersSuffix)
+        public static bool CellReferenceIsWithinRange(string lettersPrefix, String numbersSuffix)
         {
             return Npoi.Core.SS.Util.CellReference.CellReferenceIsWithinRange(lettersPrefix, numbersSuffix, Npoi.Core.SS.SpreadsheetVersion.EXCEL97);
         }
@@ -249,7 +249,7 @@ namespace Npoi.Core.SS.Formula
          * could be interpreted as a valid cell name.
          */
 
-        public static bool NameLooksLikePlainCellReference(String rawSheetName)
+        public static bool NameLooksLikePlainCellReference(string rawSheetName)
         {
             Regex matcher = new Regex(CELL_REF_PATTERN);
             if (!matcher.IsMatch(rawSheetName))

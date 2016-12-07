@@ -36,7 +36,7 @@ namespace Npoi.Core.SS.Formula.PTG
          * numeric fields.
          */
 
-        protected Ref2DPtgBase(String cellref)
+        protected Ref2DPtgBase(string cellref)
             : base(cellref)
         {
         }

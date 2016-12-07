@@ -127,7 +127,7 @@ namespace Npoi.Core.DDF
                     "  LastMSOSPID: " + field_2_lastMSOSPID + nl;
         }
 
-        public override String ToXml(String tab) {
+        public override String ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
                     .Append(tab).Append("\t").Append("<NumShapes>").Append(field_1_numShapes).Append("</NumShapes>\n")

@@ -245,7 +245,7 @@ namespace TestCases.HSSF.Record.CF
     //        resolveRangeOverlapTest("C1:D2", "C2:C3");
     //    }
 
-        private void CellRangeTest(String[] input, params string[] expectedOutput)
+        private void CellRangeTest(string[] input, params string[] expectedOutput)
         {
             CellRangeAddress[] inputArr = new CellRangeAddress[input.Length];
             for (int i = 0; i < input.Length; i++)
@@ -256,7 +256,7 @@ namespace TestCases.HSSF.Record.CF
             VerifyExpectedResult(result, expectedOutput);
         }
 
-//    private void resolveRangeOverlapTest(String a, String b, String...expectedOutput) {
+//    private void resolveRangeOverlapTest(string a, String b, String...expectedOutput) {
 //        CellRangeAddress rangeA = CellRangeAddress.valueOf(a);
 //        CellRangeAddress rangeB = CellRangeAddress.valueOf(b);
 //        CellRangeAddress[] result = CellRangeUtil.resolveRangeOverlap(rangeA, rangeB);

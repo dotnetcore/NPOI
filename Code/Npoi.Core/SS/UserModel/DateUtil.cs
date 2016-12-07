@@ -360,7 +360,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <param name="timeStr">The time STR.</param>
         /// <returns> a double between 0 and 1 representing the fraction of the day</returns>
-        public static double ConvertTime(String timeStr)
+        public static double ConvertTime(string timeStr)
         {
             try
             {
@@ -379,7 +379,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <param name="timeStr">The time STR.</param>
         /// <returns></returns>
-        private static double ConvertTimeInternal(String timeStr)
+        private static double ConvertTimeInternal(string timeStr)
         {
             int len = timeStr.Length;
             if (len < 4 || len > 8)
@@ -412,7 +412,7 @@ namespace Npoi.Core.SS.UserModel
         // see https://issues.apache.org/bugzilla/show_bug.cgi?id=55611
         private static int lastFormatIndex = -1;
 
-        private static String lastFormatString = null;
+        private static string lastFormatString = null;
         private static bool cached = false;
         private static string syncIsADateFormat = "IsADateFormat";
 
@@ -553,7 +553,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <param name="dateStr">The date STR.</param>
         /// <returns>a double representing the (integer) number of days since the start of the Excel epoch</returns>
-        public static DateTime ParseYYYYMMDDDate(String dateStr)
+        public static DateTime ParseYYYYMMDDDate(string dateStr)
         {
             try
             {
@@ -572,7 +572,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <param name="timeStr">The time string.</param>
         /// <returns></returns>
-        private static DateTime ParseYYYYMMDDDateInternal(String timeStr)
+        private static DateTime ParseYYYYMMDDDateInternal(string timeStr)
         {
             if (timeStr.Length != 10)
             {
@@ -597,7 +597,7 @@ namespace Npoi.Core.SS.UserModel
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="rangeMax">The range max.</param>
         /// <returns></returns>
-        private static int ParseInt(String strVal, String fieldName, int rangeMax)
+        private static int ParseInt(string strVal, String fieldName, int rangeMax)
         {
             return ParseInt(strVal, fieldName, 0, rangeMax - 1);
         }
@@ -610,7 +610,7 @@ namespace Npoi.Core.SS.UserModel
         /// <param name="lowerLimit">The lower limit.</param>
         /// <param name="upperLimit">The upper limit.</param>
         /// <returns></returns>
-        private static int ParseInt(String strVal, String fieldName, int lowerLimit, int upperLimit)
+        private static int ParseInt(string strVal, String fieldName, int lowerLimit, int upperLimit)
         {
             int result;
             try

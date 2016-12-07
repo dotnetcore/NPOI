@@ -57,7 +57,7 @@ namespace Npoi.Core.SS.Util
          * @return the text format of this range using specified sheet name.
          */
 
-        public String FormatAsString(String sheetName, bool useAbsoluteAddress)
+        public String FormatAsString(string sheetName, bool useAbsoluteAddress)
         {
             StringBuilder sb = new StringBuilder();
             if (sheetName != null)
@@ -103,7 +103,7 @@ namespace Npoi.Core.SS.Util
         /// column range (e.g. "C:F")
         /// </param>
         /// <returns>a CellRangeAddress object</returns>
-        public static CellRangeAddress ValueOf(String reference)
+        public static CellRangeAddress ValueOf(string reference)
         {
             int sep = reference.IndexOf(":", StringComparison.Ordinal);
             CellReference a;

@@ -39,7 +39,7 @@ namespace Npoi.Core.SS.Formula.PTG
             field_1_value = (in1.ReadByte() == 1);
         }
 
-        public BoolPtg(String formulaToken)
+        public BoolPtg(string formulaToken)
         {
             field_1_value = (formulaToken.Equals("TRUE"));
         }

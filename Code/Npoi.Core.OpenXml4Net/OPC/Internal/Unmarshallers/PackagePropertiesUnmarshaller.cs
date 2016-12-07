@@ -154,7 +154,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
             return coreProps;
         }
 
-        private String LoadCategory(XDocument xmlDoc)
+        private string LoadCategory(XDocument xmlDoc)
         {
             var el = xmlDoc.Document.XPathSelectElements("cp:" + KEYWORD_CATEGORY, nsmgr).ToList()[0];
 
@@ -165,7 +165,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
             return el.Value;
         }
 
-        private String LoadContentStatus(XDocument xmlDoc)
+        private string LoadContentStatus(XDocument xmlDoc)
         {
             var el = xmlDoc.Document.XPathSelectElements("cp:" + KEYWORD_CONTENT_STATUS, nsmgr).ToList()[0];
             if (el == null)
@@ -175,7 +175,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
             return el.Value;
         }
 
-        private String LoadContentType(XDocument xmlDoc)
+        private string LoadContentType(XDocument xmlDoc)
         {
             //Element el = xmlDoc.getRootElement().element(
             //        new QName(KEYWORD_CONTENT_TYPE, namespaceCP));
@@ -187,7 +187,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
             return el.Value;
         }
 
-        private String LoadCreated(XDocument xmlDoc)
+        private string LoadCreated(XDocument xmlDoc)
         {
             //Element el = xmlDoc.getRootElement().element(
             //        new QName(KEYWORD_CREATED, namespaceDcTerms));
@@ -199,7 +199,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
             return el.Value;
         }
 
-        private String LoadCreator(XDocument xmlDoc)
+        private string LoadCreator(XDocument xmlDoc)
         {
             //Element el = xmlDoc.getRootElement().element(
             //        new QName(KEYWORD_CREATOR, namespaceDC));
@@ -211,7 +211,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
             return el.Value;
         }
 
-        private String LoadDescription(XDocument xmlDoc)
+        private string LoadDescription(XDocument xmlDoc)
         {
             //Element el = xmlDoc.getRootElement().element(
             //        new QName(KEYWORD_DESCRIPTION, namespaceDC));
@@ -223,7 +223,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
             return el.Value;
         }
 
-        private String LoadIdentifier(XDocument xmlDoc)
+        private string LoadIdentifier(XDocument xmlDoc)
         {
             //Element el = xmlDoc.getRootElement().element(
             //        new QName(KEYWORD_IDENTIFIER, namespaceDC));
@@ -235,7 +235,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
             return el.Value;
         }
 
-        private String LoadKeywords(XDocument xmlDoc)
+        private string LoadKeywords(XDocument xmlDoc)
         {
             //Element el = xmlDoc.getRootElement().element(
             //        new QName(KEYWORD_KEYWORDS, namespaceCP));
@@ -248,7 +248,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
             return el.Value;
         }
 
-        private String LoadLanguage(XDocument xmlDoc)
+        private string LoadLanguage(XDocument xmlDoc)
         {
             //Element el = xmlDoc.getRootElement().element(
             //        new QName(KEYWORD_LANGUAGE, namespaceDC));
@@ -260,7 +260,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
             return el.Value;
         }
 
-        private String LoadLastModifiedBy(XDocument xmlDoc)
+        private string LoadLastModifiedBy(XDocument xmlDoc)
         {
             //Element el = xmlDoc.getRootElement().element(
             //        new QName(KEYWORD_LAST_MODIFIED_BY, namespaceCP));
@@ -272,7 +272,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
             return el.Value;
         }
 
-        private String LoadLastPrinted(XDocument xmlDoc)
+        private string LoadLastPrinted(XDocument xmlDoc)
         {
             //Element el = xmlDoc.getRootElement().element(
             //        new QName(KEYWORD_LAST_PRINTED, namespaceCP));
@@ -284,7 +284,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
             return el.Value;
         }
 
-        private String LoadModified(XDocument xmlDoc)
+        private string LoadModified(XDocument xmlDoc)
         {
             //Element el = xmlDoc.getRootElement().element(
             //        new QName(KEYWORD_MODIFIED, namespaceDcTerms));
@@ -296,7 +296,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
             return el.Value;
         }
 
-        private String LoadRevision(XDocument xmlDoc)
+        private string LoadRevision(XDocument xmlDoc)
         {
             //Element el = xmlDoc.getRootElement().element(
             //        new QName(KEYWORD_REVISION, namespaceCP));
@@ -308,7 +308,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
             return el.Value;
         }
 
-        private String LoadSubject(XDocument xmlDoc)
+        private string LoadSubject(XDocument xmlDoc)
         {
             //Element el = xmlDoc.getRootElement().element(
             //        new QName(KEYWORD_SUBJECT, namespaceDC));
@@ -320,7 +320,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
             return el.Value;
         }
 
-        private String LoadTitle(XDocument xmlDoc)
+        private string LoadTitle(XDocument xmlDoc)
         {
             //Element el = xmlDoc.getRootElement().element(
             //        new QName(KEYWORD_TITLE, namespaceDC));
@@ -332,7 +332,7 @@ namespace Npoi.Core.OpenXml4Net.OPC.Internal.Unmarshallers
             return el.Value;
         }
 
-        private String LoadVersion(XDocument xmlDoc)
+        private string LoadVersion(XDocument xmlDoc)
         {
             //Element el = xmlDoc.getRootElement().element(
             //        new QName(KEYWORD_VERSION, namespaceCP));

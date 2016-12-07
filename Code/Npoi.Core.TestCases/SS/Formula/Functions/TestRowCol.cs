@@ -89,7 +89,7 @@ namespace TestCases.SS.Formula.Functions
             Assert.AreEqual(1, actual, 0D);
         }
 
-        private static void ConfirmRowsFunc(String areaRefStr, int nCols, int nRows)
+        private static void ConfirmRowsFunc(string areaRefStr, int nCols, int nRows)
         {
             ValueEval[] args = { EvalFactory.CreateAreaEval(areaRefStr, new ValueEval[nCols * nRows]), };
 
@@ -98,7 +98,7 @@ namespace TestCases.SS.Formula.Functions
         }
 
 
-        private static void ConfirmColumnsFunc(String areaRefStr, int nCols, int nRows)
+        private static void ConfirmColumnsFunc(string areaRefStr, int nCols, int nRows)
         {
             ValueEval[] args = { EvalFactory.CreateAreaEval(areaRefStr, new ValueEval[nCols * nRows]), };
 

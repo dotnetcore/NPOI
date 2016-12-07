@@ -137,7 +137,7 @@ namespace Npoi.Core.HSSF.Util
          *  0x13579BDF, 0x0246, 0x8ACE 0x0123456789ABCDEF
          */
 
-        public static GUID Parse(String rep)
+        public static GUID Parse(string rep)
         {
             char[] cc = rep.ToCharArray();
             if (cc.Length != TEXT_FORMAT_LENGTH)

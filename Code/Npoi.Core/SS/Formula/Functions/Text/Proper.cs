@@ -29,7 +29,7 @@ namespace Npoi.Core.SS.Formula.Functions
     public class Proper : SingleArgTextFunc
     {
         //Regex nonAlphabeticPattern = new Regex("\\P{IsL}");
-        public override ValueEval Evaluate(String text)
+        public override ValueEval Evaluate(string text)
         {
             StringBuilder sb = new StringBuilder();
             bool shouldMakeUppercase = true;

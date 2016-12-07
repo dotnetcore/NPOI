@@ -28,7 +28,7 @@ namespace Npoi.Core.XWPF
      * {@link CoreProperties#getKeywords()} had been missing.
      *
      * The author of this has Added {@link CoreProperties#getKeywords()} and
-     * {@link CoreProperties#setKeywords(String)} and this test is supposed to test
+     * {@link CoreProperties#setKeywords(string)} and this test is supposed to test
      * them.
      *
      * @author Antoni Mylka

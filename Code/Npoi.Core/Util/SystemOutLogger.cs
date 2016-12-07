@@ -33,9 +33,9 @@ namespace Npoi.Core.Util
     /// </remarks>
     public class SystemOutLogger : POILogger
     {
-        private String _cat;
+        private string _cat;
 
-        public override void Initialize(String cat)
+        public override void Initialize(string cat)
         {
             this._cat = cat;
         }

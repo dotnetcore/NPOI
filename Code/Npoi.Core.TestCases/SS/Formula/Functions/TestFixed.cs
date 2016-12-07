@@ -108,7 +108,7 @@ namespace TestCases.SS.Formula.Functions
             Assert.IsTrue(Evaluate is ErrorEval);
         }
 
-        private void Confirm(String formulaText, String expectedResult)
+        private void Confirm(string formulaText, String expectedResult)
         {
             cell11.CellFormula = (/*setter*/formulaText);
             Evaluator.ClearAllCachedResultValues();
@@ -118,7 +118,7 @@ namespace TestCases.SS.Formula.Functions
             Assert.AreEqual(expectedResult, actualValue);
         }
 
-        private void ConfirmValueError(String formulaText)
+        private void ConfirmValueError(string formulaText)
         {
             cell11.CellFormula = (/*setter*/formulaText);
             Evaluator.ClearAllCachedResultValues();

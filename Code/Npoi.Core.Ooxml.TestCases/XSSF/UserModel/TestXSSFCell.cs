@@ -111,17 +111,17 @@ namespace Npoi.Core.XSSF.UserModel
             SharedStringsTable sst = wb.GetSharedStringSource();
             Assert.AreEqual(0, sst.Count);
 
-            //case 1. cell.SetCellValue(new XSSFRichTextString((String)null));
+            //case 1. cell.SetCellValue(new XSSFRichTextString((string)null));
             ICell cell_0 = row.CreateCell(0);
-            XSSFRichTextString str = new XSSFRichTextString((String)null);
+            XSSFRichTextString str = new XSSFRichTextString((string)null);
             Assert.IsNull(str.String);
             cell_0.SetCellValue(str);
             Assert.AreEqual(0, sst.Count);
             Assert.AreEqual(CellType.Blank, cell_0.CellType);
 
-            //case 2. cell.SetCellValue((String)null);
+            //case 2. cell.SetCellValue((string)null);
             ICell cell_1 = row.CreateCell(1);
-            cell_1.SetCellValue((String)null);
+            cell_1.SetCellValue((string)null);
             Assert.AreEqual(0, sst.Count);
             Assert.AreEqual(CellType.Blank, cell_1.CellType);
         }
@@ -156,7 +156,7 @@ namespace Npoi.Core.XSSF.UserModel
             Assert.AreEqual(cell.StringCellValue, "t='str'");
 
             //revert to a blank cell
-            cell.SetCellValue((String)null);
+            cell.SetCellValue((string)null);
             Assert.AreEqual(CellType.Blank, cell.CellType);
             Assert.AreEqual(ST_CellType.n, ctCell.t);
             Assert.AreEqual(cell.StringCellValue, "");

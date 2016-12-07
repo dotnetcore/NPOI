@@ -32,7 +32,7 @@ namespace TestCases.HSSF.UserModel
     [TestFixture]
     public class TestHSSFExternalFunctions
     {
-        /* This test is a copy of BaseTestExternalFunctions.BaseTestInvokeATP(String testFile)
+        /* This test is a copy of BaseTestExternalFunctions.BaseTestInvokeATP(string testFile)
          * If we made this test class derived from BaseTestExternalFunctions, 
          * the test BaseTestExternalFunctions.TestExternalFunctions would run twice,
          * the fist passed and the second failed.

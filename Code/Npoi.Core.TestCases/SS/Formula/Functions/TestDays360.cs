@@ -49,7 +49,7 @@ namespace TestCases.SS.Formula.Functions
             //return c.GetTime();
             return d.AddDays(-1);
         }
-        private static String fmt(DateTime d)
+        private static string fmt(DateTime d)
         {
             //Calendar c = new GregorianCalendar();
             //c.SetTimeInMillis(d.GetTime());

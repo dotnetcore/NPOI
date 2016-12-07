@@ -39,7 +39,7 @@ namespace Npoi.Core.SS.Formula
         ///This class was given package scope until it would become Clear that it is useful to general client code.
         /// </summary>
         /// <param name="msg"></param>
-        public FormulaParseException(String msg)
+        public FormulaParseException(string msg)
             : base(msg)
         {
         }
@@ -58,7 +58,7 @@ namespace Npoi.Core.SS.Formula
 
     public class FormulaParser
     {
-        private String formulaString;
+        private string formulaString;
         private int formulaLength;
         private int _pointer;
         private static SpreadsheetVersion _ssVersion;
@@ -92,7 +92,7 @@ namespace Npoi.Core.SS.Formula
          *  usermodel.HSSFFormulaEvaluator
          */
 
-        public FormulaParser(String formula, IFormulaParsingWorkbook book, int sheetIndex)
+        public FormulaParser(string formula, IFormulaParsingWorkbook book, int sheetIndex)
         {
             formulaString = formula;
             _pointer = 0;
@@ -103,7 +103,7 @@ namespace Npoi.Core.SS.Formula
             _sheetIndex = sheetIndex;
         }
 
-        public static Ptg[] Parse(String formula, IFormulaParsingWorkbook book)
+        public static Ptg[] Parse(string formula, IFormulaParsingWorkbook book)
         {
             return Parse(formula, book, FormulaType.Cell);
         }
@@ -122,14 +122,14 @@ namespace Npoi.Core.SS.Formula
          * @throws FormulaParseException if the formula is unparsable
          */
 
-        public static Ptg[] Parse(String formula, IFormulaParsingWorkbook workbook, FormulaType formulaType, int sheetIndex)
+        public static Ptg[] Parse(string formula, IFormulaParsingWorkbook workbook, FormulaType formulaType, int sheetIndex)
         {
             FormulaParser fp = new FormulaParser(formula, workbook, sheetIndex);
             fp.Parse();
             return fp.GetRPNPtg(formulaType);
         }
 
-        public static Ptg[] Parse(String formula, IFormulaParsingWorkbook workbook, FormulaType formulaType)
+        public static Ptg[] Parse(string formula, IFormulaParsingWorkbook workbook, FormulaType formulaType)
         {
             return Parse(formula, workbook, formulaType, -1);
         }
@@ -159,7 +159,7 @@ namespace Npoi.Core.SS.Formula
 
         /** Report What Was Expected */
 
-        private Exception expected(String s)
+        private Exception expected(string s)
         {
             String msg;
 
@@ -230,7 +230,7 @@ namespace Npoi.Core.SS.Formula
             GetChar();
         }
 
-        private String ParseUnquotedIdentifier()
+        private string ParseUnquotedIdentifier()
         {
             if (look == '\'')
             {
@@ -252,7 +252,7 @@ namespace Npoi.Core.SS.Formula
 
         /** Get a Number */
 
-        private String GetNum()
+        private string GetNum()
         {
             StringBuilder value = new StringBuilder();
 
@@ -353,7 +353,7 @@ namespace Npoi.Core.SS.Formula
             return false;
         }
 
-        private String ParseAsName()
+        private string ParseAsName()
         {
             StringBuilder sb = new StringBuilder();
 
@@ -398,7 +398,7 @@ namespace Npoi.Core.SS.Formula
          * @param currentParsePosition used to format a potential error message
          */
 
-        private void CheckValidRangeOperand(String sideName, int currentParsePosition, ParseNode pn)
+        private void CheckValidRangeOperand(string sideName, int currentParsePosition, ParseNode pn)
         {
             if (!IsValidRangeOperand(pn))
             {
@@ -919,9 +919,9 @@ namespace Npoi.Core.SS.Formula
             }
 
             private PartType _type;
-            private String _rep;
+            private string _rep;
 
-            public SimpleRangePart(String rep, bool hasLetters, bool hasNumbers)
+            public SimpleRangePart(string rep, bool hasLetters, bool hasNumbers)
             {
                 _rep = rep;
                 _type = Get(hasLetters, hasNumbers);
@@ -1097,7 +1097,7 @@ namespace Npoi.Core.SS.Formula
          *  Sheet1, see if it's actually a range eg Sheet1:Sheet2!
          */
 
-        private SheetIdentifier ParseSheetRange(String bookname, NameIdentifier sheet1Name)
+        private SheetIdentifier ParseSheetRange(string bookname, NameIdentifier sheet1Name)
         {
             GetChar();
             SheetIdentifier sheet2 = ParseSheetName();
@@ -1146,7 +1146,7 @@ namespace Npoi.Core.SS.Formula
          * @return <c>true</c> if the specified name is a valid cell reference
          */
 
-        private bool IsValidCellReference(String str)
+        private bool IsValidCellReference(string str)
         {
             //check range bounds against grid max
             bool result = CellReference.ClassifyCellReference(str, _ssVersion) == NameType.Cell;
@@ -1182,7 +1182,7 @@ namespace Npoi.Core.SS.Formula
          * @param name case preserved Function name (as it was entered/appeared in the formula).
          */
 
-        private ParseNode Function(String name)
+        private ParseNode Function(string name)
         {
             Ptg nameToken = null;
             if (!AbstractFunctionPtg.IsBuiltInFunctionName(name))
@@ -1235,7 +1235,7 @@ namespace Npoi.Core.SS.Formula
          * @return Ptg a null is returned if we're in an IF formula, it needs extreme manipulation and is handled in this Function
          */
 
-        private ParseNode GetFunction(String name, Ptg namePtg, ParseNode[] args)
+        private ParseNode GetFunction(string name, Ptg namePtg, ParseNode[] args)
         {
             FunctionMetadata fm = FunctionMetadataRegistry.GetFunctionByName(name.ToUpper());
             int numArgs = args.Length;
@@ -1726,7 +1726,7 @@ namespace Npoi.Core.SS.Formula
          * return Int or Number Ptg based on size of input
          */
 
-        private static Ptg GetNumberPtgFromString(String number1, String number2, String exponent)
+        private static Ptg GetNumberPtgFromString(string number1, String number2, String exponent)
         {
             StringBuilder number = new StringBuilder();
 
@@ -1778,7 +1778,7 @@ namespace Npoi.Core.SS.Formula
             return new NumberPtg(number.ToString());
         }
 
-        private String ParseStringLiteral()
+        private string ParseStringLiteral()
         {
             Match('"');
 

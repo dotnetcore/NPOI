@@ -40,7 +40,7 @@ namespace Npoi.Core.Util
     /// </summary>
     public class NullLogger : POILogger
     {
-        public override void Initialize(String cat)
+        public override void Initialize(string cat)
         {
             //do nothing
         }

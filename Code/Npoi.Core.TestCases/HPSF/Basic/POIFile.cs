@@ -33,7 +33,7 @@ namespace TestCases.HPSF.Basic
     public class POIFile
     {
 
-        private String name;
+        private string name;
         private POIFSDocumentPath path;
         private byte[] bytes;
 
@@ -43,7 +43,7 @@ namespace TestCases.HPSF.Basic
          *
          * @param name The POI file's name.
          */
-        public void SetName(String name)
+        public void SetName(string name)
         {
             this.name = name;
         }

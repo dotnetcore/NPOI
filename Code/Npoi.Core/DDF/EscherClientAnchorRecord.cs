@@ -187,7 +187,7 @@ namespace Npoi.Core.DDF
             }
         }
 
-        public override String ToXml(String tab) {
+        public override String ToXml(string tab) {
             String extraData;
             using (MemoryStream b = new MemoryStream()) {
                 try {

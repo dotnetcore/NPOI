@@ -119,7 +119,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-        private void ValidateName(String name)
+        private void ValidateName(string name)
         {
             if (name.Length == 0) throw new ArgumentException("Name cannot be blank");
 

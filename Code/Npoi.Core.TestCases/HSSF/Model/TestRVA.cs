@@ -159,7 +159,7 @@ namespace TestCases.HSSF.Model
             }
         }
 
-        private String GetShortClassName(Object o)
+        private string GetShortClassName(Object o)
         {
             String cn = o.GetType().Name;
             int pos = cn.LastIndexOf('.');

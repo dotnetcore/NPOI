@@ -247,7 +247,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *            The relationship ID to Remove.
          */
 
-        public void RemoveRelationship(String id)
+        public void RemoveRelationship(string id)
         {
             if (relationshipsByID != null && relationshipsByType != null)
             {
@@ -310,7 +310,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @return The package relationship identified by the specified id.
          */
 
-        public PackageRelationship GetRelationshipByID(String id)
+        public PackageRelationship GetRelationshipByID(string id)
         {
             if (!relationshipsByID.ContainsKey(id))
                 return null;
@@ -419,7 +419,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * @return All relationships of the type specified by the filter.
          */
 
-        public PackageRelationshipCollection GetRelationships(String typeFilter)
+        public PackageRelationshipCollection GetRelationships(string typeFilter)
         {
             PackageRelationshipCollection coll = new PackageRelationshipCollection(
                     this, typeFilter);
@@ -445,7 +445,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *         specified type contain in this collection.
          */
 
-        public IEnumerator<PackageRelationship> Iterator(String typeFilter)
+        public IEnumerator<PackageRelationship> Iterator(string typeFilter)
         {
             List<PackageRelationship> retArr = new List<PackageRelationship>();
             foreach (PackageRelationship rel in relationshipsByID.Values)

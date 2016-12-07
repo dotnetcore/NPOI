@@ -24,7 +24,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * Set the category of the content of this package.
          */
 
-        void SetCategoryProperty(String category);
+        void SetCategoryProperty(string category);
 
         /**
          * Set the status of the content.
@@ -36,7 +36,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * Get the status of the content.
          */
 
-        void SetContentStatusProperty(String contentStatus);
+        void SetContentStatusProperty(string contentStatus);
 
         /**
          * Get the type of content represented, generally defined by a specific use
@@ -50,7 +50,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * and intended audience.
          */
 
-        void SetContentTypeProperty(String contentType);
+        void SetContentTypeProperty(string contentType);
 
         /**
          * Get the date of creation of the resource.
@@ -62,7 +62,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * Set the date of creation of the resource.
          */
 
-        void SetCreatedProperty(String created);
+        void SetCreatedProperty(string created);
 
         /**
          * Set the date of creation of the resource.
@@ -82,7 +82,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * resource.
          */
 
-        void SetCreatorProperty(String creator);
+        void SetCreatorProperty(string creator);
 
         /**
          * Get the explanation of the content of the resource.
@@ -94,7 +94,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * Set the explanation of the content of the resource.
          */
 
-        void SetDescriptionProperty(String description);
+        void SetDescriptionProperty(string description);
 
         /**
          * Get an unambiguous reference to the resource within a given context.
@@ -106,7 +106,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * Set an unambiguous reference to the resource within a given context.
          */
 
-        void SetIdentifierProperty(String identifier);
+        void SetIdentifierProperty(string identifier);
 
         /**
          * Get a delimited Set of keywords to support searching and indexing. This
@@ -122,7 +122,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * properties
          */
 
-        void SetKeywordsProperty(String keywords);
+        void SetKeywordsProperty(string keywords);
 
         /**
          * Get the language of the intellectual content of the resource.
@@ -134,7 +134,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * Set the language of the intellectual content of the resource.
          */
 
-        void SetLanguageProperty(String language);
+        void SetLanguageProperty(string language);
 
         /**
          * Get the user who performed the last modification.
@@ -146,7 +146,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * Set the user who performed the last modification.
          */
 
-        void SetLastModifiedByProperty(String lastModifiedBy);
+        void SetLastModifiedByProperty(string lastModifiedBy);
 
         /**
          * Get the date and time of the last printing.
@@ -158,7 +158,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * Set the date and time of the last printing.
          */
 
-        void SetLastPrintedProperty(String lastPrinted);
+        void SetLastPrintedProperty(string lastPrinted);
 
         /**
          * Set the date and time of the last printing.
@@ -176,7 +176,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * Set the date on which the resource was changed.
          */
 
-        void SetModifiedProperty(String modified);
+        void SetModifiedProperty(string modified);
 
         /**
          * Set the date on which the resource was changed.
@@ -194,7 +194,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * Set the revision number.
          */
 
-        void SetRevisionProperty(String revision);
+        void SetRevisionProperty(string revision);
 
         /**
          * Get the topic of the content of the resource.
@@ -206,7 +206,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * Set the topic of the content of the resource.
          */
 
-        void SetSubjectProperty(String subject);
+        void SetSubjectProperty(string subject);
 
         /**
          * Get the name given to the resource.
@@ -218,7 +218,7 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * Set the name given to the resource.
          */
 
-        void SetTitleProperty(String title);
+        void SetTitleProperty(string title);
 
         /**
          * Get the version number.
@@ -230,6 +230,6 @@ namespace Npoi.Core.OpenXml4Net.OPC
          * Set the version number.
          */
 
-        void SetVersionProperty(String version);
+        void SetVersionProperty(string version);
     }
 }

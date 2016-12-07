@@ -44,7 +44,7 @@ namespace Npoi.Core.HPSF
          * @param s Describes the reason for the exception.
          */
 
-        public UnsupportedEncodingException(String s)
+        public UnsupportedEncodingException(string s)
             : base(s) {
         }
     }

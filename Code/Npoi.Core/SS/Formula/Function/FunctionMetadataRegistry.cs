@@ -85,7 +85,7 @@ namespace Npoi.Core.SS.Formula.Function
          * This typically occurs for external functions.
          */
 
-        public static short LookupIndexByName(String name)
+        public static short LookupIndexByName(string name)
         {
             FunctionMetadata fd = GetInstance().GetFunctionByNameInternal(name);
             if (fd == null)
@@ -95,12 +95,12 @@ namespace Npoi.Core.SS.Formula.Function
             return (short)fd.Index;
         }
 
-        private FunctionMetadata GetFunctionByNameInternal(String name)
+        private FunctionMetadata GetFunctionByNameInternal(string name)
         {
             return (FunctionMetadata)_functionDataByName[name];
         }
 
-        public static FunctionMetadata GetFunctionByName(String name)
+        public static FunctionMetadata GetFunctionByName(string name)
         {
             return GetInstance().GetFunctionByNameInternal(name);
         }

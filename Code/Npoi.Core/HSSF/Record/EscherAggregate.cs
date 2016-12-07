@@ -398,7 +398,7 @@ namespace Npoi.Core.HSSF.Record
          * @return xml representation of the all aggregated records
          */
 
-        public String ToXml(String tab)
+        public String ToXml(string tab)
         {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append("<").Append(RecordName).Append(">\n");

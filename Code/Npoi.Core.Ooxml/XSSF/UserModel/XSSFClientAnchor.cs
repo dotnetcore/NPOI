@@ -100,7 +100,7 @@ namespace Npoi.Core.XSSF.UserModel
             this.cell2 = cell2;
         }
 
-        public override bool Equals(Object o)
+        public override bool Equals(object o)
         {
             if (o == null || !(o is XSSFClientAnchor)) return false;
 
@@ -115,9 +115,14 @@ namespace Npoi.Core.XSSF.UserModel
                 Row2 == anchor.Row2;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             return "from : " + cell1.ToString() + "; to: " + cell2.ToString();
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
 
         /**

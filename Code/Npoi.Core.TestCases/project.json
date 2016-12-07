@@ -1,9 +1,12 @@
 ﻿{
   "version": "1.1.0-*",
-
+  "buildOptions": {
+    "nowarn": [ "CS0612", "CS0618" ],
+    "define": [ "HIDE_UNREACHABLE_CODE" ]
+  },
   "dependencies": {
-    "NETStandard.Library": "1.6.0",    
-    "Npoi.Core": "1.0.2",
+    "NETStandard.Library": "1.6.0",
+    "Npoi.Core": "1.1.0-*",
     "nunit": "3.2.1"
   },
 

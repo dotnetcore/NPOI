@@ -35,7 +35,7 @@ namespace TestCases.SS.UserModel
         protected IWorkbook wbH;
         protected IWorkbook wbU;
 
-        private String _file1, _file2;
+        private string _file1, _file2;
         public BaseTestSheetHiding()
             : this(TestCases.HSSF.HSSFITestDataProvider.Instance, "TwoSheetsOneHidden.xls", "TwoSheetsNoneHidden.xls")
         {

@@ -36,7 +36,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
         private CellType _cellType;
         private int _errorValue;
         private double _numberValue;
-        private String _stringValue;
+        private string _stringValue;
 
         public ForkedEvaluationCell(ForkedEvaluationSheet sheet, IEvaluationCell masterCell)
         {

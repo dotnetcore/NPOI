@@ -21,7 +21,7 @@ namespace Npoi.Core.OpenXml4Net.Exceptions
 {
     public class PartAlreadyExistsException : InvalidOperationException
     {
-        public PartAlreadyExistsException(String message)
+        public PartAlreadyExistsException(string message)
             : base(message)
         {
         }

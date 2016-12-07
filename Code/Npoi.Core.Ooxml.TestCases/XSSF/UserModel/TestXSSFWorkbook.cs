@@ -569,7 +569,7 @@ namespace Npoi.Core.XSSF.UserModel
                 Assert.IsNotNull(read);
                 assertSheetOrder(read, "Sheet1", "Sheet1 (2)");
             }
-            catch (Exception e)
+            catch (Exception )
             {
             }
         }

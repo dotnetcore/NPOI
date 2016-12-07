@@ -53,7 +53,7 @@ namespace Npoi.Core.HPSF
         /// Initializes a new instance of the <see cref="IllegalPropertySetDataException"/> class.
         /// </summary>
         /// <param name="msg">The exception's message string</param>
-        public IllegalPropertySetDataException(String msg)
+        public IllegalPropertySetDataException(string msg)
             : base(msg) {
         }
 
@@ -70,7 +70,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="msg"> The exception's message string</param>
         /// <param name="reason">This exception's underlying reason</param>
-        public IllegalPropertySetDataException(String msg,
+        public IllegalPropertySetDataException(string msg,
                                                Exception reason)
             : base(msg, reason) {
         }

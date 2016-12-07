@@ -147,7 +147,7 @@ namespace TestCases.POIFS.Storage
                     }
 
                     Assert.AreEqual(
-                            (String)logger.logged[0],
+                            (string)logger.logged[0],
                             "7 - Unable to read entire block; " + bts + " read before EOF; expected 512 bytes. Your document was either written by software that ignores the spec, or has been truncated!"
                     );
                 }

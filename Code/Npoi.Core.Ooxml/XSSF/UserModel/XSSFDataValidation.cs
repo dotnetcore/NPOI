@@ -98,7 +98,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @see Npoi.Core.ss.usermodel.DataValidation#CreateErrorBox(java.lang.String, java.lang.String)
          */
 
-        public void CreateErrorBox(String title, String text)
+        public void CreateErrorBox(string title, String text)
         {
             ctDdataValidation.errorTitle = (title);
             ctDdataValidation.error = (text);
@@ -108,7 +108,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @see Npoi.Core.ss.usermodel.DataValidation#CreatePromptBox(java.lang.String, java.lang.String)
          */
 
-        public void CreatePromptBox(String title, String text)
+        public void CreatePromptBox(string title, String text)
         {
             ctDdataValidation.promptTitle = (title);
             ctDdataValidation.prompt = (text);

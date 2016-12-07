@@ -124,7 +124,7 @@ namespace TestCases.SS.Util
             row.CreateCell(8).CellFormula = (frm.Replace("#", rowNum.ToString()).Replace('\'', '"'));
         }
 
-        private static String FormatDoubleAsHex(double d)
+        private static string FormatDoubleAsHex(double d)
         {
             long l = BitConverter.DoubleToInt64Bits(d);
             StringBuilder sb = new StringBuilder(20);
@@ -132,7 +132,7 @@ namespace TestCases.SS.Util
             return sb.ToString();
         }
 
-        public static void Main(String[] args)
+        public static void Main(string[] args)
         {
 
             IWorkbook wb = new HSSFWorkbook();

@@ -47,7 +47,7 @@ namespace Npoi.Core.XSSF.UserModel
         private List<XSSFXmlColumnPr> xmlColumnPr;
         private CellReference startCellReference;
         private CellReference endCellReference;
-        private String commonXPath;
+        private string commonXPath;
 
         public XSSFTable()
             : base()

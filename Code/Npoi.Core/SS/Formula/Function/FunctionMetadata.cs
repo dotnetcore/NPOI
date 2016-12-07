@@ -29,7 +29,7 @@ namespace Npoi.Core.SS.Formula.Function
     public class FunctionMetadata
     {
         private int _index;
-        private String _name;
+        private string _name;
         private int _minParams;
         private int _maxParams;
         private byte _returnClassCode;

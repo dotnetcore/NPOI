@@ -30,7 +30,7 @@ namespace Npoi.Core.XSSF.Extractor
     [TestFixture]
     public class TestXSSFExcelExtractor
     {
-        protected XSSFExcelExtractor GetExtractor(String sampleName)
+        protected XSSFExcelExtractor GetExtractor(string sampleName)
         {
             return new XSSFExcelExtractor(XSSFTestDataSamples.OpenSampleWorkbook(sampleName));
         }
@@ -158,7 +158,7 @@ namespace Npoi.Core.XSSF.Extractor
         "45540_classic_Header.xlsx", "45540_form_Header.xlsx",
         "45540_classic_Footer.xlsx", "45540_form_Footer.xlsx",
         };
-            foreach (String sampleName in files)
+            foreach (string sampleName in files)
             {
                 XSSFExcelExtractor extractor = GetExtractor(sampleName);
                 String text = extractor.Text;

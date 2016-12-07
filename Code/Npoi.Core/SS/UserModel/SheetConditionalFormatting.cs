@@ -121,7 +121,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <param name="formula">the formula to Evaluate. MUST be a Boolean function.</param>
         /// <returns>conditional formatting rule</returns>
-        IConditionalFormattingRule CreateConditionalFormattingRule(String formula);
+        IConditionalFormattingRule CreateConditionalFormattingRule(string formula);
 
         /// <summary>
         /// Gets Conditional Formatting object at a particular index

@@ -182,7 +182,7 @@ namespace Npoi.Core.DDF
                     "" + field_5_string.ToString();
         }
 
-        public override String ToXml(String tab) {
+        public override String ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
                     .Append(tab).Append("\t").Append("<ShapeIdMax>").Append(field_1_shapeIdMax).Append("</ShapeIdMax>\n")

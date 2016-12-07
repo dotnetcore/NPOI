@@ -33,7 +33,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Creates a new XSSFRichTextString for you.
          */
 
-        public IRichTextString CreateRichTextString(String text)
+        public IRichTextString CreateRichTextString(string text)
         {
             XSSFRichTextString rt = new XSSFRichTextString(text);
             rt.SetStylesTableReference(workbook.GetStylesSource());

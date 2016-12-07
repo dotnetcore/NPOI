@@ -146,7 +146,7 @@ namespace Npoi.Core.DDF
                     + ", data: " + Environment.NewLine + dataStr;
         }
 
-        public override String ToXml(String tab) {
+        public override String ToXml(string tab) {
             String dataStr = HexDump.ToHex(_complexData, 32);
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append("<").Append(GetType().Name).Append(" id=\"0x").Append(HexDump.ToHex(Id))

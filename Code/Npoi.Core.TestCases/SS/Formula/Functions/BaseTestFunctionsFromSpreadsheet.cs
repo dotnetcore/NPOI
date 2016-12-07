@@ -74,7 +74,7 @@ namespace TestCases.SS.Formula.Functions
 
 
 
-        private static void ConfirmExpectedResult(String msg, ICell expected, CellValue actual)
+        private static void ConfirmExpectedResult(string msg, ICell expected, CellValue actual)
         {
             if (expected == null)
             {
@@ -116,7 +116,7 @@ namespace TestCases.SS.Formula.Functions
         }
 
 
-        private static AssertionException wrongTypeError(String msgPrefix, ICell expectedCell, CellValue actualValue)
+        private static AssertionException wrongTypeError(string msgPrefix, ICell expectedCell, CellValue actualValue)
         {
             return new AssertionException(msgPrefix + " Result type mismatch. Evaluated result was "
                     + actualValue.FormatAsString()
@@ -124,7 +124,7 @@ namespace TestCases.SS.Formula.Functions
                     + formatValue(expectedCell)
                     );
         }
-        private static AssertionException unexpectedError(String msgPrefix, ICell expected, int actualErrorCode)
+        private static AssertionException unexpectedError(string msgPrefix, ICell expected, int actualErrorCode)
         {
             return new AssertionException(msgPrefix + " Error code ("
                     + ErrorEval.GetText(actualErrorCode)
@@ -134,7 +134,7 @@ namespace TestCases.SS.Formula.Functions
         }
 
 
-        private static void ConfirmErrorResult(String msgPrefix, int expectedErrorCode, CellValue actual)
+        private static void ConfirmErrorResult(string msgPrefix, int expectedErrorCode, CellValue actual)
         {
             if (actual.CellType != CellType.Error)
             {
@@ -153,7 +153,7 @@ namespace TestCases.SS.Formula.Functions
         }
 
 
-        private static String formatValue(ICell expecedCell)
+        private static string formatValue(ICell expecedCell)
         {
             switch (expecedCell.CellType)
             {
@@ -277,7 +277,7 @@ namespace TestCases.SS.Formula.Functions
         {
             get;
         }
-        private static String formatTestCaseDetails(String filename, String sheetName, int rowIndex, ICell c, String currentGroupComment,
+        private static string formatTestCaseDetails(string filename, String sheetName, int rowIndex, ICell c, String currentGroupComment,
                                                 String rowComment)
         {
 
@@ -365,12 +365,12 @@ namespace TestCases.SS.Formula.Functions
         }
 
 
-        private static String GetRowCommentColumnValue(IRow r)
+        private static string GetRowCommentColumnValue(IRow r)
         {
             return GetCellTextValue(r, SS.COLUMN_ROW_COMMENT, "row comment");
         }
 
-        private static String GetMarkerColumnValue(IRow r)
+        private static string GetMarkerColumnValue(IRow r)
         {
             return GetCellTextValue(r, SS.COLUMN_INDEX_MARKER, "marker");
         }
@@ -378,7 +378,7 @@ namespace TestCases.SS.Formula.Functions
         /**
          * @return <code>null</code> if cell is missing, empty or blank
          */
-        private static String GetCellTextValue(IRow r, int colIndex, String columnName)
+        private static string GetCellTextValue(IRow r, int colIndex, String columnName)
         {
             if (r == null)
             {

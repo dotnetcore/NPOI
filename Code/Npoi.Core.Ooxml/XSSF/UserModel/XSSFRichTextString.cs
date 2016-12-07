@@ -77,7 +77,7 @@ namespace Npoi.Core.XSSF.UserModel
          * Create a rich text string
          */
 
-        public XSSFRichTextString(String str)
+        public XSSFRichTextString(string str)
         {
             st = new CT_Rst();
             st.t = str;
@@ -280,7 +280,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param font  the font to apply to the Appended text or <code>null</code> if no formatting is required
          */
 
-        public void Append(String text, XSSFFont font)
+        public void Append(string text, XSSFFont font)
         {
             if (st.sizeOfRArray() == 0 && st.IsSetT())
             {
@@ -303,7 +303,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param text  the text to append
          */
 
-        public void Append(String text)
+        public void Append(string text)
         {
             Append(text, null);
         }
@@ -622,7 +622,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return  the decoded string
          */
 
-        private static String UtfDecode(String value)
+        private static string UtfDecode(string value)
         {
             if (value == null) return null;
 
@@ -659,7 +659,7 @@ namespace Npoi.Core.XSSF.UserModel
             throw new ArgumentOutOfRangeException("GetLastKey failed");
         }
 
-        private CT_Rst buildCTRst(String text, SortedDictionary<int, CT_RPrElt> formats)
+        private CT_Rst buildCTRst(string text, SortedDictionary<int, CT_RPrElt> formats)
         {
             if (text.Length != GetLastKey(formats.Keys))
             {

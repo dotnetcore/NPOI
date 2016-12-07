@@ -44,7 +44,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @return index of format.
          */
 
-        public short GetFormat(String format)
+        public short GetFormat(string format)
         {
             int idx = BuiltinFormats.GetBuiltinFormat(format);
             if (idx == -1) idx = stylesSource.PutNumberFormat(format);

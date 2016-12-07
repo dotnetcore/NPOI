@@ -37,7 +37,7 @@ namespace TestCases.HSSF.Record
         /**
          * hex dump from ISBN_UPD_PL_20100104_1525.xls atatched to Bugzilla 50867
          */
-        private static String data_50967 =
+        private static string data_50967 =
             // "Offset=0x0008BB19(572185) recno=159 sid=0x00FF size=0x201A(8218)\n" +
                         "                           FF 00 1A 20 08 00 1A" +
                         "09 00 00 0C 00 00 00 6D 09 00 00 5F 00 00 00 B8" +

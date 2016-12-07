@@ -81,7 +81,7 @@ namespace Npoi.Core.SS.Format
                 return cell.NumericCellValue;
             }
 
-            public override void Equivalent(String expected, String actual,
+            public override void Equivalent(string expected, String actual,
                    CellFormatPart format)
             {
                 double expectedVal = ExtractNumber(expected);
@@ -142,7 +142,7 @@ namespace Npoi.Core.SS.Format
             RunFormatTests("FormatConditionTests.xlsx", new CellValue2());
         }
 
-        private static double ExtractNumber(String str)
+        private static double ExtractNumber(string str)
         {
             Match m = NUMBER_EXTRACT_FMT.Match(str);
             if (!m.Success)

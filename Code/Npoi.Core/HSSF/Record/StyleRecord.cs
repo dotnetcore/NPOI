@@ -49,7 +49,7 @@ namespace Npoi.Core.HSSF.Record
         // only for user defined styles
         private bool field_3_stringHasMultibyte;
 
-        private String field_4_name;
+        private string field_4_name;
 
         public StyleRecord()
         {

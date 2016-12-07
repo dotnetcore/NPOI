@@ -43,7 +43,7 @@ namespace TestCases.HSSF.UserModel
     public class TestCellStyle
     {
 
-        private static HSSFWorkbook OpenSample(String sampleFileName)
+        private static HSSFWorkbook OpenSample(string sampleFileName)
         {
             return HSSFTestDataSamples.OpenSampleWorkbook(sampleFileName);
         }

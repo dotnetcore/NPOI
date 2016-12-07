@@ -59,7 +59,7 @@ namespace TestCases.HSSF.Record.Pivot
             ConfirmSerialize("01 00 01 00 01 00 04 00 0A 00 01 48 00 69 00 73 00 74 00 6F 00 72 00 79 00 2D 00 82 69 81 89");
         }
 
-        private static ViewFieldsRecord ConfirmSerialize(String hexDump)
+        private static ViewFieldsRecord ConfirmSerialize(string hexDump)
         {
             byte[] data = HexRead.ReadFromString(hexDump);
             RecordInputStream in1 = TestcaseRecordInputStream.Create(ViewFieldsRecord.sid, data);

@@ -29,9 +29,9 @@ namespace Npoi.Core.SS.Formula.Atp
 
     public class NotImplemented : FreeRefFunction
     {
-        private String _functionName;
+        private string _functionName;
 
-        public NotImplemented(String functionName)
+        public NotImplemented(string functionName)
         {
             _functionName = functionName;
         }
@@ -53,7 +53,7 @@ namespace Npoi.Core.SS.Formula.Atp
             // no instances of this class
         }
 
-        public override FreeRefFunction FindFunction(String name)
+        public override FreeRefFunction FindFunction(string name)
         {
             // functions that are available in Excel 2007+ have a prefix _xlfn.
             // if you save such a .xlsx workbook as .xls
@@ -184,7 +184,7 @@ namespace Npoi.Core.SS.Formula.Atp
             m[functionName] = func;
         }
 
-        public static bool IsATPFunction(String name)
+        public static bool IsATPFunction(string name)
         {
             //AnalysisToolPak inst = (AnalysisToolPak)instance;
             return AnalysisToolPak._functionsByName.ContainsKey(name);
@@ -201,7 +201,7 @@ namespace Npoi.Core.SS.Formula.Atp
         {
             AnalysisToolPak inst = (AnalysisToolPak)instance;
             List<String> lst = new List<String>();
-            foreach (String name in AnalysisToolPak._functionsByName.Keys)
+            foreach (string name in AnalysisToolPak._functionsByName.Keys)
             {
                 FreeRefFunction func = (FreeRefFunction)AnalysisToolPak._functionsByName[(name)];
                 if (func != null && !(func is NotImplemented))
@@ -223,7 +223,7 @@ namespace Npoi.Core.SS.Formula.Atp
         {
             AnalysisToolPak inst = (AnalysisToolPak)instance;
             List<String> lst = new List<String>();
-            foreach (String name in AnalysisToolPak._functionsByName.Keys)
+            foreach (string name in AnalysisToolPak._functionsByName.Keys)
             {
                 FreeRefFunction func = (FreeRefFunction)AnalysisToolPak._functionsByName[(name)];
                 if (func != null && (func is NotImplemented))
@@ -243,7 +243,7 @@ namespace Npoi.Core.SS.Formula.Atp
          * @since 3.8 beta6
          */
 
-        public static void RegisterFunction(String name, FreeRefFunction func)
+        public static void RegisterFunction(string name, FreeRefFunction func)
         {
             AnalysisToolPak inst = (AnalysisToolPak)instance;
             if (!IsATPFunction(name))
@@ -252,7 +252,7 @@ namespace Npoi.Core.SS.Formula.Atp
                 if (metaData != null)
                 {
                     throw new ArgumentException(name + " is a built-in Excel function. " +
-                            "Use FunctoinEval.RegisterFunction(String name, Function func) instead.");
+                            "Use FunctoinEval.RegisterFunction(string name, Function func) instead.");
                 }
                 else
                 {

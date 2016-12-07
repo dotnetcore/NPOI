@@ -36,14 +36,14 @@ namespace Npoi.Core.SS.Formula.Functions
 
     public class NotImplementedFunction : Function
     {
-        private String _functionName;
+        private string _functionName;
 
         internal NotImplementedFunction()
         {
             _functionName = GetType().Name;
         }
 
-        public NotImplementedFunction(String name)
+        public NotImplementedFunction(string name)
         {
             _functionName = name;
         }

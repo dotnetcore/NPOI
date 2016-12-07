@@ -32,7 +32,7 @@ namespace Npoi.Core.SS.Format
     {
         private List<TimeSpec> specs;
         private TimeSpec topmost;
-        private String printfFmt;
+        private string printfFmt;
 
         private static readonly Regex PERCENTS = new Regex("%");
 
@@ -143,7 +143,7 @@ namespace Npoi.Core.SS.Format
          * @param pattern The pattern to Parse.
          */
 
-        public CellElapsedFormatter(String pattern)
+        public CellElapsedFormatter(string pattern)
             : base(pattern)
         {
             specs = new List<TimeSpec>();

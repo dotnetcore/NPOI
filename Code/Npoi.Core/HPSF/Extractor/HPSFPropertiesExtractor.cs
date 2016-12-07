@@ -102,7 +102,7 @@ namespace Npoi.Core.HPSF.Extractor
         /// </summary>
         /// <param name="ps">The ps.</param>
         /// <returns></returns>
-        private static String GetPropertiesText(SpecialPropertySet ps) {
+        private static string GetPropertiesText(SpecialPropertySet ps) {
             if (ps == null) {
                 // Not defined, oh well
                 return "";

@@ -111,7 +111,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        private String FormatValue
+        private string FormatValue
         {
             get
             {

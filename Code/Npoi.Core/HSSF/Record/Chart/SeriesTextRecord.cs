@@ -39,7 +39,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         private short field_1_id;
 
         private bool is16bit;
-        private String field_4_text;
+        private string field_4_text;
 
         public SeriesTextRecord()
         {

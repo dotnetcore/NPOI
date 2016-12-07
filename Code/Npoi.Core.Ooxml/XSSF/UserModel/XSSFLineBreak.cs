@@ -32,16 +32,11 @@ namespace Npoi.Core.XSSF.UserModel
             _brProps = brProps;
         }
 
-        protected CT_TextCharacterProperties GetRPr()
-        {
-            return _brProps;
-        }
-
         /**
          * Always . You cannot change text of a line break.
          */
 
-        public void SetText(String text)
+        public void SetText(string text)
         {
             throw new InvalidOperationException("You cannot change text of a line break, it is always '\\n'");
         }

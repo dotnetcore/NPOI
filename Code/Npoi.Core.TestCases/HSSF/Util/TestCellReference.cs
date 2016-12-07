@@ -165,7 +165,7 @@ namespace TestCases.HSSF.Util
             ConfirmNameType("$1$1", NameType.BadCellOrNamedRange);
         }
 
-        private void ConfirmNameType(String ref1, NameType expectedResult)
+        private void ConfirmNameType(string ref1, NameType expectedResult)
         {
             NameType actualResult = CellReference.ClassifyCellReference(ref1, SpreadsheetVersion.EXCEL97);
             Assert.AreEqual(expectedResult, actualResult);

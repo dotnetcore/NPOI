@@ -70,7 +70,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <param name="sheetname">the name of the sheet to reorder</param>
         /// <param name="pos">the position that we want to insert the sheet into (0 based)</param>
-        void SetSheetOrder(String sheetname, int pos);
+        void SetSheetOrder(string sheetname, int pos);
 
         /// <summary>
         /// Sets the tab whose data is actually seen when the sheet is opened.
@@ -107,7 +107,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <param name="name">the sheet name</param>
         /// <returns>index of the sheet (0 based)</returns>
-        int GetSheetIndex(String name);
+        int GetSheetIndex(string name);
 
         /// <summary>
         /// Returns the index of the given sheet
@@ -129,7 +129,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <param name="sheetname">sheetname to set for the sheet.</param>
         /// <returns>Sheet representing the new sheet.</returns>
-        ISheet CreateSheet(String sheetname);
+        ISheet CreateSheet(string sheetname);
 
         /// <summary>
         /// Create an Sheet from an existing sheet in the Workbook.
@@ -155,7 +155,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <param name="name">name of the sheet</param>
         /// <returns>Sheet with the name provided or null if it does not exist</returns>
-        ISheet GetSheet(String name);
+        ISheet GetSheet(string name);
 
         /// <summary>
         /// Removes sheet at the given index
@@ -258,7 +258,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <param name="name">the name of the defined name</param>
         /// <returns>the defined name with the specified name. null if not found</returns>
-        IName GetName(String name);
+        IName GetName(string name);
 
         /// <summary>
         /// the defined name at the specified index
@@ -278,7 +278,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <param name="name">the name of the defined name</param>
         /// <returns>zero based index of the defined name.</returns>
-        int GetNameIndex(String name);
+        int GetNameIndex(string name);
 
         /// <summary>
         /// Remove the defined name at the specified index
@@ -290,7 +290,7 @@ namespace Npoi.Core.SS.UserModel
         /// Remove a defined name by name
         /// </summary>
         /// <param name="name">the name of the defined name</param>
-        void RemoveName(String name);
+        void RemoveName(string name);
 
         /// <summary>
         /// Adds the linking required to allow formulas referencing the specified
@@ -305,7 +305,7 @@ namespace Npoi.Core.SS.UserModel
         /// <param name="name">The name the workbook will be referenced as in formulas</param>
         /// <param name="workbook">The open workbook to fetch the link required information from</param>
         /// <returns></returns>
-        int LinkExternalWorkbook(String name, IWorkbook workbook);
+        int LinkExternalWorkbook(string name, IWorkbook workbook);
 
         /// <summary>
         /// Sets the printarea for the sheet provided

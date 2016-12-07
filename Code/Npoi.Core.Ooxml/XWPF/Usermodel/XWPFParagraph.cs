@@ -1287,7 +1287,7 @@ namespace Npoi.Core.XWPF.UserModel
         /// <param name="searched"></param>
         /// <param name="startPos"></param>
         /// <returns></returns>
-        public TextSegment SearchText(String searched, PositionInParagraph startPos)
+        public TextSegment SearchText(string searched, PositionInParagraph startPos)
         {
             int startRun = startPos.Run,
                 startText = startPos.Text,
