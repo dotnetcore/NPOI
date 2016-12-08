@@ -65,6 +65,7 @@ namespace Npoi.Core.DDF
         /// <value>The blue.</value>
         public byte Blue {
             get { return (byte)((propertyValue >> 16) & 0xFF); }
+
         }
 
         public override String ToXml(string tab) {

@@ -27,6 +27,7 @@ namespace TestCases.DDF
     using NUnit.Framework;
     using Npoi.Core.DDF;
     using Npoi.Core.Util;
+
     [TestFixture]
     public class TestEscherBlipWMFRecord
     {

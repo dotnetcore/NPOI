@@ -5,14 +5,23 @@
     "define": [ "HIDE_UNREACHABLE_CODE" ]
   },
   "dependencies": {
-    "NETStandard.Library": "1.6.0",
-    "Npoi.Core": "1.1.0-*",
-    "nunit": "3.2.1"
+    "NUnit": "3.5.0",
+    "dotnet-test-nunit": "3.4.0-beta-3",
+    // "NETStandard.Library": "1.6.0",
+    "Npoi.Core": "1.1.0-*"
+    //"nunit": "3.2.1"
   },
 
   "frameworks": {
-    "netstandard1.6": {
-      "imports": "dnxcore50"
+    "netcoreapp1.0": {
+      "imports": "portable-net45+win8",
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0-*",
+          "type": "platform"
+        }
+      }
     }
-  }
+  },
+  "testRunner": "nunit"
 }
