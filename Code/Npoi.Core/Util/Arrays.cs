@@ -26,6 +26,7 @@
  * ==============================================================*/
 
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Npoi.Core.Util
@@ -1020,12 +1021,12 @@ namespace Npoi.Core.Util
             if (a.Length != 0 && bufLen <= 0)
                 bufLen = Int32.MaxValue;
             StringBuilder buf = new StringBuilder(bufLen);
-            DeepToString(a, buf, new Npoi.Core.Util.Collections.HashSet<Object[]>());
+            DeepToString(a, buf, new HashSet<Object[]>());
             return buf.ToString();
         }
 
         private static void DeepToString(Object[] a, StringBuilder buf,
-                                         Npoi.Core.Util.Collections.HashSet<Object[]> dejaVu)
+                                         HashSet<Object[]> dejaVu)
         {
             if (a == null)
             {

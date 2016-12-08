@@ -273,7 +273,7 @@ namespace Npoi.Core.XSSF.UserModel.Helpers
                 if (col.Equals(overrideColumn)) haveOverrideColumn = overrideColumn;
                 while (currentIndex <= nextIndex && !(currentElements.Count == 0))
                 {
-                    Npoi.Core.Util.Collections.HashSet<CT_Col> currentIndexElements = new Npoi.Core.Util.Collections.HashSet<CT_Col>();
+                    HashSet<CT_Col> currentIndexElements = new HashSet<CT_Col>();
                     long currentElemIndex;
 
                     {

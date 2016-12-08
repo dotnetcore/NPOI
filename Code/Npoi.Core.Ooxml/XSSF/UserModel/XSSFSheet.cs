@@ -1878,7 +1878,7 @@ namespace Npoi.Core.XSSF.UserModel
          * @param indices A Set of the regions to unmerge
          */
 
-        public void RemoveMergedRegions(Npoi.Core.Util.Collections.HashSet<int> indices)
+        public void RemoveMergedRegions(HashSet<int> indices)
         {
             CT_MergeCells ctMergeCells = worksheet.mergeCells;
 
