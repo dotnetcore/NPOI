@@ -52,7 +52,7 @@ using (var fs = new FileStream(newFile, FileMode.Create, FileAccess.Write)) {
     workbook.Write(fs);
 }
 
-```csharp
+```
 
 #### Export Word
 
