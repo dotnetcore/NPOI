@@ -89,7 +89,7 @@ namespace Npoi.Core.HPSF
                 isPure = false;
                 return null;
             }
-            if (!(name is String))
+            if (!(name is string))
                 throw new ArgumentException("The name of a custom property must " +
                         "be a String, but it is a " +
                         name.GetType().Name);
@@ -154,7 +154,7 @@ namespace Npoi.Core.HPSF
         /// <param name="customProperty">The custom property.</param>
         /// <returns>If the was alReady a property with the same name, the</returns>
         private object Put(CustomProperty customProperty) {
-            String name = customProperty.Name;
+            string name = customProperty.Name;
 
             /* Check whether a property with this name is in the map alReady. */
             object oldId = dictionaryNameToID[(name)];
@@ -199,7 +199,7 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public object Put(string name, String value) {
+        public object Put(string name, string value) {
             MutableProperty p = new MutableProperty();
             p.ID = -1;
             p.Type = Variant.VT_LPWSTR;

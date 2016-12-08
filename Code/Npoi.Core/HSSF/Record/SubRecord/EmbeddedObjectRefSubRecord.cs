@@ -361,7 +361,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public String OLEClassName
+        public string OLEClassName
         {
             get
             {
@@ -382,7 +382,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[ftPictFmla]\n");

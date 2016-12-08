@@ -130,14 +130,14 @@ namespace Npoi.Core.SS.Util
          * those results.
          */
 
-        public static String ToText(double value)
+        public static string ToText(double value)
         {
             return RawDoubleBitsToText(BitConverter.DoubleToInt64Bits(value));
         }
 
         /* namespace */
 
-        public static String RawDoubleBitsToText(long pRawBits)
+        public static string RawDoubleBitsToText(long pRawBits)
         {
             long rawBits = pRawBits;
             bool isNegative = rawBits < 0; // sign bit is in the same place for long and double
@@ -184,7 +184,7 @@ namespace Npoi.Core.SS.Util
         {
             NormalisedDecimal rnd = pnd.RoundUnits();
             int decExponent = rnd.GetDecimalExponent();
-            String decimalDigits;
+            string decimalDigits;
             if (Math.Abs(decExponent) > 98)
             {
                 decimalDigits = rnd.GetSignificantDecimalDigitsLastDigitRounded();
@@ -209,7 +209,7 @@ namespace Npoi.Core.SS.Util
             }
         }
 
-        private static void FormatLessThanOne(StringBuilder sb, String decimalDigits, int decExponent,
+        private static void FormatLessThanOne(StringBuilder sb, string decimalDigits, int decExponent,
                 int countSigDigits)
         {
             int nLeadingZeros = -decExponent - 1;
@@ -235,7 +235,7 @@ namespace Npoi.Core.SS.Util
             sb.Append(decimalDigits.Substring(0, countSigDigits));
         }
 
-        private static void FormatGreaterThanOne(StringBuilder sb, String decimalDigits, int decExponent, int countSigDigits)
+        private static void FormatGreaterThanOne(StringBuilder sb, string decimalDigits, int decExponent, int countSigDigits)
         {
             if (decExponent > 19)
             {

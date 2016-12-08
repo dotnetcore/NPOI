@@ -155,16 +155,16 @@ namespace Npoi.Core.HSSF.Record
             return _breaks.GetEnumerator();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder retval = new StringBuilder();
 
             //if (Sid != HORIZONTAL_SID && Sid != VERTICAL_SID)
             //    return "[INVALIDPAGEBREAK]\n     .Sid =" + Sid + "[INVALIDPAGEBREAK]";
 
-            String label;
-            String mainLabel;
-            String subLabel;
+            string label;
+            string mainLabel;
+            string subLabel;
 
             if (Sid == HorizontalPageBreakRecord.sid)
             {

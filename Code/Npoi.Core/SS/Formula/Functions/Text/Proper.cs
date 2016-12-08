@@ -33,8 +33,8 @@ namespace Npoi.Core.SS.Formula.Functions
         {
             StringBuilder sb = new StringBuilder();
             bool shouldMakeUppercase = true;
-            String lowercaseText = text.ToLower();
-            String uppercaseText = text.ToUpper();
+            string lowercaseText = text.ToLower();
+            string uppercaseText = text.ToUpper();
 
             bool prevCharIsLetter = char.IsLetter(text[0]);
             sb.Append(uppercaseText[0]);

@@ -22,7 +22,7 @@ namespace Npoi.Core.SS.Formula
             }
 
             ValueEval nameArg = args[0];
-            String functionName = string.Empty;
+            string functionName = string.Empty;
             if (nameArg is FunctionNameEval)
             {
                 functionName = ((FunctionNameEval)nameArg).FunctionName;

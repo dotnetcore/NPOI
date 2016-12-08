@@ -90,7 +90,7 @@ namespace Npoi.Core.Util
         public ClassID(string externalForm)
         {
             bytes = new byte[LENGTH];
-            String clsStr = Regex.Replace(externalForm, "[{}-]", "");
+            string clsStr = Regex.Replace(externalForm, "[{}-]", "");
             for (int i = 0; i < clsStr.Length; i += 2)
             {
                 bytes[i / 2] = (byte)Convert.ToInt64(clsStr.Substring(i, 2), 16);
@@ -224,7 +224,7 @@ namespace Npoi.Core.Util
         /// <returns>
         /// A String representation of the Class ID represented by this object..
         /// </returns>
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sbClassId = new StringBuilder(38);
             sbClassId.Append('{');

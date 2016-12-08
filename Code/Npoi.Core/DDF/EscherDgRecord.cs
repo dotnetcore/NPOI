@@ -29,7 +29,7 @@ namespace Npoi.Core.DDF
     public class EscherDgRecord : EscherRecord
     {
         public const short RECORD_ID = unchecked((short)0xF008);
-        public const String RECORD_DESCRIPTION = "MsofbtDg";
+        public const string RECORD_DESCRIPTION = "MsofbtDg";
 
         private int field_1_numShapes;
         private int field_2_lastMSOSPID;
@@ -95,7 +95,7 @@ namespace Npoi.Core.DDF
         ///  The short name for this record
         /// </summary>
         /// <value></value>
-        public override String RecordName {
+        public override string RecordName {
             get { return "Dg"; }
         }
 
@@ -105,8 +105,8 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString() {
-            String nl = Environment.NewLine;
+        public override string ToString() {
+            string nl = Environment.NewLine;
 
             //        String extraData;
             //        MemoryStream b = new MemoryStream();
@@ -127,7 +127,7 @@ namespace Npoi.Core.DDF
                     "  LastMSOSPID: " + field_2_lastMSOSPID + nl;
         }
 
-        public override String ToXml(string tab) {
+        public override string ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
                     .Append(tab).Append("\t").Append("<NumShapes>").Append(field_1_numShapes).Append("</NumShapes>\n")

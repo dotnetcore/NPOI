@@ -52,7 +52,7 @@ namespace Npoi.Core.HSSF.Record
             field_4_sst_index = in1.ReadInt();
         }
 
-        protected override String RecordName
+        protected override string RecordName
         {
             get
             {

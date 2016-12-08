@@ -110,7 +110,7 @@ namespace Npoi.Core.HSSF.Record
             set { field_4_col_level_max = value; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

@@ -101,7 +101,7 @@ namespace Npoi.Core.POIFS.FileSystem
 
         [Obsolete]
         public static void CopyNodes(DirectoryEntry sourceRoot,
-                DirectoryEntry targetRoot, List<String> excepts)
+                DirectoryEntry targetRoot, List<string> excepts)
         {
             IEnumerator entries = sourceRoot.Entries;
             while (entries.MoveNext())
@@ -141,7 +141,7 @@ namespace Npoi.Core.POIFS.FileSystem
          */
 
         public static void CopyNodes(POIFSFileSystem source,
-                POIFSFileSystem target, List<String> excepts)
+                POIFSFileSystem target, List<string> excepts)
         {
             CopyNodes(
                   new FilteringDirectoryNode(source.Root, excepts),
@@ -173,11 +173,11 @@ namespace Npoi.Core.POIFS.FileSystem
             }
 
             // Next, check entries and their types/sizes
-            Dictionary<String, int> aSizes = new Dictionary<String, int>();
+            Dictionary<string, int> aSizes = new Dictionary<string, int>();
             int isDirectory = -12345;
             foreach (Entry a in dirA)
             {
-                String aName = a.Name;
+                string aName = a.Name;
                 if (a.IsDirectoryEntry)
                 {
                     aSizes.Add(aName, isDirectory);
@@ -189,7 +189,7 @@ namespace Npoi.Core.POIFS.FileSystem
             }
             foreach (Entry b in dirB)
             {
-                String bName = b.Name;
+                string bName = b.Name;
                 if (!aSizes.ContainsKey(bName))
                 {
                     // In B but not A

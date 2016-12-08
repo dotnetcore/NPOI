@@ -126,7 +126,7 @@ namespace Npoi.Core.HSSF.Record
             // This array MUST exist if and only if the fValidPlex flag (0x2) is set
             if ((_flags & 0x2) != 0)
             {
-                _rgLines = new String[_cLines];
+                _rgLines = new string[_cLines];
                 for (int i = 0; i < _cLines; i++)
                 {
                     _rgLines[i] = StringUtil.ReadUnicodeString(in1);
@@ -295,7 +295,7 @@ namespace Npoi.Core.HSSF.Record
             return this;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(256);
 
@@ -416,7 +416,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[LbsDropData]\n");

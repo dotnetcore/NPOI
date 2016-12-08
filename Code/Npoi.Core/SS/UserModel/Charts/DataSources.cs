@@ -65,7 +65,7 @@ namespace Npoi.Core.SS.UserModel.Charts
             }
         }
 
-        public static IChartDataSource<String> FromStringCellRange(ISheet sheet, CellRangeAddress cellRangeAddress)
+        public static IChartDataSource<string> FromStringCellRange(ISheet sheet, CellRangeAddress cellRangeAddress)
         {
             return new StringCellRangeDataSource(sheet, cellRangeAddress);
         }
@@ -136,7 +136,7 @@ namespace Npoi.Core.SS.UserModel.Charts
                 }
             }
 
-            public String FormulaString
+            public string FormulaString
             {
                 get { throw new InvalidOperationException("Literal data source can not be expressed by reference."); }
             }
@@ -172,7 +172,7 @@ namespace Npoi.Core.SS.UserModel.Charts
 
             public abstract bool IsNumeric { get; }
 
-            public String FormulaString
+            public string FormulaString
             {
                 get { return cellRangeAddress.FormatAsString(sheet.SheetName, true); }
             }

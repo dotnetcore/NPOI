@@ -48,7 +48,7 @@ namespace Npoi.Core.SS.Format
 
         /** The resulting text.  This will never be <tt>null</tt>. */
 
-        public String Text
+        public string Text
         {
             get { return _text; }
             set { _text = value; }
@@ -73,7 +73,7 @@ namespace Npoi.Core.SS.Format
          * @param textColor The value for {@link #textColor}.
          */
 
-        public CellFormatResult(bool applies, String text, Color textColor)
+        public CellFormatResult(bool applies, string text, Color textColor)
         {
             Applies = applies;
             Text = text;

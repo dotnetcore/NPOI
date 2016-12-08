@@ -34,12 +34,12 @@ namespace Npoi.Core.SS.UserModel
          * @return the file extension.
          */
 
-        String SuggestFileExtension();
+        string SuggestFileExtension();
 
         /**
          * Returns the mime type for the image
          */
-        String MimeType { get; }
+        string MimeType { get; }
 
         /**
          * @return the POI internal image type, 0 if unknown image type

@@ -63,7 +63,7 @@ namespace Npoi.Core.HSSF.Record.Common
             securityDescriptor = in1.ReadRemainder();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
             buffer.Append(" [FEATURE PROTECTION]\n");
@@ -101,7 +101,7 @@ namespace Npoi.Core.HSSF.Record.Common
             this.passwordVerifier = passwordVerifier;
         }
 
-        public String GetTitle()
+        public string GetTitle()
         {
             return title;
         }

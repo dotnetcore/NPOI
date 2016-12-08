@@ -492,9 +492,9 @@ namespace Npoi.Core.SS.Formula.Eval
          * @since 3.8 beta6
          */
 
-        public static ReadOnlyCollection<String> GetSupportedFunctionNames()
+        public static ReadOnlyCollection<string> GetSupportedFunctionNames()
         {
-            List<String> lst = new List<String>();
+            List<string> lst = new List<string>();
             for (int i = 0; i < functions.Length; i++)
             {
                 Function func = functions[i];
@@ -515,9 +515,9 @@ namespace Npoi.Core.SS.Formula.Eval
          * @since 3.8 beta6
          */
 
-        public static ReadOnlyCollection<String> GetNotSupportedFunctionNames()
+        public static ReadOnlyCollection<string> GetNotSupportedFunctionNames()
         {
-            List<String> lst = new List<String>();
+            List<string> lst = new List<string>();
             for (int i = 0; i < functions.Length; i++)
             {
                 Function func = functions[i];

@@ -44,7 +44,7 @@ namespace Npoi.Core.HSSF.UserModel
          * (int, java.lang.String, java.lang.String, java.lang.String)
          */
 
-        public IDataValidationConstraint CreateDateConstraint(int operatorType, String formula1, String formula2, String dateFormat)
+        public IDataValidationConstraint CreateDateConstraint(int operatorType, string formula1, string formula2, string dateFormat)
         {
             return DVConstraint.CreateDateConstraint(operatorType, formula1, formula2, dateFormat);
         }
@@ -75,12 +75,12 @@ namespace Npoi.Core.HSSF.UserModel
             return DVConstraint.CreateFormulaListConstraint(listFormula);
         }
 
-        public IDataValidationConstraint CreateNumericConstraint(int validationType, int operatorType, String formula1, String formula2)
+        public IDataValidationConstraint CreateNumericConstraint(int validationType, int operatorType, string formula1, string formula2)
         {
             return DVConstraint.CreateNumericConstraint(validationType, operatorType, formula1, formula2);
         }
 
-        public IDataValidationConstraint CreateintConstraint(int operatorType, String formula1, String formula2)
+        public IDataValidationConstraint CreateintConstraint(int operatorType, string formula1, string formula2)
         {
             return DVConstraint.CreateNumericConstraint(ValidationType.INTEGER, operatorType, formula1, formula2);
         }
@@ -93,7 +93,7 @@ namespace Npoi.Core.HSSF.UserModel
          * (int, java.lang.String, java.lang.String)
          */
 
-        public IDataValidationConstraint CreateDecimalConstraint(int operatorType, String formula1, String formula2)
+        public IDataValidationConstraint CreateDecimalConstraint(int operatorType, string formula1, string formula2)
         {
             return DVConstraint.CreateNumericConstraint(ValidationType.DECIMAL, operatorType, formula1, formula2);
         }
@@ -106,7 +106,7 @@ namespace Npoi.Core.HSSF.UserModel
          * (int, java.lang.String, java.lang.String)
          */
 
-        public IDataValidationConstraint CreateTextLengthConstraint(int operatorType, String formula1, String formula2)
+        public IDataValidationConstraint CreateTextLengthConstraint(int operatorType, string formula1, string formula2)
         {
             return DVConstraint.CreateNumericConstraint(ValidationType.TEXT_LENGTH, operatorType, formula1, formula2);
         }
@@ -119,7 +119,7 @@ namespace Npoi.Core.HSSF.UserModel
          * (int, java.lang.String, java.lang.String, java.lang.String)
          */
 
-        public IDataValidationConstraint CreateTimeConstraint(int operatorType, String formula1, String formula2)
+        public IDataValidationConstraint CreateTimeConstraint(int operatorType, string formula1, string formula2)
         {
             return DVConstraint.CreateTimeConstraint(operatorType, formula1, formula2);
         }

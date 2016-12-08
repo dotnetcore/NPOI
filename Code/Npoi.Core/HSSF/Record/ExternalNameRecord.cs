@@ -171,7 +171,7 @@ namespace Npoi.Core.HSSF.Record
          * @return the standard String representation of this name
          */
 
-        public String Text
+        public string Text
         {
             get { return field_4_name; }
             set { field_4_name = value; }
@@ -271,7 +271,7 @@ namespace Npoi.Core.HSSF.Record
 
         private Exception ReadFail(string msg)
         {
-            String fullMsg = msg + " fields: (option=" + field_1_option_flag + " index=" + field_2_ixals
+            string fullMsg = msg + " fields: (option=" + field_1_option_flag + " index=" + field_2_ixals
             + " not_used=" + field_3_not_used + " name='" + field_4_name + "')";
             return new Exception(fullMsg);
         }
@@ -316,7 +316,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[EXTERNALNAME]\n");

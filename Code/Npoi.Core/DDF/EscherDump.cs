@@ -63,7 +63,7 @@ namespace Npoi.Core.DDF
             int recordBytesRemaining;       // including enclosing records
             StringBuilder stringBuf = new StringBuilder();
             short nDumpSize;
-            String recordName;
+            string recordName;
 
             bool atEOF = false;
 
@@ -429,13 +429,13 @@ namespace Npoi.Core.DDF
 
         private class PropName
         {
-            public PropName(int id, String name) {
+            public PropName(int id, string name) {
                 this.id = id;
                 this.name = name;
             }
 
             public int id;
-            public String name;
+            public string name;
         }
 
         /// <summary>
@@ -776,7 +776,7 @@ namespace Npoi.Core.DDF
         /// <param name="n32">The N32.</param>
         /// <returns></returns>
         private string Dec1616(int n32) {
-            String result = "";
+            string result = "";
             result += (short)(n32 >> 16);
             result += '.';
             result += (short)(n32 & unchecked((short)0xFFFF));

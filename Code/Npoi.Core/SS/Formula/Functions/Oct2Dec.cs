@@ -48,7 +48,7 @@ namespace Npoi.Core.SS.Formula.Functions
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval numberVE)
         {
-            String octal = OperandResolver.CoerceValueToString(numberVE);
+            string octal = OperandResolver.CoerceValueToString(numberVE);
             try
             {
                 return new NumberEval(BaseNumberUtils.ConvertToDecimal(octal, OCTAL_BASE, MAX_NUMBER_OF_PLACES));

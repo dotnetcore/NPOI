@@ -318,14 +318,14 @@ namespace Npoi.Core.SS.Formula.PTG
          * return a string representation of this token alone
          */
 
-        public abstract String ToFormulaString();
+        public abstract string ToFormulaString();
 
         /** Overridden toString method to Ensure object hash is not printed.
          * This helps Get rid of gratuitous diffs when comparing two dumps
          * Subclasses may output more relevant information by overriding this method
          **/
 
-        public override String ToString()
+        public override string ToString()
         {
             return GetType().ToString();
         }

@@ -146,7 +146,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
             }
         }
 
-        public String StringCellValue
+        public string StringCellValue
         {
             get
             {

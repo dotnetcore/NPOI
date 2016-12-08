@@ -120,9 +120,9 @@ namespace Npoi.Core.HSSF.Record
          * print a sort of string representation ([UNKNOWN RECORD] id = x [/UNKNOWN RECORD])
          */
 
-        public override String ToString()
+        public override string ToString()
         {
-            String biffName = GetBiffName(_sid);
+            string biffName = GetBiffName(_sid);
             if (biffName == null)
             {
                 biffName = "UNKNOWNRECORD";
@@ -145,7 +145,7 @@ namespace Npoi.Core.HSSF.Record
  * @return the documented name of this BIFF record type, <code>null</code> if unknown to POI
  */
 
-        public static String GetBiffName(int sid)
+        public static string GetBiffName(int sid)
         {
             // Note to POI developers:
             // Make sure you delete the corresponding entry from

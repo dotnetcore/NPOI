@@ -164,7 +164,7 @@ namespace Npoi.Core.HSSF.Record
          * Used by BiffViewer and other utulities.
          */
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 
@@ -233,7 +233,7 @@ namespace Npoi.Core.HSSF.Record
          * @return the name of the original author of the comment
          */
 
-        public String Author
+        public string Author
         {
             get { return field_6_author; }
             set

@@ -84,7 +84,7 @@ namespace Npoi.Core.SS.Format
             // quoting in this method ourselves.
             private CellElapsedFormatter _formatter;
 
-            public String HandlePart(Match m, String part, CellFormatType type,
+            public string HandlePart(Match m, string part, CellFormatType type,
                     StringBuilder desc)
             {
                 int pos = desc.Length;

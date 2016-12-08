@@ -37,7 +37,7 @@ namespace Npoi.Core.SS.Formula.PTG
         private string firstSheetName;
         private string lastSheetName;
 
-        public Ref3DPxg(int externalWorkbookNumber, SheetIdentifier sheetName, String cellref)
+        public Ref3DPxg(int externalWorkbookNumber, SheetIdentifier sheetName, string cellref)
             : this(externalWorkbookNumber, sheetName, new CellReference(cellref))
         {
         }
@@ -57,7 +57,7 @@ namespace Npoi.Core.SS.Formula.PTG
             }
         }
 
-        public Ref3DPxg(SheetIdentifier sheetName, String cellref)
+        public Ref3DPxg(SheetIdentifier sheetName, string cellref)
             : this(sheetName, new CellReference(cellref))
         {
         }
@@ -67,7 +67,7 @@ namespace Npoi.Core.SS.Formula.PTG
         {
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(GetType().Name);
@@ -98,7 +98,7 @@ namespace Npoi.Core.SS.Formula.PTG
             }
         }
 
-        public String SheetName
+        public string SheetName
         {
             get
             {
@@ -116,12 +116,12 @@ namespace Npoi.Core.SS.Formula.PTG
             set { lastSheetName = value; }
         }
 
-        public String Format2DRefAsString()
+        public string Format2DRefAsString()
         {
             return FormatReferenceAsString();
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             StringBuilder sb = new StringBuilder();
             if (externalWorkbookNumber >= 0)

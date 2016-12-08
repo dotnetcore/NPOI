@@ -288,7 +288,7 @@ namespace Npoi.Core
         /// <param name="excepts">a list of Strings specifying what nodes NOT to copy</param>
         [Obsolete]
         protected void CopyNodes(POIFSFileSystem source, POIFSFileSystem target,
-                                  List<String> excepts)
+                                  List<string> excepts)
         {
             EntryUtils.CopyNodes(source, target, excepts);
         }
@@ -301,7 +301,7 @@ namespace Npoi.Core
         /// <param name="excepts">a list of Strings specifying what nodes NOT to copy</param>
         [Obsolete]
         protected void CopyNodes(DirectoryNode sourceRoot,
-                DirectoryNode targetRoot, List<String> excepts)
+                DirectoryNode targetRoot, List<string> excepts)
         {
             EntryUtils.CopyNodes(sourceRoot, targetRoot, excepts);
         }

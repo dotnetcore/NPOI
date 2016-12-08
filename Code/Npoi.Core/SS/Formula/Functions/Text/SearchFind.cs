@@ -16,8 +16,8 @@ namespace Npoi.Core.SS.Formula.Functions
         {
             try
             {
-                String needle = TextFunction.EvaluateStringArg(arg0, srcRowIndex, srcColumnIndex);
-                String haystack = TextFunction.EvaluateStringArg(arg1, srcRowIndex, srcColumnIndex);
+                string needle = TextFunction.EvaluateStringArg(arg0, srcRowIndex, srcColumnIndex);
+                string haystack = TextFunction.EvaluateStringArg(arg1, srcRowIndex, srcColumnIndex);
                 return Eval(haystack, needle, 0);
             }
             catch (EvaluationException e)
@@ -31,8 +31,8 @@ namespace Npoi.Core.SS.Formula.Functions
         {
             try
             {
-                String needle = TextFunction.EvaluateStringArg(arg0, srcRowIndex, srcColumnIndex);
-                String haystack = TextFunction.EvaluateStringArg(arg1, srcRowIndex, srcColumnIndex);
+                string needle = TextFunction.EvaluateStringArg(arg0, srcRowIndex, srcColumnIndex);
+                string haystack = TextFunction.EvaluateStringArg(arg1, srcRowIndex, srcColumnIndex);
                 // evaluate third arg and convert from 1-based to 0-based index
                 int startpos = TextFunction.EvaluateIntArg(arg2, srcRowIndex, srcColumnIndex) - 1;
                 if (startpos < 0)
@@ -47,7 +47,7 @@ namespace Npoi.Core.SS.Formula.Functions
             }
         }
 
-        private ValueEval Eval(string haystack, String needle, int startIndex)
+        private ValueEval Eval(string haystack, string needle, int startIndex)
         {
             int result;
             if (_isCaseSensitive)

@@ -145,7 +145,7 @@ namespace Npoi.Core.HSSF.Record
             sb.Append("    .value       = ").Append(Value).Append("\n");
         }
 
-        protected override String RecordName
+        protected override string RecordName
         {
             get
             {

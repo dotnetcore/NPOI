@@ -181,7 +181,7 @@ namespace Npoi.Core.HSSF.UserModel
             CollaboratingWorkbooksEnvironment.Setup(workbookNames, wbEvals);
         }
 
-        public void SetupReferencedWorkbooks(Dictionary<String, IFormulaEvaluator> evaluators)
+        public void SetupReferencedWorkbooks(Dictionary<string, IFormulaEvaluator> evaluators)
         {
             CollaboratingWorkbooksEnvironment.SetupFormulaEvaluator(evaluators);
         }

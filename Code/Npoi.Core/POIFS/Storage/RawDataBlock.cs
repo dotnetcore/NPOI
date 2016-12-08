@@ -73,7 +73,7 @@ namespace Npoi.Core.POIFS.Storage
                 //  requested number of bytes, unless it hits
                 //  an EOF
                 _eof = true;
-                String type = " byte" + ((count == 1) ? ("")
+                string type = " byte" + ((count == 1) ? ("")
                                                       : ("s"));
 
                 log.Log(POILogger.ERROR,

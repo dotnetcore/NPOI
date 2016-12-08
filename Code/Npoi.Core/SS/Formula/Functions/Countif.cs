@@ -166,7 +166,7 @@ namespace Npoi.Core.SS.Formula.Functions
                         + _representation + "'");
             }
 
-            public override String ToString()
+            public override string ToString()
             {
                 StringBuilder sb = new StringBuilder(64);
                 sb.Append(GetType().Name);
@@ -174,7 +174,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return sb.ToString();
             }
 
-            public String Representation
+            public string Representation
             {
                 get
                 {
@@ -210,7 +210,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return _operator.Evaluate(cmpResult);
             }
 
-            public override String ToString()
+            public override string ToString()
             {
                 StringBuilder sb = new StringBuilder(64);
                 sb.Append(GetType().Name).Append(" [");
@@ -220,7 +220,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return sb.ToString();
             }
 
-            protected abstract String ValueText { get; }
+            protected abstract string ValueText { get; }
 
             public abstract bool Matches(ValueEval x);
         }
@@ -236,7 +236,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 _value = errorCode;
             }
 
-            protected override String ValueText
+            protected override string ValueText
             {
                 get
                 {
@@ -457,7 +457,7 @@ namespace Npoi.Core.SS.Formula.Functions
                     // e.g. '4*7', NumberEval(4567) does not match
                     return false;
                 }
-                String testedValue = ((StringEval)x).StringValue;
+                string testedValue = ((StringEval)x).StringValue;
                 if ((testedValue.Length < 1 && _value.Length < 1))
                 {
                     // odd case: criteria '=' behaves differently to criteria ''
@@ -599,7 +599,7 @@ namespace Npoi.Core.SS.Formula.Functions
 
         private static IMatchPredicate CreateGeneralMatchPredicate(StringEval stringEval)
         {
-            String value = stringEval.StringValue;
+            string value = stringEval.StringValue;
             CmpOp operator1 = CmpOp.GetOperator(value);
             value = value.Substring(operator1.Length);
 

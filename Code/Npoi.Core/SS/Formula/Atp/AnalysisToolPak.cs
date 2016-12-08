@@ -178,7 +178,7 @@ namespace Npoi.Core.SS.Formula.Atp
             return m;
         }
 
-        private static void r(Dictionary<object, object> m, String functionName, FreeRefFunction pFunc)
+        private static void r(Dictionary<object, object> m, string functionName, FreeRefFunction pFunc)
         {
             FreeRefFunction func = pFunc == null ? new NotImplemented(functionName) : pFunc;
             m[functionName] = func;
@@ -197,10 +197,10 @@ namespace Npoi.Core.SS.Formula.Atp
          * @since 3.8 beta6
          */
 
-        public static ReadOnlyCollection<String> GetSupportedFunctionNames()
+        public static ReadOnlyCollection<string> GetSupportedFunctionNames()
         {
             AnalysisToolPak inst = (AnalysisToolPak)instance;
-            List<String> lst = new List<String>();
+            List<string> lst = new List<string>();
             foreach (string name in AnalysisToolPak._functionsByName.Keys)
             {
                 FreeRefFunction func = (FreeRefFunction)AnalysisToolPak._functionsByName[(name)];
@@ -219,10 +219,10 @@ namespace Npoi.Core.SS.Formula.Atp
          * @since 3.8 beta6
          */
 
-        public static ReadOnlyCollection<String> GetNotSupportedFunctionNames()
+        public static ReadOnlyCollection<string> GetNotSupportedFunctionNames()
         {
             AnalysisToolPak inst = (AnalysisToolPak)instance;
-            List<String> lst = new List<String>();
+            List<string> lst = new List<string>();
             foreach (string name in AnalysisToolPak._functionsByName.Keys)
             {
                 FreeRefFunction func = (FreeRefFunction)AnalysisToolPak._functionsByName[(name)];

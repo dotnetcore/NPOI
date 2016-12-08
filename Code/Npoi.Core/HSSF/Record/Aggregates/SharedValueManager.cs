@@ -96,7 +96,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 }
             }
 
-            public override String ToString()
+            public override string ToString()
             {
                 StringBuilder sb = new StringBuilder(64);
                 sb.Append(GetType().Name).Append(" [");
@@ -388,7 +388,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                     return ar.Range;
                 }
             }
-            String ref1 = new CellReference(rowIndex, columnIndex, false, false).FormatAsString();
+            string ref1 = new CellReference(rowIndex, columnIndex, false, false).FormatAsString();
             throw new ArgumentException("Specified cell " + ref1
                     + " is not part of an array formula.");
         }

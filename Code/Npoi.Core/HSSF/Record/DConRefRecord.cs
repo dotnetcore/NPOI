@@ -252,7 +252,7 @@ namespace Npoi.Core.HSSF.Record
             get { return lastRow; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder b = new StringBuilder();
             b.Append("[DCONREF]\n");
@@ -285,7 +285,7 @@ namespace Npoi.Core.HSSF.Record
          * See MS-XLS 2.5.277 (VirtualPath)
          */
 
-        public String ReadablePath
+        public string ReadablePath
         {
             get
             {
@@ -299,7 +299,7 @@ namespace Npoi.Core.HSSF.Record
                         offset++;
                     }
                     //String out1 = new String(Arrays.CopyOfRange(path, offset, path.Length));
-                    String out1 = Encoding.UTF8.GetString(Arrays.CopyOfRange(path, offset, path.Length));
+                    string out1 = Encoding.UTF8.GetString(Arrays.CopyOfRange(path, offset, path.Length));
                     //UNC paths have \u0003 chars as path separators.
                     out1 = out1.Replace("\u0003", "/");
                     return out1;

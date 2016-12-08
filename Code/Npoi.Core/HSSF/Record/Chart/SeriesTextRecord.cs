@@ -68,7 +68,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 
@@ -149,7 +149,7 @@ namespace Npoi.Core.HSSF.Record.Chart
          * Get the text field for the SeriesText record.
          */
 
-        public String Text
+        public string Text
         {
             get
             {

@@ -218,7 +218,7 @@ namespace Npoi.Core.SS.Formula.Functions
                     // ignore all ref strings
                     return;
                 }
-                String s = ((StringEval)ve).StringValue;
+                string s = ((StringEval)ve).StringValue;
                 Double d = OperandResolver.ParseDouble(s);
                 if (double.IsNaN(d))
                 {

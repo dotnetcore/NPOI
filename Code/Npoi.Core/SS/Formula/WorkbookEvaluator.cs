@@ -51,7 +51,7 @@ namespace Npoi.Core.SS.Formula
 
         private IEvaluationListener _evaluationListener;
         private Dictionary<object, object> _sheetIndexesBySheet;
-        private Dictionary<String, int> _sheetIndexesByName;
+        private Dictionary<string, int> _sheetIndexesByName;
         private CollaboratingWorkbooksEnvironment _collaboratingWorkbookEnvironment;
         private IStabilityClassifier _stabilityClassifier;
         private UDFFinder _udfFinder;
@@ -88,7 +88,7 @@ namespace Npoi.Core.SS.Formula
          */
         /* package */
 
-        public String GetSheetName(int sheetIndex)
+        public string GetSheetName(int sheetIndex)
         {
             return _workbook.GetSheetName(sheetIndex);
         }
@@ -380,7 +380,7 @@ namespace Npoi.Core.SS.Formula
             }
             if (IsDebugLogEnabled())
             {
-                String sheetName = GetSheetName(sheetIndex);
+                string sheetName = GetSheetName(sheetIndex);
                 CellReference cr = new CellReference(rowIndex, columnIndex);
                 LogDebug("Evaluated " + sheetName + "!" + cr.FormatAsString() + " To " + cce.GetValue());
             }
@@ -402,9 +402,9 @@ namespace Npoi.Core.SS.Formula
         {
             try
             {
-                String sheetName = _workbook.GetSheetName(sheetIndex);
+                string sheetName = _workbook.GetSheetName(sheetIndex);
                 CellReference cr = new CellReference(sheetName, rowIndex, columnIndex, false, false);
-                String msg = "Error evaluating cell " + cr.FormatAsString();
+                string msg = "Error evaluating cell " + cr.FormatAsString();
                 return new NotImplementedException(msg, inner);
             }
             catch (Exception)
@@ -465,7 +465,7 @@ namespace Npoi.Core.SS.Formula
 
         public ValueEval EvaluateFormula(OperationEvaluationContext ec, Ptg[] ptgs)
         {
-            String dbgIndentStr = "";		// always init. to non-null just for defensive avoiding NPE
+            string dbgIndentStr = "";		// always init. to non-null just for defensive avoiding NPE
             if (dbgEvaluationOutputForNextEval)
             {
                 // first evaluation call when ouput is desired, so iit. this evaluator instance
@@ -889,9 +889,9 @@ namespace Npoi.Core.SS.Formula
          * @return names of functions supported by POI
          */
 
-        public static List<String> GetSupportedFunctionNames()
+        public static List<string> GetSupportedFunctionNames()
         {
-            List<String> lst = new List<String>();
+            List<string> lst = new List<string>();
             lst.AddRange(FunctionEval.GetSupportedFunctionNames());
             lst.AddRange(AnalysisToolPak.GetSupportedFunctionNames());
             return lst;
@@ -903,9 +903,9 @@ namespace Npoi.Core.SS.Formula
          * @return names of functions NOT supported by POI
          */
 
-        public static List<String> GetNotSupportedFunctionNames()
+        public static List<string> GetNotSupportedFunctionNames()
         {
-            List<String> lst = new List<String>();
+            List<string> lst = new List<string>();
             lst.AddRange(FunctionEval.GetNotSupportedFunctionNames());
             lst.AddRange(AnalysisToolPak.GetNotSupportedFunctionNames());
             return lst;

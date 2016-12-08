@@ -188,7 +188,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// Gets or sets the name of the original comment author
         /// </summary>
         /// <value>the name of the original author of the comment</value>
-        public String Author
+        public string Author
         {
             get
             {

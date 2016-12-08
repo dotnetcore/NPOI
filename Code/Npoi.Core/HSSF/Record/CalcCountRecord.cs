@@ -67,7 +67,7 @@ namespace Npoi.Core.HSSF.Record
             set { field_1_iterations = value; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

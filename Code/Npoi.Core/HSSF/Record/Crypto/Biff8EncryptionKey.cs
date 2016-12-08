@@ -119,7 +119,7 @@ namespace Npoi.Core.HSSF.Record.Crypto
             return c;
         }
 
-        private static void Check16Bytes(byte[] data, String argName)
+        private static void Check16Bytes(byte[] data, string argName)
         {
             if (data.Length != 16)
             {
@@ -166,7 +166,7 @@ namespace Npoi.Core.HSSF.Record.Crypto
          * <code>null</code> if it is currently unSet.
          */
 
-        public static String CurrentUserPassword
+        public static string CurrentUserPassword
         {
             get
             {

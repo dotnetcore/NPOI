@@ -292,7 +292,7 @@ namespace Npoi.Core.HSSF.UserModel
                 HSSFCell xcell = (HSSFCell)cell;
                 if (xcell.IsPartOfArrayFormulaGroup)
                 {
-                    String msg = "Row[rownum=" + row.RowNum + "] contains cell(s) included in a multi-cell array formula. You cannot change part of an array.";
+                    string msg = "Row[rownum=" + row.RowNum + "] contains cell(s) included in a multi-cell array formula. You cannot change part of an array.";
                     xcell.NotifyArrayFormulaChanging(msg);
                 }
             }
@@ -687,7 +687,7 @@ namespace Npoi.Core.HSSF.UserModel
                                 (arrayRange.IsInRange(region.FirstRow, region.FirstColumn) ||
                                   arrayRange.IsInRange(region.FirstRow, region.FirstColumn)))
                         {
-                            String msg = "The range " + region.FormatAsString() + " intersects with a multi-cell array formula. " +
+                            string msg = "The range " + region.FormatAsString() + " intersects with a multi-cell array formula. " +
                                     "You cannot merge cells of an array.";
                             throw new InvalidOperationException(msg);
                         }
@@ -1570,7 +1570,7 @@ namespace Npoi.Core.HSSF.UserModel
             // Update any formulas on this _sheet that point to
             //  rows which have been moved
             int sheetIndex = _workbook.GetSheetIndex(this);
-            String sheetName = _workbook.GetSheetName(sheetIndex);
+            string sheetName = _workbook.GetSheetName(sheetIndex);
             int externSheetIndex = book.CheckExternSheet(sheetIndex);
             FormulaShifter shifter = FormulaShifter.CreateForRowShift(externSheetIndex, sheetName, startRow, endRow, n);
             _sheet.UpdateFormulasAfterCellShift(shifter, externSheetIndex);
@@ -1601,7 +1601,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         private void NotifyRowShifting(HSSFRow row)
         {
-            String msg = "Row[rownum=" + row.RowNum + "] contains cell(s) included in a multi-cell array formula. " +
+            string msg = "Row[rownum=" + row.RowNum + "] contains cell(s) included in a multi-cell array formula. " +
                     "You cannot change part of an array.";
             foreach (ICell cell in row.Cells)
             {
@@ -2058,7 +2058,7 @@ namespace Npoi.Core.HSSF.UserModel
             CellValueRecordInterface rec = ((HSSFCell)cell).CellValueRecord;
             if (!(rec is FormulaRecordAggregate))
             {
-                String ref1 = new CellReference(cell).FormatAsString();
+                string ref1 = new CellReference(cell).FormatAsString();
                 throw new ArgumentException("Cell " + ref1 + " is not part of an array formula.");
             }
             FormulaRecordAggregate fra = (FormulaRecordAggregate)rec;
@@ -2302,7 +2302,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <summary>
         /// Returns the name of this _sheet
         /// </summary>
-        public String SheetName
+        public string SheetName
         {
             get
             {
@@ -2665,7 +2665,7 @@ namespace Npoi.Core.HSSF.UserModel
             return newSheet;
         }
 
-        public void CopyTo(HSSFWorkbook dest, String name, Boolean copyStyle, Boolean keepFormulas)
+        public void CopyTo(HSSFWorkbook dest, string name, Boolean copyStyle, Boolean keepFormulas)
         {
             int maxColumnNum = 0;
             HSSFSheet newSheet = (HSSFSheet)dest.CreateSheet(name);

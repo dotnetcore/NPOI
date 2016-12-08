@@ -208,7 +208,7 @@ namespace Npoi.Core.HPSF
         /// <param name="dir">The directory in the POI filesystem To Write the document To</param>
         /// <param name="name">The document's name. If there is alReady a document with the
         /// same name in the directory the latter will be overwritten.</param>
-        public override void Write(DirectoryEntry dir, String name) {
+        public override void Write(DirectoryEntry dir, string name) {
             delegate1.Write(dir, name);
         }
 
@@ -297,15 +297,15 @@ namespace Npoi.Core.HPSF
          * @return The property as a String, or null if unavailable
          */
 
-        protected String GetPropertyStringValue(int propertyId) {
+        protected string GetPropertyStringValue(int propertyId) {
             object propertyValue = GetProperty(propertyId);
             return GetPropertyStringValue(propertyValue);
         }
 
-        protected static String GetPropertyStringValue(object propertyValue) {
+        protected static string GetPropertyStringValue(object propertyValue) {
             // Normal cases
             if (propertyValue == null) return null;
-            if (propertyValue is String) return (string)propertyValue;
+            if (propertyValue is string) return (string)propertyValue;
 
             // Do our best with some edge cases
             if (propertyValue is byte[]) {
@@ -344,7 +344,7 @@ namespace Npoi.Core.HPSF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString() {
+        public override string ToString() {
             return delegate1.ToString();
         }
 

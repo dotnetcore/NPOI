@@ -123,7 +123,7 @@ namespace Npoi.Core.HSSF.Record
             return field_5_dbcells.Get(cellnum);
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

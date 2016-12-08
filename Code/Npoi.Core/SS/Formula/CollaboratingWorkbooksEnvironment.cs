@@ -44,14 +44,14 @@ namespace Npoi.Core.SS.Formula
     {
         public static readonly CollaboratingWorkbooksEnvironment EMPTY = new CollaboratingWorkbooksEnvironment();
 
-        private Dictionary<String, WorkbookEvaluator> _evaluatorsByName;
+        private Dictionary<string, WorkbookEvaluator> _evaluatorsByName;
         private WorkbookEvaluator[] _evaluators;
 
         private bool _unhooked;
 
         private CollaboratingWorkbooksEnvironment()
         {
-            _evaluatorsByName = new Dictionary<String, WorkbookEvaluator>();
+            _evaluatorsByName = new Dictionary<string, WorkbookEvaluator>();
             _evaluators = new WorkbookEvaluator[0];
         }
 
@@ -71,7 +71,7 @@ namespace Npoi.Core.SS.Formula
             HookNewEnvironment(evaluators, env);
         }
 
-        public static void Setup(Dictionary<String, WorkbookEvaluator> evaluatorsByName)
+        public static void Setup(Dictionary<string, WorkbookEvaluator> evaluatorsByName)
         {
             if (evaluatorsByName.Count < 1)
             {
@@ -83,9 +83,9 @@ namespace Npoi.Core.SS.Formula
             new CollaboratingWorkbooksEnvironment(evaluatorsByName, evaluators);
         }
 
-        public static void SetupFormulaEvaluator(Dictionary<String, IFormulaEvaluator> evaluators)
+        public static void SetupFormulaEvaluator(Dictionary<string, IFormulaEvaluator> evaluators)
         {
-            Dictionary<String, WorkbookEvaluator> evaluatorsByName = new Dictionary<String, WorkbookEvaluator>(evaluators.Count);
+            Dictionary<string, WorkbookEvaluator> evaluatorsByName = new Dictionary<string, WorkbookEvaluator>(evaluators.Count);
             foreach (string wbName in evaluators.Keys)
             {
                 IFormulaEvaluator eval = evaluators[(wbName)];
@@ -107,12 +107,12 @@ namespace Npoi.Core.SS.Formula
         {
         }
 
-        private static Dictionary<String, WorkbookEvaluator> toUniqueMap(string[] workbookNames, WorkbookEvaluator[] evaluators, int nItems)
+        private static Dictionary<string, WorkbookEvaluator> toUniqueMap(string[] workbookNames, WorkbookEvaluator[] evaluators, int nItems)
         {
-            Dictionary<String, WorkbookEvaluator> evaluatorsByName = new Dictionary<String, WorkbookEvaluator>(nItems * 3 / 2);
+            Dictionary<string, WorkbookEvaluator> evaluatorsByName = new Dictionary<string, WorkbookEvaluator>(nItems * 3 / 2);
             for (int i = 0; i < nItems; i++)
             {
-                String wbName = workbookNames[i];
+                string wbName = workbookNames[i];
                 WorkbookEvaluator wbEval = evaluators[i];
                 if (evaluatorsByName.ContainsKey(wbName))
                 {
@@ -123,15 +123,15 @@ namespace Npoi.Core.SS.Formula
             return evaluatorsByName;
         }
 
-        private CollaboratingWorkbooksEnvironment(Dictionary<String, WorkbookEvaluator> evaluatorsByName, WorkbookEvaluator[] evaluators)
+        private CollaboratingWorkbooksEnvironment(Dictionary<string, WorkbookEvaluator> evaluatorsByName, WorkbookEvaluator[] evaluators)
         {
-            Dictionary<WorkbookEvaluator, String> uniqueEvals = new Dictionary<WorkbookEvaluator, String>(evaluators.Length);
+            Dictionary<WorkbookEvaluator, string> uniqueEvals = new Dictionary<WorkbookEvaluator, string>(evaluators.Length);
             foreach (string wbName in evaluatorsByName.Keys)
             {
                 WorkbookEvaluator wbEval = evaluatorsByName[(wbName)];
                 if (uniqueEvals.ContainsKey(wbEval))
                 {
-                    String msg = "Attempted to register same workbook under names '"
+                    string msg = "Attempted to register same workbook under names '"
                         + uniqueEvals[(wbEval)] + "' and '" + wbName + "'";
                     throw new ArgumentException(msg);
                 }

@@ -52,12 +52,12 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return SIZE; }
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             return "()";
         }
 
-        public String ToFormulaString(string[] operands)
+        public string ToFormulaString(string[] operands)
         {
             return "(" + operands[0] + ")";
         }

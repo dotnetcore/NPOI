@@ -30,7 +30,7 @@ namespace Npoi.Core.DDF
     public class EscherSpgrRecord : EscherRecord
     {
         public const short RECORD_ID = unchecked((short)0xF009);
-        public const String RECORD_DESCRIPTION = "MsofbtSpgr";
+        public const string RECORD_DESCRIPTION = "MsofbtSpgr";
 
         private int field_1_rectX1;
         private int field_2_rectY1;
@@ -103,7 +103,7 @@ namespace Npoi.Core.DDF
         /// The short name for this record
         /// </summary>
         /// <value></value>
-        public override String RecordName {
+        public override string RecordName {
             get { return "Spgr"; }
         }
 
@@ -113,8 +113,8 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString() {
-            String nl = Environment.NewLine;
+        public override string ToString() {
+            string nl = Environment.NewLine;
 
             //        String extraData;
             //        MemoryStream b = new MemoryStream();
@@ -137,7 +137,7 @@ namespace Npoi.Core.DDF
                     "  RectHeight: " + field_4_rectY2 + nl;
         }
 
-        public override String ToXml(string tab) {
+        public override string ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
                     .Append(tab).Append("\t").Append("<RectX>").Append(field_1_rectX1).Append("</RectX>\n")

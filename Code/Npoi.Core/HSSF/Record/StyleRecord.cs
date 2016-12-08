@@ -145,7 +145,7 @@ namespace Npoi.Core.HSSF.Record
          * @see #NameLength
          */
 
-        public String Name
+        public string Name
         {
             get { return field_4_name; }
             set
@@ -172,7 +172,7 @@ namespace Npoi.Core.HSSF.Record
         }
 
         // end builtin records
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

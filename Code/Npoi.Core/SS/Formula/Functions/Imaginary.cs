@@ -42,11 +42,11 @@ namespace Npoi.Core.SS.Formula.Functions
     {
         public static FreeRefFunction instance = new Imaginary();
 
-        public static String GROUP1_REAL_SIGN_REGEX = "([+-]?)";
-        public static String GROUP2_REAL_INTEGER_OR_DOUBLE_REGEX = "([0-9]+\\.[0-9]+|[0-9]*)";
-        public static String GROUP3_IMAGINARY_SIGN_REGEX = "([+-]?)";
-        public static String GROUP4_IMAGINARY_INTEGER_OR_DOUBLE_REGEX = "([0-9]+\\.[0-9]+|[0-9]*)";
-        public static String GROUP5_IMAGINARY_GROUP_REGEX = "([ij]?)";
+        public static string GROUP1_REAL_SIGN_REGEX = "([+-]?)";
+        public static string GROUP2_REAL_INTEGER_OR_DOUBLE_REGEX = "([0-9]+\\.[0-9]+|[0-9]*)";
+        public static string GROUP3_IMAGINARY_SIGN_REGEX = "([+-]?)";
+        public static string GROUP4_IMAGINARY_INTEGER_OR_DOUBLE_REGEX = "([0-9]+\\.[0-9]+|[0-9]*)";
+        public static string GROUP5_IMAGINARY_GROUP_REGEX = "([ij]?)";
 
         public static Regex COMPLEX_NUMBER_PATTERN
                 = new Regex(GROUP1_REAL_SIGN_REGEX + GROUP2_REAL_INTEGER_OR_DOUBLE_REGEX +
@@ -68,17 +68,17 @@ namespace Npoi.Core.SS.Formula.Functions
             {
                 return e.GetErrorEval();
             }
-            String iNumber = OperandResolver.CoerceValueToString(veText1);
+            string iNumber = OperandResolver.CoerceValueToString(veText1);
 
             //Matcher m = COMPLEX_NUMBER_PATTERN.matcher(iNumber);
             //bool result = m.matches();
             System.Text.RegularExpressions.Match m = COMPLEX_NUMBER_PATTERN.Match(iNumber);
             bool result = m.Success && m.Groups[0].Length > 0;
 
-            String imaginary = "";
+            string imaginary = "";
             if (result == true)
             {
-                String imaginaryGroup = m.Groups[5].Value;
+                string imaginaryGroup = m.Groups[5].Value;
                 bool hasImaginaryPart = imaginaryGroup.Equals("i") || imaginaryGroup.Equals("j");
 
                 if (imaginaryGroup.Length == 0)
@@ -88,14 +88,14 @@ namespace Npoi.Core.SS.Formula.Functions
 
                 if (hasImaginaryPart)
                 {
-                    String sign = "";
-                    String imaginarySign = m.Groups[(GROUP3_IMAGINARY_SIGN)].Value;
+                    string sign = "";
+                    string imaginarySign = m.Groups[(GROUP3_IMAGINARY_SIGN)].Value;
                     if (imaginarySign.Length != 0 && !(imaginarySign.Equals("+")))
                     {
                         sign = imaginarySign;
                     }
 
-                    String groupImaginaryNumber = m.Groups[(GROUP4_IMAGINARY_INTEGER_OR_DOUBLE)].Value;
+                    string groupImaginaryNumber = m.Groups[(GROUP4_IMAGINARY_INTEGER_OR_DOUBLE)].Value;
                     if (groupImaginaryNumber.Length != 0)
                     {
                         imaginary = sign + groupImaginaryNumber;

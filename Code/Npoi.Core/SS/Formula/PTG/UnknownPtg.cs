@@ -56,7 +56,7 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return size; }
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             return "UNKNOWN";
         }

@@ -60,7 +60,7 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return SIZE; }
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             return field_1_value ? "TRUE" : "FALSE";
         }

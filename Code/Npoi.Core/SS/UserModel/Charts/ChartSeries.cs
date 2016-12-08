@@ -31,7 +31,7 @@ namespace Npoi.Core.SS.UserModel.Charts
          * @return title as string literal.
          */
 
-        String GetTitleString();
+        string GetTitleString();
 
         /**
          * @return title as cell reference.

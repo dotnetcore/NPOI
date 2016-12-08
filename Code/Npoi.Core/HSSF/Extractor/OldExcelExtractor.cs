@@ -168,7 +168,7 @@ namespace Npoi.Core.HSSF.Extractor
          *  for these old file formats
          */
 
-        public String Text {
+        public string Text {
             get
             {
                 StringBuilder text = new StringBuilder();

@@ -62,7 +62,7 @@ namespace Npoi.Core.HSSF.UserModel
             return _iBook.CheckExternSheet(sheetIndex);
         }
 
-        public int GetExternalSheetIndex(string workbookName, String sheetName)
+        public int GetExternalSheetIndex(string workbookName, string sheetName)
         {
             return _iBook.GetExternalSheetIndex(workbookName, sheetName);
         }
@@ -72,7 +72,7 @@ namespace Npoi.Core.HSSF.UserModel
             return _iBook.GetExternalName(externSheetIndex, externNameIndex);
         }
 
-        public ExternalName GetExternalName(string nameName, String sheetName, int externalWorkbookNumber)
+        public ExternalName GetExternalName(string nameName, string sheetName, int externalWorkbookNumber)
         {
             throw new InvalidOperationException("XSSF-style external names are not supported for HSSF");
         }
@@ -119,7 +119,7 @@ namespace Npoi.Core.HSSF.UserModel
             return _uBook.GetSheetIndex(sheetName);
         }
 
-        public String GetSheetName(int sheetIndex)
+        public string GetSheetName(int sheetIndex)
         {
             return _uBook.GetSheetName(sheetIndex);
         }
@@ -154,7 +154,7 @@ namespace Npoi.Core.HSSF.UserModel
                 }
 
                 // Look up the local sheet
-                String sheetName = GetSheetName(localSheetIndex);
+                string sheetName = GetSheetName(localSheetIndex);
 
                 // Is it a single local sheet, or a range?
                 int lastLocalSheetIndex = _iBook.GetLastSheetIndexFromExternSheetIndex(externSheetIndex);
@@ -164,7 +164,7 @@ namespace Npoi.Core.HSSF.UserModel
                 }
                 else
                 {
-                    String lastSheetName = GetSheetName(lastLocalSheetIndex);
+                    string lastSheetName = GetSheetName(lastLocalSheetIndex);
                     sheet = new ExternalSheetRange(null, sheetName, lastSheetName);
                 }
             }
@@ -176,22 +176,22 @@ namespace Npoi.Core.HSSF.UserModel
             throw new InvalidOperationException("XSSF-style external references are not supported for HSSF");
         }
 
-        public String ResolveNameXText(NameXPtg n)
+        public string ResolveNameXText(NameXPtg n)
         {
             return _iBook.ResolveNameXText(n.SheetRefIndex, n.NameIndex);
         }
 
-        public String GetSheetFirstNameByExternSheet(int externSheetIndex)
+        public string GetSheetFirstNameByExternSheet(int externSheetIndex)
         {
             return _iBook.FindSheetFirstNameFromExternSheet(externSheetIndex);
         }
 
-        public String GetSheetLastNameByExternSheet(int externSheetIndex)
+        public string GetSheetLastNameByExternSheet(int externSheetIndex)
         {
             return _iBook.FindSheetLastNameFromExternSheet(externSheetIndex);
         }
 
-        public String GetNameText(NamePtg namePtg)
+        public string GetNameText(NamePtg namePtg)
         {
             return _iBook.GetNameRecord(namePtg.Index).NameText;
         }
@@ -250,7 +250,7 @@ namespace Npoi.Core.HSSF.UserModel
                 }
             }
 
-            public String NameText
+            public string NameText
             {
                 get
                 {
@@ -297,9 +297,9 @@ namespace Npoi.Core.HSSF.UserModel
             }
             else
             {
-                String workbookName = sheetIden.BookName;
-                String firstSheetName = sheetIden.SheetId.Name;
-                String lastSheetName = firstSheetName;
+                string workbookName = sheetIden.BookName;
+                string firstSheetName = sheetIden.SheetId.Name;
+                string lastSheetName = firstSheetName;
 
                 if (sheetIden is SheetRangeIdentifier)
                 {

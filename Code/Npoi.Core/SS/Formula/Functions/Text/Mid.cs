@@ -35,7 +35,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return ErrorEval.VALUE_INVALID;
             }
 
-            String text = EvaluateStringArg(args[0], srcCellRow, srcCellCol);
+            string text = EvaluateStringArg(args[0], srcCellRow, srcCellCol);
             int startCharNum = EvaluateIntArg(args[1], srcCellRow, srcCellCol);
             int numChars = EvaluateIntArg(args[2], srcCellRow, srcCellCol);
             int startIx = startCharNum - 1; // convert to zero-based
@@ -56,7 +56,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return new StringEval("");
             }
             int endIx = Math.Min(startIx + numChars, len);
-            String result = text.Substring(startIx, endIx - startIx);
+            string result = text.Substring(startIx, endIx - startIx);
             return new StringEval(result);
         }
     }

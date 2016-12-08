@@ -56,11 +56,11 @@ namespace Npoi.Core.HSSF.UserModel
         /// Gets or sets the sheets name which this named range is referenced to
         /// </summary>
         /// <value>sheet name, which this named range refered to</value>
-        public String SheetName
+        public string SheetName
         {
             get
             {
-                String result;
+                string result;
                 int indexToExternSheet = _definedNameRec.ExternSheetNumber;
 
                 result = book.Workbook.FindSheetFirstNameFromExternSheet(indexToExternSheet);
@@ -80,11 +80,11 @@ namespace Npoi.Core.HSSF.UserModel
         /// Gets or sets the name of the named range
         /// </summary>
         /// <value>named range name</value>
-        public String NameName
+        public string NameName
         {
             get
             {
-                String result = _definedNameRec.NameText;
+                string result = _definedNameRec.NameText;
 
                 return result;
             }
@@ -103,7 +103,7 @@ namespace Npoi.Core.HSSF.UserModel
                     {
                         if (rec.NameText.Equals(NameName, StringComparison.OrdinalIgnoreCase) && sheetNumber == rec.SheetNumber)
                         {
-                            String msg = "The " + (sheetNumber == 0 ? "workbook" : "sheet") + " already contains this name: " + value;
+                            string msg = "The " + (sheetNumber == 0 ? "workbook" : "sheet") + " already contains this name: " + value;
                             _definedNameRec.NameText = (value + "(2)");
                             throw new ArgumentException(msg);
                         }
@@ -112,7 +112,7 @@ namespace Npoi.Core.HSSF.UserModel
                 // Update our comment, if there is one
                 if (_commentRec != null)
                 {
-                    String oldName = _commentRec.NameText;
+                    string oldName = _commentRec.NameText;
                     _commentRec.NameText = value;
                     book.Workbook.UpdateNameCommentRecordCache(_commentRec);
                 }
@@ -130,7 +130,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-        public String RefersToFormula
+        public string RefersToFormula
         {
             get
             {
@@ -253,7 +253,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name).Append(" [");

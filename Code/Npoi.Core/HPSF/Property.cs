@@ -357,7 +357,7 @@ namespace Npoi.Core.HPSF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString() {
+        public override string ToString() {
             StringBuilder b = new StringBuilder();
             b.Append(GetType().Name);
             b.Append('[');
@@ -367,9 +367,9 @@ namespace Npoi.Core.HPSF
             b.Append(GetType());
             object value = Value;
             b.Append(", value: ");
-            if (value is String) {
+            if (value is string) {
                 b.Append(value.ToString());
-                String s = value.ToString();
+                string s = value.ToString();
                 int l = s.Length;
 
                 byte[] bytes = new byte[l * 2];
@@ -382,7 +382,7 @@ namespace Npoi.Core.HPSF
                 }
                 b.Append(" [");
                 if (bytes.Length > 0) {
-                    String hex = HexDump.Dump(bytes, 0L, 0);
+                    string hex = HexDump.Dump(bytes, 0L, 0);
                     b.Append(hex);
                 }
                 b.Append("]");
@@ -390,7 +390,7 @@ namespace Npoi.Core.HPSF
             else if (value is byte[]) {
                 byte[] bytes = (byte[])value;
                 if (bytes.Length > 0) {
-                    String hex = HexDump.Dump(bytes, 0L, 0);
+                    string hex = HexDump.Dump(bytes, 0L, 0);
                     b.Append(hex);
                 }
             }

@@ -361,7 +361,7 @@ namespace Npoi.Core.HSSF.Record
          * @return  text to Display
          */
 
-        public String Label
+        public string Label
         {
             get
             {
@@ -379,7 +379,7 @@ namespace Npoi.Core.HSSF.Record
          * @return  the Address of this hyperlink
          */
 
-        public String Address
+        public string Address
         {
             get
             {
@@ -401,7 +401,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public String TextMark
+        public string TextMark
         {
             get
             {
@@ -425,7 +425,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public String TargetFrame
+        public string TargetFrame
         {
             get
             {
@@ -433,7 +433,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public String ShortFilename
+        public string ShortFilename
         {
             get
             {
@@ -602,7 +602,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

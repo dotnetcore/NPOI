@@ -104,7 +104,7 @@ namespace Npoi.Core.SS.UserModel
 
         static BuiltinFormats()
         {
-            List<String> m = new List<String>();
+            List<string> m = new List<string>();
             PutFormat(m, 0, "General");
             PutFormat(m, 1, "0");
             PutFormat(m, 2, "0.00");
@@ -150,11 +150,11 @@ namespace Npoi.Core.SS.UserModel
             PutFormat(m, 0x30, "##0.0E+0");
             PutFormat(m, 0x31, "@");
             //String[] ss = new String[m.Count];
-            String[] ss = m.ToArray();
+            string[] ss = m.ToArray();
             _formats = ss;
         }
 
-        private static void PutFormat(List<String> m, int index, String value)
+        private static void PutFormat(List<string> m, int index, string value)
         {
             if (m.Count != index)
             {
@@ -168,9 +168,9 @@ namespace Npoi.Core.SS.UserModel
          */
 
         [Obsolete]
-        public static Dictionary<int, String> GetBuiltinFormats()
+        public static Dictionary<int, string> GetBuiltinFormats()
         {
-            Dictionary<int, String> result = new Dictionary<int, String>();
+            Dictionary<int, string> result = new Dictionary<int, string>();
             for (int i = 0; i < _formats.Length; i++)
             {
                 result.Add(i, _formats[i]);
@@ -182,7 +182,7 @@ namespace Npoi.Core.SS.UserModel
          * @return array of built-in data formats
          */
 
-        public static String[] GetAll()
+        public static string[] GetAll()
         {
             return (string[])_formats.Clone();
         }
@@ -194,7 +194,7 @@ namespace Npoi.Core.SS.UserModel
          * @return string represented at index of format or <code>null</code> if there is not a built-in format at that index
          */
 
-        public static String GetBuiltinFormat(int index)
+        public static string GetBuiltinFormat(int index)
         {
             if (index < 0 || index >= _formats.Length)
             {
@@ -215,7 +215,7 @@ namespace Npoi.Core.SS.UserModel
 
         public static int GetBuiltinFormat(string pFmt)
         {
-            String fmt;
+            string fmt;
             if (string.Compare(pFmt, ("TEXT"), StringComparison.OrdinalIgnoreCase) == 0)
             {
                 fmt = "@";

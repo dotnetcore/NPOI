@@ -216,7 +216,7 @@ namespace Npoi.Core.DDF
         /// Gets the name of the record.
         /// </summary>
         /// <value>The name of the record.</value>
-        public abstract String RecordName { get; }
+        public abstract string RecordName { get; }
 
         /// <summary>
         /// This class Reads the standard escher header.
@@ -274,7 +274,7 @@ namespace Npoi.Core.DDF
             /// <returns>
             /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
             /// </returns>
-            public override String ToString() {
+            public override string ToString() {
                 return "EscherRecordHeader{" +
                         "options=" + options +
                         ", recordId=" + recordId +
@@ -304,7 +304,7 @@ namespace Npoi.Core.DDF
          * @return xml representation of this record
          */
 
-        public virtual String ToXml(string tab) {
+        public virtual string ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append("<").Append(GetType().Name).Append(">\n")
                     .Append(tab).Append("\t").Append("<RecordId>0x").Append(HexDump.ToHex(_recordId)).Append("</RecordId>\n")
@@ -313,14 +313,14 @@ namespace Npoi.Core.DDF
             return builder.ToString();
         }
 
-        protected String FormatXmlRecordHeader(string className, String recordId, String version, String instance) {
+        protected string FormatXmlRecordHeader(string className, string recordId, string version, string instance) {
             StringBuilder builder = new StringBuilder();
             builder.Append("<").Append(className).Append(" recordId=\"0x").Append(recordId).Append("\" version=\"0x")
                     .Append(version).Append("\" instance=\"0x").Append(instance).Append("\" size=\"").Append(RecordSize).Append("\">\n");
             return builder.ToString();
         }
 
-        public String ToXml() {
+        public string ToXml() {
             return ToXml("");
         }
     }

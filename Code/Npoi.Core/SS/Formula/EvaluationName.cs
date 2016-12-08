@@ -30,7 +30,7 @@ namespace Npoi.Core.SS.Formula
 
     public interface IEvaluationName
     {
-        String NameText { get; }
+        string NameText { get; }
 
         bool IsFunctionName { get; }
 

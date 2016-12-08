@@ -167,7 +167,7 @@ namespace Npoi.Core.POIFS.FileSystem
             Stream innerOs = _stream.GetOutputStream();
             DocumentOutputStream os = new DocumentOutputStream(innerOs, size);
             POIFSDocumentPath path = new POIFSDocumentPath(name.Split(new string[] { "\\\\" }, StringSplitOptions.RemoveEmptyEntries));
-            String docName = path.GetComponent(path.Length - 1);
+            string docName = path.GetComponent(path.Length - 1);
             POIFSWriterEvent event1 = new POIFSWriterEvent(os, path, docName, size);
             Writer.ProcessPOIFSWriterEvent(event1);
             innerOs.Dispose();
@@ -255,7 +255,7 @@ namespace Npoi.Core.POIFS.FileSystem
         protected object[] GetViewableArray()
         {
             object[] results = new object[1];
-            String result;
+            string result;
 
             try
             {
@@ -308,7 +308,7 @@ namespace Npoi.Core.POIFS.FileSystem
     * @return short description
     */
 
-        protected String GetShortDescription()
+        protected string GetShortDescription()
         {
             StringBuilder buffer = new StringBuilder();
 

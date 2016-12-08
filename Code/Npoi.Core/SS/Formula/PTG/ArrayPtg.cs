@@ -121,7 +121,7 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return false; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder("[ArrayPtg]\n");
 
@@ -203,7 +203,7 @@ namespace Npoi.Core.SS.Formula.PTG
             }
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             StringBuilder b = new StringBuilder();
             b.Append("{");
@@ -233,7 +233,7 @@ namespace Npoi.Core.SS.Formula.PTG
             {
                 return ""; // TODO - how is 'empty value' represented in formulas?
             }
-            if (o is String)
+            if (o is string)
             {
                 return "\"" + (string)o + "\"";
             }
@@ -306,7 +306,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 }
             }
 
-            public override String ToFormulaString()
+            public override string ToFormulaString()
             {
                 throw Invalid();
             }

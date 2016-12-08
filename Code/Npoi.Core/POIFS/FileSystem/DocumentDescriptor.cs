@@ -45,7 +45,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// </summary>
         /// <param name="path">the Document path</param>
         /// <param name="name">the Document name</param>
-        public DocumentDescriptor(POIFSDocumentPath path, String name)
+        public DocumentDescriptor(POIFSDocumentPath path, string name)
         {
             if (path == null)
             {
@@ -129,7 +129,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder(40 * (path.Length + 1));
 

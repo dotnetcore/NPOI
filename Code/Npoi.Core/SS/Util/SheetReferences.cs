@@ -42,7 +42,7 @@ namespace Npoi.Core.SS.Util
             map[number] = sheetName;
         }
 
-        public String GetSheetName(int number)
+        public string GetSheetName(int number)
         {
             return (string)map[number];
         }

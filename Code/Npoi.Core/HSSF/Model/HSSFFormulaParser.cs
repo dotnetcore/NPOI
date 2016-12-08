@@ -78,7 +78,7 @@ namespace Npoi.Core.HSSF.Model
          * @return a human readable String
          */
 
-        public static String ToFormulaString(HSSFWorkbook book, Ptg[] ptgs) {
+        public static string ToFormulaString(HSSFWorkbook book, Ptg[] ptgs) {
             return FormulaRenderer.ToFormulaString(HSSFEvaluationWorkbook.Create(book), ptgs);
         }
     }

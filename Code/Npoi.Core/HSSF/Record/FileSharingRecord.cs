@@ -126,13 +126,13 @@ namespace Npoi.Core.HSSF.Record
          * @returns username of the user that Created the file
          */
 
-        public String Username
+        public string Username
         {
             get { return field_3_username_value; }
             set { field_3_username_value = value; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

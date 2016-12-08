@@ -65,7 +65,7 @@ namespace Npoi.Core.HSSF.Record
             set { field_1_mode = value; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

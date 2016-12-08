@@ -52,7 +52,7 @@ namespace Npoi.Core.HSSF.Record
             field_2_denominator = in1.ReadShort();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

@@ -77,7 +77,7 @@ namespace Npoi.Core.SS.Formula.Eval
          * @return the String representation of the specified Excel error code.
          */
 
-        public static String GetText(int errorCode)
+        public static string GetText(int errorCode)
         {
             if (FormulaError.IsValidCode(errorCode))
             {
@@ -101,7 +101,7 @@ namespace Npoi.Core.SS.Formula.Eval
             get { return _error.LongCode; }
         }
 
-        public String ErrorString
+        public string ErrorString
         {
             get
             {
@@ -109,7 +109,7 @@ namespace Npoi.Core.SS.Formula.Eval
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name).Append(" [");

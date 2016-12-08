@@ -44,7 +44,7 @@ namespace Npoi.Core.SS.Formula.Functions
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval numberVE)
         {
-            String number;
+            string number;
             if (numberVE is RefEval)
             {
                 RefEval re = (RefEval)numberVE;
@@ -59,7 +59,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return ErrorEval.NUM_ERROR;
             }
 
-            String unsigned;
+            string unsigned;
 
             //If the leftmost bit is 0 -- number is positive.
             bool isPositive;
@@ -74,7 +74,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 isPositive = number.StartsWith("0");
             }
 
-            String value;
+            string value;
             try
             {
                 if (isPositive)
@@ -87,7 +87,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 {
                     //The leftmost bit is 1 -- this is negative number
                     //Inverse bits [1-9]
-                    String inverted = toggleBits(unsigned);
+                    string inverted = toggleBits(unsigned);
                     // Calculate decimal number
                     int sum = getDecimalValue(inverted);
 
@@ -124,7 +124,7 @@ namespace Npoi.Core.SS.Formula.Functions
         {
             long i = Convert.ToInt64(s, 2);
             long i2 = i ^ ((1L << s.Length) - 1);
-            String s2 = Convert.ToString(i2, 2);
+            string s2 = Convert.ToString(i2, 2);
             while (s2.Length < s.Length) s2 = '0' + s2;
             return s2;
         }

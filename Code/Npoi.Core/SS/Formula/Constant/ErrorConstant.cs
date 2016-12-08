@@ -61,7 +61,7 @@ namespace Npoi.Core.SS.Formula.Constant
         /// Gets the text.
         /// </summary>
         /// <value>The text.</value>
-        public String Text
+        public string Text
         {
             get
             {
@@ -118,7 +118,7 @@ namespace Npoi.Core.SS.Formula.Constant
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name).Append(" [");

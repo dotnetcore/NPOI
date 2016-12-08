@@ -77,9 +77,9 @@ namespace Npoi.Core.SS.Util
         /// 'SheetName!$A$1:$A$5'.
         /// </summary>
         /// <returns>formatted data marker</returns>
-        public String FormatAsString()
+        public string FormatAsString()
         {
-            String sheetName = (sheet == null) ? (null) : (sheet.SheetName);
+            string sheetName = (sheet == null) ? (null) : (sheet.SheetName);
             if (range == null)
             {
                 return null;

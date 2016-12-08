@@ -58,7 +58,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <value>the names of all the entries that may be retrieved with
         /// getEntry(string), which may be empty (if this DirectoryEntry is empty
         /// </value>
-        List<String> EntryNames { get; }
+        List<string> EntryNames { get; }
 
         /// <summary>
         ///is this DirectoryEntry empty?

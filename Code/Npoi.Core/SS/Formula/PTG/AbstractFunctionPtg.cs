@@ -58,7 +58,7 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return false; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name).Append(" [");
@@ -84,7 +84,7 @@ namespace Npoi.Core.SS.Formula.PTG
             }
         }
 
-        public String Name
+        public string Name
         {
             get { return LookupName(_functionIndex); }
         }
@@ -99,12 +99,12 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return _functionIndex == FUNCTION_INDEX_EXTERNAL; }
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             return Name;
         }
 
-        public override String ToFormulaString(string[] operands)
+        public override string ToFormulaString(string[] operands)
         {
             StringBuilder buf = new StringBuilder();
 
@@ -121,7 +121,7 @@ namespace Npoi.Core.SS.Formula.PTG
             return buf.ToString();
         }
 
-        private static void AppendArgs(StringBuilder buf, int firstArgIx, String[] operands)
+        private static void AppendArgs(StringBuilder buf, int firstArgIx, string[] operands)
         {
             buf.Append('(');
             for (int i = firstArgIx; i < operands.Length; i++)
@@ -149,7 +149,7 @@ namespace Npoi.Core.SS.Formula.PTG
             return ix >= 0;
         }
 
-        protected String LookupName(short index)
+        protected string LookupName(short index)
         {
             if (index == FunctionMetadataRegistry.FUNCTION_INDEX_EXTERNAL)
             {

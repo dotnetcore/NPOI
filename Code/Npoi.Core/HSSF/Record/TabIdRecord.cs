@@ -76,7 +76,7 @@ namespace Npoi.Core.HSSF.Record
         //    return field_1_tabids;
         //}
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

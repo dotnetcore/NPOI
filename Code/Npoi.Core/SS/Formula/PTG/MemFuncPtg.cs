@@ -54,7 +54,7 @@ namespace Npoi.Core.SS.Formula.PTG
             out1.WriteShort(field_1_len_ref_subexpression);
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             return "";
         }

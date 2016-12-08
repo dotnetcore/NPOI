@@ -63,10 +63,10 @@ namespace Npoi.Core.SS.Util
 
         private class UnicodeMapping
         {
-            public String entityName;
-            public String resolvedValue;
+            public string entityName;
+            public string resolvedValue;
 
-            public UnicodeMapping(string pEntityName, String pResolvedValue)
+            public UnicodeMapping(string pEntityName, string pResolvedValue)
             {
                 entityName = "&" + pEntityName + ";";
                 resolvedValue = pResolvedValue;
@@ -197,7 +197,7 @@ namespace Npoi.Core.SS.Util
          * @return         A new Cell
          */
 
-        public static ICell CreateCell(IRow row, int column, String value, ICellStyle style)
+        public static ICell CreateCell(IRow row, int column, string value, ICellStyle style)
         {
             ICell cell = GetCell(row, column);
 
@@ -219,7 +219,7 @@ namespace Npoi.Core.SS.Util
          *@return         A new Cell.
          */
 
-        public static ICell CreateCell(IRow row, int column, String value)
+        public static ICell CreateCell(IRow row, int column, string value)
         {
             return CreateCell(row, column, value, null);
         }
@@ -264,11 +264,11 @@ namespace Npoi.Core.SS.Util
          *@param cell The cell that needs it's style changes
          */
 
-        public static void SetCellStyleProperty(ICell cell, IWorkbook workbook, String propertyName, object propertyValue)
+        public static void SetCellStyleProperty(ICell cell, IWorkbook workbook, string propertyName, object propertyValue)
         {
             ICellStyle originalStyle = cell.CellStyle;
             ICellStyle newStyle = null;
-            Dictionary<String, object> values = GetFormatProperties(originalStyle);
+            Dictionary<string, object> values = GetFormatProperties(originalStyle);
             if (values.ContainsKey(propertyName))
                 values[propertyName] = propertyValue;
             else
@@ -282,7 +282,7 @@ namespace Npoi.Core.SS.Util
             {
                 ICellStyle wbStyle = workbook.GetCellStyleAt(i);
 
-                Dictionary<String, object> wbStyleMap = GetFormatProperties(wbStyle);
+                Dictionary<string, object> wbStyleMap = GetFormatProperties(wbStyle);
 
                 if (values.Keys.Count != wbStyleMap.Keys.Count) continue;
 
@@ -326,9 +326,9 @@ namespace Npoi.Core.SS.Util
          * @see #setFormatProperties(org.apache.poi.ss.usermodel.CellStyle, org.apache.poi.ss.usermodel.Workbook, java.util.Map)
          */
 
-        private static Dictionary<String, object> GetFormatProperties(ICellStyle style)
+        private static Dictionary<string, object> GetFormatProperties(ICellStyle style)
         {
-            Dictionary<String, object> properties = new Dictionary<String, object>();
+            Dictionary<string, object> properties = new Dictionary<string, object>();
             PutShort(properties, ALIGNMENT, (short)style.Alignment);
             PutShort(properties, BORDER_BOTTOM, (short)style.BorderBottom);
             PutShort(properties, BORDER_DIAGONAL, (short)style.BorderDiagonal);
@@ -365,7 +365,7 @@ namespace Npoi.Core.SS.Util
          * @see #getFormatProperties(CellStyle)
          */
 
-        private static void SetFormatProperties(ICellStyle style, IWorkbook workbook, Dictionary<String, object> properties)
+        private static void SetFormatProperties(ICellStyle style, IWorkbook workbook, Dictionary<string, object> properties)
         {
             style.Alignment = (HorizontalAlignment)GetShort(properties, ALIGNMENT);
             style.BorderBottom = (BorderStyle)GetShort(properties, BORDER_BOTTOM);
@@ -402,7 +402,7 @@ namespace Npoi.Core.SS.Util
          * @return property value, or zero
          */
 
-        private static short GetShort(Dictionary<String, object> properties, String name)
+        private static short GetShort(Dictionary<string, object> properties, string name)
         {
             object value = properties[name];
             short result = 0;
@@ -420,7 +420,7 @@ namespace Npoi.Core.SS.Util
          * @return property value, or false
          */
 
-        private static bool GetBoolean(Dictionary<String, object> properties, String name)
+        private static bool GetBoolean(Dictionary<string, object> properties, string name)
         {
             object value = properties[name];
             bool result = false;
@@ -438,7 +438,7 @@ namespace Npoi.Core.SS.Util
          * @param value property value
          */
 
-        private static void PutShort(Dictionary<String, object> properties, String name, short value)
+        private static void PutShort(Dictionary<string, object> properties, string name, short value)
         {
             if (properties.ContainsKey(name))
                 properties[name] = value;
@@ -454,7 +454,7 @@ namespace Npoi.Core.SS.Util
          * @param value property value
          */
 
-        private static void PutBoolean(Dictionary<String, object> properties, String name, bool value)
+        private static void PutBoolean(Dictionary<string, object> properties, string name, bool value)
         {
             if (properties.ContainsKey(name))
                 properties[name] = value;
@@ -472,14 +472,14 @@ namespace Npoi.Core.SS.Util
 
         public static ICell TranslateUnicodeValues(ICell cell)
         {
-            String s = cell.RichStringCellValue.String;
+            string s = cell.RichStringCellValue.String;
             bool foundUnicode = false;
-            String lowerCaseStr = s.ToLower();
+            string lowerCaseStr = s.ToLower();
 
             for (int i = 0; i < unicodeMappings.Length; i++)
             {
                 UnicodeMapping entry = unicodeMappings[i];
-                String key = entry.entityName;
+                string key = entry.entityName;
                 if (lowerCaseStr.IndexOf(key, StringComparison.Ordinal) != -1)
                 {
                     s = s.Replace(key, entry.resolvedValue);
@@ -515,7 +515,7 @@ namespace Npoi.Core.SS.Util
         };
         }
 
-        private static UnicodeMapping um(string entityName, String resolvedValue)
+        private static UnicodeMapping um(string entityName, string resolvedValue)
         {
             return new UnicodeMapping(entityName, resolvedValue);
         }

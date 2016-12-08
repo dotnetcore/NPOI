@@ -34,7 +34,7 @@ namespace Npoi.Core.SS.Formula.Function
 
     internal class FunctionMetadataReader
     {
-        private const String METADATA_FILE_NAME = "functionMetadata.txt";
+        private const string METADATA_FILE_NAME = "functionMetadata.txt";
 
         /** plain ASCII text metadata file uses three dots for ellipsis */
         private const string ELLIPSIS = "...";
@@ -61,7 +61,7 @@ namespace Npoi.Core.SS.Formula.Function
                 {
                     while (true)
                     {
-                        String line = br.ReadLine();
+                        string line = br.ReadLine();
                         if (line == null)
                         {
                             break;
@@ -70,7 +70,7 @@ namespace Npoi.Core.SS.Formula.Function
                         {
                             continue;
                         }
-                        String TrimLine = line.Trim();
+                        string TrimLine = line.Trim();
                         if (TrimLine.Length < 1)
                         {
                             continue;
@@ -87,16 +87,16 @@ namespace Npoi.Core.SS.Formula.Function
             }
         }
 
-        private static void ProcessLine(FunctionDataBuilder fdb, String line)
+        private static void ProcessLine(FunctionDataBuilder fdb, string line)
         {
             Regex regex = new Regex(TAB_DELIM_PATTERN);
-            String[] parts = regex.Split(line);
+            string[] parts = regex.Split(line);
             if (parts.Length != 8)
             {
                 throw new Exception("Bad line format '" + line + "' - expected 8 data fields");
             }
             int functionIndex = ParseInt(parts[0]);
-            String functionName = parts[1];
+            string functionName = parts[1];
             int minParams = ParseInt(parts[2]);
             int maxParams = ParseInt(parts[3]);
             byte returnClassCode = ParseReturnTypeCode(parts[4]);
@@ -131,7 +131,7 @@ namespace Npoi.Core.SS.Formula.Function
                 return EMPTY_BYTE_ARRAY;
             }
             Regex regex = new Regex(SPACE_DELIM_PATTERN);
-            String[] array = regex.Split(codes);
+            string[] array = regex.Split(codes);
             int nItems = array.Length;
             if (ELLIPSIS.Equals(array[nItems - 1]))
             {

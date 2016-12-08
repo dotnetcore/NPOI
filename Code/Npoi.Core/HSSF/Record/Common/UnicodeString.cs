@@ -109,7 +109,7 @@ namespace Npoi.Core.HSSF.Record
                 return _character - r._character;
             }
 
-            public override String ToString()
+            public override string ToString()
             {
                 return "character=" + _character + ",fontIndex=" + _fontIndex;
             }
@@ -381,7 +381,7 @@ namespace Npoi.Core.HSSF.Record
                 }
             }
 
-            public String PhoneticText
+            public string PhoneticText
             {
                 get
                 {
@@ -622,7 +622,7 @@ namespace Npoi.Core.HSSF.Record
              * @return the actual string this Contains as a java String object
              */
 
-        public String String
+        public string String
         {
             get
             {
@@ -786,7 +786,7 @@ namespace Npoi.Core.HSSF.Record
          * @return String value of the record
          */
 
-        public override String ToString()
+        public override string ToString()
         {
             return String;
         }
@@ -799,7 +799,7 @@ namespace Npoi.Core.HSSF.Record
          *
          */
 
-        public String GetDebugInfo()
+        public string GetDebugInfo()
         {
             StringBuilder buffer = new StringBuilder();
 

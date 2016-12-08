@@ -370,7 +370,7 @@ namespace Npoi.Core.HSSF.Record.CF
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
             buffer.Append("	[Font Formatting]\n");

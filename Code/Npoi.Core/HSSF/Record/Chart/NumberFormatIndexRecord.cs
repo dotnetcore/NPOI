@@ -50,7 +50,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             field_1_formatIndex = in1.ReadShort();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

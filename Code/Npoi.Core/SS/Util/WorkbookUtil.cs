@@ -30,7 +30,7 @@ namespace Npoi.Core.SS.Util
          * @return a valid string, "empty" if to short, "null" if null
          */
 
-        public static String CreateSafeSheetName(string nameProposal)
+        public static string CreateSafeSheetName(string nameProposal)
         {
             return CreateSafeSheetName(nameProposal, ' ');
         }
@@ -55,7 +55,7 @@ namespace Npoi.Core.SS.Util
          * @return a valid string, "empty" if to short, "null" if null
          */
 
-        public static String CreateSafeSheetName(string nameProposal, char replaceChar)
+        public static string CreateSafeSheetName(string nameProposal, char replaceChar)
         {
             if (nameProposal == null)
             {
@@ -66,7 +66,7 @@ namespace Npoi.Core.SS.Util
                 return "empty";
             }
             int length = Math.Min(31, nameProposal.Length);
-            String shortenname = nameProposal.Substring(0, length);
+            string shortenname = nameProposal.Substring(0, length);
             StringBuilder result = new StringBuilder(shortenname);
             for (int i = 0; i < length; i++)
             {

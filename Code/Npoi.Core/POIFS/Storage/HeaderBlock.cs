@@ -241,7 +241,7 @@ namespace Npoi.Core.POIFS.Storage
 
         private static string LongToHex(long value)
         {
-            return new String(HexDump.LongToHex(value));
+            return new string(HexDump.LongToHex(value));
         }
 
         /// <summary>
@@ -254,7 +254,7 @@ namespace Npoi.Core.POIFS.Storage
             if (read < 0)
                 //Cant have -1 bytes Read in the error message!
                 read = 0;
-            String type = " byte" + ((read == 1) ? ("") : ("s"));
+            string type = " byte" + ((read == 1) ? ("") : ("s"));
 
             return new IOException("Unable to Read entire header; "
                                   + read + type + " Read; expected "

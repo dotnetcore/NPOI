@@ -72,7 +72,7 @@ namespace Npoi.Core.HSSF.Record.Common
             errorCheck = in1.ReadInt();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
             buffer.Append(" [FEATURE FORMULA ERRORS]\n");

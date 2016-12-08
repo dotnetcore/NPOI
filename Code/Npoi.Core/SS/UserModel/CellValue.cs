@@ -41,7 +41,7 @@ namespace Npoi.Core.SS.UserModel
         private int _errorCode;
 
         private CellValue(CellType cellType, double numberValue, bool boolValue,
-                String textValue, int errorCode)
+                string textValue, int errorCode)
         {
             _cellType = cellType;
             _numberValue = numberValue;
@@ -98,7 +98,7 @@ namespace Npoi.Core.SS.UserModel
          * @return Returns the stringValue.
          */
 
-        public String StringValue
+        public string StringValue
         {
             get
             {
@@ -132,7 +132,7 @@ namespace Npoi.Core.SS.UserModel
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name).Append(" [");
@@ -141,7 +141,7 @@ namespace Npoi.Core.SS.UserModel
             return sb.ToString();
         }
 
-        public String FormatAsString()
+        public string FormatAsString()
         {
             switch (_cellType)
             {

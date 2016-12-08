@@ -102,8 +102,8 @@ namespace Npoi.Core.SS.UserModel
 
         IConditionalFormattingRule CreateConditionalFormattingRule(
                 ComparisonOperator comparisonOperation,
-                String formula1,
-                String formula2);
+                string formula1,
+                string formula2);
 
         /// <summary>
         /// Create a conditional formatting rule that Compares a cell value to a formula calculated result, using an operator
@@ -113,7 +113,7 @@ namespace Npoi.Core.SS.UserModel
         /// <returns>a conditional formatting rule</returns>
         IConditionalFormattingRule CreateConditionalFormattingRule(
                 ComparisonOperator comparisonOperation,
-                String formula);
+                string formula);
 
         /// <summary>
         /// Create a conditional formatting rule based on a Boolean formula.

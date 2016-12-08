@@ -128,8 +128,8 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString() {
-            String dataStr;
+        public override string ToString() {
+            string dataStr;
             using (MemoryStream b = new MemoryStream()) {
                 try {
                     HexDump.Dump(_complexData, 0, b, 0);
@@ -146,8 +146,8 @@ namespace Npoi.Core.DDF
                     + ", data: " + Environment.NewLine + dataStr;
         }
 
-        public override String ToXml(string tab) {
-            String dataStr = HexDump.ToHex(_complexData, 32);
+        public override string ToXml(string tab) {
+            string dataStr = HexDump.ToHex(_complexData, 32);
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append("<").Append(GetType().Name).Append(" id=\"0x").Append(HexDump.ToHex(Id))
                     .Append("\" name=\"").Append(Name).Append("\" blipId=\"")

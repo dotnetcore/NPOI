@@ -118,7 +118,7 @@ namespace Npoi.Core.SS.Format
                 this.pos = pos;
             }
 
-            public override String ToString()
+            public override string ToString()
             {
                 return "'" + ch + "' @ " + pos;
             }
@@ -210,7 +210,7 @@ namespace Npoi.Core.SS.Format
                 this.formatter = formatter;
             }
 
-            public String HandlePart(Match m, String part, CellFormatType type,
+            public string HandlePart(Match m, string part, CellFormatType type,
                     StringBuilder desc)
             {
                 int pos = desc.Length;

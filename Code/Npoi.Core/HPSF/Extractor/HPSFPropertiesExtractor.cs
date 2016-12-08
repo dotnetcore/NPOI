@@ -52,7 +52,7 @@ namespace Npoi.Core.HPSF.Extractor
         /// Gets the document summary information text.
         /// </summary>
         /// <value>The document summary information text.</value>
-        public String DocumentSummaryInformationText {
+        public string DocumentSummaryInformationText {
             get
             {
                 if (document == null) {  // event based extractor does not have a document
@@ -70,8 +70,8 @@ namespace Npoi.Core.HPSF.Extractor
                 if (cps != null) {
                     IEnumerator keys = cps.NameSet().GetEnumerator();
                     while (keys.MoveNext()) {
-                        String key = keys.Current.ToString();
-                        String val = HelperPropertySet.GetPropertyValueText(cps[key]);
+                        string key = keys.Current.ToString();
+                        string val = HelperPropertySet.GetPropertyValueText(cps[key]);
                         text.Append(key + " = " + val + "\n");
                     }
                 }
@@ -84,7 +84,7 @@ namespace Npoi.Core.HPSF.Extractor
         /// Gets the summary information text.
         /// </summary>
         /// <value>The summary information text.</value>
-        public String SummaryInformationText {
+        public string SummaryInformationText {
             get
             {
                 if (document == null) {  // event based extractor does not have a document
@@ -113,13 +113,13 @@ namespace Npoi.Core.HPSF.Extractor
             Wellknown.PropertyIDMap idMap = ps.PropertySetIDMap;
             Property[] props = ps.Properties;
             for (int i = 0; i < props.Length; i++) {
-                String type = props[i].ID.ToString(CultureInfo.InvariantCulture);
+                string type = props[i].ID.ToString(CultureInfo.InvariantCulture);
                 object typeObj = idMap.Get(props[i].ID);
                 if (typeObj != null) {
                     type = typeObj.ToString();
                 }
 
-                String val = HelperPropertySet.GetPropertyValueText(props[i].Value);
+                string val = HelperPropertySet.GetPropertyValueText(props[i].Value);
                 text.Append(type + " = " + val + "\n");
             }
 
@@ -131,7 +131,7 @@ namespace Npoi.Core.HPSF.Extractor
         /// the document.
         /// </summary>
         /// <value>All the text from the document.</value>
-        public override String Text {
+        public override string Text {
             get
             {
                 return SummaryInformationText + DocumentSummaryInformationText;
@@ -157,7 +157,7 @@ namespace Npoi.Core.HPSF.Extractor
                 : base(null) {
             }
 
-            public static String GetPropertyValueText(object val) {
+            public static string GetPropertyValueText(object val) {
                 if (val == null) {
                     return "(not set)";
                 }

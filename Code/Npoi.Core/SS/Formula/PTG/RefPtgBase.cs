@@ -162,7 +162,7 @@ namespace Npoi.Core.SS.Formula.PTG
             }
         }
 
-        public String FormatReferenceAsString()
+        public string FormatReferenceAsString()
         {
             // Only make cell references as needed. Memory is an issue
             CellReference cr = new CellReference(Row, Column, !IsRowRelative, !IsColRelative);

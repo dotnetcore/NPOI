@@ -36,11 +36,11 @@ namespace Npoi.Core.SS.Format
         private const int EQ = 4;
         private const int NE = 5;
 
-        private static Dictionary<String, int> TESTS;
+        private static Dictionary<string, int> TESTS;
 
         static CellFormatCondition()
         {
-            TESTS = new Dictionary<String, int>();
+            TESTS = new Dictionary<string, int>();
             TESTS.Add("<", LT);
             TESTS.Add("<=", LE);
             TESTS.Add(">", GT);
@@ -154,7 +154,7 @@ namespace Npoi.Core.SS.Format
          */
 
         public static CellFormatCondition GetInstance(string opString,
-                String constStr)
+                string constStr)
         {
             if (!TESTS.ContainsKey(opString))
                 throw new ArgumentException("Unknown test: " + opString);

@@ -49,9 +49,9 @@ namespace Npoi.Core.SS.Util
                         "use generateContiguous(ref) if you have non-contiguous references");
             }
 
-            String[] parts = SeparateAreaRefs(reference);
+            string[] parts = SeparateAreaRefs(reference);
 
-            String part0 = parts[0];
+            string part0 = parts[0];
             if (parts.Length == 1)
             {
                 // TODO - probably shouldn't initialize area ref when text is really a cell ref
@@ -66,7 +66,7 @@ namespace Npoi.Core.SS.Util
             {
                 throw new ArgumentException("Bad area ref '" + reference + "'");
             }
-            String part1 = parts[1];
+            string part1 = parts[1];
             if (IsPlainColumn(part0))
             {
                 if (!IsPlainColumn(part1))
@@ -113,12 +113,12 @@ namespace Npoi.Core.SS.Util
             return true;
         }
 
-        public static AreaReference GetWholeRow(string start, String end)
+        public static AreaReference GetWholeRow(string start, string end)
         {
             return new AreaReference("$A" + start + ":$IV" + end);
         }
 
-        public static AreaReference GetWholeColumn(string start, String end)
+        public static AreaReference GetWholeColumn(string start, string end)
         {
             return new AreaReference(start + "$1:" + end + "$65536");
         }
@@ -240,7 +240,7 @@ namespace Npoi.Core.SS.Util
         public static AreaReference[] GenerateContiguous(string reference)
         {
             List<AreaReference> refs = new List<AreaReference>();
-            String st = reference;
+            string st = reference;
             string[] token = st.Split(',');
             foreach (string t in token)
             {
@@ -300,7 +300,7 @@ namespace Npoi.Core.SS.Util
             int maxRow = Math.Max(_firstCell.Row, _lastCell.Row);
             int minCol = Math.Min(_firstCell.Col, _lastCell.Col);
             int maxCol = Math.Max(_firstCell.Col, _lastCell.Col);
-            String sheetName = _firstCell.SheetName;
+            string sheetName = _firstCell.SheetName;
 
             List<CellReference> refs = new List<CellReference>();
             for (int row = minRow; row <= maxRow; row++)
@@ -326,7 +326,7 @@ namespace Npoi.Core.SS.Util
          * @return the text representation of this area reference as it would appear in a formula.
          */
 
-        public String FormatAsString()
+        public string FormatAsString()
         {
             // Special handling for whole-column references
             if (IsWholeColumnReference())
@@ -355,7 +355,7 @@ namespace Npoi.Core.SS.Util
             return sb.ToString();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name).Append(" [");
@@ -431,11 +431,11 @@ namespace Npoi.Core.SS.Util
             }
             if (delimiterPos < 0)
             {
-                return new String[] { reference, };
+                return new string[] { reference, };
             }
 
-            String partA = reference.Substring(0, delimiterPos);
-            String partB = reference.Substring(delimiterPos + 1);
+            string partA = reference.Substring(0, delimiterPos);
+            string partB = reference.Substring(delimiterPos + 1);
             if (partB.IndexOf(SHEET_NAME_DELIMITER) >= 0)
             {
                 // TODO - are references like "Sheet1!A1:Sheet1:B2" ever valid?
@@ -448,12 +448,12 @@ namespace Npoi.Core.SS.Util
             int plingPos = partA.LastIndexOf(SHEET_NAME_DELIMITER);
             if (plingPos < 0)
             {
-                return new String[] { partA, partB, };
+                return new string[] { partA, partB, };
             }
 
-            String sheetName = partA.Substring(0, plingPos + 1); // +1 to include delimiter
+            string sheetName = partA.Substring(0, plingPos + 1); // +1 to include delimiter
 
-            return new String[] { partA, sheetName + partB, };
+            return new string[] { partA, sheetName + partB, };
         }
     }
 }

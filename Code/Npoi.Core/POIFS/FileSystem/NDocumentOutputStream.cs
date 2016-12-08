@@ -78,7 +78,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * @param name Name of the new entry
          */
 
-        public NDocumentOutputStream(DirectoryEntry parent, String name)
+        public NDocumentOutputStream(DirectoryEntry parent, string name)
         {
             if (!(parent is DirectoryNode))
             {

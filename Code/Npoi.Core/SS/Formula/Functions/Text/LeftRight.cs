@@ -47,7 +47,7 @@ namespace Npoi.Core.SS.Formula.Functions
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0,
                 ValueEval arg1)
         {
-            String arg;
+            string arg;
             int index;
             try
             {
@@ -64,7 +64,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return ErrorEval.VALUE_INVALID;
             }
 
-            String result;
+            string result;
             if (_isLeft)
             {
                 result = arg.Substring(0, Math.Min(arg.Length, index));

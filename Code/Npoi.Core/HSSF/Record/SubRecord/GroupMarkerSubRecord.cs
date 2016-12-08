@@ -53,11 +53,11 @@ namespace Npoi.Core.HSSF.Record
             reserved = buf;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 
-            String nl = Environment.NewLine;
+            string nl = Environment.NewLine;
             buffer.Append("[ftGmo]" + nl);
             buffer.Append("  reserved = ").Append(HexDump.ToHex(reserved)).Append(nl);
             buffer.Append("[/ftGmo]" + nl);

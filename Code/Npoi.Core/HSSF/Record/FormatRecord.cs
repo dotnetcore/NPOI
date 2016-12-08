@@ -43,7 +43,7 @@ namespace Npoi.Core.HSSF.Record
 
         private string field_4_formatstring;
 
-        public FormatRecord(int indexCode, String fs)
+        public FormatRecord(int indexCode, string fs)
         {
             field_1_index_code = indexCode;
             field_4_formatstring = fs;
@@ -94,7 +94,7 @@ namespace Npoi.Core.HSSF.Record
          * @return the format string
          */
 
-        public String FormatString
+        public string FormatString
         {
             get
             {
@@ -102,7 +102,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 
@@ -116,7 +116,7 @@ namespace Npoi.Core.HSSF.Record
 
         public override void Serialize(ILittleEndianOutput out1)
         {
-            String formatString = FormatString;
+            string formatString = FormatString;
             out1.WriteShort(IndexCode);
             out1.WriteShort(formatString.Length);
             out1.WriteByte(field_3_hasMultibyte ? 0x01 : 0x00);

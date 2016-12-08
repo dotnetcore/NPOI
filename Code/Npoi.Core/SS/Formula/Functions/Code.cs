@@ -28,7 +28,7 @@ namespace Npoi.Core.SS.Formula.Functions
             {
                 return e.GetErrorEval();
             }
-            String text = OperandResolver.CoerceValueToString(veText1);
+            string text = OperandResolver.CoerceValueToString(veText1);
 
             if (text.Length == 0)
             {

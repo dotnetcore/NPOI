@@ -63,7 +63,7 @@ namespace Npoi.Core.SS.Formula.PTG
         * @return String the Formula as a String
         */
 
-        public override String ToFormulaString(string[] operands)
+        public override string ToFormulaString(string[] operands)
         {
             StringBuilder buffer = new StringBuilder();
             buffer.Append(operands[0]);

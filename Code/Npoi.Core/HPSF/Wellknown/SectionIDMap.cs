@@ -121,13 +121,13 @@ namespace Npoi.Core.HPSF.Wellknown
         /// sectionFormatID combination is not well-known, the
         /// string "[undefined]" is returned.
         /// </returns>
-        public static String GetPIDString(byte[] sectionFormatID,
+        public static string GetPIDString(byte[] sectionFormatID,
                                           long pid) {
             PropertyIDMap m = GetInstance().Get(sectionFormatID);
             if (m == null)
                 return UNDEFINED;
             else {
-                String s = (string)m.Get(pid);
+                string s = (string)m.Get(pid);
                 if (s == null)
                     return UNDEFINED;
                 return s;

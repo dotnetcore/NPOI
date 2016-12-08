@@ -59,8 +59,8 @@ namespace Npoi.Core.HSSF.UserModel
         /// <returns></returns>
         public IConditionalFormattingRule CreateConditionalFormattingRule(
                 ComparisonOperator comparisonOperation,
-                String formula1,
-                String formula2)
+                string formula1,
+                string formula2)
         {
             HSSFWorkbook wb = (HSSFWorkbook)_sheet.Workbook;
             CFRuleRecord rr = CFRuleRecord.Create(_sheet, (byte)comparisonOperation, formula1, formula2);
@@ -83,7 +83,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         public IConditionalFormattingRule CreateConditionalFormattingRule(
             ComparisonOperator comparisonOperation,
-            String formula1)
+            string formula1)
         {
             HSSFWorkbook wb = (HSSFWorkbook)_sheet.Workbook;
             CFRuleRecord rr = CFRuleRecord.Create(_sheet, (byte)comparisonOperation, formula1, null);

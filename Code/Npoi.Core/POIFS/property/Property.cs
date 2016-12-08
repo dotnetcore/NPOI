@@ -176,7 +176,7 @@ namespace Npoi.Core.POIFS.Properties
                                                               _raw_data).Value;
                     name_offset += LittleEndianConsts.SHORT_SIZE;
                 }
-                _name = new String(char_array, 0, name_length);
+                _name = new string(char_array, 0, name_length);
             }
             _next_child = null;
             _previous_child = null;
@@ -236,7 +236,7 @@ namespace Npoi.Core.POIFS.Properties
         /// Gets or sets the name of this property
         /// </summary>
         /// <value>property name</value>
-        public String Name
+        public string Name
         {
             get { return _name; }
             set
@@ -244,7 +244,7 @@ namespace Npoi.Core.POIFS.Properties
                 char[] char_array = value.ToCharArray();
                 int limit = Math.Min(char_array.Length, _max_name_length);
 
-                _name = new String(char_array, 0, limit);
+                _name = new string(char_array, 0, limit);
                 short offset = 0;
                 int j = 0;
 
@@ -523,7 +523,7 @@ namespace Npoi.Core.POIFS.Properties
         /// POIFSViewable object has not provided its contents.
         /// </summary>
         /// <value>The short description.</value>
-        public String ShortDescription
+        public string ShortDescription
         {
             get
             {

@@ -142,7 +142,7 @@ namespace Npoi.Core.HSSF.Model
             maxformatid = -1;
             uses1904datewindowing = false;
             escherBSERecords = new List<EscherBSERecord>();
-            commentRecords = new Dictionary<String, NameCommentRecord>();
+            commentRecords = new Dictionary<string, NameCommentRecord>();
         }
 
         /**
@@ -420,7 +420,7 @@ namespace Npoi.Core.HSSF.Model
         }
 
         public ExternalName GetExternalName(int externSheetIndex, int externNameIndex) {
-            String nameName = linkTable.ResolveNameXText(externSheetIndex, externNameIndex, this);
+            string nameName = linkTable.ResolveNameXText(externSheetIndex, externNameIndex, this);
             if (nameName == null) {
                 return null;
             }
@@ -610,7 +610,7 @@ namespace Npoi.Core.HSSF.Model
          * @param sheetname the name for the sheet
          */
 
-        public void SetSheetName(int sheetnum, String sheetname) {
+        public void SetSheetName(int sheetnum, string sheetname) {
             CheckSheets(sheetnum);
 
             // YK: Mimic Excel and silently truncate sheet names longer than 31 characters
@@ -634,7 +634,7 @@ namespace Npoi.Core.HSSF.Model
          */
 
         public bool ContainsSheetName(string name, int excludeSheetIdx) {
-            String aName = name;
+            string aName = name;
             if (aName.Length > MAX_SENSITIVE_SHEET_NAME_LEN) {
                 aName = aName.Substring(0, MAX_SENSITIVE_SHEET_NAME_LEN);
             }
@@ -643,7 +643,7 @@ namespace Npoi.Core.HSSF.Model
                 if (excludeSheetIdx == i) {
                     continue;
                 }
-                String bName = boundSheetRecord.Sheetname;
+                string bName = boundSheetRecord.Sheetname;
                 if (bName.Length > MAX_SENSITIVE_SHEET_NAME_LEN) {
                     bName = bName.Substring(0, MAX_SENSITIVE_SHEET_NAME_LEN);
                 }
@@ -663,7 +663,7 @@ namespace Npoi.Core.HSSF.Model
          * @param sheetname the name for the sheet
          */
 
-        public void SetSheetName(int sheetnum, String sheetname, short encoding) {
+        public void SetSheetName(int sheetnum, string sheetname, short encoding) {
             CheckSheets(sheetnum);
             BoundSheetRecord sheet = boundsheets[sheetnum];
             sheet.Sheetname = (sheetname);
@@ -697,7 +697,7 @@ namespace Npoi.Core.HSSF.Model
          * @return sheetname the name for the sheet
          */
 
-        public String GetSheetName(int sheetIndex) {
+        public string GetSheetName(int sheetIndex) {
             return GetBoundSheetRec(sheetIndex).Sheetname;
         }
 
@@ -777,7 +777,7 @@ namespace Npoi.Core.HSSF.Model
             int retval = -1;
 
             for (int k = 0; k < boundsheets.Count; k++) {
-                String sheet = GetSheetName(k);
+                string sheet = GetSheetName(k);
 
                 if (sheet.Equals(name, StringComparison.OrdinalIgnoreCase)) {
                     retval = k;
@@ -1228,9 +1228,9 @@ namespace Npoi.Core.HSSF.Model
 
         private static Record CreateWriteAccess() {
             WriteAccessRecord retval = new WriteAccessRecord();
-            String defaultUserName = "NPOI";
+            string defaultUserName = "NPOI";
             try {
-                String username = "";//(Environment.UserName);
+                string username = "";//(Environment.UserName);
                 // Google App engine returns null for user.name, see Bug 53974
                 if (string.IsNullOrEmpty(username)) username = defaultUserName;
 
@@ -2113,12 +2113,12 @@ namespace Npoi.Core.HSSF.Model
          * @return first sheet name.
          */
 
-        public String FindSheetFirstNameFromExternSheet(int externSheetIndex) {
+        public string FindSheetFirstNameFromExternSheet(int externSheetIndex) {
             int indexToSheet = linkTable.GetFirstInternalSheetIndexForExtIndex(externSheetIndex);
             return FindSheetNameFromIndex(indexToSheet);
         }
 
-        public String FindSheetLastNameFromExternSheet(int externSheetIndex) {
+        public string FindSheetLastNameFromExternSheet(int externSheetIndex) {
             int indexToSheet = linkTable.GetLastInternalSheetIndexForExtIndex(externSheetIndex);
             return FindSheetNameFromIndex(indexToSheet);
         }
@@ -2137,7 +2137,7 @@ namespace Npoi.Core.HSSF.Model
         }
 
         public ExternalSheet GetExternalSheet(int externSheetIndex) {
-            String[] extNames = linkTable.GetExternalBookAndSheetName(externSheetIndex);
+            string[] extNames = linkTable.GetExternalBookAndSheetName(externSheetIndex);
             if (extNames == null) {
                 return null;
             }
@@ -2193,11 +2193,11 @@ namespace Npoi.Core.HSSF.Model
             return (short)OrCreateLinkTable.CheckExternSheet(firstSheetNumber, lastSheetNumber);
         }
 
-        public int GetExternalSheetIndex(string workbookName, String sheetName) {
+        public int GetExternalSheetIndex(string workbookName, string sheetName) {
             return OrCreateLinkTable.GetExternalSheetIndex(workbookName, sheetName, sheetName);
         }
 
-        public int GetExternalSheetIndex(string workbookName, String firstSheetName, String lastSheetName) {
+        public int GetExternalSheetIndex(string workbookName, string firstSheetName, string lastSheetName) {
             return OrCreateLinkTable.GetExternalSheetIndex(workbookName, firstSheetName, lastSheetName);
         }
 
@@ -2293,7 +2293,7 @@ namespace Npoi.Core.HSSF.Model
             }
         }
 
-        private Dictionary<String, NameCommentRecord> commentRecords;
+        private Dictionary<string, NameCommentRecord> commentRecords;
         /**
          * If a {@link NameCommentRecord} is added or the name it references
          *  is renamed, then this will update the lookup cache for it.
@@ -2801,7 +2801,7 @@ namespace Npoi.Core.HSSF.Model
          * @param password to Set
          */
 
-        public void WriteProtectWorkbook(string password, String username) {
+        public void WriteProtectWorkbook(string password, string username) {
             FileSharingRecord frec = FileSharing;
             WriteAccessRecord waccess = WriteAccess;
             frec.ReadOnly = ((short)1);
@@ -2827,7 +2827,7 @@ namespace Npoi.Core.HSSF.Model
          * @return the string representation of the defined or external name
          */
 
-        public String ResolveNameXText(int reFindex, int definedNameIndex) {
+        public string ResolveNameXText(int reFindex, int definedNameIndex) {
             return linkTable.ResolveNameXText(reFindex, definedNameIndex, this);
         }
 
@@ -2899,7 +2899,7 @@ namespace Npoi.Core.HSSF.Model
          * @return true if the oldUrl was found and replaced with newUrl. Otherwise false
          */
 
-        public bool ChangeExternalReference(string oldUrl, String newUrl) {
+        public bool ChangeExternalReference(string oldUrl, string newUrl) {
             return linkTable.ChangeExternalReference(oldUrl, newUrl);
         }
     }

@@ -93,14 +93,14 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <param name="sheet">sheet number (0 based)</param>
         /// <returns>Sheet name</returns>
-        String GetSheetName(int sheet);
+        string GetSheetName(int sheet);
 
         /// <summary>
         /// Set the sheet name.
         /// </summary>
         /// <param name="sheet">sheet number (0 based)</param>
         /// <param name="name">sheet name</param>
-        void SetSheetName(int sheet, String name);
+        void SetSheetName(int sheet, string name);
 
         /// <summary>
         /// Returns the index of the sheet by its name
@@ -210,7 +210,7 @@ namespace Npoi.Core.SS.UserModel
         /// <param name="typeOffset"></param>
         /// <param name="underline"></param>
         /// <returns>the font with the matched attributes or null</returns>
-        IFont FindFont(short boldWeight, short color, short fontHeight, String name, bool italic, bool strikeout, FontSuperScript typeOffset, FontUnderlineType underline);
+        IFont FindFont(short boldWeight, short color, short fontHeight, string name, bool italic, bool strikeout, FontSuperScript typeOffset, FontUnderlineType underline);
 
         /// <summary>
         /// Get the number of fonts in the font table
@@ -312,7 +312,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <param name="sheetIndex">Zero-based sheet index</param>
         /// <param name="reference">Valid name Reference for the Print Area</param>
-        void SetPrintArea(int sheetIndex, String reference);
+        void SetPrintArea(int sheetIndex, string reference);
 
         /// <summary>
         /// Sets the printarea for the sheet provided
@@ -330,7 +330,7 @@ namespace Npoi.Core.SS.UserModel
         /// </summary>
         /// <param name="sheetIndex">Zero-based sheet index</param>
         /// <returns>Null if no print area has been defined</returns>
-        String GetPrintArea(int sheetIndex);
+        string GetPrintArea(int sheetIndex);
 
         /// <summary>
         /// Delete the printarea for the sheet specified

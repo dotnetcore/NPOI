@@ -153,7 +153,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @see Npoi.Core.HSSF.UserModel.DataValidation#CreatePromptBox(java.lang.String, java.lang.String)
          */
 
-        public void CreatePromptBox(string title, String text)
+        public void CreatePromptBox(string title, string text)
         {
             _prompt_title = title;
             _prompt_text = text;
@@ -164,7 +164,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @see Npoi.Core.HSSF.UserModel.DataValidation#getPromptBoxTitle()
          */
 
-        public String PromptBoxTitle
+        public string PromptBoxTitle
         {
             get
             {
@@ -176,7 +176,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @see Npoi.Core.HSSF.UserModel.DataValidation#getPromptBoxText()
          */
 
-        public String PromptBoxText
+        public string PromptBoxText
         {
             get
             {
@@ -188,7 +188,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @see Npoi.Core.HSSF.UserModel.DataValidation#CreateErrorBox(java.lang.String, java.lang.String)
          */
 
-        public void CreateErrorBox(string title, String text)
+        public void CreateErrorBox(string title, string text)
         {
             _error_title = title;
             _error_text = text;
@@ -199,7 +199,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @see Npoi.Core.HSSF.UserModel.DataValidation#getErrorBoxTitle()
          */
 
-        public String ErrorBoxTitle
+        public string ErrorBoxTitle
         {
             get
             {
@@ -211,7 +211,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @see Npoi.Core.HSSF.UserModel.DataValidation#getErrorBoxText()
          */
 
-        public String ErrorBoxText
+        public string ErrorBoxText
         {
             get
             {

@@ -36,6 +36,6 @@ namespace Npoi.Core.SS.UserModel
          * @return string represented at index of format or null if there is not a  format at that index
          */
 
-        String GetFormat(short index);
+        string GetFormat(short index);
     }
 }

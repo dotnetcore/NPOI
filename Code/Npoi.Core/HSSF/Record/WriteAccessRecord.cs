@@ -81,12 +81,12 @@ namespace Npoi.Core.HSSF.Record
                 {
                     data1[i] = (char)data[i];
                 }
-                String rawValue = new String(data1);
+                string rawValue = new string(data1);
                 Username = rawValue.Trim();
                 return;
             }
 
-            String rawText;
+            string rawText;
             if ((is16BitFlag & 0x01) == 0x00)
             {
                 rawText = StringUtil.ReadCompressedUnicode(in1, nChars);
@@ -114,7 +114,7 @@ namespace Npoi.Core.HSSF.Record
          * @return username of the user who  Is logged in (probably "tomcat" or "apache")
          */
 
-        public String Username
+        public string Username
         {
             get
             {
@@ -133,7 +133,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 
@@ -146,7 +146,7 @@ namespace Npoi.Core.HSSF.Record
 
         public override void Serialize(ILittleEndianOutput out1)
         {
-            String username = Username;
+            string username = Username;
             bool is16bit = StringUtil.HasMultibyte(username);
 
             out1.WriteShort(username.Length);

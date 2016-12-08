@@ -103,7 +103,7 @@ namespace Npoi.Core.HSSF.Record
             set { field_4_last_col = value; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

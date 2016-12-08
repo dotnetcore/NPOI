@@ -63,7 +63,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             field_4_options = in1.ReadShort();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

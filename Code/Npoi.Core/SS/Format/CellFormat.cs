@@ -111,15 +111,15 @@ namespace Npoi.Core.SS.Format
 
             public override CellFormatResult Apply(object value)
             {
-                String text = (new CellGeneralFormatter()).Format(value);
+                string text = (new CellGeneralFormatter()).Format(value);
                 return new CellFormatResult(true, text, Color.Empty);
             }
         }
 
         /** Maps a format string to its Parsed version for efficiencies sake. */
 
-        private static Dictionary<String, CellFormat> formatCache =
-                new Dictionary<String, CellFormat>();
+        private static Dictionary<string, CellFormat> formatCache =
+                new Dictionary<string, CellFormat>();
 
         /**
          * Returns a {@link CellFormat} that applies the given format.  Two calls
@@ -163,7 +163,7 @@ namespace Npoi.Core.SS.Format
             {
                 try
                 {
-                    String valueDesc = m.Groups[0].Value;
+                    string valueDesc = m.Groups[0].Value;
 
                     // Strip out the semicolon if it's there
                     if (valueDesc.EndsWith(";"))

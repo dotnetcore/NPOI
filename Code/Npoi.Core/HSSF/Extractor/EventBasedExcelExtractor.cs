@@ -114,10 +114,10 @@ namespace Npoi.Core.HSSF.Extractor
         /// Retreives the text contents of the file
         /// </summary>
         /// <value>All the text from the document.</value>
-        public override String Text {
+        public override string Text {
             get
             {
-                String text = null;
+                string text = null;
                 try {
                     TextListener tl = TriggerExtraction();
 
@@ -179,7 +179,7 @@ namespace Npoi.Core.HSSF.Extractor
             /// </summary>
             /// <param name="record"></param>
             public void ProcessRecord(Record record) {
-                String thisText = null;
+                string thisText = null;
                 int thisRow = -1;
 
                 switch (record.Sid) {
@@ -289,7 +289,7 @@ namespace Npoi.Core.HSSF.Extractor
             private string FormatNumberDateCell(CellValueRecordInterface cell, double value) {
                 // Get the built in format, if there is one
                 int formatIndex = ft.GetFormatIndex(cell);
-                String formatString = ft.GetFormatString(cell);
+                string formatString = ft.GetFormatString(cell);
 
                 if (formatString == null) {
                     return value.ToString(CultureInfo.InvariantCulture);

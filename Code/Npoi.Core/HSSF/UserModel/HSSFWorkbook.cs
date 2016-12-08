@@ -223,10 +223,10 @@ namespace Npoi.Core.HSSF.UserModel
 
         private static string GetWorkbookDirEntryName(DirectoryNode directory)
         {
-            String[] potentialNames = WORKBOOK_DIR_ENTRY_NAMES;
+            string[] potentialNames = WORKBOOK_DIR_ENTRY_NAMES;
             for (int i = 0; i < potentialNames.Length; i++)
             {
-                String wbName = potentialNames[i];
+                string wbName = potentialNames[i];
                 try
                 {
                     directory.GetEntry(wbName);
@@ -296,7 +296,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         public HSSFWorkbook(DirectoryNode directory, bool preserveNodes) : base(directory)
         {
-            String workbookName = GetWorkbookDirEntryName(directory);
+            string workbookName = GetWorkbookDirEntryName(directory);
 
             this.preserveNodes = preserveNodes;
 
@@ -488,7 +488,7 @@ namespace Npoi.Core.HSSF.UserModel
             int lastSheetIx = _sheets.Count - 1;
             if (index < 0 || index > lastSheetIx)
             {
-                String range = "(0.." + lastSheetIx + ")";
+                string range = "(0.." + lastSheetIx + ")";
                 if (lastSheetIx == -1)
                 {
                     range = "(no sheets)";
@@ -634,7 +634,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="sheetIx">The sheet number(0 based).</param>
         /// <param name="name">The name.</param>
-        public void SetSheetName(int sheetIx, String name)
+        public void SetSheetName(int sheetIx, string name)
         {
             if (name == null)
             {
@@ -654,7 +654,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="sheetIx">The sheet index.</param>
         /// <returns>Sheet name</returns>
-        public String GetSheetName(int sheetIx)
+        public string GetSheetName(int sheetIx)
         {
             ValidateSheetIndex(sheetIx);
             return workbook.GetSheetName(sheetIx);
@@ -785,12 +785,12 @@ namespace Npoi.Core.HSSF.UserModel
         {
             ValidateSheetIndex(sheetIndex);
             HSSFSheet srcSheet = (HSSFSheet)_sheets[sheetIndex];
-            String srcName = workbook.GetSheetName(sheetIndex);
+            string srcName = workbook.GetSheetName(sheetIndex);
             ISheet clonedSheet = srcSheet.CloneSheet(this);
             clonedSheet.IsSelected = (false);
             clonedSheet.IsActive = (false);
 
-            String name = GetUniqueSheetName(srcName);
+            string name = GetUniqueSheetName(srcName);
             int newSheetIndex = _sheets.Count;
             _sheets.Add((HSSFSheet)clonedSheet);
             workbook.SetSheetName(newSheetIndex, name);
@@ -816,11 +816,11 @@ namespace Npoi.Core.HSSF.UserModel
         private string GetUniqueSheetName(string srcName)
         {
             int uniqueIndex = 2;
-            String baseName = srcName;
+            string baseName = srcName;
             int bracketPos = srcName.LastIndexOf('(');
             if (bracketPos > 0 && srcName.EndsWith(")", StringComparison.Ordinal))
             {
-                String suffix = srcName.Substring(bracketPos + 1, srcName.Length - bracketPos - 2);
+                string suffix = srcName.Substring(bracketPos + 1, srcName.Length - bracketPos - 2);
                 try
                 {
                     uniqueIndex = int.Parse(suffix.Trim(), CultureInfo.InvariantCulture);
@@ -835,8 +835,8 @@ namespace Npoi.Core.HSSF.UserModel
             while (true)
             {
                 // Try and find the next sheet name that is unique
-                String index = (uniqueIndex++).ToString(CultureInfo.CurrentCulture);
-                String name;
+                string index = (uniqueIndex++).ToString(CultureInfo.CurrentCulture);
+                string name;
                 if (baseName.Length + index.Length + 2 < 31)
                 {
                     name = baseName + " (" + index + ")";
@@ -920,7 +920,7 @@ namespace Npoi.Core.HSSF.UserModel
 
             for (int k = 0; k < _sheets.Count; k++)
             {
-                String sheetname = workbook.GetSheetName(k);
+                string sheetname = workbook.GetSheetName(k);
 
                 if (sheetname.Equals(name, StringComparison.OrdinalIgnoreCase))
                 {
@@ -1151,7 +1151,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="underline">The underline.</param>
         /// <returns></returns>
         public Npoi.Core.SS.UserModel.IFont FindFont(short boldWeight, short color, short fontHeight,
-                         String name, bool italic, bool strikeout,
+                         string name, bool italic, bool strikeout,
                          FontSuperScript typeOffset, FontUnderlineType underline)
         {
             //        Console.WriteLine( boldWeight + ", " + color + ", " + fontHeight + ", " + name + ", " + italic + ", " + strikeout + ", " + typeOffset + ", " + Underline );
@@ -1437,7 +1437,7 @@ namespace Npoi.Core.HSSF.UserModel
         }
 
         [Obsolete("Do not call this method from your applications. Use the methods available in the HSSFRow to Get string HSSFCells")]
-        public String GetSSTString(int index)
+        public string GetSSTString(int index)
         {
             return workbook.GetSSTString(index).String;
         }
@@ -1528,9 +1528,9 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="index">the named range index (0 based)</param>
         /// <returns>named range name</returns>
-        public String GetNameName(int index)
+        public string GetNameName(int index)
         {
-            String result = GetNameAt(index).NameName;
+            string result = GetNameAt(index).NameName;
 
             return result;
         }
@@ -1546,7 +1546,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="reFindex">Index to REF entry in EXTERNSHEET record in the Link Table</param>
         /// <param name="definedNameIndex">zero-based to DEFINEDNAME or EXTERNALNAME record</param>
         /// <returns>the string representation of the defined or external name</returns>
-        public String ResolveNameXText(int reFindex, int definedNameIndex)
+        public string ResolveNameXText(int reFindex, int definedNameIndex)
         {
             return workbook.ResolveNameXText(reFindex, definedNameIndex);
         }
@@ -1557,14 +1557,14 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="sheetIndex">Zero-based sheet index (0 Represents the first sheet to keep consistent with java)</param>
         /// <param name="reference">Valid name Reference for the Print Area</param>
-        public void SetPrintArea(int sheetIndex, String reference)
+        public void SetPrintArea(int sheetIndex, string reference)
         {
             NameRecord name = workbook.GetSpecificBuiltinRecord(NameRecord.BUILTIN_PRINT_AREA, sheetIndex + 1);
 
             if (name == null)
                 name = workbook.CreateBuiltInName(NameRecord.BUILTIN_PRINT_AREA, sheetIndex + 1);
             //Adding one here because 0 indicates a global named region; doesnt make sense for print areas
-            String[] parts = reference.Split(new char[] { ',' });
+            string[] parts = reference.Split(new char[] { ',' });
             StringBuilder sb = new StringBuilder(32);
             for (int i = 0; i < parts.Length; i++)
             {
@@ -1592,7 +1592,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             //using absolute references because they don't Get copied and pasted anyway
             CellReference cell = new CellReference(startRow, startColumn, true, true);
-            String reference = cell.FormatAsString();
+            string reference = cell.FormatAsString();
 
             cell = new CellReference(endRow, endColumn, true, true);
             reference = reference + ":" + cell.FormatAsString();
@@ -1605,7 +1605,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="sheetIndex">Zero-based sheet index (0 Represents the first sheet to keep consistent with java)</param>
         /// <returns>String Null if no print area has been defined</returns>
-        public String GetPrintArea(int sheetIndex)
+        public string GetPrintArea(int sheetIndex)
         {
             NameRecord name = workbook.GetSpecificBuiltinRecord(NameRecord.BUILTIN_PRINT_AREA, sheetIndex + 1);
             if (name == null) return null;
@@ -1651,7 +1651,7 @@ namespace Npoi.Core.HSSF.UserModel
 
             for (int k = 0; k < names.Count; k++)
             {
-                String nameName = GetNameName(k);
+                string nameName = GetNameName(k);
 
                 if (nameName.Equals(name, StringComparison.OrdinalIgnoreCase))
                 {
@@ -1963,9 +1963,9 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-        protected static Dictionary<String, ClassID> GetOleMap()
+        protected static Dictionary<string, ClassID> GetOleMap()
         {
-            Dictionary<String, ClassID> olemap = new Dictionary<String, ClassID>();
+            Dictionary<string, ClassID> olemap = new Dictionary<string, ClassID>();
             olemap.Add("PowerPoint Document", ClassID.PPT_SHOW);
             foreach (string str in WORKBOOK_DIR_ENTRY_NAMES)
             {
@@ -1975,11 +1975,11 @@ namespace Npoi.Core.HSSF.UserModel
             return olemap;
         }
 
-        public int AddOlePackage(POIFSFileSystem poiData, String label, String fileName, String command)
+        public int AddOlePackage(POIFSFileSystem poiData, string label, string fileName, string command)
         {
             DirectoryNode root = poiData.Root;
-            Dictionary<String, ClassID> olemap = GetOleMap();
-            foreach (KeyValuePair<String, ClassID> entry in olemap)
+            Dictionary<string, ClassID> olemap = GetOleMap();
+            foreach (KeyValuePair<string, ClassID> entry in olemap)
             {
                 if (root.HasEntry(entry.Key))
                 {
@@ -1993,7 +1993,7 @@ namespace Npoi.Core.HSSF.UserModel
             return AddOlePackage(bos.ToArray(), label, fileName, command);
         }
 
-        public int AddOlePackage(byte[] oleData, String label, String fileName, String command)
+        public int AddOlePackage(byte[] oleData, string label, string fileName, string command)
         {
             // check if we were Created by POIFS otherwise create a new dummy POIFS for storing the package data
             if (directory == null)
@@ -2007,7 +2007,7 @@ namespace Npoi.Core.HSSF.UserModel
             DirectoryEntry oleDir = null;
             do
             {
-                String storageStr = "MBD" + HexDump.ToHex(++storageId);
+                string storageStr = "MBD" + HexDump.ToHex(++storageId);
                 if (!directory.HasEntry(storageStr))
                 {
                     oleDir = directory.CreateDirectory(storageStr);
@@ -2060,7 +2060,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="password">password to set</param>
         /// <param name="username">The username.</param>
-        public void WriteProtectWorkbook(string password, String username)
+        public void WriteProtectWorkbook(string password, string username)
         {
             workbook.WriteProtectWorkbook(password, username);
         }
@@ -2188,7 +2188,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @return true if the oldUrl was found and replaced with newUrl. Otherwise false
          */
 
-        public bool ChangeExternalReference(string oldUrl, String newUrl)
+        public bool ChangeExternalReference(string oldUrl, string newUrl)
         {
             return workbook.ChangeExternalReference(oldUrl, newUrl);
         }

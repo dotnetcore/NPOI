@@ -48,11 +48,11 @@ namespace Npoi.Core.SS.Formula.Functions
                 return ErrorEval.VALUE_INVALID;
             }
 
-            String oldStr = EvaluateStringArg(args[0], srcCellRow, srcCellCol);
-            String searchStr = EvaluateStringArg(args[1], srcCellRow, srcCellCol);
-            String newStr = EvaluateStringArg(args[2], srcCellRow, srcCellCol);
+            string oldStr = EvaluateStringArg(args[0], srcCellRow, srcCellCol);
+            string searchStr = EvaluateStringArg(args[1], srcCellRow, srcCellCol);
+            string newStr = EvaluateStringArg(args[2], srcCellRow, srcCellCol);
 
-            String result;
+            string result;
 
             switch (args.Length)
             {
@@ -76,7 +76,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return new StringEval(result);
         }
 
-        private static string ReplaceAllOccurrences(string oldStr, String searchStr, String newStr)
+        private static string ReplaceAllOccurrences(string oldStr, string searchStr, string newStr)
         {
             StringBuilder sb = new StringBuilder();
             int startIndex = 0;
@@ -97,7 +97,7 @@ namespace Npoi.Core.SS.Formula.Functions
             }
         }
 
-        private static string ReplaceOneOccurrence(string oldStr, String searchStr, String newStr, int instanceNumber)
+        private static string ReplaceOneOccurrence(string oldStr, string searchStr, string newStr, int instanceNumber)
         {
             if (searchStr.Length < 1)
             {

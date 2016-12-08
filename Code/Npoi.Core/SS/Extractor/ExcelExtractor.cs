@@ -33,6 +33,6 @@ namespace Npoi.Core.SS.Extractor
         /**
          * Retreives the text contents of the file
          */
-        String Text { get; }
+        string Text { get; }
     }
 }

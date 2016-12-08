@@ -69,12 +69,12 @@ namespace Npoi.Core.SS.Formula.Eval
             get { return value ? 1 : 0; }
         }
 
-        public String StringValue
+        public string StringValue
         {
             get { return value ? "TRUE" : "FALSE"; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name).Append(" [");

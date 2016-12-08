@@ -20,7 +20,7 @@ namespace Npoi.Core.SS.Formula.Functions
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval arg0, ValueEval arg1)
         {
             double s0;
-            String s1;
+            string s1;
             try
             {
                 s0 = TextFunction.EvaluateDoubleArg(arg0, srcRowIndex, srcColumnIndex);
@@ -33,7 +33,7 @@ namespace Npoi.Core.SS.Formula.Functions
             try
             {
                 // Ask DataFormatter to handle the String for us
-                String formattedStr = Formatter.FormatRawCellContents(s0, -1, s1);
+                string formattedStr = Formatter.FormatRawCellContents(s0, -1, s1);
                 return new StringEval(formattedStr);
             }
             catch (Exception)

@@ -39,7 +39,7 @@ namespace Npoi.Core.SS.Formula
          * @return a human readable String
          */
 
-        public static String ToFormulaString(IFormulaRenderingWorkbook book, Ptg[] ptgs)
+        public static string ToFormulaString(IFormulaRenderingWorkbook book, Ptg[] ptgs)
         {
             if (ptgs == null || ptgs.Length == 0)
             {
@@ -60,7 +60,7 @@ namespace Npoi.Core.SS.Formula
                 }
                 if (ptg is ParenthesisPtg)
                 {
-                    String contents = (string)stack.Pop();
+                    string contents = (string)stack.Pop();
                     stack.Push("(" + contents + ")");
                     continue;
                 }
@@ -86,7 +86,7 @@ namespace Npoi.Core.SS.Formula
                     }
                     if (attrPtg.IsSum)
                     {
-                        String[] operands = GetOperands(stack, attrPtg.NumberOfOperands);
+                        string[] operands = GetOperands(stack, attrPtg.NumberOfOperands);
                         stack.Push(attrPtg.ToFormulaString(operands));
                         continue;
                     }
@@ -106,7 +106,7 @@ namespace Npoi.Core.SS.Formula
                 }
 
                 OperationPtg o = (OperationPtg)ptg;
-                String[] operands1 = GetOperands(stack, o.NumberOfOperands);
+                string[] operands1 = GetOperands(stack, o.NumberOfOperands);
                 stack.Push(o.ToFormulaString(operands1));
             }
             if (stack.Count == 0)
@@ -115,7 +115,7 @@ namespace Npoi.Core.SS.Formula
                 // stack.push(). So this is either an internal error or impossible.
                 throw new InvalidOperationException("Stack underflow");
             }
-            String result = (string)stack.Pop();
+            string result = (string)stack.Pop();
             if (stack.Count != 0)
             {
                 // Might be caused by some Tokens like AttrPtg and Mem*Ptg, which really shouldn't
@@ -127,13 +127,13 @@ namespace Npoi.Core.SS.Formula
 
         private static string[] GetOperands(Stack<object> stack, int nOperands)
         {
-            String[] operands = new String[nOperands];
+            string[] operands = new string[nOperands];
 
             for (int j = nOperands - 1; j >= 0; j--)
             { // reverse iteration because args were pushed in-order
                 if (stack.Count == 0)
                 {
-                    String msg = "Too few arguments supplied to operation. Expected (" + nOperands
+                    string msg = "Too few arguments supplied to operation. Expected (" + nOperands
                          + ") operands but got (" + (nOperands - j - 1) + ")";
                     throw new InvalidOperationException(msg);
                 }

@@ -38,7 +38,7 @@ namespace Npoi.Core.SS.Formula.PTG
          *
          */
 
-        public abstract String ToFormulaString(string[] operands);
+        public abstract string ToFormulaString(string[] operands);
 
         /**
          * The number of operands expected by the operations

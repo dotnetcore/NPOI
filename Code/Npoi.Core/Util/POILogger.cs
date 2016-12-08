@@ -444,7 +444,7 @@ namespace Npoi.Core.Util
          * @param obj1 The first object to match against.
          */
 
-        public virtual void LogFormatted(int level, String message,
+        public virtual void LogFormatted(int level, string message,
                                  object obj1)
         {
             CommonLogFormatted(level, message, new object[]
@@ -479,7 +479,7 @@ namespace Npoi.Core.Util
          * @param obj2 The second object to match against.
          */
 
-        public virtual void LogFormatted(int level, String message,
+        public virtual void LogFormatted(int level, string message,
                                  object obj1, object obj2)
         {
             CommonLogFormatted(level, message, new object[]
@@ -515,7 +515,7 @@ namespace Npoi.Core.Util
          * @param obj3 The third object to match against.
          */
 
-        public virtual void LogFormatted(int level, String message,
+        public virtual void LogFormatted(int level, string message,
                                  object obj1, object obj2,
                                  object obj3)
         {
@@ -553,7 +553,7 @@ namespace Npoi.Core.Util
          * @param obj4 The forth object to match against.
          */
 
-        public virtual void LogFormatted(int level, String message,
+        public virtual void LogFormatted(int level, string message,
                                  object obj1, object obj2,
                                  object obj3, object obj4)
         {
@@ -563,7 +563,7 @@ namespace Npoi.Core.Util
             });
         }
 
-        private void CommonLogFormatted(int level, String message,
+        private void CommonLogFormatted(int level, string message,
                                         object[] unflatParams)
         {
             if (Check(level))

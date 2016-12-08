@@ -50,13 +50,13 @@ namespace Npoi.Core.SS.Formula.PTG
             unused1 = 0;
         }
 
-        public String ToFormulaString(IFormulaRenderingWorkbook book)
+        public string ToFormulaString(IFormulaRenderingWorkbook book)
         {
             return ExternSheetNameResolver.PrependSheetName(book, field_1_index_extern_sheet,
                 HSSFErrorConstants.GetText(HSSFErrorConstants.ERROR_REF));
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             throw new Exception("3D references need a workbook to determine formula text");
         }

@@ -58,7 +58,7 @@ namespace Npoi.Core.HSSF.Record
             field_4_value = in1.ReadDouble();
         }
 
-        protected override String RecordName
+        protected override string RecordName
         {
             get
             {

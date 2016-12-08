@@ -111,7 +111,7 @@ namespace Npoi.Core.SS.UserModel
          * @return String representing the name of the font to use
          */
 
-        String FontName { get; set; }
+        string FontName { get; set; }
 
         /**
          * get the font height in unit's of 1/20th of a point.  Maybe you might want to

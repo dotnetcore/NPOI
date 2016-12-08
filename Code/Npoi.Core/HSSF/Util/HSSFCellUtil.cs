@@ -79,10 +79,10 @@ namespace Npoi.Core.HSSF.Util
 
         private class UnicodeMapping
         {
-            public String entityName;
-            public String resolvedValue;
+            public string entityName;
+            public string resolvedValue;
 
-            public UnicodeMapping(string pEntityName, String pResolvedValue)
+            public UnicodeMapping(string pEntityName, string pResolvedValue)
             {
                 entityName = "&" + pEntityName + ";";
                 resolvedValue = pResolvedValue;
@@ -136,7 +136,7 @@ namespace Npoi.Core.HSSF.Util
         /// <param name="value">The value of the cell</param>
         /// <param name="style">If the style is not null, then Set</param>
         /// <returns>A new HSSFCell</returns>
-        public static ICell CreateCell(IRow row, int column, String value, HSSFCellStyle style)
+        public static ICell CreateCell(IRow row, int column, string value, HSSFCellStyle style)
         {
             ICell cell = GetCell(row, column);
 
@@ -156,7 +156,7 @@ namespace Npoi.Core.HSSF.Util
         /// <param name="column">the column index to Create the cell in</param>
         /// <param name="value">The value of the cell</param>
         /// <returns>A new HSSFCell.</returns>
-        public static ICell CreateCell(IRow row, int column, String value)
+        public static ICell CreateCell(IRow row, int column, string value)
         {
             return CreateCell(row, column, value, null);
         }
@@ -364,7 +364,7 @@ namespace Npoi.Core.HSSF.Util
          *@exception  NestableException  Thrown if an error happens.
          */
 
-        public static void SetCellStyleProperty(ICell cell, HSSFWorkbook workbook, String propertyName, object propertyValue)
+        public static void SetCellStyleProperty(ICell cell, HSSFWorkbook workbook, string propertyName, object propertyValue)
         {
             ICellStyle originalStyle = cell.CellStyle;
             ICellStyle newStyle = null;
@@ -466,7 +466,7 @@ namespace Npoi.Core.HSSF.Util
         /// <param name="properties">The map of named properties (string -&gt; object)</param>
         /// <param name="name">The property name.</param>
         /// <returns>property value, or zero</returns>
-        private static short GetShort(Dictionary<string, object> properties, String name)
+        private static short GetShort(Dictionary<string, object> properties, string name)
         {
             object value = properties[name];
             if (value is short)
@@ -486,7 +486,7 @@ namespace Npoi.Core.HSSF.Util
         /// <param name="properties">map of properties (string -&gt; object)</param>
         /// <param name="name">The property name.</param>
         /// <returns>property value, or false</returns>
-        private static bool GetBoolean(Dictionary<string, object> properties, String name)
+        private static bool GetBoolean(Dictionary<string, object> properties, string name)
         {
             object value = properties[name];
             if (value is Boolean)
@@ -505,7 +505,7 @@ namespace Npoi.Core.HSSF.Util
         /// <param name="properties">The map of properties (string -&gt; object).</param>
         /// <param name="name">The property name.</param>
         /// <param name="value">The property value.</param>
-        private static void PutShort(Dictionary<string, object> properties, String name, short value)
+        private static void PutShort(Dictionary<string, object> properties, string name, short value)
         {
             properties[name] = value;
         }
@@ -516,7 +516,7 @@ namespace Npoi.Core.HSSF.Util
         /// <param name="properties">map of properties (string -&gt; object)</param>
         /// <param name="name">property name</param>
         /// <param name="value">property value</param>
-        private static void PutBoolean(Dictionary<string, object> properties, String name, bool value)
+        private static void PutBoolean(Dictionary<string, object> properties, string name, bool value)
         {
             properties[name] = value;
         }
@@ -529,14 +529,14 @@ namespace Npoi.Core.HSSF.Util
         /// <returns>transalted to unicode</returns>
         public static ICell TranslateUnicodeValues(ICell cell)
         {
-            String s = cell.RichStringCellValue.String;
+            string s = cell.RichStringCellValue.String;
             bool foundUnicode = false;
-            String lowerCaseStr = s.ToLower();
+            string lowerCaseStr = s.ToLower();
 
             for (int i = 0; i < unicodeMappings.Length; i++)
             {
                 UnicodeMapping entry = unicodeMappings[i];
-                String key = entry.entityName;
+                string key = entry.entityName;
                 if (lowerCaseStr.IndexOf(key, StringComparison.Ordinal) != -1)
                 {
                     s = s.Replace(key, entry.resolvedValue);
@@ -550,7 +550,7 @@ namespace Npoi.Core.HSSF.Util
             return cell;
         }
 
-        private static UnicodeMapping um(string entityName, String resolvedValue)
+        private static UnicodeMapping um(string entityName, string resolvedValue)
         {
             return new UnicodeMapping(entityName, resolvedValue);
         }

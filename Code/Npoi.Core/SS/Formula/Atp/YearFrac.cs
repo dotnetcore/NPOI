@@ -91,7 +91,7 @@ namespace Npoi.Core.SS.Formula.Atp
 
             if (ve is StringEval)
             {
-                String strVal = ((StringEval)ve).StringValue;
+                string strVal = ((StringEval)ve).StringValue;
                 Double dVal = OperandResolver.ParseDouble(strVal);
                 if (!double.IsNaN(dVal))
                 {

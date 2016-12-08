@@ -43,7 +43,7 @@ namespace Npoi.Core.HSSF.Record
 
         private string field_7_comment_text;
 
-        public NameCommentRecord(string name, String comment)
+        public NameCommentRecord(string name, string comment)
         {
             field_1_record_type = 0;
             field_2_frt_cell_ref_flag = 0;
@@ -110,7 +110,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
 
@@ -131,7 +131,7 @@ namespace Npoi.Core.HSSF.Record
          * @return the name of the NameRecord to which this comment applies.
          */
 
-        public String NameText
+        public string NameText
         {
             get
             {
@@ -147,7 +147,7 @@ namespace Npoi.Core.HSSF.Record
          * @return the text of the comment.
          */
 
-        public String CommentText
+        public string CommentText
         {
             get
             {

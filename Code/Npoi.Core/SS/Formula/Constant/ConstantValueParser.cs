@@ -129,7 +129,7 @@ namespace Npoi.Core.SS.Formula.Constant
             {
                 return 8;
             }
-            String strVal = (string)obj;
+            string strVal = (string)obj;
             return StringUtil.GetEncodedSize(strVal);
         }
 
@@ -164,9 +164,9 @@ namespace Npoi.Core.SS.Formula.Constant
                 out1.WriteDouble(dVal);
                 return;
             }
-            if (value is String)
+            if (value is string)
             {
-                String val = (string)value;
+                string val = (string)value;
                 out1.WriteByte(TYPE_STRING);
                 StringUtil.WriteUnicodeString(out1, val);
                 return;

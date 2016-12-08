@@ -133,7 +133,7 @@ namespace Npoi.Core.HSSF.Record
             set { field_6_refs = value; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

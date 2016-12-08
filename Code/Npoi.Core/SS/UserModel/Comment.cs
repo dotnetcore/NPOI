@@ -47,7 +47,7 @@ namespace Npoi.Core.SS.UserModel
          *
          * @return the name of the original author of the comment
          */
-        String Author { get; set; }
+        string Author { get; set; }
 
         /**
          * Fetches the rich text string of the comment

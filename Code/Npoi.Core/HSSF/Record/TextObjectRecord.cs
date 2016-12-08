@@ -109,7 +109,7 @@ namespace Npoi.Core.HSSF.Record
                 throw new RecordFormatException("Unused " + in1.Remaining + " bytes at end of record");
             }
 
-            String text;
+            string text;
             if (field_6_textLength > 0)
             {
                 text = ReadRawString(in1, field_6_textLength);
@@ -363,7 +363,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
 

@@ -250,7 +250,7 @@ namespace Npoi.Core.HSSF.UserModel
          * The color applied to the lines of this shape.
          */
 
-        public String FileName
+        public string FileName
         {
             get
             {

@@ -433,12 +433,12 @@ namespace Npoi.Core.HSSF.Record
          *      Length)
          */
 
-        public String ReadUnicodeLEString(int requestedLength)
+        public string ReadUnicodeLEString(int requestedLength)
         {
             return ReadStringCommon(requestedLength, false);
         }
 
-        public String ReadCompressedUnicode(int requestedLength)
+        public string ReadCompressedUnicode(int requestedLength)
         {
             return ReadStringCommon(requestedLength, true);
         }
@@ -473,7 +473,7 @@ namespace Npoi.Core.HSSF.Record
                         buf[curLen] = ch;
                         curLen++;
                     }
-                    return new String(buf);// Encoding.UTF8.GetChars(buf,0,buf.Length);
+                    return new string(buf);// Encoding.UTF8.GetChars(buf,0,buf.Length);
                 }
                 // else string has been spilled into next continue record
                 // so read what's left of the current record
@@ -509,7 +509,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public String ReadString()
+        public string ReadString()
         {
             int requestedLength = ReadUShort();
             byte compressFlag = (byte)ReadByte();

@@ -311,7 +311,7 @@ namespace Npoi.Core.HSSF.UserModel
                     lrec.XFIndex = styleIndex;
                     if (setValue)
                     {
-                        String str = ConvertCellValueToString();
+                        string str = ConvertCellValueToString();
                         int sstIndex = book.Workbook.AddSSTString(new UnicodeString(str));
                         lrec.SSTIndex = (sstIndex);
                         UnicodeString us = book.Workbook.GetSSTString(sstIndex);
@@ -617,7 +617,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// Gets or sets the cell formula.
         /// </summary>
         /// <value>The cell formula.</value>
-        public String CellFormula
+        public string CellFormula
         {
             get
             {
@@ -722,7 +722,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <returns></returns>
         private Exception TypeMismatch(CellType expectedTypeCode, CellType actualTypeCode, bool isFormulaCell)
         {
-            String msg = "Cannot get a "
+            string msg = "Cannot get a "
                 + GetCellTypeName(expectedTypeCode) + " value from a "
                 + GetCellTypeName(actualTypeCode) + " " + (isFormulaCell ? "formula " : "") + "cell";
             return new InvalidOperationException(msg);
@@ -788,7 +788,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// For formulaCells that are not string Formulas, we return empty String
         /// </summary>
         /// <value>The string cell value.</value>
-        public String StringCellValue
+        public string StringCellValue
         {
             get
             {
@@ -823,7 +823,7 @@ namespace Npoi.Core.HSSF.UserModel
                 }
                 FormulaRecordAggregate fra = ((FormulaRecordAggregate)_record);
                 CheckFormulaCachedValueType(CellType.String, fra.FormulaRecord);
-                String strVal = fra.StringValue;
+                string strVal = fra.StringValue;
                 return new HSSFRichTextString(strVal == null ? "" : strVal);
             }
         }
@@ -873,7 +873,7 @@ namespace Npoi.Core.HSSF.UserModel
 
                 case CellType.String:
                     int sstIndex = ((LabelSSTRecord)_record).SSTIndex;
-                    String text = book.Workbook.GetSSTString(sstIndex).String;
+                    string text = book.Workbook.GetSSTString(sstIndex).String;
                     return Convert.ToBoolean(text, CultureInfo.CurrentCulture);
 
                 case CellType.Numeric:
@@ -1088,7 +1088,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// Dates are Displayed in dd-MMM-yyyy format
         /// Errors are Displayed as #ERR&lt;errIdx&gt;
         /// </summary>
-        public override String ToString()
+        public override string ToString()
         {
             switch (CellType)
             {
@@ -1327,7 +1327,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 if (cellType != CellType.Formula)
                 {
-                    String ref1 = new CellReference(this).FormatAsString();
+                    string ref1 = new CellReference(this).FormatAsString();
                     throw new InvalidOperationException("Cell " + ref1
                         + " is not part of an array formula.");
                 }
@@ -1362,7 +1362,7 @@ namespace Npoi.Core.HSSF.UserModel
         internal void NotifyArrayFormulaChanging()
         {
             CellReference ref1 = new CellReference(this);
-            String msg = "Cell " + ref1.FormatAsString() + " is part of a multi-cell array formula. " +
+            string msg = "Cell " + ref1.FormatAsString() + " is part of a multi-cell array formula. " +
                     "You cannot change part of an array.";
             NotifyArrayFormulaChanging(msg);
         }

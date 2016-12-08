@@ -161,7 +161,7 @@ namespace Npoi.Core.Util.Collections
             while (true)
             {
                 // Get next line
-                String line = inp.ReadLine();
+                string line = inp.ReadLine();
                 if (line == null)
                     return;
 
@@ -184,10 +184,10 @@ namespace Npoi.Core.Util.Collections
                     {
                         while (ContinueLine(line))
                         {
-                            String nextLine = inp.ReadLine();
+                            string nextLine = inp.ReadLine();
                             if (nextLine == null)
                                 nextLine = "";
-                            String loppedLine = line.Substring(0, len - 1);
+                            string loppedLine = line.Substring(0, len - 1);
                             // Advance beyond whitespace on new line
                             int startIndex;
                             for (startIndex = 0; startIndex < nextLine.Length; startIndex++)
@@ -227,8 +227,8 @@ namespace Npoi.Core.Util.Collections
                                 break;
                             valueIndex++;
                         }
-                        String key = line.Substring(keyStart, separatorIndex - keyStart);
-                        String value = (separatorIndex < len) ? line.Substring(valueIndex, len - valueIndex) : "";
+                        string key = line.Substring(keyStart, separatorIndex - keyStart);
+                        string value = (separatorIndex < len) ? line.Substring(valueIndex, len - valueIndex) : "";
 
                         // Convert then store key and value
                         key = LoadConvert(key);

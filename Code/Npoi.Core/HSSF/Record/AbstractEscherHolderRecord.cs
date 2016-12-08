@@ -102,11 +102,11 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 
-            String nl = Environment.NewLine;
+            string nl = Environment.NewLine;
             buffer.Append('[' + RecordName + ']' + nl);
             if (escherRecords.Count == 0)
                 buffer.Append("No Escher Records Decoded" + nl);
@@ -119,7 +119,7 @@ namespace Npoi.Core.HSSF.Record
             return buffer.ToString();
         }
 
-        protected abstract String RecordName { get; }
+        protected abstract string RecordName { get; }
 
         public override int Serialize(int offset, byte[] data)
         {

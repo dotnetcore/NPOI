@@ -193,7 +193,7 @@ namespace Npoi.Core.SS.Formula.Functions
             {
                 StringEval se = (StringEval)other;
 
-                String stringValue = se.StringValue;
+                string stringValue = se.StringValue;
                 if (_wildCardPattern != null)
                 {
                     MatchCollection matcher = _wildCardPattern.Matches(stringValue);
@@ -209,7 +209,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return CompareResult.ValueOf(string.Compare(_value, stringValue, true));
             }
 
-            protected override String GetValueAsString()
+            protected override string GetValueAsString()
             {
                 return _value;
             }
@@ -231,7 +231,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return CompareResult.ValueOf(_value.CompareTo(ne.NumberValue));
             }
 
-            protected override String GetValueAsString()
+            protected override string GetValueAsString()
             {
                 return _value.ToString(CultureInfo.InvariantCulture);
             }
@@ -282,7 +282,7 @@ namespace Npoi.Core.SS.Formula.Functions
             if (veRowColIndexArg is StringEval)
             {
                 StringEval se = (StringEval)veRowColIndexArg;
-                String strVal = se.StringValue;
+                string strVal = se.StringValue;
                 Double dVal = OperandResolver.ParseDouble(strVal);
                 if (Double.IsNaN(dVal))
                 {
@@ -358,7 +358,7 @@ namespace Npoi.Core.SS.Formula.Functions
 
             if (valEval is StringEval)
             {
-                String stringValue = ((StringEval)valEval).StringValue;
+                string stringValue = ((StringEval)valEval).StringValue;
                 if (stringValue.Length < 1)
                 {
                     // More trickiness:
@@ -643,7 +643,7 @@ namespace Npoi.Core.SS.Formula.Functions
             get { return _isGreaterThan; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name).Append(" [");
@@ -757,7 +757,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return CompareResult.LessThan;
         }
 
-        protected override String GetValueAsString()
+        protected override string GetValueAsString()
         {
             return _value.ToString();
         }
@@ -810,7 +810,7 @@ namespace Npoi.Core.SS.Formula.Functions
             return CompareSameType(other);
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name).Append(" [");
@@ -823,6 +823,6 @@ namespace Npoi.Core.SS.Formula.Functions
 
         /** used only for debug purposes */
 
-        protected abstract String GetValueAsString();
+        protected abstract string GetValueAsString();
     }
 }

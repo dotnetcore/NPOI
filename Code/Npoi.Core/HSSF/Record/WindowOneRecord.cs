@@ -272,7 +272,7 @@ namespace Npoi.Core.HSSF.Record
             set { field_9_tab_width_ratio = value; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

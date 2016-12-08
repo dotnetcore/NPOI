@@ -70,7 +70,7 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return SIZE; }
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             return ""; // TODO: Not sure how to format this. -- DN
         }
@@ -80,7 +80,7 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return Ptg.CLASS_VALUE; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name).Append(" [len=");

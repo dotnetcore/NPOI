@@ -163,9 +163,9 @@ namespace Npoi.Core.SS.Util
 
         private bool IsFormulaDefinition(object obj)
         {
-            if (obj is String)
+            if (obj is string)
             {
-                String str = (string)obj;
+                string str = (string)obj;
                 if (str.Length < 2)
                 {
                     return false;

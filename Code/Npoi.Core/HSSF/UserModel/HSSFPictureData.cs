@@ -92,7 +92,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// Suggests a file extension for this image.
         /// </summary>
         /// <returns>the file extension.</returns>
-        public String SuggestFileExtension()
+        public string SuggestFileExtension()
         {
             switch (blip.RecordId)
             {
@@ -123,7 +123,7 @@ namespace Npoi.Core.HSSF.UserModel
      * Returns the mime type for the image
      */
 
-        public String MimeType
+        public string MimeType
         {
             get
             {

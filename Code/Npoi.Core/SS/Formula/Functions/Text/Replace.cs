@@ -48,10 +48,10 @@ namespace Npoi.Core.SS.Formula.Functions
                 return ErrorEval.VALUE_INVALID;
             }
 
-            String oldStr = EvaluateStringArg(args[0], srcCellRow, srcCellCol);
+            string oldStr = EvaluateStringArg(args[0], srcCellRow, srcCellCol);
             int startNum = EvaluateIntArg(args[1], srcCellRow, srcCellCol);
             int numChars = EvaluateIntArg(args[2], srcCellRow, srcCellCol);
-            String newStr = EvaluateStringArg(args[3], srcCellRow, srcCellCol);
+            string newStr = EvaluateStringArg(args[3], srcCellRow, srcCellCol);
 
             if (startNum < 1 || numChars < 0)
             {

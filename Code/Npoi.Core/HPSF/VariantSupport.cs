@@ -233,7 +233,7 @@ namespace Npoi.Core.HPSF
          * less than zero.
          */
 
-        public static String CodepageToEncoding(int codepage) {
+        public static string CodepageToEncoding(int codepage) {
             return CodePageUtil.CodepageToEncoding(codepage);
         }
 

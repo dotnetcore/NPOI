@@ -29,7 +29,7 @@ namespace Npoi.Core.DDF
     public class EscherSpRecord : EscherRecord
     {
         public const short RECORD_ID = unchecked((short)0xF00A);
-        public const String RECORD_DESCRIPTION = "MsofbtSp";
+        public const string RECORD_DESCRIPTION = "MsofbtSp";
 
         public const int FLAG_GROUP = 0x0001;
         public const int FLAG_CHILD = 0x0002;
@@ -110,7 +110,7 @@ namespace Npoi.Core.DDF
         /// The short name for this record
         /// </summary>
         /// <value></value>
-        public override String RecordName {
+        public override string RecordName {
             get { return "Sp"; }
         }
 
@@ -120,8 +120,8 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString() {
-            String nl = Environment.NewLine;
+        public override string ToString() {
+            string nl = Environment.NewLine;
 
             return GetType().Name + ":" + nl +
                     "  RecordId: 0x" + HexDump.ToHex(RECORD_ID) + nl +
@@ -131,7 +131,7 @@ namespace Npoi.Core.DDF
                     "  Flags: " + DecodeFlags(field_2_flags) + " (0x" + HexDump.ToHex(field_2_flags) + ")" + nl;
         }
 
-        public override String ToXml(string tab) {
+        public override string ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
                     .Append(tab).Append("\t").Append("<ShapeType>0x").Append(HexDump.ToHex(ShapeType)).Append("</ShapeType>\n")

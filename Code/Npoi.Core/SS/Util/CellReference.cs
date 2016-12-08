@@ -96,9 +96,9 @@ namespace Npoi.Core.SS.Util
             {
                 throw new ArgumentException("Cell reference invalid: " + cellRef);
             }
-            String[] parts = SeparateRefParts(cellRef);
+            string[] parts = SeparateRefParts(cellRef);
             _sheetName = parts[0];
-            String colRef = parts[1];
+            string colRef = parts[1];
             //if (colRef.Length < 1)
             //{
             //    throw new ArgumentException("Invalid Formula cell reference: '" + cellRef + "'");
@@ -118,7 +118,7 @@ namespace Npoi.Core.SS.Util
                 _colIndex = ConvertColStringToIndex(colRef);
             }
 
-            String rowRef = parts[2];
+            string rowRef = parts[2];
             //if (rowRef.Length < 1)
             //{
             //    throw new ArgumentException("Invalid Formula cell reference: '" + cellRef + "'");
@@ -205,7 +205,7 @@ namespace Npoi.Core.SS.Util
           * escaped or delimited
           */
 
-        public String SheetName
+        public string SheetName
         {
             get { return _sheetName; }
         }
@@ -335,7 +335,7 @@ namespace Npoi.Core.SS.Util
          * eg column #3 -> D
          */
 
-        public static String ConvertNumToColString(int col)
+        public static string ConvertNumToColString(int col)
         {
             // Excel counts column A as the 1st column, we
             //  treat it as the 0th one
@@ -367,7 +367,7 @@ namespace Npoi.Core.SS.Util
         private static string[] SeparateRefParts(string reference)
         {
             int plingPos = reference.LastIndexOf(SHEET_NAME_DELIMITER);
-            String sheetName = ParseSheetName(reference, plingPos);
+            string sheetName = ParseSheetName(reference, plingPos);
             int start = plingPos + 1;
 
             int Length = reference.Length;
@@ -387,7 +387,7 @@ namespace Npoi.Core.SS.Util
                     break;
                 }
             }
-            return new String[] {
+            return new string[] {
                sheetName,
                reference.Substring(start,loc-start),
                reference.Substring(loc),
@@ -455,7 +455,7 @@ namespace Npoi.Core.SS.Util
          * @return the text representation of this cell reference as it would appear in a formula.
          */
 
-        public String FormatAsString()
+        public string FormatAsString()
         {
             StringBuilder sb = new StringBuilder(32);
             if (_sheetName != null)
@@ -467,7 +467,7 @@ namespace Npoi.Core.SS.Util
             return sb.ToString();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name).Append(" [");
@@ -485,11 +485,11 @@ namespace Npoi.Core.SS.Util
          *  to properly turn references into strings.
          */
 
-        public String[] CellRefParts
+        public string[] CellRefParts
         {
             get
             {
-                return new String[] {
+                return new string[] {
                     _sheetName,
                     (_rowIndex+1).ToString(CultureInfo.InvariantCulture),
                    ConvertNumToColString(_colIndex)
@@ -561,7 +561,7 @@ namespace Npoi.Core.SS.Util
          * @return <c>true</c> if the row and col parameters are within range of a BIFF8 spreadsheet.
          */
 
-        public static bool CellReferenceIsWithinRange(string colStr, String rowStr, SpreadsheetVersion ssVersion)
+        public static bool CellReferenceIsWithinRange(string colStr, string rowStr, SpreadsheetVersion ssVersion)
         {
             if (!IsColumnWithnRange(colStr, ssVersion))
             {
@@ -589,7 +589,7 @@ namespace Npoi.Core.SS.Util
 
         public static bool IsColumnWithnRange(string colStr, SpreadsheetVersion ssVersion)
         {
-            String lastCol = ssVersion.LastColumnName;
+            string lastCol = ssVersion.LastColumnName;
             int lastColLength = lastCol.Length;
 
             int numberOfLetters = colStr.Length;

@@ -61,7 +61,7 @@ namespace Npoi.Core.Util
         /// <param name="stream">The stream.</param>
         /// <param name="section">The section.</param>
         /// <returns></returns>
-        public static byte[] ReadData(Stream stream, String section)
+        public static byte[] ReadData(Stream stream, string section)
         {
             try
             {
@@ -111,7 +111,7 @@ namespace Npoi.Core.Util
         /// <param name="filename">The filename.</param>
         /// <param name="section">The section.</param>
         /// <returns></returns>
-        public static byte[] ReadData(string filename, String section)
+        public static byte[] ReadData(string filename, string section)
         {
             using (FileStream stream = new FileStream(filename, FileMode.Open, FileAccess.Read))
             {

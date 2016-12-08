@@ -141,7 +141,7 @@ namespace Npoi.Core.SS.UserModel
         private int longType;
         private string repr;
 
-        private FormulaError(int type, String repr)
+        private FormulaError(int type, string repr)
         {
             this.type = (byte)type;
             longType = type;
@@ -182,7 +182,7 @@ namespace Npoi.Core.SS.UserModel
          * @return string representation of the error
          */
 
-        public String String
+        public string String
         {
             get
             {
@@ -190,7 +190,7 @@ namespace Npoi.Core.SS.UserModel
             }
         }
 
-        private static Dictionary<String, FormulaError> smap = new Dictionary<string, FormulaError>();
+        private static Dictionary<string, FormulaError> smap = new Dictionary<string, FormulaError>();
         private static Dictionary<Byte, FormulaError> bmap = new Dictionary<byte, FormulaError>();
         private static Dictionary<int, FormulaError> imap = new Dictionary<int, FormulaError>();
 

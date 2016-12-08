@@ -52,8 +52,8 @@ namespace Npoi.Core.HPSF
             SetJavaValue(aString, codepage);
         }
 
-        public String GetJavaValue(int codepage) {
-            String result;
+        public string GetJavaValue(int codepage) {
+            string result;
             if (codepage == -1)
                 result = Encoding.UTF8.GetString(_value);
             else

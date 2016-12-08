@@ -130,7 +130,7 @@ namespace Npoi.Core.DDF
         /// The short name for this record
         /// </summary>
         /// <value></value>
-        public override String RecordName {
+        public override string RecordName {
             get { return "ClientTextbox"; }
         }
 
@@ -140,10 +140,10 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString() {
-            String nl = Environment.NewLine;
+        public override string ToString() {
+            string nl = Environment.NewLine;
 
-            String theDumpHex = "";
+            string theDumpHex = "";
             try {
                 if (_thedata.Length != 0) {
                     theDumpHex = "  Extra Data:" + nl;
@@ -162,8 +162,8 @@ namespace Npoi.Core.DDF
                     theDumpHex;
         }
 
-        public override String ToXml(string tab) {
-            String theDumpHex = "";
+        public override string ToXml(string tab) {
+            string theDumpHex = "";
             try {
                 if (_thedata.Length != 0) {
                     theDumpHex += HexDump.Dump(_thedata, 0, 0);

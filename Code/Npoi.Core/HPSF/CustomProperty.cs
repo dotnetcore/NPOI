@@ -64,7 +64,7 @@ namespace Npoi.Core.HPSF
         /// <param name="property">This property's attributes are copied To the new custom
         /// property.</param>
         /// <param name="name">The new custom property's name.</param>
-        public CustomProperty(Property property, String name) : base(property) {
+        public CustomProperty(Property property, string name) : base(property) {
             this.name = name;
         }
 
@@ -72,7 +72,7 @@ namespace Npoi.Core.HPSF
         /// Gets or sets the property's name.
         /// </summary>
         /// <value>the property's name.</value>
-        public String Name {
+        public string Name {
             get { return name; }
             set { name = value; }
         }
@@ -88,8 +88,8 @@ namespace Npoi.Core.HPSF
         /// <c>false</c></returns>
         public bool EqualsContents(object o) {
             CustomProperty c = (CustomProperty)o;
-            String name1 = c.Name;
-            String name2 = Name;
+            string name1 = c.Name;
+            string name2 = Name;
             bool equalNames = true;
             if (name1 == null)
                 equalNames = name2 == null;

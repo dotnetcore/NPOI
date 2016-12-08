@@ -74,7 +74,7 @@ namespace Npoi.Core.HSSF.Record
 
         internal int offsetForFilePointer;  //used for defcolwidth position of IndexRecord
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

@@ -42,13 +42,13 @@ namespace Npoi.Core.SS.UserModel
         private int value;
         private string name;
 
-        public DataConsolidateFunction(int value, String name)
+        public DataConsolidateFunction(int value, string name)
         {
             this.value = value;
             this.name = name;
         }
 
-        public String Name
+        public string Name
         {
             get
             {

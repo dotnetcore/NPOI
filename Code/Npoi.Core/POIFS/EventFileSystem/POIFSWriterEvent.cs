@@ -45,7 +45,7 @@ namespace Npoi.Core.POIFS.EventFileSystem
          */
 
         public POIFSWriterEvent(DocumentOutputStream stream,
-                         POIFSDocumentPath path, String documentName,
+                         POIFSDocumentPath path, string documentName,
                          int limit)
         {
             this.stream = stream;
@@ -82,7 +82,7 @@ namespace Npoi.Core.POIFS.EventFileSystem
          * @return the document's name
          */
 
-        public String Name
+        public string Name
         {
             get
             {

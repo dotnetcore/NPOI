@@ -83,7 +83,7 @@ namespace Npoi.Core.HSSF.Record
             set { field_1_password = value; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

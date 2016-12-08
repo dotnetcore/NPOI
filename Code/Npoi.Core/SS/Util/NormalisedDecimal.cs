@@ -220,7 +220,7 @@ namespace Npoi.Core.SS.Util
         });
         }
 
-        public String GetSignificantDecimalDigits()
+        public string GetSignificantDecimalDigits()
         {
             return _wholePart.ToString(CultureInfo.InvariantCulture);
         }
@@ -231,7 +231,7 @@ namespace Npoi.Core.SS.Util
          * a carry out of the most significant digit
          */
 
-        public String GetSignificantDecimalDigitsLastDigitRounded()
+        public string GetSignificantDecimalDigitsLastDigitRounded()
         {
             long wp = _wholePart + 5; // rounds last digit
             StringBuilder sb = new StringBuilder(24);
@@ -285,12 +285,12 @@ namespace Npoi.Core.SS.Util
             return GetFractionalPart().ToString(CultureInfo.InvariantCulture).Substring(2);
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(GetType().Name);
             sb.Append(" [");
-            String ws = _wholePart.ToString(CultureInfo.InvariantCulture);
+            string ws = _wholePart.ToString(CultureInfo.InvariantCulture);
             sb.Append(ws[0]);
             sb.Append('.');
             sb.Append(ws.Substring(1));

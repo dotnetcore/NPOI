@@ -60,7 +60,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             field_5_height = in1.ReadInt();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

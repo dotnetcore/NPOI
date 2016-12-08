@@ -208,7 +208,7 @@ namespace Npoi.Core.SS.Formula.PTG
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name).Append(" [");
@@ -275,7 +275,7 @@ namespace Npoi.Core.SS.Formula.PTG
             }
         }
 
-        public String ToFormulaString(string[] operands)
+        public string ToFormulaString(string[] operands)
         {
             if (space.IsSet(field_1_options))
             {
@@ -305,7 +305,7 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return -1; }
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             if (semiVolatile.IsSet(field_1_options))
             {

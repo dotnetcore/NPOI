@@ -103,7 +103,7 @@ namespace Npoi.Core.HSSF.Record
          * @return The string represented by this record.
          */
 
-        public String String
+        public string String
         {
             get { return _text; }
             set
@@ -113,7 +113,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

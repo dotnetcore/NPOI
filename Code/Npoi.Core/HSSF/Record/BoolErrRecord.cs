@@ -174,7 +174,7 @@ namespace Npoi.Core.HSSF.Record
             get { return _isError; }
         }
 
-        protected override String RecordName
+        protected override string RecordName
         {
             get { return "BOOLERR"; }
         }

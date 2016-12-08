@@ -203,7 +203,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// Returns the plain string representation.
         /// </summary>
         /// <value>The string.</value>
-        public String String
+        public string String
         {
             get { return _string.String; }
         }
@@ -333,7 +333,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString()
+        public override string ToString()
         {
             return _string.ToString();
         }

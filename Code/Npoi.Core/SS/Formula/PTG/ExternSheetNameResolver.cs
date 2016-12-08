@@ -7,14 +7,14 @@ namespace Npoi.Core.SS.Formula.PTG
 
     public class ExternSheetNameResolver
     {
-        public static String PrependSheetName(IFormulaRenderingWorkbook book, int field_1_index_extern_sheet, String cellRefText)
+        public static string PrependSheetName(IFormulaRenderingWorkbook book, int field_1_index_extern_sheet, string cellRefText)
         {
             ExternalSheet externalSheet = book.GetExternalSheet(field_1_index_extern_sheet);
             StringBuilder sb;
             if (externalSheet != null)
             {
-                String wbName = externalSheet.WorkbookName;
-                String sheetName = externalSheet.SheetName;
+                string wbName = externalSheet.WorkbookName;
+                string sheetName = externalSheet.SheetName;
                 if (wbName != null)
                 {
                     sb = new StringBuilder(wbName.Length + sheetName.Length + cellRefText.Length + 4);
@@ -37,8 +37,8 @@ namespace Npoi.Core.SS.Formula.PTG
             }
             else
             {
-                String firstSheetName = book.GetSheetFirstNameByExternSheet(field_1_index_extern_sheet);
-                String lastSheetName = book.GetSheetLastNameByExternSheet(field_1_index_extern_sheet);
+                string firstSheetName = book.GetSheetFirstNameByExternSheet(field_1_index_extern_sheet);
+                string lastSheetName = book.GetSheetLastNameByExternSheet(field_1_index_extern_sheet);
                 sb = new StringBuilder(firstSheetName.Length + cellRefText.Length + 4);
                 if (firstSheetName.Length < 1)
                 {

@@ -375,9 +375,9 @@ namespace Npoi.Core.HSSF.Record
          * simply a dump of all the records.
          */
 
-        public override String ToString()
+        public override string ToString()
         {
-            String nl = Environment.NewLine;
+            string nl = Environment.NewLine;
 
             StringBuilder result = new StringBuilder();
             result.Append('[').Append(RecordName).Append(']' + nl);
@@ -398,7 +398,7 @@ namespace Npoi.Core.HSSF.Record
          * @return xml representation of the all aggregated records
          */
 
-        public String ToXml(string tab)
+        public string ToXml(string tab)
         {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append("<").Append(RecordName).Append(">\n");
@@ -1080,7 +1080,7 @@ namespace Npoi.Core.HSSF.Record
             //        lastShapeId = 1024;
         }
 
-        protected override String RecordName
+        protected override string RecordName
         {
             get { return "ESCHERAGGREGATE"; }
         }

@@ -160,7 +160,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             if (stream is MemoryStream)
             {
-                String msg = "POIFS is closing the supplied input stream of type ("
+                string msg = "POIFS is closing the supplied input stream of type ("
                         + stream.GetType().Name + ") which supports mark/reset.  "
                         + "This will be a problem for the caller if the stream will still be used.  "
                         + "If that is the case the caller should wrap the input stream to avoid this Close logic.  "
@@ -211,7 +211,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <param name="name">the name of the new POIFSDocument</param>
         /// <returns>the new DocumentEntry</returns>
         public DocumentEntry CreateDocument(Stream stream,
-                                            String name)
+                                            string name)
         {
             return Root.CreateDocument(name, stream);
         }
@@ -252,7 +252,7 @@ namespace Npoi.Core.POIFS.FileSystem
      */
 
         public DocumentInputStream CreateDocumentInputStream(
-                String documentName)
+                string documentName)
         {
             return Root.CreateDocumentInputStream(documentName);
         }
@@ -423,7 +423,7 @@ namespace Npoi.Core.POIFS.FileSystem
             while (properties.MoveNext())
             {
                 Property property = (Property)properties.Current;
-                String name = property.Name;
+                string name = property.Name;
                 DirectoryNode parent = (dir == null)
                                          ? ((DirectoryNode)Root)
                                          : dir;
@@ -520,7 +520,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// POIFSViewable object has not provided its contents.
         /// </summary>
         /// <value>The short description.</value>
-        public String ShortDescription
+        public string ShortDescription
         {
             get { return "POIFS FileSystem"; }
         }

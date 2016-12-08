@@ -119,7 +119,7 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString() {
+        public override string ToString() {
             return "propNum: " + PropertyNumber
                     + ", RAW: 0x" + HexDump.ToHex(Id)
                     + ", propName: " + EscherProperties.GetPropertyName(PropertyNumber)
@@ -128,7 +128,7 @@ namespace Npoi.Core.DDF
                     + ", value: " + propertyValue + " (0x" + HexDump.ToHex(propertyValue) + ")";
         }
 
-        public override String ToXml(string tab) {
+        public override string ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append("<").Append(GetType().Name).Append(" id=\"0x").Append(HexDump.ToHex(Id))
                     .Append("\" name=\"").Append(Name).Append("\" blipId=\"")

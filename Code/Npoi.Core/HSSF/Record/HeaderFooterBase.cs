@@ -74,7 +74,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public String Text
+        public string Text
         {
             get
             {

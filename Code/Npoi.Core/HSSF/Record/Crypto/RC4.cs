@@ -85,7 +85,7 @@ namespace Npoi.Core.HSSF.Record.Crypto
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
 

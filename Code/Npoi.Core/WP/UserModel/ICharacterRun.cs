@@ -47,12 +47,12 @@ namespace Npoi.Core.WP.UserModel
 
         int Kerning { get; set; }
 
-        String FontName { get; }
+        string FontName { get; }
 
         /**
          * @return The text of the Run, including any tabs/spaces/etc
          */
-        String Text { get; }
+        string Text { get; }
 
         // HWPF uses indexes, XWPF special
         //    int GetUnderlineCode();

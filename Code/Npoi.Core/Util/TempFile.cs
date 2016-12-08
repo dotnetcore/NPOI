@@ -15,7 +15,7 @@
          * Dont forget to close all files or it might not be possible to delete them.
          */
 
-        public static FileInfo CreateTempFile(string prefix, String suffix)
+        public static FileInfo CreateTempFile(string prefix, string suffix)
         {
             if (dir == null)
             {
@@ -35,7 +35,7 @@
             return new FileInfo(file);
         }
 
-        public static string GetTempFilePath(string prefix, String suffix)
+        public static string GetTempFilePath(string prefix, string suffix)
         {
             if (dir == null)
             {

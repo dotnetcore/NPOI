@@ -48,7 +48,7 @@ namespace Npoi.Core.HSSF.Record.Common
             data = in1.ReadRemainder();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
             buffer.Append(" [FEATURE SMART TAGS]\n");

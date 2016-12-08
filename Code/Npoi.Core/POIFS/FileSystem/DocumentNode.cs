@@ -143,7 +143,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * @return short description
          */
 
-        public String ShortDescription
+        public string ShortDescription
         {
             get { return Name; }
         }

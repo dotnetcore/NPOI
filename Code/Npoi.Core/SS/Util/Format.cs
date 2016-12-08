@@ -54,9 +54,9 @@ namespace Npoi.Core.SS.Util
 
         /** Format a number as an SSN */
 
-        public override String Format(object obj, CultureInfo culture)
+        public override string Format(object obj, CultureInfo culture)
         {
-            String result = ((double)obj).ToString(df, culture);
+            string result = ((double)obj).ToString(df, culture);
             StringBuilder sb = new StringBuilder();
             sb.Append(result.Substring(0, 3)).Append('-');
             sb.Append(result.Substring(3, 2)).Append('-');
@@ -94,9 +94,9 @@ namespace Npoi.Core.SS.Util
 
         /** Format a number as Zip + 4 */
 
-        public override String Format(object obj, CultureInfo culture)
+        public override string Format(object obj, CultureInfo culture)
         {
-            String result = ((double)obj).ToString(df, culture);
+            string result = ((double)obj).ToString(df, culture);
             StringBuilder sb = new StringBuilder();
             sb.Append(result.Substring(0, 5)).Append('-');
             sb.Append(result.Substring(5, 4));
@@ -133,11 +133,11 @@ namespace Npoi.Core.SS.Util
 
         /** Format a number as a phone number */
 
-        public override String Format(object obj, CultureInfo culture)
+        public override string Format(object obj, CultureInfo culture)
         {
-            String result = ((double)obj).ToString(df, culture);
+            string result = ((double)obj).ToString(df, culture);
             StringBuilder sb = new StringBuilder();
-            String seg1, seg2, seg3;
+            string seg1, seg2, seg3;
             int len = result.Length;
             if (len <= 4)
             {
@@ -260,7 +260,7 @@ namespace Npoi.Core.SS.Util
 
         public override string Format(object obj, CultureInfo culture)
         {
-            String result = ((DateTime)obj).ToString(pattern, culture); //DateTimeFormatInfo.InvariantInfo
+            string result = ((DateTime)obj).ToString(pattern, culture); //DateTimeFormatInfo.InvariantInfo
             return result;
         }
 

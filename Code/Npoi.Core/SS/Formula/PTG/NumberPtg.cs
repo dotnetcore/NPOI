@@ -75,7 +75,7 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return SIZE; }
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             return NumberToTextConverter.ToText(Value);
         }

@@ -80,7 +80,7 @@ namespace Npoi.Core.HSSF.Record
          * @return sheetname the name of the sheet
          */
 
-        public String Sheetname
+        public string Sheetname
         {
             get
             {
@@ -88,7 +88,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

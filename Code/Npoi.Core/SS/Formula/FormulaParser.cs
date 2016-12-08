@@ -161,7 +161,7 @@ namespace Npoi.Core.SS.Formula
 
         private Exception expected(string s)
         {
-            String msg;
+            string msg;
 
             if (look == '=' && formulaString.Substring(0, _pointer - 1).Trim().Length < 1)
             {
@@ -511,7 +511,7 @@ namespace Npoi.Core.SS.Formula
                     else
                     {
                         // Is it a named range?
-                        String name = ParseAsName();
+                        string name = ParseAsName();
                         if (name.Length == 0)
                         {
                             throw new FormulaParseException("Cell reference or Named Range "
@@ -555,7 +555,7 @@ namespace Npoi.Core.SS.Formula
                     ResetPointer(colonPos);
                     if (!part1.IsCell)
                     {
-                        String prefix;
+                        string prefix;
                         if (sheetIden == null)
                         {
                             prefix = "";
@@ -584,7 +584,7 @@ namespace Npoi.Core.SS.Formula
 
                 SkipWhite();
                 SimpleRangePart part2 = ParseSimpleRangePart();
-                String part1And2 = formulaString.Substring(savePointer - 1, _pointer - savePointer);
+                string part1And2 = formulaString.Substring(savePointer - 1, _pointer - savePointer);
                 if (part2 == null)
                 {
                     if (sheetIden != null)
@@ -663,7 +663,7 @@ namespace Npoi.Core.SS.Formula
             }
             // from now on we can only be dealing with non-quoted identifiers
             // which will either be named ranges or functions
-            String name = ParseAsName();
+            string name = ParseAsName();
             if (look == '(')
             {
                 return Function(name);
@@ -701,7 +701,7 @@ namespace Npoi.Core.SS.Formula
             }
             else
             {
-                String sName = sheetIden.SheetId.Name;
+                string sName = sheetIden.SheetId.Name;
                 if (sheetIden.BookName == null)
                 {
                     extIx = _book.GetExternalSheetIndex(sName);
@@ -809,7 +809,7 @@ namespace Npoi.Core.SS.Formula
             {
                 return null;
             }
-            String rep = formulaString.Substring(_pointer - 1, ptr - _pointer + 1);
+            string rep = formulaString.Substring(_pointer - 1, ptr - _pointer + 1);
 
             Regex pattern = new Regex(CELL_REF_PATTERN);
 
@@ -971,7 +971,7 @@ namespace Npoi.Core.SS.Formula
                 }
             }
 
-            public String Rep
+            public string Rep
             {
                 get
                 {
@@ -990,7 +990,7 @@ namespace Npoi.Core.SS.Formula
                 return _type == part2._type;
             }
 
-            public override String ToString()
+            public override string ToString()
             {
                 StringBuilder sb = new StringBuilder(64);
                 sb.Append(GetType().Name).Append(" [");
@@ -1007,7 +1007,7 @@ namespace Npoi.Core.SS.Formula
 
         private SheetIdentifier ParseSheetName()
         {
-            String bookName;
+            string bookName;
             if (look == '[')
             {
                 StringBuilder sb = new StringBuilder();
@@ -1283,7 +1283,7 @@ namespace Npoi.Core.SS.Formula
         {
             if (numArgs < fm.MinParams)
             {
-                String msg = "Too few arguments to function '" + fm.Name + "'. ";
+                string msg = "Too few arguments to function '" + fm.Name + "'. ";
                 if (fm.HasFixedArgsLength)
                 {
                     msg += "Expected " + fm.MinParams;
@@ -1315,7 +1315,7 @@ namespace Npoi.Core.SS.Formula
             }
             if (numArgs > maxArgs)
             {
-                String msg = "Too many arguments to function '" + fm.Name + "'. ";
+                string msg = "Too many arguments to function '" + fm.Name + "'. ";
                 if (fm.HasFixedArgsLength)
                 {
                     msg += "Expected " + fm.MaxParams;
@@ -1582,7 +1582,7 @@ namespace Npoi.Core.SS.Formula
 
         private Boolean ParseBooleanLiteral()
         {
-            String iden = ParseUnquotedIdentifier();
+            string iden = ParseUnquotedIdentifier();
             if ("TRUE".Equals(iden, StringComparison.OrdinalIgnoreCase))
             {
                 return true;
@@ -1618,9 +1618,9 @@ namespace Npoi.Core.SS.Formula
 
         private Ptg ParseNumber()
         {
-            String number2 = null;
-            String exponent = null;
-            String number1 = GetNum();
+            string number2 = null;
+            string exponent = null;
+            string number1 = GetNum();
 
             if (look == '.')
             {
@@ -1632,7 +1632,7 @@ namespace Npoi.Core.SS.Formula
             {
                 GetChar();
 
-                String sign = "";
+                string sign = "";
                 if (look == '+')
                 {
                     GetChar();
@@ -1643,7 +1643,7 @@ namespace Npoi.Core.SS.Formula
                     sign = "-";
                 }
 
-                String number = GetNum();
+                string number = GetNum();
                 if (number == null)
                 {
                     throw expected("int");
@@ -1662,7 +1662,7 @@ namespace Npoi.Core.SS.Formula
         private int ParseErrorLiteral()
         {
             Match('#');
-            String part1 = ParseUnquotedIdentifier().ToUpper();
+            string part1 = ParseUnquotedIdentifier().ToUpper();
 
             switch (part1[0])
             {
@@ -1726,7 +1726,7 @@ namespace Npoi.Core.SS.Formula
          * return Int or Number Ptg based on size of input
          */
 
-        private static Ptg GetNumberPtgFromString(string number1, String number2, String exponent)
+        private static Ptg GetNumberPtgFromString(string number1, string number2, string exponent)
         {
             StringBuilder number = new StringBuilder();
 
@@ -1740,7 +1740,7 @@ namespace Npoi.Core.SS.Formula
                     number.Append(exponent);
                 }
 
-                String numberStr = number.ToString();
+                string numberStr = number.ToString();
                 int intVal;
                 try
                 {
@@ -1951,7 +1951,7 @@ namespace Npoi.Core.SS.Formula
 
             if (_pointer <= formulaLength)
             {
-                String msg = "Unused input [" + formulaString.Substring(_pointer - 1)
+                string msg = "Unused input [" + formulaString.Substring(_pointer - 1)
                     + "] after attempting To Parse the formula [" + formulaString + "]";
                 throw new FormulaParseException(msg);
             }

@@ -152,7 +152,7 @@ namespace Npoi.Core.SS
          *  (<code>IV</code> or <code>XFD</code>).
          */
 
-        public String LastColumnName
+        public string LastColumnName
         {
             get
             {

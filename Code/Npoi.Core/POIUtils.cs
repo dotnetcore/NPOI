@@ -66,7 +66,7 @@ namespace Npoi.Core.Util
          */
 
         public static void CopyNodes(DirectoryEntry sourceRoot,
-                DirectoryEntry targetRoot, List<String> excepts)
+                DirectoryEntry targetRoot, List<string> excepts)
         {
             IEnumerator entries = sourceRoot.Entries;
             while (entries.MoveNext())
@@ -91,7 +91,7 @@ namespace Npoi.Core.Util
          */
 
         public static void CopyNodes(POIFSFileSystem source,
-                POIFSFileSystem target, List<String> excepts)
+                POIFSFileSystem target, List<string> excepts)
         {
             // System.err.println("CopyNodes called");
             CopyNodes(source.Root, target.Root, excepts);

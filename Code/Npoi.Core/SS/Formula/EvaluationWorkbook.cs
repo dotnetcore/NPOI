@@ -26,13 +26,13 @@ namespace Npoi.Core.SS.Formula
         private string _workbookName;
         private string _sheetName;
 
-        public ExternalSheet(string workbookName, String sheetName)
+        public ExternalSheet(string workbookName, string sheetName)
         {
             _workbookName = workbookName;
             _sheetName = sheetName;
         }
 
-        public String WorkbookName
+        public string WorkbookName
         {
             get
             {
@@ -40,7 +40,7 @@ namespace Npoi.Core.SS.Formula
             }
         }
 
-        public String SheetName
+        public string SheetName
         {
             get
             {
@@ -53,13 +53,13 @@ namespace Npoi.Core.SS.Formula
     {
         private string _lastSheetName;
 
-        public ExternalSheetRange(string workbookName, String firstSheetName, String lastSheetName)
+        public ExternalSheetRange(string workbookName, string firstSheetName, string lastSheetName)
             : base(workbookName, firstSheetName)
         {
             _lastSheetName = lastSheetName;
         }
 
-        public String FirstSheetName
+        public string FirstSheetName
         {
             get
             {
@@ -67,7 +67,7 @@ namespace Npoi.Core.SS.Formula
             }
         }
 
-        public String LastSheetName
+        public string LastSheetName
         {
             get
             {
@@ -86,7 +86,7 @@ namespace Npoi.Core.SS.Formula
 
     public interface IEvaluationWorkbook
     {
-        String GetSheetName(int sheetIndex);
+        string GetSheetName(int sheetIndex);
 
         /**
          * @return -1 if the specified sheet is from a different book
@@ -129,13 +129,13 @@ namespace Npoi.Core.SS.Formula
          * XSSF Only - fetch the external-style name details
          */
 
-        ExternalName GetExternalName(string nameName, String sheetName, int externalWorkbookNumber);
+        ExternalName GetExternalName(string nameName, string sheetName, int externalWorkbookNumber);
 
         IEvaluationName GetName(NamePtg namePtg);
 
         IEvaluationName GetName(string name, int sheetIndex);
 
-        String ResolveNameXText(NameXPtg ptg);
+        string ResolveNameXText(NameXPtg ptg);
 
         Ptg[] GetFormulaTokens(IEvaluationCell cell);
 
@@ -155,7 +155,7 @@ namespace Npoi.Core.SS.Formula
             _ix = ix;
         }
 
-        public String Name
+        public string Name
         {
             get
             {

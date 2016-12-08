@@ -368,7 +368,7 @@ namespace Npoi.Core.SS.UserModel
             }
             catch (FormatException e)
             {
-                String msg = "Bad time format '" + timeStr
+                string msg = "Bad time format '" + timeStr
                     + "' expected 'HH:MM' or 'HH:MM:SS' - " + e.Message;
                 throw new ArgumentException(msg);
             }
@@ -386,9 +386,9 @@ namespace Npoi.Core.SS.UserModel
             {
                 throw new FormatException("Bad length");
             }
-            String[] parts = timeStr.Split(TIME_SEPARATOR_PATTERN);
+            string[] parts = timeStr.Split(TIME_SEPARATOR_PATTERN);
 
-            String secStr;
+            string secStr;
             switch (parts.Length)
             {
                 case 2: secStr = "00"; break;
@@ -396,8 +396,8 @@ namespace Npoi.Core.SS.UserModel
                 default:
                     throw new FormatException("Expected 2 or 3 fields but got (" + parts.Length + ")");
             }
-            String hourStr = parts[0];
-            String minStr = parts[1];
+            string hourStr = parts[0];
+            string minStr = parts[1];
             int hours = ParseInt(hourStr, "hour", HOURS_PER_DAY);
             int minutes = ParseInt(minStr, "minute", MINUTES_PER_HOUR);
             int seconds = ParseInt(secStr, "second", SECONDS_PER_MINUTE);
@@ -430,7 +430,7 @@ namespace Npoi.Core.SS.UserModel
         /// <returns>
         /// 	<c>true</c> if [is A date format] [the specified format index]; otherwise, <c>false</c>.
         /// </returns>
-        public static bool IsADateFormat(int formatIndex, String formatString)
+        public static bool IsADateFormat(int formatIndex, string formatString)
         {
             lock (syncIsADateFormat)
             {
@@ -456,7 +456,7 @@ namespace Npoi.Core.SS.UserModel
                     return false;
                 }
 
-                String fs = formatString;
+                string fs = formatString;
 
                 // If it end in ;@, that's some crazy dd/mm vs mm/dd
                 //  switching stuff, which we can ignore
@@ -561,7 +561,7 @@ namespace Npoi.Core.SS.UserModel
             }
             catch (FormatException e)
             {
-                String msg = "Bad time format " + dateStr
+                string msg = "Bad time format " + dateStr
                     + " expected 'YYYY/MM/DD' - " + e.Message;
                 throw new ArgumentException(msg);
             }
@@ -579,9 +579,9 @@ namespace Npoi.Core.SS.UserModel
                 throw new FormatException("Bad length");
             }
 
-            String yearStr = timeStr.Substring(0, 4);
-            String monthStr = timeStr.Substring(5, 2);
-            String dayStr = timeStr.Substring(8, 2);
+            string yearStr = timeStr.Substring(0, 4);
+            string monthStr = timeStr.Substring(5, 2);
+            string dayStr = timeStr.Substring(8, 2);
             int year = ParseInt(yearStr, "year", short.MinValue, short.MaxValue);
             int month = ParseInt(monthStr, "month", 1, 12);
             int day = ParseInt(dayStr, "day", 1, 31);
@@ -597,7 +597,7 @@ namespace Npoi.Core.SS.UserModel
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="rangeMax">The range max.</param>
         /// <returns></returns>
-        private static int ParseInt(string strVal, String fieldName, int rangeMax)
+        private static int ParseInt(string strVal, string fieldName, int rangeMax)
         {
             return ParseInt(strVal, fieldName, 0, rangeMax - 1);
         }
@@ -610,7 +610,7 @@ namespace Npoi.Core.SS.UserModel
         /// <param name="lowerLimit">The lower limit.</param>
         /// <param name="upperLimit">The upper limit.</param>
         /// <returns></returns>
-        private static int ParseInt(string strVal, String fieldName, int lowerLimit, int upperLimit)
+        private static int ParseInt(string strVal, string fieldName, int lowerLimit, int upperLimit)
         {
             int result;
             try
@@ -681,7 +681,7 @@ namespace Npoi.Core.SS.UserModel
                 if (style == null)
                     return false;
                 int i = style.DataFormat;
-                String f = style.GetDataFormatString();
+                string f = style.GetDataFormatString();
                 bDate = IsADateFormat(i, f);
             }
             return bDate;

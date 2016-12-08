@@ -78,13 +78,13 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return SIZE; }
         }
 
-        public String ToFormulaString(IFormulaRenderingWorkbook book)
+        public string ToFormulaString(IFormulaRenderingWorkbook book)
         {
             // -1 to convert definedNameIndex from 1-based to zero-based
             return book.ResolveNameXText(this);
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             throw new NotImplementedException("3D references need a workbook to determine formula text");
         }

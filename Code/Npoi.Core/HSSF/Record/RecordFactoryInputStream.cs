@@ -115,7 +115,7 @@ namespace Npoi.Core.HSSF.Record
             public RecordInputStream CreateDecryptingStream(Stream original)
             {
                 FilePassRecord fpr = _filePassRec;
-                String userPassword = Biff8EncryptionKey.CurrentUserPassword;
+                string userPassword = Biff8EncryptionKey.CurrentUserPassword;
 
                 Biff8EncryptionKey key;
                 if (userPassword == null)

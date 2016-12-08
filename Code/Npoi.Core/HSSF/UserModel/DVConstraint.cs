@@ -76,8 +76,8 @@ namespace Npoi.Core.HSSF.UserModel
         private Double _value1;
         private Double _value2;
 
-        private DVConstraint(int validationType, int comparisonOperator, String formulaA,
-                String formulaB, Double value1, Double value2, String[] excplicitListValues)
+        private DVConstraint(int validationType, int comparisonOperator, string formulaA,
+                string formulaB, Double value1, Double value2, string[] excplicitListValues)
         {
             _validationType = validationType;
             _operator = comparisonOperator;
@@ -92,7 +92,7 @@ namespace Npoi.Core.HSSF.UserModel
          * Creates a list constraint
          */
 
-        private DVConstraint(string listFormula, String[] excplicitListValues)
+        private DVConstraint(string listFormula, string[] excplicitListValues)
             : this(ValidationType.LIST, OperatorType.IGNORED,
                 listFormula, null, Double.NaN, Double.NaN, excplicitListValues)
         {
@@ -114,7 +114,7 @@ namespace Npoi.Core.HSSF.UserModel
          */
 
         public static DVConstraint CreateNumericConstraint(int validationType, int comparisonOperator,
-                String expr1, String expr2)
+                string expr1, string expr2)
         {
             switch (validationType)
             {
@@ -140,10 +140,10 @@ namespace Npoi.Core.HSSF.UserModel
                             + validationType + ") not supported with this method");
             }
             // formula1 and value1 are mutually exclusive
-            String formula1 = GetFormulaFromTextExpression(expr1);
+            string formula1 = GetFormulaFromTextExpression(expr1);
             Double value1 = formula1 == null ? ConvertNumber(expr1) : double.NaN;
             // formula2 and value2 are mutually exclusive
-            String formula2 = GetFormulaFromTextExpression(expr2);
+            string formula2 = GetFormulaFromTextExpression(expr2);
             Double value2 = formula2 == null ? ConvertNumber(expr2) : double.NaN;
             return new DVConstraint(validationType, comparisonOperator, formula1, formula2, value1, value2, null);
         }
@@ -170,7 +170,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @param expr2 date formula (when first char is '=') or formatted time value
          */
 
-        public static DVConstraint CreateTimeConstraint(int comparisonOperator, String expr1, String expr2)
+        public static DVConstraint CreateTimeConstraint(int comparisonOperator, string expr1, string expr2)
         {
             if (expr1 == null)
             {
@@ -179,10 +179,10 @@ namespace Npoi.Core.HSSF.UserModel
             OperatorType.ValidateSecondArg(comparisonOperator, expr1);
 
             // formula1 and value1 are mutually exclusive
-            String formula1 = GetFormulaFromTextExpression(expr1);
+            string formula1 = GetFormulaFromTextExpression(expr1);
             Double value1 = formula1 == null ? ConvertTime(expr1) : Double.NaN;
             // formula2 and value2 are mutually exclusive
-            String formula2 = GetFormulaFromTextExpression(expr2);
+            string formula2 = GetFormulaFromTextExpression(expr2);
             Double value2 = formula2 == null ? ConvertTime(expr2) : Double.NaN;
             return new DVConstraint(ValidationType.TIME, comparisonOperator, formula1, formula2, value1, value2, null);
         }
@@ -202,7 +202,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @see <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/DateFormat.html'>SimpleDateFormat</a>
          */
 
-        public static DVConstraint CreateDateConstraint(int comparisonOperator, String expr1, String expr2, String dateFormat)
+        public static DVConstraint CreateDateConstraint(int comparisonOperator, string expr1, string expr2, string dateFormat)
         {
             if (expr1 == null)
             {
@@ -212,10 +212,10 @@ namespace Npoi.Core.HSSF.UserModel
             SimpleDateFormat df = dateFormat == null ? null : new SimpleDateFormat(dateFormat);
 
             // formula1 and value1 are mutually exclusive
-            String formula1 = GetFormulaFromTextExpression(expr1);
+            string formula1 = GetFormulaFromTextExpression(expr1);
             Double value1 = formula1 == null ? ConvertDate(expr1, df) : Double.NaN;
             // formula2 and value2 are mutually exclusive
-            String formula2 = GetFormulaFromTextExpression(expr2);
+            string formula2 = GetFormulaFromTextExpression(expr2);
             Double value2 = formula2 == null ? ConvertDate(expr2, df) : Double.NaN;
             return new DVConstraint(ValidationType.DATE, comparisonOperator, formula1, formula2, value1, value2, null);
         }
@@ -370,7 +370,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-        public String[] ExplicitListValues
+        public string[] ExplicitListValues
         {
             get
             {
@@ -391,7 +391,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @see Npoi.Core.HSSF.UserModel.DataValidationConstraint#getFormula1()
          */
 
-        public String Formula1
+        public string Formula1
         {
             get
             {
@@ -409,7 +409,7 @@ namespace Npoi.Core.HSSF.UserModel
          * @see Npoi.Core.HSSF.UserModel.DataValidationConstraint#getFormula2()
          */
 
-        public String Formula2
+        public string Formula2
         {
             get
             {
@@ -544,7 +544,7 @@ namespace Npoi.Core.HSSF.UserModel
                 case ValidationType.LIST:
                     if (dvRecord.ListExplicitFormula)
                     {
-                        String values = toFormulaString(dvRecord.Formula1, book).AsString();
+                        string values = toFormulaString(dvRecord.Formula1, book).AsString();
                         if (values.StartsWith("\""))
                         {
                             values = values.Substring(1);
@@ -553,12 +553,12 @@ namespace Npoi.Core.HSSF.UserModel
                         {
                             values = values.Substring(0, values.Length - 1);
                         }
-                        String[] explicitListValues = values.Split("\0".ToCharArray());
+                        string[] explicitListValues = values.Split("\0".ToCharArray());
                         return CreateExplicitListConstraint(explicitListValues);
                     }
                     else
                     {
-                        String listFormula = toFormulaString(dvRecord.Formula1, book).AsString();
+                        string listFormula = toFormulaString(dvRecord.Formula1, book).AsString();
                         return CreateFormulaListConstraint(listFormula);
                     }
                 case ValidationType.FORMULA:
@@ -571,10 +571,10 @@ namespace Npoi.Core.HSSF.UserModel
 
         private class FormulaValuePair
         {
-            internal String _formula;
-            internal String _value;
+            internal string _formula;
+            internal string _value;
 
-            public String formula()
+            public string formula()
             {
                 return _formula;
             }
@@ -591,7 +591,7 @@ namespace Npoi.Core.HSSF.UserModel
                 }
             }
 
-            public String AsString()
+            public string AsString()
             {
                 if (_formula != null)
                 {
@@ -610,7 +610,7 @@ namespace Npoi.Core.HSSF.UserModel
             FormulaValuePair pair = new FormulaValuePair();
             if (ptgs != null && ptgs.Length > 0)
             {
-                String aString = FormulaRenderer.ToFormulaString(book, ptgs);
+                string aString = FormulaRenderer.ToFormulaString(book, ptgs);
                 if (ptgs.Length == 1 && ptgs[0].GetType() == typeof(NumberPtg))
                 {
                     pair._value = aString;

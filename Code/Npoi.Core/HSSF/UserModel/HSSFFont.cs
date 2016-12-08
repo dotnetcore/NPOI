@@ -30,7 +30,7 @@ namespace Npoi.Core.HSSF.UserModel
     /// </summary>
     public class HSSFFont : Npoi.Core.SS.UserModel.IFont
     {
-        public const String FONT_ARIAL = "Arial";
+        public const string FONT_ARIAL = "Arial";
 
         private FontRecord font;
         private short index;
@@ -50,7 +50,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// Get the name for the font (i.e. Arial)
         /// </summary>
         /// <value>the name of the font to use</value>
-        public String FontName
+        public string FontName
         {
             get { return font.FontName; }
             set
@@ -198,7 +198,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString()
+        public override string ToString()
         {
             return "Npoi.Core.HSSF.UserModel.HSSFFont{" +
                      font +

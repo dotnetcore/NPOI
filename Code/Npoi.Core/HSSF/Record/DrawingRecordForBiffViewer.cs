@@ -56,7 +56,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        protected override String RecordName
+        protected override string RecordName
         {
             get { return "MSODRAWING"; }
         }

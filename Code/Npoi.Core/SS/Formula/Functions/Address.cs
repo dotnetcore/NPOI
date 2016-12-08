@@ -96,7 +96,7 @@ namespace Npoi.Core.SS.Formula.Functions
                     a1 = true;
                 }
 
-                String sheetName;
+                string sheetName;
                 if (args.Length == 5)
                 {
                     ValueEval ve = OperandResolver.GetSingleValue(args[4], srcRowIndex, srcColumnIndex);

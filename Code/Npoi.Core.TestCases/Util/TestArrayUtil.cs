@@ -41,7 +41,7 @@ namespace TestCases.Util
         [Test]
         public void TestCharFill()
         {
-            char[] a=new char[100];
+            char[] a = new char[100];
             Arrays.Fill(a, 'a');
             for (int i = 0; i < a.Length; i++)
             {
@@ -56,7 +56,7 @@ namespace TestCases.Util
         public void TestByteFill()
         {
             byte[] a = new byte[100];
-            Arrays.Fill(a, 0x01);
+            Arrays.Fill(a, (byte)0x01);
             for (int i = 0; i < a.Length; i++)
             {
                 if (a[i] != 0x01)
@@ -82,7 +82,7 @@ namespace TestCases.Util
         [Test]
         public void TestEquals()
         {
-            byte[] a = { 1, 2, 3, 4, 0x56, 0x2A,0xff };
+            byte[] a = { 1, 2, 3, 4, 0x56, 0x2A, 0xff };
             byte[] b = { 1, 2, 3, 4, 0x56, 0x2A, 0xff };
             byte[] c = { 1, 0, 3, 4, 0x56, 0x2B, 0xff };
 

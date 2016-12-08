@@ -92,11 +92,11 @@ namespace Npoi.Core.HPSF
             get { return _value; }
         }
 
-        public String ToJavaString() {
+        public string ToJavaString() {
             if (_value.Length == 0)
                 return null;
 
-            String result = StringUtil.GetFromUnicodeLE(_value, 0,
+            string result = StringUtil.GetFromUnicodeLE(_value, 0,
                     _value.Length >> 1);
 
             int terminator = result.IndexOf('\0');

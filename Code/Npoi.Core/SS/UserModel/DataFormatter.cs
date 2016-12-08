@@ -210,7 +210,7 @@ namespace Npoi.Core.SS.UserModel
             }
 
             int formatIndex = cell.CellStyle.DataFormat;
-            String formatStr = cell.CellStyle.GetDataFormatString();
+            string formatStr = cell.CellStyle.GetDataFormatString();
             if (formatStr == null || formatStr.Trim().Length == 0)
             {
                 return null;
@@ -218,7 +218,7 @@ namespace Npoi.Core.SS.UserModel
             return GetFormat(cell.NumericCellValue, formatIndex, formatStr);
         }
 
-        private FormatBase GetFormat(double cellValue, int formatIndex, String formatStrIn)
+        private FormatBase GetFormat(double cellValue, int formatIndex, string formatStrIn)
         {
             //      // Might be better to separate out the n p and z formats, falling back to p when n and z are not set.
             //      // That however would require other code to be re factored.
@@ -226,7 +226,7 @@ namespace Npoi.Core.SS.UserModel
             //      int i = cellValue > 0.0 ? 0 : cellValue < 0.0 ? 1 : 2;
             //      String formatStr = (i < formatBits.length) ? formatBits[i] : formatBits[0];
 
-            String formatStr = formatStrIn;
+            string formatStr = formatStrIn;
             // Excel supports positive/negative/zero, but java
             // doesn't, so we need to do it specially
             int firstAt = formatStr.IndexOf(';');
@@ -296,7 +296,7 @@ namespace Npoi.Core.SS.UserModel
         public FormatBase CreateFormat(ICell cell)
         {
             int formatIndex = cell.CellStyle.DataFormat;
-            String formatStr = cell.CellStyle.GetDataFormatString();
+            string formatStr = cell.CellStyle.GetDataFormatString();
             return CreateFormat(cell.NumericCellValue, formatIndex, formatStr);
         }
 
@@ -304,10 +304,10 @@ namespace Npoi.Core.SS.UserModel
         private static readonly Regex RegexContinueWs = new Regex("\\s");
         private static readonly Regex RegexAnyInDoubleQuote = new Regex("\"[^\"]*\"");
 
-        private FormatBase CreateFormat(double cellValue, int formatIndex, String sFormat)
+        private FormatBase CreateFormat(double cellValue, int formatIndex, string sFormat)
         {
             // remove color Formatting if present
-            String formatStr = colorPattern.Replace(sFormat, "");
+            string formatStr = colorPattern.Replace(sFormat, "");
 
             // Strip off the locale information, we use an instance-wide locale for everything
             MatchCollection matches = Regex.Matches(formatStr, localePatternGroup);
@@ -316,7 +316,7 @@ namespace Npoi.Core.SS.UserModel
                 string matchedstring = match.Value;
                 int beginpos = matchedstring.IndexOf('$') + 1;
                 int endpos = matchedstring.IndexOf('-');
-                String symbol = matchedstring.Substring(beginpos, endpos - beginpos);
+                string symbol = matchedstring.Substring(beginpos, endpos - beginpos);
 
                 if (symbol.IndexOf('$') > -1)
                 {
@@ -356,10 +356,10 @@ namespace Npoi.Core.SS.UserModel
             // Excel supports fractions in format strings, which Java doesn't
             if (formatStr.IndexOf("#/") >= 0 || formatStr.IndexOf("?/") >= 0)
             {
-                String[] chunks = formatStr.Split(";".ToCharArray());
+                string[] chunks = formatStr.Split(";".ToCharArray());
                 for (int i = 0; i < chunks.Length; i++)
                 {
-                    String chunk = chunks[i].Replace("?", "#");
+                    string chunk = chunks[i].Replace("?", "#");
                     //Match matcher = fractionStripper.Match(chunk);
                     //chunk = matcher.Replace(" ");
                     chunk = fractionStripper.Replace(chunk, " ");
@@ -368,7 +368,7 @@ namespace Npoi.Core.SS.UserModel
                     //take the first match
                     if (fractionMatcher.Success)
                     {
-                        String wholePart = (fractionMatcher.Groups[1] == null || !fractionMatcher.Groups[1].Success) ? "" : defaultFractionWholePartFormat;
+                        string wholePart = (fractionMatcher.Groups[1] == null || !fractionMatcher.Groups[1].Success) ? "" : defaultFractionWholePartFormat;
                         return new FractionFormat(wholePart, fractionMatcher.Groups[3].Value);
                     }
                 }
@@ -407,7 +407,7 @@ namespace Npoi.Core.SS.UserModel
 
         private FormatBase CreateDateFormat(string pformatStr, double cellValue)
         {
-            String formatStr = pformatStr;
+            string formatStr = pformatStr;
             formatStr = formatStr.Replace("\\-", "-");
             formatStr = formatStr.Replace("\\,", ",");
             formatStr = formatStr.Replace("\\.", ".");
@@ -673,7 +673,7 @@ namespace Npoi.Core.SS.UserModel
 
         private FormatBase CreateNumberFormat(string formatStr, double cellValue)
         {
-            String format = cleanFormatForNumber(formatStr);
+            string format = cleanFormatForNumber(formatStr);
             try
             {
                 return new DecimalFormat(format);
@@ -771,7 +771,7 @@ namespace Npoi.Core.SS.UserModel
          * @see #FormatCellValue(Cell)
          */
 
-        public String FormatRawCellContents(double value, int formatIndex, String formatString)
+        public string FormatRawCellContents(double value, int formatIndex, string formatString)
         {
             return FormatRawCellContents(value, formatIndex, formatString, false);
         }
@@ -796,7 +796,7 @@ namespace Npoi.Core.SS.UserModel
      * @see #formatCellValue(Cell)
      */
 
-        public String FormatRawCellContents(double value, int formatIndex, String formatString, bool use1904Windowing)
+        public string FormatRawCellContents(double value, int formatIndex, string formatString, bool use1904Windowing)
         {
             // Is it a date?
             if (DateUtil.IsADateFormat(formatIndex, formatString))
@@ -832,8 +832,8 @@ namespace Npoi.Core.SS.UserModel
             // previous versions). However, if the value contains E notation, this
             // would expand the values, which we do not want, so revert to
             // original method.
-            String result;
-            String textValue = NumberToTextConverter.ToText(value);
+            string result;
+            string textValue = NumberToTextConverter.ToText(value);
             if (textValue.IndexOf('E') > -1)
             {
                 result = numberFormat.Format(value);
@@ -864,7 +864,7 @@ namespace Npoi.Core.SS.UserModel
          * @return the Formatted cell value as a String
          */
 
-        public String FormatCellValue(ICell cell)
+        public string FormatCellValue(ICell cell)
         {
             return FormatCellValue(cell, null);
         }
@@ -887,7 +887,7 @@ namespace Npoi.Core.SS.UserModel
          * @return a string value of the cell
          */
 
-        public String FormatCellValue(ICell cell, IFormulaEvaluator evaluator)
+        public string FormatCellValue(ICell cell, IFormulaEvaluator evaluator)
         {
             if (cell == null)
             {

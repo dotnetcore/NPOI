@@ -31,7 +31,7 @@ namespace Npoi.Core.SS.Formula
             _isQuoted = isQuoted;
         }
 
-        public String Name
+        public string Name
         {
             get
             {
@@ -47,7 +47,7 @@ namespace Npoi.Core.SS.Formula
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name);

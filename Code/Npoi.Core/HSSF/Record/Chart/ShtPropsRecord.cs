@@ -66,7 +66,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             field_3_reserved = (byte)in1.ReadByte();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

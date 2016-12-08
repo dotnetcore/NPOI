@@ -47,7 +47,7 @@ namespace Npoi.Core.HPSF
         /// <param name="value">The value</param>
         /// <param name="msg">A message string</param>
         public IllegalVariantTypeException(long variantType,
-                                           object value, String msg) : base(variantType, value, msg) {
+                                           object value, string msg) : base(variantType, value, msg) {
         }
 
         /// <summary>

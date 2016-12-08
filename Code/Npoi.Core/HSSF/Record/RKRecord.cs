@@ -110,7 +110,7 @@ namespace Npoi.Core.HSSF.Record
             get { return RKUtil.DecodeNumber(field_4_rk_number); }
         }
 
-        protected override String RecordName
+        protected override string RecordName
         {
             get
             {

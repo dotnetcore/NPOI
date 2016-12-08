@@ -63,7 +63,7 @@ namespace Npoi.Core.HSSF.UserModel
 
                     // Check to see if the font metric file was specified
                     //  as a system property
-                    String propFileName = null;
+                    string propFileName = null;
                     try
                     {
                         propFileName = null;//ConfigurationManager.AppSettings["font.metrics.filename"];
@@ -105,12 +105,12 @@ namespace Npoi.Core.HSSF.UserModel
             }
 
             // Grab the base name of the font they've asked about
-            String fontName = font.FontFamily?.Name;
+            string fontName = font.FontFamily?.Name;
 
             // Some fonts support plain/bold/italic/bolditalic variants
             // Others have different font instances for bold etc
             // (eg font.dialog.plain.* vs font.Californian FB Bold.*)
-            String fontStyle = "";
+            string fontStyle = "";
             //if(font.IsPlain())  fontStyle += "plain";
             if (font.Bold) fontStyle += "bold";
             if (font.Italic) fontStyle += "italic";

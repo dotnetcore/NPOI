@@ -50,7 +50,7 @@ namespace Npoi.Core.HPSF
         /// <param name="value">The value who's variant type causes the problem</param>
         /// <param name="msg">A message text describing the problem</param>
         public VariantTypeException(long variantType, object value,
-                                    String msg) : base(msg) {
+                                    string msg) : base(msg) {
             this.variantType = variantType;
             this.value = value;
         }

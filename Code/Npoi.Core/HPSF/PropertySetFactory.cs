@@ -60,7 +60,7 @@ namespace Npoi.Core.HPSF
          * supported.
          */
 
-        public static PropertySet Create(DirectoryEntry dir, String name) {
+        public static PropertySet Create(DirectoryEntry dir, string name) {
             Stream inp = null;
             try {
                 DocumentEntry entry = (DocumentEntry)dir.GetEntry(name);

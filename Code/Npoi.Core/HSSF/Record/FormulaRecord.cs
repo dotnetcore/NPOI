@@ -103,7 +103,7 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteShort(0xFFFF);
         }
 
-        public String FormatDebugString
+        public string FormatDebugString
         {
             get
             {
@@ -168,7 +168,7 @@ namespace Npoi.Core.HSSF.Record
             return new SpecialCachedValue(vd);
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name);
@@ -388,7 +388,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        protected override String RecordName
+        protected override string RecordName
         {
             get
             {

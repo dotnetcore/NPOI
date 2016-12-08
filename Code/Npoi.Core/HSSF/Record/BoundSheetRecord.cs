@@ -108,7 +108,7 @@ namespace Npoi.Core.HSSF.Record
          * @return sheetname the name of the sheet
          */
 
-        public String Sheetname
+        public string Sheetname
         {
             get { return field_5_sheetname; }
             set
@@ -127,7 +127,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 
@@ -153,7 +153,7 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteInt(PositionOfBof);
             out1.WriteShort(field_2_option_flags);
 
-            String name = field_5_sheetname;
+            string name = field_5_sheetname;
             out1.WriteByte(name.Length);
             out1.WriteByte(field_4_isMultibyteUnicode);
 

@@ -92,7 +92,7 @@ namespace Npoi.Core.HSSF.Record
             rgbHdrData = in1.ReadRemainder();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
             buffer.Append("[FEATURE HEADER]\n");

@@ -175,8 +175,8 @@ namespace Npoi.Core.DDF
          * Retrieve the string representation of this record.
          */
 
-        public override String ToString() {
-            String nl = Environment.NewLine;
+        public override string ToString() {
+            string nl = Environment.NewLine;
 
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(GetType().Name);
@@ -207,7 +207,7 @@ namespace Npoi.Core.DDF
             return stringBuilder.ToString();
         }
 
-        public override String ToXml(string tab) {
+        public override string ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name,
                     HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)));

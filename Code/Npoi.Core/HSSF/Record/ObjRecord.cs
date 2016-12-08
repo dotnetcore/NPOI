@@ -113,7 +113,7 @@ namespace Npoi.Core.HSSF.Record
                     {
                         if (!CanPaddingBeDiscarded(subRecordData, nRemainingBytes))
                         {
-                            String msg = "Leftover " + nRemainingBytes
+                            string msg = "Leftover " + nRemainingBytes
                                 + " bytes in subrecord data " + HexDump.ToHex(subRecordData);
                             throw new RecordFormatException(msg);
                         }
@@ -151,7 +151,7 @@ namespace Npoi.Core.HSSF.Record
             return true;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
 

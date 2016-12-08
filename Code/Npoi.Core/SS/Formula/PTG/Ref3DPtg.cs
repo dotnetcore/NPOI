@@ -72,7 +72,7 @@ namespace Npoi.Core.SS.Formula.PTG
             ExternSheetIndex = externIdx;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             CellReference cr = new CellReference(Row, Column, !IsRowRelative, !IsColRelative);
             StringBuilder sb = new StringBuilder();
@@ -108,12 +108,12 @@ namespace Npoi.Core.SS.Formula.PTG
          * formulas. The sheet name will Get properly delimited if required.
          */
 
-        public String ToFormulaString(IFormulaRenderingWorkbook book)
+        public string ToFormulaString(IFormulaRenderingWorkbook book)
         {
             return ExternSheetNameResolver.PrependSheetName(book, field_1_index_extern_sheet, FormatReferenceAsString());
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             throw new NotImplementedException("3D references need a workbook to determine formula text");
         }

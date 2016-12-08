@@ -41,7 +41,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// Get the name of the Entry
         /// </summary>
         /// <value>The name.</value>
-        String Name { get; }
+        string Name { get; }
 
         /// <summary>
         /// Is this a DirectoryEntry?

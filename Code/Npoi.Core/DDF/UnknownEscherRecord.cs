@@ -141,7 +141,7 @@ namespace Npoi.Core.DDF
         /// The short name for this record
         /// </summary>
         /// <value></value>
-        public override String RecordName {
+        public override string RecordName {
             get { return "Unknown 0x" + HexDump.ToHex(RecordId); }
         }
 
@@ -151,8 +151,8 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString() {
-            String nl = Environment.NewLine;
+        public override string ToString() {
+            string nl = Environment.NewLine;
 
             StringBuilder children = new StringBuilder();
             if (ChildRecords.Count > 0) {
@@ -164,7 +164,7 @@ namespace Npoi.Core.DDF
                 }
             }
 
-            String theDumpHex = "";
+            string theDumpHex = "";
             try {
                 if (_thedata.Length != 0) {
                     theDumpHex = "  Extra Data(" + _thedata.Length + "):" + nl;
@@ -185,8 +185,8 @@ namespace Npoi.Core.DDF
                     children.ToString();
         }
 
-        public override String ToXml(string tab) {
-            String theDumpHex = HexDump.ToHex(_thedata, 32);
+        public override string ToXml(string tab) {
+            string theDumpHex = HexDump.ToHex(_thedata, 32);
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
                     .Append(tab).Append("\t").Append("<IsContainer>").Append(IsContainerRecord).Append("</IsContainer>\n")

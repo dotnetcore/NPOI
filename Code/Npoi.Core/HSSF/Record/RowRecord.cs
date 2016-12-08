@@ -331,7 +331,7 @@ namespace Npoi.Core.HSSF.Record
             set { field_8_option_flags = phoeneticGuide.SetBoolean(field_8_option_flags, value); }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

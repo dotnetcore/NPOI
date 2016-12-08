@@ -104,7 +104,7 @@ namespace Npoi.Core.HSSF.Record
             field_6_reserved3 = in1.ReadInt();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

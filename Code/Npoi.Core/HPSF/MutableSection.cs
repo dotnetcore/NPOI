@@ -131,7 +131,7 @@ namespace Npoi.Core.HPSF
         /// <param name="id">The property's ID</param>
         /// <param name="value">The property's value. It will be written as a Unicode
         /// string.</param>
-        public void SetProperty(int id, String value) {
+        public void SetProperty(int id, string value) {
             SetProperty(id, Variant.VT_LPWSTR, value);
             dirty = true;
         }
@@ -395,7 +395,7 @@ namespace Npoi.Core.HPSF
             int length = TypeWriter.WriteUIntToStream(out1, (uint)dictionary.Count);
             for (IEnumerator i = dictionary.Keys.GetEnumerator(); i.MoveNext();) {
                 long key = Convert.ToInt64(i.Current, CultureInfo.InvariantCulture);
-                String value = (string)dictionary[key];
+                string value = (string)dictionary[key];
                 //tony qu added: some key is int32 instead of int64
                 if (value == null)
                     value = (string)dictionary[(int)key];
@@ -544,7 +544,7 @@ namespace Npoi.Core.HPSF
         /// <param name="value">The property's value. The value's class must be one of those
         /// supported by HPSF.</param>
         public void SetProperty(int id, object value) {
-            if (value is String)
+            if (value is string)
                 SetProperty(id, (string)value);
             else if (value is long)
                 SetProperty(id, ((long)value));

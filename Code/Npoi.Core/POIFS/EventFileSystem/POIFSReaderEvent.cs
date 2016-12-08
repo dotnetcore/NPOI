@@ -42,7 +42,7 @@ namespace Npoi.Core.POIFS.EventFileSystem
          */
 
         public POIFSReaderEvent(DocumentInputStream stream,
-                         POIFSDocumentPath path, String documentName)
+                         POIFSDocumentPath path, string documentName)
         {
             this.stream = stream;
             this.path = path;
@@ -71,7 +71,7 @@ namespace Npoi.Core.POIFS.EventFileSystem
          * @return the document's name
          */
 
-        public String Name
+        public string Name
         {
             get { return documentName; }
         }

@@ -65,7 +65,7 @@ namespace Npoi.Core.HSSF.Record
             field6_icrt = in1.ReadShort();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

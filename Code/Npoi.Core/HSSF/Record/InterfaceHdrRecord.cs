@@ -62,7 +62,7 @@ namespace Npoi.Core.HSSF.Record
         //    set { _codepage = value; }
         //}
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

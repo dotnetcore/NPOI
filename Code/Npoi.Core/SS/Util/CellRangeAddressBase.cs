@@ -184,7 +184,7 @@
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             CellReference crA = new CellReference(_firstRow, _firstCol);
             CellReference crB = new CellReference(_lastRow, _lastCol);

@@ -111,7 +111,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// the DataFormat against the bound workbook
         /// </summary>
         /// <returns></returns>
-        public String GetDataFormatString()
+        public string GetDataFormatString()
         {
             //HSSFDataFormat format = new HSSFDataFormat(workbook);
             //return format.GetFormat(DataFormat);
@@ -137,7 +137,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="workbook">The workbook</param>
         /// <returns>the format string or "General" if not found</returns>
-        public String GetDataFormatString(IWorkbook workbook)
+        public string GetDataFormatString(IWorkbook workbook)
         {
             HSSFDataFormat format = new HSSFDataFormat(((HSSFWorkbook)workbook).Workbook);
 
@@ -151,7 +151,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="workbook">The internal workbook.</param>
         /// <returns></returns>
-        public String GetDataFormatString(Npoi.Core.HSSF.Model.InternalWorkbook workbook)
+        public string GetDataFormatString(Npoi.Core.HSSF.Model.InternalWorkbook workbook)
         {
             HSSFDataFormat format = new HSSFDataFormat(workbook);
 
@@ -669,7 +669,7 @@ namespace Npoi.Core.HSSF.UserModel
  *  styles where no name has been defined
  */
 
-        public String UserStyleName
+        public string UserStyleName
         {
             get
             {

@@ -83,8 +83,8 @@ namespace Npoi.Core.HSSF.Record
 
         public DVRecord(int validationType, int operator1, int errorStyle, bool emptyCellAllowed,
             bool suppressDropDownArrow, bool isExplicitList,
-            bool showPromptBox, String promptTitle, String promptText,
-            bool showErrorBox, String errorTitle, String errorText,
+            bool showPromptBox, string promptTitle, string promptText,
+            bool showErrorBox, string errorTitle, string errorText,
             Ptg[] formula1, Ptg[] formula2,
             CellRangeAddressList regions)
         {
@@ -154,7 +154,7 @@ namespace Npoi.Core.HSSF.Record
             return new UnicodeString(str);
         }
 
-        private static String ResolveTitleString(UnicodeString us)
+        private static string ResolveTitleString(UnicodeString us)
         {
             if (us == null || us.Equals(NULL_TEXT_STRING))
             {
@@ -288,7 +288,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public String PromptTitle
+        public string PromptTitle
         {
             get
             {
@@ -296,7 +296,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public String ErrorTitle
+        public string ErrorTitle
         {
             get
             {
@@ -304,7 +304,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public String PromptText
+        public string PromptText
         {
             get
             {
@@ -312,7 +312,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public String ErrorText
+        public string ErrorText
         {
             get
             {
@@ -358,7 +358,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             /* @todo DVRecord string representation */
             StringBuilder buffer = new StringBuilder();
@@ -392,7 +392,7 @@ namespace Npoi.Core.HSSF.Record
 
         private static int GetUnicodeStringSize(UnicodeString us)
         {
-            String str = us.String;
+            string str = us.String;
             return 3 + str.Length * (StringUtil.HasMultibyte(str) ? 2 : 1);
         }
 

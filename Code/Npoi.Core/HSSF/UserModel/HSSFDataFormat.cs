@@ -97,7 +97,7 @@ namespace Npoi.Core.HSSF.UserModel
 
             for (short k = 0; k <= 0x31; k++)
             {
-                String nformat = (string)builtinFormats[k];
+                string nformat = (string)builtinFormats[k];
 
                 if ((nformat != null) && nformat.Equals(format))
                 {
@@ -119,7 +119,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             IEnumerator i;
             int ind;
-            String format;
+            string format;
             if (pFormat.ToUpper().Equals("TEXT"))
             {
                 format = "@";
@@ -169,7 +169,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="index">The index of a format.</param>
         /// <returns>string represented at index of format or null if there Is not a  format at that index</returns>
-        public String GetFormat(short index)
+        public string GetFormat(short index)
         {
             if (movedBuiltins)
                 return (string)formats[index];
@@ -177,7 +177,7 @@ namespace Npoi.Core.HSSF.UserModel
             if (index == -1)
                 return null;
 
-            String fmt = formats.Count > index ? formats[index] : null;
+            string fmt = formats.Count > index ? formats[index] : null;
 
             if (builtinFormats.Count > index
                         && builtinFormats[index] != null)
@@ -202,7 +202,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="index">The index of a built in format.</param>
         /// <returns>string represented at index of format or null if there Is not a builtin format at that index</returns>
-        public static String GetBuiltinFormat(short index)
+        public static string GetBuiltinFormat(short index)
         {
             return (string)builtinFormats[index];
         }

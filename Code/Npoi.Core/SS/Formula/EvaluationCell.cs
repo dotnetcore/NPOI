@@ -42,7 +42,7 @@ namespace Npoi.Core.SS.Formula
         CellType CellType { get; }
 
         double NumericCellValue { get; }
-        String StringCellValue { get; }
+        string StringCellValue { get; }
         bool BooleanCellValue { get; }
         int ErrorCellValue { get; }
         object IdentityKey { get; }

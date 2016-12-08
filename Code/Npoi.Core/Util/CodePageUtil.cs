@@ -207,7 +207,7 @@ namespace Npoi.Core.Util
 
         public static byte[] GetBytesInCodePage(string string1, int codepage)
         {
-            String encoding = CodepageToEncoding(codepage);
+            string encoding = CodepageToEncoding(codepage);
             return Encoding.GetEncoding(encoding).GetBytes(string1);
             //return string1.GetBytes(encoding);
         }
@@ -219,7 +219,7 @@ namespace Npoi.Core.Util
          * @param codepage The codepage number
          */
 
-        public static String GetStringFromCodePage(byte[] string1, int codepage)
+        public static string GetStringFromCodePage(byte[] string1, int codepage)
         {
             return GetStringFromCodePage(string1, 0, string1.Length, codepage);
         }
@@ -231,10 +231,10 @@ namespace Npoi.Core.Util
          * @param codepage The codepage number
          */
 
-        public static String GetStringFromCodePage(byte[] string1, int offset,
+        public static string GetStringFromCodePage(byte[] string1, int offset,
                  int length, int codepage)
         {
-            String encoding = CodepageToEncoding(codepage);
+            string encoding = CodepageToEncoding(codepage);
             return Encoding.GetEncoding(encoding).GetString(string1, offset, length);
         }
 
@@ -253,7 +253,7 @@ namespace Npoi.Core.Util
          * less than zero.
          */
 
-        public static String CodepageToEncoding(int codepage)
+        public static string CodepageToEncoding(int codepage)
         {
             if (codepage <= 0)
                 throw new ArgumentException("Codepage number may not be " + codepage);

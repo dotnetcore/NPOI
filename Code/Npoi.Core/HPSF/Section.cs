@@ -289,7 +289,7 @@ namespace Npoi.Core.HPSF
                     return 1;
             }
 
-            public override String ToString() {
+            public override string ToString() {
                 StringBuilder b = new StringBuilder();
                 b.Append(GetType().Name);
                 b.Append("[id=");
@@ -399,8 +399,8 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="pid">The property ID.</param>
         /// <returns>The property ID's string value</returns>
-        public String GetPIDString(long pid) {
-            String s = null;
+        public string GetPIDString(long pid) {
+            string s = null;
             if (dictionary != null)
                 s = (string)dictionary[pid];
             if (s == null)
@@ -539,7 +539,7 @@ namespace Npoi.Core.HPSF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString() {
+        public override string ToString() {
             StringBuilder b = new StringBuilder();
             Property[] pa = Properties;
             b.Append(GetType().Name);

@@ -30,7 +30,7 @@ namespace Npoi.Core.SS.Formula.Eval
     {
         public static readonly StringEval EMPTY_INSTANCE = new StringEval("");
 
-        private String value;
+        private string value;
 
         public StringEval(Ptg ptg) : this(((StringPtg)ptg).Value)
         {
@@ -45,12 +45,12 @@ namespace Npoi.Core.SS.Formula.Eval
             this.value = value;
         }
 
-        public String StringValue
+        public string StringValue
         {
             get { return value; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name).Append(" [");

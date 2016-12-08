@@ -405,7 +405,7 @@ namespace Npoi.Core.HSSF.Record
          * @return name
          */
 
-        public String NameText
+        public string NameText
         {
             get
             {
@@ -441,7 +441,7 @@ namespace Npoi.Core.HSSF.Record
          * @return custom menu text
          */
 
-        public String CustomMenuText
+        public string CustomMenuText
         {
             get { return field_14_custom_menu_text; }
             set { field_14_custom_menu_text = value; }
@@ -451,7 +451,7 @@ namespace Npoi.Core.HSSF.Record
          * @return description text
          */
 
-        public String DescriptionText
+        public string DescriptionText
         {
             get { return field_15_description_text; }
             set { field_15_description_text = value; }
@@ -461,7 +461,7 @@ namespace Npoi.Core.HSSF.Record
          * @return gelp topic text
          */
 
-        public String HelpTopicText
+        public string HelpTopicText
         {
             get { return field_16_help_topic_text; }
             set { field_16_help_topic_text = value; }
@@ -471,7 +471,7 @@ namespace Npoi.Core.HSSF.Record
          * @return status bar text
          */
 
-        public String StatusBarText
+        public string StatusBarText
         {
             get { return field_17_status_bar_text; }
             set { field_17_status_bar_text = value; }
@@ -527,7 +527,7 @@ namespace Npoi.Core.HSSF.Record
             }
             else
             {
-                String nameText = field_12_name_text;
+                string nameText = field_12_name_text;
                 if (field_11_nameIsMultibyte)
                 {
                     StringUtil.PutUnicodeLE(nameText, out1);
@@ -640,7 +640,7 @@ namespace Npoi.Core.HSSF.Record
          * @see object#ToString()
          */
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 
@@ -692,7 +692,7 @@ namespace Npoi.Core.HSSF.Record
          * @return Unknown if the built-in name cannot be translated
          */
 
-        protected String TranslateBuiltInName(byte name)
+        protected string TranslateBuiltInName(byte name)
         {
             switch (name)
             {

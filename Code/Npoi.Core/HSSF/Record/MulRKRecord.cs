@@ -134,7 +134,7 @@ namespace Npoi.Core.HSSF.Record
         //    return retval;
         //}
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

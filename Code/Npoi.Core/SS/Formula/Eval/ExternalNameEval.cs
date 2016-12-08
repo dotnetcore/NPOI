@@ -42,7 +42,7 @@ namespace Npoi.Core.SS.Formula.Eval
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name).Append(" [");

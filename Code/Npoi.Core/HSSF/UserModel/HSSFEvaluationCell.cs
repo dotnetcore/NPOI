@@ -122,7 +122,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-        public String StringCellValue
+        public string StringCellValue
         {
             get
             {

@@ -48,7 +48,7 @@ namespace Npoi.Core.SS.Formula.PTG
             // TODO - 2 seems wrong (Jun 2008).  Maybe this method is not relevant
         }
 
-        public override String ToFormulaString(string[] operands)
+        public override string ToFormulaString(string[] operands)
         {
             StringBuilder buffer = new StringBuilder();
 

@@ -30,11 +30,11 @@ namespace Npoi.Core.SS.Formula.Eval
     {
         // Based on regular expression defined in JavaDoc at {@link java.lang.Double#valueOf}
         // modified to remove support for NaN, Infinity, Hexadecimal support and floating type suffixes
-        private const String Digits = "\\d+";
+        private const string Digits = "\\d+";
 
-        private const String Exp = "[eE][+-]?" + Digits;
+        private const string Exp = "[eE][+-]?" + Digits;
 
-        private const String fpRegex =
+        private const string fpRegex =
                     ("[\\x00-\\x20]*" +
                      "[+-]?(" +
                      "(((" + Digits + "(\\.)?(" + Digits + "?)(" + Exp + ")?)|" +
@@ -332,7 +332,7 @@ namespace Npoi.Core.SS.Formula.Eval
          * @return the Converted string value. never <c>null</c>
          */
 
-        public static String CoerceValueToString(ValueEval ve)
+        public static string CoerceValueToString(ValueEval ve)
         {
             if (ve is StringValueEval)
             {
@@ -370,7 +370,7 @@ namespace Npoi.Core.SS.Formula.Eval
                 {
                     return null;
                 }
-                String str = ((StringEval)ve).StringValue;
+                string str = ((StringEval)ve).StringValue;
                 if (str.Equals("true", StringComparison.OrdinalIgnoreCase))
                 {
                     return true;

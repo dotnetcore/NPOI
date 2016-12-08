@@ -71,7 +71,7 @@ namespace Npoi.Core.SS.Formula.Functions
             {
                 return e.GetErrorEval();
             }
-            String strText1 = OperandResolver.CoerceValueToString(veText1);
+            string strText1 = OperandResolver.CoerceValueToString(veText1);
             Double number1 = OperandResolver.ParseDouble(strText1);
 
             //If this number argument is non numeric, this function returns the #VALUE! error value.
@@ -102,7 +102,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 {
                     return e.GetErrorEval();
                 }
-                String placesStr = OperandResolver.CoerceValueToString(placesValueEval);
+                string placesStr = OperandResolver.CoerceValueToString(placesValueEval);
                 Double placesNumberDouble = OperandResolver.ParseDouble(placesStr);
 
                 //non numeric value
@@ -120,14 +120,14 @@ namespace Npoi.Core.SS.Formula.Functions
                 }
             }
 
-            String hex = "";
+            string hex = "";
             if (placesNumber != 0)
             {
-                hex = String.Format("{0:X" + placesNumber + "}", (int)number1);
+                hex = string.Format("{0:X" + placesNumber + "}", (int)number1);
             }
             else
             {
-                hex = String.Format("{0:X}", (int)number1);
+                hex = string.Format("{0:X}", (int)number1);
             }
             if (number1 < 0)
             {

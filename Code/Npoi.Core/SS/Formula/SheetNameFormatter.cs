@@ -52,7 +52,7 @@ namespace Npoi.Core.SS.Formula
          * sheet name will be converted to double single quotes ('').
          */
 
-        public static String Format(string rawSheetName)
+        public static string Format(string rawSheetName)
         {
             StringBuilder sb = new StringBuilder(rawSheetName.Length + 2);
             AppendFormat(sb, rawSheetName);
@@ -65,7 +65,7 @@ namespace Npoi.Core.SS.Formula
          * @param out - sheet name will be Appended here possibly with delimiting quotes
          */
 
-        public static void AppendFormat(StringBuilder out1, String rawSheetName)
+        public static void AppendFormat(StringBuilder out1, string rawSheetName)
         {
             bool needsQuotes = NeedsDelimiting(rawSheetName);
             if (needsQuotes)
@@ -80,7 +80,7 @@ namespace Npoi.Core.SS.Formula
             }
         }
 
-        public static void AppendFormat(StringBuilder out1, String workbookName, String rawSheetName)
+        public static void AppendFormat(StringBuilder out1, string workbookName, string rawSheetName)
         {
             bool needsQuotes = NeedsDelimiting(workbookName) || NeedsDelimiting(rawSheetName);
             if (needsQuotes)
@@ -101,7 +101,7 @@ namespace Npoi.Core.SS.Formula
             }
         }
 
-        private static void AppendAndEscape(StringBuilder sb, String rawSheetName)
+        private static void AppendAndEscape(StringBuilder sb, string rawSheetName)
         {
             int len = rawSheetName.Length;
             for (int i = 0; i < len; i++)
@@ -221,7 +221,7 @@ namespace Npoi.Core.SS.Formula
          * @see org.apache.poi.hssf.util.CellReference
          */
 
-        public static bool CellReferenceIsWithinRange(string lettersPrefix, String numbersSuffix)
+        public static bool CellReferenceIsWithinRange(string lettersPrefix, string numbersSuffix)
         {
             return Npoi.Core.SS.Util.CellReference.CellReferenceIsWithinRange(lettersPrefix, numbersSuffix, Npoi.Core.SS.SpreadsheetVersion.EXCEL97);
         }
@@ -259,8 +259,8 @@ namespace Npoi.Core.SS.Formula
 
             Match match = matcher.Matches(rawSheetName)[0];
             // rawSheetName == "Sheet1" Gets this far.
-            String lettersPrefix = match.Groups[1].Value;
-            String numbersSuffix = match.Groups[2].Value;
+            string lettersPrefix = match.Groups[1].Value;
+            string numbersSuffix = match.Groups[2].Value;
             return CellReferenceIsWithinRange(lettersPrefix, numbersSuffix);
         }
     }

@@ -52,12 +52,12 @@ namespace Npoi.Core.SS.UserModel
         /// <summary>
         /// Hyperlink address. Depending on the hyperlink type it can be URL, e-mail, patrh to a file, etc.
         /// </summary>
-        String Address { get; set; }
+        string Address { get; set; }
 
         /// <summary>
         /// text label for this hyperlink
         /// </summary>
-        String Label { get; set; }
+        string Label { get; set; }
 
         /// <summary>
         /// the type of this hyperlink

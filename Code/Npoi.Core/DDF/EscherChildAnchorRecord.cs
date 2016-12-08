@@ -29,7 +29,7 @@ namespace Npoi.Core.DDF
     public class EscherChildAnchorRecord : EscherRecord
     {
         public const short RECORD_ID = unchecked((short)0xF00F);
-        public const String RECORD_DESCRIPTION = "MsofbtChildAnchor";
+        public const string RECORD_DESCRIPTION = "MsofbtChildAnchor";
 
         private int field_1_dx1;
         private int field_2_dy1;
@@ -96,7 +96,7 @@ namespace Npoi.Core.DDF
         /// The short name for this record
         /// </summary>
         /// <value></value>
-        public override String RecordName {
+        public override string RecordName {
             get { return "ChildAnchor"; }
         }
 
@@ -106,8 +106,8 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString() {
-            String nl = Environment.NewLine;
+        public override string ToString() {
+            string nl = Environment.NewLine;
 
             return GetType().Name + ":" + nl +
                     "  RecordId: 0x" + HexDump.ToHex(RECORD_ID) + nl +
@@ -119,7 +119,7 @@ namespace Npoi.Core.DDF
                     "  Y2: " + field_4_dy2 + nl;
         }
 
-        public override String ToXml(string tab) {
+        public override string ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
                     .Append(tab).Append("\t").Append("<X1>").Append(field_1_dx1).Append("</X1>\n")

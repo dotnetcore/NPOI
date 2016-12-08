@@ -48,7 +48,7 @@ namespace Npoi.Core.SS.Format
                 numplace = numPlace;
             }
 
-            public String HandlePart(Match m, String part,
+            public string HandlePart(Match m, string part,
                                 CellFormatType type, StringBuilder desc)
             {
                 if (part.Equals("@"))
@@ -84,7 +84,7 @@ namespace Npoi.Core.SS.Format
         public override void FormatValue(StringBuilder toAppendTo, object obj)
         {
             int start = toAppendTo.Length;
-            String text = obj.ToString();
+            string text = obj.ToString();
             if (obj is Boolean)
             {
                 text = text.ToUpper();

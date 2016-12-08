@@ -74,7 +74,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             out1.WriteShort(iObjectInstance2);
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

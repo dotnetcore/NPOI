@@ -44,7 +44,7 @@ namespace Npoi.Core.SS.Formula.Function
             _mutatingFunctionIndexes = new List<object>();
         }
 
-        public void Add(int functionIndex, String functionName, int minParams, int maxParams,
+        public void Add(int functionIndex, string functionName, int minParams, int maxParams,
                 byte returnClassCode, byte[] parameterClassCodes, bool hasFootnote)
         {
             FunctionMetadata fm = new FunctionMetadata(functionIndex, functionName, minParams, maxParams,

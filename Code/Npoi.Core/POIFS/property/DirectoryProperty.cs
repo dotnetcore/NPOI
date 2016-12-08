@@ -76,13 +76,13 @@ namespace Npoi.Core.POIFS.Properties
         /// <param name="property">the Property whose name Is being Changed.</param>
         /// <param name="newName">the new name for the Property</param>
         /// <returns>true if the name Change could be made, else false</returns>
-        public bool ChangeName(Property property, String newName)
+        public bool ChangeName(Property property, string newName)
         {
             bool result;
-            String oldName = property.Name;
+            string oldName = property.Name;
 
             property.Name = newName;
-            String cleanNewName = property.Name;
+            string cleanNewName = property.Name;
 
             if (_children_names.Contains(cleanNewName))
             {
@@ -152,10 +152,10 @@ namespace Npoi.Core.POIFS.Properties
             {
                 //solution from http://mail-archives.apache.org/mod_mbox/poi-dev/200604.mbox/%3Cbug-39234-7501@http.issues.apache.org/bugzilla/%3E
 
-                String VBA_PROJECT = "_VBA_PROJECT";
+                string VBA_PROJECT = "_VBA_PROJECT";
 
-                String name1 = ((Property)o1).Name;
-                String name2 = ((Property)o2).Name;
+                string name1 = ((Property)o1).Name;
+                string name2 = ((Property)o2).Name;
 
                 int num = name1.Length - name2.Length;
 
@@ -176,7 +176,7 @@ namespace Npoi.Core.POIFS.Properties
                         if (name1.StartsWith("__", StringComparison.Ordinal) && name2.StartsWith("__", StringComparison.Ordinal))
                         {
                             // Betweeen __SRP_0 and __SRP_1 just sort as normal
-                            num = String.Compare(name1, name2, StringComparison.OrdinalIgnoreCase);
+                            num = string.Compare(name1, name2, StringComparison.OrdinalIgnoreCase);
                         }
                         else if (name1.StartsWith("__", StringComparison.Ordinal))
                         {
@@ -192,7 +192,7 @@ namespace Npoi.Core.POIFS.Properties
                         {
                             // result = name1.compareTo(name2);
                             // The default case is to sort names ignoring case
-                            num = String.Compare(name1, name2, StringComparison.OrdinalIgnoreCase);
+                            num = string.Compare(name1, name2, StringComparison.OrdinalIgnoreCase);
                         }
                     }
                 }
@@ -272,7 +272,7 @@ namespace Npoi.Core.POIFS.Properties
         /// <param name="property">the new child to be added; must not be null</param>
         public void AddChild(Property property)
         {
-            String name = property.Name;
+            string name = property.Name;
 
             if (_children_names.Contains(name))
             {

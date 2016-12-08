@@ -46,12 +46,12 @@ namespace Npoi.Core.SS.Formula.Atp
 
         public static DateTime ParseDate(string strVal)
         {
-            String[] parts = strVal.Split("-/".ToCharArray());// Pattern.compile("/").split(strVal);
+            string[] parts = strVal.Split("-/".ToCharArray());// Pattern.compile("/").split(strVal);
             if (parts.Length != 3)
             {
                 throw new EvaluationException(ErrorEval.VALUE_INVALID);
             }
-            String part2 = parts[2];
+            string part2 = parts[2];
             int spacePos = part2.IndexOf(' ');
             if (spacePos > 0)
             {

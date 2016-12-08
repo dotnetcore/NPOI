@@ -100,7 +100,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <value>The name.</value>
         /// Get the name of the Entry
         /// @return name
-        public String Name
+        public string Name
         {
             get
             {

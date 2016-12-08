@@ -41,7 +41,7 @@ namespace Npoi.Core.HSSF.Util
             private string _propertyName;
             private short _propertyValue;
 
-            public CellPropertySetter(HSSFWorkbook workbook, String propertyName, int value)
+            public CellPropertySetter(HSSFWorkbook workbook, string propertyName, int value)
             {
                 _workbook = workbook;
                 _propertyName = propertyName;

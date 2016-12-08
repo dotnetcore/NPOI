@@ -398,7 +398,7 @@ namespace Npoi.Core.Util
             return buffer.ToString();
         }
 
-        public static String ToHex(byte[] value, int bytesPerLine)
+        public static string ToHex(byte[] value, int bytesPerLine)
         {
             int digits = value.Length == 0 ? 0 : (int)Math.Round(Math.Log(value.Length) / Math.Log(10) + 0.50000001);
             StringBuilder formatString = new StringBuilder();

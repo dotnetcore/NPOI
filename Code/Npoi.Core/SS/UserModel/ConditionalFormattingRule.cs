@@ -129,7 +129,7 @@ namespace Npoi.Core.SS.UserModel
          *
          * @return  the first formula
          */
-        String Formula1 { get; }
+        string Formula1 { get; }
 
         /**
          * The formula used to Evaluate the second operand of the comparison when
@@ -138,6 +138,6 @@ namespace Npoi.Core.SS.UserModel
          *
          * @return  the second formula
          */
-        String Formula2 { get; }
+        string Formula2 { get; }
     }
 }

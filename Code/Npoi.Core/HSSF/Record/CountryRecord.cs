@@ -85,7 +85,7 @@ namespace Npoi.Core.HSSF.Record
             set { field_2_current_country = value; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

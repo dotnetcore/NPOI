@@ -31,8 +31,8 @@ namespace Npoi.Core.POIFS.FileSystem
 
     public class Ole10Native
     {
-        public static String OLE10_NATIVE = "\x0001Ole10Native";
-        protected static String ISO1 = "ISO-8859-1";
+        public static string OLE10_NATIVE = "\x0001Ole10Native";
+        protected static string ISO1 = "ISO-8859-1";
 
         // (the fields as they appear in the raw record:)
         private int totalSize;             // 4 bytes, total size of record not including this field
@@ -101,7 +101,7 @@ namespace Npoi.Core.POIFS.FileSystem
        * Creates an instance and fills the fields based on ... the fields
        */
 
-        public Ole10Native(string label, String filename, String command, byte[] data)
+        public Ole10Native(string label, string filename, string command, byte[] data)
         {
             Label = (label);
             FileName = (filename);
@@ -263,7 +263,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * @return the label
          */
 
-        public String Label
+        public string Label
         {
             get
             {
@@ -282,7 +282,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * @return the fileName
          */
 
-        public String FileName
+        public string FileName
         {
             get
             {
@@ -337,7 +337,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * @return the command
          */
 
-        public String Command
+        public string Command
         {
             get
             {

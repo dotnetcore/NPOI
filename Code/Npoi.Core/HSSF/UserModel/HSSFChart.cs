@@ -293,7 +293,7 @@ namespace Npoi.Core.HSSF.UserModel
          *  or null if not
          */
 
-        public String ChartTitle
+        public string ChartTitle
         {
             get
             {
@@ -1068,7 +1068,7 @@ namespace Npoi.Core.HSSF.UserModel
              *  or null if not
              */
 
-            public String SeriesTitle
+            public string SeriesTitle
             {
                 get
                 {

@@ -82,7 +82,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             field_1_categoryDataType = in1.ReadShort();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

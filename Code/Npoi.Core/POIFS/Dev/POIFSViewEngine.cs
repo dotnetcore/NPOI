@@ -51,7 +51,7 @@ namespace Npoi.Core.POIFS.Dev
         public static IEnumerable<object> InspectViewable(object viewable,
                                       bool drilldown,
                                       int indentLevel,
-                                      String indentString)
+                                      string indentString)
         {
             var objects = new List<object>();
             if (viewable is DictionaryEntry)
@@ -73,7 +73,7 @@ namespace Npoi.Core.POIFS.Dev
         internal static void ProcessViewable(object viewable,
                                        bool drilldown,
                                        int indentLevel,
-                                       String indentString,
+                                       string indentString,
                                        IList objects)
         {
             POIFSViewable inspected = (POIFSViewable)viewable;
@@ -123,7 +123,7 @@ namespace Npoi.Core.POIFS.Dev
         /// <param name="data">The data.</param>
         /// <returns></returns>
         private static string Indent(int indentLevel,
-                                     String indentString, String data)
+                                     string indentString, string data)
         {
             StringBuilder finalBuffer = new StringBuilder();
             StringBuilder indentPrefix = new StringBuilder();

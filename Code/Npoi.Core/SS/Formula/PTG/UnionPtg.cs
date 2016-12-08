@@ -51,14 +51,14 @@ namespace Npoi.Core.SS.Formula.PTG
             out1.WriteByte(sid + PtgClass);
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             return ",";
         }
 
         /** implementation of method from OperationsPtg*/
 
-        public override String ToFormulaString(string[] operands)
+        public override string ToFormulaString(string[] operands)
         {
             StringBuilder buffer = new StringBuilder();
 

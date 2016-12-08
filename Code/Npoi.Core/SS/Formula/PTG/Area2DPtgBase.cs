@@ -66,12 +66,12 @@ namespace Npoi.Core.SS.Formula.PTG
             }
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             return FormatReferenceAsString();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(GetType().Name);

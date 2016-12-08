@@ -35,7 +35,7 @@ namespace Npoi.Core.SS.Formula.Functions
             {
                 return e.GetErrorEval();
             }
-            String strText1 = OperandResolver.CoerceValueToString(veText1);
+            string strText1 = OperandResolver.CoerceValueToString(veText1);
             double numberOfTime = 0;
             try
             {

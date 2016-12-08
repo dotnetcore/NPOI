@@ -108,7 +108,7 @@ namespace Npoi.Core.HSSF.Record
             return rec;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             return "DrawingRecord[" + recordData.Length + "]";
         }

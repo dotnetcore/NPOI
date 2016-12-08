@@ -32,7 +32,7 @@ namespace Npoi.Core.DDF
     public class EscherBSERecord : EscherRecord
     {
         public const short RECORD_ID = unchecked((short)0xF007);
-        public const String RECORD_DESCRIPTION = "MsofbtBSE";
+        public const string RECORD_DESCRIPTION = "MsofbtBSE";
 
         public const byte BT_ERROR = 0;
         public const byte BT_UNKNOWN = 1;
@@ -166,7 +166,7 @@ namespace Npoi.Core.DDF
         /// The short name for this record
         /// </summary>
         /// <value></value>
-        public override String RecordName {
+        public override string RecordName {
             get { return "BSE"; }
         }
 
@@ -295,10 +295,10 @@ namespace Npoi.Core.DDF
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString() {
-            String nl = Environment.NewLine;
+        public override string ToString() {
+            string nl = Environment.NewLine;
 
-            String extraData;
+            string extraData;
             using (MemoryStream b = new MemoryStream()) {
                 try {
                     HexDump.Dump(_remainingData, 0, b, 0);
@@ -328,7 +328,7 @@ namespace Npoi.Core.DDF
             }
         }
 
-        public override String ToXml(string tab) {
+        public override string ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
                     .Append(tab).Append("\t").Append("<BlipTypeWin32>").Append(field_1_blipTypeWin32).Append("</BlipTypeWin32>\n")
@@ -351,7 +351,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="b">The b.</param>
         /// <returns></returns>
-        public String GetBlipType(byte b) {
+        public string GetBlipType(byte b) {
             switch (b) {
                 case BT_ERROR:
                     return " ERROR";

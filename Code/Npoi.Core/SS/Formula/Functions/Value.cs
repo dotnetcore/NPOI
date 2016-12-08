@@ -43,7 +43,7 @@ namespace Npoi.Core.SS.Formula.Functions
             {
                 return e.GetErrorEval();
             }
-            String strText = OperandResolver.CoerceValueToString(veText);
+            string strText = OperandResolver.CoerceValueToString(veText);
             Double result = ConvertTextToNumber(strText);
             if (Double.IsNaN(result))
             {
@@ -133,7 +133,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 switch (ch)
                 {
                     case ' ':
-                        String remainingTextTrimmed = strText.Substring(i).Trim();
+                        string remainingTextTrimmed = strText.Substring(i).Trim();
                         // support for value[space]%
                         if (remainingTextTrimmed.Equals("%"))
                         {

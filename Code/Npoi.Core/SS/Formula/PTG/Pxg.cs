@@ -27,8 +27,8 @@ namespace Npoi.Core.SS.Formula.PTG
     public interface Pxg
     {
         int ExternalWorkbookNumber { get; }
-        String SheetName { get; set; }
+        string SheetName { get; set; }
 
-        String ToFormulaString();
+        string ToFormulaString();
     }
 }

@@ -99,7 +99,7 @@ namespace Npoi.Core.HSSF.Record
             get { return true; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
             buffer.Append("[RECALCID]\n");

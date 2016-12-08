@@ -230,7 +230,7 @@ namespace Npoi.Core.HPSF
         /// <param name="dir">The directory in the POI filesystem To Write the document To.</param>
         /// <param name="name">The document's name. If there is alReady a document with the
         /// same name in the directory the latter will be overwritten.</param>
-        public virtual void Write(DirectoryEntry dir, String name) {
+        public virtual void Write(DirectoryEntry dir, string name) {
             /* If there is alReady an entry with the same name, Remove it. */
             try {
                 Entry e = dir.GetEntry(name);

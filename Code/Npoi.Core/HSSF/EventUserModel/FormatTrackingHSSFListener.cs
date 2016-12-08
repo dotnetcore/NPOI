@@ -97,7 +97,7 @@ namespace Npoi.Core.HSSF.EventUserModel
          *  way that hssf.usermodel can make use of it too
          */
 
-        public String FormatNumberDateCell(CellValueRecordInterface cell) {
+        public string FormatNumberDateCell(CellValueRecordInterface cell) {
             double value;
             if (cell is NumberRecord) {
                 value = ((NumberRecord)cell).Value;
@@ -111,7 +111,7 @@ namespace Npoi.Core.HSSF.EventUserModel
 
             // Get the built in format, if there is one
             int formatIndex = GetFormatIndex(cell);
-            String formatString = GetFormatString(cell);
+            string formatString = GetFormatString(cell);
 
             if (formatString == null) {
                 return value.ToString(CultureInfo.InvariantCulture);
@@ -128,8 +128,8 @@ namespace Npoi.Core.HSSF.EventUserModel
          *  given number format index.
          */
 
-        public String GetFormatString(int formatIndex) {
-            String format = null;
+        public string GetFormatString(int formatIndex) {
+            string format = null;
             if (formatIndex >= HSSFDataFormat.NumberOfBuiltinBuiltinFormats) {
                 FormatRecord tfr = (FormatRecord)customFormatRecords[formatIndex];
                 if (tfr == null) {
@@ -150,7 +150,7 @@ namespace Npoi.Core.HSSF.EventUserModel
          *  by your cell
          */
 
-        public String GetFormatString(CellValueRecordInterface cell) {
+        public string GetFormatString(CellValueRecordInterface cell) {
             int formatIndex = GetFormatIndex(cell);
             if (formatIndex == -1) {
                 // Not found

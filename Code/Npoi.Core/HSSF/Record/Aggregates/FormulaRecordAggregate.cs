@@ -289,7 +289,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /// <returns>
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
-        public override String ToString()
+        public override string ToString()
         {
             return _formulaRecord.ToString();
         }
@@ -298,7 +298,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         /// Gets the string value.
         /// </summary>
         /// <value>The string value.</value>
-        public String StringValue
+        public string StringValue
         {
             get
             {

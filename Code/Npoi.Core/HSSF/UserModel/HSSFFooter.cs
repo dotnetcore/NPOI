@@ -49,7 +49,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// Gets the raw footer.
         /// </summary>
         /// <value>The raw footer.</value>
-        public override String RawText
+        public override string RawText
         {
             get
             {

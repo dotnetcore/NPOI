@@ -110,7 +110,7 @@ namespace Npoi.Core.HSSF.Record
             return field_3_index_to_last_supbook_sheet;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
             buffer.Append("   supbookindex =").Append(GetIndexToSupBook()).Append('\n');

@@ -30,7 +30,7 @@ namespace Npoi.Core.DDF
     public class EscherSplitMenuColorsRecord : EscherRecord
     {
         public const short RECORD_ID = unchecked((short)0xF11E);
-        public const String RECORD_DESCRIPTION = "MsofbtSplitMenuColors";
+        public const string RECORD_DESCRIPTION = "MsofbtSplitMenuColors";
 
         private int field_1_color1;
         private int field_2_color2;
@@ -105,7 +105,7 @@ namespace Npoi.Core.DDF
         /// Gets the short name for this record
         /// </summary>
         /// <value>The name of the record.</value>
-        public override String RecordName {
+        public override string RecordName {
             get { return "SplitMenuColors"; }
         }
 
@@ -116,8 +116,8 @@ namespace Npoi.Core.DDF
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
         /// @return  a string representation of this record.
-        public override String ToString() {
-            String nl = Environment.NewLine;
+        public override string ToString() {
+            string nl = Environment.NewLine;
 
             //        String extraData;
             //        MemoryStream b = new MemoryStream();
@@ -141,7 +141,7 @@ namespace Npoi.Core.DDF
                     "";
         }
 
-        public override String ToXml(string tab) {
+        public override string ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(GetType().Name, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)))
                     .Append(tab).Append("\t").Append("<Color1>0x").Append(HexDump.ToHex(field_1_color1)).Append("</Color1>\n")

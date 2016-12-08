@@ -57,7 +57,7 @@ namespace Npoi.Core.SS.Format
                     return;
                 }
 
-                String fmt;
+                string fmt;
                 double exp = Math.Log10(Math.Abs(val));
                 bool stripZeros = true;
                 if (exp > 10 || exp < -9)

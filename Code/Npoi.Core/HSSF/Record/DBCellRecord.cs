@@ -125,7 +125,7 @@ namespace Npoi.Core.HSSF.Record
             get { return field_2_cell_offsets.Length; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

@@ -58,7 +58,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             field_3_formatFlags = in1.ReadShort();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

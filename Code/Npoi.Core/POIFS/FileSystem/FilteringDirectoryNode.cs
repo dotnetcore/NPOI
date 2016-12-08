@@ -27,8 +27,8 @@ namespace Npoi.Core.POIFS.FileSystem
     /// </summary>
     public class FilteringDirectoryNode : DirectoryEntry
     {
-        private List<String> excludes;
-        private Dictionary<String, List<String>> childExcludes;
+        private List<string> excludes;
+        private Dictionary<string, List<string>> childExcludes;
         private DirectoryEntry directory;
 
         /// <summary>
@@ -37,13 +37,13 @@ namespace Npoi.Core.POIFS.FileSystem
         /// </summary>
         /// <param name="directory">The Directory to filter</param>
         /// <param name="excludes">The Entries to exclude</param>
-        public FilteringDirectoryNode(DirectoryEntry directory, ICollection<String> excludes)
+        public FilteringDirectoryNode(DirectoryEntry directory, ICollection<string> excludes)
         {
             this.directory = directory;
 
             // Process the excludes
-            this.excludes = new List<String>();
-            childExcludes = new Dictionary<String, List<String>>();
+            this.excludes = new List<string>();
+            childExcludes = new Dictionary<string, List<string>>();
             foreach (string excl in excludes)
             {
                 int splitAt = excl.IndexOf('/');
@@ -55,11 +55,11 @@ namespace Npoi.Core.POIFS.FileSystem
                 else
                 {
                     // Applies to a child
-                    String child = excl.Substring(0, splitAt);
-                    String childExcl = excl.Substring(splitAt + 1);
+                    string child = excl.Substring(0, splitAt);
+                    string childExcl = excl.Substring(splitAt + 1);
                     if (!childExcludes.ContainsKey(child))
                     {
-                        childExcludes.Add(child, new List<String>());
+                        childExcludes.Add(child, new List<string>());
                     }
                     childExcludes[child].Add(childExcl);
                 }
@@ -73,11 +73,11 @@ namespace Npoi.Core.POIFS.FileSystem
             get { return GetEntries(); }
         }
 
-        public List<String> EntryNames
+        public List<string> EntryNames
         {
             get
             {
-                List<String> names = new List<String>();
+                List<string> names = new List<string>();
                 foreach (string name in directory.EntryNames)
                 {
                     if (!excludes.Contains(name))
@@ -137,7 +137,7 @@ namespace Npoi.Core.POIFS.FileSystem
 
         private Entry WrapEntry(Entry entry)
         {
-            String name = entry.Name;
+            string name = entry.Name;
             if (childExcludes.ContainsKey(name) && entry is DirectoryEntry)
             {
                 return new FilteringDirectoryNode(

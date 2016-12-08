@@ -240,7 +240,7 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteShort(field_6_reserved);
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

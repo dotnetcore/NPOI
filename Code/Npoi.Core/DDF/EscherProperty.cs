@@ -91,7 +91,7 @@ namespace Npoi.Core.DDF
         /// Gets the name.
         /// </summary>
         /// <value>The name.</value>
-        public virtual String Name {
+        public virtual string Name {
             get { return EscherProperties.GetPropertyName(PropertyNumber); }
         }
 
@@ -104,7 +104,7 @@ namespace Npoi.Core.DDF
             get { return 6; }
         }
 
-        public virtual String ToXml(string tab) {
+        public virtual string ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab)
                    .Append("<")

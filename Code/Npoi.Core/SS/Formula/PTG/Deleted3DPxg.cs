@@ -31,7 +31,7 @@ namespace Npoi.Core.SS.Formula.PTG
         private int externalWorkbookNumber = -1;
         private string sheetName;
 
-        public Deleted3DPxg(int externalWorkbookNumber, String sheetName)
+        public Deleted3DPxg(int externalWorkbookNumber, string sheetName)
         {
             this.externalWorkbookNumber = externalWorkbookNumber;
             this.sheetName = sheetName;
@@ -43,7 +43,7 @@ namespace Npoi.Core.SS.Formula.PTG
             ;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(GetType().Name);
@@ -72,7 +72,7 @@ namespace Npoi.Core.SS.Formula.PTG
             }
         }
 
-        public String SheetName
+        public string SheetName
         {
             get
             {
@@ -84,7 +84,7 @@ namespace Npoi.Core.SS.Formula.PTG
             }
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             StringBuilder sb = new StringBuilder();
             if (externalWorkbookNumber >= 0)

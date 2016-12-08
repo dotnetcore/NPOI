@@ -76,7 +76,7 @@ namespace Npoi.Core.SS.Formula
         /// <param name="workbookName">Name of the workbook, e.g. "BudGet.xls"</param>
         /// <param name="sheetName">a name of a sheet in that workbook</param>
         /// <returns></returns>
-        int GetExternalSheetIndex(string workbookName, String sheetName);
+        int GetExternalSheetIndex(string workbookName, string sheetName);
 
         /// <summary>
         /// Returns an enum holding spReadhseet properties specific to an Excel version (

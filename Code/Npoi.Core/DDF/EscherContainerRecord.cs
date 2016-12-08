@@ -209,7 +209,7 @@ namespace Npoi.Core.DDF
         /// Subclasses should return the short name for this escher record.
         /// </summary>
         /// <value></value>
-        public override String RecordName {
+        public override string RecordName {
             get
             {
                 switch ((short)RecordId) {
@@ -275,7 +275,7 @@ namespace Npoi.Core.DDF
         /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
         public override string ToString() {
-            String nl = Environment.NewLine;
+            string nl = Environment.NewLine;
 
             StringBuilder children = new StringBuilder();
             if (ChildRecords.Count > 0) {
@@ -286,7 +286,7 @@ namespace Npoi.Core.DDF
                     EscherRecord record = (EscherRecord)iterator.Current;
                     children.Append("    Child " + count + ":" + nl);
 
-                    String childResult = (record).ToString();
+                    string childResult = (record).ToString();
                     childResult = childResult.Replace("\n", "\n    ");
                     children.Append("    ");
                     children.Append(childResult);
@@ -315,7 +315,7 @@ namespace Npoi.Core.DDF
                 children.ToString();
         }
 
-        public override String ToXml(string tab) {
+        public override string ToXml(string tab) {
             StringBuilder builder = new StringBuilder();
             builder.Append(tab).Append(FormatXmlRecordHeader(RecordName, HexDump.ToHex(RecordId), HexDump.ToHex(Version), HexDump.ToHex(Instance)));
             for (IEnumerator<EscherRecord> iterator = _childRecords.GetEnumerator(); iterator.MoveNext();) {

@@ -44,7 +44,7 @@ namespace Npoi.Core.SS.UserModel
          * Get the format string
          */
 
-        String GetDataFormatString();
+        string GetDataFormatString();
 
         /**
          * set the font for this style

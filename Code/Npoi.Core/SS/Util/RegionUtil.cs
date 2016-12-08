@@ -44,7 +44,7 @@ namespace Npoi.Core.SS.Util
             private string _propertyName;
             private short _propertyValue;
 
-            public CellPropertySetter(IWorkbook workbook, String propertyName, int value)
+            public CellPropertySetter(IWorkbook workbook, string propertyName, int value)
             {
                 _workbook = workbook;
                 _propertyName = propertyName;

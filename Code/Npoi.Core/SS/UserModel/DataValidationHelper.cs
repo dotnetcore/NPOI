@@ -31,17 +31,17 @@ namespace Npoi.Core.SS.UserModel
 
         IDataValidationConstraint CreateExplicitListConstraint(string[] listOfValues);
 
-        IDataValidationConstraint CreateNumericConstraint(int validationType, int operatorType, String formula1, String formula2);
+        IDataValidationConstraint CreateNumericConstraint(int validationType, int operatorType, string formula1, string formula2);
 
-        IDataValidationConstraint CreateTextLengthConstraint(int operatorType, String formula1, String formula2);
+        IDataValidationConstraint CreateTextLengthConstraint(int operatorType, string formula1, string formula2);
 
-        IDataValidationConstraint CreateDecimalConstraint(int operatorType, String formula1, String formula2);
+        IDataValidationConstraint CreateDecimalConstraint(int operatorType, string formula1, string formula2);
 
-        IDataValidationConstraint CreateintConstraint(int operatorType, String formula1, String formula2);
+        IDataValidationConstraint CreateintConstraint(int operatorType, string formula1, string formula2);
 
-        IDataValidationConstraint CreateDateConstraint(int operatorType, String formula1, String formula2, String dateFormat);
+        IDataValidationConstraint CreateDateConstraint(int operatorType, string formula1, string formula2, string dateFormat);
 
-        IDataValidationConstraint CreateTimeConstraint(int operatorType, String formula1, String formula2);
+        IDataValidationConstraint CreateTimeConstraint(int operatorType, string formula1, string formula2);
 
         IDataValidationConstraint CreateCustomConstraint(string formula);
 

@@ -69,12 +69,12 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return field_2_first_col; }
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             throw new RecordFormatException("Coding Error: Expected ExpPtg to be Converted from Shared to Non-Shared Formula by ValueRecordsAggregate, but it wasn't");
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder("[Array Formula or Shared Formula]\n");
             buffer.Append("row = ").Append(Row).Append("\n");

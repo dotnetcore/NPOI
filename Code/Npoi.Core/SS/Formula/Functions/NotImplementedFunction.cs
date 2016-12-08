@@ -53,7 +53,7 @@ namespace Npoi.Core.SS.Formula.Functions
             throw new NotImplementedFunctionException(_functionName);
         }
 
-        public String FunctionName
+        public string FunctionName
         {
             get
             {

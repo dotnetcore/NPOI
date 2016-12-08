@@ -152,7 +152,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             return record;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

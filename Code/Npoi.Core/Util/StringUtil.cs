@@ -63,7 +63,7 @@ namespace Npoi.Core.Util
         /// byte array. it is assumed that string[ offset ] and string[ offset + 1 ] contain the first 16-bit unicode character</param>
         /// <param name="len">the Length of the string</param>
         /// <returns>the converted string</returns>
-        public static String GetFromUnicodeLE(
+        public static string GetFromUnicodeLE(
             byte[] str,
             int offset,
             int len)
@@ -88,7 +88,7 @@ namespace Npoi.Core.Util
         /// </summary>
         /// <param name="str">the byte array to be converted</param>
         /// <returns>the converted string</returns>
-        public static String GetFromUnicodeLE(byte[] str)
+        public static string GetFromUnicodeLE(byte[] str)
         {
             if (str.Length == 0) { return ""; }
             return GetFromUnicodeLE(str, 0, str.Length / 2);
@@ -117,7 +117,7 @@ namespace Npoi.Core.Util
         /// byte array. it is assumed that string[ offset ] and string[ offset + 1 ] contain the first 16-bit unicode character</param>
         /// <param name="len">the Length of the string</param>
         /// <returns> the converted string</returns>
-        public static String GetFromUnicodeBE(
+        public static string GetFromUnicodeBE(
             byte[] str,
             int offset,
             int len)
@@ -148,7 +148,7 @@ namespace Npoi.Core.Util
         /// </summary>
         /// <param name="str">the byte array to be converted</param>
         /// <returns>the converted string</returns>
-        public static String GetFromUnicodeBE(byte[] str)
+        public static string GetFromUnicodeBE(byte[] str)
         {
             if (str.Length == 0) { return ""; }
             return GetFromUnicodeBE(str, 0, str.Length / 2);
@@ -163,7 +163,7 @@ namespace Npoi.Core.Util
         /// <param name="offset">offset to read byte array</param>
         /// <param name="len">Length to read byte array</param>
         /// <returns>generated String instance by reading byte array</returns>
-        public static String GetFromCompressedUnicode(
+        public static string GetFromCompressedUnicode(
             byte[] str,
             int offset,
             int len)
@@ -221,7 +221,7 @@ namespace Npoi.Core.Util
         /// <param name="output">the byte array to hold the uncompressed unicode, should be twice the Length of the String.</param>
         /// <param name="offset">the offset to start writing into the byte array</param>
         public static void PutUnicodeBE(
-            String input,
+            string input,
             byte[] output,
             int offset)
         {
@@ -240,7 +240,7 @@ namespace Npoi.Core.Util
         /// Gets the preferred encoding.
         /// </summary>
         /// <returns>the encoding we want to use, currently hardcoded to IsO-8859-1</returns>
-        public static String GetPreferredEncoding()
+        public static string GetPreferredEncoding()
         {
             return ISO_8859_1.WebName;
         }
@@ -263,14 +263,14 @@ namespace Npoi.Core.Util
             return false;
         }
 
-        public static String ReadCompressedUnicode(ILittleEndianInput in1, int nChars)
+        public static string ReadCompressedUnicode(ILittleEndianInput in1, int nChars)
         {
             byte[] buf = new byte[nChars];
             in1.ReadFully(buf);
             return ISO_8859_1.GetString(buf);
         }
 
-        public static String ReadUnicodeLE(ILittleEndianInput in1, int nChars)
+        public static string ReadUnicodeLE(ILittleEndianInput in1, int nChars)
         {
             byte[] bytes = new byte[nChars * 2];
             in1.ReadFully(bytes);
@@ -287,7 +287,7 @@ namespace Npoi.Core.Util
          * For this encoding, the is16BitFlag is always present even if nChars==0.
          */
 
-        public static String ReadUnicodeString(ILittleEndianInput in1)
+        public static string ReadUnicodeString(ILittleEndianInput in1)
         {
             int nChars = in1.ReadUShort();
             byte flag = (byte)in1.ReadByte();
@@ -311,7 +311,7 @@ namespace Npoi.Core.Util
          * #readUnicodeString(LittleEndianInput)} can be used.
          */
 
-        public static String ReadUnicodeString(ILittleEndianInput in1, int nChars)
+        public static string ReadUnicodeString(ILittleEndianInput in1, int nChars)
         {
             byte is16Bit = (byte)in1.ReadByte();
             if ((is16Bit & 0x01) == 0)
@@ -331,7 +331,7 @@ namespace Npoi.Core.Util
          * For this encoding, the is16BitFlag is always present even if nChars==0.
          */
 
-        public static void WriteUnicodeString(ILittleEndianOutput out1, String value)
+        public static void WriteUnicodeString(ILittleEndianOutput out1, string value)
         {
             int nChars = value.Length;
             out1.WriteShort(nChars);
@@ -360,7 +360,7 @@ namespace Npoi.Core.Util
          * #writeUnicodeString(LittleEndianOutput, String)} can be used.
          */
 
-        public static void WriteUnicodeStringFlagAndData(ILittleEndianOutput out1, String value)
+        public static void WriteUnicodeStringFlagAndData(ILittleEndianOutput out1, string value)
         {
             bool is16Bit = HasMultibyte(value);
             out1.WriteByte(is16Bit ? 0x01 : 0x00);
@@ -382,7 +382,7 @@ namespace Npoi.Core.Util
         public static int GetEncodedSize(string value)
         {
             int result = 2 + 1;
-            result += value.Length * (StringUtil.HasMultibyte(value) ? 2 : 1);
+            result += value.Length * (HasMultibyte(value) ? 2 : 1);
             return result;
         }
 
@@ -506,7 +506,7 @@ namespace Npoi.Core.Util
         * @see <a href="http://www.alanwood.net/demos/symbol.html">Symbol font - Unicode alternatives for Greek and special characters in HTML</a>
         */
 
-        public static String mapMsCodepointString(string string1)
+        public static string mapMsCodepointString(string string1)
         {
             if (string1 == null || "".Equals(string1)) return string1;
             InitMsCodepointMap();

@@ -103,7 +103,7 @@ namespace Npoi.Core.HSSF.Util
             }
         }
 
-        public String FormatAsString()
+        public string FormatAsString()
         {
             StringBuilder sb = new StringBuilder(36);
 
@@ -121,7 +121,7 @@ namespace Npoi.Core.HSSF.Util
             return sb.ToString();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name).Append(" [");

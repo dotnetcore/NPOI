@@ -43,10 +43,10 @@ namespace Npoi.Core.POIFS.Dev
             }
         }
 
-        public static void DisplayDirectory(DirectoryNode dir, String indent)
+        public static void DisplayDirectory(DirectoryNode dir, string indent)
         {
             Console.WriteLine(indent + dir.Name + " -");
-            String newIndent = indent + "  ";
+            string newIndent = indent + "  ";
 
             IEnumerator it = dir.Entries;
             while (it.MoveNext())
@@ -59,10 +59,10 @@ namespace Npoi.Core.POIFS.Dev
                 else
                 {
                     DocumentNode doc = (DocumentNode)entry;
-                    String name = doc.Name;
+                    string name = doc.Name;
                     if (name[0] < 10)
                     {
-                        String altname = "(0x0" + (int)name[0] + ")" + name.Substring(1);
+                        string altname = "(0x0" + (int)name[0] + ")" + name.Substring(1);
                         name = name.Substring(1) + " <" + altname + ">";
                     }
                     Console.WriteLine(newIndent + name);

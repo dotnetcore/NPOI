@@ -44,7 +44,7 @@ namespace Npoi.Core.SS.Formula.Functions
         //M (1000), CM (900), D (500), CD (400), C (100), XC (90), L (50), XL (40), X (10), IX (9), V (5), IV (4) and I (1).
         public static int[] VALUES = new int[] { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
 
-        public static String[] ROMAN = new String[] { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+        public static string[] ROMAN = new string[] { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval numberVE, ValueEval formVE)
         {
@@ -87,7 +87,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return ErrorEval.VALUE_INVALID;
             }
 
-            String result = integerToRoman(number);
+            string result = integerToRoman(number);
 
             if (form == 0)
             {
@@ -126,7 +126,7 @@ namespace Npoi.Core.SS.Formula.Functions
          * @return
          */
 
-        public String MakeConcise(string result, int form)
+        public string MakeConcise(string result, int form)
         {
             if (form > 0)
             {

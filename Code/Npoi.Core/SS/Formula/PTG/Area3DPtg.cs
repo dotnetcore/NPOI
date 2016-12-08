@@ -67,7 +67,7 @@ namespace Npoi.Core.SS.Formula.PTG
             ExternSheetIndex = externalSheetIndex;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(GetType().Name);
@@ -121,7 +121,7 @@ namespace Npoi.Core.SS.Formula.PTG
             IsLastRowRelative = !lastCell.IsRowAbsolute;
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             throw new NotImplementedException("3D references need a workbook to determine formula text");
         }
@@ -131,7 +131,7 @@ namespace Npoi.Core.SS.Formula.PTG
  *  formulas. The sheet name will get properly delimited if required.
  */
 
-        public String ToFormulaString(IFormulaRenderingWorkbook book)
+        public string ToFormulaString(IFormulaRenderingWorkbook book)
         {
             return ExternSheetNameResolver.PrependSheetName(book, field_1_index_extern_sheet, FormatReferenceAsString());
         }

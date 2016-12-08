@@ -22,7 +22,7 @@ namespace Npoi.Core.SS.Formula
 
     public class SheetIdentifier
     {
-        public String _bookName;
+        public string _bookName;
         public NameIdentifier _sheetIdentifier;
 
         public SheetIdentifier(string bookName, NameIdentifier sheetIdentifier)
@@ -31,7 +31,7 @@ namespace Npoi.Core.SS.Formula
             _sheetIdentifier = sheetIdentifier;
         }
 
-        public String BookName
+        public string BookName
         {
             get
             {
@@ -63,14 +63,14 @@ namespace Npoi.Core.SS.Formula
             }
         }
 
-        public String AsFormulaString()
+        public string AsFormulaString()
         {
             StringBuilder sb = new StringBuilder(32);
             AsFormulaString(sb);
             return sb.ToString();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name);

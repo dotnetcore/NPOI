@@ -54,7 +54,7 @@ namespace Npoi.Core.SS.UserModel
          * standard error codes
          */
 
-        public static String GetText(int errorCode)
+        public static string GetText(int errorCode)
         {
             switch (errorCode)
             {

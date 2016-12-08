@@ -65,7 +65,7 @@ namespace Npoi.Core.HSSF.Record
             return new SupBookRecord(true, (short)1);
         }
 
-        public static SupBookRecord CreateExternalReferences(string url, String[] sheetNames)
+        public static SupBookRecord CreateExternalReferences(string url, string[] sheetNames)
         {
             return new SupBookRecord(url, sheetNames);
         }
@@ -79,7 +79,7 @@ namespace Npoi.Core.HSSF.Record
             _isAddInFunctions = IsAddInFuncs;
         }
 
-        public SupBookRecord(string url, String[] sheetNames)
+        public SupBookRecord(string url, string[] sheetNames)
         {
             field_1_number_of_sheets = (short)sheetNames.Length;
             field_2_encoded_url = url;
@@ -107,7 +107,7 @@ namespace Npoi.Core.HSSF.Record
                 _isAddInFunctions = false;
 
                 field_2_encoded_url = in1.ReadString();
-                String[] sheetNames = new String[field_1_number_of_sheets];
+                string[] sheetNames = new string[field_1_number_of_sheets];
                 for (int i = 0; i < sheetNames.Length; i++)
                 {
                     sheetNames[i] = in1.ReadString();
@@ -163,7 +163,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[SUPBOOK ");
@@ -243,11 +243,11 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public String URL
+        public string URL
         {
             get
             {
-                String encodedUrl = field_2_encoded_url;
+                string encodedUrl = field_2_encoded_url;
                 switch ((int)encodedUrl[0])
                 {
                     case 0: // Reference to an empty workbook name
@@ -321,7 +321,7 @@ namespace Npoi.Core.HSSF.Record
             return sb.ToString();
         }
 
-        public String[] SheetNames
+        public string[] SheetNames
         {
             get
             {

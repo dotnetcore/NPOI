@@ -40,7 +40,7 @@ namespace Npoi.Core.SS.UserModel.Charts
         /**
          * get or set axis number format
          */
-        String NumberFormat { get; set; }
+        string NumberFormat { get; set; }
 
         /**
          * @return true if log base is defined, false otherwise

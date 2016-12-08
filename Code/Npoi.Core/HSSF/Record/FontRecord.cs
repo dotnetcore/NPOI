@@ -314,7 +314,7 @@ namespace Npoi.Core.HSSF.Record
             field_11_font_name.Equals(other.field_11_font_name);
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

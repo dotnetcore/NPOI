@@ -268,7 +268,7 @@ namespace Npoi.Core.SS.Formula.PTG
             field_4_last_column = column;
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             return FormatReferenceAsString();
         }
@@ -278,7 +278,7 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return Ptg.CLASS_REF; }
         }
 
-        protected String FormatReferenceAsString()
+        protected string FormatReferenceAsString()
         {
             CellReference topLeft = new CellReference(FirstRow, FirstColumn, !IsFirstRowRelative, !IsFirstColRelative);
             CellReference botRight = new CellReference(LastRow, LastColumn, !IsLastRowRelative, !IsLastColRelative);

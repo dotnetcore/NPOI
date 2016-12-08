@@ -48,7 +48,7 @@ namespace Npoi.Core.SS.Util
             out1.WriteShort(LastColumn);
         }
 
-        public String FormatAsString()
+        public string FormatAsString()
         {
             return FormatAsString(null, false);
         }
@@ -57,7 +57,7 @@ namespace Npoi.Core.SS.Util
          * @return the text format of this range using specified sheet name.
          */
 
-        public String FormatAsString(string sheetName, bool useAbsoluteAddress)
+        public string FormatAsString(string sheetName, bool useAbsoluteAddress)
         {
             StringBuilder sb = new StringBuilder();
             if (sheetName != null)

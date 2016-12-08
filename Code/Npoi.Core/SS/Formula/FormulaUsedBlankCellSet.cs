@@ -183,7 +183,7 @@ namespace Npoi.Core.SS.Formula
                 return true;
             }
 
-            public override String ToString()
+            public override string ToString()
             {
                 StringBuilder sb = new StringBuilder(64);
                 CellReference crA = new CellReference(_firstRowIndex, _firstColumnIndex, false, false);

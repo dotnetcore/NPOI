@@ -82,13 +82,13 @@ namespace Npoi.Core.SS.Formula.PTG
             }
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             // table(....)[][]
             throw new RecordFormatException("Table and Arrays are not yet supported");
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder("[Data Table - Parent cell is an interior cell in a data table]\n");
             buffer.Append("top left row = ").Append(Row).Append("\n");

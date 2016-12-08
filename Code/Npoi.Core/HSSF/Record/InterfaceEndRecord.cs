@@ -66,7 +66,7 @@ namespace Npoi.Core.HSSF.Record
             throw new RecordFormatException("Invalid record data size: " + in1.Remaining);
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             return "[INTERFACEEND/]\n";
             //StringBuilder buffer = new StringBuilder();

@@ -89,7 +89,7 @@ namespace Npoi.Core.HSSF.Record
          * Get the String of the cell
          */
 
-        public String Value
+        public string Value
         {
             get
             {
@@ -120,7 +120,7 @@ namespace Npoi.Core.HSSF.Record
             sb.Append("    .value       = ").Append(Value).Append("\n");
         }
 
-        protected override String RecordName
+        protected override string RecordName
         {
             get
             {

@@ -55,7 +55,7 @@ namespace Npoi.Core.SS.Formula
          * For example, this will be called on {@link Npoi.Core.HSSF.UserModel.HSSFSheet#ShiftRows(int, int, int)} }
          */
 
-        private FormulaShifter(int externSheetIndex, String sheetName, int firstMovedIndex, int lastMovedIndex, int amountToMove)
+        private FormulaShifter(int externSheetIndex, string sheetName, int firstMovedIndex, int lastMovedIndex, int amountToMove)
         {
             if (amountToMove == 0)
             {
@@ -91,7 +91,7 @@ namespace Npoi.Core.SS.Formula
             _mode = ShiftMode.Sheet;
         }
 
-        public static FormulaShifter CreateForRowShift(int externSheetIndex, String sheetName, int firstMovedRowIndex, int lastMovedRowIndex, int numberOfRowsToMove)
+        public static FormulaShifter CreateForRowShift(int externSheetIndex, string sheetName, int firstMovedRowIndex, int lastMovedRowIndex, int numberOfRowsToMove)
         {
             return new FormulaShifter(externSheetIndex, sheetName, firstMovedRowIndex, lastMovedRowIndex, numberOfRowsToMove);
         }
@@ -101,7 +101,7 @@ namespace Npoi.Core.SS.Formula
             return new FormulaShifter(srcSheetIndex, dstSheetIndex);
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
 

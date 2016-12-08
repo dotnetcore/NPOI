@@ -238,7 +238,7 @@ namespace Npoi.Core.HSSF.Record
             set { field_11_copies = value; }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 

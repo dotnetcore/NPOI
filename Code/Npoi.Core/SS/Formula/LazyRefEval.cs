@@ -56,7 +56,7 @@ namespace Npoi.Core.SS.Formula
             return new LazyAreaEval(area, _evaluator);
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             CellReference cr = new CellReference(Row, Column);
             StringBuilder sb = new StringBuilder();

@@ -487,8 +487,8 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="variantType">The variant type number.</param>
         /// <returns>The variant type name or the string "unknown variant type"</returns>
-        public static String GetVariantName(long variantType) {
-            String name = (string)numberToName[variantType];
+        public static string GetVariantName(long variantType) {
+            string name = (string)numberToName[variantType];
             return name != null ? name : "unknown variant type";
         }
 

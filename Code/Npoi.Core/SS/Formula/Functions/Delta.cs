@@ -55,7 +55,7 @@ namespace Npoi.Core.SS.Formula.Functions
             {
                 return e.GetErrorEval();
             }
-            String strText1 = OperandResolver.CoerceValueToString(veText1);
+            string strText1 = OperandResolver.CoerceValueToString(veText1);
             Double number1 = OperandResolver.ParseDouble(strText1);
             if (double.IsNaN(number1))
             {
@@ -72,7 +72,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return e.GetErrorEval();
             }
 
-            String strText2 = OperandResolver.CoerceValueToString(veText2);
+            string strText2 = OperandResolver.CoerceValueToString(veText2);
             Double number2 = OperandResolver.ParseDouble(strText2);
             if (double.IsNaN(number2))
             {

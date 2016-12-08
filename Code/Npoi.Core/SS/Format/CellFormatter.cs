@@ -30,7 +30,7 @@ namespace Npoi.Core.SS.Format
     public abstract class CellFormatter
     {
         /** The original specified format. */
-        protected String format;
+        protected string format;
 
         /**
          * This is the locale used to Get a consistent format result from which to
@@ -82,7 +82,7 @@ namespace Npoi.Core.SS.Format
          * @return The value, formatted.
          */
 
-        public String Format(object value)
+        public string Format(object value)
         {
             StringBuilder sb = new StringBuilder();
             FormatValue(sb, value);
@@ -97,7 +97,7 @@ namespace Npoi.Core.SS.Format
          * @return The value, formatted.
          */
 
-        public String SimpleFormat(object value)
+        public string SimpleFormat(object value)
         {
             StringBuilder sb = new StringBuilder();
             SimpleValue(sb, value);

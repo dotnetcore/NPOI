@@ -154,7 +154,7 @@ namespace Npoi.Core.SS.UserModel
         /// Return a formula for the cell
         /// </summary>
         /// <exception cref="InvalidOperationException">if the cell type returned by GetCellType() is not CELL_TYPE_FORMULA </exception>
-        String CellFormula { get; set; }
+        string CellFormula { get; set; }
 
         /// <summary>
         /// Sets formula for this cell.
@@ -189,7 +189,7 @@ namespace Npoi.Core.SS.UserModel
         /// <summary>
         /// Get the value of the cell as a string
         /// </summary>
-        String StringCellValue { get; }
+        string StringCellValue { get; }
 
         /// <summary>
         /// Set a bool value for the cell

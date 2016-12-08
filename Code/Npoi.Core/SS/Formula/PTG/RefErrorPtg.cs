@@ -42,7 +42,7 @@ namespace Npoi.Core.SS.Formula.PTG
             field_1_reserved = in1.ReadInt();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder("[RefError]\n");
 
@@ -67,7 +67,7 @@ namespace Npoi.Core.SS.Formula.PTG
             get { return SIZE; }
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             //TODO -- should we store a cellreference instance in this ptg?? but .. memory is an Issue, i believe!
             return "#REF!";

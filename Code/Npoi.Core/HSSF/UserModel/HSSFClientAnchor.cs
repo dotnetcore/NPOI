@@ -271,7 +271,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="minRange">The min range.</param>
         /// <param name="maxRange">The max range.</param>
         /// <param name="varName">Name of the variable.</param>
-        private void CheckRange(int value, int minRange, int maxRange, String varName)
+        private void CheckRange(int value, int minRange, int maxRange, string varName)
         {
             if (value < minRange || value > maxRange)
                 throw new ArgumentOutOfRangeException(varName + " must be between " + minRange + " and " + maxRange + ", but was: " + value);

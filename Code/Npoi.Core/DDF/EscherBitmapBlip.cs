@@ -112,10 +112,10 @@ namespace Npoi.Core.DDF
         /// Toes the string.
         /// </summary>
         /// <returns></returns>
-        public override String ToString() {
-            String nl = Environment.NewLine;
+        public override string ToString() {
+            string nl = Environment.NewLine;
 
-            String extraData;
+            string extraData;
             using (MemoryStream b = new MemoryStream()) {
                 try {
                     HexDump.Dump(field_pictureData, 0, b, 0);
@@ -134,8 +134,8 @@ namespace Npoi.Core.DDF
             }
         }
 
-        public override String ToXml(string tab) {
-            String extraData;
+        public override string ToXml(string tab) {
+            string extraData;
             //MemoryStream b = new MemoryStream();
             try {
                 //HexDump.Dump(this.field_pictureData, 0, b, 0);

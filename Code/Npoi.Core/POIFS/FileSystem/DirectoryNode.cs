@@ -129,7 +129,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <param name="documentName">the name of the document to be opened</param>
         /// <returns>a newly opened DocumentStream</returns>
         public DocumentInputStream CreatePOIFSDocumentReader(
-                String documentName)
+                string documentName)
         {
             Entry document = GetEntry(documentName);
 
@@ -166,7 +166,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <param name="oldName">the original name</param>
         /// <param name="newName">the new name</param>
         /// <returns>true if the operation succeeded, else false</returns>
-        public bool ChangeName(string oldName, String newName)
+        public bool ChangeName(string oldName, string newName)
         {
             bool rval = false;
             EntryNode child = (EntryNode)_byname[oldName];
@@ -269,7 +269,7 @@ namespace Npoi.Core.POIFS.FileSystem
          *         DirectoryEntry is empty)
          */
 
-        public List<String> EntryNames
+        public List<string> EntryNames
         {
             get
             {
@@ -547,7 +547,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// POIFSViewable object has not provided its contents.
         /// </summary>
         /// <value>The short description.</value>
-        public String ShortDescription
+        public string ShortDescription
         {
             get { return Name; }
         }

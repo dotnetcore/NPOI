@@ -690,7 +690,7 @@ namespace Npoi.Core.POIFS.FileSystem
           * @exception IOException on error creating the new POIFSDocument
           */
 
-        public DocumentEntry CreateDocument(Stream stream, String name)
+        public DocumentEntry CreateDocument(Stream stream, string name)
         {
             return Root.CreateDocument(name, stream);
         }
@@ -913,7 +913,7 @@ namespace Npoi.Core.POIFS.FileSystem
          * @return short description
          */
 
-        protected String GetShortDescription()
+        protected string GetShortDescription()
         {
             return "POIFS FileSystem";
         }

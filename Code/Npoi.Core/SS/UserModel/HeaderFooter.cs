@@ -28,18 +28,18 @@ namespace Npoi.Core.SS.UserModel
         /// Gets or sets the left side of the header or footer.
         /// </summary>
         /// <value>The string representing the left side.</value>
-        String Left { get; set; }
+        string Left { get; set; }
 
         /// <summary>
         /// Gets or sets the center of the header or footer.
         /// </summary>
         /// <value>The string representing the center.</value>
-        String Center { get; set; }
+        string Center { get; set; }
 
         /// <summary>
         /// Gets or sets the right side of the header or footer.
         /// </summary>
         /// <value>The string representing the right side.</value>
-        String Right { get; set; }
+        string Right { get; set; }
     }
 }

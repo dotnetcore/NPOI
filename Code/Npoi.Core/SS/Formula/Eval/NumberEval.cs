@@ -61,7 +61,7 @@ namespace Npoi.Core.SS.Formula.Eval
             get { return _value; }
         }
 
-        public String StringValue
+        public string StringValue
         {
             get
             {// TODO: limit to 15 decimal places

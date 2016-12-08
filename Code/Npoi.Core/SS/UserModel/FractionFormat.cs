@@ -62,7 +62,7 @@ namespace Npoi.Core.SS.UserModel
          * @param denomFormatString The format string for the denominator
          */
 
-        public FractionFormat(string wholePartFormatString, String denomFormatString)
+        public FractionFormat(string wholePartFormatString, string denomFormatString)
         {
             this.wholePartFormatString = wholePartFormatString;
             //init exactDenom and maxDenom
@@ -108,7 +108,7 @@ namespace Npoi.Core.SS.UserModel
             maxDenom = tmpMax;
         }
 
-        public String Format(string num)
+        public string Format(string num)
         {
             double doubleValue = 0;
             double.TryParse(num, out doubleValue);

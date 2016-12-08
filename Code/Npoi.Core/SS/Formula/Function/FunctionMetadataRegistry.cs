@@ -32,7 +32,7 @@ namespace Npoi.Core.SS.Formula.Function
         /**
          * The name of the IF function (i.e. "IF").  Extracted as a constant for clarity.
          */
-        public const String FUNCTION_NAME_IF = "IF";
+        public const string FUNCTION_NAME_IF = "IF";
 
         public const int FUNCTION_INDEX_IF = 1;
         public const short FUNCTION_INDEX_SUM = 4;

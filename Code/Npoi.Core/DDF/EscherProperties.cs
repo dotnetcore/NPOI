@@ -648,7 +648,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="propertyId">The property id.</param>
         /// <returns></returns>
-        public static String GetPropertyName(short propertyId) {
+        public static string GetPropertyName(short propertyId) {
             InitProps();
             EscherPropertyMetaData o = (EscherPropertyMetaData)properties[propertyId];
             return o == null ? "unknown" : o.Description;

@@ -37,7 +37,7 @@ namespace Npoi.Core.SS.Formula.Function
         private const short FUNCTION_MAX_PARAMS = 30;
         /* package */
 
-        internal FunctionMetadata(int index, String name, int minParams, int maxParams,
+        internal FunctionMetadata(int index, string name, int minParams, int maxParams,
             byte returnClassCode, byte[] parameterClassCodes)
         {
             _index = index;
@@ -53,7 +53,7 @@ namespace Npoi.Core.SS.Formula.Function
             get { return _index; }
         }
 
-        public String Name
+        public string Name
         {
             get { return _name; }
         }
@@ -91,7 +91,7 @@ namespace Npoi.Core.SS.Formula.Function
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder(64);
             sb.Append(GetType().Name).Append(" [");

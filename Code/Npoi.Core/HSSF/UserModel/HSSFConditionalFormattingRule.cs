@@ -195,7 +195,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-        public String Formula1
+        public string Formula1
         {
             get
             {
@@ -203,7 +203,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
         }
 
-        public String Formula2
+        public string Formula2
         {
             get
             {

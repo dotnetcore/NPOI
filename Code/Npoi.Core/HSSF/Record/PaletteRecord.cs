@@ -78,7 +78,7 @@ namespace Npoi.Core.HSSF.Record
             field_2_colors.Clear();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
 
@@ -271,7 +271,7 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteByte(0);
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
             buffer.Append("  red           = ").Append(_red & 0xff).Append('\n');

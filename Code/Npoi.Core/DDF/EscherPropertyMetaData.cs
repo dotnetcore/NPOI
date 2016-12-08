@@ -59,7 +59,7 @@ namespace Npoi.Core.DDF
         /// Gets the description.
         /// </summary>
         /// <value>The description.</value>
-        public String Description {
+        public string Description {
             get { return description; }
         }
 

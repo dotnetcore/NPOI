@@ -141,7 +141,7 @@ namespace Npoi.Core.HSSF.Extractor
         /// Retreives the text contents of the file
         /// </summary>
         /// <value>All the text from the document.</value>
-        public override String Text {
+        public override string Text {
             get
             {
                 StringBuilder text = new StringBuilder();
@@ -156,7 +156,7 @@ namespace Npoi.Core.HSSF.Extractor
                     if (sheet == null) { continue; }
 
                     if (includeSheetNames) {
-                        String name = wb.GetSheetName(i);
+                        string name = wb.GetSheetName(i);
                         if (name != null) {
                             text.Append(name);
                             text.Append("\n");
@@ -261,7 +261,7 @@ namespace Npoi.Core.HSSF.Extractor
                                 if (includeCellComments && comment != null) {
                                     // Replace any newlines with spaces, otherwise it
                                     //  breaks the output
-                                    String commentText = comment.String.String.Replace('\n', ' ');
+                                    string commentText = comment.String.String.Replace('\n', ' ');
                                     text.Append(" Comment by " + comment.Author + ": " + commentText);
                                 }
                             }
@@ -293,7 +293,7 @@ namespace Npoi.Core.HSSF.Extractor
         /// </summary>
         /// <param name="hf">The header or footer</param>
         /// <returns></returns>
-        public static String ExtractHeaderFooter(Npoi.Core.SS.UserModel.IHeaderFooter hf) {
+        public static string ExtractHeaderFooter(Npoi.Core.SS.UserModel.IHeaderFooter hf) {
             StringBuilder text = new StringBuilder();
 
             if (hf.Left != null) {

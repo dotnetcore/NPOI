@@ -64,7 +64,7 @@ namespace Npoi.Core.SS.Formula.PTG
             WriteCoordinates(out1);
         }
 
-        public override String ToFormulaString()
+        public override string ToFormulaString()
         {
             return FormatReferenceAsString();
         }
@@ -79,7 +79,7 @@ namespace Npoi.Core.SS.Formula.PTG
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(GetType().Name);
