@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.1.0-*",
   "buildOptions": {
     "nowarn": [ "CS0612", "CS0618" ],
@@ -17,9 +17,10 @@
       "imports": "portable-net45+win8",
       "dependencies": {
         "Microsoft.NETCore.App": {
-          "version": "1.0.0-*",
+          "version": "1.0.1",
           "type": "platform"
         }
+
       }
     }
   },
