@@ -46,7 +46,7 @@ namespace Npoi.Core.SS.Formula.Eval.Forked
             SetValue(BlankEval.instance); // followed by a proper call to SetValue()
         }
 
-        public Object IdentityKey
+        public object IdentityKey
         {
             get
             {

@@ -317,7 +317,7 @@ namespace Npoi.Core.HSSF.Record
 
         /** Unlike the other Record.Clone methods this Is a shallow Clone*/
 
-        public override Object Clone()
+        public override object Clone()
         {
             //UnknownRecord rec = new UnknownRecord();
             //rec._sid= _sid;

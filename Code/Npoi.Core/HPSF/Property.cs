@@ -94,7 +94,7 @@ namespace Npoi.Core.HPSF
         }
 
         /** The property's value. */
-        protected Object value;
+        protected object value;
 
         /// <summary>
         /// Gets the property's value.
@@ -112,7 +112,7 @@ namespace Npoi.Core.HPSF
         /// <param name="type">the property's type, see {@link Variant}.</param>
         /// <param name="value">the property's value. Only certain types are allowed, see
         /// {@link Variant}.</param>
-        public Property(long id, long type, Object value) {
+        public Property(long id, long type, object value) {
             this.id = id;
             this.type = type;
             this.value = value;
@@ -294,11 +294,11 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="o">The o.</param>
         /// <returns></returns>
-        public override bool Equals(Object o) {
+        public override bool Equals(object o) {
             if (!(o is Property))
                 return false;
             Property p = (Property)o;
-            Object pValue = p.Value;
+            object pValue = p.Value;
             long pId = p.ID;
             if (id != pId || (id != 0 && !TypesAreEqual(type, p.Type)))
                 return false;
@@ -339,7 +339,7 @@ namespace Npoi.Core.HPSF
         /// Serves as a hash function for a particular type.
         /// </summary>
         /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
+        /// A hash code for the current <see cref="T:System.object"/>.
         /// </returns>
         public override int GetHashCode() {
             long GetHashCode = 0;
@@ -352,10 +352,10 @@ namespace Npoi.Core.HPSF
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
         public override String ToString() {
             StringBuilder b = new StringBuilder();
@@ -365,7 +365,7 @@ namespace Npoi.Core.HPSF
             b.Append(ID);
             b.Append(", type: ");
             b.Append(GetType());
-            Object value = Value;
+            object value = Value;
             b.Append(", value: ");
             if (value is String) {
                 b.Append(value.ToString());

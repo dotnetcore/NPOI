@@ -290,7 +290,7 @@ namespace Npoi.Core.HSSF.Record
             return null;
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             return this;
         }

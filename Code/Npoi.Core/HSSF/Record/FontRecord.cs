@@ -292,7 +292,7 @@ namespace Npoi.Core.HSSF.Record
         /**
  * Does this FontRecord have all the same font
  *  properties as the supplied FontRecord?
- * Note that {@link #equals(Object)} will check
+ * Note that {@link #equals(object)} will check
  *  for exact objects, while this will check
  *  for exact contents, because normally the
  *  font record's position makes a big
@@ -426,7 +426,7 @@ namespace Npoi.Core.HSSF.Record
          *  matters.
          */
 
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
             if (this == obj)
                 return true;

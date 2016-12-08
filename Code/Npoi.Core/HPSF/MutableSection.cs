@@ -177,7 +177,7 @@ namespace Npoi.Core.HPSF
         /// <param name="variantType">The property's variant type.</param>
         /// <param name="value">The property's value.</param>
         public void SetProperty(int id, long variantType,
-                                Object value) {
+                                object value) {
             MutableProperty p = new MutableProperty();
             p.ID = id;
             p.Type = variantType;
@@ -308,7 +308,7 @@ namespace Npoi.Core.HPSF
                      * (property 0) the codepage property (property 1) must be Set, Too. */
                     int codepage = -1;
                     if (GetProperty(PropertyIDMap.PID_DICTIONARY) != null) {
-                        Object p1 = GetProperty(PropertyIDMap.PID_CODEPAGE);
+                        object p1 = GetProperty(PropertyIDMap.PID_CODEPAGE);
                         if (p1 != null) {
                             if (!(p1 is int))
                                 throw new IllegalPropertySetDataException
@@ -480,7 +480,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="id">The ID of the property To Get</param>
         /// <returns>The property or null  if there is no such property</returns>
-        public override Object GetProperty(long id) {
+        public override object GetProperty(long id) {
             /* Calling Properties ensures that properties and preprops are in
              * sync. */
             EnsureProperties();
@@ -509,7 +509,7 @@ namespace Npoi.Core.HPSF
                 if (value != null) {
                     for (IEnumerator i = value.Keys.GetEnumerator();
                          i.MoveNext();)
-                        if (!(i.Current is Int64 || i.Current is Int32))
+                        if (!(i.Current is Int64 || i.Current is int))
                             throw new IllegalPropertySetDataException
                                 ("Dictionary keys must be of type long. but it's " + i.Current + "," + i.Current.GetType().Name + " now");
 
@@ -543,7 +543,7 @@ namespace Npoi.Core.HPSF
         /// <param name="id">The property ID.</param>
         /// <param name="value">The property's value. The value's class must be one of those
         /// supported by HPSF.</param>
-        public void SetProperty(int id, Object value) {
+        public void SetProperty(int id, object value) {
             if (value is String)
                 SetProperty(id, (string)value);
             else if (value is long)

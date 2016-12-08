@@ -871,22 +871,22 @@ namespace Npoi.Core.POIFS.FileSystem
          * Get an array of objects, some of which may implement
          * POIFSViewable
          *
-         * @return an array of Object; may not be null, but may be empty
+         * @return an array of object; may not be null, but may be empty
          */
 
-        protected Object[] GetViewableArray()
+        protected object[] GetViewableArray()
         {
             if (PreferArray)
             {
                 Array ar = ((POIFSViewable)Root).ViewableArray;
-                Object[] rval = new Object[ar.Length];
+                object[] rval = new object[ar.Length];
 
                 for (int i = 0; i < ar.Length; i++)
                     rval[i] = ar.GetValue(i);
 
                 return rval;
             }
-            return new Object[0];
+            return new object[0];
         }
 
         /**

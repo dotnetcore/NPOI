@@ -338,7 +338,7 @@ namespace Npoi.Core.SS.Formula.PTG
             return "UNKNOWN ATTRIBUTE";
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             int[] jt;
             if (_jumpTable == null)

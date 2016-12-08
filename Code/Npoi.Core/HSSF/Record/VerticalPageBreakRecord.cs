@@ -58,7 +58,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             PageBreakRecord result = new VerticalPageBreakRecord();
             IEnumerator<Break> iterator = GetBreaksEnumerator();

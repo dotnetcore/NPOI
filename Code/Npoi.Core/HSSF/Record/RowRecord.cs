@@ -387,7 +387,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public int CompareTo(Object obj)
+        public int CompareTo(object obj)
         {
             RowRecord loc = (RowRecord)obj;
 
@@ -406,7 +406,7 @@ namespace Npoi.Core.HSSF.Record
             return -1;
         }
 
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
             if (!(obj is RowRecord))
             {
@@ -426,7 +426,7 @@ namespace Npoi.Core.HSSF.Record
             return RowNumber;
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             RowRecord rec = new RowRecord(field_1_row_number);
             rec.field_2_first_col = field_2_first_col;

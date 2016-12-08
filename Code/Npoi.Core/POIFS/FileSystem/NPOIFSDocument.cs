@@ -249,12 +249,12 @@ namespace Npoi.Core.POIFS.FileSystem
         /**
          * Get an array of objects, some of which may implement POIFSViewable
          *
-         * @return an array of Object; may not be null, but may be empty
+         * @return an array of object; may not be null, but may be empty
          */
 
-        protected Object[] GetViewableArray()
+        protected object[] GetViewableArray()
         {
-            Object[] results = new Object[1];
+            object[] results = new object[1];
             String result;
 
             try

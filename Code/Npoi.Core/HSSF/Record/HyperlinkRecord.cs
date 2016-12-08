@@ -673,7 +673,7 @@ namespace Npoi.Core.HSSF.Record
             TextMark = "";
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             HyperlinkRecord rec = new HyperlinkRecord();
             rec._range = _range.Copy();

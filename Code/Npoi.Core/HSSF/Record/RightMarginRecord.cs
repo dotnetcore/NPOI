@@ -81,7 +81,7 @@ namespace Npoi.Core.HSSF.Record
             set { this.field_1_margin = value; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             RightMarginRecord rec = new RightMarginRecord();
             rec.field_1_margin = this.field_1_margin;

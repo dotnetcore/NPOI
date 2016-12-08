@@ -861,7 +861,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// Usually the caller is calling SetCellType() with the intention of calling
         /// SetCellValue(bool) straight afterwards.  This method only exists to give
         /// the cell a somewhat reasonable value until the SetCellValue() call (if at all).
-        /// TODO - perhaps a method like SetCellTypeAndValue(int, Object) should be introduced to avoid this
+        /// TODO - perhaps a method like SetCellTypeAndValue(int, object) should be introduced to avoid this
         /// </summary>
         /// <returns></returns>
         private bool ConvertCellValueToBoolean()

@@ -75,7 +75,7 @@ namespace Npoi.Core.SS.UserModel
                 {
                     try
                     {
-                        tmpExact = Int32.Parse(m.Groups[2].Value);
+                        tmpExact = int.Parse(m.Groups[2].Value);
                         //if the denom is 0, fall back to the default: tmpExact=100
 
                         if (tmpExact == 0)
@@ -197,7 +197,7 @@ namespace Npoi.Core.SS.UserModel
             return sb1.ToString();
         }
 
-        public override StringBuilder Format(Object obj, StringBuilder toAppendTo, int pos)
+        public override StringBuilder Format(object obj, StringBuilder toAppendTo, int pos)
         {
             return toAppendTo.Append(Format(obj.ToString()));
         }
@@ -207,7 +207,7 @@ namespace Npoi.Core.SS.UserModel
             return this.Format(obj.ToString());
         }
 
-        public override Object ParseObject(string source, int pos)
+        public override object ParseObject(string source, int pos)
         {
             throw new NotImplementedException("Reverse parsing not supported");
         }

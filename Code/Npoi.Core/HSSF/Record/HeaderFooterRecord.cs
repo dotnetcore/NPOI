@@ -119,7 +119,7 @@ namespace Npoi.Core.HSSF.Record
         }
 
         //HACK: do a "cheat" Clone, see Record.java for more information
-        public override Object Clone()
+        public override object Clone()
         {
             return CloneViaReserialise();
         }

@@ -260,7 +260,7 @@ namespace Npoi.Core.HSSF.Record
             subrecords.Add(o);
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             ObjRecord rec = new ObjRecord();
 

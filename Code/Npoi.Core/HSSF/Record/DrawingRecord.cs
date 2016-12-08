@@ -95,7 +95,7 @@ namespace Npoi.Core.HSSF.Record
          * @return cloned drawing records
          */
 
-        public override Object Clone()
+        public override object Clone()
         {
             DrawingRecord rec = new DrawingRecord();
 

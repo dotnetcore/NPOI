@@ -71,7 +71,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             BeginRecord br = new BeginRecord();
             // No data so nothing to copy

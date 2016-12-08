@@ -124,7 +124,7 @@ namespace Npoi.Core.HSSF.Record
             return sb.ToString();
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             ArrayRecord rec = new ArrayRecord(_formula.Copy(), Range);
 

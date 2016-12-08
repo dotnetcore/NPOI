@@ -58,7 +58,7 @@ namespace Npoi.Core.Util
          * @param obj1 The object to Log.  This is converted to a string.
          */
 
-        abstract public void Log(int level, Object obj1);
+        abstract public void Log(int level, object obj1);
 
         /**
          * Log a message
@@ -68,7 +68,7 @@ namespace Npoi.Core.Util
          * @param exception An exception to be Logged
          */
 
-        abstract public void Log(int level, Object obj1,
+        abstract public void Log(int level, object obj1,
                         Exception exception);
 
         /**
@@ -80,7 +80,7 @@ namespace Npoi.Core.Util
         abstract public bool Check(int level);
 
         /*
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
          * @param obj1 first object to place in the message
@@ -88,14 +88,14 @@ namespace Npoi.Core.Util
          */
 
         /**
-          * Log a message. Lazily appends Object parameters together.
+          * Log a message. Lazily appends object parameters together.
           *
           * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
           * @param obj1 first object to place in the message
           * @param obj2 second object to place in the message
           */
 
-        public virtual void Log(int level, Object obj1, Object obj2)
+        public virtual void Log(int level, object obj1, object obj2)
         {
             if (Check(level))
             {
@@ -104,16 +104,16 @@ namespace Npoi.Core.Util
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
-         * @param obj3 third Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
+         * @param obj3 third object to place in the message
          */
 
-        public virtual void Log(int level, Object obj1, Object obj2,
-                        Object obj3)
+        public virtual void Log(int level, object obj1, object obj2,
+                        object obj3)
         {
             if (Check(level))
             {
@@ -124,17 +124,17 @@ namespace Npoi.Core.Util
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
-         * @param obj3 third Object to place in the message
-         * @param obj4 fourth Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
+         * @param obj3 third object to place in the message
+         * @param obj4 fourth object to place in the message
          */
 
-        public virtual void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4)
+        public virtual void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4)
         {
             if (Check(level))
             {
@@ -145,18 +145,18 @@ namespace Npoi.Core.Util
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
-         * @param obj3 third Object to place in the message
-         * @param obj4 fourth Object to place in the message
-         * @param obj5 fifth Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
+         * @param obj3 third object to place in the message
+         * @param obj4 fourth object to place in the message
+         * @param obj5 fifth object to place in the message
          */
 
-        public virtual void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4, Object obj5)
+        public virtual void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4, object obj5)
         {
             if (Check(level))
             {
@@ -167,20 +167,20 @@ namespace Npoi.Core.Util
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
-         * @param obj3 third Object to place in the message
-         * @param obj4 fourth Object to place in the message
-         * @param obj5 fifth Object to place in the message
-         * @param obj6 sixth Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
+         * @param obj3 third object to place in the message
+         * @param obj4 fourth object to place in the message
+         * @param obj5 fifth object to place in the message
+         * @param obj6 sixth object to place in the message
          */
 
-        public virtual void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4, Object obj5,
-                        Object obj6)
+        public virtual void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4, object obj5,
+                        object obj6)
         {
             if (Check(level))
             {
@@ -191,21 +191,21 @@ namespace Npoi.Core.Util
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
-         * @param obj3 third Object to place in the message
-         * @param obj4 fourth Object to place in the message
-         * @param obj5 fifth Object to place in the message
-         * @param obj6 sixth Object to place in the message
-         * @param obj7 seventh Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
+         * @param obj3 third object to place in the message
+         * @param obj4 fourth object to place in the message
+         * @param obj5 fifth object to place in the message
+         * @param obj6 sixth object to place in the message
+         * @param obj7 seventh object to place in the message
          */
 
-        public virtual void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4, Object obj5,
-                        Object obj6, Object obj7)
+        public virtual void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4, object obj5,
+                        object obj6, object obj7)
         {
             if (Check(level))
             {
@@ -217,22 +217,22 @@ namespace Npoi.Core.Util
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
-         * @param obj3 third Object to place in the message
-         * @param obj4 fourth Object to place in the message
-         * @param obj5 fifth Object to place in the message
-         * @param obj6 sixth Object to place in the message
-         * @param obj7 seventh Object to place in the message
-         * @param obj8 eighth Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
+         * @param obj3 third object to place in the message
+         * @param obj4 fourth object to place in the message
+         * @param obj5 fifth object to place in the message
+         * @param obj6 sixth object to place in the message
+         * @param obj7 seventh object to place in the message
+         * @param obj8 eighth object to place in the message
          */
 
-        public virtual void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4, Object obj5,
-                        Object obj6, Object obj7, Object obj8)
+        public virtual void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4, object obj5,
+                        object obj6, object obj7, object obj8)
         {
             if (Check(level))
             {
@@ -256,15 +256,15 @@ namespace Npoi.Core.Util
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
          * @param exception An exception to be Logged
          */
 
-        public virtual void Log(int level, Object obj1, Object obj2,
+        public virtual void Log(int level, object obj1, object obj2,
                         Exception exception)
         {
             if (Check(level))
@@ -275,17 +275,17 @@ namespace Npoi.Core.Util
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
          * @param obj3 third object to place in the message
          * @param exception An error message to be Logged
          */
 
-        public virtual void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Exception exception)
+        public virtual void Log(int level, object obj1, object obj2,
+                        object obj3, Exception exception)
         {
             if (Check(level))
             {
@@ -295,18 +295,18 @@ namespace Npoi.Core.Util
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
          * @param obj3 third object to place in the message
          * @param obj4 fourth object to place in the message
          * @param exception An exception to be Logged
          */
 
-        public virtual void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4,
+        public virtual void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4,
                         Exception exception)
         {
             if (Check(level))
@@ -317,19 +317,19 @@ namespace Npoi.Core.Util
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
          * @param obj3 third object to place in the message
          * @param obj4 fourth object to place in the message
          * @param obj5 fifth object to place in the message
          * @param exception An exception to be Logged
          */
 
-        public virtual void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4, Object obj5,
+        public virtual void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4, object obj5,
                         Exception exception)
         {
             if (Check(level))
@@ -340,11 +340,11 @@ namespace Npoi.Core.Util
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
          * @param obj3 third object to place in the message
          * @param obj4 fourth object to place in the message
          * @param obj5 fifth object to place in the message
@@ -352,9 +352,9 @@ namespace Npoi.Core.Util
          * @param exception An exception to be Logged
          */
 
-        public virtual void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4, Object obj5,
-                        Object obj6, Exception exception)
+        public virtual void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4, object obj5,
+                        object obj6, Exception exception)
         {
             if (Check(level))
             {
@@ -365,11 +365,11 @@ namespace Npoi.Core.Util
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
          * @param obj3 third object to place in the message
          * @param obj4 fourth object to place in the message
          * @param obj5 fifth object to place in the message
@@ -378,9 +378,9 @@ namespace Npoi.Core.Util
          * @param exception An exception to be Logged
          */
 
-        public virtual void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4, Object obj5,
-                        Object obj6, Object obj7,
+        public virtual void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4, object obj5,
+                        object obj6, object obj7,
                         Exception exception)
         {
             if (Check(level))
@@ -392,11 +392,11 @@ namespace Npoi.Core.Util
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
          * @param obj3 third object to place in the message
          * @param obj4 fourth object to place in the message
          * @param obj5 fifth object to place in the message
@@ -406,9 +406,9 @@ namespace Npoi.Core.Util
          * @param exception An exception to be Logged
          */
 
-        public virtual void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4, Object obj5,
-                        Object obj6, Object obj7, Object obj8,
+        public virtual void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4, object obj5,
+                        object obj6, object obj7, object obj8,
                         Exception exception)
         {
             if (Check(level))
@@ -445,9 +445,9 @@ namespace Npoi.Core.Util
          */
 
         public virtual void LogFormatted(int level, String message,
-                                 Object obj1)
+                                 object obj1)
         {
-            CommonLogFormatted(level, message, new Object[]
+            CommonLogFormatted(level, message, new object[]
             {
                 obj1
             });
@@ -480,9 +480,9 @@ namespace Npoi.Core.Util
          */
 
         public virtual void LogFormatted(int level, String message,
-                                 Object obj1, Object obj2)
+                                 object obj1, object obj2)
         {
-            CommonLogFormatted(level, message, new Object[]
+            CommonLogFormatted(level, message, new object[]
             {
                 obj1, obj2
             });
@@ -516,10 +516,10 @@ namespace Npoi.Core.Util
          */
 
         public virtual void LogFormatted(int level, String message,
-                                 Object obj1, Object obj2,
-                                 Object obj3)
+                                 object obj1, object obj2,
+                                 object obj3)
         {
-            CommonLogFormatted(level, message, new Object[]
+            CommonLogFormatted(level, message, new object[]
             {
                 obj1, obj2, obj3
             });
@@ -554,17 +554,17 @@ namespace Npoi.Core.Util
          */
 
         public virtual void LogFormatted(int level, String message,
-                                 Object obj1, Object obj2,
-                                 Object obj3, Object obj4)
+                                 object obj1, object obj2,
+                                 object obj3, object obj4)
         {
-            CommonLogFormatted(level, message, new Object[]
+            CommonLogFormatted(level, message, new object[]
             {
                 obj1, obj2, obj3, obj4
             });
         }
 
         private void CommonLogFormatted(int level, String message,
-                                        Object[] unflatParams)
+                                        object[] unflatParams)
         {
             if (Check(level))
             {
@@ -586,7 +586,7 @@ namespace Npoi.Core.Util
          * Flattens any contained objects. Only tranverses one level deep.
          */
 
-        private Array FlattenArrays(Object[] objects)
+        private Array FlattenArrays(object[] objects)
         {
             List<object> results = new List<object>();
 
@@ -597,7 +597,7 @@ namespace Npoi.Core.Util
             return results.ToArray();
         }
 
-        private List<object> ObjectToObjectArray(Object obj)
+        private List<object> ObjectToObjectArray(object obj)
         {
             List<object> results = new List<object>();
 

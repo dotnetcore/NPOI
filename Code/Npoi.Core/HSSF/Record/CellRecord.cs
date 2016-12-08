@@ -82,7 +82,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public int CompareTo(Object obj)
+        public int CompareTo(object obj)
         {
             CellValueRecordInterface loc = (CellValueRecordInterface)obj;
 

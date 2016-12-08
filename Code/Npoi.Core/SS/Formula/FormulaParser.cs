@@ -837,7 +837,7 @@ namespace Npoi.Core.SS.Formula
                 int i;
                 try
                 {
-                    i = Int32.Parse(rep.Replace("$", ""), CultureInfo.InvariantCulture);
+                    i = int.Parse(rep.Replace("$", ""), CultureInfo.InvariantCulture);
                 }
                 catch (Exception)
                 {
@@ -1494,10 +1494,10 @@ namespace Npoi.Core.SS.Formula
 
         private ParseNode ParseArray()
         {
-            List<Object[]> rowsData = new List<Object[]>();
+            List<object[]> rowsData = new List<object[]>();
             while (true)
             {
-                Object[] singleRowData = ParseArrayRow();
+                object[] singleRowData = ParseArrayRow();
                 rowsData.Add(singleRowData);
                 if (look == '}')
                 {
@@ -1510,15 +1510,15 @@ namespace Npoi.Core.SS.Formula
                 Match(';');
             }
             int nRows = rowsData.Count;
-            Object[][] values2d = new Object[nRows][];
-            values2d = (Object[][])rowsData.ToArray();
+            object[][] values2d = new object[nRows][];
+            values2d = (object[][])rowsData.ToArray();
             int nColumns = values2d[0].Length;
             CheckRowLengths(values2d, nColumns);
 
             return new ParseNode(new ArrayPtg(values2d));
         }
 
-        private void CheckRowLengths(Object[][] values2d, int nColumns)
+        private void CheckRowLengths(object[][] values2d, int nColumns)
         {
             for (int i = 0; i < values2d.Length; i++)
             {
@@ -1531,7 +1531,7 @@ namespace Npoi.Core.SS.Formula
             }
         }
 
-        private Object[] ParseArrayRow()
+        private object[] ParseArrayRow()
         {
             List<object> temp = new List<object>();
             while (true)
@@ -1553,12 +1553,12 @@ namespace Npoi.Core.SS.Formula
                 break;
             }
 
-            Object[] result = new Object[temp.Count];
+            object[] result = new object[temp.Count];
             result = temp.ToArray();
             return result;
         }
 
-        private Object ParseArrayItem()
+        private object ParseArrayItem()
         {
             SkipWhite();
             switch (look)

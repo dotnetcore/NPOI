@@ -193,7 +193,7 @@ namespace Npoi.Core.Util
         /// <param name="o">the object to compare this PropertySet with</param>
         /// <returns>true if the objects are equal, else
         /// false</returns>
-        public override bool Equals(Object o)
+        public override bool Equals(object o)
         {
             if (o == null || !(o is ClassID))
                 return false;
@@ -210,7 +210,7 @@ namespace Npoi.Core.Util
         /// Serves as a hash function for a particular type.
         /// </summary>
         /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
+        /// A hash code for the current <see cref="T:System.object"/>.
         /// </returns>
         public override int GetHashCode()
         {

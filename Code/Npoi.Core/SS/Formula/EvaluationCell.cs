@@ -24,7 +24,7 @@ namespace Npoi.Core.SS.Formula
      * Abstracts a cell for the purpose of formula evaluation.  This interface represents both formula
      * and non-formula cells.<br/>
      *
-     * Implementors of this class must implement {@link #HashCode()} and {@link #Equals(Object)}
+     * Implementors of this class must implement {@link #HashCode()} and {@link #Equals(object)}
      * To provide an <em>identity</em> relationship based on the underlying HSSF or XSSF cell <p/>
      *
      * For POI internal use only
@@ -34,7 +34,7 @@ namespace Npoi.Core.SS.Formula
 
     public interface IEvaluationCell
     {
-        // consider method Object GetUnderlyingCell() To reduce memory consumption in formula cell cache
+        // consider method object GetUnderlyingCell() To reduce memory consumption in formula cell cache
         IEvaluationSheet Sheet { get; }
 
         int RowIndex { get; }
@@ -45,7 +45,7 @@ namespace Npoi.Core.SS.Formula
         String StringCellValue { get; }
         bool BooleanCellValue { get; }
         int ErrorCellValue { get; }
-        Object IdentityKey { get; }
+        object IdentityKey { get; }
         CellType CachedFormulaResultType { get; }
     }
 }

@@ -48,7 +48,7 @@ namespace Npoi.Core.POIFS.Dev
         /// <param name="indentLevel">how far in to indent each string</param>
         /// <param name="indentString">string to use for indenting</param>
         /// <returns>a List of Strings holding the content</returns>
-        public static IEnumerable<object> InspectViewable(Object viewable,
+        public static IEnumerable<object> InspectViewable(object viewable,
                                       bool drilldown,
                                       int indentLevel,
                                       String indentString)

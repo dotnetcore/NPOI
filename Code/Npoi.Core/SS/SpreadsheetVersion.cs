@@ -40,7 +40,7 @@ namespace Npoi.Core.SS
          * <li>Length of text cell contents is unlimited </li>
          * </ul>
          */
-        public static SpreadsheetVersion EXCEL2007 = new SpreadsheetVersion("xlsx", 0x100000, 0x4000, 255, Int32.MaxValue, 64000, 32767);
+        public static SpreadsheetVersion EXCEL2007 = new SpreadsheetVersion("xlsx", 0x100000, 0x4000, 255, int.MaxValue, 64000, 32767);
 
         private string _defaultExtension;
         private int _maxRows;

@@ -158,7 +158,7 @@ namespace Npoi.Core.HSSF.Record
          * Clone this record.
          */
 
-        public override Object Clone()
+        public override object Clone()
         {
             ContinueRecord Clone = new ContinueRecord();
             Clone.Data = (field_1_data);

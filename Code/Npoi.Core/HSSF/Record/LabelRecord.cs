@@ -184,7 +184,7 @@ namespace Npoi.Core.HSSF.Record
             return buffer.ToString();
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             LabelRecord rec = new LabelRecord();
             rec.field_1_row = field_1_row;

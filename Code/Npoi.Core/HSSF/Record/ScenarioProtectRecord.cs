@@ -105,7 +105,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             ScenarioProtectRecord rec = new ScenarioProtectRecord();
             rec.field_1_protect = field_1_protect;

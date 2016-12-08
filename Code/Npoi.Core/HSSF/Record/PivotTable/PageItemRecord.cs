@@ -38,7 +38,7 @@ namespace Npoi.Core.HSSF.Record.PivotTable
             private int _isxvi;
             /** Index to the {@link ViewFieldsRecord} SXVD(0x00B1) record */
             private int _isxvd;
-            /** Object ID for the drop-down arrow */
+            /** object ID for the drop-down arrow */
             private int _idObj;
 
             public FieldInfo(RecordInputStream in1)

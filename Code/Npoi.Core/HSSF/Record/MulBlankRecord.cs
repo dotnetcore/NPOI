@@ -185,7 +185,7 @@ namespace Npoi.Core.HSSF.Record
         }
 
         //poi bug 46776
-        public override Object Clone()
+        public override object Clone()
         {
             // immutable - so OK to return this
             return this;

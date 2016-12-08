@@ -109,7 +109,7 @@ namespace Npoi.Core.SS.Format
             {
             }
 
-            public override CellFormatResult Apply(Object value)
+            public override CellFormatResult Apply(object value)
             {
                 String text = (new CellGeneralFormatter()).Format(value);
                 return new CellFormatResult(true, text, Color.Empty);
@@ -222,7 +222,7 @@ namespace Npoi.Core.SS.Format
          * @return The result, in a {@link CellFormatResult}.
          */
 
-        public virtual CellFormatResult Apply(Object value)
+        public virtual CellFormatResult Apply(object value)
         {
             //if (value is Number) {
             if (Npoi.Core.Util.Number.IsNumber(value))
@@ -334,7 +334,7 @@ namespace Npoi.Core.SS.Format
         //    *
         //    * @return The result, in a {@link CellFormatResult}.
         //    */
-        //   public CellFormatResult Apply(Label label, Object value)
+        //   public CellFormatResult Apply(Label label, object value)
         //   {
         //       CellFormatResult result = Apply(value);
         //       label.Text = (/*setter*/result.Text);
@@ -413,7 +413,7 @@ namespace Npoi.Core.SS.Format
          * @return The {@link CellFormatPart} that applies to the value.
          */
 
-        private CellFormatPart GetApplicableFormatPart(Object value)
+        private CellFormatPart GetApplicableFormatPart(object value)
         {
             //if (value is Number) {
             if (Npoi.Core.Util.Number.IsNumber(value))
@@ -505,7 +505,7 @@ namespace Npoi.Core.SS.Format
          * @return <tt>true</tt> if the two objects are Equal.
          */
 
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
             if (this == obj)
                 return true;

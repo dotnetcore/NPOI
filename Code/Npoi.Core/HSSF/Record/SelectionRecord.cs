@@ -180,7 +180,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             SelectionRecord rec = new SelectionRecord(field_2_row_active_cell, field_3_col_active_cell);
             rec.field_1_pane = field_1_pane;

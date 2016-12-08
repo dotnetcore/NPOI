@@ -457,7 +457,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
             if (!(obj is CellValueRecordInterface))
             {
@@ -521,7 +521,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             FormulaRecord rec = new FormulaRecord();
             CopyBaseFields(rec);

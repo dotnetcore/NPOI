@@ -121,11 +121,11 @@ namespace Npoi.Core.POIFS.Properties
         public class PropertyComparator : IComparer<Property>
         {
             /// <summary>
-            /// Object equality, implemented as object identity
+            /// object equality, implemented as object identity
             /// </summary>
-            /// <param name="o">Object we're being Compared to</param>
+            /// <param name="o">object we're being Compared to</param>
             /// <returns>true if identical, else false</returns>
-            public override bool Equals(Object o)
+            public override bool Equals(object o)
             {
                 return this == o;
             }

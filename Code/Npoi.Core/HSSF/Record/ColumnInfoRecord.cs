@@ -262,7 +262,7 @@ namespace Npoi.Core.HSSF.Record
             return buffer.ToString();
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             ColumnInfoRecord rec = new ColumnInfoRecord();
             rec._first_col = _first_col;

@@ -97,7 +97,7 @@ namespace Npoi.Core.HSSF.Model
             int i = GetDimensionsIndex(records);
             while (i > 0) {
                 i--;
-                Object rb = records[i];
+                object rb = records[i];
                 if (!IsProtectionSubsequentRecord(rb)) {
                     return i + 1;
                 }
@@ -115,7 +115,7 @@ namespace Npoi.Core.HSSF.Model
         /// oo COLINFO
         /// o SORT
         /// </remarks>
-        private static bool IsProtectionSubsequentRecord(Object rb) {
+        private static bool IsProtectionSubsequentRecord(object rb) {
             if (rb is ColumnInfoRecordsAggregate) {
                 return true; // oo COLINFO
             }
@@ -179,7 +179,7 @@ namespace Npoi.Core.HSSF.Model
         /// <returns></returns>
         private static int FindInsertPosForNewCondFormatTable(List<RecordBase> records) {
             for (int i = records.Count - 2; i >= 0; i--) { // -2 to skip EOF record
-                Object rb = records[i];
+                object rb = records[i];
                 if (rb is MergedCellsTable) {
                     return i + 1;
                 }
@@ -207,7 +207,7 @@ namespace Npoi.Core.HSSF.Model
 
         private static int FindInsertPosForNewMergedRecordTable(List<RecordBase> records) {
             for (int i = records.Count - 2; i >= 0; i--) { // -2 to skip EOF record
-                Object rb = records[i];
+                object rb = records[i];
                 if (!(rb is Record)) {
                     // DataValidityTable, ConditionalFormattingTable,
                     // even PageSettingsBlock (which doesn't normally appear after 'View Settings')

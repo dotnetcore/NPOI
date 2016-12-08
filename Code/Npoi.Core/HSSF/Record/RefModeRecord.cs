@@ -81,7 +81,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             RefModeRecord rec = new RefModeRecord();
             rec.field_1_mode = field_1_mode;

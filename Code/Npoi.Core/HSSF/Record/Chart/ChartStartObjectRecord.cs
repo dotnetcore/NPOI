@@ -22,7 +22,7 @@ namespace Npoi.Core.HSSF.Record.Chart
     using System.Text;
 
     /**
-     * STARTOBJECT - Chart Future Record Type Start Object (0x0854)<br/>
+     * STARTOBJECT - Chart Future Record Type Start object (0x0854)<br/>
      *
      * @author Patrick Cheng
      */

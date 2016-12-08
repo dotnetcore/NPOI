@@ -118,14 +118,14 @@ namespace Npoi.Core.HSSF.UserModel
 
             while (subRecordIter.MoveNext())
             {
-                Object subRecord = subRecordIter.Current;
+                object subRecord = subRecordIter.Current;
                 if (subRecord is EmbeddedObjectRefSubRecord)
                 {
                     return (EmbeddedObjectRefSubRecord)subRecord;
                 }
             }
 
-            throw new InvalidOperationException("Object data does not contain a reference to an embedded object OLE2 directory");
+            throw new InvalidOperationException("object data does not contain a reference to an embedded object OLE2 directory");
         }
 
         protected override EscherContainerRecord CreateSpContainer()

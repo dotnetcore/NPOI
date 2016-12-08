@@ -32,11 +32,11 @@ namespace Npoi.Core.SS.Util
     public class SheetBuilder
     {
         private IWorkbook workbook;
-        private Object[][] cells;
+        private object[][] cells;
         private bool shouldCreateEmptyCells = false;
         private string sheetName = null;
 
-        public SheetBuilder(IWorkbook workbook, Object[][] cells)
+        public SheetBuilder(IWorkbook workbook, object[][] cells)
         {
             this.workbook = workbook;
             this.cells = cells;
@@ -95,7 +95,7 @@ namespace Npoi.Core.SS.Util
           * instances become date cells.</li>
           * <li>String with leading '=' char become formulas (leading '='
           * will be truncated).</li>
-          * <li>Other objects become strings via <code>Object.toString()</code>
+          * <li>Other objects become strings via <code>object.toString()</code>
           * method call.</li>
           * </ul>
           *
@@ -110,12 +110,12 @@ namespace Npoi.Core.SS.Util
 
             for (int rowIndex = 0; rowIndex < cells.Length; ++rowIndex)
             {
-                Object[] rowArray = cells[rowIndex];
+                object[] rowArray = cells[rowIndex];
                 currentRow = sheet.CreateRow(rowIndex);
 
                 for (int cellIndex = 0; cellIndex < rowArray.Length; ++cellIndex)
                 {
-                    Object cellValue = rowArray[cellIndex];
+                    object cellValue = rowArray[cellIndex];
                     if (cellValue != null || shouldCreateEmptyCells)
                     {
                         currentCell = currentRow.CreateCell(cellIndex);
@@ -132,7 +132,7 @@ namespace Npoi.Core.SS.Util
          * @param value value to set
          */
 
-        private void SetCellValue(ICell cell, Object value)
+        private void SetCellValue(ICell cell, object value)
         {
             if (value == null || cell == null)
             {
@@ -161,7 +161,7 @@ namespace Npoi.Core.SS.Util
             }
         }
 
-        private bool IsFormulaDefinition(Object obj)
+        private bool IsFormulaDefinition(object obj)
         {
             if (obj is String)
             {
@@ -181,7 +181,7 @@ namespace Npoi.Core.SS.Util
             }
         }
 
-        private string GetFormula(Object obj)
+        private string GetFormula(object obj)
         {
             return ((string)obj).Substring(1);
         }

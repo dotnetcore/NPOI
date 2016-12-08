@@ -269,10 +269,10 @@ namespace Npoi.Core.DDF
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
         public override string ToString() {
             String nl = Environment.NewLine;
@@ -347,7 +347,7 @@ namespace Npoi.Core.DDF
         /// <param name="out1">list to store found records</param>
         public void GetRecordsById(short recordId, ref List<object> out1) {
             for (IEnumerator it = ChildRecords.GetEnumerator(); it.MoveNext();) {
-                Object er = it.Current;
+                object er = it.Current;
                 EscherRecord r = (EscherRecord)er;
                 if (r is EscherContainerRecord) {
                     EscherContainerRecord c = (EscherContainerRecord)r;

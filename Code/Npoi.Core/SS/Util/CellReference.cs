@@ -572,7 +572,7 @@ namespace Npoi.Core.SS.Util
 
         public static bool IsRowWithnRange(string rowStr, SpreadsheetVersion ssVersion)
         {
-            int rowNum = Int32.Parse(rowStr, CultureInfo.InvariantCulture);
+            int rowNum = int.Parse(rowStr, CultureInfo.InvariantCulture);
 
             if (rowNum < 0)
             {
@@ -614,7 +614,7 @@ namespace Npoi.Core.SS.Util
             return true;
         }
 
-        public override bool Equals(Object o)
+        public override bool Equals(object o)
         {
             if (object.ReferenceEquals(this, o))
                 return true;

@@ -86,7 +86,7 @@ namespace Npoi.Core.HPSF
         /// <returns><c>true</c>
         ///  if both custom properties are equal, else
         /// <c>false</c></returns>
-        public bool EqualsContents(Object o) {
+        public bool EqualsContents(object o) {
             CustomProperty c = (CustomProperty)o;
             String name1 = c.Name;
             String name2 = this.Name;
@@ -103,7 +103,7 @@ namespace Npoi.Core.HPSF
         /// <summary>
         /// </summary>
         /// <returns></returns>
-        /// @see Object#GetHashCode()
+        /// @see object#GetHashCode()
         public override int GetHashCode() {
             return (int)this.ID;
         }

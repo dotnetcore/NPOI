@@ -162,11 +162,11 @@ namespace Npoi.Core.HPSF
         private static bool internalEquals(IList c1, IList c2) {
             IEnumerator o1 = c1.GetEnumerator();
             while (o1.MoveNext()) {
-                Object obj1 = o1.Current;
+                object obj1 = o1.Current;
                 bool matchFound = false;
                 IEnumerator o2 = c2.GetEnumerator();
                 while (!matchFound && o2.MoveNext()) {
-                    Object obj2 = o2.Current;
+                    object obj2 = o2.Current;
                     if (obj1.Equals(obj2)) {
                         matchFound = true;
                         //o2[i2] = null;

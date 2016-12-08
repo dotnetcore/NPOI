@@ -137,7 +137,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             BRAIRecord rec = new BRAIRecord();
 

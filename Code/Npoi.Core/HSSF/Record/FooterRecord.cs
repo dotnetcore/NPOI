@@ -48,10 +48,10 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
         public override String ToString()
         {
@@ -73,7 +73,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             return new FooterRecord(this.Text);
         }

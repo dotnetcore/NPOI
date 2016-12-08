@@ -51,7 +51,7 @@ namespace Npoi.Core.HSSF.EventUserModel
         /// <param name="sid">identifier for the record type this Is the .sid static member on the individual records</param>
         public void AddListener(IHSSFListener lsnr, short sid) {
             IList list = null;
-            Object obj = records[sid];
+            object obj = records[sid];
 
             if (obj != null) {
                 list = (IList)obj;
@@ -89,14 +89,14 @@ namespace Npoi.Core.HSSF.EventUserModel
         /// <param name="rec">The record.</param>
         /// <returns>numeric user-specified result code. If zero continue Processing.</returns>
         public short ProcessRecord(Record rec) {
-            Object obj = records[rec.Sid];
+            object obj = records[rec.Sid];
             short userCode = 0;
 
             if (obj != null) {
                 IList listeners = (IList)obj;
 
                 for (int k = 0; k < listeners.Count; k++) {
-                    Object listenObj = listeners[k];
+                    object listenObj = listeners[k];
                     if (listenObj is AbortableHSSFListener) {
                         AbortableHSSFListener listener = (AbortableHSSFListener)listenObj;
                         userCode = listener.AbortableProcessRecord(rec);

@@ -1505,7 +1505,7 @@ namespace Npoi.Core.HSSF.Model
         public int FindFirstRecordLocBySid(short sid) {
             int max = records.Count;
             for (int i = 0; i < max; i++) {
-                Object rb = records[i];
+                object rb = records[i];
                 if (!(rb is Record)) {
                     continue;
                 }

@@ -823,7 +823,7 @@ namespace Npoi.Core.HSSF.UserModel
                 String suffix = srcName.Substring(bracketPos + 1, srcName.Length - bracketPos - 2);
                 try
                 {
-                    uniqueIndex = Int32.Parse(suffix.Trim(), CultureInfo.InvariantCulture);
+                    uniqueIndex = int.Parse(suffix.Trim(), CultureInfo.InvariantCulture);
                     uniqueIndex++;
                     baseName = srcName.Substring(0, bracketPos).Trim();
                 }
@@ -1911,7 +1911,7 @@ namespace Npoi.Core.HSSF.UserModel
             IEnumerator recordIter = workbook.Records.GetEnumerator();
             while (recordIter.MoveNext())
             {
-                Object obj = recordIter.Current;
+                object obj = recordIter.Current;
                 if (obj is AbstractEscherHolderRecord)
                 {
                     ((AbstractEscherHolderRecord)obj).Decode();
@@ -1942,7 +1942,7 @@ namespace Npoi.Core.HSSF.UserModel
             IEnumerator recordIter = escherRecords.GetEnumerator();
             while (recordIter.MoveNext())
             {
-                Object obj = recordIter.Current;
+                object obj = recordIter.Current;
                 if (obj is EscherRecord)
                 {
                     EscherRecord escherRecord = (EscherRecord)obj;

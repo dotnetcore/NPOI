@@ -151,7 +151,7 @@ namespace Npoi.Core.HPSF.Wellknown
         /// <param name="sectionFormatID">A section format ID as a
         /// <c>byte[]</c></param>
         /// <returns>the property ID map</returns>
-        public Object Get(Object sectionFormatID) {
+        public object Get(object sectionFormatID) {
             return Get((byte[])sectionFormatID);
         }
 
@@ -162,7 +162,7 @@ namespace Npoi.Core.HPSF.Wellknown
         /// <param name="sectionFormatID">the section format ID</param>
         /// <param name="propertyIDMap">The property ID map.</param>
         /// <returns></returns>
-        public Object Put(byte[] sectionFormatID,
+        public object Put(byte[] sectionFormatID,
                           PropertyIDMap propertyIDMap) {
             return this[sectionFormatID] = propertyIDMap;
         }
@@ -176,7 +176,7 @@ namespace Npoi.Core.HPSF.Wellknown
         /// deprecated.</param>
         /// <returns>The return value remains undocumented since the method Is
         /// deprecated.</returns>
-        public Object Put(Object key, Object value) {
+        public object Put(object key, object value) {
             return Put((byte[])key, (PropertyIDMap)value);
         }
     }

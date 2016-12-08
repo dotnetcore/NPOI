@@ -522,7 +522,7 @@ namespace Npoi.Core.HSSF.Model
 
                 EscherDgRecord dg = null;
                 for (IEnumerator it = escherContainer.ChildRecords.GetEnumerator(); it.MoveNext();) {
-                    Object er = it.Current;
+                    object er = it.Current;
                     if (er is EscherDgRecord) {
                         dg = (EscherDgRecord)er;
                         //update id of the drawing in the cloned sheet

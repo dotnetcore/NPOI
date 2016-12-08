@@ -69,7 +69,7 @@ namespace Npoi.Core.POIFS.FileSystem
         private EncodingMode mode;
 
         /// <summary>
-        /// Creates an instance of this class from an embedded OLE Object. The OLE Object is expected
+        /// Creates an instance of this class from an embedded OLE object. The OLE object is expected
         /// to include a stream &quot;{01}Ole10Native&quot; which Contains the actual
         /// data relevant for this class.
         /// </summary>
@@ -81,7 +81,7 @@ namespace Npoi.Core.POIFS.FileSystem
         }
 
         /// <summary>
-        /// Creates an instance of this class from an embedded OLE Object. The OLE Object is expected
+        /// Creates an instance of this class from an embedded OLE object. The OLE object is expected
         /// to include a stream &quot;{01}Ole10Native&quot; which contains the actual
         /// data relevant for this class.
         /// </summary>

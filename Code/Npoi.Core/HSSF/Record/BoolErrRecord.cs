@@ -212,7 +212,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             BoolErrRecord rec = new BoolErrRecord();
             CopyBaseFields(rec);

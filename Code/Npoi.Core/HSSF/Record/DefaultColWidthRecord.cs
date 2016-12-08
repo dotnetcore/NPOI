@@ -100,7 +100,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             DefaultColWidthRecord rec = new DefaultColWidthRecord();
             rec.field_1_col_width = field_1_col_width;

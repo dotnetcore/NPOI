@@ -173,7 +173,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             // TODO - make immutable.
             // this should be safe because only the instantiating code mutates these objects

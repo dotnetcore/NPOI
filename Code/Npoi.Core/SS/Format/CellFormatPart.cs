@@ -222,7 +222,7 @@ namespace Npoi.Core.SS.Format
          * @return <tt>true</tt> if this format part applies to the given value.
          */
 
-        public bool Applies(Object valueObject)
+        public bool Applies(object valueObject)
         {
             if (condition == null || !(valueObject.GetType().GetTypeInfo().IsPrimitive))
             {
@@ -450,7 +450,7 @@ namespace Npoi.Core.SS.Format
          *         Applying the format to the value.
          */
 
-        public CellFormatResult Apply(Object value)
+        public CellFormatResult Apply(object value)
         {
             bool applies = Applies(value);
             String text;
@@ -477,7 +477,7 @@ namespace Npoi.Core.SS.Format
         // *
         // * @return <tt>true</tt> if the
         // */
-        //public CellFormatResult Apply(Label label, Object value)
+        //public CellFormatResult Apply(Label label, object value)
         //{
         //    CellFormatResult result = Apply(value);
         //    label.Text = (/*setter*/result.Text);

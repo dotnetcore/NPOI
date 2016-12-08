@@ -274,10 +274,10 @@ namespace Npoi.Core.HPSF
              * offsets. A {@link PropertyListEntry} is "smaller" than another one if
              * its offset from the section's begin is smaller.
              *
-             * @see Comparable#CompareTo(java.lang.Object)
+             * @see Comparable#CompareTo(java.lang.object)
              */
 
-            public int CompareTo(Object o) {
+            public int CompareTo(object o) {
                 if (!(o is PropertyListEntry))
                     throw new InvalidCastException(o.ToString());
                 int otherOffSet = ((PropertyListEntry)o).offset;
@@ -314,7 +314,7 @@ namespace Npoi.Core.HPSF
          * @return The property's value
          */
 
-        public virtual Object GetProperty(long id) {
+        public virtual object GetProperty(long id) {
             wasNull = false;
             for (int i = 0; i < properties.Length; i++)
                 if (id == properties[i].ID)
@@ -336,7 +336,7 @@ namespace Npoi.Core.HPSF
          */
 
         public virtual int GetPropertyIntValue(long id) {
-            Object o = GetProperty(id);
+            object o = GetProperty(id);
             if (o == null)
                 return 0;
             if (!(o is long || o is int))
@@ -435,7 +435,7 @@ namespace Npoi.Core.HPSF
          * not
          */
 
-        public override bool Equals(Object o) {
+        public override bool Equals(object o) {
             if (o == null || !(o is Section))
                 return false;
             Section s = (Section)o;
@@ -521,7 +521,7 @@ namespace Npoi.Core.HPSF
         /// Serves as a hash function for a particular type.
         /// </summary>
         /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
+        /// A hash code for the current <see cref="T:System.object"/>.
         /// </returns>
         public override int GetHashCode() {
             long GetHashCode = 0;
@@ -534,10 +534,10 @@ namespace Npoi.Core.HPSF
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
         public override String ToString() {
             StringBuilder b = new StringBuilder();

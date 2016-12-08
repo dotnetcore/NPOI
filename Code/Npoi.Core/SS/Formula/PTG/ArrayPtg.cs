@@ -58,9 +58,9 @@ namespace Npoi.Core.SS.Formula.PTG
         private int _nColumns;
 
         private int _nRows;
-        private Object[] _arrayValues;
+        private object[] _arrayValues;
 
-        private ArrayPtg(int reserved0, int reserved1, int reserved2, int nColumns, int nRows, Object[] arrayValues)
+        private ArrayPtg(int reserved0, int reserved1, int reserved2, int nColumns, int nRows, object[] arrayValues)
         {
             _reserved0Int = reserved0;
             _reserved1Short = reserved1;
@@ -74,7 +74,7 @@ namespace Npoi.Core.SS.Formula.PTG
          * @param values2d array values arranged in rows
          */
 
-        public ArrayPtg(Object[][] values2d)
+        public ArrayPtg(object[][] values2d)
         {
             int nColumns = values2d[0].Length;
             int nRows = values2d.Length;
@@ -82,10 +82,10 @@ namespace Npoi.Core.SS.Formula.PTG
             _nColumns = (short)nColumns;
             _nRows = (short)nRows;
 
-            Object[] vv = new Object[_nColumns * _nRows];
+            object[] vv = new object[_nColumns * _nRows];
             for (int r = 0; r < nRows; r++)
             {
-                Object[] rowData = values2d[r];
+                object[] rowData = values2d[r];
                 for (int c = 0; c < nColumns; c++)
                 {
                     vv[GetValueIndex(c, r)] = rowData[c];
@@ -98,13 +98,13 @@ namespace Npoi.Core.SS.Formula.PTG
             _reserved2Byte = 0;
         }
 
-        public Object[][] GetTokenArrayValues()
+        public object[][] GetTokenArrayValues()
         {
             if (_arrayValues == null)
             {
                 throw new InvalidOperationException("array values not read yet");
             }
-            Object[][] result = new Object[_nRows][];
+            object[][] result = new object[_nRows][];
             for (int r = 0; r < _nRows; r++)
             {
                 result[r] = new object[_nColumns];
@@ -131,7 +131,7 @@ namespace Npoi.Core.SS.Formula.PTG
             {
                 for (int y = 0; y < RowCount; y++)
                 {
-                    Object o = _arrayValues.GetValue(GetValueIndex(x, y));
+                    object o = _arrayValues.GetValue(GetValueIndex(x, y));
                     buffer.Append("[").Append(x).Append("][").Append(y).Append("] = ").Append(o).Append("\n");
                 }
             }
@@ -219,7 +219,7 @@ namespace Npoi.Core.SS.Formula.PTG
                     {
                         b.Append(",");
                     }
-                    Object o = _arrayValues.GetValue(GetValueIndex(x, y));
+                    object o = _arrayValues.GetValue(GetValueIndex(x, y));
                     b.Append(GetConstantText(o));
                 }
             }
@@ -227,7 +227,7 @@ namespace Npoi.Core.SS.Formula.PTG
             return b.ToString();
         }
 
-        private static string GetConstantText(Object o)
+        private static string GetConstantText(object o)
         {
             if (o == null)
             {
@@ -333,7 +333,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 nRows++;
 
                 int totalCount = nRows * nColumns;
-                Object[] arrayValues = ConstantValueParser.Parse(in1, totalCount);
+                object[] arrayValues = ConstantValueParser.Parse(in1, totalCount);
 
                 ArrayPtg result = new ArrayPtg(_reserved0, _reserved1, _reserved2, nColumns, nRows, arrayValues);
                 result.PtgClass = this.PtgClass;

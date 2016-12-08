@@ -222,7 +222,7 @@ namespace Npoi.Core.SS.Format
 
         /** {@inheritDoc} */
 
-        public override void FormatValue(StringBuilder toAppendTo, Object value)
+        public override void FormatValue(StringBuilder toAppendTo, object value)
         {
             double elapsed = ((double)value);
 
@@ -276,7 +276,7 @@ namespace Npoi.Core.SS.Format
          * For a date, this is <tt>"mm/d/y"</tt>.
          */
 
-        public override void SimpleValue(StringBuilder toAppendTo, Object value)
+        public override void SimpleValue(StringBuilder toAppendTo, object value)
         {
             FormatValue(toAppendTo, value);
         }

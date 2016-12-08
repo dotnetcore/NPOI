@@ -39,7 +39,7 @@ namespace Npoi.Core.HPSF
     [Serializable]
     public abstract class VariantTypeException : HPSFException
     {
-        private Object value;
+        private object value;
 
         private long variantType;
 
@@ -49,7 +49,7 @@ namespace Npoi.Core.HPSF
         /// <param name="variantType">The variant type causing the problem</param>
         /// <param name="value">The value who's variant type causes the problem</param>
         /// <param name="msg">A message text describing the problem</param>
-        public VariantTypeException(long variantType, Object value,
+        public VariantTypeException(long variantType, object value,
                                     String msg) : base(msg) {
             this.variantType = variantType;
             this.value = value;
@@ -67,7 +67,7 @@ namespace Npoi.Core.HPSF
         /// Returns the value who's variant type caused the problem.
         /// </summary>
         /// <value>the value who's variant type caused the problem.</value>
-        public Object Value {
+        public object Value {
             get { return value; }
         }
     }

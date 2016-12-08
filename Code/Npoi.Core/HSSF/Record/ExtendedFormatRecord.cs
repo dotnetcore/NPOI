@@ -1047,7 +1047,7 @@ namespace Npoi.Core.HSSF.Record
          *  that matter are embedded in the records
          */
 
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
             if (this == obj)
                 return true;

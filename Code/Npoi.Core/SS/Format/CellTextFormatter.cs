@@ -81,7 +81,7 @@ namespace Npoi.Core.SS.Format
 
         /** {@inheritDoc} */
 
-        public override void FormatValue(StringBuilder toAppendTo, Object obj)
+        public override void FormatValue(StringBuilder toAppendTo, object obj)
         {
             int start = toAppendTo.Length;
             String text = obj.ToString();
@@ -104,7 +104,7 @@ namespace Npoi.Core.SS.Format
          * For text, this is just printing the text.
          */
 
-        public override void SimpleValue(StringBuilder toAppendTo, Object value)
+        public override void SimpleValue(StringBuilder toAppendTo, object value)
         {
             SIMPLE_TEXT.FormatValue(toAppendTo, value);
         }

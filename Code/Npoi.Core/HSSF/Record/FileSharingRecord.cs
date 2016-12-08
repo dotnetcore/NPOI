@@ -185,7 +185,7 @@ namespace Npoi.Core.HSSF.Record
          * Clone this record.
          */
 
-        public override Object Clone()
+        public override object Clone()
         {
             FileSharingRecord Clone = new FileSharingRecord();
             Clone.ReadOnly = field_1_Readonly;

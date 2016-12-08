@@ -450,7 +450,7 @@ namespace Npoi.Core.HSSF.Record.CF
             return buffer.ToString();
         }
 
-        public Object Clone()
+        public object Clone()
         {
             byte[] rawData = (byte[])_rawData.Clone();
             return new FontFormatting(rawData);

@@ -328,7 +328,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 bool itsANumber = false;
                 try
                 {
-                    Int32.Parse(stringOrNumber);
+                    int.Parse(stringOrNumber);
                     itsANumber = true;
                 }
                 catch (FormatException)
@@ -381,7 +381,7 @@ namespace Npoi.Core.SS.Formula.Functions
             double conditionValue = 0.0;
             try
             {
-                int intValue = Int32.Parse(condition);
+                int intValue = int.Parse(condition);
                 conditionValue = intValue;
             }
             catch (FormatException)

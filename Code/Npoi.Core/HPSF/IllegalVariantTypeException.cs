@@ -47,7 +47,7 @@ namespace Npoi.Core.HPSF
         /// <param name="value">The value</param>
         /// <param name="msg">A message string</param>
         public IllegalVariantTypeException(long variantType,
-                                           Object value, String msg) : base(variantType, value, msg) {
+                                           object value, String msg) : base(variantType, value, msg) {
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Npoi.Core.HPSF
         /// <param name="variantType">The unsupported variant type</param>
         /// <param name="value">The value.</param>
         public IllegalVariantTypeException(long variantType,
-                                           Object value) : this(variantType, value, "The variant type " + variantType + " (" +
+                                           object value) : this(variantType, value, "The variant type " + variantType + " (" +
                  Variant.GetVariantName(variantType) + ", " +
                  HexDump.ToHex(variantType) + ") is illegal in this context.") {
         }

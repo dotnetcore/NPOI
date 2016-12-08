@@ -233,7 +233,7 @@ namespace Npoi.Core.HPSF
         /// <c>false</c>
         /// if not
         /// </returns>
-        public override bool Equals(Object o) {
+        public override bool Equals(object o) {
             return delegate1.Equals(o);
         }
 
@@ -260,7 +260,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="id">The property ID</param>
         /// <returns>The property value</returns>
-        public override Object GetProperty(int id) {
+        public override object GetProperty(int id) {
             return delegate1.GetProperty(id);
         }
 
@@ -298,11 +298,11 @@ namespace Npoi.Core.HPSF
          */
 
         protected String GetPropertyStringValue(int propertyId) {
-            Object propertyValue = GetProperty(propertyId);
+            object propertyValue = GetProperty(propertyId);
             return GetPropertyStringValue(propertyValue);
         }
 
-        protected static String GetPropertyStringValue(Object propertyValue) {
+        protected static String GetPropertyStringValue(object propertyValue) {
             // Normal cases
             if (propertyValue == null) return null;
             if (propertyValue is String) return (string)propertyValue;
@@ -332,17 +332,17 @@ namespace Npoi.Core.HPSF
         /// Serves as a hash function for a particular type.
         /// </summary>
         /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
+        /// A hash code for the current <see cref="T:System.object"/>.
         /// </returns>
         public override int GetHashCode() {
             return delegate1.GetHashCode();
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
         public override String ToString() {
             return delegate1.ToString();

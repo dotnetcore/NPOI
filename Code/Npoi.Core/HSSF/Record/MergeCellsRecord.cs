@@ -146,7 +146,7 @@ namespace Npoi.Core.HSSF.Record
             return retval.ToString();
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             int nRegions = _numberOfRegions;
             CellRangeAddress[] clonedRegions = new CellRangeAddress[nRegions];

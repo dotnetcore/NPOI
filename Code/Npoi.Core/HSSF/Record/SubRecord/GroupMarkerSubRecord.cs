@@ -85,7 +85,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             GroupMarkerSubRecord rec = new GroupMarkerSubRecord();
             rec.reserved = new byte[reserved.Length];

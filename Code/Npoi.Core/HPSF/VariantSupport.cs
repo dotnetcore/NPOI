@@ -130,7 +130,7 @@ namespace Npoi.Core.HPSF
         /// <returns>A Java object that corresponds best To the variant field. For
         /// example, a VT_I4 is returned as a {@link long}, a VT_LPSTR as a
         /// {@link String}.</returns>
-        public static Object Read(byte[] src, int offset,
+        public static object Read(byte[] src, int offset,
                 int length, long type, int codepage) {
             TypedPropertyValue typedPropertyValue = new TypedPropertyValue(
                     (int)type, null);
@@ -252,7 +252,7 @@ namespace Npoi.Core.HPSF
         /// <returns>The number of entities that have been written. In many cases an
         /// "entity" is a byte but this is not always the case.</returns>
         public static int Write(Stream out1, long type,
-                                Object value, int codepage) {
+                                object value, int codepage) {
             int length = 0;
             switch ((int)type) {
                 case Variant.VT_BOOL: {

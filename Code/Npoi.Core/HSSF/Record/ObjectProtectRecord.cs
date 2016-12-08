@@ -22,7 +22,7 @@ namespace Npoi.Core.HSSF.Record
     using System.Text;
 
     /**
-     * Title: Object Protect Record
+     * Title: object Protect Record
      * Description: Protect embedded object with the lamest "security" ever invented.
      * This record tells  "I want to protect my objects" with lame security.  It
      * appears in conjunction with the PASSWORD and PROTECT records as well as its
@@ -104,7 +104,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             ObjectProtectRecord rec = new ObjectProtectRecord();
             rec.field_1_protect = field_1_protect;

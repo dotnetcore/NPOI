@@ -637,7 +637,7 @@ namespace Npoi.Core.HSSF.Record
          */
 
         /**
-         * @see Object#ToString()
+         * @see object#ToString()
          */
 
         public override String ToString()

@@ -87,7 +87,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// </summary>
         /// <param name="o">the object we're checking equality for</param>
         /// <returns>true if the object is equal to this object</returns>
-        public override bool Equals(Object o)
+        public override bool Equals(object o)
         {
             bool rval = false;
 
@@ -124,10 +124,10 @@ namespace Npoi.Core.POIFS.FileSystem
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
         public override String ToString()
         {

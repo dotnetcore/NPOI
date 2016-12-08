@@ -91,7 +91,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="o">The o.</param>
         /// <returns></returns>
-        public override bool Equals(Object o) {
+        public override bool Equals(object o) {
             if (this == o) return true;
             if (!(o is EscherSimpleProperty)) return false;
 
@@ -107,17 +107,17 @@ namespace Npoi.Core.DDF
         /// Serves as a hash function for a particular type.
         /// </summary>
         /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
+        /// A hash code for the current <see cref="T:System.object"/>.
         /// </returns>
         public override int GetHashCode() {
             return propertyValue;
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
         public override String ToString() {
             return "propNum: " + PropertyNumber

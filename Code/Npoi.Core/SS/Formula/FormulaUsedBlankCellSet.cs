@@ -39,7 +39,7 @@ namespace Npoi.Core.SS.Formula
             return _bookIndex * 17 + _sheetIndex;
         }
 
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
             BookSheetKey other = (BookSheetKey)obj;
             return _bookIndex == other._bookIndex && _sheetIndex == other._sheetIndex;

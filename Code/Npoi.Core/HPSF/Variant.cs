@@ -307,7 +307,7 @@ namespace Npoi.Core.HPSF
         /**
          * "MUST be a VersionedStream. The storage representing the (non-simple)
          * property set MUST have a stream element with the name in the StreamName
-         * field." -- [MS-OLEPS] -- v20110920; Object Linking and Embedding (OLE)
+         * field." -- [MS-OLEPS] -- v20110920; object Linking and Embedding (OLE)
          * Property Set Data Structures; page 24 / 63
          */
         public const int VT_VERSIONED_STREAM = 0x0049;

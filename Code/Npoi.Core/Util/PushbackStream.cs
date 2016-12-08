@@ -54,7 +54,7 @@ namespace Npoi.Core.Util
         /// Reads a byte from the stream and advances the position within the stream by one byte, or returns -1 if at the end of the stream.
         /// </summary>
         /// <returns>
-        /// The unsigned byte cast to an Int32, or -1 if at the end of the stream.
+        /// The unsigned byte cast to an int, or -1 if at the end of the stream.
         /// </returns>
         /// <exception cref="T:System.NotSupportedException">
         /// The stream does not support reading.

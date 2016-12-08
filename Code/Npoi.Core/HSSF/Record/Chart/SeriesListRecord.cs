@@ -94,7 +94,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             return new SeriesListRecord((short[])field_1_seriesNumbers.Clone());
         }

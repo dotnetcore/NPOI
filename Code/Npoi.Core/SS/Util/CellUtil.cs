@@ -264,11 +264,11 @@ namespace Npoi.Core.SS.Util
          *@param cell The cell that needs it's style changes
          */
 
-        public static void SetCellStyleProperty(ICell cell, IWorkbook workbook, String propertyName, Object propertyValue)
+        public static void SetCellStyleProperty(ICell cell, IWorkbook workbook, String propertyName, object propertyValue)
         {
             ICellStyle originalStyle = cell.CellStyle;
             ICellStyle newStyle = null;
-            Dictionary<String, Object> values = GetFormatProperties(originalStyle);
+            Dictionary<String, object> values = GetFormatProperties(originalStyle);
             if (values.ContainsKey(propertyName))
                 values[propertyName] = propertyValue;
             else
@@ -282,7 +282,7 @@ namespace Npoi.Core.SS.Util
             {
                 ICellStyle wbStyle = workbook.GetCellStyleAt(i);
 
-                Dictionary<String, Object> wbStyleMap = GetFormatProperties(wbStyle);
+                Dictionary<String, object> wbStyleMap = GetFormatProperties(wbStyle);
 
                 if (values.Keys.Count != wbStyleMap.Keys.Count) continue;
 
@@ -322,13 +322,13 @@ namespace Npoi.Core.SS.Util
          * Returns a map containing the format properties of the given cell style.
          *
          * @param style cell style
-         * @return map of format properties (string -> Object)
+         * @return map of format properties (string -> object)
          * @see #setFormatProperties(org.apache.poi.ss.usermodel.CellStyle, org.apache.poi.ss.usermodel.Workbook, java.util.Map)
          */
 
-        private static Dictionary<String, Object> GetFormatProperties(ICellStyle style)
+        private static Dictionary<String, object> GetFormatProperties(ICellStyle style)
         {
-            Dictionary<String, Object> properties = new Dictionary<String, Object>();
+            Dictionary<String, object> properties = new Dictionary<String, object>();
             PutShort(properties, ALIGNMENT, (short)style.Alignment);
             PutShort(properties, BORDER_BOTTOM, (short)style.BorderBottom);
             PutShort(properties, BORDER_DIAGONAL, (short)style.BorderDiagonal);
@@ -361,11 +361,11 @@ namespace Npoi.Core.SS.Util
          *
          * @param style cell style
          * @param workbook parent workbook
-         * @param properties map of format properties (string -> Object)
+         * @param properties map of format properties (string -> object)
          * @see #getFormatProperties(CellStyle)
          */
 
-        private static void SetFormatProperties(ICellStyle style, IWorkbook workbook, Dictionary<String, Object> properties)
+        private static void SetFormatProperties(ICellStyle style, IWorkbook workbook, Dictionary<String, object> properties)
         {
             style.Alignment = (HorizontalAlignment)GetShort(properties, ALIGNMENT);
             style.BorderBottom = (BorderStyle)GetShort(properties, BORDER_BOTTOM);
@@ -397,14 +397,14 @@ namespace Npoi.Core.SS.Util
          * Utility method that returns the named short value form the given map.
          * @return zero if the property does not exist, or is not a {@link Short}.
          *
-         * @param properties map of named properties (string -> Object)
+         * @param properties map of named properties (string -> object)
          * @param name property name
          * @return property value, or zero
          */
 
-        private static short GetShort(Dictionary<String, Object> properties, String name)
+        private static short GetShort(Dictionary<String, object> properties, String name)
         {
-            Object value = properties[name];
+            object value = properties[name];
             short result = 0;
             if (short.TryParse(value.ToString(), out result))
                 return result;
@@ -415,14 +415,14 @@ namespace Npoi.Core.SS.Util
          * Utility method that returns the named boolean value form the given map.
          * @return false if the property does not exist, or is not a {@link Boolean}.
          *
-         * @param properties map of properties (string -> Object)
+         * @param properties map of properties (string -> object)
          * @param name property name
          * @return property value, or false
          */
 
-        private static bool GetBoolean(Dictionary<String, Object> properties, String name)
+        private static bool GetBoolean(Dictionary<String, object> properties, String name)
         {
-            Object value = properties[name];
+            object value = properties[name];
             bool result = false;
             if (bool.TryParse(value.ToString(), out result))
                 return result;
@@ -433,12 +433,12 @@ namespace Npoi.Core.SS.Util
         /**
          * Utility method that puts the named short value to the given map.
          *
-         * @param properties map of properties (string -> Object)
+         * @param properties map of properties (string -> object)
          * @param name property name
          * @param value property value
          */
 
-        private static void PutShort(Dictionary<String, Object> properties, String name, short value)
+        private static void PutShort(Dictionary<String, object> properties, String name, short value)
         {
             if (properties.ContainsKey(name))
                 properties[name] = value;
@@ -449,12 +449,12 @@ namespace Npoi.Core.SS.Util
         /**
          * Utility method that puts the named boolean value to the given map.
          *
-         * @param properties map of properties (string -> Object)
+         * @param properties map of properties (string -> object)
          * @param name property name
          * @param value property value
          */
 
-        private static void PutBoolean(Dictionary<String, Object> properties, String name, bool value)
+        private static void PutBoolean(Dictionary<String, object> properties, String name, bool value)
         {
             if (properties.ContainsKey(name))
                 properties[name] = value;

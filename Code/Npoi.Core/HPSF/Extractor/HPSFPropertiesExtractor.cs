@@ -114,7 +114,7 @@ namespace Npoi.Core.HPSF.Extractor
             Property[] props = ps.Properties;
             for (int i = 0; i < props.Length; i++) {
                 String type = props[i].ID.ToString(CultureInfo.InvariantCulture);
-                Object typeObj = idMap.Get(props[i].ID);
+                object typeObj = idMap.Get(props[i].ID);
                 if (typeObj != null) {
                     type = typeObj.ToString();
                 }
@@ -157,7 +157,7 @@ namespace Npoi.Core.HPSF.Extractor
                 : base(null) {
             }
 
-            public static String GetPropertyValueText(Object val) {
+            public static String GetPropertyValueText(object val) {
                 if (val == null) {
                     return "(not set)";
                 }

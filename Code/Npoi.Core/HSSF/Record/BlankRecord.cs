@@ -143,7 +143,7 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteShort(XFIndex);
         }
 
-        public int CompareTo(Object obj)
+        public int CompareTo(object obj)
         {
             CellValueRecordInterface loc = (CellValueRecordInterface)obj;
 
@@ -171,7 +171,7 @@ namespace Npoi.Core.HSSF.Record
             return -1;
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             BlankRecord rec = new BlankRecord();
             rec.field_1_row = field_1_row;

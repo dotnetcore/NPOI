@@ -130,7 +130,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             CalcModeRecord rec = new CalcModeRecord();
             rec.field_1_calcmode = field_1_calcmode;

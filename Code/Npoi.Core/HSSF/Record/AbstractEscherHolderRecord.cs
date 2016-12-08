@@ -234,7 +234,7 @@ namespace Npoi.Core.HSSF.Record
         {
             for (IEnumerator it = escherRecords.GetEnumerator(); it.MoveNext();)
             {
-                Object er = it.Current;
+                object er = it.Current;
                 if (er is EscherContainerRecord)
                 {
                     return (EscherContainerRecord)er;

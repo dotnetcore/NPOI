@@ -268,7 +268,7 @@ namespace Npoi.Core.HSSF.Record.CF
             return buffer.ToString();
         }
 
-        public Object Clone()
+        public object Clone()
         {
             BorderFormatting rec = new BorderFormatting();
             rec.field_13_border_styles1 = field_13_border_styles1;

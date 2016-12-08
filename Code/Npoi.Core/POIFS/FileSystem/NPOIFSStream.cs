@@ -336,7 +336,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 get { return current; }
             }
 
-            Object System.Collections.IEnumerator.Current
+            object System.Collections.IEnumerator.Current
             {
                 get { return current; }
             }

@@ -218,7 +218,7 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /**
-         * Object id for OBJ record that Contains the comment
+         * object id for OBJ record that Contains the comment
          */
 
         public int ShapeId
@@ -255,7 +255,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             NoteRecord rec = new NoteRecord();
             rec.field_1_row = field_1_row;

@@ -141,7 +141,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             DimensionsRecord rec = new DimensionsRecord();
             rec.field_1_first_row = field_1_first_row;

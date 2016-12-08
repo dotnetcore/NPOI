@@ -181,7 +181,7 @@ namespace Npoi.Core.SS.Format
 
         /** {@inheritDoc} */
 
-        public override void FormatValue(StringBuilder toAppendTo, Object value)
+        public override void FormatValue(StringBuilder toAppendTo, object value)
         {
             if (value == null)
                 value = 0.0;
@@ -270,7 +270,7 @@ namespace Npoi.Core.SS.Format
          * For a date, this is <tt>"mm/d/y"</tt>.
          */
 
-        public override void SimpleValue(StringBuilder toAppendTo, Object value)
+        public override void SimpleValue(StringBuilder toAppendTo, object value)
         {
             SIMPLE_DATE.FormatValue(toAppendTo, value);
         }

@@ -72,7 +72,7 @@ namespace Npoi.Core.SS.Format
             {
             }
 
-            public override void FormatValue(StringBuilder toAppendTo, Object value)
+            public override void FormatValue(StringBuilder toAppendTo, object value)
             {
                 if (value == null)
                     return;
@@ -92,7 +92,7 @@ namespace Npoi.Core.SS.Format
                 }
             }
 
-            public override void SimpleValue(StringBuilder toAppendTo, Object value)
+            public override void SimpleValue(StringBuilder toAppendTo, object value)
             {
                 FormatValue(toAppendTo, value);
             }
@@ -181,7 +181,7 @@ namespace Npoi.Core.SS.Format
                     return op - that.op;
             }
 
-            public override bool Equals(Object that)
+            public override bool Equals(object that)
             {
                 try
                 {
@@ -678,7 +678,7 @@ namespace Npoi.Core.SS.Format
 
         /** {@inheritDoc} */
 
-        public override void FormatValue(StringBuilder toAppendTo, Object valueObject)
+        public override void FormatValue(StringBuilder toAppendTo, object valueObject)
         {
             double value = ((double)valueObject);
             value *= scale;
@@ -1201,7 +1201,7 @@ namespace Npoi.Core.SS.Format
          * for floating-point values.
          */
 
-        public override void SimpleValue(StringBuilder toAppendTo, Object value)
+        public override void SimpleValue(StringBuilder toAppendTo, object value)
         {
             SIMPLE_NUMBER.FormatValue(toAppendTo, value);
         }

@@ -91,7 +91,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             DatRecord rec = new DatRecord();
 

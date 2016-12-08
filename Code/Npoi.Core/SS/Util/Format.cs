@@ -14,25 +14,25 @@ namespace Npoi.Core.SS.Util
         {
         }
 
-        public virtual string Format(Object obj, CultureInfo culture)
+        public virtual string Format(object obj, CultureInfo culture)
         {
             return obj.ToString();
         }
 
-        public virtual string Format(Object obj)
+        public virtual string Format(object obj)
         {
             return Format(obj, new StringBuilder(), 0).ToString();
         }
 
-        public virtual StringBuilder Format(Object obj, StringBuilder sb, int pos)
+        public virtual StringBuilder Format(object obj, StringBuilder sb, int pos)
         {
             return sb.Append(obj.ToString());
         }
 
-        public abstract StringBuilder Format(Object obj, StringBuilder toAppendTo, CultureInfo culture);
+        public abstract StringBuilder Format(object obj, StringBuilder toAppendTo, CultureInfo culture);
 
-        //public abstract Object Parse(string source);
-        public abstract Object ParseObject(string source, int pos);
+        //public abstract object Parse(string source);
+        public abstract object ParseObject(string source, int pos);
     }
 
     /**
@@ -64,12 +64,12 @@ namespace Npoi.Core.SS.Util
             return sb.ToString();
         }
 
-        public override StringBuilder Format(Object obj, StringBuilder toAppendTo, CultureInfo culture)
+        public override StringBuilder Format(object obj, StringBuilder toAppendTo, CultureInfo culture)
         {
             return toAppendTo.Append(Format((long)obj, culture));
         }
 
-        public override Object ParseObject(string source, int pos)
+        public override object ParseObject(string source, int pos)
         {
             string tmp = source.Substring(pos);
             return long.Parse(tmp, CultureInfo.InvariantCulture);
@@ -103,12 +103,12 @@ namespace Npoi.Core.SS.Util
             return sb.ToString();
         }
 
-        public override StringBuilder Format(Object obj, StringBuilder toAppendTo, CultureInfo culture)
+        public override StringBuilder Format(object obj, StringBuilder toAppendTo, CultureInfo culture)
         {
             return toAppendTo.Append(Format(obj, culture));
         }
 
-        public override Object ParseObject(string source, int pos)
+        public override object ParseObject(string source, int pos)
         {
             string tmp = source.Substring(pos);
             return long.Parse(tmp, CultureInfo.InvariantCulture);
@@ -162,12 +162,12 @@ namespace Npoi.Core.SS.Util
             return sb.ToString();
         }
 
-        public override StringBuilder Format(Object obj, StringBuilder toAppendTo, CultureInfo culture)
+        public override StringBuilder Format(object obj, StringBuilder toAppendTo, CultureInfo culture)
         {
             return toAppendTo.Append(Format(obj, culture));
         }
 
-        public override Object ParseObject(string source, int pos)
+        public override object ParseObject(string source, int pos)
         {
             string tmp = source.Substring(pos);
             return long.Parse(tmp, CultureInfo.InvariantCulture);
@@ -199,7 +199,7 @@ namespace Npoi.Core.SS.Util
 
         private static readonly Regex RegexFraction = new Regex("#+/#+");
 
-        public override string Format(Object obj)
+        public override string Format(object obj)
         {
             return Format(obj, System.Globalization.CultureInfo.CurrentCulture);
         }
@@ -253,7 +253,7 @@ namespace Npoi.Core.SS.Util
             this.pattern = pattern;
         }
 
-        public override string Format(Object obj)
+        public override string Format(object obj)
         {
             return Format(obj, CultureInfo.CurrentCulture);
         }
@@ -309,12 +309,12 @@ namespace Npoi.Core.SS.Util
             return str;
         }
 
-        public override StringBuilder Format(Object obj, StringBuilder toAppendTo, CultureInfo culture)
+        public override StringBuilder Format(object obj, StringBuilder toAppendTo, CultureInfo culture)
         {
             return toAppendTo.Append(str);
         }
 
-        public override Object ParseObject(string source, int pos)
+        public override object ParseObject(string source, int pos)
         {
             return df.ParseObject(source, pos);
         }

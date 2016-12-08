@@ -26,7 +26,7 @@ namespace Npoi.Core.Util
     /// <ul>
     /// <li> if possible, operations designated 'optional' in the List
     ///      interface are attempted</li>
-    /// <li> wherever the List interface refers to an Object, substitute
+    /// <li> wherever the List interface refers to an object, substitute
     ///      int</li>
     /// <li> wherever the List interface refers to a Collection or List,
     ///      substitute IntList</li>
@@ -36,7 +36,7 @@ namespace Npoi.Core.Util
     /// <ul>
     /// <li> operations involving Iterators or ListIterators are not
     ///      supported</li>
-    /// <li> Remove(Object) becomes RemoveValue to distinguish it from
+    /// <li> Remove(object) becomes RemoveValue to distinguish it from
     ///      Remove(int index)</li>
     /// <li> subList is not supported</li>
     /// </ul>
@@ -271,7 +271,7 @@ namespace Npoi.Core.Util
         /// </summary>
         /// <param name="o">the object to be Compared for Equality with this list.</param>
         /// <returns>return true if the specified object is equal to this list.</returns>
-        public override bool Equals(Object o)
+        public override bool Equals(object o)
         {
             bool rval = this == o;
 
@@ -316,14 +316,14 @@ namespace Npoi.Core.Util
         ///  hashCode = 1;
         ///  Iterator i = list.Iterator();
         ///  while (i.HasNext()) {
-        ///       Object obj = i.Next();
+        ///       object obj = i.Next();
         ///       hashCode = 31*hashCode + (obj==null ? 0 : obj.HashCode());
         ///  }
         ///  </code>
         ///
         ///  This ensures that list1.Equals(list2) implies that
         ///  list1.HashCode()==list2.HashCode() for any two lists, list1 and
-        ///  list2, as required by the general contract of Object.HashCode.
+        ///  list2, as required by the general contract of object.HashCode.
         ///
         /// </summary>
         /// <returns>return the hash code value for this list.</returns>
@@ -516,8 +516,8 @@ namespace Npoi.Core.Util
 
         /// <summary>
         /// Returns the number of elements in this list. If this list
-        /// Contains more than Int32.MaxValue elements, returns
-        /// Int32.MaxValue.
+        /// Contains more than int.MaxValue elements, returns
+        /// int.MaxValue.
         /// </summary>
         /// <returns>the number of elements in this IntList</returns>
         public int Size()
@@ -550,7 +550,7 @@ namespace Npoi.Core.Util
         /// <summary>
         /// Returns an array Containing all of the elements in this list in
         /// proper sequence.  Obeys the general contract of the
-        /// Collection.ToArray(Object[]) method.
+        /// Collection.ToArray(object[]) method.
         /// </summary>
         /// <param name="a">the array into which the elements of this list are to
         /// be stored, if it is big enough; otherwise, a new array

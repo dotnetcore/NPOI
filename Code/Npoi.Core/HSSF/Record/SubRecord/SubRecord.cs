@@ -101,7 +101,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public abstract Object Clone();
+        public abstract object Clone();
     }
 
     public class UnknownSubRecord : SubRecord
@@ -140,7 +140,7 @@ namespace Npoi.Core.HSSF.Record
             out1.Write(_data);
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             return this;
         }

@@ -155,7 +155,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             CFHeaderRecord result = new CFHeaderRecord();
             result.field_1_numcf = field_1_numcf;

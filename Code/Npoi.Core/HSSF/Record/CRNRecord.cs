@@ -37,7 +37,7 @@ namespace Npoi.Core.HSSF.Record
         private int field_1_last_column_index;
         private int field_2_first_column_index;
         private int field_3_row_index;
-        private Object[] field_4_constant_values;
+        private object[] field_4_constant_values;
 
         public CRNRecord()
         {

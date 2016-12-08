@@ -95,12 +95,12 @@ namespace Npoi.Core.POIFS.FileSystem
          * Get an array of objects, some of which may implement
          * POIFSViewable
          *
-         * @return an array of Object; may not be null, but may be empty
+         * @return an array of object; may not be null, but may be empty
          */
 
         public Array ViewableArray
         {
-            get { return new Object[0]; }
+            get { return new object[0]; }
         }
 
         /**

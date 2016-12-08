@@ -51,7 +51,7 @@ namespace Npoi.Core.POIFS.Dev
             IEnumerator it = dir.Entries;
             while (it.MoveNext())
             {
-                Object entry = it.Current;
+                object entry = it.Current;
                 if (entry is DirectoryNode)
                 {
                     DisplayDirectory((DirectoryNode)entry, newIndent);

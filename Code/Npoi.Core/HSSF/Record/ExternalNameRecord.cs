@@ -54,7 +54,7 @@ namespace Npoi.Core.HSSF.Record
          * (seems to be only applicable to DDE links)<br/>
          * Logically this is a 2-D array, which has been flattened into 1-D array here.
          */
-        private Object[] _ddeValues;
+        private object[] _ddeValues;
         /**
          * (logical) number of columns in the {@link #_ddeValues} array
          */

@@ -38,7 +38,7 @@ namespace Npoi.Core.HSSF.Record
         /** Vertical position of the dialog */
         private int field_3_vert_pos;
 
-        /** Object ID of the drop down arrow object for list boxes ;
+        /** object ID of the drop down arrow object for list boxes ;
          * in our case this will be always FFFF , Until
          * MSODrawingGroup and MSODrawing records are implemented */
         private int field_cbo_id;
@@ -110,7 +110,7 @@ namespace Npoi.Core.HSSF.Record
         }
 
         /**
-         * Get Object ID of the drop down arrow object for list boxes
+         * Get object ID of the drop down arrow object for list boxes
          */
 
         public int ObjectID
@@ -174,7 +174,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             DVALRecord rec = new DVALRecord();
             rec.field_1_options = field_1_options;

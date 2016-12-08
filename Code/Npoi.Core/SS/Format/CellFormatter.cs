@@ -63,7 +63,7 @@ namespace Npoi.Core.SS.Format
          * @param value      The value to format.
          */
 
-        public abstract void FormatValue(StringBuilder toAppendTo, Object value);
+        public abstract void FormatValue(StringBuilder toAppendTo, object value);
 
         /**
          * Format a value according to the type, in the most basic way.
@@ -72,7 +72,7 @@ namespace Npoi.Core.SS.Format
          * @param value      The value to format.
          */
 
-        public abstract void SimpleValue(StringBuilder toAppendTo, Object value);
+        public abstract void SimpleValue(StringBuilder toAppendTo, object value);
 
         /**
          * Formats the value, returning the resulting string.
@@ -82,7 +82,7 @@ namespace Npoi.Core.SS.Format
          * @return The value, formatted.
          */
 
-        public String Format(Object value)
+        public String Format(object value)
         {
             StringBuilder sb = new StringBuilder();
             FormatValue(sb, value);
@@ -97,7 +97,7 @@ namespace Npoi.Core.SS.Format
          * @return The value, formatted.
          */
 
-        public String SimpleFormat(Object value)
+        public String SimpleFormat(object value)
         {
             StringBuilder sb = new StringBuilder();
             SimpleValue(sb, value);

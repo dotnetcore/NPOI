@@ -427,11 +427,11 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 return nextRow <= lastRow; ;
             }
 
-            public Object Current
+            public object Current
             {
                 get
                 {
-                    Object o = this.records[nextRow][nextColumn];
+                    object o = this.records[nextRow][nextColumn];
 
                     return o;
                 }

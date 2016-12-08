@@ -540,7 +540,7 @@ namespace Npoi.Core.HSSF.Record
             return buffer.ToString();
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             CFRuleRecord rec = new CFRuleRecord(field_1_condition_type, (ComparisonOperator)field_2_comparison_operator);
             rec.field_5_options = field_5_options;

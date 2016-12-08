@@ -124,7 +124,7 @@ namespace Npoi.Core.HSSF.Record
             return buffer.ToString();
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             StringRecord rec = new StringRecord();
             rec._is16bitUnicode = this._is16bitUnicode;

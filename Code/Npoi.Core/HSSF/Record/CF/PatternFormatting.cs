@@ -126,7 +126,7 @@ namespace Npoi.Core.HSSF.Record.CF
             return buffer.ToString();
         }
 
-        public Object Clone()
+        public object Clone()
         {
             PatternFormatting rec = new PatternFormatting();
             rec.field_15_pattern_style = field_15_pattern_style;

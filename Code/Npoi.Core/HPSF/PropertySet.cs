@@ -452,7 +452,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="id">The property ID</param>
         /// <returns>The property value</returns>
-        public virtual Object GetProperty(int id) {
+        public virtual object GetProperty(int id) {
             return FirstSection.GetProperty(id);
         }
 
@@ -539,7 +539,7 @@ namespace Npoi.Core.HPSF
         ///  if the objects are equal,
         /// <c>false</c>
         /// if not</returns>
-        public override bool Equals(Object o) {
+        public override bool Equals(object o) {
             if (o == null || !(o is PropertySet))
                 return false;
             PropertySet ps = (PropertySet)o;
@@ -568,17 +568,17 @@ namespace Npoi.Core.HPSF
         /// Serves as a hash function for a particular type.
         /// </summary>
         /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
+        /// A hash code for the current <see cref="T:System.object"/>.
         /// </returns>
         public override int GetHashCode() {
             throw new InvalidOperationException("FIXME: Not yet implemented.");
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.object"/>.
         /// </returns>
         public override String ToString() {
             StringBuilder b = new StringBuilder();

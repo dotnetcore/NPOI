@@ -45,7 +45,7 @@
 //         * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
 //         * @param obj1 The object to log.
 //         */
-//        public void log(int level, Object obj1)
+//        public void log(int level, object obj1)
 //        {
 //            if (level == FATAL)
 //            {

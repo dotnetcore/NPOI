@@ -806,7 +806,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         /// <summary>
         /// used internally in the API to Get the low level Sheet record represented by this
-        /// Object.
+        /// object.
         /// </summary>
         /// <value>low level representation of this HSSFSheet.</value>
         public InternalSheet Sheet
@@ -2378,7 +2378,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         private HSSFComment LookForComment(HSSFShapeContainer container, int row, int column)
         {
-            foreach (Object obj in container.Children)
+            foreach (object obj in container.Children)
             {
                 HSSFShape shape = (HSSFShape)obj;
                 if (shape is HSSFShapeGroup)
@@ -2625,7 +2625,7 @@ namespace Npoi.Core.HSSF.UserModel
             int maxColumnNum = 0;
             HSSFSheet newSheet = (HSSFSheet)Workbook.CreateSheet(Name);
             newSheet._sheet = Sheet.CloneSheet();
-            IDictionary<Int32, HSSFCellStyle> styleMap = (copyStyle) ? new Dictionary<Int32, HSSFCellStyle>() : null;
+            IDictionary<int, HSSFCellStyle> styleMap = (copyStyle) ? new Dictionary<int, HSSFCellStyle>() : null;
             for (int i = FirstRowNum; i <= LastRowNum; i++)
             {
                 HSSFRow srcRow = (HSSFRow)GetRow(i);
@@ -2681,7 +2681,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 paletteMap = MergePalettes(Workbook as HSSFWorkbook, dest);
             }
-            IDictionary<Int32, HSSFCellStyle> styleMap = (copyStyle) ? new Dictionary<Int32, HSSFCellStyle>() : null;
+            IDictionary<int, HSSFCellStyle> styleMap = (copyStyle) ? new Dictionary<int, HSSFCellStyle>() : null;
             for (int i = FirstRowNum; i <= LastRowNum; i++)
             {
                 HSSFRow srcRow = (HSSFRow)GetRow(i);
@@ -2849,7 +2849,7 @@ namespace Npoi.Core.HSSF.UserModel
             return retval;
         }
 
-        private static void CopyRow(HSSFSheet srcSheet, HSSFSheet destSheet, HSSFRow srcRow, HSSFRow destRow, IDictionary<Int32, HSSFCellStyle> styleMap, Dictionary<short, short> paletteMap, bool keepFormulas)
+        private static void CopyRow(HSSFSheet srcSheet, HSSFSheet destSheet, HSSFRow srcRow, HSSFRow destRow, IDictionary<int, HSSFCellStyle> styleMap, Dictionary<short, short> paletteMap, bool keepFormulas)
         {
             List<SS.Util.CellRangeAddress> mergedRegions = destSheet.Sheet.MergedRecords.MergedRegions;
             destRow.Height = srcRow.Height;

@@ -103,7 +103,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             VCenterRecord rec = new VCenterRecord();
             rec.field_1_vcenter = field_1_vcenter;

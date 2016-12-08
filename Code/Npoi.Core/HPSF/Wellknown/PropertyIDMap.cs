@@ -278,7 +278,7 @@ namespace Npoi.Core.HPSF.Wellknown
         /// <param name="idString">The id string.</param>
         /// <returns>As specified by the {@link java.util.Map} interface, this method
         /// returns the previous value associated with the specified id</returns>
-        public Object Put(long id, String idString) {
+        public object Put(long id, String idString) {
             return this[id] = idString;
         }
 
@@ -288,7 +288,7 @@ namespace Npoi.Core.HPSF.Wellknown
         /// </summary>
         /// <param name="id">The ID.</param>
         /// <returns>The ID string associated with id</returns>
-        public Object Get(long id) {
+        public object Get(long id) {
             return this[id];
         }
 

@@ -80,7 +80,7 @@ namespace Npoi.Core.HSSF.Record
                 }
             }
 
-            public override bool Equals(Object o)
+            public override bool Equals(object o)
             {
                 if (!(o is FormatRun))
                 {
@@ -287,7 +287,7 @@ namespace Npoi.Core.HSSF.Record
                 out1.Write(extraData);
             }
 
-            public override bool Equals(Object obj)
+            public override bool Equals(object obj)
             {
                 if (!(obj is ExtRst))
                 {
@@ -454,7 +454,7 @@ namespace Npoi.Core.HSSF.Record
          * @return      true if the object is actually Equal.
          */
 
-        public override bool Equals(Object o)
+        public override bool Equals(object o)
         {
             if (!(o is UnicodeString))
             {
@@ -938,7 +938,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public Object Clone()
+        public object Clone()
         {
             UnicodeString str = new UnicodeString();
             str.field_1_charCount = field_1_charCount;

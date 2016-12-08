@@ -114,7 +114,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             FtCfSubRecord rec = new FtCfSubRecord();
             rec.flags = this.flags;

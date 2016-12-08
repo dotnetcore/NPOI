@@ -100,7 +100,7 @@ namespace Npoi.Core.HPSF
 
             /* Register name and ID in the dictionary. Mapping in both directions is possible. If there is alReady a  */
             long idKey = cp.ID;
-            Object oldID = dictionaryNameToID[name];
+            object oldID = dictionaryNameToID[name];
             if (oldID != null)
                 dictionaryIDToName.Remove(oldID);
             dictionaryNameToID[name] = idKey;
@@ -153,7 +153,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="customProperty">The custom property.</param>
         /// <returns>If the was alReady a property with the same name, the</returns>
-        private Object Put(CustomProperty customProperty) {
+        private object Put(CustomProperty customProperty) {
             String name = customProperty.Name;
 
             /* Check whether a property with this name is in the map alReady. */
@@ -199,7 +199,7 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(string name, String value) {
+        public object Put(string name, String value) {
             MutableProperty p = new MutableProperty();
             p.ID = -1;
             p.Type = Variant.VT_LPWSTR;
@@ -216,7 +216,7 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(string name, long value) {
+        public object Put(string name, long value) {
             MutableProperty p = new MutableProperty();
             p.ID = -1;
             p.Type = Variant.VT_I8;
@@ -233,7 +233,7 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(string name, Double value) {
+        public object Put(string name, Double value) {
             MutableProperty p = new MutableProperty();
             p.ID = -1;
             p.Type = Variant.VT_R8;
@@ -250,7 +250,7 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(string name, int value) {
+        public object Put(string name, int value) {
             MutableProperty p = new MutableProperty();
             p.ID = -1;
             p.Type = Variant.VT_I4;
@@ -267,7 +267,7 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(string name, bool value) {
+        public object Put(string name, bool value) {
             MutableProperty p = new MutableProperty();
             p.ID = -1;
             p.Type = Variant.VT_BOOL;
@@ -284,7 +284,7 @@ namespace Npoi.Core.HPSF
         /// <returns>the property that was stored under the specified name before, or
         /// <c>null</c>
         ///  if there was no such property before.</returns>
-        public Object Put(string name, DateTime value) {
+        public object Put(string name, DateTime value) {
             MutableProperty p = new MutableProperty();
             p.ID = -1;
             p.Type = Variant.VT_FILETIME;
@@ -294,13 +294,13 @@ namespace Npoi.Core.HPSF
         }
 
         /// <summary>
-        /// Gets the <see cref="System.Object"/> with the specified name.
+        /// Gets the <see cref="System.object"/> with the specified name.
         /// </summary>
         /// <value>the value or
         /// <c>null</c>
         ///  if a value with the specified
         /// name is not found in the custom properties.</value>
-        public Object this[string name] {
+        public object this[string name] {
             get
             {
                 object x = dictionaryNameToID[name];
@@ -331,7 +331,7 @@ namespace Npoi.Core.HPSF
         /**
      * Checks against both String Name and Long ID
      //*/
-        //   public override bool ContainsKey(Object key)
+        //   public override bool ContainsKey(object key)
         //   {
         //       if (key is long)
         //       {
@@ -347,7 +347,7 @@ namespace Npoi.Core.HPSF
         //   /**
         //    * Checks against both the property, and its values.
         //    */
-        //   public override bool ContainsValue(Object value)
+        //   public override bool ContainsValue(object value)
         //   {
         //       if (value is CustomProperty)
         //       {

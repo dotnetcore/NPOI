@@ -503,12 +503,12 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <summary>
         /// Get an array of objects, some of which may implement POIFSViewable
         /// </summary>
-        /// <value>an array of Object; may not be null, but may be empty</value>
+        /// <value>an array of object; may not be null, but may be empty</value>
         public Array ViewableArray
         {
             get
             {
-                return new Object[0];
+                return new object[0];
             }
         }
 

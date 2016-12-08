@@ -44,7 +44,7 @@ namespace Npoi.Core.SS.Format
          * @param value      The value to format.
          */
 
-        public override void FormatValue(StringBuilder toAppendTo, Object value)
+        public override void FormatValue(StringBuilder toAppendTo, object value)
         {
             //if (value is Number) {
             if (Npoi.Core.Util.Number.IsNumber(value))
@@ -119,9 +119,9 @@ namespace Npoi.Core.SS.Format
             }
         }
 
-        /** Equivalent to {@link #formatValue(StringBuilder,Object)}. {@inheritDoc}. */
+        /** Equivalent to {@link #formatValue(StringBuilder,object)}. {@inheritDoc}. */
 
-        public override void SimpleValue(StringBuilder toAppendTo, Object value)
+        public override void SimpleValue(StringBuilder toAppendTo, object value)
         {
             FormatValue(toAppendTo, value);
         }

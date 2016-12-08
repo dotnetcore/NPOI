@@ -142,7 +142,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             AreaFormatRecord rec = new AreaFormatRecord();
 

@@ -640,7 +640,7 @@ namespace Npoi.Core.SS.Util
                 String suffix = srcName.Substring(bracketPos + 1, srcName.Length - bracketPos - 2);
                 try
                 {
-                    uniqueIndex = Int32.Parse(suffix.Trim());
+                    uniqueIndex = int.Parse(suffix.Trim());
                     uniqueIndex++;
                     baseName = srcName.Substring(0, bracketPos).Trim();
                 }

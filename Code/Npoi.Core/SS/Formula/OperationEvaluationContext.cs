@@ -315,7 +315,7 @@ namespace Npoi.Core.SS.Formula
 
         private static int ParseColRef(string refStrPart)
         {
-            return Int32.Parse(refStrPart, CultureInfo.InvariantCulture) - 1;
+            return int.Parse(refStrPart, CultureInfo.InvariantCulture) - 1;
         }
 
         private static NameType ClassifyCellReference(string str, SpreadsheetVersion ssVersion)

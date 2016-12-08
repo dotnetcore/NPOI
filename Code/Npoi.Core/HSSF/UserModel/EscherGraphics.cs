@@ -397,7 +397,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         private int FindBiggest(int[] values)
         {
-            int result = Int32.MinValue;
+            int result = int.MinValue;
             for (int i = 0; i < values.Length; i++)
             {
                 if (values[i] > result)
@@ -408,7 +408,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         private int FindSmallest(int[] values)
         {
-            int result = Int32.MaxValue;
+            int result = int.MaxValue;
             for (int i = 0; i < values.Length; i++)
             {
                 if (values[i] < result)

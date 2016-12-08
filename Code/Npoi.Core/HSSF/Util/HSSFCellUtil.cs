@@ -196,7 +196,7 @@ namespace Npoi.Core.HSSF.Util
             }
         }
 
-        public static void CopyCell(HSSFCell oldCell, HSSFCell newCell, IDictionary<Int32, HSSFCellStyle> styleMap, Dictionary<short, short> paletteMap, Boolean keepFormulas)
+        public static void CopyCell(HSSFCell oldCell, HSSFCell newCell, IDictionary<int, HSSFCellStyle> styleMap, Dictionary<short, short> paletteMap, Boolean keepFormulas)
         {
             if (styleMap != null)
             {
@@ -364,7 +364,7 @@ namespace Npoi.Core.HSSF.Util
          *@exception  NestableException  Thrown if an error happens.
          */
 
-        public static void SetCellStyleProperty(ICell cell, HSSFWorkbook workbook, String propertyName, Object propertyValue)
+        public static void SetCellStyleProperty(ICell cell, HSSFWorkbook workbook, String propertyName, object propertyValue)
         {
             ICellStyle originalStyle = cell.CellStyle;
             ICellStyle newStyle = null;
@@ -401,7 +401,7 @@ namespace Npoi.Core.HSSF.Util
         /// Returns a map containing the format properties of the given cell style.
         /// </summary>
         /// <param name="style">cell style</param>
-        /// <returns>map of format properties (string -&gt; Object)</returns>
+        /// <returns>map of format properties (string -&gt; object)</returns>
         private static Dictionary<string, object> GetFormatProperties(ICellStyle style)
         {
             var properties = new Dictionary<string, object>();
@@ -433,7 +433,7 @@ namespace Npoi.Core.HSSF.Util
         /// </summary>
         /// <param name="style">The cell style</param>
         /// <param name="workbook">The parent workbook.</param>
-        /// <param name="properties">The map of format properties (string -&gt; Object).</param>
+        /// <param name="properties">The map of format properties (string -&gt; object).</param>
         private static void SetFormatProperties(
                 ICellStyle style, HSSFWorkbook workbook, Dictionary<string, object> properties)
         {
@@ -463,12 +463,12 @@ namespace Npoi.Core.HSSF.Util
         /// Utility method that returns the named short value form the given map.
         /// Returns zero if the property does not exist, or is not a {@link Short}.
         /// </summary>
-        /// <param name="properties">The map of named properties (string -&gt; Object)</param>
+        /// <param name="properties">The map of named properties (string -&gt; object)</param>
         /// <param name="name">The property name.</param>
         /// <returns>property value, or zero</returns>
         private static short GetShort(Dictionary<string, object> properties, String name)
         {
-            Object value = properties[name];
+            object value = properties[name];
             if (value is short)
             {
                 return (short)value;
@@ -483,12 +483,12 @@ namespace Npoi.Core.HSSF.Util
         /// Utility method that returns the named boolean value form the given map.
         /// Returns false if the property does not exist, or is not a {@link Boolean}.
         /// </summary>
-        /// <param name="properties">map of properties (string -&gt; Object)</param>
+        /// <param name="properties">map of properties (string -&gt; object)</param>
         /// <param name="name">The property name.</param>
         /// <returns>property value, or false</returns>
         private static bool GetBoolean(Dictionary<string, object> properties, String name)
         {
-            Object value = properties[name];
+            object value = properties[name];
             if (value is Boolean)
             {
                 return ((Boolean)value);
@@ -502,7 +502,7 @@ namespace Npoi.Core.HSSF.Util
         /// <summary>
         /// Utility method that Puts the named short value to the given map.
         /// </summary>
-        /// <param name="properties">The map of properties (string -&gt; Object).</param>
+        /// <param name="properties">The map of properties (string -&gt; object).</param>
         /// <param name="name">The property name.</param>
         /// <param name="value">The property value.</param>
         private static void PutShort(Dictionary<string, object> properties, String name, short value)
@@ -513,7 +513,7 @@ namespace Npoi.Core.HSSF.Util
         /// <summary>
         /// Utility method that Puts the named boolean value to the given map.
         /// </summary>
-        /// <param name="properties">map of properties (string -&gt; Object)</param>
+        /// <param name="properties">map of properties (string -&gt; object)</param>
         /// <param name="name">property name</param>
         /// <param name="value">property value</param>
         private static void PutBoolean(Dictionary<string, object> properties, String name, bool value)

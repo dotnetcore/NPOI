@@ -95,7 +95,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             PrintHeadersRecord rec = new PrintHeadersRecord();
             rec.field_1_print_headers = field_1_print_headers;

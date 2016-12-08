@@ -765,7 +765,7 @@ namespace Npoi.Core.HSSF.UserModel
         //        return nextId < cells.Length;
         //    }
 
-        //    public Object Current
+        //    public object Current
         //    {
         //        get
         //        {
@@ -817,7 +817,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <exception cref="T:System.ArgumentException">
         /// 	<paramref name="obj"/> is not the same type as this instance.
         /// </exception>
-        public int CompareTo(Object obj)
+        public int CompareTo(object obj)
         {
             HSSFRow loc = (HSSFRow)obj;
 
@@ -837,16 +837,16 @@ namespace Npoi.Core.HSSF.UserModel
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.
+        /// Determines whether the specified <see cref="T:System.object"/> is equal to the current <see cref="T:System.object"/>.
         /// </summary>
-        /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>.</param>
+        /// <param name="obj">The <see cref="T:System.object"/> to compare with the current <see cref="T:System.object"/>.</param>
         /// <returns>
-        /// true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.
+        /// true if the specified <see cref="T:System.object"/> is equal to the current <see cref="T:System.object"/>; otherwise, false.
         /// </returns>
         /// <exception cref="T:System.NullReferenceException">
         /// The <paramref name="obj"/> parameter is null.
         /// </exception>
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
             if (!(obj is HSSFRow))
             {

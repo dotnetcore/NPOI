@@ -23,7 +23,7 @@ namespace Npoi.Core.HSSF.Record.Chart
     using System.Text;
 
     /**
-     * ENDOBJECT - Chart Future Record Type End Object (0x0855)<br/>
+     * ENDOBJECT - Chart Future Record Type End object (0x0855)<br/>
      *
      * @author Patrick Cheng
      */

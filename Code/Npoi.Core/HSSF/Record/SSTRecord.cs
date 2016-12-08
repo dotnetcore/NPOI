@@ -216,7 +216,7 @@ namespace Npoi.Core.HSSF.Record
             return field_2_num_unique_strings;
         }
 
-        public override bool Equals(Object o)
+        public override bool Equals(object o)
         {
             if ((o == null) || (o.GetType() != this.GetType()))
             {

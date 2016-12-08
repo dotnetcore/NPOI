@@ -107,7 +107,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             SharedFormulaRecord result = new SharedFormulaRecord(Range);
             result.field_5_reserved = field_5_reserved;

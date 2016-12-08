@@ -96,7 +96,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             CalcCountRecord rec = new CalcCountRecord();
             rec.field_1_iterations = field_1_iterations;

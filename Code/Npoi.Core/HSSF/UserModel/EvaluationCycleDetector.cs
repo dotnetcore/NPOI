@@ -61,7 +61,7 @@ namespace Npoi.Core.HSSF.UserModel
                 _srcColNum = srcColNum;
             }
 
-            public override bool Equals(Object obj)
+            public override bool Equals(object obj)
             {
                 CellEvaluationFrame other = (CellEvaluationFrame)obj;
                 if (_workbook != other._workbook)

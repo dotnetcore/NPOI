@@ -310,7 +310,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             PrintSetupRecord rec = new PrintSetupRecord();
             rec.field_1_paper_size = field_1_paper_size;

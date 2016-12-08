@@ -82,7 +82,7 @@ namespace Npoi.Core.HSSF.Record
             }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             FtCblsSubRecord rec = new FtCblsSubRecord();
             byte[] recdata = new byte[reserved.Length];

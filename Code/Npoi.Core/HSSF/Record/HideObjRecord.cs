@@ -22,7 +22,7 @@ namespace Npoi.Core.HSSF.Record
     using System.Text;
 
     /**
-     * Title:        Hide Object Record
+     * Title:        Hide object Record
      * Description:  flag defines whether to hide placeholders and object
      * REFERENCE:  PG 321 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)
      * @author Andrew C. Oliver (acoliver at apache dot org)

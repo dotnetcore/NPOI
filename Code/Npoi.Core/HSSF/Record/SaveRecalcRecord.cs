@@ -94,7 +94,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             SaveRecalcRecord rec = new SaveRecalcRecord();
             rec.field_1_recalc = field_1_recalc;

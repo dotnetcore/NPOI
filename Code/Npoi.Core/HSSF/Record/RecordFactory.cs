@@ -70,7 +70,7 @@ namespace Npoi.Core.HSSF.Record
 
             public Record Create(RecordInputStream in1)
             {
-                Object[] args = { in1 };
+                object[] args = { in1 };
                 try
                 {
                     return (Record)_c.Invoke(args);
@@ -103,7 +103,7 @@ namespace Npoi.Core.HSSF.Record
 
             public Record Create(RecordInputStream in1)
             {
-                Object[] args = { in1 };
+                object[] args = { in1 };
                 try
                 {
                     return (Record)_m.Invoke(null, args);

@@ -113,7 +113,7 @@ namespace Npoi.Core.HSSF.Record
          * Clone this record.
          */
 
-        public override Object Clone()
+        public override object Clone()
         {
             return new PasswordRecord(field_1_password);
         }

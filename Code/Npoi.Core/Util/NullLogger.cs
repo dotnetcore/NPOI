@@ -52,7 +52,7 @@ namespace Npoi.Core.Util
          * @param obj1 The object to Log.
          */
 
-        public override void Log(int level, Object obj1)
+        public override void Log(int level, object obj1)
         {
             //do nothing
         }
@@ -69,122 +69,122 @@ namespace Npoi.Core.Util
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
          * @param obj1 first object to place in the message
          * @param obj2 second object to place in the message
          */
 
-        public override void Log(int level, Object obj1, Object obj2)
+        public override void Log(int level, object obj1, object obj2)
         {
             //do nothing
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
-         * @param obj3 third Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
+         * @param obj3 third object to place in the message
          */
 
-        public override void Log(int level, Object obj1, Object obj2,
-                        Object obj3)
+        public override void Log(int level, object obj1, object obj2,
+                        object obj3)
         {
             //do nothing
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
-         * @param obj3 third Object to place in the message
-         * @param obj4 fourth Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
+         * @param obj3 third object to place in the message
+         * @param obj4 fourth object to place in the message
          */
 
-        public override void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4)
+        public override void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4)
         {
             //do nothing
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
-         * @param obj3 third Object to place in the message
-         * @param obj4 fourth Object to place in the message
-         * @param obj5 fifth Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
+         * @param obj3 third object to place in the message
+         * @param obj4 fourth object to place in the message
+         * @param obj5 fifth object to place in the message
          */
 
-        public override void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4, Object obj5)
+        public override void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4, object obj5)
         {
             //do nothing
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
-         * @param obj3 third Object to place in the message
-         * @param obj4 fourth Object to place in the message
-         * @param obj5 fifth Object to place in the message
-         * @param obj6 sixth Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
+         * @param obj3 third object to place in the message
+         * @param obj4 fourth object to place in the message
+         * @param obj5 fifth object to place in the message
+         * @param obj6 sixth object to place in the message
          */
 
-        public override void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4, Object obj5,
-                        Object obj6)
+        public override void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4, object obj5,
+                        object obj6)
         {
             //do nothing
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
-         * @param obj3 third Object to place in the message
-         * @param obj4 fourth Object to place in the message
-         * @param obj5 fifth Object to place in the message
-         * @param obj6 sixth Object to place in the message
-         * @param obj7 seventh Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
+         * @param obj3 third object to place in the message
+         * @param obj4 fourth object to place in the message
+         * @param obj5 fifth object to place in the message
+         * @param obj6 sixth object to place in the message
+         * @param obj7 seventh object to place in the message
          */
 
-        public override void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4, Object obj5,
-                        Object obj6, Object obj7)
+        public override void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4, object obj5,
+                        object obj6, object obj7)
         {
             //do nothing
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
-         * @param obj3 third Object to place in the message
-         * @param obj4 fourth Object to place in the message
-         * @param obj5 fifth Object to place in the message
-         * @param obj6 sixth Object to place in the message
-         * @param obj7 seventh Object to place in the message
-         * @param obj8 eighth Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
+         * @param obj3 third object to place in the message
+         * @param obj4 fourth object to place in the message
+         * @param obj5 fifth object to place in the message
+         * @param obj6 sixth object to place in the message
+         * @param obj7 seventh object to place in the message
+         * @param obj8 eighth object to place in the message
          */
 
-        public override void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4, Object obj5,
-                        Object obj6, Object obj7, Object obj8)
+        public override void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4, object obj5,
+                        object obj6, object obj7, object obj8)
         {
             //do nothing
         }
@@ -197,86 +197,86 @@ namespace Npoi.Core.Util
          * @param exception An exception to be Logged
          */
 
-        public override void Log(int level, Object obj1,
+        public override void Log(int level, object obj1,
                         Exception exception)
         {
             //do nothing
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
          * @param exception An exception to be Logged
          */
 
-        public override void Log(int level, Object obj1, Object obj2,
+        public override void Log(int level, object obj1, object obj2,
                         Exception exception)
         {
             //do nothing
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
          * @param obj3 third object to place in the message
          * @param exception An error message to be Logged
          */
 
-        public override void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Exception exception)
+        public override void Log(int level, object obj1, object obj2,
+                        object obj3, Exception exception)
         {
             //do nothing
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
          * @param obj3 third object to place in the message
          * @param obj4 fourth object to place in the message
          * @param exception An exception to be Logged
          */
 
-        public override void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4,
+        public override void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4,
                         Exception exception)
         {
             //do nothing
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
          * @param obj3 third object to place in the message
          * @param obj4 fourth object to place in the message
          * @param obj5 fifth object to place in the message
          * @param exception An exception to be Logged
          */
 
-        public override void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4, Object obj5,
+        public override void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4, object obj5,
                         Exception exception)
         {
             //do nothing
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
          * @param obj3 third object to place in the message
          * @param obj4 fourth object to place in the message
          * @param obj5 fifth object to place in the message
@@ -284,19 +284,19 @@ namespace Npoi.Core.Util
          * @param exception An exception to be Logged
          */
 
-        public override void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4, Object obj5,
-                        Object obj6, Exception exception)
+        public override void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4, object obj5,
+                        object obj6, Exception exception)
         {
             //do nothing
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
          * @param obj3 third object to place in the message
          * @param obj4 fourth object to place in the message
          * @param obj5 fifth object to place in the message
@@ -305,20 +305,20 @@ namespace Npoi.Core.Util
          * @param exception An exception to be Logged
          */
 
-        public override void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4, Object obj5,
-                        Object obj6, Object obj7,
+        public override void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4, object obj5,
+                        object obj6, object obj7,
                         Exception exception)
         {
             //do nothing
         }
 
         /**
-         * Log a message. Lazily appends Object parameters together.
+         * Log a message. Lazily appends object parameters together.
          *
          * @param level One of DEBUG, INFO, WARN, ERROR, FATAL
-         * @param obj1 first Object to place in the message
-         * @param obj2 second Object to place in the message
+         * @param obj1 first object to place in the message
+         * @param obj2 second object to place in the message
          * @param obj3 third object to place in the message
          * @param obj4 fourth object to place in the message
          * @param obj5 fifth object to place in the message
@@ -328,9 +328,9 @@ namespace Npoi.Core.Util
          * @param exception An exception to be Logged
          */
 
-        public override void Log(int level, Object obj1, Object obj2,
-                        Object obj3, Object obj4, Object obj5,
-                        Object obj6, Object obj7, Object obj8,
+        public override void Log(int level, object obj1, object obj2,
+                        object obj3, object obj4, object obj5,
+                        object obj6, object obj7, object obj8,
                         Exception exception)
         {
             //do nothing
@@ -362,7 +362,7 @@ namespace Npoi.Core.Util
          */
 
         public override void LogFormatted(int level, String message,
-                                 Object obj1)
+                                 object obj1)
         {
             //do nothing
         }
@@ -394,7 +394,7 @@ namespace Npoi.Core.Util
          */
 
         public override void LogFormatted(int level, String message,
-                                 Object obj1, Object obj2)
+                                 object obj1, object obj2)
         {
             //do nothing
         }
@@ -427,8 +427,8 @@ namespace Npoi.Core.Util
          */
 
         public override void LogFormatted(int level, String message,
-                                 Object obj1, Object obj2,
-                                 Object obj3)
+                                 object obj1, object obj2,
+                                 object obj3)
         {
             //do nothing
         }
@@ -462,8 +462,8 @@ namespace Npoi.Core.Util
          */
 
         public override void LogFormatted(int level, String message,
-                                 Object obj1, Object obj2,
-                                 Object obj3, Object obj4)
+                                 object obj1, object obj2,
+                                 object obj3, object obj4)
         {
             //do nothing
         }

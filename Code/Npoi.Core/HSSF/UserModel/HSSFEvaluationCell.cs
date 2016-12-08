@@ -49,7 +49,7 @@ namespace Npoi.Core.HSSF.UserModel
             return _cell.GetHashCode();
         }
 
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
             Npoi.Core.SS.UserModel.ICell cellb = ((HSSFEvaluationCell)obj)._cell;
             return _cell.RowIndex == cellb.RowIndex

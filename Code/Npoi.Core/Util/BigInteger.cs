@@ -1233,10 +1233,10 @@ namespace Npoi.Core.Util
         #endregion IComparable<BigInteger> 成员
 
         /**
-         * Compares this BigInteger with the specified Object for equality.
+         * Compares this BigInteger with the specified object for equality.
          *
-         * @param  x Object to which this BigInteger is to be compared.
-         * @return {@code true} if and only if the specified Object is a
+         * @param  x object to which this BigInteger is to be compared.
+         * @return {@code true} if and only if the specified object is a
          *         BigInteger whose value is numerically equal to this BigInteger.
          */
 
@@ -1244,7 +1244,7 @@ namespace Npoi.Core.Util
         {
             // This test is just an optimization, which may or may not help
             //if (x == this) - avoid CS0252 by making the reference comparison explicit:
-            if (Object.ReferenceEquals(x, this))
+            if (object.ReferenceEquals(x, this))
                 return true;
 
             if (!(x is BigInteger) || (null == x))

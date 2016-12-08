@@ -47,7 +47,7 @@ namespace Npoi.Core.HSSF.Util
             out1.WriteLong(_d4);
         }
 
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
             if (!(obj is GUID)) return false;
             GUID other = (GUID)obj;

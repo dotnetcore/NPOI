@@ -47,7 +47,7 @@ namespace Npoi.Core.HSSF.Model
             List<SubRecord> records = obj.SubRecords;
             int cmoIdx = 0;
             for (int i = 0; i < records.Count; i++) {
-                Object r = records[i];
+                object r = records[i];
 
                 if (r is CommonObjectDataSubRecord) {
                     //modify autoFill attribute inherited from <c>TextObjectRecord</c>

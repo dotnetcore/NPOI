@@ -38,7 +38,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 // enforce singleton
             }
 
-            public int Compare(Object a, Object b)
+            public int Compare(object a, object b)
             {
                 return CompareColInfos((ColumnInfoRecord)a, (ColumnInfoRecord)b);
             }
@@ -131,7 +131,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
          * Performs a deep Clone of the record
          */
 
-        public Object Clone()
+        public object Clone()
         {
             ColumnInfoRecordsAggregate rec = new ColumnInfoRecordsAggregate();
             for (int k = 0; k < records.Count; k++)

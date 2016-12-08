@@ -25,8 +25,8 @@ namespace Npoi.Core.SS.Format
      * to a value.
      *
      * @author Ken Arnold, Industrious Media LLC
-     * @see CellFormatPart#Apply(Object)
-     * @see CellFormat#Apply(Object)
+     * @see CellFormatPart#Apply(object)
+     * @see CellFormat#Apply(object)
      */
 
     public class CellFormatResult

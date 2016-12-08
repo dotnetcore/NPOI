@@ -422,7 +422,7 @@ namespace Npoi.Core.HSSF.Record
          *  contents are somewhat complex
          */
 
-        public override Object Clone()
+        public override object Clone()
         {
             return CloneViaReserialise();
         }

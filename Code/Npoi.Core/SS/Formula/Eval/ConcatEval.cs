@@ -54,7 +54,7 @@ namespace Npoi.Core.SS.Formula.Eval
             return new StringEval(sb.ToString());
         }
 
-        private Object GetText(ValueEval ve)
+        private object GetText(ValueEval ve)
         {
             if (ve is StringValueEval)
             {

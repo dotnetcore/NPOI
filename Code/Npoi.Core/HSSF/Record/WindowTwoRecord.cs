@@ -495,7 +495,7 @@ namespace Npoi.Core.HSSF.Record
             get { return sid; }
         }
 
-        public override Object Clone()
+        public override object Clone()
         {
             WindowTwoRecord rec = new WindowTwoRecord();
             rec.field_1_options = field_1_options;
