@@ -204,7 +204,7 @@ namespace Npoi.Core.SS.UserModel
 
         public override string Format(object obj, CultureInfo culture)
         {
-            return this.Format(obj.ToString());
+            return Format(obj.ToString());
         }
 
         public override object ParseObject(string source, int pos)

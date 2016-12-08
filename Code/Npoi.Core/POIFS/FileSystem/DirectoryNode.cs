@@ -83,8 +83,8 @@ namespace Npoi.Core.POIFS.FileSystem
                         NPOIFSFileSystem nFileSystem)
             : base(property, parent)
         {
-            this._oFilesSystem = oFileSystem;
-            this._nFilesSystem = nFileSystem;
+            _oFilesSystem = oFileSystem;
+            _nFilesSystem = nFileSystem;
 
             if (parent == null)
                 _path = new POIFSDocumentPath();
@@ -435,11 +435,11 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             set
             {
-                this.Property.StorageClsid = value;
+                Property.StorageClsid = value;
             }
             get
             {
-                return this.Property.StorageClsid;
+                return Property.StorageClsid;
             }
         }
 
@@ -525,7 +525,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 List<object> components = new List<object>();
 
                 components.Add(Property);
-                components.AddRange(this._entries);
+                components.AddRange(_entries);
                 //components.Sort();
                 return components.GetEnumerator();
             }

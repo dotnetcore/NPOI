@@ -59,20 +59,20 @@ namespace Npoi.Core.HSSF.Record.Chart
         public override object Clone()
         {
             CrtLayout12ARecord record = new CrtLayout12ARecord();
-            record.IsLayoutTargetInner = this.IsLayoutTargetInner;
-            record.CheckSum = this.CheckSum;
-            record.DX = this.DX;
-            record.DY = this.DY;
-            record.HeightMode = this.HeightMode;
-            record.WidthMode = this.WidthMode;
-            record.X = this.X;
-            record.XMode = this.XMode;
-            record.Y = this.Y;
-            record.YMode = this.YMode;
-            record.XTL = this.XTL;
-            record.YTL = this.YTL;
-            record.XBR = this.XBR;
-            record.YBR = this.YBR;
+            record.IsLayoutTargetInner = IsLayoutTargetInner;
+            record.CheckSum = CheckSum;
+            record.DX = DX;
+            record.DY = DY;
+            record.HeightMode = HeightMode;
+            record.WidthMode = WidthMode;
+            record.X = X;
+            record.XMode = XMode;
+            record.Y = Y;
+            record.YMode = YMode;
+            record.XTL = XTL;
+            record.YTL = YTL;
+            record.XBR = XBR;
+            record.YBR = YBR;
             return record;
         }
 
@@ -85,7 +85,7 @@ namespace Npoi.Core.HSSF.Record.Chart
                 .Append("   .reserved         =").Append(HexDump.ToHex(0)).Append("(").Append(0).AppendLine(")")
                 .Append("   .dwCheckSum       =").Append(HexDump.ToHex(field_1_dwCheckSum)).Append("(").Append(field_1_dwCheckSum).AppendLine(")")
                 .Append("   .option           =").Append(HexDump.ToHex(field_2_option)).Append("(").Append(field_2_option).AppendLine(")")
-                .Append("       .fLayoutTargetInner =").Append(this.IsLayoutTargetInner).AppendLine()
+                .Append("       .fLayoutTargetInner =").Append(IsLayoutTargetInner).AppendLine()
                 .Append("   .xTL              =").Append(HexDump.ToHex(field_3_xTL)).Append("(").Append(field_3_xTL).AppendLine(")")
                 .Append("   .yTL              =").Append(HexDump.ToHex(field_4_yTL)).Append("(").Append(field_4_yTL).AppendLine(")")
                 .Append("   .xBR              =").Append(HexDump.ToHex(field_5_xBR)).Append("(").Append(field_5_xBR).AppendLine(")")

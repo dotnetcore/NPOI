@@ -75,7 +75,7 @@ namespace Npoi.Core.POIFS.Storage
         public HeaderBlockReader(Stream stream)
         {
             stream.Position = 0;
-            this._data = ReadFirst512(stream);
+            _data = ReadFirst512(stream);
 
             // verify signature
             long signature = LittleEndian.GetLong(_data, HeaderBlockConstants._signature_offset);
@@ -107,11 +107,11 @@ namespace Npoi.Core.POIFS.Storage
             // Figure out our block size
             if (_data[30] == 12)
             {
-                this.bigBlockSize = POIFSConstants.LARGER_BIG_BLOCK_SIZE_DETAILS;
+                bigBlockSize = POIFSConstants.LARGER_BIG_BLOCK_SIZE_DETAILS;
             }
             else if (_data[30] == 9)
             {
-                this.bigBlockSize = POIFSConstants.SMALLER_BIG_BLOCK_SIZE_DETAILS;
+                bigBlockSize = POIFSConstants.SMALLER_BIG_BLOCK_SIZE_DETAILS;
             }
             else
             {

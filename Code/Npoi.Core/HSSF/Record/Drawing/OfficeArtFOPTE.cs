@@ -52,8 +52,8 @@ namespace Npoi.Core.HSSF.Record.Drawing
 
         public override string ToString()
         {
-            return string.Format("    " + OfficeArtProperties.GetFillStyleName(this.Opid.OpId) + "opid=" + HexDump.ShortToHex(this.Opid.OpId)
-                + "; op=" + HexDump.IntToHex(this.Op));
+            return string.Format("    " + OfficeArtProperties.GetFillStyleName(Opid.OpId) + "opid=" + HexDump.ShortToHex(Opid.OpId)
+                + "; op=" + HexDump.IntToHex(Op));
         }
     }
 }

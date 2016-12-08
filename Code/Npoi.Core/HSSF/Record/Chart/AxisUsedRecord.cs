@@ -56,8 +56,8 @@ namespace Npoi.Core.HSSF.Record.Chart
 
             buffer.Append("[AXISUSED]\n");
             buffer.Append("    .numAxis              = ")
-                .Append("0x").Append(HexDump.ToHex(this.NumAxis))
-                .Append(" (").Append(this.NumAxis).Append(" )");
+                .Append("0x").Append(HexDump.ToHex(NumAxis))
+                .Append(" (").Append(NumAxis).Append(" )");
             buffer.Append(Environment.NewLine);
 
             buffer.Append("[/AXISUSED]\n");
@@ -98,7 +98,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short NumAxis
         {
             get { return field_1_numAxis; }
-            set { this.field_1_numAxis = value; }
+            set { field_1_numAxis = value; }
         }
     }
 }

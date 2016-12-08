@@ -53,7 +53,7 @@ namespace Npoi.Core.SS.Util
             }
             set
             {
-                this.sheet = value;
+                sheet = value;
             }
         }
 

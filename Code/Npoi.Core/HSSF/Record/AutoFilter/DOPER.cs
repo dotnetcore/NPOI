@@ -139,7 +139,7 @@ namespace Npoi.Core.HSSF.Record.AutoFilter
                     out1.WriteLong(0);      //reserved
                     break;
             }
-            return this.RecordSize;
+            return RecordSize;
         }
 
         public virtual Record CloneViaReserialise()
@@ -149,13 +149,13 @@ namespace Npoi.Core.HSSF.Record.AutoFilter
 
         public override int Serialize(int offset, byte[] data)
         {
-            LittleEndianByteArrayOutputStream out1 = new LittleEndianByteArrayOutputStream(data, offset, this.RecordSize);
-            int result = this.Serialize(out1);
-            if (out1.WriteIndex - offset != this.RecordSize)
+            LittleEndianByteArrayOutputStream out1 = new LittleEndianByteArrayOutputStream(data, offset, RecordSize);
+            int result = Serialize(out1);
+            if (out1.WriteIndex - offset != RecordSize)
             {
-                throw new InvalidOperationException("Error in serialization of (" + this.GetType().Name + "): "
+                throw new InvalidOperationException("Error in serialization of (" + GetType().Name + "): "
                         + "Incorrect number of bytes written - expected "
-                        + this.RecordSize + " but got " + (out1.WriteIndex - offset));
+                        + RecordSize + " but got " + (out1.WriteIndex - offset));
             }
             return result;
         }

@@ -195,7 +195,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_1_catMin = value;
+                field_1_catMin = value;
             }
         }
 
@@ -211,7 +211,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_2_catMax = value;
+                field_2_catMax = value;
             }
         }
 
@@ -232,7 +232,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_3_catMajor = value;
+                field_3_catMajor = value;
             }
         }
 
@@ -253,7 +253,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_4_duMajor = (short)value;
+                field_4_duMajor = (short)value;
             }
         }
 
@@ -274,7 +274,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_5_catMinor = value;
+                field_5_catMinor = value;
             }
         }
 
@@ -290,7 +290,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_6_duMinor = (short)value;
+                field_6_duMinor = (short)value;
             }
         }
 
@@ -310,7 +310,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_7_duBase = (short)value;
+                field_7_duBase = (short)value;
             }
         }
 
@@ -331,7 +331,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_8_catCrossDate = value;
+                field_8_catCrossDate = value;
             }
         }
 
@@ -342,7 +342,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short Options
         {
             get { return field_9_options; }
-            set { this.field_9_options = value; }
+            set { field_9_options = value; }
         }
 
         /*

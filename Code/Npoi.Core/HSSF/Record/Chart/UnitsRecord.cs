@@ -103,7 +103,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this.field_1_units = value;
+                field_1_units = value;
             }
         }
     }

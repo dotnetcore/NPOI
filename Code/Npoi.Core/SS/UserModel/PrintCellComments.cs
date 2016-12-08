@@ -51,7 +51,7 @@ namespace Npoi.Core.SS.UserModel
         private PrintCellComments(int comments)
         {
             this.comments = comments;
-            _table[this.Value] = this;
+            _table[Value] = this;
         }
 
         public int Value

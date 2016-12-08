@@ -244,7 +244,7 @@ namespace Npoi.Core.HSSF.Record.CF
             {
                 return FontWeight == FONT_WEIGHT_BOLD;
             }
-            set { this.FontWeight = (value ? FONT_WEIGHT_BOLD : FONT_WEIGHT_NORMAL); }
+            set { FontWeight = (value ? FONT_WEIGHT_BOLD : FONT_WEIGHT_NORMAL); }
         }
 
         /**

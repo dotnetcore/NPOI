@@ -120,12 +120,12 @@ namespace Npoi.Core.SS.UserModel
 
         public void SetDateToBeFormatted(double date)
         {
-            this.dateToBeFormatted = date;
+            dateToBeFormatted = date;
         }
 
         public override string Format(object obj, CultureInfo culture)
         {
-            return this.Format((DateTime)obj, new StringBuilder(), culture).ToString();
+            return Format((DateTime)obj, new StringBuilder(), culture).ToString();
         }
 
         public StringBuilder Format(DateTime date, StringBuilder paramStringBuilder, CultureInfo culture)

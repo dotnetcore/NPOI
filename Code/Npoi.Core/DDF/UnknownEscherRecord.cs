@@ -134,7 +134,7 @@ namespace Npoi.Core.DDF
         /// <value></value>
         public override List<EscherRecord> ChildRecords {
             get { return _childRecords; }
-            set { this._childRecords = value; }
+            set { _childRecords = value; }
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace Npoi.Core.DDF
                 theDumpHex = "Error!!";
             }
 
-            return this.GetType().Name + ":" + nl +
+            return GetType().Name + ":" + nl +
                     "  isContainer: " + IsContainerRecord + nl +
                     "  version: 0x" + HexDump.ToHex(Version) + nl +
                     "  instance: 0x" + HexDump.ToHex(Instance) + nl +

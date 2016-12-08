@@ -187,7 +187,7 @@ namespace Npoi.Core.HSSF.Record
         public byte MajorTickType
         {
             get { return field_1_majorTickType; }
-            set { this.field_1_majorTickType = value; }
+            set { field_1_majorTickType = value; }
         }
 
         /**
@@ -197,7 +197,7 @@ namespace Npoi.Core.HSSF.Record
         public byte MinorTickType
         {
             get { return field_2_minorTickType; }
-            set { this.field_2_minorTickType = value; }
+            set { field_2_minorTickType = value; }
         }
 
         /**
@@ -207,7 +207,7 @@ namespace Npoi.Core.HSSF.Record
         public byte LabelPosition
         {
             get { return field_3_labelPosition; }
-            set { this.field_3_labelPosition = value; }
+            set { field_3_labelPosition = value; }
         }
 
         /**
@@ -217,7 +217,7 @@ namespace Npoi.Core.HSSF.Record
         public byte Background
         {
             get { return field_4_background; }
-            set { this.field_4_background = value; }
+            set { field_4_background = value; }
         }
 
         /**
@@ -227,7 +227,7 @@ namespace Npoi.Core.HSSF.Record
         public int LabelColorRgb
         {
             get { return field_5_labelColorRgb; }
-            set { this.field_5_labelColorRgb = value; }
+            set { field_5_labelColorRgb = value; }
         }
 
         /**
@@ -237,7 +237,7 @@ namespace Npoi.Core.HSSF.Record
         public int Zero1
         {
             get { return field_6_zero1; }
-            set { this.field_6_zero1 = value; }
+            set { field_6_zero1 = value; }
         }
 
         /**
@@ -247,7 +247,7 @@ namespace Npoi.Core.HSSF.Record
         public int Zero2
         {
             get { return field_7_zero2; }
-            set { this.field_7_zero2 = value; }
+            set { field_7_zero2 = value; }
         }
 
         /**
@@ -257,7 +257,7 @@ namespace Npoi.Core.HSSF.Record
         public short Options
         {
             get { return field_10_options; }
-            set { this.field_10_options = value; }
+            set { field_10_options = value; }
         }
 
         /**
@@ -267,7 +267,7 @@ namespace Npoi.Core.HSSF.Record
         public short TickColor
         {
             get { return field_11_tickColor; }
-            set { this.field_11_tickColor = value; }
+            set { field_11_tickColor = value; }
         }
 
         /**
@@ -277,7 +277,7 @@ namespace Npoi.Core.HSSF.Record
         public short Zero3
         {
             get { return field_12_zero5; }
-            set { this.field_12_zero5 = value; }
+            set { field_12_zero5 = value; }
         }
 
         /**

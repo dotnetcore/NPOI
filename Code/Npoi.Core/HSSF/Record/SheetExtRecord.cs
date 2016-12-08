@@ -113,7 +113,7 @@ namespace Npoi.Core.HSSF.Record
             out1.WriteShort(grbitFrt);
             out1.WriteInt(0);
             out1.WriteInt(0);
-            cb = this.DataSize;
+            cb = DataSize;
             out1.WriteInt(cb);
             out1.WriteShort(optionflag);
             out1.WriteShort(0);
@@ -140,7 +140,7 @@ namespace Npoi.Core.HSSF.Record
             SheetExtRecord rec = new SheetExtRecord();
             rec.rt = rt;
             rec.grbitFrt = grbitFrt;
-            rec.cb = this.DataSize;
+            rec.cb = DataSize;
             rec.optionflag = optionflag;
             if (cb == 0x28)
             {

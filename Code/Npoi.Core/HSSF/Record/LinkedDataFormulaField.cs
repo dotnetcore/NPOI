@@ -83,11 +83,11 @@ namespace Npoi.Core.HSSF.Record
         {
             get
             {
-                return (Ptg[])this.formulaTokens.Clone();
+                return (Ptg[])formulaTokens.Clone();
             }
             set
             {
-                this.formulaTokens = (Ptg[])value.Clone();
+                formulaTokens = (Ptg[])value.Clone();
             }
         }
 
@@ -95,7 +95,7 @@ namespace Npoi.Core.HSSF.Record
         {
             LinkedDataFormulaField result = new LinkedDataFormulaField();
 
-            result.formulaTokens = this.FormulaTokens;
+            result.formulaTokens = FormulaTokens;
             return result;
         }
     }

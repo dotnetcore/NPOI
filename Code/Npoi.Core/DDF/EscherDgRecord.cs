@@ -167,7 +167,7 @@ namespace Npoi.Core.DDF
         /// Increments the shape count.
         /// </summary>
         public void IncrementShapeCount() {
-            this.field_1_numShapes++;
+            field_1_numShapes++;
         }
     }
 }

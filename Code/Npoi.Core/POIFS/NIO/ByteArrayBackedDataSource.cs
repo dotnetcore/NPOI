@@ -31,7 +31,7 @@ namespace Npoi.Core.POIFS.NIO
 
         public ByteArrayBackedDataSource(byte[] data, int size)
         {
-            this.buffer = data;
+            buffer = data;
             this.size = size;
         }
 

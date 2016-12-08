@@ -83,10 +83,10 @@ namespace Npoi.Core.HSSF.UserModel
 
         public HSSFShape(EscherContainerRecord spContainer, ObjRecord objRecord)
         {
-            this._escherContainer = spContainer;
-            this._objRecord = objRecord;
-            this._optRecord = (EscherOptRecord)spContainer.GetChildById(EscherOptRecord.RECORD_ID);
-            this.anchor = HSSFAnchor.CreateAnchorFromEscher(spContainer);
+            _escherContainer = spContainer;
+            _objRecord = objRecord;
+            _optRecord = (EscherOptRecord)spContainer.GetChildById(EscherOptRecord.RECORD_ID);
+            anchor = HSSFAnchor.CreateAnchorFromEscher(spContainer);
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             this.parent = parent;
             this.anchor = anchor;
-            this._escherContainer = CreateSpContainer();
+            _escherContainer = CreateSpContainer();
             _optRecord = (EscherOptRecord)_escherContainer.GetChildById(EscherOptRecord.RECORD_ID);
             _objRecord = CreateObjRecord();
         }
@@ -132,8 +132,8 @@ namespace Npoi.Core.HSSF.UserModel
         /// <value>The parent.</value>
         public HSSFShape Parent
         {
-            get { return this.parent; }
-            set { this.parent = value; }
+            get { return parent; }
+            set { parent = value; }
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace Npoi.Core.HSSF.UserModel
                 {
                     _escherContainer.AddChildBefore(value.GetEscherAnchor(), recordId);
                 }
-                this.anchor = value;
+                anchor = value;
             }
         }
 
@@ -443,7 +443,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
             set
             {
-                this._patriarch = value;
+                _patriarch = value;
             }
         }
 

@@ -56,7 +56,7 @@ namespace Npoi.Core.HSSF.UserModel
             _note = CreateNoteRecord();
 
             //default color for comments
-            this.FillColor = 0x08000050;
+            FillColor = 0x08000050;
 
             //by default comments are hidden
             Visible = false;
@@ -74,7 +74,7 @@ namespace Npoi.Core.HSSF.UserModel
         public HSSFComment(NoteRecord note, TextObjectRecord txo)
             : this((HSSFShape)null, new HSSFClientAnchor())
         {
-            this._note = note;
+            _note = note;
         }
 
         internal override void AfterInsert(HSSFPatriarch patriarch)
@@ -218,7 +218,7 @@ namespace Npoi.Core.HSSF.UserModel
             get
             {
                 if (_note == null) return false;
-                if (this.Column < 0 || this.Row < 0) return false;
+                if (Column < 0 || Row < 0) return false;
                 return true;
             }
         }
@@ -246,14 +246,14 @@ namespace Npoi.Core.HSSF.UserModel
             }
             set
             {
-                throw new InvalidOperationException("Shape type can not be changed in " + this.GetType().Name);
+                throw new InvalidOperationException("Shape type can not be changed in " + GetType().Name);
             }
         }
 
         internal override void AfterRemove(HSSFPatriarch patriarch)
         {
             base.AfterRemove(patriarch);
-            patriarch.GetBoundAggregate().RemoveTailRecord(this.NoteRecord);
+            patriarch.GetBoundAggregate().RemoveTailRecord(NoteRecord);
         }
 
         internal override HSSFShape CloneShape()

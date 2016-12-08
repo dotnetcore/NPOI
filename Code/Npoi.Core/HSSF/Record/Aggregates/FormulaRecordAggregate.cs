@@ -214,7 +214,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             {
                 return _formulaRecord;
             }
-            set { this._formulaRecord = value; }
+            set { _formulaRecord = value; }
         }
 
         /// <summary>
@@ -227,7 +227,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             {
                 return _stringRecord;
             }
-            set { this._stringRecord = value; }
+            set { _stringRecord = value; }
         }
 
         public short XFIndex

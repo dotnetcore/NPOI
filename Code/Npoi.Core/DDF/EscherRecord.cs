@@ -115,7 +115,7 @@ namespace Npoi.Core.DDF
             {
                 Version = (fVersion.GetShortValue(value));
                 Instance = (fInstance.GetShortValue(value));
-                this._options = value;
+                _options = value;
             }
         }
 
@@ -168,7 +168,7 @@ namespace Npoi.Core.DDF
         /// <value>The 16 bit record id.</value>
         public virtual short RecordId {
             get { return _recordId; }
-            set { this._recordId = value; }
+            set { _recordId = value; }
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace Npoi.Core.DDF
         /// A new object that is a copy of this instance.
         /// </returns>
         public object Clone() {
-            throw new Exception("The class " + this.GetType().Name + " needs to define a clone method");
+            throw new Exception("The class " + GetType().Name + " needs to define a clone method");
         }
 
         /// <summary>

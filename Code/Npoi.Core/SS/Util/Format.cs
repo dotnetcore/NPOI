@@ -266,7 +266,7 @@ namespace Npoi.Core.SS.Util
 
         public override StringBuilder Format(object obj, StringBuilder toAppendTo, CultureInfo culture)
         {
-            return toAppendTo.Append(this.Format((DateTime)obj, culture));
+            return toAppendTo.Append(Format((DateTime)obj, culture));
         }
 
         public override object ParseObject(string source, int pos)

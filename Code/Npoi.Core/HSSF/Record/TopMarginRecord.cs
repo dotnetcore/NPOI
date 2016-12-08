@@ -73,13 +73,13 @@ namespace Npoi.Core.HSSF.Record
         public double Margin
         {
             get { return field_1_margin; }
-            set { this.field_1_margin = value; }
+            set { field_1_margin = value; }
         }
 
         public override object Clone()
         {
             TopMarginRecord rec = new TopMarginRecord();
-            rec.field_1_margin = this.field_1_margin;
+            rec.field_1_margin = field_1_margin;
             return rec;
         }
     }

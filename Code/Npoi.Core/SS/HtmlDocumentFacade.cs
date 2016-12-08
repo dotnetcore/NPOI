@@ -244,22 +244,22 @@ namespace Npoi.Core.SS
             }
             set
             {
-                if (string.IsNullOrEmpty(value) && this.title != null)
+                if (string.IsNullOrEmpty(value) && title != null)
                 {
-                    this.title.Remove();
-                    this.title = null;
-                    this.titleText = null;
+                    title.Remove();
+                    title = null;
+                    titleText = null;
                 }
 
-                if (this.title == null)
+                if (title == null)
                 {
-                    this.title = document.CreateElement("title");
-                    this.titleText = new XText(value);
-                    this.title.AppendChild(this.titleText);
-                    this.head.AppendChild(title);
+                    title = document.CreateElement("title");
+                    titleText = new XText(value);
+                    title.AppendChild(titleText);
+                    head.AppendChild(title);
                 }
 
-                this.titleText.Value = value;
+                titleText.Value = value;
             }
         }
 

@@ -199,7 +199,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public int XSize
         {
             get { return field_3_xSize; }
-            set { this.field_3_xSize = value; }
+            set { field_3_xSize = value; }
         }
 
         /**
@@ -209,7 +209,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public int YSize
         {
             get { return field_4_ySize; }
-            set { this.field_4_ySize = value; }
+            set { field_4_ySize = value; }
         }
 
         /**
@@ -227,7 +227,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public byte Type
         {
             get { return field_5_type; }
-            set { this.field_5_type = value; }
+            set { field_5_type = value; }
         }
 
         /**
@@ -242,7 +242,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public byte Spacing
         {
             get { return field_6_spacing; }
-            set { this.field_6_spacing = value; }
+            set { field_6_spacing = value; }
         }
 
         /**
@@ -252,7 +252,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short Options
         {
             get { return field_7_options; }
-            set { this.field_7_options = value; }
+            set { field_7_options = value; }
         }
 
         /**

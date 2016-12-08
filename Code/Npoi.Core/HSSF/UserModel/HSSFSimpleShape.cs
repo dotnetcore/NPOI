@@ -66,7 +66,7 @@ namespace Npoi.Core.HSSF.UserModel
         public HSSFSimpleShape(EscherContainerRecord spContainer, ObjRecord objRecord, TextObjectRecord textObjectRecord)
             : base(spContainer, objRecord)
         {
-            this._textObjectRecord = textObjectRecord;
+            _textObjectRecord = textObjectRecord;
         }
 
         public HSSFSimpleShape(EscherContainerRecord spContainer, ObjRecord objRecord)
@@ -174,7 +174,7 @@ namespace Npoi.Core.HSSF.UserModel
             byte[] inSp = GetEscherContainer().Serialize();
             spContainer.FillFields(inSp, 0, new DefaultEscherRecordFactory());
             ObjRecord obj = (ObjRecord)GetObjRecord().CloneViaReserialise();
-            if (GetTextObjectRecord() != null && this.String != null && null != this.String.String)
+            if (GetTextObjectRecord() != null && String != null && null != String.String)
             {
                 txo = (TextObjectRecord)GetTextObjectRecord().CloneViaReserialise();
             }
@@ -235,7 +235,7 @@ namespace Npoi.Core.HSSF.UserModel
 
             spContainer.AddChildRecord(sp);
             spContainer.AddChildRecord(optRecord);
-            spContainer.AddChildRecord(this.Anchor.GetEscherAnchor());
+            spContainer.AddChildRecord(Anchor.GetEscherAnchor());
             spContainer.AddChildRecord(clientData);
             spContainer.AddChildRecord(escherTextbox);
             return spContainer;

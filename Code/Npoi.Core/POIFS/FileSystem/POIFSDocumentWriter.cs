@@ -51,7 +51,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             this.stream = stream;
             this.limit = limit;
-            this.written = 0;
+            written = 0;
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// </summary>
 		protected override void Dispose(bool disposing)
         {
-            this.stream.Dispose();
+            stream.Dispose();
         }
 
         /// <summary>
@@ -71,16 +71,16 @@ namespace Npoi.Core.POIFS.FileSystem
         /// </summary>
         public override void Flush()
         {
-            this.stream.Flush();
+            stream.Flush();
         }
 
         private void LimitCheck(int toBeWritten)
         {
-            if ((this.written + toBeWritten) > this.limit)
+            if ((written + toBeWritten) > limit)
             {
                 throw new IOException("tried to write too much data");
             }
-            this.written += toBeWritten;
+            written += toBeWritten;
         }
 
         public override int Read(byte[] buffer, int offset, int count)
@@ -111,7 +111,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <param name="b">the data.</param>
         public void Write(byte[] b)
         {
-            this.Write(b, 0, b.Length);
+            Write(b, 0, b.Length);
         }
 
         /// <summary>
@@ -131,8 +131,8 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <param name="len">the number of bytes to write.</param>
         public override void Write(byte[] b, int off, int len)
         {
-            this.LimitCheck(len);
-            this.stream.Write(b, off, len);
+            LimitCheck(len);
+            stream.Write(b, off, len);
         }
 
         /// <summary>
@@ -144,8 +144,8 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <param name="b">the byte.</param>
         public override void WriteByte(byte b)
         {
-            this.LimitCheck(1);
-            this.stream.WriteByte(b);
+            LimitCheck(1);
+            stream.WriteByte(b);
         }
 
         /// <summary>
@@ -156,14 +156,14 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <param name="fill">the byte to fill remaining space with</param>
         public virtual void WriteFiller(int totalLimit, byte fill)
         {
-            if (totalLimit > this.written)
+            if (totalLimit > written)
             {
-                byte[] buffer = new byte[totalLimit - this.written];
+                byte[] buffer = new byte[totalLimit - written];
                 for (int i = 0; i < buffer.Length; i++)
                 {
                     buffer[i] = fill;
                 }
-                this.stream.Write(buffer, 0, buffer.Length);
+                stream.Write(buffer, 0, buffer.Length);
             }
         }
 
@@ -226,7 +226,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get
             {
-                return this.stream.Length;
+                return stream.Length;
             }
         }
 
@@ -250,11 +250,11 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get
             {
-                return this.stream.Position;
+                return stream.Position;
             }
             set
             {
-                this.stream.Position = value;
+                stream.Position = value;
             }
         }
     }

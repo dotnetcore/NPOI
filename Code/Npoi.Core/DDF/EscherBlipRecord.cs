@@ -112,13 +112,13 @@ namespace Npoi.Core.DDF
             String extraData = string.Empty;
             using (MemoryStream b = new MemoryStream()) {
                 try {
-                    HexDump.Dump(this.field_pictureData, 0, b, 0);
+                    HexDump.Dump(field_pictureData, 0, b, 0);
                     extraData = HexDump.ToHex(b.ToArray());
                 }
                 catch (Exception e) {
                     extraData = e.ToString();
                 }
-                return this.GetType().Name + ":" + nl +
+                return GetType().Name + ":" + nl +
                         "  RecordId: 0x" + HexDump.ToHex(RecordId) + nl +
                         "  Options: 0x" + HexDump.ToHex(Options) + nl +
                         "  Version: 0x" + HexDump.ToHex(Version) + nl +

@@ -86,8 +86,8 @@ namespace Npoi.Core.HSSF.UserModel
         {
             _sheet = InternalSheet.CreateSheet();
             rows = new Dictionary<int, Npoi.Core.SS.UserModel.IRow>();
-            this._workbook = workbook;
-            this.book = workbook.Workbook;
+            _workbook = workbook;
+            book = workbook.Workbook;
         }
 
         /// <summary>
@@ -99,10 +99,10 @@ namespace Npoi.Core.HSSF.UserModel
         /// <see cref="Npoi.Core.HSSF.UserModel.HSSFWorkbook(Npoi.Core.POIFS.FileSystem.DirectoryNode, bool)"/>
         public HSSFSheet(HSSFWorkbook workbook, InternalSheet sheet)
         {
-            this._sheet = sheet;
+            _sheet = sheet;
             rows = new Dictionary<int, Npoi.Core.SS.UserModel.IRow>();
-            this._workbook = workbook;
-            this.book = _workbook.Workbook;
+            _workbook = workbook;
+            book = _workbook.Workbook;
             SetPropertiesFromSheet(_sheet);
         }
 
@@ -113,7 +113,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <returns>the cloned sheet</returns>
         public ISheet CloneSheet(HSSFWorkbook workbook)
         {
-            IDrawing iDrawing = this.DrawingPatriarch;/*Aggregate drawing records*/
+            IDrawing iDrawing = DrawingPatriarch;/*Aggregate drawing records*/
             HSSFSheet sheet = new HSSFSheet(workbook, _sheet.CloneSheet());
             int pos = sheet._sheet.FindFirstRecordLocBySid(DrawingRecord.sid);
             DrawingRecord dr = (DrawingRecord)sheet._sheet.FindFirstRecordBySid(DrawingRecord.sid);
@@ -123,7 +123,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
             if (DrawingPatriarch != null)
             {
-                HSSFPatriarch patr = HSSFPatriarch.CreatePatriarch(this.DrawingPatriarch as HSSFPatriarch, sheet);
+                HSSFPatriarch patr = HSSFPatriarch.CreatePatriarch(DrawingPatriarch as HSSFPatriarch, sheet);
                 sheet._sheet.Records.Insert(pos, patr.GetBoundAggregate());
                 sheet._patriarch = patr;
             }
@@ -481,7 +481,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 this.hssfValidations = hssfValidations;
                 this.workbook = workbook;
-                this.book = HSSFEvaluationWorkbook.Create(workbook);
+                book = HSSFEvaluationWorkbook.Create(workbook);
             }
 
             private HSSFEvaluationWorkbook book;
@@ -821,7 +821,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="column">The column.</param>
         public void SetActiveCell(int row, int column)
         {
-            this._sheet.SetActiveCellRange(row, row, column, column);
+            _sheet.SetActiveCellRange(row, row, column, column);
         }
 
         /// <summary>
@@ -833,7 +833,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="lastColumn">The last column.</param>
         public void SetActiveCellRange(int firstRow, int lastRow, int firstColumn, int lastColumn)
         {
-            this._sheet.SetActiveCellRange(firstRow, lastRow, firstColumn, lastColumn);
+            _sheet.SetActiveCellRange(firstRow, lastRow, firstColumn, lastColumn);
         }
 
         /// <summary>
@@ -845,7 +845,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="activeColumn">The active column in the active range</param>
         public void SetActiveCellRange(List<CellRangeAddress8Bit> cellranges, int activeRange, int activeRow, int activeColumn)
         {
-            this._sheet.SetActiveCellRange(cellranges, activeRange, activeRow, activeColumn);
+            _sheet.SetActiveCellRange(cellranges, activeRange, activeRow, activeColumn);
         }
 
         /// <summary>
@@ -1026,7 +1026,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <value>The user model for the print setup object.</value>
         public Npoi.Core.SS.UserModel.IPrintSetup PrintSetup
         {
-            get { return new HSSFPrintSetup(this._sheet.PageSettings.PrintSetup); }
+            get { return new HSSFPrintSetup(_sheet.PageSettings.PrintSetup); }
         }
 
         /// <summary>
@@ -1035,7 +1035,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <value>The Document header.</value>
         public Npoi.Core.SS.UserModel.IHeader Header
         {
-            get { return new HSSFHeader(this._sheet.PageSettings); }
+            get { return new HSSFHeader(_sheet.PageSettings); }
         }
 
         /// <summary>
@@ -1044,7 +1044,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <value>The Document footer.</value>
         public Npoi.Core.SS.UserModel.IFooter Footer
         {
-            get { return new HSSFFooter(this._sheet.PageSettings); }
+            get { return new HSSFFooter(_sheet.PageSettings); }
         }
 
         /// <summary>
@@ -1092,7 +1092,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="sel">Whether to select the sheet or deselect the sheet.</param>
         public void SetActive(bool sel)
         {
-            this.Sheet.WindowTwo.IsActive = sel;
+            Sheet.WindowTwo.IsActive = sel;
         }
 
         private WorksheetProtectionBlock ProtectionBlock
@@ -1301,8 +1301,8 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="leftcol">the left column to show in desktop window pane</param>
         public void ShowInPane(short toprow, short leftcol)
         {
-            this._sheet.TopRow = (toprow);
-            this._sheet.LeftCol = (leftcol);
+            _sheet.TopRow = (toprow);
+            _sheet.LeftCol = (leftcol);
         }
 
         /// <summary>
@@ -1317,9 +1317,9 @@ namespace Npoi.Core.HSSF.UserModel
         {
             List<CellRangeAddress> ShiftedRegions = new List<CellRangeAddress>();
             //move merged regions completely if they fall within the new region boundaries when they are Shifted
-            for (int i = 0; i < this.NumMergedRegions; i++)
+            for (int i = 0; i < NumMergedRegions; i++)
             {
-                Npoi.Core.SS.Util.CellRangeAddress merged = this.GetMergedRegion(i);
+                Npoi.Core.SS.Util.CellRangeAddress merged = GetMergedRegion(i);
 
                 bool inStart = (merged.FirstRow >= startRow || merged.LastRow >= startRow);
                 bool inEnd = (merged.FirstRow <= endRow || merged.LastRow <= endRow);
@@ -1336,7 +1336,7 @@ namespace Npoi.Core.HSSF.UserModel
                     merged.LastRow = (merged.LastRow + n);
                     //have to Remove/Add it back
                     ShiftedRegions.Add(merged);
-                    this.RemoveMergedRegion(i);
+                    RemoveMergedRegion(i);
                     i = i - 1; // we have to back up now since we Removed one
                 }
             }
@@ -1347,7 +1347,7 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 Npoi.Core.SS.Util.CellRangeAddress region = (Npoi.Core.SS.Util.CellRangeAddress)iterator.Current;
 
-                this.AddMergedRegion(region);
+                AddMergedRegion(region);
             }
         }
 
@@ -1579,7 +1579,7 @@ namespace Npoi.Core.HSSF.UserModel
             for (int i = 0; i < nSheets; i++)
             {
                 InternalSheet otherSheet = ((HSSFSheet)_workbook.GetSheetAt(i)).Sheet;
-                if (otherSheet == this._sheet)
+                if (otherSheet == _sheet)
                 {
                     continue;
                 }

@@ -98,9 +98,9 @@ namespace Npoi.Core.POIFS.Properties
         protected Property()
         {
             _raw_data = new byte[POIFSConstants.PROPERTY_SIZE];
-            for (int i = 0; i < this._raw_data.Length; i++)
+            for (int i = 0; i < _raw_data.Length; i++)
             {
-                this._raw_data[i] = _default_fill;
+                _raw_data[i] = _default_fill;
             }
             _name_size = new ShortField(_name_size_offset);
             _property_type =
@@ -124,9 +124,9 @@ namespace Npoi.Core.POIFS.Properties
             _size = new IntegerField(_size_offset, 0, _raw_data);
             _index = _NO_INDEX;
 
-            this.Name = "";
-            this.NextChild = null;
-            this.PreviousChild = null;
+            Name = "";
+            NextChild = null;
+            PreviousChild = null;
         }
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace Npoi.Core.POIFS.Properties
         /// written.</param>
         public void WriteData(Stream stream)
         {
-            stream.Write(_raw_data, 0, this._raw_data.Length);
+            stream.Write(_raw_data, 0, _raw_data.Length);
         }
 
         /// <summary>

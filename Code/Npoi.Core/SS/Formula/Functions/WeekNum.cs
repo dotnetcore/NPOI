@@ -75,7 +75,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return ErrorEval.NUM_ERROR;
             }
 
-            return new NumberEval(this.getWeekNo(serialNumCalendar, returnType));
+            return new NumberEval(getWeekNo(serialNumCalendar, returnType));
         }
 
         public int getWeekNo(DateTime dt, int weekStartOn)

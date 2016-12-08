@@ -192,7 +192,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return (CommonObjectType)field_1_objectType;
             }
-            set { this.field_1_objectType = (short)value; }
+            set { field_1_objectType = (short)value; }
         }
 
         /**
@@ -205,7 +205,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return field_2_objectId;
             }
-            set { this.field_2_objectId = value; }
+            set { field_2_objectId = value; }
         }
 
         /**
@@ -218,7 +218,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return field_3_option;
             }
-            set { this.field_3_option = value; }
+            set { field_3_option = value; }
         }
 
         /**
@@ -231,7 +231,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return field_4_reserved1;
             }
-            set { this.field_4_reserved1 = value; }
+            set { field_4_reserved1 = value; }
         }
 
         /**
@@ -244,7 +244,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return field_5_reserved2;
             }
-            set { this.field_5_reserved2 = value; }
+            set { field_5_reserved2 = value; }
         }
 
         /**
@@ -257,7 +257,7 @@ namespace Npoi.Core.HSSF.Record
             {
                 return field_6_reserved3;
             }
-            set { this.field_6_reserved3 = value; }
+            set { field_6_reserved3 = value; }
         }
 
         /**

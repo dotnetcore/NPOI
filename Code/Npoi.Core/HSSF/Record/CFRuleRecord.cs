@@ -278,7 +278,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this._fontFormatting = value;
+                _fontFormatting = value;
                 SetOptionFlag(_fontFormatting != null, font);
             }
         }
@@ -313,7 +313,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this._borderFormatting = value;
+                _borderFormatting = value;
                 SetOptionFlag(_borderFormatting != null, bord);
             }
         }
@@ -338,7 +338,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this._patternFormatting = value;
+                _patternFormatting = value;
                 SetOptionFlag(_patternFormatting != null, patt);
             }
         }

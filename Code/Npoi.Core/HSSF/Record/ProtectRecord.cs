@@ -57,7 +57,7 @@ namespace Npoi.Core.HSSF.Record
         public ProtectRecord(bool isProtected)
             : this(0)
         {
-            this.Protect = (isProtected);
+            Protect = (isProtected);
         }
 
         /**

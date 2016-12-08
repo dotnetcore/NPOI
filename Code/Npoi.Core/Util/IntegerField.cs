@@ -57,7 +57,7 @@ namespace Npoi.Core.Util
         /// <param name="value">the initial value</param>
         public IntegerField(int offset, int value) : this(offset)
         {
-            this._value = value;
+            _value = value;
         }
 
         /// <summary>

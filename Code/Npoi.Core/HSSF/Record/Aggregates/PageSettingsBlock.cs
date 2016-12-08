@@ -245,7 +245,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         public void SetColumnBreak(int column, int fromRow, int toRow)
         {
-            this.ColumnBreaksRecord.AddBreak(column, fromRow, toRow);
+            ColumnBreaksRecord.AddBreak(column, fromRow, toRow);
         }
 
         /**
@@ -255,7 +255,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         public void RemoveColumnBreak(int column)
         {
-            this.ColumnBreaksRecord.RemoveBreak(column);
+            ColumnBreaksRecord.RemoveBreak(column);
         }
 
         public override void VisitContainedRecords(RecordVisitor rv)
@@ -538,7 +538,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         public void SetRowBreak(int row, short fromCol, short toCol)
         {
-            this.RowBreaksRecord.AddBreak((short)row, fromCol, toCol);
+            RowBreaksRecord.AddBreak((short)row, fromCol, toCol);
         }
 
         /**
@@ -548,9 +548,9 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         public void RemoveRowBreak(int row)
         {
-            if (this.RowBreaksRecord.GetBreaks().Length < 1)
+            if (RowBreaksRecord.GetBreaks().Length < 1)
                 throw new ArgumentException("Sheet does not define any row breaks");
-            this.RowBreaksRecord.RemoveBreak((short)row);
+            RowBreaksRecord.RemoveBreak((short)row);
         }
 
         /**
@@ -561,7 +561,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         public bool IsRowBroken(int row)
         {
-            return this.RowBreaksRecord.GetBreak(row) != null;
+            return RowBreaksRecord.GetBreak(row) != null;
         }
 
         /**
@@ -572,7 +572,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         public bool IsColumnBroken(int column)
         {
-            return this.ColumnBreaksRecord.GetBreak(column) != null;
+            return ColumnBreaksRecord.GetBreak(column) != null;
         }
 
         /**
@@ -584,7 +584,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         public void ShiftRowBreaks(int startingRow, int endingRow, int count)
         {
-            ShiftBreaks(this.RowBreaksRecord, startingRow, endingRow, count);
+            ShiftBreaks(RowBreaksRecord, startingRow, endingRow, count);
         }
 
         /**
@@ -596,7 +596,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         public void ShiftColumnBreaks(short startingCol, short endingCol, short count)
         {
-            ShiftBreaks(this.ColumnBreaksRecord, startingCol, endingCol, count);
+            ShiftBreaks(ColumnBreaksRecord, startingCol, endingCol, count);
         }
 
         /**
@@ -607,7 +607,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         {
             get
             {
-                return this.RowBreaksRecord.GetBreaks();
+                return RowBreaksRecord.GetBreaks();
             }
         }
 
@@ -619,7 +619,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         {
             get
             {
-                return this.RowBreaksRecord.NumBreaks;
+                return RowBreaksRecord.NumBreaks;
             }
         }
 
@@ -631,7 +631,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         {
             get
             {
-                return this.ColumnBreaksRecord.GetBreaks();
+                return ColumnBreaksRecord.GetBreaks();
             }
         }
 
@@ -643,7 +643,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         {
             get
             {
-                return this.ColumnBreaksRecord.NumBreaks;
+                return ColumnBreaksRecord.NumBreaks;
             }
         }
 
@@ -732,9 +732,9 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             public CustomRecordVisitor1(CustomViewSettingsRecordAggregate cv, HeaderFooterRecord hf,
                 List<HeaderFooterRecord> sviewHeaderFooter, Dictionary<String, HeaderFooterRecord> hfGuidMap)
             {
-                this._cv = cv;
-                this._hf = hf;
-                this._sviewHeaderFooters = sviewHeaderFooter;
+                _cv = cv;
+                _hf = hf;
+                _sviewHeaderFooters = sviewHeaderFooter;
                 _hfGuidMap = hfGuidMap;
             }
 

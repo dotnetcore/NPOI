@@ -94,7 +94,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get
             {
-                return CellRangeAddress8Bit.ENCODED_SIZE + this.ExtraDataSize;
+                return CellRangeAddress8Bit.ENCODED_SIZE + ExtraDataSize;
             }
         }
 

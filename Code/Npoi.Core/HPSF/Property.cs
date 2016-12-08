@@ -101,7 +101,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <value>The property's value</value>
         public virtual object Value {
-            get { return this.value; }
+            get { return value; }
             set { this.value = value; }
         }
 
@@ -359,7 +359,7 @@ namespace Npoi.Core.HPSF
         /// </returns>
         public override String ToString() {
             StringBuilder b = new StringBuilder();
-            b.Append(this.GetType().Name);
+            b.Append(GetType().Name);
             b.Append('[');
             b.Append("id: ");
             b.Append(ID);

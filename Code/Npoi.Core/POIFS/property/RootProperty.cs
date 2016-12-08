@@ -36,9 +36,9 @@ namespace Npoi.Core.POIFS.Properties
 
         public RootProperty() : base(NAME)
         {
-            this.NodeColor = _NODE_BLACK;
-            this.PropertyType = PropertyConstants.ROOT_TYPE;
-            this.StartBlock = POIFSConstants.END_OF_CHAIN;
+            NodeColor = _NODE_BLACK;
+            PropertyType = PropertyConstants.ROOT_TYPE;
+            StartBlock = POIFSConstants.END_OF_CHAIN;
         }
 
         /// <summary>

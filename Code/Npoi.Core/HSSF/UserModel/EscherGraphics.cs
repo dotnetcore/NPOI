@@ -83,9 +83,9 @@ namespace Npoi.Core.HSSF.UserModel
             this.escherGroup = escherGroup;
             this.workbook = workbook;
             this.verticalPointsPerPixel = verticalPointsPerPixel;
-            this.verticalPixelsPerPoint = 1 / verticalPointsPerPixel;
-            this.font = new Font("Arial", 10);
-            this.foreground = forecolor;
+            verticalPixelsPerPoint = 1 / verticalPointsPerPixel;
+            font = new Font("Arial", 10);
+            foreground = forecolor;
             //        background = backcolor;
         }
 
@@ -107,7 +107,7 @@ namespace Npoi.Core.HSSF.UserModel
             //        this.background = background;
             this.font = font;
             this.verticalPointsPerPixel = verticalPointsPerPixel;
-            this.verticalPixelsPerPoint = 1 / verticalPointsPerPixel;
+            verticalPixelsPerPoint = 1 / verticalPointsPerPixel;
         }
 
         //    /**
@@ -529,7 +529,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
             set
             {
-                this.background = value;
+                background = value;
             }
         }
 

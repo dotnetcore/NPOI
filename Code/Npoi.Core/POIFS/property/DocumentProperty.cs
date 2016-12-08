@@ -49,10 +49,10 @@ namespace Npoi.Core.POIFS.Properties
         {
             _document = null;
 
-            this.Name = name;
-            this.Size = size;
-            this.NodeColor = _NODE_BLACK;   // simplification
-            this.PropertyType = PropertyConstants.DOCUMENT_TYPE;
+            Name = name;
+            Size = size;
+            NodeColor = _NODE_BLACK;   // simplification
+            PropertyType = PropertyConstants.DOCUMENT_TYPE;
         }
 
         /// <summary>

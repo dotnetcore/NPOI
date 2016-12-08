@@ -218,7 +218,7 @@ namespace Npoi.Core.HSSF.Record
 
         public override bool Equals(object o)
         {
-            if ((o == null) || (o.GetType() != this.GetType()))
+            if ((o == null) || (o.GetType() != GetType()))
             {
                 return false;
             }

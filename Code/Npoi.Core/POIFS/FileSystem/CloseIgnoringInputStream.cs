@@ -97,7 +97,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get
             {
-                return (long)this._is.Length;
+                return (long)_is.Length;
             }
         }
 
@@ -105,11 +105,11 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get
             {
-                return (long)this._is.Position;
+                return (long)_is.Position;
             }
             set
             {
-                this._is.Position = Convert.ToInt32(value);
+                _is.Position = Convert.ToInt32(value);
             }
         }
 

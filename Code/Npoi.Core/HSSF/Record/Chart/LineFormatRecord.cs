@@ -154,7 +154,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_1_lineColor = value;
+                field_1_lineColor = value;
             }
         }
 
@@ -181,7 +181,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_2_linePattern = value;
+                field_2_linePattern = value;
                 if (value == LINE_PATTERN_NONE)
                 {
                     field_3_weight = (short)-1;
@@ -208,7 +208,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_3_weight = value;
+                field_3_weight = value;
             }
         }
 
@@ -224,7 +224,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_4_format = value;
+                field_4_format = value;
             }
         }
 
@@ -238,7 +238,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             {
                 return field_5_colourPaletteIndex;
             }
-            set { this.field_5_colourPaletteIndex = value; }
+            set { field_5_colourPaletteIndex = value; }
         }
 
         /**

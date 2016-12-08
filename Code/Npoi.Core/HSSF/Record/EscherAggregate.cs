@@ -37,7 +37,7 @@ namespace Npoi.Core.HSSF.Record
         {
             this.spEndingOffsets = spEndingOffsets;
             this.records = records;
-            this.record = e;
+            record = e;
         }
 
         #region EscherSerializationListener Members
@@ -66,7 +66,7 @@ namespace Npoi.Core.HSSF.Record
         public RecordSizeListener(IList<int> spEndingOffsets, EscherRecord e)
         {
             this.spEndingOffsets = spEndingOffsets;
-            this.record = e;
+            record = e;
         }
 
         #region EscherSerializationListener Members
@@ -830,7 +830,7 @@ namespace Npoi.Core.HSSF.Record
         public HSSFPatriarch Patriarch
         {
             get { return patriarch; }
-            set { this.patriarch = value; }
+            set { patriarch = value; }
         }
 
         /**

@@ -37,7 +37,7 @@ namespace Npoi.Core.HSSF.UserModel
         public HSSFPatternFormatting(CFRuleRecord cfRuleRecord)
         {
             this.cfRuleRecord = cfRuleRecord;
-            this.patternFormatting = cfRuleRecord.PatternFormatting;
+            patternFormatting = cfRuleRecord.PatternFormatting;
         }
 
         /// <summary>

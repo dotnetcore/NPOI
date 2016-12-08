@@ -61,7 +61,7 @@ namespace Npoi.Core.SS.Format
 
             public DatePartHandler(CellDateFormatter formatter)
             {
-                this._formatter = formatter;
+                _formatter = formatter;
             }
 
             public String HandlePart(Match m, String part, CellFormatType type, StringBuilder desc)

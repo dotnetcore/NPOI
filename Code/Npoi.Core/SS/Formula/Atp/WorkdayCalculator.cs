@@ -50,9 +50,9 @@ namespace Npoi.Core.SS.Formula.Atp
 
         public int CalculateWorkdays(double start, double end, double[] holidays)
         {
-            int saturdaysPast = this.PastDaysOfWeek(start, end, DayOfWeek.Saturday);
-            int sundaysPast = this.PastDaysOfWeek(start, end, DayOfWeek.Sunday);
-            int nonWeekendHolidays = this.CalculateNonWeekendHolidays(start, end, holidays);
+            int saturdaysPast = PastDaysOfWeek(start, end, DayOfWeek.Saturday);
+            int sundaysPast = PastDaysOfWeek(start, end, DayOfWeek.Sunday);
+            int nonWeekendHolidays = CalculateNonWeekendHolidays(start, end, holidays);
             return (int)(end - start + 1) - saturdaysPast - sundaysPast - nonWeekendHolidays;
         }
 

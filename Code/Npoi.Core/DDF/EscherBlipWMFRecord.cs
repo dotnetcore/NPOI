@@ -144,7 +144,7 @@ namespace Npoi.Core.DDF
         /// <value>The secondary UID.</value>
         public byte[] SecondaryUID {
             get { return field_1_secondaryUID; }
-            set { this.field_1_secondaryUID = value; }
+            set { field_1_secondaryUID = value; }
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace Npoi.Core.DDF
         /// <value>The size of the cache of.</value>
         public int CacheOfSize {
             get { return field_2_cacheOfSize; }
-            set { this.field_2_cacheOfSize = value; }
+            set { field_2_cacheOfSize = value; }
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace Npoi.Core.DDF
         /// <value>The boundary top.</value>
         public int BoundaryTop {
             get { return field_3_boundaryTop; }
-            set { this.field_3_boundaryTop = value; }
+            set { field_3_boundaryTop = value; }
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Npoi.Core.DDF
         /// <value>The boundary left.</value>
         public int BoundaryLeft {
             get { return field_4_boundaryLeft; }
-            set { this.field_4_boundaryLeft = value; }
+            set { field_4_boundaryLeft = value; }
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace Npoi.Core.DDF
         /// <value>The width of the boundary.</value>
         public int BoundaryWidth {
             get { return field_5_boundaryWidth; }
-            set { this.field_5_boundaryWidth = value; }
+            set { field_5_boundaryWidth = value; }
         }
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace Npoi.Core.DDF
         /// <value>The height of the boundary.</value>
         public int BoundaryHeight {
             get { return field_6_boundaryHeight; }
-            set { this.field_6_boundaryHeight = value; }
+            set { field_6_boundaryHeight = value; }
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace Npoi.Core.DDF
         /// <value>The width.</value>
         public int Width {
             get { return field_7_width; }
-            set { this.field_7_width = value; }
+            set { field_7_width = value; }
         }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace Npoi.Core.DDF
         /// <value>The height.</value>
         public int Height {
             get { return field_8_height; }
-            set { this.field_8_height = value; }
+            set { field_8_height = value; }
         }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace Npoi.Core.DDF
         /// <value>the cache of the saved size.</value>
         public int CacheOfSavedSize {
             get { return field_9_cacheOfSavedSize; }
-            set { this.field_9_cacheOfSavedSize = value; }
+            set { field_9_cacheOfSavedSize = value; }
         }
 
         /// <summary>
@@ -225,7 +225,7 @@ namespace Npoi.Core.DDF
         /// <value>The compression flag.</value>
         public byte CompressionFlag {
             get { return field_10_compressionFlag; }
-            set { this.field_10_compressionFlag = value; }
+            set { field_10_compressionFlag = value; }
         }
 
         /// <summary>
@@ -234,7 +234,7 @@ namespace Npoi.Core.DDF
         /// <value>The filter.</value>
         public byte Filter {
             get { return field_11_filter; }
-            set { this.field_11_filter = value; }
+            set { field_11_filter = value; }
         }
 
         /// <summary>
@@ -243,7 +243,7 @@ namespace Npoi.Core.DDF
         /// <value>The data.</value>
         public byte[] Data {
             get { return field_12_data; }
-            set { this.field_12_data = value; }
+            set { field_12_data = value; }
         }
 
         /// <summary>
@@ -258,7 +258,7 @@ namespace Npoi.Core.DDF
             String extraData = string.Empty;
             using (MemoryStream b = new MemoryStream()) {
                 try {
-                    HexDump.Dump(this.field_12_data, 0, b, 0);
+                    HexDump.Dump(field_12_data, 0, b, 0);
                     //extraData = b.ToString();
                     extraData = Encoding.UTF8.GetString(b.ToArray());
                 }
@@ -288,7 +288,7 @@ namespace Npoi.Core.DDF
             String extraData;
             using (MemoryStream b = new MemoryStream()) {
                 try {
-                    HexDump.Dump(this.field_12_data, 0, b, 0);
+                    HexDump.Dump(field_12_data, 0, b, 0);
                     extraData = HexDump.ToHex(b.ToArray());
                 }
                 catch (Exception e) {

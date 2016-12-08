@@ -71,10 +71,10 @@ namespace Npoi.Core.SS.Formula.PTG
 
         protected RefPtgBase(int row, int column, bool isRowRelative, bool isColumnRelative)
         {
-            this.Row = row;
-            this.Column = column;
-            this.IsRowRelative = isRowRelative;
-            this.IsColRelative = isColumnRelative;
+            Row = row;
+            Column = column;
+            IsRowRelative = isRowRelative;
+            IsColRelative = isColumnRelative;
         }
 
         protected RefPtgBase(ILittleEndianInput in1)

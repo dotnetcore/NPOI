@@ -44,9 +44,9 @@ namespace Npoi.Core.SS.Util
         {
             this.x = x;
             this.y = y;
-            this.topRow = top;
-            this.leftColumn = left;
-            this.activePane = active;
+            topRow = top;
+            leftColumn = left;
+            activePane = active;
             this.frozen = frozen;
         }
 

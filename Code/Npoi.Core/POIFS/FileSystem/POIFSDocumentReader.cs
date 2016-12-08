@@ -51,15 +51,15 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <param name="document">the DocumentEntry to be read</param>
         public POIFSDocumentReader(DocumentEntry document)
         {
-            this._current_offset = 0;
-            this._document_size = document.Size;
-            this._closed = false;
-            this._tiny_buffer = null;
+            _current_offset = 0;
+            _document_size = document.Size;
+            _closed = false;
+            _tiny_buffer = null;
             if (!(document is DocumentNode))
             {
                 throw new IOException("Cannot open internal document storage");
             }
-            this._document = ((DocumentNode)document).Document;
+            _document = ((DocumentNode)document).Document;
         }
 
         /// <summary>
@@ -68,11 +68,11 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <param name="document">the Document to be read</param>
         public POIFSDocumentReader(POIFSDocument document)
         {
-            this._current_offset = 0;
-            this._document_size = document.Size;
-            this._closed = false;
-            this._tiny_buffer = null;
-            this._document = document;
+            _current_offset = 0;
+            _document_size = document.Size;
+            _closed = false;
+            _tiny_buffer = null;
+            _document = document;
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get
             {
-                return (this._current_offset == this._document_size);
+                return (_current_offset == _document_size);
             }
         }
 
@@ -101,7 +101,7 @@ namespace Npoi.Core.POIFS.FileSystem
             {
                 if (_closed)
                     throw new IOException("This stream is closed");
-                return (int)(this.Length - this.Position);
+                return (int)(Length - Position);
             }
         }
 
@@ -110,12 +110,12 @@ namespace Npoi.Core.POIFS.FileSystem
         /// </summary>
         protected override void Dispose(bool disposing)
         {
-            this._closed = true;
+            _closed = true;
         }
 
         private void DieIfClosed()
         {
-            if (this._closed)
+            if (_closed)
             {
                 throw new IOException("cannot perform requested operation on a closed stream");
             }
@@ -153,7 +153,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// has been reached.</returns>
         public int Read(byte[] b)
         {
-            return this.Read(b, 0, b.Length);
+            return Read(b, 0, b.Length);
         }
 
         /// <summary>
@@ -192,7 +192,7 @@ namespace Npoi.Core.POIFS.FileSystem
         ///         has been reached.</returns>
         public override int Read(byte[] b, int off, int len)
         {
-            this.DieIfClosed();
+            DieIfClosed();
             if (b == null)
             {
                 throw new NullReferenceException("buffer is null");
@@ -205,22 +205,22 @@ namespace Npoi.Core.POIFS.FileSystem
             {
                 return 0;
             }
-            if (this.EOD)
+            if (EOD)
             {
                 return -1;
             }
-            int length = Math.Min(this.Available, len);
+            int length = Math.Min(Available, len);
             if ((off == 0) && (length == b.Length))
             {
-                this._document.Read(b, this._current_offset);
+                _document.Read(b, _current_offset);
             }
             else
             {
                 byte[] buffer = new byte[length];
-                this._document.Read(buffer, this._current_offset);
+                _document.Read(buffer, _current_offset);
                 Array.Copy(buffer, 0, b, off, length);
             }
-            this._current_offset += length;
+            _current_offset += length;
             return length;
         }
 
@@ -236,17 +236,17 @@ namespace Npoi.Core.POIFS.FileSystem
         /// </returns>
         public override int ReadByte()
         {
-            this.DieIfClosed();
-            if (this.EOD)
+            DieIfClosed();
+            if (EOD)
             {
                 return -1;
             }
-            if (this._tiny_buffer == null)
+            if (_tiny_buffer == null)
             {
-                this._tiny_buffer = new byte[1];
+                _tiny_buffer = new byte[1];
             }
-            this._document.Read(this._tiny_buffer, this._current_offset++);
-            return (this._tiny_buffer[0] & 0xff);
+            _document.Read(_tiny_buffer, _current_offset++);
+            return (_tiny_buffer[0] & 0xff);
         }
 
         /// <summary>
@@ -268,7 +268,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// </exception>
         public override long Seek(long offset, SeekOrigin origin)
         {
-            if (!this.CanSeek)
+            if (!CanSeek)
                 throw new NotSupportedException();
 
             switch (origin)
@@ -278,15 +278,15 @@ namespace Npoi.Core.POIFS.FileSystem
                     {
                         throw new ArgumentOutOfRangeException("offset", "offset must be positive");
                     }
-                    this.Position = offset < this.Length ? offset : this.Length;
+                    Position = offset < Length ? offset : Length;
                     break;
 
                 case SeekOrigin.Current:
-                    this.Position = (this.Position + offset) < this.Length ? (this.Position + offset) : this.Length;
+                    Position = (Position + offset) < Length ? (Position + offset) : Length;
                     break;
 
                 case SeekOrigin.End:
-                    this.Position = this.Length;
+                    Position = Length;
                     break;
 
                 default:
@@ -306,22 +306,22 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <returns></returns>
         public long Skip(long n)
         {
-            this.DieIfClosed();
+            DieIfClosed();
             if (n < 0L)
             {
                 return 0L;
             }
-            int num = this._current_offset + ((int)n);
-            if (num < this._current_offset)
+            int num = _current_offset + ((int)n);
+            if (num < _current_offset)
             {
-                num = this._document_size;
+                num = _document_size;
             }
-            else if (num > this._document_size)
+            else if (num > _document_size)
             {
-                num = this._document_size;
+                num = _document_size;
             }
-            long num2 = num - this._current_offset;
-            this._current_offset = num;
+            long num2 = num - _current_offset;
+            _current_offset = num;
             return num2;
         }
 
@@ -414,7 +414,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get
             {
-                return (long)this._document_size;
+                return (long)_document_size;
             }
         }
 
@@ -438,11 +438,11 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get
             {
-                return (long)this._current_offset;
+                return (long)_current_offset;
             }
             set
             {
-                this._current_offset = Convert.ToInt32(value);
+                _current_offset = Convert.ToInt32(value);
             }
         }
     }

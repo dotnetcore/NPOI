@@ -117,7 +117,7 @@ namespace Npoi.Core.HSSF.Record
         public override object Clone()
         {
             FtCfSubRecord rec = new FtCfSubRecord();
-            rec.flags = this.flags;
+            rec.flags = flags;
             return rec;
         }
 
@@ -129,7 +129,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this.flags = value;
+                flags = value;
             }
         }
     }

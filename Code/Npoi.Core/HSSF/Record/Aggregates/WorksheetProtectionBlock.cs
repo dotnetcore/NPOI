@@ -213,8 +213,8 @@ namespace Npoi.Core.HSSF.Record.Aggregates
                 return;
             }
 
-            ProtectRecord prec = this.Protect;
-            PasswordRecord pass = this.Password;
+            ProtectRecord prec = Protect;
+            PasswordRecord pass = Password;
             prec.Protect = true;
             pass.Password = (PasswordRecord.HashPassword(password));
             if (_objectProtectRecord == null && shouldProtectObjects)

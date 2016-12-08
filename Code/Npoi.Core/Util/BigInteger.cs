@@ -130,8 +130,8 @@ namespace Npoi.Core.Util
 
         public BigInteger(int[] magnitude, int signum)
         {
-            this._signum = (magnitude.Length == 0 ? 0 : signum);
-            this.mag = magnitude;
+            _signum = (magnitude.Length == 0 ? 0 : signum);
+            mag = magnitude;
         }
 
         /**
@@ -376,7 +376,7 @@ namespace Npoi.Core.Util
             String[] digitGroup = new String[maxNumDigitGroups];
 
             // Translate number to string, a digit group at a time
-            BigInteger tmp = this.Abs();
+            BigInteger tmp = Abs();
             int numGroups = 0;
             while (tmp._signum != 0)
             {
@@ -573,7 +573,7 @@ namespace Npoi.Core.Util
 
         public BigInteger Abs()
         {
-            return (_signum >= 0 ? this : this.Negate());
+            return (_signum >= 0 ? this : Negate());
         }
 
         /**
@@ -584,7 +584,7 @@ namespace Npoi.Core.Util
 
         public BigInteger Negate()
         {
-            return new BigInteger(this.mag, -this._signum);
+            return new BigInteger(mag, -_signum);
         }
 
         /**
@@ -606,7 +606,7 @@ namespace Npoi.Core.Util
 
             // Perform exponentiation using repeated squaring trick
             int newSign = (_signum < 0 && (exponent & 1) == 1 ? -1 : 1);
-            int[] baseToPow2 = this.mag;
+            int[] baseToPow2 = mag;
             int[] result = { 1 };
 
             while (exponent != 0)
@@ -811,7 +811,7 @@ namespace Npoi.Core.Util
 
         public int Signum()
         {
-            return this._signum;
+            return _signum;
         }
 
         /**
@@ -1761,11 +1761,11 @@ namespace Npoi.Core.Util
         public BigInteger Divide(BigInteger val)
         {
             MutableBigInteger q = new MutableBigInteger(),
-                              a = new MutableBigInteger(this.mag),
+                              a = new MutableBigInteger(mag),
                               b = new MutableBigInteger(val.mag);
 
             a.divide(b, q);
-            return q.toBigInteger(this._signum == val._signum ? 1 : -1);
+            return q.toBigInteger(_signum == val._signum ? 1 : -1);
         }
 
         #region operator overload
@@ -2358,14 +2358,14 @@ namespace Npoi.Core.Util
                 return;
             int nInts = Operator.UnsignedRightShift(n, 5);
             int nBits = n & 0x1F;
-            this.intLen -= nInts;
+            intLen -= nInts;
             if (nBits == 0)
                 return;
             int bitsInHighWord = BigInteger.BitLengthForInt(_value[offset]);
             if (nBits >= bitsInHighWord)
             {
-                this.primitiveLeftShift(32 - nBits);
-                this.intLen--;
+                primitiveLeftShift(32 - nBits);
+                intLen--;
             }
             else
             {

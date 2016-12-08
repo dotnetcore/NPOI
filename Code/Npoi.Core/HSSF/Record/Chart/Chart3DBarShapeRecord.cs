@@ -70,8 +70,8 @@ namespace Npoi.Core.HSSF.Record.Chart
         public override object Clone()
         {
             Chart3DBarShapeRecord record = new Chart3DBarShapeRecord();
-            record.Riser = this.Riser;
-            record.Taper = this.Taper;
+            record.Riser = Riser;
+            record.Taper = Taper;
             return record;
         }
 

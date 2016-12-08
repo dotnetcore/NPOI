@@ -256,7 +256,7 @@ namespace Npoi.Core.Util
         {
             bool rval = this == o;
 
-            if (!rval && (o != null) && (o.GetType() == this.GetType()))
+            if (!rval && (o != null) && (o.GetType() == GetType()))
             {
                 ShortList other = (ShortList)o;
 

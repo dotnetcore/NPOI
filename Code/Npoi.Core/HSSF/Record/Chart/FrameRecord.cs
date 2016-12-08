@@ -121,7 +121,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_1_borderType = value;
+                field_1_borderType = value;
             }
         }
 
@@ -132,7 +132,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short Options
         {
             get { return field_2_options; }
-            set { this.field_2_options = value; }
+            set { field_2_options = value; }
         }
 
         /**

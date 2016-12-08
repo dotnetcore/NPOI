@@ -214,17 +214,17 @@ namespace Npoi.Core.HSSF.Record.Chart
         public override object Clone()
         {
             Chart3dRecord record = new Chart3dRecord();
-            record.Depth = this.Depth;
-            record.Dist = this.Dist;
-            record.Elev = this.Elev;
-            record.Height = this.Height;
-            record.Gap = this.Gap;
-            record.Is3DScaling = this.Is3DScaling;
-            record.IsCluster = this.IsCluster;
-            record.IsNotPieChart = this.IsNotPieChart;
-            record.IsPerspective = this.IsPerspective;
-            record.IsWalls2D = this.IsWalls2D;
-            record.Rotation = this.Rotation;
+            record.Depth = Depth;
+            record.Dist = Dist;
+            record.Elev = Elev;
+            record.Height = Height;
+            record.Gap = Gap;
+            record.Is3DScaling = Is3DScaling;
+            record.IsCluster = IsCluster;
+            record.IsNotPieChart = IsNotPieChart;
+            record.IsPerspective = IsPerspective;
+            record.IsWalls2D = IsWalls2D;
+            record.Rotation = Rotation;
 
             return record;
         }

@@ -97,12 +97,12 @@ namespace Npoi.Core.HSSF.Record
         public override object Clone()
         {
             ChartFormatRecord r = new ChartFormatRecord();
-            r.Height = this.Height;
-            r.Icrt = this.Icrt;
-            r.VaryDisplayPattern = this.VaryDisplayPattern;
-            r.Width = this.Width;
-            r.XPosition = this.XPosition;
-            r.YPosition = this.YPosition;
+            r.Height = Height;
+            r.Icrt = Icrt;
+            r.VaryDisplayPattern = VaryDisplayPattern;
+            r.Width = Width;
+            r.XPosition = XPosition;
+            r.YPosition = YPosition;
             return r;
         }
 
@@ -124,7 +124,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this.field1_x_position = value;
+                field1_x_position = value;
             }
         }
 
@@ -136,26 +136,26 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this.field2_y_position = value;
+                field2_y_position = value;
             }
         }
 
         public int Width
         {
             get { return field3_width; }
-            set { this.field3_width = value; }
+            set { field3_width = value; }
         }
 
         public int Height
         {
             get { return field4_height; }
-            set { this.field4_height = value; }
+            set { field4_height = value; }
         }
 
         public short Icrt
         {
             get { return field6_icrt; }
-            set { this.field6_icrt = value; }
+            set { field6_icrt = value; }
         }
 
         public bool VaryDisplayPattern

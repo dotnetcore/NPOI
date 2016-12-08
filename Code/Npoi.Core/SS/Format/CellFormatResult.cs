@@ -75,9 +75,9 @@ namespace Npoi.Core.SS.Format
 
         public CellFormatResult(bool applies, String text, Color textColor)
         {
-            this.Applies = applies;
-            this.Text = text;
-            this.TextColor = (applies ? textColor : Color.Empty);
+            Applies = applies;
+            Text = text;
+            TextColor = (applies ? textColor : Color.Empty);
         }
     }
 }

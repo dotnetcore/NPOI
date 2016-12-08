@@ -296,7 +296,7 @@ namespace Npoi.Core.HSSF.Record
         public byte HorizontalAlignment
         {
             get { return field_1_horizontalAlignment; }
-            set { this.field_1_horizontalAlignment = value; }
+            set { field_1_horizontalAlignment = value; }
         }
 
         /**
@@ -312,7 +312,7 @@ namespace Npoi.Core.HSSF.Record
         public byte VerticalAlignment
         {
             get { return field_2_verticalAlignment; }
-            set { this.field_2_verticalAlignment = value; }
+            set { field_2_verticalAlignment = value; }
         }
 
         /**
@@ -326,7 +326,7 @@ namespace Npoi.Core.HSSF.Record
         public short DisplayMode
         {
             get { return field_3_DisplayMode; }
-            set { this.field_3_DisplayMode = value; }
+            set { field_3_DisplayMode = value; }
         }
 
         /**
@@ -336,7 +336,7 @@ namespace Npoi.Core.HSSF.Record
         public int RgbColor
         {
             get { return field_4_rgbColor; }
-            set { this.field_4_rgbColor = value; }
+            set { field_4_rgbColor = value; }
         }
 
         /**
@@ -346,7 +346,7 @@ namespace Npoi.Core.HSSF.Record
         public int X
         {
             get { return field_5_x; }
-            set { this.field_5_x = value; }
+            set { field_5_x = value; }
         }
 
         /**
@@ -356,7 +356,7 @@ namespace Npoi.Core.HSSF.Record
         public int Y
         {
             get { return field_6_y; }
-            set { this.field_6_y = value; }
+            set { field_6_y = value; }
         }
 
         /**
@@ -366,7 +366,7 @@ namespace Npoi.Core.HSSF.Record
         public int Width
         {
             get { return field_7_width; }
-            set { this.field_7_width = value; }
+            set { field_7_width = value; }
         }
 
         /**
@@ -376,7 +376,7 @@ namespace Npoi.Core.HSSF.Record
         public int Height
         {
             get { return field_8_height; }
-            set { this.field_8_height = value; }
+            set { field_8_height = value; }
         }
 
         /**
@@ -386,7 +386,7 @@ namespace Npoi.Core.HSSF.Record
         public short Options1
         {
             get { return field_9_options1; }
-            set { this.field_9_options1 = value; }
+            set { field_9_options1 = value; }
         }
 
         /**
@@ -396,7 +396,7 @@ namespace Npoi.Core.HSSF.Record
         public short IndexOfColorValue
         {
             get { return field_10_IndexOfColorValue; }
-            set { this.field_10_IndexOfColorValue = value; }
+            set { field_10_IndexOfColorValue = value; }
         }
 
         /**
@@ -406,7 +406,7 @@ namespace Npoi.Core.HSSF.Record
         public short Options2
         {
             get { return field_11_options2; }
-            set { this.field_11_options2 = value; }
+            set { field_11_options2 = value; }
         }
 
         /**
@@ -416,7 +416,7 @@ namespace Npoi.Core.HSSF.Record
         public short TextRotation
         {
             get { return field_12_textRotation; }
-            set { this.field_12_textRotation = value; }
+            set { field_12_textRotation = value; }
         }
 
         /**

@@ -53,7 +53,7 @@ namespace Npoi.Core.SS.UserModel
         {
             this.orientation = orientation;
 
-            _table[this.Value] = this;
+            _table[Value] = this;
         }
 
         public int Value

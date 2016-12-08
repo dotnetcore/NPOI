@@ -47,13 +47,13 @@ namespace Npoi.Core.POIFS.NIO
         {
             if (!file.Exists)
                 throw new FileNotFoundException(file.FullName);
-            this.fileinfo = file;
+            fileinfo = file;
             FileStream stream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read);
             byte[] temp = new byte[stream.Length];
             stream.Read(temp, 0, (int)stream.Length);
             MemoryStream ms = new MemoryStream(temp, 0, temp.Length);
             fileStream = ms;
-            this.writable = !readOnly;
+            writable = !readOnly;
             stream.Position = 0;
         }
 
@@ -64,7 +64,7 @@ namespace Npoi.Core.POIFS.NIO
             stream.Read(temp, 0, (int)stream.Length);
             MemoryStream ms = new MemoryStream(temp, 0, temp.Length);
             fileStream = ms;
-            this.writable = !readOnly;
+            writable = !readOnly;
             stream.Position = 0;
         }
 
@@ -99,13 +99,13 @@ namespace Npoi.Core.POIFS.NIO
         {
             get
             {
-                return this.writable;
+                return writable;
             }
         }
 
         public Stream Stream
         {
-            get { return this.fileStream; }
+            get { return fileStream; }
         }
 
         /// <summary>

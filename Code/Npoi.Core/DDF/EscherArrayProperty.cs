@@ -89,7 +89,7 @@ namespace Npoi.Core.DDF
             }
             set
             {
-                int expectedArraySize = value * GetActualSizeOfElements(this.SizeOfElements) + FIXED_SIZE;
+                int expectedArraySize = value * GetActualSizeOfElements(SizeOfElements) + FIXED_SIZE;
                 if (expectedArraySize != _complexData.Length) {
                     byte[] newArray = new byte[expectedArraySize];
                     Array.Copy(_complexData, 0, newArray, 0, expectedArraySize);
@@ -241,7 +241,7 @@ namespace Npoi.Core.DDF
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
         private class EscherArrayEnumerator : IEnumerator<byte[]>
@@ -268,7 +268,7 @@ namespace Npoi.Core.DDF
             }
 
             object System.Collections.IEnumerator.Current {
-                get { return this.Current; }
+                get { return Current; }
             }
 
             public bool MoveNext() {

@@ -75,9 +75,9 @@ namespace Npoi.Core.POIFS.Storage
         protected BATBlock()
         {
             _data = new byte[POIFSConstants.BIG_BLOCK_SIZE];
-            for (int i = 0; i < this._data.Length; i++)
+            for (int i = 0; i < _data.Length; i++)
             {
-                this._data[i] = _default_value;
+                _data[i] = _default_value;
             }
             _fields = new IntegerField[_entries_per_block];
             int offset = 0;
@@ -440,7 +440,7 @@ namespace Npoi.Core.POIFS.Storage
             }
             set
             {
-                this.ourBlockIndex = value;
+                ourBlockIndex = value;
             }
         }
 

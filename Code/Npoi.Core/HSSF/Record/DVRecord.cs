@@ -178,9 +178,9 @@ namespace Npoi.Core.HSSF.Record
         {
             get
             {
-                return this.opt_data_type.GetValue(this._option_flags);
+                return opt_data_type.GetValue(_option_flags);
             }
-            set { this._option_flags = this.opt_data_type.SetValue(this._option_flags, value); }
+            set { _option_flags = opt_data_type.SetValue(_option_flags, value); }
         }
 
         /**
@@ -193,9 +193,9 @@ namespace Npoi.Core.HSSF.Record
         {
             get
             {
-                return this.opt_error_style.GetValue(this._option_flags);
+                return opt_error_style.GetValue(_option_flags);
             }
-            set { this._option_flags = this.opt_error_style.SetValue(this._option_flags, value); }
+            set { _option_flags = opt_error_style.SetValue(_option_flags, value); }
         }
 
         /**
@@ -208,9 +208,9 @@ namespace Npoi.Core.HSSF.Record
         {
             get
             {
-                return (this.opt_string_list_formula.IsSet(this._option_flags));
+                return (opt_string_list_formula.IsSet(_option_flags));
             }
-            set { this._option_flags = this.opt_string_list_formula.SetBoolean(this._option_flags, value); }
+            set { _option_flags = opt_string_list_formula.SetBoolean(_option_flags, value); }
         }
 
         /**
@@ -223,9 +223,9 @@ namespace Npoi.Core.HSSF.Record
         {
             get
             {
-                return (this.opt_empty_cell_allowed.IsSet(this._option_flags));
+                return (opt_empty_cell_allowed.IsSet(_option_flags));
             }
-            set { this._option_flags = this.opt_empty_cell_allowed.SetBoolean(this._option_flags, value); }
+            set { _option_flags = opt_empty_cell_allowed.SetBoolean(_option_flags, value); }
         }
 
         /**
@@ -251,7 +251,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get
             {
-                return (this.opt_show_prompt_on_cell_selected.IsSet(this._option_flags));
+                return (opt_show_prompt_on_cell_selected.IsSet(_option_flags));
             }
         }
 
@@ -265,9 +265,9 @@ namespace Npoi.Core.HSSF.Record
         {
             get
             {
-                return (this.opt_show_error_on_invalid_value.IsSet(this._option_flags));
+                return (opt_show_error_on_invalid_value.IsSet(_option_flags));
             }
-            set { this._option_flags = this.opt_show_error_on_invalid_value.SetBoolean(this._option_flags, value); }
+            set { _option_flags = opt_show_error_on_invalid_value.SetBoolean(_option_flags, value); }
         }
 
         /**
@@ -280,11 +280,11 @@ namespace Npoi.Core.HSSF.Record
         {
             get
             {
-                return this.opt_condition_operator.GetValue(this._option_flags);
+                return opt_condition_operator.GetValue(_option_flags);
             }
             set
             {
-                this._option_flags = this.opt_condition_operator.SetValue(this._option_flags, value);
+                _option_flags = opt_condition_operator.SetValue(_option_flags, value);
             }
         }
 
@@ -340,9 +340,9 @@ namespace Npoi.Core.HSSF.Record
         {
             get
             {
-                return this._regions;
+                return _regions;
             }
-            set { this._regions = value; }
+            set { _regions = value; }
         }
 
         /**
@@ -354,7 +354,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get
             {
-                return this._option_flags;
+                return _option_flags;
             }
         }
 

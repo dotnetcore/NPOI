@@ -46,7 +46,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         {
             PieFormatRecord record = new PieFormatRecord();
 
-            record.Explode = this.Explode;
+            record.Explode = Explode;
 
             return record;
         }

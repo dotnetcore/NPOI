@@ -42,8 +42,8 @@ namespace Npoi.Core.DDF
         public class FileIdCluster
         {
             public FileIdCluster(int drawingGroupId, int numShapeIdsUsed) {
-                this.field_1_drawingGroupId = drawingGroupId;
-                this.field_2_numShapeIdsUsed = numShapeIdsUsed;
+                field_1_drawingGroupId = drawingGroupId;
+                field_2_numShapeIdsUsed = numShapeIdsUsed;
             }
 
             private int field_1_drawingGroupId;
@@ -58,7 +58,7 @@ namespace Npoi.Core.DDF
             }
 
             public void IncrementShapeId() {
-                this.field_2_numShapeIdsUsed++;
+                field_2_numShapeIdsUsed++;
             }
         }
 

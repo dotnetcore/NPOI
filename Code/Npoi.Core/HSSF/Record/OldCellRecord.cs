@@ -38,7 +38,7 @@ namespace Npoi.Core.HSSF.Record
 
         protected OldCellRecord(RecordInputStream in1, bool isBiff2)
         {
-            this.sid = in1.Sid;
+            sid = in1.Sid;
             this.isBiff2 = isBiff2;
             field_1_row = in1.ReadUShort();
             field_2_column = in1.ReadShort();
@@ -116,7 +116,7 @@ namespace Npoi.Core.HSSF.Record
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder();
-            String recordName = this.RecordName;
+            String recordName = RecordName;
 
             sb.Append("[").Append(recordName).Append("]\n");
             sb.Append("    .row    = ").Append(HexDump.ShortToHex(Row)).Append("\n");

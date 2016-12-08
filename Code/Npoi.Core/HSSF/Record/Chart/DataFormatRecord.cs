@@ -127,7 +127,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             {
                 return field_1_pointNumber;
             }
-            set { this.field_1_pointNumber = value; }
+            set { field_1_pointNumber = value; }
         }
 
         /**
@@ -140,7 +140,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             {
                 return field_2_seriesIndex;
             }
-            set { this.field_2_seriesIndex = value; }
+            set { field_2_seriesIndex = value; }
         }
 
         /**
@@ -153,7 +153,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             {
                 return field_3_seriesNumber;
             }
-            set { this.field_3_seriesNumber = value; }
+            set { field_3_seriesNumber = value; }
         }
 
         /**
@@ -163,7 +163,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short FormatFlags
         {
             get { return field_4_formatFlags; }
-            set { this.field_4_formatFlags = value; }
+            set { field_4_formatFlags = value; }
         }
 
         /**

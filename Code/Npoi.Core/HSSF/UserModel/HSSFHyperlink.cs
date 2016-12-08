@@ -43,7 +43,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="type">The type of hyperlink to Create.</param>
         public HSSFHyperlink(HyperlinkType type)
         {
-            this.link_type = (int)type;
+            link_type = (int)type;
             record = new HyperlinkRecord();
             switch (type)
             {

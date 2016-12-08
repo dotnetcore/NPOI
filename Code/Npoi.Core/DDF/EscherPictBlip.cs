@@ -168,7 +168,7 @@ namespace Npoi.Core.DDF
         /// <value>The UID.</value>
         public byte[] UID {
             get { return field_1_UID; }
-            set { this.field_1_UID = value; }
+            set { field_1_UID = value; }
         }
 
         /// <summary>
@@ -248,7 +248,7 @@ namespace Npoi.Core.DDF
             String extraData;
             using (MemoryStream b = new MemoryStream()) {
                 try {
-                    HexDump.Dump(this.field_pictureData, 0, b, 0);
+                    HexDump.Dump(field_pictureData, 0, b, 0);
                     extraData = b.ToString();
                 }
                 catch (Exception e) {

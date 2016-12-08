@@ -36,7 +36,7 @@ namespace Npoi.Core.SS.Util.CellWalk
         {
             this.sheet = sheet;
             this.range = range;
-            this.traverseEmptyCells = false;
+            traverseEmptyCells = false;
         }
 
         /**

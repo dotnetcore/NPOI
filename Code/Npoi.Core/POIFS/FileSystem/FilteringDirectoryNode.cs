@@ -43,7 +43,7 @@ namespace Npoi.Core.POIFS.FileSystem
 
             // Process the excludes
             this.excludes = new List<String>();
-            this.childExcludes = new Dictionary<String, List<String>>();
+            childExcludes = new Dictionary<String, List<String>>();
             foreach (string excl in excludes)
             {
                 int splitAt = excl.IndexOf('/');
@@ -57,11 +57,11 @@ namespace Npoi.Core.POIFS.FileSystem
                     // Applies to a child
                     String child = excl.Substring(0, splitAt);
                     String childExcl = excl.Substring(splitAt + 1);
-                    if (!this.childExcludes.ContainsKey(child))
+                    if (!childExcludes.ContainsKey(child))
                     {
-                        this.childExcludes.Add(child, new List<String>());
+                        childExcludes.Add(child, new List<String>());
                     }
-                    this.childExcludes[child].Add(childExcl);
+                    childExcludes[child].Add(childExcl);
                 }
             }
         }
@@ -237,7 +237,7 @@ namespace Npoi.Core.POIFS.FileSystem
             public FilteringIterator(FilteringDirectoryNode filtering)
             {
                 this.filtering = filtering;
-                this.directory = filtering.directory;
+                directory = filtering.directory;
                 parent = directory.Entries;
                 //LocateNext();
             }

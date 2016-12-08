@@ -70,7 +70,7 @@ namespace Npoi.Core.HSSF.Record.Chart
 
             public object Clone()
             {
-                return new CFRTID(this.rtFirst, this.rtLast);
+                return new CFRTID(rtFirst, rtLast);
             }
 
             #endregion ICloneable ��Ա
@@ -140,14 +140,14 @@ namespace Npoi.Core.HSSF.Record.Chart
         {
             ChartFRTInfoRecord record = new ChartFRTInfoRecord();
 
-            record.grbitFrt = this.grbitFrt;
-            record.rgCFRTID = new CFRTID[this.rgCFRTID.Length];
-            record.rt = this.rt;
-            record.verOriginator = this.verOriginator;
+            record.grbitFrt = grbitFrt;
+            record.rgCFRTID = new CFRTID[rgCFRTID.Length];
+            record.rt = rt;
+            record.verOriginator = verOriginator;
             record.verWriter = verWriter;
 
-            for (int i = 0; i < this.rgCFRTID.Length; i++)
-                record.rgCFRTID[i] = (CFRTID)this.rgCFRTID[i].Clone();
+            for (int i = 0; i < rgCFRTID.Length; i++)
+                record.rgCFRTID[i] = (CFRTID)rgCFRTID[i].Clone();
 
             return record;
         }

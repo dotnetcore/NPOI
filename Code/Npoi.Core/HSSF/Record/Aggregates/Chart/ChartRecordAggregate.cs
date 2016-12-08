@@ -65,8 +65,8 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 
         protected ChartRecordAggregate(string ruleName, ChartRecordAggregate container)
         {
-            this.RuleName = ruleName;
-            this.Container = container;
+            RuleName = ruleName;
+            Container = container;
         }
 
         private static StartBlockStack blocks = new StartBlockStack();
@@ -419,7 +419,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             StartBlockRecord sbr = blocks.Peek();
             //If there exists a StartBlock record with iObjectKind equal to 0x0000 without a matching EndBlock,
             //then a matching EndBlock record MUST exist immediately before the End record of the current Axis Group.
-            if (this.RuleName == RuleName_AXISPARENT && sbr.ObjectKind == ObjectKind.AxisGroup)
+            if (RuleName == RuleName_AXISPARENT && sbr.ObjectKind == ObjectKind.AxisGroup)
             {
                 rv.VisitRecord(EndBlockRecord.CreateEndBlock(ObjectKind.AxisGroup));
                 blocks.Pop();
@@ -428,7 +428,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 
             //If there exists a StartBlock record with iObjectKind equal to 0x0002 without a matching EndBlock,
             //then a matching EndBlock record MUST exist immediately before the End record of the current AttachedLabel.
-            if (this.RuleName == RuleName_ATTACHEDLABEL && sbr.ObjectKind == ObjectKind.AttachedLabelRecord)
+            if (RuleName == RuleName_ATTACHEDLABEL && sbr.ObjectKind == ObjectKind.AttachedLabelRecord)
             {
                 rv.VisitRecord(EndBlockRecord.CreateEndBlock(ObjectKind.AttachedLabelRecord));
                 blocks.Pop();
@@ -437,7 +437,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 
             //If there exists a StartBlock record with iObjectKind equal to 0x0004 without a matching EndBlock,
             //then a matching EndBlock record MUST exist immediately before the End record of the current Axis.
-            if ((this.RuleName == RuleName_IVAXIS || this.RuleName == RuleName_DVAXIS || this.RuleName == RuleName_SERIESAXIS)
+            if ((RuleName == RuleName_IVAXIS || RuleName == RuleName_DVAXIS || RuleName == RuleName_SERIESAXIS)
                 && sbr.ObjectKind == ObjectKind.Axis)
             {
                 rv.VisitRecord(EndBlockRecord.CreateEndBlock(ObjectKind.Axis));
@@ -446,7 +446,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             }
             //If there exists a StartBlock record with iObjectKind equal to 0x0005 without a matching EndBlock,
             //then a matching EndBlock record MUST exist immediately before the End record of the current chart group.
-            if (this.RuleName == RuleName_CRT && sbr.ObjectKind == ObjectKind.ChartGroup)
+            if (RuleName == RuleName_CRT && sbr.ObjectKind == ObjectKind.ChartGroup)
             {
                 rv.VisitRecord(EndBlockRecord.CreateEndBlock(ObjectKind.ChartGroup));
                 blocks.Pop();
@@ -455,7 +455,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             //If there exists a StartBlock record with iObjectKind equal to 0x0006 without a matching EndBlock,
             //then a matching EndBlock record MUST exist immediately before the End record of the sequence of records
             //containing the StartBlock and conforming to the DAT rule.
-            if (this.RuleName == RuleName_DAT && sbr.ObjectKind == ObjectKind.DatRecord)
+            if (RuleName == RuleName_DAT && sbr.ObjectKind == ObjectKind.DatRecord)
             {
                 rv.VisitRecord(EndBlockRecord.CreateEndBlock(ObjectKind.DatRecord));
                 blocks.Pop();
@@ -464,7 +464,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             //If there exists a StartBlock record with iObjectKind equal to 0x0007 without a matching EndBlock,
             //then a matching EndBlock record MUST exist immediately before the End record of the sequence of records
             //containing the StartBlock and conforming to the FRAME rule.
-            if (this.RuleName == RuleName_FRAME && sbr.ObjectKind == ObjectKind.Frame)
+            if (RuleName == RuleName_FRAME && sbr.ObjectKind == ObjectKind.Frame)
             {
                 rv.VisitRecord(EndBlockRecord.CreateEndBlock(ObjectKind.Frame));
                 blocks.Pop();
@@ -472,7 +472,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             }
             //If there exists a StartBlock record with iObjectKind equal to 0x0009 without a matching EndBlock,
             //then a matching EndBlock record MUST exist immediately before the End record of the current Legend.
-            if (this.RuleName == RuleName_LD && sbr.ObjectKind == ObjectKind.Legend)
+            if (RuleName == RuleName_LD && sbr.ObjectKind == ObjectKind.Legend)
             {
                 rv.VisitRecord(EndBlockRecord.CreateEndBlock(ObjectKind.Legend));
                 blocks.Pop();
@@ -482,7 +482,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             //then a matching EndBlock record MUST exist immediately before the End record of the current Begin
             //and End collection that exists immediately after LegendException in the sequence of records conforming
             //to the SERIESFORMAT rule.
-            if (this.RuleName == RuleName_LEGENDEXCEPTION && sbr.ObjectKind == ObjectKind.LegendException)
+            if (RuleName == RuleName_LEGENDEXCEPTION && sbr.ObjectKind == ObjectKind.LegendException)
             {
                 rv.VisitRecord(EndBlockRecord.CreateEndBlock(ObjectKind.LegendException));
                 blocks.Pop();
@@ -490,7 +490,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             }
             //If there exists a StartBlock record with iObjectKind equal to 0x000C without a matching EndBlock,
             //then a matching EndBlock record MUST exist immediately before the End record of the current Series.
-            if (this.RuleName == RuleName_SERIESFORMAT && sbr.ObjectKind == ObjectKind.Series)
+            if (RuleName == RuleName_SERIESFORMAT && sbr.ObjectKind == ObjectKind.Series)
             {
                 rv.VisitRecord(EndBlockRecord.CreateEndBlock(ObjectKind.Series));
                 blocks.Pop();
@@ -498,7 +498,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             }
             //If there exists a StartBlock record with iObjectKind equal to 0x000D without a matching EndBlock,
             //then a matching EndBlock record MUST exist immediately before the End record of the current Sheet.
-            if (this.RuleName == RuleName_CHARTFOMATS && sbr.ObjectKind == ObjectKind.Sheet)
+            if (RuleName == RuleName_CHARTFOMATS && sbr.ObjectKind == ObjectKind.Sheet)
             {
                 rv.VisitRecord(EndBlockRecord.CreateEndBlock(ObjectKind.Sheet));
                 blocks.Pop();
@@ -507,7 +507,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
 
             //If there exists a StartBlock record with iObjectKind equal to 0x000E without a matching EndBlock,
             //then a matching EndBlock record MUST exist immediately before the End record of the current SS production.
-            if (this.RuleName == RuleName_SS && sbr.ObjectKind == ObjectKind.DataFormatRecord)
+            if (RuleName == RuleName_SS && sbr.ObjectKind == ObjectKind.DataFormatRecord)
             {
                 rv.VisitRecord(EndBlockRecord.CreateEndBlock(ObjectKind.DataFormatRecord));
                 blocks.Pop();
@@ -516,7 +516,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates.Chart
             //If there exists a StartBlock record with iObjectKind equal to 0x000F without a matching EndBlock,
             //then a matching EndBlock record MUST exist immediately before the End record of the sequence of
             //records containing the StartBlock and conforming to the DROPBAR rule.
-            if (this.RuleName == RuleName_DROPBAR && sbr.ObjectKind == ObjectKind.DropBarRecord)
+            if (RuleName == RuleName_DROPBAR && sbr.ObjectKind == ObjectKind.DropBarRecord)
             {
                 rv.VisitRecord(EndBlockRecord.CreateEndBlock(ObjectKind.DropBarRecord));
                 blocks.Pop();

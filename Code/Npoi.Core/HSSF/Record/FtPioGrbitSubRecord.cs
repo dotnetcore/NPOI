@@ -176,7 +176,7 @@ namespace Npoi.Core.HSSF.Record
         public override object Clone()
         {
             FtPioGrbitSubRecord rec = new FtPioGrbitSubRecord();
-            rec.flags = this.flags;
+            rec.flags = flags;
             return rec;
         }
 
@@ -188,7 +188,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this.flags = value;
+                flags = value;
             }
         }
     }

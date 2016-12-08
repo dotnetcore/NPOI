@@ -154,9 +154,9 @@ namespace Npoi.Core.HSSF.Model
         /// </summary>
         /// <returns></returns>
         public InternalSheet CloneSheet() {
-            List<RecordBase> clonedRecords = new List<RecordBase>(this.records.Count);
-            for (int i = 0; i < this.records.Count; i++) {
-                RecordBase rb = (RecordBase)this.records[i];
+            List<RecordBase> clonedRecords = new List<RecordBase>(records.Count);
+            for (int i = 0; i < records.Count; i++) {
+                RecordBase rb = (RecordBase)records[i];
                 if (rb is RecordAggregate) {
                     ((RecordAggregate)rb).VisitContainedRecords(new RecordCloner(clonedRecords));
                     continue;
@@ -666,7 +666,7 @@ namespace Npoi.Core.HSSF.Model
             }
             set
             {
-                this.preoffset = value;
+                preoffset = value;
             }
         }
 
@@ -1368,7 +1368,7 @@ namespace Npoi.Core.HSSF.Model
         /// <param name="row">The row.</param>
         /// <param name="column">The column.</param>
         public void SetActiveCell(int row, int column) {
-            this.SetActiveCellRange(row, row, column, column);
+            SetActiveCellRange(row, row, column, column);
         }
 
         /// <summary>
@@ -1381,7 +1381,7 @@ namespace Npoi.Core.HSSF.Model
         public void SetActiveCellRange(int firstRow, int lastRow, int firstColumn, int lastColumn) {
             List<CellRangeAddress8Bit> cellranges = new List<CellRangeAddress8Bit>();
             cellranges.Add(new CellRangeAddress8Bit(firstRow, lastRow, firstColumn, lastColumn));
-            this.SetActiveCellRange(cellranges, 0, firstRow, firstColumn);
+            SetActiveCellRange(cellranges, 0, firstRow, firstColumn);
         }
 
         /// <summary>
@@ -1392,10 +1392,10 @@ namespace Npoi.Core.HSSF.Model
         /// <param name="activeRow">The active row in the active range</param>
         /// <param name="activeColumn">The active column in the active range</param>
         public void SetActiveCellRange(List<CellRangeAddress8Bit> cellranges, int activeRange, int activeRow, int activeColumn) {
-            this.selection.ActiveCellCol = activeColumn;
-            this.selection.ActiveCellRow = activeRow;
-            this.selection.ActiveCellRef = activeRange;
-            this.selection.CellReferences = cellranges.ToArray();
+            selection.ActiveCellCol = activeColumn;
+            selection.ActiveCellRow = activeRow;
+            selection.ActiveCellRef = activeRange;
+            selection.CellReferences = cellranges.ToArray();
         }
 
         /// <summary>
@@ -1719,7 +1719,7 @@ namespace Npoi.Core.HSSF.Model
             {
                 return selection;
             }
-            set { this.selection = value; }
+            set { selection = value; }
         }
 
         /**
@@ -1835,7 +1835,7 @@ namespace Npoi.Core.HSSF.Model
 
         public bool IsUncalced {
             get { return _isUncalced; }
-            set { this._isUncalced = value; }
+            set { _isUncalced = value; }
         }
 
         /// <summary>

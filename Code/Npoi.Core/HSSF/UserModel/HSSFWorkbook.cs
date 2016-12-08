@@ -374,7 +374,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         private void SetPropertiesFromWorkbook(InternalWorkbook book)
         {
-            this.workbook = book;
+            workbook = book;
 
             // none currently
         }
@@ -431,7 +431,7 @@ namespace Npoi.Core.HSSF.UserModel
         public Npoi.Core.SS.UserModel.MissingCellPolicy MissingCellPolicy
         {
             get { return missingCellPolicy; }
-            set { this.missingCellPolicy = value; }
+            set { missingCellPolicy = value; }
         }
 
         /// <summary>
@@ -442,7 +442,7 @@ namespace Npoi.Core.HSSF.UserModel
         public void SetSheetOrder(string sheetname, int pos)
         {
             int oldSheetIndex = GetSheetIndex(sheetname);
-            HSSFSheet sheet = (HSSFSheet)this.GetSheet(sheetname);
+            HSSFSheet sheet = (HSSFSheet)GetSheet(sheetname);
             _sheets.RemoveAt(oldSheetIndex);
             _sheets.Insert(pos, sheet);
             workbook.SetSheetOrder(sheetname, pos);
@@ -1155,7 +1155,7 @@ namespace Npoi.Core.HSSF.UserModel
                          FontSuperScript typeOffset, FontUnderlineType underline)
         {
             //        Console.WriteLine( boldWeight + ", " + color + ", " + fontHeight + ", " + name + ", " + italic + ", " + strikeout + ", " + typeOffset + ", " + Underline );
-            for (short i = 0; i <= this.NumberOfFonts; i++)
+            for (short i = 0; i <= NumberOfFonts; i++)
             {
                 // Remember - there is no 4!
                 if (i == 4)
@@ -1313,23 +1313,23 @@ namespace Npoi.Core.HSSF.UserModel
             byte[] bytes = GetBytes();
             POIFSFileSystem fs = new POIFSFileSystem();
 
-            if (this.DocumentSummaryInformation == null)
+            if (DocumentSummaryInformation == null)
             {
-                this.DocumentSummaryInformation = HPSF.PropertySetFactory.CreateDocumentSummaryInformation();
+                DocumentSummaryInformation = HPSF.PropertySetFactory.CreateDocumentSummaryInformation();
             }
-            Npoi.Core.HPSF.CustomProperties cp = this.DocumentSummaryInformation.CustomProperties;
+            Npoi.Core.HPSF.CustomProperties cp = DocumentSummaryInformation.CustomProperties;
             if (cp == null)
             {
                 cp = new Npoi.Core.HPSF.CustomProperties();
             }
             cp.Put("Generator", "NPOI");
             cp.Put("Generator Version", typeof(HSSFWorkbook).GetTypeInfo().Assembly.GetName().Version.ToString(3));
-            this.DocumentSummaryInformation.CustomProperties = cp;
-            if (this.SummaryInformation == null)
+            DocumentSummaryInformation.CustomProperties = cp;
+            if (SummaryInformation == null)
             {
-                this.SummaryInformation = HPSF.PropertySetFactory.CreateSummaryInformation();
+                SummaryInformation = HPSF.PropertySetFactory.CreateSummaryInformation();
             }
-            this.SummaryInformation.ApplicationName = "NPOI";
+            SummaryInformation.ApplicationName = "NPOI";
 
             // For tracking what we've written out, used if we're
             //  going to be preserving nodes
@@ -1352,12 +1352,12 @@ namespace Npoi.Core.HSSF.UserModel
 
                     // Copy over all the other nodes to our new poifs
                     EntryUtils.CopyNodes(
-                            new FilteringDirectoryNode(this.directory, excepts)
+                            new FilteringDirectoryNode(directory, excepts)
                             , new FilteringDirectoryNode(fs.Root, excepts)
                     );
                     // YK: preserve StorageClsid, it is important for embedded workbooks,
                     // see Bugzilla 47920
-                    fs.Root.StorageClsid = (this.directory.StorageClsid);
+                    fs.Root.StorageClsid = (directory.StorageClsid);
                 }
                 fs.WriteFileSystem(stream);
             }
@@ -2051,7 +2051,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </value>
         public bool IsWriteProtected
         {
-            get { return this.workbook.IsWriteProtected; }
+            get { return workbook.IsWriteProtected; }
         }
 
         /// <summary>
@@ -2062,7 +2062,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="username">The username.</param>
         public void WriteProtectWorkbook(string password, String username)
         {
-            this.workbook.WriteProtectWorkbook(password, username);
+            workbook.WriteProtectWorkbook(password, username);
         }
 
         /// <summary>
@@ -2070,7 +2070,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         public void UnwriteProtectWorkbook()
         {
-            this.workbook.UnwriteProtectWorkbook();
+            workbook.UnwriteProtectWorkbook();
         }
 
         /// <summary>
@@ -2208,41 +2208,41 @@ namespace Npoi.Core.HSSF.UserModel
 
         public void Insert(int index, ISheet item)
         {
-            this._sheets.Insert(index, (HSSFSheet)item);
+            _sheets.Insert(index, (HSSFSheet)item);
         }
 
         public void RemoveAt(int index)
         {
-            this._sheets.RemoveAt(index);
+            _sheets.RemoveAt(index);
         }
 
         public ISheet this[int index]
         {
             get
             {
-                return this.GetSheetAt(index);
+                return GetSheetAt(index);
             }
             set
             {
-                if (this._sheets[index] != null)
+                if (_sheets[index] != null)
                 {
-                    this._sheets[index] = (HSSFSheet)value;
+                    _sheets[index] = (HSSFSheet)value;
                 }
                 else
                 {
-                    this._sheets.Insert(index, (HSSFSheet)value);
+                    _sheets.Insert(index, (HSSFSheet)value);
                 }
             }
         }
 
         public void Add(ISheet item)
         {
-            this._sheets.Add((HSSFSheet)item);
+            _sheets.Add((HSSFSheet)item);
         }
 
         public void Clear()
         {
-            this._sheets.Clear();
+            _sheets.Clear();
         }
 
         public bool Contains(ISheet item)
@@ -2257,7 +2257,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         public int Count
         {
-            get { return this.NumberOfSheets; }
+            get { return NumberOfSheets; }
         }
 
         public bool IsReadOnly
@@ -2267,7 +2267,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         public bool Remove(ISheet item)
         {
-            return this._sheets.Remove((HSSFSheet)item);
+            return _sheets.Remove((HSSFSheet)item);
         }
     }
 }

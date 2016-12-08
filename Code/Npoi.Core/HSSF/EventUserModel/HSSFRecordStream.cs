@@ -65,7 +65,7 @@ namespace Npoi.Core.HSSF.EventUserModel
         private DrawingRecord lastDrawingRecord = new DrawingRecord();
 
         public HSSFRecordStream(RecordInputStream inp) {
-            this.in1 = inp;
+            in1 = inp;
         }
 
         /// <summary>

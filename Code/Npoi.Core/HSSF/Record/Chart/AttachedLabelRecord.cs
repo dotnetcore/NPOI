@@ -110,7 +110,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short FormatFlags
         {
             get { return field_1_formatFlags; }
-            set { this.field_1_formatFlags = value; }
+            set { field_1_formatFlags = value; }
         }
 
         /**

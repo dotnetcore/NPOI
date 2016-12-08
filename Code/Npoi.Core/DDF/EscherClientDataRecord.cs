@@ -109,7 +109,7 @@ namespace Npoi.Core.DDF
             String extraData;
             using (MemoryStream b = new MemoryStream()) {
                 try {
-                    HexDump.Dump(this.remainingData, 0, b, 0);
+                    HexDump.Dump(remainingData, 0, b, 0);
                     //extraData = b.ToString();
                     extraData = Encoding.UTF8.GetString(b.ToArray());
                 }
@@ -128,7 +128,7 @@ namespace Npoi.Core.DDF
             String extraData;
             using (MemoryStream b = new MemoryStream()) {
                 try {
-                    HexDump.Dump(this.remainingData, 0, b, 0);
+                    HexDump.Dump(remainingData, 0, b, 0);
                     extraData = HexDump.ToHex(b.ToArray());
                 }
                 catch (Exception) {
@@ -153,7 +153,7 @@ namespace Npoi.Core.DDF
 
         public byte[] RemainingData {
             get { return remainingData; }
-            set { this.remainingData = value; }
+            set { remainingData = value; }
         }
     }
 }

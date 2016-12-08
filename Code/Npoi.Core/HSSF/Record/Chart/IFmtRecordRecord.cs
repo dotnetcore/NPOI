@@ -102,7 +102,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short FormatIndex
         {
             get { return field_1_formatIndex; }
-            set { this.field_1_formatIndex = value; }
+            set { field_1_formatIndex = value; }
         }
     }
 }

@@ -154,16 +154,16 @@ namespace Npoi.Core.HSSF.Record.Chart
         public override object Clone()
         {
             CrtLayout12Record record = new CrtLayout12Record();
-            record.AutoLayoutType = this.AutoLayoutType;
-            record.CheckSum = this.CheckSum;
-            record.DX = this.DX;
-            record.DY = this.DY;
-            record.HeightMode = this.HeightMode;
-            record.WidthMode = this.WidthMode;
-            record.X = this.X;
-            record.XMode = this.XMode;
-            record.Y = this.Y;
-            record.YMode = this.YMode;
+            record.AutoLayoutType = AutoLayoutType;
+            record.CheckSum = CheckSum;
+            record.DX = DX;
+            record.DY = DY;
+            record.HeightMode = HeightMode;
+            record.WidthMode = WidthMode;
+            record.X = X;
+            record.XMode = XMode;
+            record.Y = Y;
+            record.YMode = YMode;
             return record;
         }
 

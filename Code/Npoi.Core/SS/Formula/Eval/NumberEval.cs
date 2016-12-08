@@ -43,17 +43,17 @@ namespace Npoi.Core.SS.Formula.Eval
         {
             if (ptg is IntPtg)
             {
-                this._value = ((IntPtg)ptg).Value;
+                _value = ((IntPtg)ptg).Value;
             }
             else if (ptg is NumberPtg)
             {
-                this._value = ((NumberPtg)ptg).Value;
+                _value = ((NumberPtg)ptg).Value;
             }
         }
 
         public NumberEval(double value)
         {
-            this._value = value;
+            _value = value;
         }
 
         public double NumberValue
@@ -92,7 +92,7 @@ namespace Npoi.Core.SS.Formula.Eval
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(GetType().Name).Append(" [");
-            sb.Append(this.StringValue);
+            sb.Append(StringValue);
             sb.Append("]");
             return sb.ToString();
         }

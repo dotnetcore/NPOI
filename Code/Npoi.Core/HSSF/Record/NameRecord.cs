@@ -398,7 +398,7 @@ namespace Npoi.Core.HSSF.Record
 
         public bool IsBuiltInName
         {
-            get { return ((this.OptionFlag & (short)Option.OPT_BUILTIN) != 0); }
+            get { return ((OptionFlag & (short)Option.OPT_BUILTIN) != 0); }
         }
 
         /** Gets the name
@@ -409,7 +409,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get
             {
-                return this.IsBuiltInName ? this.TranslateBuiltInName(this.BuiltInName) : field_12_name_text;
+                return IsBuiltInName ? TranslateBuiltInName(BuiltInName) : field_12_name_text;
             }
             set
             {
@@ -424,7 +424,7 @@ namespace Npoi.Core.HSSF.Record
 
         public byte BuiltInName
         {
-            get { return this.field_12_built_in_code; }
+            get { return field_12_built_in_code; }
         }
 
         /** Gets the definition, reference (Formula)

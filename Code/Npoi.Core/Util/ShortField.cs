@@ -60,7 +60,7 @@ namespace Npoi.Core.Util
         /// <exception cref="IndexOutOfRangeException">if offset is negative</exception>
         public ShortField(int offset, short value) : this(offset)
         {
-            this._value = value;
+            _value = value;
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace Npoi.Core.Util
         public short Value
         {
             get { return _value; }
-            set { this._value = value; }
+            set { _value = value; }
         }
 
         /// <summary>

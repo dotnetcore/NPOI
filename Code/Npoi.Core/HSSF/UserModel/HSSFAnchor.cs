@@ -44,10 +44,10 @@ namespace Npoi.Core.HSSF.UserModel
         public HSSFAnchor(int dx1, int dy1, int dx2, int dy2)
         {
             CreateEscherAnchor();
-            this.Dx1 = dx1;
-            this.Dy1 = dy1;
-            this.Dx2 = dx2;
-            this.Dy2 = dy2;
+            Dx1 = dx1;
+            Dy1 = dy1;
+            Dx2 = dx2;
+            Dy2 = dy2;
         }
 
         public static HSSFAnchor CreateAnchorFromEscher(EscherContainerRecord container)

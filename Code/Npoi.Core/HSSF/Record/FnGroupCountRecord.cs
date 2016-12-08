@@ -73,7 +73,7 @@ namespace Npoi.Core.HSSF.Record
             StringBuilder buffer = new StringBuilder();
 
             buffer.Append("[FNGROUPCOUNT]\n");
-            buffer.Append("    .count            = ").Append(this.Count)
+            buffer.Append("    .count            = ").Append(Count)
                 .Append("\n");
             buffer.Append("[/FNGROUPCOUNT]\n");
             return buffer.ToString();

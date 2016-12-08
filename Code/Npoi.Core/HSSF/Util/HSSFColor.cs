@@ -199,7 +199,7 @@ namespace Npoi.Core.HSSF.Util
 
         public byte[] RGB
         {
-            get { return this.GetTriplet(); }
+            get { return GetTriplet(); }
         }
 
         /**

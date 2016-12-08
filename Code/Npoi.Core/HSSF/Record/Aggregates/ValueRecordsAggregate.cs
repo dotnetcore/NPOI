@@ -407,16 +407,16 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
             public MyEnumerator(ref CellValueRecordInterface[][] _records)
             {
-                this.records = _records;
-                this.nextRow = 0;
-                this.lastRow = _records.Length - 1;
+                records = _records;
+                nextRow = 0;
+                lastRow = _records.Length - 1;
                 //FindNext();
             }
 
             public MyEnumerator(ref CellValueRecordInterface[][] _records, int firstRow, int lastRow)
             {
-                this.records = _records;
-                this.nextRow = firstRow;
+                records = _records;
+                nextRow = firstRow;
                 this.lastRow = lastRow;
                 //FindNext();
             }
@@ -431,7 +431,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             {
                 get
                 {
-                    object o = this.records[nextRow][nextColumn];
+                    object o = records[nextRow][nextColumn];
 
                     return o;
                 }

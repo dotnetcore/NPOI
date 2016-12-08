@@ -247,7 +247,7 @@ namespace Npoi.Core.HSSF.Extractor
                 }
 
                 ris = null;
-                this.Close();
+                Close();
                 return text.ToString();
             }
         }

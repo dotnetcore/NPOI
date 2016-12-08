@@ -61,7 +61,7 @@ namespace Npoi.Core.POIFS.EventFileSystem
         {
             get
             {
-                return new DocumentInputStream(this.document);
+                return new DocumentInputStream(document);
             }
         }
 

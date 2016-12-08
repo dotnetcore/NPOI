@@ -123,7 +123,7 @@ namespace Npoi.Core.DDF
         public override String ToString() {
             String nl = Environment.NewLine;
 
-            return this.GetType().Name + ":" + nl +
+            return GetType().Name + ":" + nl +
                     "  RecordId: 0x" + HexDump.ToHex(RECORD_ID) + nl +
                     "  Version: 0x" + HexDump.ToHex(Version) + nl +
                     "  ShapeType: 0x" + HexDump.ToHex(ShapeType) + nl +
@@ -174,7 +174,7 @@ namespace Npoi.Core.DDF
         /// <value>The shape id.</value>
         public int ShapeId {
             get { return field_1_shapeId; }
-            set { this.field_1_shapeId = value; }
+            set { field_1_shapeId = value; }
         }
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace Npoi.Core.DDF
         /// <value>The flags.</value>
         public int Flags {
             get { return field_2_flags; }
-            set { this.field_2_flags = value; }
+            set { field_2_flags = value; }
         }
 
         /// <summary>

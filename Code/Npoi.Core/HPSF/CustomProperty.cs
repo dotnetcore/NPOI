@@ -46,7 +46,7 @@ namespace Npoi.Core.HPSF
         /// Initializes a new instance of the <see cref="CustomProperty"/> class.
         /// </summary>
         public CustomProperty() {
-            this.name = null;
+            name = null;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Npoi.Core.HPSF
         /// <value>the property's name.</value>
         public String Name {
             get { return name; }
-            set { this.name = value; }
+            set { name = value; }
         }
 
         /// <summary>
@@ -89,15 +89,15 @@ namespace Npoi.Core.HPSF
         public bool EqualsContents(object o) {
             CustomProperty c = (CustomProperty)o;
             String name1 = c.Name;
-            String name2 = this.Name;
+            String name2 = Name;
             bool equalNames = true;
             if (name1 == null)
                 equalNames = name2 == null;
             else
                 equalNames = name1.Equals(name2);
-            return equalNames && c.ID == this.ID
-                    && c.Type == this.Type
-                    && c.Value.Equals(this.Value);
+            return equalNames && c.ID == ID
+                    && c.Type == Type
+                    && c.Value.Equals(Value);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Npoi.Core.HPSF
         /// <returns></returns>
         /// @see object#GetHashCode()
         public override int GetHashCode() {
-            return (int)this.ID;
+            return (int)ID;
         }
     }
 }

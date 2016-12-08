@@ -53,7 +53,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="workbook">The workbook.</param>
         public HSSFCellStyle(short index, ExtendedFormatRecord rec, Npoi.Core.HSSF.Model.InternalWorkbook workbook)
         {
-            this._workbook = workbook;
+            _workbook = workbook;
             this.index = index;
             _format = rec;
         }
@@ -538,7 +538,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             if (source is HSSFCellStyle)
             {
-                this.CloneStyleFrom((HSSFCellStyle)source);
+                CloneStyleFrom((HSSFCellStyle)source);
             }
             else
             {
@@ -575,7 +575,7 @@ namespace Npoi.Core.HSSF.UserModel
                 short fmt = (short)_workbook.CreateFormat(
                         source.GetDataFormatString()
                 );
-                this.DataFormat = (fmt);
+                DataFormat = (fmt);
 
                 // Finally we need to clone the font,
                 //  and update the format record for this
@@ -589,7 +589,7 @@ namespace Npoi.Core.HSSF.UserModel
                 HSSFFont font = new HSSFFont(
                         (short)_workbook.GetFontIndex(fr), fr
                 );
-                this.SetFont(font);
+                SetFont(font);
             }
         }
 

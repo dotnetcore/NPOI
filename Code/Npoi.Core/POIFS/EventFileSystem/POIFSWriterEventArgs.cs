@@ -64,7 +64,7 @@ namespace Npoi.Core.POIFS.EventFileSystem
         {
             get
             {
-                return this.limit;
+                return limit;
             }
         }
 
@@ -76,7 +76,7 @@ namespace Npoi.Core.POIFS.EventFileSystem
         {
             get
             {
-                return this.documentName;
+                return documentName;
             }
         }
 
@@ -88,7 +88,7 @@ namespace Npoi.Core.POIFS.EventFileSystem
         {
             get
             {
-                return this.path;
+                return path;
             }
         }
 
@@ -100,7 +100,7 @@ namespace Npoi.Core.POIFS.EventFileSystem
         {
             get
             {
-                return this.stream;
+                return stream;
             }
         }
     }

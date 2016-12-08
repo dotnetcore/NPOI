@@ -69,7 +69,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <value>The path.</value>
         public string Path
         {
-            get { return this.path.ToString(); }
+            get { return path.ToString(); }
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <value>The name.</value>
         public string Name
         {
-            get { return this.name; }
+            get { return name; }
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             bool rval = false;
 
-            if ((o != null) && (o.GetType() == this.GetType()))
+            if ((o != null) && (o.GetType() == GetType()))
             {
                 if (this == o)
                 {
@@ -101,8 +101,8 @@ namespace Npoi.Core.POIFS.FileSystem
                 {
                     DocumentDescriptor descriptor = (DocumentDescriptor)o;
 
-                    rval = this.path.Equals(descriptor.path)
-                           && this.name.Equals(descriptor.name);
+                    rval = path.Equals(descriptor.path)
+                           && name.Equals(descriptor.name);
                 }
             }
             return rval;

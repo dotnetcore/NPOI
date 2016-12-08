@@ -45,7 +45,7 @@ namespace Npoi.Core.SS.Format
 
             public PartHandler(int numPlace)
             {
-                this.numplace = numPlace;
+                numplace = numPlace;
             }
 
             public String HandlePart(Match m, String part,

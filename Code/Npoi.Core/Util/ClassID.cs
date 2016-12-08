@@ -119,8 +119,8 @@ namespace Npoi.Core.Util
             get { return bytes; }
             set
             {
-                for (int i = 0; i < this.bytes.Length; i++)
-                    this.bytes[i] = value[i];
+                for (int i = 0; i < bytes.Length; i++)
+                    bytes[i] = value[i];
             }
         }
 

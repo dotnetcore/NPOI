@@ -109,7 +109,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short FontIndex
         {
             get { return field_1_fontIndex; }
-            set { this.field_1_fontIndex = value; }
+            set { field_1_fontIndex = value; }
         }
     }
 }

@@ -470,7 +470,7 @@ namespace Npoi.Core.SS.Util
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder(64);
-            sb.Append(this.GetType().Name).Append(" [");
+            sb.Append(GetType().Name).Append(" [");
             sb.Append(FormatAsString());
             sb.Append("]");
             return sb.ToString();

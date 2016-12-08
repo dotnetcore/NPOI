@@ -42,7 +42,7 @@ namespace Npoi.Core.SS.Formula.Functions
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval real_num, ValueEval i_num)
         {
-            return this.Evaluate(srcRowIndex, srcColumnIndex, real_num, i_num, new StringEval(DEFAULT_SUFFIX));
+            return Evaluate(srcRowIndex, srcColumnIndex, real_num, i_num, new StringEval(DEFAULT_SUFFIX));
         }
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval real_num, ValueEval i_num, ValueEval suffix)

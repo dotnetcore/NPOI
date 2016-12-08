@@ -95,7 +95,7 @@ namespace Npoi.Core.Util
         {
             get
             {
-                return this._is.Length;
+                return _is.Length;
             }
         }
 
@@ -103,11 +103,11 @@ namespace Npoi.Core.Util
         {
             get
             {
-                return this._is.Position;
+                return _is.Position;
             }
             set
             {
-                this._is.Position = value;
+                _is.Position = value;
             }
         }
 

@@ -86,7 +86,7 @@ namespace Npoi.Core.HSSF.Record
                 {
                     throw new ArgumentException("data must not be null");
                 }
-                this.recordData = value;
+                recordData = value;
             }
         }
 

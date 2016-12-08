@@ -167,7 +167,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_3_heightBasis = value;
+                field_3_heightBasis = value;
             }
         }
 
@@ -199,7 +199,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_5_indexToFontTable = value;
+                field_5_indexToFontTable = value;
             }
         }
     }

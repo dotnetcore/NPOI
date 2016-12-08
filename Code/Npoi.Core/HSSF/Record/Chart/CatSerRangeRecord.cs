@@ -150,7 +150,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_1_catCross = value;
+                field_1_catCross = value;
             }
         }
 
@@ -171,7 +171,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_2_catLabel = value;
+                field_2_catLabel = value;
             }
         }
 
@@ -193,7 +193,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_3_catMark = value;
+                field_3_catMark = value;
             }
         }
 
@@ -204,7 +204,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short Options
         {
             get { return field_4_options; }
-            set { this.field_4_options = value; }
+            set { field_4_options = value; }
         }
 
         /*

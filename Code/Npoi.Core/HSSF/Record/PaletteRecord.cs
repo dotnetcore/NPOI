@@ -250,9 +250,9 @@ namespace Npoi.Core.HSSF.Record
 
         public PColor(int red, int green, int blue)
         {
-            this._red = (byte)red;
-            this._green = (byte)green;
-            this._blue = (byte)blue;
+            _red = (byte)red;
+            _green = (byte)green;
+            _blue = (byte)blue;
         }
 
         public PColor(RecordInputStream in1)

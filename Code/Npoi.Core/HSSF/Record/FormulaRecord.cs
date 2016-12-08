@@ -465,8 +465,8 @@ namespace Npoi.Core.HSSF.Record
             }
             CellValueRecordInterface loc = (CellValueRecordInterface)obj;
 
-            if ((this.Row == loc.Row)
-                    && (this.Column == loc.Column))
+            if ((Row == loc.Row)
+                    && (Column == loc.Column))
             {
                 return true;
             }

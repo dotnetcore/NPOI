@@ -43,8 +43,8 @@ namespace Npoi.Core.SS.Formula.PTG
 
         public ExpPtg(int firstRow, int firstCol)
         {
-            this.field_1_first_row = (short)firstRow;
-            this.field_2_first_col = (short)firstCol;
+            field_1_first_row = (short)firstRow;
+            field_2_first_col = (short)firstCol;
         }
 
         public override void Write(ILittleEndianOutput out1)

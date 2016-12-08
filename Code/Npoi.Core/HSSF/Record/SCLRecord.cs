@@ -111,7 +111,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this.field_1_numerator = value;
+                field_1_numerator = value;
             }
         }
 
@@ -127,7 +127,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this.field_2_denominator = value;
+                field_2_denominator = value;
             }
         }
     }

@@ -30,7 +30,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         public HSSFChildAnchor(EscherChildAnchorRecord escherChildAnchorRecord)
         {
-            this._escherChildAnchor = escherChildAnchorRecord;
+            _escherChildAnchor = escherChildAnchorRecord;
         }
 
         public HSSFChildAnchor()
@@ -68,10 +68,10 @@ namespace Npoi.Core.HSSF.UserModel
 
         public void SetAnchor(int dx1, int dy1, int dx2, int dy2)
         {
-            this.Dx1 = Math.Min(dx1, dx2);
-            this.Dy1 = Math.Min(dy1, dy2);
-            this.Dx2 = Math.Max(dx1, dx2);
-            this.Dy2 = Math.Max(dy1, dy2);
+            Dx1 = Math.Min(dx1, dx2);
+            Dy1 = Math.Min(dy1, dy2);
+            Dx2 = Math.Max(dx1, dx2);
+            Dy2 = Math.Max(dy1, dy2);
         }
 
         public override bool IsHorizontallyFlipped

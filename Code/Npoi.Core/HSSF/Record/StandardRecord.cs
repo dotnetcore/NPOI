@@ -51,12 +51,12 @@ namespace Npoi.Core.HSSF.Record
             int dataSize = DataSize;
             int recSize = 4 + dataSize;
             LittleEndianByteArrayOutputStream out1 = new LittleEndianByteArrayOutputStream(data, offset, recSize);
-            out1.WriteShort(this.Sid);
+            out1.WriteShort(Sid);
             out1.WriteShort(dataSize);
             Serialize(out1);
             if (out1.WriteIndex - offset != recSize)
             {
-                throw new InvalidOperationException("Error in serialization of (" + this.GetType().Name + "): "
+                throw new InvalidOperationException("Error in serialization of (" + GetType().Name + "): "
                         + "Incorrect number of bytes written - expected "
                         + recSize + " but got " + (out1.WriteIndex - offset));
             }

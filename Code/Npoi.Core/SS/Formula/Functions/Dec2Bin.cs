@@ -131,7 +131,7 @@ namespace Npoi.Core.SS.Formula.Functions
 
         public override ValueEval Evaluate(int srcRowIndex, int srcColumnIndex, ValueEval numberVE)
         {
-            return this.Evaluate(srcRowIndex, srcColumnIndex, numberVE, null);
+            return Evaluate(srcRowIndex, srcColumnIndex, numberVE, null);
         }
 
         public ValueEval Evaluate(ValueEval[] args, OperationEvaluationContext ec)

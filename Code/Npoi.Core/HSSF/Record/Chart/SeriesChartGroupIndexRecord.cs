@@ -101,7 +101,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short ChartGroupIndex
         {
             get { return field_1_chartGroupIndex; }
-            set { this.field_1_chartGroupIndex = value; }
+            set { field_1_chartGroupIndex = value; }
         }
     }
 }

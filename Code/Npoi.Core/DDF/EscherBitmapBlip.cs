@@ -96,7 +96,7 @@ namespace Npoi.Core.DDF
         /// <value>The UID.</value>
         public byte[] UID {
             get { return field_1_UID; }
-            set { this.field_1_UID = value; }
+            set { field_1_UID = value; }
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Npoi.Core.DDF
         /// <value>The marker.</value>
         public byte Marker {
             get { return field_2_marker; }
-            set { this.field_2_marker = value; }
+            set { field_2_marker = value; }
         }
 
         /// <summary>
@@ -118,13 +118,13 @@ namespace Npoi.Core.DDF
             String extraData;
             using (MemoryStream b = new MemoryStream()) {
                 try {
-                    HexDump.Dump(this.field_pictureData, 0, b, 0);
+                    HexDump.Dump(field_pictureData, 0, b, 0);
                     extraData = HexDump.ToHex(b.ToArray());
                 }
                 catch (Exception e) {
                     extraData = e.ToString();
                 }
-                return this.GetType().Name + ":" + nl +
+                return GetType().Name + ":" + nl +
                         "  RecordId: 0x" + HexDump.ToHex(RecordId) + nl +
                         "  Version: 0x" + HexDump.ToHex(Version) + nl +
                         "  Instance: 0x" + HexDump.ToHex(Instance) + nl +
@@ -139,7 +139,7 @@ namespace Npoi.Core.DDF
             //MemoryStream b = new MemoryStream();
             try {
                 //HexDump.Dump(this.field_pictureData, 0, b, 0);
-                extraData = HexDump.ToHex(this.field_pictureData);
+                extraData = HexDump.ToHex(field_pictureData);
             }
             catch (Exception e) {
                 extraData = e.ToString();

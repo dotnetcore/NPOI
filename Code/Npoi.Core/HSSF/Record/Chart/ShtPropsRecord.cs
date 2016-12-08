@@ -127,7 +127,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short Flags
         {
             get { return field_1_flags; }
-            set { this.field_1_flags = value; }
+            set { field_1_flags = value; }
         }
 
         /**
@@ -148,7 +148,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public byte Blank
         {
             get { return field_2_mdBlank; }
-            set { this.field_2_mdBlank = value; }
+            set { field_2_mdBlank = value; }
         }
 
         /// <summary>

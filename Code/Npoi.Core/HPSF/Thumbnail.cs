@@ -145,7 +145,7 @@ namespace Npoi.Core.HPSF
             {
                 return thumbnailData;
             }
-            set { this.thumbnailData = value; }
+            set { thumbnailData = value; }
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace Npoi.Core.HPSF
         public long ClipboardFormatTag {
             get
             {
-                long clipboardFormatTag = LittleEndian.GetInt(this.ThumbnailData,
+                long clipboardFormatTag = LittleEndian.GetInt(ThumbnailData,
                                                                OFFSet_CFTAG);
                 return clipboardFormatTag;
             }
@@ -188,7 +188,7 @@ namespace Npoi.Core.HPSF
                 throw new HPSFException("Clipboard Format Tag of Thumbnail must " +
                                         "be CFTAG_WINDOWS.");
 
-            return LittleEndian.GetInt(this.ThumbnailData, OFFSet_CF);
+            return LittleEndian.GetInt(ThumbnailData, OFFSet_CF);
         }
 
         /// <summary>
@@ -214,7 +214,7 @@ namespace Npoi.Core.HPSF
                 throw new HPSFException("Clipboard Format of Thumbnail must " +
                                         "be CF_METAFILEPICT.");
             else {
-                byte[] thumbnail = this.ThumbnailData;
+                byte[] thumbnail = ThumbnailData;
                 int wmfImageLength = thumbnail.Length - OFFSet_WMFDATA;
                 byte[] wmfImage = new byte[wmfImageLength];
                 System.Array.Copy(thumbnail,

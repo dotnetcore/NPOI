@@ -90,7 +90,7 @@ namespace Npoi.Core.HSSF.Record
                 field_3_text = value;
 
                 // Check it'll fit into the space in the record
-                if (this.DataSize > RecordInputStream.MAX_RECORD_DATA_SIZE)
+                if (DataSize > RecordInputStream.MAX_RECORD_DATA_SIZE)
                 {
                     throw new ArgumentException("Header/Footer string too long (limit is "
                             + RecordInputStream.MAX_RECORD_DATA_SIZE + " bytes)");

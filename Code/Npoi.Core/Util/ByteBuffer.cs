@@ -15,10 +15,10 @@ namespace Npoi.Core.Util
         {
             if (cap < 0)
                 throw new ArgumentException();
-            this.capacity = cap;
+            capacity = cap;
 
-            this.Limit = lim;
-            this.Position = pos;
+            Limit = lim;
+            Position = pos;
             if (mark >= 0)
             {
                 if (mark > pos)
@@ -120,7 +120,7 @@ namespace Npoi.Core.Util
 
         public ByteBuffer Slice()  //This is not correct! Leon
         {
-            return new ByteBuffer(buffer, -1, 0, this.Remain, this.Remain, this.Position + offset);
+            return new ByteBuffer(buffer, -1, 0, Remain, Remain, Position + offset);
         }
 
         public ByteBuffer Duplicate()
@@ -212,8 +212,8 @@ namespace Npoi.Core.Util
 
             //for (int i = offset; i < offset + length; i++)
             //    dst[i] = Read();
-            System.Array.Copy(buffer, Index(this.position), dst, offset, length);
-            this.Position = Position + length;
+            System.Array.Copy(buffer, Index(position), dst, offset, length);
+            Position = Position + length;
             return this;
         }
 
@@ -230,9 +230,9 @@ namespace Npoi.Core.Util
             if (length > Remain)
                 throw new IndexOutOfRangeException();
 
-            System.Array.Copy(src, offset, buffer, Index(this.Position), length);
+            System.Array.Copy(src, offset, buffer, Index(Position), length);
 
-            this.Position = this.Position + length;
+            Position = Position + length;
 
             return this;
         }
@@ -243,7 +243,7 @@ namespace Npoi.Core.Util
                 throw new ArgumentException();
             int n = src.Remain;
 
-            if (n > this.Remain)
+            if (n > Remain)
                 throw new IndexOutOfRangeException();
 
             for (int i = 0; i < n; i++)

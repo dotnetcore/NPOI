@@ -43,7 +43,7 @@ namespace Npoi.Core.SS.Formula.Atp
         private WorkdayFunction(ArgumentsEvaluator anEvaluator)
         {
             // enforces singleton
-            this.evaluator = anEvaluator;
+            evaluator = anEvaluator;
         }
 
         /**
@@ -68,10 +68,10 @@ namespace Npoi.Core.SS.Formula.Atp
             double[] holidays;
             try
             {
-                start = this.evaluator.EvaluateDateArg(args[0], srcCellRow, srcCellCol);
-                days = (int)Math.Floor(this.evaluator.EvaluateNumberArg(args[1], srcCellRow, srcCellCol));
+                start = evaluator.EvaluateDateArg(args[0], srcCellRow, srcCellCol);
+                days = (int)Math.Floor(evaluator.EvaluateNumberArg(args[1], srcCellRow, srcCellCol));
                 ValueEval holidaysCell = args.Length == 3 ? args[2] : null;
-                holidays = this.evaluator.EvaluateDatesArg(holidaysCell, srcCellRow, srcCellCol);
+                holidays = evaluator.EvaluateDatesArg(holidaysCell, srcCellRow, srcCellCol);
                 return new NumberEval(DateUtil.GetExcelDate(WorkdayCalculator.instance.CalculateWorkdays(start, days, holidays)));
             }
             catch (EvaluationException)

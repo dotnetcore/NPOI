@@ -73,7 +73,7 @@ namespace Npoi.Core.SS.Formula
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder(64);
-            sb.Append(this.GetType().Name);
+            sb.Append(GetType().Name);
             sb.Append(" [");
             AsFormulaString(sb);
             sb.Append("]");

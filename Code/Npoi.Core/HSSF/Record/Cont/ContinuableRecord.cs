@@ -67,7 +67,7 @@ namespace Npoi.Core.HSSF.Record.Cont
         public override int Serialize(int offset, byte[] data)
         {
             ILittleEndianOutput leo = new LittleEndianByteArrayOutputStream(data, offset);
-            ContinuableRecordOutput out1 = new ContinuableRecordOutput(leo, this.Sid);
+            ContinuableRecordOutput out1 = new ContinuableRecordOutput(leo, Sid);
             Serialize(out1);
             out1.Terminate();
             return out1.TotalSize;

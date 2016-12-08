@@ -131,7 +131,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_1_anchorId = value;
+                field_1_anchorId = value;
             }
         }
 

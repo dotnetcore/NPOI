@@ -46,14 +46,14 @@ namespace Npoi.Core.SS.Formula.PTG
             : base(c)
         {
             this.externalWorkbookNumber = externalWorkbookNumber;
-            this.firstSheetName = sheetName.SheetId.Name;
+            firstSheetName = sheetName.SheetId.Name;
             if (sheetName is SheetRangeIdentifier)
             {
-                this.lastSheetName = ((SheetRangeIdentifier)sheetName).LastSheetIdentifier.Name;
+                lastSheetName = ((SheetRangeIdentifier)sheetName).LastSheetIdentifier.Name;
             }
             else
             {
-                this.lastSheetName = null;
+                lastSheetName = null;
             }
         }
 
@@ -70,7 +70,7 @@ namespace Npoi.Core.SS.Formula.PTG
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(this.GetType().Name);
+            sb.Append(GetType().Name);
             sb.Append(" [");
             if (externalWorkbookNumber >= 0)
             {

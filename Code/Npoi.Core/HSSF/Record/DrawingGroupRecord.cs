@@ -87,7 +87,7 @@ namespace Npoi.Core.HSSF.Record
 
         public override int RecordSize
         {
-            get { return GrossSizeFromDataSize(this.RawDataSize); }
+            get { return GrossSizeFromDataSize(RawDataSize); }
         }
 
         public int RawDataSize

@@ -50,7 +50,7 @@ namespace Npoi.Core.Util
         /// </param>
         public BitField(int mask)
         {
-            this._mask = mask;
+            _mask = mask;
             int num = 0;
             int num2 = mask;
             if (num2 != 0)
@@ -61,7 +61,7 @@ namespace Npoi.Core.Util
                     num2 = num2 >> 1;
                 }
             }
-            this._shift_count = num;
+            _shift_count = num;
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Npoi.Core.Util
         /// <returns>the value of holder with the specified bits cleared (set to 0)</returns>
         public int Clear(int holder)
         {
-            return (holder & ~this._mask);
+            return (holder & ~_mask);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Npoi.Core.Util
         /// <returns>the value of holder with the specified bits cleared (set to 0)</returns>
         public short ClearShort(short holder)
         {
-            return (short)this.Clear(holder);
+            return (short)Clear(holder);
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Npoi.Core.Util
         /// <returns>the selected bits, shifted right appropriately</returns>
         public int GetRawValue(int holder)
         {
-            return (holder & this._mask);
+            return (holder & _mask);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Npoi.Core.Util
         /// <returns>the selected bits</returns>
         public short GetShortRawValue(short holder)
         {
-            return (short)this.GetRawValue(holder);
+            return (short)GetRawValue(holder);
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Npoi.Core.Util
         /// <returns>the selected bits, shifted right appropriately</returns>
         public short GetShortValue(short holder)
         {
-            return (short)this.GetValue(holder);
+            return (short)GetValue(holder);
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace Npoi.Core.Util
         /// <returns>the selected bits, shifted right appropriately</returns>
         public int GetValue(int holder)
         {
-            return Operator.UnsignedRightShift(this.GetRawValue(holder), this._shift_count);
+            return Operator.UnsignedRightShift(GetRawValue(holder), _shift_count);
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace Npoi.Core.Util
         /// </returns>
         public bool IsAllSet(int holder)
         {
-            return ((holder & this._mask) == this._mask);
+            return ((holder & _mask) == _mask);
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace Npoi.Core.Util
         /// </returns>
         public bool IsSet(int holder)
         {
-            return ((holder & this._mask) != 0);
+            return ((holder & _mask) != 0);
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace Npoi.Core.Util
         /// <returns>the value of holder with the specified bits set to 1</returns>
         public int Set(int holder)
         {
-            return (holder | this._mask);
+            return (holder | _mask);
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace Npoi.Core.Util
         /// <returns>the value of holder with the specified bits set or cleared</returns>
         public int SetBoolean(int holder, bool flag)
         {
-            return (!flag ? this.Clear(holder) : this.Set(holder));
+            return (!flag ? Clear(holder) : Set(holder));
         }
 
         /// <summary>
@@ -205,7 +205,7 @@ namespace Npoi.Core.Util
         /// <returns>the value of holder with the specified bits set to 1</returns>
         public short SetShort(short holder)
         {
-            return (short)this.Set(holder);
+            return (short)Set(holder);
         }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace Npoi.Core.Util
         /// <returns>the value of holder with the specified bits set or cleared</returns>
         public short SetShortBoolean(short holder, bool flag)
         {
-            return (!flag ? this.ClearShort(holder) : this.SetShort(holder));
+            return (!flag ? ClearShort(holder) : SetShort(holder));
         }
 
         /// <summary>
@@ -231,7 +231,7 @@ namespace Npoi.Core.Util
         /// <returns>the selected bits, shifted right appropriately</returns>
         public short SetShortValue(short holder, short value)
         {
-            return (short)this.SetValue(holder, value);
+            return (short)SetValue(holder, value);
         }
 
         /// <summary>
@@ -242,7 +242,7 @@ namespace Npoi.Core.Util
         /// <returns></returns>
         public int SetValue(int holder, int value)
         {
-            return ((holder & ~this._mask) | ((value << this._shift_count) & this._mask));
+            return ((holder & ~_mask) | ((value << _shift_count) & _mask));
         }
 
         /// <summary>
@@ -253,7 +253,7 @@ namespace Npoi.Core.Util
         /// <returns>the value of holder with the specified bits set or cleared</returns>
         public byte SetByteBoolean(byte holder, bool flag)
         {
-            return (!flag ? this.ClearByte(holder) : this.SetByte(holder));
+            return (!flag ? ClearByte(holder) : SetByte(holder));
         }
 
         /// <summary>
@@ -263,7 +263,7 @@ namespace Npoi.Core.Util
         /// <returns>the value of holder with the specified bits cleared</returns>
         public byte ClearByte(byte holder)
         {
-            return (byte)this.Clear(holder);
+            return (byte)Clear(holder);
         }
 
         /// <summary>
@@ -273,7 +273,7 @@ namespace Npoi.Core.Util
         /// <returns>the value of holder with the specified bits set to 1</returns>
         public byte SetByte(byte holder)
         {
-            return (byte)this.Set(holder);
+            return (byte)Set(holder);
         }
     }
 }

@@ -144,7 +144,7 @@ namespace Npoi.Core.SS.UserModel
         private FormulaError(int type, String repr)
         {
             this.type = (byte)type;
-            this.longType = type;
+            longType = type;
             this.repr = repr;
             //if(imap==null)
             //    imap = new Dictionary<Byte, FormulaError>();

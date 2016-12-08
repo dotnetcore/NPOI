@@ -57,7 +57,7 @@ namespace Npoi.Core.Util
         /// <param name="value">the initial value</param>
         public LongField(int offset, long value) : this(offset)
         {
-            this.Value = value;
+            Value = value;
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace Npoi.Core.Util
         /// <param name="data">the byte array to write the value to</param>
         public void Set(long value, byte[] data)
         {
-            this._value = value;
+            _value = value;
             WriteToBytes(data);
         }
 

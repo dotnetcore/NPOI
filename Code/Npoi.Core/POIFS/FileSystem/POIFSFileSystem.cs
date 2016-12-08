@@ -213,7 +213,7 @@ namespace Npoi.Core.POIFS.FileSystem
         public DocumentEntry CreateDocument(Stream stream,
                                             String name)
         {
-            return this.Root.CreateDocument(name, stream);
+            return Root.CreateDocument(name, stream);
         }
 
         /// <summary>
@@ -227,7 +227,7 @@ namespace Npoi.Core.POIFS.FileSystem
         public DocumentEntry CreateDocument(string name, int size,
             /*POIFSWriterEventHandler*/ POIFSWriterListener writer) //Leon
         {
-            return this.Root.CreateDocument(name, size, writer);
+            return Root.CreateDocument(name, size, writer);
         }
 
         /// <summary>
@@ -237,7 +237,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <returns>the new DirectoryEntry</returns>
         public DirectoryEntry CreateDirectory(string name)
         {
-            return this.Root.CreateDirectory(name);
+            return Root.CreateDirectory(name);
         }
 
         /**
@@ -425,7 +425,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 Property property = (Property)properties.Current;
                 String name = property.Name;
                 DirectoryNode parent = (dir == null)
-                                         ? ((DirectoryNode)this.Root)
+                                         ? ((DirectoryNode)Root)
                                          : dir;
 
                 if (property.IsDirectory)
@@ -474,7 +474,7 @@ namespace Npoi.Core.POIFS.FileSystem
             {
                 if (PreferArray)
                 {
-                    return ((POIFSViewable)this.Root).ViewableArray;
+                    return ((POIFSViewable)Root).ViewableArray;
                 }
                 else
                 {
@@ -493,9 +493,9 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get
             {
-                if (!this.PreferArray)
+                if (!PreferArray)
                 {
-                    return ((POIFSViewable)this.Root).ViewableIterator;
+                    return ((POIFSViewable)Root).ViewableIterator;
                 }
                 else
                 {
@@ -512,7 +512,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// a viewer should call GetViewableIterator </value>
         public bool PreferArray
         {
-            get { return ((POIFSViewable)this.Root).PreferArray; }
+            get { return ((POIFSViewable)Root).PreferArray; }
         }
 
         /// <summary>

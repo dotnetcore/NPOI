@@ -609,7 +609,7 @@ namespace Npoi.Core.HSSF.Record
             buffer.Append("[HYPERLINK RECORD]\n");
             buffer.Append("    .range            = ").Append(_range.FormatAsString()).Append("\n");
             buffer.Append("    .guid        = ").Append(_guid.FormatAsString()).Append("\n");
-            buffer.Append("    .linkOpts          = ").Append(HexDump.IntToHex(this._linkOpts)).Append("\n");
+            buffer.Append("    .linkOpts          = ").Append(HexDump.IntToHex(_linkOpts)).Append("\n");
             buffer.Append("    .label          = ").Append(Label).Append("\n");
             if ((_linkOpts & HLINK_TARGET_FRAME) != 0)
             {

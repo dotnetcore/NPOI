@@ -142,7 +142,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             {
                 return field_1_id;
             }
-            set { this.field_1_id = value; }
+            set { field_1_id = value; }
         }
 
         /**

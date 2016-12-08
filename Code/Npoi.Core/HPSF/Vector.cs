@@ -27,12 +27,12 @@ namespace Npoi.Core.HPSF
         private TypedPropertyValue[] _values;
 
         public Vector(byte[] data, int startOffset, short type) {
-            this._type = type;
+            _type = type;
             Read(data, startOffset);
         }
 
         public Vector(short type) {
-            this._type = type;
+            _type = type;
         }
 
         public int Read(byte[] data, int startOffset) {

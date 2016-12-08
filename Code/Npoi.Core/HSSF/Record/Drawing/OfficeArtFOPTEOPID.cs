@@ -9,10 +9,10 @@
 
         public OfficeArtFOPTEOPID(ushort value)
         {
-            this.field_opid = value;
-            this.OpId = (ushort)(value & 0x3FFF);
-            this.IsBlipId = (value & 0x4000) != 0;
-            this.IsComplex = (value & 0x8000) != 0;
+            field_opid = value;
+            OpId = (ushort)(value & 0x3FFF);
+            IsBlipId = (value & 0x4000) != 0;
+            IsComplex = (value & 0x8000) != 0;
         }
 
         public ushort FieldOpid

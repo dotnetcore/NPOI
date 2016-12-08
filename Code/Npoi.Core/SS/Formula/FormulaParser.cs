@@ -96,7 +96,7 @@ namespace Npoi.Core.SS.Formula
         {
             formulaString = formula;
             _pointer = 0;
-            this._book = book;
+            _book = book;
 
             _ssVersion = book == null ? SpreadsheetVersion.EXCEL97 : book.GetSpreadsheetVersion();
             formulaLength = formulaString.Length;
@@ -256,9 +256,9 @@ namespace Npoi.Core.SS.Formula
         {
             StringBuilder value = new StringBuilder();
 
-            while (IsDigit(this.look))
+            while (IsDigit(look))
             {
-                value.Append(this.look);
+                value.Append(look);
                 GetChar();
             }
             return value.Length == 0 ? null : value.ToString();
@@ -993,7 +993,7 @@ namespace Npoi.Core.SS.Formula
             public override String ToString()
             {
                 StringBuilder sb = new StringBuilder(64);
-                sb.Append(this.GetType().Name).Append(" [");
+                sb.Append(GetType().Name).Append(" [");
                 sb.Append(_rep);
                 sb.Append("]");
                 return sb.ToString();

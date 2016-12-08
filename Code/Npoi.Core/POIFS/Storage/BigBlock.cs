@@ -68,7 +68,7 @@ namespace Npoi.Core.POIFS.Storage
         /// <param name="stream">the OutputStream to which the stored data should be written</param>
         public void WriteBlocks(Stream stream)
         {
-            this.WriteData(stream);
+            WriteData(stream);
         }
 
         /// <summary>

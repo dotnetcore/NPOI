@@ -157,7 +157,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             _prompt_title = title;
             _prompt_text = text;
-            this.ShowPromptBox = (/*setter*/true);
+            ShowPromptBox = (/*setter*/true);
         }
 
         /* (non-Javadoc)
@@ -192,7 +192,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             _error_title = title;
             _error_text = text;
-            this.ShowErrorBox = (/*setter*/true);
+            ShowErrorBox = (/*setter*/true);
         }
 
         /* (non-Javadoc)

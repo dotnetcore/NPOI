@@ -32,7 +32,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         public HSSFClientAnchor(EscherClientAnchorRecord escherClientAnchorRecord)
         {
-            this._escherClientAnchor = escherClientAnchorRecord;
+            _escherClientAnchor = escherClientAnchorRecord;
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Npoi.Core.HSSF.UserModel
         public HSSFClientAnchor()
         {
             //Is this necessary?
-            this._escherClientAnchor = new EscherClientAnchorRecord();
+            _escherClientAnchor = new EscherClientAnchorRecord();
         }
 
         /// <summary>
@@ -215,14 +215,14 @@ namespace Npoi.Core.HSSF.UserModel
             CheckRange(row1, 0, 255 * 256, "row1");
             CheckRange(row2, 0, 255 * 256, "row2");
 
-            this.Col1 = col1;
-            this.Row1 = row1;
-            this.Dx1 = x1;
-            this.Dy1 = y1;
-            this.Col2 = col2;
-            this.Row2 = row2;
-            this.Dx2 = x2;
-            this.Dy2 = y2;
+            Col1 = col1;
+            Row1 = row1;
+            Dx1 = x1;
+            Dy1 = y1;
+            Col2 = col2;
+            Row2 = row2;
+            Dx2 = x2;
+            Dy2 = y2;
         }
 
         /// <summary>
@@ -261,7 +261,7 @@ namespace Npoi.Core.HSSF.UserModel
         public AnchorType AnchorType
         {
             get { return (AnchorType)_escherClientAnchor.Flag; }
-            set { this._escherClientAnchor.Flag = (short)value; }
+            set { _escherClientAnchor.Flag = (short)value; }
         }
 
         /// <summary>

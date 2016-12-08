@@ -78,14 +78,14 @@ namespace Npoi.Core.HSSF.Model
         }
 
         private void CollectPtgs(TokenCollector temp) {
-            if (IsIf(this.Token)) {
+            if (IsIf(Token)) {
                 CollectIfPtgs(temp);
                 return;
             }
             for (int i = 0; i < Children.Length; i++) {
                 Children[i].CollectPtgs(temp);
             }
-            temp.Add(this.Token);
+            temp.Add(Token);
         }
 
         /// <summary>

@@ -327,7 +327,7 @@ namespace Npoi.Core.SS.Formula.PTG
 
         public override String ToString()
         {
-            return this.GetType().ToString();
+            return GetType().ToString();
         }
 
         public const byte CLASS_REF = 0x00;

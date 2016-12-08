@@ -219,13 +219,13 @@ namespace Npoi.Core.POIFS.Properties
         {
             if (_children.Count > 0)
             {
-                Property[] children = new Property[this._children.Count];
+                Property[] children = new Property[_children.Count];
 
-                this._children.CopyTo(children, 0);
+                _children.CopyTo(children, 0);
                 Array.Sort(children, new PropertyComparator());
                 int midpoint = children.Length / 2;
 
-                this.ChildProperty = children[midpoint].Index;
+                ChildProperty = children[midpoint].Index;
                 children[0].PreviousChild = null;
                 children[0].NextChild = null;
                 for (int j = 1; j < midpoint; j++)

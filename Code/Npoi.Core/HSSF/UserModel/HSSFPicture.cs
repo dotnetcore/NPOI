@@ -290,7 +290,7 @@ namespace Npoi.Core.HSSF.UserModel
             get { return base.ShapeType; }
             set
             {
-                throw new InvalidOperationException("Shape type can not be changed in " + this.GetType().Name);
+                throw new InvalidOperationException("Shape type can not be changed in " + GetType().Name);
             }
         }
 

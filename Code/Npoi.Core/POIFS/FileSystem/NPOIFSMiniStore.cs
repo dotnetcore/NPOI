@@ -40,12 +40,12 @@ namespace Npoi.Core.POIFS.FileSystem
         public NPOIFSMiniStore(NPOIFSFileSystem filesystem, RootProperty root,
              List<BATBlock> sbats, HeaderBlock header)
         {
-            this._filesystem = filesystem;
-            this._sbat_blocks = sbats;
-            this._header = header;
-            this._root = root;
+            _filesystem = filesystem;
+            _sbat_blocks = sbats;
+            _header = header;
+            _root = root;
 
-            this._mini_stream = new NPOIFSStream(filesystem, root.StartBlock);
+            _mini_stream = new NPOIFSStream(filesystem, root.StartBlock);
         }
 
         /**

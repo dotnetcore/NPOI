@@ -384,23 +384,23 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             if (origin == SeekOrigin.Current)
             {
-                if (_current_offset + offset >= this.Length || _current_offset + offset < 0)
+                if (_current_offset + offset >= Length || _current_offset + offset < 0)
                     throw new ArgumentException("invalid offset");
                 _current_offset += (int)offset;
             }
             else if (origin == SeekOrigin.Begin)
             {
-                if (offset >= this.Length || offset < 0)
+                if (offset >= Length || offset < 0)
                     throw new ArgumentException("invalid offset");
 
                 _current_offset = offset;
             }
             else if (origin == SeekOrigin.End)
             {
-                if (this.Length + offset >= this.Length || this.Length + offset < 0)
+                if (Length + offset >= Length || Length + offset < 0)
                     throw new ArgumentException("invalid offset");
 
-                _current_offset = this.Length + offset;
+                _current_offset = Length + offset;
             }
             return _current_offset;
         }

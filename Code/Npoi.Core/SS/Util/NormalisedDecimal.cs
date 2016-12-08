@@ -288,7 +288,7 @@ namespace Npoi.Core.SS.Util
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(this.GetType().Name);
+            sb.Append(GetType().Name);
             sb.Append(" [");
             String ws = _wholePart.ToString(CultureInfo.InvariantCulture);
             sb.Append(ws[0]);

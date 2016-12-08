@@ -57,8 +57,8 @@ namespace Npoi.Core.POIFS.FileSystem
 
         public NPOIFSDocument(DocumentProperty property, NPOIFSFileSystem filesystem)
         {
-            this._property = property;
-            this._filesystem = filesystem;
+            _property = property;
+            _filesystem = filesystem;
 
             if (property.Size < POIFSConstants.BIG_BLOCK_MINIMUM_DOCUMENT_SIZE)
             {
@@ -81,12 +81,12 @@ namespace Npoi.Core.POIFS.FileSystem
 
         public NPOIFSDocument(string name, NPOIFSFileSystem filesystem, Stream stream)
         {
-            this._filesystem = filesystem;
+            _filesystem = filesystem;
             // sotre it
             int length = Store(stream);
 
             // Build the property for it
-            this._property = new DocumentProperty(name, length);
+            _property = new DocumentProperty(name, length);
             _property.StartBlock = _stream.GetStartBlock();
         }
 
@@ -151,7 +151,7 @@ namespace Npoi.Core.POIFS.FileSystem
 
         public NPOIFSDocument(string name, int size, NPOIFSFileSystem filesystem, POIFSWriterListener Writer)
         {
-            this._filesystem = filesystem;
+            _filesystem = filesystem;
 
             if (size < POIFSConstants.BIG_BLOCK_MINIMUM_DOCUMENT_SIZE)
             {
@@ -173,7 +173,7 @@ namespace Npoi.Core.POIFS.FileSystem
             innerOs.Dispose();
 
             // And build the property for it
-            this._property = new DocumentProperty(name, size);
+            _property = new DocumentProperty(name, size);
             _property.StartBlock = (/*setter*/_stream.GetStartBlock());
         }
 

@@ -110,7 +110,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_1_horizontalScale = value;
+                field_1_horizontalScale = value;
             }
         }
 
@@ -126,7 +126,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_2_verticalScale = value;
+                field_2_verticalScale = value;
             }
         }
     }

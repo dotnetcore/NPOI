@@ -301,7 +301,7 @@ namespace Npoi.Core.DDF
             String extraData;
             using (MemoryStream b = new MemoryStream()) {
                 try {
-                    HexDump.Dump(this._remainingData, 0, b, 0);
+                    HexDump.Dump(_remainingData, 0, b, 0);
                     //extraData = b.ToString();
                     extraData = Encoding.UTF8.GetString(b.ToArray());
                 }

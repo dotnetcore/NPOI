@@ -75,8 +75,8 @@ namespace Npoi.Core.HSSF.Record
 
         protected override void Serialize(ContinuableRecordOutput out1)
         {
-            out1.WriteShort(this._text.Length);
-            out1.WriteStringData(this._text);
+            out1.WriteShort(_text.Length);
+            out1.WriteStringData(_text);
         }
 
         //public void ProcessContinueRecord(byte[] data)
@@ -108,8 +108,8 @@ namespace Npoi.Core.HSSF.Record
             get { return _text; }
             set
             {
-                this._text = value;
-                this._is16bitUnicode = StringUtil.HasMultibyte(value);
+                _text = value;
+                _is16bitUnicode = StringUtil.HasMultibyte(value);
             }
         }
 
@@ -127,8 +127,8 @@ namespace Npoi.Core.HSSF.Record
         public override object Clone()
         {
             StringRecord rec = new StringRecord();
-            rec._is16bitUnicode = this._is16bitUnicode;
-            rec._text = this._text;
+            rec._is16bitUnicode = _is16bitUnicode;
+            rec._text = _text;
             return rec;
         }
     }

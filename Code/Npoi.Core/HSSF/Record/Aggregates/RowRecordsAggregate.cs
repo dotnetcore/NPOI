@@ -95,7 +95,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         {
             PositionTrackingVisitor stv = new PositionTrackingVisitor(rv, 0);
             //DBCells are serialized before row records.
-            int blockCount = this.RowBlockCount;
+            int blockCount = RowBlockCount;
             for (int blockIndex = 0; blockIndex < blockCount; blockIndex++)
             {
                 // Serialize a block of rows.
@@ -390,12 +390,12 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         public int FindStartOfRowOutlineGroup(int row)
         {
             // Find the start of the Group.
-            RowRecord rowRecord = this.GetRow(row);
+            RowRecord rowRecord = GetRow(row);
             int level = rowRecord.OutlineLevel;
             int currentRow = row;
-            while (this.GetRow(currentRow) != null)
+            while (GetRow(currentRow) != null)
             {
-                rowRecord = this.GetRow(currentRow);
+                rowRecord = GetRow(currentRow);
                 if (rowRecord.OutlineLevel < level)
                     return currentRow + 1;
                 currentRow--;
@@ -408,7 +408,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         {
             int level = GetRow(row).OutlineLevel;
             int currentRow;
-            for (currentRow = row; currentRow < this.LastRowNum; currentRow++)
+            for (currentRow = row; currentRow < LastRowNum; currentRow++)
             {
                 if (GetRow(currentRow) == null || GetRow(currentRow).OutlineLevel < level)
                 {
@@ -422,11 +422,11 @@ namespace Npoi.Core.HSSF.Record.Aggregates
         public int WriteHidden(RowRecord rowRecord, int row, bool hidden)
         {
             int level = rowRecord.OutlineLevel;
-            while (rowRecord != null && this.GetRow(row).OutlineLevel >= level)
+            while (rowRecord != null && GetRow(row).OutlineLevel >= level)
             {
                 rowRecord.ZeroHeight = (hidden);
                 row++;
-                rowRecord = this.GetRow(row);
+                rowRecord = GetRow(row);
             }
             return row - 1;
         }

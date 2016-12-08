@@ -17,16 +17,16 @@ namespace Npoi.Core.Util
         public ByteArrayInputStream(byte[] buf)
         {
             this.buf = buf;
-            this.pos = 0;
-            this.count = buf.Length;
+            pos = 0;
+            count = buf.Length;
         }
 
         public ByteArrayInputStream(byte[] buf, int offset, int length)
         {
             this.buf = buf;
-            this.pos = offset;
-            this.count = Math.Min(offset + length, buf.Length);
-            this.mark = offset;
+            pos = offset;
+            count = Math.Min(offset + length, buf.Length);
+            mark = offset;
         }
 
         public virtual int Read()
@@ -127,7 +127,7 @@ namespace Npoi.Core.Util
         {
             get
             {
-                return this.count;
+                return count;
             }
         }
 
@@ -135,17 +135,17 @@ namespace Npoi.Core.Util
         {
             get
             {
-                return this.pos;
+                return pos;
             }
             set
             {
-                this.pos = (int)value;
+                pos = (int)value;
             }
         }
 
         public override long Seek(long offset, SeekOrigin origin)
         {
-            if (!this.CanSeek)
+            if (!CanSeek)
                 throw new NotSupportedException();
 
             switch (origin)
@@ -155,15 +155,15 @@ namespace Npoi.Core.Util
                     {
                         throw new ArgumentOutOfRangeException("offset", "offset must be positive");
                     }
-                    this.Position = offset < this.Length ? offset : this.Length;
+                    Position = offset < Length ? offset : Length;
                     break;
 
                 case SeekOrigin.Current:
-                    this.Position = (this.Position + offset) < this.Length ? (this.Position + offset) : this.Length;
+                    Position = (Position + offset) < Length ? (Position + offset) : Length;
                     break;
 
                 case SeekOrigin.End:
-                    this.Position = this.Length;
+                    Position = Length;
                     break;
 
                 default:

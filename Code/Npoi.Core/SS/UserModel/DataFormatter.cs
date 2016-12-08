@@ -149,7 +149,7 @@ namespace Npoi.Core.SS.UserModel
 
         public DataFormatter(CultureInfo culture)
         {
-            this.currentCulture = culture;
+            currentCulture = culture;
             formats = new Dictionary<object, object>();
 
             // init built-in Formats

@@ -161,7 +161,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_1_categoryDataType = value;
+                field_1_categoryDataType = value;
             }
         }
 
@@ -183,7 +183,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_2_valuesDataType = value;
+                field_2_valuesDataType = value;
             }
         }
 
@@ -199,7 +199,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_3_numCategories = value;
+                field_3_numCategories = value;
             }
         }
 
@@ -215,7 +215,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_4_numValues = value;
+                field_4_numValues = value;
             }
         }
 
@@ -237,7 +237,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_5_bubbleSeriesType = value;
+                field_5_bubbleSeriesType = value;
             }
         }
 
@@ -253,7 +253,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_6_numBubbleValues = value;
+                field_6_numBubbleValues = value;
             }
         }
     }

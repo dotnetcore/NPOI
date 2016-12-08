@@ -45,7 +45,7 @@ namespace Npoi.Core.Util
         protected override void Dispose(bool disposing)
         {
             s?.Dispose();
-            this.s = null;
+            s = null;
 
             base.Dispose(disposing);
         }

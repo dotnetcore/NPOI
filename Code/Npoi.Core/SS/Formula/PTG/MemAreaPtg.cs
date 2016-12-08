@@ -83,7 +83,7 @@ namespace Npoi.Core.SS.Formula.PTG
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder(64);
-            sb.Append(this.GetType().Name).Append(" [len=");
+            sb.Append(GetType().Name).Append(" [len=");
             sb.Append(field_2_subex_len);
             sb.Append("]");
             return sb.ToString();

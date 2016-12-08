@@ -56,7 +56,7 @@ namespace Npoi.Core.SS.Formula
         public ExternalSheetRange(string workbookName, String firstSheetName, String lastSheetName)
             : base(workbookName, firstSheetName)
         {
-            this._lastSheetName = lastSheetName;
+            _lastSheetName = lastSheetName;
         }
 
         public String FirstSheetName

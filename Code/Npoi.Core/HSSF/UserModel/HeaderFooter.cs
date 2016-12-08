@@ -412,7 +412,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
             set
             {
-                this.stripFields = value;
+                stripFields = value;
             }
         }
 

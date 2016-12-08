@@ -85,7 +85,7 @@ namespace Npoi.Core.HSSF.UserModel
             spgr.RectY2 = (255);
             sp.RecordId = (EscherSpRecord.RECORD_ID);
             sp.Options = (short)0x0002;
-            if (this.Anchor is HSSFClientAnchor)
+            if (Anchor is HSSFClientAnchor)
             {
                 sp.Flags = (EscherSpRecord.FLAG_GROUP | EscherSpRecord.FLAG_HAVEANCHOR);
             }
@@ -143,10 +143,10 @@ namespace Npoi.Core.HSSF.UserModel
 
         private void OnCreate(HSSFShape shape)
         {
-            if (this.Patriarch != null)
+            if (Patriarch != null)
             {
                 EscherContainerRecord spContainer = shape.GetEscherContainer();
-                int shapeId = this.Patriarch.NewShapeId();
+                int shapeId = Patriarch.NewShapeId();
                 shape.ShapeId = (shapeId);
                 GetEscherContainer().AddChildRecord(spContainer);
                 shape.AfterInsert(Patriarch);
@@ -180,7 +180,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         public void AddShape(HSSFShape shape)
         {
-            shape.Patriarch = (this.Patriarch);
+            shape.Patriarch = (Patriarch);
             shape.Parent = (this);
             shapes.Add(shape);
         }
@@ -405,9 +405,9 @@ namespace Npoi.Core.HSSF.UserModel
 
             spgrContainer.AddChildRecord(spContainer);
             ObjRecord obj = null;
-            if (null != this.GetObjRecord())
+            if (null != GetObjRecord())
             {
-                obj = (ObjRecord)this.GetObjRecord().CloneViaReserialise();
+                obj = (ObjRecord)GetObjRecord().CloneViaReserialise();
             }
 
             HSSFShapeGroup group = new HSSFShapeGroup(spgrContainer, obj);
@@ -435,7 +435,7 @@ namespace Npoi.Core.HSSF.UserModel
             bool isRemoved = GetEscherContainer().RemoveChildRecord(shape.GetEscherContainer());
             if (isRemoved)
             {
-                shape.AfterRemove(this.Patriarch);
+                shape.AfterRemove(Patriarch);
                 shapes.Remove(shape);
             }
             return isRemoved;

@@ -37,7 +37,7 @@ namespace Npoi.Core.Util
 
         public override void Initialize(string cat)
         {
-            this._cat = cat;
+            _cat = cat;
         }
 
         /// <summary>

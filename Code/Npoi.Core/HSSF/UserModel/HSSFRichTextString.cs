@@ -60,7 +60,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
             else
             {
-                this._string = new UnicodeString(str);
+                _string = new UnicodeString(str);
             }
         }
 
@@ -73,7 +73,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             SetWorkbookReferences(book, record);
 
-            this._string = book.GetSSTString(record.SSTIndex);
+            _string = book.GetSSTString(record.SSTIndex);
         }
 
         /// <summary>
@@ -84,8 +84,8 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="record">The record.</param>
         public void SetWorkbookReferences(InternalWorkbook book, LabelSSTRecord record)
         {
-            this._book = book;
-            this._record = record;
+            _book = book;
+            _record = record;
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace Npoi.Core.HSSF.UserModel
             short currentFont = NO_FONT;
             if (endIndex != Length)
             {
-                currentFont = this.GetFontAtIndex(endIndex);
+                currentFont = GetFontAtIndex(endIndex);
             }
 
             //Need to clear the current formatting between the startIndex and endIndex
@@ -231,7 +231,7 @@ namespace Npoi.Core.HSSF.UserModel
         public UnicodeString UnicodeString
         {
             get { return CloneStringIfRequired(); }
-            set { this._string = value; }
+            set { _string = value; }
         }
 
         /// <summary>

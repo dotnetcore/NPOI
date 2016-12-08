@@ -145,7 +145,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_1_categoryDataType = (short)value;
+                field_1_categoryDataType = (short)value;
             }
         }
     }

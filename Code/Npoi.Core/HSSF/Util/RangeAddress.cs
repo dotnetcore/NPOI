@@ -354,7 +354,7 @@ namespace Npoi.Core.HSSF.Util
         {
             int result = WRONG_POS;
             String tmp = Filter(_subrange);
-            tmp = this.GetCharPart(_subrange);
+            tmp = GetCharPart(_subrange);
             // we will Process only 2 letters ranges
             if (IsLetter(tmp) && ((tmp.Length == 2) || (tmp.Length == 1)))
             {

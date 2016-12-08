@@ -45,7 +45,7 @@ namespace Npoi.Core.HSSF.Model
         public List<Record> Records
         {
             get { return records; }
-            set { this.records = value; }
+            set { records = value; }
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace Npoi.Core.HSSF.Model
         public void Remove(Record record)
         {
             int i = records.IndexOf(record);
-            this.Remove(i);
+            Remove(i);
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace Npoi.Core.HSSF.Model
         public int Protpos
         {
             get { return protpos; }
-            set { this.protpos = value; }
+            set { protpos = value; }
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace Npoi.Core.HSSF.Model
         public int Bspos
         {
             get { return bspos; }
-            set { this.bspos = value; }
+            set { bspos = value; }
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace Npoi.Core.HSSF.Model
         public int Tabpos
         {
             get { return tabpos; }
-            set { this.tabpos = value; }
+            set { tabpos = value; }
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace Npoi.Core.HSSF.Model
         public int Fontpos
         {
             get { return fontpos; }
-            set { this.fontpos = value; }
+            set { fontpos = value; }
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace Npoi.Core.HSSF.Model
         public int Xfpos
         {
             get { return xfpos; }
-            set { this.xfpos = value; }
+            set { xfpos = value; }
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace Npoi.Core.HSSF.Model
         public int Backuppos
         {
             get { return backuppos; }
-            set { this.backuppos = value; }
+            set { backuppos = value; }
         }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace Npoi.Core.HSSF.Model
         public int Palettepos
         {
             get { return palettepos; }
-            set { this.palettepos = value; }
+            set { palettepos = value; }
         }
 
         /// <summary>
@@ -197,7 +197,7 @@ namespace Npoi.Core.HSSF.Model
         public int Namepos
         {
             get { return namepos; }
-            set { this.namepos = value; }
+            set { namepos = value; }
         }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace Npoi.Core.HSSF.Model
         public int Supbookpos
         {
             get { return supbookpos; }
-            set { this.supbookpos = value; }
+            set { supbookpos = value; }
         }
 
         /// <summary>
@@ -217,7 +217,7 @@ namespace Npoi.Core.HSSF.Model
         public int ExternsheetPos
         {
             get { return externsheetPos; }
-            set { this.externsheetPos = value; }
+            set { externsheetPos = value; }
         }
     }
 }

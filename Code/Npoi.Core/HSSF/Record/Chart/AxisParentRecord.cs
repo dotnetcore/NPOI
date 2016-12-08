@@ -136,7 +136,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short AxisType
         {
             get { return field_1_axisType; }
-            set { this.field_1_axisType = value; }
+            set { field_1_axisType = value; }
         }
 
         /**
@@ -146,7 +146,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public int X
         {
             get { return field_2_x; }
-            set { this.field_2_x = value; }
+            set { field_2_x = value; }
         }
 
         /**
@@ -156,7 +156,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public int Y
         {
             get { return field_3_y; }
-            set { this.field_3_y = value; }
+            set { field_3_y = value; }
         }
 
         /**
@@ -166,7 +166,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public int Width
         {
             get { return field_4_width; }
-            set { this.field_4_width = value; }
+            set { field_4_width = value; }
         }
 
         /**
@@ -176,7 +176,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public int Height
         {
             get { return field_5_height; }
-            set { this.field_5_height = value; }
+            set { field_5_height = value; }
         }
     }
 }

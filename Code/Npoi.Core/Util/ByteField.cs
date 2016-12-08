@@ -62,8 +62,8 @@ namespace Npoi.Core.Util
             {
                 throw new IndexOutOfRangeException("offset cannot be negative");
             }
-            this._offset = offset;
-            this.Value = value;
+            _offset = offset;
+            Value = value;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Npoi.Core.Util
         public ByteField(int offset, byte[] data)
             : this(offset)
         {
-            this.ReadFromBytes(data);
+            ReadFromBytes(data);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Npoi.Core.Util
         public ByteField(int offset, byte _value, byte[] data)
             : this(offset, _value)
         {
-            this.WriteToBytes(data);
+            WriteToBytes(data);
         }
 
         /// <summary>
@@ -95,8 +95,8 @@ namespace Npoi.Core.Util
         /// <value>The value.</value>
         public virtual byte Value
         {
-            get { return this._value; }
-            set { this._value = value; }
+            get { return _value; }
+            set { _value = value; }
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Npoi.Core.Util
         /// <param name="data">the byte array from which the value is to be read</param>
         public virtual void ReadFromBytes(byte[] data)
         {
-            this._value = data[this._offset];
+            _value = data[_offset];
         }
 
         /// <summary>
@@ -130,8 +130,8 @@ namespace Npoi.Core.Util
         /// <param name="data">the byte array to write the value to</param>
         public virtual void Set(byte value, byte[] data)
         {
-            this.Value = value;
-            this.WriteToBytes(data);
+            Value = value;
+            WriteToBytes(data);
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace Npoi.Core.Util
         /// </returns>
         public override string ToString()
         {
-            return Convert.ToString(this._value, CultureInfo.CurrentCulture);
+            return Convert.ToString(_value, CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace Npoi.Core.Util
         /// <param name="data">the array of bytes to which the value is to be written</param>
         public virtual void WriteToBytes(byte[] data)
         {
-            data[this._offset] = this._value;
+            data[_offset] = _value;
         }
     }
 }

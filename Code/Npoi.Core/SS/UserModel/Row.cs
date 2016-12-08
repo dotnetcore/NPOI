@@ -30,7 +30,7 @@ namespace Npoi.Core.SS.UserModel
 
         public MissingCellPolicy()
         {
-            this.id = NEXT_ID++;
+            id = NEXT_ID++;
         }
 
         /// <summary>Missing cells are returned as null, Blank cells are returned as normal</summary>

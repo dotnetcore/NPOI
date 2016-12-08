@@ -151,7 +151,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public double MinimumAxisValue
         {
             get { return field_1_minimumAxisValue; }
-            set { this.field_1_minimumAxisValue = value; }
+            set { field_1_minimumAxisValue = value; }
         }
 
         /**
@@ -161,7 +161,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public double MaximumAxisValue
         {
             get { return field_2_maximumAxisValue; }
-            set { this.field_2_maximumAxisValue = value; }
+            set { field_2_maximumAxisValue = value; }
         }
 
         /**
@@ -171,7 +171,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public double MajorIncrement
         {
             get { return field_3_majorIncrement; }
-            set { this.field_3_majorIncrement = value; }
+            set { field_3_majorIncrement = value; }
         }
 
         /**
@@ -181,7 +181,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public double MinorIncrement
         {
             get { return field_4_minorIncrement; }
-            set { this.field_4_minorIncrement = value; }
+            set { field_4_minorIncrement = value; }
         }
 
         /**
@@ -194,7 +194,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             {
                 return field_5_categoryAxisCross;
             }
-            set { this.field_5_categoryAxisCross = value; }
+            set { field_5_categoryAxisCross = value; }
         }
 
         /**
@@ -204,7 +204,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short Options
         {
             get { return field_6_options; }
-            set { this.field_6_options = value; }
+            set { field_6_options = value; }
         }
 
         /**

@@ -106,7 +106,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short[] SeriesNumbers
         {
             get { return field_1_seriesNumbers; }
-            set { this.field_1_seriesNumbers = value; }
+            set { field_1_seriesNumbers = value; }
         }
     }
 }

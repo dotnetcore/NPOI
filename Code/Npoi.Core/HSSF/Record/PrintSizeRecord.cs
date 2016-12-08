@@ -41,7 +41,7 @@
         public override object Clone()
         {
             PrintSizeRecord pzr = new PrintSizeRecord();
-            pzr.printSize = this.printSize;
+            pzr.printSize = printSize;
             return pzr;
         }
     }

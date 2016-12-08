@@ -169,7 +169,7 @@ namespace Npoi.Core.SS.Formula.Functions
             public override String ToString()
             {
                 StringBuilder sb = new StringBuilder(64);
-                sb.Append(this.GetType().Name);
+                sb.Append(GetType().Name);
                 sb.Append(" [").Append(_representation).Append("]");
                 return sb.ToString();
             }
@@ -213,7 +213,7 @@ namespace Npoi.Core.SS.Formula.Functions
             public override String ToString()
             {
                 StringBuilder sb = new StringBuilder(64);
-                sb.Append(this.GetType().Name).Append(" [");
+                sb.Append(GetType().Name).Append(" [");
                 sb.Append(_operator.Representation);
                 sb.Append(ValueText);
                 sb.Append("]");

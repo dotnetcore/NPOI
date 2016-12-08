@@ -48,7 +48,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// </summary>
         public POIFSDocumentPath()
         {
-            this.components = new string[0];
+            components = new string[0];
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Npoi.Core.POIFS.FileSystem
         public override bool Equals(object o)
         {
             bool flag = false;
-            if ((o != null) && (o.GetType() == this.GetType()))
+            if ((o != null) && (o.GetType() == GetType()))
             {
                 if (this == o)
                 {
@@ -144,12 +144,12 @@ namespace Npoi.Core.POIFS.FileSystem
                 else
                 {
                     POIFSDocumentPath path = (POIFSDocumentPath)o;
-                    if (path.components.Length == this.components.Length)
+                    if (path.components.Length == components.Length)
                     {
                         flag = true;
-                        for (int i = 0; i < this.components.Length; i++)
+                        for (int i = 0; i < components.Length; i++)
                         {
-                            if (!path.components[i].Equals(this.components[i]))
+                            if (!path.components[i].Equals(components[i]))
                             {
                                 flag = false;
                                 break;
@@ -168,7 +168,7 @@ namespace Npoi.Core.POIFS.FileSystem
         /// <returns>the nth component;</returns>
         public virtual string GetComponent(int n)
         {
-            return this.components[n];
+            return components[n];
         }
 
         /// <summary>
@@ -179,14 +179,14 @@ namespace Npoi.Core.POIFS.FileSystem
         /// </returns>
         public override int GetHashCode()
         {
-            if (this.hashcode == 0)
+            if (hashcode == 0)
             {
-                for (int i = 0; i < this.components.Length; i++)
+                for (int i = 0; i < components.Length; i++)
                 {
-                    this.hashcode += this.components[i].GetHashCode();
+                    hashcode += components[i].GetHashCode();
                 }
             }
-            return this.hashcode;
+            return hashcode;
         }
 
         /// <summary>
@@ -198,11 +198,11 @@ namespace Npoi.Core.POIFS.FileSystem
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
-            int length = this.Length;
+            int length = Length;
             builder.Append(Path.DirectorySeparatorChar);
             for (int i = 0; i < length; i++)
             {
-                builder.Append(this.GetComponent(i));
+                builder.Append(GetComponent(i));
                 if (i < (length - 1))
                 {
                     builder.Append(Path.DirectorySeparatorChar);
@@ -219,7 +219,7 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get
             {
-                return this.components.Length;
+                return components.Length;
             }
         }
 
@@ -232,14 +232,14 @@ namespace Npoi.Core.POIFS.FileSystem
         {
             get
             {
-                int length = this.components.Length - 1;
+                int length = components.Length - 1;
                 if (length < 0)
                 {
                     return null;
                 }
                 POIFSDocumentPath path = new POIFSDocumentPath(null);
                 path.components = new string[length];
-                Array.Copy(this.components, 0, path.components, 0, length);
+                Array.Copy(components, 0, path.components, 0, length);
                 return path;
             }
         }

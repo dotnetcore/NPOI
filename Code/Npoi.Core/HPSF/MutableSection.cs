@@ -88,7 +88,7 @@ namespace Npoi.Core.HPSF
             for (int i = 0; i < pa.Length; i++)
                 mpa[i] = new MutableProperty(pa[i]);
             SetProperties(mpa);
-            this.Dictionary = (s.Dictionary);
+            Dictionary = (s.Dictionary);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Npoi.Core.HPSF
         /// <param name="formatID">The section's format ID as a byte array. It components
         /// are in big-endian format.</param>
         public void SetFormatID(byte[] formatID) {
-            ClassID fid = this.FormatID;
+            ClassID fid = FormatID;
             if (fid == null) {
                 fid = new ClassID();
                 SetFormatID(fid);
@@ -502,7 +502,7 @@ namespace Npoi.Core.HPSF
         public override IDictionary Dictionary {
             get
             {
-                return this.dictionary;
+                return dictionary;
             }
             set
             {
@@ -513,7 +513,7 @@ namespace Npoi.Core.HPSF
                             throw new IllegalPropertySetDataException
                                 ("Dictionary keys must be of type long. but it's " + i.Current + "," + i.Current.GetType().Name + " now");
 
-                    this.dictionary = value;
+                    dictionary = value;
 
                     /* Set the dictionary property (ID 0). Please note that the second
                      * parameter in the method call below is unused because dictionaries

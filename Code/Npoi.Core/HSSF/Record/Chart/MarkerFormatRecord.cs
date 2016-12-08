@@ -81,9 +81,9 @@ namespace Npoi.Core.HSSF.Record.Chart
                 .Append("   .rgbBack          =").Append(HexDump.ToHex(field_2_rgbBack)).Append("(").Append(field_2_rgbBack).AppendLine(")")
                 .Append("   .imk              =").Append(HexDump.ToHex(field_3_imk)).Append("(").Append(field_3_imk).AppendLine(")")
                 .Append("   .flag             =").Append(HexDump.ToHex(field_4_flag)).Append("(").Append(field_4_flag).AppendLine(")")
-                .Append("       .fAuto        =").Append(this.Auto).AppendLine()
-                .Append("       .fNotShowInt  =").Append(this.NotShowInt).AppendLine()
-                .Append("       .fNotShowBrd  =").Append(this.NotShowBorder).AppendLine()
+                .Append("       .fAuto        =").Append(Auto).AppendLine()
+                .Append("       .fNotShowInt  =").Append(NotShowInt).AppendLine()
+                .Append("       .fNotShowBrd  =").Append(NotShowBorder).AppendLine()
                 .Append("   .icvFore          =").Append(HexDump.ToHex(field_5_icvFore)).Append("(").Append(field_5_icvFore).AppendLine(")")
                 .Append("   .icvBack          =").Append(HexDump.ToHex(field_6_icvBack)).Append("(").Append(field_6_icvBack).AppendLine(")")
                 .Append("   .miSize           =").Append(HexDump.ToHex(field_7_miSize)).Append("(").Append(field_7_miSize).AppendLine(")")
@@ -94,15 +94,15 @@ namespace Npoi.Core.HSSF.Record.Chart
         public override object Clone()
         {
             MarkerFormatRecord record = new MarkerFormatRecord();
-            record.Auto = this.Auto;
-            record.DataMarkerType = this.DataMarkerType;
-            record.IcvBack = this.IcvBack;
-            record.IcvFore = this.IcvFore;
-            record.NotShowBorder = this.NotShowBorder;
-            record.NotShowInt = this.NotShowInt;
-            record.RGBBack = this.RGBBack;
-            record.RGBFore = this.RGBFore;
-            record.Size = this.Size;
+            record.Auto = Auto;
+            record.DataMarkerType = DataMarkerType;
+            record.IcvBack = IcvBack;
+            record.IcvFore = IcvFore;
+            record.NotShowBorder = NotShowBorder;
+            record.NotShowInt = NotShowInt;
+            record.RGBBack = RGBBack;
+            record.RGBFore = RGBFore;
+            record.Size = Size;
             return record;
         }
 

@@ -170,7 +170,7 @@ namespace Npoi.Core.HPSF
                 }
                 customProperty.ID = max + 1;
             }
-            return this.Put(name, customProperty);
+            return Put(name, customProperty);
         }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace Npoi.Core.HPSF
             dictionaryIDToName.Remove(id);
             dictionaryNameToID.Remove(name);
             CustomProperty tmp = (CustomProperty)this[id];
-            this.Remove(id);
+            Remove(id);
             return tmp;
         }
 
@@ -310,7 +310,7 @@ namespace Npoi.Core.HPSF
                     while (dic.MoveNext()) {
                         string key = ((DictionaryEntry)dic.Current).Key as string;
 
-                        int codepage = this.Codepage;
+                        int codepage = Codepage;
                         if (codepage < 0)
                             codepage = (int)Constants.CP_UNICODE;
                         byte[] a = Encoding.GetEncoding(codepage).GetBytes(key);
@@ -383,7 +383,7 @@ namespace Npoi.Core.HPSF
             get
             {
                 int codepage = -1;
-                for (IEnumerator i = this.Values.GetEnumerator(); codepage == -1 && i.MoveNext();) {
+                for (IEnumerator i = Values.GetEnumerator(); codepage == -1 && i.MoveNext();) {
                     CustomProperty cp = (CustomProperty)i.Current;
                     if (cp.ID == PropertyIDMap.PID_CODEPAGE)
                         codepage = (int)cp.Value;
@@ -408,7 +408,7 @@ namespace Npoi.Core.HPSF
         /// <value><c>true</c> if this instance is pure; otherwise, <c>false</c>.</value>
         public bool IsPure {
             get { return isPure; }
-            set { this.isPure = value; }
+            set { isPure = value; }
         }
     }
 }

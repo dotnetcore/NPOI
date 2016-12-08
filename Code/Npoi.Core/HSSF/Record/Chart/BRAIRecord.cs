@@ -170,7 +170,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_1_linkType = value;
+                field_1_linkType = value;
             }
         }
 
@@ -191,7 +191,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             {
                 return field_2_referenceType;
             }
-            set { this.field_2_referenceType = value; }
+            set { field_2_referenceType = value; }
         }
 
         /*
@@ -204,7 +204,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             {
                 return field_3_options;
             }
-            set { this.field_3_options = value; }
+            set { field_3_options = value; }
         }
 
         /*
@@ -223,7 +223,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_4_indexNumberFmtRecord = value;
+                field_4_indexNumberFmtRecord = value;
             }
         }
 
@@ -239,7 +239,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_5_formulaOfLink = Formula.Create(value);
+                field_5_formulaOfLink = Formula.Create(value);
             }
         }
 

@@ -140,7 +140,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short AxisType
         {
             get { return field_1_axisType; }
-            set { this.field_1_axisType = value; }
+            set { field_1_axisType = value; }
         }
     }
 }

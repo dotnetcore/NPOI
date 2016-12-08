@@ -51,9 +51,9 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="p">The property To copy.</param>
         public MutableProperty(Property p) {
-            this.ID = p.ID;
-            this.Type = p.Type;
-            this.Value = p.Value;
+            ID = p.ID;
+            Type = p.Type;
+            Value = p.Value;
         }
 
         /// <summary>
@@ -64,14 +64,14 @@ namespace Npoi.Core.HPSF
         /// <returns>the number of bytes written To the stream</returns>
         public int Write(Stream out1, int codepage) {
             int length = 0;
-            long variantType = this.Type;
+            long variantType = Type;
 
             /* Ensure that wide strings are written if the codepage is Unicode. */
             if (codepage == CodePageUtil.CP_UNICODE && variantType == Variant.VT_LPSTR)
                 variantType = Variant.VT_LPWSTR;
 
             length += TypeWriter.WriteUIntToStream(out1, (uint)variantType);
-            length += VariantSupport.Write(out1, variantType, this.Value, codepage);
+            length += VariantSupport.Write(out1, variantType, Value, codepage);
             return length;
         }
     }

@@ -137,7 +137,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this.field_1_x = value;
+                field_1_x = value;
             }
         }
 
@@ -153,7 +153,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this.field_2_y = value;
+                field_2_y = value;
             }
         }
 
@@ -169,7 +169,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this.field_3_topRow = value;
+                field_3_topRow = value;
             }
         }
 
@@ -185,7 +185,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this.field_4_leftColumn = value;
+                field_4_leftColumn = value;
             }
         }
 
@@ -207,7 +207,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this.field_5_activePane = value;
+                field_5_activePane = value;
             }
         }
     }

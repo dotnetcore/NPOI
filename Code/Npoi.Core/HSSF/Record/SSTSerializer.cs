@@ -47,8 +47,8 @@ namespace Npoi.Core.HSSF.Record
             _numUniqueStrings = numUniqueStrings;
 
             int infoRecs = ExtSSTRecord.GetNumberOfInfoRecsForStrings(strings.Size);
-            this.bucketAbsoluteOffsets = new int[infoRecs];
-            this.bucketRelativeOffsets = new int[infoRecs];
+            bucketAbsoluteOffsets = new int[infoRecs];
+            bucketRelativeOffsets = new int[infoRecs];
         }
 
         public void Serialize(ContinuableRecordOutput out1)

@@ -66,7 +66,7 @@ namespace Npoi.Core.HSSF.Record
 
         public override object Clone()
         {
-            return new HeaderRecord(this.Text);
+            return new HeaderRecord(Text);
         }
     }
 }

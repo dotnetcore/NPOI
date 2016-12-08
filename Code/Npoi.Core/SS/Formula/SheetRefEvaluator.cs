@@ -56,7 +56,7 @@ namespace Npoi.Core.SS.Formula
 
         public ValueEval GetEvalForCell(int rowIndex, int columnIndex)
         {
-            return _bookEvaluator.EvaluateReference(this.Sheet, _sheetIndex, rowIndex, columnIndex, _tracker);
+            return _bookEvaluator.EvaluateReference(Sheet, _sheetIndex, rowIndex, columnIndex, _tracker);
         }
 
         private IEvaluationSheet Sheet

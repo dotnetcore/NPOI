@@ -66,11 +66,11 @@ namespace Npoi.Core.HSSF.Extractor
         public bool IncludeHeaderFooter {
             get
             {
-                return this.includeHeaderFooter;
+                return includeHeaderFooter;
             }
             set
             {
-                this.includeHeaderFooter = value;
+                includeHeaderFooter = value;
             }
         }
 
@@ -81,11 +81,11 @@ namespace Npoi.Core.HSSF.Extractor
         public bool IncludeSheetNames {
             get
             {
-                return this.includeSheetNames;
+                return includeSheetNames;
             }
             set
             {
-                this.includeSheetNames = value;
+                includeSheetNames = value;
             }
         }
 
@@ -97,11 +97,11 @@ namespace Npoi.Core.HSSF.Extractor
         public bool FormulasNotResults {
             get
             {
-                return this.formulasNotResults;
+                return formulasNotResults;
             }
             set
             {
-                this.formulasNotResults = value;
+                formulasNotResults = value;
             }
         }
 
@@ -112,11 +112,11 @@ namespace Npoi.Core.HSSF.Extractor
         public bool IncludeCellComments {
             get
             {
-                return this.includeCellComments;
+                return includeCellComments;
             }
             set
             {
-                this.includeCellComments = value;
+                includeCellComments = value;
             }
         }
 
@@ -129,11 +129,11 @@ namespace Npoi.Core.HSSF.Extractor
         public bool IncludeBlankCells {
             get
             {
-                return this.includeBlankCells;
+                return includeBlankCells;
             }
             set
             {
-                this.includeBlankCells = value;
+                includeBlankCells = value;
             }
         }
 

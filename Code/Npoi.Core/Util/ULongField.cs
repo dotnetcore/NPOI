@@ -60,7 +60,7 @@ namespace Npoi.Core.Util
         /// <param name="value">the initial value</param>
         public ULongField(int offset, ulong value) : this(offset)
         {
-            this.Value = value;
+            Value = value;
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Npoi.Core.Util
         /// <param name="data">the byte array to read the value from</param>
         public ULongField(int offset, byte[] data)
         {
-            this._offset = offset;
+            _offset = offset;
             ReadFromBytes(data);
         }
 
@@ -85,7 +85,7 @@ namespace Npoi.Core.Util
         /// <param name="data">the byte array to write the value to</param>
         public ULongField(int offset, ulong value, byte[] data)
         {
-            this._offset = offset;
+            _offset = offset;
             Set(value, data);
         }
 
@@ -106,7 +106,7 @@ namespace Npoi.Core.Util
         /// <param name="data">the byte array to write the value to</param>
         public void Set(ulong value, byte[] data)
         {
-            this._value = value;
+            _value = value;
             WriteToBytes(data);
         }
 

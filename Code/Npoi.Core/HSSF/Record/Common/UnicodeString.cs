@@ -55,8 +55,8 @@ namespace Npoi.Core.HSSF.Record
 
             public FormatRun(short character, short fontIndex)
             {
-                this._character = character;
-                this._fontIndex = fontIndex;
+                _character = character;
+                _fontIndex = fontIndex;
             }
 
             public FormatRun(ILittleEndianInput in1) :
@@ -746,7 +746,7 @@ namespace Npoi.Core.HSSF.Record
         {
             get
             {
-                return this.field_5_ext_rst;
+                return field_5_ext_rst;
             }
             set
             {
@@ -758,7 +758,7 @@ namespace Npoi.Core.HSSF.Record
                 {
                     field_2_optionflags = extBit.ClearByte(field_2_optionflags);
                 }
-                this.field_5_ext_rst = value;
+                field_5_ext_rst = value;
             }
         }
 

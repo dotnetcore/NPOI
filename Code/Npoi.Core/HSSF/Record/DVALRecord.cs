@@ -60,11 +60,11 @@ namespace Npoi.Core.HSSF.Record
 
         public DVALRecord(RecordInputStream in1)
         {
-            this.field_1_options = in1.ReadShort();
-            this.field_2_horiz_pos = in1.ReadInt();
-            this.field_3_vert_pos = in1.ReadInt();
-            this.field_cbo_id = in1.ReadInt();
-            this.field_5_dv_no = in1.ReadInt();
+            field_1_options = in1.ReadShort();
+            field_2_horiz_pos = in1.ReadInt();
+            field_3_vert_pos = in1.ReadInt();
+            field_cbo_id = in1.ReadInt();
+            field_5_dv_no = in1.ReadInt();
         }
 
         /**
@@ -74,7 +74,7 @@ namespace Npoi.Core.HSSF.Record
         public short Options
         {
             get { return field_1_options; }
-            set { this.field_1_options = value; }
+            set { field_1_options = value; }
         }
 
         /**
@@ -89,7 +89,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this.field_2_horiz_pos = value;
+                field_2_horiz_pos = value;
             }
         }
 
@@ -105,7 +105,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this.field_3_vert_pos = value;
+                field_3_vert_pos = value;
             }
         }
 
@@ -117,11 +117,11 @@ namespace Npoi.Core.HSSF.Record
         {
             get
             {
-                return this.field_cbo_id;
+                return field_cbo_id;
             }
             set
             {
-                this.field_cbo_id = value;
+                field_cbo_id = value;
             }
         }
 
@@ -133,11 +133,11 @@ namespace Npoi.Core.HSSF.Record
         {
             get
             {
-                return this.field_5_dv_no;
+                return field_5_dv_no;
             }
             set
             {
-                this.field_5_dv_no = value;
+                field_5_dv_no = value;
             }
         }
 
@@ -146,11 +146,11 @@ namespace Npoi.Core.HSSF.Record
             StringBuilder buffer = new StringBuilder();
 
             buffer.Append("[DVAL]\n");
-            buffer.Append("    .options      = ").Append(this.Options).Append('\n');
-            buffer.Append("    .horizPos     = ").Append(this.HorizontalPos).Append('\n');
-            buffer.Append("    .vertPos      = ").Append(this.VerticalPos).Append('\n');
-            buffer.Append("    .comboObjectID   = ").Append(StringUtil.ToHexString(this.ObjectID)).Append("\n");
-            buffer.Append("    .DVRecordsNumber = ").Append(StringUtil.ToHexString(this.DVRecNo)).Append("\n");
+            buffer.Append("    .options      = ").Append(Options).Append('\n');
+            buffer.Append("    .horizPos     = ").Append(HorizontalPos).Append('\n');
+            buffer.Append("    .vertPos      = ").Append(VerticalPos).Append('\n');
+            buffer.Append("    .comboObjectID   = ").Append(StringUtil.ToHexString(ObjectID)).Append("\n");
+            buffer.Append("    .DVRecordsNumber = ").Append(StringUtil.ToHexString(DVRecNo)).Append("\n");
             buffer.Append("[/DVAL]\n");
             return buffer.ToString();
         }
@@ -180,8 +180,8 @@ namespace Npoi.Core.HSSF.Record
             rec.field_1_options = field_1_options;
             rec.field_2_horiz_pos = field_2_horiz_pos;
             rec.field_3_vert_pos = field_3_vert_pos;
-            rec.field_cbo_id = this.field_cbo_id;
-            rec.field_5_dv_no = this.field_5_dv_no;
+            rec.field_cbo_id = field_cbo_id;
+            rec.field_5_dv_no = field_5_dv_no;
             return rec;
         }
     }

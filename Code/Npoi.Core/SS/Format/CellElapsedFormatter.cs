@@ -75,7 +75,7 @@ namespace Npoi.Core.SS.Format
         {
             public ElapsedPartHandler(CellElapsedFormatter formatter)
             {
-                this._formatter = formatter;
+                _formatter = formatter;
             }
 
             // This is the one class that's directly using printf, so it can't use

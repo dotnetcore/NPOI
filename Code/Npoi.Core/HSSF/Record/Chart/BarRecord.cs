@@ -122,7 +122,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short BarSpace
         {
             get { return field_1_barSpace; }
-            set { this.field_1_barSpace = value; }
+            set { field_1_barSpace = value; }
         }
 
         /**
@@ -132,7 +132,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short CategorySpace
         {
             get { return field_2_categorySpace; }
-            set { this.field_2_categorySpace = value; }
+            set { field_2_categorySpace = value; }
         }
 
         /**
@@ -142,7 +142,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short FormatFlags
         {
             get { return field_3_formatFlags; }
-            set { this.field_3_formatFlags = value; }
+            set { field_3_formatFlags = value; }
         }
 
         /**

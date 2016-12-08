@@ -97,7 +97,7 @@ namespace Npoi.Core.HSSF.UserModel
         public override int ShapeType
         {
             get { return base.ShapeType; }
-            set { throw new InvalidOperationException("Shape type can not be changed in " + this.GetType().Name); }
+            set { throw new InvalidOperationException("Shape type can not be changed in " + GetType().Name); }
         }
     }
 }

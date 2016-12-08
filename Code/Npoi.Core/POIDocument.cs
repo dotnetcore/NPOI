@@ -48,7 +48,7 @@ namespace Npoi.Core
 
         protected POIDocument(DirectoryNode dir)
         {
-            this.directory = dir;
+            directory = dir;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Npoi.Core
         [Obsolete]
         public POIDocument(DirectoryNode dir, POIFSFileSystem fs)
         {
-            this.directory = dir;
+            directory = dir;
             //POILogFactory.GetLogger(this.GetType());
         }
 

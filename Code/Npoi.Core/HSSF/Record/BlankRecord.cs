@@ -147,24 +147,24 @@ namespace Npoi.Core.HSSF.Record
         {
             CellValueRecordInterface loc = (CellValueRecordInterface)obj;
 
-            if ((this.Row == loc.Row)
-                    && (this.Column == loc.Column))
+            if ((Row == loc.Row)
+                    && (Column == loc.Column))
             {
                 return 0;
             }
-            if (this.Row < loc.Row)
+            if (Row < loc.Row)
             {
                 return -1;
             }
-            if (this.Row > loc.Row)
+            if (Row > loc.Row)
             {
                 return 1;
             }
-            if (this.Column < loc.Column)
+            if (Column < loc.Column)
             {
                 return -1;
             }
-            if (this.Column > loc.Column)
+            if (Column > loc.Column)
             {
                 return 1;
             }

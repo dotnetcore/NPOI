@@ -52,7 +52,7 @@ namespace Npoi.Core
         /// <param name="otherExtractor">The other extractor.</param>
         protected POITextExtractor(POITextExtractor otherExtractor)
         {
-            this.document = otherExtractor.document;
+            document = otherExtractor.document;
         }
 
         /// <summary>

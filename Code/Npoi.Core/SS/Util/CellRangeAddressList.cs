@@ -106,7 +106,7 @@ namespace Npoi.Core.SS.Util
 
         public int Serialize(int offset, byte[] data)
         {
-            int totalSize = this.Size;
+            int totalSize = Size;
             Serialize(new LittleEndianByteArrayOutputStream(data, offset, totalSize));
             return totalSize;
         }

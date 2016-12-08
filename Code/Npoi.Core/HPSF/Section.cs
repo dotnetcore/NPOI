@@ -255,7 +255,7 @@ namespace Npoi.Core.HPSF
              * Extract the dictionary (if available).
              * Tony changed the logic
              */
-            this.dictionary = (IDictionary)GetProperty(0);
+            dictionary = (IDictionary)GetProperty(0);
         }
 
         /**

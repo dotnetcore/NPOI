@@ -128,7 +128,7 @@ namespace Npoi.Core.SS.Util
 
             object System.Collections.IEnumerator.Current
             {
-                get { return this.Current; }
+                get { return Current; }
             }
 
             #endregion IEnumerator Members

@@ -58,7 +58,7 @@ namespace Npoi.Core.HSSF.Record
             StringBuilder buffer = new StringBuilder();
 
             buffer.Append("[FOOTER]\n");
-            buffer.Append("    .footer         = ").Append(this.Text)
+            buffer.Append("    .footer         = ").Append(Text)
                 .Append("\n");
             buffer.Append("[/FOOTER]\n");
             return buffer.ToString();
@@ -75,7 +75,7 @@ namespace Npoi.Core.HSSF.Record
 
         public override object Clone()
         {
-            return new FooterRecord(this.Text);
+            return new FooterRecord(Text);
         }
     }
 }

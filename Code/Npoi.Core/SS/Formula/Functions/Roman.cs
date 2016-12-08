@@ -87,7 +87,7 @@ namespace Npoi.Core.SS.Formula.Functions
                 return ErrorEval.VALUE_INVALID;
             }
 
-            String result = this.integerToRoman(number);
+            String result = integerToRoman(number);
 
             if (form == 0)
             {

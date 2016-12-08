@@ -163,7 +163,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this.cbFeatData = value;
+                cbFeatData = value;
             }
         }
 
@@ -175,7 +175,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this.cellRefs = value;
+                cellRefs = value;
             }
         }
 
@@ -187,7 +187,7 @@ namespace Npoi.Core.HSSF.Record
             }
             set
             {
-                this.sharedFeature = value;
+                sharedFeature = value;
 
                 if (value is FeatProtection)
                 {

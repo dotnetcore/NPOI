@@ -106,7 +106,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// <returns>a high level representation of the created cell.</returns>
         public ICell CreateCell(int column)
         {
-            return this.CreateCell(column, CellType.Blank);
+            return CreateCell(column, CellType.Blank);
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         public IRow CopyRowTo(int targetIndex)
         {
-            return this.sheet.CopyRow(this.RowNum, targetIndex);
+            return sheet.CopyRow(RowNum, targetIndex);
         }
 
         public ICell CopyCell(int sourceIndex, int targetIndex)
@@ -279,8 +279,8 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         public bool IsHidden
         {
-            get { return this.ZeroHeight; }
-            set { this.ZeroHeight = value; }
+            get { return ZeroHeight; }
+            set { ZeroHeight = value; }
         }
 
         /// <summary>
@@ -315,7 +315,7 @@ namespace Npoi.Core.HSSF.UserModel
                     throw new ArgumentException("Invalid row number (" + value
                             + ") outside allowable range (0.." + maxrow + ")");
                 }
-                this.rowNum = value;
+                rowNum = value;
                 if (row != null)
                 {
                     row.RowNumber = (value);   // used only for KEY comparison (HSSFRow)
@@ -713,7 +713,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             get
             {
-                return new List<ICell>(this.cells.Values);
+                return new List<ICell>(cells.Values);
             }
         }
 
@@ -728,7 +728,7 @@ namespace Npoi.Core.HSSF.UserModel
         public IEnumerator<ICell> GetEnumerator()
         {
             //return //new CellEnumerator(this.cells);
-            return this.cells.Values.GetEnumerator();
+            return cells.Values.GetEnumerator();
         }
 
         ///// <summary>
@@ -821,15 +821,15 @@ namespace Npoi.Core.HSSF.UserModel
         {
             HSSFRow loc = (HSSFRow)obj;
 
-            if (this.RowNum == loc.RowNum)
+            if (RowNum == loc.RowNum)
             {
                 return 0;
             }
-            if (this.RowNum < loc.RowNum)
+            if (RowNum < loc.RowNum)
             {
                 return -1;
             }
-            if (this.RowNum > loc.RowNum)
+            if (RowNum > loc.RowNum)
             {
                 return 1;
             }
@@ -854,7 +854,7 @@ namespace Npoi.Core.HSSF.UserModel
             }
             HSSFRow loc = (HSSFRow)obj;
 
-            if (this.RowNum == loc.RowNum)
+            if (RowNum == loc.RowNum)
             {
                 return true;
             }

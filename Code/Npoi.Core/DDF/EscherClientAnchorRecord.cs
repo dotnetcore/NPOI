@@ -163,7 +163,7 @@ namespace Npoi.Core.DDF
             String extraData;
             using (MemoryStream b = new MemoryStream()) {
                 try {
-                    HexDump.Dump(this.remainingData, 0, b, 0);
+                    HexDump.Dump(remainingData, 0, b, 0);
                     //extraData = b.ToString();
                     extraData = Encoding.UTF8.GetString(b.ToArray());
                 }
@@ -191,7 +191,7 @@ namespace Npoi.Core.DDF
             String extraData;
             using (MemoryStream b = new MemoryStream()) {
                 try {
-                    HexDump.Dump(this.remainingData, 0, b, 0);
+                    HexDump.Dump(remainingData, 0, b, 0);
                     extraData = HexDump.ToHex(b.ToArray());
                 }
                 catch (Exception) {
@@ -252,7 +252,7 @@ namespace Npoi.Core.DDF
         /// <value>The row1.</value>
         public short Row1 {
             get { return field_4_row1; }
-            set { this.field_4_row1 = value; }
+            set { field_4_row1 = value; }
         }
 
         /// <summary>
@@ -264,7 +264,7 @@ namespace Npoi.Core.DDF
             set
             {
                 shortRecord = false;
-                this.field_5_dy1 = value;
+                field_5_dy1 = value;
             }
         }
 
@@ -277,7 +277,7 @@ namespace Npoi.Core.DDF
             set
             {
                 shortRecord = false;
-                this.field_6_col2 = value;
+                field_6_col2 = value;
             }
         }
 
@@ -290,7 +290,7 @@ namespace Npoi.Core.DDF
             set
             {
                 shortRecord = false;
-                this.field_7_dx2 = value;
+                field_7_dx2 = value;
             }
         }
 
@@ -303,7 +303,7 @@ namespace Npoi.Core.DDF
             set
             {
                 shortRecord = false;
-                this.field_8_row2 = value;
+                field_8_row2 = value;
             }
         }
 

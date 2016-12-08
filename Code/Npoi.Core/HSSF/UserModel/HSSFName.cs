@@ -48,7 +48,7 @@ namespace Npoi.Core.HSSF.UserModel
         internal HSSFName(HSSFWorkbook book, NameRecord name, NameCommentRecord comment)
         {
             this.book = book;
-            this._definedNameRec = name;
+            _definedNameRec = name;
             _commentRec = comment;
         }
 

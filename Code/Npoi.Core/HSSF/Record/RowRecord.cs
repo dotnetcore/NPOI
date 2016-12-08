@@ -279,7 +279,7 @@ namespace Npoi.Core.HSSF.Record
         // end bitfields
         public short OptionFlags2
         {
-            get { return (short)this.field_8_option_flags; }
+            get { return (short)field_8_option_flags; }
         }
 
         /**
@@ -391,15 +391,15 @@ namespace Npoi.Core.HSSF.Record
         {
             RowRecord loc = (RowRecord)obj;
 
-            if (this.RowNumber == loc.RowNumber)
+            if (RowNumber == loc.RowNumber)
             {
                 return 0;
             }
-            if (this.RowNumber < loc.RowNumber)
+            if (RowNumber < loc.RowNumber)
             {
                 return -1;
             }
-            if (this.RowNumber > loc.RowNumber)
+            if (RowNumber > loc.RowNumber)
             {
                 return 1;
             }
@@ -414,7 +414,7 @@ namespace Npoi.Core.HSSF.Record
             }
             RowRecord loc = (RowRecord)obj;
 
-            if (this.RowNumber == loc.RowNumber)
+            if (RowNumber == loc.RowNumber)
             {
                 return true;
             }

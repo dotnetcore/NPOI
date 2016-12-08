@@ -106,7 +106,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short Options
         {
             get { return field_1_options; }
-            set { this.field_1_options = value; }
+            set { field_1_options = value; }
         }
 
         /**

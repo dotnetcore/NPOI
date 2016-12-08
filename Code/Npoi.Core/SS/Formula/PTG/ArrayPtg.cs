@@ -336,7 +336,7 @@ namespace Npoi.Core.SS.Formula.PTG
                 object[] arrayValues = ConstantValueParser.Parse(in1, totalCount);
 
                 ArrayPtg result = new ArrayPtg(_reserved0, _reserved1, _reserved2, nColumns, nRows, arrayValues);
-                result.PtgClass = this.PtgClass;
+                result.PtgClass = PtgClass;
                 return result;
             }
         }

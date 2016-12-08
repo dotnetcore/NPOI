@@ -35,7 +35,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         public HSSFFontFormatting(CFRuleRecord cfRuleRecord)
         {
-            this.fontFormatting = cfRuleRecord.FontFormatting;
+            fontFormatting = cfRuleRecord.FontFormatting;
         }
 
         protected FontFormatting GetFontFormattingBlock()

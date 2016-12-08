@@ -64,15 +64,15 @@ namespace Npoi.Core.HSSF.Util
 
         public HSSFCellRangeAddress(RecordInputStream in1)
         {
-            this.FillFields(in1);
+            FillFields(in1);
         }
 
         public void FillFields(RecordInputStream in1)
         {
-            this.field_Addr_number = in1.ReadShort();
-            this.field_regions_list = new List<object>(this.field_Addr_number);
+            field_Addr_number = in1.ReadShort();
+            field_regions_list = new List<object>(field_Addr_number);
 
-            for (int k = 0; k < this.field_Addr_number; k++)
+            for (int k = 0; k < field_Addr_number; k++)
             {
                 short first_row = in1.ReadShort();
                 short first_col = in1.ReadShort();
@@ -90,11 +90,11 @@ namespace Npoi.Core.HSSF.Util
                     // For now, Issue a warning, finish, and
                     //  hope for the best....
                     logger.Log(POILogger.WARN, "Ran out of data reading cell references for DVRecord");
-                    k = this.field_Addr_number;
+                    k = field_Addr_number;
                 }
 
                 AddrStructure region = new AddrStructure(first_row, first_col, last_row, last_col);
-                this.field_regions_list.Add(region);
+                field_regions_list.Add(region);
             }
         }
 
@@ -108,7 +108,7 @@ namespace Npoi.Core.HSSF.Util
 
         public short AddRStructureNumber
         {
-            get { return this.field_Addr_number; }
+            get { return field_Addr_number; }
         }
 
         /**
@@ -122,17 +122,17 @@ namespace Npoi.Core.HSSF.Util
 
         public int AddAddRStructure(short first_row, short first_col, short last_row, short last_col)
         {
-            if (this.field_regions_list == null)
+            if (field_regions_list == null)
             {
                 //just to be sure :-)
-                this.field_Addr_number = 0;
-                this.field_regions_list = new List<object>(10);
+                field_Addr_number = 0;
+                field_regions_list = new List<object>(10);
             }
             AddrStructure region = new AddrStructure(first_row, last_row, first_col, last_col);
 
-            this.field_regions_list.Add(region);
-            this.field_Addr_number++;
-            return this.field_Addr_number;
+            field_regions_list.Add(region);
+            field_Addr_number++;
+            return field_Addr_number;
         }
 
         /**
@@ -142,8 +142,8 @@ namespace Npoi.Core.HSSF.Util
 
         public void RemoveAddRStructureAt(int index)
         {
-            this.field_regions_list.Remove(index);
-            this.field_Addr_number--;
+            field_regions_list.Remove(index);
+            field_Addr_number--;
         }
 
         /**
@@ -153,17 +153,17 @@ namespace Npoi.Core.HSSF.Util
 
         public AddrStructure GetAddRStructureAt(int index)
         {
-            return (AddrStructure)this.field_regions_list[index];
+            return (AddrStructure)field_regions_list[index];
         }
 
         public int Serialize(int offSet, byte[] data)
         {
             int pos = 2;
 
-            LittleEndian.PutShort(data, offSet, this.AddRStructureNumber);
-            for (int k = 0; k < this.AddRStructureNumber; k++)
+            LittleEndian.PutShort(data, offSet, AddRStructureNumber);
+            for (int k = 0; k < AddRStructureNumber; k++)
             {
-                AddrStructure region = this.GetAddRStructureAt(k);
+                AddrStructure region = GetAddRStructureAt(k);
                 LittleEndian.PutShort(data, offSet + pos, region.FirstRow);
                 pos += 2;
                 LittleEndian.PutShort(data, offSet + pos, region.LastRow);
@@ -173,12 +173,12 @@ namespace Npoi.Core.HSSF.Util
                 LittleEndian.PutShort(data, offSet + pos, region.LastColumn);
                 pos += 2;
             }
-            return this.Size;
+            return Size;
         }
 
         public int Size
         {
-            get { return 2 + this.field_Addr_number * 8; }
+            get { return 2 + field_Addr_number * 8; }
         }
 
         public class AddrStructure
@@ -190,10 +190,10 @@ namespace Npoi.Core.HSSF.Util
 
             public AddrStructure(short first_row, short last_row, short first_col, short last_col)
             {
-                this._first_row = first_row;
-                this._last_row = last_row;
-                this._first_col = first_col;
-                this._last_col = last_col;
+                _first_row = first_row;
+                _last_row = last_row;
+                _first_col = first_col;
+                _last_col = last_col;
             }
 
             /**
@@ -203,8 +203,8 @@ namespace Npoi.Core.HSSF.Util
 
             public short FirstColumn
             {
-                get { return this._first_col; }
-                set { this._first_col = value; }
+                get { return _first_col; }
+                set { _first_col = value; }
             }
 
             /**
@@ -214,8 +214,8 @@ namespace Npoi.Core.HSSF.Util
 
             public short FirstRow
             {
-                get { return this._first_row; }
-                set { this._first_row = value; }
+                get { return _first_row; }
+                set { _first_row = value; }
             }
 
             /**
@@ -225,8 +225,8 @@ namespace Npoi.Core.HSSF.Util
 
             public short LastColumn
             {
-                get { return this._last_col; }
-                set { this._last_col = value; }
+                get { return _last_col; }
+                set { _last_col = value; }
             }
 
             /**
@@ -236,8 +236,8 @@ namespace Npoi.Core.HSSF.Util
 
             public short LastRow
             {
-                get { return this._last_row; }
-                set { this._last_row = value; }
+                get { return _last_row; }
+                set { _last_row = value; }
             }
         }
     }

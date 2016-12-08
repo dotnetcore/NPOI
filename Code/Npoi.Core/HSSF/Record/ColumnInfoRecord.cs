@@ -46,7 +46,7 @@ namespace Npoi.Core.HSSF.Record
 
         public ColumnInfoRecord()
         {
-            this.ColumnWidth = 2275;
+            ColumnWidth = 2275;
             _options = 2;
             _xf_index = 0x0f;
             field_6_reserved = 2; // seems to be the most common value

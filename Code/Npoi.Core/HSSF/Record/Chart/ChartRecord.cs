@@ -127,7 +127,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_1_x = value;
+                field_1_x = value;
             }
         }
 
@@ -143,7 +143,7 @@ namespace Npoi.Core.HSSF.Record.Chart
             }
             set
             {
-                this.field_2_y = value;
+                field_2_y = value;
             }
         }
 
@@ -154,7 +154,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public int Width
         {
             get { return field_3_width; }
-            set { this.field_3_width = value; }
+            set { field_3_width = value; }
         }
 
         /**
@@ -164,7 +164,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public int Height
         {
             get { return field_4_height; }
-            set { this.field_4_height = value; }
+            set { field_4_height = value; }
         }
     }
 }

@@ -2735,48 +2735,48 @@ namespace Npoi.Core.HSSF.Model
         public WriteProtectRecord WriteProtect {
             get
             {
-                if (this.writeProtect == null) {
-                    this.writeProtect = new WriteProtectRecord();
+                if (writeProtect == null) {
+                    writeProtect = new WriteProtectRecord();
                     int i = 0;
                     for (i = 0;
                          i < records.Count && !(records[i] is BOFRecord);
                          i++) {
                     }
-                    records.Add(i + 1, this.writeProtect);
+                    records.Add(i + 1, writeProtect);
                 }
-                return this.writeProtect;
+                return writeProtect;
             }
         }
 
         public WriteAccessRecord WriteAccess {
             get
             {
-                if (this.writeAccess == null) {
-                    this.writeAccess = (WriteAccessRecord)CreateWriteAccess();
+                if (writeAccess == null) {
+                    writeAccess = (WriteAccessRecord)CreateWriteAccess();
                     int i = 0;
                     for (i = 0;
                          i < records.Count && !(records[i] is InterfaceEndRecord);
                          i++) {
                     }
-                    records.Add(i + 1, this.writeAccess);
+                    records.Add(i + 1, writeAccess);
                 }
-                return this.writeAccess;
+                return writeAccess;
             }
         }
 
         public FileSharingRecord FileSharing {
             get
             {
-                if (this.fileShare == null) {
-                    this.fileShare = new FileSharingRecord();
+                if (fileShare == null) {
+                    fileShare = new FileSharingRecord();
                     int i = 0;
                     for (i = 0;
                          i < records.Count && !(records[i] is WriteAccessRecord);
                          i++) {
                     }
-                    records.Add(i + 1, this.fileShare);
+                    records.Add(i + 1, fileShare);
                 }
-                return this.fileShare;
+                return fileShare;
             }
         }
 
@@ -2787,7 +2787,7 @@ namespace Npoi.Core.HSSF.Model
         public bool IsWriteProtected {
             get
             {
-                if (this.fileShare == null) {
+                if (fileShare == null) {
                     return false;
                 }
                 FileSharingRecord frec = FileSharing;

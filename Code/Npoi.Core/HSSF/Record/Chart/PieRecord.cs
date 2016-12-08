@@ -69,10 +69,10 @@ namespace Npoi.Core.HSSF.Record.Chart
         public override object Clone()
         {
             PieRecord record = new PieRecord();
-            record.Dount = this.Dount;
-            record.HasShadow = this.HasShadow;
-            record.ShowLdrLines = this.ShowLdrLines;
-            record.Start = this.Start;
+            record.Dount = Dount;
+            record.HasShadow = HasShadow;
+            record.ShowLdrLines = ShowLdrLines;
+            record.Start = Start;
             return record;
         }
 

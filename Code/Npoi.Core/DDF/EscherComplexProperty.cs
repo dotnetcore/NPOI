@@ -42,7 +42,7 @@ namespace Npoi.Core.DDF
         /// <param name="complexData">The value of this property.</param>
         public EscherComplexProperty(short id, byte[] complexData)
             : base(id) {
-            this._complexData = complexData;
+            _complexData = complexData;
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Npoi.Core.DDF
         /// <param name="complexData">The value of this complex property.</param>
         public EscherComplexProperty(short propertyNumber, bool isBlipId, byte[] complexData)
             : base(propertyNumber, true, isBlipId) {
-            this._complexData = complexData;
+            _complexData = complexData;
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace Npoi.Core.DDF
             String dataStr;
             using (MemoryStream b = new MemoryStream()) {
                 try {
-                    HexDump.Dump(this._complexData, 0, b, 0);
+                    HexDump.Dump(_complexData, 0, b, 0);
                     dataStr = b.ToString();
                 }
                 catch (Exception e) {

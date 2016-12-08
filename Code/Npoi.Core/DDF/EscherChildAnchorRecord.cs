@@ -136,7 +136,7 @@ namespace Npoi.Core.DDF
         /// <value>The DX1.</value>
         public int Dx1 {
             get { return field_1_dx1; }
-            set { this.field_1_dx1 = value; }
+            set { field_1_dx1 = value; }
         }
 
         /// <summary>

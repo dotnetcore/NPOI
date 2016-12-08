@@ -169,7 +169,7 @@ namespace Npoi.Core.HSSF.Record
 
         public void SetBucketOffsets(int[] bucketAbsoluteOffsets, int[] bucketRelativeOffsets)
         {
-            this._sstInfos = new InfoSubRecord[bucketAbsoluteOffsets.Length];
+            _sstInfos = new InfoSubRecord[bucketAbsoluteOffsets.Length];
             for (int i = 0; i < bucketAbsoluteOffsets.Length; i++)
             {
                 _sstInfos[i] = new InfoSubRecord(bucketAbsoluteOffsets[i], bucketRelativeOffsets[i]);

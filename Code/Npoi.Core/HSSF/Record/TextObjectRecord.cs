@@ -289,7 +289,7 @@ namespace Npoi.Core.HSSF.Record
         public IRichTextString Str
         {
             get { return _text; }
-            set { this._text = value; }
+            set { _text = value; }
         }
 
         public override short Sid
@@ -309,7 +309,7 @@ namespace Npoi.Core.HSSF.Record
         public TextOrientation TextOrientation
         {
             get { return (TextOrientation)field_2_textOrientation; }
-            set { this.field_2_textOrientation = (int)value; }
+            set { field_2_textOrientation = (int)value; }
         }
 
         /**

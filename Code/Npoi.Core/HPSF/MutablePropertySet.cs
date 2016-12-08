@@ -107,8 +107,8 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <value>the byteOrder value To Set</value>
         public override int ByteOrder {
-            get { return this.byteOrder; }
-            set { this.byteOrder = value; }
+            get { return byteOrder; }
+            set { byteOrder = value; }
         }
 
         /// <summary>
@@ -116,8 +116,8 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <value>the format value To Set</value>
         public override int Format {
-            set { this.format = value; }
-            get { return this.format; }
+            set { format = value; }
+            get { return format; }
         }
 
         /// <summary>
@@ -125,8 +125,8 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <value>the osVersion value To Set.</value>
         public override int OSVersion {
-            set { this.osVersion = value; }
-            get { return this.osVersion; }
+            set { osVersion = value; }
+            get { return osVersion; }
         }
 
         /// <summary>
@@ -134,8 +134,8 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <value>The property Set stream's low-level "class ID" field.</value>
         public override ClassID ClassID {
-            set { this.classID = value; }
-            get { return this.classID; }
+            set { classID = value; }
+            get { return classID; }
         }
 
         /// <summary>

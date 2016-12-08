@@ -37,7 +37,7 @@ namespace Npoi.Core.HSSF.UserModel
         public HSSFBorderFormatting(CFRuleRecord cfRuleRecord)
         {
             this.cfRuleRecord = cfRuleRecord;
-            this.borderFormatting = cfRuleRecord.BorderFormatting;
+            borderFormatting = cfRuleRecord.BorderFormatting;
         }
 
         public BorderFormatting GetBorderFormattingBlock()

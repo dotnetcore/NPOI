@@ -51,7 +51,7 @@ namespace Npoi.Core.SS.Formula.Eval
 
         public BoolEval(Ptg ptg)
         {
-            this.value = ((BoolPtg)ptg).Value;
+            value = ((BoolPtg)ptg).Value;
         }
 
         private BoolEval(bool value)

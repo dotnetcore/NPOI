@@ -28,9 +28,9 @@ namespace Npoi.Core.HSSF.Record
 
         public ScrollableObjectSubRecord(ILittleEndianInput in1, int size)
         {
-            if (size != this.DataSize)
+            if (size != DataSize)
             {
-                throw new RecordFormatException(string.Format(CultureInfo.CurrentCulture, "Expected size {0} but got ({1})", this.DataSize, size));
+                throw new RecordFormatException(string.Format(CultureInfo.CurrentCulture, "Expected size {0} but got ({1})", DataSize, size));
             }
             in1.ReadInt();
             field_1_iVal = in1.ReadShort();

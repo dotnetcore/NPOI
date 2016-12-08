@@ -52,7 +52,7 @@ namespace Npoi.Core.SS.UserModel
         {
             get
             {
-                return this.name;
+                return name;
             }
         }
 
@@ -60,7 +60,7 @@ namespace Npoi.Core.SS.UserModel
         {
             get
             {
-                return this.value;
+                return value;
             }
         }
     }

@@ -114,12 +114,12 @@ namespace Npoi.Core.HSSF.Record.Chart
         public override object Clone()
         {
             PosRecord r = new PosRecord();
-            r.MdBotRt = this.MdBotRt;
-            r.MDTopLt = this.MDTopLt;
-            r.X1 = this.X1;
-            r.X2 = this.X2;
-            r.Y1 = this.Y1;
-            r.Y2 = this.Y2;
+            r.MdBotRt = MdBotRt;
+            r.MDTopLt = MDTopLt;
+            r.X1 = X1;
+            r.X2 = X2;
+            r.Y1 = Y1;
+            r.Y2 = Y2;
             return r;
         }
 

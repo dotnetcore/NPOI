@@ -255,7 +255,7 @@ namespace Npoi.Core.DDF
         /// </summary>
         /// <param name="record">The record.</param>
         public void AddChildRecord(EscherRecord record) {
-            this._childRecords.Add(record);
+            _childRecords.Add(record);
         }
 
         public void AddChildBefore(EscherRecord record, int insertBeforeRecordId) {
@@ -306,7 +306,7 @@ namespace Npoi.Core.DDF
             }
 
             return
-                this.GetType().Name + " (" + RecordName + "):" + nl +
+                GetType().Name + " (" + RecordName + "):" + nl +
                 "  isContainer: " + IsContainerRecord + nl +
                 "  version: 0x" + HexDump.ToHex(Version) + nl +
                 "  instance: 0x" + HexDump.ToHex(Instance) + nl +

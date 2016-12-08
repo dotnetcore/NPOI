@@ -81,7 +81,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <value>The reason.</value>
         public Exception Reason {
-            get { return this.InnerException; }
+            get { return InnerException; }
         }
     }
 }

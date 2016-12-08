@@ -154,8 +154,8 @@ namespace Npoi.Core.SS.UserModel.Charts
                 this.sheet = sheet;
                 // Make copy since CellRangeAddress is mutable.
                 this.cellRangeAddress = cellRangeAddress.Copy();
-                this.numOfCells = this.cellRangeAddress.NumberOfCells;
-                this.evaluator = sheet.Workbook.GetCreationHelper().CreateFormulaEvaluator();
+                numOfCells = this.cellRangeAddress.NumberOfCells;
+                evaluator = sheet.Workbook.GetCreationHelper().CreateFormulaEvaluator();
             }
 
             public int PointCount

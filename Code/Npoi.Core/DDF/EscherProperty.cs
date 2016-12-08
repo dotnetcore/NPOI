@@ -46,7 +46,7 @@ namespace Npoi.Core.DDF
         /// <param name="isComplex">if set to <c>true</c> [is complex].</param>
         /// <param name="isBlipId">if set to <c>true</c> [is blip id].</param>
         public EscherProperty(short propertyNumber, bool isComplex, bool isBlipId) {
-            this.id = (short)(propertyNumber +
+            id = (short)(propertyNumber +
                     (isComplex ? unchecked((short)0x8000) : (short)0x0) +
                     (isBlipId ? (short)0x4000 : (short)0x0));
         }

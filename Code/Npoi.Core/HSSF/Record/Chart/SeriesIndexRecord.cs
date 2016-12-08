@@ -98,7 +98,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short Index
         {
             get { return field_1_index; }
-            set { this.field_1_index = value; }
+            set { field_1_index = value; }
         }
     }
 }

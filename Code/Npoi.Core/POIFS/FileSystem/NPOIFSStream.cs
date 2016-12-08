@@ -64,7 +64,7 @@ namespace Npoi.Core.POIFS.FileSystem
         public NPOIFSStream(BlockStore blockStore)
         {
             this.blockStore = blockStore;
-            this.startBlock = POIFSConstants.END_OF_CHAIN;
+            startBlock = POIFSConstants.END_OF_CHAIN;
         }
 
         /**
@@ -160,7 +160,7 @@ namespace Npoi.Core.POIFS.FileSystem
                 nextBlock = blockStore.GetNextBlock(thisBlock);
                 blockStore.SetNextBlock(thisBlock, POIFSConstants.UNUSED_BLOCK);
             }
-            this.startBlock = POIFSConstants.END_OF_CHAIN;
+            startBlock = POIFSConstants.END_OF_CHAIN;
         }
 
         /*
@@ -283,10 +283,10 @@ namespace Npoi.Core.POIFS.FileSystem
             public StreamBlockByteBufferIterator(NPOIFSStream pStream, int firstBlock)
             {
                 this.pStream = pStream;
-                this.nextBlock = firstBlock;
+                nextBlock = firstBlock;
                 try
                 {
-                    this.loopDetector = pStream.blockStore.GetChainLoopDetector();
+                    loopDetector = pStream.blockStore.GetChainLoopDetector();
                 }
                 catch (IOException e)
                 {

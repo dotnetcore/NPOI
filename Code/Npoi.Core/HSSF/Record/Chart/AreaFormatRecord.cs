@@ -162,7 +162,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public int ForegroundColor
         {
             get { return field_1_foregroundColor; }
-            set { this.field_1_foregroundColor = value; }
+            set { field_1_foregroundColor = value; }
         }
 
         /**
@@ -172,7 +172,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public int BackgroundColor
         {
             get { return field_2_backgroundColor; }
-            set { this.field_2_backgroundColor = value; }
+            set { field_2_backgroundColor = value; }
         }
 
         /**
@@ -182,7 +182,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short Pattern
         {
             get { return field_3_pattern; }
-            set { this.field_3_pattern = value; }
+            set { field_3_pattern = value; }
         }
 
         /**
@@ -192,7 +192,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short FormatFlags
         {
             get { return field_4_formatFlags; }
-            set { this.field_4_formatFlags = value; }
+            set { field_4_formatFlags = value; }
         }
 
         /**
@@ -202,7 +202,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short ForecolorIndex
         {
             get { return field_5_forecolorIndex; }
-            set { this.field_5_forecolorIndex = value; }
+            set { field_5_forecolorIndex = value; }
         }
 
         /**
@@ -212,7 +212,7 @@ namespace Npoi.Core.HSSF.Record.Chart
         public short BackcolorIndex
         {
             get { return field_6_backcolorIndex; }
-            set { this.field_6_backcolorIndex = value; }
+            set { field_6_backcolorIndex = value; }
         }
 
         /**

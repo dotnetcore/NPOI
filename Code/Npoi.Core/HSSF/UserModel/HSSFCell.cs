@@ -102,7 +102,7 @@ namespace Npoi.Core.HSSF.UserModel
             cellType = CellType.Unknown; // Force 'SetCellType' to Create a first Record
             stringValue = null;
             this.book = book;
-            this._sheet = sheet;
+            _sheet = sheet;
 
             short xfindex = sheet.Sheet.GetXFIndexForColAt(col);
             SetCellType(type, false, row, col, xfindex);
@@ -121,7 +121,7 @@ namespace Npoi.Core.HSSF.UserModel
             cellType = DetermineType(cval);
             stringValue = null;
             this.book = book;
-            this._sheet = sheet;
+            _sheet = sheet;
             switch (cellType)
             {
                 case CellType.String:
@@ -201,7 +201,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             get
             {
-                return this._sheet;
+                return _sheet;
             }
         }
 
@@ -212,7 +212,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             get
             {
-                int rowIndex = this.RowIndex;
+                int rowIndex = RowIndex;
                 return _sheet.GetRow(rowIndex);
             }
         }
@@ -502,7 +502,7 @@ namespace Npoi.Core.HSSF.UserModel
         /// will Change the cell to a numeric cell and Set its value.</param>
         public void SetCellValue(DateTime value)
         {
-            SetCellValue(DateUtil.GetExcelDate(value, this.book.Workbook.IsUsing1904DateWindowing));
+            SetCellValue(DateUtil.GetExcelDate(value, book.Workbook.IsUsing1904DateWindowing));
         }
 
         /// <summary>
@@ -770,7 +770,7 @@ namespace Npoi.Core.HSSF.UserModel
                     throw new InvalidDataException(
                         "You cannot get a date value from an error cell");
                 }
-                double value = this.NumericCellValue;
+                double value = NumericCellValue;
                 if (book.Workbook.IsUsing1904DateWindowing)
                 {
                     return DateUtil.GetJavaDate(value, true);
@@ -1075,7 +1075,7 @@ namespace Npoi.Core.HSSF.UserModel
             int row = _record.Row;
             int col = _record.Column;
 
-            this._sheet.Sheet.SetActiveCell(row, col);
+            _sheet.Sheet.SetActiveCell(row, col);
         }
 
         /// <summary>
@@ -1105,7 +1105,7 @@ namespace Npoi.Core.HSSF.UserModel
                     return CellFormula;
 
                 case CellType.Numeric:
-                    string format = this.CellStyle.GetDataFormatString();
+                    string format = CellStyle.GetDataFormatString();
                     DataFormatter formatter = new DataFormatter();
                     return formatter.FormatCellValue(this);
 
@@ -1141,7 +1141,7 @@ namespace Npoi.Core.HSSF.UserModel
 
                 value.Row = _record.Row;
                 value.Column = _record.Column;
-                this.comment = value;
+                comment = value;
             }
         }
 
@@ -1288,7 +1288,7 @@ namespace Npoi.Core.HSSF.UserModel
         {
             get
             {
-                if (this.cellType != CellType.Formula)
+                if (cellType != CellType.Formula)
                 {
                     throw new InvalidOperationException("Only formula cells have cached results");
                 }
@@ -1337,7 +1337,7 @@ namespace Npoi.Core.HSSF.UserModel
 
         public ICell CopyCellTo(int targetIndex)
         {
-            return this.Row.CopyCell(this.ColumnIndex, targetIndex);
+            return Row.CopyCell(ColumnIndex, targetIndex);
         }
 
         /// <summary>
@@ -1346,13 +1346,13 @@ namespace Npoi.Core.HSSF.UserModel
         /// <param name="msg"></param>
         internal void NotifyArrayFormulaChanging(string msg)
         {
-            CellRangeAddress cra = this.ArrayFormulaRange;
+            CellRangeAddress cra = ArrayFormulaRange;
             if (cra.NumberOfCells > 1)
             {
                 throw new InvalidOperationException(msg);
             }
             //un-register the single-cell array formula from the parent XSSFSheet
-            this.Row.Sheet.RemoveArrayFormula(this);
+            Row.Sheet.RemoveArrayFormula(this);
         }
 
         /// <summary>
@@ -1373,10 +1373,10 @@ namespace Npoi.Core.HSSF.UserModel
             {
                 foreach (CellRangeAddress range in _sheet.Sheet.MergedRecords.MergedRegions)
                 {
-                    if (range.FirstColumn <= this.ColumnIndex
-                        && range.LastColumn >= this.ColumnIndex
-                        && range.FirstRow <= this.RowIndex
-                        && range.LastRow >= this.RowIndex)
+                    if (range.FirstColumn <= ColumnIndex
+                        && range.LastColumn >= ColumnIndex
+                        && range.FirstRow <= RowIndex
+                        && range.LastRow >= RowIndex)
                     {
                         return true;
                     }

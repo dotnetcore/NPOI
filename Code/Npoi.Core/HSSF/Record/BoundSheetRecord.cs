@@ -49,7 +49,7 @@ namespace Npoi.Core.HSSF.Record
         public BoundSheetRecord(string sheetname)
         {
             field_2_option_flags = 0;
-            this.Sheetname = sheetname;
+            Sheetname = sheetname;
         }
 
         /**
@@ -65,7 +65,7 @@ namespace Npoi.Core.HSSF.Record
             int field_3_sheetname_length = in1.ReadUByte();						// len(str)
             field_4_isMultibyteUnicode = (byte)in1.ReadByte();                      // Unicode
 
-            if (this.IsMultibyte)
+            if (IsMultibyte)
             {
                 field_5_sheetname = in1.ReadUnicodeLEString(field_3_sheetname_length);
             }
