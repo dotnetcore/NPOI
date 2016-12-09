@@ -61,7 +61,7 @@ namespace Npoi.Core.HPSF
 
         public static int WriteToStream(Stream out1, int n) {
             LittleEndian.PutInt(n, out1);
-            return LittleEndian.INT_SIZE;
+            return LittleEndianConsts.INT_SIZE;
         }
 
         /**
@@ -128,7 +128,7 @@ namespace Npoi.Core.HPSF
                 throw new IllegalPropertySetDataException
                     ("Value " + n + " cannot be represented by 4 bytes.");
             LittleEndian.PutUInt(n, out1);
-            return LittleEndian.INT_SIZE;
+            return LittleEndianConsts.INT_SIZE;
         }
 
         /**

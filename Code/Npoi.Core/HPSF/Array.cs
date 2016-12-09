@@ -32,7 +32,7 @@ namespace Npoi.Core.HPSF
             public ArrayDimension(byte[] data, int offset) {
                 _size = LittleEndian.GetUInt(data, offset);
                 _indexOffset = LittleEndian.GetInt(data, offset
-                        + LittleEndian.INT_SIZE);
+                        + LittleEndianConsts.INT_SIZE);
             }
         }
 
@@ -45,10 +45,10 @@ namespace Npoi.Core.HPSF
                 int offset = startOffset;
 
                 _type = LittleEndian.GetInt(data, offset);
-                offset += LittleEndian.INT_SIZE;
+                offset += LittleEndianConsts.INT_SIZE;
 
                 long numDimensionsUnsigned = LittleEndian.GetUInt(data, offset);
-                offset += LittleEndian.INT_SIZE;
+                offset += LittleEndianConsts.INT_SIZE;
 
                 if (!(1 <= numDimensionsUnsigned && numDimensionsUnsigned <= 31))
                     throw new IllegalPropertySetDataException(
@@ -76,7 +76,7 @@ namespace Npoi.Core.HPSF
             public int Size {
                 get
                 {
-                    return LittleEndian.INT_SIZE * 2 + _dimensions.Length
+                    return LittleEndianConsts.INT_SIZE * 2 + _dimensions.Length
                            * ArrayDimension.SIZE;
                 }
             }

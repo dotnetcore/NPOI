@@ -24,13 +24,13 @@ namespace Npoi.Core.HPSF
                 return;
             }
 
-            _format = LittleEndian.GetInt(data, offset + LittleEndian.INT_SIZE);
+            _format = LittleEndian.GetInt(data, offset + LittleEndianConsts.INT_SIZE);
             _value = LittleEndian.GetByteArray(data, offset
-                    + LittleEndian.INT_SIZE * 2, size - LittleEndian.INT_SIZE);
+                    + LittleEndianConsts.INT_SIZE * 2, size - LittleEndianConsts.INT_SIZE);
         }
 
         public int Size {
-            get { return LittleEndian.INT_SIZE * 2 + _value.Length; }
+            get { return LittleEndianConsts.INT_SIZE * 2 + _value.Length; }
         }
 
         public byte[] Value {
@@ -39,19 +39,19 @@ namespace Npoi.Core.HPSF
 
         public byte[] ToByteArray() {
             byte[] result = new byte[Size];
-            LittleEndian.PutInt(result, 0 * LittleEndian.INT_SIZE,
-                    LittleEndian.INT_SIZE + _value.Length);
-            LittleEndian.PutInt(result, 1 * LittleEndian.INT_SIZE, _format);
-            System.Array.Copy(_value, 0, result, LittleEndian.INT_SIZE
-                    + LittleEndian.INT_SIZE, _value.Length);
+            LittleEndian.PutInt(result, 0 * LittleEndianConsts.INT_SIZE,
+                    LittleEndianConsts.INT_SIZE + _value.Length);
+            LittleEndian.PutInt(result, 1 * LittleEndianConsts.INT_SIZE, _format);
+            System.Array.Copy(_value, 0, result, LittleEndianConsts.INT_SIZE
+                    + LittleEndianConsts.INT_SIZE, _value.Length);
             return result;
         }
 
         public int Write(Stream out1) {
-            LittleEndian.PutInt(LittleEndian.INT_SIZE + _value.Length, out1);
+            LittleEndian.PutInt(LittleEndianConsts.INT_SIZE + _value.Length, out1);
             LittleEndian.PutInt(_format, out1);
             out1.Write(_value, 0, _value.Length);
-            return 2 * LittleEndian.INT_SIZE + _value.Length;
+            return 2 * LittleEndianConsts.INT_SIZE + _value.Length;
         }
     }
 }

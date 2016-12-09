@@ -29,7 +29,7 @@ namespace Npoi.Core.HPSF
 
         public UnicodeString(byte[] data, int offset) {
             int length = LittleEndian.GetInt(data, offset);
-            int dataOffset = offset + LittleEndian.INT_SIZE;
+            int dataOffset = offset + LittleEndianConsts.INT_SIZE;
 
             if (!validLength(length, data, dataOffset)) {
                 // If the length looks wrong, this might be because the offset is sometimes expected
@@ -40,7 +40,7 @@ namespace Npoi.Core.HPSF
                 if (past4byte != 0) {
                     offset = offset + past4byte;
                     length = LittleEndian.GetInt(data, offset);
-                    dataOffset = offset + LittleEndian.INT_SIZE;
+                    dataOffset = offset + LittleEndianConsts.INT_SIZE;
 
                     valid = validLength(length, data, dataOffset);
                 }
@@ -85,7 +85,7 @@ namespace Npoi.Core.HPSF
         }
 
         public int Size {
-            get { return LittleEndian.INT_SIZE + _value.Length; }
+            get { return LittleEndianConsts.INT_SIZE + _value.Length; }
         }
 
         public byte[] Value {

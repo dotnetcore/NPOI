@@ -33,7 +33,7 @@ namespace Npoi.Core.HPSF
             int offset = startOffset;
 
             int size = LittleEndian.GetInt(data, offset);
-            offset += LittleEndian.INT_SIZE;
+            offset += LittleEndianConsts.INT_SIZE;
 
             _value = LittleEndian.GetByteArray(data, offset, size);
             if (size != 0 && _value[size - 1] != 0) {
@@ -76,7 +76,7 @@ namespace Npoi.Core.HPSF
         }
 
         public int Size {
-            get { return LittleEndian.INT_SIZE + _value.Length; }
+            get { return LittleEndianConsts.INT_SIZE + _value.Length; }
         }
 
         public void SetJavaValue(string aString, int codepage) {
@@ -89,7 +89,7 @@ namespace Npoi.Core.HPSF
         public int Write(Stream out1) {
             LittleEndian.PutInt(_value.Length, out1);
             out1.Write(_value, 0, _value.Length);
-            return LittleEndian.INT_SIZE + _value.Length;
+            return LittleEndianConsts.INT_SIZE + _value.Length;
         }
     }
 }

@@ -39,7 +39,7 @@ namespace Npoi.Core.HPSF
             int offset = startOffset;
 
             long longLength = LittleEndian.GetUInt(data, offset);
-            offset += LittleEndian.INT_SIZE;
+            offset += LittleEndianConsts.INT_SIZE;
 
             if (longLength > int.MaxValue)
                 throw new InvalidOperationException("Vector is too long -- "

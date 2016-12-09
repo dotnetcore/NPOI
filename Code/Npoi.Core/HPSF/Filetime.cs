@@ -5,16 +5,16 @@ namespace Npoi.Core.HPSF
 {
     public class Filetime
     {
-        public const int SIZE = LittleEndian.INT_SIZE * 2;
+        public const int SIZE = LittleEndianConsts.INT_SIZE * 2;
 
         private int _dwHighDateTime;
         private int _dwLowDateTime;
 
         public Filetime(byte[] data, int offset) {
             _dwLowDateTime = LittleEndian.GetInt(data, offset + 0
-                    * LittleEndian.INT_SIZE);
+                    * LittleEndianConsts.INT_SIZE);
             _dwHighDateTime = LittleEndian.GetInt(data, offset + 1
-                    * LittleEndian.INT_SIZE);
+                    * LittleEndianConsts.INT_SIZE);
         }
 
         public Filetime(int low, int high) {
@@ -32,8 +32,8 @@ namespace Npoi.Core.HPSF
 
         public byte[] ToByteArray() {
             byte[] result = new byte[SIZE];
-            LittleEndian.PutInt(result, 0 * LittleEndian.INT_SIZE, _dwLowDateTime);
-            LittleEndian.PutInt(result, 1 * LittleEndian.INT_SIZE, _dwHighDateTime);
+            LittleEndian.PutInt(result, 0 * LittleEndianConsts.INT_SIZE, _dwLowDateTime);
+            LittleEndian.PutInt(result, 1 * LittleEndianConsts.INT_SIZE, _dwHighDateTime);
             return result;
         }
 

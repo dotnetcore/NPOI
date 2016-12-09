@@ -5,6 +5,7 @@ using Npoi.Core.XSSF.UserModel;
 using Npoi.Core.XWPF.UserModel;
 using Npoi.Core.SS.Util;
 using Npoi.Core.HSSF.Util;
+using Npoi.Core.HSSF.UserModel;
 
 namespace Npoi.Samples.CreateNewSpreadsheet
 {

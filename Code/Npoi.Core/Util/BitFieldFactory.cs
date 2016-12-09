@@ -36,7 +36,7 @@ namespace Npoi.Core.Util
     public class BitFieldFactory
     {
         //use Dictionary<object,object> to replace HashMap
-        private static Dictionary<object, object> instances = new Dictionary<object, object>();
+        private static Dictionary<int, BitField> instances = new Dictionary<int, BitField>();
 
         /// <summary>
         /// Gets the instance.
@@ -45,13 +45,14 @@ namespace Npoi.Core.Util
         /// <returns></returns>
         public static BitField GetInstance(int mask)
         {
-            BitField f = (BitField)instances[mask];
-            if (f == null)
+            BitField bitField = null;
+            if (instances.TryGetValue(mask, out bitField))
             {
-                f = new BitField(mask);
-                instances[mask] = f;
+                return bitField;
             }
-            return f;
+            bitField = new BitField(mask);
+            instances.Add(mask, bitField);
+            return bitField;
         }
     }
 }

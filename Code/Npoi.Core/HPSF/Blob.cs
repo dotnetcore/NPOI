@@ -15,11 +15,11 @@ namespace Npoi.Core.HPSF
             }
 
             _value = LittleEndian.GetByteArray(data, offset
-                    + LittleEndian.INT_SIZE, size);
+                    + LittleEndianConsts.INT_SIZE, size);
         }
 
         public int Size {
-            get { return LittleEndian.INT_SIZE + _value.Length; }
+            get { return LittleEndianConsts.INT_SIZE + _value.Length; }
         }
     }
 }

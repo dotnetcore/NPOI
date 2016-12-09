@@ -42,7 +42,7 @@ namespace Npoi.Core.HPSF
             offset += LittleEndian.BYTE_SIZE;
 
             field_4_hi32 = LittleEndian.GetInt(data, offset);
-            offset += LittleEndian.INT_SIZE;
+            offset += LittleEndianConsts.INT_SIZE;
 
             field_5_lo64 = LittleEndian.GetLong(data, offset);
             offset += LittleEndian.LONG_SIZE;

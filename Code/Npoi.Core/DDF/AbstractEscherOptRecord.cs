@@ -127,10 +127,9 @@ namespace Npoi.Core.DDF
             }
         }
 
-        /**
-         * Records should be sorted by property number before being stored.
-         */
-
+        /// <summary>
+        /// Records should be sorted by property number before being stored.
+        /// </summary>
         public void SortProperties() {
             properties.Sort(new EscherPropertyComparer());
         }
@@ -143,32 +142,13 @@ namespace Npoi.Core.DDF
          */
 
         public void SetEscherProperty(EscherProperty value) {
-            List<EscherProperty> toRemove = new List<EscherProperty>();
-            for (IEnumerator<EscherProperty> iterator =
-                          properties.GetEnumerator(); iterator.MoveNext();) {
-                EscherProperty prop = iterator.Current;
-                if (prop.Id == value.Id) {
-                    //iterator.Remove();
-                    toRemove.Add(prop);
-                }
-            }
-            foreach (EscherProperty e in toRemove)
-                EscherProperties.Remove(e);
+            properties.RemoveAll(x => x.Id == value.Id);         
             properties.Add(value);
             SortProperties();
         }
 
         public void RemoveEscherProperty(int num) {
-            List<EscherProperty> toRemove = new List<EscherProperty>();
-            for (IEnumerator<EscherProperty> iterator = EscherProperties.GetEnumerator(); iterator.MoveNext();) {
-                EscherProperty prop = iterator.Current;
-                if (prop.PropertyNumber == num) {
-                    //iterator.Remove();
-                    toRemove.Add(prop);
-                }
-            }
-            foreach (EscherProperty e in toRemove)
-                EscherProperties.Remove(e);
+            EscherProperties.RemoveAll(x => x.PropertyNumber == num);            
         }
 
         /**
