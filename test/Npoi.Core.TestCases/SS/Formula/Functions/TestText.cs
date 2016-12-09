@@ -118,7 +118,7 @@ namespace TestCases.SS.Formula.Functions
             //Assert.AreEqual(testResult.ToString(), result.ToString());
 
             // this line is intended to compute how "November" would look like in the current locale
-            String november = new SimpleDateFormat("MMMM").Format(new DateTime(2010, 11, 15), CultureInfo.CurrentCulture);
+            string november = new SimpleDateFormat("MMMM").Format(new DateTime(2010, 11, 15), CultureInfo.CurrentCulture);
             
             // Again with Java style
             formatArg = new StringEval("MMMM dd, yyyy");

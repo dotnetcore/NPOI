@@ -52,7 +52,7 @@ namespace TestCases.SS.Format
         protected IWorkbook workbook;
 
         private string testFile;
-        private Dictionary<String, String> testFlags;
+        private Dictionary<string, string> testFlags;
         private bool tryAllColors;
 		// TODO: Port
         //private Label label;
@@ -78,7 +78,7 @@ namespace TestCases.SS.Format
                 return TEST_COLOR;
             }
 
-            public virtual void Equivalent(string expected, String actual, CellFormatPart format)
+            public virtual void Equivalent(string expected, string actual, CellFormatPart format)
             {
                 Assert.AreEqual('"' + expected + '"',
                         '"' + actual + '"', "format \"" + format.ToString() + "\"");
@@ -92,7 +92,7 @@ namespace TestCases.SS.Format
             ReadFlags(workbook);
 
             SortedList<string, object> runCategories = new SortedList<string, object>(StringComparer.OrdinalIgnoreCase);
-            String RunCategoryList = flagString("Categories", "");
+            string RunCategoryList = flagString("Categories", "");
             Regex regex = new Regex("\\s*,\\s*");
             if (RunCategoryList != null)
             {
@@ -111,9 +111,9 @@ namespace TestCases.SS.Format
                 if (row == null)
                     continue;
                 int cellnum = 0;
-                String expectedText = row.GetCell(cellnum).StringCellValue;
-                String format = row.GetCell(1).StringCellValue;
-                String testCategoryList = row.GetCell(3).StringCellValue;
+                string expectedText = row.GetCell(cellnum).StringCellValue;
+                string format = row.GetCell(1).StringCellValue;
+                string testCategoryList = row.GetCell(3).StringCellValue;
                 bool byCategory = RunByCategory(runCategories, testCategoryList);
                 if ((expectedText.Length > 0 || format.Length > 0) && byCategory)
                 {
@@ -154,7 +154,7 @@ namespace TestCases.SS.Format
         private void ReadFlags(IWorkbook wb)
         {
             ISheet flagSheet = wb.GetSheet("Flags");
-            testFlags = new Dictionary<String, String>();
+            testFlags = new Dictionary<string, string>();
             if (flagSheet != null)
             {
                 int end = flagSheet.LastRowNum;
@@ -164,8 +164,8 @@ namespace TestCases.SS.Format
                     IRow row = flagSheet.GetRow(r);
                     if (row == null)
                         continue;
-                    String flagName = row.GetCell(0).StringCellValue;
-                    String flagValue = row.GetCell(1).StringCellValue;
+                    string flagName = row.GetCell(0).StringCellValue;
+                    string flagValue = row.GetCell(1).StringCellValue;
                     if (flagName.Length > 0)
                     {
                         testFlags.Add(flagName, flagValue);
@@ -190,7 +190,7 @@ namespace TestCases.SS.Format
          * @return <tt>true</tt> if the test should be Run.
          */
         private bool RunByCategory(SortedList<string, object> categories,
-                String testCategories)
+                string testCategories)
         {
 
             if (categories.Count == 0)
@@ -208,7 +208,7 @@ namespace TestCases.SS.Format
             return false;
         }
 
-        private void tryFormat(int row, String expectedText, String desc,
+        private void tryFormat(int row, string expectedText, string desc,
                 CellValue Getter, ICell cell)
         {
 
@@ -223,24 +223,24 @@ namespace TestCases.SS.Format
 			//label.ForeColor = (/*setter*/testColor);
 			//label.Text = (/*setter*/"xyzzy");
 
-			logger.Log(POILogger.INFO, String.Format("Row %d: \"%s\" -> \"%s\": expected \"%s\"", row + 1,
+			logger.Log(POILogger.INFO, string.Format("Row %d: \"%s\" -> \"%s\": expected \"%s\"", row + 1,
                     value.ToString(), desc, expectedText));
-            String actualText = tryColor(desc, null, Getter, value, expectedText,
+            string actualText = tryColor(desc, null, Getter, value, expectedText,
                     testColor);
-            logger.Log(POILogger.INFO, String.Format(", actual \"%s\")%n", actualText));
+            logger.Log(POILogger.INFO, string.Format(", actual \"%s\")%n", actualText));
 
             if (tryAllColors && testColor != TEST_COLOR)
             {
                 for (int i = 0; i < COLOR_NAMES.Length; i++)
                 {
-                    String cname = COLOR_NAMES[i];
+                    string cname = COLOR_NAMES[i];
                     tryColor(desc, cname, Getter, value, expectedText, COLORS[i]);
                 }
             }
         }
 
-        private string tryColor(string desc, String cname, CellValue Getter,
-                Object value, String expectedText, Color expectedColor)
+        private string tryColor(string desc, string cname, CellValue Getter,
+                Object value, string expectedText, Color expectedColor)
         {
 
 			// TODO: Port
@@ -281,7 +281,7 @@ namespace TestCases.SS.Format
          */
         protected bool flagBoolean(string flagName, bool expected)
         {
-            String value = testFlags[(flagName)];
+            string value = testFlags[(flagName)];
             bool isSet;
             if (value == null)
                 isSet = false;
@@ -308,9 +308,9 @@ namespace TestCases.SS.Format
          *
          * @return The value for the flag.
          */
-        protected String flagString(string flagName, String expected)
+        protected string flagString(string flagName, string expected)
         {
-            String value = testFlags[(flagName)];
+            string value = testFlags[(flagName)];
             if (value == null)
                 value = "";
             warnIfUnexpected(flagName, expected, value);

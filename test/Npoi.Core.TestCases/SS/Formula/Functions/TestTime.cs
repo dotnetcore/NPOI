@@ -100,7 +100,7 @@ namespace TestCases.SS.Formula.Functions
             Confirm(expectedTimeStr, "TIME(" + inH + "," + inM + "," + inS + ")");
         }
 
-        private void Confirm(string expectedTimeStr, String formulaText)
+        private void Confirm(string expectedTimeStr, string formulaText)
         {
             //		Console.WriteLine("=" + formulaText);
             //String[] parts = Pattern.compile(":").split(expectedTimeStr);
@@ -118,7 +118,7 @@ namespace TestCases.SS.Formula.Functions
             double actualValue = Evaluator.Evaluate(cell11).NumberValue;
             Assert.AreEqual(expectedValue, actualValue, 0.0);
 
-            String actualText = form.FormatCellValue(cell11, Evaluator);
+            string actualText = form.FormatCellValue(cell11, Evaluator);
             Assert.AreEqual(expectedTimeStr, actualText);
         }
     }

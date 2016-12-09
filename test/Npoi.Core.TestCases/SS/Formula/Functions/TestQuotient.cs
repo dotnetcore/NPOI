@@ -30,20 +30,20 @@ namespace TestCases.SS.Formula.Functions
     [TestFixture]
     public class TestQuotient
     {
-        private static ValueEval invokeValue(string numerator, String denominator)
+        private static ValueEval invokeValue(string numerator, string denominator)
         {
             ValueEval[] args = new ValueEval[] { new StringEval(numerator), new StringEval(denominator) };
             return new Quotient().Evaluate(args, -1, -1);
         }
 
-        private static void ConfirmValue(string msg, String numerator, String denominator, String expected)
+        private static void ConfirmValue(string msg, string numerator, string denominator, string expected)
         {
             ValueEval result = invokeValue(numerator, denominator);
             Assert.AreEqual(typeof(NumberEval), result.GetType());
             Assert.AreEqual(expected, ((NumberEval)result).StringValue, msg);
         }
 
-        private static void ConfirmValueError(string msg, String numerator, String denominator, ErrorEval numError)
+        private static void ConfirmValueError(string msg, string numerator, string denominator, ErrorEval numError)
         {
             ValueEval result = invokeValue(numerator, denominator);
             Assert.AreEqual(typeof(ErrorEval), result.GetType());

@@ -63,12 +63,12 @@ namespace TestCases.SS.Util
                         continue;
                     }
 
-                    String actual = NumberToTextConverter.ToText(example.DoubleValue);
+                    string actual = NumberToTextConverter.ToText(example.DoubleValue);
 
                     if (!example.ExcelRendering.Equals(actual))
                     {
                         failureCount++;
-                        String msg = "Error rendering for examples[" + i + "] "
+                        string msg = "Error rendering for examples[" + i + "] "
                                 + FormatExample(example) + " "
                                 + " bad-result='" + actual + "' "
                                 + "Excel String=" + example.ExcelRendering;
@@ -93,8 +93,8 @@ namespace TestCases.SS.Util
 
         private static string FormatExample(Util.NumberToTextConversionExamples.ExampleConversion example)
         {
-            String hexLong = example.RawDoubleBits.ToString("X");
-            String longRep = "0x" + "0000000000000000".Substring(hexLong.Length) + hexLong + "L";
+            string hexLong = example.RawDoubleBits.ToString("X");
+            string longRep = "0x" + "0000000000000000".Substring(hexLong.Length) + hexLong + "L";
             return "ec(" + longRep + ", \"" + example.CSharpRendering + "\", \"" + example.ExcelRendering + "\")";
         }
 
@@ -123,13 +123,13 @@ namespace TestCases.SS.Util
          * The few test case examples calling this method represent functionality which may not be 
          * important for POI to support.
          */
-        private void ConfirmNaN(long l, String excelRep)
+        private void ConfirmNaN(long l, string excelRep)
         {
             double d = BitConverter.Int64BitsToDouble(l);
             Assert.AreEqual("NaN", d.ToString());
             //to make this assert work, please set the CurrentCulture above, too.  Assert.AreEqual("非数字", d.ToString());
 
-            String strExcel = NumberToTextConverter.RawDoubleBitsToText(l);
+            string strExcel = NumberToTextConverter.RawDoubleBitsToText(l);
 
             Assert.AreEqual(excelRep, strExcel);
         }
@@ -138,8 +138,8 @@ namespace TestCases.SS.Util
         public void TestSimpleRendering_bug56156()
         {
             double dResult = 0.05 + 0.01; // values chosen to produce rounding anomaly
-            String actualText = NumberToTextConverter.ToText(dResult);
-            String jdkText = dResult.ToString("R");
+            string actualText = NumberToTextConverter.ToText(dResult);
+            string jdkText = dResult.ToString("R");
             //in c#, the value of dResult.ToString() is 0.06 and equals to actualText;
             //so we use dResult.ToString("R"), thus the test passes.
             if (jdkText.Equals(actualText))

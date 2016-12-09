@@ -34,7 +34,7 @@ namespace TestCases.SS.Formula.Functions
     public class TestDec2Hex
     {
 
-        private static ValueEval invokeValue(string number1, String number2)
+        private static ValueEval invokeValue(string number1, string number2)
         {
             ValueEval[] args = new ValueEval[] { new StringEval(number1), new StringEval(number2), };
             return new Dec2Hex().Evaluate(args, -1, -1);
@@ -50,21 +50,21 @@ namespace TestCases.SS.Formula.Functions
             return new Dec2Hex().Evaluate(args, -1, -1);
         }
 
-        private static void ConfirmValue(string msg, String number1, String number2, String expected)
+        private static void ConfirmValue(string msg, string number1, string number2, string expected)
         {
             ValueEval result = invokeValue(number1, number2);
             Assert.AreEqual(typeof(StringEval), result.GetType());
             Assert.AreEqual(expected, ((StringEval)result).StringValue, msg);
         }
 
-        private static void ConfirmValue(string msg, String number1, String expected)
+        private static void ConfirmValue(string msg, string number1, string expected)
         {
             ValueEval result = invokeValue(number1);
             Assert.AreEqual(typeof(StringEval), result.GetType());
             Assert.AreEqual(expected, ((StringEval)result).StringValue, msg);
         }
 
-        private static void ConfirmValueError(string msg, String number1, String number2, ErrorEval numError)
+        private static void ConfirmValueError(string msg, string number1, string number2, ErrorEval numError)
         {
             ValueEval result = invokeValue(number1, number2);
             Assert.AreEqual(typeof(ErrorEval), result.GetType());

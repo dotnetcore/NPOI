@@ -64,7 +64,7 @@ namespace TestCases.HSSF.Model
             }
             // some other sanity Checks
             Assert.AreEqual(3, wb.NumberOfSheets);
-            String formula = wb.GetSheetAt(0).GetRow(4).GetCell(13).CellFormula;
+            string formula = wb.GetSheetAt(0).GetRow(4).GetCell(13).CellFormula;
 
             if ("ipcSummenproduktIntern($P5,N$6,$A$9,N$5)".Equals(formula))
             {
@@ -126,7 +126,7 @@ namespace TestCases.HSSF.Model
             */
 
             ICell cell = wb.GetSheetAt(0).GetRow(1).GetCell(1);
-            String cellFormula;
+            string cellFormula;
             try
             {
                 cellFormula = cell.CellFormula;
@@ -160,7 +160,7 @@ namespace TestCases.HSSF.Model
             LinkTable lt;
             try
             {
-                lt = new LinkTable(recList, 0, wrl, new Dictionary<String, NameCommentRecord>());
+                lt = new LinkTable(recList, 0, wrl, new Dictionary<string, NameCommentRecord>());
             }
             catch (Exception e)
             {
@@ -186,7 +186,7 @@ namespace TestCases.HSSF.Model
             };
             List<Record> recList = new List<Record>(recs);
             WorkbookRecordList wrl = new WorkbookRecordList();
-            Dictionary<String, NameCommentRecord> commentRecords = new Dictionary<String, NameCommentRecord>();
+            Dictionary<string, NameCommentRecord> commentRecords = new Dictionary<string, NameCommentRecord>();
 
             LinkTable lt = new LinkTable(recList, 0, wrl, commentRecords);
             Assert.IsNotNull(lt);

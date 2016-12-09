@@ -45,7 +45,7 @@ namespace TestCases.SS.Util
             private double _doubleValue;
             private long _rawDoubleBits;
 
-            public ExampleConversion(long rawDoubleBits, String cSharpRendering, String excelRendering)
+            public ExampleConversion(long rawDoubleBits, string cSharpRendering, string excelRendering)
             {
                 //double d = Double.longBitsToDouble(rawDoubleBits);
                 double d = BitConverter.Int64BitsToDouble(rawDoubleBits);
@@ -75,8 +75,8 @@ namespace TestCases.SS.Util
                     bool javaParseOk = double.Parse(cSharpRendering) == d;
                     if (!javaToStringOk || !javaParseOk)
                     {
-                        String msgA = "Specified rawDoubleBits " + DoubleToHexString(d) + " encodes to double '" + d.ToString("R") + "'.";
-                        String msgB = "Specified cSharpRendering '" + cSharpRendering + "' parses as double with rawDoubleBits "
+                        string msgA = "Specified rawDoubleBits " + DoubleToHexString(d) + " encodes to double '" + d.ToString("R") + "'.";
+                        string msgB = "Specified cSharpRendering '" + cSharpRendering + "' parses as double with rawDoubleBits "
                             + DoubleToHexString(double.Parse(cSharpRendering));
                         System.Console.WriteLine(msgA);
                         System.Console.WriteLine(msgB);
@@ -92,14 +92,14 @@ namespace TestCases.SS.Util
             {
                 return "0x" + BitConverter.DoubleToInt64Bits(d).ToString("X") + "L";
             }
-            public String CSharpRendering
+            public string CSharpRendering
             {
                 get
                 {
                     return _cSharpRendering;
                 }
             }
-            public String ExcelRendering
+            public string ExcelRendering
             {
                 get
                 {
@@ -317,11 +317,11 @@ namespace TestCases.SS.Util
 		Ec(0xFFF7FFFFFFFFFFFFL, "NaN", "2.6965397022935E+308"),
 	};
 
-        private static ExampleConversion Ec(long rawDoubleBits, String javaRendering, String excelRendering)
+        private static ExampleConversion Ec(long rawDoubleBits, string javaRendering, string excelRendering)
         {
             return new ExampleConversion(rawDoubleBits, javaRendering, excelRendering);
         }
-        private static ExampleConversion Ec(ulong rawDoubleBits, String javaRendering, String excelRendering)
+        private static ExampleConversion Ec(ulong rawDoubleBits, string javaRendering, string excelRendering)
         {
             return new ExampleConversion((long)rawDoubleBits, javaRendering, excelRendering);
         }

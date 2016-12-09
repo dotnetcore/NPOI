@@ -76,7 +76,7 @@ namespace TestCases.HSSF.EventUserModel
         [Test]
         public void TestTurnToString()
         {
-            String[] files = new String[] { 
+            string[] files = new string[] { 
 				"45365.xls", "45365-2.xls", "MissingBits.xls" 
 		};
             for (int k = 0; k < files.Length; k++)
@@ -106,7 +106,7 @@ namespace TestCases.HSSF.EventUserModel
                     if (cvr != null)
                     {
                         // Should always give us a string 
-                        String s = listener.FormatNumberDateCell(cvr);
+                        string s = listener.FormatNumberDateCell(cvr);
                         Assert.IsNotNull(s);
                         Assert.IsTrue(s.Length > 0);
                     }

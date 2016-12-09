@@ -65,16 +65,16 @@ namespace TestCases.POIFS.FileSystem
         [Test]
         public void TestEquality()
         {
-            String[] names =
+            string[] names =
         {
             "c1", "c2", "c3", "c4", "c5"
         };
             POIFSDocumentPath a1 = new POIFSDocumentPath();
             POIFSDocumentPath a2 = new POIFSDocumentPath(null);
-            POIFSDocumentPath a3 = new POIFSDocumentPath(new String[0]);
+            POIFSDocumentPath a3 = new POIFSDocumentPath(new string[0]);
             POIFSDocumentPath a4 = new POIFSDocumentPath(a1, null);
             POIFSDocumentPath a5 = new POIFSDocumentPath(a1,
-                                            new String[0]);
+                                            new string[0]);
             POIFSDocumentPath[] paths =
         {
             a1, a2, a3, a4, a5
@@ -107,19 +107,19 @@ namespace TestCases.POIFS.FileSystem
                     }
                 }
             }
-            a2 = new POIFSDocumentPath(a1, new String[]
+            a2 = new POIFSDocumentPath(a1, new string[]
         {
             "foo"
         });
-            a3 = new POIFSDocumentPath(a2, new String[]
+            a3 = new POIFSDocumentPath(a2, new string[]
         {
             "bar"
         });
-            a4 = new POIFSDocumentPath(a3, new String[]
+            a4 = new POIFSDocumentPath(a3, new string[]
         {
             "fubar"
         });
-            a5 = new POIFSDocumentPath(a4, new String[]
+            a5 = new POIFSDocumentPath(a4, new string[]
         {
             "foobar"
         });
@@ -129,16 +129,16 @@ namespace TestCases.POIFS.FileSystem
         };
             POIFSDocumentPath[] fullPaths =
         {
-            new POIFSDocumentPath(), new POIFSDocumentPath(new String[]
+            new POIFSDocumentPath(), new POIFSDocumentPath(new string[]
             {
                 "foo"
-            }), new POIFSDocumentPath(new String[]
+            }), new POIFSDocumentPath(new string[]
             {
                 "foo", "bar"
-            }), new POIFSDocumentPath(new String[]
+            }), new POIFSDocumentPath(new string[]
             {
                 "foo", "bar", "fubar"
-            }), new POIFSDocumentPath(new String[]
+            }), new POIFSDocumentPath(new string[]
             {
                 "foo", "bar", "fubar", "foobar"
             })
@@ -174,16 +174,16 @@ namespace TestCases.POIFS.FileSystem
             }
             POIFSDocumentPath[] badPaths =
         {
-            new POIFSDocumentPath(new String[]
+            new POIFSDocumentPath(new string[]
             {
                 "_foo"
-            }), new POIFSDocumentPath(new String[]
+            }), new POIFSDocumentPath(new string[]
             {
                 "foo", "_bar"
-            }), new POIFSDocumentPath(new String[]
+            }), new POIFSDocumentPath(new string[]
             {
                 "foo", "bar", "_fubar"
-            }), new POIFSDocumentPath(new String[]
+            }), new POIFSDocumentPath(new string[]
             {
                 "foo", "bar", "fubar", "_foobar"
             })

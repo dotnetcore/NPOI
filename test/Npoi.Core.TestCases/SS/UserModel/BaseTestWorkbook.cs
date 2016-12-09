@@ -89,7 +89,7 @@ namespace TestCases.SS.UserModel
             }
 
             //names cannot be blank or contain any of /\*?[]
-            String[] invalidNames = {"", "Sheet/", "Sheet\\",
+            string[] invalidNames = {"", "Sheet/", "Sheet\\",
                 "Sheet?", "Sheet*", "Sheet[", "Sheet]", "'Sheet'",
                 "My:Sheet"};
             foreach (string sheetName in invalidNames)
@@ -174,8 +174,8 @@ namespace TestCases.SS.UserModel
         {
             IWorkbook wb = _testDataProvider.CreateWorkbook();
 
-            String sheetName1 = "My very long sheet name which is longer than 31 chars";
-            String tRuncatedSheetName1 = sheetName1.Substring(0, 31);
+            string sheetName1 = "My very long sheet name which is longer than 31 chars";
+            string tRuncatedSheetName1 = sheetName1.Substring(0, 31);
             ISheet sh1 = wb.CreateSheet(sheetName1);
             Assert.AreEqual(tRuncatedSheetName1, sh1.SheetName);
             Assert.AreSame(sh1, wb.GetSheet(tRuncatedSheetName1));
@@ -184,7 +184,7 @@ namespace TestCases.SS.UserModel
             Assert.AreEqual(tRuncatedSheetName1, sh1.SheetName);
             Assert.AreSame(sh1, wb.GetSheet(tRuncatedSheetName1));
 
-            String sheetName2 = "My very long sheet name which is longer than 31 chars " +
+            string sheetName2 = "My very long sheet name which is longer than 31 chars " +
                     "and sheetName2.Substring(0, 31) == sheetName1.Substring(0, 31)";
             try
             {
@@ -197,8 +197,8 @@ namespace TestCases.SS.UserModel
                 Assert.AreEqual("The workbook already contains a sheet of this name", e.Message);
             }
 
-            String sheetName3 = "POI allows creating sheets with names longer than 31 characters";
-            String tRuncatedSheetName3 = sheetName3.Substring(0, 31);
+            string sheetName3 = "POI allows creating sheets with names longer than 31 characters";
+            string tRuncatedSheetName3 = sheetName3.Substring(0, 31);
             ISheet sh3 = wb.CreateSheet(sheetName3);
             Assert.AreEqual(tRuncatedSheetName3, sh3.SheetName);
             Assert.AreSame(sh3, wb.GetSheet(tRuncatedSheetName3));
@@ -293,14 +293,14 @@ namespace TestCases.SS.UserModel
         {
             IWorkbook workbook = _testDataProvider.CreateWorkbook();
             ISheet sheet1 = workbook.CreateSheet("Test Print Area");
-            String sheetName1 = sheet1.SheetName;
+            string sheetName1 = sheet1.SheetName;
 
             // workbook.SetPrintArea(0, reference);
             workbook.SetPrintArea(0, 1, 5, 4, 9);
-            String retrievedPrintArea = workbook.GetPrintArea(0);
+            string retrievedPrintArea = workbook.GetPrintArea(0);
             Assert.AreEqual("'" + sheetName1 + "'!$B$5:$F$10", retrievedPrintArea);
 
-            String reference = "$A$1:$B$1";
+            string reference = "$A$1:$B$1";
             workbook.SetPrintArea(0, reference);
             retrievedPrintArea = workbook.GetPrintArea(0);
             Assert.AreEqual("'" + sheetName1 + "'!" + reference, retrievedPrintArea);
@@ -487,7 +487,7 @@ namespace TestCases.SS.UserModel
             ICreationHelper factory = wb.GetCreationHelper(/*getter*/);
             //Create a unicode dataformat (Contains euro symbol)
             IDataFormat df = wb.CreateDataFormat();
-            String formatStr = "_([$\u20ac-2]\\\\\\ * #,##0.00_);_([$\u20ac-2]\\\\\\ * \\\\\\(#,##0.00\\\\\\);_([$\u20ac-2]\\\\\\ *\\\"\\-\\\\\"??_);_(@_)";
+            string formatStr = "_([$\u20ac-2]\\\\\\ * #,##0.00_);_([$\u20ac-2]\\\\\\ * \\\\\\(#,##0.00\\\\\\);_([$\u20ac-2]\\\\\\ *\\\"\\-\\\\\"??_);_(@_)";
             short fmt = df.GetFormat(formatStr);
 
             //Create a unicode sheet name (euro symbol)
@@ -514,7 +514,7 @@ namespace TestCases.SS.UserModel
             c.SetCellValue(factory.CreateRichTextString("\u20ac"));
 
             ICell c3 = r.CreateCell(3);
-            String formulaString = "TEXT(12.34,\"\u20ac###,##\")";
+            string formulaString = "TEXT(12.34,\"\u20ac###,##\")";
             c3.CellFormula = (/*setter*/formulaString);
 
             wb = _testDataProvider.WriteOutAndReadBack(wb);
@@ -706,7 +706,7 @@ namespace TestCases.SS.UserModel
             }
         }
 
-        protected void assertSheetOrder(IWorkbook wb, params String[] sheets)
+        protected void assertSheetOrder(IWorkbook wb, params string[] sheets)
         {
             StringBuilder sheetNames = new StringBuilder();
             for (int i = 0; i < wb.NumberOfSheets; i++)

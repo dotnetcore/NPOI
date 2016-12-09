@@ -39,7 +39,7 @@ namespace TestCases.HSSF.Util
         [Test]
         public void TestReferenceParse()
         {
-            String reference = "Sheet2!$A$1:$C$3";
+            string reference = "Sheet2!$A$1:$C$3";
             RangeAddress ra = new RangeAddress(reference);
 
             Assert.AreEqual("Sheet2!A1:C3", ra.Address);

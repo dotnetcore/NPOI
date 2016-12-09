@@ -54,7 +54,7 @@ namespace TestCases.SS.Formula.Function
         public void TestDatedif()
         {
 
-            String formula;
+            string formula;
             try
             {
                 formula = GetCellFormula(0);
@@ -82,7 +82,7 @@ namespace TestCases.SS.Formula.Function
         public void TestDdb()
         {
 
-            String formula = GetCellFormula(1);
+            string formula = GetCellFormula(1);
             if ("externalflag(1,1,1,1,1)".Equals(formula))
             {
                 throw afe("DDB() not registered");
@@ -93,7 +93,7 @@ namespace TestCases.SS.Formula.Function
         public void TestAtan()
         {
 
-            String formula = GetCellFormula(2);
+            string formula = GetCellFormula(2);
             if (formula.Equals("ARCTAN(1)"))
             {
                 throw afe("func ix 18 registered as ARCTAN() instead of ATAN()");
@@ -104,7 +104,7 @@ namespace TestCases.SS.Formula.Function
         public void TestUsdollar()
         {
 
-            String formula = GetCellFormula(3);
+            string formula = GetCellFormula(3);
             if (formula.Equals("YEN(1)"))
             {
                 throw afe("func ix 204 registered as YEN() instead of USDOLLAR()");
@@ -115,7 +115,7 @@ namespace TestCases.SS.Formula.Function
         public void TestDBCS()
         {
 
-            String formula;
+            string formula;
             try
             {
                 formula = GetCellFormula(4);
@@ -142,7 +142,7 @@ namespace TestCases.SS.Formula.Function
         [Test]
         public void TestIsnontext()
         {
-            String formula;
+            string formula;
             try
             {
                 formula = GetCellFormula(5);
@@ -162,7 +162,7 @@ namespace TestCases.SS.Formula.Function
         public void TestDproduct()
         {
 
-            String formula = GetCellFormula(6);
+            string formula = GetCellFormula(6);
             Assert.AreEqual("DPRODUCT(C1:E5,\"HarvestYield\",G1:H2)", formula);
         }
 
@@ -182,7 +182,7 @@ namespace TestCases.SS.Formula.Function
                 // some other unexpected error
                 throw e;
             }
-            String result = sheet.GetRow(rowIx).GetCell(0).CellFormula;
+            string result = sheet.GetRow(rowIx).GetCell(0).CellFormula;
 #if !HIDE_UNREACHABLE_CODE
             if (false)
             {

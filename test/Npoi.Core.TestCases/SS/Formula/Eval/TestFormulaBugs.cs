@@ -149,7 +149,7 @@ namespace TestCases.SS.Formula.Eval
             // Excel doesn't crash but the formula doesn't work until it is
             // re-entered
 
-            String inputFormula = "SUMPRODUCT(A!C7:A!C67, B8:B68) / B69"; // as per bug report
+            string inputFormula = "SUMPRODUCT(A!C7:A!C67, B8:B68) / B69"; // as per bug report
             try
             {
                 cell.CellFormula = (inputFormula);

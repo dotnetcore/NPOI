@@ -208,7 +208,7 @@ namespace TestCases.HSSF.UserModel
             // Iterating over the hours exposes any rounding issues.
             for (int hour = -12; hour <= 12; hour++)
             {
-                String id = "GMT" + (hour < 0 ? "" : "+") + hour + ":00";
+                string id = "GMT" + (hour < 0 ? "" : "+") + hour + ":00";
 
                 //TODO:: change time zone
                 //date.SetTimeZone(TimeZone.GetTimeZone(id));
@@ -252,7 +252,7 @@ namespace TestCases.HSSF.UserModel
             short[] builtins = new short[] { 0x0e, 0x0f, 0x10, 0x16, 0x2d, 0x2e };
             for (int i = 0; i < builtins.Length; i++)
             {
-                String formatStr = HSSFDataFormat.GetBuiltinFormat(builtins[i]);
+                string formatStr = HSSFDataFormat.GetBuiltinFormat(builtins[i]);
                 Assert.IsTrue(DateUtil.IsInternalDateFormat(builtins[i]));
                 Assert.IsTrue(DateUtil.IsADateFormat(builtins[i], formatStr));
             }
@@ -261,7 +261,7 @@ namespace TestCases.HSSF.UserModel
             builtins = new short[] { 0x01, 0x02, 0x17, 0x1f, 0x30 };
             for (int i = 0; i < builtins.Length; i++)
             {
-                String formatStr = HSSFDataFormat.GetBuiltinFormat(builtins[i]);
+                string formatStr = HSSFDataFormat.GetBuiltinFormat(builtins[i]);
                 Assert.IsFalse(DateUtil.IsInternalDateFormat(builtins[i]));
                 Assert.IsFalse(DateUtil.IsADateFormat(builtins[i], formatStr));
             }
@@ -274,7 +274,7 @@ namespace TestCases.HSSF.UserModel
             Assert.IsFalse(DateUtil.IsInternalDateFormat(formatId));
 
             // Valid ones first
-            String[] formats = new String[] {
+            string[] formats = new string[] {
                 "yyyy-mm-dd", "yyyy/mm/dd", "yy/mm/dd", "yy/mmm/dd",
                 "dd/mm/yy", "dd/mm/yyyy", "dd/mmm/yy",
                 "dd-mm-yy", "dd-mm-yyyy",
@@ -309,7 +309,7 @@ namespace TestCases.HSSF.UserModel
             }
 
             // Then time based ones too
-            formats = new String[] {
+            formats = new string[] {
                 "yyyy-mm-dd hh:mm:ss", "yyyy/mm/dd HH:MM:SS",
                 "mm/dd HH:MM", "yy/mmm/dd SS",
                 "mm/dd HH:MM AM", "mm/dd HH:MM am",
@@ -325,7 +325,7 @@ namespace TestCases.HSSF.UserModel
             }
 
             // Then invalid ones
-            formats = new String[] {
+            formats = new string[] {
                 "yyyy*mm*dd",
                 "0.0", "0.000",
                 "0%", "0.0%",
@@ -343,7 +343,7 @@ namespace TestCases.HSSF.UserModel
 
             // And these are ones we probably shouldn't allow,
             //  but would need a better regexp
-            formats = new String[] {
+            formats = new string[] {
                 //"yyyy:mm:dd",
                 "yyyy:mm:dd", "\"mm\"/\"dd\"/\"yy\"",
         };

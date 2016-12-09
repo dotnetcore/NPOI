@@ -49,7 +49,7 @@ namespace TestCases.DDF
         [Test]
         public void TestFillFields()
         {
-            String hexData = "40 00 " +
+            string hexData = "40 00 " +
                     "1E F1 " +
                     "10 00 00 00 " +
                     "02 04 00 00 " +
@@ -69,9 +69,9 @@ namespace TestCases.DDF
         [Test]
         public void TestToString()
         {
-            String nl = Environment.NewLine;
+            string nl = Environment.NewLine;
 
-            String expected = "EscherSplitMenuColorsRecord:" + nl +
+            string expected = "EscherSplitMenuColorsRecord:" + nl +
                     "  RecordId: 0xF11E" + nl +
                     "  Version: 0x0000" + nl +
                     "  Instance: 0x0004" + nl +

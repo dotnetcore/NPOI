@@ -70,7 +70,7 @@ namespace TestCases.HSSF.Model
                 {
                     break;
                 }
-                String formula = cell.CellFormula;
+                string formula = cell.CellFormula;
                 try
                 {
                     ConfirmCell(cell, formula, wb);
@@ -90,13 +90,13 @@ namespace TestCases.HSSF.Model
             }
             if (countErrors + countFailures > 0)
             {
-                String msg = "One or more RVA tests failed: countFailures=" + countFailures
+                string msg = "One or more RVA tests failed: countFailures=" + countFailures
                         + " countFailures=" + countErrors + ". See stderr for details.";
                 throw new AssertionException(msg);
             }
         }
 
-        private void ConfirmCell(ICell formulaCell, String formula, HSSFWorkbook wb)
+        private void ConfirmCell(ICell formulaCell, string formula, HSSFWorkbook wb)
         {
             Ptg[] excelPtgs = FormulaExtractor.GetPtgs(formulaCell);
             Ptg[] poiPtgs = HSSFFormulaParser.Parse(formula, wb);
@@ -161,7 +161,7 @@ namespace TestCases.HSSF.Model
 
         private string GetShortClassName(Object o)
         {
-            String cn = o.GetType().Name;
+            string cn = o.GetType().Name;
             int pos = cn.LastIndexOf('.');
             return cn.Substring(pos + 1);
         }

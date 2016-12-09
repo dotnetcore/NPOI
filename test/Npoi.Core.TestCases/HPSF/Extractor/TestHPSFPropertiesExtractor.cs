@@ -42,11 +42,11 @@ namespace TestCases.HPSF.Extractor
         {
             POIFSFileSystem fs = new POIFSFileSystem(_samples.OpenResourceAsStream("TestMickey.doc"));
             HPSFPropertiesExtractor ext = new HPSFPropertiesExtractor(fs);
-            String text = ext.Text;
+            string text = ext.Text;
 
             // Check each bit in turn
-            String sinfText = ext.SummaryInformationText;
-            String dinfText = ext.DocumentSummaryInformationText;
+            string sinfText = ext.SummaryInformationText;
+            string dinfText = ext.DocumentSummaryInformationText;
 
             Assert.IsTrue(sinfText.IndexOf("TEMPLATE = Normal") > -1);
             Assert.IsTrue(sinfText.IndexOf("SUBJECT = sample subject") > -1);
@@ -69,8 +69,8 @@ namespace TestCases.HPSF.Extractor
             string text = ext.Text;
 
             // Check each bit in turn
-            String sinfText = ext.SummaryInformationText;
-            String dinfText = ext.DocumentSummaryInformationText;
+            string sinfText = ext.SummaryInformationText;
+            string dinfText = ext.DocumentSummaryInformationText;
 
             Assert.IsTrue(sinfText.IndexOf("AUTHOR = marshall") > -1);
             Assert.IsTrue(sinfText.IndexOf("TITLE = Titel: \u00c4h") > -1);
@@ -94,11 +94,11 @@ namespace TestCases.HPSF.Extractor
             HPSFPropertiesExtractor ext = new HPSFPropertiesExtractor(fs);
 
             // Custom properties are part of the document info stream
-            String dinfText = ext.DocumentSummaryInformationText;
+            string dinfText = ext.DocumentSummaryInformationText;
             Assert.IsTrue(dinfText.IndexOf("Client = sample client") > -1);
             Assert.IsTrue(dinfText.IndexOf("Division = sample division") > -1);
 
-            String text = ext.Text;
+            string text = ext.Text;
             Assert.IsTrue(text.IndexOf("Client = sample client") > -1);
             Assert.IsTrue(text.IndexOf("Division = sample division") > -1);
         }
@@ -119,9 +119,9 @@ namespace TestCases.HPSF.Extractor
             }
             ExcelExtractor excelExt = new ExcelExtractor(wb);
 
-            String fsText = (new HPSFPropertiesExtractor(fs)).Text;
-            String hwText = (new HPSFPropertiesExtractor(wb)).Text;
-            String eeText = (new HPSFPropertiesExtractor(excelExt)).Text;
+            string fsText = (new HPSFPropertiesExtractor(fs)).Text;
+            string hwText = (new HPSFPropertiesExtractor(wb)).Text;
+            string eeText = (new HPSFPropertiesExtractor(excelExt)).Text;
 
             Assert.AreEqual(fsText, hwText);
             Assert.AreEqual(fsText, eeText);
@@ -134,7 +134,7 @@ namespace TestCases.HPSF.Extractor
         public void Test42726()
         {
             HPSFPropertiesExtractor ex = new HPSFPropertiesExtractor(HSSFTestDataSamples.OpenSampleWorkbook("42726.xls"));
-            String txt = ex.Text;
+            string txt = ex.Text;
             Assert.IsTrue(txt.IndexOf("PID_AUTHOR") != -1);
             Assert.IsTrue(txt.IndexOf("PID_EDITTIME") != -1);
             Assert.IsTrue(txt.IndexOf("PID_REVNUMBER") != -1);

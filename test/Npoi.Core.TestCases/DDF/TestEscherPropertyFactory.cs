@@ -37,7 +37,7 @@ namespace TestCases.DDF
         [Test]
         public void TestCreateProperties()
         {
-            String dataStr = "41 C1 " +     // propid, complex ind
+            string dataStr = "41 C1 " +     // propid, complex ind
                     "03 00 00 00 " +         // size of complex property
                     "01 00 " +              // propid, complex ind
                     "00 00 00 00 " +         // value

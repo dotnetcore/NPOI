@@ -148,7 +148,7 @@ using Npoi.Core.HSSF.Record.Crypto;
             );
             extractor.IncludeSheetNames = (true);
 
-            String text = extractor.Text;
+            string text = extractor.Text;
             Assert.AreEqual("Sheet1\nreplaceme\nreplaceme\nreplacemereplaceme\nSheet2\nSheet3\n", text);
 
             extractor.IncludeSheetNames = (false);
@@ -204,9 +204,9 @@ using Npoi.Core.HSSF.Record.Crypto;
         public void TestWithBlank()
         {
             ExcelExtractor extractor = CreateExtractor("MissingBits.xls");
-            String def = extractor.Text;
+            string def = extractor.Text;
             extractor.IncludeBlankCells = (true);
-            String padded = extractor.Text;
+            string padded = extractor.Text;
 
             Assert.IsTrue(def.StartsWith(
                 "Sheet1\n" +
@@ -228,7 +228,7 @@ using Npoi.Core.HSSF.Record.Crypto;
             ExcelExtractor extractor = CreateExtractor("Formatting.xls");
             extractor.IncludeBlankCells = (false);
             extractor.IncludeSheetNames = false;
-            String text = extractor.Text;
+            string text = extractor.Text;
 
             // Note - not all the formats in the file
             //  actually quite match what they claim to
@@ -339,14 +339,14 @@ using Npoi.Core.HSSF.Record.Crypto;
         [Test]
         public void Test45538()
         {
-            String[] files = {
+            string[] files = {
 			    "45538_classic_Footer.xls", "45538_form_Footer.xls",    
 			    "45538_classic_Header.xls", "45538_form_Header.xls"
 		    };
             for (int i = 0; i < files.Length; i++)
             {
                 ExcelExtractor extractor = CreateExtractor(files[i]);
-                String text = extractor.Text;
+                string text = extractor.Text;
                 Assert.IsTrue(text.IndexOf("testdoc") >= 0, "Unable to find expected word in text\n" + text);
                 Assert.IsTrue(text.IndexOf("test phrase") >= 0, "Unable to find expected word in text\n" + text);
             }
@@ -356,7 +356,7 @@ using Npoi.Core.HSSF.Record.Crypto;
         {
             Biff8EncryptionKey.CurrentUserPassword = ("password");
             ExcelExtractor extractor = CreateExtractor("password.xls");
-            String text = extractor.Text;
+            string text = extractor.Text;
             Biff8EncryptionKey.CurrentUserPassword = (null);
 
             Assert.IsTrue(text.Contains("ZIP"));

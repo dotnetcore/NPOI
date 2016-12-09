@@ -317,7 +317,7 @@ namespace TestCases.Util
         }
         private static void ConfirmStr(string expected, char[] actualChars)
         {
-            Assert.AreEqual(expected, new String(actualChars));
+            Assert.AreEqual(expected, new string(actualChars));
         }
         [Test]
         public void TestDumpToString()
@@ -328,7 +328,7 @@ namespace TestCases.Util
             {
                 testArray[j] = (byte)j;
             }
-            String dump = HexDump.Dump(testArray, 0, 0);
+            string dump = HexDump.Dump(testArray, 0, 0);
             //System.out.Println("Hex: \n" + dump);
             Assert.IsTrue(dump.Contains("0123456789:;<=>?"), "Had: \n" + dump);
 
@@ -387,7 +387,7 @@ namespace TestCases.Util
                     out1.Close();
                 }
 
-                String str = Encoding.UTF8.GetString(byteOut.ToArray());
+                string str = Encoding.UTF8.GetString(byteOut.ToArray());
                 Assert.IsTrue(str.Contains("0123456789:;<=>?"),"Had: \n" + str);
             }
             finally
@@ -410,7 +410,7 @@ namespace TestCases.Util
                     out1.Close();
                 }
 
-                String str = Encoding.UTF8.GetString(byteOut.ToArray());
+                string str = Encoding.UTF8.GetString(byteOut.ToArray());
                 Assert.IsTrue(str.Contains("0123456789:;<=>?"), "Had: \n" + str);
             }
             finally
@@ -433,7 +433,7 @@ namespace TestCases.Util
                     out1.Close();
                 }
 
-                String str = Encoding.UTF8.GetString(byteOut.ToArray());
+                string str = Encoding.UTF8.GetString(byteOut.ToArray());
                 Assert.IsTrue(str.Contains("0123456789:;<=>?"), "Had: \n" + str);
             }
             finally
@@ -455,7 +455,7 @@ namespace TestCases.Util
                     out1.Close();
                 }
 
-                String str = Encoding.UTF8.GetString(byteOut.ToArray());
+                string str = Encoding.UTF8.GetString(byteOut.ToArray());
                 Assert.IsTrue(str.Contains("123456789:;<=>?@"), 
                     "Line contents should be Moved by one now, but Had: \n" + str);
             }

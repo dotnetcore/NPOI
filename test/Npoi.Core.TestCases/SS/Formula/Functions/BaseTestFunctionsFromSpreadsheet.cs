@@ -51,7 +51,7 @@ namespace TestCases.SS.Formula.Functions
         private static class SS
         {
             /** Name of the first sheet in the spreadsheet (contains comments) */
-            public const String README_SHEET_NAME = "Read Me";
+            public const string README_SHEET_NAME = "Read Me";
 
             /** Row (zero-based) in each sheet where the evaluation cases start.   */
             public const int START_TEST_CASES_ROW_INDEX = 4; // Row '5'
@@ -61,9 +61,9 @@ namespace TestCases.SS.Formula.Functions
             public const int COLUMN_INDEX_EXPECTED_RESULT = 2; // Column 'C'
             public const int COLUMN_ROW_COMMENT = 3; // Column 'D'
             /** Used to indicate when there are no more test cases on the current sheet   */
-            public const String TEST_CASES_END_MARKER = "<end>";
+            public const string TEST_CASES_END_MARKER = "<end>";
             /** Used to indicate that the test on the current row should be ignored */
-            public const String SKIP_CURRENT_TEST_CASE_MARKER = "<skip>";
+            public const string SKIP_CURRENT_TEST_CASE_MARKER = "<skip>";
         }
         private int _sheetFailureCount;
         private int _sheetSuccessCount;
@@ -190,12 +190,12 @@ namespace TestCases.SS.Formula.Functions
             }
 
             // confirm results
-            String successMsg = "There were "
+            string successMsg = "There were "
                     + _sheetSuccessCount + " successful sheets(s) and "
                     + _evaluationSuccessCount + " function(s) without error";
             if (_sheetFailureCount > 0)
             {
-                String msg = _sheetFailureCount + " sheets(s) failed with "
+                string msg = _sheetFailureCount + " sheets(s) failed with "
                         + _evaluationFailureCount + " evaluation(s).  " + successMsg;
                 throw new AssertionException(msg);
             }
@@ -207,18 +207,18 @@ namespace TestCases.SS.Formula.Functions
 #endif
         }
 
-        private int ProcessTestSheet(HSSFWorkbook workbook, int sheetIndex, String sheetName)
+        private int ProcessTestSheet(HSSFWorkbook workbook, int sheetIndex, string sheetName)
         {
             ISheet sheet = workbook.GetSheetAt(sheetIndex);
             HSSFFormulaEvaluator Evaluator = new HSSFFormulaEvaluator(workbook);
             int maxRows = sheet.LastRowNum + 1;
             int result = Result.NO_EVALUATIONS_FOUND; // so far
 
-            String currentGroupComment = null;
+            string currentGroupComment = null;
             for (int rowIndex = SS.START_TEST_CASES_ROW_INDEX; rowIndex < maxRows; rowIndex++)
             {
                 IRow r = sheet.GetRow(rowIndex);
-                String newMarkerValue = GetMarkerColumnValue(r);
+                string newMarkerValue = GetMarkerColumnValue(r);
                 if (r == null)
                 {
                     continue;
@@ -243,9 +243,9 @@ namespace TestCases.SS.Formula.Functions
                     continue;
                 }
                 ICell expectedValueCell = r.GetCell(SS.COLUMN_INDEX_EXPECTED_RESULT);
-                String rowComment = GetRowCommentColumnValue(r);
+                string rowComment = GetRowCommentColumnValue(r);
 
-                String msgPrefix = formatTestCaseDetails(this.Filename,sheetName, r.RowNum, c, currentGroupComment, rowComment);
+                string msgPrefix = formatTestCaseDetails(this.Filename,sheetName, r.RowNum, c, currentGroupComment, rowComment);
                 try
                 {
                     CellValue actualValue = Evaluator.Evaluate(c);
@@ -273,12 +273,12 @@ namespace TestCases.SS.Formula.Functions
         + "' on sheet '" + sheetName + "'");
         }
 
-        protected abstract String Filename
+        protected abstract string Filename
         {
             get;
         }
-        private static string formatTestCaseDetails(string filename, String sheetName, int rowIndex, ICell c, String currentGroupComment,
-                                                String rowComment)
+        private static string formatTestCaseDetails(string filename, string sheetName, int rowIndex, ICell c, string currentGroupComment,
+                                                string rowComment)
         {
 
             StringBuilder sb = new StringBuilder();
@@ -318,7 +318,7 @@ namespace TestCases.SS.Formula.Functions
  */
         private void confirmReadMeSheet(HSSFWorkbook workbook)
         {
-            String firstSheetName = workbook.GetSheetName(0);
+            string firstSheetName = workbook.GetSheetName(0);
             if (!firstSheetName.Equals(SS.README_SHEET_NAME, StringComparisonShim.InvariantCultureIgnoreCase))
             {
                 throw new Exception("First sheet's name was '" + firstSheetName + "' but expected '" + SS.README_SHEET_NAME + "'");
@@ -378,7 +378,7 @@ namespace TestCases.SS.Formula.Functions
         /**
          * @return <code>null</code> if cell is missing, empty or blank
          */
-        private static string GetCellTextValue(IRow r, int colIndex, String columnName)
+        private static string GetCellTextValue(IRow r, int colIndex, string columnName)
         {
             if (r == null)
             {

@@ -84,7 +84,7 @@ namespace TestCases.DDF
             EscherContainerRecord r = new EscherContainerRecord();
             r.RecordId=EscherContainerRecord.SP_CONTAINER;
             r.Options=(short)0x000F;
-            String nl = Environment.NewLine;
+            string nl = Environment.NewLine;
             Assert.AreEqual("EscherContainerRecord (SpContainer):" + nl +
                     "  isContainer: True" + nl +
                     "  version: 0x000F" + nl +
@@ -98,7 +98,7 @@ namespace TestCases.DDF
             // r2.setOptions((short) 0x9876);
             r2.RecordId=EscherOptRecord.RECORD_ID;
 
-            String expected;
+            string expected;
             r.AddChildRecord(r2);
             expected = "EscherContainerRecord (SpContainer):" + nl +
                        "  isContainer: True" + nl +
@@ -155,7 +155,7 @@ namespace TestCases.DDF
             public override int Serialize(int offset, byte[] data, EscherSerializationListener listener)
             { return 0; }
             public override int RecordSize { get { return 10; } }
-            public override String RecordName { get { return ""; } }
+            public override string RecordName { get { return ""; } }
         }
         [Test]
         public void TestRecordSize()

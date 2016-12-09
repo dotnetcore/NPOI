@@ -87,7 +87,7 @@ namespace TestCases.SS.Formula.Functions
             ConfirmError(ErrorEval.REF_INVALID);
         }
 
-        private static void ConfirmString(ValueEval eval, String expected)
+        private static void ConfirmString(ValueEval eval, string expected)
         {
             Assert.IsTrue(eval is StringEval);
             Assert.AreEqual(expected, ((StringEval)eval).StringValue);

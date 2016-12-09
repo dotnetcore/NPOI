@@ -163,7 +163,7 @@ namespace TestCases.SS.Formula.Functions
             ICell cellB = wbB.GetSheetAt(0).CreateRow(10).CreateCell(0);
             HSSFFormulaEvaluator feB = new HSSFFormulaEvaluator(wbB);
 
-            String[] workbookNames = { "MyBook", "Figures for January", };
+            string[] workbookNames = { "MyBook", "Figures for January", };
             HSSFFormulaEvaluator[] Evaluators = { feA, feB, };
             HSSFFormulaEvaluator.SetupEnvironment(workbookNames, Evaluators);
 
@@ -175,7 +175,7 @@ namespace TestCases.SS.Formula.Functions
             Confirm(feA, cellA, "INDIRECT(\"'[Figures for January]Sheet1'!A11\")", 50); // points to cellB
         }
 
-        private static void Confirm(IFormulaEvaluator fe, ICell cell, String formula,
+        private static void Confirm(IFormulaEvaluator fe, ICell cell, string formula,
                 double expectedResult)
         {
             fe.ClearAllCachedResultValues();
@@ -187,7 +187,7 @@ namespace TestCases.SS.Formula.Functions
             }
             Assert.AreEqual(expectedResult, cv.NumberValue, 0.0);
         }
-        private static void Confirm(IFormulaEvaluator fe, ICell cell, String formula,
+        private static void Confirm(IFormulaEvaluator fe, ICell cell, string formula,
                 ErrorEval expectedResult)
         {
             fe.ClearAllCachedResultValues();

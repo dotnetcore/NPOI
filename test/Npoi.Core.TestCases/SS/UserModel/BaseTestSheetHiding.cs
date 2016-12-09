@@ -44,7 +44,7 @@ namespace TestCases.SS.UserModel
          * @param TestDataProvider an object that provides Test data in HSSF /  specific way
          */
         protected BaseTestSheetHiding(ITestDataProvider TestDataProvider,
-                                      String file1, String file2)
+                                      string file1, string file2)
         {
             _testDataProvider = TestDataProvider;
             _file1 = file1;

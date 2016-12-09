@@ -30,7 +30,7 @@ namespace TestCases.SS.Formula.Functions
             ICell cell = wb.CreateSheet().CreateRow(0).CreateCell(0);
             HSSFFormulaEvaluator fe = new HSSFFormulaEvaluator(wb);
 
-            String[] asserts = {
+            string[] asserts = {
             "aniket\u0007\u0017\u0019", "aniket",
             "\u0011aniket\u0007\u0017\u0010", "aniket",
             "\u0011aniket\u0007\u0017\u007F", "aniket\u007F",
@@ -39,11 +39,11 @@ namespace TestCases.SS.Formula.Functions
 
             for (int i = 0; i < asserts.Length; i += 2)
             {
-                String formulaText = "CLEAN(\"" + asserts[i] + "\")";
+                string formulaText = "CLEAN(\"" + asserts[i] + "\")";
                 ConfirmResult(fe, cell, formulaText, asserts[i + 1]);
             }
 
-            asserts = new String[] {
+            asserts = new string[] {
             "CHAR(7)&\"text\"&CHAR(7)", "text",
             "CHAR(7)&\"text\"&CHAR(17)", "text",
             "CHAR(181)&\"text\"&CHAR(190)", "\u00B5text\u00BE",
@@ -51,13 +51,13 @@ namespace TestCases.SS.Formula.Functions
         };
             for (int i = 0; i < asserts.Length; i += 2)
             {
-                String formulaText = "CLEAN(" + asserts[i] + ")";
+                string formulaText = "CLEAN(" + asserts[i] + ")";
                 ConfirmResult(fe, cell, formulaText, asserts[i + 1]);
             }
         }
 
-        private static void ConfirmResult(HSSFFormulaEvaluator fe, ICell cell, String formulaText,
-                                          String expectedResult)
+        private static void ConfirmResult(HSSFFormulaEvaluator fe, ICell cell, string formulaText,
+                                          string expectedResult)
         {
             cell.CellFormula = (formulaText);
             fe.NotifyUpdateCell(cell);

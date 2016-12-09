@@ -205,40 +205,40 @@ namespace TestCases.HSSF.Record.CF
         public void TestMergeCellRanges()
         {
             // no result on empty
-            CellRangeTest(new String[] { });
+            CellRangeTest(new string[] { });
 
             // various cases with two ranges
-            CellRangeTest(new String[] { "A1:B1", "A2:B2" }, "A1:B2");
-            CellRangeTest(new String[] { "A1:B1" }, "A1:B1");
-            CellRangeTest(new String[] { "A1:B2", "A2:B2" }, "A1:B2");
-            CellRangeTest(new String[] { "A1:B3", "A2:B2" }, "A1:B3");
-            CellRangeTest(new String[] { "A1:C1", "A2:B2" }, new String[] { "A1:C1", "A2:B2" });
+            CellRangeTest(new string[] { "A1:B1", "A2:B2" }, "A1:B2");
+            CellRangeTest(new string[] { "A1:B1" }, "A1:B1");
+            CellRangeTest(new string[] { "A1:B2", "A2:B2" }, "A1:B2");
+            CellRangeTest(new string[] { "A1:B3", "A2:B2" }, "A1:B3");
+            CellRangeTest(new string[] { "A1:C1", "A2:B2" }, new string[] { "A1:C1", "A2:B2" });
 
             // cases with three ranges
-            CellRangeTest(new String[] { "A1:A1", "A2:B2", "A1:C1" }, new String[] { "A1:C1", "A2:B2" });
-            CellRangeTest(new String[] { "A1:C1", "A2:B2", "A1:A1" }, new String[] { "A1:C1", "A2:B2" });
+            CellRangeTest(new string[] { "A1:A1", "A2:B2", "A1:C1" }, new string[] { "A1:C1", "A2:B2" });
+            CellRangeTest(new string[] { "A1:C1", "A2:B2", "A1:A1" }, new string[] { "A1:C1", "A2:B2" });
 
             // "standard" cases
             // enclose
-            CellRangeTest(new String[] { "A1:D4", "B2:C3" }, new String[] { "A1:D4" });
+            CellRangeTest(new string[] { "A1:D4", "B2:C3" }, new string[] { "A1:D4" });
             // inside
-            CellRangeTest(new String[] { "B2:C3", "A1:D4" }, new String[] { "A1:D4" });
-            CellRangeTest(new String[] { "B2:C3", "A1:D4" }, new String[] { "A1:D4" });
+            CellRangeTest(new string[] { "B2:C3", "A1:D4" }, new string[] { "A1:D4" });
+            CellRangeTest(new string[] { "B2:C3", "A1:D4" }, new string[] { "A1:D4" });
             // disjunct
-            CellRangeTest(new String[] { "A1:B2", "C3:D4" }, new String[] { "A1:B2", "C3:D4" });
-            CellRangeTest(new String[] { "A1:B2", "A3:D4" }, new String[] { "A1:B2", "A3:D4" });
+            CellRangeTest(new string[] { "A1:B2", "C3:D4" }, new string[] { "A1:B2", "C3:D4" });
+            CellRangeTest(new string[] { "A1:B2", "A3:D4" }, new string[] { "A1:B2", "A3:D4" });
             // overlap that cannot be merged
-            CellRangeTest(new String[] { "C1:D2", "C2:C3" }, new String[] { "C1:D2", "C2:C3" });
+            CellRangeTest(new string[] { "C1:D2", "C2:C3" }, new string[] { "C1:D2", "C2:C3" });
             // overlap which could theoretically be merged, but isn't because the implementation was buggy and therefore was removed
-            CellRangeTest(new String[] { "A1:C3", "B1:D3" }, new String[] { "A1:C3", "B1:D3" }); // could be one region "A1:D3"
-            CellRangeTest(new String[] { "A1:C3", "B1:D1" }, new String[] { "A1:C3", "B1:D1" }); // could be one region "A1:D3"
+            CellRangeTest(new string[] { "A1:C3", "B1:D3" }, new string[] { "A1:C3", "B1:D3" }); // could be one region "A1:D3"
+            CellRangeTest(new string[] { "A1:C3", "B1:D1" }, new string[] { "A1:C3", "B1:D1" }); // could be one region "A1:D3"
         }
         [Test]
         public void TestMergeCellRanges55380()
         {
-            CellRangeTest(new String[] { "C1:D2", "C2:C3" }, new String[] { "C1:D2", "C2:C3" });
-            CellRangeTest(new String[] { "A1:C3", "B2:D2" }, new String[] { "A1:C3", "B2:D2" });
-            CellRangeTest(new String[] { "C9:D30", "C7:C31" }, new String[] { "C9:D30", "C7:C31" });
+            CellRangeTest(new string[] { "C1:D2", "C2:C3" }, new string[] { "C1:D2", "C2:C3" });
+            CellRangeTest(new string[] { "A1:C3", "B2:D2" }, new string[] { "A1:C3", "B2:D2" });
+            CellRangeTest(new string[] { "C9:D30", "C7:C31" }, new string[] { "C9:D30", "C7:C31" });
         }
     
     //    public void testResolveRangeOverlap() {

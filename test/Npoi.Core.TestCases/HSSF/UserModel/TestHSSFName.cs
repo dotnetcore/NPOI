@@ -130,7 +130,7 @@ namespace TestCases.HSSF.UserModel
             IName newNamedRange = wb.CreateName();
 
             //Getting Sheet Name for the reference
-            String sheetName = wb.GetSheetName(0);
+            string sheetName = wb.GetSheetName(0);
 
             //Setting its name
             newNamedRange.NameName = "RangeTest";
@@ -167,10 +167,10 @@ namespace TestCases.HSSF.UserModel
 
             //Getting NAmed Range
             IName namedRange1 = wb.GetNameAt(NamedRangeIndex);
-            String sheetName = wb.GetSheetName(0);
+            string sheetName = wb.GetSheetName(0);
 
             //Getting its reference
-            String reference = namedRange1.RefersToFormula;
+            string reference = namedRange1.RefersToFormula;
 
             Assert.AreEqual(sheetName + "!$A$1:$D$10", reference);
 
@@ -191,12 +191,12 @@ namespace TestCases.HSSF.UserModel
             HSSFWorkbook wb = HSSFTestDataSamples.OpenSampleWorkbook("namedinput.xls");
 
             IName name = wb.GetNameAt(0);
-            String sheetName = wb.GetSheetName(0);
+            string sheetName = wb.GetSheetName(0);
 
             Assert.AreEqual(sheetName + "!$A$1:$D$10", name.RefersToFormula);
 
             name = wb.GetNameAt(1);
-            String newReference = sheetName + "!$A$1:$C$36";
+            string newReference = sheetName + "!$A$1:$C$36";
 
             name.RefersToFormula = newReference;
             Assert.AreEqual(newReference, name.RefersToFormula);
@@ -210,8 +210,8 @@ namespace TestCases.HSSF.UserModel
         {
             HSSFWorkbook workbook = HSSFTestDataSamples.OpenSampleWorkbook("SimpleWithPrintArea.xls");
 
-            String sheetName = workbook.GetSheetName(0);
-            String reference = sheetName + "!$A$1:$C$5";
+            string sheetName = workbook.GetSheetName(0);
+            string reference = sheetName + "!$A$1:$C$5";
 
             Assert.AreEqual(reference, workbook.GetPrintArea(0));
         }

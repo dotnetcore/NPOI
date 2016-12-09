@@ -87,7 +87,7 @@ namespace TestCases.SS.Formula.Atp
             }
             if (nUnexpectedErrors + nFailures > 0)
             {
-                String msg = nFailures + " failures(s) and " + nUnexpectedErrors
+                string msg = nFailures + " failures(s) and " + nUnexpectedErrors
                     + " unexpected errors(s) occurred. See stderr for details";
                 throw new AssertionException(msg);
             }

@@ -104,7 +104,7 @@ namespace TestCases.HSSF.UserModel
         [Test]
         public void TestWrite()
         {
-            foreach (string file in new String[] { xlsA, xlsB })
+            foreach (string file in new string[] { xlsA, xlsB })
             {
                 Stream is1 = HSSFTestDataSamples.OpenSampleFileStream(file);
                 POIFSFileSystem fs = new POIFSFileSystem(is1);

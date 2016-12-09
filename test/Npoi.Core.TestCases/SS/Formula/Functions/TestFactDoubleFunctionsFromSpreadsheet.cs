@@ -29,7 +29,7 @@ namespace TestCases.SS.Formula.Functions
     public class TestFactDoubleFunctionsFromSpreadsheet : BaseTestFunctionsFromSpreadsheet
     {
 
-        protected override String Filename
+        protected override string Filename
         {
             get
             {

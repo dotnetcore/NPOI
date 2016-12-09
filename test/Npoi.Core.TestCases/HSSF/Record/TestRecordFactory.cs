@@ -170,7 +170,7 @@ namespace TestCases.HSSF.Record
             /**
              *  Taken from a real test sample file 39512.xls. See Bug 39512 for details.
              */
-            String dump =
+            string dump =
                 //OBJ
                     "5D 00 48 00 15 00 12 00 0C 00 3C 00 11 00 A0 2E 03 01 CC 42 " +
                     "CF 00 00 00 00 00 0A 00 0C 00 00 00 00 00 00 00 00 00 00 00 " +

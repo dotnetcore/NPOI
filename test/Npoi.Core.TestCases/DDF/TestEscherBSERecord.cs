@@ -33,7 +33,7 @@ namespace TestCases.DDF
         [Test]
         public void TestFillFields()
         {
-            String data = "01 00 00 00 24 00 00 00 05 05 01 02 03 04 " +
+            string data = "01 00 00 00 24 00 00 00 05 05 01 02 03 04 " +
                     " 05 06 07 08 09 0A 0B 0C 0D 0E 0F 00 01 00 00 00 " +
                     " 00 00 02 00 00 00 03 00 00 00 04 05 06 07";
             EscherBSERecord r = new EscherBSERecord();
@@ -89,7 +89,7 @@ namespace TestCases.DDF
         public void TestToString()
         {
             EscherBSERecord record = CreateRecord();
-            String nl = Environment.NewLine;
+            string nl = Environment.NewLine;
             Assert.AreEqual("EscherBSERecord:" + nl +
                     "  RecordId: 0xF007" + nl +
                     "  Version: 0x0001" + '\n' +

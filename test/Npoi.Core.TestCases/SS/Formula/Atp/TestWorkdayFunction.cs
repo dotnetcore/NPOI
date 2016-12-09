@@ -81,9 +81,9 @@ namespace TestCases.SS.Formula.Atp
         [Test]
         public void TestReturnWorkdaysSpanningAWeekendSubtractingDays()
         {
-            String startDate = "2013/09/30";
+            string startDate = "2013/09/30";
             int days = -1;
-            String expectedWorkDay = "2013/09/27";
+            string expectedWorkDay = "2013/09/27";
             StringEval stringEval = new StringEval(startDate);
             double numberValue = ((NumberEval)WorkdayFunction.instance.Evaluate(new ValueEval[]{
                 stringEval, new NumberEval(days) }, EC)).NumberValue;
@@ -93,9 +93,9 @@ namespace TestCases.SS.Formula.Atp
         [Test]
         public void TestReturnWorkdaysSpanningAWeekendAddingDays()
         {
-            String startDate = "2013/09/27";
+            string startDate = "2013/09/27";
             int days = 1;
-            String expectedWorkDay = "2013/09/30";
+            string expectedWorkDay = "2013/09/30";
             StringEval stringEval = new StringEval(startDate);
             double numberValue = ((NumberEval)WorkdayFunction.instance.Evaluate(new ValueEval[]{
                 stringEval, new NumberEval(days) }, EC)).NumberValue;
@@ -105,9 +105,9 @@ namespace TestCases.SS.Formula.Atp
         [Test]
         public void TestReturnWorkdaysWhenStartIsWeekendAddingDays()
         {
-            String startDate = "2013/10/06";
+            string startDate = "2013/10/06";
             int days = 1;
-            String expectedWorkDay = "2013/10/07";
+            string expectedWorkDay = "2013/10/07";
             StringEval stringEval = new StringEval(startDate);
             double numberValue = ((NumberEval)WorkdayFunction.instance.Evaluate(new ValueEval[]{
                 stringEval, new NumberEval(days) }, EC)).NumberValue;
@@ -117,9 +117,9 @@ namespace TestCases.SS.Formula.Atp
         [Test]
         public void TestReturnWorkdaysWhenStartIsWeekendSubtractingDays()
         {
-            String startDate = "2013/10/06";
+            string startDate = "2013/10/06";
             int days = -1;
-            String expectedWorkDay = "2013/10/04";
+            string expectedWorkDay = "2013/10/04";
             StringEval stringEval = new StringEval(startDate);
             double numberValue = ((NumberEval)WorkdayFunction.instance.Evaluate(new ValueEval[]{
                 stringEval, new NumberEval(days) }, EC)).NumberValue;

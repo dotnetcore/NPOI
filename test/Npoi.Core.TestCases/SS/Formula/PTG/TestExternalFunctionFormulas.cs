@@ -44,9 +44,9 @@ namespace TestCases.SS.Formula.PTG
         {
             HSSFWorkbook wb = HSSFTestDataSamples.OpenSampleWorkbook("externalFunctionExample.xls");
 
-            String expectedFormula = "YEARFRAC(B1,C1)";
+            string expectedFormula = "YEARFRAC(B1,C1)";
             ISheet sht = wb.GetSheetAt(0);
-            String cellFormula = sht.GetRow(0).GetCell(0).CellFormula;
+            string cellFormula = sht.GetRow(0).GetCell(0).CellFormula;
             Assert.AreEqual(expectedFormula, cellFormula);
         }
         [Test]
@@ -95,7 +95,7 @@ namespace TestCases.SS.Formula.PTG
         }
 
         private static void ConfirmCellEval(ISheet sheet, int rowIx, int colIx,
-                HSSFFormulaEvaluator fe, String expectedFormula, double expectedResult)
+                HSSFFormulaEvaluator fe, string expectedFormula, double expectedResult)
         {
             ICell cell = sheet.GetRow(rowIx).GetCell(colIx);
             Assert.AreEqual(expectedFormula, cell.CellFormula);

@@ -113,14 +113,14 @@ namespace TestCases.SS.Formula.PTG
         [Test]
         public void TestFormulaParser()
         {
-            String formula1 = "SUM($E$5:$E$6)";
-            String expectedFormula1 = "SUM($F$5:$F$6)";
-            String newFormula1 = ShiftAllColumnsBy1(formula1);
+            string formula1 = "SUM($E$5:$E$6)";
+            string expectedFormula1 = "SUM($F$5:$F$6)";
+            string newFormula1 = ShiftAllColumnsBy1(formula1);
             Assert.AreEqual(expectedFormula1, newFormula1, "Absolute references Changed");
 
-            String formula2 = "SUM(E5:E6)";
-            String expectedFormula2 = "SUM(F5:F6)";
-            String newFormula2 = ShiftAllColumnsBy1(formula2);
+            string formula2 = "SUM(E5:E6)";
+            string expectedFormula2 = "SUM(F5:F6)";
+            string newFormula2 = ShiftAllColumnsBy1(formula2);
             Assert.AreEqual(expectedFormula2, newFormula2, "Relative references Changed");
         }
 
@@ -139,7 +139,7 @@ namespace TestCases.SS.Formula.PTG
                     aptg.LastColumn = ((short)(aptg.LastColumn + letUsShiftColumn1By1Column));
                 }
             }
-            String newFormula = HSSFFormulaParser.ToFormulaString(wb, ptgs);
+            string newFormula = HSSFFormulaParser.ToFormulaString(wb, ptgs);
             return newFormula;
         }
     }

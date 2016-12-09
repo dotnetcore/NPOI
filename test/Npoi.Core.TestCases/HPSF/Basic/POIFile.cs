@@ -53,7 +53,7 @@ namespace TestCases.HPSF.Basic
          *
          * @return The POI file's name.
          */
-        public String GetName()
+        public string GetName()
         {
             return name;
         }

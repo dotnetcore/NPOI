@@ -30,9 +30,9 @@ namespace TestCases.SS.Formula
     [TestFixture]
     public class TestMissingWorkbook
     {
-        protected String MAIN_WORKBOOK_FILENAME = "52575_main.xls";
-        protected String SOURCE_DUMMY_WORKBOOK_FILENAME = "source_dummy.xls";
-        protected String SOURCE_WORKBOOK_FILENAME = "52575_source.xls";
+        protected string MAIN_WORKBOOK_FILENAME = "52575_main.xls";
+        protected string SOURCE_DUMMY_WORKBOOK_FILENAME = "source_dummy.xls";
+        protected string SOURCE_WORKBOOK_FILENAME = "52575_source.xls";
 
         protected IWorkbook mainWorkbook;
         protected IWorkbook sourceWorkbook;
@@ -42,7 +42,7 @@ namespace TestCases.SS.Formula
             ;
         }
         protected TestMissingWorkbook(string MAIN_WORKBOOK_FILENAME,
-                String SOURCE_DUMMY_WORKBOOK_FILENAME, String SOURCE_WORKBOOK_FILENAME)
+                string SOURCE_DUMMY_WORKBOOK_FILENAME, string SOURCE_WORKBOOK_FILENAME)
         {
             this.MAIN_WORKBOOK_FILENAME = MAIN_WORKBOOK_FILENAME;
             this.SOURCE_DUMMY_WORKBOOK_FILENAME = SOURCE_DUMMY_WORKBOOK_FILENAME;
@@ -123,7 +123,7 @@ namespace TestCases.SS.Formula
 
             IFormulaEvaluator lMainWorkbookEvaluator = mainWorkbook.GetCreationHelper().CreateFormulaEvaluator();
             IFormulaEvaluator lSourceEvaluator = sourceWorkbook.GetCreationHelper().CreateFormulaEvaluator();
-            Dictionary<String, IFormulaEvaluator> workbooks = new Dictionary<String, IFormulaEvaluator>();
+            Dictionary<string, IFormulaEvaluator> workbooks = new Dictionary<string, IFormulaEvaluator>();
             workbooks.Add(MAIN_WORKBOOK_FILENAME, lMainWorkbookEvaluator);
             workbooks.Add(SOURCE_DUMMY_WORKBOOK_FILENAME, lSourceEvaluator);
             lMainWorkbookEvaluator.SetupReferencedWorkbooks(workbooks);

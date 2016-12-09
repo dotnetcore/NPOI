@@ -153,7 +153,7 @@ namespace TestCases.HSSF.UserModel
         [Test]
         public void TestReferencesOpr()
         {
-            String[] operation = new String[] {
+            string[] operation = new string[] {
                             "+", "-", "*", "/", "^", "&"
                            };
             for (int k = 0; k < operation.Length; k++)
@@ -275,8 +275,8 @@ namespace TestCases.HSSF.UserModel
                 for (int y = 1; y < 256 && y > 0; y++)
                 {
 
-                    String ref1 = null;
-                    String ref2 = null;
+                    string ref1 = null;
+                    string ref2 = null;
                     short refx1 = 0;
                     short refy1 = 0;
                     short refx2 = 0;
@@ -382,10 +382,10 @@ namespace TestCases.HSSF.UserModel
 
                     c = r.GetCell(y);
                     CellReference cr = new CellReference(refx1, refy1, false, false);
-                    String ref1 = cr.FormatAsString();
+                    string ref1 = cr.FormatAsString();
                     ref1 = cr.FormatAsString();
                     cr = new CellReference(refx2, refy2, false, false);
-                    String ref2 = cr.FormatAsString();
+                    string ref2 = cr.FormatAsString();
 
 
                     Assert.IsTrue((
@@ -834,7 +834,7 @@ namespace TestCases.HSSF.UserModel
         [Test]
         public void TestSumIf()
         {
-            String function = "SUMIF(A1:A5,\">4000\",B1:B5)";
+            string function = "SUMIF(A1:A5,\">4000\",B1:B5)";
 
             HSSFWorkbook wb = OpenSample("sumifformula.xls");
 

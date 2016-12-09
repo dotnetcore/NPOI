@@ -30,20 +30,20 @@ namespace TestCases.SS.Formula.Functions
     [TestFixture]
     public class TestComplex
     {
-        private static ValueEval invokeValue(string real_num, String i_num, String suffix)
+        private static ValueEval invokeValue(string real_num, string i_num, string suffix)
         {
             ValueEval[] args = new ValueEval[] { new StringEval(real_num), new StringEval(i_num), new StringEval(suffix) };
             return new Complex().Evaluate(args, -1, -1);
         }
 
-        private static void ConfirmValue(string msg, String real_num, String i_num, String suffix, String expected)
+        private static void ConfirmValue(string msg, string real_num, string i_num, string suffix, string expected)
         {
             ValueEval result = invokeValue(real_num, i_num, suffix);
             Assert.AreEqual(typeof(StringEval), result.GetType());
             Assert.AreEqual( expected, ((StringEval)result).StringValue, msg);
         }
 
-        private static void ConfirmValueError(string msg, String real_num, String i_num, String suffix, ErrorEval numError)
+        private static void ConfirmValueError(string msg, string real_num, string i_num, string suffix, ErrorEval numError)
         {
             ValueEval result = invokeValue(real_num, i_num, suffix);
             Assert.AreEqual(typeof(ErrorEval), result.GetType());

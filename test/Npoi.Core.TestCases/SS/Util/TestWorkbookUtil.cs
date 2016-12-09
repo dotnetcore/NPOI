@@ -40,8 +40,8 @@ namespace TestCases.SS.Util
         public void TestCreateSafeNames()
         {
 
-            String p = "Sheet1";
-            String actual = WorkbookUtil.CreateSafeSheetName(p);
+            string p = "Sheet1";
+            string actual = WorkbookUtil.CreateSafeSheetName(p);
             Assert.AreEqual(p, actual);
 
             p = "O'Brien's sales";

@@ -225,7 +225,7 @@ namespace TestCases.HSSF.Record.Aggregates
 
             Npoi.Core.SS.UserModel.ISheet s = wb.GetSheetAt(0); // Sheet1
 
-            String cellFormula;
+            string cellFormula;
             cellFormula = GetFormulaFromFirstCell(s, 0); // row "1"
             // the problem is1 not observable in the first row of the shared formula
             if (!cellFormula.Equals("\"first formula\""))
@@ -267,7 +267,7 @@ namespace TestCases.HSSF.Record.Aggregates
          */
         private static Exception failUnexpectedTestFileChange()
         {
-            String msg = "Test file '" + ABNORMAL_SHARED_FORMULA_FLAG_TEST_FILE + "' has changed.  "
+            string msg = "Test file '" + ABNORMAL_SHARED_FORMULA_FLAG_TEST_FILE + "' has changed.  "
                 + "This junit may not be properly Testing for the tarGet bug.  "
                 + "Either revert the Test file or ensure that the new version "
                 + "has the right characteristics to Test the tarGet bug.";

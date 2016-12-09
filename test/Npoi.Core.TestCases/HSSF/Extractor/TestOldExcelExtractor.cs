@@ -61,7 +61,7 @@ namespace TestCases.HSSF.Extractor
             OldExcelExtractor extractor = CreateExtractor("testEXCEL_3.xls");
 
             // Check we can call GetText without error
-            String text = extractor.Text;
+            string text = extractor.Text;
 
             // Check we find a few words we expect in there
             AssertContains(text, "Season beginning August");
@@ -84,7 +84,7 @@ namespace TestCases.HSSF.Extractor
             OldExcelExtractor extractor = CreateExtractor("testEXCEL_4.xls");
 
             // Check we can call GetText without error
-            String text = extractor.Text;
+            string text = extractor.Text;
 
             // Check we find a few words we expect in there
             AssertContains(text, "Size");
@@ -101,12 +101,12 @@ namespace TestCases.HSSF.Extractor
         [Test]
         public void TestSimpleExcel5()
         {
-            foreach (string ver in new String[] { "5", "95" })
+            foreach (string ver in new string[] { "5", "95" })
             {
                 OldExcelExtractor extractor = CreateExtractor("testEXCEL_" + ver + ".xls");
 
                 // Check we can call GetText without error
-                String text = extractor.Text;
+                string text = extractor.Text;
 
                 // Check we find a few words we expect in there
                 AssertContains(text, "Sample Excel");
@@ -129,7 +129,7 @@ namespace TestCases.HSSF.Extractor
         public void TestStrings()
         {
             OldExcelExtractor extractor = CreateExtractor("testEXCEL_4.xls");
-            String text = extractor.Text;
+            string text = extractor.Text;
 
             // Simple strings
             AssertContains(text, "Table 10 -- Examination Coverage:");
@@ -149,7 +149,7 @@ namespace TestCases.HSSF.Extractor
         public void TestFormattedNumbersExcel4()
         {
             OldExcelExtractor extractor = CreateExtractor("testEXCEL_4.xls");
-            String text = extractor.Text;
+            string text = extractor.Text;
 
             // Simple numbers
             AssertContains(text, "151");
@@ -167,10 +167,10 @@ namespace TestCases.HSSF.Extractor
         [Test]
         public void TestFormattedNumbersExcel5()
         {
-            foreach (string ver in new String[] { "5", "95" })
+            foreach (string ver in new string[] { "5", "95" })
             {
                 OldExcelExtractor extractor = CreateExtractor("testEXCEL_" + ver + ".xls");
-                String text = extractor.Text;
+                string text = extractor.Text;
 
                 // Simple numbers
                 AssertContains(text, "1");
@@ -194,13 +194,13 @@ namespace TestCases.HSSF.Extractor
         [Test]
         public void TestFromFile()
         {
-            foreach (string ver in new String[] { "4", "5", "95" })
+            foreach (string ver in new string[] { "4", "5", "95" })
             {
-                String filename = "testEXCEL_" + ver + ".xls";
+                string filename = "testEXCEL_" + ver + ".xls";
                 FileInfo f = HSSFTestDataSamples.GetSampleFile(filename);
 
                 OldExcelExtractor extractor = new OldExcelExtractor(f);
-                String text = extractor.Text;
+                string text = extractor.Text;
                 Assert.IsNotNull(text);
                 Assert.IsTrue(text.Length > 100);
             }

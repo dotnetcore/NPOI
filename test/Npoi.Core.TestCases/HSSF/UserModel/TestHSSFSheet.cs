@@ -400,9 +400,9 @@ namespace TestCases.HSSF.UserModel
         [Test]
         public void TestCloneWithProtect()
         {
-            String passwordA = "secrect";
+            string passwordA = "secrect";
             int expectedHashA = -6810;
-            String passwordB = "admin";
+            string passwordB = "admin";
             int expectedHashB = -14556;
             HSSFWorkbook workbook = new HSSFWorkbook();
             HSSFSheet hssfSheet = (HSSFSheet)workbook.CreateSheet();
@@ -501,7 +501,7 @@ namespace TestCases.HSSF.UserModel
             }
             catch (InvalidOperationException e)
             {
-                String expMsg = "Unexpected (Npoi.Core.HSSF.Record.PasswordRecord) while looking for DV Table insert pos";
+                string expMsg = "Unexpected (Npoi.Core.HSSF.Record.PasswordRecord) while looking for DV Table insert pos";
                 if (expMsg.Equals(e.Message))
                 {
                     throw new AssertionException("Identified bug 47363b");
@@ -698,7 +698,7 @@ namespace TestCases.HSSF.UserModel
         public void TestAutoSizeColumn()
         {
             HSSFWorkbook wb = HSSFTestDataSamples.OpenSampleWorkbook("43902.xls");
-            String sheetName = "my sheet";
+            string sheetName = "my sheet";
             HSSFSheet sheet = (HSSFSheet)wb.GetSheet(sheetName);
 
             // Can't use literal numbers for column sizes, as
@@ -1009,7 +1009,7 @@ namespace TestCases.HSSF.UserModel
         public void TestLongSheetNames()
         {
             HSSFWorkbook wb = new HSSFWorkbook();
-            String SAME_PREFIX = "A123456789B123456789C123456789"; // 30 chars
+            string SAME_PREFIX = "A123456789B123456789C123456789"; // 30 chars
 
             wb.CreateSheet(SAME_PREFIX + "Dxxxx");
             try

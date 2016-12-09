@@ -40,14 +40,14 @@ using Npoi.Core.HSSF.UserModel;
             return new Hex2Dec().Evaluate(args, -1, -1);
         }
 
-        private static void ConfirmValue(string msg, String number1, String expected)
+        private static void ConfirmValue(string msg, string number1, string expected)
         {
             ValueEval result = invokeValue(number1);
             Assert.AreEqual(typeof(NumberEval), result.GetType());
             Assert.AreEqual(expected, ((NumberEval)result).StringValue, msg);
         }
 
-        private static void ConfirmValueError(string msg, String number1, ErrorEval numError)
+        private static void ConfirmValueError(string msg, string number1, ErrorEval numError)
         {
             ValueEval result = invokeValue(number1);
             Assert.AreEqual(typeof(ErrorEval), result.GetType());

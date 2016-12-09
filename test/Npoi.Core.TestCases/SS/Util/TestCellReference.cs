@@ -35,9 +35,9 @@ namespace TestCases.SS.Util
         public void TestGetCellRefParts()
         {
             CellReference cellReference;
-            String[] parts;
+            string[] parts;
 
-            String cellRef = "A1";
+            string cellRef = "A1";
             cellReference = new CellReference(cellRef);
             Assert.AreEqual(0, cellReference.Col);
             parts = cellReference.CellRefParts;
@@ -102,7 +102,7 @@ namespace TestCases.SS.Util
         [Test]
         public void TestGetColNumFromRef()
         {
-            String cellRef = "A1";
+            string cellRef = "A1";
             CellReference cellReference = new CellReference(cellRef);
             Assert.AreEqual(0, cellReference.Col);
 
@@ -146,7 +146,7 @@ namespace TestCases.SS.Util
         [Test]
         public void TestGetRowNumFromRef()
         {
-            String cellRef = "A1";
+            string cellRef = "A1";
             CellReference cellReference = new CellReference(cellRef);
             Assert.AreEqual(0, cellReference.Row);
 
@@ -162,19 +162,19 @@ namespace TestCases.SS.Util
         public void TestConvertNumToColString()
         {
             short col = 702;
-            String collRef = new CellReference(0, col).FormatAsString();
+            string collRef = new CellReference(0, col).FormatAsString();
             Assert.AreEqual("AAA1", collRef);
 
             short col2 = 0;
-            String collRef2 = new CellReference(0, col2).FormatAsString();
+            string collRef2 = new CellReference(0, col2).FormatAsString();
             Assert.AreEqual("A1", collRef2);
 
             short col3 = 27;
-            String collRef3 = new CellReference(0, col3).FormatAsString();
+            string collRef3 = new CellReference(0, col3).FormatAsString();
             Assert.AreEqual("AB1", collRef3);
 
             short col4 = 2080;
-            String collRef4 = new CellReference(0, col4).FormatAsString();
+            string collRef4 = new CellReference(0, col4).FormatAsString();
             Assert.AreEqual("CBA1", collRef4);
         }
         [Test]
@@ -226,7 +226,7 @@ namespace TestCases.SS.Util
             catch (ArgumentException) { }
         }
 
-        private static void ConfirmCrInRange(bool expResult, String colStr, String rowStr,
+        private static void ConfirmCrInRange(bool expResult, string colStr, string rowStr,
                 SpreadsheetVersion sv)
         {
             if (expResult == CellReference.CellReferenceIsWithinRange(colStr, rowStr, sv))

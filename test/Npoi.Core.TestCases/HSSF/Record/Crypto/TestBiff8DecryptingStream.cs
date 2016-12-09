@@ -69,7 +69,7 @@ namespace TestCases.HSSF.Record.Crypto
             /**
              * @param expectedFirstInt expected value of the first int read from the decrypted stream
              */
-            public StreamTester(MockStream ms, String keyDigestHex, int expectedFirstInt)
+            public StreamTester(MockStream ms, string keyDigestHex, int expectedFirstInt)
             {
                 _ms = ms;
                 byte[] keyDigest = HexRead.ReadFromString(keyDigestHex);
@@ -126,10 +126,10 @@ namespace TestCases.HSSF.Record.Crypto
                 _errorsOccurred = true;
                 if (ONLY_LOG_ERRORS)
                 {
-                    logErr(3, "Value mismatch " + new String(exp) + " - " + new String(act));
+                    logErr(3, "Value mismatch " + new string(exp) + " - " + new string(act));
                     return;
                 }
-                throw new ComparisonFailure("Value mismatch", new String(exp), new String(act));
+                throw new ComparisonFailure("Value mismatch", new string(exp), new string(act));
             }
 
             public void ConfirmData(string expHexData)
@@ -152,7 +152,7 @@ namespace TestCases.HSSF.Record.Crypto
                 throw new ComparisonFailure("Data mismatch", HexDump.ToHex(expData), HexDump.ToHex(actData));
             }
 
-            private static void logErr(int stackFrameCount, String msg)
+            private static void logErr(int stackFrameCount, string msg)
             {
                // StackTraceElement ste = new Exception().StackTrace[stackFrameCount];
                 //System.err.Print("(" + ste.FileName + ":" + ste.LineNumber + ") ");
@@ -254,7 +254,7 @@ namespace TestCases.HSSF.Record.Crypto
             st.AssertNoErrors();
         }
 
-        private static StreamTester CreateStreamTester(int mockStreamStartVal, String keyDigestHex, int expectedFirstInt)
+        private static StreamTester CreateStreamTester(int mockStreamStartVal, string keyDigestHex, int expectedFirstInt)
         {
             return new StreamTester(new MockStream(mockStreamStartVal), keyDigestHex, expectedFirstInt);
         }

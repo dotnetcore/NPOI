@@ -52,7 +52,7 @@ namespace TestCases.SS.Formula.Eval
             /**
              * Name of the test spreadsheet (found in the standard test data folder)
              */
-            public static String FILENAME = "FormulaSheetRange.xls";
+            public static string FILENAME = "FormulaSheetRange.xls";
             /**
              * Row (zero-based) in the test spreadsheet where the function examples start.
              */
@@ -68,7 +68,7 @@ namespace TestCases.SS.Formula.Eval
             /**
              * Used to indicate when there are no more functions left
              */
-            public static String FUNCTION_NAMES_END_SENTINEL = "<END>";
+            public static string FUNCTION_NAMES_END_SENTINEL = "<END>";
 
             /**
              * Index of the column where the test expected value is present
@@ -81,7 +81,7 @@ namespace TestCases.SS.Formula.Eval
             /**
              * Test sheet name (sheet with all test formulae)
              */
-            public static String TEST_SHEET_NAME = "test";
+            public static string TEST_SHEET_NAME = "test";
         }
 
         private HSSFWorkbook workbook;
@@ -151,12 +151,12 @@ namespace TestCases.SS.Formula.Eval
             ProcessFunctionGroup(SS.START_FUNCTIONS_ROW_INDEX, null);
 
             // confirm results
-            String successMsg = "There were "
+            string successMsg = "There were "
                     + _EvaluationSuccessCount + " successful Evaluation(s) and "
                     + _functionSuccessCount + " function(s) without error";
             if (_functionFailureCount > 0)
             {
-                String msg = _functionFailureCount + " function(s) failed in "
+                string msg = _functionFailureCount + " function(s) failed in "
                 + _EvaluationFailureCount + " Evaluation(s).  " + successMsg;
                 throw new AssertFailedException(msg);
             }
@@ -168,10 +168,10 @@ namespace TestCases.SS.Formula.Eval
          * @param testFocusFunctionName name of a single function/operator to test alone.
          * Typically pass <code>null</code> to test all functions
          */
-        private void ProcessFunctionGroup(int startRowIndex, String testFocusFunctionName)
+        private void ProcessFunctionGroup(int startRowIndex, string testFocusFunctionName)
         {
             HSSFFormulaEvaluator evaluator = new HSSFFormulaEvaluator(workbook);
-            ReadOnlyCollection<String> funcs = FunctionEval.GetSupportedFunctionNames();
+            ReadOnlyCollection<string> funcs = FunctionEval.GetSupportedFunctionNames();
 
             int rowIndex = startRowIndex;
             while (true)
@@ -181,8 +181,8 @@ namespace TestCases.SS.Formula.Eval
                 // only Evaluate non empty row
                 if (r != null)
                 {
-                    String targetFunctionName = GetTargetFunctionName(r);
-                    String targetTestName = GetTargetTestName(r);
+                    string targetFunctionName = GetTargetFunctionName(r);
+                    string targetTestName = GetTargetTestName(r);
                     if (targetFunctionName == null)
                     {
                         throw new AssertFailedException("Test spreadsheet cell empty on row ("
@@ -214,7 +214,7 @@ namespace TestCases.SS.Formula.Eval
                             default:
                                 throw new Exception("unexpected result");
                             case Result.NO_EVALUATIONS_FOUND: // do nothing
-                                String uname = targetFunctionName.ToUpper();
+                                string uname = targetFunctionName.ToUpper();
                                 if (startRowIndex >= SS.START_FUNCTIONS_ROW_INDEX &&
                                         funcs.Contains(uname))
                                 {
@@ -233,8 +233,8 @@ namespace TestCases.SS.Formula.Eval
          * @return a constant from the local Result class denoting whether there were any Evaluation
          * cases, and whether they all succeeded.
          */
-        private int ProcessFunctionRow(HSSFFormulaEvaluator Evaluator, String targetFunctionName,
-                String targetTestName, IRow formulasRow, ICell expectedValueCell)
+        private int ProcessFunctionRow(HSSFFormulaEvaluator Evaluator, string targetFunctionName,
+                string targetTestName, IRow formulasRow, ICell expectedValueCell)
         {
 
             int result = Result.NO_EVALUATIONS_FOUND; // so far

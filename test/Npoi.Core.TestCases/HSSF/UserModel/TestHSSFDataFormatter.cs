@@ -70,7 +70,7 @@ namespace TestCases.HSSF.UserModel
             double timeNum = 555.47431;
 
             //valid date formats -- all should have "Jul" in output
-            String[] goodDatePatterns = {
+            string[] goodDatePatterns = {
             "[$-F800]dddd\\,\\ mmmm\\ dd\\,\\ yyyy",
             "mmm/d/yy\\ h:mm PM;@",
             "mmmm/d/yy\\ h:mm;@",
@@ -92,7 +92,7 @@ namespace TestCases.HSSF.UserModel
         };
 
             //valid time formats - all should have 11:23 in output
-            String[] goodTimePatterns = {
+            string[] goodTimePatterns = {
            "HH:MM",
            "HH:MM:SS",
            "HH:MM;HH:MM;HH:MM", 
@@ -104,7 +104,7 @@ namespace TestCases.HSSF.UserModel
         };
 
             // valid number formats
-            String[] goodNumPatterns = {
+            string[] goodNumPatterns = {
                 "#,##0.0000",
                 "#,##0;[Red]#,##0",
                 "(#,##0.00_);(#,##0.00)",
@@ -119,7 +119,7 @@ namespace TestCases.HSSF.UserModel
         };
 
             // invalid date formats -- will throw exception in DecimalFormat ctor
-            String[] badNumPatterns = {
+            string[] badNumPatterns = {
                 "#,#$'#0.0000",
                 "'#','#ABC#0;##,##0",
                 "000 '123 4'5'6 000",
@@ -231,19 +231,19 @@ namespace TestCases.HSSF.UserModel
             while (it.MoveNext())
             {
                 ICell cell = (ICell)it.Current;
-                String fmtval = formatter.FormatCellValue(cell);
+                string fmtval = formatter.FormatCellValue(cell);
                 log(fmtval);
 
                 // should not be equal to "555.555"
                 Assert.IsTrue(DateUtil.IsCellDateFormatted(cell));
                 Assert.IsTrue(!"555.555".Equals(fmtval));
 
-                String fmt = cell.CellStyle.GetDataFormatString();
+                string fmt = cell.CellStyle.GetDataFormatString();
 
                 //assert the correct month form, as in the original Excel format
-                String monthPtrn = fmt.IndexOf("mmmm") != -1 ? "MMMM" : "MMM";
+                string monthPtrn = fmt.IndexOf("mmmm") != -1 ? "MMMM" : "MMM";
                 // this line is intended to compute how "July" would look like in the current locale
-                String jul = new SimpleDateFormat(monthPtrn).Format(new DateTime(2010, 7, 15), CultureInfo.CurrentCulture);
+                string jul = new SimpleDateFormat(monthPtrn).Format(new DateTime(2010, 7, 15), CultureInfo.CurrentCulture);
                 // special case for MMMMM = 1st letter of month name
                 if (fmt.IndexOf("mmmmm") > -1)
                 {
@@ -259,8 +259,8 @@ namespace TestCases.HSSF.UserModel
             while (it.MoveNext())
             {
                 ICell cell = (ICell)it.Current;
-                String fmt = cell.CellStyle.GetDataFormatString();
-                String fmtval = formatter.FormatCellValue(cell);
+                string fmt = cell.CellStyle.GetDataFormatString();
+                string fmtval = formatter.FormatCellValue(cell);
                 log(fmtval);
 
                 // should not be equal to "555.47431"

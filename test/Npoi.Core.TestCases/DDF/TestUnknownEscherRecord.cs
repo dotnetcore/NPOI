@@ -33,7 +33,7 @@ namespace TestCases.DDF
         [Test]
         public void TestFillFields()
         {
-            String TestData =
+            string TestData =
                     "0F 02 " + // options
                     "11 F1 " + // record id
                     "00 00 00 00";      // remaining bytes
@@ -118,7 +118,7 @@ namespace TestCases.DDF
             byte[] data = new byte[8];
             r.Serialize(0, data);
 
-            String nl = Environment.NewLine;
+            string nl = Environment.NewLine;
             Assert.AreEqual("UnknownEscherRecord:" + nl +
                     "  isContainer: False" + nl +
                     "  version: 0x0004" + nl +

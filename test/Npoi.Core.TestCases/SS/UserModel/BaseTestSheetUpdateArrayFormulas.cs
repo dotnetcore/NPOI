@@ -53,7 +53,7 @@ namespace TestCases.SS.UserModel
             IRow row1 = sheet.CreateRow(0);
             ICell cellA1 = row1.CreateCell(0);
             ICell cellB1 = row1.CreateCell(1);
-            String formula = "42";
+            string formula = "42";
             sheet.SetArrayFormula(formula, CellRangeAddress.ValueOf("A1:B2"));
 
             Assert.AreEqual(formula, cellA1.CellFormula);
@@ -227,7 +227,7 @@ namespace TestCases.SS.UserModel
                 }
                 catch (ArgumentException e)
                 {
-                    String ref1 = new CellReference(acell).FormatAsString();
+                    string ref1 = new CellReference(acell).FormatAsString();
                     Assert.AreEqual("Cell " + ref1 + " is not part of an array formula.", e.Message);
                 }
             }
@@ -334,7 +334,7 @@ namespace TestCases.SS.UserModel
                 catch (InvalidOperationException e)
                 {
                     CellReference ref1 = new CellReference(mcell);
-                    String msg = "Cell " + ref1.FormatAsString() + " is part of a multi-cell array formula. You cannot change part of an array.";
+                    string msg = "Cell " + ref1.FormatAsString() + " is part of a multi-cell array formula. You cannot change part of an array.";
                     Assert.AreEqual(msg, e.Message);
                 }
                 // a failed invocation of Cell.SetCellType leaves the cell
@@ -380,7 +380,7 @@ namespace TestCases.SS.UserModel
                 catch (InvalidOperationException e)
                 {
                     CellReference ref1 = new CellReference(mcell);
-                    String msg = "Cell " + ref1.FormatAsString() + " is part of a multi-cell array formula. You cannot change part of an array.";
+                    string msg = "Cell " + ref1.FormatAsString() + " is part of a multi-cell array formula. You cannot change part of an array.";
                     Assert.AreEqual(msg, e.Message);
                 }
                 // a failed invocation of Cell.SetCellFormula leaves the cell
@@ -426,7 +426,7 @@ namespace TestCases.SS.UserModel
                 catch (InvalidOperationException e)
                 {
                     CellReference ref1 = new CellReference(mcell);
-                    String msg = "Cell " + ref1.FormatAsString() + " is part of a multi-cell array formula. You cannot change part of an array.";
+                    string msg = "Cell " + ref1.FormatAsString() + " is part of a multi-cell array formula. You cannot change part of an array.";
                     Assert.AreEqual(msg, e.Message);
                 }
                 // a failed invocation of Row.RemoveCell leaves the row
@@ -473,7 +473,7 @@ namespace TestCases.SS.UserModel
                 }
                 catch (InvalidOperationException)
                 {
-                    String msg = "Row[rownum=" + mrow.RowNum + "] Contains cell(s) included in a multi-cell array formula. You cannot change part of an array.";
+                    string msg = "Row[rownum=" + mrow.RowNum + "] Contains cell(s) included in a multi-cell array formula. You cannot change part of an array.";
                     //Assert.AreEqual(msg, e.Message);
                 }
                 // a failed invocation of Row.RemoveCell leaves the row
@@ -512,7 +512,7 @@ namespace TestCases.SS.UserModel
             }
             catch (InvalidOperationException e)
             {
-                String msg = "The range " + cra.FormatAsString() + " intersects with a multi-cell array formula. You cannot merge cells of an array.";
+                string msg = "The range " + cra.FormatAsString() + " intersects with a multi-cell array formula. You cannot merge cells of an array.";
                 Assert.AreEqual(msg, e.Message);
             }
             //the number of merged regions remains the same
@@ -543,7 +543,7 @@ namespace TestCases.SS.UserModel
             }
             catch (InvalidOperationException e)
             {
-                String msg = "Row[rownum=0] contains cell(s) included in a multi-cell array formula. You cannot change part of an array.";
+                string msg = "Row[rownum=0] contains cell(s) included in a multi-cell array formula. You cannot change part of an array.";
                 Assert.AreEqual(msg, e.Message);
             }
             /*

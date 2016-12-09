@@ -186,7 +186,7 @@ namespace TestCases.POIFS.Properties
 
         private void CreateBasicDirectoryProperty()
         {
-            String name = "MyDirectory";
+            string name = "MyDirectory";
 
             _property = new DirectoryProperty(name);
             _testblock = new byte[128];
@@ -304,7 +304,7 @@ namespace TestCases.POIFS.Properties
         {
             CreateBasicDirectoryProperty();
             Property p1 = new LocalProperty(1);
-            String originalName = p1.Name;
+            string originalName = p1.Name;
 
             _property.AddChild(p1);
             Assert.IsTrue(_property.ChangeName(p1, "foobar"));
@@ -367,7 +367,7 @@ namespace TestCases.POIFS.Properties
         }
 
         private void VerifyReadingProperty(int index, byte[] input, int offset,
-                                           String name)
+                                           string name)
         {
             DirectoryProperty property = new DirectoryProperty(index, input,
                                                  offset);

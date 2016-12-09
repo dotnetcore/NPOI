@@ -82,7 +82,7 @@ namespace TestCases.SS.UserModel
             //DataFormatter dfUS = new DataFormatter(Locale.US);
             DataFormatter dfUS = new DataFormatter(CultureShim.GetCultureInfo("en-US"));
 
-            String[] formats = new String[] {
+            string[] formats = new string[] {
              "##.##",
              "[WHITE]##.##",
              "[BLACK]##.##;[RED]-##.##",
@@ -114,7 +114,7 @@ namespace TestCases.SS.UserModel
             DataFormatter dfUS = new DataFormatter(CultureShim.GetCultureInfo("en-US"));
 
             // Without currency symbols
-            String[] formats = new String[] {
+            string[] formats = new string[] {
              "#,##0.00;[Blue](#,##0.00)",
        };
             foreach (string format in formats)
@@ -134,7 +134,7 @@ namespace TestCases.SS.UserModel
             }
 
             // With
-            formats = new String[] {
+            formats = new string[] {
              "$#,##0.00;[Red]($#,##0.00)"
        };
             foreach (string format in formats)
@@ -164,13 +164,13 @@ namespace TestCases.SS.UserModel
             //DataFormatter dfUS = new DataFormatter(Locale.US);
             DataFormatter dfUS = new DataFormatter(CultureShim.GetCultureInfo("en-US"));
 
-            String all2dp = "00.00";
-            String alln1dp = "(00.0)";
-            String p1dp_n1dp = "00.0;(00.0)";
-            String p2dp_n1dp = "00.00;(00.0)";
-            String p2dp_n1dp_z0 = "00.00;(00.0);0";
-            String all2dpTSP = "00.00_x";
-            String p2dp_n2dpTSP = "00.00_x;(00.00)_x";
+            string all2dp = "00.00";
+            string alln1dp = "(00.0)";
+            string p1dp_n1dp = "00.0;(00.0)";
+            string p2dp_n1dp = "00.00;(00.0)";
+            string p2dp_n1dp_z0 = "00.00;(00.0);0";
+            string all2dpTSP = "00.00_x";
+            string p2dp_n2dpTSP = "00.00_x;(00.00)_x";
 
             Assert.AreEqual("12.34", dfUS.FormatRawCellContents(12.343, -1, all2dp));
             Assert.AreEqual("12.34", dfUS.FormatRawCellContents(12.343, -1, p2dp_n1dp));
@@ -553,8 +553,8 @@ namespace TestCases.SS.UserModel
         {
             DataFormatter dfUS = new DataFormatter(CultureShim.GetCultureInfo("en-US"), true);
 
-            String dateFormatEnglish = "[$-409]mmmm dd yyyy  h:mm AM/PM";
-            String dateFormatChinese = "[$-804]mmmm dd yyyy  h:mm AM/PM";
+            string dateFormatEnglish = "[$-409]mmmm dd yyyy  h:mm AM/PM";
+            string dateFormatChinese = "[$-804]mmmm dd yyyy  h:mm AM/PM";
 
             // Check we format the English one correctly
             double date = 26995.477777777778;
@@ -576,7 +576,7 @@ namespace TestCases.SS.UserModel
         public void TestCustomFormats()
         {
             DataFormatter dfUS = new DataFormatter(CultureShim.GetCultureInfo("en-US"), true);
-            String fmt;
+            string fmt;
 
             fmt = "\"At\" H:MM AM/PM \"on\" DDDD MMMM D\",\" YYYY";
             Assert.AreEqual(
@@ -625,7 +625,7 @@ namespace TestCases.SS.UserModel
         public void TestBug54786()
         {
             DataFormatter formatter = new DataFormatter();
-            String format = "[h]\"\"h\"\" m\"\"m\"\"";
+            string format = "[h]\"\"h\"\" m\"\"m\"\"";
             Assert.IsTrue(DateUtil.IsADateFormat(-1, format));
             Assert.IsTrue(DateUtil.IsValidExcelDate(_15_MINUTES));
 

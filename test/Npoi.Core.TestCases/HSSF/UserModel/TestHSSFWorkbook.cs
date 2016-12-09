@@ -867,7 +867,7 @@ namespace TestCases.HSSF.UserModel
             Assert.AreEqual("'other sheet'!D1", cf.GetRule(0).Formula2);
         }
 
-        private bool HasEntry(DirectoryNode dirNode, String entryName)
+        private bool HasEntry(DirectoryNode dirNode, string entryName)
         {
             try
             {
@@ -1183,8 +1183,8 @@ namespace TestCases.HSSF.UserModel
         [Test]
         public void Bug54500()
         {
-            String nameName = "AName";
-            String sheetName = "ASheet";
+            string nameName = "AName";
+            string sheetName = "ASheet";
             IWorkbook wb = HSSFTestDataSamples.OpenSampleWorkbook("54500.xls");
 
             assertSheetOrder(wb, "Sheet1", "Sheet2", "Sheet3");
@@ -1227,7 +1227,7 @@ namespace TestCases.HSSF.UserModel
                     nameName, "ASheet!A1");
         }
 
-        private void expectName(HSSFWorkbook wb, String name, String expect)
+        private void expectName(HSSFWorkbook wb, string name, string expect)
         {
             Assert.AreEqual(expect, wb.GetName(name).RefersToFormula);
         }

@@ -31,7 +31,7 @@ namespace TestCases.SS.Formula.Functions
             ICell cell = wb.CreateSheet().CreateRow(0).CreateCell(0);
             HSSFFormulaEvaluator fe = new HSSFFormulaEvaluator(wb);
 
-            String formulaText = "ADDRESS(1,2)";
+            string formulaText = "ADDRESS(1,2)";
             ConfirmResult(fe, cell, formulaText, "$B$1");
 
             formulaText = "ADDRESS(1,2,)";					// with explicitly empty third parameter
@@ -68,8 +68,8 @@ namespace TestCases.SS.Formula.Functions
             ConfirmResult(fe, cell, formulaText, "'[Book1]Sheet1'!$C2");
         }
 
-        private static void ConfirmResult(HSSFFormulaEvaluator fe, ICell cell, String formulaText,
-                                          String expectedResult)
+        private static void ConfirmResult(HSSFFormulaEvaluator fe, ICell cell, string formulaText,
+                                          string expectedResult)
         {
             cell.CellFormula=(formulaText);
             fe.NotifyUpdateCell(cell);

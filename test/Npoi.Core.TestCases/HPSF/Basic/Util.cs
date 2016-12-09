@@ -117,7 +117,7 @@ namespace TestCases.HPSF.Basic
          * @exception IOException if an I/O exception occurs
          */
         public static POIFile[] ReadPOIFiles(Stream poiFs,
-                                             String[] poiFiles)
+                                             string[] poiFiles)
         {
             List<POIFile> files = new List<POIFile>();
             POIFSReader reader1 = new POIFSReader();
@@ -264,8 +264,8 @@ namespace TestCases.HPSF.Basic
             names.Sort();
             for (IEnumerator<string> i = names.GetEnumerator(); i.MoveNext(); )
             {
-                String name = i.Current;
-                String value = (string)p[name];
+                string name = i.Current;
+                string value = (string)p[name];
                 Console.WriteLine(name + ": " + value);
             }
             Console.WriteLine("Current directory: " +

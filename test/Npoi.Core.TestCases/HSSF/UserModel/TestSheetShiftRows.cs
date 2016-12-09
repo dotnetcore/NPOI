@@ -161,11 +161,11 @@ namespace TestCases.HSSF.UserModel
             Assert.IsNotNull(sheet.GetCellComment(2, 0));
             Assert.IsNotNull(sheet.GetCellComment(3, 0));
 
-            String comment1 = sheet.GetCellComment(0, 0).String.String;
+            string comment1 = sheet.GetCellComment(0, 0).String.String;
             Assert.AreEqual(comment1, "comment top row1 (index0)\n");
-            String comment3 = sheet.GetCellComment(2, 0).String.String;
+            string comment3 = sheet.GetCellComment(2, 0).String.String;
             Assert.AreEqual(comment3, "comment top row3 (index2)\n");
-            String comment4 = sheet.GetCellComment(3, 0).String.String;
+            string comment4 = sheet.GetCellComment(3, 0).String.String;
             Assert.AreEqual(comment4, "comment top row4 (index3)\n");
 
             // Shifting all but first line down to Test comments shifting
@@ -181,11 +181,11 @@ namespace TestCases.HSSF.UserModel
             Assert.IsNotNull(sheet.GetCellComment(3, 0));
             Assert.IsNotNull(sheet.GetCellComment(4, 0));
 
-            String comment1_shifted = sheet.GetCellComment(0, 0).String.String;
+            string comment1_shifted = sheet.GetCellComment(0, 0).String.String;
             Assert.AreEqual(comment1, comment1_shifted);
-            String comment3_shifted = sheet.GetCellComment(3, 0).String.String;
+            string comment3_shifted = sheet.GetCellComment(3, 0).String.String;
             Assert.AreEqual(comment3, comment3_shifted);
-            String comment4_shifted = sheet.GetCellComment(4, 0).String.String;
+            string comment4_shifted = sheet.GetCellComment(4, 0).String.String;
             Assert.AreEqual(comment4, comment4_shifted);
 
             // Write out and read back in again
@@ -271,7 +271,7 @@ namespace TestCases.HSSF.UserModel
         }
 
         private static void ConfirmRow(Npoi.Core.SS.UserModel.ISheet sheet, int rowIx, double valA, double valB, double valC,
-                    String formulaA, String formulaB, String formulaC)
+                    string formulaA, string formulaB, string formulaC)
         {
             ConfirmCell(sheet, rowIx, 4, valA, formulaA);
             ConfirmCell(sheet, rowIx, 5, valB, formulaB);
@@ -279,7 +279,7 @@ namespace TestCases.HSSF.UserModel
         }
 
         private static void ConfirmCell(Npoi.Core.SS.UserModel.ISheet sheet, int rowIx, int colIx,
-                double expectedValue, String expectedFormula)
+                double expectedValue, string expectedFormula)
         {
             ICell cell = sheet.GetRow(rowIx).GetCell(colIx);
             Assert.AreEqual(expectedValue, cell.NumericCellValue, 0.0);

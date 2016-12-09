@@ -40,9 +40,9 @@ namespace TestCases.HPSF.Basic
          * This Test file's summary information stream Contains some empty
          * properties.
          */
-        static String POI_FS = "TestCorel.shw";
+        static string POI_FS = "TestCorel.shw";
 
-        static String[] POI_FILES = new String[]
+        static string[] POI_FILES = new string[]
         {
             "PerfectOffice_MAIN",
             "\x0005SummaryInformation",
@@ -71,7 +71,7 @@ namespace TestCases.HPSF.Basic
         [Test]
         public void TestReadFiles()
         {
-            String[] expected = POI_FILES;
+            string[] expected = POI_FILES;
             for (int i = 0; i < expected.Length; i++)
                 Assert.AreEqual(poiFiles[i].GetName(), expected[i]);
         }

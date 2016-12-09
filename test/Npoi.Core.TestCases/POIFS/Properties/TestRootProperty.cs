@@ -83,7 +83,7 @@ namespace TestCases.POIFS.Properties
             {
                 _testblock[index] = (byte)0;
             }
-            String name = "Root Entry";
+            string name = "Root Entry";
             int limit = Math.Min(31, name.Length);
 
             _testblock[index++] = (byte)(2 * (limit + 1));
@@ -164,7 +164,7 @@ namespace TestCases.POIFS.Properties
         }
 
         private void VerifyReadingProperty(int index, byte[] input, int offset,
-                                           String name, String sClsId)
+                                           string name, string sClsId)
         {
             RootProperty property = new RootProperty(index, input,
                                                  offset);

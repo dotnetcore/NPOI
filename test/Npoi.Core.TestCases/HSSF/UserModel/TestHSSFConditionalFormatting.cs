@@ -38,7 +38,7 @@ namespace TestCases.HSSF.UserModel
         {
             HSSFWorkbook workbook = new HSSFWorkbook();
             HSSFSheet sheet = (HSSFSheet)workbook.CreateSheet();
-            String formula = "7";
+            string formula = "7";
 
             HSSFSheetConditionalFormatting sheetCF = (HSSFSheetConditionalFormatting)sheet.SheetConditionalFormatting;
 
@@ -119,7 +119,7 @@ namespace TestCases.HSSF.UserModel
 
             HSSFWorkbook wb = new HSSFWorkbook();
             HSSFSheet sheet = (HSSFSheet)wb.CreateSheet();
-            String formula = "7";
+            string formula = "7";
 
             HSSFSheetConditionalFormatting sheetCF = (HSSFSheetConditionalFormatting)sheet.SheetConditionalFormatting;
 
@@ -256,7 +256,7 @@ namespace TestCases.HSSF.UserModel
             }
         }
 
-        private void WriteTemp53691(IWorkbook wb, String suffix)
+        private void WriteTemp53691(IWorkbook wb, string suffix)
         {
             // assert that we can Write/read it in memory
             IWorkbook wbBack = HSSFITestDataProvider.Instance.WriteOutAndReadBack(wb);

@@ -167,7 +167,7 @@ namespace TestCases.HSSF.Record.Aggregates
 
             // pick out a cell from within the second shared formula group
             HSSFCell cell = (HSSFCell)wb.GetSheetAt(0).GetRow(23).GetCell(0);
-            String formulaText;
+            string formulaText;
             try
             {
                 formulaText = cell.CellFormula;

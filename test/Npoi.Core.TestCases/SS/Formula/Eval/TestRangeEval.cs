@@ -50,7 +50,7 @@ namespace TestCases.SS.Formula.Eval
             Confirm("D7", "B3", "B3:D7");
         }
 
-        private static void Confirm(string refA, String refB, String expectedAreaRef)
+        private static void Confirm(string refA, string refB, string expectedAreaRef)
         {
 
             ValueEval[] args = {

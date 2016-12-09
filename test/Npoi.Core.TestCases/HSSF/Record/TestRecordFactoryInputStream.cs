@@ -62,7 +62,7 @@ namespace TestCases.HSSF.Record
         public void TestDefaultPassword()
         {
             // This encodng depends on docId, password and stream position
-            String SAMPLE_WINDOW1_ENCR1 = "3D 00 12 00"
+            string SAMPLE_WINDOW1_ENCR1 = "3D 00 12 00"
                    + "C4, 9B, 02, 50, 86, E0, DF, 34, FB, 57, 0E, 8C, CE, 25, 45, E3, 80, 01";
 
             byte[] dataWrongDefault = HexRead.ReadFromString(""
@@ -104,7 +104,7 @@ namespace TestCases.HSSF.Record
         public void TestSuppliedPassword()
         {
             // This encodng depends on docId, password and stream position
-            String SAMPLE_WINDOW1_ENCR2 = "3D 00 12 00"
+            string SAMPLE_WINDOW1_ENCR2 = "3D 00 12 00"
                    + "45, B9, 90, FE, B6, C6, EC, 73, EE, 3F, 52, 45, 97, DB, E3, C1, D6, FE";
 
             byte[] dataWrongDefault = HexRead.ReadFromString(""

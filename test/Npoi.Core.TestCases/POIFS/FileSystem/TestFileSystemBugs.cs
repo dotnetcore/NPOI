@@ -186,13 +186,13 @@ namespace TestCases.POIFS.FileSystem
             //    CheckSizes("/", read.Root, entries);
             //}
         }
-        private void fetchSizes(string path, DirectoryNode dir, Dictionary<String, int> entries)
+        private void fetchSizes(string path, DirectoryNode dir, Dictionary<string, int> entries)
         {
             foreach (Entry entry in dir)
             {
                 if (entry is DirectoryNode)
                 {
-                    String ourPath = path + entry.Name + "/";
+                    string ourPath = path + entry.Name + "/";
                     entries.Add(ourPath, -1);
                     fetchSizes(ourPath, (DirectoryNode)entry, entries);
                 }
@@ -203,13 +203,13 @@ namespace TestCases.POIFS.FileSystem
                 }
             }
         }
-        private void CheckSizes(string path, DirectoryNode dir, Dictionary<String, int> entries)
+        private void CheckSizes(string path, DirectoryNode dir, Dictionary<string, int> entries)
         {
             foreach (Entry entry in dir)
             {
                 if (entry is DirectoryNode)
                 {
-                    String ourPath = path + entry.Name + "/";
+                    string ourPath = path + entry.Name + "/";
                     Assert.IsTrue(entries.ContainsKey(ourPath));
                     Assert.AreEqual(-1, entries[(ourPath)]);
                     CheckSizes(ourPath, (DirectoryNode)entry, entries);

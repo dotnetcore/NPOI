@@ -114,7 +114,7 @@ namespace TestCases.HSSF.Model
         [Test]
         public void TestNonAlphaFormula()
         {
-            String currencyCell = "F3";
+            string currencyCell = "F3";
             Ptg[] ptgs = ParseFormula("\"TOTAL[\"&" + currencyCell + "&\"]\"");
             Assert.AreEqual(5, ptgs.Length);
             Assert.IsTrue((ptgs[0] is StringPtg), "Ptg[0] is1 a string");
@@ -192,7 +192,7 @@ namespace TestCases.HSSF.Model
         [Test]
         public void TestLeadingSpaceInString()
         {
-            String value = "  hi  ";
+            string value = "  hi  ";
             Ptg[] ptgs = ParseFormula("\"" + value + "\"");
 
             Assert.AreEqual(1, ptgs.Length);
@@ -338,7 +338,7 @@ namespace TestCases.HSSF.Model
             Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet("Test");
             IRow row = sheet.CreateRow(0);
             ICell cell = row.CreateCell((short)0);
-            String formula = null;
+            string formula = null;
 
             cell.CellFormula = ("1.3E21/3");
             formula = cell.CellFormula;
@@ -414,7 +414,7 @@ namespace TestCases.HSSF.Model
             Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet("Test");
             IRow row = sheet.CreateRow(0);
             ICell cell = row.CreateCell((short)0);
-            String formula = null;
+            string formula = null;
 
             // starts from decimal point
 
@@ -456,7 +456,7 @@ namespace TestCases.HSSF.Model
             Npoi.Core.SS.UserModel.ISheet sheet = wb.CreateSheet("Test");
             IRow row = sheet.CreateRow(0);
             ICell cell = row.CreateCell((short)0);
-            String formula = null;
+            string formula = null;
 
             cell.CellFormula = ("A1.A2");
             formula = cell.CellFormula;
@@ -484,7 +484,7 @@ namespace TestCases.HSSF.Model
             HSSFSheet sheet = wb.CreateSheet("Test") as HSSFSheet;
             HSSFRow row = sheet.CreateRow(0) as HSSFRow;
             HSSFCell cell = row.CreateCell(0) as HSSFCell;
-            String formula = null;
+            string formula = null;
 
             // References to a single cell:
 
@@ -770,7 +770,7 @@ namespace TestCases.HSSF.Model
             ConfirmParseErrorLiteral(ErrPtg.N_A, "#N/A");
         }
 
-        private static void ConfirmParseErrorLiteral(ErrPtg expectedToken, String formula)
+        private static void ConfirmParseErrorLiteral(ErrPtg expectedToken, string formula)
         {
             Assert.AreEqual(expectedToken, ParseSingleToken(formula, typeof(ErrPtg)));
         }
@@ -783,8 +783,8 @@ namespace TestCases.HSSF.Model
         private static void ConfirmStringParse(string singleQuotedValue)
         {
             // formula: internal quotes become double double, surround with double quotes
-            String formula = '"' + singleQuotedValue.Replace("'", "\"\"") + '"';
-            String expectedValue = singleQuotedValue.Replace('\'', '"');
+            string formula = '"' + singleQuotedValue.Replace("'", "\"\"") + '"';
+            string expectedValue = singleQuotedValue.Replace('\'', '"');
 
             StringPtg sp = (StringPtg)ParseSingleToken(formula, typeof(StringPtg));
             Assert.AreEqual(expectedValue, sp.Value);
@@ -817,7 +817,7 @@ namespace TestCases.HSSF.Model
                 IRow row = sheet.CreateRow(0);
                 ICell cell = row.CreateCell((short)0);
                 cell.CellFormula = ("right(\"test\"\"ing\", 3)");
-                String actualCellFormula = cell.CellFormula;
+                string actualCellFormula = cell.CellFormula;
                 if ("RIGHT(\"test\"ing\",3)".Equals(actualCellFormula))
                 {
                     throw new AssertionException("Identified bug 28754b");
@@ -845,7 +845,7 @@ namespace TestCases.HSSF.Model
         [Test]
         public void TestParseSumIfSum()
         {
-            String formulaString;
+            string formulaString;
             Ptg[] ptgs;
             ptgs = ParseFormula("sum(5, 2, if(3>2, sum(A1:A2), 6))");
             formulaString = HSSFFormulaParser.ToFormulaString(null, ptgs);
@@ -883,7 +883,7 @@ namespace TestCases.HSSF.Model
             {
                 if (!(e is FormulaParseException))
                 {
-                    String failMsg = "Expected FormulaParseException, but got (" + e.GetType().Name + "):";
+                    string failMsg = "Expected FormulaParseException, but got (" + e.GetType().Name + "):";
                     Console.WriteLine(failMsg);
                     throw new AssertionException(failMsg);
                 }
@@ -916,7 +916,7 @@ namespace TestCases.HSSF.Model
 
             AttrPtg spacePtg = AttrPtg.CreateSpace(AttrPtg.SpaceType.SpaceBefore, 1);
             Ptg[] ptgs = { spacePtg, new IntPtg(4), };
-            String formulaString;
+            string formulaString;
             try
             {
                 formulaString = HSSFFormulaParser.ToFormulaString(null, ptgs);
@@ -995,7 +995,7 @@ namespace TestCases.HSSF.Model
             ConfirmArgCountMsg("vlookup(1, 2)", "Too few arguments to function 'VLOOKUP'. At least 3 were expected but got 2.");
         }
 
-        private static void ConfirmArgCountMsg(string formula, String expectedMessage)
+        private static void ConfirmArgCountMsg(string formula, string expectedMessage)
         {
             HSSFWorkbook book = new HSSFWorkbook();
             try
@@ -1012,7 +1012,7 @@ namespace TestCases.HSSF.Model
         [Test]
         public void TestRange_bug46643()
         {
-            String formula = "Sheet1!A1:Sheet1!B3";
+            string formula = "Sheet1!A1:Sheet1!B3";
             HSSFWorkbook wb = new HSSFWorkbook();
             wb.CreateSheet("Sheet1");
             Ptg[] ptgs = FormulaParser.Parse(formula, HSSFEvaluationWorkbook.Create(wb), FormulaType.Cell, -1);
@@ -1302,7 +1302,7 @@ namespace TestCases.HSSF.Model
         [Test]
         public void TestUnion()
         {
-            String formula = "Sheet1!$B$2:$C$3,OFFSET(Sheet1!$E$2:$E$4,1,Sheet1!$A$1),Sheet1!$D$6";
+            string formula = "Sheet1!$B$2:$C$3,OFFSET(Sheet1!$E$2:$E$4,1,Sheet1!$A$1),Sheet1!$D$6";
             HSSFWorkbook wb = new HSSFWorkbook();
             wb.CreateSheet("Sheet1");
             Ptg[] ptgs = FormulaParser.Parse(formula, HSSFEvaluationWorkbook.Create(wb), FormulaType.Cell, -1);
@@ -1523,7 +1523,7 @@ namespace TestCases.HSSF.Model
             ConfirmParseError(wb, "foobar", "Specified named range 'foobar' does not exist in the current workbook.");
             ConfirmParseError(wb, "A1:1", "The RHS of the range operator ':' at position 3 is not a proper reference.");
         }
-        private static void ConfirmParseError(HSSFWorkbook wb, String formula, String expectedMessage)
+        private static void ConfirmParseError(HSSFWorkbook wb, string formula, string expectedMessage)
         {
 
             try
@@ -1582,8 +1582,8 @@ namespace TestCases.HSSF.Model
         [Test]
         public void TestZeroRowRefs()
         {
-            String badCellRef = "B0"; // bad because zero is not a valid row number
-            String leadingZeroCellRef = "B000001"; // this should get parsed as "B1"
+            string badCellRef = "B0"; // bad because zero is not a valid row number
+            string leadingZeroCellRef = "B000001"; // this should get parsed as "B1"
             HSSFWorkbook wb = new HSSFWorkbook();
 
             try
@@ -1622,7 +1622,7 @@ namespace TestCases.HSSF.Model
             ConfirmTokenClasses(ptgs, typeof(NamePtg));
         }
 
-        private static void ConfirmParseException(FormulaParseException e, String expMsg)
+        private static void ConfirmParseException(FormulaParseException e, string expMsg)
         {
             Assert.AreEqual(expMsg, e.Message);
         }

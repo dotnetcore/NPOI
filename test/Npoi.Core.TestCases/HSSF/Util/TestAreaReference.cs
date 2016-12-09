@@ -108,11 +108,11 @@ namespace TestCases.HSSF.Util
         [Test]
         public void TestContiguousReferences()
         {
-            String refSimple = "$C$10:$C$10";
-            String ref2D = "$C$10:$D$11";
-            String refDCSimple = "$C$10:$C$10,$D$12:$D$12,$E$14:$E$14";
-            String refDC2D = "$C$10:$C$11,$D$12:$D$12,$E$14:$E$20";
-            String refDC3D = "Tabelle1!$C$10:$C$14,Tabelle1!$D$10:$D$12";
+            string refSimple = "$C$10:$C$10";
+            string ref2D = "$C$10:$D$11";
+            string refDCSimple = "$C$10:$C$10,$D$12:$D$12,$E$14:$E$14";
+            string refDC2D = "$C$10:$C$11,$D$12:$D$12,$E$14:$E$20";
+            string refDC3D = "Tabelle1!$C$10:$C$14,Tabelle1!$D$10:$D$12";
 
             // Check that we detect as contiguous properly
             Assert.IsTrue(AreaReference.IsContiguous(refSimple));
@@ -194,12 +194,12 @@ namespace TestCases.HSSF.Util
             HSSFEvaluationWorkbook eb = HSSFEvaluationWorkbook.Create(wb);
 
             Assert.AreEqual(1, wb.NumberOfNames);
-            String sheetName = "Tabelle1";
-            String rawRefA = "$C$10:$C$14";
-            String rawRefB = "$C$16:$C$18";
-            String refA = sheetName + "!" + rawRefA;
-            String refB = sheetName + "!" + rawRefB;
-            String ref1 = refA + "," + refB;
+            string sheetName = "Tabelle1";
+            string rawRefA = "$C$10:$C$14";
+            string rawRefB = "$C$16:$C$18";
+            string refA = sheetName + "!" + rawRefA;
+            string refB = sheetName + "!" + rawRefB;
+            string ref1 = refA + "," + refB;
 
             // Check the low level record
             NameRecord nr = workbook.GetNameRecord(0);
@@ -267,7 +267,7 @@ namespace TestCases.HSSF.Util
             ConfirmAreaSheetName(ar, "one:many", "'one:many'!A1:B2");
         }
 
-        private static void ConfirmAreaSheetName(AreaReference ar, String sheetName, String expectedFullText)
+        private static void ConfirmAreaSheetName(AreaReference ar, string sheetName, string expectedFullText)
         {
             CellReference[] cells = ar.GetAllReferencedCells();
             Assert.AreEqual(sheetName, cells[0].SheetName);

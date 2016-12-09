@@ -176,7 +176,7 @@ namespace TestCases.Util
                     (byte) 'o', (byte) ' ', (byte) 'W', (byte) 'o',
                     (byte) 'r', (byte) 'l', (byte) 'd', (byte) 0xAE
                 };
-            String inPut = Encoding.GetEncoding( StringUtil.GetPreferredEncoding()).GetString(expected_outPut);
+            string inPut = Encoding.GetEncoding( StringUtil.GetPreferredEncoding()).GetString(expected_outPut);
 
             StringUtil.PutCompressedUnicode(inPut, outPut, 0);
             for (int j = 0; j < expected_outPut.Length; j++)
@@ -210,7 +210,7 @@ namespace TestCases.Util
         public void TestPutUncompressedUnicode()
         {
             byte[] outPut = new byte[100];
-            String inPut = "Hello World";
+            string inPut = "Hello World";
             byte[] expected_outPut =
                 {
                     (byte) 'H', (byte) 0, (byte) 'e', (byte) 0, (byte) 'l',

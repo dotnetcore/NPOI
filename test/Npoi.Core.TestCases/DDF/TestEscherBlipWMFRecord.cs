@@ -111,7 +111,7 @@ namespace TestCases.DDF
             EscherBlipWMFRecord r = new EscherBlipWMFRecord();
             r.FillFields(data, 0, new DefaultEscherRecordFactory());
 
-            String nl = Environment.NewLine;
+            string nl = Environment.NewLine;
 
             Assert.AreEqual("EscherBlipWMFRecord:" + nl +
                     "  RecordId: 0xF018" + nl +

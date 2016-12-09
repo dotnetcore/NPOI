@@ -85,9 +85,9 @@ namespace TestCases.SS.Formula.Eval
             /**
              * register the two Test UDFs in a UDF Finder, to be passed to the Evaluator
              */
-            UDFFinder udff1 = new DefaultUDFFinder(new String[] { "myFunc", },
+            UDFFinder udff1 = new DefaultUDFFinder(new string[] { "myFunc", },
                     new FreeRefFunction[] { new MyFunc(), });
-            UDFFinder udff2 = new DefaultUDFFinder(new String[] { "myFunc2", },
+            UDFFinder udff2 = new DefaultUDFFinder(new string[] { "myFunc2", },
                     new FreeRefFunction[] { new MyFunc2(), });
             UDFFinder udff = new AggregatingUDFFinder(udff1, udff2);
 

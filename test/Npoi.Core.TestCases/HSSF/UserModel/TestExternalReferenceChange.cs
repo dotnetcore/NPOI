@@ -60,7 +60,7 @@ namespace TestCases.HSSF.UserModel
             HSSFFormulaEvaluator lMainWorkbookEvaluator = new HSSFFormulaEvaluator(mainWorkbook);
             HSSFFormulaEvaluator lSourceEvaluator = new HSSFFormulaEvaluator(sourceWorkbook);
             HSSFFormulaEvaluator.SetupEnvironment(
-                    new String[] { MAIN_WORKBOOK_FILENAME, SOURCE_WORKBOOK_FILENAME },
+                    new string[] { MAIN_WORKBOOK_FILENAME, SOURCE_WORKBOOK_FILENAME },
                     new HSSFFormulaEvaluator[] { lMainWorkbookEvaluator, lSourceEvaluator });
 
             Assert.AreEqual(CellType.Numeric, lMainWorkbookEvaluator.EvaluateFormulaCell(lA1Cell));

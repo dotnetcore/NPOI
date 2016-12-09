@@ -360,7 +360,7 @@ namespace TestCases.HSSF.Model
             HSSFTextbox textbox = patriarch.CreateTextbox(new HSSFClientAnchor()) as HSSFTextbox;
             EscherOptRecord opt = HSSFTestHelper.GetOptRecord(textbox);
 
-            String opt1Str = opt.ToXml();
+            string opt1Str = opt.ToXml();
 
             textbox.FillColor = textbox.FillColor;
             EscherContainerRecord Container = HSSFTestHelper.GetEscherContainer(textbox);

@@ -231,7 +231,7 @@ namespace TestCases.POIFS.FileSystem
         [Test]
         public void TestShortLastBlock()
         {
-            String[] files = new String[] { "ShortLastBlock.qwp", "ShortLastBlock.wps" };
+            string[] files = new string[] { "ShortLastBlock.qwp", "ShortLastBlock.wps" };
 
             for (int i = 0; i < files.Length; i++)
             {
@@ -267,7 +267,7 @@ namespace TestCases.POIFS.FileSystem
             }
             catch (IOException e)
             {
-                String msg = e.Message;
+                string msg = e.Message;
                 Assert.IsTrue(msg.StartsWith("Your file contains 695 sectors"));
             }
         }

@@ -54,7 +54,7 @@ namespace TestCases.HSSF.Record
         public void TestBigStringAcrossUnicode()
         {
             strings.Clear();
-            String bigString = new String(new char[SSTRecord.MAX_DATA_SPACE + 100]);
+            string bigString = new string(new char[SSTRecord.MAX_DATA_SPACE + 100]);
             strings.Add(MakeUnicodeString(bigString));
             ConfirmSize(SSTRecord.SST_RECORD_OVERHEAD
                     + COMPRESSED_PLAIN_STRING_OVERHEAD
@@ -106,7 +106,7 @@ namespace TestCases.HSSF.Record
             strings.Clear();
             int almostPerfectFit = SSTRecord.MAX_DATA_SPACE - COMPRESSED_PLAIN_STRING_OVERHEAD - 2;
             strings.Add(MakeUnicodeString(almostPerfectFit));
-            String oneCharString = new String(new char[1]);
+            string oneCharString = new string(new char[1]);
             strings.Add(MakeUnicodeString(oneCharString));
             ConfirmSize(SSTRecord.SST_RECORD_OVERHEAD
                     + COMPRESSED_PLAIN_STRING_OVERHEAD
@@ -120,7 +120,7 @@ namespace TestCases.HSSF.Record
 
         private static UnicodeString MakeUnicodeString(int size)
         {
-            String s = new String(new char[size]);
+            string s = new string(new char[size]);
             return MakeUnicodeString(s);
         }
         private static UnicodeString MakeUnicodeString(string s)

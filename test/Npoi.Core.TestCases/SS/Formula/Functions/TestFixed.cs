@@ -108,13 +108,13 @@ namespace TestCases.SS.Formula.Functions
             Assert.IsTrue(Evaluate is ErrorEval);
         }
 
-        private void Confirm(string formulaText, String expectedResult)
+        private void Confirm(string formulaText, string expectedResult)
         {
             cell11.CellFormula = (/*setter*/formulaText);
             Evaluator.ClearAllCachedResultValues();
             CellValue cv = Evaluator.Evaluate(cell11);
             Assert.AreEqual(CellType.String, cv.CellType, "Wrong result type: " + cv.FormatAsString());
-            String actualValue = cv.StringValue;
+            string actualValue = cv.StringValue;
             Assert.AreEqual(expectedResult, actualValue);
         }
 

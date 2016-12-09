@@ -145,7 +145,7 @@ namespace TestCases.HSSF.Record
         [Test]
         public void TestClone()
         {
-            String text = "Hello, World";
+            string text = "Hello, World";
             HSSFRichTextString str = new HSSFRichTextString(text);
 
             TextObjectRecord obj = new TextObjectRecord();

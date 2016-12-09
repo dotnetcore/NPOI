@@ -205,7 +205,7 @@ namespace TestCases.HSSF.Model
         public void TestIncompleteData()
         {
             //EscherDgContainer and EscherSpgrContainer length exceeds the actual length of the data
-            String hex =
+            string hex =
                     " 0F 00 02 F0 30 03 00 00 10 00 08 F0 08 00 00 " +
                     " 00 07 00 00 00 B2 04 00 00 0F 00 03 F0 18 03 00 " +
                     " 00 0F 00 04 F0 28 00 00 00 01 00 09 F0 10 00 00 " +
@@ -619,7 +619,7 @@ namespace TestCases.HSSF.Model
         [Test]
         public void TestUnhandledContinue()
         {
-            String data =
+            string data =
                     "     EC 00 1C 08 0F 00 02 F0 66 27 00                " +
                             "     00 10 00 08 F0 08 00 00 00 06 00 00 00 13 04 00 " +
                             "     00 0F 00 03 F0 4E 27 00 00 0F 00 04 F0 28 00 00 " +
@@ -1335,7 +1335,7 @@ namespace TestCases.HSSF.Model
         [Test]
         public void TestUnhandledContinue2()
         {
-            String data = "EC 00 38 08 0F 00 02 F0 97 37 00 00 10 00 " +
+            string data = "EC 00 38 08 0F 00 02 F0 97 37 00 00 10 00 " +
                     "08 F0 08 00 00 00 08 00 00 00 07 04 00 00 0F 00 " +
                     "03 F0 7F 37 00 00 0F 00 04 F0 28 00 00 00 01 00 " +
                     "09 F0 10 00 00 00 00 00 00 00 00 00 00 00 00 00 " +

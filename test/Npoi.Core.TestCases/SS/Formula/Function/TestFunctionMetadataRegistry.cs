@@ -35,7 +35,7 @@ namespace TestCases.SS.Formula.Function
 
         }
 
-        private static void ConfirmFunction(int index, String funcName)
+        private static void ConfirmFunction(int index, string funcName)
         {
             FunctionMetadata fm;
             fm = FunctionMetadataRegistry.GetFunctionByIndex(index);

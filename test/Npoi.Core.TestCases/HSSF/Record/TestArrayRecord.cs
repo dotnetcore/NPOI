@@ -33,7 +33,7 @@ namespace TestCases.HSSF.Record
         [Test]
         public void TestRead()
         {
-            String hex =
+            string hex =
                     "21 02 25 00 01 00 01 00 01 01 00 00 00 00 00 00 " +
                     "17 00 65 00 00 01 00 02 C0 02 C0 65 00 00 01 00 " +
                     "03 C0 03 C0 04 62 01 07 00";

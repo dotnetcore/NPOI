@@ -92,7 +92,7 @@ namespace TestCases.HSSF.UserModel
                     {
                         ICellStyle style = cell.CellStyle;
 
-                        String fmt = style.GetDataFormatString();
+                        string fmt = style.GetDataFormatString();
                         if (fmt == null)
                         {
                             //_logger.Log(POILogger.WARN, cell + ": " + fmt);

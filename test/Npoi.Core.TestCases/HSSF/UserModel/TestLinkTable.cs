@@ -40,7 +40,7 @@ namespace TestCases.HSSF.UserModel
             }
             // some other sanity Checks
             Assert.AreEqual(3, wb.NumberOfSheets);
-            String formula = wb.GetSheetAt(0).GetRow(4).GetCell(13).CellFormula;
+            string formula = wb.GetSheetAt(0).GetRow(4).GetCell(13).CellFormula;
 
             if ("ipcSummenproduktIntern($P5,N$6,$A$9,N$5)".Equals(formula))
             {
@@ -102,7 +102,7 @@ namespace TestCases.HSSF.UserModel
             */
 
             Npoi.Core.SS.UserModel.ICell cell = wb.GetSheetAt(0).GetRow(1).GetCell(1);
-            String cellFormula;
+            string cellFormula;
             try
             {
                 cellFormula = cell.CellFormula;

@@ -39,8 +39,8 @@ namespace TestCases.HPSF.Basic
     public class TestBasic
     {
         //static string dataDir = @"..\..\..\TestCases\HPSF\data\";
-        static String POI_FS = "TestGermanWord90.doc";
-        static String[] POI_FILES = new String[]
+        static string POI_FS = "TestGermanWord90.doc";
+        static string[] POI_FILES = new string[]
         {
             "\x0005SummaryInformation",
             "\x0005DocumentSummaryInformation",
@@ -89,7 +89,7 @@ namespace TestCases.HPSF.Basic
         [Test]
         public void TestReadFiles()
         {
-            String[] expected = POI_FILES;
+            string[] expected = POI_FILES;
             for (int i = 0; i < expected.Length; i++)
                 Assert.AreEqual(poiFiles[i].GetName(), expected[i]);
         }

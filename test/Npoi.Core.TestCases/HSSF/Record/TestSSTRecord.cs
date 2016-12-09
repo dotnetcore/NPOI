@@ -40,20 +40,20 @@ namespace TestCases.HSSF.Record
          * decodes hexdump files and concatenates the results
          * @param hexDumpFileNames names of sample files in the hssf Test data directory
          */
-        private static byte[] concatHexDumps(params String[] hexDumpFileNames)
+        private static byte[] concatHexDumps(params string[] hexDumpFileNames)
         {
             int nFiles = hexDumpFileNames.Length;
             MemoryStream baos = new MemoryStream(nFiles * 8228);
             for (int i = 0; i < nFiles; i++)
             {
-                String sampleFileName = hexDumpFileNames[i];
+                string sampleFileName = hexDumpFileNames[i];
                 Stream is1 = HSSFTestDataSamples.OpenSampleFileStream(sampleFileName);
                 StreamReader br = new StreamReader(is1);
                 try
                 {
                     while (true)
                     {
-                        String line = br.ReadLine();
+                        string line = br.ReadLine();
                         if (line == null)
                         {
                             break;
@@ -186,7 +186,7 @@ namespace TestCases.HSSF.Record
             for (int k = 0; k < bstrings.Length; k++)
             {
                 Arrays.Fill(bstrings[k], (byte)('a' + k));
-                strings[k] = new UnicodeString(new String(ConvertByteToChar(bstrings[k])));
+                strings[k] = new UnicodeString(new string(ConvertByteToChar(bstrings[k])));
                 record.AddString(strings[k]);
                 total_length += 3 + bstrings[k].Length;
             }
@@ -223,14 +223,14 @@ namespace TestCases.HSSF.Record
                 if ((bstrings[k].Length % 2) == 1)
                 {
                     Arrays.Fill(bstrings[k], (byte)('a' + k));
-                    strings[k] = new UnicodeString(new String(ConvertByteToChar(bstrings[k])));
+                    strings[k] = new UnicodeString(new string(ConvertByteToChar(bstrings[k])));
                 }
                 else
                 {
                     char[] data = new char[bstrings[k].Length / 2];
 
                     Arrays.Fill(data, (char)('\u2122' + k));
-                    strings[k] = new UnicodeString(new String(data));
+                    strings[k] = new UnicodeString(new string(data));
                 }
                 record.AddString(strings[k]);
             }

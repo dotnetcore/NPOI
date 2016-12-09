@@ -85,7 +85,7 @@ namespace TestCases.HSSF.Record
             Assert.AreEqual(34, record.RecordSize);  //sid+size+data
 
             Assert.AreEqual("testURL", record.URL);
-            String[] sheetNames = record.SheetNames;
+            string[] sheetNames = record.SheetNames;
             Assert.AreEqual(2, sheetNames.Length);
             Assert.AreEqual("Sheet1", sheetNames[0]);
             Assert.AreEqual("Sheet2", sheetNames[1]);
@@ -118,8 +118,8 @@ namespace TestCases.HSSF.Record
         [Test]
         public void TestStoreER()
         {
-            String url = "testURL";
-            String[] sheetNames = { "Sheet1", "Sheet2", };
+            string url = "testURL";
+            string[] sheetNames = { "Sheet1", "Sheet2", };
             SupBookRecord record = SupBookRecord.CreateExternalReferences(url, sheetNames);
 
             TestcaseRecordInputStream.ConfirmRecordEncoding(0x01AE, dataER, record.Serialize());
@@ -127,7 +127,7 @@ namespace TestCases.HSSF.Record
         [Test]
         public void TestExternalReferenceUrl()
         {
-            String[] sheetNames = new String[] { "SampleSheet" };
+            string[] sheetNames = new string[] { "SampleSheet" };
             char startMarker = (char)1;
 
             SupBookRecord record;

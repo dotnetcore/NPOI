@@ -40,7 +40,7 @@ namespace TestCases.SS.Formula.PTG
 
             Area3DPtg target = new Area3DPtg("A1:B1", (short)0);
 
-            String sheetName = "my sheet";
+            string sheetName = "my sheet";
             HSSFWorkbook wb = CreateWorkbookWithSheet(sheetName);
             HSSFEvaluationWorkbook book = HSSFEvaluationWorkbook.Create(wb);
             Assert.AreEqual("'my sheet'!A1:B1", target.ToFormulaString(book));

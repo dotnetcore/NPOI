@@ -41,7 +41,7 @@ namespace TestCases.HPSF.Basic
     [TestFixture]
     public class TestReadAllFiles
     {
-        private static string[] excludes = new String[] {
+        private static string[] excludes = new string[] {
         //"TestZeroLengthCodePage.mpp",
     };
 
@@ -100,7 +100,7 @@ namespace TestCases.HPSF.Basic
             }
             catch (Exception t)
             {
-                String s = t.ToString();
+                string s = t.ToString();
                 Assert.Fail(s);
             }
         }

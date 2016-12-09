@@ -140,7 +140,7 @@ namespace TestCases.POIFS.Storage
                     );
 
                     // Build the expected warning message, and check
-                    String bts = k + " byte";
+                    string bts = k + " byte";
                     if (k > 1)
                     {
                         bts += "s";

@@ -100,14 +100,14 @@ namespace TestCases.HSSF.Record.Aggregates
             Ptg[] ptgsForCell = { new ExpPtg(rownum, colnum) };
             agg.SetParsedExpression(ptgsForCell);
 
-            String formula = "SUM(A1:A3*B1:B3)";
+            string formula = "SUM(A1:A3*B1:B3)";
             Ptg[] ptgs = HSSFFormulaParser.Parse(formula, null, FormulaType.Array, 0);
             agg.SetArrayFormula(new CellRangeAddress(rownum, rownum, colnum, colnum), ptgs);
 
             Assert.IsTrue(agg.IsPartOfArrayFormula);
             Assert.AreEqual("E5", agg.GetArrayFormulaRange().FormatAsString());
             Ptg[] ptg = agg.FormulaTokens;
-            String fmlaSer = FormulaRenderer.ToFormulaString(null, ptg);
+            string fmlaSer = FormulaRenderer.ToFormulaString(null, ptg);
             Assert.AreEqual(formula, fmlaSer);
 
             agg.RemoveArrayFormula(rownum, colnum);

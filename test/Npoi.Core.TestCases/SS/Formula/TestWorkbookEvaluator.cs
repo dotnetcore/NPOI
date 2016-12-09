@@ -101,7 +101,7 @@ namespace TestCases.SS.Formula
             HSSFFormulaEvaluator EvaluatorB = new HSSFFormulaEvaluator(wbB);
 
             // Hook up the workbook Evaluators to enable Evaluation of formulas across books
-            String[] bookNames = { "multibookFormulaA.xls", "multibookFormulaB.xls", };
+            string[] bookNames = { "multibookFormulaA.xls", "multibookFormulaB.xls", };
             HSSFFormulaEvaluator[] Evaluators = { EvaluatorA, EvaluatorB, };
             HSSFFormulaEvaluator.SetupEnvironment(bookNames, Evaluators);
 
@@ -148,7 +148,7 @@ namespace TestCases.SS.Formula
         }
 
         private static void ConfirmFormula(HSSFWorkbook wb, int sheetIndex, int rowIndex, int columnIndex,
-                String expectedFormula)
+                string expectedFormula)
         {
             ICell cell = wb.GetSheetAt(sheetIndex).GetRow(rowIndex).GetCell(columnIndex);
             Assert.AreEqual(expectedFormula, cell.CellFormula);

@@ -85,7 +85,7 @@ namespace TestCases.HSSF.UserModel
             ISheet sheet = workbook.CreateSheet();
             IDrawing drawing = sheet.CreateDrawingPatriarch();
             int noOfRows = 1025;
-            String comment = "c";
+            string comment = "c";
 
             for (int i = 0; i < noOfRows; i++)
             {
@@ -124,7 +124,7 @@ namespace TestCases.HSSF.UserModel
             {
                 ISheet sheet = workbook.CreateSheet();
                 IDrawing drawing = sheet.CreateDrawingPatriarch();
-                String comment = "c";
+                string comment = "c";
 
                 for (int rowNum = 0; rowNum < 258; rowNum++)
                 {
@@ -160,7 +160,7 @@ namespace TestCases.HSSF.UserModel
             }
         }
 
-        private void CheckComments(ISheet sheet, int noOfRows, String comment)
+        private void CheckComments(ISheet sheet, int noOfRows, string comment)
         {
             for (int i = 0; i < noOfRows; i++)
             {
@@ -172,7 +172,7 @@ namespace TestCases.HSSF.UserModel
             }
         }
 
-        private IComment insertComment(IDrawing Drawing, ICell cell, String message)
+        private IComment insertComment(IDrawing Drawing, ICell cell, string message)
         {
             ICreationHelper factory = cell.Sheet.Workbook.GetCreationHelper();
 

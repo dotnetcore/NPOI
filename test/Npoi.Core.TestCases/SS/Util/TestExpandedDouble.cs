@@ -159,7 +159,7 @@ namespace TestCases.SS.Util
             return false;
         }
 
-        public static String GetBaseDecimal(ExpandedDouble hd)
+        public static string GetBaseDecimal(ExpandedDouble hd)
         {
             /*int gg = 64 - hd.GetBinaryExponent() - 1;
             BigDecimal bd = new BigDecimal(hd.GetSignificand()).divide(new BigDecimal(BigInteger.ONE<<gg));
@@ -219,7 +219,7 @@ namespace TestCases.SS.Util
 
         private static void CheckNormaliseBaseTenResult(ExpandedDouble orig, NormalisedDecimal result)
         {
-            String sigDigs = result.GetSignificantDecimalDigits();
+            string sigDigs = result.GetSignificantDecimalDigits();
             BigInteger frac = orig.GetSignificand();
             while (frac.BitLength() + orig.GetBinaryExponent() < 200)
             {
@@ -227,7 +227,7 @@ namespace TestCases.SS.Util
             }
             int binaryExp = orig.GetBinaryExponent() - orig.GetSignificand().BitLength();
 
-            String origDigs = (frac << (binaryExp + 1)).ToString(10);
+            string origDigs = (frac << (binaryExp + 1)).ToString(10);
 
             if (!origDigs.StartsWith(sigDigs))
             {

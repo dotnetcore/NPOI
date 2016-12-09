@@ -48,7 +48,7 @@ namespace TestCases.DDF
         [Test]
         public void TestFillFields()
         {
-            String hexData = "01 00 " +
+            string hexData = "01 00 " +
                     "10 F0 " +
                     "14 00 00 00 " +
                     "4D 00 37 00 21 00 58 00 " +
@@ -76,9 +76,9 @@ namespace TestCases.DDF
         [Test]
         public void TestToString()
         {
-            String nl = Environment.NewLine;
+            string nl = Environment.NewLine;
 
-            String expected = "EscherClientAnchorRecord:" + nl +
+            string expected = "EscherClientAnchorRecord:" + nl +
                     "  RecordId: 0xF010" + nl +
                     "  Version: 0x0001" + nl +
                     "  Instance: 0x0000" + nl +

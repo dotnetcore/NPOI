@@ -214,7 +214,7 @@ namespace TestCases.HSSF.UserModel
             // Evaluate the cells
             HSSFFormulaEvaluator eval = new HSSFFormulaEvaluator(wb);
             HSSFFormulaEvaluator.SetupEnvironment(
-                  new String[] { "XRefCalc.xls", "XRefCalcData.xls" },
+                  new string[] { "XRefCalc.xls", "XRefCalcData.xls" },
                   new HSSFFormulaEvaluator[] {
                   eval,
                   new HSSFFormulaEvaluator(wbData)
@@ -280,7 +280,7 @@ namespace TestCases.HSSF.UserModel
 
             // Add a link, check it does
             HSSFFormulaEvaluator.SetupEnvironment(
-                    new String[] { "XRefCalc.xls", "XRefCalcData.xls", "alt.xls" },
+                    new string[] { "XRefCalc.xls", "XRefCalcData.xls", "alt.xls" },
                     new HSSFFormulaEvaluator[] {
                     eval,
                     new HSSFFormulaEvaluator(wbData),
@@ -295,7 +295,7 @@ namespace TestCases.HSSF.UserModel
             wb = HSSFTestDataSamples.WriteOutAndReadBack(wb as HSSFWorkbook);
             eval = new HSSFFormulaEvaluator(wb);
             HSSFFormulaEvaluator.SetupEnvironment(
-                    new String[] { "XRefCalc.xls", "XRefCalcData.xls", "alt.xls" },
+                    new string[] { "XRefCalc.xls", "XRefCalcData.xls", "alt.xls" },
                     new HSSFFormulaEvaluator[] {
                     eval,
                     new HSSFFormulaEvaluator(wbData),

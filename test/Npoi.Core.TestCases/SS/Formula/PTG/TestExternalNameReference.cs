@@ -107,7 +107,7 @@ namespace TestCases.SS.Formula.PTG
             cell.SetCellValue(NEW_PART_COST);
             HSSFFormulaEvaluator Evaluator = new HSSFFormulaEvaluator(wb);
             HSSFFormulaEvaluator EvaluatorCost = new HSSFFormulaEvaluator(wb2);
-            String[] bookNames = { "XRefCalc.xls", "XRefCalcData.xls" };
+            string[] bookNames = { "XRefCalc.xls", "XRefCalcData.xls" };
             HSSFFormulaEvaluator[] Evaluators = { Evaluator, EvaluatorCost, };
             HSSFFormulaEvaluator.SetupEnvironment(bookNames, Evaluators);
             cellRef = new CellReference(wb.GetName("UNITCOST").RefersToFormula);

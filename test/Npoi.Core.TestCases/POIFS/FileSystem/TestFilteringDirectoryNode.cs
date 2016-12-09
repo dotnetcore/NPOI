@@ -51,7 +51,7 @@ namespace TestCases.POIFS.FileSystem
         [Test]
         public void TestNoFiltering()
         {
-            FilteringDirectoryNode d = new FilteringDirectoryNode(fs.Root, new HashSet<String>());
+            FilteringDirectoryNode d = new FilteringDirectoryNode(fs.Root, new HashSet<string>());
             Assert.AreEqual(3, d.EntryCount);
             Assert.AreEqual(dirA.Name, d.GetEntry(dirA.Name).Name);
 
@@ -77,7 +77,7 @@ namespace TestCases.POIFS.FileSystem
         [Test]
         public void TestChildFiltering()
         {
-            List<String> excl = new List<string>(new String[] { "NotThere", "AlsoNotThere", eRoot.Name });
+            List<string> excl = new List<string>(new string[] { "NotThere", "AlsoNotThere", eRoot.Name });
             FilteringDirectoryNode d = new FilteringDirectoryNode(fs.Root, excl);
 
             Assert.AreEqual(2, d.EntryCount);
@@ -104,7 +104,7 @@ namespace TestCases.POIFS.FileSystem
 
 
             // Filter more
-            excl = new List<string>(new String[] { "NotThere", "AlsoNotThere", eRoot.Name, dirA.Name });
+            excl = new List<string>(new string[] { "NotThere", "AlsoNotThere", eRoot.Name, dirA.Name });
             d = new FilteringDirectoryNode(fs.Root, excl);
 
             Assert.AreEqual(1, d.EntryCount);
@@ -134,7 +134,7 @@ namespace TestCases.POIFS.FileSystem
 
 
             // Filter everything
-            excl = new List<string>(new String[] { "NotThere", eRoot.Name, dirA.Name, dirB.Name });
+            excl = new List<string>(new string[] { "NotThere", eRoot.Name, dirA.Name, dirB.Name });
             d = new FilteringDirectoryNode(fs.Root, excl);
 
             Assert.AreEqual(0, d.EntryCount);
@@ -168,7 +168,7 @@ namespace TestCases.POIFS.FileSystem
         [Test]
         public void TestNestedFiltering()
         {
-            List<String> excl = new List<string>(new String[] {
+            List<string> excl = new List<string>(new string[] {
              dirA.Name+"/"+"MadeUp",
              dirA.Name+"/"+eA.Name,
              dirA.Name+"/"+dirAA.Name+"/Test",

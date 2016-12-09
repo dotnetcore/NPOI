@@ -52,7 +52,7 @@ namespace TestCases.HSSF.UserModel
             for (IEnumerator it = lst.GetEnumerator(); it.MoveNext(); )
             {
                 HSSFPictureData pict = (HSSFPictureData)it.Current;
-                String ext = pict.SuggestFileExtension();
+                string ext = pict.SuggestFileExtension();
                 byte[] data = pict.Data;
                 if (ext.Equals("jpeg"))
                 {
@@ -85,7 +85,7 @@ namespace TestCases.HSSF.UserModel
             Assert.AreEqual(1, lst.Count);
 
             HSSFPictureData pict = lst[(0)];
-            String ext = pict.SuggestFileExtension();
+            string ext = pict.SuggestFileExtension();
             if (!ext.Equals("png"))
             {
                 Assert.Fail("Expected a PNG.");

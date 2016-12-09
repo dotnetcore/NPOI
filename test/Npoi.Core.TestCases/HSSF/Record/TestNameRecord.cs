@@ -49,7 +49,7 @@ namespace TestCases.HSSF.Record
                     + "65 70 2D 39 33 20 62 79 20 41 4C 4C 57 4F 52");
 
             NameRecord name = new NameRecord(TestcaseRecordInputStream.Create(NameRecord.sid, examples));
-            String description = name.DescriptionText;
+            string description = name.DescriptionText;
             Assert.IsNotNull(description);
             Assert.IsTrue(description.EndsWith("Macro recorded 27-Sep-93 by ALLWOR"));
         }
@@ -100,7 +100,7 @@ namespace TestCases.HSSF.Record
         [Test]
         public void Test50244()
         {
-            String record_0x0018 =
+            string record_0x0018 =
                     "                                          18 00 " +
                     "21 1E 00 00 00 11 08 00 00 00 03 00 00 00 00 00 " +
                     "00 77 44 61 74 61 47 72 75 70 70 65 53 65 72 69 " +
@@ -586,7 +586,7 @@ namespace TestCases.HSSF.Record
                     "32 30 2E 31 34 34 02 09 00 00 31 2E 54 32 30 2E " +
                     "31 34 34                                       ";
 
-            String record_0x03C =
+            string record_0x03C =
                     "         3C 00 62 05 02 09 00 00 31 2E 54 32 30 " +
                     "2E 31 34 34 02 09 00 00 31 2E 54 32 30 2E 31 34 " +
                     "33 02 09 00 00 31 2E 54 32 30 2E 31 34 33 02 09 " +

@@ -53,13 +53,13 @@ namespace TestCases.HSSF.Record.Crypto
         public void TestValidateWithDefaultPassword()
         {
 
-            String docIdSuffixA = "F 35 52 38 0D 75 4A E6 85 C2 FD 78 CE 3D D1 B6"; // valid prefix is 'D'
-            String saltHashA = "30 38 BE 5E 93 C5 7E B4 5F 52 CD A1 C6 8F B6 2A";
-            String saltDataA = "D4 04 43 EC B7 A7 6F 6A D2 68 C7 DF CF A8 80 68";
+            string docIdSuffixA = "F 35 52 38 0D 75 4A E6 85 C2 FD 78 CE 3D D1 B6"; // valid prefix is 'D'
+            string saltHashA = "30 38 BE 5E 93 C5 7E B4 5F 52 CD A1 C6 8F B6 2A";
+            string saltDataA = "D4 04 43 EC B7 A7 6F 6A D2 68 C7 DF CF A8 80 68";
 
-            String docIdB = "39 D7 80 41 DA E4 74 2C 8C 84 F9 4D 39 9A 19 2D";
-            String saltDataSuffixB = "3 EA 8D 52 11 11 37 D2 BD 55 4C 01 0A 47 6E EB"; // valid prefix is 'C'
-            String saltHashB = "96 19 F5 D0 F1 63 08 F1 3E 09 40 1E 87 F0 4E 16";
+            string docIdB = "39 D7 80 41 DA E4 74 2C 8C 84 F9 4D 39 9A 19 2D";
+            string saltDataSuffixB = "3 EA 8D 52 11 11 37 D2 BD 55 4C 01 0A 47 6E EB"; // valid prefix is 'C'
+            string saltHashB = "96 19 F5 D0 F1 63 08 F1 3E 09 40 1E 87 F0 4E 16";
 
             ConfirmValid(true, "D" + docIdSuffixA, saltDataA, saltHashA);
             ConfirmValid(true, docIdB, "C" + saltDataSuffixB, saltHashB);
@@ -71,10 +71,10 @@ namespace TestCases.HSSF.Record.Crypto
         public void TestValidateWithSuppliedPassword()
         {
 
-            String docId = "DF 35 52 38 0D 75 4A E6 85 C2 FD 78 CE 3D D1 B6";
-            String saltData = "D4 04 43 EC B7 A7 6F 6A D2 68 C7 DF CF A8 80 68";
-            String saltHashA = "8D C2 63 CC E1 1D E0 05 20 16 96 AF 48 59 94 64"; // for password '5ecret'
-            String saltHashB = "31 0B 0D A4 69 55 8E 27 A1 03 AD C9 AE F8 09 04"; // for password '5ecret'
+            string docId = "DF 35 52 38 0D 75 4A E6 85 C2 FD 78 CE 3D D1 B6";
+            string saltData = "D4 04 43 EC B7 A7 6F 6A D2 68 C7 DF CF A8 80 68";
+            string saltHashA = "8D C2 63 CC E1 1D E0 05 20 16 96 AF 48 59 94 64"; // for password '5ecret'
+            string saltHashB = "31 0B 0D A4 69 55 8E 27 A1 03 AD C9 AE F8 09 04"; // for password '5ecret'
 
             ConfirmValid(true, docId, saltData, saltHashA, "5ecret");
             ConfirmValid(false, docId, saltData, saltHashA, "Secret");
@@ -84,12 +84,12 @@ namespace TestCases.HSSF.Record.Crypto
 
 
         private static void ConfirmValid(bool expectedResult,
-                String docIdHex, String saltDataHex, String saltHashHex)
+                string docIdHex, string saltDataHex, string saltHashHex)
         {
             ConfirmValid(expectedResult, docIdHex, saltDataHex, saltHashHex, null);
         }
         private static void ConfirmValid(bool expectedResult,
-                String docIdHex, String saltDataHex, String saltHashHex, String password)
+                string docIdHex, string saltDataHex, string saltHashHex, string password)
         {
             byte[] docId = fromHex(docIdHex);
             byte[] saltData = fromHex(saltDataHex);

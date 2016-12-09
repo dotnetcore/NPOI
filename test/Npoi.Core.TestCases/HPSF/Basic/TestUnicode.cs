@@ -39,7 +39,7 @@ namespace TestCases.HPSF.Basic
     {
         //static string dataDir = @"..\..\..\TestCases\HPSF\data\";
         private static string POI_FS = "TestUnicode.xls";
-        private static string[] POI_FILES = new String[]
+        private static string[] POI_FILES = new string[]
         {
             "\x0005DocumentSummaryInformation",
         };

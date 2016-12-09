@@ -316,7 +316,7 @@ namespace TestCases.SS.UserModel
         {
             IWorkbook workbook = _testDataProvider.CreateWorkbook();
             ISheet sheet = workbook.CreateSheet();
-            String formula = "7";
+            string formula = "7";
 
             ISheetConditionalFormatting sheetCF = sheet.SheetConditionalFormatting;
 
@@ -397,7 +397,7 @@ namespace TestCases.SS.UserModel
 
             IWorkbook wb = _testDataProvider.CreateWorkbook();
             ISheet sheet = wb.CreateSheet();
-            String formula = "7";
+            string formula = "7";
 
             ISheetConditionalFormatting sheetCF = sheet.SheetConditionalFormatting;
 

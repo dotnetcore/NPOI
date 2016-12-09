@@ -504,7 +504,7 @@ namespace TestCases.HSSF.Record
 
             byte[] buf = new byte[16];
             g.Serialize(new LittleEndianByteArrayOutputStream(buf, 0));
-            String expectedDump = "[DF, 9B, 57, 13, 46, 02, CE, 8A, 01, 23, 45, 67, 89, AB, CD, EF]";
+            string expectedDump = "[DF, 9B, 57, 13, 46, 02, CE, 8A, 01, 23, 45, 67, 89, AB, CD, EF]";
             Assert.AreEqual(expectedDump, HexDump.ToHex(buf));
 
             // STD Moniker
@@ -525,10 +525,10 @@ namespace TestCases.HSSF.Record
 
         private void ConfirmGUID(GUID g, int d1, int d2, int d3, long d4)
         {
-            Assert.AreEqual(new String(HexDump.IntToHex(d1)), new String(HexDump.IntToHex(g.D1)));
-            Assert.AreEqual(new String(HexDump.ShortToHex(d2)), new String(HexDump.ShortToHex(g.D2)));
-            Assert.AreEqual(new String(HexDump.ShortToHex(d3)), new String(HexDump.ShortToHex(g.D3)));
-            Assert.AreEqual(new String(HexDump.LongToHex(d4)), new String(HexDump.LongToHex(g.D4)));
+            Assert.AreEqual(new string(HexDump.IntToHex(d1)), new string(HexDump.IntToHex(g.D1)));
+            Assert.AreEqual(new string(HexDump.ShortToHex(d2)), new string(HexDump.ShortToHex(g.D2)));
+            Assert.AreEqual(new string(HexDump.ShortToHex(d3)), new string(HexDump.ShortToHex(g.D3)));
+            Assert.AreEqual(new string(HexDump.LongToHex(d4)), new string(HexDump.LongToHex(g.D4)));
         }
         [Test]
         public void Test47498()

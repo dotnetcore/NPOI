@@ -95,7 +95,7 @@ namespace TestCases.SS.Formula.Eval
         {
             ValueEval[] args = { StringEval.EMPTY_INSTANCE, new NumberEval(d), };
             StringEval se = (StringEval)EvalInstances.Concat.Evaluate(args, -1, (short)-1);
-            String result = se.StringValue;
+            string result = se.StringValue;
             Assert.AreEqual(expRendering, result);
         }
 
@@ -166,7 +166,7 @@ namespace TestCases.SS.Formula.Eval
             if (bitsA != bitsB)
             {
                 throw new ComparisonFailure("value different to expected",
-                        new String(HexDump.LongToHex(bitsA)), new String(HexDump.LongToHex(bitsB)));
+                        new string(HexDump.LongToHex(bitsA)), new string(HexDump.LongToHex(bitsB)));
             }
         }
     }

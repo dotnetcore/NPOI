@@ -62,7 +62,7 @@ namespace TestCases.HSSF.Record
                     + HED_DUMP1
                     );
             RecordInputStream in1 = TestcaseRecordInputStream.Create(changingFlagSimpleData);
-            String actual;
+            string actual;
             try
             {
                 actual = in1.ReadUnicodeLEString(18);
@@ -87,7 +87,7 @@ namespace TestCases.HSSF.Record
                     + HED_DUMP2
                     );
             RecordInputStream in1 = TestcaseRecordInputStream.Create(changingFlagSimpleData);
-            String actual = in1.ReadCompressedUnicode(18);
+            string actual = in1.ReadCompressedUnicode(18);
             Assert.AreEqual("Multilingual - \u591A\u8A00\u8A9E", actual);
         }
         [Test]
@@ -101,7 +101,7 @@ namespace TestCases.HSSF.Record
                     + HED_DUMP2
                     );
             RecordInputStream in1 = TestcaseRecordInputStream.Create(changingFlagFullData);
-            String actual = in1.ReadString();
+            string actual = in1.ReadString();
             Assert.AreEqual("Multilingual - \u591A\u8A00\u8A9E", actual);
         }
     }

@@ -56,7 +56,7 @@ namespace TestCases.SS.Util
 
             Npoi.Core.SS.UserModel.IRow thirdRow = sheet.GetRow(2);
             Assert.AreEqual(CellType.String, thirdRow.GetCell(0).CellType);
-            String cellValue = thirdRow.GetCell(0).StringCellValue;
+            string cellValue = thirdRow.GetCell(0).StringCellValue;
             Assert.AreEqual(testData[2][0].ToString(), cellValue);
 
             Assert.AreEqual(CellType.Formula, thirdRow.GetCell(2).CellType);
@@ -76,7 +76,7 @@ namespace TestCases.SS.Util
         [Test]
         public void TestSheetName()
         {
-            String sheetName = "TEST SHEET NAME";
+            string sheetName = "TEST SHEET NAME";
             IWorkbook wb = new HSSFWorkbook();
             ISheet sheet = new SheetBuilder(wb, testData).SetSheetName(sheetName).Build();
             Assert.AreEqual(sheetName, sheet.SheetName);

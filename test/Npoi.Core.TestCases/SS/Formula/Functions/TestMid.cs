@@ -38,7 +38,7 @@ namespace TestCases.SS.Formula.Functions
             return TextFunction.MID.Evaluate(args, -1, (short)-1);
         }
 
-        private void ConfirmMid(ValueEval text, ValueEval startPos, ValueEval numChars, String expected)
+        private void ConfirmMid(ValueEval text, ValueEval startPos, ValueEval numChars, string expected)
         {
             ValueEval result = invokeMid(text, startPos, numChars);
             Assert.AreEqual(typeof(StringEval), result.GetType());

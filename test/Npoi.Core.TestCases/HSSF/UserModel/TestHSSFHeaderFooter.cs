@@ -65,12 +65,12 @@ namespace TestCases.HSSF.UserModel
         [Test]
         public void TestStripFields()
         {
-            String simple = "I am a Test header";
-            String withPage = "I am a&P Test header";
-            String withLots = "I&A am&N a&P Test&T header&U";
-            String withFont = "I&22 am a&\"Arial,bold\" Test header";
-            String withOtherAnds = "I am a&P Test header&&";
-            String withOtherAnds2 = "I am a&P Test header&a&b";
+            string simple = "I am a Test header";
+            string withPage = "I am a&P Test header";
+            string withLots = "I&A am&N a&P Test&T header&U";
+            string withFont = "I&22 am a&\"Arial,bold\" Test header";
+            string withOtherAnds = "I am a&P Test header&&";
+            string withOtherAnds2 = "I am a&P Test header&a&b";
 
             Assert.IsTrue(0 < HeaderFooter.Fields.AllFields.Count,
                 string.Format(CultureInfo.InvariantCulture, "Fields.AllFields must be initialized before the following tests are working. Fields.AllFields.Count: {0}. ",

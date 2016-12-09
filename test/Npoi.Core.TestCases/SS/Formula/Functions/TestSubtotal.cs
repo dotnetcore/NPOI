@@ -306,7 +306,7 @@ namespace TestCases.SS.Formula.Functions
             Assert.AreEqual(1.0, a3.NumericCellValue);
         }
 
-        private static void ConfirmExpectedResult(IFormulaEvaluator Evaluator, String msg, ICell cell, double expected)
+        private static void ConfirmExpectedResult(IFormulaEvaluator Evaluator, string msg, ICell cell, double expected)
         {
 
             CellValue value = Evaluator.Evaluate(cell);

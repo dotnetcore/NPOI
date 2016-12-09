@@ -28,7 +28,7 @@ namespace TestCases.SS.Formula.Functions
     [TestFixture]
     public class TestDeltaFunctionsFromSpreadsheet : BaseTestFunctionsFromSpreadsheet
     {
-        protected override String Filename
+        protected override string Filename
         {
             get
             {

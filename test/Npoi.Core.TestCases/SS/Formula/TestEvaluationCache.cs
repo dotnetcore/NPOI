@@ -82,7 +82,7 @@ namespace TestCases.SS.Formula
         private class EvalListener : EvaluationListener
         {
 
-            private List<String> _logList;
+            private List<string> _logList;
             private HSSFWorkbook _book;
             private Dictionary<ICacheEntry, IEvaluationCell> _formulaCellsByCacheEntry;
             private Dictionary<ICacheEntry, Loc> _plainCellLocsByCacheEntry;
@@ -90,7 +90,7 @@ namespace TestCases.SS.Formula
             public EvalListener(HSSFWorkbook wb)
             {
                 _book = wb;
-                _logList = new List<String>();
+                _logList = new List<string>();
                 _formulaCellsByCacheEntry = new Dictionary<ICacheEntry, IEvaluationCell>();
                 _plainCellLocsByCacheEntry = new Dictionary<ICacheEntry, Loc>();
             }
@@ -219,9 +219,9 @@ namespace TestCases.SS.Formula
                 throw new ArgumentException("Unexpected value class ("
                         + value.GetType().Name + ")");
             }
-            public String[] GetAndClearLog()
+            public string[] GetAndClearLog()
             {
-                String[] result = _logList.ToArray();
+                string[] result = _logList.ToArray();
                 _logList.Clear();
                 return result;
             }
@@ -271,7 +271,7 @@ namespace TestCases.SS.Formula
                 _Evaluator.NotifyUpdateCell(WrapCell(cell));
             }
 
-            public void SetCellFormula(string cellRefText, String formulaText)
+            public void SetCellFormula(string cellRefText, string formulaText)
             {
                 ICell cell = GetOrCreateCell(cellRefText);
                 cell.CellFormula = formulaText;
@@ -301,7 +301,7 @@ namespace TestCases.SS.Formula
                 return _Evaluator.Evaluate(WrapCell(GetOrCreateCell(cellRefText)));
             }
 
-            public String[] GetAndClearLog()
+            public string[] GetAndClearLog()
             {
                 return _EvalListener.GetAndClearLog();
             }
@@ -349,7 +349,7 @@ namespace TestCases.SS.Formula
             MySheet ms = CreateMediumComplex();
             // completely fresh Evaluation
             ConfirmEvaluate(ms, "A1", 46);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"start A1 MAX(B1:B2)",
 				"start B1 C2-C1",
 					"start C2 SUM(D2:E3)",
@@ -370,11 +370,11 @@ namespace TestCases.SS.Formula
 
             // simple cache hit - immediate re-Evaluation with no Changes
             ConfirmEvaluate(ms, "A1", 46);
-            ConfirmLog(ms, new String[] { "hit A1 46", });
+            ConfirmLog(ms, new string[] { "hit A1 46", });
 
             // change a low level cell
             ms.SetCellValue("D1", 10);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 				"clear D1 10",
 				"clear1 C1 54",
 				"clear2 B1 8",
@@ -382,7 +382,7 @@ namespace TestCases.SS.Formula
 				"clear2 B2 46",
 		});
             ConfirmEvaluate(ms, "A1", 42);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"start A1 MAX(B1:B2)",
 				"start B1 C2-C1",
 					"hit C2 62",
@@ -404,13 +404,13 @@ namespace TestCases.SS.Formula
             ms.GetAndClearLog();
 
             ms.SetCellValue("B3", 3); // B3 is in the middle of the dependency tree
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 				"clear B3 3",
 				"clear1 B2 46",
 				"clear2 A1 46",
 		});
             ConfirmEvaluate(ms, "A1", 100);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"start A1 MAX(B1:B2)",
 				"hit B1 8",
 				"start B2 B3*C1-C2",
@@ -430,13 +430,13 @@ namespace TestCases.SS.Formula
             ConfirmEvaluate(ms, "A1", 46);
             ms.GetAndClearLog();
             ms.SetCellFormula("B2", "B3*C2-C3"); // used to be "B3*C1-C2"
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"clear B2 46",
 			"clear1 A1 46",
 		});
 
             ConfirmEvaluate(ms, "A1", 91);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"start A1 MAX(B1:B2)",
 				"hit B1 8",
 				"start B2 B3*C2-C3",
@@ -456,7 +456,7 @@ namespace TestCases.SS.Formula
 
             // Now change a value that should no longer affect B2
             ms.SetCellValue("D1", 11);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"clear D1 11",
 			"clear1 C1 54",
 			// note there is no "Clear2 B2 91" here because B2 doesn't depend on C1 anymore
@@ -465,15 +465,15 @@ namespace TestCases.SS.Formula
 		});
 
             ConfirmEvaluate(ms, "B2", 91);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"hit B2 91",  // further Confirmation that B2 was not cleared due to changing D1 above
 		});
 
             // things should be back to normal now
             ms.SetCellValue("D1", 11);
-            ConfirmLog(ms, new String[] { });
+            ConfirmLog(ms, new string[] { });
             ConfirmEvaluate(ms, "B2", 91);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"hit B2 91",
 		});
         }
@@ -495,25 +495,25 @@ namespace TestCases.SS.Formula
             ms.EvaluateCell("A1");
             ms.GetAndClearLog();
             ConfirmEvaluate(ms, "A1", 25);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"hit A1 25",
 		});
 
             // Make redundant update, and check re-Evaluation
             ms.SetCellValue("B1", 12); // value didn't change
-            ConfirmLog(ms, new String[] { });
+            ConfirmLog(ms, new string[] { });
             ConfirmEvaluate(ms, "A1", 25);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"hit A1 25",
 		});
 
             ms.SetCellValue("B1", 11); // value changing
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"clear B1 11",
 			"clear1 A1 25",	// expect consuming formula cached result to Get Cleared
 		});
             ConfirmEvaluate(ms, "A1", 24);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"start A1 B1+C1",
 			"hit B1 11",
 			"hit C1 13",
@@ -542,7 +542,7 @@ namespace TestCases.SS.Formula
             ms.GetAndClearLog();
 
             ConfirmEvaluate(ms, "A1", 17);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"start A1 INDEX(C1:E1,1,B1)",
 			"value B1 1",
 			"value C1 17",
@@ -552,7 +552,7 @@ namespace TestCases.SS.Formula
             ms.GetAndClearLog();
 
             ConfirmEvaluate(ms, "A1", 18);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"start A1 INDEX(C1:E1,1,B1)",
 			"hit B1 2",
 			"value D1 18",
@@ -563,7 +563,7 @@ namespace TestCases.SS.Formula
             ms.SetCellValue("C1", 15);
             ms.GetAndClearLog();
             ConfirmEvaluate(ms, "A1", 18);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"hit A1 18",
 		});
 
@@ -571,7 +571,7 @@ namespace TestCases.SS.Formula
             ms.SetCellValue("D1", 25);
             ms.GetAndClearLog();
             ConfirmEvaluate(ms, "A1", 25);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"start A1 INDEX(C1:E1,1,B1)",
 			"hit B1 2",
 			"hit D1 25",
@@ -591,7 +591,7 @@ namespace TestCases.SS.Formula
             ms.GetAndClearLog();
 
             ConfirmEvaluate(ms, "A1", 12);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"start A1 SUM(B1:D4,B5:E6)",
 			"value B1 12",
 			"end A1 12",
@@ -600,7 +600,7 @@ namespace TestCases.SS.Formula
             ms.GetAndClearLog();
 
             ConfirmEvaluate(ms, "A1", 14);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"start A1 SUM(B1:D4,B5:E6)",
 			"hit B1 12",
 			"hit B6 2",
@@ -610,7 +610,7 @@ namespace TestCases.SS.Formula
             ms.GetAndClearLog();
 
             ConfirmEvaluate(ms, "A1", 14);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"hit A1 14",
 		});
 
@@ -618,7 +618,7 @@ namespace TestCases.SS.Formula
             ms.GetAndClearLog();
 
             ConfirmEvaluate(ms, "A1", 15);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"start A1 SUM(B1:D4,B5:E6)",
 			"hit B1 12",
 			"hit D1 1",
@@ -686,34 +686,34 @@ namespace TestCases.SS.Formula
             ms.GetAndClearLog();
 
             ConfirmEvaluate(ms, "A1", 2.2);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"start A1 B1+2.2",
 			"end A1 2.2",
 		});
             ms.SetCellValue("B1", 0.4);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"changeFromBlank B1 0.4",
 			"clear A1",
 		});
 
             ConfirmEvaluate(ms, "A1", 2.6);
-            ConfirmLog(ms, new String[] {
+            ConfirmLog(ms, new string[] {
 			"start A1 B1+2.2",
 			"hit B1 0.4",
 			"end A1 2.6",
 		});
         }
 
-        private static void ConfirmEvaluate(MySheet ms, String cellRefText, double expectedValue)
+        private static void ConfirmEvaluate(MySheet ms, string cellRefText, double expectedValue)
         {
             ValueEval v = ms.EvaluateCell(cellRefText);
             Assert.AreEqual(typeof(NumberEval), v.GetType());
             Assert.AreEqual(expectedValue, ((NumberEval)v).NumberValue, 0.0);
         }
 
-        private static void ConfirmLog(MySheet ms, String[] expectedLog)
+        private static void ConfirmLog(MySheet ms, string[] expectedLog)
         {
-            String[] actualLog = ms.GetAndClearLog();
+            string[] actualLog = ms.GetAndClearLog();
             int endIx = actualLog.Length;
             if (endIx != expectedLog.Length)
             {
@@ -725,7 +725,7 @@ namespace TestCases.SS.Formula
             {
                 if (!actualLog[i].Equals(expectedLog[i]))
                 {
-                    String msg = "Log entry mismatch at index " + i;
+                    string msg = "Log entry mismatch at index " + i;
                     System.Console.Error.WriteLine(msg);
                     dumpCompare(System.Console.Error, expectedLog, actualLog);
                     throw new AssertionException(msg);
@@ -734,7 +734,7 @@ namespace TestCases.SS.Formula
 
         }
 
-        private static void dumpCompare(TextWriter ps, String[] expectedLog, String[] actualLog)
+        private static void dumpCompare(TextWriter ps, string[] expectedLog, string[] actualLog)
         {
             int max = Math.Max(actualLog.Length, expectedLog.Length);
             ps.WriteLine("Index\tExpected\tActual");
@@ -750,7 +750,7 @@ namespace TestCases.SS.Formula
             debugPrint(ps, actualLog);
         }
 
-        private static void printItem(TextWriter ps, String[] ss, int index)
+        private static void printItem(TextWriter ps, string[] ss, int index)
         {
             if (index < ss.Length)
             {
@@ -758,7 +758,7 @@ namespace TestCases.SS.Formula
             }
         }
 
-        private static void debugPrint(TextWriter ps, String[] log)
+        private static void debugPrint(TextWriter ps, string[] log)
         {
             for (int i = 0; i < log.Length; i++)
             {

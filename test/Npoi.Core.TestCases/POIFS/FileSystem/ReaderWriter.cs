@@ -61,7 +61,7 @@ namespace TestCases.POIFS.FileSystem
         {
             DocumentInputStream istream = evt.Stream;
             POIFSDocumentPath path = evt.Path;
-            String name = evt.Name;
+            string name = evt.Name;
 
             try
             {
@@ -79,7 +79,7 @@ namespace TestCases.POIFS.FileSystem
 
                 for (int k = 0; k < path.Length; k++)
                 {
-                    String componentName = path.GetComponent(k);
+                    string componentName = path.GetComponent(k);
                     Entry nextEntry = null;
 
                     try

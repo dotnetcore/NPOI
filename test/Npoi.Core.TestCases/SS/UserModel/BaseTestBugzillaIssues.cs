@@ -90,9 +90,9 @@ namespace TestCases.SS.UserModel
             ISheet sheet = wb.CreateSheet();
             ICreationHelper factory = wb.GetCreationHelper();
 
-            String tmp1 = null;
-            String tmp2 = null;
-            String tmp3 = null;
+            string tmp1 = null;
+            string tmp2 = null;
+            string tmp3 = null;
 
             for (int i = 0; i < num; i++)
             {
@@ -166,7 +166,7 @@ namespace TestCases.SS.UserModel
 
             IRow row = sheet.CreateRow(0);
             ICell cell = row.CreateCell(0);
-            String formulaText =
+            string formulaText =
                 "IF(ROUND(A2*B2*C2,2)>ROUND(B2*D2,2),ROUND(A2*B2*C2,2),ROUND(B2*D2,2))";
             cell.CellFormula = (/*setter*/formulaText);
 
@@ -187,7 +187,7 @@ namespace TestCases.SS.UserModel
             IWorkbook wb = _testDataProvider.CreateWorkbook();
             ISheet sh = wb.CreateSheet();
             ICell cell = sh.CreateRow(0).CreateCell(0);
-            String formula = "SUM(IF(FREQUENCY(IF(LEN(V4:V220)>0,MATCH(V4:V220,V4:V220,0),\"\"),IF(LEN(V4:V220)>0,MATCH(V4:V220,V4:V220,0),\"\"))>0,1))";
+            string formula = "SUM(IF(FREQUENCY(IF(LEN(V4:V220)>0,MATCH(V4:V220,V4:V220,0),\"\"),IF(LEN(V4:V220)>0,MATCH(V4:V220,V4:V220,0),\"\"))>0,1))";
             cell.CellFormula = (/*setter*/formula);
 
             IWorkbook wb_sv = _testDataProvider.WriteOutAndReadBack(wb);
@@ -317,13 +317,13 @@ namespace TestCases.SS.UserModel
         [Test]
         public void TestMaxFunctionArguments_bug46729()
         {
-            String[] func = { "COUNT", "AVERAGE", "MAX", "MIN", "OR", "SUBTOTAL", "SKEW" };
+            string[] func = { "COUNT", "AVERAGE", "MAX", "MIN", "OR", "SUBTOTAL", "SKEW" };
 
             SpreadsheetVersion ssVersion = _testDataProvider.GetSpreadsheetVersion();
             IWorkbook wb = _testDataProvider.CreateWorkbook();
             ICell cell = wb.CreateSheet().CreateRow(0).CreateCell(0);
 
-            String fmla;
+            string fmla;
             foreach (string name in func)
             {
 
@@ -368,7 +368,7 @@ namespace TestCases.SS.UserModel
             IRow row = sheet.CreateRow(0);
             ICell cell0 = row.CreateCell(0);
 
-            String longValue = "www.hostname.com, www.hostname.com, " +
+            string longValue = "www.hostname.com, www.hostname.com, " +
                     "www.hostname.com, www.hostname.com, www.hostname.com, " +
                     "www.hostname.com, www.hostname.com, www.hostname.com, " +
                     "www.hostname.com, www.hostname.com, www.hostname.com, " +
@@ -444,7 +444,7 @@ namespace TestCases.SS.UserModel
         [Test]
         public void Bug15353()
         {
-            String hyperlinkF = "HYPERLINK(\"http://google.com\",\"Google\")";
+            string hyperlinkF = "HYPERLINK(\"http://google.com\",\"Google\")";
 
             IWorkbook wb = _testDataProvider.CreateWorkbook();
             ISheet sheet = wb.CreateSheet("My sheet");
@@ -740,11 +740,11 @@ namespace TestCases.SS.UserModel
 
 
             // References to try
-            String ext = "xls";
+            string ext = "xls";
             if (!(wb is HSSFWorkbook)) ext += "x";
-            String refLocal = "'[test." + ext + "]Sheet1'!$A$2";
-            String refHttp = "'[http://example.com/test." + ext + "]Sheet1'!$A$2";
-            String otherCellText = "In Another Workbook";
+            string refLocal = "'[test." + ext + "]Sheet1'!$A$2";
+            string refHttp = "'[http://example.com/test." + ext + "]Sheet1'!$A$2";
+            string otherCellText = "In Another Workbook";
 
 
             // Create the references
@@ -790,7 +790,7 @@ namespace TestCases.SS.UserModel
             IWorkbook wb2 = _testDataProvider.CreateWorkbook();
             wb2.CreateSheet().CreateRow(1).CreateCell(0).SetCellValue(otherCellText);
 
-            Dictionary<String, IFormulaEvaluator> evaluators = new Dictionary<String, IFormulaEvaluator>();
+            Dictionary<string, IFormulaEvaluator> evaluators = new Dictionary<string, IFormulaEvaluator>();
             evaluators.Add(refLocal, wb2.GetCreationHelper().CreateFormulaEvaluator());
             evaluators.Add(refHttp, wb2.GetCreationHelper().CreateFormulaEvaluator());
 

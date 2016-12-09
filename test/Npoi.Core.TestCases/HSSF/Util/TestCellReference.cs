@@ -127,8 +127,8 @@ namespace TestCases.HSSF.Util
         }
 
         /* package */
-        internal static void ConfirmCell(CellReference cf, String expSheetName, int expRow,
-            int expCol, bool expIsRowAbs, bool expIsColAbs, String expText)
+        internal static void ConfirmCell(CellReference cf, string expSheetName, int expRow,
+            int expCol, bool expIsRowAbs, bool expIsColAbs, string expText)
         {
 
             Assert.AreEqual(expSheetName, cf.SheetName);

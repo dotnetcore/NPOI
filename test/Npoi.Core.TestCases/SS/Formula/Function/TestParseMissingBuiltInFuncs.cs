@@ -61,7 +61,7 @@ namespace TestCases.SS.Formula.Function
 
             // check that Parsed Ptg array Converts back to formula text OK
             HSSFWorkbook book = new HSSFWorkbook();
-            String reRenderedFormula = HSSFFormulaParser.ToFormulaString(book, ptgs);
+            string reRenderedFormula = HSSFFormulaParser.ToFormulaString(book, ptgs);
             Assert.AreEqual(formula, reRenderedFormula);
         }
         [Test]

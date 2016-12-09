@@ -156,7 +156,7 @@ namespace TestCases.SS.Formula
          * register the two Test UDFs in a UDF Finder, to be passed to the workbook MYBASEEXTFUNC
          */
         private static UDFFinder customToolpack = new DefaultUDFFinder(
-                new String[] { "myBaseExtFunc", "myBaseExtFunc2" },
+                new string[] { "myBaseExtFunc", "myBaseExtFunc2" },
                 new FreeRefFunction[] { new MyBaseExtFunc(), new MyBaseExtFunc2() }
         );
 

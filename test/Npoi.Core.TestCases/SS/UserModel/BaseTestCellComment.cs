@@ -53,9 +53,9 @@ namespace TestCases.SS.UserModel
         [Test]
         public void Create()
         {
-            String cellText = "Hello, World";
-            String commentText = "We can set comments in POI";
-            String commentAuthor = "Apache Software Foundation";
+            string cellText = "Hello, World";
+            string commentText = "We can set comments in POI";
+            string commentAuthor = "Apache Software Foundation";
             int cellRow = 3;
             int cellColumn = 1;
 

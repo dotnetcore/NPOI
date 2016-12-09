@@ -38,7 +38,7 @@ namespace TestCases.SS.Formula.Functions
             return TextFunction.TRIM.Evaluate(args, -1, (short)-1);
         }
 
-        private void ConfirmTrim(ValueEval text, String expected)
+        private void ConfirmTrim(ValueEval text, string expected)
         {
             ValueEval result = invokeTrim(text);
             Assert.AreEqual(typeof(StringEval), result.GetType());

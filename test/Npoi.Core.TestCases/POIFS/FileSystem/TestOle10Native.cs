@@ -97,7 +97,7 @@ namespace TestCases.POIFS.FileSystem
             }
         }*/
 
-        void FindOle10(List<Entry> entries, DirectoryNode dn, String path, String filename)
+        void FindOle10(List<Entry> entries, DirectoryNode dn, string path, string filename)
         {
             IEnumerator<Entry> iter = dn.Entries;
             while (iter.MoveNext())

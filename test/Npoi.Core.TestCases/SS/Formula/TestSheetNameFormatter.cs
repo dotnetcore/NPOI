@@ -31,7 +31,7 @@ namespace TestCases.SS.Formula
     public class TestSheetNameFormatter
     {
 
-        private static void ConfirmFormat(string rawSheetName, String expectedSheetNameEncoding)
+        private static void ConfirmFormat(string rawSheetName, string expectedSheetNameEncoding)
         {
             Assert.AreEqual(expectedSheetNameEncoding, SheetNameFormatter.Format(rawSheetName));
         }
@@ -95,8 +95,8 @@ namespace TestCases.SS.Formula
 
         private static void ConfirmCellRange(string text, int numberOfPrefixLetters, bool expected)
         {
-            String prefix = text.Substring(0, numberOfPrefixLetters);
-            String suffix = text.Substring(numberOfPrefixLetters);
+            string prefix = text.Substring(0, numberOfPrefixLetters);
+            string suffix = text.Substring(numberOfPrefixLetters);
             Assert.AreEqual(expected, SheetNameFormatter.CellReferenceIsWithinRange(prefix, suffix));
         }
 

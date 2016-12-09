@@ -42,7 +42,7 @@ namespace TestCases.HSSF.Model
         [Test]
         public void TestMdeterm()
         {
-            String formula = "MDETERM(ABS(A1))";
+            string formula = "MDETERM(ABS(A1))";
             Ptg[] ptgs = ParseFormula(formula);
 
             ConfirmTokenClass(ptgs, 0, Ptg.CLASS_ARRAY);
@@ -62,7 +62,7 @@ namespace TestCases.HSSF.Model
         [Ignore("test is disabled in poi.")]
         public void DISABLED_TestIndexPi1()
         {
-            String formula = "INDEX(PI(),1)";
+            string formula = "INDEX(PI(),1)";
             Ptg[] ptgs = ParseFormula(formula);
 
             ConfirmFuncClass(ptgs, 1, "PI", Ptg.CLASS_ARRAY); // fails as of POI 3.1
@@ -76,7 +76,7 @@ namespace TestCases.HSSF.Model
         [Test]
         public void TestDirectOperandOfValueOperator()
         {
-            String formula = "COUNT(A1*1)";
+            string formula = "COUNT(A1*1)";
             Ptg[] ptgs = ParseFormula(formula);
             if (ptgs[0].PtgClass == Ptg.CLASS_REF)
             {
@@ -94,7 +94,7 @@ namespace TestCases.HSSF.Model
         public void TestRtoV()
         {
 
-            String formula = "Lookup(A1, A3:A52, B3:B52)";
+            string formula = "Lookup(A1, A3:A52, B3:B52)";
             Ptg[] ptgs = ParseFormula(formula);
             ConfirmTokenClass(ptgs, 0, Ptg.CLASS_VALUE);
         }
@@ -102,7 +102,7 @@ namespace TestCases.HSSF.Model
         [Test]
         public void TestComplexIRR_bug45041()
         {
-            String formula = "(1+IRR(SUMIF(A:A,ROW(INDIRECT(MIN(A:A)&\":\"&MAX(A:A))),B:B),0))^365-1";
+            string formula = "(1+IRR(SUMIF(A:A,ROW(INDIRECT(MIN(A:A)&\":\"&MAX(A:A))),B:B),0))^365-1";
             Ptg[] ptgs = ParseFormula(formula);
 
             FuncVarPtg rowFunc = (FuncVarPtg)ptgs[10];
@@ -126,7 +126,7 @@ namespace TestCases.HSSF.Model
             ConfirmFuncClass(ptgs, 14, "IRR", Ptg.CLASS_VALUE);
         }
 
-        private void ConfirmFuncClass(Ptg[] ptgs, int i, String expectedFunctionName, byte operandClass)
+        private void ConfirmFuncClass(Ptg[] ptgs, int i, string expectedFunctionName, byte operandClass)
         {
             ConfirmTokenClass(ptgs, i, operandClass);
             AbstractFunctionPtg afp = (AbstractFunctionPtg)ptgs[i];

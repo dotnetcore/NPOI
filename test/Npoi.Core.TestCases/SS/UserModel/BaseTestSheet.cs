@@ -845,7 +845,7 @@ namespace TestCases.SS.UserModel
         }
 
         private void CheckRepeatingRowsAndColumns(
-            ISheet s, String expectedRows, String expectedCols)
+            ISheet s, string expectedRows, string expectedCols)
         {
             if (expectedRows == null)
             {

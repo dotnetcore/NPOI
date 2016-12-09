@@ -51,7 +51,7 @@ namespace TestCases.HSSF.Record
         [Test]
         public void TestUnexpectedBytes_bug47251()
         {
-            String hex = "" +
+            string hex = "" +
                     "09 08 10 00 00 06 05 00 EC 15 CD 07 C1 C0 00 00 06 03 00 00 " +   //BOF
                     "E2 00 02 00 B0 04 " + //INTERFACEEND with extra two bytes
                     "0A 00 00 00";    // EOF

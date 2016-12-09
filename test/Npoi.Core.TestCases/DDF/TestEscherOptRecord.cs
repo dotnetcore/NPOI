@@ -39,7 +39,7 @@ namespace TestCases.DDF
 
         private void CheckFillFieldsComplex()
         {
-            String dataStr = "33 00 " +
+            string dataStr = "33 00 " +
                     "0B F0 " +
                     "14 00 00 00 " +
                     "BF 00 01 00 00 00 " +
@@ -63,7 +63,7 @@ namespace TestCases.DDF
 
         private void CheckFillFieldsSimple()
         {
-            String dataStr = "33 00 " + // options
+            string dataStr = "33 00 " + // options
                             "0B F0 " + // recordid
                             "12 00 00 00 " + // remaining bytes
                             "BF 00 08 00 08 00 " +
@@ -105,7 +105,7 @@ namespace TestCases.DDF
             byte[] data = new byte[28];
             int bytesWritten = r.Serialize(0, data);
             Assert.AreEqual(28, bytesWritten);
-            String dataStr = "[33, 00, " +
+            string dataStr = "[33, 00, " +
                     "0B, F0, " +
                     "14, 00, 00, 00, " +
                     "BF, 00, 01, 00, 00, 00, " +
@@ -130,7 +130,7 @@ namespace TestCases.DDF
 
             byte[] data = new byte[26];
             int bytesWritten = r.Serialize(0, data);
-            String dataStr = "[33, 00, " +
+            string dataStr = "[33, 00, " +
                     "0B, F0, " +
                     "12, 00, 00, 00, " +
                     "BF, 00, 01, 00, 00, 00, " +
@@ -142,14 +142,14 @@ namespace TestCases.DDF
         [Test]
         public void TestToString()
         {
-            String nl = Environment.NewLine;
+            string nl = Environment.NewLine;
             EscherOptRecord r = new EscherOptRecord();
             // don't try to shoot in foot, please -- vlsergey
             // r.setOptions((short)0x000F);
             r.RecordId=EscherOptRecord.RECORD_ID;
             EscherProperty prop1 = new EscherBoolProperty((short)1, 1);
             r.AddEscherProperty(prop1);
-            String expected = "EscherOptRecord:" + nl +
+            string expected = "EscherOptRecord:" + nl +
                     "  isContainer: False" + nl +
                     "  version: 0x0003" + nl +
                     "  instance: 0x0001" + nl +
@@ -271,7 +271,7 @@ namespace TestCases.DDF
         [Test]
         public void Test41946()
         {
-            String dataStr1 =
+            string dataStr1 =
                     "03 08 0B F0 00 03 00 00 81 00 30 65 01 00 82 00 98 B2 00 00 83 00 30 65 01 " +
                     "00 84 00 98 B2 00 00 85 00 00 00 00 00 87 00 01 00 00 00 88 00 00 00 00 00 " +
                     "89 00 00 00 00 00 BF 00 00 00 0F 00 0C 01 F4 00 00 10 0D 01 00 00 00 20 0E " +

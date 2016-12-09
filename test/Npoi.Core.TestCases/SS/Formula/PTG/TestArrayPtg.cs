@@ -113,7 +113,7 @@ namespace TestCases.SS.Formula.PTG
             HSSFWorkbook wb = HSSFTestDataSamples.OpenSampleWorkbook("ex42564-elementOrder.xls");
 
             // The formula has an array with 3 rows and 5 columns
-            String formula = wb.GetSheetAt(0).GetRow(0).GetCell(0).CellFormula;
+            string formula = wb.GetSheetAt(0).GetRow(0).GetCell(0).CellFormula;
 
             if (formula.Equals("SUM({1,6,11;2,7,12;3,8,13;4,9,14;5,10,15})"))
             {
@@ -125,7 +125,7 @@ namespace TestCases.SS.Formula.PTG
         public void TestToFormulaString()
         {
             ArrayPtg ptg = Create(ENCODED_PTG_DATA, ENCODED_CONSTANT_DATA);
-            String actualFormula;
+            string actualFormula;
             try
             {
                 actualFormula = ptg.ToFormulaString();

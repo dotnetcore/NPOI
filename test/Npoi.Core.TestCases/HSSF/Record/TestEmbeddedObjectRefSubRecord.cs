@@ -34,7 +34,7 @@ namespace TestCases.HSSF.Record
     public class TestEmbeddedObjectRefSubRecord
     {
 
-        String data1 = "20, 00, 05, 00, FC, 10, 76, 01, 02, 24, 14, DF, 00, 03, 10, 00, 00, 46, 6F, 72, 6D, 73, 2E, 43, 68, 65, 63, 6B, 42, 6F, 78, 2E, 31, 00, 00, 00, 00, 00, 70, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00";
+        string data1 = "20, 00, 05, 00, FC, 10, 76, 01, 02, 24, 14, DF, 00, 03, 10, 00, 00, 46, 6F, 72, 6D, 73, 2E, 43, 68, 65, 63, 6B, 42, 6F, 78, 2E, 31, 00, 00, 00, 00, 00, 70, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00";
         [Test]
         public void TestStore()
         {
@@ -118,7 +118,7 @@ namespace TestCases.HSSF.Record
         [Test]
         public void TestVarious()
         {
-            String[] rawData = {
+            string[] rawData = {
 			"12 00 0B 00 70 95 0B 05 3B 01 00 36 00 40 00 18 00 19 00 18",
 			"12 00 0B 00 B0 4D 3E 03 3B 00 00 00 00 01 00 00 80 01 C0 00",
 			"0C 00 05 00 60 AF 3B 03 24 FD FF FE C0 FE",

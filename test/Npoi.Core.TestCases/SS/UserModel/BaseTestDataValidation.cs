@@ -68,21 +68,21 @@ namespace TestCases.SS.UserModel
                 _validationType = validationType;
                 _currentRowIndex = fSheet.PhysicalNumberOfRows;
             }
-            public void AddValidation(int operatorType, String firstFormula, String secondFormula,
-                    int errorStyle, String ruleDescr, String promptDescr,
+            public void AddValidation(int operatorType, string firstFormula, string secondFormula,
+                    int errorStyle, string ruleDescr, string promptDescr,
                     bool allowEmpty, bool inputBox, bool errorBox)
             {
-                String[] explicitListValues = null;
+                string[] explicitListValues = null;
 
                 AddValidationInternal(operatorType, firstFormula, secondFormula, errorStyle, ruleDescr,
                         promptDescr, allowEmpty, inputBox, errorBox, true,
                         explicitListValues);
             }
 
-            private void AddValidationInternal(int operatorType, String firstFormula,
-                    String secondFormula, int errorStyle, String ruleDescr, String promptDescr,
+            private void AddValidationInternal(int operatorType, string firstFormula,
+                    string secondFormula, int errorStyle, string ruleDescr, string promptDescr,
                     bool allowEmpty, bool inputBox, bool errorBox, bool suppressDropDown,
-                    String[] explicitListValues)
+                    string[] explicitListValues)
             {
                 int rowNum = _currentRowIndex++;
 
@@ -112,8 +112,8 @@ namespace TestCases.SS.UserModel
                 }
                 WriteOtherSettings(_sheet, _style_1, promptDescr);
             }
-            private IDataValidationConstraint CreateConstraint(IDataValidationHelper dataValidationHelper, int operatorType, String firstFormula,
-                    String secondFormula, String[] explicitListValues)
+            private IDataValidationConstraint CreateConstraint(IDataValidationHelper dataValidationHelper, int operatorType, string firstFormula,
+                    string secondFormula, string[] explicitListValues)
             {
                 if (_validationType == ValidationType.LIST)
                 {
@@ -155,7 +155,7 @@ namespace TestCases.SS.UserModel
              * the spreadsheet.
              */
             private static void WriteDataValidationSettings(ISheet sheet, ICellStyle style_1,
-                    ICellStyle style_2, String strCondition, bool allowEmpty, bool inputBox,
+                    ICellStyle style_2, string strCondition, bool allowEmpty, bool inputBox,
                     bool errorBox)
             {
                 IRow row = sheet.CreateRow(sheet.PhysicalNumberOfRows);
@@ -177,17 +177,17 @@ namespace TestCases.SS.UserModel
                 SetCellValue(cell, ((errorBox) ? "yes" : "no"));
             }
             private static void WriteOtherSettings(ISheet sheet, ICellStyle style,
-                    String strStettings)
+                    string strStettings)
             {
                 IRow row = sheet.GetRow(sheet.PhysicalNumberOfRows - 1);
                 ICell cell = row.CreateCell(5);
                 cell.CellStyle = (/*setter*/style);
                 SetCellValue(cell, strStettings);
             }
-            public void AddListValidation(string[] explicitListValues, String listFormula, String listValsDescr,
+            public void AddListValidation(string[] explicitListValues, string listFormula, string listValsDescr,
                     bool allowEmpty, bool suppressDropDown)
             {
-                String promptDescr = (allowEmpty ? "empty ok" : "not empty")
+                string promptDescr = (allowEmpty ? "empty ok" : "not empty")
                         + ", " + (suppressDropDown ? "no drop-down" : "drop-down");
                 AddValidationInternal(ValidationType.LIST, listFormula, null, ERRORSTYLE.STOP, listValsDescr, promptDescr,
                         allowEmpty, false, true, suppressDropDown, explicitListValues);
@@ -393,12 +393,12 @@ namespace TestCases.SS.UserModel
 
         private static void AddListValidations(WorkbookFormatter wf, IWorkbook wb)
         {
-            String cellStrValue
+            string cellStrValue
                 = "a b c d e f g h i j k l m n o p r s t u v x y z w 0 1 2 3 4 "
                + "a b c d e f g h i j k l m n o p r s t u v x y z w 0 1 2 3 4 "
                + "a b c d e f g h i j k l m n o p r s t u v x y z w 0 1 2 3 4 "
                + "a b c d e f g h i j k l m n o p r s t u v x y z w 0 1 2 3 4 ";
-            String dataSheetName = "list_data";
+            string dataSheetName = "list_data";
             // "List" Data Validation type
             ISheet fSheet = wf.CreateSheet("Lists");
             ISheet dataSheet = wb.CreateSheet(dataSheetName);
@@ -409,8 +409,8 @@ namespace TestCases.SS.UserModel
             wf.CreateHeaderRow();
 
             ValidationAdder va = wf.CreateValidationAdder(null, ValidationType.LIST);
-            String listValsDescr = "POIFS,HSSF,HWPF,HPSF";
-            String[] listVals = listValsDescr.Split(",".ToCharArray());
+            string listValsDescr = "POIFS,HSSF,HWPF,HPSF";
+            string[] listVals = listValsDescr.Split(",".ToCharArray());
             va.AddListValidation(listVals, null, listValsDescr, false, false);
             va.AddListValidation(listVals, null, listValsDescr, false, true);
             va.AddListValidation(listVals, null, listValsDescr, true, false);
@@ -422,7 +422,7 @@ namespace TestCases.SS.UserModel
             wf.CreateDVDescriptionRow("Advantage - no restriction regarding the sum of item's length");
             wf.CreateHeaderRow();
             va = wf.CreateValidationAdder(null, ValidationType.LIST);
-            String strFormula = "$A$30:$A$39";
+            string strFormula = "$A$30:$A$39";
             va.AddListValidation(null, strFormula, strFormula, false, false);
 
             strFormula = dataSheetName + "!$A$1:$A$10";
@@ -541,7 +541,7 @@ namespace TestCases.SS.UserModel
 
 
         /* package */
-        static void SetCellValue(ICell cell, String text)
+        static void SetCellValue(ICell cell, string text)
         {
             cell.SetCellValue(text);
 

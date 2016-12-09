@@ -182,7 +182,7 @@ namespace TestCases.HSSF.EventModel
                 recCnt[0]++;
                 return true;
             }
-            private void CompareData(Record record, String message)
+            private void CompareData(Record record, string message)
             {
                 byte[] recData = record.Serialize();
                 for (int i = 0; i < recData.Length; i++)

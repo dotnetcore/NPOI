@@ -30,7 +30,7 @@ namespace TestCases.HPSF
         public void Test52337()
         {
             // document summary stream   from test1-excel.doc attached to Bugzilla 52337
-            String hex =
+            string hex =
                     "FE FF 00 00 05 01 02 00 00 00 00 00 00 00 00 00 00 00 00 00" +
                     "00 00 00 00 02 00 00 00 02 D5 CD D5 9C 2E 1B 10 93 97 08 00" +
                     "2B 2C F9 AE 44 00 00 00 05 D5 CD D5 9C 2E 1B 10 93 97 08 00" +

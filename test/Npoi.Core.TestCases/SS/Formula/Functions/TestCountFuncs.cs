@@ -513,7 +513,7 @@ namespace TestCases.SS.Formula.Functions
         {
             Assert.AreEqual(expectedResult, matchPredicate.Matches(new NumberEval(value)));
         }
-        private static void ConfirmPredicate(bool expectedResult, IMatchPredicate matchPredicate, String value)
+        private static void ConfirmPredicate(bool expectedResult, IMatchPredicate matchPredicate, string value)
         {
             ValueEval ev = (value == null) ? BlankEval.instance : (ValueEval)new StringEval(value);
             Assert.AreEqual(expectedResult, matchPredicate.Matches(ev));
@@ -583,7 +583,7 @@ namespace TestCases.SS.Formula.Functions
             TestCountFunctionFromSpreadsheet("countblankExamples.xls", 1, 3, 4, "countblank");
         }
 
-        private static void TestCountFunctionFromSpreadsheet(string FILE_NAME, int START_ROW_IX, int COL_IX_ACTUAL, int COL_IX_EXPECTED, String functionName)
+        private static void TestCountFunctionFromSpreadsheet(string FILE_NAME, int START_ROW_IX, int COL_IX_ACTUAL, int COL_IX_EXPECTED, string functionName)
         {
 
             int failureCount = 0;

@@ -51,7 +51,7 @@ namespace TestCases.SS.Util
                 _ReplacementNaNs = new List<long>();
             }
 
-            public void AddTestRow(long rawBits, String expectedExcelRendering)
+            public void AddTestRow(long rawBits, string expectedExcelRendering)
             {
                 WriteDataRow(_sheet, _rowIndex++, rawBits, expectedExcelRendering);
                 if (Double.IsNaN(BitConverter.Int64BitsToDouble(rawBits)))
@@ -75,7 +75,7 @@ namespace TestCases.SS.Util
         /** 0x7ff8000000000000 encoded in little endian order */
         private static byte[] JAVA_NAN_BYTES = HexRead.ReadFromString("00 00 00 00 00 00 F8 7F");
 
-        private static void WriteHeaderCell(IRow row, int i, String text, ICellStyle style)
+        private static void WriteHeaderCell(IRow row, int i, string text, ICellStyle style)
         {
             ICell cell = row.CreateCell(i);
             cell.SetCellValue(new HSSFRichTextString(text));
@@ -103,19 +103,19 @@ namespace TestCases.SS.Util
             WriteHeaderCell(row, 5, "Match", style);
             WriteHeaderCell(row, 6, "Java Metadata", style);
         }
-        static void WriteDataRow(ISheet sheet, int rowIx, long rawLongBits, String expectedExcelRendering)
+        static void WriteDataRow(ISheet sheet, int rowIx, long rawLongBits, string expectedExcelRendering)
         {
             double d = BitConverter.Int64BitsToDouble(rawLongBits);
             IRow row = sheet.CreateRow(rowIx);
 
             int rowNum = rowIx + 1;
-            String cel0ref = "A" + rowNum;
-            String rawBitsText = FormatLongAsHex(rawLongBits);
-            String jmExpr = "'ec(" + rawBitsText + ", ''\" & C" + rowNum + " & \"'', ''\" & D" + rowNum + " & \"''),'";
+            string cel0ref = "A" + rowNum;
+            string rawBitsText = FormatLongAsHex(rawLongBits);
+            string jmExpr = "'ec(" + rawBitsText + ", ''\" & C" + rowNum + " & \"'', ''\" & D" + rowNum + " & \"''),'";
 
             // The 'Match' column will contain 'OK' if the metadata (from NumberToTextConversionExamples)
             // matches Excel's rendering.
-            String matchExpr = "if(D" + rowNum + "=E" + rowNum + ", \"OK\", \"ERROR\")";
+            string matchExpr = "if(D" + rowNum + "=E" + rowNum + ", \"OK\", \"ERROR\")";
 
             row.CreateCell(0).SetCellValue(d);
             row.CreateCell(1).SetCellValue(new HSSFRichTextString(rawBitsText));
@@ -175,7 +175,7 @@ namespace TestCases.SS.Util
             for (int i = 0; i < exampleConversions.Length; i++)
             {
                 NumberToTextConversionExamples.ExampleConversion ec = exampleConversions[i];
-                String line = " * <tr><td>"
+                string line = " * <tr><td>"
                     + FormatLongAsHex(ec.RawDoubleBits)
                     + "</td><td>" + ec.DoubleValue.ToString()
                     + "</td><td>" + ec.ExcelRendering + "</td></tr>";
@@ -206,7 +206,7 @@ namespace TestCases.SS.Util
 
         private static void WriteLong(byte[] bb, int i, long val)
         {
-            String oldVal = InterpretLong(bb, i);
+            string oldVal = InterpretLong(bb, i);
             bb[i + 7] = (byte)(val >> 56);
             bb[i + 6] = (byte)(val >> 48);
             bb[i + 5] = (byte)(val >> 40);

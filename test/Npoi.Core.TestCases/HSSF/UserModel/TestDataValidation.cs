@@ -134,7 +134,7 @@ namespace TestCases.HSSF.UserModel
 
 
         /* package */
-        static void SetCellValue(HSSFCell cell, String text)
+        static void SetCellValue(HSSFCell cell, string text)
         {
             cell.SetCellValue(new HSSFRichTextString(text));
 
@@ -407,7 +407,7 @@ namespace TestCases.HSSF.UserModel
             Assert.AreEqual(0, list.Count);
 
             IDataValidationHelper dataValidationHelper = sheet.GetDataValidationHelper();
-            IDataValidationConstraint constraint = dataValidationHelper.CreateExplicitListConstraint(new String[] { "aaa",
+            IDataValidationConstraint constraint = dataValidationHelper.CreateExplicitListConstraint(new string[] { "aaa",
                 "bbb", "ccc" });
             CellRangeAddressList AddressList = new CellRangeAddressList(0, 0, 0, 0);
             IDataValidation validation = dataValidationHelper.CreateValidation(constraint, AddressList);
@@ -426,7 +426,7 @@ namespace TestCases.HSSF.UserModel
             Assert.AreEqual(null, c.Formula2);
             Assert.AreEqual(double.NaN, c.Value1);
             Assert.AreEqual(double.NaN, c.Value2);
-            String[] values = c.ExplicitListValues;
+            string[] values = c.ExplicitListValues;
             Assert.AreEqual(3, values.Length);
             Assert.AreEqual("aaa", values[0]);
             Assert.AreEqual("bbb", values[1]);

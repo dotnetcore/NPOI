@@ -246,38 +246,38 @@ namespace TestCases.HPSF.Basic
                 //long time3 = (long)cal.GetMilliseconds(new DateTime(2002, 8, 8, 8, 8, 8));
 
                 int nr = 4711;
-                String P_APPLICATION_NAME = "Microsoft Office Word";
-                String P_AUTHOR = "Rainer Klute";
+                string P_APPLICATION_NAME = "Microsoft Office Word";
+                string P_AUTHOR = "Rainer Klute";
                 int P_CHAR_COUNT = 125;
-                String P_COMMENTS = "";  //"Comments";
+                string P_COMMENTS = "";  //"Comments";
                 DateTime P_CREATE_DATE_TIME = new DateTime(2006, 2, 1, 7, 36, 0);
                 long P_EDIT_TIME = ++nr * 1000 * 10;
-                String P_KEYWORDS = "Test HPSF SummaryInformation DocumentSummaryInformation Writing";
-                String P_LAST_AUTHOR = "LastAuthor";
+                string P_KEYWORDS = "Test HPSF SummaryInformation DocumentSummaryInformation Writing";
+                string P_LAST_AUTHOR = "LastAuthor";
                 DateTime? P_LAST_PRINTED = new DateTime(2001, 7, 7, 7, 7, 7);
                 DateTime P_LAST_SAVE_DATE_TIME = new DateTime(2008, 9, 30, 9, 54, 0);
                 int P_PAGE_COUNT = 1;
-                String P_REV_NUMBER = "RevNumber";
+                string P_REV_NUMBER = "RevNumber";
                 int P_SECURITY = 1;
-                String P_SUBJECT = "Subject";
-                String P_TEMPLATE = "Normal.dotm";
+                string P_SUBJECT = "Subject";
+                string P_TEMPLATE = "Normal.dotm";
                 // FIXME (byte array properties not yet implemented): byte[] P_THUMBNAIL = new byte[123];
-                String P_TITLE = "This document is used for testing POI HPSF¡¯s writing capabilities for the summary information stream and the document summary information stream";
+                string P_TITLE = "This document is used for testing POI HPSF¡¯s writing capabilities for the summary information stream and the document summary information stream";
                 int P_WORD_COUNT = 21;
 
                 int P_BYTE_COUNT = ++nr;
-                String P_CATEGORY = "Category";
-                String P_COMPANY = "Rainer Klute IT-Consulting GmbH";
+                string P_CATEGORY = "Category";
+                string P_COMPANY = "Rainer Klute IT-Consulting GmbH";
                 // FIXME (byte array properties not yet implemented): byte[]  P_DOCPARTS = new byte[123];
                 // FIXME (byte array properties not yet implemented): byte[]  P_HEADING_PAIR = new byte[123];
                 int P_HIDDEN_COUNT = ++nr;
                 int P_LINE_COUNT = ++nr;
                 bool P_LINKS_DIRTY = true;
-                String P_MANAGER = "Manager";
+                string P_MANAGER = "Manager";
                 int P_MM_CLIP_COUNT = ++nr;
                 int P_NOTE_COUNT = ++nr;
                 int P_PAR_COUNT = ++nr;
-                String P_PRESENTATION_FORMAT = "PresentationFormat";
+                string P_PRESENTATION_FORMAT = "PresentationFormat";
                 bool P_SCALE = false;
                 int P_SLIDE_COUNT = ++nr;
                 DateTime now = DateTime.Now;
@@ -658,9 +658,9 @@ namespace TestCases.HPSF.Basic
         [Test]
         public void TestCustomerProperties()
         {
-            String KEY = "Schlüssel ";
-            String VALUE_1 = "Wert 1";
-            String VALUE_2 = "Wert 2";
+            string KEY = "Schlüssel ";
+            string VALUE_1 = "Wert 1";
+            string VALUE_2 = "Wert 2";
 
             CustomProperty cp;
             CustomProperties cps = new CustomProperties();
@@ -697,8 +697,8 @@ namespace TestCases.HPSF.Basic
         {
             long ID_1 = 2;
             long ID_2 = 3;
-            String NAME_1 = "Schlüssel";
-            String VALUE_1 = "Wert 1";
+            string NAME_1 = "Schlüssel";
+            string VALUE_1 = "Wert 1";
             Dictionary<object,object> dictionary = new Dictionary<object,object>();
 
             DocumentSummaryInformation dsi = PropertySetFactory.CreateDocumentSummaryInformation();

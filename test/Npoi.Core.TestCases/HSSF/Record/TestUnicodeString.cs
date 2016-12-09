@@ -298,7 +298,7 @@ namespace TestCases.HSSF.Record
         {
             byte[] buf = new byte[200];
             LittleEndianByteArrayOutputStream bos = new LittleEndianByteArrayOutputStream(buf, 0);
-            String str = "\u1d02\u1d12\u1d22";
+            string str = "\u1d02\u1d12\u1d22";
             bos.WriteShort(1);
             bos.WriteShort(5 * LittleEndianConsts.SHORT_SIZE + str.Length * 2 + 3 * LittleEndianConsts.SHORT_SIZE + 2); // data size
             bos.WriteShort(0x4711);

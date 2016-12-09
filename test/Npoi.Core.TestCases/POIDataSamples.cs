@@ -11,7 +11,7 @@ namespace TestCases
         /**
          * Name of the system property that defined path to the test data.
          */
-        public static String TEST_PROPERTY = "POI.testdata.path";
+        public static string TEST_PROPERTY = "POI.testdata.path";
 
         private static POIDataSamples _instSlideshow;
         private static POIDataSamples _instSpreadsheet;
@@ -115,7 +115,7 @@ namespace TestCases
             //  Some of the tests are depending on the american culture.
             TestCases.CultureShim.SetCurrentCulture("en-US");
 
-            String dataDirName = TestCases.AppSettingsShim.GetSetting(TEST_PROPERTY);
+            string dataDirName = TestCases.AppSettingsShim.GetSetting(TEST_PROPERTY);
 
             if (dataDirName == null)
                 throw new Exception("Must set system property '"

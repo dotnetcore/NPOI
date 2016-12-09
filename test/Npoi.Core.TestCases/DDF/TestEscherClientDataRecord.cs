@@ -46,7 +46,7 @@ namespace TestCases.DDF
         [Test]
         public void TestFillFields()
         {
-            String hexData = "02 00 " +
+            string hexData = "02 00 " +
                     "11 F0 " +
                     "00 00 00 00 ";
             byte[] data = HexRead.ReadFromString(hexData);
@@ -60,9 +60,9 @@ namespace TestCases.DDF
         [Test]
         public void TestToString()
         {
-            String nl = Environment.NewLine;
+            string nl = Environment.NewLine;
 
-            String expected = "EscherClientDataRecord:" + nl +
+            string expected = "EscherClientDataRecord:" + nl +
                     "  RecordId: 0xF011" + nl +
                     "  Version: 0x0002" + nl +
                     "  Instance: 0x0000" + nl +

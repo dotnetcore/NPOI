@@ -51,7 +51,7 @@ namespace TestCases.HSSF.Record
                 HSSFColor c = (HSSFColor)colors[index];
                 byte[] rgbTriplet = c.GetTriplet();
                 byte[] paletteTriplet = palette.GetColor((short)index);
-                String msg = "Expected HSSFColor constant to match PaletteRecord at index 0x"
+                string msg = "Expected HSSFColor constant to match PaletteRecord at index 0x"
                     + Npoi.Core.Util.StringUtil.ToHexString(c.Indexed);
                 Assert.AreEqual(rgbTriplet[0], paletteTriplet[0] & 0xff,msg);
                 Assert.AreEqual(rgbTriplet[1], paletteTriplet[1] & 0xff,msg);

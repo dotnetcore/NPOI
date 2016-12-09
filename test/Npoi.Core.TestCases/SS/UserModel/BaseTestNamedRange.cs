@@ -76,12 +76,12 @@ namespace TestCases.SS.UserModel
 
             name2.NameName = ("testTwo");
 
-            String ref1 = "Test1!$A$1:$B$1";
+            string ref1 = "Test1!$A$1:$B$1";
             name1.RefersToFormula = (ref1);
             Assert.AreEqual(ref1, name1.RefersToFormula);
             Assert.AreEqual("Test1", name1.SheetName);
 
-            String ref2 = "'Testing Named Ranges'!$A$1:$B$1";
+            string ref2 = "'Testing Named Ranges'!$A$1:$B$1";
             name1.RefersToFormula = (ref2);
             Assert.AreEqual("'Testing Named Ranges'!$A$1:$B$1", name1.RefersToFormula);
             Assert.AreEqual("Testing Named Ranges", name1.SheetName);
@@ -107,7 +107,7 @@ namespace TestCases.SS.UserModel
             Assert.AreEqual(-1, name1.SheetIndex);
 
             //names cannot be blank and must begin with a letter or underscore and not contain spaces
-            String[] invalidNames = { "", "123", "1Name", "Named Range" };
+            string[] invalidNames = { "", "123", "1Name", "Named Range" };
             foreach (string name in invalidNames)
             {
                 try
@@ -278,12 +278,12 @@ namespace TestCases.SS.UserModel
         {
             IWorkbook workbook = _testDataProvider.CreateWorkbook();
             workbook.CreateSheet("Test Print Area");
-            String sheetName = workbook.GetSheetName(0);
+            string sheetName = workbook.GetSheetName(0);
 
-            String reference = "$A$1:$B$1";
+            string reference = "$A$1:$B$1";
             workbook.SetPrintArea(0, reference);
 
-            String retrievedPrintArea = workbook.GetPrintArea(0);
+            string retrievedPrintArea = workbook.GetPrintArea(0);
 
             Assert.IsNotNull(retrievedPrintArea, "Print Area not defined for first sheet");
             Assert.AreEqual("'" + sheetName + "'!$A$1:$B$1", retrievedPrintArea);
@@ -297,12 +297,12 @@ namespace TestCases.SS.UserModel
         {
             IWorkbook workbook = _testDataProvider.CreateWorkbook();
             workbook.CreateSheet("Test Print Area");
-            String sheetName = workbook.GetSheetName(0);
+            string sheetName = workbook.GetSheetName(0);
 
-            String reference = "$A$1:$B$1";
+            string reference = "$A$1:$B$1";
             workbook.SetPrintArea(0, reference);
 
-            String retrievedPrintArea = workbook.GetPrintArea(0);
+            string retrievedPrintArea = workbook.GetPrintArea(0);
 
             Assert.IsNotNull(retrievedPrintArea, "Print Area not defined for first sheet");
             Assert.AreEqual("'" + sheetName + "'!" + reference, retrievedPrintArea);
@@ -316,15 +316,15 @@ namespace TestCases.SS.UserModel
         {
             IWorkbook workbook = _testDataProvider.CreateWorkbook();
             workbook.CreateSheet("Test Print Area");
-            String sheetName = workbook.GetSheetName(0);
+            string sheetName = workbook.GetSheetName(0);
 
 
-            String reference = "$A$1:$B$1";
+            string reference = "$A$1:$B$1";
             workbook.SetPrintArea(0, reference);
 
             workbook = _testDataProvider.WriteOutAndReadBack(workbook);
 
-            String retrievedPrintArea = workbook.GetPrintArea(0);
+            string retrievedPrintArea = workbook.GetPrintArea(0);
             Assert.IsNotNull(retrievedPrintArea, "Print Area not defined for first sheet");
             Assert.AreEqual("'" + sheetName + "'!$A$1:$B$1", retrievedPrintArea, "References Match");
         }
@@ -340,16 +340,16 @@ namespace TestCases.SS.UserModel
             workbook.CreateSheet("Sheet1");
             workbook.CreateSheet("Sheet2");
             workbook.CreateSheet("Sheet3");
-            String reference1 = "$A$1:$B$1";
-            String reference2 = "$B$2:$D$5";
-            String reference3 = "$D$2:$F$5";
+            string reference1 = "$A$1:$B$1";
+            string reference2 = "$B$2:$D$5";
+            string reference3 = "$D$2:$F$5";
 
             workbook.SetPrintArea(0, reference1);
             workbook.SetPrintArea(1, reference2);
             workbook.SetPrintArea(2, reference3);
 
             //Check Created print areas
-            String retrievedPrintArea;
+            string retrievedPrintArea;
 
             retrievedPrintArea = workbook.GetPrintArea(0);
             Assert.IsNotNull(retrievedPrintArea, "Print Area Not Found (Sheet 1)");
@@ -388,11 +388,11 @@ namespace TestCases.SS.UserModel
         {
             IWorkbook workbook = _testDataProvider.CreateWorkbook();
             workbook.CreateSheet("Test Print Area");
-            String sheetName = workbook.GetSheetName(0);
+            string sheetName = workbook.GetSheetName(0);
 
             workbook.SetPrintArea(0, 0, 1, 0, 0);
 
-            String retrievedPrintArea = workbook.GetPrintArea(0);
+            string retrievedPrintArea = workbook.GetPrintArea(0);
 
             Assert.IsNotNull(retrievedPrintArea, "Print Area not defined for first sheet");
             Assert.AreEqual("'" + sheetName + "'!$A$1:$B$1", retrievedPrintArea);
@@ -409,9 +409,9 @@ namespace TestCases.SS.UserModel
             IWorkbook workbook = _testDataProvider.CreateWorkbook();
             workbook.CreateSheet("Test Print Area");
 
-            String reference = "$A$1:$B$1,$D$1:$F$2";
+            string reference = "$A$1:$B$1,$D$1:$F$2";
             workbook.SetPrintArea(0, reference);
-            String retrievedPrintArea = workbook.GetPrintArea(0);
+            string retrievedPrintArea = workbook.GetPrintArea(0);
             Assert.IsNotNull(retrievedPrintArea, "Print Area not defined for first sheet");
             Assert.AreEqual("'Test Print Area'!$A$1:$B$1,'Test Print Area'!$D$1:$F$2", retrievedPrintArea);
         }
@@ -429,7 +429,7 @@ namespace TestCases.SS.UserModel
 
             workbook.SetPrintArea(0, 0, 1, 0, 0);
 
-            String retrievedPrintArea = workbook.GetPrintArea(0);
+            string retrievedPrintArea = workbook.GetPrintArea(0);
 
             Assert.IsNotNull(retrievedPrintArea, "Print Area not defined for first sheet");
 
@@ -447,7 +447,7 @@ namespace TestCases.SS.UserModel
 
 
             wb.CreateSheet("testSheet1");
-            String sheetName = wb.GetSheetName(0);
+            string sheetName = wb.GetSheetName(0);
 
             Assert.AreEqual("testSheet1", sheetName);
 
@@ -482,9 +482,9 @@ namespace TestCases.SS.UserModel
         {
 
             // Setup for this Testcase
-            String sheetName = "Test Named Cell";
-            String cellName = "named_cell";
-            String cellValue = "TEST Value";
+            string sheetName = "Test Named Cell";
+            string cellName = "named_cell";
+            string cellValue = "TEST Value";
             IWorkbook wb = _testDataProvider.CreateWorkbook();
             ISheet sheet = wb.CreateSheet(sheetName);
             ICreationHelper factory = wb.GetCreationHelper();
@@ -493,7 +493,7 @@ namespace TestCases.SS.UserModel
             // create named range for a single cell using areareference
             IName namedCell = wb.CreateName();
             namedCell.NameName = (cellName);
-            String reference = "'" + sheetName + "'" + "!A1:A1";
+            string reference = "'" + sheetName + "'" + "!A1:A1";
             namedCell.RefersToFormula = (reference);
 
             // retrieve the newly Created named range
@@ -511,7 +511,7 @@ namespace TestCases.SS.UserModel
             Assert.IsNotNull(s);
             IRow r = sheet.GetRow(cref.Row);
             ICell c = r.GetCell(cref.Col);
-            String contents = c.RichStringCellValue.String;
+            string contents = c.RichStringCellValue.String;
             Assert.AreEqual(contents, cellValue, "Contents of cell retrieved by its named reference");
         }
 
@@ -523,7 +523,7 @@ namespace TestCases.SS.UserModel
         {
 
             // Setup for this Testcase
-            String sname = "TestSheet", cname = "TestName", cvalue = "TestVal";
+            string sname = "TestSheet", cname = "TestName", cvalue = "TestVal";
             IWorkbook wb = _testDataProvider.CreateWorkbook();
             ICreationHelper factory = wb.GetCreationHelper();
             ISheet sheet = wb.CreateSheet(sname);
@@ -532,7 +532,7 @@ namespace TestCases.SS.UserModel
             // create named range for a single cell using cellreference
             IName namedCell = wb.CreateName();
             namedCell.NameName = (cname);
-            String reference = sname + "!A1";
+            string reference = sname + "!A1";
             namedCell.RefersToFormula = (reference);
 
             // retrieve the newly Created named range
@@ -546,7 +546,7 @@ namespace TestCases.SS.UserModel
             ISheet s = wb.GetSheet(cref.SheetName);
             IRow r = sheet.GetRow(cref.Row);
             ICell c = r.GetCell(cref.Col);
-            String contents = c.RichStringCellValue.String;
+            string contents = c.RichStringCellValue.String;
             Assert.AreEqual(contents, cvalue, "Contents of cell retrieved by its named reference");
         }
 
@@ -573,7 +573,7 @@ namespace TestCases.SS.UserModel
             IWorkbook wb = _testDataProvider.CreateWorkbook();
             IName n = wb.CreateName();
             n.NameName = ("UPSState");
-            String formula;
+            string formula;
             try
             {
                 formula = n.RefersToFormula;

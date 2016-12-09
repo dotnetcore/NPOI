@@ -98,7 +98,7 @@ namespace TestCases.SS.Formula.Eval
         }
 
 
-        private bool EvalStringCmp(string a, String b, Function cmpOp)
+        private bool EvalStringCmp(string a, string b, Function cmpOp)
         {
             ValueEval[] args = {
 			new StringEval(a),

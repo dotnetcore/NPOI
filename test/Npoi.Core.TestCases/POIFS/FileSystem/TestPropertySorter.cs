@@ -139,8 +139,8 @@ namespace TestCases.POIFS.FileSystem
          */
         protected Property[] GetVBAProperties(POIFSFileSystem fs)
         {
-            String _VBA_PROJECT_CUR = "_VBA_PROJECT_CUR";
-            String VBA = "VBA";
+            string _VBA_PROJECT_CUR = "_VBA_PROJECT_CUR";
+            string VBA = "VBA";
 
             DirectoryEntry root = fs.Root;
             DirectoryEntry vba_project = (DirectoryEntry)root.GetEntry(_VBA_PROJECT_CUR);
@@ -161,8 +161,8 @@ namespace TestCases.POIFS.FileSystem
         {
             public int Compare(Object o1, Object o2)
             {
-                String name1 = ((Property)o1).Name;
-                String name2 = ((Property)o2).Name;
+                string name1 = ((Property)o1).Name;
+                string name2 = ((Property)o2).Name;
                 int result = name1.Length - name2.Length;
 
                 if (result == 0)

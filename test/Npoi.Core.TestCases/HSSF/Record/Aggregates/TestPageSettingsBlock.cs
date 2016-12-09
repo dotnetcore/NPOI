@@ -246,7 +246,7 @@ namespace TestCases.HSSF.Record.Aggregates
             }
         }
 
-        private static UnknownRecord ur(int sid, String hexData)
+        private static UnknownRecord ur(int sid, string hexData)
         {
             return new UnknownRecord(sid, HexRead.ReadFromString(hexData));
         }

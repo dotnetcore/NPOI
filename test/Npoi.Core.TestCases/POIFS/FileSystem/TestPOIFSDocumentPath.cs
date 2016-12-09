@@ -138,7 +138,7 @@ namespace TestCases.POIFS.FileSystem
 
             for (int n = 0; n < initialComponents.Length; n++)
             {
-                String[] initialParams = new String[n];
+                string[] initialParams = new string[n];
 
                 for (int k = 0; k < n; k++)
                     initialParams[k] = initialComponents[k];
@@ -148,7 +148,7 @@ namespace TestCases.POIFS.FileSystem
 
                 for (int j = 0; j < components.Length; j++)
                 {
-                    String[] params1 = new String[j];
+                    string[] params1 = new string[j];
 
                     for (int k = 0; k < j; k++)
                     {
@@ -218,7 +218,7 @@ namespace TestCases.POIFS.FileSystem
         {
             POIFSDocumentPath a1 = new POIFSDocumentPath();
             POIFSDocumentPath a2 = new POIFSDocumentPath(null);
-            POIFSDocumentPath a3 = new POIFSDocumentPath(new String[0]);
+            POIFSDocumentPath a3 = new POIFSDocumentPath(new string[0]);
             POIFSDocumentPath a4 = new POIFSDocumentPath(a1, null);
             POIFSDocumentPath a5 = new POIFSDocumentPath(a1, new string[0]);
 

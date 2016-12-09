@@ -76,7 +76,7 @@ namespace TestCases.HSSF.UserModel
             Assert.IsNotNull(color, "Unexpected null in custom palette (unmodified index)");
             byte[] expectedRGB = HSSFColor.Coral.Triplet;
             byte[] actualRGB = color.RGB;
-            String msg = "Expected palette position to remain unmodified";
+            string msg = "Expected palette position to remain unmodified";
             Assert.AreEqual(expectedRGB[0], actualRGB[0], msg);
             Assert.AreEqual(expectedRGB[1], actualRGB[1], msg);
             Assert.AreEqual(expectedRGB[2], actualRGB[2], msg);

@@ -81,7 +81,7 @@ namespace TestCases.POIFS.FileSystem
             fsD = new POIFSFileSystem();
             Assert.AreEqual(0, fsD.Root.EntryCount);
 
-            EntryUtils.CopyNodes(fs, fsD, new List<String>());
+            EntryUtils.CopyNodes(fs, fsD, new List<string>());
             Assert.AreEqual(3, fsD.Root.EntryCount);
             Assert.IsNotNull(fsD.Root.GetEntry(dirA.Name));
             Assert.IsNotNull(fsD.Root.GetEntry(dirB.Name));
@@ -167,7 +167,7 @@ namespace TestCases.POIFS.FileSystem
 
 
             // Excludes support
-            List<String> excl = new List<string>(new String[] { "Ignore1", "IgnDir/Ign2" });
+            List<string> excl = new List<string>(new string[] { "Ignore1", "IgnDir/Ign2" });
             FilteringDirectoryNode fdA = new FilteringDirectoryNode(dirA1, excl);
             FilteringDirectoryNode fdB = new FilteringDirectoryNode(dirB1, excl);
 

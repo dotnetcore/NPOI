@@ -30,20 +30,20 @@ namespace TestCases.SS.Formula.Functions
     public class TestDelta
     {
 
-        private static ValueEval invokeValue(string number1, String number2)
+        private static ValueEval invokeValue(string number1, string number2)
         {
             ValueEval[] args = new ValueEval[] { new StringEval(number1), new StringEval(number2), };
             return new Delta().Evaluate(args, -1, -1);
         }
 
-        private static void ConfirmValue(string number1, String number2, double expected)
+        private static void ConfirmValue(string number1, string number2, double expected)
         {
             ValueEval result = invokeValue(number1, number2);
             Assert.AreEqual(typeof(NumberEval), result.GetType());
             Assert.AreEqual(expected, ((NumberEval)result).NumberValue, 0.0);
         }
 
-        private static void ConfirmValueError(string number1, String number2)
+        private static void ConfirmValueError(string number1, string number2)
         {
             ValueEval result = invokeValue(number1, number2);
             Assert.AreEqual(typeof(ErrorEval), result.GetType());

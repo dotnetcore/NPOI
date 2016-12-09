@@ -61,8 +61,8 @@ namespace TestCases.SS.UserModel.Charts
         [Test]
         public void TestStringArrayDataSource()
         {
-            String[] strings = new String[] {"one", "two", "three", "four", "five"};
-            IChartDataSource<String> stringDataSource = DataSources.FromArray(strings);
+            string[] strings = new string[] {"one", "two", "three", "four", "five"};
+            IChartDataSource<string> stringDataSource = DataSources.FromArray(strings);
             Assert.IsFalse(stringDataSource.IsNumeric);
             Assert.IsFalse(stringDataSource.IsReference);
             AssertDataSourceIsEqualToArray(stringDataSource, strings);
@@ -89,7 +89,7 @@ namespace TestCases.SS.UserModel.Charts
             IWorkbook wb = new HSSFWorkbook();
             ISheet sheet = new SheetBuilder(wb, stringCells).Build();
             CellRangeAddress numCellRange = CellRangeAddress.ValueOf("A2:E2");
-            IChartDataSource<String> numDataSource = DataSources.FromStringCellRange(sheet, numCellRange);
+            IChartDataSource<string> numDataSource = DataSources.FromStringCellRange(sheet, numCellRange);
             Assert.IsTrue(numDataSource.IsReference);
             Assert.IsFalse(numDataSource.IsNumeric);
             Assert.AreEqual(numericCells[0].Length, numDataSource.PointCount);
@@ -104,7 +104,7 @@ namespace TestCases.SS.UserModel.Charts
             IWorkbook wb = new HSSFWorkbook();
             ISheet sheet = new SheetBuilder(wb, mixedCells).Build();
             CellRangeAddress mixedCellRange = CellRangeAddress.ValueOf("A1:F1");
-            IChartDataSource<String> strDataSource = DataSources.FromStringCellRange(sheet, mixedCellRange);
+            IChartDataSource<string> strDataSource = DataSources.FromStringCellRange(sheet, mixedCellRange);
             IChartDataSource<double> numDataSource = DataSources.FromNumericCellRange(sheet, mixedCellRange);
             for (int i = 0; i < mixedCells[0].Length; ++i)
             {

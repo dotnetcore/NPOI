@@ -17,14 +17,14 @@ namespace TestCases.SS.Formula.Functions
             return new Code().Evaluate(args, -1, -1);
         }
 
-        private static void confirmValue(string msg, String number1, String expected)
+        private static void confirmValue(string msg, string number1, string expected)
         {
             ValueEval result = invokeValue(number1);
             Assert.AreEqual(typeof(StringEval), result.GetType());
             Assert.AreEqual(expected, ((StringEval)result).StringValue, msg);
         }
 
-        private static void confirmValueError(string msg, String number1, ErrorEval numError)
+        private static void confirmValueError(string msg, string number1, ErrorEval numError)
         {
             ValueEval result = invokeValue(number1);
             Assert.AreEqual(typeof(ErrorEval), result.GetType());

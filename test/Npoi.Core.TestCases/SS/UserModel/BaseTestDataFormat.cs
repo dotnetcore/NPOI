@@ -48,10 +48,10 @@ namespace TestCases.SS.UserModel
 
             IDataFormat df = wb.CreateDataFormat();
 
-            List<String> formats = HSSFDataFormat.GetBuiltinFormats();
+            List<string> formats = HSSFDataFormat.GetBuiltinFormats();
             for (int idx = 0; idx < formats.Count; idx++)
             {
-                String fmt = formats[idx];
+                string fmt = formats[idx];
                 Assert.AreEqual(idx, df.GetFormat(fmt));
             }
 
@@ -62,7 +62,7 @@ namespace TestCases.SS.UserModel
             Assert.AreEqual("General", cell.CellStyle.GetDataFormatString());
 
             //create a custom data format
-            String customFmt = "#0.00 AM/PM";
+            string customFmt = "#0.00 AM/PM";
             //check it is not in built-in formats
             Assert.AreEqual(-1, HSSFDataFormat.GetBuiltinFormat(customFmt));
             int customIdx = df.GetFormat(customFmt);
@@ -80,7 +80,7 @@ namespace TestCases.SS.UserModel
             IWorkbook wb = _testDataProvider.OpenSampleWorkbook("49928.xls");
             doTest49928Core(wb);
         }
-        protected String poundFmt = "\"\u00a3\"#,##0;[Red]\\-\"\u00a3\"#,##0";
+        protected string poundFmt = "\"\u00a3\"#,##0;[Red]\\-\"\u00a3\"#,##0";
         public void doTest49928Core(IWorkbook wb)
         {
             DataFormatter df = new DataFormatter();
@@ -89,7 +89,7 @@ namespace TestCases.SS.UserModel
             ICell cell = sheet.GetRow(0).GetCell(0);
             ICellStyle style = cell.CellStyle;
 
-            String poundFmt = "\"\u00a3\"#,##0;[Red]\\-\"\u00a3\"#,##0";
+            string poundFmt = "\"\u00a3\"#,##0;[Red]\\-\"\u00a3\"#,##0";
             // not expected normally, id of a custom format should be greater 
             // than BuiltinFormats.FIRST_USER_DEFINED_FORMAT_INDEX
             short poundFmtIdx = 6;

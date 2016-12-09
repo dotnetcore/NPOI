@@ -359,9 +359,9 @@ namespace TestCases.HSSF.UserModel
             {
                 ICell cell = row.CreateCell(i);
                 char prevCol = (char)('A' + i - 1);
-                String prevCell = prevCol + "1";
+                string prevCell = prevCol + "1";
                 // this formula is inspired by the offending formula of the attachment for bug 45376
-                String formula = "IF(DATE(YEAR(" + prevCell + "),MONTH(" + prevCell + ")+1,1)<=$D$3," +
+                string formula = "IF(DATE(YEAR(" + prevCell + "),MONTH(" + prevCell + ")+1,1)<=$D$3," +
                         "DATE(YEAR(" + prevCell + "),MONTH(" + prevCell + ")+1,1),NA())";
                 cell.CellFormula = (formula);
 

@@ -114,9 +114,9 @@ namespace TestCases.HSSF.Model
             /**
              * register the two test UDFs in a UDF Finder, to be passed to the Evaluator
              */
-            UDFFinder udff1 = new DefaultUDFFinder(new String[] { "myFunc", },
+            UDFFinder udff1 = new DefaultUDFFinder(new string[] { "myFunc", },
                     new FreeRefFunction[] { NotImplemented });
-            UDFFinder udff2 = new DefaultUDFFinder(new String[] { "myFunc2", },
+            UDFFinder udff2 = new DefaultUDFFinder(new string[] { "myFunc2", },
                     new FreeRefFunction[] { NotImplemented });
             UDFFinder udff = new AggregatingUDFFinder(udff1, udff2);
             Assert.IsNotNull(wb.GetNameXPtg("myFunc", udff));

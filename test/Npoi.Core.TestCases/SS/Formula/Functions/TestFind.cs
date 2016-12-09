@@ -57,7 +57,7 @@ namespace TestCases.SS.Formula.Functions
             ConfirmError(fe, cell, "Find(2, #N/A, #REF!)", HSSFErrorConstants.ERROR_NA);
         }
 
-        private static void ConfirmResult(HSSFFormulaEvaluator fe, ICell cell, String formulaText,
+        private static void ConfirmResult(HSSFFormulaEvaluator fe, ICell cell, string formulaText,
                 int expectedResult)
         {
             cell.CellFormula=(formulaText);
@@ -67,7 +67,7 @@ namespace TestCases.SS.Formula.Functions
             Assert.AreEqual(expectedResult, result.NumberValue, 0.0);
         }
 
-        private static void ConfirmError(HSSFFormulaEvaluator fe, ICell cell, String formulaText,
+        private static void ConfirmError(HSSFFormulaEvaluator fe, ICell cell, string formulaText,
                 int expectedErrorCode)
         {
             cell.CellFormula=(formulaText);

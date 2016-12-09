@@ -110,7 +110,7 @@ namespace TestCases.SS.Formula.Functions
 
         private static ValueEval CreateAreaEval(ValueEval[] values)
         {
-            String refStr = "A1:A" + values.Length;
+            string refStr = "A1:A" + values.Length;
             return EvalFactory.CreateAreaEval(refStr, values);
         }
         [Test]

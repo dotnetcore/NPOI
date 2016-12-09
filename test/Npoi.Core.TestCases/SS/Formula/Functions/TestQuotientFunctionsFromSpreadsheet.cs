@@ -28,7 +28,7 @@ namespace TestCases.SS.Formula.Functions
     public class TestQuotientFunctionsFromSpreadsheet : BaseTestFunctionsFromSpreadsheet
     {
 
-        protected override String Filename
+        protected override string Filename
         {
             get
             {

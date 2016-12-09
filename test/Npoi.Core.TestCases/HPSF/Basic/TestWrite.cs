@@ -44,7 +44,7 @@ namespace TestCases.HPSF.Basic
     public class TestWrite
     {
         //static string dataDir = @"..\..\..\TestCases\HPSF\data\";
-        static String POI_FS = "TestHPSFWritingFunctionality.doc";
+        static string POI_FS = "TestHPSFWritingFunctionality.doc";
         private static POIDataSamples _samples = POIDataSamples.GetHPSFInstance();
 
         //static int BYTE_ORDER = 0xfffe;
@@ -54,7 +54,7 @@ namespace TestCases.HPSF.Basic
         static bool[] IS_SUMMARY_INFORMATION = { true, false };
         static bool[] IS_DOCUMENT_SUMMARY_INFORMATION = { false, true };
 
-        String IMPROPER_DEFAULT_CHARSET_MESSAGE =
+        string IMPROPER_DEFAULT_CHARSET_MESSAGE =
             "Your default character Set is " + GetDefaultCharSetName() +
             ". However, this Testcase must be run in an environment " +
             "with a default character Set supporting at least " +
@@ -232,8 +232,8 @@ namespace TestCases.HPSF.Basic
         [Test]
         public void TestWriteSimplePropertySet()
         {
-            String AUTHOR = "Rainer Klute";
-            String TITLE = "Test Document";
+            string AUTHOR = "Rainer Klute";
+            string TITLE = "Test Document";
 
             FileInfo fi = TempFile.CreateTempFile(POI_FS, ".doc");
             FileStream file = new FileStream(fi.FullName, FileMode.Open, FileAccess.ReadWrite);
@@ -307,9 +307,9 @@ namespace TestCases.HPSF.Basic
         [Test]
         public void TestWriteTwoSections()
         {
-            String STREAM_NAME = "PropertySetStream";
-            String SECTION1 = "Section 1";
-            String SECTION2 = "Section 2";
+            string STREAM_NAME = "PropertySetStream";
+            string SECTION1 = "Section 1";
+            string SECTION2 = "Section 2";
 
             FileInfo fi = TempFile.CreateTempFile(POI_FS, ".doc");
             FileStream file = new FileStream(fi.FullName, FileMode.Open, FileAccess.ReadWrite);
@@ -547,7 +547,7 @@ namespace TestCases.HPSF.Basic
         [Test]
         public void TestUnicodeWrite8Bit()
         {
-            String TITLE = "This is a sample title";
+            string TITLE = "This is a sample title";
             MutablePropertySet mps = new MutablePropertySet();
             MutableSection ms = (MutableSection)mps.Sections[0];
             ms.SetFormatID(SectionIDMap.SUMMARY_INFORMATION_ID);
@@ -568,7 +568,7 @@ namespace TestCases.HPSF.Basic
                 PropertySet psr = new PropertySet(bytes);
                 Assert.IsTrue(psr.IsSummaryInformation);
                 Section sr = (Section)psr.Sections[0];
-                String title = (string)sr.GetProperty(PropertyIDMap.PID_TITLE);
+                string title = (string)sr.GetProperty(PropertyIDMap.PID_TITLE);
                 Assert.AreEqual(TITLE, title);
             }
             catch (WritingNotSupportedException e)

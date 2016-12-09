@@ -36,7 +36,7 @@ namespace TestCases.SS.UserModel
         {
             FractionFormat f = new FractionFormat("", "##");
             string val = "321.321";
-            String ret = f.Format(val);
+            string ret = f.Format(val);
             Assert.AreEqual("26027/81", ret);
         }
         [Test]
@@ -50,21 +50,21 @@ namespace TestCases.SS.UserModel
             IFormulaEvaluator Evaluator = wb.GetCreationHelper().CreateFormulaEvaluator();
 
             // Skip over the header row
-            String truthLine = reader.ReadLine();
-            String[] headers = truthLine.Split("\t".ToCharArray());
+            string truthLine = reader.ReadLine();
+            string[] headers = truthLine.Split("\t".ToCharArray());
             truthLine = reader.ReadLine();
 
             for (int i = 1; i < sheet.LastRowNum && truthLine != null; i++)
             {
                 IRow r = sheet.GetRow(i);
-                String[] truths = truthLine.Split("\t".ToCharArray());
+                string[] truths = truthLine.Split("\t".ToCharArray());
                 // Intentionally ignore the last column (tika-1132), for now
                 for (short j = 3; j < 12; j++)
                 {
                     ICell cell = r.GetCell(j, MissingCellPolicy.CREATE_NULL_AS_BLANK);
-                    String truth = Clean(truths[j]);
-                    String testKey = truths[0] + ":" + truths[1] + ":" + headers[j];
-                    String formatted = Clean(formatter.FormatCellValue(cell, Evaluator));
+                    string truth = Clean(truths[j]);
+                    string testKey = truths[0] + ":" + truths[1] + ":" + headers[j];
+                    string formatted = Clean(formatter.FormatCellValue(cell, Evaluator));
                     if (truths.Length <= j)
                     {
                         continue;

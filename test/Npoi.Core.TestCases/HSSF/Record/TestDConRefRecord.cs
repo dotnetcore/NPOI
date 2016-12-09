@@ -218,7 +218,7 @@ namespace TestCases.HSSF.Record
             TestReadWrite(data4, "read-write double-byte external reference, UNC volume type path");
         }
 
-        private void TestReadWrite(byte[] data, String message)
+        private void TestReadWrite(byte[] data, string message)
         {
             RecordInputStream is1 = TestcaseRecordInputStream.Create(81, data);
             DConRefRecord d = new DConRefRecord(is1);

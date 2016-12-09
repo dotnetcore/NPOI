@@ -58,7 +58,7 @@ namespace TestCases.SS.Util
             }
         }
 
-        private static void WriteHeaderCell(IRow row, int i, String text, ICellStyle style)
+        private static void WriteHeaderCell(IRow row, int i, string text, ICellStyle style)
         {
             ICell cell = row.CreateCell(i);
             cell.SetCellValue(new HSSFRichTextString(text));
@@ -116,7 +116,7 @@ namespace TestCases.SS.Util
             row.CreateCell(6).CellFormula = ("C" + rowNum + "=" + "D" + rowNum);
             row.CreateCell(7).CellFormula = ("C" + rowNum + ">" + "D" + rowNum);
             // TODO - bug elsewhere in POI - something wrong with encoding of NOT() function
-            String frm = "if(or(" +
+            string frm = "if(or(" +
                 "and(E#='LT', F#      , G#=FALSE, H#=FALSE)," +
                 "and(E#='EQ', F#=FALSE, G#      , H#=FALSE)," +
                 "and(E#='GT', F#=FALSE, G#=FALSE, H#      )" +
