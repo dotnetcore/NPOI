@@ -17,7 +17,6 @@
 
 namespace Npoi.Core.SS.Formula.Function
 {
-    using System;
     using System.Text;
 
     /**

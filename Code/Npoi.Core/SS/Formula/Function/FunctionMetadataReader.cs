@@ -15,27 +15,18 @@
    limitations Under the License.
 ==================================================================== */
 
-using System.Reflection;
-
 namespace Npoi.Core.SS.Formula.Function
 {
     using Npoi.Core.SS.Formula.PTG;
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
+    using System.Text;
     using System.Text.RegularExpressions;
-
-    /**
-     * Converts the text meta-data file into a <c>FunctionMetadataRegistry</c>
-     *
-     * @author Josh Micich
-     */
 
     internal class FunctionMetadataReader
     {
-        private const string METADATA_FILE_NAME = "functionMetadata.txt";
-
         /** plain ASCII text metadata file uses three dots for ellipsis */
         private const string ELLIPSIS = "...";
 
@@ -43,43 +34,33 @@ namespace Npoi.Core.SS.Formula.Function
         private const string SPACE_DELIM_PATTERN = @"\s";
         private static readonly byte[] EMPTY_BYTE_ARRAY = { };
 
-        private static readonly string[] DIGIT_ENDING_FUNCTION_NAMES = {
-		// Digits at the end of a function might be due to a left-over footnote marker.
-		// except in these cases
-		"LOG10", "ATAN2", "DAYS360", "SUMXMY2", "SUMX2MY2", "SUMX2PY2",
-    };
+        // Digits at the end of a function might be due to a left-over footnote marker.
+        // except in these cases
+        private static readonly string[] DIGIT_ENDING_FUNCTION_NAMES = { "LOG10", "ATAN2", "DAYS360", "SUMXMY2", "SUMX2MY2", "SUMX2PY2" };
 
-        private static List<string> DIGIT_ENDING_FUNCTION_NAMES_Set = new List<string>(DIGIT_ENDING_FUNCTION_NAMES);
-
-        public static FunctionMetadataRegistry CreateRegistry()
-        {
-            using (StreamReader br = new StreamReader(typeof(FunctionMetadataReader).GetTypeInfo().Assembly.GetManifestResourceStream(METADATA_FILE_NAME)))
-            {
+        public static FunctionMetadataRegistry CreateRegistry() {
+            var bytes = Encoding.UTF8.GetBytes(Resource.FunctionMetadata);
+            using (var memorySteam = new MemoryStream(Encoding.UTF8.GetBytes(Resource.FunctionMetadata)))
+            using (StreamReader br = new StreamReader(memorySteam)) {
                 FunctionDataBuilder fdb = new FunctionDataBuilder(400);
 
-                try
-                {
-                    while (true)
-                    {
+                try {
+                    while (true) {
                         string line = br.ReadLine();
-                        if (line == null)
-                        {
+                        if (line == null) {
                             break;
                         }
-                        if (line.Length < 1 || line[0] == '#')
-                        {
+                        if (line.Length < 1 || line[0] == '#') {
                             continue;
                         }
                         string TrimLine = line.Trim();
-                        if (TrimLine.Length < 1)
-                        {
+                        if (TrimLine.Length < 1) {
                             continue;
                         }
                         ProcessLine(fdb, line);
                     }
                 }
-                catch (IOException)
-                {
+                catch (IOException) {
                     throw;
                 }
 
@@ -87,12 +68,10 @@ namespace Npoi.Core.SS.Formula.Function
             }
         }
 
-        private static void ProcessLine(FunctionDataBuilder fdb, string line)
-        {
+        private static void ProcessLine(FunctionDataBuilder fdb, string line) {
             Regex regex = new Regex(TAB_DELIM_PATTERN);
             string[] parts = regex.Split(line);
-            if (parts.Length != 8)
-            {
+            if (parts.Length != 8) {
                 throw new Exception("Bad line format '" + line + "' - expected 8 data fields");
             }
             int functionIndex = ParseInt(parts[0]);
@@ -110,49 +89,39 @@ namespace Npoi.Core.SS.Formula.Function
                     returnClassCode, parameterClassCodes, hasNote);
         }
 
-        private static byte ParseReturnTypeCode(string code)
-        {
-            if (code.Length == 0)
-            {
+        private static byte ParseReturnTypeCode(string code) {
+            if (code.Length == 0) {
                 return Ptg.CLASS_REF; // happens for GetPIVOTDATA
             }
             return ParseOperandTypeCode(code);
         }
 
-        private static byte[] ParseOperandTypeCodes(string codes)
-        {
-            if (codes.Length < 1)
-            {
+        private static byte[] ParseOperandTypeCodes(string codes) {
+            if (codes.Length < 1) {
                 return EMPTY_BYTE_ARRAY; // happens for GetPIVOTDATA
             }
-            if (IsDash(codes))
-            {
+            if (IsDash(codes)) {
                 // '-' means empty:
                 return EMPTY_BYTE_ARRAY;
             }
             Regex regex = new Regex(SPACE_DELIM_PATTERN);
             string[] array = regex.Split(codes);
             int nItems = array.Length;
-            if (ELLIPSIS.Equals(array[nItems - 1]))
-            {
+            if (ELLIPSIS.Equals(array[nItems - 1])) {
                 // ellipsis is optional, and ignored
                 // (all Unspecified params are assumed to be the same as the last)
                 nItems--;
             }
             byte[] result = new byte[nItems];
-            for (int i = 0; i < nItems; i++)
-            {
+            for (int i = 0; i < nItems; i++) {
                 result[i] = ParseOperandTypeCode(array[i]);
             }
             return result;
         }
 
-        private static bool IsDash(string codes)
-        {
-            if (codes.Length == 1)
-            {
-                switch (codes[0])
-                {
+        private static bool IsDash(string codes) {
+            if (codes.Length == 1) {
+                switch (codes[0]) {
                     case '-':
                         return true;
                 }
@@ -160,14 +129,11 @@ namespace Npoi.Core.SS.Formula.Function
             return false;
         }
 
-        private static byte ParseOperandTypeCode(string code)
-        {
-            if (code.Length != 1)
-            {
+        private static byte ParseOperandTypeCode(string code) {
+            if (code.Length != 1) {
                 throw new Exception("Bad operand type code format '" + code + "' expected single char");
             }
-            switch (code[0])
-            {
+            switch (code[0]) {
                 case 'V': return Ptg.CLASS_VALUE;
                 case 'R': return Ptg.CLASS_REF;
                 case 'A': return Ptg.CLASS_ARRAY;
@@ -180,32 +146,26 @@ namespace Npoi.Core.SS.Formula.Function
          * left behind
          */
 
-        private static void ValidateFunctionName(string functionName)
-        {
+        private static void ValidateFunctionName(string functionName) {
             int len = functionName.Length;
             int ix = len - 1;
-            if (!Char.IsDigit(functionName[ix]))
-            {
+            if (!Char.IsDigit(functionName[ix])) {
                 return;
             }
-            while (ix >= 0)
-            {
-                if (!Char.IsDigit(functionName[ix]))
-                {
+            while (ix >= 0) {
+                if (!Char.IsDigit(functionName[ix])) {
                     break;
                 }
                 ix--;
             }
-            if (DIGIT_ENDING_FUNCTION_NAMES_Set.Contains(functionName))
-            {
+            if (DIGIT_ENDING_FUNCTION_NAMES.Contains(functionName)) {
                 return;
             }
             throw new Exception("Invalid function name '" + functionName
                     + "' (is footnote number incorrectly Appended)");
         }
 
-        private static int ParseInt(string valStr)
-        {
+        private static int ParseInt(string valStr) {
             return int.Parse(valStr, CultureInfo.InvariantCulture);
         }
     }

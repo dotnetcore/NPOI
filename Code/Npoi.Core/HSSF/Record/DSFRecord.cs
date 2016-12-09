@@ -18,7 +18,6 @@
 namespace Npoi.Core.HSSF.Record
 {
     using Npoi.Core.Util;
-    using System;
     using System.Text;
 
     /**

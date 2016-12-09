@@ -16,25 +16,34 @@ namespace TestCases
 	{
 		public static string GetSetting(string name)
 		{
+            if ("POI.testdata.path" == name) {
+                return "";//todo://init test path
+            }
 			throw new NotImplementedException();
 		}
 	}
 	public class CultureShim
 	{
 		public static CultureInfo InstalledUICulture => CultureInfo.CurrentUICulture;
+        private static CultureInfo _cultureInfo = CultureInfo.CurrentCulture;
 
-		//TestCases.CultureShim.SetCurrentCulture("en-US")
-		public static CultureInfo CreateSpecificCulture(string name)
+        //TestCases.CultureShim.SetCurrentCulture("en-US")
+        public static CultureInfo CreateSpecificCulture(string name)
 		{
 			throw new NotImplementedException();
 		}
 		public static CultureInfo SetCurrentCulture(string name)
 		{
-			throw new NotImplementedException();
-		}
+            _cultureInfo = new CultureInfo(name);
+            return _cultureInfo;
+
+        }
 		public static CultureInfo GetCultureInfo(string name)
 		{
-			throw new NotImplementedException();
+            if (string.Equals(_cultureInfo.Name, name)) {
+                return _cultureInfo;
+            }
+            return new CultureInfo(name);
 		}
 	}
 }

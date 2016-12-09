@@ -1,11 +1,10 @@
-﻿using System;
-using System.IO;
+﻿using Npoi.Core.HSSF.Util;
 using Npoi.Core.SS.UserModel;
+using Npoi.Core.SS.Util;
 using Npoi.Core.XSSF.UserModel;
 using Npoi.Core.XWPF.UserModel;
-using Npoi.Core.SS.Util;
-using Npoi.Core.HSSF.Util;
-using Npoi.Core.HSSF.UserModel;
+using System;
+using System.IO;
 
 namespace Npoi.Samples.CreateNewSpreadsheet
 {
@@ -23,7 +22,6 @@ namespace Npoi.Samples.CreateNewSpreadsheet
 
             using (var fs = new FileStream(newFile, FileMode.Create, FileAccess.Write))
             {
-
                 IWorkbook workbook = new XSSFWorkbook();
                 ISheet sheet1 = workbook.CreateSheet("Sheet1");
                 sheet1.AddMergedRegion(new CellRangeAddress(0, 0, 0, 10));
@@ -40,7 +38,6 @@ namespace Npoi.Samples.CreateNewSpreadsheet
                 cell.SetCellValue("A very long piece of text that I want to auto-fit innit, yeah. Although if it gets really, really long it'll probably start messing up more.");
                 sheet1.AutoSizeColumn(0);
                 rowIndex++;
-
 
                 // 新增試算表。
                 var sheet2 = workbook.CreateSheet("My Sheet");
@@ -73,7 +70,6 @@ namespace Npoi.Samples.CreateNewSpreadsheet
                 cell2 = sheet2.CreateRow(4).CreateCell(0);
                 cell2.CellStyle = style1;
                 cell2.SetCellValue(4);
-
 
                 workbook.Write(fs);
             }

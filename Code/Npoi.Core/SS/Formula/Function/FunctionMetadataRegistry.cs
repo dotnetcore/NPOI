@@ -17,7 +17,6 @@
 
 namespace Npoi.Core.SS.Formula.Function
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
 
@@ -42,7 +41,7 @@ namespace Npoi.Core.SS.Formula.Function
         private static FunctionMetadataRegistry _instance;
 
         private FunctionMetadata[] _functionDataByIndex;
-        private Dictionary<object, object> _functionDataByName;
+        private Dictionary<string, FunctionMetadata> _functionDataByName;
 
         private static FunctionMetadataRegistry GetInstance()
         {
@@ -55,7 +54,7 @@ namespace Npoi.Core.SS.Formula.Function
 
         /* package */
 
-        public FunctionMetadataRegistry(FunctionMetadata[] functionDataByIndex, Dictionary<object, object> functionDataByName)
+        public FunctionMetadataRegistry(FunctionMetadata[] functionDataByIndex, Dictionary<string, FunctionMetadata> functionDataByName)
         {
             _functionDataByIndex = functionDataByIndex;
             _functionDataByName = functionDataByName;
@@ -97,7 +96,9 @@ namespace Npoi.Core.SS.Formula.Function
 
         private FunctionMetadata GetFunctionByNameInternal(string name)
         {
-            return (FunctionMetadata)_functionDataByName[name];
+            FunctionMetadata functionMetadata = null;
+            _functionDataByName.TryGetValue(name, out functionMetadata);
+            return functionMetadata;
         }
 
         public static FunctionMetadata GetFunctionByName(string name)
