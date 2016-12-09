@@ -17,7 +17,7 @@ namespace TestCases
 		public static string GetSetting(string name)
 		{
             if ("POI.testdata.path" == name) {
-                return "";//todo://init test path
+                return AppContext.BaseDirectory;
             }
 			throw new NotImplementedException();
 		}

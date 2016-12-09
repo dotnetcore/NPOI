@@ -261,3 +261,4 @@ restore.txt
 pkg/
 pkgobj/
 /Code/Npoi.Samples.CreateNewSpreadsheet/newbook.core.xlsx
+*.ppt

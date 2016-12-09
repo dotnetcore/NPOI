@@ -3,7 +3,6 @@
   "dependencies": {
     "NETStandard.Library": "1.6.0",
     "System.Threading.Thread": "4.3.0",
-    "Npoi.Core.Common": "1.1.0-*",
     "SharpZipLib.NETStandard": "0.86.0.1",
     "System.Security.Cryptography.Algorithms": "4.3.0"
   },
