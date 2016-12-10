@@ -9,6 +9,19 @@ This project is for NPOI Core. NPOI is still under at [https://github.com/tonyqu
 ### What is NPOI Core?
 NPOI Core is a .NET Core version of the NPOI.
 
+Assembly | Module/Namespace | Summary
+---|---|---
+Npoi.Core.dll| Npoi.Core.POIFS|OLE2/ActiveX文档属性读写库
+Npoi.Core.dll|Npoi.Core.DDF| Microsoft Office Drawing读写库
+Npoi.Core.dll|Npoi.Core.HPSF| OLE2/ActiveX文档读写库
+Npoi.Core.dll|Npoi.Core.HSSF| Microsoft Excel BIFF(Excel 97-2003)格式读写库
+Npoi.Core.dll|Npoi.Core.SS|Excel公用接口及Excel公式计算引擎
+Npoi.Core.dll|Npoi.Core.Util|基础类库，提供了很多实用功能，可用于其他读写文件格式项目的开发
+Npoi.Core.OOXML.dll|Npoi.Core.XSSF|Excel 2007(xlsx)格式读写库
+Npoi.Core.OOXML.dll|Npoi.Core.XWPF|Word 2007(docx)格式读写库
+Npoi.Core.OpenXml4Net.dll|Npoi.Core.OpenXml4Net|OpenXml底层zip包读写库
+Npoi.Core.OpenXmlFormats.dll|Npoi.Core.OpenXmlFormats|微软Office OpenXml对象关系库
+
 ### Getting Started
 
 #### Export Excel
