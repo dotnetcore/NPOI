@@ -23,11 +23,7 @@ using TestCases.HSSF;
 
 namespace Npoi.Core.OOXML
 {
-    /**
-     * Class to test that HXF correctly detects OOXML
-     *  documents
-     */
-
+    //Class to test that HXF correctly detects OOXML documents
     [TestFixture]
     public class TestDetectAsOOXML
     {

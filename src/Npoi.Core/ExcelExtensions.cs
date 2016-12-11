@@ -78,11 +78,8 @@ namespace Npoi.Core
         private const int DaysPer400Years = DaysPer100Years * 4 + 1;
         private const int DaysTo1899 = DaysPer400Years * 4 + DaysPer100Years * 3 - 367;
         private const long DoubleDateOffset = DaysTo1899 * TicksPerDay;
-
-
-
         private const long OADateMinAsTicks = (DaysPer100Years - DaysPerYear) * TicksPerDay;
-
+        
         private static double TicksToOADate(long value)
         {
             if (value == 0)
