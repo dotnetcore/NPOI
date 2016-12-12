@@ -29,6 +29,7 @@ namespace Npoi.Core.Util
 {
     using System;
     using System.IO;
+    using System.Text;
 
     /// <summary>
     /// CRC Verification
@@ -87,7 +88,7 @@ namespace Npoi.Core.Util
         /// <returns></returns>
         public ulong StringCRC(string sInputString)
         {
-            byte[] buffer = EncodingX.Default.GetBytes(sInputString);
+            byte[] buffer = Encoding.UTF8.GetBytes(sInputString);
             return ByteCRC(ref buffer);
         }
 

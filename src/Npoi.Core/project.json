@@ -4,7 +4,8 @@
     "NETStandard.Library": "1.6.0",
     "System.Threading.Thread": "4.3.0",
     "SharpZipLib.NETStandard": "0.86.0.1",
-    "System.Security.Cryptography.Algorithms": "4.3.0"
+    "System.Security.Cryptography.Algorithms": "4.3.0",
+    "ZKWeb.System.Drawing": "2.0.1"
   },
 
   "buildOptions": {
