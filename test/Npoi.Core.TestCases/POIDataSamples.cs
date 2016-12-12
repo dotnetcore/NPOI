@@ -115,7 +115,7 @@ namespace TestCases
             //  Some of the tests are depending on the american culture.
             TestCases.CultureShim.SetCurrentCulture("en-US");
 
-            string dataDirName = TestCases.AppSettingsShim.GetSetting(TEST_PROPERTY);
+            string dataDirName = AppSettingsShim.GetSetting(TEST_PROPERTY);
 
             if (dataDirName == null)
                 throw new Exception("Must set system property '"

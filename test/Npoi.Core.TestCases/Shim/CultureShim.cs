@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Globalization;
+using System.IO;
 using System.Text;
 
 namespace TestCases
@@ -8,20 +10,27 @@ namespace TestCases
 	{
 		public static StringComparison InvariantCultureIgnoreCase => StringComparison.OrdinalIgnoreCase;
 	}
+
+
 	public class EncodingShim
 	{
 		public static Encoding Default => Encoding.UTF8;
 	}
+
+
 	public class AppSettingsShim
 	{
 		public static string GetSetting(string name)
 		{
-            if ("POI.testdata.path" == name) {
-                return AppContext.BaseDirectory;
-            }
-			throw new NotImplementedException();
+            var build =  new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json").Build();
+
+            return build.GetSection("POI.testdata.path").Value;
 		}
 	}
+
+
 	public class CultureShim
 	{
 		public static CultureInfo InstalledUICulture => CultureInfo.CurrentUICulture;

@@ -358,6 +358,13 @@ namespace Npoi.Core.XSSF.UserModel
             }
         }
 
+              
+        public int GetLevel() {
+            CT_TextParagraphProperties pr = _p.pPr;
+            if (pr == null) return 0;
+            return pr.lvl;
+        }
+
         /**
          *
          * @return the color of bullet characters within a given paragraph.
@@ -368,19 +375,6 @@ namespace Npoi.Core.XSSF.UserModel
         {
             get
             {
-                //ParagraphPropertyFetcher<Color> fetcher = new ParagraphPropertyFetcher<Color>(getLevel()){
-                //    public bool fetch(CTTextParagraphProperties props){
-                //        if(props.IsSetBuClr()){
-                //            if(props.GetBuClr().IsSetSrgbClr()){
-                //                CTSRgbColor clr = props.GetBuClr().GetSrgbClr();
-                //                byte[] rgb = clr.GetVal();
-                //                SetValue(new Color(0xFF & rgb[0], 0xFF & rgb[1], 0xFF & rgb[2]));
-                //                return true;
-                //            }
-                //        }
-                //        return false;
-                //    }
-                //};
                 ParagraphPropertyFetcherBulletFontColor fetcher = new ParagraphPropertyFetcherBulletFontColor(Level);
                 fetchParagraphProperty(fetcher);
                 return fetcher.GetValue();

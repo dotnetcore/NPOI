@@ -26,7 +26,6 @@ namespace Npoi.Core.SS.Formula.Eval
      *
      * @author Josh Micich
      */
-
     [TestFixture]
     public class TestXSSFCircularReferences : BaseTestCircularReferences
     {
