@@ -1,10 +1,14 @@
-###  NPOI.Core
+﻿###  NPOI.Core
 
 This project is the .NET Core version of POI Java project. With NPOI, you can read/write Office 2003/2007 files very easily.
 
 ### NPOI Core here, NPOI elsewhere
 
 This project is for NPOI Core. NPOI is still under at [https://github.com/tonyqus/npoi](https://github.com/tonyqus/npoi)
+
+#### NuGet Package 
+
+**Install-Package Savorboard.Npoi.Core.OOXML**
 
 ### What is NPOI Core?
 NPOI Core is a .NET Core version of the NPOI.
@@ -23,10 +27,6 @@ Npoi.Core.OpenXml4Net.dll|Npoi.Core.OpenXml4Net|OpenXml底层zip包读写库
 Npoi.Core.OpenXmlFormats.dll|Npoi.Core.OpenXmlFormats|微软Office OpenXml对象关系库
 
 ### Getting Started
-
-#### NuGet Package 
-
-> Install-Package Savorboard.Npoi.Core.OOXML
 
 #### Export Excel
 
