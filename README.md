@@ -24,6 +24,9 @@ Npoi.Core.OpenXmlFormats.dll|Npoi.Core.OpenXmlFormats|微软Office OpenXml对象
 
 ### Getting Started
 
+#### NuGet Package 
+
+> Install-Package Savorboard.Npoi.Core.OOXML
 
 #### Export Excel
 
