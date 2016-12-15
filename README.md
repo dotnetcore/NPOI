@@ -8,7 +8,10 @@ This project is for NPOI Core. NPOI is still under at [https://github.com/tonyqu
 
 ### NuGet Package 
 
-**Install-Package Savorboard.Npoi.Core.OOXML**
+```powershell
+Install-Package Savorboard.Npoi.Core.OOXML
+
+```
 
 ### What is NPOI Core?
 NPOI Core is a .NET Core version of the NPOI.
