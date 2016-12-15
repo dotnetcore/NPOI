@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Savorboard.NPOI.Core.OpenXmlFormats</id>
+    <version>1.1.1</version>
+    <authors>Savorboard (yangxiaodong)</authors>
+    <owners>Savorboard (yangxiaodong)</owners>
+    <licenseUrl>https://github.com/yuleyule66/Npoi.Core/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/yuleyule66/Npoi.Core</projectUrl>
+    <iconUrl>http://images2015.cnblogs.com/blog/250417/201612/250417-20161205111925788-426624743.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>NPOI Of NET Standard</description>
+    <summary>
+This project is the .NET version of POI Java project at http://poi.apache.org/. POI is an open source project which can help you read/write xls, doc, ppt files. It has a wide application.
+For example, you can use it to.
+a. generate a Excel report without Microsoft Office suite installed on your server and more efficient than call Microsoft Excel ActiveX at background.
+b. extract text from Office documents to help you implement full-text indexing feature (most of time this feature is used to create search engines).
+c. extract images from Office documents.
+d. generate Excel sheets that contains formula.</summary>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Excel Word Office NPOI</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.6">
+        <dependency id="NETStandard.Library" version="[1.6.0, )" />     
+        <dependency id="Savorboard.NPOI.Core.OpenXml4Net" version="[1.1.1, )" />
+        <dependency id="System.ComponentModel.Primitives" version="[4.1.0, )" />
+        <dependency id="System.Xml.XmlSerializer" version="[4.0.11, )" />
+      </group>
+      <group targetFramework=".NETStandard1.6">
+        <dependency id="NETStandard.Library" version="[1.6.0, )" />
+        <dependency id="Savorboard.NPOI.Core.OpenXml4Net" version="[1.1.1, )" />
+        <dependency id="System.ComponentModel.Primitives" version="[4.1.0, )" />
+        <dependency id="System.Xml.XmlSerializer" version="[4.0.11, )" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+      <file src="bin\Release\netstandard1.6\Npoi.Core.OpenXmlFormats.dll" target="lib\netstandard1.6\Npoi.Core.OpenXmlFormats.dll" />
+      <file src="bin\Release\net46\Npoi.Core.OpenXmlFormats.dll" target="lib\net46\Npoi.Core.OpenXmlFormats.dll" />
+  </files>
+</package>
