@@ -35,7 +35,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
     {
         private int firstrow = -1;
         private int lastrow = -1;
-        private SortedList<object, object> _rowRecords;
+        private SortedList<int, RowRecord> _rowRecords;
 
         //private int size = 0;
         private ValueRecordsAggregate _valuesAgg;
@@ -61,7 +61,7 @@ namespace Npoi.Core.HSSF.Record.Aggregates
 
         private RowRecordsAggregate(SharedValueManager svm)
         {
-            _rowRecords = new SortedList<object, object>();
+            _rowRecords = new SortedList<int, RowRecord>();
             _valuesAgg = new ValueRecordsAggregate();
             _unknownRecords = new List<Record>();
             _sharedValueManager = svm;
@@ -264,7 +264,10 @@ namespace Npoi.Core.HSSF.Record.Aggregates
             {
                 throw new ArgumentException("The row number must be between 0 and 65535");
             }
-            return (RowRecord)_rowRecords[rowIndex];
+
+            RowRecord rowRecord;
+            _rowRecords.TryGetValue(rowIndex, out rowRecord);
+            return rowRecord;
         }
 
         public FormulaRecordAggregate CreateFormula(int row, int col)

@@ -62,12 +62,12 @@ namespace Npoi.Core.HPSF
         /**
          * Maps property IDs To property names.
          */
-        private Dictionary<object, object> dictionaryIDToName = new Dictionary<object, object>();
+        private Dictionary<long, string> dictionaryIDToName = new Dictionary<long, string>();
 
         /**
          * Maps property names To property IDs.
          */
-        private Dictionary<object, object> dictionaryNameToID = new Dictionary<object, object>();
+        private Dictionary<string, long> dictionaryNameToID = new Dictionary<string, long>();
 
         /**
          * Tells whether this object is pure or not.
@@ -100,14 +100,15 @@ namespace Npoi.Core.HPSF
 
             /* Register name and ID in the dictionary. Mapping in both directions is possible. If there is alReady a  */
             long idKey = cp.ID;
-            object oldID = dictionaryNameToID[name];
-            if (oldID != null)
+            long oldID = 0;
+            if (dictionaryNameToID.TryGetValue(name, out oldID))
                 dictionaryIDToName.Remove(oldID);
+
             dictionaryNameToID[name] = idKey;
             dictionaryIDToName[idKey] = name;
 
             /* Put the custom property into this map. */
-            if (oldID != null)
+            if (oldID != 0)
                 base.Remove(oldID);
 
             base[idKey] = cp;
@@ -156,9 +157,8 @@ namespace Npoi.Core.HPSF
         private object Put(CustomProperty customProperty) {
             string name = customProperty.Name;
 
-            /* Check whether a property with this name is in the map alReady. */
-            object oldId = dictionaryNameToID[(name)];
-            if (oldId != null) {
+            long oldId;
+            if (dictionaryNameToID.TryGetValue(name, out oldId)) {
                 customProperty.ID = (long)oldId;
             }
             else {
@@ -170,6 +170,7 @@ namespace Npoi.Core.HPSF
                 }
                 customProperty.ID = max + 1;
             }
+
             return Put(name, customProperty);
         }
 
@@ -180,10 +181,11 @@ namespace Npoi.Core.HPSF
         /// <returns>The Removed property or
         /// <c>null</c>
         ///  if the specified property was not found.</returns>
-        public object Remove(string name) {
-            if (dictionaryNameToID[name] == null)
+        public CustomProperty Remove(string name) {
+            if (!dictionaryNameToID.ContainsKey(name)) {
                 return null;
-            long id = (long)dictionaryNameToID[name];
+            }
+            long id = dictionaryNameToID[name];
             dictionaryIDToName.Remove(id);
             dictionaryNameToID.Remove(name);
             CustomProperty tmp = (CustomProperty)this[id];
@@ -301,8 +303,7 @@ namespace Npoi.Core.HPSF
         ///  if a value with the specified
         /// name is not found in the custom properties.</value>
         public object this[string name] {
-            get
-            {
+            get {
                 object x = dictionaryNameToID[name];
                 //string.Equals seems not support Unicode string
                 if (x == null) {
@@ -380,8 +381,7 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <value>The codepage.</value>
         public int Codepage {
-            get
-            {
+            get {
                 int codepage = -1;
                 for (IEnumerator i = Values.GetEnumerator(); codepage == -1 && i.MoveNext();) {
                     CustomProperty cp = (CustomProperty)i.Current;
@@ -390,8 +390,7 @@ namespace Npoi.Core.HPSF
                 }
                 return codepage;
             }
-            set
-            {
+            set {
                 MutableProperty p = new MutableProperty();
                 p.ID = PropertyIDMap.PID_CODEPAGE;
                 p.Type = Variant.VT_I2;

@@ -35,6 +35,7 @@ namespace Npoi.Core.HPSF
     using System.Globalization;
     using System.IO;
     using System.Text;
+    using System.Linq;
 
     /// <summary>
     /// Adds writing capability To the {@link Section} class.
@@ -55,7 +56,7 @@ namespace Npoi.Core.HPSF
          * decision has been taken when specifying the "properties" field
          * as an Property[]. It should have been a {@link java.util.List}.
          */
-        private List<object> preprops;
+        private List<Property> preprops;
 
         /**
          * Contains the bytes making out the section. This byte array is
@@ -71,7 +72,7 @@ namespace Npoi.Core.HPSF
             dirty = true;
             formatID = null;
             offset = -1;
-            preprops = new List<object>();
+            preprops = new List<Property>();
         }
 
         /// <summary>
@@ -119,7 +120,7 @@ namespace Npoi.Core.HPSF
         /// <param name="properties">This section's new properties.</param>
         public void SetProperties(Property[] properties) {
             this.properties = properties;
-            preprops = new List<object>();
+            preprops = new List<Property>();
             for (int i = 0; i < properties.Length; i++)
                 preprops.Add(properties[i]);
             dirty = true;
@@ -202,11 +203,8 @@ namespace Npoi.Core.HPSF
         /// </summary>
         /// <param name="id">The ID of the property To be Removed</param>
         public void RemoveProperty(long id) {
-            for (IEnumerator i = preprops.GetEnumerator(); i.MoveNext();)
-                if (((Property)i.Current).ID == id) {
-                    preprops.Remove(i.Current);
-                    break;
-                }
+            var stayTodel = preprops.Find(x => x.ID == id);
+            preprops.Remove(stayTodel);
             dirty = true;
         }
 
