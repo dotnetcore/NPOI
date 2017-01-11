@@ -45,10 +45,10 @@ namespace Npoi.Core.HSSF.Model
 
         public RowBlocksReader(RecordStream rs) {
             List<object> plainRecords = new List<object>();
-            List<object> shFrmRecords = new List<object>();
-            List<object> arrayRecords = new List<object>();
-            List<object> tableRecords = new List<object>();
-            List<object> mergeCellRecords = new List<object>();
+            List<SharedFormulaRecord> shFrmRecords = new List<SharedFormulaRecord>();
+            List<ArrayRecord> arrayRecords = new List<ArrayRecord>();
+            List<TableRecord> tableRecords = new List<TableRecord>();
+            List<MergeCellsRecord> mergeCellRecords = new List<MergeCellsRecord>();
             List<CellReference> firstCellRefs = new List<CellReference>();
             Record prevRec = null;
 
@@ -61,14 +61,14 @@ namespace Npoi.Core.HSSF.Model
                     throw new InvalidOperationException("Failed to find end of row/cell records");
                 }
                 Record rec = rs.GetNext();
-                List<object> dest;
+                //List<object> dest;
                 switch (rec.Sid) {
                     case MergeCellsRecord.sid:
-                        dest = mergeCellRecords;
+                        //dest = mergeCellRecords;
                         break;
 
                     case SharedFormulaRecord.sid:
-                        dest = shFrmRecords;
+                        //dest = shFrmRecords;
                         if (!(prevRec is FormulaRecord)) {
                             throw new Exception("Shared formula record should follow a FormulaRecord");
                         }
@@ -78,24 +78,24 @@ namespace Npoi.Core.HSSF.Model
                         break;
 
                     case ArrayRecord.sid:
-                        dest = arrayRecords;
+                        //dest = arrayRecords;
                         break;
 
                     case TableRecord.sid:
-                        dest = tableRecords;
+                        //dest = tableRecords;
                         break;
 
                     default:
-                        dest = plainRecords;
+                        //dest = plainRecords;
                         break;
                 }
-                dest.Add(rec);
+                //dest.Add(rec);
                 prevRec = rec;
             }
             SharedFormulaRecord[] sharedFormulaRecs = new SharedFormulaRecord[shFrmRecords.Count];
             List<ArrayRecord> arrayRecs = new List<ArrayRecord>(arrayRecords.Count);
             List<TableRecord> tableRecs = new List<TableRecord>(tableRecords.Count);
-            sharedFormulaRecs = (SharedFormulaRecord[])shFrmRecords.ToArray();
+            sharedFormulaRecs = shFrmRecords.ToArray();
 
             CellReference[] firstCells = new CellReference[firstCellRefs.Count];
             firstCells = firstCellRefs.ToArray();

@@ -25,6 +25,7 @@ namespace Npoi.Core.HSSF.Model
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
 
     /**
@@ -128,14 +129,14 @@ namespace Npoi.Core.HSSF.Model
                 while (rs.PeekNextClass() == typeof(ExternalNameRecord)) {
                     temp.Add(rs.GetNext());
                 }
-                _externalNameRecords = (ExternalNameRecord[])temp.ToArray();
+                _externalNameRecords = temp.Select(x => x as ExternalNameRecord).ToArray();
 
                 temp.Clear();
 
                 while (rs.PeekNextClass() == typeof(CRNCountRecord)) {
                     temp.Add(new CRNBlock(rs));
                 }
-                _crnBlocks = (CRNBlock[])temp.ToArray();
+                _crnBlocks = temp.Select(x => x as CRNBlock).ToArray();
             }
 
             /**
@@ -160,8 +161,7 @@ namespace Npoi.Core.HSSF.Model
             }
 
             public int NumberOfNames {
-                get
-                {
+                get {
                     return _externalNameRecords.Length;
                 }
             }
@@ -217,7 +217,7 @@ namespace Npoi.Core.HSSF.Model
             }
 
             //_externalBookBlocks = new ExternalBookBlock[temp.Count];
-            _externalBookBlocks = (ExternalBookBlock[])temp.ToArray();
+            _externalBookBlocks = temp.Select(x => x as ExternalBookBlock).ToArray();
             temp.Clear();
 
             if (_externalBookBlocks.Length > 0) {
@@ -345,8 +345,7 @@ namespace Npoi.Core.HSSF.Model
         }
 
         public int NumNames {
-            get
-            {
+            get {
                 return _definedNames.Count;
             }
         }

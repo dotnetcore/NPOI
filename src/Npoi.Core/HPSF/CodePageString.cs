@@ -31,7 +31,7 @@ namespace Npoi.Core.HPSF
 
         public CodePageString(byte[] data, int startOffset) {
             int offset = startOffset;
-
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             int size = LittleEndian.GetInt(data, offset);
             offset += LittleEndianConsts.INT_SIZE;
 
@@ -56,8 +56,9 @@ namespace Npoi.Core.HPSF
             string result;
             if (codepage == -1)
                 result = Encoding.UTF8.GetString(_value);
-            else
+            else {
                 result = Encoding.GetEncoding(codepage).GetString(_value);
+            }
             int terminator = result.IndexOf('\0');
             if (terminator == -1) {
                 //logger.log(
