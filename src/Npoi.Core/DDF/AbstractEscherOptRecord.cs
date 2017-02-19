@@ -34,9 +34,6 @@ namespace Npoi.Core.DDF
     {
         protected List<EscherProperty> properties = new List<EscherProperty>();
 
-        /**
-         * Add a property to this record.
-         */
 
         public void AddEscherProperty(EscherProperty prop) {
             properties.Add(prop);

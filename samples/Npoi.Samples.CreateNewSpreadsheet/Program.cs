@@ -13,9 +13,20 @@ namespace Npoi.Samples.CreateNewSpreadsheet
     public class Program
     {
         public static void Main(string[] args) {
-            ExportExcel();
-            ExportExcelHSSF();
-            ExportWord();
+            //ExportExcel();
+            //ExportExcelHSSF();
+            //ExportWord();
+            ImportExcelHSSF();
+        }
+
+        private static void ImportExcelHSSF() {
+            Stream templateStream = new MemoryStream();
+            using (var file = new FileStream("D:\\moban.xls", FileMode.Open, FileAccess.Read)) {
+                file.CopyTo(templateStream);
+                templateStream.Seek(0, SeekOrigin.Begin);
+            }
+            var templateWorkbook = new HSSFWorkbook(templateStream, true);
+            Console.WriteLine(templateWorkbook.GetSheetAt(0).PhysicalNumberOfRows);
         }
 
         class XXX
