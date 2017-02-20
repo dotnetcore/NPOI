@@ -50,10 +50,9 @@ namespace Npoi.Core.DDF
             return bytesRemaining + 8;
         }
 
-        /**
-         * The list of properties stored by this record.
-         */
-
+        /// <summary>
+        /// The list of properties stored by this record.
+        /// </summary>
         public List<EscherProperty> EscherProperties {
             get
             {
