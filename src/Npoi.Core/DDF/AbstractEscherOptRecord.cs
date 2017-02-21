@@ -60,10 +60,11 @@ namespace Npoi.Core.DDF
             }
         }
 
-        /**
-         * The list of properties stored by this record.
-         */
-
+        /// <summary>
+        /// The list of properties stored by this record.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public EscherProperty GetEscherProperty(int index) {
             return properties[index];
         }
