@@ -131,13 +131,11 @@ namespace Npoi.Core.DDF
             properties.Sort(new EscherPropertyComparer());
         }
 
-        /**
-         * Set an escher property. If a property with given propId already
-         exists it is replaced.
-         *
-         * @param value the property to set.
-         */
 
+        /// <summary>
+        /// Set an escher property. If a property with given propId already exists it is replaced.
+        /// </summary>
+        /// <param name="value"></param>
         public void SetEscherProperty(EscherProperty value) {
             properties.RemoveAll(x => x.Id == value.Id);         
             properties.Add(value);
