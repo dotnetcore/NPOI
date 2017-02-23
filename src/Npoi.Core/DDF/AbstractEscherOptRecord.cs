@@ -146,10 +146,10 @@ namespace Npoi.Core.DDF
             EscherProperties.RemoveAll(x => x.PropertyNumber == num);            
         }
 
-        /**
-         * Retrieve the string representation of this record.
-         */
-
+        /// <summary>
+        /// Retrieve the string representation of this record.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString() {
             string nl = Environment.NewLine;
 
