@@ -4,14 +4,9 @@ using System.Text.RegularExpressions;
 
 namespace Npoi.Core.OpenXml4Net.OPC
 {
-    /**
-     * An immutable Open Packaging Convention compliant part name.
-     *
-     * @author Julien Chable
-     *
-     * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">http://www.ietf.org/rfc/rfc3986.txt</a>
-     */
-
+    /// <summary>
+    ///  An immutable Open Packaging Convention compliant part name.
+    /// </summary>
     public class PackagePartName : IComparable<PackagePartName>
     {
         /**

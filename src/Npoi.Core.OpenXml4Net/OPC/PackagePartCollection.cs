@@ -4,21 +4,13 @@ using System.Text;
 
 namespace Npoi.Core.OpenXml4Net.OPC
 {
-    /**
-     * A package part collection.
-     *
-     * @author Julien Chable
-     * @version 0.1
-     */
-
+    /// <summary>
+    ///  A package part collection.
+    /// </summary>
     public class PackagePartCollection : SortedList<PackagePartName, PackagePart>
     {
         private static long serialVersionUID = 2515031135957635515L;
-
-        /**
-         * Arraylist use to store this collection part names as string for rule
-         * M1.11 optimized checking.
-         */
+ 
         private List<String> registerPartNameStr = new List<String>();
 
         /**
