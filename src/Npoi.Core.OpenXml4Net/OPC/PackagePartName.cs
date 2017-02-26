@@ -25,9 +25,9 @@ namespace Npoi.Core.OpenXml4Net.OPC
         private static string[] RFC3986_PCHAR_SUB_DELIMS = { "!", "$", "&", "'",
             "(", ")", "*", "+", ",", ";", "=" };
 
-        /**
-         * Unreserved character (+ ALPHA & DIGIT).
-         */
+        /// <summary>
+        /// Unreserved character (+ ALPHA & DIGIT).
+        /// </summary>
         private static string[] RFC3986_PCHAR_UNRESERVED_SUP = { "-", ".", "_", "~" };
 
         /**
