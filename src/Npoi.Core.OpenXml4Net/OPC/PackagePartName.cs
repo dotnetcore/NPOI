@@ -35,9 +35,9 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /// </summary>
         private static string[] RFC3986_PCHAR_AUTHORIZED_SUP = { ":", "@" };
 
-        /**
-         * Flag to know if this part name is from a relationship part name.
-         */
+        /// <summary>
+        /// Flag to know if this part name is from a relationship part name.
+        /// </summary>
         private bool isRelationship;
 
         /**
@@ -88,7 +88,6 @@ namespace Npoi.Core.OpenXml4Net.OPC
          *             Throw if the specified part name is not conform to Open
          *             Packaging Convention specifications.
          */
-
         internal PackagePartName(string partName, bool checkConformance)
         {
             Uri partURI;
