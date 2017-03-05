@@ -30,9 +30,9 @@ namespace Npoi.Core.OpenXml4Net.OPC
         /// </summary>
         private static string[] RFC3986_PCHAR_UNRESERVED_SUP = { "-", ".", "_", "~" };
 
-        /**
-         * Authorized reserved characters for pChar.
-         */
+        /// <summary>
+        /// Authorized reserved characters for pChar.
+        /// </summary>
         private static string[] RFC3986_PCHAR_AUTHORIZED_SUP = { ":", "@" };
 
         /**
