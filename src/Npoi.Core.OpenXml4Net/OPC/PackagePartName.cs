@@ -149,16 +149,11 @@ namespace Npoi.Core.OpenXml4Net.OPC
             return this.isRelationship;
         }
 
-        /**
-         * Throws an exception (of any kind) if the specified part name does not
-         * follow the Open Packaging Convention specifications naming rules.
-         *
-         * @param partUri
-         *            The part name to check.
-         * @throws Exception
-         *             Throws if the part name is invalid.
-         */
-
+        /// <summary>
+        /// Throws an exception (of any kind) if the specified part name does not
+        /// follow the Open Packaging Convention specifications naming rules.
+        /// </summary>
+        /// <param name="partUri">The part name to check.</param>
         private static void ThrowExceptionIfInvalidPartUri(Uri partUri)
         {
             if (partUri == null)
