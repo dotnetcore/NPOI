@@ -268,20 +268,10 @@ namespace Npoi.Core.OpenXml4Net.OPC
             }
         }
 
-        /**
-         * Throws an exception if a segment any characters other than pchar
-         * characters. [M1.6]
-         *
-         * Throws an exception if a segment contain percent-encoded forward slash
-         * ('/'), or backward slash ('\') characters. [M1.7]
-         *
-         * Throws an exception if a segment contain percent-encoded unreserved
-         * characters. [M1.8]
-         *
-         * @param segment
-         *            The segment to check
-         */
-
+        /// <summary>
+        /// Throws an exception if a segment any characters other than pchar characters. [M1.6]
+        /// </summary>
+        /// <param name="segment">The segment to check</param>
         private static void CheckPCharCompliance(string segment)
         {
             bool errorFlag;
