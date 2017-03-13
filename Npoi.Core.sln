@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{84A4E853-E521-420C-B731-DE8201209E33}"
 EndProject
@@ -9,26 +9,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{53ACA16E-F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{BF3A7231-A953-4FBA-AE3F-403CF412C8DA}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Npoi.Core", "src\Npoi.Core\Npoi.Core.xproj", "{D2DB927C-AAD0-4278-9198-2817D4D67509}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Npoi.Core.OpenXml4Net", "src\Npoi.Core.OpenXml4Net\Npoi.Core.OpenXml4Net.xproj", "{54413C64-14BD-496F-92BA-9DEAE369BA84}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Npoi.Core.Ooxml", "src\Npoi.Core.Ooxml\Npoi.Core.Ooxml.xproj", "{A2173A8B-1B9D-496D-B049-9010B0C49B23}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Npoi.Core.OpenXmlFormats", "src\Npoi.Core.OpenXmlFormats\Npoi.Core.OpenXmlFormats.xproj", "{95ADF7EB-FCC3-4C84-B03C-C8B20C81D1D1}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Npoi.Core.Ooxml.TestCases", "test\Npoi.Core.Ooxml.TestCases\Npoi.Core.Ooxml.TestCases.xproj", "{9D85EEBC-8B2D-45D3-AA35-C1AF45C2A737}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Npoi.Core.OpenXml4Net.Tests", "test\Npoi.Core.OpenXml4Net.Tests\Npoi.Core.OpenXml4Net.Tests.xproj", "{F7F03584-22A7-4101-AAD1-55976E8111F3}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Npoi.Core.TestCases", "test\Npoi.Core.TestCases\Npoi.Core.TestCases.xproj", "{49472345-4EC8-4138-9F44-CF8FF51D67BE}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Npoi.Samples.CreateNewSpreadsheet", "samples\Npoi.Samples.CreateNewSpreadsheet\Npoi.Samples.CreateNewSpreadsheet.xproj", "{E26BBD8A-3A38-4F82-91A4-7F81ECFB8196}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1136B677-4947-4E0F-9100-6D3F3084426F}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npoi.Core", "src\Npoi.Core\Npoi.Core.csproj", "{D2DB927C-AAD0-4278-9198-2817D4D67509}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npoi.Core.OpenXml4Net", "src\Npoi.Core.OpenXml4Net\Npoi.Core.OpenXml4Net.csproj", "{54413C64-14BD-496F-92BA-9DEAE369BA84}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npoi.Core.Ooxml", "src\Npoi.Core.Ooxml\Npoi.Core.Ooxml.csproj", "{A2173A8B-1B9D-496D-B049-9010B0C49B23}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npoi.Core.OpenXmlFormats", "src\Npoi.Core.OpenXmlFormats\Npoi.Core.OpenXmlFormats.csproj", "{95ADF7EB-FCC3-4C84-B03C-C8B20C81D1D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npoi.Core.Ooxml.TestCases", "test\Npoi.Core.Ooxml.TestCases\Npoi.Core.Ooxml.TestCases.csproj", "{9D85EEBC-8B2D-45D3-AA35-C1AF45C2A737}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npoi.Core.OpenXml4Net.Tests", "test\Npoi.Core.OpenXml4Net.Tests\Npoi.Core.OpenXml4Net.Tests.csproj", "{F7F03584-22A7-4101-AAD1-55976E8111F3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npoi.Core.TestCases", "test\Npoi.Core.TestCases\Npoi.Core.TestCases.csproj", "{49472345-4EC8-4138-9F44-CF8FF51D67BE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npoi.Samples.CreateNewSpreadsheet", "samples\Npoi.Samples.CreateNewSpreadsheet\Npoi.Samples.CreateNewSpreadsheet.csproj", "{E26BBD8A-3A38-4F82-91A4-7F81ECFB8196}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

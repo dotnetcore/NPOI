@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <VersionPrefix>1.1.0</VersionPrefix>
+    <TargetFrameworks>netstandard1.6</TargetFrameworks>
+    <DefineConstants>$(DefineConstants);HIDE_UNREACHABLE_CODE</DefineConstants>
+    <NoWarn>$(NoWarn);CS0612;CS0618</NoWarn>
+    <AssemblyName>Npoi.Core</AssemblyName>
+    <PackageId>Npoi.Core</PackageId>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.6' ">$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Savorboard.NPOI.Core.1.1.0.nupkg" />
+    <None Remove="Savorboard.NPOI.Core.1.1.1.nupkg" />
+    <None Remove="Savorboard.NPOI.Core.1.1.2.nupkg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
+    <PackageReference Include="SharpZipLib.NETStandard" Version="0.86.0.1" />
+    <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0" />
+    <PackageReference Include="ZKWeb.System.Drawing" Version="2.0.1" />
+  </ItemGroup>
+</Project>

@@ -31,7 +31,7 @@ namespace Npoi.Core.HPSF
 
         public CodePageString(byte[] data, int startOffset) {
             int offset = startOffset;
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+           // Encoding.RegisterProvider( new UTF8Encoding() CodePagesEncodingProvider.Instance);
             int size = LittleEndian.GetInt(data, offset);
             offset += LittleEndianConsts.INT_SIZE;
 

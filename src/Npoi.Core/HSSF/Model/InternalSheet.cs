@@ -811,6 +811,7 @@ namespace Npoi.Core.HSSF.Model
             //if (log.Check(POILogger.DEBUG))
             //    log.Log(POILogger.DEBUG, "AddRow ");
             DimensionsRecord d = _dimensions;
+            
 
             if (row.RowNumber >= d.LastRow) {
                 d.LastRow = (row.RowNumber + 1);
