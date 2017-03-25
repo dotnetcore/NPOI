@@ -2,14 +2,9 @@
 
 namespace Npoi.Core.OpenXml4Net.OPC
 {
-    /**
-     * Storage class for configuration storage parameters.
-     * TODO xml syntax checking is no longer done with DOM4j parser -> remove the schema or do it ?
-     *
-     * @author CDubettier, Julen Chable
-     * @version 1.0
-     */
-
+    /// <summary>
+    ///  Storage class for configuration storage parameters.
+    /// </summary>  
     public class Configuration
     {
         // TODO configuration by default. should be clearly stated that it should be
