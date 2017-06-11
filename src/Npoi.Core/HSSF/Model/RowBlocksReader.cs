@@ -61,14 +61,13 @@ namespace Npoi.Core.HSSF.Model
                     throw new InvalidOperationException("Failed to find end of row/cell records");
                 }
                 Record rec = rs.GetNext();
-                //List<object> dest;
                 switch (rec.Sid) {
                     case MergeCellsRecord.sid:
-                        //dest = mergeCellRecords;
+                        mergeCellRecords.Add((MergeCellsRecord)rec);
                         break;
 
                     case SharedFormulaRecord.sid:
-                        //dest = shFrmRecords;
+                        shFrmRecords.Add((SharedFormulaRecord)rec);
                         if (!(prevRec is FormulaRecord)) {
                             throw new Exception("Shared formula record should follow a FormulaRecord");
                         }
@@ -78,18 +77,17 @@ namespace Npoi.Core.HSSF.Model
                         break;
 
                     case ArrayRecord.sid:
-                        //dest = arrayRecords;
+                        arrayRecords.Add((ArrayRecord)rec);
                         break;
 
                     case TableRecord.sid:
-                        //dest = tableRecords;
+                        tableRecords.Add((TableRecord)rec);
                         break;
 
                     default:
-                        //dest = plainRecords;
+                        plainRecords.Add(rec);
                         break;
                 }
-                //dest.Add(rec);
                 prevRec = rec;
             }
             SharedFormulaRecord[] sharedFormulaRecs = new SharedFormulaRecord[shFrmRecords.Count];
