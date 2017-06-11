@@ -264,7 +264,13 @@ namespace Npoi.Core.SS.UserModel
             {
                 formatStr = formatStr.Replace("#", "");
             }
-            FormatBase format = (FormatBase)formats[formatStr];
+            FormatBase format = null;
+
+            if (formats.ContainsKey(formatStr))
+            {
+                format = (FormatBase)formats[formatStr];
+            }
+
             if (format != null)
             {
                 return format;
