@@ -14,8 +14,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Npoi.Core\Npoi.Core.csproj" />
+    <PackageReference Include="ZKWeb.System.Drawing" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Npoi.Core.OpenXml4Net\Npoi.Core.OpenXml4Net.csproj" />
     <ProjectReference Include="..\Npoi.Core.OpenXmlFormats\Npoi.Core.OpenXmlFormats.csproj" />
+    <ProjectReference Include="..\Npoi.Core\Npoi.Core.csproj" />
   </ItemGroup>
 </Project>

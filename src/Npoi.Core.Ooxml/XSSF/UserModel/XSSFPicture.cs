@@ -22,7 +22,7 @@ using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.Util;
 using Npoi.Core.Util;
 using System;
-using System.Drawing;
+using System.DrawingCore;
 using System.IO;
 using System.Xml.Linq;
 

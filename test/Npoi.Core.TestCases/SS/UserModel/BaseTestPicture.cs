@@ -17,7 +17,7 @@
 
 using Npoi.Core.SS.UserModel;
 using NUnit.Framework;
-using System.Drawing;
+using System.DrawingCore;
 using Npoi.Core.Util;
 using Npoi.Core.SS.Util;
 using System.IO;

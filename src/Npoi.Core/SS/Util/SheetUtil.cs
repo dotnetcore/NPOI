@@ -22,7 +22,7 @@ namespace Npoi.Core.SS.Util
 
     //using System.Windows.Forms;
     using System.Collections.Generic;
-    using System.Drawing;
+    using System.DrawingCore;
 
     /**
      * Helper methods for when working with Usermodel sheets
@@ -606,7 +606,7 @@ namespace Npoi.Core.SS.Util
             Font font = new Font(font1.FontName, font1.FontHeightInPoints, style);
             //, GraphicsUnit.Point);
             return font;
-            //return new System.Drawing.Font(font1.FontName, font1.FontHeightInPoints);
+            //return new System.DrawingCore.Font(font1.FontName, font1.FontHeightInPoints);
         }
 
         public static bool ContainsCell(CellRangeAddress cr, int rowIx, int colIx)

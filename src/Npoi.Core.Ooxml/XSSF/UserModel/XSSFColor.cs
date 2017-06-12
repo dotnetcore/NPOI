@@ -20,7 +20,7 @@ using Npoi.Core.OpenXmlFormats.Spreadsheet;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.Util;
 using System;
-using System.Drawing;
+using System.DrawingCore;
 using System.Text;
 
 namespace Npoi.Core.XSSF.UserModel

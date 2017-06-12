@@ -24,8 +24,8 @@ namespace TestCases.HSSF.UserModel
     using NUnit.Framework;
     using System.IO;
     using TestCases.HSSF;
-    using System.Drawing;
-    //using System.Drawing.Imaging;
+    using System.DrawingCore;
+    //using System.DrawingCore.Imaging;
     using Npoi.Core.SS.UserModel;
     using System.Collections.Generic;
 

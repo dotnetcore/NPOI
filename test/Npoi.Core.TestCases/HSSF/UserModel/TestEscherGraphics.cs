@@ -19,7 +19,7 @@ namespace TestCases.HSSF.UserModel
 {
     using System;
     using System.IO;
-    using System.Drawing;
+    using System.DrawingCore;
 
     using Npoi.Core.HSSF.UserModel;
     using Npoi.Core.SS.UserModel;
@@ -63,7 +63,7 @@ namespace TestCases.HSSF.UserModel
         [Test]
         public void TestGetFont()
         {
-            System.Drawing.Font f = graphics.Font;
+            System.DrawingCore.Font f = graphics.Font;
             if (f.ToString().IndexOf("dialog") == -1 && f.ToString().IndexOf("Dialog") == -1)
             {
                 //Assert.AreEqual("java.awt.Font[family=Arial,name=Arial,style=plain,size=10]", f.ToString());
@@ -85,7 +85,7 @@ namespace TestCases.HSSF.UserModel
         [Test]
         public void TestSetFont()
         {
-            System.Drawing.Font f = new System.Drawing.Font("Helvetica", 12,FontStyle.Regular);
+            System.DrawingCore.Font f = new System.DrawingCore.Font("Helvetica", 12,FontStyle.Regular);
             graphics.SetFont(f);
             Assert.AreEqual(f, graphics.Font);
         }

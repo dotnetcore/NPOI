@@ -18,7 +18,7 @@
 using Npoi.Core.OpenXmlFormats.Dml;
 using Npoi.Core.Util;
 using System;
-using System.Drawing;
+using System.DrawingCore;
 
 namespace Npoi.Core.XSSF.UserModel
 {

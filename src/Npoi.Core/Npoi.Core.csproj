@@ -15,15 +15,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Savorboard.NPOI.Core.1.1.0.nupkg" />
-    <None Remove="Savorboard.NPOI.Core.1.1.1.nupkg" />
-    <None Remove="Savorboard.NPOI.Core.1.1.2.nupkg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
-    <PackageReference Include="SharpZipLib.NETStandard" Version="0.86.0.1" />
     <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0" />
-    <PackageReference Include="ZKWeb.System.Drawing" Version="2.0.1" />
+    <PackageReference Include="SharpZipLib.NETStandard" Version="0.86.0.1" />
+    <PackageReference Include="ZKWeb.System.Drawing" Version="3.0.0" />
   </ItemGroup>
 </Project>

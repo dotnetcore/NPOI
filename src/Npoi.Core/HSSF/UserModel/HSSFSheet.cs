@@ -2238,9 +2238,9 @@ namespace Npoi.Core.HSSF.UserModel
         /// </summary>
         /// <param name="font1">The font.</param>
         /// <returns></returns>
-        public System.Drawing.Font HSSFFont2Font(HSSFFont font1)
+        public System.DrawingCore.Font HSSFFont2Font(HSSFFont font1)
         {
-            return new System.Drawing.Font(font1.FontName, font1.FontHeightInPoints);
+            return new System.DrawingCore.Font(font1.FontName, font1.FontHeightInPoints);
         }
 
         /// <summary>

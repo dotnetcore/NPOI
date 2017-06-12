@@ -23,7 +23,7 @@ using Npoi.Core.Util;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.DrawingCore;
 
 namespace Npoi.Core.XSSF.UserModel
 {

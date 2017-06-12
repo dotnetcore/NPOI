@@ -19,7 +19,7 @@ namespace TestCases.SS.Format
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Drawing;
+    using System.DrawingCore;
     using System.Text.RegularExpressions;
 	// TODO: Port
 	//using System.Windows.Forms;

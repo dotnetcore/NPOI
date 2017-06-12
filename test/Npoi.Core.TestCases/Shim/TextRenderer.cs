@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+﻿using System.DrawingCore;
 using Npoi.Core.HSSF.UserModel;
 
 namespace TestCases

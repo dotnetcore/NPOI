@@ -18,7 +18,7 @@
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
 //using Npoi.Core.HSSF.UserModel;
 //using Npoi.Core.SS.UserModel;
-//using System.Drawing;
+//using System.DrawingCore;
 //using System;
 //namespace TestCases.HSSF.UserModel
 //{

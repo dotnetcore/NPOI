@@ -20,7 +20,7 @@ namespace Npoi.Core.XSSF.UserModel
     using Npoi.Core.SS.UserModel;
     using NUnit.Framework;
     using System;
-    using System.Drawing;
+    using System.DrawingCore;
 
     [TestFixture]
     public class TestXSSFSimpleShape

@@ -22,7 +22,7 @@ namespace Npoi.Core.SS.Format
     using System.Collections.Generic;
 
     //    using System.Windows.Forms;
-    using System.Drawing;
+    using System.DrawingCore;
     using System.Text.RegularExpressions;
 
     /**

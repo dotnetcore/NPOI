@@ -22,7 +22,7 @@ namespace Npoi.Core.HSSF.UserModel
     using Npoi.Core.Util.Collections;
     using System;
     using System.Collections.Generic;
-    using System.Drawing;
+    using System.DrawingCore;
     using System.IO;
 
     /**

@@ -15,7 +15,7 @@
 * limitations under the License.
 */
 
-using System.Drawing;
+using System.DrawingCore;
 
 namespace Npoi.Core.DDF
 {

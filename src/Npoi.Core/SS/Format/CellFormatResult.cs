@@ -18,7 +18,7 @@
 namespace Npoi.Core.SS.Format
 {
     using System;
-    using System.Drawing;
+    using System.DrawingCore;
 
     /**
      * This object Contains the result of Applying a cell format or cell format part

@@ -16,7 +16,7 @@
 ==================================================================== */
 
 using Npoi.Core.DDF;
-using System.Drawing;
+using System.DrawingCore;
 
 namespace Npoi.Core.HSSF.UserModel
 {

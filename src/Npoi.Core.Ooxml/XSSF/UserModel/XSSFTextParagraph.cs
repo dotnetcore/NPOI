@@ -21,7 +21,7 @@ using Npoi.Core.Util;
 using Npoi.Core.XSSF.Model;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.DrawingCore;
 using System.Text;
 
 namespace Npoi.Core.XSSF.UserModel

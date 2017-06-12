@@ -19,7 +19,7 @@ namespace Npoi.Core.XSSF.UserModel
 {
     using NUnit.Framework;
     using System.Collections.Generic;
-    using System.Drawing;
+    using System.DrawingCore;
 
     [TestFixture]
     public class TestXSSFTextParagraph
