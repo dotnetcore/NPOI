@@ -16,12 +16,6 @@
 *.sln.docstates
 *.nuspec
 
-# Test data
-*.xls
-*.xlsx
-*.doc
-*.docx
-
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
