@@ -1,33 +1,27 @@
-﻿###  NPOI.Core
+﻿###  NPOI
 
-This project is the .NET Core version of POI Java project. With NPOI, you can read/write Office 2003/2007 files very easily.
+This porject is migrate from Tony Qu's [NPOI](https://github.com/tonyqus/npoi) by DotNETCore team.
 
 ### NPOI Core here, NPOI elsewhere
 
-This project is for NPOI Core. NPOI is still under at [https://github.com/tonyqus/npoi](https://github.com/tonyqus/npoi)
+This NPOI use .net standard 2.0 version. NPOI is still under at [https://github.com/tonyqus/npoi](https://github.com/tonyqus/npoi)
 
 ### NuGet Package 
 
 ```powershell
-Install-Package Savorboard.Npoi.Core.OOXML
+
+Install-Package DotNetCore.NPOI
 
 ```
+### What is NPOI ?
 
-### What is NPOI Core?
-NPOI Core is a .NET Core version of the NPOI.
+NPOI is the .NET version of POI Java project at http://poi.apache.org/. POI is an open source project which can help you read/write xls, doc, ppt files. It has a wide application.
 
-Assembly | Module/Namespace | Summary
----|---|---
-Npoi.Core.dll| Npoi.Core.POIFS|OLE2/ActiveX文档属性读写库
-Npoi.Core.dll|Npoi.Core.DDF| Microsoft Office Drawing读写库
-Npoi.Core.dll|Npoi.Core.HPSF| OLE2/ActiveX文档读写库
-Npoi.Core.dll|Npoi.Core.HSSF| Microsoft Excel BIFF(Excel 97-2003)格式读写库
-Npoi.Core.dll|Npoi.Core.SS|Excel公用接口及Excel公式计算引擎
-Npoi.Core.dll|Npoi.Core.Util|基础类库，提供了很多实用功能，可用于其他读写文件格式项目的开发
-Npoi.Core.OOXML.dll|Npoi.Core.XSSF|Excel 2007(xlsx)格式读写库
-Npoi.Core.OOXML.dll|Npoi.Core.XWPF|Word 2007(docx)格式读写库
-Npoi.Core.OpenXml4Net.dll|Npoi.Core.OpenXml4Net|OpenXml底层zip包读写库
-Npoi.Core.OpenXmlFormats.dll|Npoi.Core.OpenXmlFormats|微软Office OpenXml对象关系库
+For example, you can use it to
+* generate a Excel report without Microsoft Office suite installed on your server and more efficient than call Microsoft Excel ActiveX at background;
+* extract text from Office documents to help you implement full-text indexing feature (most of time this feature is used to create search engines). 
+* extract images from Office documents
+* generate Excel sheets that contains formulas
 
 ### Getting Started
 
@@ -47,10 +41,9 @@ using (var fs = new FileStream(newFile, FileMode.Create, FileAccess.Write)) {
     var rowIndex = 0;
     IRow row = sheet1.CreateRow(rowIndex);
     row.Height = 30 * 80;
-    row.CreateCell(0).SetCellValue("this is content, very long content, very long content, very long content, very long content");
+    row.CreateCell(0).SetCellValue("this is content");
     sheet1.AutoSizeColumn(0);
     rowIndex++;
-
 
     var sheet2 = workbook.CreateSheet("Sheet2");
     var style1 = workbook.CreateCellStyle();
