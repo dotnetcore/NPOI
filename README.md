@@ -23,7 +23,7 @@ For example, you can use it to
 * extract images from Office documents
 * generate Excel sheets that contains formulas
 
-# How can it work on Linux?
+### How can it work on Linux?
 
 On Linux, you need install `libgdiplus`.
 
