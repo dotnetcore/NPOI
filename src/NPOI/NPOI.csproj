@@ -10,12 +10,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\font_metrics.properties" />
-    <EmbeddedResource Include="Resources\functionMetadata.txt" />
+    <EmbeddedResource Include="Resources\font_metrics.properties">
+      <LogicalName>font_metrics.properties</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\functionMetadata.txt">
+      <LogicalName>functionMetadata.txt</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="SharpZipLib.NETStandard" Version="0.86.0.1" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.4.0" />
     <PackageReference Include="ZKWeb.System.Drawing" Version="3.0.0" />
   </ItemGroup>
 
