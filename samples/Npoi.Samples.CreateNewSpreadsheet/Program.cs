@@ -1,12 +1,12 @@
-﻿using Npoi.Core.HSSF.Util;
-using Npoi.Core.SS.UserModel;
-using Npoi.Core.SS.Util;
-using Npoi.Core.XSSF.UserModel;
-using Npoi.Core.XWPF.UserModel;
-using System;
+﻿using System;
 using System.IO;
-using Npoi.Core.HSSF.UserModel;
 using System.Collections.Generic;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using NPOI.HSSF.Util;
+using NPOI.SS.Util;
+using NPOI.XWPF.UserModel;
 
 namespace Npoi.Samples.CreateNewSpreadsheet
 {
@@ -21,12 +21,19 @@ namespace Npoi.Samples.CreateNewSpreadsheet
 
         private static void ImportExcelHSSF() {
             Stream templateStream = new MemoryStream();
-            using (var file = new FileStream("D:\\moban.xls", FileMode.Open, FileAccess.Read)) {
+            using (var file = new FileStream("D:\\2007.xlsx", FileMode.Open, FileAccess.Read)) {
                 file.CopyTo(templateStream);
                 templateStream.Seek(0, SeekOrigin.Begin);
             }
-            var templateWorkbook = new HSSFWorkbook(templateStream, true);
-            Console.WriteLine(templateWorkbook.GetSheetAt(0).PhysicalNumberOfRows);
+            var templateWorkbook = new XSSFWorkbook(templateStream);
+            //var sheet = templateWorkbook.GetSheetAt(0);
+            ISheet sheet = templateWorkbook.CreateSheet("Test") as XSSFSheet;
+            sheet.SetAutoFilter(new CellRangeAddress(0,sheet.LastRowNum,0,2));
+
+            var fileStream = new FileStream("D:\\moban2.xls", FileMode.Create);
+            templateWorkbook.Write(fileStream);
+            fileStream.Close();
+            //Console.WriteLine(templateWorkbook.GetSheetAt(0).PhysicalNumberOfRows);
         }
 
         class XXX

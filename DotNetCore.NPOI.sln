@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NPOI", "src\NPOI\NPOI.csproj", "{2FB384CB-1041-47B5-9C0D-D6E9E5B4D4C0}"
 EndProject
@@ -20,6 +20,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPOI.TestCases", "test\NPOI.TestCases\NPOI.TestCases.csproj", "{A920C2BA-8BFD-4F54-8401-7D1C0730F1F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPOI.OOXML.TestCases", "test\NPOI.OpenXmlFormats\NPOI.OOXML.TestCases.csproj", "{0BF8C464-8779-43CF-AD7A-B1109A86EAAE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{2961ABE6-152F-43A2-B509-BB1F19BF0BD2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npoi.Samples.CreateNewSpreadsheet", "samples\Npoi.Samples.CreateNewSpreadsheet\Npoi.Samples.CreateNewSpreadsheet.csproj", "{4D493C32-B246-4DB5-B0DF-9AF3B63C230D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,6 +104,16 @@ Global
 		{0BF8C464-8779-43CF-AD7A-B1109A86EAAE}.NPOI.Tools|Any CPU.Build.0 = .net 2 Release|Any CPU
 		{0BF8C464-8779-43CF-AD7A-B1109A86EAAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BF8C464-8779-43CF-AD7A-B1109A86EAAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D493C32-B246-4DB5-B0DF-9AF3B63C230D}..net 2 Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D493C32-B246-4DB5-B0DF-9AF3B63C230D}..net 2 Release|Any CPU.Build.0 = Release|Any CPU
+		{4D493C32-B246-4DB5-B0DF-9AF3B63C230D}..net 4 Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D493C32-B246-4DB5-B0DF-9AF3B63C230D}..net 4 Release|Any CPU.Build.0 = Release|Any CPU
+		{4D493C32-B246-4DB5-B0DF-9AF3B63C230D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D493C32-B246-4DB5-B0DF-9AF3B63C230D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D493C32-B246-4DB5-B0DF-9AF3B63C230D}.NPOI.Tools|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D493C32-B246-4DB5-B0DF-9AF3B63C230D}.NPOI.Tools|Any CPU.Build.0 = Debug|Any CPU
+		{4D493C32-B246-4DB5-B0DF-9AF3B63C230D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D493C32-B246-4DB5-B0DF-9AF3B63C230D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -112,6 +126,7 @@ Global
 		{F5A6FF78-2C51-44E8-9E31-CD1B3EF784E9} = {CEF11721-42B4-42EF-92AB-1D52C4382EF9}
 		{A920C2BA-8BFD-4F54-8401-7D1C0730F1F0} = {CEF11721-42B4-42EF-92AB-1D52C4382EF9}
 		{0BF8C464-8779-43CF-AD7A-B1109A86EAAE} = {CEF11721-42B4-42EF-92AB-1D52C4382EF9}
+		{4D493C32-B246-4DB5-B0DF-9AF3B63C230D} = {2961ABE6-152F-43A2-B509-BB1F19BF0BD2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {329388F0-0AB8-461F-800B-1D715BB000FF}
