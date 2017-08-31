@@ -1,8 +1,8 @@
 ﻿###  NPOI
 
-This porject is migrate from Tony Qu's [NPOI](https://github.com/tonyqus/npoi) by DotNETCore team.
+This project is migrated from Tony Qu's [NPOI](https://github.com/tonyqus/npoi) by DotNETCore team.
 
-### NPOI Core here, NPOI elsewhere
+### NPOI of .net standard here, NPOI elsewhere
 
 This NPOI use .net standard 2.0 version. NPOI is still under at [https://github.com/tonyqus/npoi](https://github.com/tonyqus/npoi)
 
