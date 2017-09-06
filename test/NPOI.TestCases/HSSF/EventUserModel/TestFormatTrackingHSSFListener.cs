@@ -55,15 +55,6 @@ namespace TestCases.HSSF.EventUserModel
                 throw;
             }
         }
-        [Test]
-        public void TestFormats()
-        {
-            ProcessFile("MissingBits.xls");
-
-            Assert.AreEqual("_(\"$\"* #,##0_);_(\"$\"* (#,##0);_(\"$\"* \"-\"_);_(@_)", listener.GetFormatString(41));
-            Assert.AreEqual("_(* #,##0_);_(* (#,##0);_(* \"-\"_);_(@_)", listener.GetFormatString(42));
-            Assert.AreEqual("_(\"$\"* #,##0.00_);_(\"$\"* (#,##0.00);_(\"$\"* \"-\"??_);_(@_)", listener.GetFormatString(43));
-        }
 
         /**
          * Ensure that all number and formula records can be

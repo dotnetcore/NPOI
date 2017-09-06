@@ -15,7 +15,15 @@
 *.nupkg
 *.sln.docstates
 *.nuspec
-
+*.xls
+*.xlsx
+*.doc
+*.docx
+*.adm
+*.shw
+*.vsd
+*.mpp
+*.sldprt
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -259,3 +267,4 @@ pkgobj/
 *.opc
 *.zip
 *.ole2
+/solution/Lib/.net4

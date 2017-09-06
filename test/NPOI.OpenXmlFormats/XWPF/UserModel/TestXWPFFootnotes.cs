@@ -47,33 +47,7 @@ namespace NPOI.XWPF.UserModel
 
             XWPFFootnote note = docIn.GetFootnoteByID(noteId);
             Assert.AreEqual(note.GetCTFtnEdn().type, ST_FtnEdn.normal);
-        }
-
-        /**
-        * Bug 55066 - avoid double loading the footnotes
-        */
-        [Test]
-        public void TestLoadFootnotesOnce()
-        {
-            XWPFDocument doc = XWPFTestDataSamples.OpenSampleDocument("Bug54849.docx");
-            IList<XWPFFootnote> footnotes = doc.GetFootnotes();
-            int hits = 0;
-            foreach (XWPFFootnote fn in footnotes)
-            {
-                foreach (IBodyElement e in fn.BodyElements)
-                {
-                    if (e is XWPFParagraph)
-                    {
-                        String txt = ((XWPFParagraph)e).Text;
-                        if (txt.IndexOf("Footnote_sdt") > -1)
-                        {
-                            hits++;
-                        }
-                    }
-                }
-            }
-            Assert.AreEqual(1, hits, "Load footnotes once");
-        }
+        }       
     }
 
 }

@@ -42,60 +42,7 @@ namespace TestCases.POIFS.FileSystem
 
             Assert.AreEqual("File1.svg", ole.Label);
             Assert.AreEqual("D:\\Documents and Settings\\rsc\\My Documents\\file1.svg", ole.Command);
-        }
-
-        [Test]
-        public void TestFiles()
-        {
-            FileStream[] files = {
-            // bug 51891
-            POIDataSamples.GetPOIFSInstance().GetFile("multimedia.doc"),
-            // tika bug 1072
-            POIDataSamples.GetPOIFSInstance().GetFile("20-Force-on-a-current-S00.doc"),
-            // other files Containing ole10native records ...
-            POIDataSamples.GetDocumentInstance().GetFile("Bug53380_3.doc"),
-            POIDataSamples.GetDocumentInstance().GetFile("Bug47731.doc")
-        };
-
-            foreach (FileStream f in files)
-            {
-                NPOIFSFileSystem fs = new NPOIFSFileSystem(f,null, true, true);
-                List<Entry> entries = new List<Entry>();
-                FindOle10(entries, fs.Root, "/", "");
-
-                foreach (Entry e in entries)
-                {
-                    MemoryStream bosExp = new MemoryStream();
-                    Stream is1 = ((DirectoryNode)e.Parent).CreateDocumentInputStream(e);
-                    IOUtils.Copy(is1, bosExp);
-                    is1.Close();
-
-                    Ole10Native ole = Ole10Native.CreateFromEmbeddedOleObject((DirectoryNode)e.Parent);
-
-                    MemoryStream bosAct = new MemoryStream();
-                    ole.WriteOut(bosAct);
-
-                    //assertThat(bosExp.ToByteArray(), EqualTo(bosAct.ToByteArray()));
-                    Assert.IsTrue(Arrays.Equals(bosExp.ToArray(), bosAct.ToArray()));
-                }
-
-                fs.Close();
-            }
-        }
-
-        /*
-        void searchOle10Files()  {
-            File dir = new File("test-data/document");
-            foreach (File file in dir.ListFiles(new FileFilter(){
-                public bool accept(File pathname) {
-                    return pathname.Name.EndsWith("doc");
-                }
-            })) {
-                NPOIFSFileSystem fs = new NPOIFSFileSystem(file, true);
-                FindOle10(null, fs.Root, "/", file.Name);
-                fs.Close();
-            }
-        }*/
+        }       
 
         void FindOle10(List<Entry> entries, DirectoryNode dn, String path, String filename)
         {

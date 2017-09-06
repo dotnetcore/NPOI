@@ -84,35 +84,5 @@ namespace TestCases.POIFS.Storage
         {
             new RawDataBlockList(new MemoryStream(new byte[0]), POIFSConstants.SMALLER_BIG_BLOCK_SIZE_DETAILS);
         }
-
-        /**
-         * Test creating a short RawDataBlockList
-         */
-        [Test]
-        public void TestShortConstructor()
-        {
-            // Get the logger to be used
-            DummyPOILogger logger = (DummyPOILogger)POILogFactory.GetLogger(
-                    typeof(RawDataBlock)
-            );
-            logger.Reset(); // the logger may have been used before
-            Assert.AreEqual(0, logger.logged.Count);
-
-            // Test for various short sizes
-            for (int k = 2049; k < 2560; k++)
-            {
-                byte[] data = new byte[k];
-
-                for (int j = 0; j < k; j++)
-                {
-                    data[j] = (byte)j;
-                }
-
-                // Check we logged the error
-                logger.Reset();
-                new RawDataBlockList(new MemoryStream(data), POIFSConstants.SMALLER_BIG_BLOCK_SIZE_DETAILS);
-                Assert.AreEqual(1, logger.logged.Count);
-            }
-        }
     }
 }

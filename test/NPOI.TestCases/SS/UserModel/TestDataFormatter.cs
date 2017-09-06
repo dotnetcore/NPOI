@@ -571,22 +571,6 @@ namespace TestCases.SS.UserModel
             );
         }
 
-
-        [Test]
-        public void TestCustomFormats()
-        {
-            DataFormatter dfUS = new DataFormatter(System.Globalization.CultureInfo.GetCultureInfo("en-US"), true);
-            String fmt;
-
-            fmt = "\"At\" H:MM AM/PM \"on\" DDDD MMMM D\",\" YYYY";
-            Assert.AreEqual(
-                  "At 4:20 AM on Thursday May 17, 2007",
-                  dfUS.FormatRawCellContents(39219.1805636921, -1, fmt)
-            );
-
-            fmt = "0 \"dollars and\" .00 \"cents\"";
-            Assert.AreEqual("19 dollars and .99 cents", dfUS.FormatRawCellContents(19.99, -1, fmt));
-        }
         /**
          * ExcelStyleDateFormatter should work for Milliseconds too
          */

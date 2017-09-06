@@ -168,27 +168,6 @@ using System.Configuration;
 
             Assert.AreEqual(18, r.RecordSize);
         }
-
-        /**
-         * We were having problems with Reading too much data on an UnknownEscherRecord,
-         *  but hopefully we now Read the correct size.
-         */
-        [Test]
-        public void TestBug44857()
-        {
-            //File f = new File(ESCHER_DATA_PATH, "Container.dat");
-            Assert.IsTrue(File.Exists(ESCHER_DATA_PATH+"Container.dat"));
-
-            using (FileStream finp = new FileStream(ESCHER_DATA_PATH + "Container.dat", FileMode.Open, FileAccess.Read))
-            {
-                byte[] data = IOUtils.ToByteArray(finp);
-                finp.Close();
-
-                // This used to fail with an OutOfMemory
-                EscherContainerRecord record = new EscherContainerRecord();
-                record.FillFields(data, 0, new DefaultEscherRecordFactory());
-            }
-        }
         /**
 	 * Ensure {@link EscherContainerRecord} doesn't spill its guts everywhere
 	 */

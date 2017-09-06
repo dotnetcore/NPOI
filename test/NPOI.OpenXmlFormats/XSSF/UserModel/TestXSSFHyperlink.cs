@@ -272,21 +272,6 @@ namespace NPOI.XSSF.UserModel
             link = wb.GetSheetAt(0).GetRow(0).GetCell(0).Hyperlink as XSSFHyperlink;
             Assert.AreEqual("javascript:///", link.Address);
         }
-        [Test]
-        public void Test53282()
-        {
-            //since limitation in .NET Uri class, it's impossible to accept uri like mailto:nobody@nowhere.uk%C2%A0
-            XSSFWorkbook wb = XSSFTestDataSamples.OpenSampleWorkbook("53282.xlsx");
-            XSSFHyperlink link = wb.GetSheetAt(0).GetRow(0).GetCell(14).Hyperlink as XSSFHyperlink;
-            Assert.AreEqual("mailto:nobody@nowhere.uk%C2%A0", link.Address);
-
-            wb = XSSFTestDataSamples.WriteOutAndReadBack(wb) as XSSFWorkbook;
-            link = wb.GetSheetAt(0).GetRow(0).GetCell(14).Hyperlink as XSSFHyperlink;
-            Assert.AreEqual("mailto:nobody@nowhere.uk%C2%A0", link.Address);
-        }
-
     }
-
-
 }
 

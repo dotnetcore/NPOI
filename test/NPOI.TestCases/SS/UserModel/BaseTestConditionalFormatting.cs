@@ -648,58 +648,7 @@ namespace TestCases.SS.UserModel
             Assert.AreEqual(HSSFColor.Blue.Index, r1fp.FontColorIndex);
 
         }
-        [Test]
-        public void TestCreatePatternFormatting()
-        {
-            IWorkbook workbook = _testDataProvider.CreateWorkbook();
-            ISheet sheet = workbook.CreateSheet();
 
-            ISheetConditionalFormatting sheetCF = sheet.SheetConditionalFormatting;
-
-            IConditionalFormattingRule rule1 = sheetCF.CreateConditionalFormattingRule(ComparisonOperator.Equal, "7");
-            IPatternFormatting patternFmt = rule1.CreatePatternFormatting();
-
-            Assert.AreEqual(0, patternFmt.FillBackgroundColor);
-            patternFmt.FillBackgroundColor = (/*setter*/HSSFColor.Red.Index);
-            Assert.AreEqual(HSSFColor.Red.Index, patternFmt.FillBackgroundColor);
-
-            Assert.AreEqual(0, patternFmt.FillForegroundColor);
-            patternFmt.FillForegroundColor = (/*setter*/HSSFColor.Blue.Index);
-            Assert.AreEqual(HSSFColor.Blue.Index, patternFmt.FillForegroundColor);
-
-            Assert.AreEqual((short)FillPattern.NoFill, patternFmt.FillPattern);
-            patternFmt.FillPattern = FillPattern.SolidForeground;
-            Assert.AreEqual((short)FillPattern.SolidForeground, patternFmt.FillPattern);
-            patternFmt.FillPattern = (short)FillPattern.NoFill;
-            Assert.AreEqual((short)FillPattern.NoFill, patternFmt.FillPattern);
-            if (this._testDataProvider.GetSpreadsheetVersion() == SpreadsheetVersion.EXCEL97)
-            {
-                patternFmt.FillPattern = FillPattern.Bricks;
-                Assert.AreEqual((short)FillPattern.Bricks, patternFmt.FillPattern);
-            }
-
-            IConditionalFormattingRule[] cfRules = { rule1 };
-
-            CellRangeAddress[] regions = { CellRangeAddress.ValueOf("A1:A5") };
-
-            sheetCF.AddConditionalFormatting(regions, cfRules);
-
-            // Verification
-            IConditionalFormatting cf = sheetCF.GetConditionalFormattingAt(0);
-            Assert.IsNotNull(cf);
-
-            Assert.AreEqual(1, cf.NumberOfRules);
-
-            IPatternFormatting r1fp = cf.GetRule(0).GetPatternFormatting();
-            Assert.IsNotNull(r1fp);
-
-            Assert.AreEqual(HSSFColor.Red.Index, r1fp.FillBackgroundColor);
-            Assert.AreEqual(HSSFColor.Blue.Index, r1fp.FillForegroundColor);
-            if (this._testDataProvider.GetSpreadsheetVersion() == SpreadsheetVersion.EXCEL97)
-            {
-                Assert.AreEqual((short)FillPattern.Bricks, r1fp.FillPattern);
-            }
-        }
         [Test]
         public void TestCreateBorderFormatting()
         {

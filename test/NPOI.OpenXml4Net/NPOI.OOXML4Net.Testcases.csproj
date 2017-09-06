@@ -108,7 +108,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -133,6 +135,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\src\NPOI.OOXML\NPOI.OOXML.csproj">
       <Project>{4d994508-5489-4342-9ee8-6fddb0763e66}</Project>
       <Name>NPOI.OOXML</Name>
@@ -149,9 +154,6 @@
       <Project>{2fb384cb-1041-47b5-9c0d-d6e9e5b4d4c0}</Project>
       <Name>NPOI</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

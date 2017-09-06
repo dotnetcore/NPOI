@@ -134,29 +134,6 @@ namespace NPOI.XWPF.UserModel
             // verify the picture that we read back in
             pictureDataByID = doc.GetPictureDataByID(jpegRel.Id);
             Assert.IsTrue(Arrays.Equals(jpegData, pictureDataByID.Data));
-        }
-
-        [Test]
-        public void TestBug51770()
-        {
-            XWPFDocument doc = XWPFTestDataSamples.OpenSampleDocument("Bug51170.docx");
-            XWPFHeaderFooterPolicy policy = doc.GetHeaderFooterPolicy();
-            XWPFHeader header = policy.GetDefaultHeader();
-            foreach (XWPFParagraph paragraph in header.Paragraphs)
-            {
-                foreach (XWPFRun run in paragraph.Runs)
-                {
-                    foreach (XWPFPicture picture in run.GetEmbeddedPictures())
-                    {
-                        if (paragraph.Document != null)
-                        {
-                            System.Console.WriteLine(picture.GetCTPicture());
-                            XWPFPictureData data = picture.GetPictureData();
-                            if (data != null) System.Console.WriteLine(data.FileName);
-                        }
-                    }
-                }
-            }
-        }
+        }      
     }
 }

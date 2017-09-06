@@ -66,65 +66,6 @@ namespace NPOI.SS
             Assert.IsNotNull(wb);
             Assert.IsTrue(wb is XSSFWorkbook);
         }
-
-        /**
-         * Creates the appropriate kind of Workbook, but
-         *  Checking the mime magic at the start of the
-         *  InputStream, then creating what's required.
-         */
-        [Test]
-        public void TestCreateGeneric()
-        {
-            IWorkbook wb;
-
-            // InputStream -> either
-            wb = WorkbookFactory.Create(
-                    HSSFTestDataSamples.OpenSampleFileStream(xls)
-            );
-            Assert.IsNotNull(wb);
-            Assert.IsTrue(wb is HSSFWorkbook);
-            wb.Close();
-
-            wb = WorkbookFactory.Create(
-                    HSSFTestDataSamples.OpenSampleFileStream(xlsx)
-            );
-            Assert.IsNotNull(wb);
-            Assert.IsTrue(wb is XSSFWorkbook);
-            // File -> either
-            wb = WorkbookFactory.Create(
-                  testdataPath + xls
-            );
-            Assert.IsNotNull(wb);
-            Assert.IsTrue(wb is HSSFWorkbook);
-            wb.Close();
-
-            wb = WorkbookFactory.Create(
-                  testdataPath + xlsx
-            );
-            Assert.IsNotNull(wb);
-            Assert.IsTrue(wb is XSSFWorkbook);
-            // TODO: close() re-writes the sample-file?! Resort to revert() for now to close file handle...
-            ((XSSFWorkbook)wb).Package.Revert();
-
-            // Invalid type -> exception
-            try
-            {
-                Stream stream = HSSFTestDataSamples.OpenSampleFileStream(txt);
-                try
-                {
-                    wb = WorkbookFactory.Create(stream);
-                }
-                finally
-                {
-                    stream.Close();
-                }
-                Assert.Fail();
-            }
-            catch (ArgumentException e)
-            {
-                // Good
-            }
-        }
     }
 
 }
