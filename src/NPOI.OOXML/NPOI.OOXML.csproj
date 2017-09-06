@@ -5,12 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="XWPF\Util\" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="SharpZipLib.NETStandard" Version="0.86.0.1" />
-    <PackageReference Include="ZKWeb.System.Drawing" Version="3.0.0" />
+    <PackageReference Include="SharpZipLib" Version="1.0.0-alpha2" />
+    <PackageReference Include="ZKWeb.System.Drawing" Version="4.0.0" />
   </ItemGroup>
   
   <ItemGroup>
