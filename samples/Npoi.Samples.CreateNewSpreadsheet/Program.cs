@@ -16,7 +16,9 @@ namespace Npoi.Samples.CreateNewSpreadsheet
             //ExportExcel();
             //ExportExcelHSSF();
             //ExportWord();
-            ImportExcelHSSF();
+            //ImportExcelHSSF();
+            Issue32.Run();
+            Console.Read();
         }
 
         private static void ImportExcelHSSF() {
