@@ -47,6 +47,10 @@ On Linux, you need install `libgdiplus`.
 	- make install
 	- cd /usr/lib64/
 	- ln -s /usr/local/lib/libgdiplus.so gdiplus.dll
+ - Docker
+	RUN apt-get update \
+
+	&& apt-get install -y libgdiplus
 
 ### Getting Started
 
