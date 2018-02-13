@@ -28,9 +28,17 @@ namespace NPOI.SS.UserModel
     {
         private static int NEXT_ID = 1;
         public int id;
+        public Policy _policy;
         public MissingCellPolicy()
         {
             this.id = NEXT_ID++;
+        }
+
+        public MissingCellPolicy(Policy policy)
+        {
+            this.id = NEXT_ID++;
+            _policy = policy;
+
         }
         /// <summary>Missing cells are returned as null, Blank cells are returned as normal</summary>
         public static readonly MissingCellPolicy RETURN_NULL_AND_BLANK = new MissingCellPolicy();
@@ -38,6 +46,13 @@ namespace NPOI.SS.UserModel
         public static readonly MissingCellPolicy RETURN_BLANK_AS_NULL = new MissingCellPolicy();
         /// <summary>A new, blank cell is Created for missing cells. Blank cells are returned as normal</summary>
         public static readonly MissingCellPolicy CREATE_NULL_AS_BLANK = new MissingCellPolicy();
+
+        public enum Policy
+        {
+            RETURN_NULL_AND_BLANK = 1,
+            RETURN_BLANK_AS_NULL = 2,
+            CREATE_NULL_AS_BLANK = 3
+        }
     }
 
     /// <summary>
@@ -216,6 +231,12 @@ namespace NPOI.SS.UserModel
         /// you take it out of them.
         /// </summary>
         int OutlineLevel { get; }
+
+        bool HasCustomHeight();
+
+        bool? Hidden { get; set; }
+
+        bool? Collapsed { get; set; }
     }
 }
 

@@ -1,4 +1,4 @@
-/* ====================================================================
+﻿/* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
    this work for Additional information regarding copyright ownership.
@@ -14,50 +14,23 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
-
-using NPOI.SS.Formula;
 using NPOI.SS.UserModel;
-namespace NPOI.XSSF.UserModel
+
+namespace NPOI.XSSF.Streaming.Values
 {
-
-    /**
-     * XSSF wrapper for a sheet under Evaluation
-     * 
-     * @author Josh Micich
-     */
-    public class XSSFEvaluationSheet : IEvaluationSheet
+    public class RichTextValue : StringValue
     {
+        public IRichTextString Value;
 
-        private XSSFSheet _xs;
-
-        public XSSFEvaluationSheet(ISheet sheet)
+        public CellType GetType()
         {
-            _xs = (XSSFSheet)sheet;
+            return CellType.String;
         }
 
-        public XSSFEvaluationSheet()
-        {
 
-        }
-
-        public XSSFSheet GetXSSFSheet()
+        public override bool IsRichText()
         {
-            return _xs;
-        }
-        public IEvaluationCell GetCell(int rowIndex, int columnIndex)
-        {
-            IRow row = _xs.GetRow(rowIndex);
-            if (row == null)
-            {
-                return null;
-            }
-            ICell cell = row.GetCell(columnIndex);
-            if (cell == null)
-            {
-                return null;
-            }
-            return new XSSFEvaluationCell(cell, this);
+            return true;
         }
     }
 }
-
