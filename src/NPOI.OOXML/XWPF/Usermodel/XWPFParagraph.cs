@@ -1253,11 +1253,11 @@ namespace NPOI.XWPF.UserModel
         }
 
         /// <summary>
-        /// 段落文本替换
+        /// Replace for the text searched
         /// </summary>
-        /// <param name="oldText">旧文本</param>
-        /// <param name="newText">新文本</param>
-        /// <param name="replaceAll">替换所有匹配项</param>
+        /// <param name="oldText">old text</param>
+        /// <param name="newText">new text</param>
+        /// <param name="replaceAll">Replace all for the text searched</param>
         public void ReplaceText(string oldText, string newText, bool replaceAll = false)
         {
             var paragraph = this;
@@ -1366,9 +1366,9 @@ namespace NPOI.XWPF.UserModel
         }
 
         /// <summary>
-        /// 搜索文本
+        /// search for the text searched
         /// </summary>
-        /// <param name="text">文本</param>
+        /// <param name="text">search</param>
         /// <returns></returns>
         public TextSegment SearchText(string text)
         {
@@ -1381,29 +1381,23 @@ namespace NPOI.XWPF.UserModel
 
             var endChar = text.Last();
 
-            // 起始run索引
             var beginRunIndex = -1;
 
-            // 起始Char索引
             var beginCharIndex = -1;
 
-            // 结束run索引
             var endRunIndex = -1;
 
-            // 结束Char索引
             var endCharIndex = -1;
 
             var runs = Runs;
 
             for (int i = 0; i < runs.Count; i++)
             {
-                // 查找起始索引
                 var beginIndex = runs[i].Text.IndexOf(beginChar);
 
-                // 如果存在起始索引，该run可能为起始run
+                // find beginRunIndex and beginCharIndex
                 if (beginIndex > -1)
                 {
-                    // 如果不是最后一个run，那么，该run包含text开始片段
                     if (i < runs.Count - 1 && text.StartsWith(runs[i].Text.Substring(beginIndex, Math.Min(text.Length, runs[i].Text.Length - beginIndex))))
                     {
                         beginRunIndex = i;
@@ -1411,7 +1405,6 @@ namespace NPOI.XWPF.UserModel
                         beginCharIndex = beginIndex;
                     }
 
-                    // 如果是最后一个run，那么，该run包含text
                     if (i == runs.Count - 1 && runs[i].Text.Contains(text))
                     {
                         beginRunIndex = i;
@@ -1420,18 +1413,15 @@ namespace NPOI.XWPF.UserModel
                     }
                 }
 
-                // 查找结束索引
                 var endIndex = runs[i].Text.IndexOf(endChar);
 
-                // 如果存在结束索引，该run可能为结束run
+                // find beginRunIndex and beginCharIndex
                 if (endIndex > -1)
                 {
                     var runTextStard = runs[i].Text.Substring(0, endIndex + 1);
 
-                    // text结束片段
                     var textEnd = runTextStard.Substring(endIndex + 1 - Math.Min(text.Length, runTextStard.Length));
 
-                    // 如果不是第一个run，那么，该run包含text结束片段
                     if (i > 0 && text.EndsWith(textEnd))
                     {
                         endRunIndex = i;
@@ -1439,7 +1429,6 @@ namespace NPOI.XWPF.UserModel
                         endCharIndex = endIndex;
                     }
 
-                    // 如果是第一个run，那么，该run包含text
                     if (i == 0 && runs[i].Text.Contains(text))
                     {
                         endRunIndex = i;
@@ -1448,7 +1437,6 @@ namespace NPOI.XWPF.UserModel
                     }
                 }
 
-                // 已找到run索引，则退出循环
                 if (beginRunIndex >= 0 && endRunIndex >= beginRunIndex)
                 {
                     break;
