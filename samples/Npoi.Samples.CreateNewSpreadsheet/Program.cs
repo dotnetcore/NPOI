@@ -13,12 +13,10 @@ namespace Npoi.Samples.CreateNewSpreadsheet
     public class Program
     {
         public static void Main(string[] args) {
-            //ExportExcel();
+            ExportExcel();
             //ExportExcelHSSF();
-            //ExportWord();
+            ExportWord();
             //ImportExcelHSSF();
-            Issue32.Run();
-            Console.Read();
         }
 
         private static void ImportExcelHSSF() {
