@@ -21,6 +21,7 @@ using System;
 using NUnit.Framework;
 using TestCases.OpenXml4Net;
 using System.IO;
+using System.Net;
 using System.Web;
 using System.Text.RegularExpressions;
 using NPOI.XWPF.UserModel;
@@ -318,8 +319,8 @@ namespace TestCases.OPC
             Uri parent = drawingPart.PartName.URI;
             Uri rel1 = new Uri(Path.Combine(parent.ToString(),rId1.TargetUri.ToString()),UriKind.Relative);
             Uri rel11 = PackagingUriHelper.RelativizeUri(drawingPart.PartName.URI, rId1.TargetUri);
-            Assert.AreEqual("'Another Sheet'!A1", HttpUtility.UrlDecode(rel1.ToString().Split(new char[]{'#'})[1]));
-            Assert.AreEqual("'Another Sheet'!A1", HttpUtility.UrlDecode(rel11.ToString().Split(new char[] { '#' })[1]));
+            Assert.AreEqual("'Another Sheet'!A1", WebUtility.UrlDecode(rel1.ToString().Split(new char[]{'#'})[1]));
+            Assert.AreEqual("'Another Sheet'!A1", WebUtility.UrlDecode(rel11.ToString().Split(new char[] { '#' })[1]));
 
             PackageRelationship rId2 = drawingPart.GetRelationship("rId2");
             Uri rel2 = PackagingUriHelper.RelativizeUri(drawingPart.PartName.URI, rId2.TargetUri);
@@ -331,7 +332,7 @@ namespace TestCases.OPC
 
             PackageRelationship rId4 = drawingPart.GetRelationship("rId4");
             Uri rel4 = new Uri(Path.Combine(parent.ToString(), rId4.TargetUri.ToString()), UriKind.Relative);
-            Assert.AreEqual("#'\u0410\u043F\u0430\u0447\u0435 \u041F\u041E\u0418'!A1",HttpUtility.UrlDecode(rel4.OriginalString.Split(new char[] { '/' })[3]));
+            Assert.AreEqual("#'\u0410\u043F\u0430\u0447\u0435 \u041F\u041E\u0418'!A1", WebUtility.UrlDecode(rel4.OriginalString.Split(new char[] { '/' })[3]));
 
             PackageRelationship rId5 = drawingPart.GetRelationship("rId5");
             Uri rel5 = new Uri(Path.Combine(parent.ToString(), rId5.TargetUri.ToString()), UriKind.Relative); 
@@ -339,7 +340,7 @@ namespace TestCases.OPC
             //Assert.AreEqual("file:///D:/chan-chan.mp3", rel5.ToString());
 
             PackageRelationship rId6 = drawingPart.GetRelationship("rId6");
-            Uri rel6 = new Uri(ResolveRelativePath(parent.ToString(), HttpUtility.UrlDecode(rId6.TargetUri.ToString())), UriKind.Relative); 
+            Uri rel6 = new Uri(ResolveRelativePath(parent.ToString(), WebUtility.UrlDecode(rId6.TargetUri.ToString())), UriKind.Relative); 
             //Assert.AreEqual("../../../../../../../cygwin/home/yegor/dinom/&&&[access].2010-10-26.log", rel6.OriginalString);
             //Assert.AreEqual("#'\u0410\u043F\u0430\u0447\u0435 \u041F\u041E\u0418'!A5", HttpUtility.UrlDecode(rel6.OriginalString.Split(new char[] { '/' })[3]));
         }
