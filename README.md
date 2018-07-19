@@ -48,6 +48,15 @@ On Linux, you need install `libgdiplus`.
 	- cd /usr/lib64/
 	- ln -s /usr/local/lib/libgdiplus.so gdiplus.dll
 
+- Docker
+    - Alpine 
+    ```
+    # base sdk-alpine/aspnetcore-runtime-alpine images
+
+    RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+    RUN apk --update add libgdiplus
+    ```
+
 ### Getting Started
 
 #### Export Excel
