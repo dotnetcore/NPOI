@@ -32,7 +32,7 @@ namespace NPOI.HSSF.UserModel
     using NPOI.SS.UserModel;
     using NPOI.SS.Util;
     using System.Globalization;
-    using System.DrawingCore;
+    using System.Drawing;
 
 
 

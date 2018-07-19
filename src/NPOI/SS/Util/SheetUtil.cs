@@ -20,7 +20,7 @@ namespace NPOI.SS.Util
     using System;
 
     using NPOI.SS.UserModel;
-    using System.DrawingCore;
+    using System.Drawing;
     using System.Windows.Forms;
     using System.Collections.Generic;
 

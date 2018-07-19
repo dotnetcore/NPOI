@@ -26,7 +26,7 @@ namespace NPOI.HSSF.UserModel
     using NPOI.HSSF.Model;
     using NPOI.HSSF.Record;
     using NPOI.SS.Util;
-    using System.DrawingCore;
+    using System.Drawing;
 
 
     /// <summary>

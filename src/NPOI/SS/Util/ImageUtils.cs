@@ -17,7 +17,7 @@
 namespace NPOI.SS.Util
 {
     using System;
-    using System.DrawingCore;
+    using System.Drawing;
     using System.IO;
     using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;

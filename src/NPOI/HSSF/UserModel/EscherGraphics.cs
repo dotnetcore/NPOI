@@ -22,7 +22,7 @@ namespace NPOI.HSSF.UserModel
     using NPOI.Util;
 
     using NPOI.SS.UserModel;
-    using System.DrawingCore;
+    using System.Drawing;
 
     /**
      * Translates Graphics calls into escher calls.  The translation Is lossy so

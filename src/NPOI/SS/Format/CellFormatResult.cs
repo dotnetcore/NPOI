@@ -17,7 +17,7 @@
 namespace NPOI.SS.Format
 {
     using System;
-    using System.DrawingCore;
+    using System.Drawing;
 
 
 
