@@ -1,4 +1,4 @@
-/* ====================================================================
+﻿/* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
    this work for Additional information regarding copyright ownership.
@@ -14,50 +14,50 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+using NPOI.XSSF.UserModel;
 
-using NPOI.SS.Formula;
-using NPOI.SS.UserModel;
-namespace NPOI.XSSF.UserModel
+namespace NPOI.XSSF.Streaming
 {
-
-    /**
-     * XSSF wrapper for a sheet under Evaluation
-     * 
-     * @author Josh Micich
-     */
-    public class XSSFEvaluationSheet : IEvaluationSheet
+    public class SXSSFEvaluationSheet : XSSFEvaluationSheet
     {
+        private SXSSFSheet _xs;
 
-        private XSSFSheet _xs;
-
-        public XSSFEvaluationSheet(ISheet sheet)
+    public SXSSFEvaluationSheet(SXSSFSheet sheet)
         {
-            _xs = (XSSFSheet)sheet;
+            _xs = sheet;
         }
 
-        public XSSFEvaluationSheet()
-        {
-
-        }
-
-        public XSSFSheet GetXSSFSheet()
+        public SXSSFSheet getSXSSFSheet()
         {
             return _xs;
         }
-        public IEvaluationCell GetCell(int rowIndex, int columnIndex)
+
+    public SXSSFEvaluationCell getCell(int rowIndex, int columnIndex)
         {
-            IRow row = _xs.GetRow(rowIndex);
+            SXSSFRow row = _xs._rows[rowIndex];
             if (row == null)
             {
+                if (rowIndex <= _xs.lastFlushedRowNumber)
+                {
+                    throw new RowFlushedException(rowIndex);
+                }
                 return null;
             }
-            ICell cell = row.GetCell(columnIndex);
+            SXSSFCell cell = (SXSSFCell)row.Cells[columnIndex];
             if (cell == null)
             {
                 return null;
             }
-            return new XSSFEvaluationCell(cell, this);
+            return new SXSSFEvaluationCell(cell, this);
+        }
+
+        /* (non-JavaDoc), inherit JavaDoc from EvaluationSheet
+         * @since POI 3.15 beta 3
+         */
+
+    public void clearAllCachedResultValues()
+        {
+            // nothing to do
         }
     }
 }
-

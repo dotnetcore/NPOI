@@ -49,6 +49,12 @@ namespace NPOI.XSSF.UserModel
             : this(workbook, null, null)
         { }
 
+        //TODO; will need testing added for streaming
+        public XSSFFormulaEvaluator(WorkbookEvaluator bookEvaluator)
+        {
+            _bookEvaluator = bookEvaluator;
+        }
+
         /**
          * @param stabilityClassifier used to optimise caching performance. Pass <code>null</code>
          * for the (conservative) assumption that any cell may have its defInition Changed After
