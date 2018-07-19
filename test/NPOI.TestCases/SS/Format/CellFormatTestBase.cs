@@ -19,7 +19,7 @@ namespace TestCases.SS.Format
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.DrawingCore;
+    using System.Drawing;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
     using NUnit.Framework;

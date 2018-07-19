@@ -20,7 +20,7 @@ using NPOI.OpenXmlFormats.Dml.Spreadsheet;
 using System;
 using System.Text;
 using NPOI.XSSF.Model;
-using System.DrawingCore;
+using System.Drawing;
 using NPOI.Util;
 namespace NPOI.XSSF.UserModel
 {

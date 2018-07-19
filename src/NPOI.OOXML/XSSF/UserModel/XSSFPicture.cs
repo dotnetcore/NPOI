@@ -16,7 +16,7 @@
 ==================================================================== */
 
 using System;
-using System.DrawingCore;
+using System.Drawing;
 using System.IO;
 using NPOI.OpenXml4Net.OPC;
 using NPOI.OpenXmlFormats.Dml;
