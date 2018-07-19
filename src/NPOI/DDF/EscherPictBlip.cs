@@ -19,7 +19,7 @@ namespace NPOI.DDF
     using System;
     using System.IO;
     using System.Text;
-    using System.DrawingCore;
+    using System.Drawing;
     using NPOI.Util;
     using ICSharpCode.SharpZipLib.Zip.Compression;
     using ICSharpCode.SharpZipLib.Zip.Compression.Streams;

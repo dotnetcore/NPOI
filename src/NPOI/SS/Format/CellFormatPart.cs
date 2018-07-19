@@ -20,7 +20,7 @@ namespace NPOI.SS.Format
 
     using NPOI.HSSF.Util;
     using System.Collections.Generic;
-    using System.DrawingCore;
+    using System.Drawing;
     using System.Collections;
     using System.Text.RegularExpressions;
     using System.Text;

@@ -20,7 +20,7 @@ namespace NPOI.HSSF.UserModel
     using System;
     using System.Collections;
     using System.IO;
-    using System.DrawingCore;
+    using System.Drawing;
     using System.Configuration;
     using NPOI.Util.Collections;
     using System.Resources;

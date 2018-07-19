@@ -23,7 +23,7 @@ namespace NPOI.SS.Format
     using System.Text.RegularExpressions;
     using System.Collections.Generic;
     using System.Windows.Forms;
-    using System.DrawingCore;
+    using System.Drawing;
 
     /**
      * Format a value according to the standard Excel behavior.  This "standard" is
