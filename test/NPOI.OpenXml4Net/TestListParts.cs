@@ -33,7 +33,7 @@ namespace TestCases.OPC
 
         private Dictionary<PackagePartName, String> values;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             values = new Dictionary<PackagePartName, String>();
