@@ -25,6 +25,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{2961
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npoi.Samples.CreateNewSpreadsheet", "samples\Npoi.Samples.CreateNewSpreadsheet\Npoi.Samples.CreateNewSpreadsheet.csproj", "{4D493C32-B246-4DB5-B0DF-9AF3B63C230D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Itmes", "Solution Itmes", "{ADC5679E-5CFE-4D97-9F77-FB7FD9E65C55}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+		Directory.Build.props = Directory.Build.props
+		README.md = README.md
+		build\version.props = build\version.props
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		.net 2 Release|Any CPU = .net 2 Release|Any CPU

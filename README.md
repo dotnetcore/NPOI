@@ -1,5 +1,7 @@
 ﻿###  NPOI
 
+[![Build status](https://ci.appveyor.com/api/projects/status/k774la3yfxf0yfv8?svg=true)](https://ci.appveyor.com/project/yuleyule66/npoi)
+
 This project is migrated from Tony Qu's [NPOI](https://github.com/tonyqus/npoi) by DotNETCore team.
 
 ### NPOI of .net standard here, NPOI elsewhere

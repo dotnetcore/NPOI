@@ -1,0 +1,18 @@
+<Project>
+
+    <Import Project="build\version.props" />
+
+    <PropertyGroup Label="Package">
+        <Product>NPOI</Product>
+        <Authors>.NET Core Community;Savorboard</Authors>
+        <RepositoryUrl>https://github.com/dotnetcore/NPOI</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryRoot>$(MSBuildThisFileDirectory)</RepositoryRoot>
+        <PackageIconUrl>https://avatars2.githubusercontent.com/u/19404084</PackageIconUrl>
+        <PackageProjectUrl>https://github.com/dotnetcore/NPOI</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/dotnetcore/NPOI/blob/master/LICENSE.txt</PackageLicenseUrl>
+        <PackageTags>NPOI,Office,Excel,Word</PackageTags>
+        <Description>A .NET library for reading and writing Microsoft Office binary and OOXML file formats.</Description>
+    </PropertyGroup>
+
+</Project>
