@@ -170,7 +170,7 @@ namespace NPOI.SS.Util
                     targetSheet.AddMergedRegion(newCellRangeAddress);
                 }
             }
-            return newRow;           
+            return newRow;
         }
         public static IRow CopyRow(ISheet sheet, int sourceRowIndex, int targetRowIndex)
         {
@@ -183,12 +183,12 @@ namespace NPOI.SS.Util
             // If the row exist in destination, push down all rows by 1 else create a new row
             if (newRow != null)
             {
-                sheet.ShiftRows(targetRowIndex, sheet.LastRowNum, 1);
+                sheet.ShiftRows(targetRowIndex, sheet.LastRowNum, 1, true, false);
             }
-            else
-            {
-                newRow = sheet.CreateRow(targetRowIndex);
-            }
+            //new row
+            newRow = sheet.CreateRow(targetRowIndex);
+            //copyHeight
+            newRow.Height = sourceRow.Height;
 
             // Loop through source columns to add to new row
             for (int i = sourceRow.FirstCellNum; i < sourceRow.LastCellNum; i++)
@@ -312,7 +312,7 @@ namespace NPOI.SS.Util
             //TextLayout layout;
 
             double width = -1;
-            using (Bitmap bmp = new Bitmap(1,1))
+            using (Bitmap bmp = new Bitmap(1, 1))
             using (Graphics g = Graphics.FromImage(bmp))
             {
                 if (cellType == CellType.String)
@@ -450,7 +450,7 @@ namespace NPOI.SS.Util
 
             IWorkbook wb = sheet.Workbook;
             DataFormatter formatter = new DataFormatter();
-            IFont defaultFont = wb.GetFontAt((short) 0);
+            IFont defaultFont = wb.GetFontAt((short)0);
 
             //str = new AttributedString((defaultChar));
             //copyAttributes(defaultFont, str, 0, 1);
@@ -661,5 +661,17 @@ namespace NPOI.SS.Util
             return null;
         }
 
+        public static int getDefaultCharWidth(IWorkbook wb)
+        {
+            //TODO: Implement!
+            return 1;
+            //throw new NotImplementedException();
+            //IFont defaultFont = wb.GetFontAt(0);
+
+            //IAttributedString str = new AttributedString(defaultChar.ToString());
+            //copyAttributes(defaultFont, str, 0, 1);
+            //ITextLayout layout = new TextLayout(str.getIterator(), fontRenderContext);
+            //return (int)layout.getAdvance();
+        }
     }
 }
