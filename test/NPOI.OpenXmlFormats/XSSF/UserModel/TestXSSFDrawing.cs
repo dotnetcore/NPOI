@@ -21,7 +21,7 @@ using NPOI.OpenXml4Net.OPC;
 using NPOI.SS.UserModel;
 using NPOI.OpenXmlFormats.Dml;
 using NPOI.Util;
-using System.DrawingCore;
+using System.Drawing;
 using NPOI.OpenXmlFormats.Dml.Spreadsheet;
 using System.Text;
 namespace NPOI.XSSF.UserModel

@@ -19,8 +19,8 @@ namespace TestCases.HSSF.UserModel
 {
     using System;
     using System.IO;
-    using System.DrawingCore;
-    using System.DrawingCore.Drawing2D;
+    using System.Drawing;
+    using System.Drawing.Drawing2D;
 
     using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;

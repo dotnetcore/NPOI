@@ -16,7 +16,7 @@
 ==================================================================== */
 using System;
 using NPOI.OpenXmlFormats.Dml;
-using System.DrawingCore;
+using System.Drawing;
 using NPOI.Util;
 namespace NPOI.XSSF.UserModel
 {

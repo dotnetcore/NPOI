@@ -19,7 +19,7 @@ namespace NPOI.XSSF.UserModel
     using System;
     using NPOI.SS.UserModel;
     using NUnit.Framework;
-    using System.DrawingCore;
+    using System.Drawing;
 
 
     [TestFixture]

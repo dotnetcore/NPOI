@@ -18,7 +18,7 @@
 using NPOI.HSSF.Util;
 using NPOI.XSSF.UserModel;
 using System.Collections.Generic;
-using System.DrawingCore;
+using System.Drawing;
 using System.Text;
 namespace NPOI.SS.UserModel
 {

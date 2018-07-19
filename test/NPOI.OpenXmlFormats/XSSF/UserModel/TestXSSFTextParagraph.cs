@@ -18,7 +18,7 @@ namespace NPOI.XSSF.UserModel
 {
     using System;
     using NUnit.Framework;
-    using System.DrawingCore;
+    using System.Drawing;
     using System.Collections.Generic;
 
     [TestFixture]
