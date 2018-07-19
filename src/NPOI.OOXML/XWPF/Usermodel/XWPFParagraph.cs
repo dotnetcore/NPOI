@@ -17,19 +17,21 @@
 namespace NPOI.XWPF.UserModel
 {
     using System;
-    using System.Collections.Generic;
-    using NPOI.OpenXmlFormats.Wordprocessing;
-    using System.Text;
-    using NPOI.Util;
     using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using NPOI.OpenXmlFormats.Wordprocessing;
+    using NPOI.Util;
     using NPOI.WP.UserModel;
+
     /**
-     * <p>A Paragraph within a Document, Table, Header etc.</p> 
-     * 
-     * <p>A paragraph has a lot of styling information, but the
-     *  actual text (possibly along with more styling) is held on
-     *  the child {@link XWPFRun}s.</p>
-     */
+* <p>A Paragraph within a Document, Table, Header etc.</p> 
+* 
+* <p>A paragraph has a lot of styling information, but the
+*  actual text (possibly along with more styling) is held on
+*  the child {@link XWPFRun}s.</p>
+*/
     public class XWPFParagraph : IBodyElement, IRunBody, ISDTContents, IParagraph
     {
         private CT_P paragraph;
@@ -1249,6 +1251,42 @@ namespace NPOI.XWPF.UserModel
                 }
             }
         }
+
+        /// <summary>
+        /// Replace for the text searched
+        /// </summary>
+        /// <param name="oldText">old text</param>
+        /// <param name="newText">new text</param>
+        /// <param name="replaceAll">Replace all for the text searched</param>
+        public void ReplaceText(string oldText, string newText, bool replaceAll = false)
+        {
+            var paragraph = this;
+
+            var segment = paragraph.SearchText(oldText);
+
+            if (segment == null)
+            {
+                return;
+            }
+
+            paragraph.Runs.ElementAt(segment.BeginRun).ReplaceText(paragraph.Runs.ElementAt(segment.BeginRun).Text.Substring(segment.BeginChar), newText);
+
+            if (segment.EndRun > segment.BeginRun)
+            {
+                paragraph.Runs.ElementAt(segment.EndRun).ReplaceText(paragraph.Runs.ElementAt(segment.EndRun).Text.Substring(0, segment.EndChar + 1), string.Empty);
+
+                for (int i = segment.BeginRun + 1; i < segment.EndRun; i++)
+                {
+                    paragraph.Runs.ElementAt(i).ReplaceText(paragraph.Runs.ElementAt(i).Text, string.Empty);
+                }
+            }
+
+            if (replaceAll)
+            {
+                ReplaceText(oldText, newText, replaceAll);
+            }
+        }
+
         /// <summary>
         /// this methods parse the paragraph and search for the string searched. 
         /// If it finds the string, it will return true and the position of the String will be saved in the parameter startPos.
@@ -1325,6 +1363,100 @@ namespace NPOI.XWPF.UserModel
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// search for the text searched
+        /// </summary>
+        /// <param name="text">search</param>
+        /// <returns></returns>
+        public TextSegment SearchText(string text)
+        {
+            if (string.IsNullOrEmpty(text) || Text?.Contains(text) != true)
+            {
+                return null;
+            }
+
+            var beginChar = text.First();
+
+            var endChar = text.Last();
+
+            var beginRunIndex = -1;
+
+            var beginCharIndex = -1;
+
+            var endRunIndex = -1;
+
+            var endCharIndex = -1;
+
+            var runs = Runs;
+
+            for (int i = 0; i < runs.Count; i++)
+            {
+                var beginIndex = runs[i].Text.IndexOf(beginChar);
+
+                // find beginRunIndex and beginCharIndex
+                if (beginIndex > -1)
+                {
+                    if (i < runs.Count - 1 && text.StartsWith(runs[i].Text.Substring(beginIndex, Math.Min(text.Length, runs[i].Text.Length - beginIndex))))
+                    {
+                        beginRunIndex = i;
+
+                        beginCharIndex = beginIndex;
+                    }
+
+                    if (i == runs.Count - 1 && runs[i].Text.Contains(text))
+                    {
+                        beginRunIndex = i;
+
+                        beginCharIndex = beginIndex;
+                    }
+                }
+
+                var endIndex = runs[i].Text.IndexOf(endChar);
+
+                // find beginRunIndex and beginCharIndex
+                if (endIndex > -1)
+                {
+                    var runTextStard = runs[i].Text.Substring(0, endIndex + 1);
+
+                    var textEnd = runTextStard.Substring(endIndex + 1 - Math.Min(text.Length, runTextStard.Length));
+
+                    if (i > 0 && text.EndsWith(textEnd))
+                    {
+                        endRunIndex = i;
+
+                        endCharIndex = endIndex;
+                    }
+
+                    if (i == 0 && runs[i].Text.Contains(text))
+                    {
+                        endRunIndex = i;
+
+                        endCharIndex = endIndex;
+                    }
+                }
+
+                if (beginRunIndex >= 0 && endRunIndex >= beginRunIndex)
+                {
+                    break;
+                }
+            }
+
+            var segment = default(TextSegment);
+
+            if (beginRunIndex > -1 && endRunIndex >= beginRunIndex)
+            {
+                segment = new TextSegment
+                {
+                    BeginRun = beginRunIndex,
+                    BeginChar = beginCharIndex,
+                    EndRun = endRunIndex,
+                    EndChar = endCharIndex
+                };
+            }
+
+            return segment;
         }
 
         /**
