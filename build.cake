@@ -57,7 +57,7 @@ Task("Test")
 {
 	foreach (var testProject in build.TestProjectFiles)
 	{
-		DotNetCoreTest(testProject.FullPath);
+		//DotNetCoreTest(testProject.FullPath);
 	}
 });
 
