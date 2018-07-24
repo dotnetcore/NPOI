@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
-        <PackageId>DotNetCore.NPOI</PackageId>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <PackageId>DotNetCore.NPOI</PackageId>   
+  </PropertyGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\NPOI.OpenXml4Net\NPOI.OpenXml4Net.csproj" />
-        <ProjectReference Include="..\NPOI.OpenXmlFormats\NPOI.OpenXmlFormats.csproj" />
-        <ProjectReference Include="..\NPOI\NPOI.csproj" />
-    </ItemGroup>
-
+  <ItemGroup>
+    <ProjectReference Include="..\NPOI.OpenXml4Net\NPOI.OpenXml4Net.csproj" />
+    <ProjectReference Include="..\NPOI.OpenXmlFormats\NPOI.OpenXmlFormats.csproj" />
+    <ProjectReference Include="..\NPOI\NPOI.csproj" />
+  </ItemGroup>
+   
 </Project>
