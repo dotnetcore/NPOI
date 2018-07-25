@@ -4,7 +4,7 @@
 
     <PropertyGroup Label="Package">
         <Product>NPOI</Product>
-        <Authors>.NET Core Community;Savorboard</Authors>
+        <Authors>dotnetcore;Savorboard</Authors>
         <RepositoryUrl>https://github.com/dotnetcore/NPOI</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <RepositoryRoot>$(MSBuildThisFileDirectory)</RepositoryRoot>
