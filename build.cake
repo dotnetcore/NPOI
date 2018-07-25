@@ -73,7 +73,7 @@ Task("Pack")
 	};
 	foreach (var project in build.ProjectFiles)
 	{
-		//DotNetCorePack(project.FullPath, settings);
+		DotNetCorePack(project.FullPath, settings);
 	}
 });
 
