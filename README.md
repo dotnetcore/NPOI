@@ -2,11 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/k774la3yfxf0yfv8?svg=true)](https://ci.appveyor.com/project/yuleyule66/npoi)
 
-This project is migrated from Tony Qu's [NPOI](https://github.com/tonyqus/npoi) by DotNETCore team.
-
-### NPOI of .net standard here, NPOI elsewhere
-
-This NPOI use .net standard 2.0 version. NPOI is still under at [https://github.com/tonyqus/npoi](https://github.com/tonyqus/npoi)
+This project is migrated from Tony Qu's [NPOI](https://github.com/tonyqus/npoi) by .NET Core Community.
 
 ### NuGet Package 
 
@@ -15,15 +11,6 @@ This NPOI use .net standard 2.0 version. NPOI is still under at [https://github.
 Install-Package DotNetCore.NPOI
 
 ```
-### What is NPOI ?
-
-NPOI is the .NET version of POI Java project at http://poi.apache.org/. POI is an open source project which can help you read/write xls, doc, ppt files. It has a wide application.
-
-For example, you can use it to
-* generate a Excel report without Microsoft Office suite installed on your server and more efficient than call Microsoft Excel ActiveX at background;
-* extract text from Office documents to help you implement full-text indexing feature (most of time this feature is used to create search engines). 
-* extract images from Office documents
-* generate Excel sheets that contains formulas
 
 ### How can it work on Linux?
 
