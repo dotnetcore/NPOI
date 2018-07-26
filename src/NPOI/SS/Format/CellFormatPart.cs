@@ -24,7 +24,6 @@ namespace NPOI.SS.Format
     using System.Collections;
     using System.Text.RegularExpressions;
     using System.Text;
-    using System.Windows.Forms;
 
     /**
      * Objects of this class represent a single part of a cell format expression.

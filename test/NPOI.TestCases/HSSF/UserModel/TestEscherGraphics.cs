@@ -27,7 +27,6 @@ namespace TestCases.HSSF.UserModel
 
 
     using NUnit.Framework;
-    using System.Windows.Forms;
 
     /**
      * Tests the capabilities of the EscherGraphics class.

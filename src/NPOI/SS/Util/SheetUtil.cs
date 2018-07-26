@@ -21,7 +21,6 @@ namespace NPOI.SS.Util
 
     using NPOI.SS.UserModel;
     using System.Drawing;
-    using System.Windows.Forms;
     using System.Collections.Generic;
 
     /**

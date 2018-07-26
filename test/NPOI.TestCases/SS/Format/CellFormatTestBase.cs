@@ -14,6 +14,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ==================================================================== */
+
+using NPOI;
+
 namespace TestCases.SS.Format
 {
     using System;
@@ -21,7 +24,6 @@ namespace TestCases.SS.Format
     using System.Collections.Generic;
     using System.Drawing;
     using System.Text.RegularExpressions;
-    using System.Windows.Forms;
     using NUnit.Framework;
     using NPOI.HSSF.UserModel;
     using NPOI.SS.Format;
