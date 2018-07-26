@@ -15,13 +15,14 @@
    limitations under the License.
 ==================================================================== */
 
+using NPOI;
+
 namespace TestCases.SS.Format
 {
     using System;
     using System.Globalization;
     using System.Text;
     using System.Threading;
-    using System.Windows.Forms;
 
     using NPOI.HSSF.UserModel;
     using NPOI.SS.Format;

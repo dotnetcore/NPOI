@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
+﻿using System.Drawing;
 
-namespace System.Windows.Forms
+namespace NPOI
 {
     /// <summary>Provides methods used to measure and render text. This class cannot be inherited. </summary>
     public sealed class TextRenderer

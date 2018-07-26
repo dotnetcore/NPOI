@@ -22,7 +22,6 @@ namespace NPOI.SS.Format
     using NPOI.SS.UserModel;
     using System.Text.RegularExpressions;
     using System.Collections.Generic;
-    using System.Windows.Forms;
     using System.Drawing;
 
     /**
