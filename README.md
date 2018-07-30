@@ -14,10 +14,10 @@ Install-Package DotNetCore.NPOI
 
 ### How can it work on Linux?
 
-On Linux, you need install `libgdiplus`.
+On Linux, you need install `libgdiplus`. Since 1.2.0 libdl is also required.
 
 - Ubuntu 16.04 and above:
-	- apt-get install libgdiplus
+	- apt-get install libgdiplus libc6-dev
 	- cd /usr/lib
 	- ln -s libgdiplus.so gdiplus.dll
 - Fedora 23 and above:
@@ -44,6 +44,12 @@ On Linux, you need install `libgdiplus`.
 
     RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
     RUN apk --update add libgdiplus
+    ```
+    - Debian
+    ```
+    FROM microsoft/dotnet:2.1-aspnetcore-runtime
+    RUN apt-get update && apt-get install -y libgdiplus libc6-dev && ln -s /usr/lib/libgdiplus.so /usr/lib/gdiplus.dll
+    ...
     ```
 
 ### Getting Started
