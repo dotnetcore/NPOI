@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <PackageId>DotNetCore.NPOI</PackageId>
-    <Version>1.2.1</Version>  
   </PropertyGroup>
 
   <ItemGroup>
