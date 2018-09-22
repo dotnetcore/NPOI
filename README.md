@@ -1,4 +1,11 @@
-﻿###  NPOI
+###  .NET Core support
+
+Add HWPF .NET Core support to read .doc Word 2003 format
+I have not full tested it, but I will fix the bug in the feature.
+Hope it can help you.
+
+
+###  NPOI
 
 [![Build status](https://ci.appveyor.com/api/projects/status/k774la3yfxf0yfv8?svg=true)](https://ci.appveyor.com/project/yuleyule66/npoi)
 
