@@ -296,7 +296,7 @@ namespace NPOI.HWPF.Model
              */
             CHPX previous = null;
             var copy = _textRuns.ToList();
-            for (List<CHPX>.Enumerator iterator = _textRuns.GetEnumerator(); iterator
+            for (List<CHPX>.Enumerator iterator = copy.GetEnumerator(); iterator
                     .MoveNext(); )
             {
                 CHPX current = iterator.Current;
