@@ -63,11 +63,20 @@ namespace NPOI.HWPF.Model
             }
         }
 
+        private static bool inited;
+
         /**
          * Create the StringBuilder from the text and unicode flag
          */
         private static StringBuilder buildInitSB(byte[] text, PieceDescriptor pd)
         {
+            if (!inited)
+            {
+                // RegisterProvider is a thread safe method, does a lock required?
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                inited = true;
+            }
+
             String str;
             try
             {
@@ -78,7 +87,14 @@ namespace NPOI.HWPF.Model
                 else
                 {
                     //str = Encoding.GetEncoding("CP1252").GetString(text);
-                    str = Encoding.GetEncoding("Windows-1252").GetString(text);
+//                    try
+//                    {
+                        str = Encoding.GetEncoding("Windows-1252").GetString(text);
+//                    }
+//                    catch (Exception e)
+//                    {
+//                        str = Encoding.GetEncoding(1252).GetString(text);
+//                    }
                 }
             }
             catch (EncoderFallbackException)

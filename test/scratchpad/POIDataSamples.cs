@@ -112,15 +112,18 @@ namespace TestCases
 
         private void Initialise()
         {
-            String dataDirName = System.Configuration.ConfigurationSettings.AppSettings[TEST_PROPERTY];
+           // String dataDirName = System.Configuration.ConfigurationSettings.AppSettings[TEST_PROPERTY];
+            String dataDirName = System.Configuration.ConfigurationManager.AppSettings[TEST_PROPERTY];
 
             if (dataDirName == null)
                 throw new Exception("Must set system property '"
                         + TEST_PROPERTY
                         + "' before running tests");
 
-            string dataDir = string.Format(@"{0}\{1}\", dataDirName, _moduleDir);
-            if (!Directory.Exists(dataDir))
+            string dataDir = string.Format(@"{0}/{1}/", dataDirName, _moduleDir);
+            //if (!Directory.Exists(dataDir))
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, dataDir);
+                if (!Directory.Exists(path))
             {
                 throw new IOException("Data dir '" + dataDirName + "\\" + _moduleDir
                         + "' specified by system property '"
