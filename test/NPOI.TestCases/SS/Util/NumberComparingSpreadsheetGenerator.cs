@@ -21,6 +21,8 @@ using System.Text;
 using NPOI.Util;
 using NPOI.HSSF.UserModel;
 using System.IO;
+using NUnit.Framework;
+
 namespace TestCases.SS.Util
 {
 
@@ -132,7 +134,8 @@ namespace TestCases.SS.Util
             return sb.ToString();
         }
 
-        public static void Main(String[] args)
+        //[Test]
+        public void Test()
         {
 
             IWorkbook wb = new HSSFWorkbook();
