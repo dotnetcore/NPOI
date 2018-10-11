@@ -118,10 +118,10 @@ namespace NPOI.SS.UserModel
             invalidDateTimeString = buf.ToString();
         }
         /** <em>General</em> FormatBase for whole numbers. */
-        private static DecimalFormat generalWholeNumFormat = new DecimalFormat("0");
+        private static DecimalFormat generalWholeNumFormat = new DecimalFormat("0", true);
 
         /** <em>General</em> FormatBase for decimal numbers. */
-        private static DecimalFormat generalDecimalNumFormat = new DecimalFormat("#.##########");
+        private static DecimalFormat generalDecimalNumFormat = new DecimalFormat("#.##########", true);
 
         /** A default FormatBase to use when a number pattern cannot be Parsed. */
         private FormatBase defaultNumFormat;

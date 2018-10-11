@@ -173,12 +173,20 @@ namespace NPOI.SS.Util
 
         private string pattern;
 
+        private bool isGeneral;
+
         public DecimalFormat(string pattern)
         {
             if (pattern.IndexOf("'", StringComparison.Ordinal) != -1)
                 throw new ArgumentException("invalid pattern");
             this.pattern = pattern;
         }
+
+        internal DecimalFormat(string pattern, bool isGeneral) : this(pattern)
+        {
+            this.isGeneral = isGeneral;
+        }
+
         public string Pattern
         {
             get
@@ -194,19 +202,19 @@ namespace NPOI.SS.Util
         }
         public override string Format(object obj, CultureInfo culture)
         {
-            //invalide fraction
+            // Invalid fraction
             pattern = RegexFraction.Replace(pattern, "/");
-            
+            double n = Convert.ToDouble(obj, CultureInfo.InvariantCulture);
+
             if (pattern.IndexOf("'", StringComparison.Ordinal) != -1)
-            {
-                //return ((double)obj).ToString();
-                return Convert.ToDouble(obj, CultureInfo.InvariantCulture).ToString(culture);
-            }
-            else
-            {
-                return Convert.ToDouble(obj, CultureInfo.InvariantCulture).ToString(pattern, culture);
-                //return ((double)obj).ToString(pattern) ;
-            }
+                return n.ToString(culture);
+
+            // Excel displays in scientific notation if the cell form is General and there are 12 or more digits
+            // https://support.office.com/en-us/article/display-numbers-in-scientific-exponential-notation-f85a96c0-18a1-4249-81c3-e934cd2aae25
+            if (isGeneral && Math.Floor(Math.Log10(n) + 1) >= 12)
+                pattern = "E4";
+            
+            return n.ToString(pattern, culture);
         }
 
         public override StringBuilder Format(object obj, StringBuilder toAppendTo, CultureInfo culture)
