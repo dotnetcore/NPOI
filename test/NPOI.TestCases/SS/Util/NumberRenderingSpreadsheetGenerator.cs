@@ -22,6 +22,7 @@ using NPOI.Util;
 using NPOI.SS.UserModel;
 using System.Text;
 using System.IO;
+using NUnit.Framework;
 
 namespace TestCases.SS.Util
 {
@@ -140,7 +141,8 @@ namespace TestCases.SS.Util
             return sb.ToString();
         }
 
-        public static void Main(String[] args)
+        //[Test]
+        public void Test()
         {
             WriteJavaDoc();
 

@@ -38,6 +38,9 @@ bld/
 [Bb]in/
 [Oo]bj/
 
+# KDiff3
+*.orig
+
 # Visual Studio 2015 cache/options directory
 .vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot
@@ -170,6 +173,7 @@ publish/
 # NuGet v3's project.json files produces more ignoreable files
 *.nuget.props
 *.nuget.targets
+tools/
 
 # Microsoft Azure Build Output
 csx/
