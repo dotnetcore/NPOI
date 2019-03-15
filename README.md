@@ -1,63 +1,64 @@
-﻿###  NPOI
+﻿# NPOI
 
+[![NuGet](https://img.shields.io/nuget/v/DotNetCore.NPOI.svg)](https://www.nuget.org/packages/DotNetCore.NPOI)
 [![Build status](https://ci.appveyor.com/api/projects/status/k774la3yfxf0yfv8?svg=true)](https://ci.appveyor.com/project/yuleyule66/npoi)
 
 This project is migrated from Tony Qu's [NPOI](https://github.com/tonyqus/npoi) by .NET Core Community.
 
-### NuGet Package 
+## Install NuGet Package
 
 ```powershell
-
 Install-Package DotNetCore.NPOI
-
 ```
 
-### How can it work on Linux?
+## How can it work on Linux?
 
 On Linux, you need install `libgdiplus`. Since 1.2.0 libdl is also required.
 
 - Ubuntu 16.04 and above:
-	- apt-get install libgdiplus libc6-dev
-	- cd /usr/lib
-	- ln -s libgdiplus.so gdiplus.dll
+  - apt-get install libgdiplus libc6-dev
+  - cd /usr/lib
+  - ln -s libgdiplus.so gdiplus.dll
 - Fedora 23 and above:
-	- dnf install libgdiplus
-	- cd /usr/lib64/
-	- ln -s libgdiplus.so.0 gdiplus.dll
+  - dnf install libgdiplus
+  - cd /usr/lib64/
+  - ln -s libgdiplus.so.0 gdiplus.dll
 - CentOS 7 and above:
-	- yum install autoconf automake libtool
-	- yum install freetype-devel fontconfig libXft-devel
-	- yum install libjpeg-turbo-devel libpng-devel giflib-devel libtiff-devel libexif-devel
-	- yum install glib2-devel cairo-devel
-	- git clone https://github.com/mono/libgdiplus
-	- cd libgdiplus
-	- ./autogen.sh
-	- make
-	- make install
-	- cd /usr/lib64/
-	- ln -s /usr/local/lib/libgdiplus.so gdiplus.dll
+  - yum install autoconf automake libtool
+  - yum install freetype-devel fontconfig libXft-devel
+  - yum install libjpeg-turbo-devel libpng-devel giflib-devel libtiff-devel libexif-devel
+  - yum install glib2-devel cairo-devel
+  - git clone <https://github.com/mono/libgdiplus>
+  - cd libgdiplus
+  - ./autogen.sh
+  - make
+  - make install
+  - cd /usr/lib64/
+  - ln -s /usr/local/lib/libgdiplus.so gdiplus.dll
 
 - Docker
-    - Alpine 
+  - Alpine
+
     ```
     # base sdk-alpine/aspnetcore-runtime-alpine images
 
     RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
     RUN apk --update add libgdiplus
     ```
-    - Debian
+
+  - Debian
+
     ```
     FROM microsoft/dotnet:2.1-aspnetcore-runtime
     RUN apt-get update && apt-get install -y libgdiplus libc6-dev && ln -s /usr/lib/libgdiplus.so /usr/lib/gdiplus.dll
     ...
     ```
 
-### Getting Started
+## Getting Started
 
-#### Export Excel
+### Export Excel
 
 ```csharp
-
 var newFile = @"newbook.core.xlsx";
 
 using (var fs = new FileStream(newFile, FileMode.Create, FileAccess.Write)) {
@@ -93,10 +94,9 @@ using (var fs = new FileStream(newFile, FileMode.Create, FileAccess.Write)) {
 
     workbook.Write(fs);
 }
-
 ```
 
-#### Export Word
+### Export Word
 
 ```csharp
 var newFile2 = @"newbook.core.docx";
@@ -121,5 +121,4 @@ using (var fs = new FileStream(newFile2, FileMode.Create, FileAccess.Write)) {
 
     doc.Write(fs);
 }
-
 ```
