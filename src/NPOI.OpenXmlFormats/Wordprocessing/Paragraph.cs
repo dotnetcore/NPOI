@@ -371,6 +371,17 @@ namespace NPOI.OpenXmlFormats.Wordprocessing
             return r;
         }
 
+        public CT_Hyperlink1 AddNewHyperlink()
+        {
+            CT_Hyperlink1 hl = new CT_Hyperlink1();
+            lock (this)
+            {
+                itemsField.Add(hl);
+                itemsElementNameField.Add(ParagraphItemsChoiceType.hyperlink);
+            }
+            return hl;
+        }
+
         [XmlElement("ItemsElementName", Order = 2)]
         [XmlIgnore]
         public List<ParagraphItemsChoiceType> ItemsElementName
