@@ -50,7 +50,9 @@ namespace NPOI.OpenXmlFormats.Spreadsheet
             if (node == null)
                 return null;
             CT_PatternFill ctObj = new CT_PatternFill();
-            if (node.Attributes["patternType"] != null)
+            if (node.Attributes["patternType"] == null)
+                ctObj.patternType = ST_PatternType.solid;
+            else
                 ctObj.patternType = (ST_PatternType)Enum.Parse(typeof(ST_PatternType), node.Attributes["patternType"].Value);
             foreach (XmlNode childNode in node.ChildNodes)
             {
