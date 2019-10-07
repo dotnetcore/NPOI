@@ -1341,6 +1341,26 @@ namespace NPOI.XWPF.UserModel
         }
 
         /**
+         * Appends a new hyperlink run to this paragraph
+         *
+         * @return a new hyperlink run
+         */
+        public XWPFHyperlinkRun CreateHyperlinkRun(string rId)
+        {
+            CT_R r = new CT_R();
+            r.AddNewRPr().rStyle = new CT_String() { val = "Hyperlink" };
+
+            CT_Hyperlink1 hl = paragraph.AddNewHyperlink();
+            hl.history = ST_OnOff.on;
+            hl.id = rId;
+            hl.Items.Add(r);
+            XWPFHyperlinkRun xwpfRun = new XWPFHyperlinkRun(hl, r, this);
+            runs.Add(xwpfRun);
+            iRuns.Add(xwpfRun);
+            return xwpfRun;
+        }
+
+        /**
          * insert a new Run in RunArray
          * @param pos
          * @return  the inserted run
