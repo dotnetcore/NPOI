@@ -10,6 +10,10 @@
 
 This project is migrated from Tony Qu's [NPOI](https://github.com/tonyqus/npoi) by .NET Core Community.
 
+## Announcement
+
+The root upstream project of the NPOI project is [tonyqus/NPOI](https://github.com/tonyqus/NPOI), which is the .NET version of the [Apache POI](https://github.com/apache/poi). [tonyqus/NPOI](https://github.com/tonyqus/NPOI) is the project with the largest number of downloads of [nuget package](https://www.nuget.org/packages/NPOI/) in the Chinese-speaking area. Developers at home and abroad know that this kind of glory and contribution cannot be obliterated. Just like Linux has derived so many distributions, but no one can deny Linus's contribution.
+
 ## Install NuGet Package
 
 ```powershell

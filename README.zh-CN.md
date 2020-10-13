@@ -10,6 +10,10 @@
 
 本项目由 .NET Core Community 迁移自上游项目 Tony Qu 的 [NPOI](https://github.com/tonyqus/npoi) 。
 
+## 通告
+
+NPOI 项目的最上游项目是 [tonyqus/NPOI](https://github.com/tonyqus/NPOI)，该项目是 [Apache POI](https://github.com/apache/poi) 项目的 .NET 版本。[tonyqus/NPOI](https://github.com/tonyqus/NPOI) 是华语地区 [NUGET](https://www.nuget.org/packages/NPOI/) 包下载量最大的项目，为全体海内外开发者们所知，这种荣耀与贡献是谁也不可能抹杀的，就像 Linux 衍生出那么多版本，但又有谁会否认 Linus Torvalds 的贡献？
+
 ## 安装 NuGet 包
 
 ```powershell
