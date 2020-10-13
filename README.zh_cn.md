@@ -1,6 +1,6 @@
-﻿<p align="center">
-    <span>English</span> |  
-    <a href="README.zh-CN.md">中文</a>
+<p align="center">
+    <a href="README.md">English</a> |   
+    <span>中文</span>
 </p>
 
 # NPOI
@@ -8,27 +8,27 @@
 [![NuGet](https://img.shields.io/nuget/v/DotNetCore.NPOI.svg)](https://www.nuget.org/packages/DotNetCore.NPOI)
 [![Build status](https://ci.appveyor.com/api/projects/status/k774la3yfxf0yfv8?svg=true)](https://ci.appveyor.com/project/yuleyule66/npoi)
 
-This project is migrated from Tony Qu's [NPOI](https://github.com/tonyqus/npoi) by .NET Core Community.
+本项目由 .NET Core Community 迁移自上游项目 Tony Qu 的 [NPOI](https://github.com/tonyqus/npoi) 。
 
-## Install NuGet Package
+## 安装 NuGet 包
 
 ```powershell
 Install-Package DotNetCore.NPOI
 ```
 
-## How can it work on Linux?
+## 如何在 Linux 上使用？
 
-On Linux, you need install `libgdiplus`. Since 1.2.0 libdl is also required.
+在 Linux 上，你需要安装 `libgdiplus`。从 1.2.0 开始，还需要 libdl。
 
-- Ubuntu 16.04 and above:
+- Ubuntu 16.04 及以上：
   - apt-get install libgdiplus libc6-dev
   - cd /usr/lib
   - ln -s libgdiplus.so gdiplus.dll
-- Fedora 23 and above:
+- Fedora 23 及以上：
   - dnf install libgdiplus
   - cd /usr/lib64/
   - ln -s libgdiplus.so.0 gdiplus.dll
-- CentOS 7 and above:
+- CentOS 7 及以上：
   - yum install autoconf automake libtool
   - yum install freetype-devel fontconfig libXft-devel
   - yum install libjpeg-turbo-devel libpng-devel giflib-devel libtiff-devel libexif-devel
@@ -59,9 +59,9 @@ On Linux, you need install `libgdiplus`. Since 1.2.0 libdl is also required.
     ...
     ```
 
-## Getting Started
+## 开始
 
-### Export Excel
+### 导出 Excel
 
 ```csharp
 var newFile = @"newbook.core.xlsx";
@@ -101,7 +101,7 @@ using (var fs = new FileStream(newFile, FileMode.Create, FileAccess.Write)) {
 }
 ```
 
-### Export Word
+### 导出 Word
 
 ```csharp
 var newFile2 = @"newbook.core.docx";
